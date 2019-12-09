@@ -56,17 +56,22 @@ func makeResource(mod string, res string) tokens.Type {
 	return makeType(mod+"/"+fn, res)
 }
 
+func refProviderLicense(license tfbridge.TFProviderLicense) *tfbridge.TFProviderLicense {
+	return &license
+}
+
 func Provider() tfbridge.ProviderInfo {
 	p := cloudamqp.Provider()
 	prov := tfbridge.ProviderInfo{
-		P:           p,
-		Name:        "cloudamqp",
-		GitHubOrg:   "cloudamqp",
-		Description: "A Pulumi package for creating and managing CloudAMQP resources.",
-		Keywords:    []string{"pulumi", "cloudamqp"},
-		License:     "Apache-2.0",
-		Homepage:    "https://pulumi.io",
-		Repository:  "https://github.com/pulumi/pulumi-cloudamqp",
+		P:                 p,
+		Name:              "cloudamqp",
+		GitHubOrg:         "cloudamqp",
+		Description:       "A Pulumi package for creating and managing CloudAMQP resources.",
+		Keywords:          []string{"pulumi", "cloudamqp"},
+		License:           "Apache-2.0",
+		TFProviderLicense: refProviderLicense(tfbridge.MITLicenseType),
+		Homepage:          "https://pulumi.io",
+		Repository:        "https://github.com/pulumi/pulumi-cloudamqp",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"apikey": {
 				Type: "string",
