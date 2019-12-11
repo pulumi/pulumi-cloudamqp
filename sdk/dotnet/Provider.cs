@@ -5,7 +5,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Cloudamqp
+namespace Pulumi.CloudAmqp
 {
     /// <summary>
     /// The provider type for the cloudamqp package. By default, resources use package-wide configuration

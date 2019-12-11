@@ -3,7 +3,7 @@
 
 using System.Collections.Immutable;
 
-namespace Pulumi.Cloudamqp
+namespace Pulumi.CloudAmqp
 {
     public static class Config
     {
