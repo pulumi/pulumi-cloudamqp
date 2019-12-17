@@ -6,7 +6,7 @@ using System.IO;
 using System.Reflection;
 using Pulumi;
 
-namespace Pulumi.Cloudamqp
+namespace Pulumi.CloudAmqp
 {
     static class Utilities
     {
@@ -66,7 +66,7 @@ namespace Pulumi.Cloudamqp
         static Utilities()
         {
             var assembly = typeof(Utilities).GetTypeInfo().Assembly;
-            using var stream = assembly.GetManifestResourceStream("Pulumi.Cloudamqp.version.txt");
+            using var stream = assembly.GetManifestResourceStream("Pulumi.CloudAmqp.version.txt");
             using var reader = new StreamReader(stream ?? throw new NotSupportedException("Missing embedded version.txt file"));
             version = reader.ReadToEnd().Trim();
         }
