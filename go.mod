@@ -4,8 +4,8 @@ go 1.13
 
 require (
 	cloud.google.com/go/logging v1.0.0 // indirect
-	github.com/84codes/go-api v0.0.0-20191126121047-3c63a7941abe // indirect
-	github.com/cloudamqp/terraform-provider-cloudamqp v1.2.0
+	github.com/84codes/go-api v0.0.0-20191213113653-9c826acead17 // indirect
+	github.com/cloudamqp/terraform-provider-cloudamqp v1.2.2
 	github.com/hashicorp/terraform v0.12.17 // indirect
 	github.com/pkg/errors v0.8.1
 	github.com/pulumi/pulumi v1.6.1

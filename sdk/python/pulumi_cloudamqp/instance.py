@@ -11,6 +11,7 @@ from . import utilities, tables
 
 class Instance(pulumi.CustomResource):
     apikey: pulumi.Output[str]
+    host: pulumi.Output[str]
     name: pulumi.Output[str]
     nodes: pulumi.Output[float]
     plan: pulumi.Output[str]
@@ -18,6 +19,7 @@ class Instance(pulumi.CustomResource):
     rmq_version: pulumi.Output[str]
     tags: pulumi.Output[list]
     url: pulumi.Output[str]
+    vhost: pulumi.Output[str]
     vpc_subnet: pulumi.Output[str]
     def __init__(__self__, resource_name, opts=None, name=None, nodes=None, plan=None, region=None, rmq_version=None, tags=None, vpc_subnet=None, __props__=None, __name__=None, __opts__=None):
         """
@@ -55,7 +57,9 @@ class Instance(pulumi.CustomResource):
             __props__['tags'] = tags
             __props__['vpc_subnet'] = vpc_subnet
             __props__['apikey'] = None
+            __props__['host'] = None
             __props__['url'] = None
+            __props__['vhost'] = None
         super(Instance, __self__).__init__(
             'cloudamqp:index/instance:Instance',
             resource_name,
@@ -63,7 +67,7 @@ class Instance(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, apikey=None, name=None, nodes=None, plan=None, region=None, rmq_version=None, tags=None, url=None, vpc_subnet=None):
+    def get(resource_name, id, opts=None, apikey=None, host=None, name=None, nodes=None, plan=None, region=None, rmq_version=None, tags=None, url=None, vhost=None, vpc_subnet=None):
         """
         Get an existing Instance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -76,6 +80,7 @@ class Instance(pulumi.CustomResource):
 
         __props__ = dict()
         __props__["apikey"] = apikey
+        __props__["host"] = host
         __props__["name"] = name
         __props__["nodes"] = nodes
         __props__["plan"] = plan
@@ -83,6 +88,7 @@ class Instance(pulumi.CustomResource):
         __props__["rmq_version"] = rmq_version
         __props__["tags"] = tags
         __props__["url"] = url
+        __props__["vhost"] = vhost
         __props__["vpc_subnet"] = vpc_subnet
         return Instance(resource_name, opts=opts, __props__=__props__)
     def translate_output_property(self, prop):
