@@ -40,7 +40,9 @@ func NewInstance(ctx *pulumi.Context,
 		inputs["vpcSubnet"] = args.VpcSubnet
 	}
 	inputs["apikey"] = nil
+	inputs["host"] = nil
 	inputs["url"] = nil
+	inputs["vhost"] = nil
 	s, err := ctx.RegisterResource("cloudamqp:index/instance:Instance", name, true, inputs, opts...)
 	if err != nil {
 		return nil, err
@@ -55,6 +57,7 @@ func GetInstance(ctx *pulumi.Context,
 	inputs := make(map[string]interface{})
 	if state != nil {
 		inputs["apikey"] = state.Apikey
+		inputs["host"] = state.Host
 		inputs["name"] = state.Name
 		inputs["nodes"] = state.Nodes
 		inputs["plan"] = state.Plan
@@ -62,6 +65,7 @@ func GetInstance(ctx *pulumi.Context,
 		inputs["rmqVersion"] = state.RmqVersion
 		inputs["tags"] = state.Tags
 		inputs["url"] = state.Url
+		inputs["vhost"] = state.Vhost
 		inputs["vpcSubnet"] = state.VpcSubnet
 	}
 	s, err := ctx.ReadResource("cloudamqp:index/instance:Instance", name, id, inputs, opts...)
@@ -84,6 +88,11 @@ func (r *Instance) ID() pulumi.IDOutput {
 // API key for the CloudAMQP instance
 func (r *Instance) Apikey() pulumi.StringOutput {
 	return (pulumi.StringOutput)(r.s.State["apikey"])
+}
+
+// Host name for the CloudAMQP instance
+func (r *Instance) Host() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["host"])
 }
 
 // Name of the instance
@@ -121,6 +130,11 @@ func (r *Instance) Url() pulumi.StringOutput {
 	return (pulumi.StringOutput)(r.s.State["url"])
 }
 
+// The virtual host
+func (r *Instance) Vhost() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["vhost"])
+}
+
 // Dedicated VPC subnet, shouldn't overlap with your current VPC's subnet
 func (r *Instance) VpcSubnet() pulumi.StringOutput {
 	return (pulumi.StringOutput)(r.s.State["vpcSubnet"])
@@ -130,6 +144,8 @@ func (r *Instance) VpcSubnet() pulumi.StringOutput {
 type InstanceState struct {
 	// API key for the CloudAMQP instance
 	Apikey interface{}
+	// Host name for the CloudAMQP instance
+	Host interface{}
 	// Name of the instance
 	Name interface{}
 	// Number of nodes in cluster (plan must support it)
@@ -144,6 +160,8 @@ type InstanceState struct {
 	Tags interface{}
 	// URL of the CloudAMQP instance
 	Url interface{}
+	// The virtual host
+	Vhost interface{}
 	// Dedicated VPC subnet, shouldn't overlap with your current VPC's subnet
 	VpcSubnet interface{}
 }

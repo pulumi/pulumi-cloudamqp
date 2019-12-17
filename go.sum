@@ -27,8 +27,8 @@ dmitri.shuralyov.com/service/change v0.0.0-20181023043359-a85b471d5412/go.mod h1
 dmitri.shuralyov.com/state v0.0.0-20180228185332-28bcc343414c/go.mod h1:0PRwlb0D6DFvNNtx+9ybjezNCa8XF0xaYcETyp6rHWU=
 git.apache.org/thrift.git v0.0.0-20180902110319-2566ecd5d999/go.mod h1:fPE2ZNJGynbRyZ4dJvy6G277gSllfV2HJqblrnkyeyg=
 git.apache.org/thrift.git v0.12.0/go.mod h1:fPE2ZNJGynbRyZ4dJvy6G277gSllfV2HJqblrnkyeyg=
-github.com/84codes/go-api v0.0.0-20191126121047-3c63a7941abe h1:Px2kiAeVVjJTMpUQ79KGXBmjgWQmh1WSg6CRJkSMrHY=
-github.com/84codes/go-api v0.0.0-20191126121047-3c63a7941abe/go.mod h1:wTp4bJ3ZpRv8sMOTYNFXsVrGL3XKXoJ7V+AbioMDQEs=
+github.com/84codes/go-api v0.0.0-20191213113653-9c826acead17 h1:xiRUZcN8HbYnVrFhzz8pEIwAip0wcC8lA340SgAgAIU=
+github.com/84codes/go-api v0.0.0-20191213113653-9c826acead17/go.mod h1:wTp4bJ3ZpRv8sMOTYNFXsVrGL3XKXoJ7V+AbioMDQEs=
 github.com/Azure/azure-amqp-common-go v1.1.4/go.mod h1:FhZtXirFANw40UXI2ntweO+VOkfaw8s6vZxUiRhLYW8=
 github.com/Azure/azure-amqp-common-go/v2 v2.1.0/go.mod h1:R8rea+gJRuJR6QxTir/XuEd+YuKoUiazDC/N96FiDEU=
 github.com/Azure/azure-pipeline-go v0.2.1 h1:OLBdZJ3yvOn2MezlWvbrBMTEUQC72zAftRZOMdj5HYo=
@@ -172,8 +172,8 @@ github.com/chzyer/test v0.0.0-20180213035817-a1ea475d72b1/go.mod h1:Q3SI9o4m/ZMn
 github.com/circonus-labs/circonus-gometrics v2.3.1+incompatible/go.mod h1:nmEj6Dob7S7YxXgwXpfOuvO54S+tGdZdw9fuRZt25Ag=
 github.com/circonus-labs/circonusllhist v0.1.3/go.mod h1:kMXHVDlOchFAehlya5ePtbp5jckzBHf4XRpQvBOLI+I=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
-github.com/cloudamqp/terraform-provider-cloudamqp v1.2.0 h1:ocIElits52NV5A/txzKAOoKEig9CIlFThR/IxKrG8NY=
-github.com/cloudamqp/terraform-provider-cloudamqp v1.2.0/go.mod h1:smcYJq57DbxRW/l0pbl7pAXAQm+DcJQ/dH/s4v+c244=
+github.com/cloudamqp/terraform-provider-cloudamqp v1.2.2 h1:zKb8kUgOqN9QuX2+Or+5d2F4+divACRQ6uu54XLARnY=
+github.com/cloudamqp/terraform-provider-cloudamqp v1.2.2/go.mod h1:smcYJq57DbxRW/l0pbl7pAXAQm+DcJQ/dH/s4v+c244=
 github.com/cloudfoundry-community/go-cfclient v0.0.0-20190201205600-f136f9222381/go.mod h1:e5+USP2j8Le2M0Jo3qKPFnNhuo1wueU4nWHCXBOfQ14=
 github.com/cockroachdb/apd v1.1.0/go.mod h1:8Sl8LxpKi29FqWXR16WEFZRNSz3SoPzUzeMeY4+DwBQ=
 github.com/cockroachdb/cockroach-go v0.0.0-20181001143604-e0a95dfd547c/go.mod h1:XGLbWH/ujMcbPbhZq52Nv6UrCghb1yGn//133kEsvDk=

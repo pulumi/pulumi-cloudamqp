@@ -36,6 +36,10 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly apikey!: pulumi.Output<string>;
     /**
+     * Host name for the CloudAMQP instance
+     */
+    public /*out*/ readonly host!: pulumi.Output<string>;
+    /**
      * Name of the instance
      */
     public readonly name!: pulumi.Output<string>;
@@ -64,6 +68,10 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly url!: pulumi.Output<string>;
     /**
+     * The virtual host
+     */
+    public /*out*/ readonly vhost!: pulumi.Output<string>;
+    /**
      * Dedicated VPC subnet, shouldn't overlap with your current VPC's subnet
      */
     public readonly vpcSubnet!: pulumi.Output<string | undefined>;
@@ -81,6 +89,7 @@ export class Instance extends pulumi.CustomResource {
         if (opts && opts.id) {
             const state = argsOrState as InstanceState | undefined;
             inputs["apikey"] = state ? state.apikey : undefined;
+            inputs["host"] = state ? state.host : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["nodes"] = state ? state.nodes : undefined;
             inputs["plan"] = state ? state.plan : undefined;
@@ -88,6 +97,7 @@ export class Instance extends pulumi.CustomResource {
             inputs["rmqVersion"] = state ? state.rmqVersion : undefined;
             inputs["tags"] = state ? state.tags : undefined;
             inputs["url"] = state ? state.url : undefined;
+            inputs["vhost"] = state ? state.vhost : undefined;
             inputs["vpcSubnet"] = state ? state.vpcSubnet : undefined;
         } else {
             const args = argsOrState as InstanceArgs | undefined;
@@ -105,7 +115,9 @@ export class Instance extends pulumi.CustomResource {
             inputs["tags"] = args ? args.tags : undefined;
             inputs["vpcSubnet"] = args ? args.vpcSubnet : undefined;
             inputs["apikey"] = undefined /*out*/;
+            inputs["host"] = undefined /*out*/;
             inputs["url"] = undefined /*out*/;
+            inputs["vhost"] = undefined /*out*/;
         }
         if (!opts) {
             opts = {}
@@ -126,6 +138,10 @@ export interface InstanceState {
      * API key for the CloudAMQP instance
      */
     readonly apikey?: pulumi.Input<string>;
+    /**
+     * Host name for the CloudAMQP instance
+     */
+    readonly host?: pulumi.Input<string>;
     /**
      * Name of the instance
      */
@@ -154,6 +170,10 @@ export interface InstanceState {
      * URL of the CloudAMQP instance
      */
     readonly url?: pulumi.Input<string>;
+    /**
+     * The virtual host
+     */
+    readonly vhost?: pulumi.Input<string>;
     /**
      * Dedicated VPC subnet, shouldn't overlap with your current VPC's subnet
      */

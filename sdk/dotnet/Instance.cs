@@ -16,6 +16,12 @@ namespace Pulumi.CloudAmqp
         public Output<string> Apikey { get; private set; } = null!;
 
         /// <summary>
+        /// Host name for the CloudAMQP instance
+        /// </summary>
+        [Output("host")]
+        public Output<string> Host { get; private set; } = null!;
+
+        /// <summary>
         /// Name of the instance
         /// </summary>
         [Output("name")]
@@ -56,6 +62,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Output("url")]
         public Output<string> Url { get; private set; } = null!;
+
+        /// <summary>
+        /// The virtual host
+        /// </summary>
+        [Output("vhost")]
+        public Output<string> Vhost { get; private set; } = null!;
 
         /// <summary>
         /// Dedicated VPC subnet, shouldn't overlap with your current VPC's subnet
@@ -171,6 +183,12 @@ namespace Pulumi.CloudAmqp
         public Input<string>? Apikey { get; set; }
 
         /// <summary>
+        /// Host name for the CloudAMQP instance
+        /// </summary>
+        [Input("host")]
+        public Input<string>? Host { get; set; }
+
+        /// <summary>
         /// Name of the instance
         /// </summary>
         [Input("name")]
@@ -217,6 +235,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }
+
+        /// <summary>
+        /// The virtual host
+        /// </summary>
+        [Input("vhost")]
+        public Input<string>? Vhost { get; set; }
 
         /// <summary>
         /// Dedicated VPC subnet, shouldn't overlap with your current VPC's subnet
