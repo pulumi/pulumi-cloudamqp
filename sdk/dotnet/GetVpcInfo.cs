@@ -18,15 +18,6 @@ namespace Pulumi.CloudAmqp
         [Input("instanceId", required: true)]
         public Input<int> InstanceId { get; set; } = null!;
 
-        [Input("name")]
-        public Input<string>? Name { get; set; }
-
-        [Input("ownerId")]
-        public Input<string>? OwnerId { get; set; }
-
-        [Input("vpcSubnet")]
-        public Input<string>? VpcSubnet { get; set; }
-
         public GetVpcInfoArgs()
         {
         }
@@ -36,9 +27,10 @@ namespace Pulumi.CloudAmqp
     public sealed class GetVpcInfoResult
     {
         public readonly int InstanceId;
-        public readonly string? Name;
-        public readonly string? OwnerId;
-        public readonly string? VpcSubnet;
+        public readonly string Name;
+        public readonly string OwnerId;
+        public readonly string SecurityGroupId;
+        public readonly string VpcSubnet;
         /// <summary>
         /// id is the provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -47,14 +39,16 @@ namespace Pulumi.CloudAmqp
         [OutputConstructor]
         private GetVpcInfoResult(
             int instanceId,
-            string? name,
-            string? ownerId,
-            string? vpcSubnet,
+            string name,
+            string ownerId,
+            string securityGroupId,
+            string vpcSubnet,
             string id)
         {
             InstanceId = instanceId;
             Name = name;
             OwnerId = ownerId;
+            SecurityGroupId = securityGroupId;
             VpcSubnet = vpcSubnet;
             Id = id;
         }

@@ -16,9 +16,6 @@ export function getVpcInfo(args: GetVpcInfoArgs, opts?: pulumi.InvokeOptions): P
     }
     const promise: Promise<GetVpcInfoResult> = pulumi.runtime.invoke("cloudamqp:index/getVpcInfo:getVpcInfo", {
         "instanceId": args.instanceId,
-        "name": args.name,
-        "ownerId": args.ownerId,
-        "vpcSubnet": args.vpcSubnet,
     }, opts);
 
     return pulumi.utils.liftProperties(promise, opts);
@@ -29,9 +26,6 @@ export function getVpcInfo(args: GetVpcInfoArgs, opts?: pulumi.InvokeOptions): P
  */
 export interface GetVpcInfoArgs {
     readonly instanceId: number;
-    readonly name?: string;
-    readonly ownerId?: string;
-    readonly vpcSubnet?: string;
 }
 
 /**
@@ -39,9 +33,10 @@ export interface GetVpcInfoArgs {
  */
 export interface GetVpcInfoResult {
     readonly instanceId: number;
-    readonly name?: string;
-    readonly ownerId?: string;
-    readonly vpcSubnet?: string;
+    readonly name: string;
+    readonly ownerId: string;
+    readonly securityGroupId: string;
+    readonly vpcSubnet: string;
     /**
      * id is the provider-assigned unique ID for this managed resource.
      */
