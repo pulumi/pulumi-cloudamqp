@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v1.3.0 of the CloudAMQP Terraform Provider
+_(none)_
 
 ---
+
+## 1.2.0 (2020-01-19)
+* Upgrade to v1.3.0 of the CloudAMQP Terraform Provider
 
 ## 1.1.0 (2019-12-17)
 * Namespace names in .NET SDK are adjusted to PascalCase
