@@ -11,9 +11,6 @@ func LookupVpcInfo(ctx *pulumi.Context, args *GetVpcInfoArgs) (*GetVpcInfoResult
 	inputs := make(map[string]interface{})
 	if args != nil {
 		inputs["instanceId"] = args.InstanceId
-		inputs["name"] = args.Name
-		inputs["ownerId"] = args.OwnerId
-		inputs["vpcSubnet"] = args.VpcSubnet
 	}
 	outputs, err := ctx.Invoke("cloudamqp:index/getVpcInfo:getVpcInfo", inputs)
 	if err != nil {
@@ -23,6 +20,7 @@ func LookupVpcInfo(ctx *pulumi.Context, args *GetVpcInfoArgs) (*GetVpcInfoResult
 		InstanceId: outputs["instanceId"],
 		Name: outputs["name"],
 		OwnerId: outputs["ownerId"],
+		SecurityGroupId: outputs["securityGroupId"],
 		VpcSubnet: outputs["vpcSubnet"],
 		Id: outputs["id"],
 	}, nil
@@ -31,9 +29,6 @@ func LookupVpcInfo(ctx *pulumi.Context, args *GetVpcInfoArgs) (*GetVpcInfoResult
 // A collection of arguments for invoking getVpcInfo.
 type GetVpcInfoArgs struct {
 	InstanceId interface{}
-	Name interface{}
-	OwnerId interface{}
-	VpcSubnet interface{}
 }
 
 // A collection of values returned by getVpcInfo.
@@ -41,6 +36,7 @@ type GetVpcInfoResult struct {
 	InstanceId interface{}
 	Name interface{}
 	OwnerId interface{}
+	SecurityGroupId interface{}
 	VpcSubnet interface{}
 	// id is the provider-assigned unique ID for this managed resource.
 	Id interface{}
