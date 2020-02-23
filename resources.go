@@ -18,7 +18,7 @@ import (
 	"unicode"
 
 	"github.com/cloudamqp/terraform-provider-cloudamqp/cloudamqp"
-	"github.com/pulumi/pulumi-terraform/pkg/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/pkg/tfbridge"
 	"github.com/pulumi/pulumi/pkg/tokens"
 )
 
@@ -111,7 +111,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		CSharp: &tfbridge.CSharpInfo{
 			PackageReferences: map[string]string{
-				"Pulumi":                       "1.5.0-*",
+				"Pulumi":                       "1.11.0-preview",
 				"System.Collections.Immutable": "1.6.0",
 			},
 			Namespaces: map[string]string{
