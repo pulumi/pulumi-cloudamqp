@@ -16,8 +16,8 @@ contrib.go.opencensus.io/exporter/ocagent v0.5.0/go.mod h1:ImxhfLRpxoYiSq891pBrL
 contrib.go.opencensus.io/exporter/stackdriver v0.12.1/go.mod h1:iwB6wGarfphGGe/e5CWqyUk/cLzKnWsOKPVW3no6OTw=
 contrib.go.opencensus.io/integrations/ocsql v0.1.4/go.mod h1:8DsSdjz3F+APR+0z0WkU1aRorQCFfRxvqjUUPMbF3fE=
 contrib.go.opencensus.io/resource v0.1.1/go.mod h1:F361eGI91LCmW1I/Saf+rX0+OFcigGlFvXwEGEnkRLA=
-github.com/84codes/go-api v1.1.2 h1:ZgFzvaIoGRy0Lfe04rYBkm3Kg7wLMqKD/FnWUdUxi24=
-github.com/84codes/go-api v1.1.2/go.mod h1:OvXlKLuBJiEjS+jZETxfR5mWyLtGNLFJX9DMhDDSUDk=
+github.com/84codes/go-api v1.2.0 h1:ZlY0h1t+nL9LoXkxgMavcLMDq7k1czKJDZp2BhmTPZk=
+github.com/84codes/go-api v1.2.0/go.mod h1:OvXlKLuBJiEjS+jZETxfR5mWyLtGNLFJX9DMhDDSUDk=
 github.com/Azure/azure-amqp-common-go v1.1.4/go.mod h1:FhZtXirFANw40UXI2ntweO+VOkfaw8s6vZxUiRhLYW8=
 github.com/Azure/azure-amqp-common-go/v2 v2.1.0/go.mod h1:R8rea+gJRuJR6QxTir/XuEd+YuKoUiazDC/N96FiDEU=
 github.com/Azure/azure-pipeline-go v0.2.1 h1:OLBdZJ3yvOn2MezlWvbrBMTEUQC72zAftRZOMdj5HYo=
@@ -110,8 +110,8 @@ github.com/cheggaaa/pb v1.0.18/go.mod h1:pQciLPpbU0oxA0h+VJYYLxO+XeDQb5pZijXscXH
 github.com/cheggaaa/pb v1.0.27 h1:wIkZHkNfC7R6GI5w7l/PdAdzXzlrbcI3p8OAlnkTsnc=
 github.com/cheggaaa/pb v1.0.27/go.mod h1:pQciLPpbU0oxA0h+VJYYLxO+XeDQb5pZijXscXHm81s=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
-github.com/cloudamqp/terraform-provider-cloudamqp v1.3.2 h1:r0LoS/gQRzQxTnFIpWRJUgHVtDcnIVVCqGD+lN33O00=
-github.com/cloudamqp/terraform-provider-cloudamqp v1.3.2/go.mod h1:vYXmOC9dPsFPvLNTflarTlaJDR0uvCGlztN3TAzfWO0=
+github.com/cloudamqp/terraform-provider-cloudamqp v1.4.0 h1:A1YVBJZinmpP5TxaA7BB/nDWiB63P9PAVnrf4loZass=
+github.com/cloudamqp/terraform-provider-cloudamqp v1.4.0/go.mod h1:QHmp8vk4hhZVRp2MotQ/YEa8kbEayNZ+hSC1a8KhoTc=
 github.com/codahale/hdrhistogram v0.0.0-20161010025455-3a0bb77429bd h1:qMd81Ts1T2OTKmB4acZcyKaMtRnY5Y44NuXGX2GFJ1w=
 github.com/codahale/hdrhistogram v0.0.0-20161010025455-3a0bb77429bd/go.mod h1:sE/e/2PUdi/liOCUjSTXgM1o87ZssimdTWN964YiIeI=
 github.com/coreos/etcd v3.3.10+incompatible/go.mod h1:uF7uidLiAD3TWHmW31ZFd/JWoc32PjwdhPthX9715RE=
