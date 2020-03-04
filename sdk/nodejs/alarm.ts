@@ -32,17 +32,21 @@ export class Alarm extends pulumi.CustomResource {
     }
 
     /**
+     * Enable or disable an alarm
+     */
+    public readonly enabled!: pulumi.Output<boolean>;
+    /**
      * Instance identifier
      */
     public readonly instanceId!: pulumi.Output<number>;
     /**
-     * Identifiers for recipients to be notified. Leave empty to notifiy all recipients.
-     */
-    public readonly notificationIds!: pulumi.Output<number[] | undefined>;
-    /**
      * Regex for which queues to check
      */
     public readonly queueRegex!: pulumi.Output<string | undefined>;
+    /**
+     * Identifiers for recipients to be notified.
+     */
+    public readonly recipients!: pulumi.Output<number[]>;
     /**
      * For how long (in seconds) the value_threshold should be active before trigger alarm
      */
@@ -73,24 +77,32 @@ export class Alarm extends pulumi.CustomResource {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
             const state = argsOrState as AlarmState | undefined;
+            inputs["enabled"] = state ? state.enabled : undefined;
             inputs["instanceId"] = state ? state.instanceId : undefined;
-            inputs["notificationIds"] = state ? state.notificationIds : undefined;
             inputs["queueRegex"] = state ? state.queueRegex : undefined;
+            inputs["recipients"] = state ? state.recipients : undefined;
             inputs["timeThreshold"] = state ? state.timeThreshold : undefined;
             inputs["type"] = state ? state.type : undefined;
             inputs["valueThreshold"] = state ? state.valueThreshold : undefined;
             inputs["vhostRegex"] = state ? state.vhostRegex : undefined;
         } else {
             const args = argsOrState as AlarmArgs | undefined;
+            if (!args || args.enabled === undefined) {
+                throw new Error("Missing required property 'enabled'");
+            }
             if (!args || args.instanceId === undefined) {
                 throw new Error("Missing required property 'instanceId'");
+            }
+            if (!args || args.recipients === undefined) {
+                throw new Error("Missing required property 'recipients'");
             }
             if (!args || args.type === undefined) {
                 throw new Error("Missing required property 'type'");
             }
+            inputs["enabled"] = args ? args.enabled : undefined;
             inputs["instanceId"] = args ? args.instanceId : undefined;
-            inputs["notificationIds"] = args ? args.notificationIds : undefined;
             inputs["queueRegex"] = args ? args.queueRegex : undefined;
+            inputs["recipients"] = args ? args.recipients : undefined;
             inputs["timeThreshold"] = args ? args.timeThreshold : undefined;
             inputs["type"] = args ? args.type : undefined;
             inputs["valueThreshold"] = args ? args.valueThreshold : undefined;
@@ -112,17 +124,21 @@ export class Alarm extends pulumi.CustomResource {
  */
 export interface AlarmState {
     /**
+     * Enable or disable an alarm
+     */
+    readonly enabled?: pulumi.Input<boolean>;
+    /**
      * Instance identifier
      */
     readonly instanceId?: pulumi.Input<number>;
     /**
-     * Identifiers for recipients to be notified. Leave empty to notifiy all recipients.
-     */
-    readonly notificationIds?: pulumi.Input<pulumi.Input<number>[]>;
-    /**
      * Regex for which queues to check
      */
     readonly queueRegex?: pulumi.Input<string>;
+    /**
+     * Identifiers for recipients to be notified.
+     */
+    readonly recipients?: pulumi.Input<pulumi.Input<number>[]>;
     /**
      * For how long (in seconds) the value_threshold should be active before trigger alarm
      */
@@ -147,17 +163,21 @@ export interface AlarmState {
  */
 export interface AlarmArgs {
     /**
+     * Enable or disable an alarm
+     */
+    readonly enabled: pulumi.Input<boolean>;
+    /**
      * Instance identifier
      */
     readonly instanceId: pulumi.Input<number>;
     /**
-     * Identifiers for recipients to be notified. Leave empty to notifiy all recipients.
-     */
-    readonly notificationIds?: pulumi.Input<pulumi.Input<number>[]>;
-    /**
      * Regex for which queues to check
      */
     readonly queueRegex?: pulumi.Input<string>;
+    /**
+     * Identifiers for recipients to be notified.
+     */
+    readonly recipients: pulumi.Input<pulumi.Input<number>[]>;
     /**
      * For how long (in seconds) the value_threshold should be active before trigger alarm
      */

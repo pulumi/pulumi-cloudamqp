@@ -11,9 +11,10 @@ from . import utilities, tables
 
 class Notification(pulumi.CustomResource):
     instance_id: pulumi.Output[float]
+    name: pulumi.Output[str]
     type: pulumi.Output[str]
     value: pulumi.Output[str]
-    def __init__(__self__, resource_name, opts=None, instance_id=None, type=None, value=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, instance_id=None, name=None, type=None, value=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a Notification resource with the given unique name, props, and options.
         
@@ -40,6 +41,7 @@ class Notification(pulumi.CustomResource):
             if instance_id is None:
                 raise TypeError("Missing required property 'instance_id'")
             __props__['instance_id'] = instance_id
+            __props__['name'] = name
             if type is None:
                 raise TypeError("Missing required property 'type'")
             __props__['type'] = type
@@ -53,7 +55,7 @@ class Notification(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, instance_id=None, type=None, value=None):
+    def get(resource_name, id, opts=None, instance_id=None, name=None, type=None, value=None):
         """
         Get an existing Notification resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -66,6 +68,7 @@ class Notification(pulumi.CustomResource):
 
         __props__ = dict()
         __props__["instance_id"] = instance_id
+        __props__["name"] = name
         __props__["type"] = type
         __props__["value"] = value
         return Notification(resource_name, opts=opts, __props__=__props__)

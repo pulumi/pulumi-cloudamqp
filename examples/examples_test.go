@@ -43,6 +43,7 @@ func getBaseOptions() integration.ProgramTestOptions {
 func getJSBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	base := getBaseOptions()
 	baseJS := base.With(integration.ProgramTestOptions{
+		Quick:                    true,
 		ExpectRefreshChanges:     true,
 		AllowEmptyPreviewChanges: true, //this is a temporary thing right now because we are getting weird behaviour!
 		Config: map[string]string{

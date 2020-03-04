@@ -11,22 +11,28 @@ namespace Pulumi.CloudAmqp
     public partial class Alarm : Pulumi.CustomResource
     {
         /// <summary>
+        /// Enable or disable an alarm
+        /// </summary>
+        [Output("enabled")]
+        public Output<bool> Enabled { get; private set; } = null!;
+
+        /// <summary>
         /// Instance identifier
         /// </summary>
         [Output("instanceId")]
         public Output<int> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// Identifiers for recipients to be notified. Leave empty to notifiy all recipients.
-        /// </summary>
-        [Output("notificationIds")]
-        public Output<ImmutableArray<int>> NotificationIds { get; private set; } = null!;
-
-        /// <summary>
         /// Regex for which queues to check
         /// </summary>
         [Output("queueRegex")]
         public Output<string?> QueueRegex { get; private set; } = null!;
+
+        /// <summary>
+        /// Identifiers for recipients to be notified.
+        /// </summary>
+        [Output("recipients")]
+        public Output<ImmutableArray<int>> Recipients { get; private set; } = null!;
 
         /// <summary>
         /// For how long (in seconds) the value_threshold should be active before trigger alarm
@@ -100,28 +106,34 @@ namespace Pulumi.CloudAmqp
     public sealed class AlarmArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Enable or disable an alarm
+        /// </summary>
+        [Input("enabled", required: true)]
+        public Input<bool> Enabled { get; set; } = null!;
+
+        /// <summary>
         /// Instance identifier
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<int> InstanceId { get; set; } = null!;
-
-        [Input("notificationIds")]
-        private InputList<int>? _notificationIds;
-
-        /// <summary>
-        /// Identifiers for recipients to be notified. Leave empty to notifiy all recipients.
-        /// </summary>
-        public InputList<int> NotificationIds
-        {
-            get => _notificationIds ?? (_notificationIds = new InputList<int>());
-            set => _notificationIds = value;
-        }
 
         /// <summary>
         /// Regex for which queues to check
         /// </summary>
         [Input("queueRegex")]
         public Input<string>? QueueRegex { get; set; }
+
+        [Input("recipients", required: true)]
+        private InputList<int>? _recipients;
+
+        /// <summary>
+        /// Identifiers for recipients to be notified.
+        /// </summary>
+        public InputList<int> Recipients
+        {
+            get => _recipients ?? (_recipients = new InputList<int>());
+            set => _recipients = value;
+        }
 
         /// <summary>
         /// For how long (in seconds) the value_threshold should be active before trigger alarm
@@ -156,28 +168,34 @@ namespace Pulumi.CloudAmqp
     public sealed class AlarmState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Enable or disable an alarm
+        /// </summary>
+        [Input("enabled")]
+        public Input<bool>? Enabled { get; set; }
+
+        /// <summary>
         /// Instance identifier
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
-
-        [Input("notificationIds")]
-        private InputList<int>? _notificationIds;
-
-        /// <summary>
-        /// Identifiers for recipients to be notified. Leave empty to notifiy all recipients.
-        /// </summary>
-        public InputList<int> NotificationIds
-        {
-            get => _notificationIds ?? (_notificationIds = new InputList<int>());
-            set => _notificationIds = value;
-        }
 
         /// <summary>
         /// Regex for which queues to check
         /// </summary>
         [Input("queueRegex")]
         public Input<string>? QueueRegex { get; set; }
+
+        [Input("recipients")]
+        private InputList<int>? _recipients;
+
+        /// <summary>
+        /// Identifiers for recipients to be notified.
+        /// </summary>
+        public InputList<int> Recipients
+        {
+            get => _recipients ?? (_recipients = new InputList<int>());
+            set => _recipients = value;
+        }
 
         /// <summary>
         /// For how long (in seconds) the value_threshold should be active before trigger alarm

@@ -17,6 +17,12 @@ namespace Pulumi.CloudAmqp
         public Output<int> InstanceId { get; private set; } = null!;
 
         /// <summary>
+        /// Optional display name of the recipient
+        /// </summary>
+        [Output("name")]
+        public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
         /// Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu,
         /// slack
         /// </summary>
@@ -82,6 +88,12 @@ namespace Pulumi.CloudAmqp
         public Input<int> InstanceId { get; set; } = null!;
 
         /// <summary>
+        /// Optional display name of the recipient
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
         /// Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu,
         /// slack
         /// </summary>
@@ -106,6 +118,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
+
+        /// <summary>
+        /// Optional display name of the recipient
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
 
         /// <summary>
         /// Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu,

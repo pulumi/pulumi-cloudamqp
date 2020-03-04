@@ -14,12 +14,14 @@ import (
 type Alarm struct {
 	pulumi.CustomResourceState
 
+	// Enable or disable an alarm
+	Enabled pulumi.BoolOutput `pulumi:"enabled"`
 	// Instance identifier
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
-	// Identifiers for recipients to be notified. Leave empty to notifiy all recipients.
-	NotificationIds pulumi.IntArrayOutput `pulumi:"notificationIds"`
 	// Regex for which queues to check
 	QueueRegex pulumi.StringPtrOutput `pulumi:"queueRegex"`
+	// Identifiers for recipients to be notified.
+	Recipients pulumi.IntArrayOutput `pulumi:"recipients"`
 	// For how long (in seconds) the value_threshold should be active before trigger alarm
 	TimeThreshold pulumi.IntPtrOutput `pulumi:"timeThreshold"`
 	// Type of the alarm, valid options are: cpu, memory, disk_usage, queue_length, connection_count, consumers_count,
@@ -34,8 +36,14 @@ type Alarm struct {
 // NewAlarm registers a new resource with the given unique name, arguments, and options.
 func NewAlarm(ctx *pulumi.Context,
 	name string, args *AlarmArgs, opts ...pulumi.ResourceOption) (*Alarm, error) {
+	if args == nil || args.Enabled == nil {
+		return nil, errors.New("missing required argument 'Enabled'")
+	}
 	if args == nil || args.InstanceId == nil {
 		return nil, errors.New("missing required argument 'InstanceId'")
+	}
+	if args == nil || args.Recipients == nil {
+		return nil, errors.New("missing required argument 'Recipients'")
 	}
 	if args == nil || args.Type == nil {
 		return nil, errors.New("missing required argument 'Type'")
@@ -65,12 +73,14 @@ func GetAlarm(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Alarm resources.
 type alarmState struct {
+	// Enable or disable an alarm
+	Enabled *bool `pulumi:"enabled"`
 	// Instance identifier
 	InstanceId *int `pulumi:"instanceId"`
-	// Identifiers for recipients to be notified. Leave empty to notifiy all recipients.
-	NotificationIds []int `pulumi:"notificationIds"`
 	// Regex for which queues to check
 	QueueRegex *string `pulumi:"queueRegex"`
+	// Identifiers for recipients to be notified.
+	Recipients []int `pulumi:"recipients"`
 	// For how long (in seconds) the value_threshold should be active before trigger alarm
 	TimeThreshold *int `pulumi:"timeThreshold"`
 	// Type of the alarm, valid options are: cpu, memory, disk_usage, queue_length, connection_count, consumers_count,
@@ -83,12 +93,14 @@ type alarmState struct {
 }
 
 type AlarmState struct {
+	// Enable or disable an alarm
+	Enabled pulumi.BoolPtrInput
 	// Instance identifier
 	InstanceId pulumi.IntPtrInput
-	// Identifiers for recipients to be notified. Leave empty to notifiy all recipients.
-	NotificationIds pulumi.IntArrayInput
 	// Regex for which queues to check
 	QueueRegex pulumi.StringPtrInput
+	// Identifiers for recipients to be notified.
+	Recipients pulumi.IntArrayInput
 	// For how long (in seconds) the value_threshold should be active before trigger alarm
 	TimeThreshold pulumi.IntPtrInput
 	// Type of the alarm, valid options are: cpu, memory, disk_usage, queue_length, connection_count, consumers_count,
@@ -105,12 +117,14 @@ func (AlarmState) ElementType() reflect.Type {
 }
 
 type alarmArgs struct {
+	// Enable or disable an alarm
+	Enabled bool `pulumi:"enabled"`
 	// Instance identifier
 	InstanceId int `pulumi:"instanceId"`
-	// Identifiers for recipients to be notified. Leave empty to notifiy all recipients.
-	NotificationIds []int `pulumi:"notificationIds"`
 	// Regex for which queues to check
 	QueueRegex *string `pulumi:"queueRegex"`
+	// Identifiers for recipients to be notified.
+	Recipients []int `pulumi:"recipients"`
 	// For how long (in seconds) the value_threshold should be active before trigger alarm
 	TimeThreshold *int `pulumi:"timeThreshold"`
 	// Type of the alarm, valid options are: cpu, memory, disk_usage, queue_length, connection_count, consumers_count,
@@ -124,12 +138,14 @@ type alarmArgs struct {
 
 // The set of arguments for constructing a Alarm resource.
 type AlarmArgs struct {
+	// Enable or disable an alarm
+	Enabled pulumi.BoolInput
 	// Instance identifier
 	InstanceId pulumi.IntInput
-	// Identifiers for recipients to be notified. Leave empty to notifiy all recipients.
-	NotificationIds pulumi.IntArrayInput
 	// Regex for which queues to check
 	QueueRegex pulumi.StringPtrInput
+	// Identifiers for recipients to be notified.
+	Recipients pulumi.IntArrayInput
 	// For how long (in seconds) the value_threshold should be active before trigger alarm
 	TimeThreshold pulumi.IntPtrInput
 	// Type of the alarm, valid options are: cpu, memory, disk_usage, queue_length, connection_count, consumers_count,

@@ -16,6 +16,8 @@ type Notification struct {
 
 	// Instance identifier
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
+	// Optional display name of the recipient
+	Name pulumi.StringOutput `pulumi:"name"`
 	// Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Notification endpoint, where to send the notifcation
@@ -61,6 +63,8 @@ func GetNotification(ctx *pulumi.Context,
 type notificationState struct {
 	// Instance identifier
 	InstanceId *int `pulumi:"instanceId"`
+	// Optional display name of the recipient
+	Name *string `pulumi:"name"`
 	// Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack
 	Type *string `pulumi:"type"`
 	// Notification endpoint, where to send the notifcation
@@ -70,6 +74,8 @@ type notificationState struct {
 type NotificationState struct {
 	// Instance identifier
 	InstanceId pulumi.IntPtrInput
+	// Optional display name of the recipient
+	Name pulumi.StringPtrInput
 	// Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack
 	Type pulumi.StringPtrInput
 	// Notification endpoint, where to send the notifcation
@@ -83,6 +89,8 @@ func (NotificationState) ElementType() reflect.Type {
 type notificationArgs struct {
 	// Instance identifier
 	InstanceId int `pulumi:"instanceId"`
+	// Optional display name of the recipient
+	Name *string `pulumi:"name"`
 	// Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack
 	Type string `pulumi:"type"`
 	// Notification endpoint, where to send the notifcation
@@ -93,6 +101,8 @@ type notificationArgs struct {
 type NotificationArgs struct {
 	// Instance identifier
 	InstanceId pulumi.IntInput
+	// Optional display name of the recipient
+	Name pulumi.StringPtrInput
 	// Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack
 	Type pulumi.StringInput
 	// Notification endpoint, where to send the notifcation

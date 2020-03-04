@@ -36,6 +36,10 @@ export class Notification extends pulumi.CustomResource {
      */
     public readonly instanceId!: pulumi.Output<number>;
     /**
+     * Optional display name of the recipient
+     */
+    public readonly name!: pulumi.Output<string>;
+    /**
      * Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack
      */
     public readonly type!: pulumi.Output<string>;
@@ -57,6 +61,7 @@ export class Notification extends pulumi.CustomResource {
         if (opts && opts.id) {
             const state = argsOrState as NotificationState | undefined;
             inputs["instanceId"] = state ? state.instanceId : undefined;
+            inputs["name"] = state ? state.name : undefined;
             inputs["type"] = state ? state.type : undefined;
             inputs["value"] = state ? state.value : undefined;
         } else {
@@ -71,6 +76,7 @@ export class Notification extends pulumi.CustomResource {
                 throw new Error("Missing required property 'value'");
             }
             inputs["instanceId"] = args ? args.instanceId : undefined;
+            inputs["name"] = args ? args.name : undefined;
             inputs["type"] = args ? args.type : undefined;
             inputs["value"] = args ? args.value : undefined;
         }
@@ -94,6 +100,10 @@ export interface NotificationState {
      */
     readonly instanceId?: pulumi.Input<number>;
     /**
+     * Optional display name of the recipient
+     */
+    readonly name?: pulumi.Input<string>;
+    /**
      * Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack
      */
     readonly type?: pulumi.Input<string>;
@@ -111,6 +121,10 @@ export interface NotificationArgs {
      * Instance identifier
      */
     readonly instanceId: pulumi.Input<number>;
+    /**
+     * Optional display name of the recipient
+     */
+    readonly name?: pulumi.Input<string>;
     /**
      * Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack
      */
