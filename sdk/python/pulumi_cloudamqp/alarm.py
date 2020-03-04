@@ -10,14 +10,15 @@ from typing import Union
 from . import utilities, tables
 
 class Alarm(pulumi.CustomResource):
+    enabled: pulumi.Output[bool]
     instance_id: pulumi.Output[float]
-    notification_ids: pulumi.Output[list]
     queue_regex: pulumi.Output[str]
+    recipients: pulumi.Output[list]
     time_threshold: pulumi.Output[float]
     type: pulumi.Output[str]
     value_threshold: pulumi.Output[float]
     vhost_regex: pulumi.Output[str]
-    def __init__(__self__, resource_name, opts=None, instance_id=None, notification_ids=None, queue_regex=None, time_threshold=None, type=None, value_threshold=None, vhost_regex=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, enabled=None, instance_id=None, queue_regex=None, recipients=None, time_threshold=None, type=None, value_threshold=None, vhost_regex=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a Alarm resource with the given unique name, props, and options.
         
@@ -41,11 +42,16 @@ class Alarm(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
+            if enabled is None:
+                raise TypeError("Missing required property 'enabled'")
+            __props__['enabled'] = enabled
             if instance_id is None:
                 raise TypeError("Missing required property 'instance_id'")
             __props__['instance_id'] = instance_id
-            __props__['notification_ids'] = notification_ids
             __props__['queue_regex'] = queue_regex
+            if recipients is None:
+                raise TypeError("Missing required property 'recipients'")
+            __props__['recipients'] = recipients
             __props__['time_threshold'] = time_threshold
             if type is None:
                 raise TypeError("Missing required property 'type'")
@@ -59,7 +65,7 @@ class Alarm(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, instance_id=None, notification_ids=None, queue_regex=None, time_threshold=None, type=None, value_threshold=None, vhost_regex=None):
+    def get(resource_name, id, opts=None, enabled=None, instance_id=None, queue_regex=None, recipients=None, time_threshold=None, type=None, value_threshold=None, vhost_regex=None):
         """
         Get an existing Alarm resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -71,9 +77,10 @@ class Alarm(pulumi.CustomResource):
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+        __props__["enabled"] = enabled
         __props__["instance_id"] = instance_id
-        __props__["notification_ids"] = notification_ids
         __props__["queue_regex"] = queue_regex
+        __props__["recipients"] = recipients
         __props__["time_threshold"] = time_threshold
         __props__["type"] = type
         __props__["value_threshold"] = value_threshold
