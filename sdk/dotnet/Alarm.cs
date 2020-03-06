@@ -23,6 +23,12 @@ namespace Pulumi.CloudAmqp
         public Output<int> InstanceId { get; private set; } = null!;
 
         /// <summary>
+        /// Message types (total, unacked, ready) of the queue to trigger the alarm
+        /// </summary>
+        [Output("messageType")]
+        public Output<string?> MessageType { get; private set; } = null!;
+
+        /// <summary>
         /// Regex for which queues to check
         /// </summary>
         [Output("queueRegex")]
@@ -118,6 +124,12 @@ namespace Pulumi.CloudAmqp
         public Input<int> InstanceId { get; set; } = null!;
 
         /// <summary>
+        /// Message types (total, unacked, ready) of the queue to trigger the alarm
+        /// </summary>
+        [Input("messageType")]
+        public Input<string>? MessageType { get; set; }
+
+        /// <summary>
         /// Regex for which queues to check
         /// </summary>
         [Input("queueRegex")]
@@ -178,6 +190,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
+
+        /// <summary>
+        /// Message types (total, unacked, ready) of the queue to trigger the alarm
+        /// </summary>
+        [Input("messageType")]
+        public Input<string>? MessageType { get; set; }
 
         /// <summary>
         /// Regex for which queues to check
