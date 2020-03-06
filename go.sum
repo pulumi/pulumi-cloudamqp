@@ -110,8 +110,8 @@ github.com/cheggaaa/pb v1.0.18/go.mod h1:pQciLPpbU0oxA0h+VJYYLxO+XeDQb5pZijXscXH
 github.com/cheggaaa/pb v1.0.27 h1:wIkZHkNfC7R6GI5w7l/PdAdzXzlrbcI3p8OAlnkTsnc=
 github.com/cheggaaa/pb v1.0.27/go.mod h1:pQciLPpbU0oxA0h+VJYYLxO+XeDQb5pZijXscXHm81s=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
-github.com/cloudamqp/terraform-provider-cloudamqp v1.4.0 h1:A1YVBJZinmpP5TxaA7BB/nDWiB63P9PAVnrf4loZass=
-github.com/cloudamqp/terraform-provider-cloudamqp v1.4.0/go.mod h1:QHmp8vk4hhZVRp2MotQ/YEa8kbEayNZ+hSC1a8KhoTc=
+github.com/cloudamqp/terraform-provider-cloudamqp v1.4.1 h1:5uwJwEbicgeUK+bLLMWlgNy2HdYq26Io0B/AJKHf+uM=
+github.com/cloudamqp/terraform-provider-cloudamqp v1.4.1/go.mod h1:QHmp8vk4hhZVRp2MotQ/YEa8kbEayNZ+hSC1a8KhoTc=
 github.com/codahale/hdrhistogram v0.0.0-20161010025455-3a0bb77429bd h1:qMd81Ts1T2OTKmB4acZcyKaMtRnY5Y44NuXGX2GFJ1w=
 github.com/codahale/hdrhistogram v0.0.0-20161010025455-3a0bb77429bd/go.mod h1:sE/e/2PUdi/liOCUjSTXgM1o87ZssimdTWN964YiIeI=
 github.com/coreos/etcd v3.3.10+incompatible/go.mod h1:uF7uidLiAD3TWHmW31ZFd/JWoc32PjwdhPthX9715RE=

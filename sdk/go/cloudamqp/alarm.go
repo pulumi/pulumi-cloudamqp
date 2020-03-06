@@ -18,6 +18,8 @@ type Alarm struct {
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
 	// Instance identifier
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
+	// Message types (total, unacked, ready) of the queue to trigger the alarm
+	MessageType pulumi.StringPtrOutput `pulumi:"messageType"`
 	// Regex for which queues to check
 	QueueRegex pulumi.StringPtrOutput `pulumi:"queueRegex"`
 	// Identifiers for recipients to be notified.
@@ -77,6 +79,8 @@ type alarmState struct {
 	Enabled *bool `pulumi:"enabled"`
 	// Instance identifier
 	InstanceId *int `pulumi:"instanceId"`
+	// Message types (total, unacked, ready) of the queue to trigger the alarm
+	MessageType *string `pulumi:"messageType"`
 	// Regex for which queues to check
 	QueueRegex *string `pulumi:"queueRegex"`
 	// Identifiers for recipients to be notified.
@@ -97,6 +101,8 @@ type AlarmState struct {
 	Enabled pulumi.BoolPtrInput
 	// Instance identifier
 	InstanceId pulumi.IntPtrInput
+	// Message types (total, unacked, ready) of the queue to trigger the alarm
+	MessageType pulumi.StringPtrInput
 	// Regex for which queues to check
 	QueueRegex pulumi.StringPtrInput
 	// Identifiers for recipients to be notified.
@@ -121,6 +127,8 @@ type alarmArgs struct {
 	Enabled bool `pulumi:"enabled"`
 	// Instance identifier
 	InstanceId int `pulumi:"instanceId"`
+	// Message types (total, unacked, ready) of the queue to trigger the alarm
+	MessageType *string `pulumi:"messageType"`
 	// Regex for which queues to check
 	QueueRegex *string `pulumi:"queueRegex"`
 	// Identifiers for recipients to be notified.
@@ -142,6 +150,8 @@ type AlarmArgs struct {
 	Enabled pulumi.BoolInput
 	// Instance identifier
 	InstanceId pulumi.IntInput
+	// Message types (total, unacked, ready) of the queue to trigger the alarm
+	MessageType pulumi.StringPtrInput
 	// Regex for which queues to check
 	QueueRegex pulumi.StringPtrInput
 	// Identifiers for recipients to be notified.

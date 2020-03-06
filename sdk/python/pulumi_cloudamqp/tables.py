@@ -4,6 +4,7 @@
 
 _SNAKE_TO_CAMEL_CASE_TABLE = {
     "instance_id": "instanceId",
+    "message_type": "messageType",
     "peering_id": "peeringId",
     "queue_regex": "queueRegex",
     "rmq_version": "rmqVersion",
@@ -15,6 +16,7 @@ _SNAKE_TO_CAMEL_CASE_TABLE = {
 
 _CAMEL_TO_SNAKE_CASE_TABLE = {
     "instanceId": "instance_id",
+    "messageType": "message_type",
     "peeringId": "peering_id",
     "queueRegex": "queue_regex",
     "rmqVersion": "rmq_version",

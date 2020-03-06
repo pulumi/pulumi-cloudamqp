@@ -12,13 +12,14 @@ from . import utilities, tables
 class Alarm(pulumi.CustomResource):
     enabled: pulumi.Output[bool]
     instance_id: pulumi.Output[float]
+    message_type: pulumi.Output[str]
     queue_regex: pulumi.Output[str]
     recipients: pulumi.Output[list]
     time_threshold: pulumi.Output[float]
     type: pulumi.Output[str]
     value_threshold: pulumi.Output[float]
     vhost_regex: pulumi.Output[str]
-    def __init__(__self__, resource_name, opts=None, enabled=None, instance_id=None, queue_regex=None, recipients=None, time_threshold=None, type=None, value_threshold=None, vhost_regex=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, enabled=None, instance_id=None, message_type=None, queue_regex=None, recipients=None, time_threshold=None, type=None, value_threshold=None, vhost_regex=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a Alarm resource with the given unique name, props, and options.
         
@@ -48,6 +49,7 @@ class Alarm(pulumi.CustomResource):
             if instance_id is None:
                 raise TypeError("Missing required property 'instance_id'")
             __props__['instance_id'] = instance_id
+            __props__['message_type'] = message_type
             __props__['queue_regex'] = queue_regex
             if recipients is None:
                 raise TypeError("Missing required property 'recipients'")
@@ -65,7 +67,7 @@ class Alarm(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, enabled=None, instance_id=None, queue_regex=None, recipients=None, time_threshold=None, type=None, value_threshold=None, vhost_regex=None):
+    def get(resource_name, id, opts=None, enabled=None, instance_id=None, message_type=None, queue_regex=None, recipients=None, time_threshold=None, type=None, value_threshold=None, vhost_regex=None):
         """
         Get an existing Alarm resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -79,6 +81,7 @@ class Alarm(pulumi.CustomResource):
         __props__ = dict()
         __props__["enabled"] = enabled
         __props__["instance_id"] = instance_id
+        __props__["message_type"] = message_type
         __props__["queue_regex"] = queue_regex
         __props__["recipients"] = recipients
         __props__["time_threshold"] = time_threshold

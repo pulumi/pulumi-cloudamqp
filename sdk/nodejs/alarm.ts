@@ -40,6 +40,10 @@ export class Alarm extends pulumi.CustomResource {
      */
     public readonly instanceId!: pulumi.Output<number>;
     /**
+     * Message types (total, unacked, ready) of the queue to trigger the alarm
+     */
+    public readonly messageType!: pulumi.Output<string | undefined>;
+    /**
      * Regex for which queues to check
      */
     public readonly queueRegex!: pulumi.Output<string | undefined>;
@@ -79,6 +83,7 @@ export class Alarm extends pulumi.CustomResource {
             const state = argsOrState as AlarmState | undefined;
             inputs["enabled"] = state ? state.enabled : undefined;
             inputs["instanceId"] = state ? state.instanceId : undefined;
+            inputs["messageType"] = state ? state.messageType : undefined;
             inputs["queueRegex"] = state ? state.queueRegex : undefined;
             inputs["recipients"] = state ? state.recipients : undefined;
             inputs["timeThreshold"] = state ? state.timeThreshold : undefined;
@@ -101,6 +106,7 @@ export class Alarm extends pulumi.CustomResource {
             }
             inputs["enabled"] = args ? args.enabled : undefined;
             inputs["instanceId"] = args ? args.instanceId : undefined;
+            inputs["messageType"] = args ? args.messageType : undefined;
             inputs["queueRegex"] = args ? args.queueRegex : undefined;
             inputs["recipients"] = args ? args.recipients : undefined;
             inputs["timeThreshold"] = args ? args.timeThreshold : undefined;
@@ -131,6 +137,10 @@ export interface AlarmState {
      * Instance identifier
      */
     readonly instanceId?: pulumi.Input<number>;
+    /**
+     * Message types (total, unacked, ready) of the queue to trigger the alarm
+     */
+    readonly messageType?: pulumi.Input<string>;
     /**
      * Regex for which queues to check
      */
@@ -170,6 +180,10 @@ export interface AlarmArgs {
      * Instance identifier
      */
     readonly instanceId: pulumi.Input<number>;
+    /**
+     * Message types (total, unacked, ready) of the queue to trigger the alarm
+     */
+    readonly messageType?: pulumi.Input<string>;
     /**
      * Regex for which queues to check
      */
