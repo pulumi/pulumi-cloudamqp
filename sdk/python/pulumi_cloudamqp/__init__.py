@@ -18,6 +18,7 @@ from .plugin_community import *
 from .security_firewall import *
 from .vpc_peering import *
 from .get_credentials import *
+from .get_instance import *
 from .get_plugins import *
 from .get_plugins_community import *
 from .get_vpc_info import *

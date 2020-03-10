@@ -94,6 +94,7 @@ func Provider() tfbridge.ProviderInfo {
 			"cloudamqp_plugins":           {Tok: makeDataSource(mainMod, "getPlugins")},
 			"cloudamqp_plugins_community": {Tok: makeDataSource(mainMod, "getPluginsCommunity")},
 			"cloudamqp_vpc_info":          {Tok: makeDataSource(mainMod, "getVpcInfo")},
+			"cloudamqp_instance":          {Tok: makeDataSource(mainMod, "getInstance")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			Dependencies: map[string]string{
