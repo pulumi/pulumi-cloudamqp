@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v1.5.0 of the CloudAMQP Terraform Provider
+_(none)_
 
 ---
+
+## 1.4.0 (2020-03-10)
+* Upgrade to v1.5.0 of the CloudAMQP Terraform Provider
 
 ## 1.3.1 (2020-03-06)
 * Upgrade to v1.4.1 of the CloudAMQP Terraform Provider
