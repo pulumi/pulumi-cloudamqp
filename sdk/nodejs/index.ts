@@ -4,6 +4,7 @@
 // Export members:
 export * from "./alarm";
 export * from "./getCredentials";
+export * from "./getInstance";
 export * from "./getPlugins";
 export * from "./getPluginsCommunity";
 export * from "./getVpcInfo";
