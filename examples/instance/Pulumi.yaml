@@ -1,3 +1,0 @@
-name: instance
-runtime: nodejs
-description: A pulumi app to deploy a CloudAMQP Instance
