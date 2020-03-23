@@ -13,13 +13,19 @@ class GetInstanceResult:
     """
     A collection of values returned by getInstance.
     """
-    def __init__(__self__, apikey=None, host=None, instance_id=None, name=None, nodes=None, plan=None, region=None, rmq_version=None, tags=None, url=None, vhost=None, vpc_subnet=None, id=None):
+    def __init__(__self__, apikey=None, host=None, id=None, instance_id=None, name=None, nodes=None, plan=None, region=None, rmq_version=None, tags=None, url=None, vhost=None, vpc_subnet=None):
         if apikey and not isinstance(apikey, str):
             raise TypeError("Expected argument 'apikey' to be a str")
         __self__.apikey = apikey
         if host and not isinstance(host, str):
             raise TypeError("Expected argument 'host' to be a str")
         __self__.host = host
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        __self__.id = id
+        """
+        id is the provider-assigned unique ID for this managed resource.
+        """
         if instance_id and not isinstance(instance_id, float):
             raise TypeError("Expected argument 'instance_id' to be a float")
         __self__.instance_id = instance_id
@@ -50,12 +56,6 @@ class GetInstanceResult:
         if vpc_subnet and not isinstance(vpc_subnet, str):
             raise TypeError("Expected argument 'vpc_subnet' to be a str")
         __self__.vpc_subnet = vpc_subnet
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        """
-        id is the provider-assigned unique ID for this managed resource.
-        """
 class AwaitableGetInstanceResult(GetInstanceResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -64,6 +64,7 @@ class AwaitableGetInstanceResult(GetInstanceResult):
         return GetInstanceResult(
             apikey=self.apikey,
             host=self.host,
+            id=self.id,
             instance_id=self.instance_id,
             name=self.name,
             nodes=self.nodes,
@@ -73,15 +74,14 @@ class AwaitableGetInstanceResult(GetInstanceResult):
             tags=self.tags,
             url=self.url,
             vhost=self.vhost,
-            vpc_subnet=self.vpc_subnet,
-            id=self.id)
+            vpc_subnet=self.vpc_subnet)
 
 def get_instance(instance_id=None,vpc_subnet=None,opts=None):
     """
     Use this data source to access information about an existing resource.
-    
     """
     __args__ = dict()
+
 
     __args__['instanceId'] = instance_id
     __args__['vpcSubnet'] = vpc_subnet
@@ -94,6 +94,7 @@ def get_instance(instance_id=None,vpc_subnet=None,opts=None):
     return AwaitableGetInstanceResult(
         apikey=__ret__.get('apikey'),
         host=__ret__.get('host'),
+        id=__ret__.get('id'),
         instance_id=__ret__.get('instanceId'),
         name=__ret__.get('name'),
         nodes=__ret__.get('nodes'),
@@ -103,5 +104,4 @@ def get_instance(instance_id=None,vpc_subnet=None,opts=None):
         tags=__ret__.get('tags'),
         url=__ret__.get('url'),
         vhost=__ret__.get('vhost'),
-        vpc_subnet=__ret__.get('vpcSubnet'),
-        id=__ret__.get('id'))
+        vpc_subnet=__ret__.get('vpcSubnet'))

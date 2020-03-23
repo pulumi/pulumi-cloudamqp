@@ -11,16 +11,19 @@ from . import utilities, tables
 
 class SecurityFirewall(pulumi.CustomResource):
     instance_id: pulumi.Output[float]
+    """
+    Instance identifier
+    """
     rules: pulumi.Output[list]
     def __init__(__self__, resource_name, opts=None, instance_id=None, rules=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a SecurityFirewall resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        
+        :param pulumi.Input[float] instance_id: Instance identifier
+
         The **rules** object supports the following:
-        
+
           * `ip` (`pulumi.Input[str]`)
           * `ports` (`pulumi.Input[list]`)
           * `services` (`pulumi.Input[list]`)
@@ -59,13 +62,14 @@ class SecurityFirewall(pulumi.CustomResource):
         """
         Get an existing SecurityFirewall resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        
+        :param pulumi.Input[float] instance_id: Instance identifier
+
         The **rules** object supports the following:
-        
+
           * `ip` (`pulumi.Input[str]`)
           * `ports` (`pulumi.Input[list]`)
           * `services` (`pulumi.Input[list]`)
@@ -73,6 +77,7 @@ class SecurityFirewall(pulumi.CustomResource):
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["instance_id"] = instance_id
         __props__["rules"] = rules
         return SecurityFirewall(resource_name, opts=opts, __props__=__props__)

@@ -11,15 +11,30 @@ from . import utilities, tables
 
 class Notification(pulumi.CustomResource):
     instance_id: pulumi.Output[float]
+    """
+    Instance identifier
+    """
     name: pulumi.Output[str]
+    """
+    Optional display name of the recipient
+    """
     type: pulumi.Output[str]
+    """
+    Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack
+    """
     value: pulumi.Output[str]
+    """
+    Notification endpoint, where to send the notifcation
+    """
     def __init__(__self__, resource_name, opts=None, instance_id=None, name=None, type=None, value=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a Notification resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[float] instance_id: Instance identifier
+        :param pulumi.Input[str] name: Optional display name of the recipient
+        :param pulumi.Input[str] type: Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack
+        :param pulumi.Input[str] value: Notification endpoint, where to send the notifcation
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -59,14 +74,19 @@ class Notification(pulumi.CustomResource):
         """
         Get an existing Notification resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[float] instance_id: Instance identifier
+        :param pulumi.Input[str] name: Optional display name of the recipient
+        :param pulumi.Input[str] type: Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack
+        :param pulumi.Input[str] value: Notification endpoint, where to send the notifcation
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["instance_id"] = instance_id
         __props__["name"] = name
         __props__["type"] = type

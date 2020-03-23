@@ -1,0 +1,3 @@
+name: instance-typescript
+runtime: nodejs
+description: A TypeScript pulumi app to deploy a CloudAMQP Instance

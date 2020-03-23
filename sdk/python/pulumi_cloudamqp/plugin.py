@@ -11,14 +11,25 @@ from . import utilities, tables
 
 class Plugin(pulumi.CustomResource):
     enabled: pulumi.Output[bool]
+    """
+    If the plugin is enabled
+    """
     instance_id: pulumi.Output[float]
+    """
+    Instance identifier
+    """
     name: pulumi.Output[str]
+    """
+    The name of the plugin
+    """
     def __init__(__self__, resource_name, opts=None, enabled=None, instance_id=None, name=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a Plugin resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] enabled: If the plugin is enabled
+        :param pulumi.Input[float] instance_id: Instance identifier
+        :param pulumi.Input[str] name: The name of the plugin
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -55,14 +66,18 @@ class Plugin(pulumi.CustomResource):
         """
         Get an existing Plugin resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] enabled: If the plugin is enabled
+        :param pulumi.Input[float] instance_id: Instance identifier
+        :param pulumi.Input[str] name: The name of the plugin
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["enabled"] = enabled
         __props__["instance_id"] = instance_id
         __props__["name"] = name

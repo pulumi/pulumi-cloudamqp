@@ -13,42 +13,43 @@ class GetPluginsResult:
     """
     A collection of values returned by getPlugins.
     """
-    def __init__(__self__, instance_id=None, plugins=None, id=None):
-        if instance_id and not isinstance(instance_id, float):
-            raise TypeError("Expected argument 'instance_id' to be a float")
-        __self__.instance_id = instance_id
-        if plugins and not isinstance(plugins, list):
-            raise TypeError("Expected argument 'plugins' to be a list")
-        __self__.plugins = plugins
+    def __init__(__self__, id=None, instance_id=None, plugins=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
         id is the provider-assigned unique ID for this managed resource.
         """
+        if instance_id and not isinstance(instance_id, float):
+            raise TypeError("Expected argument 'instance_id' to be a float")
+        __self__.instance_id = instance_id
+        if plugins and not isinstance(plugins, list):
+            raise TypeError("Expected argument 'plugins' to be a list")
+        __self__.plugins = plugins
 class AwaitableGetPluginsResult(GetPluginsResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
         return GetPluginsResult(
+            id=self.id,
             instance_id=self.instance_id,
-            plugins=self.plugins,
-            id=self.id)
+            plugins=self.plugins)
 
 def get_plugins(instance_id=None,plugins=None,opts=None):
     """
     Use this data source to access information about an existing resource.
-    
-    
+
+
     The **plugins** object supports the following:
-    
+
       * `description` (`str`)
       * `enabled` (`bool`)
       * `name` (`str`)
       * `version` (`str`)
     """
     __args__ = dict()
+
 
     __args__['instanceId'] = instance_id
     __args__['plugins'] = plugins
@@ -59,6 +60,6 @@ def get_plugins(instance_id=None,plugins=None,opts=None):
     __ret__ = pulumi.runtime.invoke('cloudamqp:index/getPlugins:getPlugins', __args__, opts=opts).value
 
     return AwaitableGetPluginsResult(
+        id=__ret__.get('id'),
         instance_id=__ret__.get('instanceId'),
-        plugins=__ret__.get('plugins'),
-        id=__ret__.get('id'))
+        plugins=__ret__.get('plugins'))
