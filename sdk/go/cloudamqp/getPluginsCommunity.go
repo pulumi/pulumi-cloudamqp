@@ -19,16 +19,14 @@ func GetPluginsCommunity(ctx *pulumi.Context, args *GetPluginsCommunityArgs, opt
 
 // A collection of arguments for invoking getPluginsCommunity.
 type GetPluginsCommunityArgs struct {
-	InstanceId int `pulumi:"instanceId"`
-	Plugins []GetPluginsCommunityPlugin `pulumi:"plugins"`
+	InstanceId int                         `pulumi:"instanceId"`
+	Plugins    []GetPluginsCommunityPlugin `pulumi:"plugins"`
 }
-
 
 // A collection of values returned by getPluginsCommunity.
 type GetPluginsCommunityResult struct {
 	// id is the provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	InstanceId int `pulumi:"instanceId"`
-	Plugins []GetPluginsCommunityPlugin `pulumi:"plugins"`
+	Id         string                      `pulumi:"id"`
+	InstanceId int                         `pulumi:"instanceId"`
+	Plugins    []GetPluginsCommunityPlugin `pulumi:"plugins"`
 }
-

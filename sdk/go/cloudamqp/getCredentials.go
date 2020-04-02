@@ -19,18 +19,16 @@ func GetCredentials(ctx *pulumi.Context, args *GetCredentialsArgs, opts ...pulum
 
 // A collection of arguments for invoking getCredentials.
 type GetCredentialsArgs struct {
-	InstanceId int `pulumi:"instanceId"`
-	Password *string `pulumi:"password"`
-	Username *string `pulumi:"username"`
+	InstanceId int     `pulumi:"instanceId"`
+	Password   *string `pulumi:"password"`
+	Username   *string `pulumi:"username"`
 }
-
 
 // A collection of values returned by getCredentials.
 type GetCredentialsResult struct {
 	// id is the provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	InstanceId int `pulumi:"instanceId"`
-	Password *string `pulumi:"password"`
-	Username *string `pulumi:"username"`
+	Id         string  `pulumi:"id"`
+	InstanceId int     `pulumi:"instanceId"`
+	Password   *string `pulumi:"password"`
+	Username   *string `pulumi:"username"`
 }
-

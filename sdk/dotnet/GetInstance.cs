@@ -11,7 +11,13 @@ namespace Pulumi.CloudAmqp
 {
     public static partial class Invokes
     {
+        [Obsolete("Use GetInstance.InvokeAsync() instead")]
         public static Task<GetInstanceResult> GetInstance(GetInstanceArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetInstanceResult>("cloudamqp:index/getInstance:getInstance", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetInstance
+    {
+        public static Task<GetInstanceResult> InvokeAsync(GetInstanceArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetInstanceResult>("cloudamqp:index/getInstance:getInstance", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 

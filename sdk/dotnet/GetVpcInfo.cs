@@ -11,7 +11,13 @@ namespace Pulumi.CloudAmqp
 {
     public static partial class Invokes
     {
+        [Obsolete("Use GetVpcInfo.InvokeAsync() instead")]
         public static Task<GetVpcInfoResult> GetVpcInfo(GetVpcInfoArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetVpcInfoResult>("cloudamqp:index/getVpcInfo:getVpcInfo", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetVpcInfo
+    {
+        public static Task<GetVpcInfoResult> InvokeAsync(GetVpcInfoArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetVpcInfoResult>("cloudamqp:index/getVpcInfo:getVpcInfo", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 

@@ -19,26 +19,24 @@ func LookupInstance(ctx *pulumi.Context, args *LookupInstanceArgs, opts ...pulum
 
 // A collection of arguments for invoking getInstance.
 type LookupInstanceArgs struct {
-	InstanceId int `pulumi:"instanceId"`
-	VpcSubnet *string `pulumi:"vpcSubnet"`
+	InstanceId int     `pulumi:"instanceId"`
+	VpcSubnet  *string `pulumi:"vpcSubnet"`
 }
-
 
 // A collection of values returned by getInstance.
 type LookupInstanceResult struct {
 	Apikey string `pulumi:"apikey"`
-	Host string `pulumi:"host"`
+	Host   string `pulumi:"host"`
 	// id is the provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	InstanceId int `pulumi:"instanceId"`
-	Name string `pulumi:"name"`
-	Nodes int `pulumi:"nodes"`
-	Plan string `pulumi:"plan"`
-	Region string `pulumi:"region"`
-	RmqVersion string `pulumi:"rmqVersion"`
-	Tags []string `pulumi:"tags"`
-	Url string `pulumi:"url"`
-	Vhost string `pulumi:"vhost"`
-	VpcSubnet *string `pulumi:"vpcSubnet"`
+	Id         string   `pulumi:"id"`
+	InstanceId int      `pulumi:"instanceId"`
+	Name       string   `pulumi:"name"`
+	Nodes      int      `pulumi:"nodes"`
+	Plan       string   `pulumi:"plan"`
+	Region     string   `pulumi:"region"`
+	RmqVersion string   `pulumi:"rmqVersion"`
+	Tags       []string `pulumi:"tags"`
+	Url        string   `pulumi:"url"`
+	Vhost      string   `pulumi:"vhost"`
+	VpcSubnet  *string  `pulumi:"vpcSubnet"`
 }
-

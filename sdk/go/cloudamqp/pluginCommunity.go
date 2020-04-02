@@ -99,4 +99,3 @@ type PluginCommunityArgs struct {
 func (PluginCommunityArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*pluginCommunityArgs)(nil)).Elem()
 }
-
