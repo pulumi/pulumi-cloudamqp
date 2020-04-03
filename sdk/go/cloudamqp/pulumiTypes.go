@@ -12,8 +12,8 @@ import (
 )
 
 type SecurityFirewallRule struct {
-	Ip string `pulumi:"ip"`
-	Ports []int `pulumi:"ports"`
+	Ip       string   `pulumi:"ip"`
+	Ports    []int    `pulumi:"ports"`
 	Services []string `pulumi:"services"`
 }
 
@@ -25,8 +25,8 @@ type SecurityFirewallRuleInput interface {
 }
 
 type SecurityFirewallRuleArgs struct {
-	Ip pulumi.StringInput `pulumi:"ip"`
-	Ports pulumi.IntArrayInput `pulumi:"ports"`
+	Ip       pulumi.StringInput      `pulumi:"ip"`
+	Ports    pulumi.IntArrayInput    `pulumi:"ports"`
 	Services pulumi.StringArrayInput `pulumi:"services"`
 }
 
@@ -63,7 +63,7 @@ func (i SecurityFirewallRuleArray) ToSecurityFirewallRuleArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SecurityFirewallRuleArrayOutput)
 }
 
-type SecurityFirewallRuleOutput struct { *pulumi.OutputState }
+type SecurityFirewallRuleOutput struct{ *pulumi.OutputState }
 
 func (SecurityFirewallRuleOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*SecurityFirewallRule)(nil)).Elem()
@@ -78,18 +78,18 @@ func (o SecurityFirewallRuleOutput) ToSecurityFirewallRuleOutputWithContext(ctx 
 }
 
 func (o SecurityFirewallRuleOutput) Ip() pulumi.StringOutput {
-	return o.ApplyT(func (v SecurityFirewallRule) string { return v.Ip }).(pulumi.StringOutput)
+	return o.ApplyT(func(v SecurityFirewallRule) string { return v.Ip }).(pulumi.StringOutput)
 }
 
 func (o SecurityFirewallRuleOutput) Ports() pulumi.IntArrayOutput {
-	return o.ApplyT(func (v SecurityFirewallRule) []int { return v.Ports }).(pulumi.IntArrayOutput)
+	return o.ApplyT(func(v SecurityFirewallRule) []int { return v.Ports }).(pulumi.IntArrayOutput)
 }
 
 func (o SecurityFirewallRuleOutput) Services() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v SecurityFirewallRule) []string { return v.Services }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v SecurityFirewallRule) []string { return v.Services }).(pulumi.StringArrayOutput)
 }
 
-type SecurityFirewallRuleArrayOutput struct { *pulumi.OutputState}
+type SecurityFirewallRuleArrayOutput struct{ *pulumi.OutputState }
 
 func (SecurityFirewallRuleArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]SecurityFirewallRule)(nil)).Elem()
@@ -104,15 +104,15 @@ func (o SecurityFirewallRuleArrayOutput) ToSecurityFirewallRuleArrayOutputWithCo
 }
 
 func (o SecurityFirewallRuleArrayOutput) Index(i pulumi.IntInput) SecurityFirewallRuleOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) SecurityFirewallRule {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecurityFirewallRule {
 		return vs[0].([]SecurityFirewallRule)[vs[1].(int)]
 	}).(SecurityFirewallRuleOutput)
 }
 
 type GetPluginsCommunityPlugin struct {
 	Description *string `pulumi:"description"`
-	Name *string `pulumi:"name"`
-	Require *string `pulumi:"require"`
+	Name        *string `pulumi:"name"`
+	Require     *string `pulumi:"require"`
 }
 
 type GetPluginsCommunityPluginInput interface {
@@ -124,8 +124,8 @@ type GetPluginsCommunityPluginInput interface {
 
 type GetPluginsCommunityPluginArgs struct {
 	Description pulumi.StringPtrInput `pulumi:"description"`
-	Name pulumi.StringPtrInput `pulumi:"name"`
-	Require pulumi.StringPtrInput `pulumi:"require"`
+	Name        pulumi.StringPtrInput `pulumi:"name"`
+	Require     pulumi.StringPtrInput `pulumi:"require"`
 }
 
 func (GetPluginsCommunityPluginArgs) ElementType() reflect.Type {
@@ -161,7 +161,7 @@ func (i GetPluginsCommunityPluginArray) ToGetPluginsCommunityPluginArrayOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(GetPluginsCommunityPluginArrayOutput)
 }
 
-type GetPluginsCommunityPluginOutput struct { *pulumi.OutputState }
+type GetPluginsCommunityPluginOutput struct{ *pulumi.OutputState }
 
 func (GetPluginsCommunityPluginOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*GetPluginsCommunityPlugin)(nil)).Elem()
@@ -176,18 +176,18 @@ func (o GetPluginsCommunityPluginOutput) ToGetPluginsCommunityPluginOutputWithCo
 }
 
 func (o GetPluginsCommunityPluginOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v GetPluginsCommunityPlugin) *string { return v.Description }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v GetPluginsCommunityPlugin) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
 func (o GetPluginsCommunityPluginOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v GetPluginsCommunityPlugin) *string { return v.Name }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v GetPluginsCommunityPlugin) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
 func (o GetPluginsCommunityPluginOutput) Require() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v GetPluginsCommunityPlugin) *string { return v.Require }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v GetPluginsCommunityPlugin) *string { return v.Require }).(pulumi.StringPtrOutput)
 }
 
-type GetPluginsCommunityPluginArrayOutput struct { *pulumi.OutputState}
+type GetPluginsCommunityPluginArrayOutput struct{ *pulumi.OutputState }
 
 func (GetPluginsCommunityPluginArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]GetPluginsCommunityPlugin)(nil)).Elem()
@@ -202,16 +202,16 @@ func (o GetPluginsCommunityPluginArrayOutput) ToGetPluginsCommunityPluginArrayOu
 }
 
 func (o GetPluginsCommunityPluginArrayOutput) Index(i pulumi.IntInput) GetPluginsCommunityPluginOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) GetPluginsCommunityPlugin {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPluginsCommunityPlugin {
 		return vs[0].([]GetPluginsCommunityPlugin)[vs[1].(int)]
 	}).(GetPluginsCommunityPluginOutput)
 }
 
 type GetPluginsPlugin struct {
 	Description *string `pulumi:"description"`
-	Enabled *bool `pulumi:"enabled"`
-	Name *string `pulumi:"name"`
-	Version *string `pulumi:"version"`
+	Enabled     *bool   `pulumi:"enabled"`
+	Name        *string `pulumi:"name"`
+	Version     *string `pulumi:"version"`
 }
 
 type GetPluginsPluginInput interface {
@@ -223,9 +223,9 @@ type GetPluginsPluginInput interface {
 
 type GetPluginsPluginArgs struct {
 	Description pulumi.StringPtrInput `pulumi:"description"`
-	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
-	Name pulumi.StringPtrInput `pulumi:"name"`
-	Version pulumi.StringPtrInput `pulumi:"version"`
+	Enabled     pulumi.BoolPtrInput   `pulumi:"enabled"`
+	Name        pulumi.StringPtrInput `pulumi:"name"`
+	Version     pulumi.StringPtrInput `pulumi:"version"`
 }
 
 func (GetPluginsPluginArgs) ElementType() reflect.Type {
@@ -261,7 +261,7 @@ func (i GetPluginsPluginArray) ToGetPluginsPluginArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetPluginsPluginArrayOutput)
 }
 
-type GetPluginsPluginOutput struct { *pulumi.OutputState }
+type GetPluginsPluginOutput struct{ *pulumi.OutputState }
 
 func (GetPluginsPluginOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*GetPluginsPlugin)(nil)).Elem()
@@ -276,22 +276,22 @@ func (o GetPluginsPluginOutput) ToGetPluginsPluginOutputWithContext(ctx context.
 }
 
 func (o GetPluginsPluginOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v GetPluginsPlugin) *string { return v.Description }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v GetPluginsPlugin) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
 func (o GetPluginsPluginOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v GetPluginsPlugin) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v GetPluginsPlugin) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
 func (o GetPluginsPluginOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v GetPluginsPlugin) *string { return v.Name }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v GetPluginsPlugin) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
 func (o GetPluginsPluginOutput) Version() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v GetPluginsPlugin) *string { return v.Version }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v GetPluginsPlugin) *string { return v.Version }).(pulumi.StringPtrOutput)
 }
 
-type GetPluginsPluginArrayOutput struct { *pulumi.OutputState}
+type GetPluginsPluginArrayOutput struct{ *pulumi.OutputState }
 
 func (GetPluginsPluginArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]GetPluginsPlugin)(nil)).Elem()
@@ -306,7 +306,7 @@ func (o GetPluginsPluginArrayOutput) ToGetPluginsPluginArrayOutputWithContext(ct
 }
 
 func (o GetPluginsPluginArrayOutput) Index(i pulumi.IntInput) GetPluginsPluginOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) GetPluginsPlugin {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPluginsPlugin {
 		return vs[0].([]GetPluginsPlugin)[vs[1].(int)]
 	}).(GetPluginsPluginOutput)
 }

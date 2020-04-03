@@ -170,4 +170,3 @@ type AlarmArgs struct {
 func (AlarmArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*alarmArgs)(nil)).Elem()
 }
-

@@ -19,7 +19,7 @@ import (
 
 	"github.com/cloudamqp/terraform-provider-cloudamqp/cloudamqp"
 	"github.com/pulumi/pulumi-terraform-bridge/pkg/tfbridge"
-	"github.com/pulumi/pulumi/pkg/tokens"
+	"github.com/pulumi/pulumi/sdk/go/common/tokens"
 )
 
 // all of the token components used below.

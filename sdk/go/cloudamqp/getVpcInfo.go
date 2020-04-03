@@ -22,15 +22,13 @@ type GetVpcInfoArgs struct {
 	InstanceId int `pulumi:"instanceId"`
 }
 
-
 // A collection of values returned by getVpcInfo.
 type GetVpcInfoResult struct {
 	// id is the provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	InstanceId int `pulumi:"instanceId"`
-	Name string `pulumi:"name"`
-	OwnerId string `pulumi:"ownerId"`
+	Id              string `pulumi:"id"`
+	InstanceId      int    `pulumi:"instanceId"`
+	Name            string `pulumi:"name"`
+	OwnerId         string `pulumi:"ownerId"`
 	SecurityGroupId string `pulumi:"securityGroupId"`
-	VpcSubnet string `pulumi:"vpcSubnet"`
+	VpcSubnet       string `pulumi:"vpcSubnet"`
 }
-

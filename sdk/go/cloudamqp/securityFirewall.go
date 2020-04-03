@@ -15,8 +15,8 @@ type SecurityFirewall struct {
 	pulumi.CustomResourceState
 
 	// Instance identifier
-	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
-	Rules SecurityFirewallRuleArrayOutput `pulumi:"rules"`
+	InstanceId pulumi.IntOutput                `pulumi:"instanceId"`
+	Rules      SecurityFirewallRuleArrayOutput `pulumi:"rules"`
 }
 
 // NewSecurityFirewall registers a new resource with the given unique name, arguments, and options.
@@ -54,14 +54,14 @@ func GetSecurityFirewall(ctx *pulumi.Context,
 // Input properties used for looking up and filtering SecurityFirewall resources.
 type securityFirewallState struct {
 	// Instance identifier
-	InstanceId *int `pulumi:"instanceId"`
-	Rules []SecurityFirewallRule `pulumi:"rules"`
+	InstanceId *int                   `pulumi:"instanceId"`
+	Rules      []SecurityFirewallRule `pulumi:"rules"`
 }
 
 type SecurityFirewallState struct {
 	// Instance identifier
 	InstanceId pulumi.IntPtrInput
-	Rules SecurityFirewallRuleArrayInput
+	Rules      SecurityFirewallRuleArrayInput
 }
 
 func (SecurityFirewallState) ElementType() reflect.Type {
@@ -70,18 +70,17 @@ func (SecurityFirewallState) ElementType() reflect.Type {
 
 type securityFirewallArgs struct {
 	// Instance identifier
-	InstanceId int `pulumi:"instanceId"`
-	Rules []SecurityFirewallRule `pulumi:"rules"`
+	InstanceId int                    `pulumi:"instanceId"`
+	Rules      []SecurityFirewallRule `pulumi:"rules"`
 }
 
 // The set of arguments for constructing a SecurityFirewall resource.
 type SecurityFirewallArgs struct {
 	// Instance identifier
 	InstanceId pulumi.IntInput
-	Rules SecurityFirewallRuleArrayInput
+	Rules      SecurityFirewallRuleArrayInput
 }
 
 func (SecurityFirewallArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*securityFirewallArgs)(nil)).Elem()
 }
-

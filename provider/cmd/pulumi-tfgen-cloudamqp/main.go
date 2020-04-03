@@ -12,18 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//go:generate go run ./generate.go
-
 package main
 
 import (
-	"github.com/pulumi/pulumi-terraform-bridge/pkg/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/pkg/tfgen"
 
-	cloudamqp "github.com/pulumi/pulumi-cloudamqp"
-	"github.com/pulumi/pulumi-cloudamqp/pkg/version"
+	cloudamqp "github.com/pulumi/pulumi-cloudamqp/provider"
+	"github.com/pulumi/pulumi-cloudamqp/provider/pkg/version"
 )
 
 func main() {
 	// Modify the path to point to the new provider
-	tfbridge.Main("cloudamqp", version.Version, cloudamqp.Provider(), pulumiSchema)
+	tfgen.Main("cloudamqp", version.Version, cloudamqp.Provider())
 }
