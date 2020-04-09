@@ -15,10 +15,10 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-terraform-bridge/pkg/tfgen"
+	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfgen"
 
-	cloudamqp "github.com/pulumi/pulumi-cloudamqp/provider"
-	"github.com/pulumi/pulumi-cloudamqp/provider/pkg/version"
+	cloudamqp "github.com/pulumi/pulumi-cloudamqp/provider/v2"
+	"github.com/pulumi/pulumi-cloudamqp/provider/v2/pkg/version"
 )
 
 func main() {

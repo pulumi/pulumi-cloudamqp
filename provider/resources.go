@@ -18,8 +18,8 @@ import (
 	"unicode"
 
 	"github.com/cloudamqp/terraform-provider-cloudamqp/cloudamqp"
-	"github.com/pulumi/pulumi-terraform-bridge/pkg/tfbridge"
-	"github.com/pulumi/pulumi/sdk/go/common/tokens"
+	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
+	"github.com/pulumi/pulumi/sdk/v2/go/common/tokens"
 )
 
 // all of the token components used below.
@@ -97,8 +97,9 @@ func Provider() tfbridge.ProviderInfo {
 			"cloudamqp_instance":          {Tok: makeDataSource(mainMod, "getInstance")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
+			AsyncDataSources: true,
 			Dependencies: map[string]string{
-				"@pulumi/pulumi": "^1.0.0",
+				"@pulumi/pulumi": "^2.0.0-beta.2",
 			},
 			DevDependencies: map[string]string{
 				"@types/node": "^8.0.25",
@@ -107,12 +108,12 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Python: &tfbridge.PythonInfo{
 			Requires: map[string]string{
-				"pulumi": ">=1.0.0,<2.0.0",
+				"pulumi": ">=2.0.0b2,<3.0.0",
 			},
 		},
 		CSharp: &tfbridge.CSharpInfo{
 			PackageReferences: map[string]string{
-				"Pulumi":                       "1.12.1-preview",
+				"Pulumi":                       "2.0.0-beta.2",
 				"System.Collections.Immutable": "1.6.0",
 			},
 			Namespaces: map[string]string{

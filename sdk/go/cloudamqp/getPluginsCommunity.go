@@ -5,7 +5,7 @@
 package cloudamqp
 
 import (
-	"github.com/pulumi/pulumi/sdk/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
 func GetPluginsCommunity(ctx *pulumi.Context, args *GetPluginsCommunityArgs, opts ...pulumi.InvokeOption) (*GetPluginsCommunityResult, error) {

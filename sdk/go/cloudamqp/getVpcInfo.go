@@ -5,7 +5,7 @@
 package cloudamqp
 
 import (
-	"github.com/pulumi/pulumi/sdk/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
 func GetVpcInfo(ctx *pulumi.Context, args *GetVpcInfoArgs, opts ...pulumi.InvokeOption) (*GetVpcInfoResult, error) {
