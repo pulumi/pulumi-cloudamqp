@@ -38,7 +38,7 @@ namespace Pulumi.CloudAmqp
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public PluginCommunity(string name, PluginCommunityArgs args, CustomResourceOptions? options = null)
-            : base("cloudamqp:index/pluginCommunity:PluginCommunity", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("cloudamqp:index/pluginCommunity:PluginCommunity", name, args ?? new PluginCommunityArgs(), MakeResourceOptions(options, ""))
         {
         }
 

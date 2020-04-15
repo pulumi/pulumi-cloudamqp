@@ -9,17 +9,12 @@ using Pulumi.Serialization;
 
 namespace Pulumi.CloudAmqp
 {
-    public static partial class Invokes
-    {
-        [Obsolete("Use GetPluginsCommunity.InvokeAsync() instead")]
-        public static Task<GetPluginsCommunityResult> GetPluginsCommunity(GetPluginsCommunityArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetPluginsCommunityResult>("cloudamqp:index/getPluginsCommunity:getPluginsCommunity", args ?? InvokeArgs.Empty, options.WithVersion());
-    }
     public static class GetPluginsCommunity
     {
         public static Task<GetPluginsCommunityResult> InvokeAsync(GetPluginsCommunityArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetPluginsCommunityResult>("cloudamqp:index/getPluginsCommunity:getPluginsCommunity", args ?? InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetPluginsCommunityResult>("cloudamqp:index/getPluginsCommunity:getPluginsCommunity", args ?? new GetPluginsCommunityArgs(), options.WithVersion());
     }
+
 
     public sealed class GetPluginsCommunityArgs : Pulumi.InvokeArgs
     {
@@ -27,10 +22,10 @@ namespace Pulumi.CloudAmqp
         public int InstanceId { get; set; }
 
         [Input("plugins")]
-        private List<Inputs.GetPluginsCommunityPluginsArgs>? _plugins;
-        public List<Inputs.GetPluginsCommunityPluginsArgs> Plugins
+        private List<Inputs.GetPluginsCommunityPluginArgs>? _plugins;
+        public List<Inputs.GetPluginsCommunityPluginArgs> Plugins
         {
-            get => _plugins ?? (_plugins = new List<Inputs.GetPluginsCommunityPluginsArgs>());
+            get => _plugins ?? (_plugins = new List<Inputs.GetPluginsCommunityPluginArgs>());
             set => _plugins = value;
         }
 
@@ -39,68 +34,28 @@ namespace Pulumi.CloudAmqp
         }
     }
 
+
     [OutputType]
     public sealed class GetPluginsCommunityResult
     {
-        public readonly int InstanceId;
-        public readonly ImmutableArray<Outputs.GetPluginsCommunityPluginsResult> Plugins;
         /// <summary>
         /// id is the provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly int InstanceId;
+        public readonly ImmutableArray<Outputs.GetPluginsCommunityPluginResult> Plugins;
 
         [OutputConstructor]
         private GetPluginsCommunityResult(
+            string id,
+
             int instanceId,
-            ImmutableArray<Outputs.GetPluginsCommunityPluginsResult> plugins,
-            string id)
+
+            ImmutableArray<Outputs.GetPluginsCommunityPluginResult> plugins)
         {
+            Id = id;
             InstanceId = instanceId;
             Plugins = plugins;
-            Id = id;
         }
-    }
-
-    namespace Inputs
-    {
-
-    public sealed class GetPluginsCommunityPluginsArgs : Pulumi.InvokeArgs
-    {
-        [Input("description")]
-        public string? Description { get; set; }
-
-        [Input("name")]
-        public string? Name { get; set; }
-
-        [Input("require")]
-        public string? Require { get; set; }
-
-        public GetPluginsCommunityPluginsArgs()
-        {
-        }
-    }
-    }
-
-    namespace Outputs
-    {
-
-    [OutputType]
-    public sealed class GetPluginsCommunityPluginsResult
-    {
-        public readonly string? Description;
-        public readonly string? Name;
-        public readonly string? Require;
-
-        [OutputConstructor]
-        private GetPluginsCommunityPluginsResult(
-            string? description,
-            string? name,
-            string? require)
-        {
-            Description = description;
-            Name = name;
-            Require = require;
-        }
-    }
     }
 }

@@ -18,7 +18,7 @@ namespace Pulumi.CloudAmqp
         public Output<int> InstanceId { get; private set; } = null!;
 
         [Output("rules")]
-        public Output<ImmutableArray<Outputs.SecurityFirewallRules>> Rules { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.SecurityFirewallRule>> Rules { get; private set; } = null!;
 
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Pulumi.CloudAmqp
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public SecurityFirewall(string name, SecurityFirewallArgs args, CustomResourceOptions? options = null)
-            : base("cloudamqp:index/securityFirewall:SecurityFirewall", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("cloudamqp:index/securityFirewall:SecurityFirewall", name, args ?? new SecurityFirewallArgs(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -73,10 +73,10 @@ namespace Pulumi.CloudAmqp
         public Input<int> InstanceId { get; set; } = null!;
 
         [Input("rules", required: true)]
-        private InputList<Inputs.SecurityFirewallRulesArgs>? _rules;
-        public InputList<Inputs.SecurityFirewallRulesArgs> Rules
+        private InputList<Inputs.SecurityFirewallRuleArgs>? _rules;
+        public InputList<Inputs.SecurityFirewallRuleArgs> Rules
         {
-            get => _rules ?? (_rules = new InputList<Inputs.SecurityFirewallRulesArgs>());
+            get => _rules ?? (_rules = new InputList<Inputs.SecurityFirewallRuleArgs>());
             set => _rules = value;
         }
 
@@ -94,94 +94,15 @@ namespace Pulumi.CloudAmqp
         public Input<int>? InstanceId { get; set; }
 
         [Input("rules")]
-        private InputList<Inputs.SecurityFirewallRulesGetArgs>? _rules;
-        public InputList<Inputs.SecurityFirewallRulesGetArgs> Rules
+        private InputList<Inputs.SecurityFirewallRuleGetArgs>? _rules;
+        public InputList<Inputs.SecurityFirewallRuleGetArgs> Rules
         {
-            get => _rules ?? (_rules = new InputList<Inputs.SecurityFirewallRulesGetArgs>());
+            get => _rules ?? (_rules = new InputList<Inputs.SecurityFirewallRuleGetArgs>());
             set => _rules = value;
         }
 
         public SecurityFirewallState()
         {
         }
-    }
-
-    namespace Inputs
-    {
-
-    public sealed class SecurityFirewallRulesArgs : Pulumi.ResourceArgs
-    {
-        [Input("ip", required: true)]
-        public Input<string> Ip { get; set; } = null!;
-
-        [Input("ports")]
-        private InputList<int>? _ports;
-        public InputList<int> Ports
-        {
-            get => _ports ?? (_ports = new InputList<int>());
-            set => _ports = value;
-        }
-
-        [Input("services")]
-        private InputList<string>? _services;
-        public InputList<string> Services
-        {
-            get => _services ?? (_services = new InputList<string>());
-            set => _services = value;
-        }
-
-        public SecurityFirewallRulesArgs()
-        {
-        }
-    }
-
-    public sealed class SecurityFirewallRulesGetArgs : Pulumi.ResourceArgs
-    {
-        [Input("ip", required: true)]
-        public Input<string> Ip { get; set; } = null!;
-
-        [Input("ports")]
-        private InputList<int>? _ports;
-        public InputList<int> Ports
-        {
-            get => _ports ?? (_ports = new InputList<int>());
-            set => _ports = value;
-        }
-
-        [Input("services")]
-        private InputList<string>? _services;
-        public InputList<string> Services
-        {
-            get => _services ?? (_services = new InputList<string>());
-            set => _services = value;
-        }
-
-        public SecurityFirewallRulesGetArgs()
-        {
-        }
-    }
-    }
-
-    namespace Outputs
-    {
-
-    [OutputType]
-    public sealed class SecurityFirewallRules
-    {
-        public readonly string Ip;
-        public readonly ImmutableArray<int> Ports;
-        public readonly ImmutableArray<string> Services;
-
-        [OutputConstructor]
-        private SecurityFirewallRules(
-            string ip,
-            ImmutableArray<int> ports,
-            ImmutableArray<string> services)
-        {
-            Ip = ip;
-            Ports = ports;
-            Services = services;
-        }
-    }
     }
 }

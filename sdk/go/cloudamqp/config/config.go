@@ -4,8 +4,8 @@
 package config
 
 import (
-	"github.com/pulumi/pulumi/sdk/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/go/pulumi/config"
+	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v2/go/pulumi/config"
 )
 
 // Key used to authentication to the CloudAMQP Customer API
@@ -14,10 +14,7 @@ func GetApikey(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	if dv, ok := getEnvOrDefault("", nil, "CLOUDAMQP_APIKEY").(string); ok {
-		return dv
-	}
-	return v
+	return getEnvOrDefault("", nil, "CLOUDAMQP_APIKEY").(string)
 }
 
 // Base URL to CloudAMQP Customer website

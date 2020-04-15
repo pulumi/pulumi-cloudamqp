@@ -6,7 +6,7 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-export function getPlugins(args: GetPluginsArgs, opts?: pulumi.InvokeOptions): Promise<GetPluginsResult> & GetPluginsResult {
+export function getPlugins(args: GetPluginsArgs, opts?: pulumi.InvokeOptions): Promise<GetPluginsResult> {
     if (!opts) {
         opts = {}
     }
@@ -14,12 +14,10 @@ export function getPlugins(args: GetPluginsArgs, opts?: pulumi.InvokeOptions): P
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetPluginsResult> = pulumi.runtime.invoke("cloudamqp:index/getPlugins:getPlugins", {
+    return pulumi.runtime.invoke("cloudamqp:index/getPlugins:getPlugins", {
         "instanceId": args.instanceId,
         "plugins": args.plugins,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**

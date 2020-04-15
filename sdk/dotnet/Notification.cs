@@ -24,8 +24,7 @@ namespace Pulumi.CloudAmqp
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu,
-        /// slack
+        /// Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -45,7 +44,7 @@ namespace Pulumi.CloudAmqp
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Notification(string name, NotificationArgs args, CustomResourceOptions? options = null)
-            : base("cloudamqp:index/notification:Notification", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("cloudamqp:index/notification:Notification", name, args ?? new NotificationArgs(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -95,8 +94,7 @@ namespace Pulumi.CloudAmqp
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu,
-        /// slack
+        /// Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -127,8 +125,7 @@ namespace Pulumi.CloudAmqp
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu,
-        /// slack
+        /// Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

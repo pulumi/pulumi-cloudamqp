@@ -48,8 +48,8 @@ namespace Pulumi.CloudAmqp
         public Output<int?> TimeThreshold { get; private set; } = null!;
 
         /// <summary>
-        /// Type of the alarm, valid options are: cpu, memory, disk_usage, queue_length, connection_count,
-        /// consumers_count, net_split
+        /// Type of the alarm, valid options are: cpu, memory, disk_usage, queue_length, connection_count, consumers_count,
+        /// net_split
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -75,7 +75,7 @@ namespace Pulumi.CloudAmqp
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Alarm(string name, AlarmArgs args, CustomResourceOptions? options = null)
-            : base("cloudamqp:index/alarm:Alarm", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("cloudamqp:index/alarm:Alarm", name, args ?? new AlarmArgs(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -155,8 +155,8 @@ namespace Pulumi.CloudAmqp
         public Input<int>? TimeThreshold { get; set; }
 
         /// <summary>
-        /// Type of the alarm, valid options are: cpu, memory, disk_usage, queue_length, connection_count,
-        /// consumers_count, net_split
+        /// Type of the alarm, valid options are: cpu, memory, disk_usage, queue_length, connection_count, consumers_count,
+        /// net_split
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -223,8 +223,8 @@ namespace Pulumi.CloudAmqp
         public Input<int>? TimeThreshold { get; set; }
 
         /// <summary>
-        /// Type of the alarm, valid options are: cpu, memory, disk_usage, queue_length, connection_count,
-        /// consumers_count, net_split
+        /// Type of the alarm, valid options are: cpu, memory, disk_usage, queue_length, connection_count, consumers_count,
+        /// net_split
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

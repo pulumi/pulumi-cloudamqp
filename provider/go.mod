@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-cloudamqp/provider
+module github.com/pulumi/pulumi-cloudamqp/provider/v2
 
 go 1.13
 
@@ -9,6 +9,6 @@ replace (
 
 require (
 	github.com/cloudamqp/terraform-provider-cloudamqp v1.5.0
-	github.com/pulumi/pulumi-terraform-bridge v1.8.4
-	github.com/pulumi/pulumi/sdk v1.14.0
+	github.com/pulumi/pulumi-terraform-bridge/v2 v2.0.0-20200414185723-c9aee63e6d4c
+	github.com/pulumi/pulumi/sdk/v2 v2.0.0-beta.3
 )

@@ -6,7 +6,7 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-export function getCredentials(args: GetCredentialsArgs, opts?: pulumi.InvokeOptions): Promise<GetCredentialsResult> & GetCredentialsResult {
+export function getCredentials(args: GetCredentialsArgs, opts?: pulumi.InvokeOptions): Promise<GetCredentialsResult> {
     if (!opts) {
         opts = {}
     }
@@ -14,13 +14,11 @@ export function getCredentials(args: GetCredentialsArgs, opts?: pulumi.InvokeOpt
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetCredentialsResult> = pulumi.runtime.invoke("cloudamqp:index/getCredentials:getCredentials", {
+    return pulumi.runtime.invoke("cloudamqp:index/getCredentials:getCredentials", {
         "instanceId": args.instanceId,
         "password": args.password,
         "username": args.username,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**

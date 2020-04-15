@@ -6,7 +6,7 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-export function getInstance(args: GetInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceResult> & GetInstanceResult {
+export function getInstance(args: GetInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceResult> {
     if (!opts) {
         opts = {}
     }
@@ -14,12 +14,10 @@ export function getInstance(args: GetInstanceArgs, opts?: pulumi.InvokeOptions):
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetInstanceResult> = pulumi.runtime.invoke("cloudamqp:index/getInstance:getInstance", {
+    return pulumi.runtime.invoke("cloudamqp:index/getInstance:getInstance", {
         "instanceId": args.instanceId,
         "vpcSubnet": args.vpcSubnet,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**

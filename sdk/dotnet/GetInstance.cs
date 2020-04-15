@@ -9,17 +9,12 @@ using Pulumi.Serialization;
 
 namespace Pulumi.CloudAmqp
 {
-    public static partial class Invokes
-    {
-        [Obsolete("Use GetInstance.InvokeAsync() instead")]
-        public static Task<GetInstanceResult> GetInstance(GetInstanceArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetInstanceResult>("cloudamqp:index/getInstance:getInstance", args ?? InvokeArgs.Empty, options.WithVersion());
-    }
     public static class GetInstance
     {
         public static Task<GetInstanceResult> InvokeAsync(GetInstanceArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetInstanceResult>("cloudamqp:index/getInstance:getInstance", args ?? InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetInstanceResult>("cloudamqp:index/getInstance:getInstance", args ?? new GetInstanceArgs(), options.WithVersion());
     }
+
 
     public sealed class GetInstanceArgs : Pulumi.InvokeArgs
     {
@@ -34,11 +29,16 @@ namespace Pulumi.CloudAmqp
         }
     }
 
+
     [OutputType]
     public sealed class GetInstanceResult
     {
         public readonly string Apikey;
         public readonly string Host;
+        /// <summary>
+        /// id is the provider-assigned unique ID for this managed resource.
+        /// </summary>
+        public readonly string Id;
         public readonly int InstanceId;
         public readonly string Name;
         public readonly int Nodes;
@@ -49,29 +49,38 @@ namespace Pulumi.CloudAmqp
         public readonly string Url;
         public readonly string Vhost;
         public readonly string? VpcSubnet;
-        /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
 
         [OutputConstructor]
         private GetInstanceResult(
             string apikey,
+
             string host,
+
+            string id,
+
             int instanceId,
+
             string name,
+
             int nodes,
+
             string plan,
+
             string region,
+
             string rmqVersion,
+
             ImmutableArray<string> tags,
+
             string url,
+
             string vhost,
-            string? vpcSubnet,
-            string id)
+
+            string? vpcSubnet)
         {
             Apikey = apikey;
             Host = host;
+            Id = id;
             InstanceId = instanceId;
             Name = name;
             Nodes = nodes;
@@ -82,7 +91,6 @@ namespace Pulumi.CloudAmqp
             Url = url;
             Vhost = vhost;
             VpcSubnet = vpcSubnet;
-            Id = id;
         }
     }
 }

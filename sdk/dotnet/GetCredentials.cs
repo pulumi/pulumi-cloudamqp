@@ -9,17 +9,12 @@ using Pulumi.Serialization;
 
 namespace Pulumi.CloudAmqp
 {
-    public static partial class Invokes
-    {
-        [Obsolete("Use GetCredentials.InvokeAsync() instead")]
-        public static Task<GetCredentialsResult> GetCredentials(GetCredentialsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetCredentialsResult>("cloudamqp:index/getCredentials:getCredentials", args ?? InvokeArgs.Empty, options.WithVersion());
-    }
     public static class GetCredentials
     {
         public static Task<GetCredentialsResult> InvokeAsync(GetCredentialsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetCredentialsResult>("cloudamqp:index/getCredentials:getCredentials", args ?? InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetCredentialsResult>("cloudamqp:index/getCredentials:getCredentials", args ?? new GetCredentialsArgs(), options.WithVersion());
     }
+
 
     public sealed class GetCredentialsArgs : Pulumi.InvokeArgs
     {
@@ -37,28 +32,32 @@ namespace Pulumi.CloudAmqp
         }
     }
 
+
     [OutputType]
     public sealed class GetCredentialsResult
     {
-        public readonly int InstanceId;
-        public readonly string? Password;
-        public readonly string? Username;
         /// <summary>
         /// id is the provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly int InstanceId;
+        public readonly string? Password;
+        public readonly string? Username;
 
         [OutputConstructor]
         private GetCredentialsResult(
+            string id,
+
             int instanceId,
+
             string? password,
-            string? username,
-            string id)
+
+            string? username)
         {
+            Id = id;
             InstanceId = instanceId;
             Password = password;
             Username = username;
-            Id = id;
         }
     }
 }

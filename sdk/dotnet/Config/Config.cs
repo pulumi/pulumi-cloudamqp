@@ -8,7 +8,6 @@ namespace Pulumi.CloudAmqp
     public static class Config
     {
         private static readonly Pulumi.Config __config = new Pulumi.Config("cloudamqp");
-
         /// <summary>
         /// Key used to authentication to the CloudAMQP Customer API
         /// </summary>
@@ -19,8 +18,5 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         public static string? Baseurl { get; set; } = __config.Get("baseurl");
 
-    }
-    namespace ConfigTypes
-    {
     }
 }

@@ -9,17 +9,12 @@ using Pulumi.Serialization;
 
 namespace Pulumi.CloudAmqp
 {
-    public static partial class Invokes
-    {
-        [Obsolete("Use GetVpcInfo.InvokeAsync() instead")]
-        public static Task<GetVpcInfoResult> GetVpcInfo(GetVpcInfoArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetVpcInfoResult>("cloudamqp:index/getVpcInfo:getVpcInfo", args ?? InvokeArgs.Empty, options.WithVersion());
-    }
     public static class GetVpcInfo
     {
         public static Task<GetVpcInfoResult> InvokeAsync(GetVpcInfoArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetVpcInfoResult>("cloudamqp:index/getVpcInfo:getVpcInfo", args ?? InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetVpcInfoResult>("cloudamqp:index/getVpcInfo:getVpcInfo", args ?? new GetVpcInfoArgs(), options.WithVersion());
     }
+
 
     public sealed class GetVpcInfoArgs : Pulumi.InvokeArgs
     {
@@ -31,34 +26,40 @@ namespace Pulumi.CloudAmqp
         }
     }
 
+
     [OutputType]
     public sealed class GetVpcInfoResult
     {
+        /// <summary>
+        /// id is the provider-assigned unique ID for this managed resource.
+        /// </summary>
+        public readonly string Id;
         public readonly int InstanceId;
         public readonly string Name;
         public readonly string OwnerId;
         public readonly string SecurityGroupId;
         public readonly string VpcSubnet;
-        /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
 
         [OutputConstructor]
         private GetVpcInfoResult(
+            string id,
+
             int instanceId,
+
             string name,
+
             string ownerId,
+
             string securityGroupId,
-            string vpcSubnet,
-            string id)
+
+            string vpcSubnet)
         {
+            Id = id;
             InstanceId = instanceId;
             Name = name;
             OwnerId = ownerId;
             SecurityGroupId = securityGroupId;
             VpcSubnet = vpcSubnet;
-            Id = id;
         }
     }
 }

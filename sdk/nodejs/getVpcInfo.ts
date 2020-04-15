@@ -6,7 +6,7 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-export function getVpcInfo(args: GetVpcInfoArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcInfoResult> & GetVpcInfoResult {
+export function getVpcInfo(args: GetVpcInfoArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcInfoResult> {
     if (!opts) {
         opts = {}
     }
@@ -14,11 +14,9 @@ export function getVpcInfo(args: GetVpcInfoArgs, opts?: pulumi.InvokeOptions): P
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetVpcInfoResult> = pulumi.runtime.invoke("cloudamqp:index/getVpcInfo:getVpcInfo", {
+    return pulumi.runtime.invoke("cloudamqp:index/getVpcInfo:getVpcInfo", {
         "instanceId": args.instanceId,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**
