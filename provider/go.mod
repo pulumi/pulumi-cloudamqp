@@ -9,6 +9,6 @@ replace (
 
 require (
 	github.com/cloudamqp/terraform-provider-cloudamqp v1.5.0
-	github.com/pulumi/pulumi-terraform-bridge/v2 v2.0.0-20200414185723-c9aee63e6d4c
-	github.com/pulumi/pulumi/sdk/v2 v2.0.0-beta.3
+	github.com/pulumi/pulumi-terraform-bridge/v2 v2.0.0
+	github.com/pulumi/pulumi/sdk/v2 v2.0.0
 )
