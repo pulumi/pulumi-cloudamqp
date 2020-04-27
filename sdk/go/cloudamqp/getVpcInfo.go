@@ -23,7 +23,7 @@ type GetVpcInfoArgs struct {
 
 // A collection of values returned by getVpcInfo.
 type GetVpcInfoResult struct {
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id              string `pulumi:"id"`
 	InstanceId      int    `pulumi:"instanceId"`
 	Name            string `pulumi:"name"`
