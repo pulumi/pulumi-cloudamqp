@@ -26,7 +26,7 @@ type LookupInstanceArgs struct {
 type LookupInstanceResult struct {
 	Apikey string `pulumi:"apikey"`
 	Host   string `pulumi:"host"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id         string   `pulumi:"id"`
 	InstanceId int      `pulumi:"instanceId"`
 	Name       string   `pulumi:"name"`
