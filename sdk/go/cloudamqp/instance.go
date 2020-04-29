@@ -23,6 +23,8 @@ type Instance struct {
 	Nodes pulumi.IntPtrOutput `pulumi:"nodes"`
 	// Name of the plan, valid options are: lemur, tiger, bunny, rabbit, panda, ape, hippo, lion
 	Plan pulumi.StringOutput `pulumi:"plan"`
+	// Flag describing if the resource is ready
+	Ready pulumi.BoolOutput `pulumi:"ready"`
 	// Name of the region you want to create your instance in
 	Region pulumi.StringOutput `pulumi:"region"`
 	// RabbitMQ version
@@ -81,6 +83,8 @@ type instanceState struct {
 	Nodes *int `pulumi:"nodes"`
 	// Name of the plan, valid options are: lemur, tiger, bunny, rabbit, panda, ape, hippo, lion
 	Plan *string `pulumi:"plan"`
+	// Flag describing if the resource is ready
+	Ready *bool `pulumi:"ready"`
 	// Name of the region you want to create your instance in
 	Region *string `pulumi:"region"`
 	// RabbitMQ version
@@ -106,6 +110,8 @@ type InstanceState struct {
 	Nodes pulumi.IntPtrInput
 	// Name of the plan, valid options are: lemur, tiger, bunny, rabbit, panda, ape, hippo, lion
 	Plan pulumi.StringPtrInput
+	// Flag describing if the resource is ready
+	Ready pulumi.BoolPtrInput
 	// Name of the region you want to create your instance in
 	Region pulumi.StringPtrInput
 	// RabbitMQ version

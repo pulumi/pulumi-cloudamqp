@@ -42,6 +42,12 @@ namespace Pulumi.CloudAmqp
         public Output<string> Plan { get; private set; } = null!;
 
         /// <summary>
+        /// Flag describing if the resource is ready
+        /// </summary>
+        [Output("ready")]
+        public Output<bool> Ready { get; private set; } = null!;
+
+        /// <summary>
         /// Name of the region you want to create your instance in
         /// </summary>
         [Output("region")]
@@ -207,6 +213,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Input("plan")]
         public Input<string>? Plan { get; set; }
+
+        /// <summary>
+        /// Flag describing if the resource is ready
+        /// </summary>
+        [Input("ready")]
+        public Input<bool>? Ready { get; set; }
 
         /// <summary>
         /// Name of the region you want to create your instance in
