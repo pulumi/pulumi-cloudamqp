@@ -3,25 +3,39 @@
 # *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 _SNAKE_TO_CAMEL_CASE_TABLE = {
+    "access_key_id": "accessKeyId",
+    "api_key": "apiKey",
+    "host_port": "hostPort",
     "instance_id": "instanceId",
+    "license_key": "licenseKey",
     "message_type": "messageType",
     "peering_id": "peeringId",
     "queue_regex": "queueRegex",
+    "queue_whitelist": "queueWhitelist",
     "rmq_version": "rmqVersion",
+    "secret_access_key": "secretAccessKey",
     "time_threshold": "timeThreshold",
     "value_threshold": "valueThreshold",
     "vhost_regex": "vhostRegex",
+    "vhost_whitelist": "vhostWhitelist",
     "vpc_subnet": "vpcSubnet",
 }
 
 _CAMEL_TO_SNAKE_CASE_TABLE = {
+    "accessKeyId": "access_key_id",
+    "apiKey": "api_key",
+    "hostPort": "host_port",
     "instanceId": "instance_id",
+    "licenseKey": "license_key",
     "messageType": "message_type",
     "peeringId": "peering_id",
     "queueRegex": "queue_regex",
+    "queueWhitelist": "queue_whitelist",
     "rmqVersion": "rmq_version",
+    "secretAccessKey": "secret_access_key",
     "timeThreshold": "time_threshold",
     "valueThreshold": "value_threshold",
     "vhostRegex": "vhost_regex",
+    "vhostWhitelist": "vhost_whitelist",
     "vpcSubnet": "vpc_subnet",
 }

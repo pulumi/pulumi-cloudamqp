@@ -3,12 +3,16 @@
 
 // Export members:
 export * from "./alarm";
+export * from "./getAlarm";
 export * from "./getCredentials";
 export * from "./getInstance";
+export * from "./getNotification";
 export * from "./getPlugins";
 export * from "./getPluginsCommunity";
 export * from "./getVpcInfo";
 export * from "./instance";
+export * from "./integrationLog";
+export * from "./integrationMetric";
 export * from "./notification";
 export * from "./plugin";
 export * from "./pluginCommunity";

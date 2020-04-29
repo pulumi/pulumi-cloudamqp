@@ -30,6 +30,10 @@ class Instance(pulumi.CustomResource):
     """
     Name of the plan, valid options are: lemur, tiger, bunny, rabbit, panda, ape, hippo, lion
     """
+    ready: pulumi.Output[bool]
+    """
+    Flag describing if the resource is ready
+    """
     region: pulumi.Output[str]
     """
     Name of the region you want to create your instance in
@@ -97,6 +101,7 @@ class Instance(pulumi.CustomResource):
             __props__['vpc_subnet'] = vpc_subnet
             __props__['apikey'] = None
             __props__['host'] = None
+            __props__['ready'] = None
             __props__['url'] = None
             __props__['vhost'] = None
         super(Instance, __self__).__init__(
@@ -106,7 +111,7 @@ class Instance(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, apikey=None, host=None, name=None, nodes=None, plan=None, region=None, rmq_version=None, tags=None, url=None, vhost=None, vpc_subnet=None):
+    def get(resource_name, id, opts=None, apikey=None, host=None, name=None, nodes=None, plan=None, ready=None, region=None, rmq_version=None, tags=None, url=None, vhost=None, vpc_subnet=None):
         """
         Get an existing Instance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -119,6 +124,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] name: Name of the instance
         :param pulumi.Input[float] nodes: Number of nodes in cluster (plan must support it)
         :param pulumi.Input[str] plan: Name of the plan, valid options are: lemur, tiger, bunny, rabbit, panda, ape, hippo, lion
+        :param pulumi.Input[bool] ready: Flag describing if the resource is ready
         :param pulumi.Input[str] region: Name of the region you want to create your instance in
         :param pulumi.Input[str] rmq_version: RabbitMQ version
         :param pulumi.Input[list] tags: Tag the instances with optional tags
@@ -135,6 +141,7 @@ class Instance(pulumi.CustomResource):
         __props__["name"] = name
         __props__["nodes"] = nodes
         __props__["plan"] = plan
+        __props__["ready"] = ready
         __props__["region"] = region
         __props__["rmq_version"] = rmq_version
         __props__["tags"] = tags

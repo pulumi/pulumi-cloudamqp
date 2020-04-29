@@ -52,6 +52,10 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly plan!: pulumi.Output<string>;
     /**
+     * Flag describing if the resource is ready
+     */
+    public /*out*/ readonly ready!: pulumi.Output<boolean>;
+    /**
      * Name of the region you want to create your instance in
      */
     public readonly region!: pulumi.Output<string>;
@@ -93,6 +97,7 @@ export class Instance extends pulumi.CustomResource {
             inputs["name"] = state ? state.name : undefined;
             inputs["nodes"] = state ? state.nodes : undefined;
             inputs["plan"] = state ? state.plan : undefined;
+            inputs["ready"] = state ? state.ready : undefined;
             inputs["region"] = state ? state.region : undefined;
             inputs["rmqVersion"] = state ? state.rmqVersion : undefined;
             inputs["tags"] = state ? state.tags : undefined;
@@ -116,6 +121,7 @@ export class Instance extends pulumi.CustomResource {
             inputs["vpcSubnet"] = args ? args.vpcSubnet : undefined;
             inputs["apikey"] = undefined /*out*/;
             inputs["host"] = undefined /*out*/;
+            inputs["ready"] = undefined /*out*/;
             inputs["url"] = undefined /*out*/;
             inputs["vhost"] = undefined /*out*/;
         }
@@ -154,6 +160,10 @@ export interface InstanceState {
      * Name of the plan, valid options are: lemur, tiger, bunny, rabbit, panda, ape, hippo, lion
      */
     readonly plan?: pulumi.Input<string>;
+    /**
+     * Flag describing if the resource is ready
+     */
+    readonly ready?: pulumi.Input<boolean>;
     /**
      * Name of the region you want to create your instance in
      */

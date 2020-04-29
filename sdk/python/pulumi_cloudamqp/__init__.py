@@ -11,12 +11,16 @@ for pkg in __all__:
 
 # Export this package's modules as members:
 from .alarm import *
+from .get_alarm import *
 from .get_credentials import *
 from .get_instance import *
+from .get_notification import *
 from .get_plugins import *
 from .get_plugins_community import *
 from .get_vpc_info import *
 from .instance import *
+from .integration_log import *
+from .integration_metric import *
 from .notification import *
 from .plugin import *
 from .plugin_community import *
