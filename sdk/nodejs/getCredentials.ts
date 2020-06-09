@@ -34,11 +34,11 @@ export interface GetCredentialsArgs {
  * A collection of values returned by getCredentials.
  */
 export interface GetCredentialsResult {
-    readonly instanceId: number;
-    readonly password?: string;
-    readonly username?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly instanceId: number;
+    readonly password?: string;
+    readonly username?: string;
 }

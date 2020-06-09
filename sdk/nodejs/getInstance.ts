@@ -34,6 +34,10 @@ export interface GetInstanceArgs {
 export interface GetInstanceResult {
     readonly apikey: string;
     readonly host: string;
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly instanceId: number;
     readonly name: string;
     readonly nodes: number;
@@ -44,8 +48,4 @@ export interface GetInstanceResult {
     readonly url: string;
     readonly vhost: string;
     readonly vpcSubnet?: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

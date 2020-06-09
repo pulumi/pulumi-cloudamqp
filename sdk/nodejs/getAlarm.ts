@@ -36,6 +36,10 @@ export interface GetAlarmArgs {
 export interface GetAlarmResult {
     readonly alarmId?: number;
     readonly enabled: boolean;
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly instanceId: number;
     readonly messageType: string;
     readonly queueRegex: string;
@@ -44,8 +48,4 @@ export interface GetAlarmResult {
     readonly type?: string;
     readonly valueThreshold: number;
     readonly vhostRegex: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

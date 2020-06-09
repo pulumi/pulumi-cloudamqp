@@ -34,13 +34,13 @@ export interface GetNotificationArgs {
  * A collection of values returned by getNotification.
  */
 export interface GetNotificationResult {
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly instanceId: number;
     readonly name?: string;
     readonly recipientId?: number;
     readonly type: string;
     readonly value: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }
