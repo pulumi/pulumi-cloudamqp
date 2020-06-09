@@ -32,10 +32,10 @@ export interface GetPluginsCommunityArgs {
  * A collection of values returned by getPluginsCommunity.
  */
 export interface GetPluginsCommunityResult {
-    readonly instanceId: number;
-    readonly plugins?: outputs.GetPluginsCommunityPlugin[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly instanceId: number;
+    readonly plugins?: outputs.GetPluginsCommunityPlugin[];
 }

@@ -1413,8 +1413,10 @@
                 "@types/mime": "^2.0.0",
                 "@types/node": "^8.0.25"
             },
+            "disableUnionOutputTypes": true,
             "packageDescription": "A Pulumi package for creating and managing CloudAMQP resources.",
             "packageName": "",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/cloudamqp/terraform-provider-cloudamqp)\n\u003e distributed under [MIT](https://mit-license.org/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-cloudamqp` repo](https://github.com/pulumi/pulumi-cloudamqp/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`cloudamqp/terraform-provider-cloudamqp` repo](https://github.com/cloudamqp/terraform-provider-cloudamqp/issues).",
             "typescriptVersion": ""
         },
         "python": {

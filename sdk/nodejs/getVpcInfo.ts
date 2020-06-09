@@ -30,13 +30,13 @@ export interface GetVpcInfoArgs {
  * A collection of values returned by getVpcInfo.
  */
 export interface GetVpcInfoResult {
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly instanceId: number;
     readonly name: string;
     readonly ownerId: string;
     readonly securityGroupId: string;
     readonly vpcSubnet: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }
