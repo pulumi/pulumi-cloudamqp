@@ -6,6 +6,40 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Use this data source to retrieve information about default or created alarms. Either use `alarmId` or `type` to retrieve the alarm.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const defaultCpuAlarm = cloudamqp.getAlarm({
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     type: "cpu",
+ * });
+ * ```
+ * ## Argument reference
+ *
+ * * `instanceId` - (Required) The CloudAMQP instance identifier.
+ * * `alarmId`    - (Optional) The alarm identifier. Either use this or `type` to give `cloudamqp.Alarm` necessary information to retrieve the alarm.
+ * * `type`        - (Optional) The alarm type. Either use this or `alarmId` to give `cloudamqp.Alarm` necessary information when retrieve the alarm.
+ *
+ * ## Attribute reference
+ *
+ * * `enabled`         - (Computed) Enable/disable status of the alarm.
+ * * `valueThreshold` - (Computed) The value threshold that triggers the alarm.
+ * * `timeThreshold`  - (Computed) The time interval (in seconds) the `valueThreshold` should be active before trigger an alarm.
+ * * `queueRegex`     - (Computed) Regular expression for which queue to check.
+ * * `vhostRegex`     - (Computed) Regular expression for which vhost to check
+ * * `recipients`      - (Computed) Identifier for recipient to be notified.
+ * * `messageType`    - (Computed) Message type `(total, unacked, ready)` used by queue alarm type.
+ *
+ * ## Dependency
+ *
+ * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ */
 export function getAlarm(args: GetAlarmArgs, opts?: pulumi.InvokeOptions): Promise<GetAlarmResult> {
     if (!opts) {
         opts = {}

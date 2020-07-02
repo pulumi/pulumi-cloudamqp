@@ -10,16 +10,59 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// This resource allows you to create and manage recipients to receive alarm notifications. There will always be a default recipient created upon instance creation. This recipient will use team email and receive notifications from default alarms.
+//
+// Available for all subscription plans.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := cloudamqp.NewNotification(ctx, "recipient01", &cloudamqp.NotificationArgs{
+// 			InstanceId: pulumi.String(cloudamqp_instance.Instance.Id),
+// 			Type:       pulumi.String("email"),
+// 			Value:      pulumi.String("alarm@example.com"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ## Notification Type reference
+//
+// Valid options for notification type.
+//
+// * email
+// * webhook
+// * pagerduty
+// * victorops
+// * opsgenie
+// * opsgenie-eu
+// * slack
+//
+// ## Dependency
+//
+// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 type Notification struct {
 	pulumi.CustomResourceState
 
-	// Instance identifier
+	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
-	// Optional display name of the recipient
+	// Display name of the recipient.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack
+	// Type of the notification. See valid options below.
 	Type pulumi.StringOutput `pulumi:"type"`
-	// Notification endpoint, where to send the notifcation
+	// Endpoint to send the notification.
 	Value pulumi.StringOutput `pulumi:"value"`
 }
 
@@ -60,24 +103,24 @@ func GetNotification(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Notification resources.
 type notificationState struct {
-	// Instance identifier
+	// The CloudAMQP instance ID.
 	InstanceId *int `pulumi:"instanceId"`
-	// Optional display name of the recipient
+	// Display name of the recipient.
 	Name *string `pulumi:"name"`
-	// Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack
+	// Type of the notification. See valid options below.
 	Type *string `pulumi:"type"`
-	// Notification endpoint, where to send the notifcation
+	// Endpoint to send the notification.
 	Value *string `pulumi:"value"`
 }
 
 type NotificationState struct {
-	// Instance identifier
+	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntPtrInput
-	// Optional display name of the recipient
+	// Display name of the recipient.
 	Name pulumi.StringPtrInput
-	// Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack
+	// Type of the notification. See valid options below.
 	Type pulumi.StringPtrInput
-	// Notification endpoint, where to send the notifcation
+	// Endpoint to send the notification.
 	Value pulumi.StringPtrInput
 }
 
@@ -86,25 +129,25 @@ func (NotificationState) ElementType() reflect.Type {
 }
 
 type notificationArgs struct {
-	// Instance identifier
+	// The CloudAMQP instance ID.
 	InstanceId int `pulumi:"instanceId"`
-	// Optional display name of the recipient
+	// Display name of the recipient.
 	Name *string `pulumi:"name"`
-	// Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack
+	// Type of the notification. See valid options below.
 	Type string `pulumi:"type"`
-	// Notification endpoint, where to send the notifcation
+	// Endpoint to send the notification.
 	Value string `pulumi:"value"`
 }
 
 // The set of arguments for constructing a Notification resource.
 type NotificationArgs struct {
-	// Instance identifier
+	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntInput
-	// Optional display name of the recipient
+	// Display name of the recipient.
 	Name pulumi.StringPtrInput
-	// Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack
+	// Type of the notification. See valid options below.
 	Type pulumi.StringInput
-	// Notification endpoint, where to send the notifcation
+	// Endpoint to send the notification.
 	Value pulumi.StringInput
 }
 

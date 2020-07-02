@@ -12,29 +12,60 @@ from . import utilities, tables
 class Notification(pulumi.CustomResource):
     instance_id: pulumi.Output[float]
     """
-    Instance identifier
+    The CloudAMQP instance ID.
     """
     name: pulumi.Output[str]
     """
-    Optional display name of the recipient
+    Display name of the recipient.
     """
     type: pulumi.Output[str]
     """
-    Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack
+    Type of the notification. See valid options below.
     """
     value: pulumi.Output[str]
     """
-    Notification endpoint, where to send the notifcation
+    Endpoint to send the notification.
     """
     def __init__(__self__, resource_name, opts=None, instance_id=None, name=None, type=None, value=None, __props__=None, __name__=None, __opts__=None):
         """
-        Create a Notification resource with the given unique name, props, and options.
+        This resource allows you to create and manage recipients to receive alarm notifications. There will always be a default recipient created upon instance creation. This recipient will use team email and receive notifications from default alarms.
+
+        Available for all subscription plans.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # New recipient to receieve notifications
+        recipient01 = cloudamqp.Notification("recipient01",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            type="email",
+            value="alarm@example.com")
+        ```
+        ## Notification Type reference
+
+        Valid options for notification type.
+
+        * email
+        * webhook
+        * pagerduty
+        * victorops
+        * opsgenie
+        * opsgenie-eu
+        * slack
+
+        ## Dependency
+
+        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[float] instance_id: Instance identifier
-        :param pulumi.Input[str] name: Optional display name of the recipient
-        :param pulumi.Input[str] type: Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack
-        :param pulumi.Input[str] value: Notification endpoint, where to send the notifcation
+        :param pulumi.Input[float] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[str] name: Display name of the recipient.
+        :param pulumi.Input[str] type: Type of the notification. See valid options below.
+        :param pulumi.Input[str] value: Endpoint to send the notification.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -78,10 +109,10 @@ class Notification(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[float] instance_id: Instance identifier
-        :param pulumi.Input[str] name: Optional display name of the recipient
-        :param pulumi.Input[str] type: Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack
-        :param pulumi.Input[str] value: Notification endpoint, where to send the notifcation
+        :param pulumi.Input[float] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[str] name: Display name of the recipient.
+        :param pulumi.Input[str] type: Type of the notification. See valid options below.
+        :param pulumi.Input[str] value: Endpoint to send the notification.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

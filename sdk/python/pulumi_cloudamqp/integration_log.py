@@ -12,11 +12,19 @@ from . import utilities, tables
 class IntegrationLog(pulumi.CustomResource):
     access_key_id: pulumi.Output[str]
     """
-    AWS access key identifier. (Cloudwatch)
+    AWS access key identifier.
+    """
+    api_key: pulumi.Output[str]
+    """
+    The API key.
+    """
+    client_email: pulumi.Output[str]
+    """
+    The client email registered for the integration service.
     """
     host_port: pulumi.Output[str]
     """
-    Destination to send the logs. (Splunk)
+    Destination to send the logs.
     """
     instance_id: pulumi.Output[float]
     """
@@ -24,37 +32,136 @@ class IntegrationLog(pulumi.CustomResource):
     """
     name: pulumi.Output[str]
     """
-    The name of log integration
+    The name of the third party log integration. See
+    """
+    private_key: pulumi.Output[str]
+    """
+    The private access key.
+    """
+    project_id: pulumi.Output[str]
+    """
+    The project identifier.
     """
     region: pulumi.Output[str]
     """
-    The region hosting integration service. (Cloudwatch)
+    Region hosting the integration service.
     """
     secret_access_key: pulumi.Output[str]
     """
-    AWS secret access key. (Cloudwatch)
+    AWS secret access key.
+    """
+    tags: pulumi.Output[str]
+    """
+    Tag the integration, e.g. env=prod, region=europe.
     """
     token: pulumi.Output[str]
     """
-    The token used for authentication. (Loggly, Logentries, Splunk)
+    Token used for authentication.
     """
     url: pulumi.Output[str]
     """
-    The URL to push the logs to. (Papertrail)
+    Endpoint to log integration.
     """
-    def __init__(__self__, resource_name, opts=None, access_key_id=None, host_port=None, instance_id=None, name=None, region=None, secret_access_key=None, token=None, url=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, access_key_id=None, api_key=None, client_email=None, host_port=None, instance_id=None, name=None, private_key=None, project_id=None, region=None, secret_access_key=None, tags=None, token=None, url=None, __props__=None, __name__=None, __opts__=None):
         """
-        Create a IntegrationLog resource with the given unique name, props, and options.
+        This resource allows you to create and manage third party log integrations for a CloudAMQP instance. Once configured, the logs produced will be forward to corresponding integration.
+
+        Only available for dedicated subscription plans.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        cloudwatch = cloudamqp.IntegrationLog("cloudwatch",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            access_key_id=var["aws_access_key_id"],
+            secret_access_key=var["aws_secret_access_key"],
+            region=var["aws_region"])
+        logentries = cloudamqp.IntegrationLog("logentries",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            token=var["logentries_token"])
+        loggly = cloudamqp.IntegrationLog("loggly",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            token=var["loggly_token"])
+        papertrail = cloudamqp.IntegrationLog("papertrail",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            url=var["papertrail_url"])
+        splunk = cloudamqp.IntegrationLog("splunk",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            token=var["splunk_token"],
+            host_port=var["splunk_host_port"])
+        datadog = cloudamqp.IntegrationLog("datadog",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            region=var["datadog_region"],
+            api_key=var["datadog_api_key"],
+            tags=var["datadog_tags"])
+        stackdriver = cloudamqp.IntegrationLog("stackdriver",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            project_id=var["stackdriver_project_id"],
+            private_key=var["stackdriver_private_key"],
+            client_email=var["stackdriver_client_email"])
+        ```
+        ## Argument Reference (cloudwatchlog)
+
+        Cloudwatch argument reference and example. Create an IAM user with programmatic access and the following permissions:
+
+        * CreateLogGroup
+        * CreateLogStream
+        * DescribeLogGroups
+        * DescribeLogStreams
+        * PutLogEvents
+
+        ## Integration service reference
+
+        Valid names for third party log integration.
+
+        | Name       | Description |
+        |------------|---------------------------------------------------------------|
+        | cloudwatchlog | Create a IAM with programmatic access. |
+        | logentries | Create a Logentries token at https://logentries.com/app#/add-log/manual  |
+        | loggly     | Create a Loggly token at https://{your-company}.loggly.com/tokens |
+        | papertrail | Create a Papertrail endpoint https://papertrailapp.com/systems/setup |
+        | splunk     | Create a HTTP Event Collector token at https://.cloud.splunk.com/en-US/manager/search/http-eventcollector |
+        | datadog       | Create a Datadog API key at app.datadoghq.com |
+        | stackdriver   | Create a service account and add 'monitor metrics writer' role, then download credentials. |
+
+        ## Integration Type reference
+
+        Valid arguments for third party log integrations.
+
+        Required arguments for all integrations: name
+
+        | Name | Type | Required arguments |
+        | ---- | ---- | ---- |
+        | CloudWatch | cloudwatchlog | access_key_id, secret_access_key, region |
+        | Log Entries | logentries | token |
+        | Loggly | loggly | token |
+        | Papertrail | papertrail | url |
+        | Splunk | splunk | token, host_port |
+        | Data Dog | datadog | region, api_keys, tags |
+        | Stackdriver | stackdriver | project_id, private_key, client_email |
+
+        ## Dependency
+
+        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] access_key_id: AWS access key identifier. (Cloudwatch)
-        :param pulumi.Input[str] host_port: Destination to send the logs. (Splunk)
+        :param pulumi.Input[str] access_key_id: AWS access key identifier.
+        :param pulumi.Input[str] api_key: The API key.
+        :param pulumi.Input[str] client_email: The client email registered for the integration service.
+        :param pulumi.Input[str] host_port: Destination to send the logs.
         :param pulumi.Input[float] instance_id: Instance identifier used to make proxy calls
-        :param pulumi.Input[str] name: The name of log integration
-        :param pulumi.Input[str] region: The region hosting integration service. (Cloudwatch)
-        :param pulumi.Input[str] secret_access_key: AWS secret access key. (Cloudwatch)
-        :param pulumi.Input[str] token: The token used for authentication. (Loggly, Logentries, Splunk)
-        :param pulumi.Input[str] url: The URL to push the logs to. (Papertrail)
+        :param pulumi.Input[str] name: The name of the third party log integration. See
+        :param pulumi.Input[str] private_key: The private access key.
+        :param pulumi.Input[str] project_id: The project identifier.
+        :param pulumi.Input[str] region: Region hosting the integration service.
+        :param pulumi.Input[str] secret_access_key: AWS secret access key.
+        :param pulumi.Input[str] tags: Tag the integration, e.g. env=prod, region=europe.
+        :param pulumi.Input[str] token: Token used for authentication.
+        :param pulumi.Input[str] url: Endpoint to log integration.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -74,13 +181,18 @@ class IntegrationLog(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['access_key_id'] = access_key_id
+            __props__['api_key'] = api_key
+            __props__['client_email'] = client_email
             __props__['host_port'] = host_port
             if instance_id is None:
                 raise TypeError("Missing required property 'instance_id'")
             __props__['instance_id'] = instance_id
             __props__['name'] = name
+            __props__['private_key'] = private_key
+            __props__['project_id'] = project_id
             __props__['region'] = region
             __props__['secret_access_key'] = secret_access_key
+            __props__['tags'] = tags
             __props__['token'] = token
             __props__['url'] = url
         super(IntegrationLog, __self__).__init__(
@@ -90,7 +202,7 @@ class IntegrationLog(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, access_key_id=None, host_port=None, instance_id=None, name=None, region=None, secret_access_key=None, token=None, url=None):
+    def get(resource_name, id, opts=None, access_key_id=None, api_key=None, client_email=None, host_port=None, instance_id=None, name=None, private_key=None, project_id=None, region=None, secret_access_key=None, tags=None, token=None, url=None):
         """
         Get an existing IntegrationLog resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -98,25 +210,35 @@ class IntegrationLog(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] access_key_id: AWS access key identifier. (Cloudwatch)
-        :param pulumi.Input[str] host_port: Destination to send the logs. (Splunk)
+        :param pulumi.Input[str] access_key_id: AWS access key identifier.
+        :param pulumi.Input[str] api_key: The API key.
+        :param pulumi.Input[str] client_email: The client email registered for the integration service.
+        :param pulumi.Input[str] host_port: Destination to send the logs.
         :param pulumi.Input[float] instance_id: Instance identifier used to make proxy calls
-        :param pulumi.Input[str] name: The name of log integration
-        :param pulumi.Input[str] region: The region hosting integration service. (Cloudwatch)
-        :param pulumi.Input[str] secret_access_key: AWS secret access key. (Cloudwatch)
-        :param pulumi.Input[str] token: The token used for authentication. (Loggly, Logentries, Splunk)
-        :param pulumi.Input[str] url: The URL to push the logs to. (Papertrail)
+        :param pulumi.Input[str] name: The name of the third party log integration. See
+        :param pulumi.Input[str] private_key: The private access key.
+        :param pulumi.Input[str] project_id: The project identifier.
+        :param pulumi.Input[str] region: Region hosting the integration service.
+        :param pulumi.Input[str] secret_access_key: AWS secret access key.
+        :param pulumi.Input[str] tags: Tag the integration, e.g. env=prod, region=europe.
+        :param pulumi.Input[str] token: Token used for authentication.
+        :param pulumi.Input[str] url: Endpoint to log integration.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
 
         __props__["access_key_id"] = access_key_id
+        __props__["api_key"] = api_key
+        __props__["client_email"] = client_email
         __props__["host_port"] = host_port
         __props__["instance_id"] = instance_id
         __props__["name"] = name
+        __props__["private_key"] = private_key
+        __props__["project_id"] = project_id
         __props__["region"] = region
         __props__["secret_access_key"] = secret_access_key
+        __props__["tags"] = tags
         __props__["token"] = token
         __props__["url"] = url
         return IntegrationLog(resource_name, opts=opts, __props__=__props__)

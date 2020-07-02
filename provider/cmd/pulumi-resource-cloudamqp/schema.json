@@ -35,8 +35,18 @@
     "types": {
         "cloudamqp:/SecurityFirewallRule:SecurityFirewallRule": {
             "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "Description name of the rule. e.g. Default.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "ip": {
                     "type": "string",
+                    "description": "Source ip and netmask for the rule. (e.g. 10.56.72.0/24)\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -48,6 +58,7 @@
                     "items": {
                         "type": "integer"
                     },
+                    "description": "Custom ports to be opened\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -59,6 +70,7 @@
                     "items": {
                         "type": "string"
                     },
+                    "description": "Pre-defined service ports\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -70,6 +82,72 @@
             "required": [
                 "ip"
             ]
+        },
+        "cloudamqp:/getNodesNode:getNodesNode": {
+            "properties": {
+                "erlangVersion": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "hipe": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "hostname": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "rabbitmqVersion": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "running": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "erlangVersion",
+                "hipe",
+                "hostname",
+                "name",
+                "rabbitmqVersion",
+                "running"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "cloudamqp:/getPluginsCommunityPlugin:getPluginsCommunityPlugin": {
             "properties": {
@@ -158,45 +236,46 @@
     },
     "resources": {
         "cloudamqp:index/alarm:Alarm": {
+            "description": "This resource allows you to create and manage alarms to trigger based on a set of conditions. Once triggerd a notification will be sent to the assigned recipients. When creating a new instance, there will also be a set of default alarms (cpu, memory and disk) created. All default alarms uses the default recipient for notifications.\n\nBy setting `no_default_alarms` to *true* in `cloudamqp.Instance`. This will create the instance without default alarms and avoid the need to import them to get full control.\n\nAvailable for all subscription plans, but `lemur`and `tiger`are limited to fewer alarm types. The limited types supported can be seen in the table below in Alarm Type Reference.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\n// New recipient\nconst recipient01 = new cloudamqp.Notification(\"recipient01\", {\n    instanceId: cloudamqp_instance.instance.id,\n    type: \"email\",\n    value: \"alarm@example.com\",\n});\n// New cpu alarm\nconst cpuAlarm = new cloudamqp.Alarm(\"cpuAlarm\", {\n    instanceId: cloudamqp_instance.instance.id,\n    type: \"cpu\",\n    enabled: true,\n    valueThreshold: 95,\n    timeThreshold: 600,\n    recipient: [2],\n});\n// New memory alarm\nconst memoryAlarm = new cloudamqp.Alarm(\"memoryAlarm\", {\n    instanceId: cloudamqp_instance.instance.id,\n    type: \"memory\",\n    enabled: true,\n    valueThreshold: 95,\n    timeThreshold: 600,\n    recipient: [2],\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\n# New recipient\nrecipient01 = cloudamqp.Notification(\"recipient01\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    type=\"email\",\n    value=\"alarm@example.com\")\n# New cpu alarm\ncpu_alarm = cloudamqp.Alarm(\"cpuAlarm\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    type=\"cpu\",\n    enabled=True,\n    value_threshold=95,\n    time_threshold=600,\n    recipient=[2])\n# New memory alarm\nmemory_alarm = cloudamqp.Alarm(\"memoryAlarm\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    type=\"memory\",\n    enabled=True,\n    value_threshold=95,\n    time_threshold=600,\n    recipient=[2])\n```\n{{% /example %}}\n{{% /examples %}}\n## Alarm Type reference\n\nValid options for notification type.\n\nRequired arguments for all alarms: *instance_id*, *type* and *enabled*\u003cbr\u003e\nOptional argument for all alarms: *tags*, *queue_regex*, *vhost_regex*\n\n| Name | Type | Shared | Dedicated | Required arguments |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n| CPU | cpu | - | \u0026#10004; | time_threshold, value_threshold |\n| Memory | memory | - | \u0026#10004;  | time_threshold, value_threshold |\n| Disk space | disk | - | \u0026#10004;  | time_threshold, value_threshold |\n| Queue | queue | \u0026#10004;  | \u0026#10004;  | time_threshold, value_threshold, queue_regex, vhost_regex, message_type |\n| Connection | connection | \u0026#10004; | \u0026#10004; | time_threshold, value_threshold |\n| Consumer | consumer | \u0026#10004; | \u0026#10004; | time_threshold, value_threshold, queue, vhost |\n| Netsplit | netsplit | - | \u0026#10004; | time_threshold |\n| Server unreachable | server_unreachable  | - | \u0026#10004;  | time_threshold |\n| Notice | notice | \u0026#10004; | \u0026#10004; |\n\n## Dependency\n\nThis resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n",
             "properties": {
                 "enabled": {
                     "type": "boolean",
-                    "description": "Enable or disable an alarm\n"
+                    "description": "Enable or disable the alarm to trigger.\n"
                 },
                 "instanceId": {
                     "type": "integer",
-                    "description": "Instance identifier\n"
+                    "description": "The CloudAMQP instance ID.\n"
                 },
                 "messageType": {
                     "type": "string",
-                    "description": "Message types (total, unacked, ready) of the queue to trigger the alarm\n"
+                    "description": "Message type `(total, unacked, ready)` used by queue alarm type.\n"
                 },
                 "queueRegex": {
                     "type": "string",
-                    "description": "Regex for which queues to check\n"
+                    "description": "Regex for which queue to check.\n"
                 },
                 "recipients": {
                     "type": "array",
                     "items": {
                         "type": "integer"
                     },
-                    "description": "Identifiers for recipients to be notified.\n"
+                    "description": "Identifier for recipient to be notified. Leave empty to notify all recipients.\n"
                 },
                 "timeThreshold": {
                     "type": "integer",
-                    "description": "For how long (in seconds) the value_threshold should be active before trigger alarm\n"
+                    "description": "The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.\n"
                 },
                 "type": {
                     "type": "string",
-                    "description": "Type of the alarm, valid options are: cpu, memory, disk_usage, queue_length, connection_count, consumers_count,\nnet_split\n"
+                    "description": "The alarm type, see valid options below.\n"
                 },
                 "valueThreshold": {
                     "type": "integer",
-                    "description": "What value to trigger the alarm for\n"
+                    "description": "The value to trigger the alarm for.\n"
                 },
                 "vhostRegex": {
                     "type": "string",
-                    "description": "Regex for which vhost the queues are in\n"
+                    "description": "Regex for which vhost to check\n"
                 }
             },
             "required": [
@@ -208,42 +287,42 @@
             "inputProperties": {
                 "enabled": {
                     "type": "boolean",
-                    "description": "Enable or disable an alarm\n"
+                    "description": "Enable or disable the alarm to trigger.\n"
                 },
                 "instanceId": {
                     "type": "integer",
-                    "description": "Instance identifier\n"
+                    "description": "The CloudAMQP instance ID.\n"
                 },
                 "messageType": {
                     "type": "string",
-                    "description": "Message types (total, unacked, ready) of the queue to trigger the alarm\n"
+                    "description": "Message type `(total, unacked, ready)` used by queue alarm type.\n"
                 },
                 "queueRegex": {
                     "type": "string",
-                    "description": "Regex for which queues to check\n"
+                    "description": "Regex for which queue to check.\n"
                 },
                 "recipients": {
                     "type": "array",
                     "items": {
                         "type": "integer"
                     },
-                    "description": "Identifiers for recipients to be notified.\n"
+                    "description": "Identifier for recipient to be notified. Leave empty to notify all recipients.\n"
                 },
                 "timeThreshold": {
                     "type": "integer",
-                    "description": "For how long (in seconds) the value_threshold should be active before trigger alarm\n"
+                    "description": "The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.\n"
                 },
                 "type": {
                     "type": "string",
-                    "description": "Type of the alarm, valid options are: cpu, memory, disk_usage, queue_length, connection_count, consumers_count,\nnet_split\n"
+                    "description": "The alarm type, see valid options below.\n"
                 },
                 "valueThreshold": {
                     "type": "integer",
-                    "description": "What value to trigger the alarm for\n"
+                    "description": "The value to trigger the alarm for.\n"
                 },
                 "vhostRegex": {
                     "type": "string",
-                    "description": "Regex for which vhost the queues are in\n"
+                    "description": "Regex for which vhost to check\n"
                 }
             },
             "requiredInputs": [
@@ -257,68 +336,77 @@
                 "properties": {
                     "enabled": {
                         "type": "boolean",
-                        "description": "Enable or disable an alarm\n"
+                        "description": "Enable or disable the alarm to trigger.\n"
                     },
                     "instanceId": {
                         "type": "integer",
-                        "description": "Instance identifier\n"
+                        "description": "The CloudAMQP instance ID.\n"
                     },
                     "messageType": {
                         "type": "string",
-                        "description": "Message types (total, unacked, ready) of the queue to trigger the alarm\n"
+                        "description": "Message type `(total, unacked, ready)` used by queue alarm type.\n"
                     },
                     "queueRegex": {
                         "type": "string",
-                        "description": "Regex for which queues to check\n"
+                        "description": "Regex for which queue to check.\n"
                     },
                     "recipients": {
                         "type": "array",
                         "items": {
                             "type": "integer"
                         },
-                        "description": "Identifiers for recipients to be notified.\n"
+                        "description": "Identifier for recipient to be notified. Leave empty to notify all recipients.\n"
                     },
                     "timeThreshold": {
                         "type": "integer",
-                        "description": "For how long (in seconds) the value_threshold should be active before trigger alarm\n"
+                        "description": "The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.\n"
                     },
                     "type": {
                         "type": "string",
-                        "description": "Type of the alarm, valid options are: cpu, memory, disk_usage, queue_length, connection_count, consumers_count,\nnet_split\n"
+                        "description": "The alarm type, see valid options below.\n"
                     },
                     "valueThreshold": {
                         "type": "integer",
-                        "description": "What value to trigger the alarm for\n"
+                        "description": "The value to trigger the alarm for.\n"
                     },
                     "vhostRegex": {
                         "type": "string",
-                        "description": "Regex for which vhost the queues are in\n"
+                        "description": "Regex for which vhost to check\n"
                     }
                 },
                 "type": "object"
             }
         },
         "cloudamqp:index/instance:Instance": {
+            "description": "This resource allows you to create and manage a CloudAMQP instance running Rabbit MQ and deploy to multiple cloud platforms provider and over multiple regions, see Instance regions for more information.\n\nOnce the instance is created it will be assigned a unique identifier. All other resource and data sources created for this instance needs to reference the instance identifier.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\n// Minimum free lemur instance\nconst lemurInstance = new cloudamqp.Instance(\"lemur_instance\", {\n    plan: \"lemur\",\n    region: \"amazon-web-services::us-west-1\",\n});\n// New dedicated bunny instance\nconst instance = new cloudamqp.Instance(\"instance\", {\n    noDefaultAlarms: true,\n    nodes: 1,\n    plan: \"bunny\",\n    region: \"amazon-web-services::us-west-1\",\n    rmqVersion: \"3.8.3\",\n    tags: [\"terraform\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\n# Minimum free lemur instance\nlemur_instance = cloudamqp.Instance(\"lemurInstance\",\n    plan=\"lemur\",\n    region=\"amazon-web-services::us-west-1\")\n# New dedicated bunny instance\ninstance = cloudamqp.Instance(\"instance\",\n    no_default_alarms=True,\n    nodes=1,\n    plan=\"bunny\",\n    region=\"amazon-web-services::us-west-1\",\n    rmq_version=\"3.8.3\",\n    tags=[\"terraform\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        // Minimum free lemur instance\n        var lemurInstance = new CloudAmqp.Instance(\"lemurInstance\", new CloudAmqp.InstanceArgs\n        {\n            Plan = \"lemur\",\n            Region = \"amazon-web-services::us-west-1\",\n        });\n        // New dedicated bunny instance\n        var instance = new CloudAmqp.Instance(\"instance\", new CloudAmqp.InstanceArgs\n        {\n            NoDefaultAlarms = true,\n            Nodes = 1,\n            Plan = \"bunny\",\n            Region = \"amazon-web-services::us-west-1\",\n            RmqVersion = \"3.8.3\",\n            Tags = \n            {\n                \"terraform\",\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.NewInstance(ctx, \"lemurInstance\", \u0026cloudamqp.InstanceArgs{\n\t\t\tPlan:   pulumi.String(\"lemur\"),\n\t\t\tRegion: pulumi.String(\"amazon-web-services::us-west-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewInstance(ctx, \"instance\", \u0026cloudamqp.InstanceArgs{\n\t\t\tNoDefaultAlarms: pulumi.Bool(true),\n\t\t\tNodes:           pulumi.Int(1),\n\t\t\tPlan:            pulumi.String(\"bunny\"),\n\t\t\tRegion:          pulumi.String(\"amazon-web-services::us-west-1\"),\n\t\t\tRmqVersion:      pulumi.String(\"3.8.3\"),\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"terraform\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "apikey": {
                     "type": "string",
-                    "description": "API key for the CloudAMQP instance\n"
+                    "description": "(Computed) API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).\n"
+                },
+                "dedicated": {
+                    "type": "boolean",
+                    "description": "Is the instance hosted on a dedicated server\n"
                 },
                 "host": {
                     "type": "string",
-                    "description": "Host name for the CloudAMQP instance\n"
+                    "description": "(Computed) The host name for the CloudAMQP instance.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "Name of the instance\n"
+                    "description": "Name of the CloudAMQP instance.\n"
+                },
+                "noDefaultAlarms": {
+                    "type": "boolean",
+                    "description": "Set to true to discard creating default alarms when the instance is created.\n"
                 },
                 "nodes": {
                     "type": "integer",
-                    "description": "Number of nodes in cluster (plan must support it)\n"
+                    "description": "Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.\n"
                 },
                 "plan": {
                     "type": "string",
-                    "description": "Name of the plan, valid options are: lemur, tiger, bunny, rabbit, panda, ape, hippo, lion\n"
+                    "description": "The subscription plan. See available plans\n"
                 },
                 "ready": {
                     "type": "boolean",
@@ -326,34 +414,35 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "Name of the region you want to create your instance in\n"
+                    "description": "The region to host the instance in. See Instance regions\n"
                 },
                 "rmqVersion": {
                     "type": "string",
-                    "description": "RabbitMQ version\n"
+                    "description": "The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.\n"
                 },
                 "tags": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "Tag the instances with optional tags\n"
+                    "description": "One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.\n"
                 },
                 "url": {
                     "type": "string",
-                    "description": "URL of the CloudAMQP instance\n"
+                    "description": "(Computed) AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`\n"
                 },
                 "vhost": {
                     "type": "string",
-                    "description": "The virtual host\n"
+                    "description": "(Computed) The virtual host used by Rabbit MQ.\n"
                 },
                 "vpcSubnet": {
                     "type": "string",
-                    "description": "Dedicated VPC subnet, shouldn't overlap with your current VPC's subnet\n"
+                    "description": "Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**\n"
                 }
             },
             "required": [
                 "apikey",
+                "dedicated",
                 "host",
                 "name",
                 "plan",
@@ -365,34 +454,38 @@
             "inputProperties": {
                 "name": {
                     "type": "string",
-                    "description": "Name of the instance\n"
+                    "description": "Name of the CloudAMQP instance.\n"
+                },
+                "noDefaultAlarms": {
+                    "type": "boolean",
+                    "description": "Set to true to discard creating default alarms when the instance is created.\n"
                 },
                 "nodes": {
                     "type": "integer",
-                    "description": "Number of nodes in cluster (plan must support it)\n"
+                    "description": "Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.\n"
                 },
                 "plan": {
                     "type": "string",
-                    "description": "Name of the plan, valid options are: lemur, tiger, bunny, rabbit, panda, ape, hippo, lion\n"
+                    "description": "The subscription plan. See available plans\n"
                 },
                 "region": {
                     "type": "string",
-                    "description": "Name of the region you want to create your instance in\n"
+                    "description": "The region to host the instance in. See Instance regions\n"
                 },
                 "rmqVersion": {
                     "type": "string",
-                    "description": "RabbitMQ version\n"
+                    "description": "The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.\n"
                 },
                 "tags": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "Tag the instances with optional tags\n"
+                    "description": "One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.\n"
                 },
                 "vpcSubnet": {
                     "type": "string",
-                    "description": "Dedicated VPC subnet, shouldn't overlap with your current VPC's subnet\n"
+                    "description": "Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**\n"
                 }
             },
             "requiredInputs": [
@@ -404,23 +497,31 @@
                 "properties": {
                     "apikey": {
                         "type": "string",
-                        "description": "API key for the CloudAMQP instance\n"
+                        "description": "(Computed) API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).\n"
+                    },
+                    "dedicated": {
+                        "type": "boolean",
+                        "description": "Is the instance hosted on a dedicated server\n"
                     },
                     "host": {
                         "type": "string",
-                        "description": "Host name for the CloudAMQP instance\n"
+                        "description": "(Computed) The host name for the CloudAMQP instance.\n"
                     },
                     "name": {
                         "type": "string",
-                        "description": "Name of the instance\n"
+                        "description": "Name of the CloudAMQP instance.\n"
+                    },
+                    "noDefaultAlarms": {
+                        "type": "boolean",
+                        "description": "Set to true to discard creating default alarms when the instance is created.\n"
                     },
                     "nodes": {
                         "type": "integer",
-                        "description": "Number of nodes in cluster (plan must support it)\n"
+                        "description": "Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.\n"
                     },
                     "plan": {
                         "type": "string",
-                        "description": "Name of the plan, valid options are: lemur, tiger, bunny, rabbit, panda, ape, hippo, lion\n"
+                        "description": "The subscription plan. See available plans\n"
                     },
                     "ready": {
                         "type": "boolean",
@@ -428,44 +529,53 @@
                     },
                     "region": {
                         "type": "string",
-                        "description": "Name of the region you want to create your instance in\n"
+                        "description": "The region to host the instance in. See Instance regions\n"
                     },
                     "rmqVersion": {
                         "type": "string",
-                        "description": "RabbitMQ version\n"
+                        "description": "The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.\n"
                     },
                     "tags": {
                         "type": "array",
                         "items": {
                             "type": "string"
                         },
-                        "description": "Tag the instances with optional tags\n"
+                        "description": "One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.\n"
                     },
                     "url": {
                         "type": "string",
-                        "description": "URL of the CloudAMQP instance\n"
+                        "description": "(Computed) AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`\n"
                     },
                     "vhost": {
                         "type": "string",
-                        "description": "The virtual host\n"
+                        "description": "(Computed) The virtual host used by Rabbit MQ.\n"
                     },
                     "vpcSubnet": {
                         "type": "string",
-                        "description": "Dedicated VPC subnet, shouldn't overlap with your current VPC's subnet\n"
+                        "description": "Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**\n"
                     }
                 },
                 "type": "object"
             }
         },
         "cloudamqp:index/integrationLog:IntegrationLog": {
+            "description": "This resource allows you to create and manage third party log integrations for a CloudAMQP instance. Once configured, the logs produced will be forward to corresponding integration.\n\nOnly available for dedicated subscription plans.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst cloudwatch = new cloudamqp.IntegrationLog(\"cloudwatch\", {\n    instanceId: cloudamqp_instance.instance.id,\n    accessKeyId: _var.aws_access_key_id,\n    secretAccessKey: _var.aws_secret_access_key,\n    region: _var.aws_region,\n});\nconst logentries = new cloudamqp.IntegrationLog(\"logentries\", {\n    instanceId: cloudamqp_instance.instance.id,\n    token: _var.logentries_token,\n});\nconst loggly = new cloudamqp.IntegrationLog(\"loggly\", {\n    instanceId: cloudamqp_instance.instance.id,\n    token: _var.loggly_token,\n});\nconst papertrail = new cloudamqp.IntegrationLog(\"papertrail\", {\n    instanceId: cloudamqp_instance.instance.id,\n    url: _var.papertrail_url,\n});\nconst splunk = new cloudamqp.IntegrationLog(\"splunk\", {\n    instanceId: cloudamqp_instance.instance.id,\n    token: _var.splunk_token,\n    hostPort: _var.splunk_host_port,\n});\nconst datadog = new cloudamqp.IntegrationLog(\"datadog\", {\n    instanceId: cloudamqp_instance.instance.id,\n    region: _var.datadog_region,\n    apiKey: _var.datadog_api_key,\n    tags: _var.datadog_tags,\n});\nconst stackdriver = new cloudamqp.IntegrationLog(\"stackdriver\", {\n    instanceId: cloudamqp_instance.instance.id,\n    projectId: _var.stackdriver_project_id,\n    privateKey: _var.stackdriver_private_key,\n    clientEmail: _var.stackdriver_client_email,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\ncloudwatch = cloudamqp.IntegrationLog(\"cloudwatch\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    access_key_id=var[\"aws_access_key_id\"],\n    secret_access_key=var[\"aws_secret_access_key\"],\n    region=var[\"aws_region\"])\nlogentries = cloudamqp.IntegrationLog(\"logentries\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    token=var[\"logentries_token\"])\nloggly = cloudamqp.IntegrationLog(\"loggly\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    token=var[\"loggly_token\"])\npapertrail = cloudamqp.IntegrationLog(\"papertrail\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    url=var[\"papertrail_url\"])\nsplunk = cloudamqp.IntegrationLog(\"splunk\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    token=var[\"splunk_token\"],\n    host_port=var[\"splunk_host_port\"])\ndatadog = cloudamqp.IntegrationLog(\"datadog\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    region=var[\"datadog_region\"],\n    api_key=var[\"datadog_api_key\"],\n    tags=var[\"datadog_tags\"])\nstackdriver = cloudamqp.IntegrationLog(\"stackdriver\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    project_id=var[\"stackdriver_project_id\"],\n    private_key=var[\"stackdriver_private_key\"],\n    client_email=var[\"stackdriver_client_email\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var cloudwatch = new CloudAmqp.IntegrationLog(\"cloudwatch\", new CloudAmqp.IntegrationLogArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            AccessKeyId = @var.Aws_access_key_id,\n            SecretAccessKey = @var.Aws_secret_access_key,\n            Region = @var.Aws_region,\n        });\n        var logentries = new CloudAmqp.IntegrationLog(\"logentries\", new CloudAmqp.IntegrationLogArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Token = @var.Logentries_token,\n        });\n        var loggly = new CloudAmqp.IntegrationLog(\"loggly\", new CloudAmqp.IntegrationLogArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Token = @var.Loggly_token,\n        });\n        var papertrail = new CloudAmqp.IntegrationLog(\"papertrail\", new CloudAmqp.IntegrationLogArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Url = @var.Papertrail_url,\n        });\n        var splunk = new CloudAmqp.IntegrationLog(\"splunk\", new CloudAmqp.IntegrationLogArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Token = @var.Splunk_token,\n            HostPort = @var.Splunk_host_port,\n        });\n        var datadog = new CloudAmqp.IntegrationLog(\"datadog\", new CloudAmqp.IntegrationLogArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Region = @var.Datadog_region,\n            ApiKey = @var.Datadog_api_key,\n            Tags = @var.Datadog_tags,\n        });\n        var stackdriver = new CloudAmqp.IntegrationLog(\"stackdriver\", new CloudAmqp.IntegrationLogArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            ProjectId = @var.Stackdriver_project_id,\n            PrivateKey = @var.Stackdriver_private_key,\n            ClientEmail = @var.Stackdriver_client_email,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.NewIntegrationLog(ctx, \"cloudwatch\", \u0026cloudamqp.IntegrationLogArgs{\n\t\t\tInstanceId:      pulumi.String(cloudamqp_instance.Instance.Id),\n\t\t\tAccessKeyId:     pulumi.String(_var.Aws_access_key_id),\n\t\t\tSecretAccessKey: pulumi.String(_var.Aws_secret_access_key),\n\t\t\tRegion:          pulumi.String(_var.Aws_region),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewIntegrationLog(ctx, \"logentries\", \u0026cloudamqp.IntegrationLogArgs{\n\t\t\tInstanceId: pulumi.String(cloudamqp_instance.Instance.Id),\n\t\t\tToken:      pulumi.String(_var.Logentries_token),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewIntegrationLog(ctx, \"loggly\", \u0026cloudamqp.IntegrationLogArgs{\n\t\t\tInstanceId: pulumi.String(cloudamqp_instance.Instance.Id),\n\t\t\tToken:      pulumi.String(_var.Loggly_token),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewIntegrationLog(ctx, \"papertrail\", \u0026cloudamqp.IntegrationLogArgs{\n\t\t\tInstanceId: pulumi.String(cloudamqp_instance.Instance.Id),\n\t\t\tUrl:        pulumi.String(_var.Papertrail_url),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewIntegrationLog(ctx, \"splunk\", \u0026cloudamqp.IntegrationLogArgs{\n\t\t\tInstanceId: pulumi.String(cloudamqp_instance.Instance.Id),\n\t\t\tToken:      pulumi.String(_var.Splunk_token),\n\t\t\tHostPort:   pulumi.String(_var.Splunk_host_port),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewIntegrationLog(ctx, \"datadog\", \u0026cloudamqp.IntegrationLogArgs{\n\t\t\tInstanceId: pulumi.String(cloudamqp_instance.Instance.Id),\n\t\t\tRegion:     pulumi.String(_var.Datadog_region),\n\t\t\tApiKey:     pulumi.String(_var.Datadog_api_key),\n\t\t\tTags:       pulumi.String(_var.Datadog_tags),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewIntegrationLog(ctx, \"stackdriver\", \u0026cloudamqp.IntegrationLogArgs{\n\t\t\tInstanceId:  pulumi.String(cloudamqp_instance.Instance.Id),\n\t\t\tProjectId:   pulumi.String(_var.Stackdriver_project_id),\n\t\t\tPrivateKey:  pulumi.String(_var.Stackdriver_private_key),\n\t\t\tClientEmail: pulumi.String(_var.Stackdriver_client_email),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n## Argument Reference (cloudwatchlog)\n\nCloudwatch argument reference and example. Create an IAM user with programmatic access and the following permissions:\n\n* CreateLogGroup\n* CreateLogStream\n* DescribeLogGroups\n* DescribeLogStreams\n* PutLogEvents\n\n## Integration service reference\n\nValid names for third party log integration.\n\n| Name       | Description |\n|------------|---------------------------------------------------------------|\n| cloudwatchlog | Create a IAM with programmatic access. |\n| logentries | Create a Logentries token at https://logentries.com/app#/add-log/manual  |\n| loggly     | Create a Loggly token at https://{your-company}.loggly.com/tokens |\n| papertrail | Create a Papertrail endpoint https://papertrailapp.com/systems/setup |\n| splunk     | Create a HTTP Event Collector token at https://.cloud.splunk.com/en-US/manager/search/http-eventcollector |\n| datadog       | Create a Datadog API key at app.datadoghq.com |\n| stackdriver   | Create a service account and add 'monitor metrics writer' role, then download credentials. |\n\n## Integration Type reference\n\nValid arguments for third party log integrations.\n\nRequired arguments for all integrations: name\n\n| Name | Type | Required arguments |\n| ---- | ---- | ---- |\n| CloudWatch | cloudwatchlog | access_key_id, secret_access_key, region |\n| Log Entries | logentries | token |\n| Loggly | loggly | token |\n| Papertrail | papertrail | url |\n| Splunk | splunk | token, host_port |\n| Data Dog | datadog | region, api_keys, tags |\n| Stackdriver | stackdriver | project_id, private_key, client_email |\n\n## Dependency\n\nThis resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n",
             "properties": {
                 "accessKeyId": {
                     "type": "string",
-                    "description": "AWS access key identifier. (Cloudwatch)\n"
+                    "description": "AWS access key identifier.\n"
+                },
+                "apiKey": {
+                    "type": "string",
+                    "description": "The API key.\n"
+                },
+                "clientEmail": {
+                    "type": "string",
+                    "description": "The client email registered for the integration service.\n"
                 },
                 "hostPort": {
                     "type": "string",
-                    "description": "Destination to send the logs. (Splunk)\n"
+                    "description": "Destination to send the logs.\n"
                 },
                 "instanceId": {
                     "type": "integer",
@@ -473,23 +583,35 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of log integration\n"
+                    "description": "The name of the third party log integration. See\n"
+                },
+                "privateKey": {
+                    "type": "string",
+                    "description": "The private access key.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "The project identifier.\n"
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region hosting integration service. (Cloudwatch)\n"
+                    "description": "Region hosting the integration service.\n"
                 },
                 "secretAccessKey": {
                     "type": "string",
-                    "description": "AWS secret access key. (Cloudwatch)\n"
+                    "description": "AWS secret access key.\n"
+                },
+                "tags": {
+                    "type": "string",
+                    "description": "Tag the integration, e.g. env=prod, region=europe.\n"
                 },
                 "token": {
                     "type": "string",
-                    "description": "The token used for authentication. (Loggly, Logentries, Splunk)\n"
+                    "description": "Token used for authentication.\n"
                 },
                 "url": {
                     "type": "string",
-                    "description": "The URL to push the logs to. (Papertrail)\n"
+                    "description": "Endpoint to log integration.\n"
                 }
             },
             "required": [
@@ -499,11 +621,19 @@
             "inputProperties": {
                 "accessKeyId": {
                     "type": "string",
-                    "description": "AWS access key identifier. (Cloudwatch)\n"
+                    "description": "AWS access key identifier.\n"
+                },
+                "apiKey": {
+                    "type": "string",
+                    "description": "The API key.\n"
+                },
+                "clientEmail": {
+                    "type": "string",
+                    "description": "The client email registered for the integration service.\n"
                 },
                 "hostPort": {
                     "type": "string",
-                    "description": "Destination to send the logs. (Splunk)\n"
+                    "description": "Destination to send the logs.\n"
                 },
                 "instanceId": {
                     "type": "integer",
@@ -511,23 +641,35 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of log integration\n"
+                    "description": "The name of the third party log integration. See\n"
+                },
+                "privateKey": {
+                    "type": "string",
+                    "description": "The private access key.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "The project identifier.\n"
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region hosting integration service. (Cloudwatch)\n"
+                    "description": "Region hosting the integration service.\n"
                 },
                 "secretAccessKey": {
                     "type": "string",
-                    "description": "AWS secret access key. (Cloudwatch)\n"
+                    "description": "AWS secret access key.\n"
+                },
+                "tags": {
+                    "type": "string",
+                    "description": "Tag the integration, e.g. env=prod, region=europe.\n"
                 },
                 "token": {
                     "type": "string",
-                    "description": "The token used for authentication. (Loggly, Logentries, Splunk)\n"
+                    "description": "Token used for authentication.\n"
                 },
                 "url": {
                     "type": "string",
-                    "description": "The URL to push the logs to. (Papertrail)\n"
+                    "description": "Endpoint to log integration.\n"
                 }
             },
             "requiredInputs": [
@@ -538,11 +680,19 @@
                 "properties": {
                     "accessKeyId": {
                         "type": "string",
-                        "description": "AWS access key identifier. (Cloudwatch)\n"
+                        "description": "AWS access key identifier.\n"
+                    },
+                    "apiKey": {
+                        "type": "string",
+                        "description": "The API key.\n"
+                    },
+                    "clientEmail": {
+                        "type": "string",
+                        "description": "The client email registered for the integration service.\n"
                     },
                     "hostPort": {
                         "type": "string",
-                        "description": "Destination to send the logs. (Splunk)\n"
+                        "description": "Destination to send the logs.\n"
                     },
                     "instanceId": {
                         "type": "integer",
@@ -550,29 +700,42 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "The name of log integration\n"
+                        "description": "The name of the third party log integration. See\n"
+                    },
+                    "privateKey": {
+                        "type": "string",
+                        "description": "The private access key.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The project identifier.\n"
                     },
                     "region": {
                         "type": "string",
-                        "description": "The region hosting integration service. (Cloudwatch)\n"
+                        "description": "Region hosting the integration service.\n"
                     },
                     "secretAccessKey": {
                         "type": "string",
-                        "description": "AWS secret access key. (Cloudwatch)\n"
+                        "description": "AWS secret access key.\n"
+                    },
+                    "tags": {
+                        "type": "string",
+                        "description": "Tag the integration, e.g. env=prod, region=europe.\n"
                     },
                     "token": {
                         "type": "string",
-                        "description": "The token used for authentication. (Loggly, Logentries, Splunk)\n"
+                        "description": "Token used for authentication.\n"
                     },
                     "url": {
                         "type": "string",
-                        "description": "The URL to push the logs to. (Papertrail)\n"
+                        "description": "Endpoint to log integration.\n"
                     }
                 },
                 "type": "object"
             }
         },
         "cloudamqp:index/integrationMetric:IntegrationMetric": {
+            "description": "This resource allows you to create and manage, forwarding metrics to third party integrations for a CloudAMQP instance. Once configured, the metrics produced will be forward to corresponding integration.\n\nOnly available for dedicated subscription plans.\n\n## Argument references\n\nThe following arguments are supported:\n\n* `name`              - (Required) The name of the third party log integration. See `Integration service reference`\n* `region`            - (Optional) Region hosting the integration service.\n* `access_key_id`     - (Optional) AWS access key identifier.\n* `secret_access_key` - (Optional) AWS secret access key.\n* `api_key`           - (Optional) The API key for the integration service.\n* `email`             - (Optional) The email address registred for the integration service.\n* `project_id`        - (Optional) The project identifier.\n* `private_key`       - (Optional) The private access key.\n* `client_email`      - (Optional) The client email registered for the integration service.\n* `tags`              - (Optional) Tags. e.g. env=prod, region=europe.\n* `queue_whitelist`   - (Optional) Whitelist queues using regular expression. Leave empty to include all queues.\n* `vhost_whitelist`   - (Optional) Whitelist vhost using regular expression. Leave empty to include all vhosts.\n\nThis is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration type reference below for more information.\n\n## Integration service references\n\nValid names for third party log integration.\n\n| Name          | Description |\n|---------------|---------------------------------------------------------------|\n| cloudwatch    | Create an IAM with programmatic access. |\n| cloudwatch_v2 | Create an IAM with programmatic access. |\n| datadog       | Create a Datadog API key at app.datadoghq.com |\n| datadog_v2    | Create a Datadog API key at app.datadoghq.com\n| librato       | Create a new API token (with record only permissions) here: https://metrics.librato.com/tokens |\n| newrelic      | Deprecated! |\n| newrelic_v2   | Find or register an Insert API key for your account: Go to insights.newrelic.com \u003e Manage data \u003e API keys. |\n| stackdriver   | Create a service account and add 'monitor metrics writer' role, then download credentials. |\n\n## Integration type reference\n\nValid arguments for third party log integrations.\n\nRequired arguments for all integrations: *name*\u003cbr\u003e\nOptional arguments for all integrations: *tags*, *queue_whitelist*, *vhost_whitelist*\n\n| Name | Type | Required arguments |\n| ---- | ---- | ---- |\n| Cloudwatch             | cloudwatch     | region, access_key_id, secret_access_key |\n| Cloudwatch v2          | cloudwatch_v2  | region, access_key_id, secret_access_key |\n| Datadog                | datadog        | api_key, region |\n| Datadog v2             | datadog_v2     | api_key, region |\n| Librato                | librato        | email, api_key |\n| New relic (deprecated) | newrelic       | - |\n| New relic v2           | newrelic_v2    | api_key, region |\n| Stackdriver            | stackdriver    | project_id, private_key, client_email |\n\n## Dependency\n\nThis resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n",
             "properties": {
                 "accessKeyId": {
                     "type": "string",
@@ -724,22 +887,23 @@
             }
         },
         "cloudamqp:index/notification:Notification": {
+            "description": "This resource allows you to create and manage recipients to receive alarm notifications. There will always be a default recipient created upon instance creation. This recipient will use team email and receive notifications from default alarms.\n\nAvailable for all subscription plans.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\n// New recipient to receieve notifications\nconst recipient01 = new cloudamqp.Notification(\"recipient01\", {\n    instanceId: cloudamqp_instance.instance.id,\n    type: \"email\",\n    value: \"alarm@example.com\",\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\n# New recipient to receieve notifications\nrecipient01 = cloudamqp.Notification(\"recipient01\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    type=\"email\",\n    value=\"alarm@example.com\")\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        // New recipient to receieve notifications\n        var recipient01 = new CloudAmqp.Notification(\"recipient01\", new CloudAmqp.NotificationArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Type = \"email\",\n            Value = \"alarm@example.com\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.NewNotification(ctx, \"recipient01\", \u0026cloudamqp.NotificationArgs{\n\t\t\tInstanceId: pulumi.String(cloudamqp_instance.Instance.Id),\n\t\t\tType:       pulumi.String(\"email\"),\n\t\t\tValue:      pulumi.String(\"alarm@example.com\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n## Notification Type reference\n\nValid options for notification type.\n\n* email\n* webhook\n* pagerduty\n* victorops\n* opsgenie\n* opsgenie-eu\n* slack\n\n## Dependency\n\nThis resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n",
             "properties": {
                 "instanceId": {
                     "type": "integer",
-                    "description": "Instance identifier\n"
+                    "description": "The CloudAMQP instance ID.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "Optional display name of the recipient\n"
+                    "description": "Display name of the recipient.\n"
                 },
                 "type": {
                     "type": "string",
-                    "description": "Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack\n"
+                    "description": "Type of the notification. See valid options below.\n"
                 },
                 "value": {
                     "type": "string",
-                    "description": "Notification endpoint, where to send the notifcation\n"
+                    "description": "Endpoint to send the notification.\n"
                 }
             },
             "required": [
@@ -751,19 +915,19 @@
             "inputProperties": {
                 "instanceId": {
                     "type": "integer",
-                    "description": "Instance identifier\n"
+                    "description": "The CloudAMQP instance ID.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "Optional display name of the recipient\n"
+                    "description": "Display name of the recipient.\n"
                 },
                 "type": {
                     "type": "string",
-                    "description": "Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack\n"
+                    "description": "Type of the notification. See valid options below.\n"
                 },
                 "value": {
                     "type": "string",
-                    "description": "Notification endpoint, where to send the notifcation\n"
+                    "description": "Endpoint to send the notification.\n"
                 }
             },
             "requiredInputs": [
@@ -776,37 +940,38 @@
                 "properties": {
                     "instanceId": {
                         "type": "integer",
-                        "description": "Instance identifier\n"
+                        "description": "The CloudAMQP instance ID.\n"
                     },
                     "name": {
                         "type": "string",
-                        "description": "Optional display name of the recipient\n"
+                        "description": "Display name of the recipient.\n"
                     },
                     "type": {
                         "type": "string",
-                        "description": "Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack\n"
+                        "description": "Type of the notification. See valid options below.\n"
                     },
                     "value": {
                         "type": "string",
-                        "description": "Notification endpoint, where to send the notifcation\n"
+                        "description": "Endpoint to send the notification.\n"
                     }
                 },
                 "type": "object"
             }
         },
         "cloudamqp:index/plugin:Plugin": {
+            "description": "This resource allows you to enable or disable Rabbit MQ plugins.\n\nOnly available for dedicated subscription plans.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst pluginRabbitmqTop = new cloudamqp.Plugin(\"pluginRabbitmqTop\", {\n    instanceId: cloudamqp_instance.instance.id,\n    enabled: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nplugin_rabbitmq_top = cloudamqp.Plugin(\"pluginRabbitmqTop\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    enabled=True)\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var pluginRabbitmqTop = new CloudAmqp.Plugin(\"pluginRabbitmqTop\", new CloudAmqp.PluginArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Enabled = true,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.NewPlugin(ctx, \"pluginRabbitmqTop\", \u0026cloudamqp.PluginArgs{\n\t\t\tInstanceId: pulumi.String(cloudamqp_instance.Instance.Id),\n\t\t\tEnabled:    pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n## Dependency\n\nThis resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n",
             "properties": {
                 "enabled": {
                     "type": "boolean",
-                    "description": "If the plugin is enabled\n"
+                    "description": "Enable or disable the plugins.\n"
                 },
                 "instanceId": {
                     "type": "integer",
-                    "description": "Instance identifier\n"
+                    "description": "The CloudAMQP instance ID.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the plugin\n"
+                    "description": "The name of the Rabbit MQ plugin.\n"
                 }
             },
             "required": [
@@ -817,15 +982,15 @@
             "inputProperties": {
                 "enabled": {
                     "type": "boolean",
-                    "description": "If the plugin is enabled\n"
+                    "description": "Enable or disable the plugins.\n"
                 },
                 "instanceId": {
                     "type": "integer",
-                    "description": "Instance identifier\n"
+                    "description": "The CloudAMQP instance ID.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the plugin\n"
+                    "description": "The name of the Rabbit MQ plugin.\n"
                 }
             },
             "requiredInputs": [
@@ -837,33 +1002,34 @@
                 "properties": {
                     "enabled": {
                         "type": "boolean",
-                        "description": "If the plugin is enabled\n"
+                        "description": "Enable or disable the plugins.\n"
                     },
                     "instanceId": {
                         "type": "integer",
-                        "description": "Instance identifier\n"
+                        "description": "The CloudAMQP instance ID.\n"
                     },
                     "name": {
                         "type": "string",
-                        "description": "The name of the plugin\n"
+                        "description": "The name of the Rabbit MQ plugin.\n"
                     }
                 },
                 "type": "object"
             }
         },
         "cloudamqp:index/pluginCommunity:PluginCommunity": {
+            "description": "This resource allows you to install or uninstall community plugins. Once installed the plugin will be available in `cloudamqp.Plugin`.\n\nOnly available for dedicated subscription plans.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst rabbitmqDelayedMessageExchange = new cloudamqp.PluginCommunity(\"rabbitmqDelayedMessageExchange\", {\n    instanceId: cloudamqp_instance.instance_01.id,\n    enabled: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nrabbitmq_delayed_message_exchange = cloudamqp.PluginCommunity(\"rabbitmqDelayedMessageExchange\",\n    instance_id=cloudamqp_instance[\"instance_01\"][\"id\"],\n    enabled=True)\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var rabbitmqDelayedMessageExchange = new CloudAmqp.PluginCommunity(\"rabbitmqDelayedMessageExchange\", new CloudAmqp.PluginCommunityArgs\n        {\n            InstanceId = cloudamqp_instance.Instance_01.Id,\n            Enabled = true,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.NewPluginCommunity(ctx, \"rabbitmqDelayedMessageExchange\", \u0026cloudamqp.PluginCommunityArgs{\n\t\t\tInstanceId: pulumi.String(cloudamqp_instance.Instance_01.Id),\n\t\t\tEnabled:    pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n## Depedency\n\nThis resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n",
             "properties": {
                 "enabled": {
                     "type": "boolean",
-                    "description": "If the plugin is enabled\n"
+                    "description": "Enable or disable the plugins.\n"
                 },
                 "instanceId": {
                     "type": "integer",
-                    "description": "Instance identifier\n"
+                    "description": "The CloudAMQP instance ID.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the plugin\n"
+                    "description": "The name of the Rabbit MQ plugin.\n"
                 }
             },
             "required": [
@@ -874,15 +1040,15 @@
             "inputProperties": {
                 "enabled": {
                     "type": "boolean",
-                    "description": "If the plugin is enabled\n"
+                    "description": "Enable or disable the plugins.\n"
                 },
                 "instanceId": {
                     "type": "integer",
-                    "description": "Instance identifier\n"
+                    "description": "The CloudAMQP instance ID.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the plugin\n"
+                    "description": "The name of the Rabbit MQ plugin.\n"
                 }
             },
             "requiredInputs": [
@@ -894,31 +1060,33 @@
                 "properties": {
                     "enabled": {
                         "type": "boolean",
-                        "description": "If the plugin is enabled\n"
+                        "description": "Enable or disable the plugins.\n"
                     },
                     "instanceId": {
                         "type": "integer",
-                        "description": "Instance identifier\n"
+                        "description": "The CloudAMQP instance ID.\n"
                     },
                     "name": {
                         "type": "string",
-                        "description": "The name of the plugin\n"
+                        "description": "The name of the Rabbit MQ plugin.\n"
                     }
                 },
                 "type": "object"
             }
         },
         "cloudamqp:index/securityFirewall:SecurityFirewall": {
+            "description": "This resource allows you to configure and manage firewall rules for the CloudAMQP instance. Beware that all rules need to be present, since all older configurations will be overwritten.\n\nOnly available for dedicated subscription plans.\n\n## Depedency\n\nThis resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n",
             "properties": {
                 "instanceId": {
                     "type": "integer",
-                    "description": "Instance identifier\n"
+                    "description": "The CloudAMQP instance ID.\n"
                 },
                 "rules": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/cloudamqp:/SecurityFirewallRule:SecurityFirewallRule"
-                    }
+                    },
+                    "description": "An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.\n"
                 }
             },
             "required": [
@@ -928,13 +1096,14 @@
             "inputProperties": {
                 "instanceId": {
                     "type": "integer",
-                    "description": "Instance identifier\n"
+                    "description": "The CloudAMQP instance ID.\n"
                 },
                 "rules": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/cloudamqp:/SecurityFirewallRule:SecurityFirewallRule"
-                    }
+                    },
+                    "description": "An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.\n"
                 }
             },
             "requiredInputs": [
@@ -946,13 +1115,14 @@
                 "properties": {
                     "instanceId": {
                         "type": "integer",
-                        "description": "Instance identifier\n"
+                        "description": "The CloudAMQP instance ID.\n"
                     },
                     "rules": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/cloudamqp:/SecurityFirewallRule:SecurityFirewallRule"
-                        }
+                        },
+                        "description": "An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.\n"
                     }
                 },
                 "type": "object"
@@ -962,11 +1132,11 @@
             "properties": {
                 "instanceId": {
                     "type": "integer",
-                    "description": "Instance identifier\n"
+                    "description": "The CloudAMQP instance ID.\n"
                 },
                 "peeringId": {
                     "type": "string",
-                    "description": "VPC peering identifier\n"
+                    "description": "Peering identifier created by AW peering request.\n"
                 },
                 "status": {
                     "type": "string",
@@ -981,11 +1151,11 @@
             "inputProperties": {
                 "instanceId": {
                     "type": "integer",
-                    "description": "Instance identifier\n"
+                    "description": "The CloudAMQP instance ID.\n"
                 },
                 "peeringId": {
                     "type": "string",
-                    "description": "VPC peering identifier\n"
+                    "description": "Peering identifier created by AW peering request.\n"
                 }
             },
             "requiredInputs": [
@@ -997,11 +1167,11 @@
                 "properties": {
                     "instanceId": {
                         "type": "integer",
-                        "description": "Instance identifier\n"
+                        "description": "The CloudAMQP instance ID.\n"
                     },
                     "peeringId": {
                         "type": "string",
-                        "description": "VPC peering identifier\n"
+                        "description": "Peering identifier created by AW peering request.\n"
                     },
                     "status": {
                         "type": "string",
@@ -1014,6 +1184,7 @@
     },
     "functions": {
         "cloudamqp:index/getAlarm:getAlarm": {
+            "description": "Use this data source to retrieve information about default or created alarms. Either use `alarm_id` or `type` to retrieve the alarm.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst defaultCpuAlarm = cloudamqp.getAlarm({\n    instanceId: cloudamqp_instance.instance.id,\n    type: \"cpu\",\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\ndefault_cpu_alarm = cloudamqp.get_alarm(instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    type=\"cpu\")\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var defaultCpuAlarm = Output.Create(CloudAmqp.GetAlarm.InvokeAsync(new CloudAmqp.GetAlarmArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Type = \"cpu\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topt0 := \"cpu\"\n\t\t_, err := cloudamqp.LookupAlarm(ctx, \u0026cloudamqp.LookupAlarmArgs{\n\t\t\tInstanceId: cloudamqp_instance.Instance.Id,\n\t\t\tType:       \u0026opt0,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n## Argument reference\n\n* `instance_id` - (Required) The CloudAMQP instance identifier.\n* `alarm_id`    - (Optional) The alarm identifier. Either use this or `type` to give `cloudamqp.Alarm` necessary information to retrieve the alarm.\n* `type`        - (Optional) The alarm type. Either use this or `alarm_id` to give `cloudamqp.Alarm` necessary information when retrieve the alarm.\n\n## Attribute reference\n\n* `enabled`         - (Computed) Enable/disable status of the alarm.\n* `value_threshold` - (Computed) The value threshold that triggers the alarm.\n* `time_threshold`  - (Computed) The time interval (in seconds) the `value_threshold` should be active before trigger an alarm.\n* `queue_regex`     - (Computed) Regular expression for which queue to check.\n* `vhost_regex`     - (Computed) Regular expression for which vhost to check\n* `recipients`      - (Computed) Identifier for recipient to be notified.\n* `message_type`    - (Computed) Message type `(total, unacked, ready)` used by queue alarm type.\n\n## Dependency\n\nThis data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getAlarm.\n",
                 "properties": {
@@ -1088,6 +1259,7 @@
             }
         },
         "cloudamqp:index/getCredentials:getCredentials": {
+            "description": "Use this data source to retrieve information about the credentials of the configured user in Rabbit MQ. Information is extracted from `cloudamqp_instance.instance.url`.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst credentials = cloudamqp.getCredentials({\n    instanceId: cloudamqp_instance.instance.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\ncredentials = cloudamqp.get_credentials(instance_id=cloudamqp_instance[\"instance\"][\"id\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var credentials = Output.Create(CloudAmqp.GetCredentials.InvokeAsync(new CloudAmqp.GetCredentialsArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.GetCredentials(ctx, \u0026cloudamqp.GetCredentialsArgs{\n\t\t\tInstanceId: cloudamqp_instance.Instance.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n## Argument reference\n\n* `instance_id` - (Required) The CloudAMQP instance identifier.\n\n## Attribute reference\n\n* `username`    - (Computed/Sensitive) The username for the configured user in Rabbit MQ.\n* `password`    - (Computed/Sensitive) The password used by the `username`.\n\n## Dependency\n\nThis data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getCredentials.\n",
                 "properties": {
@@ -1131,6 +1303,7 @@
             }
         },
         "cloudamqp:index/getInstance:getInstance": {
+            "description": "Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.\n\n## Argument reference\n\n* `instance_id` - (Required) The CloudAMQP instance identifier.\n\n## Attribute reference\n\n* `name`        - (Computed) The name of the CloudAMQP instance.\n* `plan`        - (Computed) The subscription plan for the CloudAMQP instance.\n* `region`      - (Computed) The cloud platform and region that host the CloudAMQP instance, `{platform}::{region}`.\n* `vpc_subnet`  - (Computed) Dedicated VPC subnet configured for the CloudAMQP instance.\n* `nodes`       - (Computed) Number of nodes in the cluster of the CloudAMQP instance.\n* `rmq_version` - (Computed) The version of installed Rabbit MQ.\n* `url`         - (Computed/Sensitive) The AMQP url, used by clients to connect for pub/sub.\n* `apikey`      - (Computed/Sensitive) The API key to secondary API handing alarms, integration etc.\n* `tags`        - (Computed) Tags the CloudAMQP instance with categories.\n* `host`        - (Computed) The hostname for the CloudAMQP instance.\n* `vhost`       - (Computed) The virtual host configured in Rabbit MQ.\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getInstance.\n",
                 "properties": {
@@ -1151,6 +1324,9 @@
                 "properties": {
                     "apikey": {
                         "type": "string"
+                    },
+                    "dedicated": {
+                        "type": "boolean"
                     },
                     "host": {
                         "type": "string"
@@ -1196,6 +1372,7 @@
                 "type": "object",
                 "required": [
                     "apikey",
+                    "dedicated",
                     "host",
                     "instanceId",
                     "name",
@@ -1210,7 +1387,53 @@
                 ]
             }
         },
+        "cloudamqp:index/getNodes:getNodes": {
+            "description": "Use this data source to retrieve information about the node(s) created by CloudAMQP instance.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst nodes = cloudamqp.getNodes({\n    instanceId: cloudamqp_instance.instance.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nnodes = cloudamqp.get_nodes(instance_id=cloudamqp_instance[\"instance\"][\"id\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var nodes = Output.Create(CloudAmqp.GetNodes.InvokeAsync(new CloudAmqp.GetNodesArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.GetNodes(ctx, \u0026cloudamqp.GetNodesArgs{\n\t\t\tInstanceId: cloudamqp_instance.Instance.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n## Argument reference\n\n* `instance_id` - (Required) The CloudAMQP instance identifier.\n\n## Attribute reference\n\n* `nodes` - (Computed) An array of node information. Each `nodes` block consists of the fields documented below.\n\n___\n\nThe `nodes` block consist of\n\n* `hostname`          - (Computed) Hostname assigned to the node.\n* `name`              - (Computed) Name of the node.\n* `running`           - (Computed) Is the node running?\n* `rabbitmq_version`  - (Computed) Currently configured Rabbit MQ version on the node.\n* `erlang_version`    - (Computed) Currently used Erlanbg version on the node.\n* `hipe`              - (Computed) Enable or disable High-performance Erlang.\n\n## Dependency\n\nThis data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getNodes.\n",
+                "properties": {
+                    "instanceId": {
+                        "type": "integer"
+                    },
+                    "nodes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/cloudamqp:/getNodesNode:getNodesNode"
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "instanceId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getNodes.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "instanceId": {
+                        "type": "integer"
+                    },
+                    "nodes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/cloudamqp:/getNodesNode:getNodesNode"
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "instanceId",
+                    "nodes",
+                    "id"
+                ]
+            }
+        },
         "cloudamqp:index/getNotification:getNotification": {
+            "description": "Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipient_id` or `name`.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst defaultRecipient = cloudamqp.getNotification({\n    instanceId: cloudamqp_instance.instance.id,\n    name: \"default\",\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\ndefault_recipient = cloudamqp.get_notification(instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    name=\"default\")\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var defaultRecipient = Output.Create(CloudAmqp.GetNotification.InvokeAsync(new CloudAmqp.GetNotificationArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Name = \"default\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topt0 := \"default\"\n\t\t_, err := cloudamqp.LookupNotification(ctx, \u0026cloudamqp.LookupNotificationArgs{\n\t\t\tInstanceId: cloudamqp_instance.Instance.Id,\n\t\t\tName:       \u0026opt0,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n## Argument reference\n\n* `instance_id`   - (Required) The CloudAMQP instance identifier.\n* `recipient_id`  - (Optional) The recipient identifier.\n* `name`          - (Optional) The name set for the recipient.\n\n## Attribute reference\n\n* `type`  - (Computed) The type of the recipient.\n* `value` - (Computed) The notification endpoint, where to send the notification.\n\n## Dependency\n\nThis data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getNotification.\n",
                 "properties": {
@@ -1262,6 +1485,7 @@
             }
         },
         "cloudamqp:index/getPlugins:getPlugins": {
+            "description": "Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst plugins = cloudamqp.getPlugins({\n    instanceId: cloudamqp_instance.instance.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nplugins = cloudamqp.get_plugins(instance_id=cloudamqp_instance[\"instance\"][\"id\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var plugins = Output.Create(CloudAmqp.GetPlugins.InvokeAsync(new CloudAmqp.GetPluginsArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.GetPlugins(ctx, \u0026cloudamqp.GetPluginsArgs{\n\t\t\tInstanceId: cloudamqp_instance.Instance.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n## Argument reference\n\n* `instance_id` - (Required) The CloudAMQP instance identifier.\n\n## Attribute reference\n\n* `plugins` - (Computed) An array of plugins. Each `plugins` block consists of the fields documented below.\n\n___\n\nThe `plugins` block consist of\n\n* `name`        - (Computed) The type of the recipient.\n* `version`     - (Computed) Rabbit MQ version that the plugins are shipped with.\n* `description` - (Computed) Description of what the plugin does.\n* `enabled`     - (Computed) Enable or disable information for the plugin.\n\n## Dependency\n\nThis data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getPlugins.\n",
                 "properties": {
@@ -1305,6 +1529,7 @@
             }
         },
         "cloudamqp:index/getPluginsCommunity:getPluginsCommunity": {
+            "description": "Use this data source to retrieve information about available community plugins for the CloudAMQP instance.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst communitPlugins = cloudamqp.getPluginsCommunity({\n    instanceId: cloudamqp_instance.instance.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\ncommunit_plugins = cloudamqp.get_plugins_community(instance_id=cloudamqp_instance[\"instance\"][\"id\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var communitPlugins = Output.Create(CloudAmqp.GetPluginsCommunity.InvokeAsync(new CloudAmqp.GetPluginsCommunityArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.GetPluginsCommunity(ctx, \u0026cloudamqp.GetPluginsCommunityArgs{\n\t\t\tInstanceId: cloudamqp_instance.Instance.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n## Argument reference\n\n* `instance_id` - (Required) The CloudAMQP instance identifier.\n\n## Attribute reference\n\n* `plugins` - (Computed) An array of community plugins. Each `plugins` block consists of the fields documented below.\n\n___\n\nThe `plugins` block consists of\n\n* `name`        - (Computed) The type of the recipient.\n* `require`     - (Computed) Min. required Rabbit MQ version to be used.\n* `description` - (Computed) Description of what the plugin does.\n\n## Dependency\n\nThis data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getPluginsCommunity.\n",
                 "properties": {
@@ -1348,6 +1573,7 @@
             }
         },
         "cloudamqp:index/getVpcInfo:getVpcInfo": {
+            "description": "Use this data source to retrieve information about VPC for a CloudAMQP instance.\n\nOnly available for CloudAMQP instances hosted in AWS.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst vpcInfo = cloudamqp.getVpcInfo({\n    instanceId: cloudamqp_instance.instance.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nvpc_info = cloudamqp.get_vpc_info(instance_id=cloudamqp_instance[\"instance\"][\"id\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var vpcInfo = Output.Create(CloudAmqp.GetVpcInfo.InvokeAsync(new CloudAmqp.GetVpcInfoArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.GetVpcInfo(ctx, \u0026cloudamqp.GetVpcInfoArgs{\n\t\t\tInstanceId: cloudamqp_instance.Instance.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n## Argument reference\n\n* `instance_id` - (Required) The CloudAMQP instance identifier.\n\n## Attribute reference\n\n* `name`                - (Computed) The name of the CloudAMQP instance.\n* `vpc_subnet`          - (Computed) Dedicated VPC subnet.\n* `owner_id`            - (Computed) AWS account identifier.\n* `security_group_id`   - (Computed) AWS security group identifier.\n\n## Dependency\n\nThis data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getVpcInfo.\n",
                 "properties": {

@@ -12,56 +12,110 @@ from . import utilities, tables
 class Alarm(pulumi.CustomResource):
     enabled: pulumi.Output[bool]
     """
-    Enable or disable an alarm
+    Enable or disable the alarm to trigger.
     """
     instance_id: pulumi.Output[float]
     """
-    Instance identifier
+    The CloudAMQP instance ID.
     """
     message_type: pulumi.Output[str]
     """
-    Message types (total, unacked, ready) of the queue to trigger the alarm
+    Message type `(total, unacked, ready)` used by queue alarm type.
     """
     queue_regex: pulumi.Output[str]
     """
-    Regex for which queues to check
+    Regex for which queue to check.
     """
     recipients: pulumi.Output[list]
     """
-    Identifiers for recipients to be notified.
+    Identifier for recipient to be notified. Leave empty to notify all recipients.
     """
     time_threshold: pulumi.Output[float]
     """
-    For how long (in seconds) the value_threshold should be active before trigger alarm
+    The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
     """
     type: pulumi.Output[str]
     """
-    Type of the alarm, valid options are: cpu, memory, disk_usage, queue_length, connection_count, consumers_count,
-    net_split
+    The alarm type, see valid options below.
     """
     value_threshold: pulumi.Output[float]
     """
-    What value to trigger the alarm for
+    The value to trigger the alarm for.
     """
     vhost_regex: pulumi.Output[str]
     """
-    Regex for which vhost the queues are in
+    Regex for which vhost to check
     """
     def __init__(__self__, resource_name, opts=None, enabled=None, instance_id=None, message_type=None, queue_regex=None, recipients=None, time_threshold=None, type=None, value_threshold=None, vhost_regex=None, __props__=None, __name__=None, __opts__=None):
         """
-        Create a Alarm resource with the given unique name, props, and options.
+        This resource allows you to create and manage alarms to trigger based on a set of conditions. Once triggerd a notification will be sent to the assigned recipients. When creating a new instance, there will also be a set of default alarms (cpu, memory and disk) created. All default alarms uses the default recipient for notifications.
+
+        By setting `no_default_alarms` to *true* in `Instance`. This will create the instance without default alarms and avoid the need to import them to get full control.
+
+        Available for all subscription plans, but `lemur`and `tiger`are limited to fewer alarm types. The limited types supported can be seen in the table below in Alarm Type Reference.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # New recipient
+        recipient01 = cloudamqp.Notification("recipient01",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            type="email",
+            value="alarm@example.com")
+        # New cpu alarm
+        cpu_alarm = cloudamqp.Alarm("cpuAlarm",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            type="cpu",
+            enabled=True,
+            value_threshold=95,
+            time_threshold=600,
+            recipient=[2])
+        # New memory alarm
+        memory_alarm = cloudamqp.Alarm("memoryAlarm",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            type="memory",
+            enabled=True,
+            value_threshold=95,
+            time_threshold=600,
+            recipient=[2])
+        ```
+        ## Alarm Type reference
+
+        Valid options for notification type.
+
+        Required arguments for all alarms: *instance_id*, *type* and *enabled*<br>
+        Optional argument for all alarms: *tags*, *queue_regex*, *vhost_regex*
+
+        | Name | Type | Shared | Dedicated | Required arguments |
+        | ---- | ---- | ---- | ---- | ---- | ---- |
+        | CPU | cpu | - | &#10004; | time_threshold, value_threshold |
+        | Memory | memory | - | &#10004;  | time_threshold, value_threshold |
+        | Disk space | disk | - | &#10004;  | time_threshold, value_threshold |
+        | Queue | queue | &#10004;  | &#10004;  | time_threshold, value_threshold, queue_regex, vhost_regex, message_type |
+        | Connection | connection | &#10004; | &#10004; | time_threshold, value_threshold |
+        | Consumer | consumer | &#10004; | &#10004; | time_threshold, value_threshold, queue, vhost |
+        | Netsplit | netsplit | - | &#10004; | time_threshold |
+        | Server unreachable | server_unreachable  | - | &#10004;  | time_threshold |
+        | Notice | notice | &#10004; | &#10004; |
+
+        ## Dependency
+
+        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] enabled: Enable or disable an alarm
-        :param pulumi.Input[float] instance_id: Instance identifier
-        :param pulumi.Input[str] message_type: Message types (total, unacked, ready) of the queue to trigger the alarm
-        :param pulumi.Input[str] queue_regex: Regex for which queues to check
-        :param pulumi.Input[list] recipients: Identifiers for recipients to be notified.
-        :param pulumi.Input[float] time_threshold: For how long (in seconds) the value_threshold should be active before trigger alarm
-        :param pulumi.Input[str] type: Type of the alarm, valid options are: cpu, memory, disk_usage, queue_length, connection_count, consumers_count,
-               net_split
-        :param pulumi.Input[float] value_threshold: What value to trigger the alarm for
-        :param pulumi.Input[str] vhost_regex: Regex for which vhost the queues are in
+        :param pulumi.Input[bool] enabled: Enable or disable the alarm to trigger.
+        :param pulumi.Input[float] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[str] message_type: Message type `(total, unacked, ready)` used by queue alarm type.
+        :param pulumi.Input[str] queue_regex: Regex for which queue to check.
+        :param pulumi.Input[list] recipients: Identifier for recipient to be notified. Leave empty to notify all recipients.
+        :param pulumi.Input[float] time_threshold: The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
+        :param pulumi.Input[str] type: The alarm type, see valid options below.
+        :param pulumi.Input[float] value_threshold: The value to trigger the alarm for.
+        :param pulumi.Input[str] vhost_regex: Regex for which vhost to check
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -112,16 +166,15 @@ class Alarm(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] enabled: Enable or disable an alarm
-        :param pulumi.Input[float] instance_id: Instance identifier
-        :param pulumi.Input[str] message_type: Message types (total, unacked, ready) of the queue to trigger the alarm
-        :param pulumi.Input[str] queue_regex: Regex for which queues to check
-        :param pulumi.Input[list] recipients: Identifiers for recipients to be notified.
-        :param pulumi.Input[float] time_threshold: For how long (in seconds) the value_threshold should be active before trigger alarm
-        :param pulumi.Input[str] type: Type of the alarm, valid options are: cpu, memory, disk_usage, queue_length, connection_count, consumers_count,
-               net_split
-        :param pulumi.Input[float] value_threshold: What value to trigger the alarm for
-        :param pulumi.Input[str] vhost_regex: Regex for which vhost the queues are in
+        :param pulumi.Input[bool] enabled: Enable or disable the alarm to trigger.
+        :param pulumi.Input[float] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[str] message_type: Message type `(total, unacked, ready)` used by queue alarm type.
+        :param pulumi.Input[str] queue_regex: Regex for which queue to check.
+        :param pulumi.Input[list] recipients: Identifier for recipient to be notified. Leave empty to notify all recipients.
+        :param pulumi.Input[float] time_threshold: The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
+        :param pulumi.Input[str] type: The alarm type, see valid options below.
+        :param pulumi.Input[float] value_threshold: The value to trigger the alarm for.
+        :param pulumi.Input[str] vhost_regex: Regex for which vhost to check
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

@@ -11,6 +11,47 @@ namespace Pulumi.CloudAmqp
 {
     public static class GetNotification
     {
+        /// <summary>
+        /// Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipient_id` or `name`.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using CloudAmqp = Pulumi.CloudAmqp;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var defaultRecipient = Output.Create(CloudAmqp.GetNotification.InvokeAsync(new CloudAmqp.GetNotificationArgs
+        ///         {
+        ///             InstanceId = cloudamqp_instance.Instance.Id,
+        ///             Name = "default",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// ## Argument reference
+        /// 
+        /// * `instance_id`   - (Required) The CloudAMQP instance identifier.
+        /// * `recipient_id`  - (Optional) The recipient identifier.
+        /// * `name`          - (Optional) The name set for the recipient.
+        /// 
+        /// ## Attribute reference
+        /// 
+        /// * `type`  - (Computed) The type of the recipient.
+        /// * `value` - (Computed) The notification endpoint, where to send the notification.
+        /// 
+        /// ## Dependency
+        /// 
+        /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+        /// </summary>
         public static Task<GetNotificationResult> InvokeAsync(GetNotificationArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetNotificationResult>("cloudamqp:index/getNotification:getNotification", args ?? new GetNotificationArgs(), options.WithVersion());
     }

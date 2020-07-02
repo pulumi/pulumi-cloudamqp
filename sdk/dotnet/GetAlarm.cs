@@ -11,6 +11,52 @@ namespace Pulumi.CloudAmqp
 {
     public static class GetAlarm
     {
+        /// <summary>
+        /// Use this data source to retrieve information about default or created alarms. Either use `alarm_id` or `type` to retrieve the alarm.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using CloudAmqp = Pulumi.CloudAmqp;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var defaultCpuAlarm = Output.Create(CloudAmqp.GetAlarm.InvokeAsync(new CloudAmqp.GetAlarmArgs
+        ///         {
+        ///             InstanceId = cloudamqp_instance.Instance.Id,
+        ///             Type = "cpu",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// ## Argument reference
+        /// 
+        /// * `instance_id` - (Required) The CloudAMQP instance identifier.
+        /// * `alarm_id`    - (Optional) The alarm identifier. Either use this or `type` to give `cloudamqp.Alarm` necessary information to retrieve the alarm.
+        /// * `type`        - (Optional) The alarm type. Either use this or `alarm_id` to give `cloudamqp.Alarm` necessary information when retrieve the alarm.
+        /// 
+        /// ## Attribute reference
+        /// 
+        /// * `enabled`         - (Computed) Enable/disable status of the alarm.
+        /// * `value_threshold` - (Computed) The value threshold that triggers the alarm.
+        /// * `time_threshold`  - (Computed) The time interval (in seconds) the `value_threshold` should be active before trigger an alarm.
+        /// * `queue_regex`     - (Computed) Regular expression for which queue to check.
+        /// * `vhost_regex`     - (Computed) Regular expression for which vhost to check
+        /// * `recipients`      - (Computed) Identifier for recipient to be notified.
+        /// * `message_type`    - (Computed) Message type `(total, unacked, ready)` used by queue alarm type.
+        /// 
+        /// ## Dependency
+        /// 
+        /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+        /// </summary>
         public static Task<GetAlarmResult> InvokeAsync(GetAlarmArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAlarmResult>("cloudamqp:index/getAlarm:getAlarm", args ?? new GetAlarmArgs(), options.WithVersion());
     }

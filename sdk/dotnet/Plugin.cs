@@ -9,22 +9,50 @@ using Pulumi.Serialization;
 
 namespace Pulumi.CloudAmqp
 {
+    /// <summary>
+    /// This resource allows you to enable or disable Rabbit MQ plugins.
+    /// 
+    /// Only available for dedicated subscription plans.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var pluginRabbitmqTop = new CloudAmqp.Plugin("pluginRabbitmqTop", new CloudAmqp.PluginArgs
+    ///         {
+    ///             InstanceId = cloudamqp_instance.Instance.Id,
+    ///             Enabled = true,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ## Dependency
+    /// 
+    /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+    /// </summary>
     public partial class Plugin : Pulumi.CustomResource
     {
         /// <summary>
-        /// If the plugin is enabled
+        /// Enable or disable the plugins.
         /// </summary>
         [Output("enabled")]
         public Output<bool> Enabled { get; private set; } = null!;
 
         /// <summary>
-        /// Instance identifier
+        /// The CloudAMQP instance ID.
         /// </summary>
         [Output("instanceId")]
         public Output<int> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the plugin
+        /// The name of the Rabbit MQ plugin.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -76,19 +104,19 @@ namespace Pulumi.CloudAmqp
     public sealed class PluginArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// If the plugin is enabled
+        /// Enable or disable the plugins.
         /// </summary>
         [Input("enabled", required: true)]
         public Input<bool> Enabled { get; set; } = null!;
 
         /// <summary>
-        /// Instance identifier
+        /// The CloudAMQP instance ID.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<int> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// The name of the plugin
+        /// The name of the Rabbit MQ plugin.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -101,19 +129,19 @@ namespace Pulumi.CloudAmqp
     public sealed class PluginState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// If the plugin is enabled
+        /// Enable or disable the plugins.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// Instance identifier
+        /// The CloudAMQP instance ID.
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
 
         /// <summary>
-        /// The name of the plugin
+        /// The name of the Rabbit MQ plugin.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

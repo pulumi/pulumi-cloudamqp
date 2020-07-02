@@ -10,24 +10,153 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// This resource allows you to create and manage third party log integrations for a CloudAMQP instance. Once configured, the logs produced will be forward to corresponding integration.
+//
+// Only available for dedicated subscription plans.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := cloudamqp.NewIntegrationLog(ctx, "cloudwatch", &cloudamqp.IntegrationLogArgs{
+// 			InstanceId:      pulumi.String(cloudamqp_instance.Instance.Id),
+// 			AccessKeyId:     pulumi.String(_var.Aws_access_key_id),
+// 			SecretAccessKey: pulumi.String(_var.Aws_secret_access_key),
+// 			Region:          pulumi.String(_var.Aws_region),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = cloudamqp.NewIntegrationLog(ctx, "logentries", &cloudamqp.IntegrationLogArgs{
+// 			InstanceId: pulumi.String(cloudamqp_instance.Instance.Id),
+// 			Token:      pulumi.String(_var.Logentries_token),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = cloudamqp.NewIntegrationLog(ctx, "loggly", &cloudamqp.IntegrationLogArgs{
+// 			InstanceId: pulumi.String(cloudamqp_instance.Instance.Id),
+// 			Token:      pulumi.String(_var.Loggly_token),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = cloudamqp.NewIntegrationLog(ctx, "papertrail", &cloudamqp.IntegrationLogArgs{
+// 			InstanceId: pulumi.String(cloudamqp_instance.Instance.Id),
+// 			Url:        pulumi.String(_var.Papertrail_url),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = cloudamqp.NewIntegrationLog(ctx, "splunk", &cloudamqp.IntegrationLogArgs{
+// 			InstanceId: pulumi.String(cloudamqp_instance.Instance.Id),
+// 			Token:      pulumi.String(_var.Splunk_token),
+// 			HostPort:   pulumi.String(_var.Splunk_host_port),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = cloudamqp.NewIntegrationLog(ctx, "datadog", &cloudamqp.IntegrationLogArgs{
+// 			InstanceId: pulumi.String(cloudamqp_instance.Instance.Id),
+// 			Region:     pulumi.String(_var.Datadog_region),
+// 			ApiKey:     pulumi.String(_var.Datadog_api_key),
+// 			Tags:       pulumi.String(_var.Datadog_tags),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = cloudamqp.NewIntegrationLog(ctx, "stackdriver", &cloudamqp.IntegrationLogArgs{
+// 			InstanceId:  pulumi.String(cloudamqp_instance.Instance.Id),
+// 			ProjectId:   pulumi.String(_var.Stackdriver_project_id),
+// 			PrivateKey:  pulumi.String(_var.Stackdriver_private_key),
+// 			ClientEmail: pulumi.String(_var.Stackdriver_client_email),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ## Argument Reference (cloudwatchlog)
+//
+// Cloudwatch argument reference and example. Create an IAM user with programmatic access and the following permissions:
+//
+// * CreateLogGroup
+// * CreateLogStream
+// * DescribeLogGroups
+// * DescribeLogStreams
+// * PutLogEvents
+//
+// ## Integration service reference
+//
+// Valid names for third party log integration.
+//
+// | Name       | Description |
+// |------------|---------------------------------------------------------------|
+// | cloudwatchlog | Create a IAM with programmatic access. |
+// | logentries | Create a Logentries token at https://logentries.com/app#/add-log/manual  |
+// | loggly     | Create a Loggly token at https://{your-company}.loggly.com/tokens |
+// | papertrail | Create a Papertrail endpoint https://papertrailapp.com/systems/setup |
+// | splunk     | Create a HTTP Event Collector token at https://.cloud.splunk.com/en-US/manager/search/http-eventcollector |
+// | datadog       | Create a Datadog API key at app.datadoghq.com |
+// | stackdriver   | Create a service account and add 'monitor metrics writer' role, then download credentials. |
+//
+// ## Integration Type reference
+//
+// Valid arguments for third party log integrations.
+//
+// Required arguments for all integrations: name
+//
+// | Name | Type | Required arguments |
+// | ---- | ---- | ---- |
+// | CloudWatch | cloudwatchlog | access_key_id, secret_access_key, region |
+// | Log Entries | logentries | token |
+// | Loggly | loggly | token |
+// | Papertrail | papertrail | url |
+// | Splunk | splunk | token, hostPort |
+// | Data Dog | datadog | region, api_keys, tags |
+// | Stackdriver | stackdriver | project_id, private_key, clientEmail |
+//
+// ## Dependency
+//
+// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 type IntegrationLog struct {
 	pulumi.CustomResourceState
 
-	// AWS access key identifier. (Cloudwatch)
+	// AWS access key identifier.
 	AccessKeyId pulumi.StringPtrOutput `pulumi:"accessKeyId"`
-	// Destination to send the logs. (Splunk)
+	// The API key.
+	ApiKey pulumi.StringPtrOutput `pulumi:"apiKey"`
+	// The client email registered for the integration service.
+	ClientEmail pulumi.StringPtrOutput `pulumi:"clientEmail"`
+	// Destination to send the logs.
 	HostPort pulumi.StringPtrOutput `pulumi:"hostPort"`
 	// Instance identifier used to make proxy calls
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
-	// The name of log integration
+	// The name of the third party log integration. See
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The region hosting integration service. (Cloudwatch)
+	// The private access key.
+	PrivateKey pulumi.StringPtrOutput `pulumi:"privateKey"`
+	// The project identifier.
+	ProjectId pulumi.StringPtrOutput `pulumi:"projectId"`
+	// Region hosting the integration service.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
-	// AWS secret access key. (Cloudwatch)
+	// AWS secret access key.
 	SecretAccessKey pulumi.StringPtrOutput `pulumi:"secretAccessKey"`
-	// The token used for authentication. (Loggly, Logentries, Splunk)
+	// Tag the integration, e.g. env=prod, region=europe.
+	Tags pulumi.StringPtrOutput `pulumi:"tags"`
+	// Token used for authentication.
 	Token pulumi.StringPtrOutput `pulumi:"token"`
-	// The URL to push the logs to. (Papertrail)
+	// Endpoint to log integration.
 	Url pulumi.StringPtrOutput `pulumi:"url"`
 }
 
@@ -62,40 +191,60 @@ func GetIntegrationLog(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IntegrationLog resources.
 type integrationLogState struct {
-	// AWS access key identifier. (Cloudwatch)
+	// AWS access key identifier.
 	AccessKeyId *string `pulumi:"accessKeyId"`
-	// Destination to send the logs. (Splunk)
+	// The API key.
+	ApiKey *string `pulumi:"apiKey"`
+	// The client email registered for the integration service.
+	ClientEmail *string `pulumi:"clientEmail"`
+	// Destination to send the logs.
 	HostPort *string `pulumi:"hostPort"`
 	// Instance identifier used to make proxy calls
 	InstanceId *int `pulumi:"instanceId"`
-	// The name of log integration
+	// The name of the third party log integration. See
 	Name *string `pulumi:"name"`
-	// The region hosting integration service. (Cloudwatch)
+	// The private access key.
+	PrivateKey *string `pulumi:"privateKey"`
+	// The project identifier.
+	ProjectId *string `pulumi:"projectId"`
+	// Region hosting the integration service.
 	Region *string `pulumi:"region"`
-	// AWS secret access key. (Cloudwatch)
+	// AWS secret access key.
 	SecretAccessKey *string `pulumi:"secretAccessKey"`
-	// The token used for authentication. (Loggly, Logentries, Splunk)
+	// Tag the integration, e.g. env=prod, region=europe.
+	Tags *string `pulumi:"tags"`
+	// Token used for authentication.
 	Token *string `pulumi:"token"`
-	// The URL to push the logs to. (Papertrail)
+	// Endpoint to log integration.
 	Url *string `pulumi:"url"`
 }
 
 type IntegrationLogState struct {
-	// AWS access key identifier. (Cloudwatch)
+	// AWS access key identifier.
 	AccessKeyId pulumi.StringPtrInput
-	// Destination to send the logs. (Splunk)
+	// The API key.
+	ApiKey pulumi.StringPtrInput
+	// The client email registered for the integration service.
+	ClientEmail pulumi.StringPtrInput
+	// Destination to send the logs.
 	HostPort pulumi.StringPtrInput
 	// Instance identifier used to make proxy calls
 	InstanceId pulumi.IntPtrInput
-	// The name of log integration
+	// The name of the third party log integration. See
 	Name pulumi.StringPtrInput
-	// The region hosting integration service. (Cloudwatch)
+	// The private access key.
+	PrivateKey pulumi.StringPtrInput
+	// The project identifier.
+	ProjectId pulumi.StringPtrInput
+	// Region hosting the integration service.
 	Region pulumi.StringPtrInput
-	// AWS secret access key. (Cloudwatch)
+	// AWS secret access key.
 	SecretAccessKey pulumi.StringPtrInput
-	// The token used for authentication. (Loggly, Logentries, Splunk)
+	// Tag the integration, e.g. env=prod, region=europe.
+	Tags pulumi.StringPtrInput
+	// Token used for authentication.
 	Token pulumi.StringPtrInput
-	// The URL to push the logs to. (Papertrail)
+	// Endpoint to log integration.
 	Url pulumi.StringPtrInput
 }
 
@@ -104,41 +253,61 @@ func (IntegrationLogState) ElementType() reflect.Type {
 }
 
 type integrationLogArgs struct {
-	// AWS access key identifier. (Cloudwatch)
+	// AWS access key identifier.
 	AccessKeyId *string `pulumi:"accessKeyId"`
-	// Destination to send the logs. (Splunk)
+	// The API key.
+	ApiKey *string `pulumi:"apiKey"`
+	// The client email registered for the integration service.
+	ClientEmail *string `pulumi:"clientEmail"`
+	// Destination to send the logs.
 	HostPort *string `pulumi:"hostPort"`
 	// Instance identifier used to make proxy calls
 	InstanceId int `pulumi:"instanceId"`
-	// The name of log integration
+	// The name of the third party log integration. See
 	Name *string `pulumi:"name"`
-	// The region hosting integration service. (Cloudwatch)
+	// The private access key.
+	PrivateKey *string `pulumi:"privateKey"`
+	// The project identifier.
+	ProjectId *string `pulumi:"projectId"`
+	// Region hosting the integration service.
 	Region *string `pulumi:"region"`
-	// AWS secret access key. (Cloudwatch)
+	// AWS secret access key.
 	SecretAccessKey *string `pulumi:"secretAccessKey"`
-	// The token used for authentication. (Loggly, Logentries, Splunk)
+	// Tag the integration, e.g. env=prod, region=europe.
+	Tags *string `pulumi:"tags"`
+	// Token used for authentication.
 	Token *string `pulumi:"token"`
-	// The URL to push the logs to. (Papertrail)
+	// Endpoint to log integration.
 	Url *string `pulumi:"url"`
 }
 
 // The set of arguments for constructing a IntegrationLog resource.
 type IntegrationLogArgs struct {
-	// AWS access key identifier. (Cloudwatch)
+	// AWS access key identifier.
 	AccessKeyId pulumi.StringPtrInput
-	// Destination to send the logs. (Splunk)
+	// The API key.
+	ApiKey pulumi.StringPtrInput
+	// The client email registered for the integration service.
+	ClientEmail pulumi.StringPtrInput
+	// Destination to send the logs.
 	HostPort pulumi.StringPtrInput
 	// Instance identifier used to make proxy calls
 	InstanceId pulumi.IntInput
-	// The name of log integration
+	// The name of the third party log integration. See
 	Name pulumi.StringPtrInput
-	// The region hosting integration service. (Cloudwatch)
+	// The private access key.
+	PrivateKey pulumi.StringPtrInput
+	// The project identifier.
+	ProjectId pulumi.StringPtrInput
+	// Region hosting the integration service.
 	Region pulumi.StringPtrInput
-	// AWS secret access key. (Cloudwatch)
+	// AWS secret access key.
 	SecretAccessKey pulumi.StringPtrInput
-	// The token used for authentication. (Loggly, Logentries, Splunk)
+	// Tag the integration, e.g. env=prod, region=europe.
+	Tags pulumi.StringPtrInput
+	// Token used for authentication.
 	Token pulumi.StringPtrInput
-	// The URL to push the logs to. (Papertrail)
+	// Endpoint to log integration.
 	Url pulumi.StringPtrInput
 }
 

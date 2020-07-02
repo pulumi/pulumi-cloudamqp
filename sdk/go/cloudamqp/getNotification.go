@@ -7,6 +7,46 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipientId` or `name`.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		opt0 := "default"
+// 		_, err := cloudamqp.LookupNotification(ctx, &cloudamqp.LookupNotificationArgs{
+// 			InstanceId: cloudamqp_instance.Instance.Id,
+// 			Name:       &opt0,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ## Argument reference
+//
+// * `instanceId`   - (Required) The CloudAMQP instance identifier.
+// * `recipientId`  - (Optional) The recipient identifier.
+// * `name`          - (Optional) The name set for the recipient.
+//
+// ## Attribute reference
+//
+// * `type`  - (Computed) The type of the recipient.
+// * `value` - (Computed) The notification endpoint, where to send the notification.
+//
+// ## Dependency
+//
+// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 func LookupNotification(ctx *pulumi.Context, args *LookupNotificationArgs, opts ...pulumi.InvokeOption) (*LookupNotificationResult, error) {
 	var rv LookupNotificationResult
 	err := ctx.Invoke("cloudamqp:index/getNotification:getNotification", args, &rv, opts...)

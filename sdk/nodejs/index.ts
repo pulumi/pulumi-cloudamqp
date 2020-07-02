@@ -6,6 +6,7 @@ export * from "./alarm";
 export * from "./getAlarm";
 export * from "./getCredentials";
 export * from "./getInstance";
+export * from "./getNodes";
 export * from "./getNotification";
 export * from "./getPlugins";
 export * from "./getPluginsCommunity";

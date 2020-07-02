@@ -9,59 +9,88 @@ using Pulumi.Serialization;
 
 namespace Pulumi.CloudAmqp
 {
+    /// <summary>
+    /// This resource allows you to create and manage alarms to trigger based on a set of conditions. Once triggerd a notification will be sent to the assigned recipients. When creating a new instance, there will also be a set of default alarms (cpu, memory and disk) created. All default alarms uses the default recipient for notifications.
+    /// 
+    /// By setting `no_default_alarms` to *true* in `cloudamqp.Instance`. This will create the instance without default alarms and avoid the need to import them to get full control.
+    /// 
+    /// Available for all subscription plans, but `lemur`and `tiger`are limited to fewer alarm types. The limited types supported can be seen in the table below in Alarm Type Reference.
+    /// 
+    /// ## Alarm Type reference
+    /// 
+    /// Valid options for notification type.
+    /// 
+    /// Required arguments for all alarms: *instance_id*, *type* and *enabled*&lt;br&gt;
+    /// Optional argument for all alarms: *tags*, *queue_regex*, *vhost_regex*
+    /// 
+    /// | Name | Type | Shared | Dedicated | Required arguments |
+    /// | ---- | ---- | ---- | ---- | ---- | ---- |
+    /// | CPU | cpu | - | &amp;#10004; | time_threshold, value_threshold |
+    /// | Memory | memory | - | &amp;#10004;  | time_threshold, value_threshold |
+    /// | Disk space | disk | - | &amp;#10004;  | time_threshold, value_threshold |
+    /// | Queue | queue | &amp;#10004;  | &amp;#10004;  | time_threshold, value_threshold, queue_regex, vhost_regex, message_type |
+    /// | Connection | connection | &amp;#10004; | &amp;#10004; | time_threshold, value_threshold |
+    /// | Consumer | consumer | &amp;#10004; | &amp;#10004; | time_threshold, value_threshold, queue, vhost |
+    /// | Netsplit | netsplit | - | &amp;#10004; | time_threshold |
+    /// | Server unreachable | server_unreachable  | - | &amp;#10004;  | time_threshold |
+    /// | Notice | notice | &amp;#10004; | &amp;#10004; |
+    /// 
+    /// ## Dependency
+    /// 
+    /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+    /// </summary>
     public partial class Alarm : Pulumi.CustomResource
     {
         /// <summary>
-        /// Enable or disable an alarm
+        /// Enable or disable the alarm to trigger.
         /// </summary>
         [Output("enabled")]
         public Output<bool> Enabled { get; private set; } = null!;
 
         /// <summary>
-        /// Instance identifier
+        /// The CloudAMQP instance ID.
         /// </summary>
         [Output("instanceId")]
         public Output<int> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// Message types (total, unacked, ready) of the queue to trigger the alarm
+        /// Message type `(total, unacked, ready)` used by queue alarm type.
         /// </summary>
         [Output("messageType")]
         public Output<string?> MessageType { get; private set; } = null!;
 
         /// <summary>
-        /// Regex for which queues to check
+        /// Regex for which queue to check.
         /// </summary>
         [Output("queueRegex")]
         public Output<string?> QueueRegex { get; private set; } = null!;
 
         /// <summary>
-        /// Identifiers for recipients to be notified.
+        /// Identifier for recipient to be notified. Leave empty to notify all recipients.
         /// </summary>
         [Output("recipients")]
         public Output<ImmutableArray<int>> Recipients { get; private set; } = null!;
 
         /// <summary>
-        /// For how long (in seconds) the value_threshold should be active before trigger alarm
+        /// The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
         /// </summary>
         [Output("timeThreshold")]
         public Output<int?> TimeThreshold { get; private set; } = null!;
 
         /// <summary>
-        /// Type of the alarm, valid options are: cpu, memory, disk_usage, queue_length, connection_count, consumers_count,
-        /// net_split
+        /// The alarm type, see valid options below.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// What value to trigger the alarm for
+        /// The value to trigger the alarm for.
         /// </summary>
         [Output("valueThreshold")]
         public Output<int?> ValueThreshold { get; private set; } = null!;
 
         /// <summary>
-        /// Regex for which vhost the queues are in
+        /// Regex for which vhost to check
         /// </summary>
         [Output("vhostRegex")]
         public Output<string?> VhostRegex { get; private set; } = null!;
@@ -113,25 +142,25 @@ namespace Pulumi.CloudAmqp
     public sealed class AlarmArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enable or disable an alarm
+        /// Enable or disable the alarm to trigger.
         /// </summary>
         [Input("enabled", required: true)]
         public Input<bool> Enabled { get; set; } = null!;
 
         /// <summary>
-        /// Instance identifier
+        /// The CloudAMQP instance ID.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<int> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// Message types (total, unacked, ready) of the queue to trigger the alarm
+        /// Message type `(total, unacked, ready)` used by queue alarm type.
         /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
 
         /// <summary>
-        /// Regex for which queues to check
+        /// Regex for which queue to check.
         /// </summary>
         [Input("queueRegex")]
         public Input<string>? QueueRegex { get; set; }
@@ -140,7 +169,7 @@ namespace Pulumi.CloudAmqp
         private InputList<int>? _recipients;
 
         /// <summary>
-        /// Identifiers for recipients to be notified.
+        /// Identifier for recipient to be notified. Leave empty to notify all recipients.
         /// </summary>
         public InputList<int> Recipients
         {
@@ -149,26 +178,25 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
-        /// For how long (in seconds) the value_threshold should be active before trigger alarm
+        /// The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
         /// </summary>
         [Input("timeThreshold")]
         public Input<int>? TimeThreshold { get; set; }
 
         /// <summary>
-        /// Type of the alarm, valid options are: cpu, memory, disk_usage, queue_length, connection_count, consumers_count,
-        /// net_split
+        /// The alarm type, see valid options below.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
         /// <summary>
-        /// What value to trigger the alarm for
+        /// The value to trigger the alarm for.
         /// </summary>
         [Input("valueThreshold")]
         public Input<int>? ValueThreshold { get; set; }
 
         /// <summary>
-        /// Regex for which vhost the queues are in
+        /// Regex for which vhost to check
         /// </summary>
         [Input("vhostRegex")]
         public Input<string>? VhostRegex { get; set; }
@@ -181,25 +209,25 @@ namespace Pulumi.CloudAmqp
     public sealed class AlarmState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enable or disable an alarm
+        /// Enable or disable the alarm to trigger.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// Instance identifier
+        /// The CloudAMQP instance ID.
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
 
         /// <summary>
-        /// Message types (total, unacked, ready) of the queue to trigger the alarm
+        /// Message type `(total, unacked, ready)` used by queue alarm type.
         /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
 
         /// <summary>
-        /// Regex for which queues to check
+        /// Regex for which queue to check.
         /// </summary>
         [Input("queueRegex")]
         public Input<string>? QueueRegex { get; set; }
@@ -208,7 +236,7 @@ namespace Pulumi.CloudAmqp
         private InputList<int>? _recipients;
 
         /// <summary>
-        /// Identifiers for recipients to be notified.
+        /// Identifier for recipient to be notified. Leave empty to notify all recipients.
         /// </summary>
         public InputList<int> Recipients
         {
@@ -217,26 +245,25 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
-        /// For how long (in seconds) the value_threshold should be active before trigger alarm
+        /// The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
         /// </summary>
         [Input("timeThreshold")]
         public Input<int>? TimeThreshold { get; set; }
 
         /// <summary>
-        /// Type of the alarm, valid options are: cpu, memory, disk_usage, queue_length, connection_count, consumers_count,
-        /// net_split
+        /// The alarm type, see valid options below.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// What value to trigger the alarm for
+        /// The value to trigger the alarm for.
         /// </summary>
         [Input("valueThreshold")]
         public Input<int>? ValueThreshold { get; set; }
 
         /// <summary>
-        /// Regex for which vhost the queues are in
+        /// Regex for which vhost to check
         /// </summary>
         [Input("vhostRegex")]
         public Input<string>? VhostRegex { get; set; }

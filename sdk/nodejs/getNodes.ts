@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
+ * Use this data source to retrieve information about the node(s) created by CloudAMQP instance.
  *
  * ## Example Usage
  *
@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
- * const communitPlugins = cloudamqp.getPluginsCommunity({
+ * const nodes = cloudamqp.getNodes({
  *     instanceId: cloudamqp_instance.instance.id,
  * });
  * ```
@@ -25,21 +25,24 @@ import * as utilities from "./utilities";
  *
  * ## Attribute reference
  *
- * * `plugins` - (Computed) An array of community plugins. Each `plugins` block consists of the fields documented below.
+ * * `nodes` - (Computed) An array of node information. Each `nodes` block consists of the fields documented below.
  *
  * ***
  *
- * The `plugins` block consists of
+ * The `nodes` block consist of
  *
- * * `name`        - (Computed) The type of the recipient.
- * * `require`     - (Computed) Min. required Rabbit MQ version to be used.
- * * `description` - (Computed) Description of what the plugin does.
+ * * `hostname`          - (Computed) Hostname assigned to the node.
+ * * `name`              - (Computed) Name of the node.
+ * * `running`           - (Computed) Is the node running?
+ * * `rabbitmqVersion`  - (Computed) Currently configured Rabbit MQ version on the node.
+ * * `erlangVersion`    - (Computed) Currently used Erlanbg version on the node.
+ * * `hipe`              - (Computed) Enable or disable High-performance Erlang.
  *
  * ## Dependency
  *
  * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
  */
-export function getPluginsCommunity(args: GetPluginsCommunityArgs, opts?: pulumi.InvokeOptions): Promise<GetPluginsCommunityResult> {
+export function getNodes(args: GetNodesArgs, opts?: pulumi.InvokeOptions): Promise<GetNodesResult> {
     if (!opts) {
         opts = {}
     }
@@ -47,28 +50,28 @@ export function getPluginsCommunity(args: GetPluginsCommunityArgs, opts?: pulumi
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    return pulumi.runtime.invoke("cloudamqp:index/getPluginsCommunity:getPluginsCommunity", {
+    return pulumi.runtime.invoke("cloudamqp:index/getNodes:getNodes", {
         "instanceId": args.instanceId,
-        "plugins": args.plugins,
+        "nodes": args.nodes,
     }, opts);
 }
 
 /**
- * A collection of arguments for invoking getPluginsCommunity.
+ * A collection of arguments for invoking getNodes.
  */
-export interface GetPluginsCommunityArgs {
+export interface GetNodesArgs {
     readonly instanceId: number;
-    readonly plugins?: inputs.GetPluginsCommunityPlugin[];
+    readonly nodes?: inputs.GetNodesNode[];
 }
 
 /**
- * A collection of values returned by getPluginsCommunity.
+ * A collection of values returned by getNodes.
  */
-export interface GetPluginsCommunityResult {
+export interface GetNodesResult {
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     readonly instanceId: number;
-    readonly plugins?: outputs.GetPluginsCommunityPlugin[];
+    readonly nodes: outputs.GetNodesNode[];
 }

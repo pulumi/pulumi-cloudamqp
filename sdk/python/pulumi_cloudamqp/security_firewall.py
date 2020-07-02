@@ -12,21 +12,68 @@ from . import utilities, tables
 class SecurityFirewall(pulumi.CustomResource):
     instance_id: pulumi.Output[float]
     """
-    Instance identifier
+    The CloudAMQP instance ID.
     """
     rules: pulumi.Output[list]
+    """
+    An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+
+      * `description` (`str`) - Description name of the rule. e.g. Default.
+      * `ip` (`str`) - Source ip and netmask for the rule. (e.g. 10.56.72.0/24)
+      * `ports` (`list`) - Custom ports to be opened
+      * `services` (`list`) - Pre-defined service ports
+    """
     def __init__(__self__, resource_name, opts=None, instance_id=None, rules=None, __props__=None, __name__=None, __opts__=None):
         """
-        Create a SecurityFirewall resource with the given unique name, props, and options.
+        This resource allows you to configure and manage firewall rules for the CloudAMQP instance. Beware that all rules need to be present, since all older configurations will be overwritten.
+
+        Only available for dedicated subscription plans.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        firewall_settings = cloudamqp.SecurityFirewall("firewallSettings",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            rules=[
+                {
+                    "ip": "192.168.0.0/24",
+                    "ports": [
+                        4567,
+                        4568,
+                    ],
+                    "services": [
+                        "AMQP",
+                        "AMQPS",
+                    ],
+                },
+                {
+                    "ip": "10.56.72.0/24",
+                    "ports": [],
+                    "services": [
+                        "AMQP",
+                        "AMQPS",
+                    ],
+                },
+            ])
+        ```
+        ## Depedency
+
+        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[float] instance_id: Instance identifier
+        :param pulumi.Input[float] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[list] rules: An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
 
         The **rules** object supports the following:
 
-          * `ip` (`pulumi.Input[str]`)
-          * `ports` (`pulumi.Input[list]`)
-          * `services` (`pulumi.Input[list]`)
+          * `description` (`pulumi.Input[str]`) - Description name of the rule. e.g. Default.
+          * `ip` (`pulumi.Input[str]`) - Source ip and netmask for the rule. (e.g. 10.56.72.0/24)
+          * `ports` (`pulumi.Input[list]`) - Custom ports to be opened
+          * `services` (`pulumi.Input[list]`) - Pre-defined service ports
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -66,13 +113,15 @@ class SecurityFirewall(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[float] instance_id: Instance identifier
+        :param pulumi.Input[float] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[list] rules: An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
 
         The **rules** object supports the following:
 
-          * `ip` (`pulumi.Input[str]`)
-          * `ports` (`pulumi.Input[list]`)
-          * `services` (`pulumi.Input[list]`)
+          * `description` (`pulumi.Input[str]`) - Description name of the rule. e.g. Default.
+          * `ip` (`pulumi.Input[str]`) - Source ip and netmask for the rule. (e.g. 10.56.72.0/24)
+          * `ports` (`pulumi.Input[list]`) - Custom ports to be opened
+          * `services` (`pulumi.Input[list]`) - Pre-defined service ports
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

@@ -12,13 +12,13 @@ namespace Pulumi.CloudAmqp
     public partial class VpcPeering : Pulumi.CustomResource
     {
         /// <summary>
-        /// Instance identifier
+        /// The CloudAMQP instance ID.
         /// </summary>
         [Output("instanceId")]
         public Output<int> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// VPC peering identifier
+        /// Peering identifier created by AW peering request.
         /// </summary>
         [Output("peeringId")]
         public Output<string> PeeringId { get; private set; } = null!;
@@ -76,13 +76,13 @@ namespace Pulumi.CloudAmqp
     public sealed class VpcPeeringArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Instance identifier
+        /// The CloudAMQP instance ID.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<int> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// VPC peering identifier
+        /// Peering identifier created by AW peering request.
         /// </summary>
         [Input("peeringId", required: true)]
         public Input<string> PeeringId { get; set; } = null!;
@@ -95,13 +95,13 @@ namespace Pulumi.CloudAmqp
     public sealed class VpcPeeringState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Instance identifier
+        /// The CloudAMQP instance ID.
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
 
         /// <summary>
-        /// VPC peering identifier
+        /// Peering identifier created by AW peering request.
         /// </summary>
         [Input("peeringId")]
         public Input<string>? PeeringId { get; set; }

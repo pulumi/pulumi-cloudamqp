@@ -7,6 +7,25 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.
+//
+// ## Argument reference
+//
+// * `instanceId` - (Required) The CloudAMQP instance identifier.
+//
+// ## Attribute reference
+//
+// * `name`        - (Computed) The name of the CloudAMQP instance.
+// * `plan`        - (Computed) The subscription plan for the CloudAMQP instance.
+// * `region`      - (Computed) The cloud platform and region that host the CloudAMQP instance, `{platform}::{region}`.
+// * `vpcSubnet`  - (Computed) Dedicated VPC subnet configured for the CloudAMQP instance.
+// * `nodes`       - (Computed) Number of nodes in the cluster of the CloudAMQP instance.
+// * `rmqVersion` - (Computed) The version of installed Rabbit MQ.
+// * `url`         - (Computed/Sensitive) The AMQP url, used by clients to connect for pub/sub.
+// * `apikey`      - (Computed/Sensitive) The API key to secondary API handing alarms, integration etc.
+// * `tags`        - (Computed) Tags the CloudAMQP instance with categories.
+// * `host`        - (Computed) The hostname for the CloudAMQP instance.
+// * `vhost`       - (Computed) The virtual host configured in Rabbit MQ.
 func LookupInstance(ctx *pulumi.Context, args *LookupInstanceArgs, opts ...pulumi.InvokeOption) (*LookupInstanceResult, error) {
 	var rv LookupInstanceResult
 	err := ctx.Invoke("cloudamqp:index/getInstance:getInstance", args, &rv, opts...)
@@ -24,8 +43,9 @@ type LookupInstanceArgs struct {
 
 // A collection of values returned by getInstance.
 type LookupInstanceResult struct {
-	Apikey string `pulumi:"apikey"`
-	Host   string `pulumi:"host"`
+	Apikey    string `pulumi:"apikey"`
+	Dedicated bool   `pulumi:"dedicated"`
+	Host      string `pulumi:"host"`
 	// The provider-assigned unique ID for this managed resource.
 	Id         string   `pulumi:"id"`
 	InstanceId int      `pulumi:"instanceId"`

@@ -11,8 +11,13 @@ import (
 )
 
 type SecurityFirewallRule struct {
-	Ip       string   `pulumi:"ip"`
-	Ports    []int    `pulumi:"ports"`
+	// Description name of the rule. e.g. Default.
+	Description *string `pulumi:"description"`
+	// Source ip and netmask for the rule. (e.g. 10.56.72.0/24)
+	Ip string `pulumi:"ip"`
+	// Custom ports to be opened
+	Ports []int `pulumi:"ports"`
+	// Pre-defined service ports
 	Services []string `pulumi:"services"`
 }
 
@@ -28,8 +33,13 @@ type SecurityFirewallRuleInput interface {
 }
 
 type SecurityFirewallRuleArgs struct {
-	Ip       pulumi.StringInput      `pulumi:"ip"`
-	Ports    pulumi.IntArrayInput    `pulumi:"ports"`
+	// Description name of the rule. e.g. Default.
+	Description pulumi.StringPtrInput `pulumi:"description"`
+	// Source ip and netmask for the rule. (e.g. 10.56.72.0/24)
+	Ip pulumi.StringInput `pulumi:"ip"`
+	// Custom ports to be opened
+	Ports pulumi.IntArrayInput `pulumi:"ports"`
+	// Pre-defined service ports
 	Services pulumi.StringArrayInput `pulumi:"services"`
 }
 
@@ -84,14 +94,22 @@ func (o SecurityFirewallRuleOutput) ToSecurityFirewallRuleOutputWithContext(ctx 
 	return o
 }
 
+// Description name of the rule. e.g. Default.
+func (o SecurityFirewallRuleOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecurityFirewallRule) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Source ip and netmask for the rule. (e.g. 10.56.72.0/24)
 func (o SecurityFirewallRuleOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v SecurityFirewallRule) string { return v.Ip }).(pulumi.StringOutput)
 }
 
+// Custom ports to be opened
 func (o SecurityFirewallRuleOutput) Ports() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v SecurityFirewallRule) []int { return v.Ports }).(pulumi.IntArrayOutput)
 }
 
+// Pre-defined service ports
 func (o SecurityFirewallRuleOutput) Services() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecurityFirewallRule) []string { return v.Services }).(pulumi.StringArrayOutput)
 }
@@ -114,6 +132,130 @@ func (o SecurityFirewallRuleArrayOutput) Index(i pulumi.IntInput) SecurityFirewa
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecurityFirewallRule {
 		return vs[0].([]SecurityFirewallRule)[vs[1].(int)]
 	}).(SecurityFirewallRuleOutput)
+}
+
+type GetNodesNode struct {
+	ErlangVersion   string `pulumi:"erlangVersion"`
+	Hipe            bool   `pulumi:"hipe"`
+	Hostname        string `pulumi:"hostname"`
+	Name            string `pulumi:"name"`
+	RabbitmqVersion string `pulumi:"rabbitmqVersion"`
+	Running         bool   `pulumi:"running"`
+}
+
+// GetNodesNodeInput is an input type that accepts GetNodesNodeArgs and GetNodesNodeOutput values.
+// You can construct a concrete instance of `GetNodesNodeInput` via:
+//
+//          GetNodesNodeArgs{...}
+type GetNodesNodeInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeOutput() GetNodesNodeOutput
+	ToGetNodesNodeOutputWithContext(context.Context) GetNodesNodeOutput
+}
+
+type GetNodesNodeArgs struct {
+	ErlangVersion   pulumi.StringInput `pulumi:"erlangVersion"`
+	Hipe            pulumi.BoolInput   `pulumi:"hipe"`
+	Hostname        pulumi.StringInput `pulumi:"hostname"`
+	Name            pulumi.StringInput `pulumi:"name"`
+	RabbitmqVersion pulumi.StringInput `pulumi:"rabbitmqVersion"`
+	Running         pulumi.BoolInput   `pulumi:"running"`
+}
+
+func (GetNodesNodeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNode)(nil)).Elem()
+}
+
+func (i GetNodesNodeArgs) ToGetNodesNodeOutput() GetNodesNodeOutput {
+	return i.ToGetNodesNodeOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeArgs) ToGetNodesNodeOutputWithContext(ctx context.Context) GetNodesNodeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeOutput)
+}
+
+// GetNodesNodeArrayInput is an input type that accepts GetNodesNodeArray and GetNodesNodeArrayOutput values.
+// You can construct a concrete instance of `GetNodesNodeArrayInput` via:
+//
+//          GetNodesNodeArray{ GetNodesNodeArgs{...} }
+type GetNodesNodeArrayInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeArrayOutput() GetNodesNodeArrayOutput
+	ToGetNodesNodeArrayOutputWithContext(context.Context) GetNodesNodeArrayOutput
+}
+
+type GetNodesNodeArray []GetNodesNodeInput
+
+func (GetNodesNodeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNode)(nil)).Elem()
+}
+
+func (i GetNodesNodeArray) ToGetNodesNodeArrayOutput() GetNodesNodeArrayOutput {
+	return i.ToGetNodesNodeArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeArray) ToGetNodesNodeArrayOutputWithContext(ctx context.Context) GetNodesNodeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeArrayOutput)
+}
+
+type GetNodesNodeOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNode)(nil)).Elem()
+}
+
+func (o GetNodesNodeOutput) ToGetNodesNodeOutput() GetNodesNodeOutput {
+	return o
+}
+
+func (o GetNodesNodeOutput) ToGetNodesNodeOutputWithContext(ctx context.Context) GetNodesNodeOutput {
+	return o
+}
+
+func (o GetNodesNodeOutput) ErlangVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.ErlangVersion }).(pulumi.StringOutput)
+}
+
+func (o GetNodesNodeOutput) Hipe() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNodesNode) bool { return v.Hipe }).(pulumi.BoolOutput)
+}
+
+func (o GetNodesNodeOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.Hostname }).(pulumi.StringOutput)
+}
+
+func (o GetNodesNodeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetNodesNodeOutput) RabbitmqVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.RabbitmqVersion }).(pulumi.StringOutput)
+}
+
+func (o GetNodesNodeOutput) Running() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNodesNode) bool { return v.Running }).(pulumi.BoolOutput)
+}
+
+type GetNodesNodeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNode)(nil)).Elem()
+}
+
+func (o GetNodesNodeArrayOutput) ToGetNodesNodeArrayOutput() GetNodesNodeArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeArrayOutput) ToGetNodesNodeArrayOutputWithContext(ctx context.Context) GetNodesNodeArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeArrayOutput) Index(i pulumi.IntInput) GetNodesNodeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodesNode {
+		return vs[0].([]GetNodesNode)[vs[1].(int)]
+	}).(GetNodesNodeOutput)
 }
 
 type GetPluginsCommunityPlugin struct {
@@ -337,6 +479,8 @@ func (o GetPluginsPluginArrayOutput) Index(i pulumi.IntInput) GetPluginsPluginOu
 func init() {
 	pulumi.RegisterOutputType(SecurityFirewallRuleOutput{})
 	pulumi.RegisterOutputType(SecurityFirewallRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeArrayOutput{})
 	pulumi.RegisterOutputType(GetPluginsCommunityPluginOutput{})
 	pulumi.RegisterOutputType(GetPluginsCommunityPluginArrayOutput{})
 	pulumi.RegisterOutputType(GetPluginsPluginOutput{})

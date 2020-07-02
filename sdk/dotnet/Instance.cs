@@ -9,34 +9,85 @@ using Pulumi.Serialization;
 
 namespace Pulumi.CloudAmqp
 {
+    /// <summary>
+    /// This resource allows you to create and manage a CloudAMQP instance running Rabbit MQ and deploy to multiple cloud platforms provider and over multiple regions, see Instance regions for more information.
+    /// 
+    /// Once the instance is created it will be assigned a unique identifier. All other resource and data sources created for this instance needs to reference the instance identifier.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         // Minimum free lemur instance
+    ///         var lemurInstance = new CloudAmqp.Instance("lemurInstance", new CloudAmqp.InstanceArgs
+    ///         {
+    ///             Plan = "lemur",
+    ///             Region = "amazon-web-services::us-west-1",
+    ///         });
+    ///         // New dedicated bunny instance
+    ///         var instance = new CloudAmqp.Instance("instance", new CloudAmqp.InstanceArgs
+    ///         {
+    ///             NoDefaultAlarms = true,
+    ///             Nodes = 1,
+    ///             Plan = "bunny",
+    ///             Region = "amazon-web-services::us-west-1",
+    ///             RmqVersion = "3.8.3",
+    ///             Tags = 
+    ///             {
+    ///                 "terraform",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// </summary>
     public partial class Instance : Pulumi.CustomResource
     {
         /// <summary>
-        /// API key for the CloudAMQP instance
+        /// (Computed) API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
         /// </summary>
         [Output("apikey")]
         public Output<string> Apikey { get; private set; } = null!;
 
         /// <summary>
-        /// Host name for the CloudAMQP instance
+        /// Is the instance hosted on a dedicated server
+        /// </summary>
+        [Output("dedicated")]
+        public Output<bool> Dedicated { get; private set; } = null!;
+
+        /// <summary>
+        /// (Computed) The host name for the CloudAMQP instance.
         /// </summary>
         [Output("host")]
         public Output<string> Host { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the instance
+        /// Name of the CloudAMQP instance.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Number of nodes in cluster (plan must support it)
+        /// Set to true to discard creating default alarms when the instance is created.
+        /// </summary>
+        [Output("noDefaultAlarms")]
+        public Output<bool?> NoDefaultAlarms { get; private set; } = null!;
+
+        /// <summary>
+        /// Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
         /// </summary>
         [Output("nodes")]
         public Output<int?> Nodes { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the plan, valid options are: lemur, tiger, bunny, rabbit, panda, ape, hippo, lion
+        /// The subscription plan. See available plans
         /// </summary>
         [Output("plan")]
         public Output<string> Plan { get; private set; } = null!;
@@ -48,37 +99,37 @@ namespace Pulumi.CloudAmqp
         public Output<bool> Ready { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the region you want to create your instance in
+        /// The region to host the instance in. See Instance regions
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// RabbitMQ version
+        /// The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.
         /// </summary>
         [Output("rmqVersion")]
         public Output<string?> RmqVersion { get; private set; } = null!;
 
         /// <summary>
-        /// Tag the instances with optional tags
+        /// One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// URL of the CloudAMQP instance
+        /// (Computed) AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
         /// </summary>
         [Output("url")]
         public Output<string> Url { get; private set; } = null!;
 
         /// <summary>
-        /// The virtual host
+        /// (Computed) The virtual host used by Rabbit MQ.
         /// </summary>
         [Output("vhost")]
         public Output<string> Vhost { get; private set; } = null!;
 
         /// <summary>
-        /// Dedicated VPC subnet, shouldn't overlap with your current VPC's subnet
+        /// Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
         /// </summary>
         [Output("vpcSubnet")]
         public Output<string?> VpcSubnet { get; private set; } = null!;
@@ -130,31 +181,37 @@ namespace Pulumi.CloudAmqp
     public sealed class InstanceArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Name of the instance
+        /// Name of the CloudAMQP instance.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Number of nodes in cluster (plan must support it)
+        /// Set to true to discard creating default alarms when the instance is created.
+        /// </summary>
+        [Input("noDefaultAlarms")]
+        public Input<bool>? NoDefaultAlarms { get; set; }
+
+        /// <summary>
+        /// Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
         /// </summary>
         [Input("nodes")]
         public Input<int>? Nodes { get; set; }
 
         /// <summary>
-        /// Name of the plan, valid options are: lemur, tiger, bunny, rabbit, panda, ape, hippo, lion
+        /// The subscription plan. See available plans
         /// </summary>
         [Input("plan", required: true)]
         public Input<string> Plan { get; set; } = null!;
 
         /// <summary>
-        /// Name of the region you want to create your instance in
+        /// The region to host the instance in. See Instance regions
         /// </summary>
         [Input("region", required: true)]
         public Input<string> Region { get; set; } = null!;
 
         /// <summary>
-        /// RabbitMQ version
+        /// The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.
         /// </summary>
         [Input("rmqVersion")]
         public Input<string>? RmqVersion { get; set; }
@@ -163,7 +220,7 @@ namespace Pulumi.CloudAmqp
         private InputList<string>? _tags;
 
         /// <summary>
-        /// Tag the instances with optional tags
+        /// One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
         /// </summary>
         public InputList<string> Tags
         {
@@ -172,7 +229,7 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
-        /// Dedicated VPC subnet, shouldn't overlap with your current VPC's subnet
+        /// Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
         /// </summary>
         [Input("vpcSubnet")]
         public Input<string>? VpcSubnet { get; set; }
@@ -185,31 +242,43 @@ namespace Pulumi.CloudAmqp
     public sealed class InstanceState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// API key for the CloudAMQP instance
+        /// (Computed) API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
         /// </summary>
         [Input("apikey")]
         public Input<string>? Apikey { get; set; }
 
         /// <summary>
-        /// Host name for the CloudAMQP instance
+        /// Is the instance hosted on a dedicated server
+        /// </summary>
+        [Input("dedicated")]
+        public Input<bool>? Dedicated { get; set; }
+
+        /// <summary>
+        /// (Computed) The host name for the CloudAMQP instance.
         /// </summary>
         [Input("host")]
         public Input<string>? Host { get; set; }
 
         /// <summary>
-        /// Name of the instance
+        /// Name of the CloudAMQP instance.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Number of nodes in cluster (plan must support it)
+        /// Set to true to discard creating default alarms when the instance is created.
+        /// </summary>
+        [Input("noDefaultAlarms")]
+        public Input<bool>? NoDefaultAlarms { get; set; }
+
+        /// <summary>
+        /// Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
         /// </summary>
         [Input("nodes")]
         public Input<int>? Nodes { get; set; }
 
         /// <summary>
-        /// Name of the plan, valid options are: lemur, tiger, bunny, rabbit, panda, ape, hippo, lion
+        /// The subscription plan. See available plans
         /// </summary>
         [Input("plan")]
         public Input<string>? Plan { get; set; }
@@ -221,13 +290,13 @@ namespace Pulumi.CloudAmqp
         public Input<bool>? Ready { get; set; }
 
         /// <summary>
-        /// Name of the region you want to create your instance in
+        /// The region to host the instance in. See Instance regions
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// RabbitMQ version
+        /// The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.
         /// </summary>
         [Input("rmqVersion")]
         public Input<string>? RmqVersion { get; set; }
@@ -236,7 +305,7 @@ namespace Pulumi.CloudAmqp
         private InputList<string>? _tags;
 
         /// <summary>
-        /// Tag the instances with optional tags
+        /// One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
         /// </summary>
         public InputList<string> Tags
         {
@@ -245,19 +314,19 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
-        /// URL of the CloudAMQP instance
+        /// (Computed) AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
         /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }
 
         /// <summary>
-        /// The virtual host
+        /// (Computed) The virtual host used by Rabbit MQ.
         /// </summary>
         [Input("vhost")]
         public Input<string>? Vhost { get; set; }
 
         /// <summary>
-        /// Dedicated VPC subnet, shouldn't overlap with your current VPC's subnet
+        /// Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
         /// </summary>
         [Input("vpcSubnet")]
         public Input<string>? VpcSubnet { get; set; }

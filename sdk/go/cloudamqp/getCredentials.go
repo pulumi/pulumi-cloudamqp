@@ -7,6 +7,42 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// Use this data source to retrieve information about the credentials of the configured user in Rabbit MQ. Information is extracted from `cloudamqp_instance.instance.url`.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := cloudamqp.GetCredentials(ctx, &cloudamqp.GetCredentialsArgs{
+// 			InstanceId: cloudamqp_instance.Instance.Id,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ## Argument reference
+//
+// * `instanceId` - (Required) The CloudAMQP instance identifier.
+//
+// ## Attribute reference
+//
+// * `username`    - (Computed/Sensitive) The username for the configured user in Rabbit MQ.
+// * `password`    - (Computed/Sensitive) The password used by the `username`.
+//
+// ## Dependency
+//
+// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 func GetCredentials(ctx *pulumi.Context, args *GetCredentialsArgs, opts ...pulumi.InvokeOption) (*GetCredentialsResult, error) {
 	var rv GetCredentialsResult
 	err := ctx.Invoke("cloudamqp:index/getCredentials:getCredentials", args, &rv, opts...)
