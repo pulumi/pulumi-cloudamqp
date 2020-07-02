@@ -4,6 +4,26 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * This resource allows you to enable or disable Rabbit MQ plugins.
+ *
+ * Only available for dedicated subscription plans.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const pluginRabbitmqTop = new cloudamqp.Plugin("pluginRabbitmqTop", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     enabled: true,
+ * });
+ * ```
+ * ## Dependency
+ *
+ * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ */
 export class Plugin extends pulumi.CustomResource {
     /**
      * Get an existing Plugin resource's state with the given name, ID, and optional extra
@@ -33,15 +53,15 @@ export class Plugin extends pulumi.CustomResource {
     }
 
     /**
-     * If the plugin is enabled
+     * Enable or disable the plugins.
      */
     public readonly enabled!: pulumi.Output<boolean>;
     /**
-     * Instance identifier
+     * The CloudAMQP instance ID.
      */
     public readonly instanceId!: pulumi.Output<number>;
     /**
-     * The name of the plugin
+     * The name of the Rabbit MQ plugin.
      */
     public readonly name!: pulumi.Output<string>;
 
@@ -88,15 +108,15 @@ export class Plugin extends pulumi.CustomResource {
  */
 export interface PluginState {
     /**
-     * If the plugin is enabled
+     * Enable or disable the plugins.
      */
     readonly enabled?: pulumi.Input<boolean>;
     /**
-     * Instance identifier
+     * The CloudAMQP instance ID.
      */
     readonly instanceId?: pulumi.Input<number>;
     /**
-     * The name of the plugin
+     * The name of the Rabbit MQ plugin.
      */
     readonly name?: pulumi.Input<string>;
 }
@@ -106,15 +126,15 @@ export interface PluginState {
  */
 export interface PluginArgs {
     /**
-     * If the plugin is enabled
+     * Enable or disable the plugins.
      */
     readonly enabled: pulumi.Input<boolean>;
     /**
-     * Instance identifier
+     * The CloudAMQP instance ID.
      */
     readonly instanceId: pulumi.Input<number>;
     /**
-     * The name of the plugin
+     * The name of the Rabbit MQ plugin.
      */
     readonly name?: pulumi.Input<string>;
 }

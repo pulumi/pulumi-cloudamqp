@@ -6,6 +6,35 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipientId` or `name`.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const defaultRecipient = cloudamqp.getNotification({
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     name: "default",
+ * });
+ * ```
+ * ## Argument reference
+ *
+ * * `instanceId`   - (Required) The CloudAMQP instance identifier.
+ * * `recipientId`  - (Optional) The recipient identifier.
+ * * `name`          - (Optional) The name set for the recipient.
+ *
+ * ## Attribute reference
+ *
+ * * `type`  - (Computed) The type of the recipient.
+ * * `value` - (Computed) The notification endpoint, where to send the notification.
+ *
+ * ## Dependency
+ *
+ * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ */
 export function getNotification(args: GetNotificationArgs, opts?: pulumi.InvokeOptions): Promise<GetNotificationResult> {
     if (!opts) {
         opts = {}

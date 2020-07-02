@@ -37,7 +37,37 @@ class AwaitableGetPluginsResult(GetPluginsResult):
 
 def get_plugins(instance_id=None,plugins=None,opts=None):
     """
-    Use this data source to access information about an existing resource.
+    Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    plugins = cloudamqp.get_plugins(instance_id=cloudamqp_instance["instance"]["id"])
+    ```
+    ## Argument reference
+
+    * `instance_id` - (Required) The CloudAMQP instance identifier.
+
+    ## Attribute reference
+
+    * `plugins` - (Computed) An array of plugins. Each `plugins` block consists of the fields documented below.
+
+    ***
+
+    The `plugins` block consist of
+
+    * `name`        - (Computed) The type of the recipient.
+    * `version`     - (Computed) Rabbit MQ version that the plugins are shipped with.
+    * `description` - (Computed) Description of what the plugin does.
+    * `enabled`     - (Computed) Enable or disable information for the plugin.
+
+    ## Dependency
+
+    This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
 
 
     The **plugins** object supports the following:

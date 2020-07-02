@@ -49,7 +49,31 @@ class AwaitableGetNotificationResult(GetNotificationResult):
 
 def get_notification(instance_id=None,name=None,recipient_id=None,opts=None):
     """
-    Use this data source to access information about an existing resource.
+    Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipient_id` or `name`.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    default_recipient = cloudamqp.get_notification(instance_id=cloudamqp_instance["instance"]["id"],
+        name="default")
+    ```
+    ## Argument reference
+
+    * `instance_id`   - (Required) The CloudAMQP instance identifier.
+    * `recipient_id`  - (Optional) The recipient identifier.
+    * `name`          - (Optional) The name set for the recipient.
+
+    ## Attribute reference
+
+    * `type`  - (Computed) The type of the recipient.
+    * `value` - (Computed) The notification endpoint, where to send the notification.
+
+    ## Dependency
+
+    This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
     """
     __args__ = dict()
 

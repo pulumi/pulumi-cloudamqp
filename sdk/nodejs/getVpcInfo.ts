@@ -6,6 +6,36 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Use this data source to retrieve information about VPC for a CloudAMQP instance.
+ *
+ * Only available for CloudAMQP instances hosted in AWS.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const vpcInfo = cloudamqp.getVpcInfo({
+ *     instanceId: cloudamqp_instance.instance.id,
+ * });
+ * ```
+ * ## Argument reference
+ *
+ * * `instanceId` - (Required) The CloudAMQP instance identifier.
+ *
+ * ## Attribute reference
+ *
+ * * `name`                - (Computed) The name of the CloudAMQP instance.
+ * * `vpcSubnet`          - (Computed) Dedicated VPC subnet.
+ * * `ownerId`            - (Computed) AWS account identifier.
+ * * `securityGroupId`   - (Computed) AWS security group identifier.
+ *
+ * ## Dependency
+ *
+ * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ */
 export function getVpcInfo(args: GetVpcInfoArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcInfoResult> {
     if (!opts) {
         opts = {}

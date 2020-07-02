@@ -7,6 +7,7 @@ from .alarm import *
 from .get_alarm import *
 from .get_credentials import *
 from .get_instance import *
+from .get_nodes import *
 from .get_notification import *
 from .get_plugins import *
 from .get_plugins_community import *

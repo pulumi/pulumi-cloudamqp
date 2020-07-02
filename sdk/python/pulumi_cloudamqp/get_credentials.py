@@ -41,7 +41,28 @@ class AwaitableGetCredentialsResult(GetCredentialsResult):
 
 def get_credentials(instance_id=None,password=None,username=None,opts=None):
     """
-    Use this data source to access information about an existing resource.
+    Use this data source to retrieve information about the credentials of the configured user in Rabbit MQ. Information is extracted from `cloudamqp_instance.instance.url`.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    credentials = cloudamqp.get_credentials(instance_id=cloudamqp_instance["instance"]["id"])
+    ```
+    ## Argument reference
+
+    * `instance_id` - (Required) The CloudAMQP instance identifier.
+
+    ## Attribute reference
+
+    * `username`    - (Computed/Sensitive) The username for the configured user in Rabbit MQ.
+    * `password`    - (Computed/Sensitive) The password used by the `username`.
+
+    ## Dependency
+
+    This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
     """
     __args__ = dict()
 

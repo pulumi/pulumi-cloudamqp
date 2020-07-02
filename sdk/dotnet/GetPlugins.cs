@@ -11,6 +11,52 @@ namespace Pulumi.CloudAmqp
 {
     public static class GetPlugins
     {
+        /// <summary>
+        /// Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using CloudAmqp = Pulumi.CloudAmqp;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var plugins = Output.Create(CloudAmqp.GetPlugins.InvokeAsync(new CloudAmqp.GetPluginsArgs
+        ///         {
+        ///             InstanceId = cloudamqp_instance.Instance.Id,
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// ## Argument reference
+        /// 
+        /// * `instance_id` - (Required) The CloudAMQP instance identifier.
+        /// 
+        /// ## Attribute reference
+        /// 
+        /// * `plugins` - (Computed) An array of plugins. Each `plugins` block consists of the fields documented below.
+        /// 
+        /// ___
+        /// 
+        /// The `plugins` block consist of
+        /// 
+        /// * `name`        - (Computed) The type of the recipient.
+        /// * `version`     - (Computed) Rabbit MQ version that the plugins are shipped with.
+        /// * `description` - (Computed) Description of what the plugin does.
+        /// * `enabled`     - (Computed) Enable or disable information for the plugin.
+        /// 
+        /// ## Dependency
+        /// 
+        /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+        /// </summary>
         public static Task<GetPluginsResult> InvokeAsync(GetPluginsArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetPluginsResult>("cloudamqp:index/getPlugins:getPlugins", args ?? new GetPluginsArgs(), options.WithVersion());
     }

@@ -7,6 +7,46 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// Use this data source to retrieve information about VPC for a CloudAMQP instance.
+//
+// Only available for CloudAMQP instances hosted in AWS.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := cloudamqp.GetVpcInfo(ctx, &cloudamqp.GetVpcInfoArgs{
+// 			InstanceId: cloudamqp_instance.Instance.Id,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ## Argument reference
+//
+// * `instanceId` - (Required) The CloudAMQP instance identifier.
+//
+// ## Attribute reference
+//
+// * `name`                - (Computed) The name of the CloudAMQP instance.
+// * `vpcSubnet`          - (Computed) Dedicated VPC subnet.
+// * `ownerId`            - (Computed) AWS account identifier.
+// * `securityGroupId`   - (Computed) AWS security group identifier.
+//
+// ## Dependency
+//
+// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 func GetVpcInfo(ctx *pulumi.Context, args *GetVpcInfoArgs, opts ...pulumi.InvokeOption) (*GetVpcInfoResult, error) {
 	var rv GetVpcInfoResult
 	err := ctx.Invoke("cloudamqp:index/getVpcInfo:getVpcInfo", args, &rv, opts...)

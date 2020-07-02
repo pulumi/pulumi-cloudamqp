@@ -19,6 +19,7 @@
         "getAlarm.ts",
         "getCredentials.ts",
         "getInstance.ts",
+        "getNodes.ts",
         "getNotification.ts",
         "getPlugins.ts",
         "getPluginsCommunity.ts",

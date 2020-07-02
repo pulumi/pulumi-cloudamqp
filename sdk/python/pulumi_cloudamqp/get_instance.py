@@ -12,10 +12,13 @@ class GetInstanceResult:
     """
     A collection of values returned by getInstance.
     """
-    def __init__(__self__, apikey=None, host=None, id=None, instance_id=None, name=None, nodes=None, plan=None, region=None, rmq_version=None, tags=None, url=None, vhost=None, vpc_subnet=None):
+    def __init__(__self__, apikey=None, dedicated=None, host=None, id=None, instance_id=None, name=None, nodes=None, plan=None, region=None, rmq_version=None, tags=None, url=None, vhost=None, vpc_subnet=None):
         if apikey and not isinstance(apikey, str):
             raise TypeError("Expected argument 'apikey' to be a str")
         __self__.apikey = apikey
+        if dedicated and not isinstance(dedicated, bool):
+            raise TypeError("Expected argument 'dedicated' to be a bool")
+        __self__.dedicated = dedicated
         if host and not isinstance(host, str):
             raise TypeError("Expected argument 'host' to be a str")
         __self__.host = host
@@ -62,6 +65,7 @@ class AwaitableGetInstanceResult(GetInstanceResult):
             yield self
         return GetInstanceResult(
             apikey=self.apikey,
+            dedicated=self.dedicated,
             host=self.host,
             id=self.id,
             instance_id=self.instance_id,
@@ -77,7 +81,25 @@ class AwaitableGetInstanceResult(GetInstanceResult):
 
 def get_instance(instance_id=None,vpc_subnet=None,opts=None):
     """
-    Use this data source to access information about an existing resource.
+    Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.
+
+    ## Argument reference
+
+    * `instance_id` - (Required) The CloudAMQP instance identifier.
+
+    ## Attribute reference
+
+    * `name`        - (Computed) The name of the CloudAMQP instance.
+    * `plan`        - (Computed) The subscription plan for the CloudAMQP instance.
+    * `region`      - (Computed) The cloud platform and region that host the CloudAMQP instance, `{platform}::{region}`.
+    * `vpc_subnet`  - (Computed) Dedicated VPC subnet configured for the CloudAMQP instance.
+    * `nodes`       - (Computed) Number of nodes in the cluster of the CloudAMQP instance.
+    * `rmq_version` - (Computed) The version of installed Rabbit MQ.
+    * `url`         - (Computed/Sensitive) The AMQP url, used by clients to connect for pub/sub.
+    * `apikey`      - (Computed/Sensitive) The API key to secondary API handing alarms, integration etc.
+    * `tags`        - (Computed) Tags the CloudAMQP instance with categories.
+    * `host`        - (Computed) The hostname for the CloudAMQP instance.
+    * `vhost`       - (Computed) The virtual host configured in Rabbit MQ.
     """
     __args__ = dict()
 
@@ -92,6 +114,7 @@ def get_instance(instance_id=None,vpc_subnet=None,opts=None):
 
     return AwaitableGetInstanceResult(
         apikey=__ret__.get('apikey'),
+        dedicated=__ret__.get('dedicated'),
         host=__ret__.get('host'),
         id=__ret__.get('id'),
         instance_id=__ret__.get('instanceId'),

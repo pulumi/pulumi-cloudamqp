@@ -11,6 +11,51 @@ namespace Pulumi.CloudAmqp
 {
     public static class GetPluginsCommunity
     {
+        /// <summary>
+        /// Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using CloudAmqp = Pulumi.CloudAmqp;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var communitPlugins = Output.Create(CloudAmqp.GetPluginsCommunity.InvokeAsync(new CloudAmqp.GetPluginsCommunityArgs
+        ///         {
+        ///             InstanceId = cloudamqp_instance.Instance.Id,
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// ## Argument reference
+        /// 
+        /// * `instance_id` - (Required) The CloudAMQP instance identifier.
+        /// 
+        /// ## Attribute reference
+        /// 
+        /// * `plugins` - (Computed) An array of community plugins. Each `plugins` block consists of the fields documented below.
+        /// 
+        /// ___
+        /// 
+        /// The `plugins` block consists of
+        /// 
+        /// * `name`        - (Computed) The type of the recipient.
+        /// * `require`     - (Computed) Min. required Rabbit MQ version to be used.
+        /// * `description` - (Computed) Description of what the plugin does.
+        /// 
+        /// ## Dependency
+        /// 
+        /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+        /// </summary>
         public static Task<GetPluginsCommunityResult> InvokeAsync(GetPluginsCommunityArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetPluginsCommunityResult>("cloudamqp:index/getPluginsCommunity:getPluginsCommunity", args ?? new GetPluginsCommunityArgs(), options.WithVersion());
     }

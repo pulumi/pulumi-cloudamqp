@@ -37,7 +37,36 @@ class AwaitableGetPluginsCommunityResult(GetPluginsCommunityResult):
 
 def get_plugins_community(instance_id=None,plugins=None,opts=None):
     """
-    Use this data source to access information about an existing resource.
+    Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    communit_plugins = cloudamqp.get_plugins_community(instance_id=cloudamqp_instance["instance"]["id"])
+    ```
+    ## Argument reference
+
+    * `instance_id` - (Required) The CloudAMQP instance identifier.
+
+    ## Attribute reference
+
+    * `plugins` - (Computed) An array of community plugins. Each `plugins` block consists of the fields documented below.
+
+    ***
+
+    The `plugins` block consists of
+
+    * `name`        - (Computed) The type of the recipient.
+    * `require`     - (Computed) Min. required Rabbit MQ version to be used.
+    * `description` - (Computed) Description of what the plugin does.
+
+    ## Dependency
+
+    This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
 
 
     The **plugins** object supports the following:

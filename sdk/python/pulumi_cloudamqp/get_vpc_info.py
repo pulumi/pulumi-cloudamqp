@@ -49,7 +49,32 @@ class AwaitableGetVpcInfoResult(GetVpcInfoResult):
 
 def get_vpc_info(instance_id=None,opts=None):
     """
-    Use this data source to access information about an existing resource.
+    Use this data source to retrieve information about VPC for a CloudAMQP instance.
+
+    Only available for CloudAMQP instances hosted in AWS.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    vpc_info = cloudamqp.get_vpc_info(instance_id=cloudamqp_instance["instance"]["id"])
+    ```
+    ## Argument reference
+
+    * `instance_id` - (Required) The CloudAMQP instance identifier.
+
+    ## Attribute reference
+
+    * `name`                - (Computed) The name of the CloudAMQP instance.
+    * `vpc_subnet`          - (Computed) Dedicated VPC subnet.
+    * `owner_id`            - (Computed) AWS account identifier.
+    * `security_group_id`   - (Computed) AWS security group identifier.
+
+    ## Dependency
+
+    This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
     """
     __args__ = dict()
 

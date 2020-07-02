@@ -7,6 +7,49 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := cloudamqp.GetPluginsCommunity(ctx, &cloudamqp.GetPluginsCommunityArgs{
+// 			InstanceId: cloudamqp_instance.Instance.Id,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ## Argument reference
+//
+// * `instanceId` - (Required) The CloudAMQP instance identifier.
+//
+// ## Attribute reference
+//
+// * `plugins` - (Computed) An array of community plugins. Each `plugins` block consists of the fields documented below.
+//
+// ***
+//
+// The `plugins` block consists of
+//
+// * `name`        - (Computed) The type of the recipient.
+// * `require`     - (Computed) Min. required Rabbit MQ version to be used.
+// * `description` - (Computed) Description of what the plugin does.
+//
+// ## Dependency
+//
+// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 func GetPluginsCommunity(ctx *pulumi.Context, args *GetPluginsCommunityArgs, opts ...pulumi.InvokeOption) (*GetPluginsCommunityResult, error) {
 	var rv GetPluginsCommunityResult
 	err := ctx.Invoke("cloudamqp:index/getPluginsCommunity:getPluginsCommunity", args, &rv, opts...)

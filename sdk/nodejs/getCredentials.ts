@@ -6,6 +6,32 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Use this data source to retrieve information about the credentials of the configured user in Rabbit MQ. Information is extracted from `cloudamqp_instance.instance.url`.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const credentials = cloudamqp.getCredentials({
+ *     instanceId: cloudamqp_instance.instance.id,
+ * });
+ * ```
+ * ## Argument reference
+ *
+ * * `instanceId` - (Required) The CloudAMQP instance identifier.
+ *
+ * ## Attribute reference
+ *
+ * * `username`    - (Computed/Sensitive) The username for the configured user in Rabbit MQ.
+ * * `password`    - (Computed/Sensitive) The password used by the `username`.
+ *
+ * ## Dependency
+ *
+ * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ */
 export function getCredentials(args: GetCredentialsArgs, opts?: pulumi.InvokeOptions): Promise<GetCredentialsResult> {
     if (!opts) {
         opts = {}

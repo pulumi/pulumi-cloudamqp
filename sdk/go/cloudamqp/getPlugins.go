@@ -7,6 +7,50 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := cloudamqp.GetPlugins(ctx, &cloudamqp.GetPluginsArgs{
+// 			InstanceId: cloudamqp_instance.Instance.Id,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ## Argument reference
+//
+// * `instanceId` - (Required) The CloudAMQP instance identifier.
+//
+// ## Attribute reference
+//
+// * `plugins` - (Computed) An array of plugins. Each `plugins` block consists of the fields documented below.
+//
+// ***
+//
+// The `plugins` block consist of
+//
+// * `name`        - (Computed) The type of the recipient.
+// * `version`     - (Computed) Rabbit MQ version that the plugins are shipped with.
+// * `description` - (Computed) Description of what the plugin does.
+// * `enabled`     - (Computed) Enable or disable information for the plugin.
+//
+// ## Dependency
+//
+// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 func GetPlugins(ctx *pulumi.Context, args *GetPluginsArgs, opts ...pulumi.InvokeOption) (*GetPluginsResult, error) {
 	var rv GetPluginsResult
 	err := ctx.Invoke("cloudamqp:index/getPlugins:getPlugins", args, &rv, opts...)

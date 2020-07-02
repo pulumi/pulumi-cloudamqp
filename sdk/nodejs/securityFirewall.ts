@@ -6,6 +6,46 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * This resource allows you to configure and manage firewall rules for the CloudAMQP instance. Beware that all rules need to be present, since all older configurations will be overwritten.
+ *
+ * Only available for dedicated subscription plans.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const firewallSettings = new cloudamqp.SecurityFirewall("firewallSettings", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     rules: [
+ *         {
+ *             ip: "192.168.0.0/24",
+ *             ports: [
+ *                 4567,
+ *                 4568,
+ *             ],
+ *             services: [
+ *                 "AMQP",
+ *                 "AMQPS",
+ *             ],
+ *         },
+ *         {
+ *             ip: "10.56.72.0/24",
+ *             ports: [],
+ *             services: [
+ *                 "AMQP",
+ *                 "AMQPS",
+ *             ],
+ *         },
+ *     ],
+ * });
+ * ```
+ * ## Depedency
+ *
+ * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ */
 export class SecurityFirewall extends pulumi.CustomResource {
     /**
      * Get an existing SecurityFirewall resource's state with the given name, ID, and optional extra
@@ -35,9 +75,12 @@ export class SecurityFirewall extends pulumi.CustomResource {
     }
 
     /**
-     * Instance identifier
+     * The CloudAMQP instance ID.
      */
     public readonly instanceId!: pulumi.Output<number>;
+    /**
+     * An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+     */
     public readonly rules!: pulumi.Output<outputs.SecurityFirewallRule[]>;
 
     /**
@@ -81,9 +124,12 @@ export class SecurityFirewall extends pulumi.CustomResource {
  */
 export interface SecurityFirewallState {
     /**
-     * Instance identifier
+     * The CloudAMQP instance ID.
      */
     readonly instanceId?: pulumi.Input<number>;
+    /**
+     * An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+     */
     readonly rules?: pulumi.Input<pulumi.Input<inputs.SecurityFirewallRule>[]>;
 }
 
@@ -92,8 +138,11 @@ export interface SecurityFirewallState {
  */
 export interface SecurityFirewallArgs {
     /**
-     * Instance identifier
+     * The CloudAMQP instance ID.
      */
     readonly instanceId: pulumi.Input<number>;
+    /**
+     * An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+     */
     readonly rules: pulumi.Input<pulumi.Input<inputs.SecurityFirewallRule>[]>;
 }

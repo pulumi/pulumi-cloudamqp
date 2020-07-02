@@ -4,6 +4,40 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * This resource allows you to create and manage recipients to receive alarm notifications. There will always be a default recipient created upon instance creation. This recipient will use team email and receive notifications from default alarms.
+ *
+ * Available for all subscription plans.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * // New recipient to receieve notifications
+ * const recipient01 = new cloudamqp.Notification("recipient01", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     type: "email",
+ *     value: "alarm@example.com",
+ * });
+ * ```
+ * ## Notification Type reference
+ *
+ * Valid options for notification type.
+ *
+ * * email
+ * * webhook
+ * * pagerduty
+ * * victorops
+ * * opsgenie
+ * * opsgenie-eu
+ * * slack
+ *
+ * ## Dependency
+ *
+ * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ */
 export class Notification extends pulumi.CustomResource {
     /**
      * Get an existing Notification resource's state with the given name, ID, and optional extra
@@ -33,19 +67,19 @@ export class Notification extends pulumi.CustomResource {
     }
 
     /**
-     * Instance identifier
+     * The CloudAMQP instance ID.
      */
     public readonly instanceId!: pulumi.Output<number>;
     /**
-     * Optional display name of the recipient
+     * Display name of the recipient.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack
+     * Type of the notification. See valid options below.
      */
     public readonly type!: pulumi.Output<string>;
     /**
-     * Notification endpoint, where to send the notifcation
+     * Endpoint to send the notification.
      */
     public readonly value!: pulumi.Output<string>;
 
@@ -97,19 +131,19 @@ export class Notification extends pulumi.CustomResource {
  */
 export interface NotificationState {
     /**
-     * Instance identifier
+     * The CloudAMQP instance ID.
      */
     readonly instanceId?: pulumi.Input<number>;
     /**
-     * Optional display name of the recipient
+     * Display name of the recipient.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack
+     * Type of the notification. See valid options below.
      */
     readonly type?: pulumi.Input<string>;
     /**
-     * Notification endpoint, where to send the notifcation
+     * Endpoint to send the notification.
      */
     readonly value?: pulumi.Input<string>;
 }
@@ -119,19 +153,19 @@ export interface NotificationState {
  */
 export interface NotificationArgs {
     /**
-     * Instance identifier
+     * The CloudAMQP instance ID.
      */
     readonly instanceId: pulumi.Input<number>;
     /**
-     * Optional display name of the recipient
+     * Display name of the recipient.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack
+     * Type of the notification. See valid options below.
      */
     readonly type: pulumi.Input<string>;
     /**
-     * Notification endpoint, where to send the notifcation
+     * Endpoint to send the notification.
      */
     readonly value: pulumi.Input<string>;
 }

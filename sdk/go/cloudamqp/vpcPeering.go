@@ -13,9 +13,9 @@ import (
 type VpcPeering struct {
 	pulumi.CustomResourceState
 
-	// Instance identifier
+	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
-	// VPC peering identifier
+	// Peering identifier created by AW peering request.
 	PeeringId pulumi.StringOutput `pulumi:"peeringId"`
 	// VPC peering status
 	Status pulumi.StringOutput `pulumi:"status"`
@@ -55,18 +55,18 @@ func GetVpcPeering(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpcPeering resources.
 type vpcPeeringState struct {
-	// Instance identifier
+	// The CloudAMQP instance ID.
 	InstanceId *int `pulumi:"instanceId"`
-	// VPC peering identifier
+	// Peering identifier created by AW peering request.
 	PeeringId *string `pulumi:"peeringId"`
 	// VPC peering status
 	Status *string `pulumi:"status"`
 }
 
 type VpcPeeringState struct {
-	// Instance identifier
+	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntPtrInput
-	// VPC peering identifier
+	// Peering identifier created by AW peering request.
 	PeeringId pulumi.StringPtrInput
 	// VPC peering status
 	Status pulumi.StringPtrInput
@@ -77,17 +77,17 @@ func (VpcPeeringState) ElementType() reflect.Type {
 }
 
 type vpcPeeringArgs struct {
-	// Instance identifier
+	// The CloudAMQP instance ID.
 	InstanceId int `pulumi:"instanceId"`
-	// VPC peering identifier
+	// Peering identifier created by AW peering request.
 	PeeringId string `pulumi:"peeringId"`
 }
 
 // The set of arguments for constructing a VpcPeering resource.
 type VpcPeeringArgs struct {
-	// Instance identifier
+	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntInput
-	// VPC peering identifier
+	// Peering identifier created by AW peering request.
 	PeeringId pulumi.StringInput
 }
 

@@ -33,11 +33,11 @@ export class VpcPeering extends pulumi.CustomResource {
     }
 
     /**
-     * Instance identifier
+     * The CloudAMQP instance ID.
      */
     public readonly instanceId!: pulumi.Output<number>;
     /**
-     * VPC peering identifier
+     * Peering identifier created by AW peering request.
      */
     public readonly peeringId!: pulumi.Output<string>;
     /**
@@ -88,11 +88,11 @@ export class VpcPeering extends pulumi.CustomResource {
  */
 export interface VpcPeeringState {
     /**
-     * Instance identifier
+     * The CloudAMQP instance ID.
      */
     readonly instanceId?: pulumi.Input<number>;
     /**
-     * VPC peering identifier
+     * Peering identifier created by AW peering request.
      */
     readonly peeringId?: pulumi.Input<string>;
     /**
@@ -106,11 +106,11 @@ export interface VpcPeeringState {
  */
 export interface VpcPeeringArgs {
     /**
-     * Instance identifier
+     * The CloudAMQP instance ID.
      */
     readonly instanceId: pulumi.Input<number>;
     /**
-     * VPC peering identifier
+     * Peering identifier created by AW peering request.
      */
     readonly peeringId: pulumi.Input<string>;
 }

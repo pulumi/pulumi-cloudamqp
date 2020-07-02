@@ -9,12 +9,10 @@ using Pulumi.Serialization;
 
 namespace Pulumi.CloudAmqp
 {
-    public static class GetVpcInfo
+    public static class GetNodes
     {
         /// <summary>
-        /// Use this data source to retrieve information about VPC for a CloudAMQP instance.
-        /// 
-        /// Only available for CloudAMQP instances hosted in AWS.
+        /// Use this data source to retrieve information about the node(s) created by CloudAMQP instance.
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -28,7 +26,7 @@ namespace Pulumi.CloudAmqp
         /// {
         ///     public MyStack()
         ///     {
-        ///         var vpcInfo = Output.Create(CloudAmqp.GetVpcInfo.InvokeAsync(new CloudAmqp.GetVpcInfoArgs
+        ///         var nodes = Output.Create(CloudAmqp.GetNodes.InvokeAsync(new CloudAmqp.GetNodesArgs
         ///         {
         ///             InstanceId = cloudamqp_instance.Instance.Id,
         ///         }));
@@ -44,64 +42,68 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ## Attribute reference
         /// 
-        /// * `name`                - (Computed) The name of the CloudAMQP instance.
-        /// * `vpc_subnet`          - (Computed) Dedicated VPC subnet.
-        /// * `owner_id`            - (Computed) AWS account identifier.
-        /// * `security_group_id`   - (Computed) AWS security group identifier.
+        /// * `nodes` - (Computed) An array of node information. Each `nodes` block consists of the fields documented below.
+        /// 
+        /// ___
+        /// 
+        /// The `nodes` block consist of
+        /// 
+        /// * `hostname`          - (Computed) Hostname assigned to the node.
+        /// * `name`              - (Computed) Name of the node.
+        /// * `running`           - (Computed) Is the node running?
+        /// * `rabbitmq_version`  - (Computed) Currently configured Rabbit MQ version on the node.
+        /// * `erlang_version`    - (Computed) Currently used Erlanbg version on the node.
+        /// * `hipe`              - (Computed) Enable or disable High-performance Erlang.
         /// 
         /// ## Dependency
         /// 
         /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
         /// </summary>
-        public static Task<GetVpcInfoResult> InvokeAsync(GetVpcInfoArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetVpcInfoResult>("cloudamqp:index/getVpcInfo:getVpcInfo", args ?? new GetVpcInfoArgs(), options.WithVersion());
+        public static Task<GetNodesResult> InvokeAsync(GetNodesArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetNodesResult>("cloudamqp:index/getNodes:getNodes", args ?? new GetNodesArgs(), options.WithVersion());
     }
 
 
-    public sealed class GetVpcInfoArgs : Pulumi.InvokeArgs
+    public sealed class GetNodesArgs : Pulumi.InvokeArgs
     {
         [Input("instanceId", required: true)]
         public int InstanceId { get; set; }
 
-        public GetVpcInfoArgs()
+        [Input("nodes")]
+        private List<Inputs.GetNodesNodeArgs>? _nodes;
+        public List<Inputs.GetNodesNodeArgs> Nodes
+        {
+            get => _nodes ?? (_nodes = new List<Inputs.GetNodesNodeArgs>());
+            set => _nodes = value;
+        }
+
+        public GetNodesArgs()
         {
         }
     }
 
 
     [OutputType]
-    public sealed class GetVpcInfoResult
+    public sealed class GetNodesResult
     {
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly int InstanceId;
-        public readonly string Name;
-        public readonly string OwnerId;
-        public readonly string SecurityGroupId;
-        public readonly string VpcSubnet;
+        public readonly ImmutableArray<Outputs.GetNodesNodeResult> Nodes;
 
         [OutputConstructor]
-        private GetVpcInfoResult(
+        private GetNodesResult(
             string id,
 
             int instanceId,
 
-            string name,
-
-            string ownerId,
-
-            string securityGroupId,
-
-            string vpcSubnet)
+            ImmutableArray<Outputs.GetNodesNodeResult> nodes)
         {
             Id = id;
             InstanceId = instanceId;
-            Name = name;
-            OwnerId = ownerId;
-            SecurityGroupId = securityGroupId;
-            VpcSubnet = vpcSubnet;
+            Nodes = nodes;
         }
     }
 }

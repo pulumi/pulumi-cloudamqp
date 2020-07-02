@@ -9,28 +9,70 @@ using Pulumi.Serialization;
 
 namespace Pulumi.CloudAmqp
 {
+    /// <summary>
+    /// This resource allows you to create and manage recipients to receive alarm notifications. There will always be a default recipient created upon instance creation. This recipient will use team email and receive notifications from default alarms.
+    /// 
+    /// Available for all subscription plans.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         // New recipient to receieve notifications
+    ///         var recipient01 = new CloudAmqp.Notification("recipient01", new CloudAmqp.NotificationArgs
+    ///         {
+    ///             InstanceId = cloudamqp_instance.Instance.Id,
+    ///             Type = "email",
+    ///             Value = "alarm@example.com",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ## Notification Type reference
+    /// 
+    /// Valid options for notification type.
+    /// 
+    /// * email
+    /// * webhook
+    /// * pagerduty
+    /// * victorops
+    /// * opsgenie
+    /// * opsgenie-eu
+    /// * slack
+    /// 
+    /// ## Dependency
+    /// 
+    /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+    /// </summary>
     public partial class Notification : Pulumi.CustomResource
     {
         /// <summary>
-        /// Instance identifier
+        /// The CloudAMQP instance ID.
         /// </summary>
         [Output("instanceId")]
         public Output<int> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// Optional display name of the recipient
+        /// Display name of the recipient.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack
+        /// Type of the notification. See valid options below.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// Notification endpoint, where to send the notifcation
+        /// Endpoint to send the notification.
         /// </summary>
         [Output("value")]
         public Output<string> Value { get; private set; } = null!;
@@ -82,25 +124,25 @@ namespace Pulumi.CloudAmqp
     public sealed class NotificationArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Instance identifier
+        /// The CloudAMQP instance ID.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<int> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// Optional display name of the recipient
+        /// Display name of the recipient.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack
+        /// Type of the notification. See valid options below.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
         /// <summary>
-        /// Notification endpoint, where to send the notifcation
+        /// Endpoint to send the notification.
         /// </summary>
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;
@@ -113,25 +155,25 @@ namespace Pulumi.CloudAmqp
     public sealed class NotificationState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Instance identifier
+        /// The CloudAMQP instance ID.
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
 
         /// <summary>
-        /// Optional display name of the recipient
+        /// Display name of the recipient.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Type of the notification, valid options are: email, webhook, pagerduty, victorops, opsgenie, opsgenie-eu, slack
+        /// Type of the notification. See valid options below.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// Notification endpoint, where to send the notifcation
+        /// Endpoint to send the notification.
         /// </summary>
         [Input("value")]
         public Input<string>? Value { get; set; }

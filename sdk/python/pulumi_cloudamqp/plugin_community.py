@@ -12,24 +12,41 @@ from . import utilities, tables
 class PluginCommunity(pulumi.CustomResource):
     enabled: pulumi.Output[bool]
     """
-    If the plugin is enabled
+    Enable or disable the plugins.
     """
     instance_id: pulumi.Output[float]
     """
-    Instance identifier
+    The CloudAMQP instance ID.
     """
     name: pulumi.Output[str]
     """
-    The name of the plugin
+    The name of the Rabbit MQ plugin.
     """
     def __init__(__self__, resource_name, opts=None, enabled=None, instance_id=None, name=None, __props__=None, __name__=None, __opts__=None):
         """
-        Create a PluginCommunity resource with the given unique name, props, and options.
+        This resource allows you to install or uninstall community plugins. Once installed the plugin will be available in `Plugin`.
+
+        Only available for dedicated subscription plans.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        rabbitmq_delayed_message_exchange = cloudamqp.PluginCommunity("rabbitmqDelayedMessageExchange",
+            instance_id=cloudamqp_instance["instance_01"]["id"],
+            enabled=True)
+        ```
+        ## Depedency
+
+        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] enabled: If the plugin is enabled
-        :param pulumi.Input[float] instance_id: Instance identifier
-        :param pulumi.Input[str] name: The name of the plugin
+        :param pulumi.Input[bool] enabled: Enable or disable the plugins.
+        :param pulumi.Input[float] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[str] name: The name of the Rabbit MQ plugin.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -70,9 +87,9 @@ class PluginCommunity(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] enabled: If the plugin is enabled
-        :param pulumi.Input[float] instance_id: Instance identifier
-        :param pulumi.Input[str] name: The name of the plugin
+        :param pulumi.Input[bool] enabled: Enable or disable the plugins.
+        :param pulumi.Input[float] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[str] name: The name of the Rabbit MQ plugin.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

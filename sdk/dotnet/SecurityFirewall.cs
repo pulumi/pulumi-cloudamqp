@@ -9,14 +9,71 @@ using Pulumi.Serialization;
 
 namespace Pulumi.CloudAmqp
 {
+    /// <summary>
+    /// This resource allows you to configure and manage firewall rules for the CloudAMQP instance. Beware that all rules need to be present, since all older configurations will be overwritten.
+    /// 
+    /// Only available for dedicated subscription plans.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var firewallSettings = new CloudAmqp.SecurityFirewall("firewallSettings", new CloudAmqp.SecurityFirewallArgs
+    ///         {
+    ///             InstanceId = cloudamqp_instance.Instance.Id,
+    ///             Rules = 
+    ///             {
+    ///                 new CloudAmqp.Inputs.SecurityFirewallRuleArgs
+    ///                 {
+    ///                     Ip = "192.168.0.0/24",
+    ///                     Ports = 
+    ///                     {
+    ///                         4567,
+    ///                         4568,
+    ///                     },
+    ///                     Services = 
+    ///                     {
+    ///                         "AMQP",
+    ///                         "AMQPS",
+    ///                     },
+    ///                 },
+    ///                 new CloudAmqp.Inputs.SecurityFirewallRuleArgs
+    ///                 {
+    ///                     Ip = "10.56.72.0/24",
+    ///                     Ports = {},
+    ///                     Services = 
+    ///                     {
+    ///                         "AMQP",
+    ///                         "AMQPS",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ## Depedency
+    /// 
+    /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+    /// </summary>
     public partial class SecurityFirewall : Pulumi.CustomResource
     {
         /// <summary>
-        /// Instance identifier
+        /// The CloudAMQP instance ID.
         /// </summary>
         [Output("instanceId")]
         public Output<int> InstanceId { get; private set; } = null!;
 
+        /// <summary>
+        /// An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+        /// </summary>
         [Output("rules")]
         public Output<ImmutableArray<Outputs.SecurityFirewallRule>> Rules { get; private set; } = null!;
 
@@ -67,13 +124,17 @@ namespace Pulumi.CloudAmqp
     public sealed class SecurityFirewallArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Instance identifier
+        /// The CloudAMQP instance ID.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<int> InstanceId { get; set; } = null!;
 
         [Input("rules", required: true)]
         private InputList<Inputs.SecurityFirewallRuleArgs>? _rules;
+
+        /// <summary>
+        /// An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+        /// </summary>
         public InputList<Inputs.SecurityFirewallRuleArgs> Rules
         {
             get => _rules ?? (_rules = new InputList<Inputs.SecurityFirewallRuleArgs>());
@@ -88,13 +149,17 @@ namespace Pulumi.CloudAmqp
     public sealed class SecurityFirewallState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Instance identifier
+        /// The CloudAMQP instance ID.
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
 
         [Input("rules")]
         private InputList<Inputs.SecurityFirewallRuleGetArgs>? _rules;
+
+        /// <summary>
+        /// An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+        /// </summary>
         public InputList<Inputs.SecurityFirewallRuleGetArgs> Rules
         {
             get => _rules ?? (_rules = new InputList<Inputs.SecurityFirewallRuleGetArgs>());

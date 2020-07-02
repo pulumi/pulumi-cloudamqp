@@ -4,6 +4,33 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * This resource allows you to create and manage a CloudAMQP instance running Rabbit MQ and deploy to multiple cloud platforms provider and over multiple regions, see Instance regions for more information.
+ *
+ * Once the instance is created it will be assigned a unique identifier. All other resource and data sources created for this instance needs to reference the instance identifier.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * // Minimum free lemur instance
+ * const lemurInstance = new cloudamqp.Instance("lemur_instance", {
+ *     plan: "lemur",
+ *     region: "amazon-web-services::us-west-1",
+ * });
+ * // New dedicated bunny instance
+ * const instance = new cloudamqp.Instance("instance", {
+ *     noDefaultAlarms: true,
+ *     nodes: 1,
+ *     plan: "bunny",
+ *     region: "amazon-web-services::us-west-1",
+ *     rmqVersion: "3.8.3",
+ *     tags: ["terraform"],
+ * });
+ * ```
+ */
 export class Instance extends pulumi.CustomResource {
     /**
      * Get an existing Instance resource's state with the given name, ID, and optional extra
@@ -33,23 +60,31 @@ export class Instance extends pulumi.CustomResource {
     }
 
     /**
-     * API key for the CloudAMQP instance
+     * (Computed) API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
      */
     public /*out*/ readonly apikey!: pulumi.Output<string>;
     /**
-     * Host name for the CloudAMQP instance
+     * Is the instance hosted on a dedicated server
+     */
+    public /*out*/ readonly dedicated!: pulumi.Output<boolean>;
+    /**
+     * (Computed) The host name for the CloudAMQP instance.
      */
     public /*out*/ readonly host!: pulumi.Output<string>;
     /**
-     * Name of the instance
+     * Name of the CloudAMQP instance.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Number of nodes in cluster (plan must support it)
+     * Set to true to discard creating default alarms when the instance is created.
+     */
+    public readonly noDefaultAlarms!: pulumi.Output<boolean | undefined>;
+    /**
+     * Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
      */
     public readonly nodes!: pulumi.Output<number | undefined>;
     /**
-     * Name of the plan, valid options are: lemur, tiger, bunny, rabbit, panda, ape, hippo, lion
+     * The subscription plan. See available plans
      */
     public readonly plan!: pulumi.Output<string>;
     /**
@@ -57,27 +92,27 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly ready!: pulumi.Output<boolean>;
     /**
-     * Name of the region you want to create your instance in
+     * The region to host the instance in. See Instance regions
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * RabbitMQ version
+     * The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.
      */
     public readonly rmqVersion!: pulumi.Output<string | undefined>;
     /**
-     * Tag the instances with optional tags
+     * One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * URL of the CloudAMQP instance
+     * (Computed) AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
      */
     public /*out*/ readonly url!: pulumi.Output<string>;
     /**
-     * The virtual host
+     * (Computed) The virtual host used by Rabbit MQ.
      */
     public /*out*/ readonly vhost!: pulumi.Output<string>;
     /**
-     * Dedicated VPC subnet, shouldn't overlap with your current VPC's subnet
+     * Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
      */
     public readonly vpcSubnet!: pulumi.Output<string | undefined>;
 
@@ -94,8 +129,10 @@ export class Instance extends pulumi.CustomResource {
         if (opts && opts.id) {
             const state = argsOrState as InstanceState | undefined;
             inputs["apikey"] = state ? state.apikey : undefined;
+            inputs["dedicated"] = state ? state.dedicated : undefined;
             inputs["host"] = state ? state.host : undefined;
             inputs["name"] = state ? state.name : undefined;
+            inputs["noDefaultAlarms"] = state ? state.noDefaultAlarms : undefined;
             inputs["nodes"] = state ? state.nodes : undefined;
             inputs["plan"] = state ? state.plan : undefined;
             inputs["ready"] = state ? state.ready : undefined;
@@ -114,6 +151,7 @@ export class Instance extends pulumi.CustomResource {
                 throw new Error("Missing required property 'region'");
             }
             inputs["name"] = args ? args.name : undefined;
+            inputs["noDefaultAlarms"] = args ? args.noDefaultAlarms : undefined;
             inputs["nodes"] = args ? args.nodes : undefined;
             inputs["plan"] = args ? args.plan : undefined;
             inputs["region"] = args ? args.region : undefined;
@@ -121,6 +159,7 @@ export class Instance extends pulumi.CustomResource {
             inputs["tags"] = args ? args.tags : undefined;
             inputs["vpcSubnet"] = args ? args.vpcSubnet : undefined;
             inputs["apikey"] = undefined /*out*/;
+            inputs["dedicated"] = undefined /*out*/;
             inputs["host"] = undefined /*out*/;
             inputs["ready"] = undefined /*out*/;
             inputs["url"] = undefined /*out*/;
@@ -142,23 +181,31 @@ export class Instance extends pulumi.CustomResource {
  */
 export interface InstanceState {
     /**
-     * API key for the CloudAMQP instance
+     * (Computed) API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
      */
     readonly apikey?: pulumi.Input<string>;
     /**
-     * Host name for the CloudAMQP instance
+     * Is the instance hosted on a dedicated server
+     */
+    readonly dedicated?: pulumi.Input<boolean>;
+    /**
+     * (Computed) The host name for the CloudAMQP instance.
      */
     readonly host?: pulumi.Input<string>;
     /**
-     * Name of the instance
+     * Name of the CloudAMQP instance.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * Number of nodes in cluster (plan must support it)
+     * Set to true to discard creating default alarms when the instance is created.
+     */
+    readonly noDefaultAlarms?: pulumi.Input<boolean>;
+    /**
+     * Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
      */
     readonly nodes?: pulumi.Input<number>;
     /**
-     * Name of the plan, valid options are: lemur, tiger, bunny, rabbit, panda, ape, hippo, lion
+     * The subscription plan. See available plans
      */
     readonly plan?: pulumi.Input<string>;
     /**
@@ -166,27 +213,27 @@ export interface InstanceState {
      */
     readonly ready?: pulumi.Input<boolean>;
     /**
-     * Name of the region you want to create your instance in
+     * The region to host the instance in. See Instance regions
      */
     readonly region?: pulumi.Input<string>;
     /**
-     * RabbitMQ version
+     * The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.
      */
     readonly rmqVersion?: pulumi.Input<string>;
     /**
-     * Tag the instances with optional tags
+     * One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
      */
     readonly tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * URL of the CloudAMQP instance
+     * (Computed) AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
      */
     readonly url?: pulumi.Input<string>;
     /**
-     * The virtual host
+     * (Computed) The virtual host used by Rabbit MQ.
      */
     readonly vhost?: pulumi.Input<string>;
     /**
-     * Dedicated VPC subnet, shouldn't overlap with your current VPC's subnet
+     * Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
      */
     readonly vpcSubnet?: pulumi.Input<string>;
 }
@@ -196,31 +243,35 @@ export interface InstanceState {
  */
 export interface InstanceArgs {
     /**
-     * Name of the instance
+     * Name of the CloudAMQP instance.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * Number of nodes in cluster (plan must support it)
+     * Set to true to discard creating default alarms when the instance is created.
+     */
+    readonly noDefaultAlarms?: pulumi.Input<boolean>;
+    /**
+     * Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
      */
     readonly nodes?: pulumi.Input<number>;
     /**
-     * Name of the plan, valid options are: lemur, tiger, bunny, rabbit, panda, ape, hippo, lion
+     * The subscription plan. See available plans
      */
     readonly plan: pulumi.Input<string>;
     /**
-     * Name of the region you want to create your instance in
+     * The region to host the instance in. See Instance regions
      */
     readonly region: pulumi.Input<string>;
     /**
-     * RabbitMQ version
+     * The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.
      */
     readonly rmqVersion?: pulumi.Input<string>;
     /**
-     * Tag the instances with optional tags
+     * One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
      */
     readonly tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Dedicated VPC subnet, shouldn't overlap with your current VPC's subnet
+     * Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
      */
     readonly vpcSubnet?: pulumi.Input<string>;
 }

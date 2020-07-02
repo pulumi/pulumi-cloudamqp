@@ -10,12 +10,20 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// This resource allows you to configure and manage firewall rules for the CloudAMQP instance. Beware that all rules need to be present, since all older configurations will be overwritten.
+//
+// Only available for dedicated subscription plans.
+//
+// ## Depedency
+//
+// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 type SecurityFirewall struct {
 	pulumi.CustomResourceState
 
-	// Instance identifier
-	InstanceId pulumi.IntOutput                `pulumi:"instanceId"`
-	Rules      SecurityFirewallRuleArrayOutput `pulumi:"rules"`
+	// The CloudAMQP instance ID.
+	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
+	// An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+	Rules SecurityFirewallRuleArrayOutput `pulumi:"rules"`
 }
 
 // NewSecurityFirewall registers a new resource with the given unique name, arguments, and options.
@@ -52,15 +60,17 @@ func GetSecurityFirewall(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SecurityFirewall resources.
 type securityFirewallState struct {
-	// Instance identifier
-	InstanceId *int                   `pulumi:"instanceId"`
-	Rules      []SecurityFirewallRule `pulumi:"rules"`
+	// The CloudAMQP instance ID.
+	InstanceId *int `pulumi:"instanceId"`
+	// An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+	Rules []SecurityFirewallRule `pulumi:"rules"`
 }
 
 type SecurityFirewallState struct {
-	// Instance identifier
+	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntPtrInput
-	Rules      SecurityFirewallRuleArrayInput
+	// An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+	Rules SecurityFirewallRuleArrayInput
 }
 
 func (SecurityFirewallState) ElementType() reflect.Type {
@@ -68,16 +78,18 @@ func (SecurityFirewallState) ElementType() reflect.Type {
 }
 
 type securityFirewallArgs struct {
-	// Instance identifier
-	InstanceId int                    `pulumi:"instanceId"`
-	Rules      []SecurityFirewallRule `pulumi:"rules"`
+	// The CloudAMQP instance ID.
+	InstanceId int `pulumi:"instanceId"`
+	// An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+	Rules []SecurityFirewallRule `pulumi:"rules"`
 }
 
 // The set of arguments for constructing a SecurityFirewall resource.
 type SecurityFirewallArgs struct {
-	// Instance identifier
+	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntInput
-	Rules      SecurityFirewallRuleArrayInput
+	// An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+	Rules SecurityFirewallRuleArrayInput
 }
 
 func (SecurityFirewallArgs) ElementType() reflect.Type {

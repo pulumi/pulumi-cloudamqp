@@ -69,7 +69,36 @@ class AwaitableGetAlarmResult(GetAlarmResult):
 
 def get_alarm(alarm_id=None,instance_id=None,type=None,opts=None):
     """
-    Use this data source to access information about an existing resource.
+    Use this data source to retrieve information about default or created alarms. Either use `alarm_id` or `type` to retrieve the alarm.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    default_cpu_alarm = cloudamqp.get_alarm(instance_id=cloudamqp_instance["instance"]["id"],
+        type="cpu")
+    ```
+    ## Argument reference
+
+    * `instance_id` - (Required) The CloudAMQP instance identifier.
+    * `alarm_id`    - (Optional) The alarm identifier. Either use this or `type` to give `Alarm` necessary information to retrieve the alarm.
+    * `type`        - (Optional) The alarm type. Either use this or `alarm_id` to give `Alarm` necessary information when retrieve the alarm.
+
+    ## Attribute reference
+
+    * `enabled`         - (Computed) Enable/disable status of the alarm.
+    * `value_threshold` - (Computed) The value threshold that triggers the alarm.
+    * `time_threshold`  - (Computed) The time interval (in seconds) the `value_threshold` should be active before trigger an alarm.
+    * `queue_regex`     - (Computed) Regular expression for which queue to check.
+    * `vhost_regex`     - (Computed) Regular expression for which vhost to check
+    * `recipients`      - (Computed) Identifier for recipient to be notified.
+    * `message_type`    - (Computed) Message type `(total, unacked, ready)` used by queue alarm type.
+
+    ## Dependency
+
+    This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
     """
     __args__ = dict()
 
