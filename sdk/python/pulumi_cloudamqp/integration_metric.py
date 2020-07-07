@@ -18,6 +18,10 @@ class IntegrationMetric(pulumi.CustomResource):
     """
     The API key for the integration service. (Librato)
     """
+    client_email: pulumi.Output[str]
+    """
+    The client email. (Stackdriver)
+    """
     email: pulumi.Output[str]
     """
     The email address registred for the integration service. (Librato)
@@ -33,6 +37,14 @@ class IntegrationMetric(pulumi.CustomResource):
     name: pulumi.Output[str]
     """
     The name of metrics integration
+    """
+    private_key: pulumi.Output[str]
+    """
+    The private key. (Stackdriver)
+    """
+    project_id: pulumi.Output[str]
+    """
+    Project ID. (Stackdriver)
     """
     queue_whitelist: pulumi.Output[str]
     """
@@ -54,7 +66,7 @@ class IntegrationMetric(pulumi.CustomResource):
     """
     (optional) whitelist using regular expression
     """
-    def __init__(__self__, resource_name, opts=None, access_key_id=None, api_key=None, email=None, instance_id=None, license_key=None, name=None, queue_whitelist=None, region=None, secret_access_key=None, tags=None, vhost_whitelist=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, access_key_id=None, api_key=None, client_email=None, email=None, instance_id=None, license_key=None, name=None, private_key=None, project_id=None, queue_whitelist=None, region=None, secret_access_key=None, tags=None, vhost_whitelist=None, __props__=None, __name__=None, __opts__=None):
         """
         This resource allows you to create and manage, forwarding metrics to third party integrations for a CloudAMQP instance. Once configured, the metrics produced will be forward to corresponding integration.
 
@@ -120,10 +132,13 @@ class IntegrationMetric(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key_id: AWS access key identifier. (Cloudwatch)
         :param pulumi.Input[str] api_key: The API key for the integration service. (Librato)
+        :param pulumi.Input[str] client_email: The client email. (Stackdriver)
         :param pulumi.Input[str] email: The email address registred for the integration service. (Librato)
         :param pulumi.Input[float] instance_id: Instance identifier
         :param pulumi.Input[str] license_key: The license key registred for the integration service. (New Relic)
         :param pulumi.Input[str] name: The name of metrics integration
+        :param pulumi.Input[str] private_key: The private key. (Stackdriver)
+        :param pulumi.Input[str] project_id: Project ID. (Stackdriver)
         :param pulumi.Input[str] queue_whitelist: (optional) whitelist using regular expression
         :param pulumi.Input[str] region: AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
         :param pulumi.Input[str] secret_access_key: AWS secret key. (Cloudwatch)
@@ -149,12 +164,15 @@ class IntegrationMetric(pulumi.CustomResource):
 
             __props__['access_key_id'] = access_key_id
             __props__['api_key'] = api_key
+            __props__['client_email'] = client_email
             __props__['email'] = email
             if instance_id is None:
                 raise TypeError("Missing required property 'instance_id'")
             __props__['instance_id'] = instance_id
             __props__['license_key'] = license_key
             __props__['name'] = name
+            __props__['private_key'] = private_key
+            __props__['project_id'] = project_id
             __props__['queue_whitelist'] = queue_whitelist
             __props__['region'] = region
             __props__['secret_access_key'] = secret_access_key
@@ -167,7 +185,7 @@ class IntegrationMetric(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, access_key_id=None, api_key=None, email=None, instance_id=None, license_key=None, name=None, queue_whitelist=None, region=None, secret_access_key=None, tags=None, vhost_whitelist=None):
+    def get(resource_name, id, opts=None, access_key_id=None, api_key=None, client_email=None, email=None, instance_id=None, license_key=None, name=None, private_key=None, project_id=None, queue_whitelist=None, region=None, secret_access_key=None, tags=None, vhost_whitelist=None):
         """
         Get an existing IntegrationMetric resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -177,10 +195,13 @@ class IntegrationMetric(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key_id: AWS access key identifier. (Cloudwatch)
         :param pulumi.Input[str] api_key: The API key for the integration service. (Librato)
+        :param pulumi.Input[str] client_email: The client email. (Stackdriver)
         :param pulumi.Input[str] email: The email address registred for the integration service. (Librato)
         :param pulumi.Input[float] instance_id: Instance identifier
         :param pulumi.Input[str] license_key: The license key registred for the integration service. (New Relic)
         :param pulumi.Input[str] name: The name of metrics integration
+        :param pulumi.Input[str] private_key: The private key. (Stackdriver)
+        :param pulumi.Input[str] project_id: Project ID. (Stackdriver)
         :param pulumi.Input[str] queue_whitelist: (optional) whitelist using regular expression
         :param pulumi.Input[str] region: AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
         :param pulumi.Input[str] secret_access_key: AWS secret key. (Cloudwatch)
@@ -193,10 +214,13 @@ class IntegrationMetric(pulumi.CustomResource):
 
         __props__["access_key_id"] = access_key_id
         __props__["api_key"] = api_key
+        __props__["client_email"] = client_email
         __props__["email"] = email
         __props__["instance_id"] = instance_id
         __props__["license_key"] = license_key
         __props__["name"] = name
+        __props__["private_key"] = private_key
+        __props__["project_id"] = project_id
         __props__["queue_whitelist"] = queue_whitelist
         __props__["region"] = region
         __props__["secret_access_key"] = secret_access_key

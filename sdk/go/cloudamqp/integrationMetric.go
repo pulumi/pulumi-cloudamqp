@@ -76,6 +76,8 @@ type IntegrationMetric struct {
 	AccessKeyId pulumi.StringPtrOutput `pulumi:"accessKeyId"`
 	// The API key for the integration service. (Librato)
 	ApiKey pulumi.StringPtrOutput `pulumi:"apiKey"`
+	// The client email. (Stackdriver)
+	ClientEmail pulumi.StringPtrOutput `pulumi:"clientEmail"`
 	// The email address registred for the integration service. (Librato)
 	Email pulumi.StringPtrOutput `pulumi:"email"`
 	// Instance identifier
@@ -84,6 +86,10 @@ type IntegrationMetric struct {
 	LicenseKey pulumi.StringPtrOutput `pulumi:"licenseKey"`
 	// The name of metrics integration
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The private key. (Stackdriver)
+	PrivateKey pulumi.StringPtrOutput `pulumi:"privateKey"`
+	// Project ID. (Stackdriver)
+	ProjectId pulumi.StringPtrOutput `pulumi:"projectId"`
 	// (optional) whitelist using regular expression
 	QueueWhitelist pulumi.StringPtrOutput `pulumi:"queueWhitelist"`
 	// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
@@ -131,6 +137,8 @@ type integrationMetricState struct {
 	AccessKeyId *string `pulumi:"accessKeyId"`
 	// The API key for the integration service. (Librato)
 	ApiKey *string `pulumi:"apiKey"`
+	// The client email. (Stackdriver)
+	ClientEmail *string `pulumi:"clientEmail"`
 	// The email address registred for the integration service. (Librato)
 	Email *string `pulumi:"email"`
 	// Instance identifier
@@ -139,6 +147,10 @@ type integrationMetricState struct {
 	LicenseKey *string `pulumi:"licenseKey"`
 	// The name of metrics integration
 	Name *string `pulumi:"name"`
+	// The private key. (Stackdriver)
+	PrivateKey *string `pulumi:"privateKey"`
+	// Project ID. (Stackdriver)
+	ProjectId *string `pulumi:"projectId"`
 	// (optional) whitelist using regular expression
 	QueueWhitelist *string `pulumi:"queueWhitelist"`
 	// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
@@ -156,6 +168,8 @@ type IntegrationMetricState struct {
 	AccessKeyId pulumi.StringPtrInput
 	// The API key for the integration service. (Librato)
 	ApiKey pulumi.StringPtrInput
+	// The client email. (Stackdriver)
+	ClientEmail pulumi.StringPtrInput
 	// The email address registred for the integration service. (Librato)
 	Email pulumi.StringPtrInput
 	// Instance identifier
@@ -164,6 +178,10 @@ type IntegrationMetricState struct {
 	LicenseKey pulumi.StringPtrInput
 	// The name of metrics integration
 	Name pulumi.StringPtrInput
+	// The private key. (Stackdriver)
+	PrivateKey pulumi.StringPtrInput
+	// Project ID. (Stackdriver)
+	ProjectId pulumi.StringPtrInput
 	// (optional) whitelist using regular expression
 	QueueWhitelist pulumi.StringPtrInput
 	// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
@@ -185,6 +203,8 @@ type integrationMetricArgs struct {
 	AccessKeyId *string `pulumi:"accessKeyId"`
 	// The API key for the integration service. (Librato)
 	ApiKey *string `pulumi:"apiKey"`
+	// The client email. (Stackdriver)
+	ClientEmail *string `pulumi:"clientEmail"`
 	// The email address registred for the integration service. (Librato)
 	Email *string `pulumi:"email"`
 	// Instance identifier
@@ -193,6 +213,10 @@ type integrationMetricArgs struct {
 	LicenseKey *string `pulumi:"licenseKey"`
 	// The name of metrics integration
 	Name *string `pulumi:"name"`
+	// The private key. (Stackdriver)
+	PrivateKey *string `pulumi:"privateKey"`
+	// Project ID. (Stackdriver)
+	ProjectId *string `pulumi:"projectId"`
 	// (optional) whitelist using regular expression
 	QueueWhitelist *string `pulumi:"queueWhitelist"`
 	// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
@@ -211,6 +235,8 @@ type IntegrationMetricArgs struct {
 	AccessKeyId pulumi.StringPtrInput
 	// The API key for the integration service. (Librato)
 	ApiKey pulumi.StringPtrInput
+	// The client email. (Stackdriver)
+	ClientEmail pulumi.StringPtrInput
 	// The email address registred for the integration service. (Librato)
 	Email pulumi.StringPtrInput
 	// Instance identifier
@@ -219,6 +245,10 @@ type IntegrationMetricArgs struct {
 	LicenseKey pulumi.StringPtrInput
 	// The name of metrics integration
 	Name pulumi.StringPtrInput
+	// The private key. (Stackdriver)
+	PrivateKey pulumi.StringPtrInput
+	// Project ID. (Stackdriver)
+	ProjectId pulumi.StringPtrInput
 	// (optional) whitelist using regular expression
 	QueueWhitelist pulumi.StringPtrInput
 	// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)

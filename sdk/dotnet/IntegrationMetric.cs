@@ -85,6 +85,12 @@ namespace Pulumi.CloudAmqp
         public Output<string?> ApiKey { get; private set; } = null!;
 
         /// <summary>
+        /// The client email. (Stackdriver)
+        /// </summary>
+        [Output("clientEmail")]
+        public Output<string?> ClientEmail { get; private set; } = null!;
+
+        /// <summary>
         /// The email address registred for the integration service. (Librato)
         /// </summary>
         [Output("email")]
@@ -107,6 +113,18 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// The private key. (Stackdriver)
+        /// </summary>
+        [Output("privateKey")]
+        public Output<string?> PrivateKey { get; private set; } = null!;
+
+        /// <summary>
+        /// Project ID. (Stackdriver)
+        /// </summary>
+        [Output("projectId")]
+        public Output<string?> ProjectId { get; private set; } = null!;
 
         /// <summary>
         /// (optional) whitelist using regular expression
@@ -197,6 +215,12 @@ namespace Pulumi.CloudAmqp
         public Input<string>? ApiKey { get; set; }
 
         /// <summary>
+        /// The client email. (Stackdriver)
+        /// </summary>
+        [Input("clientEmail")]
+        public Input<string>? ClientEmail { get; set; }
+
+        /// <summary>
         /// The email address registred for the integration service. (Librato)
         /// </summary>
         [Input("email")]
@@ -219,6 +243,18 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The private key. (Stackdriver)
+        /// </summary>
+        [Input("privateKey")]
+        public Input<string>? PrivateKey { get; set; }
+
+        /// <summary>
+        /// Project ID. (Stackdriver)
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// (optional) whitelist using regular expression
@@ -270,6 +306,12 @@ namespace Pulumi.CloudAmqp
         public Input<string>? ApiKey { get; set; }
 
         /// <summary>
+        /// The client email. (Stackdriver)
+        /// </summary>
+        [Input("clientEmail")]
+        public Input<string>? ClientEmail { get; set; }
+
+        /// <summary>
         /// The email address registred for the integration service. (Librato)
         /// </summary>
         [Input("email")]
@@ -292,6 +334,18 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The private key. (Stackdriver)
+        /// </summary>
+        [Input("privateKey")]
+        public Input<string>? PrivateKey { get; set; }
+
+        /// <summary>
+        /// Project ID. (Stackdriver)
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// (optional) whitelist using regular expression
