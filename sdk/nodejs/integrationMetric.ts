@@ -102,6 +102,10 @@ export class IntegrationMetric extends pulumi.CustomResource {
      */
     public readonly apiKey!: pulumi.Output<string | undefined>;
     /**
+     * The client email. (Stackdriver)
+     */
+    public readonly clientEmail!: pulumi.Output<string | undefined>;
+    /**
      * The email address registred for the integration service. (Librato)
      */
     public readonly email!: pulumi.Output<string | undefined>;
@@ -117,6 +121,14 @@ export class IntegrationMetric extends pulumi.CustomResource {
      * The name of metrics integration
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * The private key. (Stackdriver)
+     */
+    public readonly privateKey!: pulumi.Output<string | undefined>;
+    /**
+     * Project ID. (Stackdriver)
+     */
+    public readonly projectId!: pulumi.Output<string | undefined>;
     /**
      * (optional) whitelist using regular expression
      */
@@ -152,10 +164,13 @@ export class IntegrationMetric extends pulumi.CustomResource {
             const state = argsOrState as IntegrationMetricState | undefined;
             inputs["accessKeyId"] = state ? state.accessKeyId : undefined;
             inputs["apiKey"] = state ? state.apiKey : undefined;
+            inputs["clientEmail"] = state ? state.clientEmail : undefined;
             inputs["email"] = state ? state.email : undefined;
             inputs["instanceId"] = state ? state.instanceId : undefined;
             inputs["licenseKey"] = state ? state.licenseKey : undefined;
             inputs["name"] = state ? state.name : undefined;
+            inputs["privateKey"] = state ? state.privateKey : undefined;
+            inputs["projectId"] = state ? state.projectId : undefined;
             inputs["queueWhitelist"] = state ? state.queueWhitelist : undefined;
             inputs["region"] = state ? state.region : undefined;
             inputs["secretAccessKey"] = state ? state.secretAccessKey : undefined;
@@ -168,10 +183,13 @@ export class IntegrationMetric extends pulumi.CustomResource {
             }
             inputs["accessKeyId"] = args ? args.accessKeyId : undefined;
             inputs["apiKey"] = args ? args.apiKey : undefined;
+            inputs["clientEmail"] = args ? args.clientEmail : undefined;
             inputs["email"] = args ? args.email : undefined;
             inputs["instanceId"] = args ? args.instanceId : undefined;
             inputs["licenseKey"] = args ? args.licenseKey : undefined;
             inputs["name"] = args ? args.name : undefined;
+            inputs["privateKey"] = args ? args.privateKey : undefined;
+            inputs["projectId"] = args ? args.projectId : undefined;
             inputs["queueWhitelist"] = args ? args.queueWhitelist : undefined;
             inputs["region"] = args ? args.region : undefined;
             inputs["secretAccessKey"] = args ? args.secretAccessKey : undefined;
@@ -202,6 +220,10 @@ export interface IntegrationMetricState {
      */
     readonly apiKey?: pulumi.Input<string>;
     /**
+     * The client email. (Stackdriver)
+     */
+    readonly clientEmail?: pulumi.Input<string>;
+    /**
      * The email address registred for the integration service. (Librato)
      */
     readonly email?: pulumi.Input<string>;
@@ -217,6 +239,14 @@ export interface IntegrationMetricState {
      * The name of metrics integration
      */
     readonly name?: pulumi.Input<string>;
+    /**
+     * The private key. (Stackdriver)
+     */
+    readonly privateKey?: pulumi.Input<string>;
+    /**
+     * Project ID. (Stackdriver)
+     */
+    readonly projectId?: pulumi.Input<string>;
     /**
      * (optional) whitelist using regular expression
      */
@@ -252,6 +282,10 @@ export interface IntegrationMetricArgs {
      */
     readonly apiKey?: pulumi.Input<string>;
     /**
+     * The client email. (Stackdriver)
+     */
+    readonly clientEmail?: pulumi.Input<string>;
+    /**
      * The email address registred for the integration service. (Librato)
      */
     readonly email?: pulumi.Input<string>;
@@ -267,6 +301,14 @@ export interface IntegrationMetricArgs {
      * The name of metrics integration
      */
     readonly name?: pulumi.Input<string>;
+    /**
+     * The private key. (Stackdriver)
+     */
+    readonly privateKey?: pulumi.Input<string>;
+    /**
+     * Project ID. (Stackdriver)
+     */
+    readonly projectId?: pulumi.Input<string>;
     /**
      * (optional) whitelist using regular expression
      */

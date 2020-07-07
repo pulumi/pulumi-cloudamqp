@@ -745,6 +745,10 @@
                     "type": "string",
                     "description": "The API key for the integration service. (Librato)\n"
                 },
+                "clientEmail": {
+                    "type": "string",
+                    "description": "The client email. (Stackdriver)\n"
+                },
                 "email": {
                     "type": "string",
                     "description": "The email address registred for the integration service. (Librato)\n"
@@ -760,6 +764,14 @@
                 "name": {
                     "type": "string",
                     "description": "The name of metrics integration\n"
+                },
+                "privateKey": {
+                    "type": "string",
+                    "description": "The private key. (Stackdriver)\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "Project ID. (Stackdriver)\n"
                 },
                 "queueWhitelist": {
                     "type": "string",
@@ -795,6 +807,10 @@
                     "type": "string",
                     "description": "The API key for the integration service. (Librato)\n"
                 },
+                "clientEmail": {
+                    "type": "string",
+                    "description": "The client email. (Stackdriver)\n"
+                },
                 "email": {
                     "type": "string",
                     "description": "The email address registred for the integration service. (Librato)\n"
@@ -810,6 +826,14 @@
                 "name": {
                     "type": "string",
                     "description": "The name of metrics integration\n"
+                },
+                "privateKey": {
+                    "type": "string",
+                    "description": "The private key. (Stackdriver)\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "Project ID. (Stackdriver)\n"
                 },
                 "queueWhitelist": {
                     "type": "string",
@@ -846,6 +870,10 @@
                         "type": "string",
                         "description": "The API key for the integration service. (Librato)\n"
                     },
+                    "clientEmail": {
+                        "type": "string",
+                        "description": "The client email. (Stackdriver)\n"
+                    },
                     "email": {
                         "type": "string",
                         "description": "The email address registred for the integration service. (Librato)\n"
@@ -861,6 +889,14 @@
                     "name": {
                         "type": "string",
                         "description": "The name of metrics integration\n"
+                    },
+                    "privateKey": {
+                        "type": "string",
+                        "description": "The private key. (Stackdriver)\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "Project ID. (Stackdriver)\n"
                     },
                     "queueWhitelist": {
                         "type": "string",
