@@ -27,57 +27,57 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := cloudamqp.NewIntegrationLog(ctx, "cloudwatch", &cloudamqp.IntegrationLogArgs{
-// 			InstanceId:      pulumi.String(cloudamqp_instance.Instance.Id),
-// 			AccessKeyId:     pulumi.String(_var.Aws_access_key_id),
-// 			SecretAccessKey: pulumi.String(_var.Aws_secret_access_key),
-// 			Region:          pulumi.String(_var.Aws_region),
+// 			InstanceId:      pulumi.Any(cloudamqp_instance.Instance.Id),
+// 			AccessKeyId:     pulumi.Any(_var.Aws_access_key_id),
+// 			SecretAccessKey: pulumi.Any(_var.Aws_secret_access_key),
+// 			Region:          pulumi.Any(_var.Aws_region),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		_, err = cloudamqp.NewIntegrationLog(ctx, "logentries", &cloudamqp.IntegrationLogArgs{
-// 			InstanceId: pulumi.String(cloudamqp_instance.Instance.Id),
-// 			Token:      pulumi.String(_var.Logentries_token),
+// 			InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+// 			Token:      pulumi.Any(_var.Logentries_token),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		_, err = cloudamqp.NewIntegrationLog(ctx, "loggly", &cloudamqp.IntegrationLogArgs{
-// 			InstanceId: pulumi.String(cloudamqp_instance.Instance.Id),
-// 			Token:      pulumi.String(_var.Loggly_token),
+// 			InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+// 			Token:      pulumi.Any(_var.Loggly_token),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		_, err = cloudamqp.NewIntegrationLog(ctx, "papertrail", &cloudamqp.IntegrationLogArgs{
-// 			InstanceId: pulumi.String(cloudamqp_instance.Instance.Id),
-// 			Url:        pulumi.String(_var.Papertrail_url),
+// 			InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+// 			Url:        pulumi.Any(_var.Papertrail_url),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		_, err = cloudamqp.NewIntegrationLog(ctx, "splunk", &cloudamqp.IntegrationLogArgs{
-// 			InstanceId: pulumi.String(cloudamqp_instance.Instance.Id),
-// 			Token:      pulumi.String(_var.Splunk_token),
-// 			HostPort:   pulumi.String(_var.Splunk_host_port),
+// 			InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+// 			Token:      pulumi.Any(_var.Splunk_token),
+// 			HostPort:   pulumi.Any(_var.Splunk_host_port),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		_, err = cloudamqp.NewIntegrationLog(ctx, "datadog", &cloudamqp.IntegrationLogArgs{
-// 			InstanceId: pulumi.String(cloudamqp_instance.Instance.Id),
-// 			Region:     pulumi.String(_var.Datadog_region),
-// 			ApiKey:     pulumi.String(_var.Datadog_api_key),
-// 			Tags:       pulumi.String(_var.Datadog_tags),
+// 			InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+// 			Region:     pulumi.Any(_var.Datadog_region),
+// 			ApiKey:     pulumi.Any(_var.Datadog_api_key),
+// 			Tags:       pulumi.Any(_var.Datadog_tags),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		_, err = cloudamqp.NewIntegrationLog(ctx, "stackdriver", &cloudamqp.IntegrationLogArgs{
-// 			InstanceId:  pulumi.String(cloudamqp_instance.Instance.Id),
-// 			ProjectId:   pulumi.String(_var.Stackdriver_project_id),
-// 			PrivateKey:  pulumi.String(_var.Stackdriver_private_key),
-// 			ClientEmail: pulumi.String(_var.Stackdriver_client_email),
+// 			InstanceId:  pulumi.Any(cloudamqp_instance.Instance.Id),
+// 			ProjectId:   pulumi.Any(_var.Stackdriver_project_id),
+// 			PrivateKey:  pulumi.Any(_var.Stackdriver_private_key),
+// 			ClientEmail: pulumi.Any(_var.Stackdriver_client_email),
 // 		})
 // 		if err != nil {
 // 			return err

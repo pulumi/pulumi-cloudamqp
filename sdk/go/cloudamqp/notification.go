@@ -27,7 +27,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := cloudamqp.NewNotification(ctx, "recipient01", &cloudamqp.NotificationArgs{
-// 			InstanceId: pulumi.String(cloudamqp_instance.Instance.Id),
+// 			InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
 // 			Type:       pulumi.String("email"),
 // 			Value:      pulumi.String("alarm@example.com"),
 // 		})

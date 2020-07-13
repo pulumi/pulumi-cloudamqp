@@ -27,7 +27,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := cloudamqp.NewPlugin(ctx, "pluginRabbitmqTop", &cloudamqp.PluginArgs{
-// 			InstanceId: pulumi.String(cloudamqp_instance.Instance.Id),
+// 			InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
 // 			Enabled:    pulumi.Bool(true),
 // 		})
 // 		if err != nil {

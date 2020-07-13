@@ -27,7 +27,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := cloudamqp.NewPluginCommunity(ctx, "rabbitmqDelayedMessageExchange", &cloudamqp.PluginCommunityArgs{
-// 			InstanceId: pulumi.String(cloudamqp_instance.Instance_01.Id),
+// 			InstanceId: pulumi.Any(cloudamqp_instance.Instance_01.Id),
 // 			Enabled:    pulumi.Bool(true),
 // 		})
 // 		if err != nil {
