@@ -5,9 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
 
+__all__ = [
+    'GetAlarmResult',
+    'AwaitableGetAlarmResult',
+    'get_alarm',
+]
+
+@pulumi.output_type
 class GetAlarmResult:
     """
     A collection of values returned by getAlarm.
@@ -15,40 +22,97 @@ class GetAlarmResult:
     def __init__(__self__, alarm_id=None, enabled=None, id=None, instance_id=None, message_type=None, queue_regex=None, recipients=None, time_threshold=None, type=None, value_threshold=None, vhost_regex=None):
         if alarm_id and not isinstance(alarm_id, float):
             raise TypeError("Expected argument 'alarm_id' to be a float")
-        __self__.alarm_id = alarm_id
+        pulumi.set(__self__, "alarm_id", alarm_id)
         if enabled and not isinstance(enabled, bool):
             raise TypeError("Expected argument 'enabled' to be a bool")
-        __self__.enabled = enabled
+        pulumi.set(__self__, "enabled", enabled)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if instance_id and not isinstance(instance_id, float):
+            raise TypeError("Expected argument 'instance_id' to be a float")
+        pulumi.set(__self__, "instance_id", instance_id)
+        if message_type and not isinstance(message_type, str):
+            raise TypeError("Expected argument 'message_type' to be a str")
+        pulumi.set(__self__, "message_type", message_type)
+        if queue_regex and not isinstance(queue_regex, str):
+            raise TypeError("Expected argument 'queue_regex' to be a str")
+        pulumi.set(__self__, "queue_regex", queue_regex)
+        if recipients and not isinstance(recipients, list):
+            raise TypeError("Expected argument 'recipients' to be a list")
+        pulumi.set(__self__, "recipients", recipients)
+        if time_threshold and not isinstance(time_threshold, float):
+            raise TypeError("Expected argument 'time_threshold' to be a float")
+        pulumi.set(__self__, "time_threshold", time_threshold)
+        if type and not isinstance(type, str):
+            raise TypeError("Expected argument 'type' to be a str")
+        pulumi.set(__self__, "type", type)
+        if value_threshold and not isinstance(value_threshold, float):
+            raise TypeError("Expected argument 'value_threshold' to be a float")
+        pulumi.set(__self__, "value_threshold", value_threshold)
+        if vhost_regex and not isinstance(vhost_regex, str):
+            raise TypeError("Expected argument 'vhost_regex' to be a str")
+        pulumi.set(__self__, "vhost_regex", vhost_regex)
+
+    @property
+    @pulumi.getter(name="alarmId")
+    def alarm_id(self) -> Optional[float]:
+        return pulumi.get(self, "alarm_id")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if instance_id and not isinstance(instance_id, float):
-            raise TypeError("Expected argument 'instance_id' to be a float")
-        __self__.instance_id = instance_id
-        if message_type and not isinstance(message_type, str):
-            raise TypeError("Expected argument 'message_type' to be a str")
-        __self__.message_type = message_type
-        if queue_regex and not isinstance(queue_regex, str):
-            raise TypeError("Expected argument 'queue_regex' to be a str")
-        __self__.queue_regex = queue_regex
-        if recipients and not isinstance(recipients, list):
-            raise TypeError("Expected argument 'recipients' to be a list")
-        __self__.recipients = recipients
-        if time_threshold and not isinstance(time_threshold, float):
-            raise TypeError("Expected argument 'time_threshold' to be a float")
-        __self__.time_threshold = time_threshold
-        if type and not isinstance(type, str):
-            raise TypeError("Expected argument 'type' to be a str")
-        __self__.type = type
-        if value_threshold and not isinstance(value_threshold, float):
-            raise TypeError("Expected argument 'value_threshold' to be a float")
-        __self__.value_threshold = value_threshold
-        if vhost_regex and not isinstance(vhost_regex, str):
-            raise TypeError("Expected argument 'vhost_regex' to be a str")
-        __self__.vhost_regex = vhost_regex
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> float:
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="messageType")
+    def message_type(self) -> str:
+        return pulumi.get(self, "message_type")
+
+    @property
+    @pulumi.getter(name="queueRegex")
+    def queue_regex(self) -> str:
+        return pulumi.get(self, "queue_regex")
+
+    @property
+    @pulumi.getter
+    def recipients(self) -> List[float]:
+        return pulumi.get(self, "recipients")
+
+    @property
+    @pulumi.getter(name="timeThreshold")
+    def time_threshold(self) -> float:
+        return pulumi.get(self, "time_threshold")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="valueThreshold")
+    def value_threshold(self) -> float:
+        return pulumi.get(self, "value_threshold")
+
+    @property
+    @pulumi.getter(name="vhostRegex")
+    def vhost_regex(self) -> str:
+        return pulumi.get(self, "vhost_regex")
+
+
 class AwaitableGetAlarmResult(GetAlarmResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -67,7 +131,11 @@ class AwaitableGetAlarmResult(GetAlarmResult):
             value_threshold=self.value_threshold,
             vhost_regex=self.vhost_regex)
 
-def get_alarm(alarm_id=None,instance_id=None,type=None,opts=None):
+
+def get_alarm(alarm_id: Optional[float] = None,
+              instance_id: Optional[float] = None,
+              type: Optional[str] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAlarmResult:
     """
     Use this data source to retrieve information about default or created alarms. Either use `alarm_id` or `type` to retrieve the alarm.
 
@@ -101,26 +169,24 @@ def get_alarm(alarm_id=None,instance_id=None,type=None,opts=None):
     This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
     """
     __args__ = dict()
-
-
     __args__['alarmId'] = alarm_id
     __args__['instanceId'] = instance_id
     __args__['type'] = type
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('cloudamqp:index/getAlarm:getAlarm', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('cloudamqp:index/getAlarm:getAlarm', __args__, opts=opts, typ=GetAlarmResult).value
 
     return AwaitableGetAlarmResult(
-        alarm_id=__ret__.get('alarmId'),
-        enabled=__ret__.get('enabled'),
-        id=__ret__.get('id'),
-        instance_id=__ret__.get('instanceId'),
-        message_type=__ret__.get('messageType'),
-        queue_regex=__ret__.get('queueRegex'),
-        recipients=__ret__.get('recipients'),
-        time_threshold=__ret__.get('timeThreshold'),
-        type=__ret__.get('type'),
-        value_threshold=__ret__.get('valueThreshold'),
-        vhost_regex=__ret__.get('vhostRegex'))
+        alarm_id=__ret__.alarm_id,
+        enabled=__ret__.enabled,
+        id=__ret__.id,
+        instance_id=__ret__.instance_id,
+        message_type=__ret__.message_type,
+        queue_regex=__ret__.queue_regex,
+        recipients=__ret__.recipients,
+        time_threshold=__ret__.time_threshold,
+        type=__ret__.type,
+        value_threshold=__ret__.value_threshold,
+        vhost_regex=__ret__.vhost_regex)

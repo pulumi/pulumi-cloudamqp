@@ -5,9 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
+__all__ = [
+    'GetNodesResult',
+    'AwaitableGetNodesResult',
+    'get_nodes',
+]
+
+@pulumi.output_type
 class GetNodesResult:
     """
     A collection of values returned by getNodes.
@@ -15,16 +24,33 @@ class GetNodesResult:
     def __init__(__self__, id=None, instance_id=None, nodes=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if instance_id and not isinstance(instance_id, float):
+            raise TypeError("Expected argument 'instance_id' to be a float")
+        pulumi.set(__self__, "instance_id", instance_id)
+        if nodes and not isinstance(nodes, list):
+            raise TypeError("Expected argument 'nodes' to be a list")
+        pulumi.set(__self__, "nodes", nodes)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if instance_id and not isinstance(instance_id, float):
-            raise TypeError("Expected argument 'instance_id' to be a float")
-        __self__.instance_id = instance_id
-        if nodes and not isinstance(nodes, list):
-            raise TypeError("Expected argument 'nodes' to be a list")
-        __self__.nodes = nodes
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> float:
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter
+    def nodes(self) -> List['outputs.GetNodesNodeResult']:
+        return pulumi.get(self, "nodes")
+
+
 class AwaitableGetNodesResult(GetNodesResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -35,7 +61,10 @@ class AwaitableGetNodesResult(GetNodesResult):
             instance_id=self.instance_id,
             nodes=self.nodes)
 
-def get_nodes(instance_id=None,nodes=None,opts=None):
+
+def get_nodes(instance_id: Optional[float] = None,
+              nodes: Optional[List[pulumi.InputType['GetNodesNodeArgs']]] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNodesResult:
     """
     Use this data source to retrieve information about the node(s) created by CloudAMQP instance.
 
@@ -69,30 +98,17 @@ def get_nodes(instance_id=None,nodes=None,opts=None):
     ## Dependency
 
     This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-
-
-
-    The **nodes** object supports the following:
-
-      * `erlangVersion` (`str`)
-      * `hipe` (`bool`)
-      * `hostname` (`str`)
-      * `name` (`str`)
-      * `rabbitmqVersion` (`str`)
-      * `running` (`bool`)
     """
     __args__ = dict()
-
-
     __args__['instanceId'] = instance_id
     __args__['nodes'] = nodes
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('cloudamqp:index/getNodes:getNodes', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('cloudamqp:index/getNodes:getNodes', __args__, opts=opts, typ=GetNodesResult).value
 
     return AwaitableGetNodesResult(
-        id=__ret__.get('id'),
-        instance_id=__ret__.get('instanceId'),
-        nodes=__ret__.get('nodes'))
+        id=__ret__.id,
+        instance_id=__ret__.instance_id,
+        nodes=__ret__.nodes)

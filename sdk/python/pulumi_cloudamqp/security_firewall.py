@@ -5,25 +5,23 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['SecurityFirewall']
 
 
 class SecurityFirewall(pulumi.CustomResource):
-    instance_id: pulumi.Output[float]
-    """
-    The CloudAMQP instance ID.
-    """
-    rules: pulumi.Output[list]
-    """
-    An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
-
-      * `description` (`str`) - Description name of the rule. e.g. Default.
-      * `ip` (`str`) - Source ip and netmask for the rule. (e.g. 10.56.72.0/24)
-      * `ports` (`list`) - Custom ports to be opened
-      * `services` (`list`) - Pre-defined service ports
-    """
-    def __init__(__self__, resource_name, opts=None, instance_id=None, rules=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 instance_id: Optional[pulumi.Input[float]] = None,
+                 rules: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['SecurityFirewallRuleArgs']]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         This resource allows you to configure and manage firewall rules for the CloudAMQP instance. Beware that all rules need to be present, since all older configurations will be overwritten.
 
@@ -38,25 +36,25 @@ class SecurityFirewall(pulumi.CustomResource):
         firewall_settings = cloudamqp.SecurityFirewall("firewallSettings",
             instance_id=cloudamqp_instance["instance"]["id"],
             rules=[
-                {
-                    "ip": "192.168.0.0/24",
-                    "ports": [
+                cloudamqp.SecurityFirewallRuleArgs(
+                    ip="192.168.0.0/24",
+                    ports=[
                         4567,
                         4568,
                     ],
-                    "services": [
+                    services=[
                         "AMQP",
                         "AMQPS",
                     ],
-                },
-                {
-                    "ip": "10.56.72.0/24",
-                    "ports": [],
-                    "services": [
+                ),
+                cloudamqp.SecurityFirewallRuleArgs(
+                    ip="10.56.72.0/24",
+                    ports=[],
+                    services=[
                         "AMQP",
                         "AMQPS",
                     ],
-                },
+                ),
             ])
         ```
         ## Depedency
@@ -66,14 +64,7 @@ class SecurityFirewall(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[float] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[list] rules: An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
-
-        The **rules** object supports the following:
-
-          * `description` (`pulumi.Input[str]`) - Description name of the rule. e.g. Default.
-          * `ip` (`pulumi.Input[str]`) - Source ip and netmask for the rule. (e.g. 10.56.72.0/24)
-          * `ports` (`pulumi.Input[list]`) - Custom ports to be opened
-          * `services` (`pulumi.Input[list]`) - Pre-defined service ports
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['SecurityFirewallRuleArgs']]]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -86,7 +77,7 @@ class SecurityFirewall(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -105,23 +96,20 @@ class SecurityFirewall(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, instance_id=None, rules=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            instance_id: Optional[pulumi.Input[float]] = None,
+            rules: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['SecurityFirewallRuleArgs']]]]] = None) -> 'SecurityFirewall':
         """
         Get an existing SecurityFirewall resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[float] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[list] rules: An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
-
-        The **rules** object supports the following:
-
-          * `description` (`pulumi.Input[str]`) - Description name of the rule. e.g. Default.
-          * `ip` (`pulumi.Input[str]`) - Source ip and netmask for the rule. (e.g. 10.56.72.0/24)
-          * `ports` (`pulumi.Input[list]`) - Custom ports to be opened
-          * `services` (`pulumi.Input[list]`) - Pre-defined service ports
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['SecurityFirewallRuleArgs']]]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -131,8 +119,25 @@ class SecurityFirewall(pulumi.CustomResource):
         __props__["rules"] = rules
         return SecurityFirewall(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> float:
+        """
+        The CloudAMQP instance ID.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter
+    def rules(self) -> List['outputs.SecurityFirewallRule']:
+        """
+        An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+        """
+        return pulumi.get(self, "rules")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

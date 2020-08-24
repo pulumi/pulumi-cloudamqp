@@ -35,8 +35,10 @@ export class Provider extends pulumi.ProviderResource {
      */
     constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        inputs["apikey"] = (args ? args.apikey : undefined) || utilities.getEnv("CLOUDAMQP_APIKEY");
-        inputs["baseurl"] = args ? args.baseurl : undefined;
+        {
+            inputs["apikey"] = (args ? args.apikey : undefined) || utilities.getEnv("CLOUDAMQP_APIKEY");
+            inputs["baseurl"] = args ? args.baseurl : undefined;
+        }
         if (!opts) {
             opts = {}
         }
