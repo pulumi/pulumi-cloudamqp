@@ -5,9 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
+__all__ = [
+    'GetPluginsResult',
+    'AwaitableGetPluginsResult',
+    'get_plugins',
+]
+
+@pulumi.output_type
 class GetPluginsResult:
     """
     A collection of values returned by getPlugins.
@@ -15,16 +24,33 @@ class GetPluginsResult:
     def __init__(__self__, id=None, instance_id=None, plugins=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if instance_id and not isinstance(instance_id, float):
+            raise TypeError("Expected argument 'instance_id' to be a float")
+        pulumi.set(__self__, "instance_id", instance_id)
+        if plugins and not isinstance(plugins, list):
+            raise TypeError("Expected argument 'plugins' to be a list")
+        pulumi.set(__self__, "plugins", plugins)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if instance_id and not isinstance(instance_id, float):
-            raise TypeError("Expected argument 'instance_id' to be a float")
-        __self__.instance_id = instance_id
-        if plugins and not isinstance(plugins, list):
-            raise TypeError("Expected argument 'plugins' to be a list")
-        __self__.plugins = plugins
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> float:
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter
+    def plugins(self) -> Optional[List['outputs.GetPluginsPluginResult']]:
+        return pulumi.get(self, "plugins")
+
+
 class AwaitableGetPluginsResult(GetPluginsResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -35,7 +61,10 @@ class AwaitableGetPluginsResult(GetPluginsResult):
             instance_id=self.instance_id,
             plugins=self.plugins)
 
-def get_plugins(instance_id=None,plugins=None,opts=None):
+
+def get_plugins(instance_id: Optional[float] = None,
+                plugins: Optional[List[pulumi.InputType['GetPluginsPluginArgs']]] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPluginsResult:
     """
     Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
 
@@ -67,28 +96,17 @@ def get_plugins(instance_id=None,plugins=None,opts=None):
     ## Dependency
 
     This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-
-
-
-    The **plugins** object supports the following:
-
-      * `description` (`str`)
-      * `enabled` (`bool`)
-      * `name` (`str`)
-      * `version` (`str`)
     """
     __args__ = dict()
-
-
     __args__['instanceId'] = instance_id
     __args__['plugins'] = plugins
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('cloudamqp:index/getPlugins:getPlugins', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('cloudamqp:index/getPlugins:getPlugins', __args__, opts=opts, typ=GetPluginsResult).value
 
     return AwaitableGetPluginsResult(
-        id=__ret__.get('id'),
-        instance_id=__ret__.get('instanceId'),
-        plugins=__ret__.get('plugins'))
+        id=__ret__.id,
+        instance_id=__ret__.instance_id,
+        plugins=__ret__.plugins)

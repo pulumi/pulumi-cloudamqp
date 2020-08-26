@@ -1,4 +1,10 @@
-[![Build Status](https://travis-ci.com/pulumi/pulumi-cloudamqp.svg?token=eHg7Zp5zdDDJfTjY8ejq&branch=master)](https://travis-ci.com/pulumi/pulumi-cloudamqp)
+[![Actions Status](https://github.com/pulumi/pulumi-cloudamqp/workflows/master/badge.svg)](https://github.com/pulumi/pulumi-cloudamqp/actions)
+[![Slack](http://www.pulumi.com/images/docs/badges/slack.svg)](https://slack.pulumi.com)
+[![NPM version](https://badge.fury.io/js/%40pulumi%2Fcloudamqp.svg)](https://www.npmjs.com/package/@pulumi/cloudamqp)
+[![Python version](https://badge.fury.io/py/pulumi-cloudamqp.svg)](https://pypi.org/project/pulumi-cloudamqp)
+[![NuGet version](https://badge.fury.io/nu/pulumi.cloudamqp.svg)](https://badge.fury.io/nu/pulumi.cloudamqp)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/pulumi/pulumi-cloudamqp/sdk/v2/go)](https://pkg.go.dev/github.com/pulumi/pulumi-cloudamqp/sdk/v2/go)
+[![License](https://img.shields.io/npm/l/%40pulumi%2Fpulumi.svg)](https://github.com/pulumi/pulumi-cloudamqp/blob/master/LICENSE)
 
 # CloudAMQP Resource Provider
 

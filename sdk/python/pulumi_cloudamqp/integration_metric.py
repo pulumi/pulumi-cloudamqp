@@ -5,68 +5,33 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+
+__all__ = ['IntegrationMetric']
 
 
 class IntegrationMetric(pulumi.CustomResource):
-    access_key_id: pulumi.Output[str]
-    """
-    AWS access key identifier. (Cloudwatch)
-    """
-    api_key: pulumi.Output[str]
-    """
-    The API key for the integration service. (Librato)
-    """
-    client_email: pulumi.Output[str]
-    """
-    The client email. (Stackdriver)
-    """
-    email: pulumi.Output[str]
-    """
-    The email address registred for the integration service. (Librato)
-    """
-    instance_id: pulumi.Output[float]
-    """
-    Instance identifier
-    """
-    license_key: pulumi.Output[str]
-    """
-    The license key registred for the integration service. (New Relic)
-    """
-    name: pulumi.Output[str]
-    """
-    The name of metrics integration
-    """
-    private_key: pulumi.Output[str]
-    """
-    The private key. (Stackdriver)
-    """
-    project_id: pulumi.Output[str]
-    """
-    Project ID. (Stackdriver)
-    """
-    queue_whitelist: pulumi.Output[str]
-    """
-    (optional) whitelist using regular expression
-    """
-    region: pulumi.Output[str]
-    """
-    AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
-    """
-    secret_access_key: pulumi.Output[str]
-    """
-    AWS secret key. (Cloudwatch)
-    """
-    tags: pulumi.Output[str]
-    """
-    (optional) tags. E.g. env=prod,region=europe
-    """
-    vhost_whitelist: pulumi.Output[str]
-    """
-    (optional) whitelist using regular expression
-    """
-    def __init__(__self__, resource_name, opts=None, access_key_id=None, api_key=None, client_email=None, email=None, instance_id=None, license_key=None, name=None, private_key=None, project_id=None, queue_whitelist=None, region=None, secret_access_key=None, tags=None, vhost_whitelist=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 access_key_id: Optional[pulumi.Input[str]] = None,
+                 api_key: Optional[pulumi.Input[str]] = None,
+                 client_email: Optional[pulumi.Input[str]] = None,
+                 email: Optional[pulumi.Input[str]] = None,
+                 instance_id: Optional[pulumi.Input[float]] = None,
+                 license_key: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 private_key: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 queue_whitelist: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 secret_access_key: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[str]] = None,
+                 vhost_whitelist: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         This resource allows you to create and manage, forwarding metrics to third party integrations for a CloudAMQP instance. Once configured, the metrics produced will be forward to corresponding integration.
 
@@ -156,7 +121,7 @@ class IntegrationMetric(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -185,13 +150,29 @@ class IntegrationMetric(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, access_key_id=None, api_key=None, client_email=None, email=None, instance_id=None, license_key=None, name=None, private_key=None, project_id=None, queue_whitelist=None, region=None, secret_access_key=None, tags=None, vhost_whitelist=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            access_key_id: Optional[pulumi.Input[str]] = None,
+            api_key: Optional[pulumi.Input[str]] = None,
+            client_email: Optional[pulumi.Input[str]] = None,
+            email: Optional[pulumi.Input[str]] = None,
+            instance_id: Optional[pulumi.Input[float]] = None,
+            license_key: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            private_key: Optional[pulumi.Input[str]] = None,
+            project_id: Optional[pulumi.Input[str]] = None,
+            queue_whitelist: Optional[pulumi.Input[str]] = None,
+            region: Optional[pulumi.Input[str]] = None,
+            secret_access_key: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[str]] = None,
+            vhost_whitelist: Optional[pulumi.Input[str]] = None) -> 'IntegrationMetric':
         """
         Get an existing IntegrationMetric resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key_id: AWS access key identifier. (Cloudwatch)
         :param pulumi.Input[str] api_key: The API key for the integration service. (Librato)
@@ -228,8 +209,121 @@ class IntegrationMetric(pulumi.CustomResource):
         __props__["vhost_whitelist"] = vhost_whitelist
         return IntegrationMetric(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="accessKeyId")
+    def access_key_id(self) -> Optional[str]:
+        """
+        AWS access key identifier. (Cloudwatch)
+        """
+        return pulumi.get(self, "access_key_id")
+
+    @property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> Optional[str]:
+        """
+        The API key for the integration service. (Librato)
+        """
+        return pulumi.get(self, "api_key")
+
+    @property
+    @pulumi.getter(name="clientEmail")
+    def client_email(self) -> Optional[str]:
+        """
+        The client email. (Stackdriver)
+        """
+        return pulumi.get(self, "client_email")
+
+    @property
+    @pulumi.getter
+    def email(self) -> Optional[str]:
+        """
+        The email address registred for the integration service. (Librato)
+        """
+        return pulumi.get(self, "email")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> float:
+        """
+        Instance identifier
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="licenseKey")
+    def license_key(self) -> Optional[str]:
+        """
+        The license key registred for the integration service. (New Relic)
+        """
+        return pulumi.get(self, "license_key")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of metrics integration
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[str]:
+        """
+        The private key. (Stackdriver)
+        """
+        return pulumi.get(self, "private_key")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[str]:
+        """
+        Project ID. (Stackdriver)
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="queueWhitelist")
+    def queue_whitelist(self) -> Optional[str]:
+        """
+        (optional) whitelist using regular expression
+        """
+        return pulumi.get(self, "queue_whitelist")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        """
+        AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
+        """
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="secretAccessKey")
+    def secret_access_key(self) -> Optional[str]:
+        """
+        AWS secret key. (Cloudwatch)
+        """
+        return pulumi.get(self, "secret_access_key")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[str]:
+        """
+        (optional) tags. E.g. env=prod,region=europe
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="vhostWhitelist")
+    def vhost_whitelist(self) -> Optional[str]:
+        """
+        (optional) whitelist using regular expression
+        """
+        return pulumi.get(self, "vhost_whitelist")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+
