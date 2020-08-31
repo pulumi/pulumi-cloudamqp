@@ -13,7 +13,7 @@ __all__ = ['IntegrationLog']
 
 class IntegrationLog(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_key_id: Optional[pulumi.Input[str]] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
@@ -228,7 +228,7 @@ class IntegrationLog(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="accessKeyId")
-    def access_key_id(self) -> Optional[str]:
+    def access_key_id(self) -> pulumi.Output[Optional[str]]:
         """
         AWS access key identifier.
         """
@@ -236,7 +236,7 @@ class IntegrationLog(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="apiKey")
-    def api_key(self) -> Optional[str]:
+    def api_key(self) -> pulumi.Output[Optional[str]]:
         """
         The API key.
         """
@@ -244,7 +244,7 @@ class IntegrationLog(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clientEmail")
-    def client_email(self) -> Optional[str]:
+    def client_email(self) -> pulumi.Output[Optional[str]]:
         """
         The client email registered for the integration service.
         """
@@ -252,7 +252,7 @@ class IntegrationLog(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="hostPort")
-    def host_port(self) -> Optional[str]:
+    def host_port(self) -> pulumi.Output[Optional[str]]:
         """
         Destination to send the logs.
         """
@@ -260,7 +260,7 @@ class IntegrationLog(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> float:
+    def instance_id(self) -> pulumi.Output[float]:
         """
         Instance identifier used to make proxy calls
         """
@@ -268,7 +268,7 @@ class IntegrationLog(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         The name of the third party log integration. See
         """
@@ -276,7 +276,7 @@ class IntegrationLog(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="privateKey")
-    def private_key(self) -> Optional[str]:
+    def private_key(self) -> pulumi.Output[Optional[str]]:
         """
         The private access key.
         """
@@ -284,7 +284,7 @@ class IntegrationLog(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[str]:
+    def project_id(self) -> pulumi.Output[Optional[str]]:
         """
         The project identifier.
         """
@@ -292,7 +292,7 @@ class IntegrationLog(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def region(self) -> Optional[str]:
+    def region(self) -> pulumi.Output[Optional[str]]:
         """
         Region hosting the integration service.
         """
@@ -300,7 +300,7 @@ class IntegrationLog(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="secretAccessKey")
-    def secret_access_key(self) -> Optional[str]:
+    def secret_access_key(self) -> pulumi.Output[Optional[str]]:
         """
         AWS secret access key.
         """
@@ -308,7 +308,7 @@ class IntegrationLog(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def tags(self) -> Optional[str]:
+    def tags(self) -> pulumi.Output[Optional[str]]:
         """
         Tag the integration, e.g. env=prod, region=europe.
         """
@@ -316,7 +316,7 @@ class IntegrationLog(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def token(self) -> Optional[str]:
+    def token(self) -> pulumi.Output[Optional[str]]:
         """
         Token used for authentication.
         """
@@ -324,7 +324,7 @@ class IntegrationLog(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def url(self) -> Optional[str]:
+    def url(self) -> pulumi.Output[Optional[str]]:
         """
         Endpoint to log integration.
         """

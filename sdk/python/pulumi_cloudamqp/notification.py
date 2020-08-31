@@ -13,7 +13,7 @@ __all__ = ['Notification']
 
 class Notification(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  instance_id: Optional[pulumi.Input[float]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -127,7 +127,7 @@ class Notification(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> float:
+    def instance_id(self) -> pulumi.Output[float]:
         """
         The CloudAMQP instance ID.
         """
@@ -135,7 +135,7 @@ class Notification(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         Display name of the recipient.
         """
@@ -143,7 +143,7 @@ class Notification(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def type(self) -> str:
+    def type(self) -> pulumi.Output[str]:
         """
         Type of the notification. See valid options below.
         """
@@ -151,7 +151,7 @@ class Notification(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def value(self) -> str:
+    def value(self) -> pulumi.Output[str]:
         """
         Endpoint to send the notification.
         """

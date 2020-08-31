@@ -13,7 +13,7 @@ __all__ = ['Plugin']
 
 class Plugin(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  instance_id: Optional[pulumi.Input[float]] = None,
@@ -105,7 +105,7 @@ class Plugin(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def enabled(self) -> bool:
+    def enabled(self) -> pulumi.Output[bool]:
         """
         Enable or disable the plugins.
         """
@@ -113,7 +113,7 @@ class Plugin(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> float:
+    def instance_id(self) -> pulumi.Output[float]:
         """
         The CloudAMQP instance ID.
         """
@@ -121,7 +121,7 @@ class Plugin(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         The name of the Rabbit MQ plugin.
         """

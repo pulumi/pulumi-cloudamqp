@@ -13,7 +13,7 @@ __all__ = ['IntegrationMetric']
 
 class IntegrationMetric(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_key_id: Optional[pulumi.Input[str]] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
@@ -211,7 +211,7 @@ class IntegrationMetric(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="accessKeyId")
-    def access_key_id(self) -> Optional[str]:
+    def access_key_id(self) -> pulumi.Output[Optional[str]]:
         """
         AWS access key identifier. (Cloudwatch)
         """
@@ -219,7 +219,7 @@ class IntegrationMetric(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="apiKey")
-    def api_key(self) -> Optional[str]:
+    def api_key(self) -> pulumi.Output[Optional[str]]:
         """
         The API key for the integration service. (Librato)
         """
@@ -227,7 +227,7 @@ class IntegrationMetric(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clientEmail")
-    def client_email(self) -> Optional[str]:
+    def client_email(self) -> pulumi.Output[Optional[str]]:
         """
         The client email. (Stackdriver)
         """
@@ -235,7 +235,7 @@ class IntegrationMetric(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def email(self) -> Optional[str]:
+    def email(self) -> pulumi.Output[Optional[str]]:
         """
         The email address registred for the integration service. (Librato)
         """
@@ -243,7 +243,7 @@ class IntegrationMetric(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> float:
+    def instance_id(self) -> pulumi.Output[float]:
         """
         Instance identifier
         """
@@ -251,7 +251,7 @@ class IntegrationMetric(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="licenseKey")
-    def license_key(self) -> Optional[str]:
+    def license_key(self) -> pulumi.Output[Optional[str]]:
         """
         The license key registred for the integration service. (New Relic)
         """
@@ -259,7 +259,7 @@ class IntegrationMetric(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         The name of metrics integration
         """
@@ -267,7 +267,7 @@ class IntegrationMetric(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="privateKey")
-    def private_key(self) -> Optional[str]:
+    def private_key(self) -> pulumi.Output[Optional[str]]:
         """
         The private key. (Stackdriver)
         """
@@ -275,7 +275,7 @@ class IntegrationMetric(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[str]:
+    def project_id(self) -> pulumi.Output[Optional[str]]:
         """
         Project ID. (Stackdriver)
         """
@@ -283,7 +283,7 @@ class IntegrationMetric(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="queueWhitelist")
-    def queue_whitelist(self) -> Optional[str]:
+    def queue_whitelist(self) -> pulumi.Output[Optional[str]]:
         """
         (optional) whitelist using regular expression
         """
@@ -291,7 +291,7 @@ class IntegrationMetric(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def region(self) -> Optional[str]:
+    def region(self) -> pulumi.Output[Optional[str]]:
         """
         AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
         """
@@ -299,7 +299,7 @@ class IntegrationMetric(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="secretAccessKey")
-    def secret_access_key(self) -> Optional[str]:
+    def secret_access_key(self) -> pulumi.Output[Optional[str]]:
         """
         AWS secret key. (Cloudwatch)
         """
@@ -307,7 +307,7 @@ class IntegrationMetric(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def tags(self) -> Optional[str]:
+    def tags(self) -> pulumi.Output[Optional[str]]:
         """
         (optional) tags. E.g. env=prod,region=europe
         """
@@ -315,7 +315,7 @@ class IntegrationMetric(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="vhostWhitelist")
-    def vhost_whitelist(self) -> Optional[str]:
+    def vhost_whitelist(self) -> pulumi.Output[Optional[str]]:
         """
         (optional) whitelist using regular expression
         """
