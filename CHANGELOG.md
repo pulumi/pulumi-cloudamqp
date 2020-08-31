@@ -2,11 +2,14 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+_(none)_
+
+---
+
+## 2.3.0 (2020-08-31)
 * Upgrade to v1.7.3 of the CloudAMQP Terraform Provider
 * Upgrade to pulumi-terraform-bridge v2.7.3
 * Upgrade to Pulumi v2.9.0, which adds type annotations and input/output classes to Python
-
----
 
 ## 2.2.3 (2020-06-12)
 * Switch to GitHub actions for build
