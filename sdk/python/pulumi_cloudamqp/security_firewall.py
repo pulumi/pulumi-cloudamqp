@@ -15,7 +15,7 @@ __all__ = ['SecurityFirewall']
 
 class SecurityFirewall(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  instance_id: Optional[pulumi.Input[float]] = None,
                  rules: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['SecurityFirewallRuleArgs']]]]] = None,
@@ -121,7 +121,7 @@ class SecurityFirewall(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> float:
+    def instance_id(self) -> pulumi.Output[float]:
         """
         The CloudAMQP instance ID.
         """
@@ -129,7 +129,7 @@ class SecurityFirewall(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def rules(self) -> List['outputs.SecurityFirewallRule']:
+    def rules(self) -> pulumi.Output[List['outputs.SecurityFirewallRule']]:
         """
         An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
         """

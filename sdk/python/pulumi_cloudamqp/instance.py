@@ -13,7 +13,7 @@ __all__ = ['Instance']
 
 class Instance(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  no_default_alarms: Optional[pulumi.Input[bool]] = None,
@@ -165,7 +165,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def apikey(self) -> str:
+    def apikey(self) -> pulumi.Output[str]:
         """
         (Computed) API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
         """
@@ -173,7 +173,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def dedicated(self) -> bool:
+    def dedicated(self) -> pulumi.Output[bool]:
         """
         Is the instance hosted on a dedicated server
         """
@@ -181,7 +181,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def host(self) -> str:
+    def host(self) -> pulumi.Output[str]:
         """
         (Computed) The host name for the CloudAMQP instance.
         """
@@ -189,7 +189,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         Name of the CloudAMQP instance.
         """
@@ -197,7 +197,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="noDefaultAlarms")
-    def no_default_alarms(self) -> Optional[bool]:
+    def no_default_alarms(self) -> pulumi.Output[Optional[bool]]:
         """
         Set to true to discard creating default alarms when the instance is created.
         """
@@ -205,7 +205,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def nodes(self) -> Optional[float]:
+    def nodes(self) -> pulumi.Output[Optional[float]]:
         """
         Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
         """
@@ -213,7 +213,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def plan(self) -> str:
+    def plan(self) -> pulumi.Output[str]:
         """
         The subscription plan. See available plans
         """
@@ -221,7 +221,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def ready(self) -> bool:
+    def ready(self) -> pulumi.Output[bool]:
         """
         Flag describing if the resource is ready
         """
@@ -229,7 +229,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def region(self) -> str:
+    def region(self) -> pulumi.Output[str]:
         """
         The region to host the instance in. See Instance regions
         """
@@ -237,7 +237,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="rmqVersion")
-    def rmq_version(self) -> Optional[str]:
+    def rmq_version(self) -> pulumi.Output[Optional[str]]:
         """
         The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.
         """
@@ -245,7 +245,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def tags(self) -> Optional[List[str]]:
+    def tags(self) -> pulumi.Output[Optional[List[str]]]:
         """
         One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
         """
@@ -253,7 +253,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def url(self) -> str:
+    def url(self) -> pulumi.Output[str]:
         """
         (Computed) AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
         """
@@ -261,7 +261,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vhost(self) -> str:
+    def vhost(self) -> pulumi.Output[str]:
         """
         (Computed) The virtual host used by Rabbit MQ.
         """
@@ -269,7 +269,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="vpcSubnet")
-    def vpc_subnet(self) -> Optional[str]:
+    def vpc_subnet(self) -> pulumi.Output[Optional[str]]:
         """
         Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
         """

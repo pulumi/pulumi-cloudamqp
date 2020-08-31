@@ -13,7 +13,7 @@ __all__ = ['VpcPeering']
 
 class VpcPeering(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  instance_id: Optional[pulumi.Input[float]] = None,
                  peering_id: Optional[pulumi.Input[str]] = None,
@@ -86,7 +86,7 @@ class VpcPeering(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> float:
+    def instance_id(self) -> pulumi.Output[float]:
         """
         The CloudAMQP instance ID.
         """
@@ -94,7 +94,7 @@ class VpcPeering(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="peeringId")
-    def peering_id(self) -> str:
+    def peering_id(self) -> pulumi.Output[str]:
         """
         Peering identifier created by AW peering request.
         """
@@ -102,7 +102,7 @@ class VpcPeering(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def status(self) -> str:
+    def status(self) -> pulumi.Output[str]:
         """
         VPC peering status
         """
