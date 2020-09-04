@@ -159,6 +159,8 @@ github.com/cloudamqp/terraform-provider-cloudamqp v1.7.2 h1:zDOtdaMbysSllKCRBNux
 github.com/cloudamqp/terraform-provider-cloudamqp v1.7.2/go.mod h1:PIYVK7tZ5kYrsMXliXCrtkEOGr8y3UISrWSe5K6iICU=
 github.com/cloudamqp/terraform-provider-cloudamqp v1.7.3 h1:18FEv/xHOs0HFRXySkdu66lBqHkPEEzIui003NROiNc=
 github.com/cloudamqp/terraform-provider-cloudamqp v1.7.3/go.mod h1:w3zHnunfRnQDLNdHmiRe1lu7pBXc7jpG2gCS9vFwSyA=
+github.com/cloudamqp/terraform-provider-cloudamqp v1.8.1 h1:onvS0ZMN+wPRuy0/ftbSuU7k6PNhakCKw2Zc0lcbG+g=
+github.com/cloudamqp/terraform-provider-cloudamqp v1.8.1/go.mod h1:w3zHnunfRnQDLNdHmiRe1lu7pBXc7jpG2gCS9vFwSyA=
 github.com/cncf/udpa/go v0.0.0-20191209042840-269d4d468f6f/go.mod h1:M8M6+tZqaGXZJjfX53e64911xZQV5JYwmTeXPW+k8Sc=
 github.com/codahale/hdrhistogram v0.0.0-20161010025455-3a0bb77429bd h1:qMd81Ts1T2OTKmB4acZcyKaMtRnY5Y44NuXGX2GFJ1w=
 github.com/codahale/hdrhistogram v0.0.0-20161010025455-3a0bb77429bd/go.mod h1:sE/e/2PUdi/liOCUjSTXgM1o87ZssimdTWN964YiIeI=
