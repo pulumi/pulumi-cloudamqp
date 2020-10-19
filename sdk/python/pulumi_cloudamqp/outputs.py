@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = [
@@ -20,13 +20,13 @@ class SecurityFirewallRule(dict):
     def __init__(__self__, *,
                  ip: str,
                  description: Optional[str] = None,
-                 ports: Optional[List[float]] = None,
-                 services: Optional[List[str]] = None):
+                 ports: Optional[Sequence[int]] = None,
+                 services: Optional[Sequence[str]] = None):
         """
         :param str ip: Source ip and netmask for the rule. (e.g. 10.56.72.0/24)
         :param str description: Description name of the rule. e.g. Default.
-        :param List[float] ports: Custom ports to be opened
-        :param List[str] services: Pre-defined service ports
+        :param Sequence[int] ports: Custom ports to be opened
+        :param Sequence[str] services: Pre-defined service ports
         """
         pulumi.set(__self__, "ip", ip)
         if description is not None:
@@ -54,7 +54,7 @@ class SecurityFirewallRule(dict):
 
     @property
     @pulumi.getter
-    def ports(self) -> Optional[List[float]]:
+    def ports(self) -> Optional[Sequence[int]]:
         """
         Custom ports to be opened
         """
@@ -62,7 +62,7 @@ class SecurityFirewallRule(dict):
 
     @property
     @pulumi.getter
-    def services(self) -> Optional[List[str]]:
+    def services(self) -> Optional[Sequence[str]]:
         """
         Pre-defined service ports
         """

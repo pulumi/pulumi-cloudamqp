@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = [
@@ -20,13 +20,13 @@ class SecurityFirewallRuleArgs:
     def __init__(__self__, *,
                  ip: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
-                 ports: Optional[pulumi.Input[List[pulumi.Input[float]]]] = None,
-                 services: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 ports: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
+                 services: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[str] ip: Source ip and netmask for the rule. (e.g. 10.56.72.0/24)
         :param pulumi.Input[str] description: Description name of the rule. e.g. Default.
-        :param pulumi.Input[List[pulumi.Input[float]]] ports: Custom ports to be opened
-        :param pulumi.Input[List[pulumi.Input[str]]] services: Pre-defined service ports
+        :param pulumi.Input[Sequence[pulumi.Input[int]]] ports: Custom ports to be opened
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] services: Pre-defined service ports
         """
         pulumi.set(__self__, "ip", ip)
         if description is not None:
@@ -62,26 +62,26 @@ class SecurityFirewallRuleArgs:
 
     @property
     @pulumi.getter
-    def ports(self) -> Optional[pulumi.Input[List[pulumi.Input[float]]]]:
+    def ports(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[int]]]]:
         """
         Custom ports to be opened
         """
         return pulumi.get(self, "ports")
 
     @ports.setter
-    def ports(self, value: Optional[pulumi.Input[List[pulumi.Input[float]]]]):
+    def ports(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]]):
         pulumi.set(self, "ports", value)
 
     @property
     @pulumi.getter
-    def services(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def services(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Pre-defined service ports
         """
         return pulumi.get(self, "services")
 
     @services.setter
-    def services(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def services(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "services", value)
 
 

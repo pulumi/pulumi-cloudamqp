@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = [
@@ -23,8 +23,8 @@ class GetVpcInfoResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if instance_id and not isinstance(instance_id, float):
-            raise TypeError("Expected argument 'instance_id' to be a float")
+        if instance_id and not isinstance(instance_id, int):
+            raise TypeError("Expected argument 'instance_id' to be a int")
         pulumi.set(__self__, "instance_id", instance_id)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
@@ -49,7 +49,7 @@ class GetVpcInfoResult:
 
     @property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> float:
+    def instance_id(self) -> int:
         return pulumi.get(self, "instance_id")
 
     @property
@@ -87,7 +87,7 @@ class AwaitableGetVpcInfoResult(GetVpcInfoResult):
             vpc_subnet=self.vpc_subnet)
 
 
-def get_vpc_info(instance_id: Optional[float] = None,
+def get_vpc_info(instance_id: Optional[int] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcInfoResult:
     """
     Use this data source to retrieve information about VPC for a CloudAMQP instance.

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -25,8 +25,8 @@ class GetPluginsResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if instance_id and not isinstance(instance_id, float):
-            raise TypeError("Expected argument 'instance_id' to be a float")
+        if instance_id and not isinstance(instance_id, int):
+            raise TypeError("Expected argument 'instance_id' to be a int")
         pulumi.set(__self__, "instance_id", instance_id)
         if plugins and not isinstance(plugins, list):
             raise TypeError("Expected argument 'plugins' to be a list")
@@ -42,12 +42,12 @@ class GetPluginsResult:
 
     @property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> float:
+    def instance_id(self) -> int:
         return pulumi.get(self, "instance_id")
 
     @property
     @pulumi.getter
-    def plugins(self) -> Optional[List['outputs.GetPluginsPluginResult']]:
+    def plugins(self) -> Optional[Sequence['outputs.GetPluginsPluginResult']]:
         return pulumi.get(self, "plugins")
 
 
@@ -62,8 +62,8 @@ class AwaitableGetPluginsResult(GetPluginsResult):
             plugins=self.plugins)
 
 
-def get_plugins(instance_id: Optional[float] = None,
-                plugins: Optional[List[pulumi.InputType['GetPluginsPluginArgs']]] = None,
+def get_plugins(instance_id: Optional[int] = None,
+                plugins: Optional[Sequence[pulumi.InputType['GetPluginsPluginArgs']]] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPluginsResult:
     """
     Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['VpcPeering']
@@ -15,7 +15,7 @@ class VpcPeering(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 instance_id: Optional[pulumi.Input[float]] = None,
+                 instance_id: Optional[pulumi.Input[int]] = None,
                  peering_id: Optional[pulumi.Input[str]] = None,
                  __props__=None,
                  __name__=None,
@@ -24,7 +24,7 @@ class VpcPeering(pulumi.CustomResource):
         Create a VpcPeering resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[float] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] peering_id: Peering identifier created by AW peering request.
         """
         if __name__ is not None:
@@ -61,7 +61,7 @@ class VpcPeering(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            instance_id: Optional[pulumi.Input[float]] = None,
+            instance_id: Optional[pulumi.Input[int]] = None,
             peering_id: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None) -> 'VpcPeering':
         """
@@ -71,7 +71,7 @@ class VpcPeering(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[float] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] peering_id: Peering identifier created by AW peering request.
         :param pulumi.Input[str] status: VPC peering status
         """
@@ -86,7 +86,7 @@ class VpcPeering(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> pulumi.Output[float]:
+    def instance_id(self) -> pulumi.Output[int]:
         """
         The CloudAMQP instance ID.
         """

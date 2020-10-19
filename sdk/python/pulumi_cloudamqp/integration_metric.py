@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['IntegrationMetric']
@@ -19,7 +19,7 @@ class IntegrationMetric(pulumi.CustomResource):
                  api_key: Optional[pulumi.Input[str]] = None,
                  client_email: Optional[pulumi.Input[str]] = None,
                  email: Optional[pulumi.Input[str]] = None,
-                 instance_id: Optional[pulumi.Input[float]] = None,
+                 instance_id: Optional[pulumi.Input[int]] = None,
                  license_key: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
@@ -99,7 +99,7 @@ class IntegrationMetric(pulumi.CustomResource):
         :param pulumi.Input[str] api_key: The API key for the integration service. (Librato)
         :param pulumi.Input[str] client_email: The client email. (Stackdriver)
         :param pulumi.Input[str] email: The email address registred for the integration service. (Librato)
-        :param pulumi.Input[float] instance_id: Instance identifier
+        :param pulumi.Input[int] instance_id: Instance identifier
         :param pulumi.Input[str] license_key: The license key registred for the integration service. (New Relic)
         :param pulumi.Input[str] name: The name of metrics integration
         :param pulumi.Input[str] private_key: The private key. (Stackdriver)
@@ -157,7 +157,7 @@ class IntegrationMetric(pulumi.CustomResource):
             api_key: Optional[pulumi.Input[str]] = None,
             client_email: Optional[pulumi.Input[str]] = None,
             email: Optional[pulumi.Input[str]] = None,
-            instance_id: Optional[pulumi.Input[float]] = None,
+            instance_id: Optional[pulumi.Input[int]] = None,
             license_key: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             private_key: Optional[pulumi.Input[str]] = None,
@@ -178,7 +178,7 @@ class IntegrationMetric(pulumi.CustomResource):
         :param pulumi.Input[str] api_key: The API key for the integration service. (Librato)
         :param pulumi.Input[str] client_email: The client email. (Stackdriver)
         :param pulumi.Input[str] email: The email address registred for the integration service. (Librato)
-        :param pulumi.Input[float] instance_id: Instance identifier
+        :param pulumi.Input[int] instance_id: Instance identifier
         :param pulumi.Input[str] license_key: The license key registred for the integration service. (New Relic)
         :param pulumi.Input[str] name: The name of metrics integration
         :param pulumi.Input[str] private_key: The private key. (Stackdriver)
@@ -243,7 +243,7 @@ class IntegrationMetric(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> pulumi.Output[float]:
+    def instance_id(self) -> pulumi.Output[int]:
         """
         Instance identifier
         """

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -25,8 +25,8 @@ class GetNodesResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if instance_id and not isinstance(instance_id, float):
-            raise TypeError("Expected argument 'instance_id' to be a float")
+        if instance_id and not isinstance(instance_id, int):
+            raise TypeError("Expected argument 'instance_id' to be a int")
         pulumi.set(__self__, "instance_id", instance_id)
         if nodes and not isinstance(nodes, list):
             raise TypeError("Expected argument 'nodes' to be a list")
@@ -42,12 +42,12 @@ class GetNodesResult:
 
     @property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> float:
+    def instance_id(self) -> int:
         return pulumi.get(self, "instance_id")
 
     @property
     @pulumi.getter
-    def nodes(self) -> List['outputs.GetNodesNodeResult']:
+    def nodes(self) -> Sequence['outputs.GetNodesNodeResult']:
         return pulumi.get(self, "nodes")
 
 
@@ -62,8 +62,8 @@ class AwaitableGetNodesResult(GetNodesResult):
             nodes=self.nodes)
 
 
-def get_nodes(instance_id: Optional[float] = None,
-              nodes: Optional[List[pulumi.InputType['GetNodesNodeArgs']]] = None,
+def get_nodes(instance_id: Optional[int] = None,
+              nodes: Optional[Sequence[pulumi.InputType['GetNodesNodeArgs']]] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNodesResult:
     """
     Use this data source to retrieve information about the node(s) created by CloudAMQP instance.

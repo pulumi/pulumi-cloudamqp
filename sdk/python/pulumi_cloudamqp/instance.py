@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['Instance']
@@ -17,11 +17,11 @@ class Instance(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  no_default_alarms: Optional[pulumi.Input[bool]] = None,
-                 nodes: Optional[pulumi.Input[float]] = None,
+                 nodes: Optional[pulumi.Input[int]] = None,
                  plan: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  rmq_version: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  vpc_subnet: Optional[pulumi.Input[str]] = None,
                  __props__=None,
                  __name__=None,
@@ -55,11 +55,11 @@ class Instance(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: Name of the CloudAMQP instance.
         :param pulumi.Input[bool] no_default_alarms: Set to true to discard creating default alarms when the instance is created.
-        :param pulumi.Input[float] nodes: Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
+        :param pulumi.Input[int] nodes: Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
         :param pulumi.Input[str] plan: The subscription plan. See available plans
         :param pulumi.Input[str] region: The region to host the instance in. See Instance regions
         :param pulumi.Input[str] rmq_version: The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.
-        :param pulumi.Input[List[pulumi.Input[str]]] tags: One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
         :param pulumi.Input[str] vpc_subnet: Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
         """
         if __name__ is not None:
@@ -112,12 +112,12 @@ class Instance(pulumi.CustomResource):
             host: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             no_default_alarms: Optional[pulumi.Input[bool]] = None,
-            nodes: Optional[pulumi.Input[float]] = None,
+            nodes: Optional[pulumi.Input[int]] = None,
             plan: Optional[pulumi.Input[str]] = None,
             ready: Optional[pulumi.Input[bool]] = None,
             region: Optional[pulumi.Input[str]] = None,
             rmq_version: Optional[pulumi.Input[str]] = None,
-            tags: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             url: Optional[pulumi.Input[str]] = None,
             vhost: Optional[pulumi.Input[str]] = None,
             vpc_subnet: Optional[pulumi.Input[str]] = None) -> 'Instance':
@@ -133,12 +133,12 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] host: (Computed) The host name for the CloudAMQP instance.
         :param pulumi.Input[str] name: Name of the CloudAMQP instance.
         :param pulumi.Input[bool] no_default_alarms: Set to true to discard creating default alarms when the instance is created.
-        :param pulumi.Input[float] nodes: Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
+        :param pulumi.Input[int] nodes: Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
         :param pulumi.Input[str] plan: The subscription plan. See available plans
         :param pulumi.Input[bool] ready: Flag describing if the resource is ready
         :param pulumi.Input[str] region: The region to host the instance in. See Instance regions
         :param pulumi.Input[str] rmq_version: The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.
-        :param pulumi.Input[List[pulumi.Input[str]]] tags: One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
         :param pulumi.Input[str] url: (Computed) AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
         :param pulumi.Input[str] vhost: (Computed) The virtual host used by Rabbit MQ.
         :param pulumi.Input[str] vpc_subnet: Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
@@ -205,7 +205,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def nodes(self) -> pulumi.Output[Optional[float]]:
+    def nodes(self) -> pulumi.Output[Optional[int]]:
         """
         Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
         """
@@ -245,7 +245,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def tags(self) -> pulumi.Output[Optional[List[str]]]:
+    def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
         """

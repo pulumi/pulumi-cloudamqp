@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['IntegrationLog']
@@ -19,7 +19,7 @@ class IntegrationLog(pulumi.CustomResource):
                  api_key: Optional[pulumi.Input[str]] = None,
                  client_email: Optional[pulumi.Input[str]] = None,
                  host_port: Optional[pulumi.Input[str]] = None,
-                 instance_id: Optional[pulumi.Input[float]] = None,
+                 instance_id: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -121,7 +121,7 @@ class IntegrationLog(pulumi.CustomResource):
         :param pulumi.Input[str] api_key: The API key.
         :param pulumi.Input[str] client_email: The client email registered for the integration service.
         :param pulumi.Input[str] host_port: Destination to send the logs.
-        :param pulumi.Input[float] instance_id: Instance identifier used to make proxy calls
+        :param pulumi.Input[int] instance_id: Instance identifier used to make proxy calls
         :param pulumi.Input[str] name: The name of the third party log integration. See
         :param pulumi.Input[str] private_key: The private access key.
         :param pulumi.Input[str] project_id: The project identifier.
@@ -177,7 +177,7 @@ class IntegrationLog(pulumi.CustomResource):
             api_key: Optional[pulumi.Input[str]] = None,
             client_email: Optional[pulumi.Input[str]] = None,
             host_port: Optional[pulumi.Input[str]] = None,
-            instance_id: Optional[pulumi.Input[float]] = None,
+            instance_id: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             private_key: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
@@ -197,7 +197,7 @@ class IntegrationLog(pulumi.CustomResource):
         :param pulumi.Input[str] api_key: The API key.
         :param pulumi.Input[str] client_email: The client email registered for the integration service.
         :param pulumi.Input[str] host_port: Destination to send the logs.
-        :param pulumi.Input[float] instance_id: Instance identifier used to make proxy calls
+        :param pulumi.Input[int] instance_id: Instance identifier used to make proxy calls
         :param pulumi.Input[str] name: The name of the third party log integration. See
         :param pulumi.Input[str] private_key: The private access key.
         :param pulumi.Input[str] project_id: The project identifier.
@@ -260,7 +260,7 @@ class IntegrationLog(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> pulumi.Output[float]:
+    def instance_id(self) -> pulumi.Output[int]:
         """
         Instance identifier used to make proxy calls
         """

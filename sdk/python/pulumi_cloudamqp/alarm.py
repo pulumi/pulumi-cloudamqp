@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['Alarm']
@@ -16,13 +16,13 @@ class Alarm(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
-                 instance_id: Optional[pulumi.Input[float]] = None,
+                 instance_id: Optional[pulumi.Input[int]] = None,
                  message_type: Optional[pulumi.Input[str]] = None,
                  queue_regex: Optional[pulumi.Input[str]] = None,
-                 recipients: Optional[pulumi.Input[List[pulumi.Input[float]]]] = None,
-                 time_threshold: Optional[pulumi.Input[float]] = None,
+                 recipients: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
+                 time_threshold: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None,
-                 value_threshold: Optional[pulumi.Input[float]] = None,
+                 value_threshold: Optional[pulumi.Input[int]] = None,
                  vhost_regex: Optional[pulumi.Input[str]] = None,
                  __props__=None,
                  __name__=None,
@@ -60,13 +60,13 @@ class Alarm(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] enabled: Enable or disable the alarm to trigger.
-        :param pulumi.Input[float] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] message_type: Message type `(total, unacked, ready)` used by queue alarm type.
         :param pulumi.Input[str] queue_regex: Regex for which queue to check.
-        :param pulumi.Input[List[pulumi.Input[float]]] recipients: Identifier for recipient to be notified. Leave empty to notify all recipients.
-        :param pulumi.Input[float] time_threshold: The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
+        :param pulumi.Input[Sequence[pulumi.Input[int]]] recipients: Identifier for recipient to be notified. Leave empty to notify all recipients.
+        :param pulumi.Input[int] time_threshold: The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
         :param pulumi.Input[str] type: The alarm type, see valid options below.
-        :param pulumi.Input[float] value_threshold: The value to trigger the alarm for.
+        :param pulumi.Input[int] value_threshold: The value to trigger the alarm for.
         :param pulumi.Input[str] vhost_regex: Regex for which vhost to check
         """
         if __name__ is not None:
@@ -114,13 +114,13 @@ class Alarm(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             enabled: Optional[pulumi.Input[bool]] = None,
-            instance_id: Optional[pulumi.Input[float]] = None,
+            instance_id: Optional[pulumi.Input[int]] = None,
             message_type: Optional[pulumi.Input[str]] = None,
             queue_regex: Optional[pulumi.Input[str]] = None,
-            recipients: Optional[pulumi.Input[List[pulumi.Input[float]]]] = None,
-            time_threshold: Optional[pulumi.Input[float]] = None,
+            recipients: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
+            time_threshold: Optional[pulumi.Input[int]] = None,
             type: Optional[pulumi.Input[str]] = None,
-            value_threshold: Optional[pulumi.Input[float]] = None,
+            value_threshold: Optional[pulumi.Input[int]] = None,
             vhost_regex: Optional[pulumi.Input[str]] = None) -> 'Alarm':
         """
         Get an existing Alarm resource's state with the given name, id, and optional extra
@@ -130,13 +130,13 @@ class Alarm(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] enabled: Enable or disable the alarm to trigger.
-        :param pulumi.Input[float] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] message_type: Message type `(total, unacked, ready)` used by queue alarm type.
         :param pulumi.Input[str] queue_regex: Regex for which queue to check.
-        :param pulumi.Input[List[pulumi.Input[float]]] recipients: Identifier for recipient to be notified. Leave empty to notify all recipients.
-        :param pulumi.Input[float] time_threshold: The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
+        :param pulumi.Input[Sequence[pulumi.Input[int]]] recipients: Identifier for recipient to be notified. Leave empty to notify all recipients.
+        :param pulumi.Input[int] time_threshold: The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
         :param pulumi.Input[str] type: The alarm type, see valid options below.
-        :param pulumi.Input[float] value_threshold: The value to trigger the alarm for.
+        :param pulumi.Input[int] value_threshold: The value to trigger the alarm for.
         :param pulumi.Input[str] vhost_regex: Regex for which vhost to check
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -164,7 +164,7 @@ class Alarm(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> pulumi.Output[float]:
+    def instance_id(self) -> pulumi.Output[int]:
         """
         The CloudAMQP instance ID.
         """
@@ -188,7 +188,7 @@ class Alarm(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def recipients(self) -> pulumi.Output[List[float]]:
+    def recipients(self) -> pulumi.Output[Sequence[int]]:
         """
         Identifier for recipient to be notified. Leave empty to notify all recipients.
         """
@@ -196,7 +196,7 @@ class Alarm(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="timeThreshold")
-    def time_threshold(self) -> pulumi.Output[Optional[float]]:
+    def time_threshold(self) -> pulumi.Output[Optional[int]]:
         """
         The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
         """
@@ -212,7 +212,7 @@ class Alarm(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="valueThreshold")
-    def value_threshold(self) -> pulumi.Output[Optional[float]]:
+    def value_threshold(self) -> pulumi.Output[Optional[int]]:
         """
         The value to trigger the alarm for.
         """

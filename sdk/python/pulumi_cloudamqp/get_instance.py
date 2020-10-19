@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = [
@@ -32,14 +32,14 @@ class GetInstanceResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if instance_id and not isinstance(instance_id, float):
-            raise TypeError("Expected argument 'instance_id' to be a float")
+        if instance_id and not isinstance(instance_id, int):
+            raise TypeError("Expected argument 'instance_id' to be a int")
         pulumi.set(__self__, "instance_id", instance_id)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
-        if nodes and not isinstance(nodes, float):
-            raise TypeError("Expected argument 'nodes' to be a float")
+        if nodes and not isinstance(nodes, int):
+            raise TypeError("Expected argument 'nodes' to be a int")
         pulumi.set(__self__, "nodes", nodes)
         if plan and not isinstance(plan, str):
             raise TypeError("Expected argument 'plan' to be a str")
@@ -88,7 +88,7 @@ class GetInstanceResult:
 
     @property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> float:
+    def instance_id(self) -> int:
         return pulumi.get(self, "instance_id")
 
     @property
@@ -98,7 +98,7 @@ class GetInstanceResult:
 
     @property
     @pulumi.getter
-    def nodes(self) -> float:
+    def nodes(self) -> int:
         return pulumi.get(self, "nodes")
 
     @property
@@ -118,7 +118,7 @@ class GetInstanceResult:
 
     @property
     @pulumi.getter
-    def tags(self) -> List[str]:
+    def tags(self) -> Sequence[str]:
         return pulumi.get(self, "tags")
 
     @property
@@ -159,7 +159,7 @@ class AwaitableGetInstanceResult(GetInstanceResult):
             vpc_subnet=self.vpc_subnet)
 
 
-def get_instance(instance_id: Optional[float] = None,
+def get_instance(instance_id: Optional[int] = None,
                  vpc_subnet: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceResult:
     """
