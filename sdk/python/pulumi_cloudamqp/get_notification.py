@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = [
@@ -23,14 +23,14 @@ class GetNotificationResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if instance_id and not isinstance(instance_id, float):
-            raise TypeError("Expected argument 'instance_id' to be a float")
+        if instance_id and not isinstance(instance_id, int):
+            raise TypeError("Expected argument 'instance_id' to be a int")
         pulumi.set(__self__, "instance_id", instance_id)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
-        if recipient_id and not isinstance(recipient_id, float):
-            raise TypeError("Expected argument 'recipient_id' to be a float")
+        if recipient_id and not isinstance(recipient_id, int):
+            raise TypeError("Expected argument 'recipient_id' to be a int")
         pulumi.set(__self__, "recipient_id", recipient_id)
         if type and not isinstance(type, str):
             raise TypeError("Expected argument 'type' to be a str")
@@ -49,7 +49,7 @@ class GetNotificationResult:
 
     @property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> float:
+    def instance_id(self) -> int:
         return pulumi.get(self, "instance_id")
 
     @property
@@ -59,7 +59,7 @@ class GetNotificationResult:
 
     @property
     @pulumi.getter(name="recipientId")
-    def recipient_id(self) -> Optional[float]:
+    def recipient_id(self) -> Optional[int]:
         return pulumi.get(self, "recipient_id")
 
     @property
@@ -87,9 +87,9 @@ class AwaitableGetNotificationResult(GetNotificationResult):
             value=self.value)
 
 
-def get_notification(instance_id: Optional[float] = None,
+def get_notification(instance_id: Optional[int] = None,
                      name: Optional[str] = None,
-                     recipient_id: Optional[float] = None,
+                     recipient_id: Optional[int] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNotificationResult:
     """
     Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipient_id` or `name`.

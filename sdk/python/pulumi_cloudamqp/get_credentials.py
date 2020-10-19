@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = [
@@ -23,8 +23,8 @@ class GetCredentialsResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if instance_id and not isinstance(instance_id, float):
-            raise TypeError("Expected argument 'instance_id' to be a float")
+        if instance_id and not isinstance(instance_id, int):
+            raise TypeError("Expected argument 'instance_id' to be a int")
         pulumi.set(__self__, "instance_id", instance_id)
         if password and not isinstance(password, str):
             raise TypeError("Expected argument 'password' to be a str")
@@ -43,7 +43,7 @@ class GetCredentialsResult:
 
     @property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> float:
+    def instance_id(self) -> int:
         return pulumi.get(self, "instance_id")
 
     @property
@@ -69,7 +69,7 @@ class AwaitableGetCredentialsResult(GetCredentialsResult):
             username=self.username)
 
 
-def get_credentials(instance_id: Optional[float] = None,
+def get_credentials(instance_id: Optional[int] = None,
                     password: Optional[str] = None,
                     username: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCredentialsResult:

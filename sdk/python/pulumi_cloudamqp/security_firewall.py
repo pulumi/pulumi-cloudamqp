@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -17,8 +17,8 @@ class SecurityFirewall(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 instance_id: Optional[pulumi.Input[float]] = None,
-                 rules: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['SecurityFirewallRuleArgs']]]]] = None,
+                 instance_id: Optional[pulumi.Input[int]] = None,
+                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecurityFirewallRuleArgs']]]]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -63,8 +63,8 @@ class SecurityFirewall(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[float] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['SecurityFirewallRuleArgs']]]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+        :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecurityFirewallRuleArgs']]]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -99,8 +99,8 @@ class SecurityFirewall(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            instance_id: Optional[pulumi.Input[float]] = None,
-            rules: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['SecurityFirewallRuleArgs']]]]] = None) -> 'SecurityFirewall':
+            instance_id: Optional[pulumi.Input[int]] = None,
+            rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecurityFirewallRuleArgs']]]]] = None) -> 'SecurityFirewall':
         """
         Get an existing SecurityFirewall resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -108,8 +108,8 @@ class SecurityFirewall(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[float] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['SecurityFirewallRuleArgs']]]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+        :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecurityFirewallRuleArgs']]]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -121,7 +121,7 @@ class SecurityFirewall(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> pulumi.Output[float]:
+    def instance_id(self) -> pulumi.Output[int]:
         """
         The CloudAMQP instance ID.
         """
@@ -129,7 +129,7 @@ class SecurityFirewall(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def rules(self) -> pulumi.Output[List['outputs.SecurityFirewallRule']]:
+    def rules(self) -> pulumi.Output[Sequence['outputs.SecurityFirewallRule']]:
         """
         An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
         """

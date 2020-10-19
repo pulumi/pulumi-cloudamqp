@@ -33,7 +33,7 @@
         ]
     },
     "types": {
-        "cloudamqp:/SecurityFirewallRule:SecurityFirewallRule": {
+        "cloudamqp:index/SecurityFirewallRule:SecurityFirewallRule": {
             "properties": {
                 "description": {
                     "type": "string",
@@ -83,7 +83,7 @@
                 "ip"
             ]
         },
-        "cloudamqp:/getNodesNode:getNodesNode": {
+        "cloudamqp:index/getNodesNode:getNodesNode": {
             "properties": {
                 "erlangVersion": {
                     "type": "string",
@@ -149,7 +149,7 @@
                 }
             }
         },
-        "cloudamqp:/getPluginsCommunityPlugin:getPluginsCommunityPlugin": {
+        "cloudamqp:index/getPluginsCommunityPlugin:getPluginsCommunityPlugin": {
             "properties": {
                 "description": {
                     "type": "string",
@@ -178,7 +178,7 @@
             },
             "type": "object"
         },
-        "cloudamqp:/getPluginsPlugin:getPluginsPlugin": {
+        "cloudamqp:index/getPluginsPlugin:getPluginsPlugin": {
             "properties": {
                 "description": {
                     "type": "string",
@@ -1120,7 +1120,7 @@
                 "rules": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/cloudamqp:/SecurityFirewallRule:SecurityFirewallRule"
+                        "$ref": "#/types/cloudamqp:index/SecurityFirewallRule:SecurityFirewallRule"
                     },
                     "description": "An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.\n"
                 }
@@ -1137,7 +1137,7 @@
                 "rules": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/cloudamqp:/SecurityFirewallRule:SecurityFirewallRule"
+                        "$ref": "#/types/cloudamqp:index/SecurityFirewallRule:SecurityFirewallRule"
                     },
                     "description": "An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.\n"
                 }
@@ -1156,7 +1156,7 @@
                     "rules": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/cloudamqp:/SecurityFirewallRule:SecurityFirewallRule"
+                            "$ref": "#/types/cloudamqp:index/SecurityFirewallRule:SecurityFirewallRule"
                         },
                         "description": "An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.\n"
                     }
@@ -1434,7 +1434,7 @@
                     "nodes": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/cloudamqp:/getNodesNode:getNodesNode"
+                            "$ref": "#/types/cloudamqp:index/getNodesNode:getNodesNode"
                         }
                     }
                 },
@@ -1456,7 +1456,7 @@
                     "nodes": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/cloudamqp:/getNodesNode:getNodesNode"
+                            "$ref": "#/types/cloudamqp:index/getNodesNode:getNodesNode"
                         }
                     }
                 },
@@ -1531,7 +1531,7 @@
                     "plugins": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/cloudamqp:/getPluginsPlugin:getPluginsPlugin"
+                            "$ref": "#/types/cloudamqp:index/getPluginsPlugin:getPluginsPlugin"
                         }
                     }
                 },
@@ -1553,7 +1553,7 @@
                     "plugins": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/cloudamqp:/getPluginsPlugin:getPluginsPlugin"
+                            "$ref": "#/types/cloudamqp:index/getPluginsPlugin:getPluginsPlugin"
                         }
                     }
                 },
@@ -1575,7 +1575,7 @@
                     "plugins": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/cloudamqp:/getPluginsCommunityPlugin:getPluginsCommunityPlugin"
+                            "$ref": "#/types/cloudamqp:index/getPluginsCommunityPlugin:getPluginsCommunityPlugin"
                         }
                     }
                 },
@@ -1597,7 +1597,7 @@
                     "plugins": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/cloudamqp:/getPluginsCommunityPlugin:getPluginsCommunityPlugin"
+                            "$ref": "#/types/cloudamqp:index/getPluginsCommunityPlugin:getPluginsCommunityPlugin"
                         }
                     }
                 },

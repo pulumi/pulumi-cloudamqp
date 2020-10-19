@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = [
@@ -20,8 +20,8 @@ class GetAlarmResult:
     A collection of values returned by getAlarm.
     """
     def __init__(__self__, alarm_id=None, enabled=None, id=None, instance_id=None, message_type=None, queue_regex=None, recipients=None, time_threshold=None, type=None, value_threshold=None, vhost_regex=None):
-        if alarm_id and not isinstance(alarm_id, float):
-            raise TypeError("Expected argument 'alarm_id' to be a float")
+        if alarm_id and not isinstance(alarm_id, int):
+            raise TypeError("Expected argument 'alarm_id' to be a int")
         pulumi.set(__self__, "alarm_id", alarm_id)
         if enabled and not isinstance(enabled, bool):
             raise TypeError("Expected argument 'enabled' to be a bool")
@@ -29,8 +29,8 @@ class GetAlarmResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if instance_id and not isinstance(instance_id, float):
-            raise TypeError("Expected argument 'instance_id' to be a float")
+        if instance_id and not isinstance(instance_id, int):
+            raise TypeError("Expected argument 'instance_id' to be a int")
         pulumi.set(__self__, "instance_id", instance_id)
         if message_type and not isinstance(message_type, str):
             raise TypeError("Expected argument 'message_type' to be a str")
@@ -41,14 +41,14 @@ class GetAlarmResult:
         if recipients and not isinstance(recipients, list):
             raise TypeError("Expected argument 'recipients' to be a list")
         pulumi.set(__self__, "recipients", recipients)
-        if time_threshold and not isinstance(time_threshold, float):
-            raise TypeError("Expected argument 'time_threshold' to be a float")
+        if time_threshold and not isinstance(time_threshold, int):
+            raise TypeError("Expected argument 'time_threshold' to be a int")
         pulumi.set(__self__, "time_threshold", time_threshold)
         if type and not isinstance(type, str):
             raise TypeError("Expected argument 'type' to be a str")
         pulumi.set(__self__, "type", type)
-        if value_threshold and not isinstance(value_threshold, float):
-            raise TypeError("Expected argument 'value_threshold' to be a float")
+        if value_threshold and not isinstance(value_threshold, int):
+            raise TypeError("Expected argument 'value_threshold' to be a int")
         pulumi.set(__self__, "value_threshold", value_threshold)
         if vhost_regex and not isinstance(vhost_regex, str):
             raise TypeError("Expected argument 'vhost_regex' to be a str")
@@ -56,7 +56,7 @@ class GetAlarmResult:
 
     @property
     @pulumi.getter(name="alarmId")
-    def alarm_id(self) -> Optional[float]:
+    def alarm_id(self) -> Optional[int]:
         return pulumi.get(self, "alarm_id")
 
     @property
@@ -74,7 +74,7 @@ class GetAlarmResult:
 
     @property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> float:
+    def instance_id(self) -> int:
         return pulumi.get(self, "instance_id")
 
     @property
@@ -89,12 +89,12 @@ class GetAlarmResult:
 
     @property
     @pulumi.getter
-    def recipients(self) -> List[float]:
+    def recipients(self) -> Sequence[int]:
         return pulumi.get(self, "recipients")
 
     @property
     @pulumi.getter(name="timeThreshold")
-    def time_threshold(self) -> float:
+    def time_threshold(self) -> int:
         return pulumi.get(self, "time_threshold")
 
     @property
@@ -104,7 +104,7 @@ class GetAlarmResult:
 
     @property
     @pulumi.getter(name="valueThreshold")
-    def value_threshold(self) -> float:
+    def value_threshold(self) -> int:
         return pulumi.get(self, "value_threshold")
 
     @property
@@ -132,8 +132,8 @@ class AwaitableGetAlarmResult(GetAlarmResult):
             vhost_regex=self.vhost_regex)
 
 
-def get_alarm(alarm_id: Optional[float] = None,
-              instance_id: Optional[float] = None,
+def get_alarm(alarm_id: Optional[int] = None,
+              instance_id: Optional[int] = None,
               type: Optional[str] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAlarmResult:
     """
