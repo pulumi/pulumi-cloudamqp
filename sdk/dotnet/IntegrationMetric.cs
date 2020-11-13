@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.CloudAmqp
 {
+<<<<<<< HEAD
     /// <summary>
     /// This resource allows you to create and manage, forwarding metrics to third party integrations for a CloudAMQP instance. Once configured, the metrics produced will be forward to corresponding integration.
     /// 
@@ -78,6 +79,8 @@ namespace Pulumi.CloudAmqp
     ///  $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric &lt;resource_name&gt; &lt;name&gt;,&lt;instance_id&gt;`
     /// ```
     /// </summary>
+=======
+>>>>>>> 5ed2468... Upgrae to v1.8.3 of the CloudAMQP Terraform Provider
     public partial class IntegrationMetric : Pulumi.CustomResource
     {
         /// <summary>

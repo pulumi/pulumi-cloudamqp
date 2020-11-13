@@ -33,6 +33,7 @@ class IntegrationMetric(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
+<<<<<<< HEAD
         This resource allows you to create and manage, forwarding metrics to third party integrations for a CloudAMQP instance. Once configured, the metrics produced will be forward to corresponding integration.
 
         Only available for dedicated subscription plans.
@@ -101,6 +102,9 @@ class IntegrationMetric(pulumi.CustomResource):
          $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric <resource_name> <name>,<instance_id>`
         ```
 
+=======
+        Create a IntegrationMetric resource with the given unique name, props, and options.
+>>>>>>> 5ed2468... Upgrae to v1.8.3 of the CloudAMQP Terraform Provider
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key_id: AWS access key identifier. (Cloudwatch)
