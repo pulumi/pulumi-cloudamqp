@@ -2,7 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v1.8.3 of the CloudAMQP Terraform Provider
+* Upgrade to v1.8.4 of the CloudAMQP Terraform Provider
 
 ---
 
