@@ -4,6 +4,7 @@
 package cloudamqp
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -40,6 +41,14 @@ import (
 // ## Dependency
 //
 // This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+//
+// ## Import
+//
+// `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+//
+// ```sh
+//  $ pulumi import cloudamqp:index/plugin:Plugin rabbitmq_management rabbitmq_management,<instance_id>`
+// ```
 type Plugin struct {
 	pulumi.CustomResourceState
 
@@ -127,4 +136,43 @@ type PluginArgs struct {
 
 func (PluginArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*pluginArgs)(nil)).Elem()
+}
+
+type PluginInput interface {
+	pulumi.Input
+
+	ToPluginOutput() PluginOutput
+	ToPluginOutputWithContext(ctx context.Context) PluginOutput
+}
+
+func (Plugin) ElementType() reflect.Type {
+	return reflect.TypeOf((*Plugin)(nil)).Elem()
+}
+
+func (i Plugin) ToPluginOutput() PluginOutput {
+	return i.ToPluginOutputWithContext(context.Background())
+}
+
+func (i Plugin) ToPluginOutputWithContext(ctx context.Context) PluginOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PluginOutput)
+}
+
+type PluginOutput struct {
+	*pulumi.OutputState
+}
+
+func (PluginOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PluginOutput)(nil)).Elem()
+}
+
+func (o PluginOutput) ToPluginOutput() PluginOutput {
+	return o
+}
+
+func (o PluginOutput) ToPluginOutputWithContext(ctx context.Context) PluginOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PluginOutput{})
 }

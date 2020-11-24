@@ -64,6 +64,14 @@ import * as utilities from "./utilities";
  * ## Dependency
  *
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ *
+ * ## Import
+ *
+ * `cloudamqp_integration_metric`can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+ *
+ * ```sh
+ *  $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric <resource_name> <name>,<instance_id>`
+ * ```
  */
 export class IntegrationMetric extends pulumi.CustomResource {
     /**

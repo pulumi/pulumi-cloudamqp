@@ -38,6 +38,14 @@ namespace Pulumi.CloudAmqp
     /// ## Dependency
     /// 
     /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+    /// 
+    /// ## Import
+    /// 
+    /// `cloudamqp_alarm` can be imported using CloudAMQP internal identifier of the alarm together (CSV separated) with the instance identifier. To retrieve the alarm identifier, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-alarms)
+    /// 
+    /// ```sh
+    ///  $ pulumi import cloudamqp:index/alarm:Alarm alarm &lt;alarm_id&gt;,&lt;instance_id&gt;`
+    /// ```
     /// </summary>
     public partial class Alarm : Pulumi.CustomResource
     {

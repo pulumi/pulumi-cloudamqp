@@ -4,6 +4,7 @@
 package cloudamqp
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -129,6 +130,14 @@ import (
 // ## Dependency
 //
 // This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+//
+// ## Import
+//
+// `cloudamqp_integration_log`can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+//
+// ```sh
+//  $ pulumi import cloudamqp:index/integrationLog:IntegrationLog <resource_name> <name>,<instance_id>`
+// ```
 type IntegrationLog struct {
 	pulumi.CustomResourceState
 
@@ -313,4 +322,43 @@ type IntegrationLogArgs struct {
 
 func (IntegrationLogArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*integrationLogArgs)(nil)).Elem()
+}
+
+type IntegrationLogInput interface {
+	pulumi.Input
+
+	ToIntegrationLogOutput() IntegrationLogOutput
+	ToIntegrationLogOutputWithContext(ctx context.Context) IntegrationLogOutput
+}
+
+func (IntegrationLog) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationLog)(nil)).Elem()
+}
+
+func (i IntegrationLog) ToIntegrationLogOutput() IntegrationLogOutput {
+	return i.ToIntegrationLogOutputWithContext(context.Background())
+}
+
+func (i IntegrationLog) ToIntegrationLogOutputWithContext(ctx context.Context) IntegrationLogOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogOutput)
+}
+
+type IntegrationLogOutput struct {
+	*pulumi.OutputState
+}
+
+func (IntegrationLogOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationLogOutput)(nil)).Elem()
+}
+
+func (o IntegrationLogOutput) ToIntegrationLogOutput() IntegrationLogOutput {
+	return o
+}
+
+func (o IntegrationLogOutput) ToIntegrationLogOutputWithContext(ctx context.Context) IntegrationLogOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(IntegrationLogOutput{})
 }

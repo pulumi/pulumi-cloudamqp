@@ -55,6 +55,14 @@ class Notification(pulumi.CustomResource):
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 
+        ## Import
+
+        `cloudamqp_notification` can be imported using CloudAMQP internal identifier of a recipient together (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
+
+        ```sh
+         $ pulumi import cloudamqp:index/notification:Notification recipient <recpient_id>,<indstance_id>`
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.

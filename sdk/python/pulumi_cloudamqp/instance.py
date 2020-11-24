@@ -51,6 +51,14 @@ class Instance(pulumi.CustomResource):
             tags=["terraform"])
         ```
 
+        ## Import
+
+        `cloudamqp_instance`can be imported using CloudAMQP internal identifier. To retrieve the identifier for an instance, use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances).
+
+        ```sh
+         $ pulumi import cloudamqp:index/instance:Instance instance <instance_id>`
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: Name of the CloudAMQP instance.

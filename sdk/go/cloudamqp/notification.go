@@ -4,6 +4,7 @@
 package cloudamqp
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -53,6 +54,14 @@ import (
 // ## Dependency
 //
 // This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+//
+// ## Import
+//
+// `cloudamqp_notification` can be imported using CloudAMQP internal identifier of a recipient together (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
+//
+// ```sh
+//  $ pulumi import cloudamqp:index/notification:Notification recipient <recpient_id>,<indstance_id>`
+// ```
 type Notification struct {
 	pulumi.CustomResourceState
 
@@ -153,4 +162,43 @@ type NotificationArgs struct {
 
 func (NotificationArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*notificationArgs)(nil)).Elem()
+}
+
+type NotificationInput interface {
+	pulumi.Input
+
+	ToNotificationOutput() NotificationOutput
+	ToNotificationOutputWithContext(ctx context.Context) NotificationOutput
+}
+
+func (Notification) ElementType() reflect.Type {
+	return reflect.TypeOf((*Notification)(nil)).Elem()
+}
+
+func (i Notification) ToNotificationOutput() NotificationOutput {
+	return i.ToNotificationOutputWithContext(context.Background())
+}
+
+func (i Notification) ToNotificationOutputWithContext(ctx context.Context) NotificationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationOutput)
+}
+
+type NotificationOutput struct {
+	*pulumi.OutputState
+}
+
+func (NotificationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationOutput)(nil)).Elem()
+}
+
+func (o NotificationOutput) ToNotificationOutput() NotificationOutput {
+	return o
+}
+
+func (o NotificationOutput) ToNotificationOutputWithContext(ctx context.Context) NotificationOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NotificationOutput{})
 }

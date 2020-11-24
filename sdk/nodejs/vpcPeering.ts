@@ -4,6 +4,15 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * ## Import
+ *
+ * `cloudamqp_vpc_peering` can be imported using the CloudAMQP instance identifier.
+ *
+ * ```sh
+ *  $ pulumi import cloudamqp:index/vpcPeering:VpcPeering <resource_name> <instance_id>`
+ * ```
+ */
 export class VpcPeering extends pulumi.CustomResource {
     /**
      * Get an existing VpcPeering resource's state with the given name, ID, and optional extra
