@@ -21,7 +21,14 @@ class VpcPeering(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a VpcPeering resource with the given unique name, props, and options.
+        ## Import
+
+        `cloudamqp_vpc_peering` can be imported using the CloudAMQP instance identifier.
+
+        ```sh
+         $ pulumi import cloudamqp:index/vpcPeering:VpcPeering <resource_name> <instance_id>`
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.

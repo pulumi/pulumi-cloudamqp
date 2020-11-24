@@ -4,6 +4,7 @@
 package cloudamqp
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -40,6 +41,14 @@ import (
 // ## Depedency
 //
 // This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+//
+// ## Import
+//
+// `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+//
+// ```sh
+//  $ pulumi import cloudamqp:index/pluginCommunity:PluginCommunity <resource_name> <plugin_name>,<instance_id>`
+// ```
 type PluginCommunity struct {
 	pulumi.CustomResourceState
 
@@ -127,4 +136,43 @@ type PluginCommunityArgs struct {
 
 func (PluginCommunityArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*pluginCommunityArgs)(nil)).Elem()
+}
+
+type PluginCommunityInput interface {
+	pulumi.Input
+
+	ToPluginCommunityOutput() PluginCommunityOutput
+	ToPluginCommunityOutputWithContext(ctx context.Context) PluginCommunityOutput
+}
+
+func (PluginCommunity) ElementType() reflect.Type {
+	return reflect.TypeOf((*PluginCommunity)(nil)).Elem()
+}
+
+func (i PluginCommunity) ToPluginCommunityOutput() PluginCommunityOutput {
+	return i.ToPluginCommunityOutputWithContext(context.Background())
+}
+
+func (i PluginCommunity) ToPluginCommunityOutputWithContext(ctx context.Context) PluginCommunityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PluginCommunityOutput)
+}
+
+type PluginCommunityOutput struct {
+	*pulumi.OutputState
+}
+
+func (PluginCommunityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PluginCommunityOutput)(nil)).Elem()
+}
+
+func (o PluginCommunityOutput) ToPluginCommunityOutput() PluginCommunityOutput {
+	return o
+}
+
+func (o PluginCommunityOutput) ToPluginCommunityOutputWithContext(ctx context.Context) PluginCommunityOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PluginCommunityOutput{})
 }

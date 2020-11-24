@@ -4,6 +4,7 @@
 package cloudamqp
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -69,6 +70,14 @@ import (
 // ## Dependency
 //
 // This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+//
+// ## Import
+//
+// `cloudamqp_integration_metric`can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+//
+// ```sh
+//  $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric <resource_name> <name>,<instance_id>`
+// ```
 type IntegrationMetric struct {
 	pulumi.CustomResourceState
 
@@ -263,4 +272,43 @@ type IntegrationMetricArgs struct {
 
 func (IntegrationMetricArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*integrationMetricArgs)(nil)).Elem()
+}
+
+type IntegrationMetricInput interface {
+	pulumi.Input
+
+	ToIntegrationMetricOutput() IntegrationMetricOutput
+	ToIntegrationMetricOutputWithContext(ctx context.Context) IntegrationMetricOutput
+}
+
+func (IntegrationMetric) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationMetric)(nil)).Elem()
+}
+
+func (i IntegrationMetric) ToIntegrationMetricOutput() IntegrationMetricOutput {
+	return i.ToIntegrationMetricOutputWithContext(context.Background())
+}
+
+func (i IntegrationMetric) ToIntegrationMetricOutputWithContext(ctx context.Context) IntegrationMetricOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricOutput)
+}
+
+type IntegrationMetricOutput struct {
+	*pulumi.OutputState
+}
+
+func (IntegrationMetricOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationMetricOutput)(nil)).Elem()
+}
+
+func (o IntegrationMetricOutput) ToIntegrationMetricOutput() IntegrationMetricOutput {
+	return o
+}
+
+func (o IntegrationMetricOutput) ToIntegrationMetricOutputWithContext(ctx context.Context) IntegrationMetricOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(IntegrationMetricOutput{})
 }

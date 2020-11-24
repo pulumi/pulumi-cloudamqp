@@ -36,6 +36,14 @@ namespace Pulumi.CloudAmqp
     /// ## Dependency
     /// 
     /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+    /// 
+    /// ## Import
+    /// 
+    /// `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+    /// 
+    /// ```sh
+    ///  $ pulumi import cloudamqp:index/plugin:Plugin rabbitmq_management rabbitmq_management,&lt;instance_id&gt;`
+    /// ```
     /// </summary>
     public partial class Plugin : Pulumi.CustomResource
     {

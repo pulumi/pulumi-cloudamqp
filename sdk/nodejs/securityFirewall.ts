@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -45,6 +44,14 @@ import * as utilities from "./utilities";
  * ## Depedency
  *
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ *
+ * ## Import
+ *
+ * `cloudamqp_security_firewall` can be imported using CloudAMQP instance identifier.
+ *
+ * ```sh
+ *  $ pulumi import cloudamqp:index/securityFirewall:SecurityFirewall firewall <instance_id>`
+ * ```
  */
 export class SecurityFirewall extends pulumi.CustomResource {
     /**

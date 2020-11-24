@@ -115,6 +115,14 @@ class IntegrationLog(pulumi.CustomResource):
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 
+        ## Import
+
+        `cloudamqp_integration_log`can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+
+        ```sh
+         $ pulumi import cloudamqp:index/integrationLog:IntegrationLog <resource_name> <name>,<instance_id>`
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key_id: AWS access key identifier.

@@ -4,6 +4,7 @@
 package cloudamqp
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -38,6 +39,14 @@ import (
 // ## Dependency
 //
 // This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+//
+// ## Import
+//
+// `cloudamqp_alarm` can be imported using CloudAMQP internal identifier of the alarm together (CSV separated) with the instance identifier. To retrieve the alarm identifier, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-alarms)
+//
+// ```sh
+//  $ pulumi import cloudamqp:index/alarm:Alarm alarm <alarm_id>,<instance_id>`
+// ```
 type Alarm struct {
 	pulumi.CustomResourceState
 
@@ -191,4 +200,43 @@ type AlarmArgs struct {
 
 func (AlarmArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*alarmArgs)(nil)).Elem()
+}
+
+type AlarmInput interface {
+	pulumi.Input
+
+	ToAlarmOutput() AlarmOutput
+	ToAlarmOutputWithContext(ctx context.Context) AlarmOutput
+}
+
+func (Alarm) ElementType() reflect.Type {
+	return reflect.TypeOf((*Alarm)(nil)).Elem()
+}
+
+func (i Alarm) ToAlarmOutput() AlarmOutput {
+	return i.ToAlarmOutputWithContext(context.Background())
+}
+
+func (i Alarm) ToAlarmOutputWithContext(ctx context.Context) AlarmOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlarmOutput)
+}
+
+type AlarmOutput struct {
+	*pulumi.OutputState
+}
+
+func (AlarmOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlarmOutput)(nil)).Elem()
+}
+
+func (o AlarmOutput) ToAlarmOutput() AlarmOutput {
+	return o
+}
+
+func (o AlarmOutput) ToAlarmOutputWithContext(ctx context.Context) AlarmOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AlarmOutput{})
 }

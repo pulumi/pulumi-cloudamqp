@@ -4,6 +4,7 @@
 package cloudamqp
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -17,6 +18,14 @@ import (
 // ## Depedency
 //
 // This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+//
+// ## Import
+//
+// `cloudamqp_security_firewall` can be imported using CloudAMQP instance identifier.
+//
+// ```sh
+//  $ pulumi import cloudamqp:index/securityFirewall:SecurityFirewall firewall <instance_id>`
+// ```
 type SecurityFirewall struct {
 	pulumi.CustomResourceState
 
@@ -94,4 +103,43 @@ type SecurityFirewallArgs struct {
 
 func (SecurityFirewallArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*securityFirewallArgs)(nil)).Elem()
+}
+
+type SecurityFirewallInput interface {
+	pulumi.Input
+
+	ToSecurityFirewallOutput() SecurityFirewallOutput
+	ToSecurityFirewallOutputWithContext(ctx context.Context) SecurityFirewallOutput
+}
+
+func (SecurityFirewall) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityFirewall)(nil)).Elem()
+}
+
+func (i SecurityFirewall) ToSecurityFirewallOutput() SecurityFirewallOutput {
+	return i.ToSecurityFirewallOutputWithContext(context.Background())
+}
+
+func (i SecurityFirewall) ToSecurityFirewallOutputWithContext(ctx context.Context) SecurityFirewallOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityFirewallOutput)
+}
+
+type SecurityFirewallOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecurityFirewallOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityFirewallOutput)(nil)).Elem()
+}
+
+func (o SecurityFirewallOutput) ToSecurityFirewallOutput() SecurityFirewallOutput {
+	return o
+}
+
+func (o SecurityFirewallOutput) ToSecurityFirewallOutputWithContext(ctx context.Context) SecurityFirewallOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SecurityFirewallOutput{})
 }

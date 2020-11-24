@@ -9,6 +9,15 @@ using Pulumi.Serialization;
 
 namespace Pulumi.CloudAmqp
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// `cloudamqp_vpc_peering` can be imported using the CloudAMQP instance identifier.
+    /// 
+    /// ```sh
+    ///  $ pulumi import cloudamqp:index/vpcPeering:VpcPeering &lt;resource_name&gt; &lt;instance_id&gt;`
+    /// ```
+    /// </summary>
     public partial class VpcPeering : Pulumi.CustomResource
     {
         /// <summary>

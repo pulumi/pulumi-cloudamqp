@@ -4,12 +4,20 @@
 package cloudamqp
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// `cloudamqp_vpc_peering` can be imported using the CloudAMQP instance identifier.
+//
+// ```sh
+//  $ pulumi import cloudamqp:index/vpcPeering:VpcPeering <resource_name> <instance_id>`
+// ```
 type VpcPeering struct {
 	pulumi.CustomResourceState
 
@@ -93,4 +101,43 @@ type VpcPeeringArgs struct {
 
 func (VpcPeeringArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*vpcPeeringArgs)(nil)).Elem()
+}
+
+type VpcPeeringInput interface {
+	pulumi.Input
+
+	ToVpcPeeringOutput() VpcPeeringOutput
+	ToVpcPeeringOutputWithContext(ctx context.Context) VpcPeeringOutput
+}
+
+func (VpcPeering) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpcPeering)(nil)).Elem()
+}
+
+func (i VpcPeering) ToVpcPeeringOutput() VpcPeeringOutput {
+	return i.ToVpcPeeringOutputWithContext(context.Background())
+}
+
+func (i VpcPeering) ToVpcPeeringOutputWithContext(ctx context.Context) VpcPeeringOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcPeeringOutput)
+}
+
+type VpcPeeringOutput struct {
+	*pulumi.OutputState
+}
+
+func (VpcPeeringOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpcPeeringOutput)(nil)).Elem()
+}
+
+func (o VpcPeeringOutput) ToVpcPeeringOutput() VpcPeeringOutput {
+	return o
+}
+
+func (o VpcPeeringOutput) ToVpcPeeringOutputWithContext(ctx context.Context) VpcPeeringOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(VpcPeeringOutput{})
 }

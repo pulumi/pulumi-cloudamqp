@@ -94,6 +94,14 @@ import * as utilities from "./utilities";
  * ## Dependency
  *
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ *
+ * ## Import
+ *
+ * `cloudamqp_integration_log`can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+ *
+ * ```sh
+ *  $ pulumi import cloudamqp:index/integrationLog:IntegrationLog <resource_name> <name>,<instance_id>`
+ * ```
  */
 export class IntegrationLog extends pulumi.CustomResource {
     /**
