@@ -11,73 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// This resource allows you to create and manage, forwarding metrics to third party integrations for a CloudAMQP instance. Once configured, the metrics produced will be forward to corresponding integration.
-//
-// Only available for dedicated subscription plans.
-//
-// ## Argument references
-//
-// The following arguments are supported:
-//
-// * `name`              - (Required) The name of the third party log integration. See `Integration service reference`
-// * `region`            - (Optional) Region hosting the integration service.
-// * `accessKeyId`     - (Optional) AWS access key identifier.
-// * `secretAccessKey` - (Optional) AWS secret access key.
-// * `apiKey`           - (Optional) The API key for the integration service.
-// * `email`             - (Optional) The email address registred for the integration service.
-// * `projectId`        - (Optional) The project identifier.
-// * `privateKey`       - (Optional) The private access key.
-// * `clientEmail`      - (Optional) The client email registered for the integration service.
-// * `tags`              - (Optional) Tags. e.g. env=prod, region=europe.
-// * `queueWhitelist`   - (Optional) Whitelist queues using regular expression. Leave empty to include all queues.
-// * `vhostWhitelist`   - (Optional) Whitelist vhost using regular expression. Leave empty to include all vhosts.
-//
-// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration type reference below for more information.
-//
-// ## Integration service references
-//
-// Valid names for third party log integration.
-//
-// | Name          | Description |
-// |---------------|---------------------------------------------------------------|
-// | cloudwatch    | Create an IAM with programmatic access. |
-// | cloudwatchV2 | Create an IAM with programmatic access. |
-// | datadog       | Create a Datadog API key at app.datadoghq.com |
-// | datadogV2    | Create a Datadog API key at app.datadoghq.com
-// | librato       | Create a new API token (with record only permissions) here: https://metrics.librato.com/tokens |
-// | newrelic      | Deprecated! |
-// | newrelicV2   | Find or register an Insert API key for your account: Go to insights.newrelic.com > Manage data > API keys. |
-// | stackdriver   | Create a service account and add 'monitor metrics writer' role, then download credentials. |
-//
-// ## Integration type reference
-//
-// Valid arguments for third party log integrations.
-//
-// Required arguments for all integrations: *name*<br>
-// Optional arguments for all integrations: *tags*, *queue_whitelist*, *vhost_whitelist*
-//
-// | Name | Type | Required arguments |
-// | ---- | ---- | ---- |
-// | Cloudwatch             | cloudwatch     | region, access_key_id, secretAccessKey |
-// | Cloudwatch v2          | cloudwatchV2  | region, access_key_id, secretAccessKey |
-// | Datadog                | datadog        | api_key, region |
-// | Datadog v2             | datadogV2     | api_key, region |
-// | Librato                | librato        | email, apiKey |
-// | New relic (deprecated) | newrelic       | - |
-// | New relic v2           | newrelicV2    | api_key, region |
-// | Stackdriver            | stackdriver    | project_id, private_key, clientEmail |
-//
-// ## Dependency
-//
-// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-//
-// ## Import
-//
-// `cloudamqp_integration_metric`can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
-//
-// ```sh
-//  $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric <resource_name> <name>,<instance_id>`
-// ```
 type IntegrationMetric struct {
 	pulumi.CustomResourceState
 
@@ -99,7 +32,11 @@ type IntegrationMetric struct {
 	PrivateKey pulumi.StringPtrOutput `pulumi:"privateKey"`
 	// Project ID. (Stackdriver)
 	ProjectId pulumi.StringPtrOutput `pulumi:"projectId"`
-	// (optional) whitelist using regular expression
+	// (optional) allowlist using regular expression
+	QueueAllowlist pulumi.StringPtrOutput `pulumi:"queueAllowlist"`
+	// **Deprecated**
+	//
+	// Deprecated: use queue_allowlist instead
 	QueueWhitelist pulumi.StringPtrOutput `pulumi:"queueWhitelist"`
 	// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
 	Region pulumi.StringPtrOutput `pulumi:"region"`
@@ -107,7 +44,11 @@ type IntegrationMetric struct {
 	SecretAccessKey pulumi.StringPtrOutput `pulumi:"secretAccessKey"`
 	// (optional) tags. E.g. env=prod,region=europe
 	Tags pulumi.StringPtrOutput `pulumi:"tags"`
-	// (optional) whitelist using regular expression
+	// (optional) allowlist using regular expression
+	VhostAllowlist pulumi.StringPtrOutput `pulumi:"vhostAllowlist"`
+	// **Deprecated**
+	//
+	// Deprecated: use vhost_allowlist instead
 	VhostWhitelist pulumi.StringPtrOutput `pulumi:"vhostWhitelist"`
 }
 
@@ -160,7 +101,11 @@ type integrationMetricState struct {
 	PrivateKey *string `pulumi:"privateKey"`
 	// Project ID. (Stackdriver)
 	ProjectId *string `pulumi:"projectId"`
-	// (optional) whitelist using regular expression
+	// (optional) allowlist using regular expression
+	QueueAllowlist *string `pulumi:"queueAllowlist"`
+	// **Deprecated**
+	//
+	// Deprecated: use queue_allowlist instead
 	QueueWhitelist *string `pulumi:"queueWhitelist"`
 	// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
 	Region *string `pulumi:"region"`
@@ -168,7 +113,11 @@ type integrationMetricState struct {
 	SecretAccessKey *string `pulumi:"secretAccessKey"`
 	// (optional) tags. E.g. env=prod,region=europe
 	Tags *string `pulumi:"tags"`
-	// (optional) whitelist using regular expression
+	// (optional) allowlist using regular expression
+	VhostAllowlist *string `pulumi:"vhostAllowlist"`
+	// **Deprecated**
+	//
+	// Deprecated: use vhost_allowlist instead
 	VhostWhitelist *string `pulumi:"vhostWhitelist"`
 }
 
@@ -191,7 +140,11 @@ type IntegrationMetricState struct {
 	PrivateKey pulumi.StringPtrInput
 	// Project ID. (Stackdriver)
 	ProjectId pulumi.StringPtrInput
-	// (optional) whitelist using regular expression
+	// (optional) allowlist using regular expression
+	QueueAllowlist pulumi.StringPtrInput
+	// **Deprecated**
+	//
+	// Deprecated: use queue_allowlist instead
 	QueueWhitelist pulumi.StringPtrInput
 	// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
 	Region pulumi.StringPtrInput
@@ -199,7 +152,11 @@ type IntegrationMetricState struct {
 	SecretAccessKey pulumi.StringPtrInput
 	// (optional) tags. E.g. env=prod,region=europe
 	Tags pulumi.StringPtrInput
-	// (optional) whitelist using regular expression
+	// (optional) allowlist using regular expression
+	VhostAllowlist pulumi.StringPtrInput
+	// **Deprecated**
+	//
+	// Deprecated: use vhost_allowlist instead
 	VhostWhitelist pulumi.StringPtrInput
 }
 
@@ -226,7 +183,11 @@ type integrationMetricArgs struct {
 	PrivateKey *string `pulumi:"privateKey"`
 	// Project ID. (Stackdriver)
 	ProjectId *string `pulumi:"projectId"`
-	// (optional) whitelist using regular expression
+	// (optional) allowlist using regular expression
+	QueueAllowlist *string `pulumi:"queueAllowlist"`
+	// **Deprecated**
+	//
+	// Deprecated: use queue_allowlist instead
 	QueueWhitelist *string `pulumi:"queueWhitelist"`
 	// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
 	Region *string `pulumi:"region"`
@@ -234,7 +195,11 @@ type integrationMetricArgs struct {
 	SecretAccessKey *string `pulumi:"secretAccessKey"`
 	// (optional) tags. E.g. env=prod,region=europe
 	Tags *string `pulumi:"tags"`
-	// (optional) whitelist using regular expression
+	// (optional) allowlist using regular expression
+	VhostAllowlist *string `pulumi:"vhostAllowlist"`
+	// **Deprecated**
+	//
+	// Deprecated: use vhost_allowlist instead
 	VhostWhitelist *string `pulumi:"vhostWhitelist"`
 }
 
@@ -258,7 +223,11 @@ type IntegrationMetricArgs struct {
 	PrivateKey pulumi.StringPtrInput
 	// Project ID. (Stackdriver)
 	ProjectId pulumi.StringPtrInput
-	// (optional) whitelist using regular expression
+	// (optional) allowlist using regular expression
+	QueueAllowlist pulumi.StringPtrInput
+	// **Deprecated**
+	//
+	// Deprecated: use queue_allowlist instead
 	QueueWhitelist pulumi.StringPtrInput
 	// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
 	Region pulumi.StringPtrInput
@@ -266,7 +235,11 @@ type IntegrationMetricArgs struct {
 	SecretAccessKey pulumi.StringPtrInput
 	// (optional) tags. E.g. env=prod,region=europe
 	Tags pulumi.StringPtrInput
-	// (optional) whitelist using regular expression
+	// (optional) allowlist using regular expression
+	VhostAllowlist pulumi.StringPtrInput
+	// **Deprecated**
+	//
+	// Deprecated: use vhost_allowlist instead
 	VhostWhitelist pulumi.StringPtrInput
 }
 

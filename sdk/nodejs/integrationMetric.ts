@@ -4,75 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * This resource allows you to create and manage, forwarding metrics to third party integrations for a CloudAMQP instance. Once configured, the metrics produced will be forward to corresponding integration.
- *
- * Only available for dedicated subscription plans.
- *
- * ## Argument references
- *
- * The following arguments are supported:
- *
- * * `name`              - (Required) The name of the third party log integration. See `Integration service reference`
- * * `region`            - (Optional) Region hosting the integration service.
- * * `accessKeyId`     - (Optional) AWS access key identifier.
- * * `secretAccessKey` - (Optional) AWS secret access key.
- * * `apiKey`           - (Optional) The API key for the integration service.
- * * `email`             - (Optional) The email address registred for the integration service.
- * * `projectId`        - (Optional) The project identifier.
- * * `privateKey`       - (Optional) The private access key.
- * * `clientEmail`      - (Optional) The client email registered for the integration service.
- * * `tags`              - (Optional) Tags. e.g. env=prod, region=europe.
- * * `queueWhitelist`   - (Optional) Whitelist queues using regular expression. Leave empty to include all queues.
- * * `vhostWhitelist`   - (Optional) Whitelist vhost using regular expression. Leave empty to include all vhosts.
- *
- * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration type reference below for more information.
- *
- * ## Integration service references
- *
- * Valid names for third party log integration.
- *
- * | Name          | Description |
- * |---------------|---------------------------------------------------------------|
- * | cloudwatch    | Create an IAM with programmatic access. |
- * | cloudwatchV2 | Create an IAM with programmatic access. |
- * | datadog       | Create a Datadog API key at app.datadoghq.com |
- * | datadogV2    | Create a Datadog API key at app.datadoghq.com
- * | librato       | Create a new API token (with record only permissions) here: https://metrics.librato.com/tokens |
- * | newrelic      | Deprecated! |
- * | newrelicV2   | Find or register an Insert API key for your account: Go to insights.newrelic.com > Manage data > API keys. |
- * | stackdriver   | Create a service account and add 'monitor metrics writer' role, then download credentials. |
- *
- * ## Integration type reference
- *
- * Valid arguments for third party log integrations.
- *
- * Required arguments for all integrations: *name*<br>
- * Optional arguments for all integrations: *tags*, *queue_whitelist*, *vhost_whitelist*
- *
- * | Name | Type | Required arguments |
- * | ---- | ---- | ---- |
- * | Cloudwatch             | cloudwatch     | region, access_key_id, secretAccessKey |
- * | Cloudwatch v2          | cloudwatchV2  | region, access_key_id, secretAccessKey |
- * | Datadog                | datadog        | api_key, region |
- * | Datadog v2             | datadogV2     | api_key, region |
- * | Librato                | librato        | email, apiKey |
- * | New relic (deprecated) | newrelic       | - |
- * | New relic v2           | newrelicV2    | api_key, region |
- * | Stackdriver            | stackdriver    | project_id, private_key, clientEmail |
- *
- * ## Dependency
- *
- * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
- *
- * ## Import
- *
- * `cloudamqp_integration_metric`can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
- *
- * ```sh
- *  $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric <resource_name> <name>,<instance_id>`
- * ```
- */
 export class IntegrationMetric extends pulumi.CustomResource {
     /**
      * Get an existing IntegrationMetric resource's state with the given name, ID, and optional extra
@@ -138,7 +69,13 @@ export class IntegrationMetric extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string | undefined>;
     /**
-     * (optional) whitelist using regular expression
+     * (optional) allowlist using regular expression
+     */
+    public readonly queueAllowlist!: pulumi.Output<string | undefined>;
+    /**
+     * **Deprecated**
+     *
+     * @deprecated use queue_allowlist instead
      */
     public readonly queueWhitelist!: pulumi.Output<string | undefined>;
     /**
@@ -154,7 +91,13 @@ export class IntegrationMetric extends pulumi.CustomResource {
      */
     public readonly tags!: pulumi.Output<string | undefined>;
     /**
-     * (optional) whitelist using regular expression
+     * (optional) allowlist using regular expression
+     */
+    public readonly vhostAllowlist!: pulumi.Output<string | undefined>;
+    /**
+     * **Deprecated**
+     *
+     * @deprecated use vhost_allowlist instead
      */
     public readonly vhostWhitelist!: pulumi.Output<string | undefined>;
 
@@ -179,10 +122,12 @@ export class IntegrationMetric extends pulumi.CustomResource {
             inputs["name"] = state ? state.name : undefined;
             inputs["privateKey"] = state ? state.privateKey : undefined;
             inputs["projectId"] = state ? state.projectId : undefined;
+            inputs["queueAllowlist"] = state ? state.queueAllowlist : undefined;
             inputs["queueWhitelist"] = state ? state.queueWhitelist : undefined;
             inputs["region"] = state ? state.region : undefined;
             inputs["secretAccessKey"] = state ? state.secretAccessKey : undefined;
             inputs["tags"] = state ? state.tags : undefined;
+            inputs["vhostAllowlist"] = state ? state.vhostAllowlist : undefined;
             inputs["vhostWhitelist"] = state ? state.vhostWhitelist : undefined;
         } else {
             const args = argsOrState as IntegrationMetricArgs | undefined;
@@ -198,10 +143,12 @@ export class IntegrationMetric extends pulumi.CustomResource {
             inputs["name"] = args ? args.name : undefined;
             inputs["privateKey"] = args ? args.privateKey : undefined;
             inputs["projectId"] = args ? args.projectId : undefined;
+            inputs["queueAllowlist"] = args ? args.queueAllowlist : undefined;
             inputs["queueWhitelist"] = args ? args.queueWhitelist : undefined;
             inputs["region"] = args ? args.region : undefined;
             inputs["secretAccessKey"] = args ? args.secretAccessKey : undefined;
             inputs["tags"] = args ? args.tags : undefined;
+            inputs["vhostAllowlist"] = args ? args.vhostAllowlist : undefined;
             inputs["vhostWhitelist"] = args ? args.vhostWhitelist : undefined;
         }
         if (!opts) {
@@ -256,7 +203,13 @@ export interface IntegrationMetricState {
      */
     readonly projectId?: pulumi.Input<string>;
     /**
-     * (optional) whitelist using regular expression
+     * (optional) allowlist using regular expression
+     */
+    readonly queueAllowlist?: pulumi.Input<string>;
+    /**
+     * **Deprecated**
+     *
+     * @deprecated use queue_allowlist instead
      */
     readonly queueWhitelist?: pulumi.Input<string>;
     /**
@@ -272,7 +225,13 @@ export interface IntegrationMetricState {
      */
     readonly tags?: pulumi.Input<string>;
     /**
-     * (optional) whitelist using regular expression
+     * (optional) allowlist using regular expression
+     */
+    readonly vhostAllowlist?: pulumi.Input<string>;
+    /**
+     * **Deprecated**
+     *
+     * @deprecated use vhost_allowlist instead
      */
     readonly vhostWhitelist?: pulumi.Input<string>;
 }
@@ -318,7 +277,13 @@ export interface IntegrationMetricArgs {
      */
     readonly projectId?: pulumi.Input<string>;
     /**
-     * (optional) whitelist using regular expression
+     * (optional) allowlist using regular expression
+     */
+    readonly queueAllowlist?: pulumi.Input<string>;
+    /**
+     * **Deprecated**
+     *
+     * @deprecated use queue_allowlist instead
      */
     readonly queueWhitelist?: pulumi.Input<string>;
     /**
@@ -334,7 +299,13 @@ export interface IntegrationMetricArgs {
      */
     readonly tags?: pulumi.Input<string>;
     /**
-     * (optional) whitelist using regular expression
+     * (optional) allowlist using regular expression
+     */
+    readonly vhostAllowlist?: pulumi.Input<string>;
+    /**
+     * **Deprecated**
+     *
+     * @deprecated use vhost_allowlist instead
      */
     readonly vhostWhitelist?: pulumi.Input<string>;
 }
