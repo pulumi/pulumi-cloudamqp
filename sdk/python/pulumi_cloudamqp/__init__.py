@@ -21,6 +21,7 @@ from .plugin_community import *
 from .provider import *
 from .security_firewall import *
 from .vpc_peering import *
+from .webhook import *
 from ._inputs import *
 from . import outputs
 

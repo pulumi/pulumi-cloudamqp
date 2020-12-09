@@ -17,6 +17,7 @@ SNAKE_TO_CAMEL_CASE_TABLE = {
     "queue_allowlist": "queueAllowlist",
     "queue_regex": "queueRegex",
     "queue_whitelist": "queueWhitelist",
+    "retry_interval": "retryInterval",
     "rmq_version": "rmqVersion",
     "secret_access_key": "secretAccessKey",
     "time_threshold": "timeThreshold",
@@ -25,6 +26,7 @@ SNAKE_TO_CAMEL_CASE_TABLE = {
     "vhost_regex": "vhostRegex",
     "vhost_whitelist": "vhostWhitelist",
     "vpc_subnet": "vpcSubnet",
+    "webhook_uri": "webhookUri",
 }
 
 CAMEL_TO_SNAKE_CASE_TABLE = {
@@ -42,6 +44,7 @@ CAMEL_TO_SNAKE_CASE_TABLE = {
     "queueAllowlist": "queue_allowlist",
     "queueRegex": "queue_regex",
     "queueWhitelist": "queue_whitelist",
+    "retryInterval": "retry_interval",
     "rmqVersion": "rmq_version",
     "secretAccessKey": "secret_access_key",
     "timeThreshold": "time_threshold",
@@ -50,4 +53,5 @@ CAMEL_TO_SNAKE_CASE_TABLE = {
     "vhostRegex": "vhost_regex",
     "vhostWhitelist": "vhost_whitelist",
     "vpcSubnet": "vpc_subnet",
+    "webhookUri": "webhook_uri",
 }

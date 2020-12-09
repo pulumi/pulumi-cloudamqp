@@ -62,11 +62,11 @@ class Instance(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: Name of the CloudAMQP instance.
-        :param pulumi.Input[bool] no_default_alarms: Set to true to discard creating default alarms when the instance is created.
+        :param pulumi.Input[bool] no_default_alarms: Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
         :param pulumi.Input[int] nodes: Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
         :param pulumi.Input[str] plan: The subscription plan. See available plans
         :param pulumi.Input[str] region: The region to host the instance in. See Instance regions
-        :param pulumi.Input[str] rmq_version: The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.
+        :param pulumi.Input[str] rmq_version: The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
         :param pulumi.Input[str] vpc_subnet: Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
         """
@@ -140,12 +140,12 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[bool] dedicated: Is the instance hosted on a dedicated server
         :param pulumi.Input[str] host: (Computed) The host name for the CloudAMQP instance.
         :param pulumi.Input[str] name: Name of the CloudAMQP instance.
-        :param pulumi.Input[bool] no_default_alarms: Set to true to discard creating default alarms when the instance is created.
+        :param pulumi.Input[bool] no_default_alarms: Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
         :param pulumi.Input[int] nodes: Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
         :param pulumi.Input[str] plan: The subscription plan. See available plans
         :param pulumi.Input[bool] ready: Flag describing if the resource is ready
         :param pulumi.Input[str] region: The region to host the instance in. See Instance regions
-        :param pulumi.Input[str] rmq_version: The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.
+        :param pulumi.Input[str] rmq_version: The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
         :param pulumi.Input[str] url: (Computed) AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
         :param pulumi.Input[str] vhost: (Computed) The virtual host used by Rabbit MQ.
@@ -205,9 +205,9 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="noDefaultAlarms")
-    def no_default_alarms(self) -> pulumi.Output[Optional[bool]]:
+    def no_default_alarms(self) -> pulumi.Output[bool]:
         """
-        Set to true to discard creating default alarms when the instance is created.
+        Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
         """
         return pulumi.get(self, "no_default_alarms")
 
@@ -245,9 +245,9 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="rmqVersion")
-    def rmq_version(self) -> pulumi.Output[Optional[str]]:
+    def rmq_version(self) -> pulumi.Output[str]:
         """
-        The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.
+        The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
         """
         return pulumi.get(self, "rmq_version")
 

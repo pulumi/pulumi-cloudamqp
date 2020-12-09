@@ -37,6 +37,7 @@
         "types/input.ts",
         "types/output.ts",
         "utilities.ts",
-        "vpcPeering.ts"
+        "vpcPeering.ts",
+        "webhook.ts"
     ]
 }

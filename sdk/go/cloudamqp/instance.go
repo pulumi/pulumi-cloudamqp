@@ -70,8 +70,8 @@ type Instance struct {
 	Host pulumi.StringOutput `pulumi:"host"`
 	// Name of the CloudAMQP instance.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Set to true to discard creating default alarms when the instance is created.
-	NoDefaultAlarms pulumi.BoolPtrOutput `pulumi:"noDefaultAlarms"`
+	// Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
+	NoDefaultAlarms pulumi.BoolOutput `pulumi:"noDefaultAlarms"`
 	// Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
 	Nodes pulumi.IntPtrOutput `pulumi:"nodes"`
 	// The subscription plan. See available plans
@@ -80,8 +80,8 @@ type Instance struct {
 	Ready pulumi.BoolOutput `pulumi:"ready"`
 	// The region to host the instance in. See Instance regions
 	Region pulumi.StringOutput `pulumi:"region"`
-	// The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.
-	RmqVersion pulumi.StringPtrOutput `pulumi:"rmqVersion"`
+	// The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
+	RmqVersion pulumi.StringOutput `pulumi:"rmqVersion"`
 	// One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// (Computed) AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
@@ -134,7 +134,7 @@ type instanceState struct {
 	Host *string `pulumi:"host"`
 	// Name of the CloudAMQP instance.
 	Name *string `pulumi:"name"`
-	// Set to true to discard creating default alarms when the instance is created.
+	// Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
 	NoDefaultAlarms *bool `pulumi:"noDefaultAlarms"`
 	// Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
 	Nodes *int `pulumi:"nodes"`
@@ -144,7 +144,7 @@ type instanceState struct {
 	Ready *bool `pulumi:"ready"`
 	// The region to host the instance in. See Instance regions
 	Region *string `pulumi:"region"`
-	// The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.
+	// The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
 	RmqVersion *string `pulumi:"rmqVersion"`
 	// One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
 	Tags []string `pulumi:"tags"`
@@ -165,7 +165,7 @@ type InstanceState struct {
 	Host pulumi.StringPtrInput
 	// Name of the CloudAMQP instance.
 	Name pulumi.StringPtrInput
-	// Set to true to discard creating default alarms when the instance is created.
+	// Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
 	NoDefaultAlarms pulumi.BoolPtrInput
 	// Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
 	Nodes pulumi.IntPtrInput
@@ -175,7 +175,7 @@ type InstanceState struct {
 	Ready pulumi.BoolPtrInput
 	// The region to host the instance in. See Instance regions
 	Region pulumi.StringPtrInput
-	// The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.
+	// The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
 	RmqVersion pulumi.StringPtrInput
 	// One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
 	Tags pulumi.StringArrayInput
@@ -194,7 +194,7 @@ func (InstanceState) ElementType() reflect.Type {
 type instanceArgs struct {
 	// Name of the CloudAMQP instance.
 	Name *string `pulumi:"name"`
-	// Set to true to discard creating default alarms when the instance is created.
+	// Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
 	NoDefaultAlarms *bool `pulumi:"noDefaultAlarms"`
 	// Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
 	Nodes *int `pulumi:"nodes"`
@@ -202,7 +202,7 @@ type instanceArgs struct {
 	Plan string `pulumi:"plan"`
 	// The region to host the instance in. See Instance regions
 	Region string `pulumi:"region"`
-	// The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.
+	// The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
 	RmqVersion *string `pulumi:"rmqVersion"`
 	// One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
 	Tags []string `pulumi:"tags"`
@@ -214,7 +214,7 @@ type instanceArgs struct {
 type InstanceArgs struct {
 	// Name of the CloudAMQP instance.
 	Name pulumi.StringPtrInput
-	// Set to true to discard creating default alarms when the instance is created.
+	// Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
 	NoDefaultAlarms pulumi.BoolPtrInput
 	// Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
 	Nodes pulumi.IntPtrInput
@@ -222,7 +222,7 @@ type InstanceArgs struct {
 	Plan pulumi.StringInput
 	// The region to host the instance in. See Instance regions
 	Region pulumi.StringInput
-	// The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.
+	// The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
 	RmqVersion pulumi.StringPtrInput
 	// One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
 	Tags pulumi.StringArrayInput

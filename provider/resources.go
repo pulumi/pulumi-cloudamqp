@@ -91,6 +91,7 @@ func Provider() tfbridge.ProviderInfo {
 			"cloudamqp_vpc_peering":        {Tok: makeResource(mainMod, "VpcPeering")},
 			"cloudamqp_integration_log":    {Tok: makeResource(mainMod, "IntegrationLog")},
 			"cloudamqp_integration_metric": {Tok: makeResource(mainMod, "IntegrationMetric")},
+			"cloudamqp_webhook":            {Tok: makeResource(mainMod, "Webhook")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"cloudamqp_credentials":       {Tok: makeDataSource(mainMod, "getCredentials")},

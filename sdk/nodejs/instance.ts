@@ -84,9 +84,9 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Set to true to discard creating default alarms when the instance is created.
+     * Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
      */
-    public readonly noDefaultAlarms!: pulumi.Output<boolean | undefined>;
+    public readonly noDefaultAlarms!: pulumi.Output<boolean>;
     /**
      * Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
      */
@@ -104,9 +104,9 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.
+     * The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
      */
-    public readonly rmqVersion!: pulumi.Output<string | undefined>;
+    public readonly rmqVersion!: pulumi.Output<string>;
     /**
      * One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
      */
@@ -205,7 +205,7 @@ export interface InstanceState {
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * Set to true to discard creating default alarms when the instance is created.
+     * Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
      */
     readonly noDefaultAlarms?: pulumi.Input<boolean>;
     /**
@@ -225,7 +225,7 @@ export interface InstanceState {
      */
     readonly region?: pulumi.Input<string>;
     /**
-     * The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.
+     * The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
      */
     readonly rmqVersion?: pulumi.Input<string>;
     /**
@@ -255,7 +255,7 @@ export interface InstanceArgs {
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * Set to true to discard creating default alarms when the instance is created.
+     * Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
      */
     readonly noDefaultAlarms?: pulumi.Input<boolean>;
     /**
@@ -271,7 +271,7 @@ export interface InstanceArgs {
      */
     readonly region: pulumi.Input<string>;
     /**
-     * The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.
+     * The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
      */
     readonly rmqVersion?: pulumi.Input<string>;
     /**
