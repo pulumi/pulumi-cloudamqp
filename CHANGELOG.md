@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v1.8.6 of the CloudAMQP Terraform Provider
+_(none)_
 
 ---
+
+## 2.5.3 (2020-12-10)
+* Upgrade to v1.8.6 of the CloudAMQP Terraform Provider
 
 ## 2.5.2 (2020-12-04)
 * Upgrade to v1.8.4 of the CloudAMQP Terraform Provider
