@@ -83,10 +83,10 @@ namespace Pulumi.CloudAmqp
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Set to true to discard creating default alarms when the instance is created.
+        /// Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
         /// </summary>
         [Output("noDefaultAlarms")]
-        public Output<bool?> NoDefaultAlarms { get; private set; } = null!;
+        public Output<bool> NoDefaultAlarms { get; private set; } = null!;
 
         /// <summary>
         /// Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
@@ -113,10 +113,10 @@ namespace Pulumi.CloudAmqp
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.
+        /// The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
         /// </summary>
         [Output("rmqVersion")]
-        public Output<string?> RmqVersion { get; private set; } = null!;
+        public Output<string> RmqVersion { get; private set; } = null!;
 
         /// <summary>
         /// One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
@@ -195,7 +195,7 @@ namespace Pulumi.CloudAmqp
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Set to true to discard creating default alarms when the instance is created.
+        /// Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
         /// </summary>
         [Input("noDefaultAlarms")]
         public Input<bool>? NoDefaultAlarms { get; set; }
@@ -219,7 +219,7 @@ namespace Pulumi.CloudAmqp
         public Input<string> Region { get; set; } = null!;
 
         /// <summary>
-        /// The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.
+        /// The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
         /// </summary>
         [Input("rmqVersion")]
         public Input<string>? RmqVersion { get; set; }
@@ -274,7 +274,7 @@ namespace Pulumi.CloudAmqp
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Set to true to discard creating default alarms when the instance is created.
+        /// Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
         /// </summary>
         [Input("noDefaultAlarms")]
         public Input<bool>? NoDefaultAlarms { get; set; }
@@ -304,7 +304,7 @@ namespace Pulumi.CloudAmqp
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.
+        /// The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
         /// </summary>
         [Input("rmqVersion")]
         public Input<string>? RmqVersion { get; set; }

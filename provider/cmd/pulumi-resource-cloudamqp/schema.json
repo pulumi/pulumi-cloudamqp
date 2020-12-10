@@ -398,7 +398,7 @@
                 },
                 "noDefaultAlarms": {
                     "type": "boolean",
-                    "description": "Set to true to discard creating default alarms when the instance is created.\n"
+                    "description": "Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.\n"
                 },
                 "nodes": {
                     "type": "integer",
@@ -418,7 +418,7 @@
                 },
                 "rmqVersion": {
                     "type": "string",
-                    "description": "The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.\n"
+                    "description": "The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**\n"
                 },
                 "tags": {
                     "type": "array",
@@ -445,9 +445,11 @@
                 "dedicated",
                 "host",
                 "name",
+                "noDefaultAlarms",
                 "plan",
                 "ready",
                 "region",
+                "rmqVersion",
                 "url",
                 "vhost"
             ],
@@ -458,7 +460,7 @@
                 },
                 "noDefaultAlarms": {
                     "type": "boolean",
-                    "description": "Set to true to discard creating default alarms when the instance is created.\n"
+                    "description": "Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.\n"
                 },
                 "nodes": {
                     "type": "integer",
@@ -474,7 +476,7 @@
                 },
                 "rmqVersion": {
                     "type": "string",
-                    "description": "The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.\n"
+                    "description": "The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**\n"
                 },
                 "tags": {
                     "type": "array",
@@ -513,7 +515,7 @@
                     },
                     "noDefaultAlarms": {
                         "type": "boolean",
-                        "description": "Set to true to discard creating default alarms when the instance is created.\n"
+                        "description": "Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.\n"
                     },
                     "nodes": {
                         "type": "integer",
@@ -533,7 +535,7 @@
                     },
                     "rmqVersion": {
                         "type": "string",
-                        "description": "The Rabbit MQ version. Default set to current loaded default value in CloudAMQP API.\n"
+                        "description": "The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**\n"
                     },
                     "tags": {
                         "type": "array",
@@ -1242,6 +1244,107 @@
                     "status": {
                         "type": "string",
                         "description": "VPC peering status\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "cloudamqp:index/webhook:Webhook": {
+            "description": "This resource allows you to enable or disable webhooks for a specific vhost and queue.\n\nOnly available for dedicated subscription plans.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst webhookQueue = new cloudamqp.Webhook(\"webhookQueue\", {\n    instanceId: cloudamqp_instance.instance.id,\n    vhost: \"myvhost\",\n    queue: \"webhook-queue\",\n    webhookUri: \"https://example.com/webhook?key=secret\",\n    retryInterval: 5,\n    concurrency: 5,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nwebhook_queue = cloudamqp.Webhook(\"webhookQueue\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    vhost=\"myvhost\",\n    queue=\"webhook-queue\",\n    webhook_uri=\"https://example.com/webhook?key=secret\",\n    retry_interval=5,\n    concurrency=5)\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var webhookQueue = new CloudAmqp.Webhook(\"webhookQueue\", new CloudAmqp.WebhookArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Vhost = \"myvhost\",\n            Queue = \"webhook-queue\",\n            WebhookUri = \"https://example.com/webhook?key=secret\",\n            RetryInterval = 5,\n            Concurrency = 5,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.NewWebhook(ctx, \"webhookQueue\", \u0026cloudamqp.WebhookArgs{\n\t\t\tInstanceId:    pulumi.Any(cloudamqp_instance.Instance.Id),\n\t\t\tVhost:         pulumi.String(\"myvhost\"),\n\t\t\tQueue:         pulumi.String(\"webhook-queue\"),\n\t\t\tWebhookUri:    pulumi.String(\"https://example.com/webhook?key=secret\"),\n\t\t\tRetryInterval: pulumi.Int(5),\n\t\t\tConcurrency:   pulumi.Int(5),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n## Dependency\n\nThis resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n\n\n## Import\n\n`cloudamqp_webhook` can be imported using the resource identifier together with CloudAMQP instance identifier. The identifiers are CSV separated, see example below.\n\n```sh\n $ pulumi import cloudamqp:index/webhook:Webhook webhook_queue \u003cwebhook_id\u003e,\u003cinstance_id\u003e`\n```\n\n ",
+            "properties": {
+                "concurrency": {
+                    "type": "integer",
+                    "description": "Max simultaneous requests to the endpoint.\n"
+                },
+                "instanceId": {
+                    "type": "integer",
+                    "description": "The CloudAMQP instance ID.\n"
+                },
+                "queue": {
+                    "type": "string",
+                    "description": "A (durable) queue on your RabbitMQ instance.\n"
+                },
+                "retryInterval": {
+                    "type": "integer",
+                    "description": "How often we retry if your endpoint fails (in seconds).\n"
+                },
+                "vhost": {
+                    "type": "string",
+                    "description": "The vhost the queue resides in.\n"
+                },
+                "webhookUri": {
+                    "type": "string",
+                    "description": "A POST request will be made for each message in the queue to this endpoint.\n"
+                }
+            },
+            "required": [
+                "concurrency",
+                "instanceId",
+                "queue",
+                "retryInterval",
+                "vhost",
+                "webhookUri"
+            ],
+            "inputProperties": {
+                "concurrency": {
+                    "type": "integer",
+                    "description": "Max simultaneous requests to the endpoint.\n"
+                },
+                "instanceId": {
+                    "type": "integer",
+                    "description": "The CloudAMQP instance ID.\n"
+                },
+                "queue": {
+                    "type": "string",
+                    "description": "A (durable) queue on your RabbitMQ instance.\n"
+                },
+                "retryInterval": {
+                    "type": "integer",
+                    "description": "How often we retry if your endpoint fails (in seconds).\n"
+                },
+                "vhost": {
+                    "type": "string",
+                    "description": "The vhost the queue resides in.\n"
+                },
+                "webhookUri": {
+                    "type": "string",
+                    "description": "A POST request will be made for each message in the queue to this endpoint.\n"
+                }
+            },
+            "requiredInputs": [
+                "concurrency",
+                "instanceId",
+                "queue",
+                "retryInterval",
+                "vhost",
+                "webhookUri"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Webhook resources.\n",
+                "properties": {
+                    "concurrency": {
+                        "type": "integer",
+                        "description": "Max simultaneous requests to the endpoint.\n"
+                    },
+                    "instanceId": {
+                        "type": "integer",
+                        "description": "The CloudAMQP instance ID.\n"
+                    },
+                    "queue": {
+                        "type": "string",
+                        "description": "A (durable) queue on your RabbitMQ instance.\n"
+                    },
+                    "retryInterval": {
+                        "type": "integer",
+                        "description": "How often we retry if your endpoint fails (in seconds).\n"
+                    },
+                    "vhost": {
+                        "type": "string",
+                        "description": "The vhost the queue resides in.\n"
+                    },
+                    "webhookUri": {
+                        "type": "string",
+                        "description": "A POST request will be made for each message in the queue to this endpoint.\n"
                     }
                 },
                 "type": "object"

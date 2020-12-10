@@ -20,6 +20,7 @@ export * from "./pluginCommunity";
 export * from "./provider";
 export * from "./securityFirewall";
 export * from "./vpcPeering";
+export * from "./webhook";
 
 // Export sub-modules:
 import * as config from "./config";
