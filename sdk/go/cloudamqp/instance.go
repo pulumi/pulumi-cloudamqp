@@ -95,14 +95,15 @@ type Instance struct {
 // NewInstance registers a new resource with the given unique name, arguments, and options.
 func NewInstance(ctx *pulumi.Context,
 	name string, args *InstanceArgs, opts ...pulumi.ResourceOption) (*Instance, error) {
-	if args == nil || args.Plan == nil {
-		return nil, errors.New("missing required argument 'Plan'")
-	}
-	if args == nil || args.Region == nil {
-		return nil, errors.New("missing required argument 'Region'")
-	}
 	if args == nil {
-		args = &InstanceArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Plan == nil {
+		return nil, errors.New("invalid value for required argument 'Plan'")
+	}
+	if args.Region == nil {
+		return nil, errors.New("invalid value for required argument 'Region'")
 	}
 	var resource Instance
 	err := ctx.RegisterResource("cloudamqp:index/instance:Instance", name, args, &resource, opts...)

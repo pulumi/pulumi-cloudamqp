@@ -152,10 +152,10 @@ export class Instance extends pulumi.CustomResource {
             inputs["vpcSubnet"] = state ? state.vpcSubnet : undefined;
         } else {
             const args = argsOrState as InstanceArgs | undefined;
-            if (!args || args.plan === undefined) {
+            if ((!args || args.plan === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'plan'");
             }
-            if (!args || args.region === undefined) {
+            if ((!args || args.region === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'region'");
             }
             inputs["name"] = args ? args.name : undefined;

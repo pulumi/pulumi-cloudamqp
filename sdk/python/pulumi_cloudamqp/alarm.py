@@ -94,19 +94,19 @@ class Alarm(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if enabled is None:
+            if enabled is None and not opts.urn:
                 raise TypeError("Missing required property 'enabled'")
             __props__['enabled'] = enabled
-            if instance_id is None:
+            if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__['instance_id'] = instance_id
             __props__['message_type'] = message_type
             __props__['queue_regex'] = queue_regex
-            if recipients is None:
+            if recipients is None and not opts.urn:
                 raise TypeError("Missing required property 'recipients'")
             __props__['recipients'] = recipients
             __props__['time_threshold'] = time_threshold
-            if type is None:
+            if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__['type'] = type
             __props__['value_threshold'] = value_threshold

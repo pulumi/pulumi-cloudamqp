@@ -38,14 +38,15 @@ type SecurityFirewall struct {
 // NewSecurityFirewall registers a new resource with the given unique name, arguments, and options.
 func NewSecurityFirewall(ctx *pulumi.Context,
 	name string, args *SecurityFirewallArgs, opts ...pulumi.ResourceOption) (*SecurityFirewall, error) {
-	if args == nil || args.InstanceId == nil {
-		return nil, errors.New("missing required argument 'InstanceId'")
-	}
-	if args == nil || args.Rules == nil {
-		return nil, errors.New("missing required argument 'Rules'")
-	}
 	if args == nil {
-		args = &SecurityFirewallArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.InstanceId == nil {
+		return nil, errors.New("invalid value for required argument 'InstanceId'")
+	}
+	if args.Rules == nil {
+		return nil, errors.New("invalid value for required argument 'Rules'")
 	}
 	var resource SecurityFirewall
 	err := ctx.RegisterResource("cloudamqp:index/securityFirewall:SecurityFirewall", name, args, &resource, opts...)

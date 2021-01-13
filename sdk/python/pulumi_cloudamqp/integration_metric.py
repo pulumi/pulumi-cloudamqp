@@ -76,7 +76,7 @@ class IntegrationMetric(pulumi.CustomResource):
             __props__['api_key'] = api_key
             __props__['client_email'] = client_email
             __props__['email'] = email
-            if instance_id is None:
+            if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__['instance_id'] = instance_id
             __props__['license_key'] = license_key
@@ -84,7 +84,7 @@ class IntegrationMetric(pulumi.CustomResource):
             __props__['private_key'] = private_key
             __props__['project_id'] = project_id
             __props__['queue_allowlist'] = queue_allowlist
-            if queue_whitelist is not None:
+            if queue_whitelist is not None and not opts.urn:
                 warnings.warn("""use queue_allowlist instead""", DeprecationWarning)
                 pulumi.log.warn("queue_whitelist is deprecated: use queue_allowlist instead")
             __props__['queue_whitelist'] = queue_whitelist
@@ -92,7 +92,7 @@ class IntegrationMetric(pulumi.CustomResource):
             __props__['secret_access_key'] = secret_access_key
             __props__['tags'] = tags
             __props__['vhost_allowlist'] = vhost_allowlist
-            if vhost_whitelist is not None:
+            if vhost_whitelist is not None and not opts.urn:
                 warnings.warn("""use vhost_allowlist instead""", DeprecationWarning)
                 pulumi.log.warn("vhost_whitelist is deprecated: use vhost_allowlist instead")
             __props__['vhost_whitelist'] = vhost_whitelist

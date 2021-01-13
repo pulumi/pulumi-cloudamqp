@@ -90,10 +90,10 @@ class Instance(pulumi.CustomResource):
             __props__['name'] = name
             __props__['no_default_alarms'] = no_default_alarms
             __props__['nodes'] = nodes
-            if plan is None:
+            if plan is None and not opts.urn:
                 raise TypeError("Missing required property 'plan'")
             __props__['plan'] = plan
-            if region is None:
+            if region is None and not opts.urn:
                 raise TypeError("Missing required property 'region'")
             __props__['region'] = region
             __props__['rmq_version'] = rmq_version

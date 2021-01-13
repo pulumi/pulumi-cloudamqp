@@ -73,26 +73,27 @@ type Webhook struct {
 // NewWebhook registers a new resource with the given unique name, arguments, and options.
 func NewWebhook(ctx *pulumi.Context,
 	name string, args *WebhookArgs, opts ...pulumi.ResourceOption) (*Webhook, error) {
-	if args == nil || args.Concurrency == nil {
-		return nil, errors.New("missing required argument 'Concurrency'")
-	}
-	if args == nil || args.InstanceId == nil {
-		return nil, errors.New("missing required argument 'InstanceId'")
-	}
-	if args == nil || args.Queue == nil {
-		return nil, errors.New("missing required argument 'Queue'")
-	}
-	if args == nil || args.RetryInterval == nil {
-		return nil, errors.New("missing required argument 'RetryInterval'")
-	}
-	if args == nil || args.Vhost == nil {
-		return nil, errors.New("missing required argument 'Vhost'")
-	}
-	if args == nil || args.WebhookUri == nil {
-		return nil, errors.New("missing required argument 'WebhookUri'")
-	}
 	if args == nil {
-		args = &WebhookArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Concurrency == nil {
+		return nil, errors.New("invalid value for required argument 'Concurrency'")
+	}
+	if args.InstanceId == nil {
+		return nil, errors.New("invalid value for required argument 'InstanceId'")
+	}
+	if args.Queue == nil {
+		return nil, errors.New("invalid value for required argument 'Queue'")
+	}
+	if args.RetryInterval == nil {
+		return nil, errors.New("invalid value for required argument 'RetryInterval'")
+	}
+	if args.Vhost == nil {
+		return nil, errors.New("invalid value for required argument 'Vhost'")
+	}
+	if args.WebhookUri == nil {
+		return nil, errors.New("invalid value for required argument 'WebhookUri'")
 	}
 	var resource Webhook
 	err := ctx.RegisterResource("cloudamqp:index/webhook:Webhook", name, args, &resource, opts...)

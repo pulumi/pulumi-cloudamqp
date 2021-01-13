@@ -81,22 +81,22 @@ class Webhook(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if concurrency is None:
+            if concurrency is None and not opts.urn:
                 raise TypeError("Missing required property 'concurrency'")
             __props__['concurrency'] = concurrency
-            if instance_id is None:
+            if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__['instance_id'] = instance_id
-            if queue is None:
+            if queue is None and not opts.urn:
                 raise TypeError("Missing required property 'queue'")
             __props__['queue'] = queue
-            if retry_interval is None:
+            if retry_interval is None and not opts.urn:
                 raise TypeError("Missing required property 'retry_interval'")
             __props__['retry_interval'] = retry_interval
-            if vhost is None:
+            if vhost is None and not opts.urn:
                 raise TypeError("Missing required property 'vhost'")
             __props__['vhost'] = vhost
-            if webhook_uri is None:
+            if webhook_uri is None and not opts.urn:
                 raise TypeError("Missing required property 'webhook_uri'")
             __props__['webhook_uri'] = webhook_uri
         super(Webhook, __self__).__init__(

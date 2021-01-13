@@ -109,22 +109,22 @@ export class Webhook extends pulumi.CustomResource {
             inputs["webhookUri"] = state ? state.webhookUri : undefined;
         } else {
             const args = argsOrState as WebhookArgs | undefined;
-            if (!args || args.concurrency === undefined) {
+            if ((!args || args.concurrency === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'concurrency'");
             }
-            if (!args || args.instanceId === undefined) {
+            if ((!args || args.instanceId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            if (!args || args.queue === undefined) {
+            if ((!args || args.queue === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'queue'");
             }
-            if (!args || args.retryInterval === undefined) {
+            if ((!args || args.retryInterval === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'retryInterval'");
             }
-            if (!args || args.vhost === undefined) {
+            if ((!args || args.vhost === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'vhost'");
             }
-            if (!args || args.webhookUri === undefined) {
+            if ((!args || args.webhookUri === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'webhookUri'");
             }
             inputs["concurrency"] = args ? args.concurrency : undefined;
