@@ -160,7 +160,7 @@ class IntegrationLog(pulumi.CustomResource):
             __props__['api_key'] = api_key
             __props__['client_email'] = client_email
             __props__['host_port'] = host_port
-            if instance_id is None:
+            if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__['instance_id'] = instance_id
             __props__['name'] = name

@@ -106,10 +106,10 @@ export class SecurityFirewall extends pulumi.CustomResource {
             inputs["rules"] = state ? state.rules : undefined;
         } else {
             const args = argsOrState as SecurityFirewallArgs | undefined;
-            if (!args || args.instanceId === undefined) {
+            if ((!args || args.instanceId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            if (!args || args.rules === undefined) {
+            if ((!args || args.rules === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'rules'");
             }
             inputs["instanceId"] = args ? args.instanceId : undefined;

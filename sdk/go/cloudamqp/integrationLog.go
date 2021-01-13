@@ -172,11 +172,12 @@ type IntegrationLog struct {
 // NewIntegrationLog registers a new resource with the given unique name, arguments, and options.
 func NewIntegrationLog(ctx *pulumi.Context,
 	name string, args *IntegrationLogArgs, opts ...pulumi.ResourceOption) (*IntegrationLog, error) {
-	if args == nil || args.InstanceId == nil {
-		return nil, errors.New("missing required argument 'InstanceId'")
-	}
 	if args == nil {
-		args = &IntegrationLogArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.InstanceId == nil {
+		return nil, errors.New("invalid value for required argument 'InstanceId'")
 	}
 	var resource IntegrationLog
 	err := ctx.RegisterResource("cloudamqp:index/integrationLog:IntegrationLog", name, args, &resource, opts...)

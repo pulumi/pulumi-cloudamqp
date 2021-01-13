@@ -63,14 +63,15 @@ type PluginCommunity struct {
 // NewPluginCommunity registers a new resource with the given unique name, arguments, and options.
 func NewPluginCommunity(ctx *pulumi.Context,
 	name string, args *PluginCommunityArgs, opts ...pulumi.ResourceOption) (*PluginCommunity, error) {
-	if args == nil || args.Enabled == nil {
-		return nil, errors.New("missing required argument 'Enabled'")
-	}
-	if args == nil || args.InstanceId == nil {
-		return nil, errors.New("missing required argument 'InstanceId'")
-	}
 	if args == nil {
-		args = &PluginCommunityArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Enabled == nil {
+		return nil, errors.New("invalid value for required argument 'Enabled'")
+	}
+	if args.InstanceId == nil {
+		return nil, errors.New("invalid value for required argument 'InstanceId'")
 	}
 	var resource PluginCommunity
 	err := ctx.RegisterResource("cloudamqp:index/pluginCommunity:PluginCommunity", name, args, &resource, opts...)

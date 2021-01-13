@@ -161,16 +161,16 @@ export class Alarm extends pulumi.CustomResource {
             inputs["vhostRegex"] = state ? state.vhostRegex : undefined;
         } else {
             const args = argsOrState as AlarmArgs | undefined;
-            if (!args || args.enabled === undefined) {
+            if ((!args || args.enabled === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'enabled'");
             }
-            if (!args || args.instanceId === undefined) {
+            if ((!args || args.instanceId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            if (!args || args.recipients === undefined) {
+            if ((!args || args.recipients === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'recipients'");
             }
-            if (!args || args.type === undefined) {
+            if ((!args || args.type === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'type'");
             }
             inputs["enabled"] = args ? args.enabled : undefined;

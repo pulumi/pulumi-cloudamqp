@@ -29,3 +29,68 @@ from . import outputs
 from . import (
     config,
 )
+
+def _register_module():
+    import pulumi
+    from . import _utilities
+
+
+    class Module(pulumi.runtime.ResourceModule):
+        _version = _utilities.get_semver_version()
+
+        def version(self):
+            return Module._version
+
+        def construct(self, name: str, typ: str, urn: str) -> pulumi.Resource:
+            if typ == "cloudamqp:index/alarm:Alarm":
+                return Alarm(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "cloudamqp:index/instance:Instance":
+                return Instance(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "cloudamqp:index/integrationLog:IntegrationLog":
+                return IntegrationLog(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "cloudamqp:index/integrationMetric:IntegrationMetric":
+                return IntegrationMetric(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "cloudamqp:index/notification:Notification":
+                return Notification(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "cloudamqp:index/plugin:Plugin":
+                return Plugin(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "cloudamqp:index/pluginCommunity:PluginCommunity":
+                return PluginCommunity(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "cloudamqp:index/securityFirewall:SecurityFirewall":
+                return SecurityFirewall(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "cloudamqp:index/vpcPeering:VpcPeering":
+                return VpcPeering(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "cloudamqp:index/webhook:Webhook":
+                return Webhook(name, pulumi.ResourceOptions(urn=urn))
+            else:
+                raise Exception(f"unknown resource type {typ}")
+
+
+    _module_instance = Module()
+    pulumi.runtime.register_resource_module("cloudamqp", "index/alarm", _module_instance)
+    pulumi.runtime.register_resource_module("cloudamqp", "index/instance", _module_instance)
+    pulumi.runtime.register_resource_module("cloudamqp", "index/integrationLog", _module_instance)
+    pulumi.runtime.register_resource_module("cloudamqp", "index/integrationMetric", _module_instance)
+    pulumi.runtime.register_resource_module("cloudamqp", "index/notification", _module_instance)
+    pulumi.runtime.register_resource_module("cloudamqp", "index/plugin", _module_instance)
+    pulumi.runtime.register_resource_module("cloudamqp", "index/pluginCommunity", _module_instance)
+    pulumi.runtime.register_resource_module("cloudamqp", "index/securityFirewall", _module_instance)
+    pulumi.runtime.register_resource_module("cloudamqp", "index/vpcPeering", _module_instance)
+    pulumi.runtime.register_resource_module("cloudamqp", "index/webhook", _module_instance)
+
+
+    class Package(pulumi.runtime.ResourcePackage):
+        _version = _utilities.get_semver_version()
+
+        def version(self):
+            return Package._version
+
+        def construct_provider(self, name: str, typ: str, urn: str) -> pulumi.ProviderResource:
+            if typ != "pulumi:providers:cloudamqp":
+                raise Exception(f"unknown provider type {typ}")
+            return Provider(name, pulumi.ResourceOptions(urn=urn))
+
+
+    pulumi.runtime.register_resource_package("cloudamqp", Package())
+
+_register_module()

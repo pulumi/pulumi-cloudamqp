@@ -90,10 +90,10 @@ export class PluginCommunity extends pulumi.CustomResource {
             inputs["name"] = state ? state.name : undefined;
         } else {
             const args = argsOrState as PluginCommunityArgs | undefined;
-            if (!args || args.enabled === undefined) {
+            if ((!args || args.enabled === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'enabled'");
             }
-            if (!args || args.instanceId === undefined) {
+            if ((!args || args.instanceId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'instanceId'");
             }
             inputs["enabled"] = args ? args.enabled : undefined;

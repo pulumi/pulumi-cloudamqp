@@ -131,7 +131,7 @@ export class IntegrationMetric extends pulumi.CustomResource {
             inputs["vhostWhitelist"] = state ? state.vhostWhitelist : undefined;
         } else {
             const args = argsOrState as IntegrationMetricArgs | undefined;
-            if (!args || args.instanceId === undefined) {
+            if ((!args || args.instanceId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'instanceId'");
             }
             inputs["accessKeyId"] = args ? args.accessKeyId : undefined;

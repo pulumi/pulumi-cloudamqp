@@ -32,14 +32,15 @@ type VpcPeering struct {
 // NewVpcPeering registers a new resource with the given unique name, arguments, and options.
 func NewVpcPeering(ctx *pulumi.Context,
 	name string, args *VpcPeeringArgs, opts ...pulumi.ResourceOption) (*VpcPeering, error) {
-	if args == nil || args.InstanceId == nil {
-		return nil, errors.New("missing required argument 'InstanceId'")
-	}
-	if args == nil || args.PeeringId == nil {
-		return nil, errors.New("missing required argument 'PeeringId'")
-	}
 	if args == nil {
-		args = &VpcPeeringArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.InstanceId == nil {
+		return nil, errors.New("invalid value for required argument 'InstanceId'")
+	}
+	if args.PeeringId == nil {
+		return nil, errors.New("invalid value for required argument 'PeeringId'")
 	}
 	var resource VpcPeering
 	err := ctx.RegisterResource("cloudamqp:index/vpcPeering:VpcPeering", name, args, &resource, opts...)

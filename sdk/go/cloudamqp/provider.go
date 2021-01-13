@@ -24,6 +24,7 @@ func NewProvider(ctx *pulumi.Context,
 	if args == nil {
 		args = &ProviderArgs{}
 	}
+
 	if args.Apikey == nil {
 		args.Apikey = pulumi.StringPtr(getEnvOrDefault("", nil, "CLOUDAMQP_APIKEY").(string))
 	}

@@ -211,7 +211,7 @@ export class IntegrationLog extends pulumi.CustomResource {
             inputs["url"] = state ? state.url : undefined;
         } else {
             const args = argsOrState as IntegrationLogArgs | undefined;
-            if (!args || args.instanceId === undefined) {
+            if ((!args || args.instanceId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'instanceId'");
             }
             inputs["accessKeyId"] = args ? args.accessKeyId : undefined;

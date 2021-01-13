@@ -71,10 +71,10 @@ export class VpcPeering extends pulumi.CustomResource {
             inputs["status"] = state ? state.status : undefined;
         } else {
             const args = argsOrState as VpcPeeringArgs | undefined;
-            if (!args || args.instanceId === undefined) {
+            if ((!args || args.instanceId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            if (!args || args.peeringId === undefined) {
+            if ((!args || args.peeringId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'peeringId'");
             }
             inputs["instanceId"] = args ? args.instanceId : undefined;

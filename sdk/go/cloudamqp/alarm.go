@@ -73,20 +73,21 @@ type Alarm struct {
 // NewAlarm registers a new resource with the given unique name, arguments, and options.
 func NewAlarm(ctx *pulumi.Context,
 	name string, args *AlarmArgs, opts ...pulumi.ResourceOption) (*Alarm, error) {
-	if args == nil || args.Enabled == nil {
-		return nil, errors.New("missing required argument 'Enabled'")
-	}
-	if args == nil || args.InstanceId == nil {
-		return nil, errors.New("missing required argument 'InstanceId'")
-	}
-	if args == nil || args.Recipients == nil {
-		return nil, errors.New("missing required argument 'Recipients'")
-	}
-	if args == nil || args.Type == nil {
-		return nil, errors.New("missing required argument 'Type'")
-	}
 	if args == nil {
-		args = &AlarmArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Enabled == nil {
+		return nil, errors.New("invalid value for required argument 'Enabled'")
+	}
+	if args.InstanceId == nil {
+		return nil, errors.New("invalid value for required argument 'InstanceId'")
+	}
+	if args.Recipients == nil {
+		return nil, errors.New("invalid value for required argument 'Recipients'")
+	}
+	if args.Type == nil {
+		return nil, errors.New("invalid value for required argument 'Type'")
 	}
 	var resource Alarm
 	err := ctx.RegisterResource("cloudamqp:index/alarm:Alarm", name, args, &resource, opts...)
