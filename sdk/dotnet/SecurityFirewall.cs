@@ -71,6 +71,7 @@ namespace Pulumi.CloudAmqp
     ///  $ pulumi import cloudamqp:index/securityFirewall:SecurityFirewall firewall &lt;instance_id&gt;`
     /// ```
     /// </summary>
+    [CloudAmqpResourceType("cloudamqp:index/securityFirewall:SecurityFirewall")]
     public partial class SecurityFirewall : Pulumi.CustomResource
     {
         /// <summary>

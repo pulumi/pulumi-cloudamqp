@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.CloudAmqp
 {
+    [CloudAmqpResourceType("cloudamqp:index/integrationMetric:IntegrationMetric")]
     public partial class IntegrationMetric : Pulumi.CustomResource
     {
         /// <summary>

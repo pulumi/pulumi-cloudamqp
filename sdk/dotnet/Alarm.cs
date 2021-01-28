@@ -47,6 +47,7 @@ namespace Pulumi.CloudAmqp
     ///  $ pulumi import cloudamqp:index/alarm:Alarm alarm &lt;alarm_id&gt;,&lt;instance_id&gt;`
     /// ```
     /// </summary>
+    [CloudAmqpResourceType("cloudamqp:index/alarm:Alarm")]
     public partial class Alarm : Pulumi.CustomResource
     {
         /// <summary>

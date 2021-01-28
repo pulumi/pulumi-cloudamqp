@@ -56,6 +56,7 @@ namespace Pulumi.CloudAmqp
     ///  $ pulumi import cloudamqp:index/instance:Instance instance &lt;instance_id&gt;`
     /// ```
     /// </summary>
+    [CloudAmqpResourceType("cloudamqp:index/instance:Instance")]
     public partial class Instance : Pulumi.CustomResource
     {
         /// <summary>

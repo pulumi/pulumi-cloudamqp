@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp"
+// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -146,15 +146,15 @@ type PluginInput interface {
 	ToPluginOutputWithContext(ctx context.Context) PluginOutput
 }
 
-func (Plugin) ElementType() reflect.Type {
-	return reflect.TypeOf((*Plugin)(nil)).Elem()
+func (*Plugin) ElementType() reflect.Type {
+	return reflect.TypeOf((*Plugin)(nil))
 }
 
-func (i Plugin) ToPluginOutput() PluginOutput {
+func (i *Plugin) ToPluginOutput() PluginOutput {
 	return i.ToPluginOutputWithContext(context.Background())
 }
 
-func (i Plugin) ToPluginOutputWithContext(ctx context.Context) PluginOutput {
+func (i *Plugin) ToPluginOutputWithContext(ctx context.Context) PluginOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PluginOutput)
 }
 
@@ -163,7 +163,7 @@ type PluginOutput struct {
 }
 
 func (PluginOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*PluginOutput)(nil)).Elem()
+	return reflect.TypeOf((*Plugin)(nil))
 }
 
 func (o PluginOutput) ToPluginOutput() PluginOutput {

@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp"
+// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -332,15 +332,15 @@ type IntegrationLogInput interface {
 	ToIntegrationLogOutputWithContext(ctx context.Context) IntegrationLogOutput
 }
 
-func (IntegrationLog) ElementType() reflect.Type {
-	return reflect.TypeOf((*IntegrationLog)(nil)).Elem()
+func (*IntegrationLog) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationLog)(nil))
 }
 
-func (i IntegrationLog) ToIntegrationLogOutput() IntegrationLogOutput {
+func (i *IntegrationLog) ToIntegrationLogOutput() IntegrationLogOutput {
 	return i.ToIntegrationLogOutputWithContext(context.Background())
 }
 
-func (i IntegrationLog) ToIntegrationLogOutputWithContext(ctx context.Context) IntegrationLogOutput {
+func (i *IntegrationLog) ToIntegrationLogOutputWithContext(ctx context.Context) IntegrationLogOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogOutput)
 }
 
@@ -349,7 +349,7 @@ type IntegrationLogOutput struct {
 }
 
 func (IntegrationLogOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*IntegrationLogOutput)(nil)).Elem()
+	return reflect.TypeOf((*IntegrationLog)(nil))
 }
 
 func (o IntegrationLogOutput) ToIntegrationLogOutput() IntegrationLogOutput {

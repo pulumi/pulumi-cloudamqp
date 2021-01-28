@@ -122,6 +122,7 @@ namespace Pulumi.CloudAmqp
     ///  $ pulumi import cloudamqp:index/integrationLog:IntegrationLog &lt;resource_name&gt; &lt;name&gt;,&lt;instance_id&gt;`
     /// ```
     /// </summary>
+    [CloudAmqpResourceType("cloudamqp:index/integrationLog:IntegrationLog")]
     public partial class IntegrationLog : Pulumi.CustomResource
     {
         /// <summary>
