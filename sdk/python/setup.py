@@ -48,7 +48,7 @@ setup(name='pulumi_cloudamqp',
       packages=find_packages(),
       package_data={
           'pulumi_cloudamqp': [
-              'py.typed'
+              'py.typed',
           ]
       },
       install_requires=[

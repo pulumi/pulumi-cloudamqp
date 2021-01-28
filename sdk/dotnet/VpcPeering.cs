@@ -18,6 +18,7 @@ namespace Pulumi.CloudAmqp
     ///  $ pulumi import cloudamqp:index/vpcPeering:VpcPeering &lt;resource_name&gt; &lt;instance_id&gt;`
     /// ```
     /// </summary>
+    [CloudAmqpResourceType("cloudamqp:index/vpcPeering:VpcPeering")]
     public partial class VpcPeering : Pulumi.CustomResource
     {
         /// <summary>

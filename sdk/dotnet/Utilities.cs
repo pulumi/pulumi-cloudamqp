@@ -77,4 +77,11 @@ namespace Pulumi.CloudAmqp
             }
         }
     }
+
+    internal sealed class CloudAmqpResourceTypeAttribute : Pulumi.ResourceTypeAttribute
+    {
+        public CloudAmqpResourceTypeAttribute(string type) : base(type, Utilities.Version)
+        {
+        }
+    }
 }

@@ -49,6 +49,7 @@ namespace Pulumi.CloudAmqp
     ///  $ pulumi import cloudamqp:index/webhook:Webhook webhook_queue &lt;webhook_id&gt;,&lt;instance_id&gt;`
     /// ```
     /// </summary>
+    [CloudAmqpResourceType("cloudamqp:index/webhook:Webhook")]
     public partial class Webhook : Pulumi.CustomResource
     {
         /// <summary>

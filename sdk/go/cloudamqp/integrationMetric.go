@@ -255,15 +255,15 @@ type IntegrationMetricInput interface {
 	ToIntegrationMetricOutputWithContext(ctx context.Context) IntegrationMetricOutput
 }
 
-func (IntegrationMetric) ElementType() reflect.Type {
-	return reflect.TypeOf((*IntegrationMetric)(nil)).Elem()
+func (*IntegrationMetric) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationMetric)(nil))
 }
 
-func (i IntegrationMetric) ToIntegrationMetricOutput() IntegrationMetricOutput {
+func (i *IntegrationMetric) ToIntegrationMetricOutput() IntegrationMetricOutput {
 	return i.ToIntegrationMetricOutputWithContext(context.Background())
 }
 
-func (i IntegrationMetric) ToIntegrationMetricOutputWithContext(ctx context.Context) IntegrationMetricOutput {
+func (i *IntegrationMetric) ToIntegrationMetricOutputWithContext(ctx context.Context) IntegrationMetricOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricOutput)
 }
 
@@ -272,7 +272,7 @@ type IntegrationMetricOutput struct {
 }
 
 func (IntegrationMetricOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*IntegrationMetricOutput)(nil)).Elem()
+	return reflect.TypeOf((*IntegrationMetric)(nil))
 }
 
 func (o IntegrationMetricOutput) ToIntegrationMetricOutput() IntegrationMetricOutput {

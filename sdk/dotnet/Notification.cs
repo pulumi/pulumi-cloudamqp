@@ -59,6 +59,7 @@ namespace Pulumi.CloudAmqp
     ///  $ pulumi import cloudamqp:index/notification:Notification recipient &lt;recpient_id&gt;,&lt;indstance_id&gt;`
     /// ```
     /// </summary>
+    [CloudAmqpResourceType("cloudamqp:index/notification:Notification")]
     public partial class Notification : Pulumi.CustomResource
     {
         /// <summary>

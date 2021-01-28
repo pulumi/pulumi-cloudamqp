@@ -45,6 +45,7 @@ namespace Pulumi.CloudAmqp
     ///  $ pulumi import cloudamqp:index/plugin:Plugin rabbitmq_management rabbitmq_management,&lt;instance_id&gt;`
     /// ```
     /// </summary>
+    [CloudAmqpResourceType("cloudamqp:index/plugin:Plugin")]
     public partial class Plugin : Pulumi.CustomResource
     {
         /// <summary>

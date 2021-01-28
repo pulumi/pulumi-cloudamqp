@@ -113,15 +113,15 @@ type SecurityFirewallInput interface {
 	ToSecurityFirewallOutputWithContext(ctx context.Context) SecurityFirewallOutput
 }
 
-func (SecurityFirewall) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecurityFirewall)(nil)).Elem()
+func (*SecurityFirewall) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityFirewall)(nil))
 }
 
-func (i SecurityFirewall) ToSecurityFirewallOutput() SecurityFirewallOutput {
+func (i *SecurityFirewall) ToSecurityFirewallOutput() SecurityFirewallOutput {
 	return i.ToSecurityFirewallOutputWithContext(context.Background())
 }
 
-func (i SecurityFirewall) ToSecurityFirewallOutputWithContext(ctx context.Context) SecurityFirewallOutput {
+func (i *SecurityFirewall) ToSecurityFirewallOutputWithContext(ctx context.Context) SecurityFirewallOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecurityFirewallOutput)
 }
 
@@ -130,7 +130,7 @@ type SecurityFirewallOutput struct {
 }
 
 func (SecurityFirewallOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecurityFirewallOutput)(nil)).Elem()
+	return reflect.TypeOf((*SecurityFirewall)(nil))
 }
 
 func (o SecurityFirewallOutput) ToSecurityFirewallOutput() SecurityFirewallOutput {

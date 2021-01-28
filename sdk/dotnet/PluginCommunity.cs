@@ -45,6 +45,7 @@ namespace Pulumi.CloudAmqp
     ///  $ pulumi import cloudamqp:index/pluginCommunity:PluginCommunity &lt;resource_name&gt; &lt;plugin_name&gt;,&lt;instance_id&gt;`
     /// ```
     /// </summary>
+    [CloudAmqpResourceType("cloudamqp:index/pluginCommunity:PluginCommunity")]
     public partial class PluginCommunity : Pulumi.CustomResource
     {
         /// <summary>
