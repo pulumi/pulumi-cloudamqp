@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v1.9.0 of the CloudAMQP Terraform Provider
+_(none)_
 
 ---
+
+## 2.7.0 (2021-02-03)
+* Upgrade to v1.9.0 of the CloudAMQP Terraform Provider
 
 ## 2.6.0 (2021-01-29)
 * Upgrading pulumi-terraform-bridge to v2.18.1
