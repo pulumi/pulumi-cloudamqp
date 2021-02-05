@@ -11,37 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// This resource allows you to enable or disable Rabbit MQ plugins.
-//
-// Only available for dedicated subscription plans.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp/"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := cloudamqp.NewPlugin(ctx, "pluginRabbitmqTop", &cloudamqp.PluginArgs{
-// 			InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
-// 			Enabled:    pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-// ## Dependency
-//
-// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-//
 // ## Import
 //
 // `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.

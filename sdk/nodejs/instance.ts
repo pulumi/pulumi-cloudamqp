@@ -24,7 +24,7 @@ import * as utilities from "./utilities";
  * const instance = new cloudamqp.Instance("instance", {
  *     noDefaultAlarms: true,
  *     nodes: 1,
- *     plan: "bunny",
+ *     plan: "bunny-1",
  *     region: "amazon-web-services::us-west-1",
  *     rmqVersion: "3.8.3",
  *     tags: ["terraform"],
@@ -88,7 +88,7 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly noDefaultAlarms!: pulumi.Output<boolean>;
     /**
-     * Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
+     * Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
      */
     public readonly nodes!: pulumi.Output<number | undefined>;
     /**
@@ -209,7 +209,7 @@ export interface InstanceState {
      */
     readonly noDefaultAlarms?: pulumi.Input<boolean>;
     /**
-     * Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
+     * Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
      */
     readonly nodes?: pulumi.Input<number>;
     /**
@@ -259,7 +259,7 @@ export interface InstanceArgs {
      */
     readonly noDefaultAlarms?: pulumi.Input<boolean>;
     /**
-     * Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
+     * Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
      */
     readonly nodes?: pulumi.Input<number>;
     /**

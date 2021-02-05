@@ -10,33 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
-    /// This resource allows you to enable or disable Rabbit MQ plugins.
-    /// 
-    /// Only available for dedicated subscription plans.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using CloudAmqp = Pulumi.CloudAmqp;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var pluginRabbitmqTop = new CloudAmqp.Plugin("pluginRabbitmqTop", new CloudAmqp.PluginArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///             Enabled = true,
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// ## Dependency
-    /// 
-    /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-    /// 
     /// ## Import
     /// 
     /// `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.

@@ -37,7 +37,7 @@ import (
 // 		_, err = cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
 // 			NoDefaultAlarms: pulumi.Bool(true),
 // 			Nodes:           pulumi.Int(1),
-// 			Plan:            pulumi.String("bunny"),
+// 			Plan:            pulumi.String("bunny-1"),
 // 			Region:          pulumi.String("amazon-web-services::us-west-1"),
 // 			RmqVersion:      pulumi.String("3.8.3"),
 // 			Tags: pulumi.StringArray{
@@ -72,7 +72,7 @@ type Instance struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
 	NoDefaultAlarms pulumi.BoolOutput `pulumi:"noDefaultAlarms"`
-	// Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
+	// Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
 	Nodes pulumi.IntPtrOutput `pulumi:"nodes"`
 	// The subscription plan. See available plans
 	Plan pulumi.StringOutput `pulumi:"plan"`
@@ -137,7 +137,7 @@ type instanceState struct {
 	Name *string `pulumi:"name"`
 	// Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
 	NoDefaultAlarms *bool `pulumi:"noDefaultAlarms"`
-	// Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
+	// Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
 	Nodes *int `pulumi:"nodes"`
 	// The subscription plan. See available plans
 	Plan *string `pulumi:"plan"`
@@ -168,7 +168,7 @@ type InstanceState struct {
 	Name pulumi.StringPtrInput
 	// Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
 	NoDefaultAlarms pulumi.BoolPtrInput
-	// Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
+	// Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
 	Nodes pulumi.IntPtrInput
 	// The subscription plan. See available plans
 	Plan pulumi.StringPtrInput
@@ -197,7 +197,7 @@ type instanceArgs struct {
 	Name *string `pulumi:"name"`
 	// Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
 	NoDefaultAlarms *bool `pulumi:"noDefaultAlarms"`
-	// Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
+	// Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
 	Nodes *int `pulumi:"nodes"`
 	// The subscription plan. See available plans
 	Plan string `pulumi:"plan"`
@@ -217,7 +217,7 @@ type InstanceArgs struct {
 	Name pulumi.StringPtrInput
 	// Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
 	NoDefaultAlarms pulumi.BoolPtrInput
-	// Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
+	// Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
 	Nodes pulumi.IntPtrInput
 	// The subscription plan. See available plans
 	Plan pulumi.StringInput
