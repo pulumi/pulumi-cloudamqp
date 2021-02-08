@@ -45,7 +45,7 @@ class Instance(pulumi.CustomResource):
         instance = cloudamqp.Instance("instance",
             no_default_alarms=True,
             nodes=1,
-            plan="bunny",
+            plan="bunny-1",
             region="amazon-web-services::us-west-1",
             rmq_version="3.8.3",
             tags=["terraform"])
@@ -63,7 +63,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: Name of the CloudAMQP instance.
         :param pulumi.Input[bool] no_default_alarms: Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
-        :param pulumi.Input[int] nodes: Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
+        :param pulumi.Input[int] nodes: Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
         :param pulumi.Input[str] plan: The subscription plan. See available plans
         :param pulumi.Input[str] region: The region to host the instance in. See Instance regions
         :param pulumi.Input[str] rmq_version: The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
@@ -141,7 +141,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] host: (Computed) The host name for the CloudAMQP instance.
         :param pulumi.Input[str] name: Name of the CloudAMQP instance.
         :param pulumi.Input[bool] no_default_alarms: Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
-        :param pulumi.Input[int] nodes: Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
+        :param pulumi.Input[int] nodes: Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
         :param pulumi.Input[str] plan: The subscription plan. See available plans
         :param pulumi.Input[bool] ready: Flag describing if the resource is ready
         :param pulumi.Input[str] region: The region to host the instance in. See Instance regions
@@ -215,7 +215,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter
     def nodes(self) -> pulumi.Output[Optional[int]]:
         """
-        Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
+        Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
         """
         return pulumi.get(self, "nodes")
 

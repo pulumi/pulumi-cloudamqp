@@ -22,24 +22,6 @@ class Plugin(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        This resource allows you to enable or disable Rabbit MQ plugins.
-
-        Only available for dedicated subscription plans.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        plugin_rabbitmq_top = cloudamqp.Plugin("pluginRabbitmqTop",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            enabled=True)
-        ```
-        ## Dependency
-
-        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-
         ## Import
 
         `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.

@@ -8,7 +8,7 @@ replace (
 )
 
 require (
-	github.com/cloudamqp/terraform-provider-cloudamqp v1.9.0
+	github.com/cloudamqp/terraform-provider-cloudamqp v1.9.1
 	github.com/pulumi/pulumi-terraform-bridge/v2 v2.18.1
 	github.com/pulumi/pulumi/sdk/v2 v2.18.0
 )

@@ -35,7 +35,7 @@ namespace Pulumi.CloudAmqp
     ///         {
     ///             NoDefaultAlarms = true,
     ///             Nodes = 1,
-    ///             Plan = "bunny",
+    ///             Plan = "bunny-1",
     ///             Region = "amazon-web-services::us-west-1",
     ///             RmqVersion = "3.8.3",
     ///             Tags = 
@@ -90,7 +90,7 @@ namespace Pulumi.CloudAmqp
         public Output<bool> NoDefaultAlarms { get; private set; } = null!;
 
         /// <summary>
-        /// Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
+        /// Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
         /// </summary>
         [Output("nodes")]
         public Output<int?> Nodes { get; private set; } = null!;
@@ -202,7 +202,7 @@ namespace Pulumi.CloudAmqp
         public Input<bool>? NoDefaultAlarms { get; set; }
 
         /// <summary>
-        /// Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
+        /// Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
         /// </summary>
         [Input("nodes")]
         public Input<int>? Nodes { get; set; }
@@ -281,7 +281,7 @@ namespace Pulumi.CloudAmqp
         public Input<bool>? NoDefaultAlarms { get; set; }
 
         /// <summary>
-        /// Number of nodes, 1 to 3, in the CloudAMQP instance, default set to 1. The plan chosen must support the number of nodes.
+        /// Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
         /// </summary>
         [Input("nodes")]
         public Input<int>? Nodes { get; set; }

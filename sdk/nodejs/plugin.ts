@@ -5,25 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * This resource allows you to enable or disable Rabbit MQ plugins.
- *
- * Only available for dedicated subscription plans.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const pluginRabbitmqTop = new cloudamqp.Plugin("pluginRabbitmqTop", {
- *     instanceId: cloudamqp_instance.instance.id,
- *     enabled: true,
- * });
- * ```
- * ## Dependency
- *
- * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
- *
  * ## Import
  *
  * `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
