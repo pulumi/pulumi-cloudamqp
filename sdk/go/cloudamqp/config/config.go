@@ -10,11 +10,7 @@ import (
 
 // Key used to authentication to the CloudAMQP Customer API
 func GetApikey(ctx *pulumi.Context) string {
-	v, err := config.Try(ctx, "cloudamqp:apikey")
-	if err == nil {
-		return v
-	}
-	return getEnvOrDefault("", nil, "CLOUDAMQP_APIKEY").(string)
+	return config.Get(ctx, "cloudamqp:apikey")
 }
 
 // Base URL to CloudAMQP Customer website

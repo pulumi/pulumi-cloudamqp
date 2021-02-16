@@ -33,18 +33,18 @@ export class Provider extends pulumi.ProviderResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
+    constructor(name: string, args: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let inputs: pulumi.Inputs = {};
+        opts = opts || {};
         {
-            inputs["apikey"] = (args ? args.apikey : undefined) || utilities.getEnv("CLOUDAMQP_APIKEY");
+            if ((!args || args.apikey === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'apikey'");
+            }
+            inputs["apikey"] = args ? args.apikey : undefined;
             inputs["baseurl"] = args ? args.baseurl : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Provider.__pulumiType, name, inputs, opts);
     }
@@ -57,7 +57,7 @@ export interface ProviderArgs {
     /**
      * Key used to authentication to the CloudAMQP Customer API
      */
-    readonly apikey?: pulumi.Input<string>;
+    readonly apikey: pulumi.Input<string>;
     /**
      * Base URL to CloudAMQP Customer website
      */

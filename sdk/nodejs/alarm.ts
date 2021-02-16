@@ -148,7 +148,8 @@ export class Alarm extends pulumi.CustomResource {
     constructor(name: string, args: AlarmArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AlarmArgs | AlarmState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as AlarmState | undefined;
             inputs["enabled"] = state ? state.enabled : undefined;
             inputs["instanceId"] = state ? state.instanceId : undefined;
@@ -161,16 +162,16 @@ export class Alarm extends pulumi.CustomResource {
             inputs["vhostRegex"] = state ? state.vhostRegex : undefined;
         } else {
             const args = argsOrState as AlarmArgs | undefined;
-            if ((!args || args.enabled === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.enabled === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'enabled'");
             }
-            if ((!args || args.instanceId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.instanceId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            if ((!args || args.recipients === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.recipients === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'recipients'");
             }
-            if ((!args || args.type === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
             inputs["enabled"] = args ? args.enabled : undefined;
@@ -183,12 +184,8 @@ export class Alarm extends pulumi.CustomResource {
             inputs["valueThreshold"] = args ? args.valueThreshold : undefined;
             inputs["vhostRegex"] = args ? args.vhostRegex : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Alarm.__pulumiType, name, inputs, opts);
     }

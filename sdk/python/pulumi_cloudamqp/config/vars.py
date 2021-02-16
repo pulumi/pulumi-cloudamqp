@@ -15,7 +15,7 @@ __all__ = [
 
 __config__ = pulumi.Config('cloudamqp')
 
-apikey = __config__.get('apikey') or _utilities.get_env('CLOUDAMQP_APIKEY')
+apikey = __config__.get('apikey')
 """
 Key used to authentication to the CloudAMQP Customer API
 """

@@ -123,6 +123,85 @@ func (i *VpcPeering) ToVpcPeeringOutputWithContext(ctx context.Context) VpcPeeri
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPeeringOutput)
 }
 
+func (i *VpcPeering) ToVpcPeeringPtrOutput() VpcPeeringPtrOutput {
+	return i.ToVpcPeeringPtrOutputWithContext(context.Background())
+}
+
+func (i *VpcPeering) ToVpcPeeringPtrOutputWithContext(ctx context.Context) VpcPeeringPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcPeeringPtrOutput)
+}
+
+type VpcPeeringPtrInput interface {
+	pulumi.Input
+
+	ToVpcPeeringPtrOutput() VpcPeeringPtrOutput
+	ToVpcPeeringPtrOutputWithContext(ctx context.Context) VpcPeeringPtrOutput
+}
+
+type vpcPeeringPtrType VpcPeeringArgs
+
+func (*vpcPeeringPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**VpcPeering)(nil))
+}
+
+func (i *vpcPeeringPtrType) ToVpcPeeringPtrOutput() VpcPeeringPtrOutput {
+	return i.ToVpcPeeringPtrOutputWithContext(context.Background())
+}
+
+func (i *vpcPeeringPtrType) ToVpcPeeringPtrOutputWithContext(ctx context.Context) VpcPeeringPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcPeeringPtrOutput)
+}
+
+// VpcPeeringArrayInput is an input type that accepts VpcPeeringArray and VpcPeeringArrayOutput values.
+// You can construct a concrete instance of `VpcPeeringArrayInput` via:
+//
+//          VpcPeeringArray{ VpcPeeringArgs{...} }
+type VpcPeeringArrayInput interface {
+	pulumi.Input
+
+	ToVpcPeeringArrayOutput() VpcPeeringArrayOutput
+	ToVpcPeeringArrayOutputWithContext(context.Context) VpcPeeringArrayOutput
+}
+
+type VpcPeeringArray []VpcPeeringInput
+
+func (VpcPeeringArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*VpcPeering)(nil))
+}
+
+func (i VpcPeeringArray) ToVpcPeeringArrayOutput() VpcPeeringArrayOutput {
+	return i.ToVpcPeeringArrayOutputWithContext(context.Background())
+}
+
+func (i VpcPeeringArray) ToVpcPeeringArrayOutputWithContext(ctx context.Context) VpcPeeringArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcPeeringArrayOutput)
+}
+
+// VpcPeeringMapInput is an input type that accepts VpcPeeringMap and VpcPeeringMapOutput values.
+// You can construct a concrete instance of `VpcPeeringMapInput` via:
+//
+//          VpcPeeringMap{ "key": VpcPeeringArgs{...} }
+type VpcPeeringMapInput interface {
+	pulumi.Input
+
+	ToVpcPeeringMapOutput() VpcPeeringMapOutput
+	ToVpcPeeringMapOutputWithContext(context.Context) VpcPeeringMapOutput
+}
+
+type VpcPeeringMap map[string]VpcPeeringInput
+
+func (VpcPeeringMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*VpcPeering)(nil))
+}
+
+func (i VpcPeeringMap) ToVpcPeeringMapOutput() VpcPeeringMapOutput {
+	return i.ToVpcPeeringMapOutputWithContext(context.Background())
+}
+
+func (i VpcPeeringMap) ToVpcPeeringMapOutputWithContext(ctx context.Context) VpcPeeringMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcPeeringMapOutput)
+}
+
 type VpcPeeringOutput struct {
 	*pulumi.OutputState
 }
@@ -139,6 +218,75 @@ func (o VpcPeeringOutput) ToVpcPeeringOutputWithContext(ctx context.Context) Vpc
 	return o
 }
 
+func (o VpcPeeringOutput) ToVpcPeeringPtrOutput() VpcPeeringPtrOutput {
+	return o.ToVpcPeeringPtrOutputWithContext(context.Background())
+}
+
+func (o VpcPeeringOutput) ToVpcPeeringPtrOutputWithContext(ctx context.Context) VpcPeeringPtrOutput {
+	return o.ApplyT(func(v VpcPeering) *VpcPeering {
+		return &v
+	}).(VpcPeeringPtrOutput)
+}
+
+type VpcPeeringPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (VpcPeeringPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**VpcPeering)(nil))
+}
+
+func (o VpcPeeringPtrOutput) ToVpcPeeringPtrOutput() VpcPeeringPtrOutput {
+	return o
+}
+
+func (o VpcPeeringPtrOutput) ToVpcPeeringPtrOutputWithContext(ctx context.Context) VpcPeeringPtrOutput {
+	return o
+}
+
+type VpcPeeringArrayOutput struct{ *pulumi.OutputState }
+
+func (VpcPeeringArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpcPeering)(nil))
+}
+
+func (o VpcPeeringArrayOutput) ToVpcPeeringArrayOutput() VpcPeeringArrayOutput {
+	return o
+}
+
+func (o VpcPeeringArrayOutput) ToVpcPeeringArrayOutputWithContext(ctx context.Context) VpcPeeringArrayOutput {
+	return o
+}
+
+func (o VpcPeeringArrayOutput) Index(i pulumi.IntInput) VpcPeeringOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpcPeering {
+		return vs[0].([]VpcPeering)[vs[1].(int)]
+	}).(VpcPeeringOutput)
+}
+
+type VpcPeeringMapOutput struct{ *pulumi.OutputState }
+
+func (VpcPeeringMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]VpcPeering)(nil))
+}
+
+func (o VpcPeeringMapOutput) ToVpcPeeringMapOutput() VpcPeeringMapOutput {
+	return o
+}
+
+func (o VpcPeeringMapOutput) ToVpcPeeringMapOutputWithContext(ctx context.Context) VpcPeeringMapOutput {
+	return o
+}
+
+func (o VpcPeeringMapOutput) MapIndex(k pulumi.StringInput) VpcPeeringOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) VpcPeering {
+		return vs[0].(map[string]VpcPeering)[vs[1].(string)]
+	}).(VpcPeeringOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(VpcPeeringOutput{})
+	pulumi.RegisterOutputType(VpcPeeringPtrOutput{})
+	pulumi.RegisterOutputType(VpcPeeringArrayOutput{})
+	pulumi.RegisterOutputType(VpcPeeringMapOutput{})
 }

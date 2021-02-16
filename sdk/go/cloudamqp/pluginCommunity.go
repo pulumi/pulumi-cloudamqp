@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp/"
+// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -158,6 +158,85 @@ func (i *PluginCommunity) ToPluginCommunityOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(PluginCommunityOutput)
 }
 
+func (i *PluginCommunity) ToPluginCommunityPtrOutput() PluginCommunityPtrOutput {
+	return i.ToPluginCommunityPtrOutputWithContext(context.Background())
+}
+
+func (i *PluginCommunity) ToPluginCommunityPtrOutputWithContext(ctx context.Context) PluginCommunityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PluginCommunityPtrOutput)
+}
+
+type PluginCommunityPtrInput interface {
+	pulumi.Input
+
+	ToPluginCommunityPtrOutput() PluginCommunityPtrOutput
+	ToPluginCommunityPtrOutputWithContext(ctx context.Context) PluginCommunityPtrOutput
+}
+
+type pluginCommunityPtrType PluginCommunityArgs
+
+func (*pluginCommunityPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PluginCommunity)(nil))
+}
+
+func (i *pluginCommunityPtrType) ToPluginCommunityPtrOutput() PluginCommunityPtrOutput {
+	return i.ToPluginCommunityPtrOutputWithContext(context.Background())
+}
+
+func (i *pluginCommunityPtrType) ToPluginCommunityPtrOutputWithContext(ctx context.Context) PluginCommunityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PluginCommunityPtrOutput)
+}
+
+// PluginCommunityArrayInput is an input type that accepts PluginCommunityArray and PluginCommunityArrayOutput values.
+// You can construct a concrete instance of `PluginCommunityArrayInput` via:
+//
+//          PluginCommunityArray{ PluginCommunityArgs{...} }
+type PluginCommunityArrayInput interface {
+	pulumi.Input
+
+	ToPluginCommunityArrayOutput() PluginCommunityArrayOutput
+	ToPluginCommunityArrayOutputWithContext(context.Context) PluginCommunityArrayOutput
+}
+
+type PluginCommunityArray []PluginCommunityInput
+
+func (PluginCommunityArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*PluginCommunity)(nil))
+}
+
+func (i PluginCommunityArray) ToPluginCommunityArrayOutput() PluginCommunityArrayOutput {
+	return i.ToPluginCommunityArrayOutputWithContext(context.Background())
+}
+
+func (i PluginCommunityArray) ToPluginCommunityArrayOutputWithContext(ctx context.Context) PluginCommunityArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PluginCommunityArrayOutput)
+}
+
+// PluginCommunityMapInput is an input type that accepts PluginCommunityMap and PluginCommunityMapOutput values.
+// You can construct a concrete instance of `PluginCommunityMapInput` via:
+//
+//          PluginCommunityMap{ "key": PluginCommunityArgs{...} }
+type PluginCommunityMapInput interface {
+	pulumi.Input
+
+	ToPluginCommunityMapOutput() PluginCommunityMapOutput
+	ToPluginCommunityMapOutputWithContext(context.Context) PluginCommunityMapOutput
+}
+
+type PluginCommunityMap map[string]PluginCommunityInput
+
+func (PluginCommunityMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*PluginCommunity)(nil))
+}
+
+func (i PluginCommunityMap) ToPluginCommunityMapOutput() PluginCommunityMapOutput {
+	return i.ToPluginCommunityMapOutputWithContext(context.Background())
+}
+
+func (i PluginCommunityMap) ToPluginCommunityMapOutputWithContext(ctx context.Context) PluginCommunityMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PluginCommunityMapOutput)
+}
+
 type PluginCommunityOutput struct {
 	*pulumi.OutputState
 }
@@ -174,6 +253,75 @@ func (o PluginCommunityOutput) ToPluginCommunityOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o PluginCommunityOutput) ToPluginCommunityPtrOutput() PluginCommunityPtrOutput {
+	return o.ToPluginCommunityPtrOutputWithContext(context.Background())
+}
+
+func (o PluginCommunityOutput) ToPluginCommunityPtrOutputWithContext(ctx context.Context) PluginCommunityPtrOutput {
+	return o.ApplyT(func(v PluginCommunity) *PluginCommunity {
+		return &v
+	}).(PluginCommunityPtrOutput)
+}
+
+type PluginCommunityPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PluginCommunityPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PluginCommunity)(nil))
+}
+
+func (o PluginCommunityPtrOutput) ToPluginCommunityPtrOutput() PluginCommunityPtrOutput {
+	return o
+}
+
+func (o PluginCommunityPtrOutput) ToPluginCommunityPtrOutputWithContext(ctx context.Context) PluginCommunityPtrOutput {
+	return o
+}
+
+type PluginCommunityArrayOutput struct{ *pulumi.OutputState }
+
+func (PluginCommunityArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PluginCommunity)(nil))
+}
+
+func (o PluginCommunityArrayOutput) ToPluginCommunityArrayOutput() PluginCommunityArrayOutput {
+	return o
+}
+
+func (o PluginCommunityArrayOutput) ToPluginCommunityArrayOutputWithContext(ctx context.Context) PluginCommunityArrayOutput {
+	return o
+}
+
+func (o PluginCommunityArrayOutput) Index(i pulumi.IntInput) PluginCommunityOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PluginCommunity {
+		return vs[0].([]PluginCommunity)[vs[1].(int)]
+	}).(PluginCommunityOutput)
+}
+
+type PluginCommunityMapOutput struct{ *pulumi.OutputState }
+
+func (PluginCommunityMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]PluginCommunity)(nil))
+}
+
+func (o PluginCommunityMapOutput) ToPluginCommunityMapOutput() PluginCommunityMapOutput {
+	return o
+}
+
+func (o PluginCommunityMapOutput) ToPluginCommunityMapOutputWithContext(ctx context.Context) PluginCommunityMapOutput {
+	return o
+}
+
+func (o PluginCommunityMapOutput) MapIndex(k pulumi.StringInput) PluginCommunityOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) PluginCommunity {
+		return vs[0].(map[string]PluginCommunity)[vs[1].(string)]
+	}).(PluginCommunityOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(PluginCommunityOutput{})
+	pulumi.RegisterOutputType(PluginCommunityPtrOutput{})
+	pulumi.RegisterOutputType(PluginCommunityArrayOutput{})
+	pulumi.RegisterOutputType(PluginCommunityMapOutput{})
 }
