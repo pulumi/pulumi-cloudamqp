@@ -194,7 +194,8 @@ export class IntegrationLog extends pulumi.CustomResource {
     constructor(name: string, args: IntegrationLogArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: IntegrationLogArgs | IntegrationLogState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as IntegrationLogState | undefined;
             inputs["accessKeyId"] = state ? state.accessKeyId : undefined;
             inputs["apiKey"] = state ? state.apiKey : undefined;
@@ -211,7 +212,7 @@ export class IntegrationLog extends pulumi.CustomResource {
             inputs["url"] = state ? state.url : undefined;
         } else {
             const args = argsOrState as IntegrationLogArgs | undefined;
-            if ((!args || args.instanceId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.instanceId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
             inputs["accessKeyId"] = args ? args.accessKeyId : undefined;
@@ -228,12 +229,8 @@ export class IntegrationLog extends pulumi.CustomResource {
             inputs["token"] = args ? args.token : undefined;
             inputs["url"] = args ? args.url : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(IntegrationLog.__pulumiType, name, inputs, opts);
     }

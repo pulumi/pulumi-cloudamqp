@@ -48,8 +48,8 @@ class Provider(pulumi.ProviderResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if apikey is None:
-                apikey = _utilities.get_env('CLOUDAMQP_APIKEY')
+            if apikey is None and not opts.urn:
+                raise TypeError("Missing required property 'apikey'")
             __props__['apikey'] = apikey
             __props__['baseurl'] = baseurl
         super(Provider, __self__).__init__(

@@ -18,7 +18,6 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp"
-// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //

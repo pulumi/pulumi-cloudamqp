@@ -101,7 +101,8 @@ export class Notification extends pulumi.CustomResource {
     constructor(name: string, args: NotificationArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: NotificationArgs | NotificationState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as NotificationState | undefined;
             inputs["instanceId"] = state ? state.instanceId : undefined;
             inputs["name"] = state ? state.name : undefined;
@@ -109,13 +110,13 @@ export class Notification extends pulumi.CustomResource {
             inputs["value"] = state ? state.value : undefined;
         } else {
             const args = argsOrState as NotificationArgs | undefined;
-            if ((!args || args.instanceId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.instanceId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            if ((!args || args.type === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            if ((!args || args.value === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.value === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'value'");
             }
             inputs["instanceId"] = args ? args.instanceId : undefined;
@@ -123,12 +124,8 @@ export class Notification extends pulumi.CustomResource {
             inputs["type"] = args ? args.type : undefined;
             inputs["value"] = args ? args.value : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Notification.__pulumiType, name, inputs, opts);
     }

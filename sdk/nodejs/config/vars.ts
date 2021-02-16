@@ -9,7 +9,7 @@ let __config = new pulumi.Config("cloudamqp");
 /**
  * Key used to authentication to the CloudAMQP Customer API
  */
-export let apikey: string | undefined = __config.get("apikey") || utilities.getEnv("CLOUDAMQP_APIKEY");
+export let apikey: string | undefined = __config.get("apikey");
 /**
  * Base URL to CloudAMQP Customer website
  */

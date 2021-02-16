@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp/"
+// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v2/go/cloudamqp"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -344,6 +344,85 @@ func (i *IntegrationLog) ToIntegrationLogOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogOutput)
 }
 
+func (i *IntegrationLog) ToIntegrationLogPtrOutput() IntegrationLogPtrOutput {
+	return i.ToIntegrationLogPtrOutputWithContext(context.Background())
+}
+
+func (i *IntegrationLog) ToIntegrationLogPtrOutputWithContext(ctx context.Context) IntegrationLogPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogPtrOutput)
+}
+
+type IntegrationLogPtrInput interface {
+	pulumi.Input
+
+	ToIntegrationLogPtrOutput() IntegrationLogPtrOutput
+	ToIntegrationLogPtrOutputWithContext(ctx context.Context) IntegrationLogPtrOutput
+}
+
+type integrationLogPtrType IntegrationLogArgs
+
+func (*integrationLogPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationLog)(nil))
+}
+
+func (i *integrationLogPtrType) ToIntegrationLogPtrOutput() IntegrationLogPtrOutput {
+	return i.ToIntegrationLogPtrOutputWithContext(context.Background())
+}
+
+func (i *integrationLogPtrType) ToIntegrationLogPtrOutputWithContext(ctx context.Context) IntegrationLogPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogPtrOutput)
+}
+
+// IntegrationLogArrayInput is an input type that accepts IntegrationLogArray and IntegrationLogArrayOutput values.
+// You can construct a concrete instance of `IntegrationLogArrayInput` via:
+//
+//          IntegrationLogArray{ IntegrationLogArgs{...} }
+type IntegrationLogArrayInput interface {
+	pulumi.Input
+
+	ToIntegrationLogArrayOutput() IntegrationLogArrayOutput
+	ToIntegrationLogArrayOutputWithContext(context.Context) IntegrationLogArrayOutput
+}
+
+type IntegrationLogArray []IntegrationLogInput
+
+func (IntegrationLogArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*IntegrationLog)(nil))
+}
+
+func (i IntegrationLogArray) ToIntegrationLogArrayOutput() IntegrationLogArrayOutput {
+	return i.ToIntegrationLogArrayOutputWithContext(context.Background())
+}
+
+func (i IntegrationLogArray) ToIntegrationLogArrayOutputWithContext(ctx context.Context) IntegrationLogArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogArrayOutput)
+}
+
+// IntegrationLogMapInput is an input type that accepts IntegrationLogMap and IntegrationLogMapOutput values.
+// You can construct a concrete instance of `IntegrationLogMapInput` via:
+//
+//          IntegrationLogMap{ "key": IntegrationLogArgs{...} }
+type IntegrationLogMapInput interface {
+	pulumi.Input
+
+	ToIntegrationLogMapOutput() IntegrationLogMapOutput
+	ToIntegrationLogMapOutputWithContext(context.Context) IntegrationLogMapOutput
+}
+
+type IntegrationLogMap map[string]IntegrationLogInput
+
+func (IntegrationLogMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*IntegrationLog)(nil))
+}
+
+func (i IntegrationLogMap) ToIntegrationLogMapOutput() IntegrationLogMapOutput {
+	return i.ToIntegrationLogMapOutputWithContext(context.Background())
+}
+
+func (i IntegrationLogMap) ToIntegrationLogMapOutputWithContext(ctx context.Context) IntegrationLogMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogMapOutput)
+}
+
 type IntegrationLogOutput struct {
 	*pulumi.OutputState
 }
@@ -360,6 +439,75 @@ func (o IntegrationLogOutput) ToIntegrationLogOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o IntegrationLogOutput) ToIntegrationLogPtrOutput() IntegrationLogPtrOutput {
+	return o.ToIntegrationLogPtrOutputWithContext(context.Background())
+}
+
+func (o IntegrationLogOutput) ToIntegrationLogPtrOutputWithContext(ctx context.Context) IntegrationLogPtrOutput {
+	return o.ApplyT(func(v IntegrationLog) *IntegrationLog {
+		return &v
+	}).(IntegrationLogPtrOutput)
+}
+
+type IntegrationLogPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (IntegrationLogPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationLog)(nil))
+}
+
+func (o IntegrationLogPtrOutput) ToIntegrationLogPtrOutput() IntegrationLogPtrOutput {
+	return o
+}
+
+func (o IntegrationLogPtrOutput) ToIntegrationLogPtrOutputWithContext(ctx context.Context) IntegrationLogPtrOutput {
+	return o
+}
+
+type IntegrationLogArrayOutput struct{ *pulumi.OutputState }
+
+func (IntegrationLogArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IntegrationLog)(nil))
+}
+
+func (o IntegrationLogArrayOutput) ToIntegrationLogArrayOutput() IntegrationLogArrayOutput {
+	return o
+}
+
+func (o IntegrationLogArrayOutput) ToIntegrationLogArrayOutputWithContext(ctx context.Context) IntegrationLogArrayOutput {
+	return o
+}
+
+func (o IntegrationLogArrayOutput) Index(i pulumi.IntInput) IntegrationLogOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IntegrationLog {
+		return vs[0].([]IntegrationLog)[vs[1].(int)]
+	}).(IntegrationLogOutput)
+}
+
+type IntegrationLogMapOutput struct{ *pulumi.OutputState }
+
+func (IntegrationLogMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]IntegrationLog)(nil))
+}
+
+func (o IntegrationLogMapOutput) ToIntegrationLogMapOutput() IntegrationLogMapOutput {
+	return o
+}
+
+func (o IntegrationLogMapOutput) ToIntegrationLogMapOutputWithContext(ctx context.Context) IntegrationLogMapOutput {
+	return o
+}
+
+func (o IntegrationLogMapOutput) MapIndex(k pulumi.StringInput) IntegrationLogOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) IntegrationLog {
+		return vs[0].(map[string]IntegrationLog)[vs[1].(string)]
+	}).(IntegrationLogOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(IntegrationLogOutput{})
+	pulumi.RegisterOutputType(IntegrationLogPtrOutput{})
+	pulumi.RegisterOutputType(IntegrationLogArrayOutput{})
+	pulumi.RegisterOutputType(IntegrationLogMapOutput{})
 }

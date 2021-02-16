@@ -111,7 +111,8 @@ export class IntegrationMetric extends pulumi.CustomResource {
     constructor(name: string, args: IntegrationMetricArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: IntegrationMetricArgs | IntegrationMetricState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as IntegrationMetricState | undefined;
             inputs["accessKeyId"] = state ? state.accessKeyId : undefined;
             inputs["apiKey"] = state ? state.apiKey : undefined;
@@ -131,7 +132,7 @@ export class IntegrationMetric extends pulumi.CustomResource {
             inputs["vhostWhitelist"] = state ? state.vhostWhitelist : undefined;
         } else {
             const args = argsOrState as IntegrationMetricArgs | undefined;
-            if ((!args || args.instanceId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.instanceId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
             inputs["accessKeyId"] = args ? args.accessKeyId : undefined;
@@ -151,12 +152,8 @@ export class IntegrationMetric extends pulumi.CustomResource {
             inputs["vhostAllowlist"] = args ? args.vhostAllowlist : undefined;
             inputs["vhostWhitelist"] = args ? args.vhostWhitelist : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(IntegrationMetric.__pulumiType, name, inputs, opts);
     }

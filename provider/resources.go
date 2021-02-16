@@ -76,14 +76,7 @@ func Provider() tfbridge.ProviderInfo {
 		TFProviderLicense: refProviderLicense(tfbridge.MITLicenseType),
 		Homepage:          "https://pulumi.io",
 		Repository:        "https://github.com/pulumi/pulumi-cloudamqp",
-		Config: map[string]*tfbridge.SchemaInfo{
-			"apikey": {
-				Type: "string",
-				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"CLOUDAMQP_APIKEY"},
-				},
-			},
-		},
+		Config:            map[string]*tfbridge.SchemaInfo{},
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"cloudamqp_alarm":              {Tok: makeResource(mainMod, "Alarm")},
 			"cloudamqp_instance":           {Tok: makeResource(mainMod, "Instance")},

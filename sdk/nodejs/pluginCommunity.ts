@@ -83,29 +83,26 @@ export class PluginCommunity extends pulumi.CustomResource {
     constructor(name: string, args: PluginCommunityArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: PluginCommunityArgs | PluginCommunityState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as PluginCommunityState | undefined;
             inputs["enabled"] = state ? state.enabled : undefined;
             inputs["instanceId"] = state ? state.instanceId : undefined;
             inputs["name"] = state ? state.name : undefined;
         } else {
             const args = argsOrState as PluginCommunityArgs | undefined;
-            if ((!args || args.enabled === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.enabled === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'enabled'");
             }
-            if ((!args || args.instanceId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.instanceId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
             inputs["enabled"] = args ? args.enabled : undefined;
             inputs["instanceId"] = args ? args.instanceId : undefined;
             inputs["name"] = args ? args.name : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(PluginCommunity.__pulumiType, name, inputs, opts);
     }

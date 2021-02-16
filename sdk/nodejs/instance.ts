@@ -134,7 +134,8 @@ export class Instance extends pulumi.CustomResource {
     constructor(name: string, args: InstanceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: InstanceArgs | InstanceState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as InstanceState | undefined;
             inputs["apikey"] = state ? state.apikey : undefined;
             inputs["dedicated"] = state ? state.dedicated : undefined;
@@ -152,10 +153,10 @@ export class Instance extends pulumi.CustomResource {
             inputs["vpcSubnet"] = state ? state.vpcSubnet : undefined;
         } else {
             const args = argsOrState as InstanceArgs | undefined;
-            if ((!args || args.plan === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.plan === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'plan'");
             }
-            if ((!args || args.region === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.region === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'region'");
             }
             inputs["name"] = args ? args.name : undefined;
@@ -173,12 +174,8 @@ export class Instance extends pulumi.CustomResource {
             inputs["url"] = undefined /*out*/;
             inputs["vhost"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Instance.__pulumiType, name, inputs, opts);
     }

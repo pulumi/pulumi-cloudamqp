@@ -11,7 +11,7 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Key used to authentication to the CloudAMQP Customer API
         /// </summary>
-        public static string? Apikey { get; set; } = __config.Get("apikey") ?? Utilities.GetEnv("CLOUDAMQP_APIKEY");
+        public static string? Apikey { get; set; } = __config.Get("apikey");
 
         /// <summary>
         /// Base URL to CloudAMQP Customer website
