@@ -86,7 +86,7 @@ class IntegrationMetric(pulumi.CustomResource):
             __props__['queue_allowlist'] = queue_allowlist
             if queue_whitelist is not None and not opts.urn:
                 warnings.warn("""use queue_allowlist instead""", DeprecationWarning)
-                pulumi.log.warn("queue_whitelist is deprecated: use queue_allowlist instead")
+                pulumi.log.warn("""queue_whitelist is deprecated: use queue_allowlist instead""")
             __props__['queue_whitelist'] = queue_whitelist
             __props__['region'] = region
             __props__['secret_access_key'] = secret_access_key
@@ -94,7 +94,7 @@ class IntegrationMetric(pulumi.CustomResource):
             __props__['vhost_allowlist'] = vhost_allowlist
             if vhost_whitelist is not None and not opts.urn:
                 warnings.warn("""use vhost_allowlist instead""", DeprecationWarning)
-                pulumi.log.warn("vhost_whitelist is deprecated: use vhost_allowlist instead")
+                pulumi.log.warn("""vhost_whitelist is deprecated: use vhost_allowlist instead""")
             __props__['vhost_whitelist'] = vhost_whitelist
         super(IntegrationMetric, __self__).__init__(
             'cloudamqp:index/integrationMetric:IntegrationMetric',
