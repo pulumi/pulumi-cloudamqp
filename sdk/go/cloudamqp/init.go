@@ -21,29 +21,30 @@ func (m *module) Version() semver.Version {
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
 	case "cloudamqp:index/alarm:Alarm":
-		r, err = NewAlarm(ctx, name, nil, pulumi.URN_(urn))
+		r = &Alarm{}
 	case "cloudamqp:index/instance:Instance":
-		r, err = NewInstance(ctx, name, nil, pulumi.URN_(urn))
+		r = &Instance{}
 	case "cloudamqp:index/integrationLog:IntegrationLog":
-		r, err = NewIntegrationLog(ctx, name, nil, pulumi.URN_(urn))
+		r = &IntegrationLog{}
 	case "cloudamqp:index/integrationMetric:IntegrationMetric":
-		r, err = NewIntegrationMetric(ctx, name, nil, pulumi.URN_(urn))
+		r = &IntegrationMetric{}
 	case "cloudamqp:index/notification:Notification":
-		r, err = NewNotification(ctx, name, nil, pulumi.URN_(urn))
+		r = &Notification{}
 	case "cloudamqp:index/plugin:Plugin":
-		r, err = NewPlugin(ctx, name, nil, pulumi.URN_(urn))
+		r = &Plugin{}
 	case "cloudamqp:index/pluginCommunity:PluginCommunity":
-		r, err = NewPluginCommunity(ctx, name, nil, pulumi.URN_(urn))
+		r = &PluginCommunity{}
 	case "cloudamqp:index/securityFirewall:SecurityFirewall":
-		r, err = NewSecurityFirewall(ctx, name, nil, pulumi.URN_(urn))
+		r = &SecurityFirewall{}
 	case "cloudamqp:index/vpcPeering:VpcPeering":
-		r, err = NewVpcPeering(ctx, name, nil, pulumi.URN_(urn))
+		r = &VpcPeering{}
 	case "cloudamqp:index/webhook:Webhook":
-		r, err = NewWebhook(ctx, name, nil, pulumi.URN_(urn))
+		r = &Webhook{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
 
+	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
 	return
 }
 
@@ -60,7 +61,9 @@ func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pul
 		return nil, fmt.Errorf("unknown provider type: %s", typ)
 	}
 
-	return NewProvider(ctx, name, nil, pulumi.URN_(urn))
+	r := &Provider{}
+	err := ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
+	return r, err
 }
 
 func init() {

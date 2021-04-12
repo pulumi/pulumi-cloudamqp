@@ -5,13 +5,51 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['VpcPeering']
+__all__ = ['VpcPeeringArgs', 'VpcPeering']
+
+@pulumi.input_type
+class VpcPeeringArgs:
+    def __init__(__self__, *,
+                 instance_id: pulumi.Input[int],
+                 peering_id: pulumi.Input[str]):
+        """
+        The set of arguments for constructing a VpcPeering resource.
+        :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[str] peering_id: Peering identifier created by AW peering request.
+        """
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "peering_id", peering_id)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> pulumi.Input[int]:
+        """
+        The CloudAMQP instance ID.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @instance_id.setter
+    def instance_id(self, value: pulumi.Input[int]):
+        pulumi.set(self, "instance_id", value)
+
+    @property
+    @pulumi.getter(name="peeringId")
+    def peering_id(self) -> pulumi.Input[str]:
+        """
+        Peering identifier created by AW peering request.
+        """
+        return pulumi.get(self, "peering_id")
+
+    @peering_id.setter
+    def peering_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "peering_id", value)
 
 
 class VpcPeering(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -34,6 +72,41 @@ class VpcPeering(pulumi.CustomResource):
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] peering_id: Peering identifier created by AW peering request.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: VpcPeeringArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        ## Import
+
+        `cloudamqp_vpc_peering` can be imported using the CloudAMQP instance identifier.
+
+        ```sh
+         $ pulumi import cloudamqp:index/vpcPeering:VpcPeering <resource_name> <instance_id>`
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param VpcPeeringArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(VpcPeeringArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 instance_id: Optional[pulumi.Input[int]] = None,
+                 peering_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__
