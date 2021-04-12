@@ -5,13 +5,147 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['Instance']
+__all__ = ['InstanceArgs', 'Instance']
+
+@pulumi.input_type
+class InstanceArgs:
+    def __init__(__self__, *,
+                 plan: pulumi.Input[str],
+                 region: pulumi.Input[str],
+                 name: Optional[pulumi.Input[str]] = None,
+                 no_default_alarms: Optional[pulumi.Input[bool]] = None,
+                 nodes: Optional[pulumi.Input[int]] = None,
+                 rmq_version: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 vpc_subnet: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a Instance resource.
+        :param pulumi.Input[str] plan: The subscription plan. See available plans
+        :param pulumi.Input[str] region: The region to host the instance in. See Instance regions
+        :param pulumi.Input[str] name: Name of the CloudAMQP instance.
+        :param pulumi.Input[bool] no_default_alarms: Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
+        :param pulumi.Input[int] nodes: Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
+        :param pulumi.Input[str] rmq_version: The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
+        :param pulumi.Input[str] vpc_subnet: Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
+        """
+        pulumi.set(__self__, "plan", plan)
+        pulumi.set(__self__, "region", region)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if no_default_alarms is not None:
+            pulumi.set(__self__, "no_default_alarms", no_default_alarms)
+        if nodes is not None:
+            pulumi.set(__self__, "nodes", nodes)
+        if rmq_version is not None:
+            pulumi.set(__self__, "rmq_version", rmq_version)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if vpc_subnet is not None:
+            pulumi.set(__self__, "vpc_subnet", vpc_subnet)
+
+    @property
+    @pulumi.getter
+    def plan(self) -> pulumi.Input[str]:
+        """
+        The subscription plan. See available plans
+        """
+        return pulumi.get(self, "plan")
+
+    @plan.setter
+    def plan(self, value: pulumi.Input[str]):
+        pulumi.set(self, "plan", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> pulumi.Input[str]:
+        """
+        The region to host the instance in. See Instance regions
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: pulumi.Input[str]):
+        pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the CloudAMQP instance.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="noDefaultAlarms")
+    def no_default_alarms(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
+        """
+        return pulumi.get(self, "no_default_alarms")
+
+    @no_default_alarms.setter
+    def no_default_alarms(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "no_default_alarms", value)
+
+    @property
+    @pulumi.getter
+    def nodes(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
+        """
+        return pulumi.get(self, "nodes")
+
+    @nodes.setter
+    def nodes(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "nodes", value)
+
+    @property
+    @pulumi.getter(name="rmqVersion")
+    def rmq_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
+        """
+        return pulumi.get(self, "rmq_version")
+
+    @rmq_version.setter
+    def rmq_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rmq_version", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
+    @pulumi.getter(name="vpcSubnet")
+    def vpc_subnet(self) -> Optional[pulumi.Input[str]]:
+        """
+        Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
+        """
+        return pulumi.get(self, "vpc_subnet")
+
+    @vpc_subnet.setter
+    def vpc_subnet(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vpc_subnet", value)
 
 
 class Instance(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -70,6 +204,71 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
         :param pulumi.Input[str] vpc_subnet: Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: InstanceArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        This resource allows you to create and manage a CloudAMQP instance running Rabbit MQ and deploy to multiple cloud platforms provider and over multiple regions, see Instance regions for more information.
+
+        Once the instance is created it will be assigned a unique identifier. All other resource and data sources created for this instance needs to reference the instance identifier.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # Minimum free lemur instance
+        lemur_instance = cloudamqp.Instance("lemurInstance",
+            plan="lemur",
+            region="amazon-web-services::us-west-1")
+        # New dedicated bunny instance
+        instance = cloudamqp.Instance("instance",
+            no_default_alarms=True,
+            nodes=1,
+            plan="bunny-1",
+            region="amazon-web-services::us-west-1",
+            rmq_version="3.8.3",
+            tags=["terraform"])
+        ```
+
+        ## Import
+
+        `cloudamqp_instance`can be imported using CloudAMQP internal identifier. To retrieve the identifier for an instance, use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances).
+
+        ```sh
+         $ pulumi import cloudamqp:index/instance:Instance instance <instance_id>`
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param InstanceArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(InstanceArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 no_default_alarms: Optional[pulumi.Input[bool]] = None,
+                 nodes: Optional[pulumi.Input[int]] = None,
+                 plan: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 rmq_version: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 vpc_subnet: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__
