@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['WebhookArgs', 'Webhook']
 
@@ -105,6 +105,110 @@ class WebhookArgs:
 
     @webhook_uri.setter
     def webhook_uri(self, value: pulumi.Input[str]):
+        pulumi.set(self, "webhook_uri", value)
+
+
+@pulumi.input_type
+class _WebhookState:
+    def __init__(__self__, *,
+                 concurrency: Optional[pulumi.Input[int]] = None,
+                 instance_id: Optional[pulumi.Input[int]] = None,
+                 queue: Optional[pulumi.Input[str]] = None,
+                 retry_interval: Optional[pulumi.Input[int]] = None,
+                 vhost: Optional[pulumi.Input[str]] = None,
+                 webhook_uri: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering Webhook resources.
+        :param pulumi.Input[int] concurrency: Max simultaneous requests to the endpoint.
+        :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[str] queue: A (durable) queue on your RabbitMQ instance.
+        :param pulumi.Input[int] retry_interval: How often we retry if your endpoint fails (in seconds).
+        :param pulumi.Input[str] vhost: The vhost the queue resides in.
+        :param pulumi.Input[str] webhook_uri: A POST request will be made for each message in the queue to this endpoint.
+        """
+        if concurrency is not None:
+            pulumi.set(__self__, "concurrency", concurrency)
+        if instance_id is not None:
+            pulumi.set(__self__, "instance_id", instance_id)
+        if queue is not None:
+            pulumi.set(__self__, "queue", queue)
+        if retry_interval is not None:
+            pulumi.set(__self__, "retry_interval", retry_interval)
+        if vhost is not None:
+            pulumi.set(__self__, "vhost", vhost)
+        if webhook_uri is not None:
+            pulumi.set(__self__, "webhook_uri", webhook_uri)
+
+    @property
+    @pulumi.getter
+    def concurrency(self) -> Optional[pulumi.Input[int]]:
+        """
+        Max simultaneous requests to the endpoint.
+        """
+        return pulumi.get(self, "concurrency")
+
+    @concurrency.setter
+    def concurrency(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "concurrency", value)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        The CloudAMQP instance ID.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @instance_id.setter
+    def instance_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "instance_id", value)
+
+    @property
+    @pulumi.getter
+    def queue(self) -> Optional[pulumi.Input[str]]:
+        """
+        A (durable) queue on your RabbitMQ instance.
+        """
+        return pulumi.get(self, "queue")
+
+    @queue.setter
+    def queue(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "queue", value)
+
+    @property
+    @pulumi.getter(name="retryInterval")
+    def retry_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        How often we retry if your endpoint fails (in seconds).
+        """
+        return pulumi.get(self, "retry_interval")
+
+    @retry_interval.setter
+    def retry_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "retry_interval", value)
+
+    @property
+    @pulumi.getter
+    def vhost(self) -> Optional[pulumi.Input[str]]:
+        """
+        The vhost the queue resides in.
+        """
+        return pulumi.get(self, "vhost")
+
+    @vhost.setter
+    def vhost(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vhost", value)
+
+    @property
+    @pulumi.getter(name="webhookUri")
+    def webhook_uri(self) -> Optional[pulumi.Input[str]]:
+        """
+        A POST request will be made for each message in the queue to this endpoint.
+        """
+        return pulumi.get(self, "webhook_uri")
+
+    @webhook_uri.setter
+    def webhook_uri(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "webhook_uri", value)
 
 
@@ -238,26 +342,26 @@ class Webhook(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = WebhookArgs.__new__(WebhookArgs)
 
             if concurrency is None and not opts.urn:
                 raise TypeError("Missing required property 'concurrency'")
-            __props__['concurrency'] = concurrency
+            __props__.__dict__["concurrency"] = concurrency
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
-            __props__['instance_id'] = instance_id
+            __props__.__dict__["instance_id"] = instance_id
             if queue is None and not opts.urn:
                 raise TypeError("Missing required property 'queue'")
-            __props__['queue'] = queue
+            __props__.__dict__["queue"] = queue
             if retry_interval is None and not opts.urn:
                 raise TypeError("Missing required property 'retry_interval'")
-            __props__['retry_interval'] = retry_interval
+            __props__.__dict__["retry_interval"] = retry_interval
             if vhost is None and not opts.urn:
                 raise TypeError("Missing required property 'vhost'")
-            __props__['vhost'] = vhost
+            __props__.__dict__["vhost"] = vhost
             if webhook_uri is None and not opts.urn:
                 raise TypeError("Missing required property 'webhook_uri'")
-            __props__['webhook_uri'] = webhook_uri
+            __props__.__dict__["webhook_uri"] = webhook_uri
         super(Webhook, __self__).__init__(
             'cloudamqp:index/webhook:Webhook',
             resource_name,
@@ -290,14 +394,14 @@ class Webhook(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _WebhookState.__new__(_WebhookState)
 
-        __props__["concurrency"] = concurrency
-        __props__["instance_id"] = instance_id
-        __props__["queue"] = queue
-        __props__["retry_interval"] = retry_interval
-        __props__["vhost"] = vhost
-        __props__["webhook_uri"] = webhook_uri
+        __props__.__dict__["concurrency"] = concurrency
+        __props__.__dict__["instance_id"] = instance_id
+        __props__.__dict__["queue"] = queue
+        __props__.__dict__["retry_interval"] = retry_interval
+        __props__.__dict__["vhost"] = vhost
+        __props__.__dict__["webhook_uri"] = webhook_uri
         return Webhook(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -347,10 +451,4 @@ class Webhook(pulumi.CustomResource):
         A POST request will be made for each message in the queue to this endpoint.
         """
         return pulumi.get(self, "webhook_uri")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

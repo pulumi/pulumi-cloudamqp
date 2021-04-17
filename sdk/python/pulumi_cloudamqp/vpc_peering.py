@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['VpcPeeringArgs', 'VpcPeering']
 
@@ -46,6 +46,62 @@ class VpcPeeringArgs:
     @peering_id.setter
     def peering_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "peering_id", value)
+
+
+@pulumi.input_type
+class _VpcPeeringState:
+    def __init__(__self__, *,
+                 instance_id: Optional[pulumi.Input[int]] = None,
+                 peering_id: Optional[pulumi.Input[str]] = None,
+                 status: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering VpcPeering resources.
+        :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[str] peering_id: Peering identifier created by AW peering request.
+        :param pulumi.Input[str] status: VPC peering status
+        """
+        if instance_id is not None:
+            pulumi.set(__self__, "instance_id", instance_id)
+        if peering_id is not None:
+            pulumi.set(__self__, "peering_id", peering_id)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        The CloudAMQP instance ID.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @instance_id.setter
+    def instance_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "instance_id", value)
+
+    @property
+    @pulumi.getter(name="peeringId")
+    def peering_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Peering identifier created by AW peering request.
+        """
+        return pulumi.get(self, "peering_id")
+
+    @peering_id.setter
+    def peering_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "peering_id", value)
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        VPC peering status
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "status", value)
 
 
 class VpcPeering(pulumi.CustomResource):
@@ -122,15 +178,15 @@ class VpcPeering(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = VpcPeeringArgs.__new__(VpcPeeringArgs)
 
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
-            __props__['instance_id'] = instance_id
+            __props__.__dict__["instance_id"] = instance_id
             if peering_id is None and not opts.urn:
                 raise TypeError("Missing required property 'peering_id'")
-            __props__['peering_id'] = peering_id
-            __props__['status'] = None
+            __props__.__dict__["peering_id"] = peering_id
+            __props__.__dict__["status"] = None
         super(VpcPeering, __self__).__init__(
             'cloudamqp:index/vpcPeering:VpcPeering',
             resource_name,
@@ -157,11 +213,11 @@ class VpcPeering(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _VpcPeeringState.__new__(_VpcPeeringState)
 
-        __props__["instance_id"] = instance_id
-        __props__["peering_id"] = peering_id
-        __props__["status"] = status
+        __props__.__dict__["instance_id"] = instance_id
+        __props__.__dict__["peering_id"] = peering_id
+        __props__.__dict__["status"] = status
         return VpcPeering(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -187,10 +243,4 @@ class VpcPeering(pulumi.CustomResource):
         VPC peering status
         """
         return pulumi.get(self, "status")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

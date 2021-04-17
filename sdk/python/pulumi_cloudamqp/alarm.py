@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['AlarmArgs', 'Alarm']
 
@@ -132,6 +132,158 @@ class AlarmArgs:
     @time_threshold.setter
     def time_threshold(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "time_threshold", value)
+
+    @property
+    @pulumi.getter(name="valueThreshold")
+    def value_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        The value to trigger the alarm for.
+        """
+        return pulumi.get(self, "value_threshold")
+
+    @value_threshold.setter
+    def value_threshold(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "value_threshold", value)
+
+    @property
+    @pulumi.getter(name="vhostRegex")
+    def vhost_regex(self) -> Optional[pulumi.Input[str]]:
+        """
+        Regex for which vhost to check
+        """
+        return pulumi.get(self, "vhost_regex")
+
+    @vhost_regex.setter
+    def vhost_regex(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vhost_regex", value)
+
+
+@pulumi.input_type
+class _AlarmState:
+    def __init__(__self__, *,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 instance_id: Optional[pulumi.Input[int]] = None,
+                 message_type: Optional[pulumi.Input[str]] = None,
+                 queue_regex: Optional[pulumi.Input[str]] = None,
+                 recipients: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
+                 time_threshold: Optional[pulumi.Input[int]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 value_threshold: Optional[pulumi.Input[int]] = None,
+                 vhost_regex: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering Alarm resources.
+        :param pulumi.Input[bool] enabled: Enable or disable the alarm to trigger.
+        :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[str] message_type: Message type `(total, unacked, ready)` used by queue alarm type.
+        :param pulumi.Input[str] queue_regex: Regex for which queue to check.
+        :param pulumi.Input[Sequence[pulumi.Input[int]]] recipients: Identifier for recipient to be notified. Leave empty to notify all recipients.
+        :param pulumi.Input[int] time_threshold: The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
+        :param pulumi.Input[str] type: The alarm type, see valid options below.
+        :param pulumi.Input[int] value_threshold: The value to trigger the alarm for.
+        :param pulumi.Input[str] vhost_regex: Regex for which vhost to check
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if instance_id is not None:
+            pulumi.set(__self__, "instance_id", instance_id)
+        if message_type is not None:
+            pulumi.set(__self__, "message_type", message_type)
+        if queue_regex is not None:
+            pulumi.set(__self__, "queue_regex", queue_regex)
+        if recipients is not None:
+            pulumi.set(__self__, "recipients", recipients)
+        if time_threshold is not None:
+            pulumi.set(__self__, "time_threshold", time_threshold)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if value_threshold is not None:
+            pulumi.set(__self__, "value_threshold", value_threshold)
+        if vhost_regex is not None:
+            pulumi.set(__self__, "vhost_regex", vhost_regex)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable or disable the alarm to trigger.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        The CloudAMQP instance ID.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @instance_id.setter
+    def instance_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "instance_id", value)
+
+    @property
+    @pulumi.getter(name="messageType")
+    def message_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Message type `(total, unacked, ready)` used by queue alarm type.
+        """
+        return pulumi.get(self, "message_type")
+
+    @message_type.setter
+    def message_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "message_type", value)
+
+    @property
+    @pulumi.getter(name="queueRegex")
+    def queue_regex(self) -> Optional[pulumi.Input[str]]:
+        """
+        Regex for which queue to check.
+        """
+        return pulumi.get(self, "queue_regex")
+
+    @queue_regex.setter
+    def queue_regex(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "queue_regex", value)
+
+    @property
+    @pulumi.getter
+    def recipients(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[int]]]]:
+        """
+        Identifier for recipient to be notified. Leave empty to notify all recipients.
+        """
+        return pulumi.get(self, "recipients")
+
+    @recipients.setter
+    def recipients(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]]):
+        pulumi.set(self, "recipients", value)
+
+    @property
+    @pulumi.getter(name="timeThreshold")
+    def time_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
+        """
+        return pulumi.get(self, "time_threshold")
+
+    @time_threshold.setter
+    def time_threshold(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "time_threshold", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The alarm type, see valid options below.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
 
     @property
     @pulumi.getter(name="valueThreshold")
@@ -311,25 +463,25 @@ class Alarm(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = AlarmArgs.__new__(AlarmArgs)
 
             if enabled is None and not opts.urn:
                 raise TypeError("Missing required property 'enabled'")
-            __props__['enabled'] = enabled
+            __props__.__dict__["enabled"] = enabled
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
-            __props__['instance_id'] = instance_id
-            __props__['message_type'] = message_type
-            __props__['queue_regex'] = queue_regex
+            __props__.__dict__["instance_id"] = instance_id
+            __props__.__dict__["message_type"] = message_type
+            __props__.__dict__["queue_regex"] = queue_regex
             if recipients is None and not opts.urn:
                 raise TypeError("Missing required property 'recipients'")
-            __props__['recipients'] = recipients
-            __props__['time_threshold'] = time_threshold
+            __props__.__dict__["recipients"] = recipients
+            __props__.__dict__["time_threshold"] = time_threshold
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
-            __props__['type'] = type
-            __props__['value_threshold'] = value_threshold
-            __props__['vhost_regex'] = vhost_regex
+            __props__.__dict__["type"] = type
+            __props__.__dict__["value_threshold"] = value_threshold
+            __props__.__dict__["vhost_regex"] = vhost_regex
         super(Alarm, __self__).__init__(
             'cloudamqp:index/alarm:Alarm',
             resource_name,
@@ -368,17 +520,17 @@ class Alarm(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _AlarmState.__new__(_AlarmState)
 
-        __props__["enabled"] = enabled
-        __props__["instance_id"] = instance_id
-        __props__["message_type"] = message_type
-        __props__["queue_regex"] = queue_regex
-        __props__["recipients"] = recipients
-        __props__["time_threshold"] = time_threshold
-        __props__["type"] = type
-        __props__["value_threshold"] = value_threshold
-        __props__["vhost_regex"] = vhost_regex
+        __props__.__dict__["enabled"] = enabled
+        __props__.__dict__["instance_id"] = instance_id
+        __props__.__dict__["message_type"] = message_type
+        __props__.__dict__["queue_regex"] = queue_regex
+        __props__.__dict__["recipients"] = recipients
+        __props__.__dict__["time_threshold"] = time_threshold
+        __props__.__dict__["type"] = type
+        __props__.__dict__["value_threshold"] = value_threshold
+        __props__.__dict__["vhost_regex"] = vhost_regex
         return Alarm(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -452,10 +604,4 @@ class Alarm(pulumi.CustomResource):
         Regex for which vhost to check
         """
         return pulumi.get(self, "vhost_regex")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

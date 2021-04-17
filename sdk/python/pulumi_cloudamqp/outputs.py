@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = [
     'SecurityFirewallRule',
@@ -67,9 +67,6 @@ class SecurityFirewallRule(dict):
         Pre-defined service ports
         """
         return pulumi.get(self, "services")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
