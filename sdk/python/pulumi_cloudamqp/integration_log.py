@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['IntegrationLogArgs', 'IntegrationLog']
 
@@ -127,6 +127,222 @@ class IntegrationLogArgs:
     @host_port.setter
     def host_port(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "host_port", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the third party log integration. See
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private access key.
+        """
+        return pulumi.get(self, "private_key")
+
+    @private_key.setter
+    def private_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_key", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project identifier.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        Region hosting the integration service.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter(name="secretAccessKey")
+    def secret_access_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        AWS secret access key.
+        """
+        return pulumi.get(self, "secret_access_key")
+
+    @secret_access_key.setter
+    def secret_access_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "secret_access_key", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[str]]:
+        """
+        Tag the integration, e.g. env=prod, region=europe.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tags", value)
+
+    @property
+    @pulumi.getter
+    def token(self) -> Optional[pulumi.Input[str]]:
+        """
+        Token used for authentication.
+        """
+        return pulumi.get(self, "token")
+
+    @token.setter
+    def token(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "token", value)
+
+    @property
+    @pulumi.getter
+    def url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Endpoint to log integration.
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "url", value)
+
+
+@pulumi.input_type
+class _IntegrationLogState:
+    def __init__(__self__, *,
+                 access_key_id: Optional[pulumi.Input[str]] = None,
+                 api_key: Optional[pulumi.Input[str]] = None,
+                 client_email: Optional[pulumi.Input[str]] = None,
+                 host_port: Optional[pulumi.Input[str]] = None,
+                 instance_id: Optional[pulumi.Input[int]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 private_key: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 secret_access_key: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[str]] = None,
+                 token: Optional[pulumi.Input[str]] = None,
+                 url: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering IntegrationLog resources.
+        :param pulumi.Input[str] access_key_id: AWS access key identifier.
+        :param pulumi.Input[str] api_key: The API key.
+        :param pulumi.Input[str] client_email: The client email registered for the integration service.
+        :param pulumi.Input[str] host_port: Destination to send the logs.
+        :param pulumi.Input[int] instance_id: Instance identifier used to make proxy calls
+        :param pulumi.Input[str] name: The name of the third party log integration. See
+        :param pulumi.Input[str] private_key: The private access key.
+        :param pulumi.Input[str] project_id: The project identifier.
+        :param pulumi.Input[str] region: Region hosting the integration service.
+        :param pulumi.Input[str] secret_access_key: AWS secret access key.
+        :param pulumi.Input[str] tags: Tag the integration, e.g. env=prod, region=europe.
+        :param pulumi.Input[str] token: Token used for authentication.
+        :param pulumi.Input[str] url: Endpoint to log integration.
+        """
+        if access_key_id is not None:
+            pulumi.set(__self__, "access_key_id", access_key_id)
+        if api_key is not None:
+            pulumi.set(__self__, "api_key", api_key)
+        if client_email is not None:
+            pulumi.set(__self__, "client_email", client_email)
+        if host_port is not None:
+            pulumi.set(__self__, "host_port", host_port)
+        if instance_id is not None:
+            pulumi.set(__self__, "instance_id", instance_id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if secret_access_key is not None:
+            pulumi.set(__self__, "secret_access_key", secret_access_key)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if token is not None:
+            pulumi.set(__self__, "token", token)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+
+    @property
+    @pulumi.getter(name="accessKeyId")
+    def access_key_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        AWS access key identifier.
+        """
+        return pulumi.get(self, "access_key_id")
+
+    @access_key_id.setter
+    def access_key_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "access_key_id", value)
+
+    @property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The API key.
+        """
+        return pulumi.get(self, "api_key")
+
+    @api_key.setter
+    def api_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "api_key", value)
+
+    @property
+    @pulumi.getter(name="clientEmail")
+    def client_email(self) -> Optional[pulumi.Input[str]]:
+        """
+        The client email registered for the integration service.
+        """
+        return pulumi.get(self, "client_email")
+
+    @client_email.setter
+    def client_email(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_email", value)
+
+    @property
+    @pulumi.getter(name="hostPort")
+    def host_port(self) -> Optional[pulumi.Input[str]]:
+        """
+        Destination to send the logs.
+        """
+        return pulumi.get(self, "host_port")
+
+    @host_port.setter
+    def host_port(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "host_port", value)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        Instance identifier used to make proxy calls
+        """
+        return pulumi.get(self, "instance_id")
+
+    @instance_id.setter
+    def instance_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "instance_id", value)
 
     @property
     @pulumi.getter
@@ -498,23 +714,23 @@ class IntegrationLog(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = IntegrationLogArgs.__new__(IntegrationLogArgs)
 
-            __props__['access_key_id'] = access_key_id
-            __props__['api_key'] = api_key
-            __props__['client_email'] = client_email
-            __props__['host_port'] = host_port
+            __props__.__dict__["access_key_id"] = access_key_id
+            __props__.__dict__["api_key"] = api_key
+            __props__.__dict__["client_email"] = client_email
+            __props__.__dict__["host_port"] = host_port
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
-            __props__['instance_id'] = instance_id
-            __props__['name'] = name
-            __props__['private_key'] = private_key
-            __props__['project_id'] = project_id
-            __props__['region'] = region
-            __props__['secret_access_key'] = secret_access_key
-            __props__['tags'] = tags
-            __props__['token'] = token
-            __props__['url'] = url
+            __props__.__dict__["instance_id"] = instance_id
+            __props__.__dict__["name"] = name
+            __props__.__dict__["private_key"] = private_key
+            __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["region"] = region
+            __props__.__dict__["secret_access_key"] = secret_access_key
+            __props__.__dict__["tags"] = tags
+            __props__.__dict__["token"] = token
+            __props__.__dict__["url"] = url
         super(IntegrationLog, __self__).__init__(
             'cloudamqp:index/integrationLog:IntegrationLog',
             resource_name,
@@ -561,21 +777,21 @@ class IntegrationLog(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _IntegrationLogState.__new__(_IntegrationLogState)
 
-        __props__["access_key_id"] = access_key_id
-        __props__["api_key"] = api_key
-        __props__["client_email"] = client_email
-        __props__["host_port"] = host_port
-        __props__["instance_id"] = instance_id
-        __props__["name"] = name
-        __props__["private_key"] = private_key
-        __props__["project_id"] = project_id
-        __props__["region"] = region
-        __props__["secret_access_key"] = secret_access_key
-        __props__["tags"] = tags
-        __props__["token"] = token
-        __props__["url"] = url
+        __props__.__dict__["access_key_id"] = access_key_id
+        __props__.__dict__["api_key"] = api_key
+        __props__.__dict__["client_email"] = client_email
+        __props__.__dict__["host_port"] = host_port
+        __props__.__dict__["instance_id"] = instance_id
+        __props__.__dict__["name"] = name
+        __props__.__dict__["private_key"] = private_key
+        __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["region"] = region
+        __props__.__dict__["secret_access_key"] = secret_access_key
+        __props__.__dict__["tags"] = tags
+        __props__.__dict__["token"] = token
+        __props__.__dict__["url"] = url
         return IntegrationLog(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -681,10 +897,4 @@ class IntegrationLog(pulumi.CustomResource):
         Endpoint to log integration.
         """
         return pulumi.get(self, "url")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

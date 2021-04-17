@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 from . import outputs
 from ._inputs import *
 
@@ -47,6 +47,46 @@ class SecurityFirewallArgs:
 
     @rules.setter
     def rules(self, value: pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]]):
+        pulumi.set(self, "rules", value)
+
+
+@pulumi.input_type
+class _SecurityFirewallState:
+    def __init__(__self__, *,
+                 instance_id: Optional[pulumi.Input[int]] = None,
+                 rules: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]]] = None):
+        """
+        Input properties used for looking up and filtering SecurityFirewall resources.
+        :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+        """
+        if instance_id is not None:
+            pulumi.set(__self__, "instance_id", instance_id)
+        if rules is not None:
+            pulumi.set(__self__, "rules", rules)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        The CloudAMQP instance ID.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @instance_id.setter
+    def instance_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "instance_id", value)
+
+    @property
+    @pulumi.getter
+    def rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]]]:
+        """
+        An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+        """
+        return pulumi.get(self, "rules")
+
+    @rules.setter
+    def rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]]]):
         pulumi.set(self, "rules", value)
 
 
@@ -200,14 +240,14 @@ class SecurityFirewall(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = SecurityFirewallArgs.__new__(SecurityFirewallArgs)
 
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
-            __props__['instance_id'] = instance_id
+            __props__.__dict__["instance_id"] = instance_id
             if rules is None and not opts.urn:
                 raise TypeError("Missing required property 'rules'")
-            __props__['rules'] = rules
+            __props__.__dict__["rules"] = rules
         super(SecurityFirewall, __self__).__init__(
             'cloudamqp:index/securityFirewall:SecurityFirewall',
             resource_name,
@@ -232,10 +272,10 @@ class SecurityFirewall(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _SecurityFirewallState.__new__(_SecurityFirewallState)
 
-        __props__["instance_id"] = instance_id
-        __props__["rules"] = rules
+        __props__.__dict__["instance_id"] = instance_id
+        __props__.__dict__["rules"] = rules
         return SecurityFirewall(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -253,10 +293,4 @@ class SecurityFirewall(pulumi.CustomResource):
         An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
         """
         return pulumi.get(self, "rules")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 
