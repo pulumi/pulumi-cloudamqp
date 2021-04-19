@@ -324,9 +324,7 @@ class Alarm(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  value_threshold: Optional[pulumi.Input[int]] = None,
                  vhost_regex: Optional[pulumi.Input[str]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
+                 __props__=None):
         """
         This resource allows you to create and manage alarms to trigger based on a set of conditions. Once triggerd a notification will be sent to the assigned recipients. When creating a new instance, there will also be a set of default alarms (cpu, memory and disk) created. All default alarms uses the default recipient for notifications.
 
@@ -445,15 +443,7 @@ class Alarm(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  value_threshold: Optional[pulumi.Input[int]] = None,
                  vhost_regex: Optional[pulumi.Input[str]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
-        if __name__ is not None:
-            warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
-            resource_name = __name__
-        if __opts__ is not None:
-            warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
-            opts = __opts__
+                 __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
         if not isinstance(opts, pulumi.ResourceOptions):
