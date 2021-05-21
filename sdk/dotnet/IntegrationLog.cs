@@ -116,10 +116,10 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ## Import
     /// 
-    /// `cloudamqp_integration_log`can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+    /// `cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
     /// 
     /// ```sh
-    ///  $ pulumi import cloudamqp:index/integrationLog:IntegrationLog &lt;resource_name&gt; &lt;name&gt;,&lt;instance_id&gt;`
+    ///  $ pulumi import cloudamqp:index/integrationLog:IntegrationLog &lt;resource_name&gt; &lt;resource_id&gt;,&lt;instance_id&gt;`
     /// ```
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/integrationLog:IntegrationLog")]

@@ -34,7 +34,7 @@ import (
 // | Consumer | consumer | &#10004; | &#10004; | time_threshold, value_threshold, queue, vhost |
 // | Netsplit | netsplit | - | &#10004; | timeThreshold |
 // | Server unreachable | serverUnreachable  | - | &#10004;  | timeThreshold |
-// | Notice | notice | &#10004; | &#10004; |
+// | Notice | notice | &#10004; | &#10004; | |
 //
 // ## Dependency
 //

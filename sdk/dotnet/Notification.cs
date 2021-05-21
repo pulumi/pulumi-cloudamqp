@@ -46,6 +46,7 @@ namespace Pulumi.CloudAmqp
     /// * opsgenie
     /// * opsgenie-eu
     /// * slack
+    /// * teams
     /// 
     /// ## Dependency
     /// 

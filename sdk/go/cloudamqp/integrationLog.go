@@ -133,10 +133,10 @@ import (
 //
 // ## Import
 //
-// `cloudamqp_integration_log`can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+// `cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
 //
 // ```sh
-//  $ pulumi import cloudamqp:index/integrationLog:IntegrationLog <resource_name> <name>,<instance_id>`
+//  $ pulumi import cloudamqp:index/integrationLog:IntegrationLog <resource_name> <resource_id>,<instance_id>`
 // ```
 type IntegrationLog struct {
 	pulumi.CustomResourceState

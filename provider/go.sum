@@ -191,6 +191,8 @@ github.com/client9/misspell v0.3.4 h1:ta993UF76GwbvJcIo3Y68y/M3WxlpEHPWIGDkJYwzJ
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
 github.com/cloudamqp/terraform-provider-cloudamqp v1.9.1 h1:anAO60HItAacjgrQaoALxAwD6S+XQMR2McbkgXd8JZQ=
 github.com/cloudamqp/terraform-provider-cloudamqp v1.9.1/go.mod h1:Xxg6W8zns0jKeoQR8FEzoQ5KWFC+oST+4gp+WlFGVLU=
+github.com/cloudamqp/terraform-provider-cloudamqp v1.9.2 h1:TMGarDPfgvHCutApV/qGQ+JxtdVU0Jnko9g++oqMXdE=
+github.com/cloudamqp/terraform-provider-cloudamqp v1.9.2/go.mod h1:Xxg6W8zns0jKeoQR8FEzoQ5KWFC+oST+4gp+WlFGVLU=
 github.com/cncf/udpa/go v0.0.0-20191209042840-269d4d468f6f/go.mod h1:M8M6+tZqaGXZJjfX53e64911xZQV5JYwmTeXPW+k8Sc=
 github.com/cncf/udpa/go v0.0.0-20200629203442-efcf912fb354 h1:9kRtNpqLHbZVO/NNxhHp2ymxFxsHOe3x2efJGn//Tas=
 github.com/cncf/udpa/go v0.0.0-20200629203442-efcf912fb354/go.mod h1:WmhPx2Nbnhtbo57+VJT5O0JRkEi1Wbu0z5j0R8u5Hbk=

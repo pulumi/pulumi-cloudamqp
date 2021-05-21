@@ -50,6 +50,7 @@ import (
 // * opsgenie
 // * opsgenie-eu
 // * slack
+// * teams
 //
 // ## Dependency
 //
