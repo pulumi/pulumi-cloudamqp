@@ -57,8 +57,8 @@ export function getPlugins(args: GetPluginsArgs, opts?: pulumi.InvokeOptions): P
  * A collection of arguments for invoking getPlugins.
  */
 export interface GetPluginsArgs {
-    readonly instanceId: number;
-    readonly plugins?: inputs.GetPluginsPlugin[];
+    instanceId: number;
+    plugins?: inputs.GetPluginsPlugin[];
 }
 
 /**

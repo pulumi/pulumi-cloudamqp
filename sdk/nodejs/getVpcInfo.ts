@@ -52,7 +52,7 @@ export function getVpcInfo(args: GetVpcInfoArgs, opts?: pulumi.InvokeOptions): P
  * A collection of arguments for invoking getVpcInfo.
  */
 export interface GetVpcInfoArgs {
-    readonly instanceId: number;
+    instanceId: number;
 }
 
 /**

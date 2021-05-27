@@ -149,27 +149,27 @@ export interface WebhookState {
     /**
      * Max simultaneous requests to the endpoint.
      */
-    readonly concurrency?: pulumi.Input<number>;
+    concurrency?: pulumi.Input<number>;
     /**
      * The CloudAMQP instance ID.
      */
-    readonly instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number>;
     /**
      * A (durable) queue on your RabbitMQ instance.
      */
-    readonly queue?: pulumi.Input<string>;
+    queue?: pulumi.Input<string>;
     /**
      * How often we retry if your endpoint fails (in seconds).
      */
-    readonly retryInterval?: pulumi.Input<number>;
+    retryInterval?: pulumi.Input<number>;
     /**
      * The vhost the queue resides in.
      */
-    readonly vhost?: pulumi.Input<string>;
+    vhost?: pulumi.Input<string>;
     /**
      * A POST request will be made for each message in the queue to this endpoint.
      */
-    readonly webhookUri?: pulumi.Input<string>;
+    webhookUri?: pulumi.Input<string>;
 }
 
 /**
@@ -179,25 +179,25 @@ export interface WebhookArgs {
     /**
      * Max simultaneous requests to the endpoint.
      */
-    readonly concurrency: pulumi.Input<number>;
+    concurrency: pulumi.Input<number>;
     /**
      * The CloudAMQP instance ID.
      */
-    readonly instanceId: pulumi.Input<number>;
+    instanceId: pulumi.Input<number>;
     /**
      * A (durable) queue on your RabbitMQ instance.
      */
-    readonly queue: pulumi.Input<string>;
+    queue: pulumi.Input<string>;
     /**
      * How often we retry if your endpoint fails (in seconds).
      */
-    readonly retryInterval: pulumi.Input<number>;
+    retryInterval: pulumi.Input<number>;
     /**
      * The vhost the queue resides in.
      */
-    readonly vhost: pulumi.Input<string>;
+    vhost: pulumi.Input<string>;
     /**
      * A POST request will be made for each message in the queue to this endpoint.
      */
-    readonly webhookUri: pulumi.Input<string>;
+    webhookUri: pulumi.Input<string>;
 }

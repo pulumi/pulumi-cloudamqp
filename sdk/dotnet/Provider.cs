@@ -19,6 +19,19 @@ namespace Pulumi.CloudAmqp
     public partial class Provider : Pulumi.ProviderResource
     {
         /// <summary>
+        /// Key used to authentication to the CloudAMQP Customer API
+        /// </summary>
+        [Output("apikey")]
+        public Output<string> Apikey { get; private set; } = null!;
+
+        /// <summary>
+        /// Base URL to CloudAMQP Customer website
+        /// </summary>
+        [Output("baseurl")]
+        public Output<string?> Baseurl { get; private set; } = null!;
+
+
+        /// <summary>
         /// Create a Provider resource with the given unique name, arguments, and options.
         /// </summary>
         ///

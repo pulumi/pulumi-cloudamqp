@@ -99,11 +99,11 @@ export interface SecurityFirewallState {
     /**
      * The CloudAMQP instance ID.
      */
-    readonly instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number>;
     /**
      * An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
      */
-    readonly rules?: pulumi.Input<pulumi.Input<inputs.SecurityFirewallRule>[]>;
+    rules?: pulumi.Input<pulumi.Input<inputs.SecurityFirewallRule>[]>;
 }
 
 /**
@@ -113,9 +113,9 @@ export interface SecurityFirewallArgs {
     /**
      * The CloudAMQP instance ID.
      */
-    readonly instanceId: pulumi.Input<number>;
+    instanceId: pulumi.Input<number>;
     /**
      * An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
      */
-    readonly rules: pulumi.Input<pulumi.Input<inputs.SecurityFirewallRule>[]>;
+    rules: pulumi.Input<pulumi.Input<inputs.SecurityFirewallRule>[]>;
 }

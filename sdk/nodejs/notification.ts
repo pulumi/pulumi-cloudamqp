@@ -139,19 +139,19 @@ export interface NotificationState {
     /**
      * The CloudAMQP instance ID.
      */
-    readonly instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number>;
     /**
      * Display name of the recipient.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Type of the notification. See valid options below.
      */
-    readonly type?: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
     /**
      * Endpoint to send the notification.
      */
-    readonly value?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
 }
 
 /**
@@ -161,17 +161,17 @@ export interface NotificationArgs {
     /**
      * The CloudAMQP instance ID.
      */
-    readonly instanceId: pulumi.Input<number>;
+    instanceId: pulumi.Input<number>;
     /**
      * Display name of the recipient.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Type of the notification. See valid options below.
      */
-    readonly type: pulumi.Input<string>;
+    type: pulumi.Input<string>;
     /**
      * Endpoint to send the notification.
      */
-    readonly value: pulumi.Input<string>;
+    value: pulumi.Input<string>;
 }

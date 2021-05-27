@@ -44,8 +44,8 @@ export function getInstance(args: GetInstanceArgs, opts?: pulumi.InvokeOptions):
  * A collection of arguments for invoking getInstance.
  */
 export interface GetInstanceArgs {
-    readonly instanceId: number;
-    readonly vpcSubnet?: string;
+    instanceId: number;
+    vpcSubnet?: string;
 }
 
 /**

@@ -119,3 +119,19 @@ class Provider(pulumi.ProviderResource):
             __props__,
             opts)
 
+    @property
+    @pulumi.getter
+    def apikey(self) -> pulumi.Output[str]:
+        """
+        Key used to authentication to the CloudAMQP Customer API
+        """
+        return pulumi.get(self, "apikey")
+
+    @property
+    @pulumi.getter
+    def baseurl(self) -> pulumi.Output[Optional[str]]:
+        """
+        Base URL to CloudAMQP Customer website
+        """
+        return pulumi.get(self, "baseurl")
+

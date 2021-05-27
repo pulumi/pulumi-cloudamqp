@@ -243,55 +243,55 @@ export interface IntegrationLogState {
     /**
      * AWS access key identifier.
      */
-    readonly accessKeyId?: pulumi.Input<string>;
+    accessKeyId?: pulumi.Input<string>;
     /**
      * The API key.
      */
-    readonly apiKey?: pulumi.Input<string>;
+    apiKey?: pulumi.Input<string>;
     /**
      * The client email registered for the integration service.
      */
-    readonly clientEmail?: pulumi.Input<string>;
+    clientEmail?: pulumi.Input<string>;
     /**
      * Destination to send the logs.
      */
-    readonly hostPort?: pulumi.Input<string>;
+    hostPort?: pulumi.Input<string>;
     /**
      * Instance identifier used to make proxy calls
      */
-    readonly instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number>;
     /**
      * The name of the third party log integration. See
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The private access key.
      */
-    readonly privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string>;
     /**
      * The project identifier.
      */
-    readonly projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
     /**
      * Region hosting the integration service.
      */
-    readonly region?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
     /**
      * AWS secret access key.
      */
-    readonly secretAccessKey?: pulumi.Input<string>;
+    secretAccessKey?: pulumi.Input<string>;
     /**
      * Tag the integration, e.g. env=prod, region=europe.
      */
-    readonly tags?: pulumi.Input<string>;
+    tags?: pulumi.Input<string>;
     /**
      * Token used for authentication.
      */
-    readonly token?: pulumi.Input<string>;
+    token?: pulumi.Input<string>;
     /**
      * Endpoint to log integration.
      */
-    readonly url?: pulumi.Input<string>;
+    url?: pulumi.Input<string>;
 }
 
 /**
@@ -301,53 +301,53 @@ export interface IntegrationLogArgs {
     /**
      * AWS access key identifier.
      */
-    readonly accessKeyId?: pulumi.Input<string>;
+    accessKeyId?: pulumi.Input<string>;
     /**
      * The API key.
      */
-    readonly apiKey?: pulumi.Input<string>;
+    apiKey?: pulumi.Input<string>;
     /**
      * The client email registered for the integration service.
      */
-    readonly clientEmail?: pulumi.Input<string>;
+    clientEmail?: pulumi.Input<string>;
     /**
      * Destination to send the logs.
      */
-    readonly hostPort?: pulumi.Input<string>;
+    hostPort?: pulumi.Input<string>;
     /**
      * Instance identifier used to make proxy calls
      */
-    readonly instanceId: pulumi.Input<number>;
+    instanceId: pulumi.Input<number>;
     /**
      * The name of the third party log integration. See
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The private access key.
      */
-    readonly privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string>;
     /**
      * The project identifier.
      */
-    readonly projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
     /**
      * Region hosting the integration service.
      */
-    readonly region?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
     /**
      * AWS secret access key.
      */
-    readonly secretAccessKey?: pulumi.Input<string>;
+    secretAccessKey?: pulumi.Input<string>;
     /**
      * Tag the integration, e.g. env=prod, region=europe.
      */
-    readonly tags?: pulumi.Input<string>;
+    tags?: pulumi.Input<string>;
     /**
      * Token used for authentication.
      */
-    readonly token?: pulumi.Input<string>;
+    token?: pulumi.Input<string>;
     /**
      * Endpoint to log integration.
      */
-    readonly url?: pulumi.Input<string>;
+    url?: pulumi.Input<string>;
 }

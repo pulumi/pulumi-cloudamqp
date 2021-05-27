@@ -188,59 +188,59 @@ export interface InstanceState {
     /**
      * (Computed) API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
      */
-    readonly apikey?: pulumi.Input<string>;
+    apikey?: pulumi.Input<string>;
     /**
      * Is the instance hosted on a dedicated server
      */
-    readonly dedicated?: pulumi.Input<boolean>;
+    dedicated?: pulumi.Input<boolean>;
     /**
      * (Computed) The host name for the CloudAMQP instance.
      */
-    readonly host?: pulumi.Input<string>;
+    host?: pulumi.Input<string>;
     /**
      * Name of the CloudAMQP instance.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
      */
-    readonly noDefaultAlarms?: pulumi.Input<boolean>;
+    noDefaultAlarms?: pulumi.Input<boolean>;
     /**
      * Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
      */
-    readonly nodes?: pulumi.Input<number>;
+    nodes?: pulumi.Input<number>;
     /**
      * The subscription plan. See available plans
      */
-    readonly plan?: pulumi.Input<string>;
+    plan?: pulumi.Input<string>;
     /**
      * Flag describing if the resource is ready
      */
-    readonly ready?: pulumi.Input<boolean>;
+    ready?: pulumi.Input<boolean>;
     /**
      * The region to host the instance in. See Instance regions
      */
-    readonly region?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
     /**
      * The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
      */
-    readonly rmqVersion?: pulumi.Input<string>;
+    rmqVersion?: pulumi.Input<string>;
     /**
      * One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
      */
-    readonly tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * (Computed) AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
      */
-    readonly url?: pulumi.Input<string>;
+    url?: pulumi.Input<string>;
     /**
      * (Computed) The virtual host used by Rabbit MQ.
      */
-    readonly vhost?: pulumi.Input<string>;
+    vhost?: pulumi.Input<string>;
     /**
      * Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
      */
-    readonly vpcSubnet?: pulumi.Input<string>;
+    vpcSubnet?: pulumi.Input<string>;
 }
 
 /**
@@ -250,33 +250,33 @@ export interface InstanceArgs {
     /**
      * Name of the CloudAMQP instance.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
      */
-    readonly noDefaultAlarms?: pulumi.Input<boolean>;
+    noDefaultAlarms?: pulumi.Input<boolean>;
     /**
      * Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
      */
-    readonly nodes?: pulumi.Input<number>;
+    nodes?: pulumi.Input<number>;
     /**
      * The subscription plan. See available plans
      */
-    readonly plan: pulumi.Input<string>;
+    plan: pulumi.Input<string>;
     /**
      * The region to host the instance in. See Instance regions
      */
-    readonly region: pulumi.Input<string>;
+    region: pulumi.Input<string>;
     /**
      * The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
      */
-    readonly rmqVersion?: pulumi.Input<string>;
+    rmqVersion?: pulumi.Input<string>;
     /**
      * One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
      */
-    readonly tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
      */
-    readonly vpcSubnet?: pulumi.Input<string>;
+    vpcSubnet?: pulumi.Input<string>;
 }

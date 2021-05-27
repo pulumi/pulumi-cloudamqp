@@ -115,15 +115,15 @@ export interface PluginCommunityState {
     /**
      * Enable or disable the plugins.
      */
-    readonly enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean>;
     /**
      * The CloudAMQP instance ID.
      */
-    readonly instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number>;
     /**
      * The name of the Rabbit MQ plugin.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
 }
 
 /**
@@ -133,13 +133,13 @@ export interface PluginCommunityArgs {
     /**
      * Enable or disable the plugins.
      */
-    readonly enabled: pulumi.Input<boolean>;
+    enabled: pulumi.Input<boolean>;
     /**
      * The CloudAMQP instance ID.
      */
-    readonly instanceId: pulumi.Input<number>;
+    instanceId: pulumi.Input<number>;
     /**
      * The name of the Rabbit MQ plugin.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
 }
