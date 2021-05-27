@@ -14,51 +14,6 @@ namespace Pulumi.CloudAmqp
     /// 
     /// Only available for dedicated subscription plans.
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using CloudAmqp = Pulumi.CloudAmqp;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var firewallSettings = new CloudAmqp.SecurityFirewall("firewallSettings", new CloudAmqp.SecurityFirewallArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///             Rules = 
-    ///             {
-    ///                 new CloudAmqp.Inputs.SecurityFirewallRuleArgs
-    ///                 {
-    ///                     Ip = "192.168.0.0/24",
-    ///                     Ports = 
-    ///                     {
-    ///                         4567,
-    ///                         4568,
-    ///                     },
-    ///                     Services = 
-    ///                     {
-    ///                         "AMQP",
-    ///                         "AMQPS",
-    ///                     },
-    ///                 },
-    ///                 new CloudAmqp.Inputs.SecurityFirewallRuleArgs
-    ///                 {
-    ///                     Ip = "10.56.72.0/24",
-    ///                     Ports = {},
-    ///                     Services = 
-    ///                     {
-    ///                         "AMQP",
-    ///                         "AMQPS",
-    ///                     },
-    ///                 },
-    ///             },
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
     /// ## Depedency
     /// 
     /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.

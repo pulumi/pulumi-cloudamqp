@@ -10,37 +10,6 @@ import * as utilities from "./utilities";
  *
  * Only available for dedicated subscription plans.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const firewallSettings = new cloudamqp.SecurityFirewall("firewallSettings", {
- *     instanceId: cloudamqp_instance.instance.id,
- *     rules: [
- *         {
- *             ip: "192.168.0.0/24",
- *             ports: [
- *                 4567,
- *                 4568,
- *             ],
- *             services: [
- *                 "AMQP",
- *                 "AMQPS",
- *             ],
- *         },
- *         {
- *             ip: "10.56.72.0/24",
- *             ports: [],
- *             services: [
- *                 "AMQP",
- *                 "AMQPS",
- *             ],
- *         },
- *     ],
- * });
- * ```
  * ## Depedency
  *
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.

@@ -103,36 +103,6 @@ class SecurityFirewall(pulumi.CustomResource):
 
         Only available for dedicated subscription plans.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        firewall_settings = cloudamqp.SecurityFirewall("firewallSettings",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            rules=[
-                cloudamqp.SecurityFirewallRuleArgs(
-                    ip="192.168.0.0/24",
-                    ports=[
-                        4567,
-                        4568,
-                    ],
-                    services=[
-                        "AMQP",
-                        "AMQPS",
-                    ],
-                ),
-                cloudamqp.SecurityFirewallRuleArgs(
-                    ip="10.56.72.0/24",
-                    ports=[],
-                    services=[
-                        "AMQP",
-                        "AMQPS",
-                    ],
-                ),
-            ])
-        ```
         ## Depedency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -161,36 +131,6 @@ class SecurityFirewall(pulumi.CustomResource):
 
         Only available for dedicated subscription plans.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        firewall_settings = cloudamqp.SecurityFirewall("firewallSettings",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            rules=[
-                cloudamqp.SecurityFirewallRuleArgs(
-                    ip="192.168.0.0/24",
-                    ports=[
-                        4567,
-                        4568,
-                    ],
-                    services=[
-                        "AMQP",
-                        "AMQPS",
-                    ],
-                ),
-                cloudamqp.SecurityFirewallRuleArgs(
-                    ip="10.56.72.0/24",
-                    ports=[],
-                    services=[
-                        "AMQP",
-                        "AMQPS",
-                    ],
-                ),
-            ])
-        ```
         ## Depedency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.

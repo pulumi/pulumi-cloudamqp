@@ -189,6 +189,7 @@ class Notification(pulumi.CustomResource):
         * opsgenie
         * opsgenie-eu
         * slack
+        * teams
 
         ## Dependency
 
@@ -243,6 +244,7 @@ class Notification(pulumi.CustomResource):
         * opsgenie
         * opsgenie-eu
         * slack
+        * teams
 
         ## Dependency
 

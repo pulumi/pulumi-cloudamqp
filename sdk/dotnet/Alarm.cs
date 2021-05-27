@@ -33,7 +33,7 @@ namespace Pulumi.CloudAmqp
     /// | Consumer | consumer | &amp;#10004; | &amp;#10004; | time_threshold, value_threshold, queue, vhost |
     /// | Netsplit | netsplit | - | &amp;#10004; | time_threshold |
     /// | Server unreachable | server_unreachable  | - | &amp;#10004;  | time_threshold |
-    /// | Notice | notice | &amp;#10004; | &amp;#10004; |
+    /// | Notice | notice | &amp;#10004; | &amp;#10004; | |
     /// 
     /// ## Dependency
     /// 

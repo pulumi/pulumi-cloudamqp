@@ -33,6 +33,7 @@ import * as utilities from "./utilities";
  * * opsgenie
  * * opsgenie-eu
  * * slack
+ * * teams
  *
  * ## Dependency
  *

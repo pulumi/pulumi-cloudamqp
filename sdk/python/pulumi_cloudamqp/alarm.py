@@ -349,7 +349,7 @@ class Alarm(pulumi.CustomResource):
         | Consumer | consumer | &#10004; | &#10004; | time_threshold, value_threshold, queue, vhost |
         | Netsplit | netsplit | - | &#10004; | time_threshold |
         | Server unreachable | server_unreachable  | - | &#10004;  | time_threshold |
-        | Notice | notice | &#10004; | &#10004; |
+        | Notice | notice | &#10004; | &#10004; | |
 
         ## Dependency
 
@@ -405,7 +405,7 @@ class Alarm(pulumi.CustomResource):
         | Consumer | consumer | &#10004; | &#10004; | time_threshold, value_threshold, queue, vhost |
         | Netsplit | netsplit | - | &#10004; | time_threshold |
         | Server unreachable | server_unreachable  | - | &#10004;  | time_threshold |
-        | Notice | notice | &#10004; | &#10004; |
+        | Notice | notice | &#10004; | &#10004; | |
 
         ## Dependency
 
