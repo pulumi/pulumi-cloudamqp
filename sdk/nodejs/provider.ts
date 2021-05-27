@@ -25,6 +25,14 @@ export class Provider extends pulumi.ProviderResource {
         return obj['__pulumiType'] === Provider.__pulumiType;
     }
 
+    /**
+     * Key used to authentication to the CloudAMQP Customer API
+     */
+    public readonly apikey!: pulumi.Output<string>;
+    /**
+     * Base URL to CloudAMQP Customer website
+     */
+    public readonly baseurl!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -57,9 +65,9 @@ export interface ProviderArgs {
     /**
      * Key used to authentication to the CloudAMQP Customer API
      */
-    readonly apikey: pulumi.Input<string>;
+    apikey: pulumi.Input<string>;
     /**
      * Base URL to CloudAMQP Customer website
      */
-    readonly baseurl?: pulumi.Input<string>;
+    baseurl?: pulumi.Input<string>;
 }

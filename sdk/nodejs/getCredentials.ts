@@ -50,9 +50,9 @@ export function getCredentials(args: GetCredentialsArgs, opts?: pulumi.InvokeOpt
  * A collection of arguments for invoking getCredentials.
  */
 export interface GetCredentialsArgs {
-    readonly instanceId: number;
-    readonly password?: string;
-    readonly username?: string;
+    instanceId: number;
+    password?: string;
+    username?: string;
 }
 
 /**

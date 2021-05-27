@@ -96,15 +96,15 @@ export interface VpcPeeringState {
     /**
      * The CloudAMQP instance ID.
      */
-    readonly instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number>;
     /**
      * Peering identifier created by AW peering request.
      */
-    readonly peeringId?: pulumi.Input<string>;
+    peeringId?: pulumi.Input<string>;
     /**
      * VPC peering status
      */
-    readonly status?: pulumi.Input<string>;
+    status?: pulumi.Input<string>;
 }
 
 /**
@@ -114,9 +114,9 @@ export interface VpcPeeringArgs {
     /**
      * The CloudAMQP instance ID.
      */
-    readonly instanceId: pulumi.Input<number>;
+    instanceId: pulumi.Input<number>;
     /**
      * Peering identifier created by AW peering request.
      */
-    readonly peeringId: pulumi.Input<string>;
+    peeringId: pulumi.Input<string>;
 }

@@ -58,9 +58,9 @@ export function getAlarm(args: GetAlarmArgs, opts?: pulumi.InvokeOptions): Promi
  * A collection of arguments for invoking getAlarm.
  */
 export interface GetAlarmArgs {
-    readonly alarmId?: number;
-    readonly instanceId: number;
-    readonly type?: string;
+    alarmId?: number;
+    instanceId: number;
+    type?: string;
 }
 
 /**

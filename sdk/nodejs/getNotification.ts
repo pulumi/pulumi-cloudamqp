@@ -53,9 +53,9 @@ export function getNotification(args: GetNotificationArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getNotification.
  */
 export interface GetNotificationArgs {
-    readonly instanceId: number;
-    readonly name?: string;
-    readonly recipientId?: number;
+    instanceId: number;
+    name?: string;
+    recipientId?: number;
 }
 
 /**

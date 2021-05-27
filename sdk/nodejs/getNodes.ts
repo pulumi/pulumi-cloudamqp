@@ -59,8 +59,8 @@ export function getNodes(args: GetNodesArgs, opts?: pulumi.InvokeOptions): Promi
  * A collection of arguments for invoking getNodes.
  */
 export interface GetNodesArgs {
-    readonly instanceId: number;
-    readonly nodes?: inputs.GetNodesNode[];
+    instanceId: number;
+    nodes?: inputs.GetNodesNode[];
 }
 
 /**

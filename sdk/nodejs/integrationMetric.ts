@@ -166,71 +166,71 @@ export interface IntegrationMetricState {
     /**
      * AWS access key identifier. (Cloudwatch)
      */
-    readonly accessKeyId?: pulumi.Input<string>;
+    accessKeyId?: pulumi.Input<string>;
     /**
      * The API key for the integration service. (Librato)
      */
-    readonly apiKey?: pulumi.Input<string>;
+    apiKey?: pulumi.Input<string>;
     /**
      * The client email. (Stackdriver)
      */
-    readonly clientEmail?: pulumi.Input<string>;
+    clientEmail?: pulumi.Input<string>;
     /**
      * The email address registred for the integration service. (Librato)
      */
-    readonly email?: pulumi.Input<string>;
+    email?: pulumi.Input<string>;
     /**
      * Instance identifier
      */
-    readonly instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number>;
     /**
      * The license key registred for the integration service. (New Relic)
      */
-    readonly licenseKey?: pulumi.Input<string>;
+    licenseKey?: pulumi.Input<string>;
     /**
      * The name of metrics integration
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The private key. (Stackdriver)
      */
-    readonly privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string>;
     /**
      * Project ID. (Stackdriver)
      */
-    readonly projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
     /**
      * (optional) allowlist using regular expression
      */
-    readonly queueAllowlist?: pulumi.Input<string>;
+    queueAllowlist?: pulumi.Input<string>;
     /**
      * **Deprecated**
      *
      * @deprecated use queue_allowlist instead
      */
-    readonly queueWhitelist?: pulumi.Input<string>;
+    queueWhitelist?: pulumi.Input<string>;
     /**
      * AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
      */
-    readonly region?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
     /**
      * AWS secret key. (Cloudwatch)
      */
-    readonly secretAccessKey?: pulumi.Input<string>;
+    secretAccessKey?: pulumi.Input<string>;
     /**
      * (optional) tags. E.g. env=prod,region=europe
      */
-    readonly tags?: pulumi.Input<string>;
+    tags?: pulumi.Input<string>;
     /**
      * (optional) allowlist using regular expression
      */
-    readonly vhostAllowlist?: pulumi.Input<string>;
+    vhostAllowlist?: pulumi.Input<string>;
     /**
      * **Deprecated**
      *
      * @deprecated use vhost_allowlist instead
      */
-    readonly vhostWhitelist?: pulumi.Input<string>;
+    vhostWhitelist?: pulumi.Input<string>;
 }
 
 /**
@@ -240,69 +240,69 @@ export interface IntegrationMetricArgs {
     /**
      * AWS access key identifier. (Cloudwatch)
      */
-    readonly accessKeyId?: pulumi.Input<string>;
+    accessKeyId?: pulumi.Input<string>;
     /**
      * The API key for the integration service. (Librato)
      */
-    readonly apiKey?: pulumi.Input<string>;
+    apiKey?: pulumi.Input<string>;
     /**
      * The client email. (Stackdriver)
      */
-    readonly clientEmail?: pulumi.Input<string>;
+    clientEmail?: pulumi.Input<string>;
     /**
      * The email address registred for the integration service. (Librato)
      */
-    readonly email?: pulumi.Input<string>;
+    email?: pulumi.Input<string>;
     /**
      * Instance identifier
      */
-    readonly instanceId: pulumi.Input<number>;
+    instanceId: pulumi.Input<number>;
     /**
      * The license key registred for the integration service. (New Relic)
      */
-    readonly licenseKey?: pulumi.Input<string>;
+    licenseKey?: pulumi.Input<string>;
     /**
      * The name of metrics integration
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The private key. (Stackdriver)
      */
-    readonly privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string>;
     /**
      * Project ID. (Stackdriver)
      */
-    readonly projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
     /**
      * (optional) allowlist using regular expression
      */
-    readonly queueAllowlist?: pulumi.Input<string>;
+    queueAllowlist?: pulumi.Input<string>;
     /**
      * **Deprecated**
      *
      * @deprecated use queue_allowlist instead
      */
-    readonly queueWhitelist?: pulumi.Input<string>;
+    queueWhitelist?: pulumi.Input<string>;
     /**
      * AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
      */
-    readonly region?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
     /**
      * AWS secret key. (Cloudwatch)
      */
-    readonly secretAccessKey?: pulumi.Input<string>;
+    secretAccessKey?: pulumi.Input<string>;
     /**
      * (optional) tags. E.g. env=prod,region=europe
      */
-    readonly tags?: pulumi.Input<string>;
+    tags?: pulumi.Input<string>;
     /**
      * (optional) allowlist using regular expression
      */
-    readonly vhostAllowlist?: pulumi.Input<string>;
+    vhostAllowlist?: pulumi.Input<string>;
     /**
      * **Deprecated**
      *
      * @deprecated use vhost_allowlist instead
      */
-    readonly vhostWhitelist?: pulumi.Input<string>;
+    vhostWhitelist?: pulumi.Input<string>;
 }

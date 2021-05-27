@@ -17,6 +17,11 @@ import (
 // [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
 type Provider struct {
 	pulumi.ProviderResourceState
+
+	// Key used to authentication to the CloudAMQP Customer API
+	Apikey pulumi.StringOutput `pulumi:"apikey"`
+	// Base URL to CloudAMQP Customer website
+	Baseurl pulumi.StringPtrOutput `pulumi:"baseurl"`
 }
 
 // NewProvider registers a new resource with the given unique name, arguments, and options.

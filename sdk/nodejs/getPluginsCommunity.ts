@@ -56,8 +56,8 @@ export function getPluginsCommunity(args: GetPluginsCommunityArgs, opts?: pulumi
  * A collection of arguments for invoking getPluginsCommunity.
  */
 export interface GetPluginsCommunityArgs {
-    readonly instanceId: number;
-    readonly plugins?: inputs.GetPluginsCommunityPlugin[];
+    instanceId: number;
+    plugins?: inputs.GetPluginsCommunityPlugin[];
 }
 
 /**
