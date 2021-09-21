@@ -13,17 +13,17 @@ namespace Pulumi.CloudAmqp.Outputs
     [OutputType]
     public sealed class GetPluginsCommunityPluginResult
     {
-        public readonly string? Description;
-        public readonly string? Name;
-        public readonly string? Require;
+        public readonly string Description;
+        public readonly string Name;
+        public readonly string Require;
 
         [OutputConstructor]
         private GetPluginsCommunityPluginResult(
-            string? description,
+            string description,
 
-            string? name,
+            string name,
 
-            string? require)
+            string require)
         {
             Description = description;
             Name = name;

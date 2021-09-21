@@ -53,14 +53,14 @@ namespace Pulumi.CloudAmqp
     /// `cloudamqp_instance`can be imported using CloudAMQP internal identifier. To retrieve the identifier for an instance, use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances).
     /// 
     /// ```sh
-    ///  $ pulumi import cloudamqp:index/instance:Instance instance &lt;instance_id&gt;`
+    ///  $ pulumi import cloudamqp:index/instance:Instance instance &lt;id&gt;`
     /// ```
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/instance:Instance")]
     public partial class Instance : Pulumi.CustomResource
     {
         /// <summary>
-        /// (Computed) API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
+        /// API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
         /// </summary>
         [Output("apikey")]
         public Output<string> Apikey { get; private set; } = null!;
@@ -72,7 +72,7 @@ namespace Pulumi.CloudAmqp
         public Output<bool> Dedicated { get; private set; } = null!;
 
         /// <summary>
-        /// (Computed) The host name for the CloudAMQP instance.
+        /// The host name for the CloudAMQP instance.
         /// </summary>
         [Output("host")]
         public Output<string> Host { get; private set; } = null!;
@@ -90,7 +90,7 @@ namespace Pulumi.CloudAmqp
         public Output<bool> NoDefaultAlarms { get; private set; } = null!;
 
         /// <summary>
-        /// Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
+        /// Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
         /// </summary>
         [Output("nodes")]
         public Output<int?> Nodes { get; private set; } = null!;
@@ -126,13 +126,13 @@ namespace Pulumi.CloudAmqp
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// (Computed) AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
+        /// AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
         /// </summary>
         [Output("url")]
         public Output<string> Url { get; private set; } = null!;
 
         /// <summary>
-        /// (Computed) The virtual host used by Rabbit MQ.
+        /// The virtual host used by Rabbit MQ.
         /// </summary>
         [Output("vhost")]
         public Output<string> Vhost { get; private set; } = null!;
@@ -202,7 +202,7 @@ namespace Pulumi.CloudAmqp
         public Input<bool>? NoDefaultAlarms { get; set; }
 
         /// <summary>
-        /// Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
+        /// Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
         /// </summary>
         [Input("nodes")]
         public Input<int>? Nodes { get; set; }
@@ -251,7 +251,7 @@ namespace Pulumi.CloudAmqp
     public sealed class InstanceState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// (Computed) API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
+        /// API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
         /// </summary>
         [Input("apikey")]
         public Input<string>? Apikey { get; set; }
@@ -263,7 +263,7 @@ namespace Pulumi.CloudAmqp
         public Input<bool>? Dedicated { get; set; }
 
         /// <summary>
-        /// (Computed) The host name for the CloudAMQP instance.
+        /// The host name for the CloudAMQP instance.
         /// </summary>
         [Input("host")]
         public Input<string>? Host { get; set; }
@@ -281,7 +281,7 @@ namespace Pulumi.CloudAmqp
         public Input<bool>? NoDefaultAlarms { get; set; }
 
         /// <summary>
-        /// Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
+        /// Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
         /// </summary>
         [Input("nodes")]
         public Input<int>? Nodes { get; set; }
@@ -323,13 +323,13 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
-        /// (Computed) AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
+        /// AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
         /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }
 
         /// <summary>
-        /// (Computed) The virtual host used by Rabbit MQ.
+        /// The virtual host used by Rabbit MQ.
         /// </summary>
         [Input("vhost")]
         public Input<string>? Vhost { get; set; }

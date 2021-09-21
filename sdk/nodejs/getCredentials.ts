@@ -22,10 +22,13 @@ import * as utilities from "./utilities";
  *
  * * `instanceId` - (Required) The CloudAMQP instance identifier.
  *
- * ## Attribute reference
+ * ## Attributes reference
  *
- * * `username`    - (Computed/Sensitive) The username for the configured user in Rabbit MQ.
- * * `password`    - (Computed/Sensitive) The password used by the `username`.
+ * All attributes reference are computed.
+ *
+ * * `id`          - The identifier for this data source.
+ * * `username`    - (Sensitive) The username for the configured user in Rabbit MQ.
+ * * `password`    - (Sensitive) The password used by the `username`.
  *
  * ## Dependency
  *
@@ -41,8 +44,6 @@ export function getCredentials(args: GetCredentialsArgs, opts?: pulumi.InvokeOpt
     }
     return pulumi.runtime.invoke("cloudamqp:index/getCredentials:getCredentials", {
         "instanceId": args.instanceId,
-        "password": args.password,
-        "username": args.username,
     }, opts);
 }
 
@@ -51,8 +52,6 @@ export function getCredentials(args: GetCredentialsArgs, opts?: pulumi.InvokeOpt
  */
 export interface GetCredentialsArgs {
     instanceId: number;
-    password?: string;
-    username?: string;
 }
 
 /**
@@ -64,6 +63,6 @@ export interface GetCredentialsResult {
      */
     readonly id: string;
     readonly instanceId: number;
-    readonly password?: string;
-    readonly username?: string;
+    readonly password: string;
+    readonly username: string;
 }

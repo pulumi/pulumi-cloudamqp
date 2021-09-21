@@ -22,20 +22,24 @@ import * as utilities from "./utilities";
  *
  * * `instanceId` - (Required) The CloudAMQP instance identifier.
  *
- * ## Attribute reference
+ * ## Attributes reference
  *
- * * `nodes` - (Computed) An array of node information. Each `nodes` block consists of the fields documented below.
+ * All attributes reference are computed
+ *
+ * * `id`    - The identifier for this resource.
+ * * `nodes` - An array of node information. Each `nodes` block consists of the fields documented below.
  *
  * ***
  *
  * The `nodes` block consist of
  *
- * * `hostname`          - (Computed) Hostname assigned to the node.
- * * `name`              - (Computed) Name of the node.
- * * `running`           - (Computed) Is the node running?
- * * `rabbitmqVersion`  - (Computed) Currently configured Rabbit MQ version on the node.
- * * `erlangVersion`    - (Computed) Currently used Erlanbg version on the node.
- * * `hipe`              - (Computed) Enable or disable High-performance Erlang.
+ * * `hostname`          - Hostname assigned to the node.
+ * * `name`              - Name of the node.
+ * * `running`           - Is the node running?
+ * * `rabbitmqVersion`  - Currently configured Rabbit MQ version on the node.
+ * * `erlangVersion`    - Currently used Erlanbg version on the node.
+ * * `hipe`              - Enable or disable High-performance Erlang.
+ * * `configured`        - Is the node configured?
  *
  * ## Dependency
  *
@@ -51,7 +55,6 @@ export function getNodes(args: GetNodesArgs, opts?: pulumi.InvokeOptions): Promi
     }
     return pulumi.runtime.invoke("cloudamqp:index/getNodes:getNodes", {
         "instanceId": args.instanceId,
-        "nodes": args.nodes,
     }, opts);
 }
 
@@ -60,7 +63,6 @@ export function getNodes(args: GetNodesArgs, opts?: pulumi.InvokeOptions): Promi
  */
 export interface GetNodesArgs {
     instanceId: number;
-    nodes?: inputs.GetNodesNode[];
 }
 
 /**

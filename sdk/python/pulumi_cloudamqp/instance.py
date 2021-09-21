@@ -27,7 +27,7 @@ class InstanceArgs:
         :param pulumi.Input[str] region: The region to host the instance in. See Instance regions
         :param pulumi.Input[str] name: Name of the CloudAMQP instance.
         :param pulumi.Input[bool] no_default_alarms: Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
-        :param pulumi.Input[int] nodes: Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
+        :param pulumi.Input[int] nodes: Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
         :param pulumi.Input[str] rmq_version: The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
         :param pulumi.Input[str] vpc_subnet: Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
@@ -99,7 +99,7 @@ class InstanceArgs:
     @pulumi.getter
     def nodes(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
+        Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
         """
         return pulumi.get(self, "nodes")
 
@@ -163,19 +163,19 @@ class _InstanceState:
                  vpc_subnet: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
-        :param pulumi.Input[str] apikey: (Computed) API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
+        :param pulumi.Input[str] apikey: API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
         :param pulumi.Input[bool] dedicated: Is the instance hosted on a dedicated server
-        :param pulumi.Input[str] host: (Computed) The host name for the CloudAMQP instance.
+        :param pulumi.Input[str] host: The host name for the CloudAMQP instance.
         :param pulumi.Input[str] name: Name of the CloudAMQP instance.
         :param pulumi.Input[bool] no_default_alarms: Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
-        :param pulumi.Input[int] nodes: Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
+        :param pulumi.Input[int] nodes: Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
         :param pulumi.Input[str] plan: The subscription plan. See available plans
         :param pulumi.Input[bool] ready: Flag describing if the resource is ready
         :param pulumi.Input[str] region: The region to host the instance in. See Instance regions
         :param pulumi.Input[str] rmq_version: The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
-        :param pulumi.Input[str] url: (Computed) AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
-        :param pulumi.Input[str] vhost: (Computed) The virtual host used by Rabbit MQ.
+        :param pulumi.Input[str] url: AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
+        :param pulumi.Input[str] vhost: The virtual host used by Rabbit MQ.
         :param pulumi.Input[str] vpc_subnet: Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
         """
         if apikey is not None:
@@ -211,7 +211,7 @@ class _InstanceState:
     @pulumi.getter
     def apikey(self) -> Optional[pulumi.Input[str]]:
         """
-        (Computed) API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
+        API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
         """
         return pulumi.get(self, "apikey")
 
@@ -235,7 +235,7 @@ class _InstanceState:
     @pulumi.getter
     def host(self) -> Optional[pulumi.Input[str]]:
         """
-        (Computed) The host name for the CloudAMQP instance.
+        The host name for the CloudAMQP instance.
         """
         return pulumi.get(self, "host")
 
@@ -271,7 +271,7 @@ class _InstanceState:
     @pulumi.getter
     def nodes(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
+        Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
         """
         return pulumi.get(self, "nodes")
 
@@ -343,7 +343,7 @@ class _InstanceState:
     @pulumi.getter
     def url(self) -> Optional[pulumi.Input[str]]:
         """
-        (Computed) AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
+        AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
         """
         return pulumi.get(self, "url")
 
@@ -355,7 +355,7 @@ class _InstanceState:
     @pulumi.getter
     def vhost(self) -> Optional[pulumi.Input[str]]:
         """
-        (Computed) The virtual host used by Rabbit MQ.
+        The virtual host used by Rabbit MQ.
         """
         return pulumi.get(self, "vhost")
 
@@ -420,14 +420,14 @@ class Instance(pulumi.CustomResource):
         `cloudamqp_instance`can be imported using CloudAMQP internal identifier. To retrieve the identifier for an instance, use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances).
 
         ```sh
-         $ pulumi import cloudamqp:index/instance:Instance instance <instance_id>`
+         $ pulumi import cloudamqp:index/instance:Instance instance <id>`
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: Name of the CloudAMQP instance.
         :param pulumi.Input[bool] no_default_alarms: Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
-        :param pulumi.Input[int] nodes: Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
+        :param pulumi.Input[int] nodes: Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
         :param pulumi.Input[str] plan: The subscription plan. See available plans
         :param pulumi.Input[str] region: The region to host the instance in. See Instance regions
         :param pulumi.Input[str] rmq_version: The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
@@ -470,7 +470,7 @@ class Instance(pulumi.CustomResource):
         `cloudamqp_instance`can be imported using CloudAMQP internal identifier. To retrieve the identifier for an instance, use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances).
 
         ```sh
-         $ pulumi import cloudamqp:index/instance:Instance instance <instance_id>`
+         $ pulumi import cloudamqp:index/instance:Instance instance <id>`
         ```
 
         :param str resource_name: The name of the resource.
@@ -557,19 +557,19 @@ class Instance(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] apikey: (Computed) API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
+        :param pulumi.Input[str] apikey: API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
         :param pulumi.Input[bool] dedicated: Is the instance hosted on a dedicated server
-        :param pulumi.Input[str] host: (Computed) The host name for the CloudAMQP instance.
+        :param pulumi.Input[str] host: The host name for the CloudAMQP instance.
         :param pulumi.Input[str] name: Name of the CloudAMQP instance.
         :param pulumi.Input[bool] no_default_alarms: Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
-        :param pulumi.Input[int] nodes: Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
+        :param pulumi.Input[int] nodes: Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
         :param pulumi.Input[str] plan: The subscription plan. See available plans
         :param pulumi.Input[bool] ready: Flag describing if the resource is ready
         :param pulumi.Input[str] region: The region to host the instance in. See Instance regions
         :param pulumi.Input[str] rmq_version: The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
-        :param pulumi.Input[str] url: (Computed) AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
-        :param pulumi.Input[str] vhost: (Computed) The virtual host used by Rabbit MQ.
+        :param pulumi.Input[str] url: AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
+        :param pulumi.Input[str] vhost: The virtual host used by Rabbit MQ.
         :param pulumi.Input[str] vpc_subnet: Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -596,7 +596,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter
     def apikey(self) -> pulumi.Output[str]:
         """
-        (Computed) API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
+        API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
         """
         return pulumi.get(self, "apikey")
 
@@ -612,7 +612,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter
     def host(self) -> pulumi.Output[str]:
         """
-        (Computed) The host name for the CloudAMQP instance.
+        The host name for the CloudAMQP instance.
         """
         return pulumi.get(self, "host")
 
@@ -636,7 +636,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter
     def nodes(self) -> pulumi.Output[Optional[int]]:
         """
-        Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
+        Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
         """
         return pulumi.get(self, "nodes")
 
@@ -684,7 +684,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter
     def url(self) -> pulumi.Output[str]:
         """
-        (Computed) AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
+        AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
         """
         return pulumi.get(self, "url")
 
@@ -692,7 +692,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter
     def vhost(self) -> pulumi.Output[str]:
         """
-        (Computed) The virtual host used by Rabbit MQ.
+        The virtual host used by Rabbit MQ.
         """
         return pulumi.get(self, "vhost")
 

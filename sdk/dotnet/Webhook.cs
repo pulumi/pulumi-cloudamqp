@@ -46,7 +46,7 @@ namespace Pulumi.CloudAmqp
     /// `cloudamqp_webhook` can be imported using the resource identifier together with CloudAMQP instance identifier. The identifiers are CSV separated, see example below.
     /// 
     /// ```sh
-    ///  $ pulumi import cloudamqp:index/webhook:Webhook webhook_queue &lt;webhook_id&gt;,&lt;instance_id&gt;`
+    ///  $ pulumi import cloudamqp:index/webhook:Webhook webhook_queue &lt;id&gt;,&lt;instance_id&gt;`
     /// ```
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/webhook:Webhook")]

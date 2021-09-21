@@ -135,6 +135,7 @@ func (o SecurityFirewallRuleArrayOutput) Index(i pulumi.IntInput) SecurityFirewa
 }
 
 type GetNodesNode struct {
+	Configured      bool   `pulumi:"configured"`
 	ErlangVersion   string `pulumi:"erlangVersion"`
 	Hipe            bool   `pulumi:"hipe"`
 	Hostname        string `pulumi:"hostname"`
@@ -155,6 +156,7 @@ type GetNodesNodeInput interface {
 }
 
 type GetNodesNodeArgs struct {
+	Configured      pulumi.BoolInput   `pulumi:"configured"`
 	ErlangVersion   pulumi.StringInput `pulumi:"erlangVersion"`
 	Hipe            pulumi.BoolInput   `pulumi:"hipe"`
 	Hostname        pulumi.StringInput `pulumi:"hostname"`
@@ -214,6 +216,10 @@ func (o GetNodesNodeOutput) ToGetNodesNodeOutputWithContext(ctx context.Context)
 	return o
 }
 
+func (o GetNodesNodeOutput) Configured() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNodesNode) bool { return v.Configured }).(pulumi.BoolOutput)
+}
+
 func (o GetNodesNodeOutput) ErlangVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetNodesNode) string { return v.ErlangVersion }).(pulumi.StringOutput)
 }
@@ -259,9 +265,9 @@ func (o GetNodesNodeArrayOutput) Index(i pulumi.IntInput) GetNodesNodeOutput {
 }
 
 type GetPluginsCommunityPlugin struct {
-	Description *string `pulumi:"description"`
-	Name        *string `pulumi:"name"`
-	Require     *string `pulumi:"require"`
+	Description string `pulumi:"description"`
+	Name        string `pulumi:"name"`
+	Require     string `pulumi:"require"`
 }
 
 // GetPluginsCommunityPluginInput is an input type that accepts GetPluginsCommunityPluginArgs and GetPluginsCommunityPluginOutput values.
@@ -276,9 +282,9 @@ type GetPluginsCommunityPluginInput interface {
 }
 
 type GetPluginsCommunityPluginArgs struct {
-	Description pulumi.StringPtrInput `pulumi:"description"`
-	Name        pulumi.StringPtrInput `pulumi:"name"`
-	Require     pulumi.StringPtrInput `pulumi:"require"`
+	Description pulumi.StringInput `pulumi:"description"`
+	Name        pulumi.StringInput `pulumi:"name"`
+	Require     pulumi.StringInput `pulumi:"require"`
 }
 
 func (GetPluginsCommunityPluginArgs) ElementType() reflect.Type {
@@ -332,16 +338,16 @@ func (o GetPluginsCommunityPluginOutput) ToGetPluginsCommunityPluginOutputWithCo
 	return o
 }
 
-func (o GetPluginsCommunityPluginOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetPluginsCommunityPlugin) *string { return v.Description }).(pulumi.StringPtrOutput)
+func (o GetPluginsCommunityPluginOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPluginsCommunityPlugin) string { return v.Description }).(pulumi.StringOutput)
 }
 
-func (o GetPluginsCommunityPluginOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetPluginsCommunityPlugin) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetPluginsCommunityPluginOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPluginsCommunityPlugin) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o GetPluginsCommunityPluginOutput) Require() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetPluginsCommunityPlugin) *string { return v.Require }).(pulumi.StringPtrOutput)
+func (o GetPluginsCommunityPluginOutput) Require() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPluginsCommunityPlugin) string { return v.Require }).(pulumi.StringOutput)
 }
 
 type GetPluginsCommunityPluginArrayOutput struct{ *pulumi.OutputState }
@@ -365,10 +371,10 @@ func (o GetPluginsCommunityPluginArrayOutput) Index(i pulumi.IntInput) GetPlugin
 }
 
 type GetPluginsPlugin struct {
-	Description *string `pulumi:"description"`
-	Enabled     *bool   `pulumi:"enabled"`
-	Name        *string `pulumi:"name"`
-	Version     *string `pulumi:"version"`
+	Description string `pulumi:"description"`
+	Enabled     bool   `pulumi:"enabled"`
+	Name        string `pulumi:"name"`
+	Version     string `pulumi:"version"`
 }
 
 // GetPluginsPluginInput is an input type that accepts GetPluginsPluginArgs and GetPluginsPluginOutput values.
@@ -383,10 +389,10 @@ type GetPluginsPluginInput interface {
 }
 
 type GetPluginsPluginArgs struct {
-	Description pulumi.StringPtrInput `pulumi:"description"`
-	Enabled     pulumi.BoolPtrInput   `pulumi:"enabled"`
-	Name        pulumi.StringPtrInput `pulumi:"name"`
-	Version     pulumi.StringPtrInput `pulumi:"version"`
+	Description pulumi.StringInput `pulumi:"description"`
+	Enabled     pulumi.BoolInput   `pulumi:"enabled"`
+	Name        pulumi.StringInput `pulumi:"name"`
+	Version     pulumi.StringInput `pulumi:"version"`
 }
 
 func (GetPluginsPluginArgs) ElementType() reflect.Type {
@@ -440,20 +446,20 @@ func (o GetPluginsPluginOutput) ToGetPluginsPluginOutputWithContext(ctx context.
 	return o
 }
 
-func (o GetPluginsPluginOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetPluginsPlugin) *string { return v.Description }).(pulumi.StringPtrOutput)
+func (o GetPluginsPluginOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPluginsPlugin) string { return v.Description }).(pulumi.StringOutput)
 }
 
-func (o GetPluginsPluginOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v GetPluginsPlugin) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+func (o GetPluginsPluginOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetPluginsPlugin) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-func (o GetPluginsPluginOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetPluginsPlugin) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetPluginsPluginOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPluginsPlugin) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o GetPluginsPluginOutput) Version() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetPluginsPlugin) *string { return v.Version }).(pulumi.StringPtrOutput)
+func (o GetPluginsPluginOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPluginsPlugin) string { return v.Version }).(pulumi.StringOutput)
 }
 
 type GetPluginsPluginArrayOutput struct{ *pulumi.OutputState }

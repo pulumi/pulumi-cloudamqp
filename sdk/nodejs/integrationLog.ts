@@ -69,7 +69,7 @@ import * as utilities from "./utilities";
  * |------------|---------------------------------------------------------------|
  * | cloudwatchlog | Create a IAM with programmatic access. |
  * | logentries | Create a Logentries token at https://logentries.com/app#/add-log/manual  |
- * | loggly     | Create a Loggly token at https://{your-company}.loggly.com/tokens |
+ * | loggly     | Create a Loggly token at https://your-company}.loggly.com/tokens |
  * | papertrail | Create a Papertrail endpoint https://papertrailapp.com/systems/setup |
  * | splunk     | Create a HTTP Event Collector token at https://.cloud.splunk.com/en-US/manager/search/http-eventcollector |
  * | datadog       | Create a Datadog API key at app.datadoghq.com |
@@ -100,7 +100,7 @@ import * as utilities from "./utilities";
  * `cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
  *
  * ```sh
- *  $ pulumi import cloudamqp:index/integrationLog:IntegrationLog <resource_name> <resource_id>,<instance_id>`
+ *  $ pulumi import cloudamqp:index/integrationLog:IntegrationLog <resource_name> <id>,<instance_id>`
  * ```
  */
 export class IntegrationLog extends pulumi.CustomResource {

@@ -37,12 +37,15 @@ import (
 //
 // * `instanceId` - (Required) The CloudAMQP instance identifier.
 //
-// ## Attribute reference
+// ## Attributes reference
 //
-// * `name`                - (Computed) The name of the CloudAMQP instance.
-// * `vpcSubnet`          - (Computed) Dedicated VPC subnet.
-// * `ownerId`            - (Computed) AWS account identifier.
-// * `securityGroupId`   - (Computed) AWS security group identifier.
+// All attributes reference are computed
+//
+// * `id`                  - The identifier for this resource.
+// * `name`                - The name of the CloudAMQP instance.
+// * `vpcSubnet`          - Dedicated VPC subnet.
+// * `ownerId`            - AWS account identifier.
+// * `securityGroupId`   - AWS security group identifier.
 //
 // ## Dependency
 //

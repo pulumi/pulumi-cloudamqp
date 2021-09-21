@@ -35,10 +35,13 @@ import (
 //
 // * `instanceId` - (Required) The CloudAMQP instance identifier.
 //
-// ## Attribute reference
+// ## Attributes reference
 //
-// * `username`    - (Computed/Sensitive) The username for the configured user in Rabbit MQ.
-// * `password`    - (Computed/Sensitive) The password used by the `username`.
+// All attributes reference are computed.
+//
+// * `id`          - The identifier for this data source.
+// * `username`    - (Sensitive) The username for the configured user in Rabbit MQ.
+// * `password`    - (Sensitive) The password used by the `username`.
 //
 // ## Dependency
 //
@@ -54,16 +57,14 @@ func GetCredentials(ctx *pulumi.Context, args *GetCredentialsArgs, opts ...pulum
 
 // A collection of arguments for invoking getCredentials.
 type GetCredentialsArgs struct {
-	InstanceId int     `pulumi:"instanceId"`
-	Password   *string `pulumi:"password"`
-	Username   *string `pulumi:"username"`
+	InstanceId int `pulumi:"instanceId"`
 }
 
 // A collection of values returned by getCredentials.
 type GetCredentialsResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id         string  `pulumi:"id"`
-	InstanceId int     `pulumi:"instanceId"`
-	Password   *string `pulumi:"password"`
-	Username   *string `pulumi:"username"`
+	Id         string `pulumi:"id"`
+	InstanceId int    `pulumi:"instanceId"`
+	Password   string `pulumi:"password"`
+	Username   string `pulumi:"username"`
 }

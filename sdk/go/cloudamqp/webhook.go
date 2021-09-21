@@ -51,7 +51,7 @@ import (
 // `cloudamqp_webhook` can be imported using the resource identifier together with CloudAMQP instance identifier. The identifiers are CSV separated, see example below.
 //
 // ```sh
-//  $ pulumi import cloudamqp:index/webhook:Webhook webhook_queue <webhook_id>,<instance_id>`
+//  $ pulumi import cloudamqp:index/webhook:Webhook webhook_queue <id>,<instance_id>`
 // ```
 type Webhook struct {
 	pulumi.CustomResourceState

@@ -25,10 +25,13 @@ import * as utilities from "./utilities";
  * * `recipientId`  - (Optional) The recipient identifier.
  * * `name`          - (Optional) The name set for the recipient.
  *
- * ## Attribute reference
+ * ## Attributes reference
  *
- * * `type`  - (Computed) The type of the recipient.
- * * `value` - (Computed) The notification endpoint, where to send the notification.
+ * All attributes reference are computed
+ *
+ * * `id`    - The identifier for this resource.
+ * * `type`  - The type of the recipient.
+ * * `value` - The notification endpoint, where to send the notification.
  *
  * ## Dependency
  *

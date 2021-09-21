@@ -8,7 +8,6 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
-from ._inputs import *
 
 __all__ = [
     'GetNodesResult',
@@ -63,7 +62,6 @@ class AwaitableGetNodesResult(GetNodesResult):
 
 
 def get_nodes(instance_id: Optional[int] = None,
-              nodes: Optional[Sequence[pulumi.InputType['GetNodesNodeArgs']]] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNodesResult:
     """
     Use this data source to retrieve information about the node(s) created by CloudAMQP instance.
@@ -80,20 +78,24 @@ def get_nodes(instance_id: Optional[int] = None,
 
     * `instance_id` - (Required) The CloudAMQP instance identifier.
 
-    ## Attribute reference
+    ## Attributes reference
 
-    * `nodes` - (Computed) An array of node information. Each `nodes` block consists of the fields documented below.
+    All attributes reference are computed
+
+    * `id`    - The identifier for this resource.
+    * `nodes` - An array of node information. Each `nodes` block consists of the fields documented below.
 
     ***
 
     The `nodes` block consist of
 
-    * `hostname`          - (Computed) Hostname assigned to the node.
-    * `name`              - (Computed) Name of the node.
-    * `running`           - (Computed) Is the node running?
-    * `rabbitmq_version`  - (Computed) Currently configured Rabbit MQ version on the node.
-    * `erlang_version`    - (Computed) Currently used Erlanbg version on the node.
-    * `hipe`              - (Computed) Enable or disable High-performance Erlang.
+    * `hostname`          - Hostname assigned to the node.
+    * `name`              - Name of the node.
+    * `running`           - Is the node running?
+    * `rabbitmq_version`  - Currently configured Rabbit MQ version on the node.
+    * `erlang_version`    - Currently used Erlanbg version on the node.
+    * `hipe`              - Enable or disable High-performance Erlang.
+    * `configured`        - Is the node configured?
 
     ## Dependency
 
@@ -101,7 +103,6 @@ def get_nodes(instance_id: Optional[int] = None,
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
-    __args__['nodes'] = nodes
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:

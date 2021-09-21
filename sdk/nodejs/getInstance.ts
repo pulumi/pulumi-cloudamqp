@@ -12,19 +12,22 @@ import * as utilities from "./utilities";
  *
  * * `instanceId` - (Required) The CloudAMQP instance identifier.
  *
- * ## Attribute reference
+ * ## Attributes reference
  *
- * * `name`        - (Computed) The name of the CloudAMQP instance.
- * * `plan`        - (Computed) The subscription plan for the CloudAMQP instance.
- * * `region`      - (Computed) The cloud platform and region that host the CloudAMQP instance, `{platform}::{region}`.
- * * `vpcSubnet`  - (Computed) Dedicated VPC subnet configured for the CloudAMQP instance.
- * * `nodes`       - (Computed) Number of nodes in the cluster of the CloudAMQP instance.
- * * `rmqVersion` - (Computed) The version of installed Rabbit MQ.
- * * `url`         - (Computed/Sensitive) The AMQP url, used by clients to connect for pub/sub.
- * * `apikey`      - (Computed/Sensitive) The API key to secondary API handing alarms, integration etc.
- * * `tags`        - (Computed) Tags the CloudAMQP instance with categories.
- * * `host`        - (Computed) The hostname for the CloudAMQP instance.
- * * `vhost`       - (Computed) The virtual host configured in Rabbit MQ.
+ * All attributes reference are computed
+ *
+ * * `id`          - The identifier for this resource.
+ * * `name`        - The name of the CloudAMQP instance.
+ * * `plan`        - The subscription plan for the CloudAMQP instance.
+ * * `region`      - The cloud platform and region that host the CloudAMQP instance, `{platform}::{region}`.
+ * * `vpcSubnet`  - Dedicated VPC subnet configured for the CloudAMQP instance.
+ * * `nodes`       - Number of nodes in the cluster of the CloudAMQP instance.
+ * * `rmqVersion` - The version of installed Rabbit MQ.
+ * * `url`         - (Sensitive) The AMQP url, used by clients to connect for pub/sub.
+ * * `apikey`      - (Sensitive) The API key to secondary API handing alarms, integration etc.
+ * * `tags`        - Tags the CloudAMQP instance with categories.
+ * * `host`        - The hostname for the CloudAMQP instance.
+ * * `vhost`       - The virtual host configured in Rabbit MQ.
  */
 export function getInstance(args: GetInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceResult> {
     if (!opts) {
@@ -36,7 +39,6 @@ export function getInstance(args: GetInstanceArgs, opts?: pulumi.InvokeOptions):
     }
     return pulumi.runtime.invoke("cloudamqp:index/getInstance:getInstance", {
         "instanceId": args.instanceId,
-        "vpcSubnet": args.vpcSubnet,
     }, opts);
 }
 
@@ -45,7 +47,6 @@ export function getInstance(args: GetInstanceArgs, opts?: pulumi.InvokeOptions):
  */
 export interface GetInstanceArgs {
     instanceId: number;
-    vpcSubnet?: string;
 }
 
 /**
@@ -68,5 +69,5 @@ export interface GetInstanceResult {
     readonly tags: string[];
     readonly url: string;
     readonly vhost: string;
-    readonly vpcSubnet?: string;
+    readonly vpcSubnet: string;
 }

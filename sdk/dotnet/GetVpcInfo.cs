@@ -42,12 +42,15 @@ namespace Pulumi.CloudAmqp
         /// 
         /// * `instance_id` - (Required) The CloudAMQP instance identifier.
         /// 
-        /// ## Attribute reference
+        /// ## Attributes reference
         /// 
-        /// * `name`                - (Computed) The name of the CloudAMQP instance.
-        /// * `vpc_subnet`          - (Computed) Dedicated VPC subnet.
-        /// * `owner_id`            - (Computed) AWS account identifier.
-        /// * `security_group_id`   - (Computed) AWS security group identifier.
+        /// All attributes reference are computed
+        /// 
+        /// * `id`                  - The identifier for this resource.
+        /// * `name`                - The name of the CloudAMQP instance.
+        /// * `vpc_subnet`          - Dedicated VPC subnet.
+        /// * `owner_id`            - AWS account identifier.
+        /// * `security_group_id`   - AWS security group identifier.
         /// 
         /// ## Dependency
         /// 

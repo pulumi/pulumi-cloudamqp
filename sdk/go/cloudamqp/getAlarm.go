@@ -39,15 +39,18 @@ import (
 // * `alarmId`    - (Optional) The alarm identifier. Either use this or `type` to give `Alarm` necessary information to retrieve the alarm.
 // * `type`        - (Optional) The alarm type. Either use this or `alarmId` to give `Alarm` necessary information when retrieve the alarm.
 //
-// ## Attribute reference
+// ## Attributes reference
 //
-// * `enabled`         - (Computed) Enable/disable status of the alarm.
-// * `valueThreshold` - (Computed) The value threshold that triggers the alarm.
-// * `timeThreshold`  - (Computed) The time interval (in seconds) the `valueThreshold` should be active before trigger an alarm.
-// * `queueRegex`     - (Computed) Regular expression for which queue to check.
-// * `vhostRegex`     - (Computed) Regular expression for which vhost to check
-// * `recipients`      - (Computed) Identifier for recipient to be notified.
-// * `messageType`    - (Computed) Message type `(total, unacked, ready)` used by queue alarm type.
+// All attributes reference are computed
+//
+// * `id`              - The identifier for this resource.
+// * `enabled`         - Enable/disable status of the alarm.
+// * `valueThreshold` - The value threshold that triggers the alarm.
+// * `timeThreshold`  - The time interval (in seconds) the `valueThreshold` should be active before trigger an alarm.
+// * `queueRegex`     - Regular expression for which queue to check.
+// * `vhostRegex`     - Regular expression for which vhost to check
+// * `recipients`      - Identifier for recipient to be notified.
+// * `messageType`    - Message type `(total, unacked, ready)` used by queue alarm type.
 //
 // ## Dependency
 //

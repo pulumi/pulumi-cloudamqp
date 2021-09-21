@@ -5,6 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "../types";
 
 export interface GetNodesNode {
+    configured: boolean;
     erlangVersion: string;
     hipe: boolean;
     hostname: string;
@@ -14,16 +15,16 @@ export interface GetNodesNode {
 }
 
 export interface GetPluginsCommunityPlugin {
-    description?: string;
-    name?: string;
-    require?: string;
+    description: string;
+    name: string;
+    require: string;
 }
 
 export interface GetPluginsPlugin {
-    description?: string;
-    enabled?: boolean;
-    name?: string;
-    version?: string;
+    description: string;
+    enabled: boolean;
+    name: string;
+    version: string;
 }
 
 export interface SecurityFirewallRule {

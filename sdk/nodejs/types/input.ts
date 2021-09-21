@@ -4,28 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "../types";
 
-export interface GetNodesNode {
-    erlangVersion?: string;
-    hipe?: boolean;
-    hostname?: string;
-    name?: string;
-    rabbitmqVersion?: string;
-    running?: boolean;
-}
-
-export interface GetPluginsCommunityPlugin {
-    description?: string;
-    name?: string;
-    require?: string;
-}
-
-export interface GetPluginsPlugin {
-    description?: string;
-    enabled?: boolean;
-    name?: string;
-    version?: string;
-}
-
 export interface SecurityFirewallRule {
     /**
      * Description name of the rule. e.g. Default.

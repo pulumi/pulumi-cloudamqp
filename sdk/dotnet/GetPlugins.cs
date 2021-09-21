@@ -40,18 +40,21 @@ namespace Pulumi.CloudAmqp
         /// 
         /// * `instance_id` - (Required) The CloudAMQP instance identifier.
         /// 
-        /// ## Attribute reference
+        /// ## Attributes reference
         /// 
-        /// * `plugins` - (Computed) An array of plugins. Each `plugins` block consists of the fields documented below.
+        /// All attributes reference are computed
+        /// 
+        /// * `id`      - The identifier for this resource.
+        /// * `plugins` - An array of plugins. Each `plugins` block consists of the fields documented below.
         /// 
         /// ___
         /// 
         /// The `plugins` block consist of
         /// 
-        /// * `name`        - (Computed) The type of the recipient.
-        /// * `version`     - (Computed) Rabbit MQ version that the plugins are shipped with.
-        /// * `description` - (Computed) Description of what the plugin does.
-        /// * `enabled`     - (Computed) Enable or disable information for the plugin.
+        /// * `name`        - The type of the recipient.
+        /// * `version`     - Rabbit MQ version that the plugins are shipped with.
+        /// * `description` - Description of what the plugin does.
+        /// * `enabled`     - Enable or disable information for the plugin.
         /// 
         /// ## Dependency
         /// 
@@ -66,14 +69,6 @@ namespace Pulumi.CloudAmqp
     {
         [Input("instanceId", required: true)]
         public int InstanceId { get; set; }
-
-        [Input("plugins")]
-        private List<Inputs.GetPluginsPluginArgs>? _plugins;
-        public List<Inputs.GetPluginsPluginArgs> Plugins
-        {
-            get => _plugins ?? (_plugins = new List<Inputs.GetPluginsPluginArgs>());
-            set => _plugins = value;
-        }
 
         public GetPluginsArgs()
         {

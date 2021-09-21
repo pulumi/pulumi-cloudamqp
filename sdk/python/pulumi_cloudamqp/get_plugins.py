@@ -8,7 +8,6 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
-from ._inputs import *
 
 __all__ = [
     'GetPluginsResult',
@@ -47,7 +46,7 @@ class GetPluginsResult:
 
     @property
     @pulumi.getter
-    def plugins(self) -> Optional[Sequence['outputs.GetPluginsPluginResult']]:
+    def plugins(self) -> Sequence['outputs.GetPluginsPluginResult']:
         return pulumi.get(self, "plugins")
 
 
@@ -63,7 +62,6 @@ class AwaitableGetPluginsResult(GetPluginsResult):
 
 
 def get_plugins(instance_id: Optional[int] = None,
-                plugins: Optional[Sequence[pulumi.InputType['GetPluginsPluginArgs']]] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPluginsResult:
     """
     Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
@@ -80,18 +78,21 @@ def get_plugins(instance_id: Optional[int] = None,
 
     * `instance_id` - (Required) The CloudAMQP instance identifier.
 
-    ## Attribute reference
+    ## Attributes reference
 
-    * `plugins` - (Computed) An array of plugins. Each `plugins` block consists of the fields documented below.
+    All attributes reference are computed
+
+    * `id`      - The identifier for this resource.
+    * `plugins` - An array of plugins. Each `plugins` block consists of the fields documented below.
 
     ***
 
     The `plugins` block consist of
 
-    * `name`        - (Computed) The type of the recipient.
-    * `version`     - (Computed) Rabbit MQ version that the plugins are shipped with.
-    * `description` - (Computed) Description of what the plugin does.
-    * `enabled`     - (Computed) Enable or disable information for the plugin.
+    * `name`        - The type of the recipient.
+    * `version`     - Rabbit MQ version that the plugins are shipped with.
+    * `description` - Description of what the plugin does.
+    * `enabled`     - Enable or disable information for the plugin.
 
     ## Dependency
 
@@ -99,7 +100,6 @@ def get_plugins(instance_id: Optional[int] = None,
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
-    __args__['plugins'] = plugins
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
