@@ -57,22 +57,22 @@ import (
 // `cloudamqp_instance`can be imported using CloudAMQP internal identifier. To retrieve the identifier for an instance, use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances).
 //
 // ```sh
-//  $ pulumi import cloudamqp:index/instance:Instance instance <instance_id>`
+//  $ pulumi import cloudamqp:index/instance:Instance instance <id>`
 // ```
 type Instance struct {
 	pulumi.CustomResourceState
 
-	// (Computed) API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
+	// API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
 	Apikey pulumi.StringOutput `pulumi:"apikey"`
 	// Is the instance hosted on a dedicated server
 	Dedicated pulumi.BoolOutput `pulumi:"dedicated"`
-	// (Computed) The host name for the CloudAMQP instance.
+	// The host name for the CloudAMQP instance.
 	Host pulumi.StringOutput `pulumi:"host"`
 	// Name of the CloudAMQP instance.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
 	NoDefaultAlarms pulumi.BoolOutput `pulumi:"noDefaultAlarms"`
-	// Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
+	// Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
 	Nodes pulumi.IntPtrOutput `pulumi:"nodes"`
 	// The subscription plan. See available plans
 	Plan pulumi.StringOutput `pulumi:"plan"`
@@ -84,9 +84,9 @@ type Instance struct {
 	RmqVersion pulumi.StringOutput `pulumi:"rmqVersion"`
 	// One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// (Computed) AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
+	// AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
 	Url pulumi.StringOutput `pulumi:"url"`
-	// (Computed) The virtual host used by Rabbit MQ.
+	// The virtual host used by Rabbit MQ.
 	Vhost pulumi.StringOutput `pulumi:"vhost"`
 	// Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
 	VpcSubnet pulumi.StringPtrOutput `pulumi:"vpcSubnet"`
@@ -127,17 +127,17 @@ func GetInstance(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Instance resources.
 type instanceState struct {
-	// (Computed) API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
+	// API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
 	Apikey *string `pulumi:"apikey"`
 	// Is the instance hosted on a dedicated server
 	Dedicated *bool `pulumi:"dedicated"`
-	// (Computed) The host name for the CloudAMQP instance.
+	// The host name for the CloudAMQP instance.
 	Host *string `pulumi:"host"`
 	// Name of the CloudAMQP instance.
 	Name *string `pulumi:"name"`
 	// Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
 	NoDefaultAlarms *bool `pulumi:"noDefaultAlarms"`
-	// Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
+	// Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
 	Nodes *int `pulumi:"nodes"`
 	// The subscription plan. See available plans
 	Plan *string `pulumi:"plan"`
@@ -149,26 +149,26 @@ type instanceState struct {
 	RmqVersion *string `pulumi:"rmqVersion"`
 	// One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
 	Tags []string `pulumi:"tags"`
-	// (Computed) AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
+	// AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
 	Url *string `pulumi:"url"`
-	// (Computed) The virtual host used by Rabbit MQ.
+	// The virtual host used by Rabbit MQ.
 	Vhost *string `pulumi:"vhost"`
 	// Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
 	VpcSubnet *string `pulumi:"vpcSubnet"`
 }
 
 type InstanceState struct {
-	// (Computed) API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
+	// API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
 	Apikey pulumi.StringPtrInput
 	// Is the instance hosted on a dedicated server
 	Dedicated pulumi.BoolPtrInput
-	// (Computed) The host name for the CloudAMQP instance.
+	// The host name for the CloudAMQP instance.
 	Host pulumi.StringPtrInput
 	// Name of the CloudAMQP instance.
 	Name pulumi.StringPtrInput
 	// Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
 	NoDefaultAlarms pulumi.BoolPtrInput
-	// Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
+	// Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
 	Nodes pulumi.IntPtrInput
 	// The subscription plan. See available plans
 	Plan pulumi.StringPtrInput
@@ -180,9 +180,9 @@ type InstanceState struct {
 	RmqVersion pulumi.StringPtrInput
 	// One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
 	Tags pulumi.StringArrayInput
-	// (Computed) AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
+	// AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
 	Url pulumi.StringPtrInput
-	// (Computed) The virtual host used by Rabbit MQ.
+	// The virtual host used by Rabbit MQ.
 	Vhost pulumi.StringPtrInput
 	// Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
 	VpcSubnet pulumi.StringPtrInput
@@ -197,7 +197,7 @@ type instanceArgs struct {
 	Name *string `pulumi:"name"`
 	// Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
 	NoDefaultAlarms *bool `pulumi:"noDefaultAlarms"`
-	// Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
+	// Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
 	Nodes *int `pulumi:"nodes"`
 	// The subscription plan. See available plans
 	Plan string `pulumi:"plan"`
@@ -217,7 +217,7 @@ type InstanceArgs struct {
 	Name pulumi.StringPtrInput
 	// Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
 	NoDefaultAlarms pulumi.BoolPtrInput
-	// Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
+	// Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
 	Nodes pulumi.IntPtrInput
 	// The subscription plan. See available plans
 	Plan pulumi.StringInput

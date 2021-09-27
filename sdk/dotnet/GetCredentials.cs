@@ -40,10 +40,13 @@ namespace Pulumi.CloudAmqp
         /// 
         /// * `instance_id` - (Required) The CloudAMQP instance identifier.
         /// 
-        /// ## Attribute reference
+        /// ## Attributes reference
         /// 
-        /// * `username`    - (Computed/Sensitive) The username for the configured user in Rabbit MQ.
-        /// * `password`    - (Computed/Sensitive) The password used by the `username`.
+        /// All attributes reference are computed.
+        /// 
+        /// * `id`          - The identifier for this data source.
+        /// * `username`    - (Sensitive) The username for the configured user in Rabbit MQ.
+        /// * `password`    - (Sensitive) The password used by the `username`.
         /// 
         /// ## Dependency
         /// 
@@ -59,12 +62,6 @@ namespace Pulumi.CloudAmqp
         [Input("instanceId", required: true)]
         public int InstanceId { get; set; }
 
-        [Input("password")]
-        public string? Password { get; set; }
-
-        [Input("username")]
-        public string? Username { get; set; }
-
         public GetCredentialsArgs()
         {
         }
@@ -79,8 +76,8 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         public readonly string Id;
         public readonly int InstanceId;
-        public readonly string? Password;
-        public readonly string? Username;
+        public readonly string Password;
+        public readonly string Username;
 
         [OutputConstructor]
         private GetCredentialsResult(
@@ -88,9 +85,9 @@ namespace Pulumi.CloudAmqp
 
             int instanceId,
 
-            string? password,
+            string password,
 
-            string? username)
+            string username)
         {
             Id = id;
             InstanceId = instanceId;

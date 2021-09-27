@@ -8,7 +8,6 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
-from ._inputs import *
 
 __all__ = [
     'GetPluginsCommunityResult',
@@ -47,7 +46,7 @@ class GetPluginsCommunityResult:
 
     @property
     @pulumi.getter
-    def plugins(self) -> Optional[Sequence['outputs.GetPluginsCommunityPluginResult']]:
+    def plugins(self) -> Sequence['outputs.GetPluginsCommunityPluginResult']:
         return pulumi.get(self, "plugins")
 
 
@@ -63,7 +62,6 @@ class AwaitableGetPluginsCommunityResult(GetPluginsCommunityResult):
 
 
 def get_plugins_community(instance_id: Optional[int] = None,
-                          plugins: Optional[Sequence[pulumi.InputType['GetPluginsCommunityPluginArgs']]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPluginsCommunityResult:
     """
     Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
@@ -80,17 +78,20 @@ def get_plugins_community(instance_id: Optional[int] = None,
 
     * `instance_id` - (Required) The CloudAMQP instance identifier.
 
-    ## Attribute reference
+    ## Attributes reference
 
-    * `plugins` - (Computed) An array of community plugins. Each `plugins` block consists of the fields documented below.
+    All attributes reference are computed
+
+    * `id`      - The identifier for this resource.
+    * `plugins` - An array of community plugins. Each `plugins` block consists of the fields documented below.
 
     ***
 
     The `plugins` block consists of
 
-    * `name`        - (Computed) The type of the recipient.
-    * `require`     - (Computed) Min. required Rabbit MQ version to be used.
-    * `description` - (Computed) Description of what the plugin does.
+    * `name`        - The type of the recipient.
+    * `require`     - Min. required Rabbit MQ version to be used.
+    * `description` - Description of what the plugin does.
 
     ## Dependency
 
@@ -98,7 +99,6 @@ def get_plugins_community(instance_id: Optional[int] = None,
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
-    __args__['plugins'] = plugins
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:

@@ -72,18 +72,25 @@ class SecurityFirewallRule(dict):
 @pulumi.output_type
 class GetNodesNodeResult(dict):
     def __init__(__self__, *,
+                 configured: bool,
                  erlang_version: str,
                  hipe: bool,
                  hostname: str,
                  name: str,
                  rabbitmq_version: str,
                  running: bool):
+        pulumi.set(__self__, "configured", configured)
         pulumi.set(__self__, "erlang_version", erlang_version)
         pulumi.set(__self__, "hipe", hipe)
         pulumi.set(__self__, "hostname", hostname)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "rabbitmq_version", rabbitmq_version)
         pulumi.set(__self__, "running", running)
+
+    @property
+    @pulumi.getter
+    def configured(self) -> bool:
+        return pulumi.get(self, "configured")
 
     @property
     @pulumi.getter(name="erlangVersion")
@@ -119,66 +126,59 @@ class GetNodesNodeResult(dict):
 @pulumi.output_type
 class GetPluginsCommunityPluginResult(dict):
     def __init__(__self__, *,
-                 description: Optional[str] = None,
-                 name: Optional[str] = None,
-                 require: Optional[str] = None):
-        if description is not None:
-            pulumi.set(__self__, "description", description)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if require is not None:
-            pulumi.set(__self__, "require", require)
+                 description: str,
+                 name: str,
+                 require: str):
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "require", require)
 
     @property
     @pulumi.getter
-    def description(self) -> Optional[str]:
+    def description(self) -> str:
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
-    def require(self) -> Optional[str]:
+    def require(self) -> str:
         return pulumi.get(self, "require")
 
 
 @pulumi.output_type
 class GetPluginsPluginResult(dict):
     def __init__(__self__, *,
-                 description: Optional[str] = None,
-                 enabled: Optional[bool] = None,
-                 name: Optional[str] = None,
-                 version: Optional[str] = None):
-        if description is not None:
-            pulumi.set(__self__, "description", description)
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if version is not None:
-            pulumi.set(__self__, "version", version)
+                 description: str,
+                 enabled: bool,
+                 name: str,
+                 version: str):
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "version", version)
 
     @property
     @pulumi.getter
-    def description(self) -> Optional[str]:
+    def description(self) -> str:
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
-    def enabled(self) -> Optional[bool]:
+    def enabled(self) -> bool:
         return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
-    def version(self) -> Optional[str]:
+    def version(self) -> str:
         return pulumi.get(self, "version")
 
 

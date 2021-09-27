@@ -36,7 +36,7 @@ import * as utilities from "./utilities";
  * `cloudamqp_instance`can be imported using CloudAMQP internal identifier. To retrieve the identifier for an instance, use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances).
  *
  * ```sh
- *  $ pulumi import cloudamqp:index/instance:Instance instance <instance_id>`
+ *  $ pulumi import cloudamqp:index/instance:Instance instance <id>`
  * ```
  */
 export class Instance extends pulumi.CustomResource {
@@ -68,7 +68,7 @@ export class Instance extends pulumi.CustomResource {
     }
 
     /**
-     * (Computed) API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
+     * API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
      */
     public /*out*/ readonly apikey!: pulumi.Output<string>;
     /**
@@ -76,7 +76,7 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly dedicated!: pulumi.Output<boolean>;
     /**
-     * (Computed) The host name for the CloudAMQP instance.
+     * The host name for the CloudAMQP instance.
      */
     public /*out*/ readonly host!: pulumi.Output<string>;
     /**
@@ -88,7 +88,7 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly noDefaultAlarms!: pulumi.Output<boolean>;
     /**
-     * Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
+     * Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
      */
     public readonly nodes!: pulumi.Output<number | undefined>;
     /**
@@ -112,11 +112,11 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * (Computed) AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
+     * AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
      */
     public /*out*/ readonly url!: pulumi.Output<string>;
     /**
-     * (Computed) The virtual host used by Rabbit MQ.
+     * The virtual host used by Rabbit MQ.
      */
     public /*out*/ readonly vhost!: pulumi.Output<string>;
     /**
@@ -186,7 +186,7 @@ export class Instance extends pulumi.CustomResource {
  */
 export interface InstanceState {
     /**
-     * (Computed) API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
+     * API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
      */
     apikey?: pulumi.Input<string>;
     /**
@@ -194,7 +194,7 @@ export interface InstanceState {
      */
     dedicated?: pulumi.Input<boolean>;
     /**
-     * (Computed) The host name for the CloudAMQP instance.
+     * The host name for the CloudAMQP instance.
      */
     host?: pulumi.Input<string>;
     /**
@@ -206,7 +206,7 @@ export interface InstanceState {
      */
     noDefaultAlarms?: pulumi.Input<boolean>;
     /**
-     * Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
+     * Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
      */
     nodes?: pulumi.Input<number>;
     /**
@@ -230,11 +230,11 @@ export interface InstanceState {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * (Computed) AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
+     * AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
      */
     url?: pulumi.Input<string>;
     /**
-     * (Computed) The virtual host used by Rabbit MQ.
+     * The virtual host used by Rabbit MQ.
      */
     vhost?: pulumi.Input<string>;
     /**
@@ -256,7 +256,7 @@ export interface InstanceArgs {
      */
     noDefaultAlarms?: pulumi.Input<boolean>;
     /**
-     * Number of nodes, 1, 3 or 5. **Note: Changed from optional to computed. In order to change number of nodes, the subscription plan needs to be updated.**
+     * Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
      */
     nodes?: pulumi.Input<number>;
     /**

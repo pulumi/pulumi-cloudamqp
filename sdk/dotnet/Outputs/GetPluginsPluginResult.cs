@@ -13,20 +13,20 @@ namespace Pulumi.CloudAmqp.Outputs
     [OutputType]
     public sealed class GetPluginsPluginResult
     {
-        public readonly string? Description;
-        public readonly bool? Enabled;
-        public readonly string? Name;
-        public readonly string? Version;
+        public readonly string Description;
+        public readonly bool Enabled;
+        public readonly string Name;
+        public readonly string Version;
 
         [OutputConstructor]
         private GetPluginsPluginResult(
-            string? description,
+            string description,
 
-            bool? enabled,
+            bool enabled,
 
-            string? name,
+            string name,
 
-            string? version)
+            string version)
         {
             Description = description;
             Enabled = enabled;

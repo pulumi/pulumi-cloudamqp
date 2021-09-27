@@ -13,6 +13,7 @@ namespace Pulumi.CloudAmqp.Outputs
     [OutputType]
     public sealed class GetNodesNodeResult
     {
+        public readonly bool Configured;
         public readonly string ErlangVersion;
         public readonly bool Hipe;
         public readonly string Hostname;
@@ -22,6 +23,8 @@ namespace Pulumi.CloudAmqp.Outputs
 
         [OutputConstructor]
         private GetNodesNodeResult(
+            bool configured,
+
             string erlangVersion,
 
             bool hipe,
@@ -34,6 +37,7 @@ namespace Pulumi.CloudAmqp.Outputs
 
             bool running)
         {
+            Configured = configured;
             ErlangVersion = erlangVersion;
             Hipe = hipe;
             Hostname = hostname;

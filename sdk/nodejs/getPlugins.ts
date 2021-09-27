@@ -22,18 +22,21 @@ import * as utilities from "./utilities";
  *
  * * `instanceId` - (Required) The CloudAMQP instance identifier.
  *
- * ## Attribute reference
+ * ## Attributes reference
  *
- * * `plugins` - (Computed) An array of plugins. Each `plugins` block consists of the fields documented below.
+ * All attributes reference are computed
+ *
+ * * `id`      - The identifier for this resource.
+ * * `plugins` - An array of plugins. Each `plugins` block consists of the fields documented below.
  *
  * ***
  *
  * The `plugins` block consist of
  *
- * * `name`        - (Computed) The type of the recipient.
- * * `version`     - (Computed) Rabbit MQ version that the plugins are shipped with.
- * * `description` - (Computed) Description of what the plugin does.
- * * `enabled`     - (Computed) Enable or disable information for the plugin.
+ * * `name`        - The type of the recipient.
+ * * `version`     - Rabbit MQ version that the plugins are shipped with.
+ * * `description` - Description of what the plugin does.
+ * * `enabled`     - Enable or disable information for the plugin.
  *
  * ## Dependency
  *
@@ -49,7 +52,6 @@ export function getPlugins(args: GetPluginsArgs, opts?: pulumi.InvokeOptions): P
     }
     return pulumi.runtime.invoke("cloudamqp:index/getPlugins:getPlugins", {
         "instanceId": args.instanceId,
-        "plugins": args.plugins,
     }, opts);
 }
 
@@ -58,7 +60,6 @@ export function getPlugins(args: GetPluginsArgs, opts?: pulumi.InvokeOptions): P
  */
 export interface GetPluginsArgs {
     instanceId: number;
-    plugins?: inputs.GetPluginsPlugin[];
 }
 
 /**
@@ -70,5 +71,5 @@ export interface GetPluginsResult {
      */
     readonly id: string;
     readonly instanceId: number;
-    readonly plugins?: outputs.GetPluginsPlugin[];
+    readonly plugins: outputs.GetPluginsPlugin[];
 }
