@@ -34,7 +34,6 @@ namespace Pulumi.CloudAmqp
     ///         var instance = new CloudAmqp.Instance("instance", new CloudAmqp.InstanceArgs
     ///         {
     ///             NoDefaultAlarms = true,
-    ///             Nodes = 1,
     ///             Plan = "bunny-1",
     ///             Region = "amazon-web-services::us-west-1",
     ///             RmqVersion = "3.8.3",
@@ -90,10 +89,10 @@ namespace Pulumi.CloudAmqp
         public Output<bool> NoDefaultAlarms { get; private set; } = null!;
 
         /// <summary>
-        /// Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
+        /// Number of nodes, 1, 3 or 5 depending on plan used. **DEPRECATED. Old subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.**
         /// </summary>
         [Output("nodes")]
-        public Output<int?> Nodes { get; private set; } = null!;
+        public Output<int> Nodes { get; private set; } = null!;
 
         /// <summary>
         /// The subscription plan. See available plans
@@ -138,10 +137,16 @@ namespace Pulumi.CloudAmqp
         public Output<string> Vhost { get; private set; } = null!;
 
         /// <summary>
+        /// The VPC ID. Use this to create your instance in an existing VPC. See available example.
+        /// </summary>
+        [Output("vpcId")]
+        public Output<int> VpcId { get; private set; } = null!;
+
+        /// <summary>
         /// Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
         /// </summary>
         [Output("vpcSubnet")]
-        public Output<string?> VpcSubnet { get; private set; } = null!;
+        public Output<string> VpcSubnet { get; private set; } = null!;
 
 
         /// <summary>
@@ -202,7 +207,7 @@ namespace Pulumi.CloudAmqp
         public Input<bool>? NoDefaultAlarms { get; set; }
 
         /// <summary>
-        /// Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
+        /// Number of nodes, 1, 3 or 5 depending on plan used. **DEPRECATED. Old subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.**
         /// </summary>
         [Input("nodes")]
         public Input<int>? Nodes { get; set; }
@@ -236,6 +241,12 @@ namespace Pulumi.CloudAmqp
             get => _tags ?? (_tags = new InputList<string>());
             set => _tags = value;
         }
+
+        /// <summary>
+        /// The VPC ID. Use this to create your instance in an existing VPC. See available example.
+        /// </summary>
+        [Input("vpcId")]
+        public Input<int>? VpcId { get; set; }
 
         /// <summary>
         /// Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
@@ -281,7 +292,7 @@ namespace Pulumi.CloudAmqp
         public Input<bool>? NoDefaultAlarms { get; set; }
 
         /// <summary>
-        /// Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
+        /// Number of nodes, 1, 3 or 5 depending on plan used. **DEPRECATED. Old subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.**
         /// </summary>
         [Input("nodes")]
         public Input<int>? Nodes { get; set; }
@@ -333,6 +344,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Input("vhost")]
         public Input<string>? Vhost { get; set; }
+
+        /// <summary>
+        /// The VPC ID. Use this to create your instance in an existing VPC. See available example.
+        /// </summary>
+        [Input("vpcId")]
+        public Input<int>? VpcId { get; set; }
 
         /// <summary>
         /// Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**

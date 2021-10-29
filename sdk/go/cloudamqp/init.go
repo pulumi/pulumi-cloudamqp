@@ -22,6 +22,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "cloudamqp:index/alarm:Alarm":
 		r = &Alarm{}
+	case "cloudamqp:index/customDomain:CustomDomain":
+		r = &CustomDomain{}
 	case "cloudamqp:index/instance:Instance":
 		r = &Instance{}
 	case "cloudamqp:index/integrationLog:IntegrationLog":
@@ -74,6 +76,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"cloudamqp",
 		"index/alarm",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"cloudamqp",
+		"index/customDomain",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

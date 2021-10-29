@@ -20,7 +20,7 @@ class PluginCommunityArgs:
         The set of arguments for constructing a PluginCommunity resource.
         :param pulumi.Input[bool] enabled: Enable or disable the plugins.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[str] name: The name of the Rabbit MQ plugin.
+        :param pulumi.Input[str] name: The name of the Rabbit MQ community plugin.
         """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "instance_id", instance_id)
@@ -55,7 +55,7 @@ class PluginCommunityArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the Rabbit MQ plugin.
+        The name of the Rabbit MQ community plugin.
         """
         return pulumi.get(self, "name")
 
@@ -74,7 +74,7 @@ class _PluginCommunityState:
         Input properties used for looking up and filtering PluginCommunity resources.
         :param pulumi.Input[bool] enabled: Enable or disable the plugins.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[str] name: The name of the Rabbit MQ plugin.
+        :param pulumi.Input[str] name: The name of the Rabbit MQ community plugin.
         """
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
@@ -111,7 +111,7 @@ class _PluginCommunityState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the Rabbit MQ plugin.
+        The name of the Rabbit MQ community plugin.
         """
         return pulumi.get(self, "name")
 
@@ -133,6 +133,8 @@ class PluginCommunity(pulumi.CustomResource):
         This resource allows you to install or uninstall community plugins. Once installed the plugin will be available in `Plugin`.
 
         Only available for dedicated subscription plans.
+
+        ⚠️  From our go API wrapper [v1.5.0](https://github.com/84codes/go-api/releases/tag/v1.5.0) there is support for multiple retries when requesting information about community plugins. This was introduced to avoid `ReadPluginCommunity error 400: Timeout talking to backend`.
 
         ## Example Usage
 
@@ -160,7 +162,7 @@ class PluginCommunity(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] enabled: Enable or disable the plugins.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[str] name: The name of the Rabbit MQ plugin.
+        :param pulumi.Input[str] name: The name of the Rabbit MQ community plugin.
         """
         ...
     @overload
@@ -172,6 +174,8 @@ class PluginCommunity(pulumi.CustomResource):
         This resource allows you to install or uninstall community plugins. Once installed the plugin will be available in `Plugin`.
 
         Only available for dedicated subscription plans.
+
+        ⚠️  From our go API wrapper [v1.5.0](https://github.com/84codes/go-api/releases/tag/v1.5.0) there is support for multiple retries when requesting information about community plugins. This was introduced to avoid `ReadPluginCommunity error 400: Timeout talking to backend`.
 
         ## Example Usage
 
@@ -254,7 +258,7 @@ class PluginCommunity(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] enabled: Enable or disable the plugins.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[str] name: The name of the Rabbit MQ plugin.
+        :param pulumi.Input[str] name: The name of the Rabbit MQ community plugin.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -285,7 +289,7 @@ class PluginCommunity(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the Rabbit MQ plugin.
+        The name of the Rabbit MQ community plugin.
         """
         return pulumi.get(self, "name")
 

@@ -20,6 +20,7 @@ import * as utilities from "./utilities";
  * * `name`        - The name of the CloudAMQP instance.
  * * `plan`        - The subscription plan for the CloudAMQP instance.
  * * `region`      - The cloud platform and region that host the CloudAMQP instance, `{platform}::{region}`.
+ * * `vpcId`      - ID of the VPC configured for the CloudAMQP instance.
  * * `vpcSubnet`  - Dedicated VPC subnet configured for the CloudAMQP instance.
  * * `nodes`       - Number of nodes in the cluster of the CloudAMQP instance.
  * * `rmqVersion` - The version of installed Rabbit MQ.
@@ -62,12 +63,15 @@ export interface GetInstanceResult {
     readonly id: string;
     readonly instanceId: number;
     readonly name: string;
+    readonly noDefaultAlarms: boolean;
     readonly nodes: number;
     readonly plan: string;
+    readonly ready: boolean;
     readonly region: string;
     readonly rmqVersion: string;
     readonly tags: string[];
     readonly url: string;
     readonly vhost: string;
+    readonly vpcId: number;
     readonly vpcSubnet: string;
 }

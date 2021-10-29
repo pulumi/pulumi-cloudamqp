@@ -15,6 +15,8 @@ import (
 //
 // Only available for dedicated subscription plans.
 //
+// ⚠️  From our go API wrapper [v1.5.0](https://github.com/84codes/go-api/releases/tag/v1.5.0) there is support for multiple retries when requesting information about community plugins. This was introduced to avoid `ReadPluginCommunity error 400: Timeout talking to backend`.
+//
 // ## Example Usage
 //
 // ```go
@@ -56,7 +58,7 @@ type PluginCommunity struct {
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
-	// The name of the Rabbit MQ plugin.
+	// The name of the Rabbit MQ community plugin.
 	Name pulumi.StringOutput `pulumi:"name"`
 }
 
@@ -99,7 +101,7 @@ type pluginCommunityState struct {
 	Enabled *bool `pulumi:"enabled"`
 	// The CloudAMQP instance ID.
 	InstanceId *int `pulumi:"instanceId"`
-	// The name of the Rabbit MQ plugin.
+	// The name of the Rabbit MQ community plugin.
 	Name *string `pulumi:"name"`
 }
 
@@ -108,7 +110,7 @@ type PluginCommunityState struct {
 	Enabled pulumi.BoolPtrInput
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntPtrInput
-	// The name of the Rabbit MQ plugin.
+	// The name of the Rabbit MQ community plugin.
 	Name pulumi.StringPtrInput
 }
 
@@ -121,7 +123,7 @@ type pluginCommunityArgs struct {
 	Enabled bool `pulumi:"enabled"`
 	// The CloudAMQP instance ID.
 	InstanceId int `pulumi:"instanceId"`
-	// The name of the Rabbit MQ plugin.
+	// The name of the Rabbit MQ community plugin.
 	Name *string `pulumi:"name"`
 }
 
@@ -131,7 +133,7 @@ type PluginCommunityArgs struct {
 	Enabled pulumi.BoolInput
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntInput
-	// The name of the Rabbit MQ plugin.
+	// The name of the Rabbit MQ community plugin.
 	Name pulumi.StringPtrInput
 }
 

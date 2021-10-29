@@ -24,7 +24,7 @@ namespace Pulumi.CloudAmqp
     /// Optional argument for all alarms: *tags*, *queue_regex*, *vhost_regex*
     /// 
     /// | Name | Type | Shared | Dedicated | Required arguments |
-    /// | ---- | ---- | ---- | ---- | ---- | ---- |
+    /// | ---- | ---- | ---- | ---- | ---- |
     /// | CPU | cpu | - | &amp;#10004; | time_threshold, value_threshold |
     /// | Memory | memory | - | &amp;#10004;  | time_threshold, value_threshold |
     /// | Disk space | disk | - | &amp;#10004;  | time_threshold, value_threshold |

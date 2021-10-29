@@ -23,7 +23,6 @@ import * as utilities from "./utilities";
  * // New dedicated bunny instance
  * const instance = new cloudamqp.Instance("instance", {
  *     noDefaultAlarms: true,
- *     nodes: 1,
  *     plan: "bunny-1",
  *     region: "amazon-web-services::us-west-1",
  *     rmqVersion: "3.8.3",
@@ -88,9 +87,9 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly noDefaultAlarms!: pulumi.Output<boolean>;
     /**
-     * Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
+     * Number of nodes, 1, 3 or 5 depending on plan used. **DEPRECATED. Old subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.**
      */
-    public readonly nodes!: pulumi.Output<number | undefined>;
+    public readonly nodes!: pulumi.Output<number>;
     /**
      * The subscription plan. See available plans
      */
@@ -120,9 +119,13 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly vhost!: pulumi.Output<string>;
     /**
+     * The VPC ID. Use this to create your instance in an existing VPC. See available example.
+     */
+    public readonly vpcId!: pulumi.Output<number>;
+    /**
      * Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
      */
-    public readonly vpcSubnet!: pulumi.Output<string | undefined>;
+    public readonly vpcSubnet!: pulumi.Output<string>;
 
     /**
      * Create a Instance resource with the given unique name, arguments, and options.
@@ -150,6 +153,7 @@ export class Instance extends pulumi.CustomResource {
             inputs["tags"] = state ? state.tags : undefined;
             inputs["url"] = state ? state.url : undefined;
             inputs["vhost"] = state ? state.vhost : undefined;
+            inputs["vpcId"] = state ? state.vpcId : undefined;
             inputs["vpcSubnet"] = state ? state.vpcSubnet : undefined;
         } else {
             const args = argsOrState as InstanceArgs | undefined;
@@ -166,6 +170,7 @@ export class Instance extends pulumi.CustomResource {
             inputs["region"] = args ? args.region : undefined;
             inputs["rmqVersion"] = args ? args.rmqVersion : undefined;
             inputs["tags"] = args ? args.tags : undefined;
+            inputs["vpcId"] = args ? args.vpcId : undefined;
             inputs["vpcSubnet"] = args ? args.vpcSubnet : undefined;
             inputs["apikey"] = undefined /*out*/;
             inputs["dedicated"] = undefined /*out*/;
@@ -206,7 +211,7 @@ export interface InstanceState {
      */
     noDefaultAlarms?: pulumi.Input<boolean>;
     /**
-     * Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
+     * Number of nodes, 1, 3 or 5 depending on plan used. **DEPRECATED. Old subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.**
      */
     nodes?: pulumi.Input<number>;
     /**
@@ -238,6 +243,10 @@ export interface InstanceState {
      */
     vhost?: pulumi.Input<string>;
     /**
+     * The VPC ID. Use this to create your instance in an existing VPC. See available example.
+     */
+    vpcId?: pulumi.Input<number>;
+    /**
      * Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
      */
     vpcSubnet?: pulumi.Input<string>;
@@ -256,7 +265,7 @@ export interface InstanceArgs {
      */
     noDefaultAlarms?: pulumi.Input<boolean>;
     /**
-     * Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
+     * Number of nodes, 1, 3 or 5 depending on plan used. **DEPRECATED. Old subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.**
      */
     nodes?: pulumi.Input<number>;
     /**
@@ -275,6 +284,10 @@ export interface InstanceArgs {
      * One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The VPC ID. Use this to create your instance in an existing VPC. See available example.
+     */
+    vpcId?: pulumi.Input<number>;
     /**
      * Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
      */

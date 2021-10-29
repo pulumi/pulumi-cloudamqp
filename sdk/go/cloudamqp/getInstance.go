@@ -21,6 +21,7 @@ import (
 // * `name`        - The name of the CloudAMQP instance.
 // * `plan`        - The subscription plan for the CloudAMQP instance.
 // * `region`      - The cloud platform and region that host the CloudAMQP instance, `{platform}::{region}`.
+// * `vpcId`      - ID of the VPC configured for the CloudAMQP instance.
 // * `vpcSubnet`  - Dedicated VPC subnet configured for the CloudAMQP instance.
 // * `nodes`       - Number of nodes in the cluster of the CloudAMQP instance.
 // * `rmqVersion` - The version of installed Rabbit MQ.
@@ -49,15 +50,18 @@ type LookupInstanceResult struct {
 	Dedicated bool   `pulumi:"dedicated"`
 	Host      string `pulumi:"host"`
 	// The provider-assigned unique ID for this managed resource.
-	Id         string   `pulumi:"id"`
-	InstanceId int      `pulumi:"instanceId"`
-	Name       string   `pulumi:"name"`
-	Nodes      int      `pulumi:"nodes"`
-	Plan       string   `pulumi:"plan"`
-	Region     string   `pulumi:"region"`
-	RmqVersion string   `pulumi:"rmqVersion"`
-	Tags       []string `pulumi:"tags"`
-	Url        string   `pulumi:"url"`
-	Vhost      string   `pulumi:"vhost"`
-	VpcSubnet  string   `pulumi:"vpcSubnet"`
+	Id              string   `pulumi:"id"`
+	InstanceId      int      `pulumi:"instanceId"`
+	Name            string   `pulumi:"name"`
+	NoDefaultAlarms bool     `pulumi:"noDefaultAlarms"`
+	Nodes           int      `pulumi:"nodes"`
+	Plan            string   `pulumi:"plan"`
+	Ready           bool     `pulumi:"ready"`
+	Region          string   `pulumi:"region"`
+	RmqVersion      string   `pulumi:"rmqVersion"`
+	Tags            []string `pulumi:"tags"`
+	Url             string   `pulumi:"url"`
+	Vhost           string   `pulumi:"vhost"`
+	VpcId           int      `pulumi:"vpcId"`
+	VpcSubnet       string   `pulumi:"vpcSubnet"`
 }

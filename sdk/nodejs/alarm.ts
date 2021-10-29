@@ -50,7 +50,7 @@ import * as utilities from "./utilities";
  * Optional argument for all alarms: *tags*, *queue_regex*, *vhost_regex*
  *
  * | Name | Type | Shared | Dedicated | Required arguments |
- * | ---- | ---- | ---- | ---- | ---- | ---- |
+ * | ---- | ---- | ---- | ---- | ---- |
  * | CPU | cpu | - | &#10004; | time_threshold, valueThreshold |
  * | Memory | memory | - | &#10004;  | time_threshold, valueThreshold |
  * | Disk space | disk | - | &#10004;  | time_threshold, valueThreshold |

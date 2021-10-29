@@ -130,6 +130,44 @@ class Plugin(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        This resource allows you to enable or disable Rabbit MQ plugins.
+
+        Only available for dedicated subscription plans.
+
+        ⚠️  From our go API wrapper [v1.4.0](https://github.com/84codes/go-api/releases/tag/v1.4.0) there is support for multiple retries when requesting information about plugins. This was introduced to avoid `ReadPlugin error 400: Timeout talking to backend`.
+
+        **Enable multiple plugins:** Rabbit MQ can only change one plugin at a time. It will fail if multiple plugins resources are used, unless by creating dependencies with `depend_on` between the resources. Once one plugin has been enabled, the other will continue. See example below.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        rabbitmq_top = cloudamqp.Plugin("rabbitmqTop",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            enabled=True)
+        ```
+
+        **Enable multiple plugins**
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        rabbitmq_top = cloudamqp.Plugin("rabbitmqTop",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            enabled=True)
+        rabbitmq_amqp10 = cloudamqp.Plugin("rabbitmqAmqp10",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            enabled=True,
+            opts=pulumi.ResourceOptions(depends_on=[rabbitmq_top]))
+        ```
+        ## Dependency
+
+        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+        If multiple plugins should be enable, create dependencies between the plugin resources. See example above.
+
         ## Import
 
         `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
@@ -151,6 +189,44 @@ class Plugin(pulumi.CustomResource):
                  args: PluginArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        This resource allows you to enable or disable Rabbit MQ plugins.
+
+        Only available for dedicated subscription plans.
+
+        ⚠️  From our go API wrapper [v1.4.0](https://github.com/84codes/go-api/releases/tag/v1.4.0) there is support for multiple retries when requesting information about plugins. This was introduced to avoid `ReadPlugin error 400: Timeout talking to backend`.
+
+        **Enable multiple plugins:** Rabbit MQ can only change one plugin at a time. It will fail if multiple plugins resources are used, unless by creating dependencies with `depend_on` between the resources. Once one plugin has been enabled, the other will continue. See example below.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        rabbitmq_top = cloudamqp.Plugin("rabbitmqTop",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            enabled=True)
+        ```
+
+        **Enable multiple plugins**
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        rabbitmq_top = cloudamqp.Plugin("rabbitmqTop",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            enabled=True)
+        rabbitmq_amqp10 = cloudamqp.Plugin("rabbitmqAmqp10",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            enabled=True,
+            opts=pulumi.ResourceOptions(depends_on=[rabbitmq_top]))
+        ```
+        ## Dependency
+
+        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+        If multiple plugins should be enable, create dependencies between the plugin resources. See example above.
+
         ## Import
 
         `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.

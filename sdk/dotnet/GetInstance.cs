@@ -26,6 +26,7 @@ namespace Pulumi.CloudAmqp
         /// * `name`        - The name of the CloudAMQP instance.
         /// * `plan`        - The subscription plan for the CloudAMQP instance.
         /// * `region`      - The cloud platform and region that host the CloudAMQP instance, `{platform}::{region}`.
+        /// * `vpc_id`      - ID of the VPC configured for the CloudAMQP instance.
         /// * `vpc_subnet`  - Dedicated VPC subnet configured for the CloudAMQP instance.
         /// * `nodes`       - Number of nodes in the cluster of the CloudAMQP instance.
         /// * `rmq_version` - The version of installed Rabbit MQ.
@@ -63,13 +64,16 @@ namespace Pulumi.CloudAmqp
         public readonly string Id;
         public readonly int InstanceId;
         public readonly string Name;
+        public readonly bool NoDefaultAlarms;
         public readonly int Nodes;
         public readonly string Plan;
+        public readonly bool Ready;
         public readonly string Region;
         public readonly string RmqVersion;
         public readonly ImmutableArray<string> Tags;
         public readonly string Url;
         public readonly string Vhost;
+        public readonly int VpcId;
         public readonly string VpcSubnet;
 
         [OutputConstructor]
@@ -86,9 +90,13 @@ namespace Pulumi.CloudAmqp
 
             string name,
 
+            bool noDefaultAlarms,
+
             int nodes,
 
             string plan,
+
+            bool ready,
 
             string region,
 
@@ -100,6 +108,8 @@ namespace Pulumi.CloudAmqp
 
             string vhost,
 
+            int vpcId,
+
             string vpcSubnet)
         {
             Apikey = apikey;
@@ -108,13 +118,16 @@ namespace Pulumi.CloudAmqp
             Id = id;
             InstanceId = instanceId;
             Name = name;
+            NoDefaultAlarms = noDefaultAlarms;
             Nodes = nodes;
             Plan = plan;
+            Ready = ready;
             Region = region;
             RmqVersion = rmqVersion;
             Tags = tags;
             Url = url;
             Vhost = vhost;
+            VpcId = vpcId;
             VpcSubnet = vpcSubnet;
         }
     }

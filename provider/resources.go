@@ -65,7 +65,7 @@ func refProviderLicense(license tfbridge.TFProviderLicense) *tfbridge.TFProvider
 }
 
 func Provider() tfbridge.ProviderInfo {
-	p := shimv1.NewProvider(cloudamqp.Provider())
+	p := shimv1.NewProvider(cloudamqp.Provider(""))
 	prov := tfbridge.ProviderInfo{
 		P:                 p,
 		Name:              "cloudamqp",
@@ -88,6 +88,7 @@ func Provider() tfbridge.ProviderInfo {
 			"cloudamqp_integration_log":    {Tok: makeResource(mainMod, "IntegrationLog")},
 			"cloudamqp_integration_metric": {Tok: makeResource(mainMod, "IntegrationMetric")},
 			"cloudamqp_webhook":            {Tok: makeResource(mainMod, "Webhook")},
+			"cloudamqp_custom_domain":      {Tok: makeResource(mainMod, "CustomDomain")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"cloudamqp_credentials":       {Tok: makeDataSource(mainMod, "getCredentials")},
@@ -98,6 +99,7 @@ func Provider() tfbridge.ProviderInfo {
 			"cloudamqp_notification":      {Tok: makeDataSource(mainMod, "getNotification")},
 			"cloudamqp_alarm":             {Tok: makeDataSource(mainMod, "getAlarm")},
 			"cloudamqp_nodes":             {Tok: makeDataSource(mainMod, "getNodes")},
+			"cloudamqp_account":           {Tok: makeDataSource(mainMod, "getAccount")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			Dependencies: map[string]string{

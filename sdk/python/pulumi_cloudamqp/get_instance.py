@@ -19,7 +19,7 @@ class GetInstanceResult:
     """
     A collection of values returned by getInstance.
     """
-    def __init__(__self__, apikey=None, dedicated=None, host=None, id=None, instance_id=None, name=None, nodes=None, plan=None, region=None, rmq_version=None, tags=None, url=None, vhost=None, vpc_subnet=None):
+    def __init__(__self__, apikey=None, dedicated=None, host=None, id=None, instance_id=None, name=None, no_default_alarms=None, nodes=None, plan=None, ready=None, region=None, rmq_version=None, tags=None, url=None, vhost=None, vpc_id=None, vpc_subnet=None):
         if apikey and not isinstance(apikey, str):
             raise TypeError("Expected argument 'apikey' to be a str")
         pulumi.set(__self__, "apikey", apikey)
@@ -38,12 +38,18 @@ class GetInstanceResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if no_default_alarms and not isinstance(no_default_alarms, bool):
+            raise TypeError("Expected argument 'no_default_alarms' to be a bool")
+        pulumi.set(__self__, "no_default_alarms", no_default_alarms)
         if nodes and not isinstance(nodes, int):
             raise TypeError("Expected argument 'nodes' to be a int")
         pulumi.set(__self__, "nodes", nodes)
         if plan and not isinstance(plan, str):
             raise TypeError("Expected argument 'plan' to be a str")
         pulumi.set(__self__, "plan", plan)
+        if ready and not isinstance(ready, bool):
+            raise TypeError("Expected argument 'ready' to be a bool")
+        pulumi.set(__self__, "ready", ready)
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
@@ -59,6 +65,9 @@ class GetInstanceResult:
         if vhost and not isinstance(vhost, str):
             raise TypeError("Expected argument 'vhost' to be a str")
         pulumi.set(__self__, "vhost", vhost)
+        if vpc_id and not isinstance(vpc_id, int):
+            raise TypeError("Expected argument 'vpc_id' to be a int")
+        pulumi.set(__self__, "vpc_id", vpc_id)
         if vpc_subnet and not isinstance(vpc_subnet, str):
             raise TypeError("Expected argument 'vpc_subnet' to be a str")
         pulumi.set(__self__, "vpc_subnet", vpc_subnet)
@@ -97,6 +106,11 @@ class GetInstanceResult:
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="noDefaultAlarms")
+    def no_default_alarms(self) -> bool:
+        return pulumi.get(self, "no_default_alarms")
+
+    @property
     @pulumi.getter
     def nodes(self) -> int:
         return pulumi.get(self, "nodes")
@@ -105,6 +119,11 @@ class GetInstanceResult:
     @pulumi.getter
     def plan(self) -> str:
         return pulumi.get(self, "plan")
+
+    @property
+    @pulumi.getter
+    def ready(self) -> bool:
+        return pulumi.get(self, "ready")
 
     @property
     @pulumi.getter
@@ -132,6 +151,11 @@ class GetInstanceResult:
         return pulumi.get(self, "vhost")
 
     @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> int:
+        return pulumi.get(self, "vpc_id")
+
+    @property
     @pulumi.getter(name="vpcSubnet")
     def vpc_subnet(self) -> str:
         return pulumi.get(self, "vpc_subnet")
@@ -149,13 +173,16 @@ class AwaitableGetInstanceResult(GetInstanceResult):
             id=self.id,
             instance_id=self.instance_id,
             name=self.name,
+            no_default_alarms=self.no_default_alarms,
             nodes=self.nodes,
             plan=self.plan,
+            ready=self.ready,
             region=self.region,
             rmq_version=self.rmq_version,
             tags=self.tags,
             url=self.url,
             vhost=self.vhost,
+            vpc_id=self.vpc_id,
             vpc_subnet=self.vpc_subnet)
 
 
@@ -176,6 +203,7 @@ def get_instance(instance_id: Optional[int] = None,
     * `name`        - The name of the CloudAMQP instance.
     * `plan`        - The subscription plan for the CloudAMQP instance.
     * `region`      - The cloud platform and region that host the CloudAMQP instance, `{platform}::{region}`.
+    * `vpc_id`      - ID of the VPC configured for the CloudAMQP instance.
     * `vpc_subnet`  - Dedicated VPC subnet configured for the CloudAMQP instance.
     * `nodes`       - Number of nodes in the cluster of the CloudAMQP instance.
     * `rmq_version` - The version of installed Rabbit MQ.
@@ -200,11 +228,14 @@ def get_instance(instance_id: Optional[int] = None,
         id=__ret__.id,
         instance_id=__ret__.instance_id,
         name=__ret__.name,
+        no_default_alarms=__ret__.no_default_alarms,
         nodes=__ret__.nodes,
         plan=__ret__.plan,
+        ready=__ret__.ready,
         region=__ret__.region,
         rmq_version=__ret__.rmq_version,
         tags=__ret__.tags,
         url=__ret__.url,
         vhost=__ret__.vhost,
+        vpc_id=__ret__.vpc_id,
         vpc_subnet=__ret__.vpc_subnet)
