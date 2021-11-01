@@ -9,6 +9,8 @@ import * as utilities from "./utilities";
  *
  * Only available for dedicated subscription plans.
  *
+ * ⚠️  From our go API wrapper [v1.5.0](https://github.com/84codes/go-api/releases/tag/v1.5.0) there is support for multiple retries when requesting information about community plugins. This was introduced to avoid `ReadPluginCommunity error 400: Timeout talking to backend`.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -69,7 +71,7 @@ export class PluginCommunity extends pulumi.CustomResource {
      */
     public readonly instanceId!: pulumi.Output<number>;
     /**
-     * The name of the Rabbit MQ plugin.
+     * The name of the Rabbit MQ community plugin.
      */
     public readonly name!: pulumi.Output<string>;
 
@@ -121,7 +123,7 @@ export interface PluginCommunityState {
      */
     instanceId?: pulumi.Input<number>;
     /**
-     * The name of the Rabbit MQ plugin.
+     * The name of the Rabbit MQ community plugin.
      */
     name?: pulumi.Input<string>;
 }
@@ -139,7 +141,7 @@ export interface PluginCommunityArgs {
      */
     instanceId: pulumi.Input<number>;
     /**
-     * The name of the Rabbit MQ plugin.
+     * The name of the Rabbit MQ community plugin.
      */
     name?: pulumi.Input<string>;
 }

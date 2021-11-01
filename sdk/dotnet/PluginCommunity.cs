@@ -14,6 +14,8 @@ namespace Pulumi.CloudAmqp
     /// 
     /// Only available for dedicated subscription plans.
     /// 
+    /// ⚠️  From our go API wrapper [v1.5.0](https://github.com/84codes/go-api/releases/tag/v1.5.0) there is support for multiple retries when requesting information about community plugins. This was introduced to avoid `ReadPluginCommunity error 400: Timeout talking to backend`.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -61,7 +63,7 @@ namespace Pulumi.CloudAmqp
         public Output<int> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the Rabbit MQ plugin.
+        /// The name of the Rabbit MQ community plugin.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -125,7 +127,7 @@ namespace Pulumi.CloudAmqp
         public Input<int> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// The name of the Rabbit MQ plugin.
+        /// The name of the Rabbit MQ community plugin.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -150,7 +152,7 @@ namespace Pulumi.CloudAmqp
         public Input<int>? InstanceId { get; set; }
 
         /// <summary>
-        /// The name of the Rabbit MQ plugin.
+        /// The name of the Rabbit MQ community plugin.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

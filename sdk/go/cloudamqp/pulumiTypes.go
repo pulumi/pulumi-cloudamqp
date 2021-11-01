@@ -134,6 +134,124 @@ func (o SecurityFirewallRuleArrayOutput) Index(i pulumi.IntInput) SecurityFirewa
 	}).(SecurityFirewallRuleOutput)
 }
 
+type GetAccountInstance struct {
+	Id     int      `pulumi:"id"`
+	Name   string   `pulumi:"name"`
+	Plan   string   `pulumi:"plan"`
+	Region string   `pulumi:"region"`
+	Tags   []string `pulumi:"tags"`
+}
+
+// GetAccountInstanceInput is an input type that accepts GetAccountInstanceArgs and GetAccountInstanceOutput values.
+// You can construct a concrete instance of `GetAccountInstanceInput` via:
+//
+//          GetAccountInstanceArgs{...}
+type GetAccountInstanceInput interface {
+	pulumi.Input
+
+	ToGetAccountInstanceOutput() GetAccountInstanceOutput
+	ToGetAccountInstanceOutputWithContext(context.Context) GetAccountInstanceOutput
+}
+
+type GetAccountInstanceArgs struct {
+	Id     pulumi.IntInput         `pulumi:"id"`
+	Name   pulumi.StringInput      `pulumi:"name"`
+	Plan   pulumi.StringInput      `pulumi:"plan"`
+	Region pulumi.StringInput      `pulumi:"region"`
+	Tags   pulumi.StringArrayInput `pulumi:"tags"`
+}
+
+func (GetAccountInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountInstance)(nil)).Elem()
+}
+
+func (i GetAccountInstanceArgs) ToGetAccountInstanceOutput() GetAccountInstanceOutput {
+	return i.ToGetAccountInstanceOutputWithContext(context.Background())
+}
+
+func (i GetAccountInstanceArgs) ToGetAccountInstanceOutputWithContext(ctx context.Context) GetAccountInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccountInstanceOutput)
+}
+
+// GetAccountInstanceArrayInput is an input type that accepts GetAccountInstanceArray and GetAccountInstanceArrayOutput values.
+// You can construct a concrete instance of `GetAccountInstanceArrayInput` via:
+//
+//          GetAccountInstanceArray{ GetAccountInstanceArgs{...} }
+type GetAccountInstanceArrayInput interface {
+	pulumi.Input
+
+	ToGetAccountInstanceArrayOutput() GetAccountInstanceArrayOutput
+	ToGetAccountInstanceArrayOutputWithContext(context.Context) GetAccountInstanceArrayOutput
+}
+
+type GetAccountInstanceArray []GetAccountInstanceInput
+
+func (GetAccountInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccountInstance)(nil)).Elem()
+}
+
+func (i GetAccountInstanceArray) ToGetAccountInstanceArrayOutput() GetAccountInstanceArrayOutput {
+	return i.ToGetAccountInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i GetAccountInstanceArray) ToGetAccountInstanceArrayOutputWithContext(ctx context.Context) GetAccountInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccountInstanceArrayOutput)
+}
+
+type GetAccountInstanceOutput struct{ *pulumi.OutputState }
+
+func (GetAccountInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountInstance)(nil)).Elem()
+}
+
+func (o GetAccountInstanceOutput) ToGetAccountInstanceOutput() GetAccountInstanceOutput {
+	return o
+}
+
+func (o GetAccountInstanceOutput) ToGetAccountInstanceOutputWithContext(ctx context.Context) GetAccountInstanceOutput {
+	return o
+}
+
+func (o GetAccountInstanceOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAccountInstance) int { return v.Id }).(pulumi.IntOutput)
+}
+
+func (o GetAccountInstanceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountInstance) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetAccountInstanceOutput) Plan() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountInstance) string { return v.Plan }).(pulumi.StringOutput)
+}
+
+func (o GetAccountInstanceOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountInstance) string { return v.Region }).(pulumi.StringOutput)
+}
+
+func (o GetAccountInstanceOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAccountInstance) []string { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+type GetAccountInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAccountInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccountInstance)(nil)).Elem()
+}
+
+func (o GetAccountInstanceArrayOutput) ToGetAccountInstanceArrayOutput() GetAccountInstanceArrayOutput {
+	return o
+}
+
+func (o GetAccountInstanceArrayOutput) ToGetAccountInstanceArrayOutputWithContext(ctx context.Context) GetAccountInstanceArrayOutput {
+	return o
+}
+
+func (o GetAccountInstanceArrayOutput) Index(i pulumi.IntInput) GetAccountInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAccountInstance {
+		return vs[0].([]GetAccountInstance)[vs[1].(int)]
+	}).(GetAccountInstanceOutput)
+}
+
 type GetNodesNode struct {
 	Configured      bool   `pulumi:"configured"`
 	ErlangVersion   string `pulumi:"erlangVersion"`
@@ -485,6 +603,8 @@ func (o GetPluginsPluginArrayOutput) Index(i pulumi.IntInput) GetPluginsPluginOu
 func init() {
 	pulumi.RegisterOutputType(SecurityFirewallRuleOutput{})
 	pulumi.RegisterOutputType(SecurityFirewallRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetAccountInstanceOutput{})
+	pulumi.RegisterOutputType(GetAccountInstanceArrayOutput{})
 	pulumi.RegisterOutputType(GetNodesNodeOutput{})
 	pulumi.RegisterOutputType(GetNodesNodeArrayOutput{})
 	pulumi.RegisterOutputType(GetPluginsCommunityPluginOutput{})

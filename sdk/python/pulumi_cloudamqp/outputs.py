@@ -10,6 +10,7 @@ from . import _utilities
 
 __all__ = [
     'SecurityFirewallRule',
+    'GetAccountInstanceResult',
     'GetNodesNodeResult',
     'GetPluginsCommunityPluginResult',
     'GetPluginsPluginResult',
@@ -67,6 +68,47 @@ class SecurityFirewallRule(dict):
         Pre-defined service ports
         """
         return pulumi.get(self, "services")
+
+
+@pulumi.output_type
+class GetAccountInstanceResult(dict):
+    def __init__(__self__, *,
+                 id: int,
+                 name: str,
+                 plan: str,
+                 region: str,
+                 tags: Optional[Sequence[str]] = None):
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "plan", plan)
+        pulumi.set(__self__, "region", region)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def plan(self) -> str:
+        return pulumi.get(self, "plan")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "tags")
 
 
 @pulumi.output_type

@@ -2,7 +2,8 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Upgrade to v1.12.0 of the CloudAMQP Terraform Provider
+
 
 ---
 

@@ -6,6 +6,8 @@ from . import _utilities
 import typing
 # Export this package's modules as members:
 from .alarm import *
+from .custom_domain import *
+from .get_account import *
 from .get_alarm import *
 from .get_credentials import *
 from .get_instance import *
@@ -42,6 +44,14 @@ _utilities.register(
   "fqn": "pulumi_cloudamqp",
   "classes": {
    "cloudamqp:index/alarm:Alarm": "Alarm"
+  }
+ },
+ {
+  "pkg": "cloudamqp",
+  "mod": "index/customDomain",
+  "fqn": "pulumi_cloudamqp",
+  "classes": {
+   "cloudamqp:index/customDomain:CustomDomain": "CustomDomain"
   }
  },
  {

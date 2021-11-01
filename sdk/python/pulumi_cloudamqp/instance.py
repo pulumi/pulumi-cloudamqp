@@ -20,6 +20,7 @@ class InstanceArgs:
                  nodes: Optional[pulumi.Input[int]] = None,
                  rmq_version: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 vpc_id: Optional[pulumi.Input[int]] = None,
                  vpc_subnet: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Instance resource.
@@ -27,9 +28,10 @@ class InstanceArgs:
         :param pulumi.Input[str] region: The region to host the instance in. See Instance regions
         :param pulumi.Input[str] name: Name of the CloudAMQP instance.
         :param pulumi.Input[bool] no_default_alarms: Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
-        :param pulumi.Input[int] nodes: Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
+        :param pulumi.Input[int] nodes: Number of nodes, 1, 3 or 5 depending on plan used. **DEPRECATED. Old subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.**
         :param pulumi.Input[str] rmq_version: The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
+        :param pulumi.Input[int] vpc_id: The VPC ID. Use this to create your instance in an existing VPC. See available example.
         :param pulumi.Input[str] vpc_subnet: Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
         """
         pulumi.set(__self__, "plan", plan)
@@ -44,6 +46,8 @@ class InstanceArgs:
             pulumi.set(__self__, "rmq_version", rmq_version)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if vpc_id is not None:
+            pulumi.set(__self__, "vpc_id", vpc_id)
         if vpc_subnet is not None:
             pulumi.set(__self__, "vpc_subnet", vpc_subnet)
 
@@ -99,7 +103,7 @@ class InstanceArgs:
     @pulumi.getter
     def nodes(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
+        Number of nodes, 1, 3 or 5 depending on plan used. **DEPRECATED. Old subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.**
         """
         return pulumi.get(self, "nodes")
 
@@ -132,6 +136,18 @@ class InstanceArgs:
         pulumi.set(self, "tags", value)
 
     @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        The VPC ID. Use this to create your instance in an existing VPC. See available example.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @vpc_id.setter
+    def vpc_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "vpc_id", value)
+
+    @property
     @pulumi.getter(name="vpcSubnet")
     def vpc_subnet(self) -> Optional[pulumi.Input[str]]:
         """
@@ -160,6 +176,7 @@ class _InstanceState:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  url: Optional[pulumi.Input[str]] = None,
                  vhost: Optional[pulumi.Input[str]] = None,
+                 vpc_id: Optional[pulumi.Input[int]] = None,
                  vpc_subnet: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
@@ -168,7 +185,7 @@ class _InstanceState:
         :param pulumi.Input[str] host: The host name for the CloudAMQP instance.
         :param pulumi.Input[str] name: Name of the CloudAMQP instance.
         :param pulumi.Input[bool] no_default_alarms: Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
-        :param pulumi.Input[int] nodes: Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
+        :param pulumi.Input[int] nodes: Number of nodes, 1, 3 or 5 depending on plan used. **DEPRECATED. Old subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.**
         :param pulumi.Input[str] plan: The subscription plan. See available plans
         :param pulumi.Input[bool] ready: Flag describing if the resource is ready
         :param pulumi.Input[str] region: The region to host the instance in. See Instance regions
@@ -176,6 +193,7 @@ class _InstanceState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
         :param pulumi.Input[str] url: AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
         :param pulumi.Input[str] vhost: The virtual host used by Rabbit MQ.
+        :param pulumi.Input[int] vpc_id: The VPC ID. Use this to create your instance in an existing VPC. See available example.
         :param pulumi.Input[str] vpc_subnet: Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
         """
         if apikey is not None:
@@ -204,6 +222,8 @@ class _InstanceState:
             pulumi.set(__self__, "url", url)
         if vhost is not None:
             pulumi.set(__self__, "vhost", vhost)
+        if vpc_id is not None:
+            pulumi.set(__self__, "vpc_id", vpc_id)
         if vpc_subnet is not None:
             pulumi.set(__self__, "vpc_subnet", vpc_subnet)
 
@@ -271,7 +291,7 @@ class _InstanceState:
     @pulumi.getter
     def nodes(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
+        Number of nodes, 1, 3 or 5 depending on plan used. **DEPRECATED. Old subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.**
         """
         return pulumi.get(self, "nodes")
 
@@ -364,6 +384,18 @@ class _InstanceState:
         pulumi.set(self, "vhost", value)
 
     @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        The VPC ID. Use this to create your instance in an existing VPC. See available example.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @vpc_id.setter
+    def vpc_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "vpc_id", value)
+
+    @property
     @pulumi.getter(name="vpcSubnet")
     def vpc_subnet(self) -> Optional[pulumi.Input[str]]:
         """
@@ -388,6 +420,7 @@ class Instance(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  rmq_version: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 vpc_id: Optional[pulumi.Input[int]] = None,
                  vpc_subnet: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -408,7 +441,6 @@ class Instance(pulumi.CustomResource):
         # New dedicated bunny instance
         instance = cloudamqp.Instance("instance",
             no_default_alarms=True,
-            nodes=1,
             plan="bunny-1",
             region="amazon-web-services::us-west-1",
             rmq_version="3.8.3",
@@ -427,11 +459,12 @@ class Instance(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: Name of the CloudAMQP instance.
         :param pulumi.Input[bool] no_default_alarms: Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
-        :param pulumi.Input[int] nodes: Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
+        :param pulumi.Input[int] nodes: Number of nodes, 1, 3 or 5 depending on plan used. **DEPRECATED. Old subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.**
         :param pulumi.Input[str] plan: The subscription plan. See available plans
         :param pulumi.Input[str] region: The region to host the instance in. See Instance regions
         :param pulumi.Input[str] rmq_version: The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
+        :param pulumi.Input[int] vpc_id: The VPC ID. Use this to create your instance in an existing VPC. See available example.
         :param pulumi.Input[str] vpc_subnet: Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
         """
         ...
@@ -458,7 +491,6 @@ class Instance(pulumi.CustomResource):
         # New dedicated bunny instance
         instance = cloudamqp.Instance("instance",
             no_default_alarms=True,
-            nodes=1,
             plan="bunny-1",
             region="amazon-web-services::us-west-1",
             rmq_version="3.8.3",
@@ -495,6 +527,7 @@ class Instance(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  rmq_version: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 vpc_id: Optional[pulumi.Input[int]] = None,
                  vpc_subnet: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
@@ -519,6 +552,7 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["rmq_version"] = rmq_version
             __props__.__dict__["tags"] = tags
+            __props__.__dict__["vpc_id"] = vpc_id
             __props__.__dict__["vpc_subnet"] = vpc_subnet
             __props__.__dict__["apikey"] = None
             __props__.__dict__["dedicated"] = None
@@ -549,6 +583,7 @@ class Instance(pulumi.CustomResource):
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             url: Optional[pulumi.Input[str]] = None,
             vhost: Optional[pulumi.Input[str]] = None,
+            vpc_id: Optional[pulumi.Input[int]] = None,
             vpc_subnet: Optional[pulumi.Input[str]] = None) -> 'Instance':
         """
         Get an existing Instance resource's state with the given name, id, and optional extra
@@ -562,7 +597,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] host: The host name for the CloudAMQP instance.
         :param pulumi.Input[str] name: Name of the CloudAMQP instance.
         :param pulumi.Input[bool] no_default_alarms: Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
-        :param pulumi.Input[int] nodes: Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
+        :param pulumi.Input[int] nodes: Number of nodes, 1, 3 or 5 depending on plan used. **DEPRECATED. Old subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.**
         :param pulumi.Input[str] plan: The subscription plan. See available plans
         :param pulumi.Input[bool] ready: Flag describing if the resource is ready
         :param pulumi.Input[str] region: The region to host the instance in. See Instance regions
@@ -570,6 +605,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
         :param pulumi.Input[str] url: AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
         :param pulumi.Input[str] vhost: The virtual host used by Rabbit MQ.
+        :param pulumi.Input[int] vpc_id: The VPC ID. Use this to create your instance in an existing VPC. See available example.
         :param pulumi.Input[str] vpc_subnet: Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -589,6 +625,7 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["tags"] = tags
         __props__.__dict__["url"] = url
         __props__.__dict__["vhost"] = vhost
+        __props__.__dict__["vpc_id"] = vpc_id
         __props__.__dict__["vpc_subnet"] = vpc_subnet
         return Instance(resource_name, opts=opts, __props__=__props__)
 
@@ -634,9 +671,9 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def nodes(self) -> pulumi.Output[Optional[int]]:
+    def nodes(self) -> pulumi.Output[int]:
         """
-        Number of nodes, 1, 3 or 5. **DEPRECATED. In order to change number of nodes, the subscription `plan` needs to be updated.**
+        Number of nodes, 1, 3 or 5 depending on plan used. **DEPRECATED. Old subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.**
         """
         return pulumi.get(self, "nodes")
 
@@ -697,8 +734,16 @@ class Instance(pulumi.CustomResource):
         return pulumi.get(self, "vhost")
 
     @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> pulumi.Output[int]:
+        """
+        The VPC ID. Use this to create your instance in an existing VPC. See available example.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @property
     @pulumi.getter(name="vpcSubnet")
-    def vpc_subnet(self) -> pulumi.Output[Optional[str]]:
+    def vpc_subnet(self) -> pulumi.Output[str]:
         """
         Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**
         """
