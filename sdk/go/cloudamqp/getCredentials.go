@@ -4,6 +4,9 @@
 package cloudamqp
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,7 +24,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := cloudamqp.GetCredentials(ctx, &cloudamqp.GetCredentialsArgs{
+// 		_, err := cloudamqp.GetCredentials(ctx, &GetCredentialsArgs{
 // 			InstanceId: cloudamqp_instance.Instance.Id,
 // 		}, nil)
 // 		if err != nil {
@@ -67,4 +70,58 @@ type GetCredentialsResult struct {
 	InstanceId int    `pulumi:"instanceId"`
 	Password   string `pulumi:"password"`
 	Username   string `pulumi:"username"`
+}
+
+func GetCredentialsOutput(ctx *pulumi.Context, args GetCredentialsOutputArgs, opts ...pulumi.InvokeOption) GetCredentialsResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetCredentialsResult, error) {
+			args := v.(GetCredentialsArgs)
+			r, err := GetCredentials(ctx, &args, opts...)
+			return *r, err
+		}).(GetCredentialsResultOutput)
+}
+
+// A collection of arguments for invoking getCredentials.
+type GetCredentialsOutputArgs struct {
+	InstanceId pulumi.IntInput `pulumi:"instanceId"`
+}
+
+func (GetCredentialsOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCredentialsArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getCredentials.
+type GetCredentialsResultOutput struct{ *pulumi.OutputState }
+
+func (GetCredentialsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCredentialsResult)(nil)).Elem()
+}
+
+func (o GetCredentialsResultOutput) ToGetCredentialsResultOutput() GetCredentialsResultOutput {
+	return o
+}
+
+func (o GetCredentialsResultOutput) ToGetCredentialsResultOutputWithContext(ctx context.Context) GetCredentialsResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetCredentialsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCredentialsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetCredentialsResultOutput) InstanceId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCredentialsResult) int { return v.InstanceId }).(pulumi.IntOutput)
+}
+
+func (o GetCredentialsResultOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCredentialsResult) string { return v.Password }).(pulumi.StringOutput)
+}
+
+func (o GetCredentialsResultOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCredentialsResult) string { return v.Username }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetCredentialsResultOutput{})
 }

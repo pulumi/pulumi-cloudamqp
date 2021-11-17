@@ -12,6 +12,7 @@ __all__ = [
     'GetNotificationResult',
     'AwaitableGetNotificationResult',
     'get_notification',
+    'get_notification_output',
 ]
 
 @pulumi.output_type
@@ -138,3 +139,41 @@ def get_notification(instance_id: Optional[int] = None,
         recipient_id=__ret__.recipient_id,
         type=__ret__.type,
         value=__ret__.value)
+
+
+@_utilities.lift_output_func(get_notification)
+def get_notification_output(instance_id: Optional[pulumi.Input[int]] = None,
+                            name: Optional[pulumi.Input[Optional[str]]] = None,
+                            recipient_id: Optional[pulumi.Input[Optional[int]]] = None,
+                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNotificationResult]:
+    """
+    Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipient_id` or `name`.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    default_recipient = cloudamqp.get_notification(instance_id=cloudamqp_instance["instance"]["id"],
+        name="default")
+    ```
+    ## Argument reference
+
+    * `instance_id`   - (Required) The CloudAMQP instance identifier.
+    * `recipient_id`  - (Optional) The recipient identifier.
+    * `name`          - (Optional) The name set for the recipient.
+
+    ## Attributes reference
+
+    All attributes reference are computed
+
+    * `id`    - The identifier for this resource.
+    * `type`  - The type of the recipient.
+    * `value` - The notification endpoint, where to send the notification.
+
+    ## Dependency
+
+    This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+    """
+    ...

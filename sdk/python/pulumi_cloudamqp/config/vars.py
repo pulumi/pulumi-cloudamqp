@@ -8,20 +8,23 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
-__all__ = [
-    'apikey',
-    'baseurl',
-]
+import types
 
 __config__ = pulumi.Config('cloudamqp')
 
-apikey = __config__.get('apikey')
-"""
-Key used to authentication to the CloudAMQP Customer API
-"""
 
-baseurl = __config__.get('baseurl')
-"""
-Base URL to CloudAMQP Customer website
-"""
+class _ExportableConfig(types.ModuleType):
+    @property
+    def apikey(self) -> Optional[str]:
+        """
+        Key used to authentication to the CloudAMQP Customer API
+        """
+        return __config__.get('apikey')
+
+    @property
+    def baseurl(self) -> Optional[str]:
+        """
+        Base URL to CloudAMQP Customer website
+        """
+        return __config__.get('baseurl')
 

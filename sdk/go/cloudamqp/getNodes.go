@@ -4,6 +4,9 @@
 package cloudamqp
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,7 +24,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := cloudamqp.GetNodes(ctx, &cloudamqp.GetNodesArgs{
+// 		_, err := cloudamqp.GetNodes(ctx, &GetNodesArgs{
 // 			InstanceId: cloudamqp_instance.Instance.Id,
 // 		}, nil)
 // 		if err != nil {
@@ -77,4 +80,54 @@ type GetNodesResult struct {
 	Id         string         `pulumi:"id"`
 	InstanceId int            `pulumi:"instanceId"`
 	Nodes      []GetNodesNode `pulumi:"nodes"`
+}
+
+func GetNodesOutput(ctx *pulumi.Context, args GetNodesOutputArgs, opts ...pulumi.InvokeOption) GetNodesResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetNodesResult, error) {
+			args := v.(GetNodesArgs)
+			r, err := GetNodes(ctx, &args, opts...)
+			return *r, err
+		}).(GetNodesResultOutput)
+}
+
+// A collection of arguments for invoking getNodes.
+type GetNodesOutputArgs struct {
+	InstanceId pulumi.IntInput `pulumi:"instanceId"`
+}
+
+func (GetNodesOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getNodes.
+type GetNodesResultOutput struct{ *pulumi.OutputState }
+
+func (GetNodesResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesResult)(nil)).Elem()
+}
+
+func (o GetNodesResultOutput) ToGetNodesResultOutput() GetNodesResultOutput {
+	return o
+}
+
+func (o GetNodesResultOutput) ToGetNodesResultOutputWithContext(ctx context.Context) GetNodesResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetNodesResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetNodesResultOutput) InstanceId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodesResult) int { return v.InstanceId }).(pulumi.IntOutput)
+}
+
+func (o GetNodesResultOutput) Nodes() GetNodesNodeArrayOutput {
+	return o.ApplyT(func(v GetNodesResult) []GetNodesNode { return v.Nodes }).(GetNodesNodeArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetNodesResultOutput{})
 }

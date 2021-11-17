@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.CloudAmqp
 {
@@ -64,6 +65,60 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         public static Task<GetPluginsResult> InvokeAsync(GetPluginsArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetPluginsResult>("cloudamqp:index/getPlugins:getPlugins", args ?? new GetPluginsArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
+        /// 
+        /// ⚠️  From our go API wrapper [v1.4.0](https://github.com/84codes/go-api/releases/tag/v1.4.0) there is support for multiple retries when requesting information about plugins. This was introduced to avoid `ReadPlugin error 400: Timeout talking to backend`.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using CloudAmqp = Pulumi.CloudAmqp;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var plugins = Output.Create(CloudAmqp.GetPlugins.InvokeAsync(new CloudAmqp.GetPluginsArgs
+        ///         {
+        ///             InstanceId = cloudamqp_instance.Instance.Id,
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// ## Argument reference
+        /// 
+        /// * `instance_id` - (Required) The CloudAMQP instance identifier.
+        /// 
+        /// ## Attributes reference
+        /// 
+        /// All attributes reference are computed
+        /// 
+        /// * `id`      - The identifier for this resource.
+        /// * `plugins` - An array of plugins. Each `plugins` block consists of the fields documented below.
+        /// 
+        /// ___
+        /// 
+        /// The `plugins` block consist of
+        /// 
+        /// * `name`        - The type of the recipient.
+        /// * `version`     - Rabbit MQ version that the plugins are shipped with.
+        /// * `description` - Description of what the plugin does.
+        /// * `enabled`     - Enable or disable information for the plugin.
+        /// 
+        /// ## Dependency
+        /// 
+        /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+        /// </summary>
+        public static Output<GetPluginsResult> Invoke(GetPluginsInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetPluginsResult>("cloudamqp:index/getPlugins:getPlugins", args ?? new GetPluginsInvokeArgs(), options.WithVersion());
     }
 
 
@@ -73,6 +128,16 @@ namespace Pulumi.CloudAmqp
         public int InstanceId { get; set; }
 
         public GetPluginsArgs()
+        {
+        }
+    }
+
+    public sealed class GetPluginsInvokeArgs : Pulumi.InvokeArgs
+    {
+        [Input("instanceId", required: true)]
+        public Input<int> InstanceId { get; set; } = null!;
+
+        public GetPluginsInvokeArgs()
         {
         }
     }

@@ -13,6 +13,7 @@ __all__ = [
     'GetNodesResult',
     'AwaitableGetNodesResult',
     'get_nodes',
+    'get_nodes_output',
 ]
 
 @pulumi.output_type
@@ -113,3 +114,47 @@ def get_nodes(instance_id: Optional[int] = None,
         id=__ret__.id,
         instance_id=__ret__.instance_id,
         nodes=__ret__.nodes)
+
+
+@_utilities.lift_output_func(get_nodes)
+def get_nodes_output(instance_id: Optional[pulumi.Input[int]] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNodesResult]:
+    """
+    Use this data source to retrieve information about the node(s) created by CloudAMQP instance.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    nodes = cloudamqp.get_nodes(instance_id=cloudamqp_instance["instance"]["id"])
+    ```
+    ## Argument reference
+
+    * `instance_id` - (Required) The CloudAMQP instance identifier.
+
+    ## Attributes reference
+
+    All attributes reference are computed
+
+    * `id`    - The identifier for this resource.
+    * `nodes` - An array of node information. Each `nodes` block consists of the fields documented below.
+
+    ***
+
+    The `nodes` block consist of
+
+    * `hostname`          - Hostname assigned to the node.
+    * `name`              - Name of the node.
+    * `running`           - Is the node running?
+    * `rabbitmq_version`  - Currently configured Rabbit MQ version on the node.
+    * `erlang_version`    - Currently used Erlanbg version on the node.
+    * `hipe`              - Enable or disable High-performance Erlang.
+    * `configured`        - Is the node configured?
+
+    ## Dependency
+
+    This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+    """
+    ...

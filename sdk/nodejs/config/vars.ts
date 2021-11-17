@@ -4,13 +4,28 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-let __config = new pulumi.Config("cloudamqp");
+declare var exports: any;
+const __config = new pulumi.Config("cloudamqp");
 
 /**
  * Key used to authentication to the CloudAMQP Customer API
  */
-export let apikey: string | undefined = __config.get("apikey");
+export declare const apikey: string | undefined;
+Object.defineProperty(exports, "apikey", {
+    get() {
+        return __config.get("apikey");
+    },
+    enumerable: true,
+});
+
 /**
  * Base URL to CloudAMQP Customer website
  */
-export let baseurl: string | undefined = __config.get("baseurl");
+export declare const baseurl: string | undefined;
+Object.defineProperty(exports, "baseurl", {
+    get() {
+        return __config.get("baseurl");
+    },
+    enumerable: true,
+});
+

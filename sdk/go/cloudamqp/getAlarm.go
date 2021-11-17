@@ -4,6 +4,9 @@
 package cloudamqp
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -22,7 +25,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		opt0 := "cpu"
-// 		_, err := cloudamqp.LookupAlarm(ctx, &cloudamqp.LookupAlarmArgs{
+// 		_, err := cloudamqp.LookupAlarm(ctx, &GetAlarmArgs{
 // 			InstanceId: cloudamqp_instance.Instance.Id,
 // 			Type:       &opt0,
 // 		}, nil)
@@ -85,4 +88,88 @@ type LookupAlarmResult struct {
 	Type           *string `pulumi:"type"`
 	ValueThreshold int     `pulumi:"valueThreshold"`
 	VhostRegex     string  `pulumi:"vhostRegex"`
+}
+
+func LookupAlarmOutput(ctx *pulumi.Context, args LookupAlarmOutputArgs, opts ...pulumi.InvokeOption) LookupAlarmResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupAlarmResult, error) {
+			args := v.(LookupAlarmArgs)
+			r, err := LookupAlarm(ctx, &args, opts...)
+			return *r, err
+		}).(LookupAlarmResultOutput)
+}
+
+// A collection of arguments for invoking getAlarm.
+type LookupAlarmOutputArgs struct {
+	AlarmId    pulumi.IntPtrInput    `pulumi:"alarmId"`
+	InstanceId pulumi.IntInput       `pulumi:"instanceId"`
+	Type       pulumi.StringPtrInput `pulumi:"type"`
+}
+
+func (LookupAlarmOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupAlarmArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getAlarm.
+type LookupAlarmResultOutput struct{ *pulumi.OutputState }
+
+func (LookupAlarmResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupAlarmResult)(nil)).Elem()
+}
+
+func (o LookupAlarmResultOutput) ToLookupAlarmResultOutput() LookupAlarmResultOutput {
+	return o
+}
+
+func (o LookupAlarmResultOutput) ToLookupAlarmResultOutputWithContext(ctx context.Context) LookupAlarmResultOutput {
+	return o
+}
+
+func (o LookupAlarmResultOutput) AlarmId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v LookupAlarmResult) *int { return v.AlarmId }).(pulumi.IntPtrOutput)
+}
+
+func (o LookupAlarmResultOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupAlarmResult) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupAlarmResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAlarmResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupAlarmResultOutput) InstanceId() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupAlarmResult) int { return v.InstanceId }).(pulumi.IntOutput)
+}
+
+func (o LookupAlarmResultOutput) MessageType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAlarmResult) string { return v.MessageType }).(pulumi.StringOutput)
+}
+
+func (o LookupAlarmResultOutput) QueueRegex() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAlarmResult) string { return v.QueueRegex }).(pulumi.StringOutput)
+}
+
+func (o LookupAlarmResultOutput) Recipients() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v LookupAlarmResult) []int { return v.Recipients }).(pulumi.IntArrayOutput)
+}
+
+func (o LookupAlarmResultOutput) TimeThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupAlarmResult) int { return v.TimeThreshold }).(pulumi.IntOutput)
+}
+
+func (o LookupAlarmResultOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupAlarmResult) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupAlarmResultOutput) ValueThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupAlarmResult) int { return v.ValueThreshold }).(pulumi.IntOutput)
+}
+
+func (o LookupAlarmResultOutput) VhostRegex() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAlarmResult) string { return v.VhostRegex }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupAlarmResultOutput{})
 }

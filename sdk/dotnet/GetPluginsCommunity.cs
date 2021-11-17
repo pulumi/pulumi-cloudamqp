@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.CloudAmqp
 {
@@ -63,6 +64,59 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         public static Task<GetPluginsCommunityResult> InvokeAsync(GetPluginsCommunityArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetPluginsCommunityResult>("cloudamqp:index/getPluginsCommunity:getPluginsCommunity", args ?? new GetPluginsCommunityArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
+        /// 
+        /// ⚠️  From our go API wrapper [v1.5.0](https://github.com/84codes/go-api/releases/tag/v1.5.0) there is support for multiple retries when requesting information about community plugins. This was introduced to avoid `ReadPluginCommunity error 400: Timeout talking to backend`.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using CloudAmqp = Pulumi.CloudAmqp;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var communitPlugins = Output.Create(CloudAmqp.GetPluginsCommunity.InvokeAsync(new CloudAmqp.GetPluginsCommunityArgs
+        ///         {
+        ///             InstanceId = cloudamqp_instance.Instance.Id,
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// ## Argument reference
+        /// 
+        /// * `instance_id` - (Required) The CloudAMQP instance identifier.
+        /// 
+        /// ## Attributes reference
+        /// 
+        /// All attributes reference are computed
+        /// 
+        /// * `id`      - The identifier for this resource.
+        /// * `plugins` - An array of community plugins. Each `plugins` block consists of the fields documented below.
+        /// 
+        /// ___
+        /// 
+        /// The `plugins` block consists of
+        /// 
+        /// * `name`        - The type of the recipient.
+        /// * `require`     - Min. required Rabbit MQ version to be used.
+        /// * `description` - Description of what the plugin does.
+        /// 
+        /// ## Dependency
+        /// 
+        /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+        /// </summary>
+        public static Output<GetPluginsCommunityResult> Invoke(GetPluginsCommunityInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetPluginsCommunityResult>("cloudamqp:index/getPluginsCommunity:getPluginsCommunity", args ?? new GetPluginsCommunityInvokeArgs(), options.WithVersion());
     }
 
 
@@ -72,6 +126,16 @@ namespace Pulumi.CloudAmqp
         public int InstanceId { get; set; }
 
         public GetPluginsCommunityArgs()
+        {
+        }
+    }
+
+    public sealed class GetPluginsCommunityInvokeArgs : Pulumi.InvokeArgs
+    {
+        [Input("instanceId", required: true)]
+        public Input<int> InstanceId { get; set; } = null!;
+
+        public GetPluginsCommunityInvokeArgs()
         {
         }
     }

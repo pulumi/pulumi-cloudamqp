@@ -12,6 +12,7 @@ __all__ = [
     'GetInstanceResult',
     'AwaitableGetInstanceResult',
     'get_instance',
+    'get_instance_output',
 ]
 
 @pulumi.output_type
@@ -239,3 +240,34 @@ def get_instance(instance_id: Optional[int] = None,
         vhost=__ret__.vhost,
         vpc_id=__ret__.vpc_id,
         vpc_subnet=__ret__.vpc_subnet)
+
+
+@_utilities.lift_output_func(get_instance)
+def get_instance_output(instance_id: Optional[pulumi.Input[int]] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceResult]:
+    """
+    Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.
+
+    ## Argument reference
+
+    * `instance_id` - (Required) The CloudAMQP instance identifier.
+
+    ## Attributes reference
+
+    All attributes reference are computed
+
+    * `id`          - The identifier for this resource.
+    * `name`        - The name of the CloudAMQP instance.
+    * `plan`        - The subscription plan for the CloudAMQP instance.
+    * `region`      - The cloud platform and region that host the CloudAMQP instance, `{platform}::{region}`.
+    * `vpc_id`      - ID of the VPC configured for the CloudAMQP instance.
+    * `vpc_subnet`  - Dedicated VPC subnet configured for the CloudAMQP instance.
+    * `nodes`       - Number of nodes in the cluster of the CloudAMQP instance.
+    * `rmq_version` - The version of installed Rabbit MQ.
+    * `url`         - (Sensitive) The AMQP url, used by clients to connect for pub/sub.
+    * `apikey`      - (Sensitive) The API key to secondary API handing alarms, integration etc.
+    * `tags`        - Tags the CloudAMQP instance with categories.
+    * `host`        - The hostname for the CloudAMQP instance.
+    * `vhost`       - The virtual host configured in Rabbit MQ.
+    """
+    ...

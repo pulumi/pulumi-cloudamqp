@@ -166,7 +166,7 @@ type VpcPeeringArrayInput interface {
 type VpcPeeringArray []VpcPeeringInput
 
 func (VpcPeeringArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*VpcPeering)(nil))
+	return reflect.TypeOf((*[]*VpcPeering)(nil)).Elem()
 }
 
 func (i VpcPeeringArray) ToVpcPeeringArrayOutput() VpcPeeringArrayOutput {
@@ -191,7 +191,7 @@ type VpcPeeringMapInput interface {
 type VpcPeeringMap map[string]VpcPeeringInput
 
 func (VpcPeeringMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*VpcPeering)(nil))
+	return reflect.TypeOf((*map[string]*VpcPeering)(nil)).Elem()
 }
 
 func (i VpcPeeringMap) ToVpcPeeringMapOutput() VpcPeeringMapOutput {
@@ -202,9 +202,7 @@ func (i VpcPeeringMap) ToVpcPeeringMapOutputWithContext(ctx context.Context) Vpc
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPeeringMapOutput)
 }
 
-type VpcPeeringOutput struct {
-	*pulumi.OutputState
-}
+type VpcPeeringOutput struct{ *pulumi.OutputState }
 
 func (VpcPeeringOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*VpcPeering)(nil))
@@ -223,14 +221,12 @@ func (o VpcPeeringOutput) ToVpcPeeringPtrOutput() VpcPeeringPtrOutput {
 }
 
 func (o VpcPeeringOutput) ToVpcPeeringPtrOutputWithContext(ctx context.Context) VpcPeeringPtrOutput {
-	return o.ApplyT(func(v VpcPeering) *VpcPeering {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v VpcPeering) *VpcPeering {
 		return &v
 	}).(VpcPeeringPtrOutput)
 }
 
-type VpcPeeringPtrOutput struct {
-	*pulumi.OutputState
-}
+type VpcPeeringPtrOutput struct{ *pulumi.OutputState }
 
 func (VpcPeeringPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**VpcPeering)(nil))
@@ -242,6 +238,16 @@ func (o VpcPeeringPtrOutput) ToVpcPeeringPtrOutput() VpcPeeringPtrOutput {
 
 func (o VpcPeeringPtrOutput) ToVpcPeeringPtrOutputWithContext(ctx context.Context) VpcPeeringPtrOutput {
 	return o
+}
+
+func (o VpcPeeringPtrOutput) Elem() VpcPeeringOutput {
+	return o.ApplyT(func(v *VpcPeering) VpcPeering {
+		if v != nil {
+			return *v
+		}
+		var ret VpcPeering
+		return ret
+	}).(VpcPeeringOutput)
 }
 
 type VpcPeeringArrayOutput struct{ *pulumi.OutputState }
@@ -285,6 +291,10 @@ func (o VpcPeeringMapOutput) MapIndex(k pulumi.StringInput) VpcPeeringOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcPeeringInput)(nil)).Elem(), &VpcPeering{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcPeeringPtrInput)(nil)).Elem(), &VpcPeering{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcPeeringArrayInput)(nil)).Elem(), VpcPeeringArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcPeeringMapInput)(nil)).Elem(), VpcPeeringMap{})
 	pulumi.RegisterOutputType(VpcPeeringOutput{})
 	pulumi.RegisterOutputType(VpcPeeringPtrOutput{})
 	pulumi.RegisterOutputType(VpcPeeringArrayOutput{})

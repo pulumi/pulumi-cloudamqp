@@ -4,6 +4,9 @@
 package cloudamqp
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -64,4 +67,110 @@ type LookupInstanceResult struct {
 	Vhost           string   `pulumi:"vhost"`
 	VpcId           int      `pulumi:"vpcId"`
 	VpcSubnet       string   `pulumi:"vpcSubnet"`
+}
+
+func LookupInstanceOutput(ctx *pulumi.Context, args LookupInstanceOutputArgs, opts ...pulumi.InvokeOption) LookupInstanceResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupInstanceResult, error) {
+			args := v.(LookupInstanceArgs)
+			r, err := LookupInstance(ctx, &args, opts...)
+			return *r, err
+		}).(LookupInstanceResultOutput)
+}
+
+// A collection of arguments for invoking getInstance.
+type LookupInstanceOutputArgs struct {
+	InstanceId pulumi.IntInput `pulumi:"instanceId"`
+}
+
+func (LookupInstanceOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupInstanceArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getInstance.
+type LookupInstanceResultOutput struct{ *pulumi.OutputState }
+
+func (LookupInstanceResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupInstanceResult)(nil)).Elem()
+}
+
+func (o LookupInstanceResultOutput) ToLookupInstanceResultOutput() LookupInstanceResultOutput {
+	return o
+}
+
+func (o LookupInstanceResultOutput) ToLookupInstanceResultOutputWithContext(ctx context.Context) LookupInstanceResultOutput {
+	return o
+}
+
+func (o LookupInstanceResultOutput) Apikey() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInstanceResult) string { return v.Apikey }).(pulumi.StringOutput)
+}
+
+func (o LookupInstanceResultOutput) Dedicated() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupInstanceResult) bool { return v.Dedicated }).(pulumi.BoolOutput)
+}
+
+func (o LookupInstanceResultOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInstanceResult) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupInstanceResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInstanceResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupInstanceResultOutput) InstanceId() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupInstanceResult) int { return v.InstanceId }).(pulumi.IntOutput)
+}
+
+func (o LookupInstanceResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInstanceResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupInstanceResultOutput) NoDefaultAlarms() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupInstanceResult) bool { return v.NoDefaultAlarms }).(pulumi.BoolOutput)
+}
+
+func (o LookupInstanceResultOutput) Nodes() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupInstanceResult) int { return v.Nodes }).(pulumi.IntOutput)
+}
+
+func (o LookupInstanceResultOutput) Plan() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInstanceResult) string { return v.Plan }).(pulumi.StringOutput)
+}
+
+func (o LookupInstanceResultOutput) Ready() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupInstanceResult) bool { return v.Ready }).(pulumi.BoolOutput)
+}
+
+func (o LookupInstanceResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInstanceResult) string { return v.Region }).(pulumi.StringOutput)
+}
+
+func (o LookupInstanceResultOutput) RmqVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInstanceResult) string { return v.RmqVersion }).(pulumi.StringOutput)
+}
+
+func (o LookupInstanceResultOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupInstanceResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+func (o LookupInstanceResultOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInstanceResult) string { return v.Url }).(pulumi.StringOutput)
+}
+
+func (o LookupInstanceResultOutput) Vhost() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInstanceResult) string { return v.Vhost }).(pulumi.StringOutput)
+}
+
+func (o LookupInstanceResultOutput) VpcId() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupInstanceResult) int { return v.VpcId }).(pulumi.IntOutput)
+}
+
+func (o LookupInstanceResultOutput) VpcSubnet() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInstanceResult) string { return v.VpcSubnet }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupInstanceResultOutput{})
 }

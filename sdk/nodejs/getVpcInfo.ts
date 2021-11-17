@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -71,4 +70,15 @@ export interface GetVpcInfoResult {
     readonly ownerId: string;
     readonly securityGroupId: string;
     readonly vpcSubnet: string;
+}
+
+export function getVpcInfoOutput(args: GetVpcInfoOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcInfoResult> {
+    return pulumi.output(args).apply(a => getVpcInfo(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getVpcInfo.
+ */
+export interface GetVpcInfoOutputArgs {
+    instanceId: pulumi.Input<number>;
 }

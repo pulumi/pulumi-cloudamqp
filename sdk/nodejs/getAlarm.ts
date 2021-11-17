@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -84,4 +83,17 @@ export interface GetAlarmResult {
     readonly type?: string;
     readonly valueThreshold: number;
     readonly vhostRegex: string;
+}
+
+export function getAlarmOutput(args: GetAlarmOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAlarmResult> {
+    return pulumi.output(args).apply(a => getAlarm(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getAlarm.
+ */
+export interface GetAlarmOutputArgs {
+    alarmId?: pulumi.Input<number>;
+    instanceId: pulumi.Input<number>;
+    type?: pulumi.Input<string>;
 }

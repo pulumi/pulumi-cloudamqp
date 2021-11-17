@@ -13,6 +13,7 @@ __all__ = [
     'GetPluginsCommunityResult',
     'AwaitableGetPluginsCommunityResult',
     'get_plugins_community',
+    'get_plugins_community_output',
 ]
 
 @pulumi.output_type
@@ -111,3 +112,45 @@ def get_plugins_community(instance_id: Optional[int] = None,
         id=__ret__.id,
         instance_id=__ret__.instance_id,
         plugins=__ret__.plugins)
+
+
+@_utilities.lift_output_func(get_plugins_community)
+def get_plugins_community_output(instance_id: Optional[pulumi.Input[int]] = None,
+                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPluginsCommunityResult]:
+    """
+    Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
+
+    ⚠️  From our go API wrapper [v1.5.0](https://github.com/84codes/go-api/releases/tag/v1.5.0) there is support for multiple retries when requesting information about community plugins. This was introduced to avoid `ReadPluginCommunity error 400: Timeout talking to backend`.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    communit_plugins = cloudamqp.get_plugins_community(instance_id=cloudamqp_instance["instance"]["id"])
+    ```
+    ## Argument reference
+
+    * `instance_id` - (Required) The CloudAMQP instance identifier.
+
+    ## Attributes reference
+
+    All attributes reference are computed
+
+    * `id`      - The identifier for this resource.
+    * `plugins` - An array of community plugins. Each `plugins` block consists of the fields documented below.
+
+    ***
+
+    The `plugins` block consists of
+
+    * `name`        - The type of the recipient.
+    * `require`     - Min. required Rabbit MQ version to be used.
+    * `description` - Description of what the plugin does.
+
+    ## Dependency
+
+    This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+    """
+    ...

@@ -4,6 +4,9 @@
 package cloudamqp
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -23,7 +26,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := cloudamqp.GetPluginsCommunity(ctx, &cloudamqp.GetPluginsCommunityArgs{
+// 		_, err := cloudamqp.GetPluginsCommunity(ctx, &GetPluginsCommunityArgs{
 // 			InstanceId: cloudamqp_instance.Instance.Id,
 // 		}, nil)
 // 		if err != nil {
@@ -75,4 +78,54 @@ type GetPluginsCommunityResult struct {
 	Id         string                      `pulumi:"id"`
 	InstanceId int                         `pulumi:"instanceId"`
 	Plugins    []GetPluginsCommunityPlugin `pulumi:"plugins"`
+}
+
+func GetPluginsCommunityOutput(ctx *pulumi.Context, args GetPluginsCommunityOutputArgs, opts ...pulumi.InvokeOption) GetPluginsCommunityResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetPluginsCommunityResult, error) {
+			args := v.(GetPluginsCommunityArgs)
+			r, err := GetPluginsCommunity(ctx, &args, opts...)
+			return *r, err
+		}).(GetPluginsCommunityResultOutput)
+}
+
+// A collection of arguments for invoking getPluginsCommunity.
+type GetPluginsCommunityOutputArgs struct {
+	InstanceId pulumi.IntInput `pulumi:"instanceId"`
+}
+
+func (GetPluginsCommunityOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPluginsCommunityArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getPluginsCommunity.
+type GetPluginsCommunityResultOutput struct{ *pulumi.OutputState }
+
+func (GetPluginsCommunityResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPluginsCommunityResult)(nil)).Elem()
+}
+
+func (o GetPluginsCommunityResultOutput) ToGetPluginsCommunityResultOutput() GetPluginsCommunityResultOutput {
+	return o
+}
+
+func (o GetPluginsCommunityResultOutput) ToGetPluginsCommunityResultOutputWithContext(ctx context.Context) GetPluginsCommunityResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetPluginsCommunityResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPluginsCommunityResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetPluginsCommunityResultOutput) InstanceId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPluginsCommunityResult) int { return v.InstanceId }).(pulumi.IntOutput)
+}
+
+func (o GetPluginsCommunityResultOutput) Plugins() GetPluginsCommunityPluginArrayOutput {
+	return o.ApplyT(func(v GetPluginsCommunityResult) []GetPluginsCommunityPlugin { return v.Plugins }).(GetPluginsCommunityPluginArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetPluginsCommunityResultOutput{})
 }

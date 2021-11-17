@@ -56,18 +56,6 @@ def get_account(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAcco
     """
     Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
 
-    ## Example Usage
-
-    Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
-
-    ```python
-    import pulumi
-    import pulumi_cloudamqp as cloudamqp
-
-    instance_name = "<instance_name>"
-    account = cloudamqp.get_account()
-    credentials = cloudamqp.get_credentials(instance_id=[instance for instance in account.instances if instance.name == instance_name][0].id)
-    ```
     ## Attributes reference
 
     All attributes reference are computed
