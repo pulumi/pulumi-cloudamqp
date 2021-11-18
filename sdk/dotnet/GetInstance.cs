@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.CloudAmqp
 {
@@ -38,6 +39,34 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         public static Task<GetInstanceResult> InvokeAsync(GetInstanceArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetInstanceResult>("cloudamqp:index/getInstance:getInstance", args ?? new GetInstanceArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.
+        /// 
+        /// ## Argument reference
+        /// 
+        /// * `instance_id` - (Required) The CloudAMQP instance identifier.
+        /// 
+        /// ## Attributes reference
+        /// 
+        /// All attributes reference are computed
+        /// 
+        /// * `id`          - The identifier for this resource.
+        /// * `name`        - The name of the CloudAMQP instance.
+        /// * `plan`        - The subscription plan for the CloudAMQP instance.
+        /// * `region`      - The cloud platform and region that host the CloudAMQP instance, `{platform}::{region}`.
+        /// * `vpc_id`      - ID of the VPC configured for the CloudAMQP instance.
+        /// * `vpc_subnet`  - Dedicated VPC subnet configured for the CloudAMQP instance.
+        /// * `nodes`       - Number of nodes in the cluster of the CloudAMQP instance.
+        /// * `rmq_version` - The version of installed Rabbit MQ.
+        /// * `url`         - (Sensitive) The AMQP url, used by clients to connect for pub/sub.
+        /// * `apikey`      - (Sensitive) The API key to secondary API handing alarms, integration etc.
+        /// * `tags`        - Tags the CloudAMQP instance with categories.
+        /// * `host`        - The hostname for the CloudAMQP instance.
+        /// * `vhost`       - The virtual host configured in Rabbit MQ.
+        /// </summary>
+        public static Output<GetInstanceResult> Invoke(GetInstanceInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetInstanceResult>("cloudamqp:index/getInstance:getInstance", args ?? new GetInstanceInvokeArgs(), options.WithVersion());
     }
 
 
@@ -47,6 +76,16 @@ namespace Pulumi.CloudAmqp
         public int InstanceId { get; set; }
 
         public GetInstanceArgs()
+        {
+        }
+    }
+
+    public sealed class GetInstanceInvokeArgs : Pulumi.InvokeArgs
+    {
+        [Input("instanceId", required: true)]
+        public Input<int> InstanceId { get; set; } = null!;
+
+        public GetInstanceInvokeArgs()
         {
         }
     }

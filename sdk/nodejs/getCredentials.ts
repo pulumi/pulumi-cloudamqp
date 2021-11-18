@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -65,4 +64,15 @@ export interface GetCredentialsResult {
     readonly instanceId: number;
     readonly password: string;
     readonly username: string;
+}
+
+export function getCredentialsOutput(args: GetCredentialsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCredentialsResult> {
+    return pulumi.output(args).apply(a => getCredentials(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getCredentials.
+ */
+export interface GetCredentialsOutputArgs {
+    instanceId: pulumi.Input<number>;
 }

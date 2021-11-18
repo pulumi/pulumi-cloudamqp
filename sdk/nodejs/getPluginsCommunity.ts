@@ -74,3 +74,14 @@ export interface GetPluginsCommunityResult {
     readonly instanceId: number;
     readonly plugins: outputs.GetPluginsCommunityPlugin[];
 }
+
+export function getPluginsCommunityOutput(args: GetPluginsCommunityOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPluginsCommunityResult> {
+    return pulumi.output(args).apply(a => getPluginsCommunity(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getPluginsCommunity.
+ */
+export interface GetPluginsCommunityOutputArgs {
+    instanceId: pulumi.Input<number>;
+}

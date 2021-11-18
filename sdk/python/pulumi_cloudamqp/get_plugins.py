@@ -13,6 +13,7 @@ __all__ = [
     'GetPluginsResult',
     'AwaitableGetPluginsResult',
     'get_plugins',
+    'get_plugins_output',
 ]
 
 @pulumi.output_type
@@ -112,3 +113,46 @@ def get_plugins(instance_id: Optional[int] = None,
         id=__ret__.id,
         instance_id=__ret__.instance_id,
         plugins=__ret__.plugins)
+
+
+@_utilities.lift_output_func(get_plugins)
+def get_plugins_output(instance_id: Optional[pulumi.Input[int]] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPluginsResult]:
+    """
+    Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
+
+    ⚠️  From our go API wrapper [v1.4.0](https://github.com/84codes/go-api/releases/tag/v1.4.0) there is support for multiple retries when requesting information about plugins. This was introduced to avoid `ReadPlugin error 400: Timeout talking to backend`.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    plugins = cloudamqp.get_plugins(instance_id=cloudamqp_instance["instance"]["id"])
+    ```
+    ## Argument reference
+
+    * `instance_id` - (Required) The CloudAMQP instance identifier.
+
+    ## Attributes reference
+
+    All attributes reference are computed
+
+    * `id`      - The identifier for this resource.
+    * `plugins` - An array of plugins. Each `plugins` block consists of the fields documented below.
+
+    ***
+
+    The `plugins` block consist of
+
+    * `name`        - The type of the recipient.
+    * `version`     - Rabbit MQ version that the plugins are shipped with.
+    * `description` - Description of what the plugin does.
+    * `enabled`     - Enable or disable information for the plugin.
+
+    ## Dependency
+
+    This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+    """
+    ...

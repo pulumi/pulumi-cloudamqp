@@ -4,6 +4,9 @@
 package cloudamqp
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -22,7 +25,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		opt0 := "default"
-// 		_, err := cloudamqp.LookupNotification(ctx, &cloudamqp.LookupNotificationArgs{
+// 		_, err := cloudamqp.LookupNotification(ctx, &GetNotificationArgs{
 // 			InstanceId: cloudamqp_instance.Instance.Id,
 // 			Name:       &opt0,
 // 		}, nil)
@@ -75,4 +78,68 @@ type LookupNotificationResult struct {
 	RecipientId *int    `pulumi:"recipientId"`
 	Type        string  `pulumi:"type"`
 	Value       string  `pulumi:"value"`
+}
+
+func LookupNotificationOutput(ctx *pulumi.Context, args LookupNotificationOutputArgs, opts ...pulumi.InvokeOption) LookupNotificationResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupNotificationResult, error) {
+			args := v.(LookupNotificationArgs)
+			r, err := LookupNotification(ctx, &args, opts...)
+			return *r, err
+		}).(LookupNotificationResultOutput)
+}
+
+// A collection of arguments for invoking getNotification.
+type LookupNotificationOutputArgs struct {
+	InstanceId  pulumi.IntInput       `pulumi:"instanceId"`
+	Name        pulumi.StringPtrInput `pulumi:"name"`
+	RecipientId pulumi.IntPtrInput    `pulumi:"recipientId"`
+}
+
+func (LookupNotificationOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupNotificationArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getNotification.
+type LookupNotificationResultOutput struct{ *pulumi.OutputState }
+
+func (LookupNotificationResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupNotificationResult)(nil)).Elem()
+}
+
+func (o LookupNotificationResultOutput) ToLookupNotificationResultOutput() LookupNotificationResultOutput {
+	return o
+}
+
+func (o LookupNotificationResultOutput) ToLookupNotificationResultOutputWithContext(ctx context.Context) LookupNotificationResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupNotificationResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNotificationResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupNotificationResultOutput) InstanceId() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupNotificationResult) int { return v.InstanceId }).(pulumi.IntOutput)
+}
+
+func (o LookupNotificationResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupNotificationResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupNotificationResultOutput) RecipientId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v LookupNotificationResult) *int { return v.RecipientId }).(pulumi.IntPtrOutput)
+}
+
+func (o LookupNotificationResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNotificationResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o LookupNotificationResultOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNotificationResult) string { return v.Value }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupNotificationResultOutput{})
 }

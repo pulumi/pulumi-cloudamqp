@@ -387,7 +387,7 @@ type IntegrationLogArrayInput interface {
 type IntegrationLogArray []IntegrationLogInput
 
 func (IntegrationLogArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*IntegrationLog)(nil))
+	return reflect.TypeOf((*[]*IntegrationLog)(nil)).Elem()
 }
 
 func (i IntegrationLogArray) ToIntegrationLogArrayOutput() IntegrationLogArrayOutput {
@@ -412,7 +412,7 @@ type IntegrationLogMapInput interface {
 type IntegrationLogMap map[string]IntegrationLogInput
 
 func (IntegrationLogMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*IntegrationLog)(nil))
+	return reflect.TypeOf((*map[string]*IntegrationLog)(nil)).Elem()
 }
 
 func (i IntegrationLogMap) ToIntegrationLogMapOutput() IntegrationLogMapOutput {
@@ -423,9 +423,7 @@ func (i IntegrationLogMap) ToIntegrationLogMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogMapOutput)
 }
 
-type IntegrationLogOutput struct {
-	*pulumi.OutputState
-}
+type IntegrationLogOutput struct{ *pulumi.OutputState }
 
 func (IntegrationLogOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*IntegrationLog)(nil))
@@ -444,14 +442,12 @@ func (o IntegrationLogOutput) ToIntegrationLogPtrOutput() IntegrationLogPtrOutpu
 }
 
 func (o IntegrationLogOutput) ToIntegrationLogPtrOutputWithContext(ctx context.Context) IntegrationLogPtrOutput {
-	return o.ApplyT(func(v IntegrationLog) *IntegrationLog {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IntegrationLog) *IntegrationLog {
 		return &v
 	}).(IntegrationLogPtrOutput)
 }
 
-type IntegrationLogPtrOutput struct {
-	*pulumi.OutputState
-}
+type IntegrationLogPtrOutput struct{ *pulumi.OutputState }
 
 func (IntegrationLogPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**IntegrationLog)(nil))
@@ -463,6 +459,16 @@ func (o IntegrationLogPtrOutput) ToIntegrationLogPtrOutput() IntegrationLogPtrOu
 
 func (o IntegrationLogPtrOutput) ToIntegrationLogPtrOutputWithContext(ctx context.Context) IntegrationLogPtrOutput {
 	return o
+}
+
+func (o IntegrationLogPtrOutput) Elem() IntegrationLogOutput {
+	return o.ApplyT(func(v *IntegrationLog) IntegrationLog {
+		if v != nil {
+			return *v
+		}
+		var ret IntegrationLog
+		return ret
+	}).(IntegrationLogOutput)
 }
 
 type IntegrationLogArrayOutput struct{ *pulumi.OutputState }
@@ -506,6 +512,10 @@ func (o IntegrationLogMapOutput) MapIndex(k pulumi.StringInput) IntegrationLogOu
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogInput)(nil)).Elem(), &IntegrationLog{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogPtrInput)(nil)).Elem(), &IntegrationLog{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogArrayInput)(nil)).Elem(), IntegrationLogArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogMapInput)(nil)).Elem(), IntegrationLogMap{})
 	pulumi.RegisterOutputType(IntegrationLogOutput{})
 	pulumi.RegisterOutputType(IntegrationLogPtrOutput{})
 	pulumi.RegisterOutputType(IntegrationLogArrayOutput{})

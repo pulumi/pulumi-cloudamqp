@@ -4,6 +4,9 @@
 package cloudamqp
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -23,7 +26,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := cloudamqp.GetPlugins(ctx, &cloudamqp.GetPluginsArgs{
+// 		_, err := cloudamqp.GetPlugins(ctx, &GetPluginsArgs{
 // 			InstanceId: cloudamqp_instance.Instance.Id,
 // 		}, nil)
 // 		if err != nil {
@@ -76,4 +79,54 @@ type GetPluginsResult struct {
 	Id         string             `pulumi:"id"`
 	InstanceId int                `pulumi:"instanceId"`
 	Plugins    []GetPluginsPlugin `pulumi:"plugins"`
+}
+
+func GetPluginsOutput(ctx *pulumi.Context, args GetPluginsOutputArgs, opts ...pulumi.InvokeOption) GetPluginsResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetPluginsResult, error) {
+			args := v.(GetPluginsArgs)
+			r, err := GetPlugins(ctx, &args, opts...)
+			return *r, err
+		}).(GetPluginsResultOutput)
+}
+
+// A collection of arguments for invoking getPlugins.
+type GetPluginsOutputArgs struct {
+	InstanceId pulumi.IntInput `pulumi:"instanceId"`
+}
+
+func (GetPluginsOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPluginsArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getPlugins.
+type GetPluginsResultOutput struct{ *pulumi.OutputState }
+
+func (GetPluginsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPluginsResult)(nil)).Elem()
+}
+
+func (o GetPluginsResultOutput) ToGetPluginsResultOutput() GetPluginsResultOutput {
+	return o
+}
+
+func (o GetPluginsResultOutput) ToGetPluginsResultOutputWithContext(ctx context.Context) GetPluginsResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetPluginsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPluginsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetPluginsResultOutput) InstanceId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPluginsResult) int { return v.InstanceId }).(pulumi.IntOutput)
+}
+
+func (o GetPluginsResultOutput) Plugins() GetPluginsPluginArrayOutput {
+	return o.ApplyT(func(v GetPluginsResult) []GetPluginsPlugin { return v.Plugins }).(GetPluginsPluginArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetPluginsResultOutput{})
 }

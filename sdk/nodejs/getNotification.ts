@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -74,4 +73,17 @@ export interface GetNotificationResult {
     readonly recipientId?: number;
     readonly type: string;
     readonly value: string;
+}
+
+export function getNotificationOutput(args: GetNotificationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNotificationResult> {
+    return pulumi.output(args).apply(a => getNotification(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getNotification.
+ */
+export interface GetNotificationOutputArgs {
+    instanceId: pulumi.Input<number>;
+    name?: pulumi.Input<string>;
+    recipientId?: pulumi.Input<number>;
 }

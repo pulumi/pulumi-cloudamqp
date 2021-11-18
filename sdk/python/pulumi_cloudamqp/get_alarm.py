@@ -12,6 +12,7 @@ __all__ = [
     'GetAlarmResult',
     'AwaitableGetAlarmResult',
     'get_alarm',
+    'get_alarm_output',
 ]
 
 @pulumi.output_type
@@ -193,3 +194,46 @@ def get_alarm(alarm_id: Optional[int] = None,
         type=__ret__.type,
         value_threshold=__ret__.value_threshold,
         vhost_regex=__ret__.vhost_regex)
+
+
+@_utilities.lift_output_func(get_alarm)
+def get_alarm_output(alarm_id: Optional[pulumi.Input[Optional[int]]] = None,
+                     instance_id: Optional[pulumi.Input[int]] = None,
+                     type: Optional[pulumi.Input[Optional[str]]] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAlarmResult]:
+    """
+    Use this data source to retrieve information about default or created alarms. Either use `alarm_id` or `type` to retrieve the alarm.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    default_cpu_alarm = cloudamqp.get_alarm(instance_id=cloudamqp_instance["instance"]["id"],
+        type="cpu")
+    ```
+    ## Argument reference
+
+    * `instance_id` - (Required) The CloudAMQP instance identifier.
+    * `alarm_id`    - (Optional) The alarm identifier. Either use this or `type` to give `Alarm` necessary information to retrieve the alarm.
+    * `type`        - (Optional) The alarm type. Either use this or `alarm_id` to give `Alarm` necessary information when retrieve the alarm.
+
+    ## Attributes reference
+
+    All attributes reference are computed
+
+    * `id`              - The identifier for this resource.
+    * `enabled`         - Enable/disable status of the alarm.
+    * `value_threshold` - The value threshold that triggers the alarm.
+    * `time_threshold`  - The time interval (in seconds) the `value_threshold` should be active before trigger an alarm.
+    * `queue_regex`     - Regular expression for which queue to check.
+    * `vhost_regex`     - Regular expression for which vhost to check
+    * `recipients`      - Identifier for recipient to be notified.
+    * `message_type`    - Message type `(total, unacked, ready)` used by queue alarm type.
+
+    ## Dependency
+
+    This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+    """
+    ...

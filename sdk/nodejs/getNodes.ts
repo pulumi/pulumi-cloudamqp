@@ -76,3 +76,14 @@ export interface GetNodesResult {
     readonly instanceId: number;
     readonly nodes: outputs.GetNodesNode[];
 }
+
+export function getNodesOutput(args: GetNodesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNodesResult> {
+    return pulumi.output(args).apply(a => getNodes(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getNodes.
+ */
+export interface GetNodesOutputArgs {
+    instanceId: pulumi.Input<number>;
+}

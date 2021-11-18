@@ -75,3 +75,14 @@ export interface GetPluginsResult {
     readonly instanceId: number;
     readonly plugins: outputs.GetPluginsPlugin[];
 }
+
+export function getPluginsOutput(args: GetPluginsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPluginsResult> {
+    return pulumi.output(args).apply(a => getPlugins(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getPlugins.
+ */
+export interface GetPluginsOutputArgs {
+    instanceId: pulumi.Input<number>;
+}

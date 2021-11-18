@@ -12,6 +12,7 @@ __all__ = [
     'GetVpcInfoResult',
     'AwaitableGetVpcInfoResult',
     'get_vpc_info',
+    'get_vpc_info_output',
 ]
 
 @pulumi.output_type
@@ -135,3 +136,40 @@ def get_vpc_info(instance_id: Optional[int] = None,
         owner_id=__ret__.owner_id,
         security_group_id=__ret__.security_group_id,
         vpc_subnet=__ret__.vpc_subnet)
+
+
+@_utilities.lift_output_func(get_vpc_info)
+def get_vpc_info_output(instance_id: Optional[pulumi.Input[int]] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcInfoResult]:
+    """
+    Use this data source to retrieve information about VPC for a CloudAMQP instance.
+
+    Only available for CloudAMQP instances hosted in AWS.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    vpc_info = cloudamqp.get_vpc_info(instance_id=cloudamqp_instance["instance"]["id"])
+    ```
+    ## Argument reference
+
+    * `instance_id` - (Required) The CloudAMQP instance identifier.
+
+    ## Attributes reference
+
+    All attributes reference are computed
+
+    * `id`                  - The identifier for this resource.
+    * `name`                - The name of the CloudAMQP instance.
+    * `vpc_subnet`          - Dedicated VPC subnet.
+    * `owner_id`            - AWS account identifier.
+    * `security_group_id`   - AWS security group identifier.
+
+    ## Dependency
+
+    This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+    """
+    ...

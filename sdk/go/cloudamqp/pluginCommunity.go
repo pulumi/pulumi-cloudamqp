@@ -203,7 +203,7 @@ type PluginCommunityArrayInput interface {
 type PluginCommunityArray []PluginCommunityInput
 
 func (PluginCommunityArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*PluginCommunity)(nil))
+	return reflect.TypeOf((*[]*PluginCommunity)(nil)).Elem()
 }
 
 func (i PluginCommunityArray) ToPluginCommunityArrayOutput() PluginCommunityArrayOutput {
@@ -228,7 +228,7 @@ type PluginCommunityMapInput interface {
 type PluginCommunityMap map[string]PluginCommunityInput
 
 func (PluginCommunityMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*PluginCommunity)(nil))
+	return reflect.TypeOf((*map[string]*PluginCommunity)(nil)).Elem()
 }
 
 func (i PluginCommunityMap) ToPluginCommunityMapOutput() PluginCommunityMapOutput {
@@ -239,9 +239,7 @@ func (i PluginCommunityMap) ToPluginCommunityMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(PluginCommunityMapOutput)
 }
 
-type PluginCommunityOutput struct {
-	*pulumi.OutputState
-}
+type PluginCommunityOutput struct{ *pulumi.OutputState }
 
 func (PluginCommunityOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*PluginCommunity)(nil))
@@ -260,14 +258,12 @@ func (o PluginCommunityOutput) ToPluginCommunityPtrOutput() PluginCommunityPtrOu
 }
 
 func (o PluginCommunityOutput) ToPluginCommunityPtrOutputWithContext(ctx context.Context) PluginCommunityPtrOutput {
-	return o.ApplyT(func(v PluginCommunity) *PluginCommunity {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PluginCommunity) *PluginCommunity {
 		return &v
 	}).(PluginCommunityPtrOutput)
 }
 
-type PluginCommunityPtrOutput struct {
-	*pulumi.OutputState
-}
+type PluginCommunityPtrOutput struct{ *pulumi.OutputState }
 
 func (PluginCommunityPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**PluginCommunity)(nil))
@@ -279,6 +275,16 @@ func (o PluginCommunityPtrOutput) ToPluginCommunityPtrOutput() PluginCommunityPt
 
 func (o PluginCommunityPtrOutput) ToPluginCommunityPtrOutputWithContext(ctx context.Context) PluginCommunityPtrOutput {
 	return o
+}
+
+func (o PluginCommunityPtrOutput) Elem() PluginCommunityOutput {
+	return o.ApplyT(func(v *PluginCommunity) PluginCommunity {
+		if v != nil {
+			return *v
+		}
+		var ret PluginCommunity
+		return ret
+	}).(PluginCommunityOutput)
 }
 
 type PluginCommunityArrayOutput struct{ *pulumi.OutputState }
@@ -322,6 +328,10 @@ func (o PluginCommunityMapOutput) MapIndex(k pulumi.StringInput) PluginCommunity
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*PluginCommunityInput)(nil)).Elem(), &PluginCommunity{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PluginCommunityPtrInput)(nil)).Elem(), &PluginCommunity{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PluginCommunityArrayInput)(nil)).Elem(), PluginCommunityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PluginCommunityMapInput)(nil)).Elem(), PluginCommunityMap{})
 	pulumi.RegisterOutputType(PluginCommunityOutput{})
 	pulumi.RegisterOutputType(PluginCommunityPtrOutput{})
 	pulumi.RegisterOutputType(PluginCommunityArrayOutput{})
