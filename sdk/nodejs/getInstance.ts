@@ -23,10 +23,11 @@ import * as utilities from "./utilities";
  * * `vpcSubnet`  - Dedicated VPC subnet configured for the CloudAMQP instance.
  * * `nodes`       - Number of nodes in the cluster of the CloudAMQP instance.
  * * `rmqVersion` - The version of installed Rabbit MQ.
- * * `url`         - (Sensitive) The AMQP url, used by clients to connect for pub/sub.
+ * * `url`         - (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC), used by clients to connect for pub/sub.
  * * `apikey`      - (Sensitive) The API key to secondary API handing alarms, integration etc.
  * * `tags`        - Tags the CloudAMQP instance with categories.
- * * `host`        - The hostname for the CloudAMQP instance.
+ * * `host`        - The external hostname for the CloudAMQP instance.
+ * * `hostInternal` - The internal hostname for the CloudAMQP instance.
  * * `vhost`       - The virtual host configured in Rabbit MQ.
  */
 export function getInstance(args: GetInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceResult> {
@@ -56,6 +57,7 @@ export interface GetInstanceResult {
     readonly apikey: string;
     readonly dedicated: boolean;
     readonly host: string;
+    readonly hostInternal: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */

@@ -71,10 +71,16 @@ namespace Pulumi.CloudAmqp
         public Output<bool> Dedicated { get; private set; } = null!;
 
         /// <summary>
-        /// The host name for the CloudAMQP instance.
+        /// The external hostname for the CloudAMQP instance.
         /// </summary>
         [Output("host")]
         public Output<string> Host { get; private set; } = null!;
+
+        /// <summary>
+        /// The internal hostname for the CloudAMQP instance.
+        /// </summary>
+        [Output("hostInternal")]
+        public Output<string> HostInternal { get; private set; } = null!;
 
         /// <summary>
         /// Name of the CloudAMQP instance.
@@ -107,7 +113,7 @@ namespace Pulumi.CloudAmqp
         public Output<bool> Ready { get; private set; } = null!;
 
         /// <summary>
-        /// The region to host the instance in. See Instance regions
+        /// The region to host the instance in. See Instance regions **Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.**
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -125,7 +131,7 @@ namespace Pulumi.CloudAmqp
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
+        /// The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
         /// </summary>
         [Output("url")]
         public Output<string> Url { get; private set; } = null!;
@@ -219,7 +225,7 @@ namespace Pulumi.CloudAmqp
         public Input<string> Plan { get; set; } = null!;
 
         /// <summary>
-        /// The region to host the instance in. See Instance regions
+        /// The region to host the instance in. See Instance regions **Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.**
         /// </summary>
         [Input("region", required: true)]
         public Input<string> Region { get; set; } = null!;
@@ -274,10 +280,16 @@ namespace Pulumi.CloudAmqp
         public Input<bool>? Dedicated { get; set; }
 
         /// <summary>
-        /// The host name for the CloudAMQP instance.
+        /// The external hostname for the CloudAMQP instance.
         /// </summary>
         [Input("host")]
         public Input<string>? Host { get; set; }
+
+        /// <summary>
+        /// The internal hostname for the CloudAMQP instance.
+        /// </summary>
+        [Input("hostInternal")]
+        public Input<string>? HostInternal { get; set; }
 
         /// <summary>
         /// Name of the CloudAMQP instance.
@@ -310,7 +322,7 @@ namespace Pulumi.CloudAmqp
         public Input<bool>? Ready { get; set; }
 
         /// <summary>
-        /// The region to host the instance in. See Instance regions
+        /// The region to host the instance in. See Instance regions **Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.**
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -334,7 +346,7 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
-        /// AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
+        /// The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
         /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }

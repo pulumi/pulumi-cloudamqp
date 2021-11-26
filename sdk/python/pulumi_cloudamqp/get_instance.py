@@ -20,7 +20,7 @@ class GetInstanceResult:
     """
     A collection of values returned by getInstance.
     """
-    def __init__(__self__, apikey=None, dedicated=None, host=None, id=None, instance_id=None, name=None, no_default_alarms=None, nodes=None, plan=None, ready=None, region=None, rmq_version=None, tags=None, url=None, vhost=None, vpc_id=None, vpc_subnet=None):
+    def __init__(__self__, apikey=None, dedicated=None, host=None, host_internal=None, id=None, instance_id=None, name=None, no_default_alarms=None, nodes=None, plan=None, ready=None, region=None, rmq_version=None, tags=None, url=None, vhost=None, vpc_id=None, vpc_subnet=None):
         if apikey and not isinstance(apikey, str):
             raise TypeError("Expected argument 'apikey' to be a str")
         pulumi.set(__self__, "apikey", apikey)
@@ -30,6 +30,9 @@ class GetInstanceResult:
         if host and not isinstance(host, str):
             raise TypeError("Expected argument 'host' to be a str")
         pulumi.set(__self__, "host", host)
+        if host_internal and not isinstance(host_internal, str):
+            raise TypeError("Expected argument 'host_internal' to be a str")
+        pulumi.set(__self__, "host_internal", host_internal)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -87,6 +90,11 @@ class GetInstanceResult:
     @pulumi.getter
     def host(self) -> str:
         return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter(name="hostInternal")
+    def host_internal(self) -> str:
+        return pulumi.get(self, "host_internal")
 
     @property
     @pulumi.getter
@@ -171,6 +179,7 @@ class AwaitableGetInstanceResult(GetInstanceResult):
             apikey=self.apikey,
             dedicated=self.dedicated,
             host=self.host,
+            host_internal=self.host_internal,
             id=self.id,
             instance_id=self.instance_id,
             name=self.name,
@@ -208,10 +217,11 @@ def get_instance(instance_id: Optional[int] = None,
     * `vpc_subnet`  - Dedicated VPC subnet configured for the CloudAMQP instance.
     * `nodes`       - Number of nodes in the cluster of the CloudAMQP instance.
     * `rmq_version` - The version of installed Rabbit MQ.
-    * `url`         - (Sensitive) The AMQP url, used by clients to connect for pub/sub.
+    * `url`         - (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC), used by clients to connect for pub/sub.
     * `apikey`      - (Sensitive) The API key to secondary API handing alarms, integration etc.
     * `tags`        - Tags the CloudAMQP instance with categories.
-    * `host`        - The hostname for the CloudAMQP instance.
+    * `host`        - The external hostname for the CloudAMQP instance.
+    * `host_internal` - The internal hostname for the CloudAMQP instance.
     * `vhost`       - The virtual host configured in Rabbit MQ.
     """
     __args__ = dict()
@@ -226,6 +236,7 @@ def get_instance(instance_id: Optional[int] = None,
         apikey=__ret__.apikey,
         dedicated=__ret__.dedicated,
         host=__ret__.host,
+        host_internal=__ret__.host_internal,
         id=__ret__.id,
         instance_id=__ret__.instance_id,
         name=__ret__.name,
@@ -264,10 +275,11 @@ def get_instance_output(instance_id: Optional[pulumi.Input[int]] = None,
     * `vpc_subnet`  - Dedicated VPC subnet configured for the CloudAMQP instance.
     * `nodes`       - Number of nodes in the cluster of the CloudAMQP instance.
     * `rmq_version` - The version of installed Rabbit MQ.
-    * `url`         - (Sensitive) The AMQP url, used by clients to connect for pub/sub.
+    * `url`         - (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC), used by clients to connect for pub/sub.
     * `apikey`      - (Sensitive) The API key to secondary API handing alarms, integration etc.
     * `tags`        - Tags the CloudAMQP instance with categories.
-    * `host`        - The hostname for the CloudAMQP instance.
+    * `host`        - The external hostname for the CloudAMQP instance.
+    * `host_internal` - The internal hostname for the CloudAMQP instance.
     * `vhost`       - The virtual host configured in Rabbit MQ.
     """
     ...

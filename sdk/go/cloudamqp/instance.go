@@ -65,8 +65,10 @@ type Instance struct {
 	Apikey pulumi.StringOutput `pulumi:"apikey"`
 	// Is the instance hosted on a dedicated server
 	Dedicated pulumi.BoolOutput `pulumi:"dedicated"`
-	// The host name for the CloudAMQP instance.
+	// The external hostname for the CloudAMQP instance.
 	Host pulumi.StringOutput `pulumi:"host"`
+	// The internal hostname for the CloudAMQP instance.
+	HostInternal pulumi.StringOutput `pulumi:"hostInternal"`
 	// Name of the CloudAMQP instance.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
@@ -77,13 +79,13 @@ type Instance struct {
 	Plan pulumi.StringOutput `pulumi:"plan"`
 	// Flag describing if the resource is ready
 	Ready pulumi.BoolOutput `pulumi:"ready"`
-	// The region to host the instance in. See Instance regions
+	// The region to host the instance in. See Instance regions **Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.**
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
 	RmqVersion pulumi.StringOutput `pulumi:"rmqVersion"`
 	// One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
+	// The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
 	Url pulumi.StringOutput `pulumi:"url"`
 	// The virtual host used by Rabbit MQ.
 	Vhost pulumi.StringOutput `pulumi:"vhost"`
@@ -132,8 +134,10 @@ type instanceState struct {
 	Apikey *string `pulumi:"apikey"`
 	// Is the instance hosted on a dedicated server
 	Dedicated *bool `pulumi:"dedicated"`
-	// The host name for the CloudAMQP instance.
+	// The external hostname for the CloudAMQP instance.
 	Host *string `pulumi:"host"`
+	// The internal hostname for the CloudAMQP instance.
+	HostInternal *string `pulumi:"hostInternal"`
 	// Name of the CloudAMQP instance.
 	Name *string `pulumi:"name"`
 	// Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
@@ -144,13 +148,13 @@ type instanceState struct {
 	Plan *string `pulumi:"plan"`
 	// Flag describing if the resource is ready
 	Ready *bool `pulumi:"ready"`
-	// The region to host the instance in. See Instance regions
+	// The region to host the instance in. See Instance regions **Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.**
 	Region *string `pulumi:"region"`
 	// The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
 	RmqVersion *string `pulumi:"rmqVersion"`
 	// One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
 	Tags []string `pulumi:"tags"`
-	// AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
+	// The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
 	Url *string `pulumi:"url"`
 	// The virtual host used by Rabbit MQ.
 	Vhost *string `pulumi:"vhost"`
@@ -165,8 +169,10 @@ type InstanceState struct {
 	Apikey pulumi.StringPtrInput
 	// Is the instance hosted on a dedicated server
 	Dedicated pulumi.BoolPtrInput
-	// The host name for the CloudAMQP instance.
+	// The external hostname for the CloudAMQP instance.
 	Host pulumi.StringPtrInput
+	// The internal hostname for the CloudAMQP instance.
+	HostInternal pulumi.StringPtrInput
 	// Name of the CloudAMQP instance.
 	Name pulumi.StringPtrInput
 	// Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
@@ -177,13 +183,13 @@ type InstanceState struct {
 	Plan pulumi.StringPtrInput
 	// Flag describing if the resource is ready
 	Ready pulumi.BoolPtrInput
-	// The region to host the instance in. See Instance regions
+	// The region to host the instance in. See Instance regions **Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.**
 	Region pulumi.StringPtrInput
 	// The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
 	RmqVersion pulumi.StringPtrInput
 	// One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
 	Tags pulumi.StringArrayInput
-	// AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
+	// The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
 	Url pulumi.StringPtrInput
 	// The virtual host used by Rabbit MQ.
 	Vhost pulumi.StringPtrInput
@@ -206,7 +212,7 @@ type instanceArgs struct {
 	Nodes *int `pulumi:"nodes"`
 	// The subscription plan. See available plans
 	Plan string `pulumi:"plan"`
-	// The region to host the instance in. See Instance regions
+	// The region to host the instance in. See Instance regions **Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.**
 	Region string `pulumi:"region"`
 	// The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
 	RmqVersion *string `pulumi:"rmqVersion"`
@@ -228,7 +234,7 @@ type InstanceArgs struct {
 	Nodes pulumi.IntPtrInput
 	// The subscription plan. See available plans
 	Plan pulumi.StringInput
-	// The region to host the instance in. See Instance regions
+	// The region to host the instance in. See Instance regions **Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.**
 	Region pulumi.StringInput
 	// The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**
 	RmqVersion pulumi.StringPtrInput

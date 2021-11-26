@@ -75,9 +75,13 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly dedicated!: pulumi.Output<boolean>;
     /**
-     * The host name for the CloudAMQP instance.
+     * The external hostname for the CloudAMQP instance.
      */
     public /*out*/ readonly host!: pulumi.Output<string>;
+    /**
+     * The internal hostname for the CloudAMQP instance.
+     */
+    public /*out*/ readonly hostInternal!: pulumi.Output<string>;
     /**
      * Name of the CloudAMQP instance.
      */
@@ -99,7 +103,7 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly ready!: pulumi.Output<boolean>;
     /**
-     * The region to host the instance in. See Instance regions
+     * The region to host the instance in. See Instance regions **Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.**
      */
     public readonly region!: pulumi.Output<string>;
     /**
@@ -111,7 +115,7 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
+     * The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
      */
     public /*out*/ readonly url!: pulumi.Output<string>;
     /**
@@ -143,6 +147,7 @@ export class Instance extends pulumi.CustomResource {
             inputs["apikey"] = state ? state.apikey : undefined;
             inputs["dedicated"] = state ? state.dedicated : undefined;
             inputs["host"] = state ? state.host : undefined;
+            inputs["hostInternal"] = state ? state.hostInternal : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["noDefaultAlarms"] = state ? state.noDefaultAlarms : undefined;
             inputs["nodes"] = state ? state.nodes : undefined;
@@ -175,6 +180,7 @@ export class Instance extends pulumi.CustomResource {
             inputs["apikey"] = undefined /*out*/;
             inputs["dedicated"] = undefined /*out*/;
             inputs["host"] = undefined /*out*/;
+            inputs["hostInternal"] = undefined /*out*/;
             inputs["ready"] = undefined /*out*/;
             inputs["url"] = undefined /*out*/;
             inputs["vhost"] = undefined /*out*/;
@@ -199,9 +205,13 @@ export interface InstanceState {
      */
     dedicated?: pulumi.Input<boolean>;
     /**
-     * The host name for the CloudAMQP instance.
+     * The external hostname for the CloudAMQP instance.
      */
     host?: pulumi.Input<string>;
+    /**
+     * The internal hostname for the CloudAMQP instance.
+     */
+    hostInternal?: pulumi.Input<string>;
     /**
      * Name of the CloudAMQP instance.
      */
@@ -223,7 +233,7 @@ export interface InstanceState {
      */
     ready?: pulumi.Input<boolean>;
     /**
-     * The region to host the instance in. See Instance regions
+     * The region to host the instance in. See Instance regions **Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.**
      */
     region?: pulumi.Input<string>;
     /**
@@ -235,7 +245,7 @@ export interface InstanceState {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`
+     * The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
      */
     url?: pulumi.Input<string>;
     /**
@@ -273,7 +283,7 @@ export interface InstanceArgs {
      */
     plan: pulumi.Input<string>;
     /**
-     * The region to host the instance in. See Instance regions
+     * The region to host the instance in. See Instance regions **Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.**
      */
     region: pulumi.Input<string>;
     /**
