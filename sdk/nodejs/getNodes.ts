@@ -33,7 +33,7 @@ import * as utilities from "./utilities";
  *
  * The `nodes` block consist of
  *
- * * `hostname`          - Hostname assigned to the node.
+ * * `hostname`          - External hostname assigned to the node.
  * * `name`              - Name of the node.
  * * `running`           - Is the node running?
  * * `rabbitmqVersion`  - Currently configured Rabbit MQ version on the node.

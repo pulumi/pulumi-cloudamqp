@@ -90,7 +90,7 @@ def get_nodes(instance_id: Optional[int] = None,
 
     The `nodes` block consist of
 
-    * `hostname`          - Hostname assigned to the node.
+    * `hostname`          - External hostname assigned to the node.
     * `name`              - Name of the node.
     * `running`           - Is the node running?
     * `rabbitmq_version`  - Currently configured Rabbit MQ version on the node.
@@ -145,7 +145,7 @@ def get_nodes_output(instance_id: Optional[pulumi.Input[int]] = None,
 
     The `nodes` block consist of
 
-    * `hostname`          - Hostname assigned to the node.
+    * `hostname`          - External hostname assigned to the node.
     * `name`              - Name of the node.
     * `running`           - Is the node running?
     * `rabbitmq_version`  - Currently configured Rabbit MQ version on the node.

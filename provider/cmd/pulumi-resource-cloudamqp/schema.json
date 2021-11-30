@@ -530,7 +530,11 @@
                 },
                 "host": {
                     "type": "string",
-                    "description": "The host name for the CloudAMQP instance.\n"
+                    "description": "The external hostname for the CloudAMQP instance.\n"
+                },
+                "hostInternal": {
+                    "type": "string",
+                    "description": "The internal hostname for the CloudAMQP instance.\n"
                 },
                 "name": {
                     "type": "string",
@@ -554,7 +558,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region to host the instance in. See Instance regions\n"
+                    "description": "The region to host the instance in. See Instance regions **Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.**\n"
                 },
                 "rmqVersion": {
                     "type": "string",
@@ -569,7 +573,7 @@
                 },
                 "url": {
                     "type": "string",
-                    "description": "AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`\n"
+                    "description": "The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`\n"
                 },
                 "vhost": {
                     "type": "string",
@@ -588,6 +592,7 @@
                 "apikey",
                 "dedicated",
                 "host",
+                "hostInternal",
                 "name",
                 "noDefaultAlarms",
                 "nodes",
@@ -619,7 +624,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region to host the instance in. See Instance regions\n"
+                    "description": "The region to host the instance in. See Instance regions **Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.**\n"
                 },
                 "rmqVersion": {
                     "type": "string",
@@ -658,7 +663,11 @@
                     },
                     "host": {
                         "type": "string",
-                        "description": "The host name for the CloudAMQP instance.\n"
+                        "description": "The external hostname for the CloudAMQP instance.\n"
+                    },
+                    "hostInternal": {
+                        "type": "string",
+                        "description": "The internal hostname for the CloudAMQP instance.\n"
                     },
                     "name": {
                         "type": "string",
@@ -682,7 +691,7 @@
                     },
                     "region": {
                         "type": "string",
-                        "description": "The region to host the instance in. See Instance regions\n"
+                        "description": "The region to host the instance in. See Instance regions **Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.**\n"
                     },
                     "rmqVersion": {
                         "type": "string",
@@ -697,7 +706,7 @@
                     },
                     "url": {
                         "type": "string",
-                        "description": "AMQP server endpoint. `amqps://{username}:{password}@{hostname}/{vhost}`\n"
+                        "description": "The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`\n"
                     },
                     "vhost": {
                         "type": "string",
@@ -1646,7 +1655,7 @@
             }
         },
         "cloudamqp:index/getInstance:getInstance": {
-            "description": "Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.\n\n## Argument reference\n\n* `instance_id` - (Required) The CloudAMQP instance identifier.\n\n## Attributes reference\n\nAll attributes reference are computed\n\n* `id`          - The identifier for this resource.\n* `name`        - The name of the CloudAMQP instance.\n* `plan`        - The subscription plan for the CloudAMQP instance.\n* `region`      - The cloud platform and region that host the CloudAMQP instance, `{platform}::{region}`.\n* `vpc_id`      - ID of the VPC configured for the CloudAMQP instance.\n* `vpc_subnet`  - Dedicated VPC subnet configured for the CloudAMQP instance.\n* `nodes`       - Number of nodes in the cluster of the CloudAMQP instance.\n* `rmq_version` - The version of installed Rabbit MQ.\n* `url`         - (Sensitive) The AMQP url, used by clients to connect for pub/sub.\n* `apikey`      - (Sensitive) The API key to secondary API handing alarms, integration etc.\n* `tags`        - Tags the CloudAMQP instance with categories.\n* `host`        - The hostname for the CloudAMQP instance.\n* `vhost`       - The virtual host configured in Rabbit MQ.\n",
+            "description": "Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.\n\n## Argument reference\n\n* `instance_id` - (Required) The CloudAMQP instance identifier.\n\n## Attributes reference\n\nAll attributes reference are computed\n\n* `id`          - The identifier for this resource.\n* `name`        - The name of the CloudAMQP instance.\n* `plan`        - The subscription plan for the CloudAMQP instance.\n* `region`      - The cloud platform and region that host the CloudAMQP instance, `{platform}::{region}`.\n* `vpc_id`      - ID of the VPC configured for the CloudAMQP instance.\n* `vpc_subnet`  - Dedicated VPC subnet configured for the CloudAMQP instance.\n* `nodes`       - Number of nodes in the cluster of the CloudAMQP instance.\n* `rmq_version` - The version of installed Rabbit MQ.\n* `url`         - (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC), used by clients to connect for pub/sub.\n* `apikey`      - (Sensitive) The API key to secondary API handing alarms, integration etc.\n* `tags`        - Tags the CloudAMQP instance with categories.\n* `host`        - The external hostname for the CloudAMQP instance.\n* `host_internal` - The internal hostname for the CloudAMQP instance.\n* `vhost`       - The virtual host configured in Rabbit MQ.\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getInstance.\n",
                 "properties": {
@@ -1669,6 +1678,9 @@
                         "type": "boolean"
                     },
                     "host": {
+                        "type": "string"
+                    },
+                    "hostInternal": {
                         "type": "string"
                     },
                     "id": {
@@ -1723,6 +1735,7 @@
                     "apikey",
                     "dedicated",
                     "host",
+                    "hostInternal",
                     "instanceId",
                     "name",
                     "noDefaultAlarms",
@@ -1741,7 +1754,7 @@
             }
         },
         "cloudamqp:index/getNodes:getNodes": {
-            "description": "Use this data source to retrieve information about the node(s) created by CloudAMQP instance.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst nodes = cloudamqp.getNodes({\n    instanceId: cloudamqp_instance.instance.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nnodes = cloudamqp.get_nodes(instance_id=cloudamqp_instance[\"instance\"][\"id\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var nodes = Output.Create(CloudAmqp.GetNodes.InvokeAsync(new CloudAmqp.GetNodesArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.GetNodes(ctx, \u0026GetNodesArgs{\n\t\t\tInstanceId: cloudamqp_instance.Instance.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n## Argument reference\n\n* `instance_id` - (Required) The CloudAMQP instance identifier.\n\n## Attributes reference\n\nAll attributes reference are computed\n\n* `id`    - The identifier for this resource.\n* `nodes` - An array of node information. Each `nodes` block consists of the fields documented below.\n\n___\n\nThe `nodes` block consist of\n\n* `hostname`          - Hostname assigned to the node.\n* `name`              - Name of the node.\n* `running`           - Is the node running?\n* `rabbitmq_version`  - Currently configured Rabbit MQ version on the node.\n* `erlang_version`    - Currently used Erlanbg version on the node.\n* `hipe`              - Enable or disable High-performance Erlang.\n* `configured`        - Is the node configured?\n\n## Dependency\n\nThis data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n",
+            "description": "Use this data source to retrieve information about the node(s) created by CloudAMQP instance.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst nodes = cloudamqp.getNodes({\n    instanceId: cloudamqp_instance.instance.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nnodes = cloudamqp.get_nodes(instance_id=cloudamqp_instance[\"instance\"][\"id\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var nodes = Output.Create(CloudAmqp.GetNodes.InvokeAsync(new CloudAmqp.GetNodesArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.GetNodes(ctx, \u0026GetNodesArgs{\n\t\t\tInstanceId: cloudamqp_instance.Instance.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n## Argument reference\n\n* `instance_id` - (Required) The CloudAMQP instance identifier.\n\n## Attributes reference\n\nAll attributes reference are computed\n\n* `id`    - The identifier for this resource.\n* `nodes` - An array of node information. Each `nodes` block consists of the fields documented below.\n\n___\n\nThe `nodes` block consist of\n\n* `hostname`          - External hostname assigned to the node.\n* `name`              - Name of the node.\n* `running`           - Is the node running?\n* `rabbitmq_version`  - Currently configured Rabbit MQ version on the node.\n* `erlang_version`    - Currently used Erlanbg version on the node.\n* `hipe`              - Enable or disable High-performance Erlang.\n* `configured`        - Is the node configured?\n\n## Dependency\n\nThis data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getNodes.\n",
                 "properties": {

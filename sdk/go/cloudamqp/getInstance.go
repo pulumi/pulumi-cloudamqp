@@ -28,10 +28,11 @@ import (
 // * `vpcSubnet`  - Dedicated VPC subnet configured for the CloudAMQP instance.
 // * `nodes`       - Number of nodes in the cluster of the CloudAMQP instance.
 // * `rmqVersion` - The version of installed Rabbit MQ.
-// * `url`         - (Sensitive) The AMQP url, used by clients to connect for pub/sub.
+// * `url`         - (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC), used by clients to connect for pub/sub.
 // * `apikey`      - (Sensitive) The API key to secondary API handing alarms, integration etc.
 // * `tags`        - Tags the CloudAMQP instance with categories.
-// * `host`        - The hostname for the CloudAMQP instance.
+// * `host`        - The external hostname for the CloudAMQP instance.
+// * `hostInternal` - The internal hostname for the CloudAMQP instance.
 // * `vhost`       - The virtual host configured in Rabbit MQ.
 func LookupInstance(ctx *pulumi.Context, args *LookupInstanceArgs, opts ...pulumi.InvokeOption) (*LookupInstanceResult, error) {
 	var rv LookupInstanceResult
@@ -49,9 +50,10 @@ type LookupInstanceArgs struct {
 
 // A collection of values returned by getInstance.
 type LookupInstanceResult struct {
-	Apikey    string `pulumi:"apikey"`
-	Dedicated bool   `pulumi:"dedicated"`
-	Host      string `pulumi:"host"`
+	Apikey       string `pulumi:"apikey"`
+	Dedicated    bool   `pulumi:"dedicated"`
+	Host         string `pulumi:"host"`
+	HostInternal string `pulumi:"hostInternal"`
 	// The provider-assigned unique ID for this managed resource.
 	Id              string   `pulumi:"id"`
 	InstanceId      int      `pulumi:"instanceId"`
@@ -112,6 +114,10 @@ func (o LookupInstanceResultOutput) Dedicated() pulumi.BoolOutput {
 
 func (o LookupInstanceResultOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceResult) string { return v.Host }).(pulumi.StringOutput)
+}
+
+func (o LookupInstanceResultOutput) HostInternal() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInstanceResult) string { return v.HostInternal }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.
