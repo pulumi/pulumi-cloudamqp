@@ -1306,7 +1306,7 @@
             }
         },
         "cloudamqp:index/securityFirewall:SecurityFirewall": {
-            "description": "This resource allows you to configure and manage firewall rules for the CloudAMQP instance. Beware that all rules need to be present, since all older configurations will be overwritten.\n\nOnly available for dedicated subscription plans.\n\n## Depedency\n\nThis resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n\n\n## Import\n\n`cloudamqp_security_firewall` can be imported using CloudAMQP instance identifier.\n\n```sh\n $ pulumi import cloudamqp:index/securityFirewall:SecurityFirewall firewall \u003cinstance_id\u003e`\n```\n\n ",
+            "description": "\n\n\n## Import\n\n`cloudamqp_security_firewall` can be imported using CloudAMQP instance identifier.\n\n```sh\n $ pulumi import cloudamqp:index/securityFirewall:SecurityFirewall firewall \u003cinstance_id\u003e`\n```\n\n ",
             "properties": {
                 "instanceId": {
                     "type": "integer",

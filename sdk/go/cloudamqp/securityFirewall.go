@@ -11,14 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource allows you to configure and manage firewall rules for the CloudAMQP instance. Beware that all rules need to be present, since all older configurations will be overwritten.
-//
-// Only available for dedicated subscription plans.
-//
-// ## Depedency
-//
-// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-//
 // ## Import
 //
 // `cloudamqp_security_firewall` can be imported using CloudAMQP instance identifier.
