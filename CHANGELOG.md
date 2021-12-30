@@ -2,10 +2,13 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade terraform-provider-cloudamqp to v1.15.1
+_(none)_
 
 
 ---
+
+## 3.6.0 (2021-12-30)
+* Upgrade terraform-provider-cloudamqp to v1.15.1
 
 ## 3.5.0 (2021-11-30)
 * Upgrade to v1.13.0 of the CloudAMQP Terraform Provider
