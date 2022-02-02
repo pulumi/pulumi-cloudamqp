@@ -36,12 +36,6 @@ import (
 // 	})
 // }
 // ```
-// ## Argument reference
-//
-// * `instanceId`   - (Required) The CloudAMQP instance identifier.
-// * `recipientId`  - (Optional) The recipient identifier.
-// * `name`          - (Optional) The name set for the recipient.
-//
 // ## Attributes reference
 //
 // All attributes reference are computed
@@ -64,9 +58,12 @@ func LookupNotification(ctx *pulumi.Context, args *LookupNotificationArgs, opts 
 
 // A collection of arguments for invoking getNotification.
 type LookupNotificationArgs struct {
-	InstanceId  int     `pulumi:"instanceId"`
-	Name        *string `pulumi:"name"`
-	RecipientId *int    `pulumi:"recipientId"`
+	// The CloudAMQP instance identifier.
+	InstanceId int `pulumi:"instanceId"`
+	// The name set for the recipient.
+	Name *string `pulumi:"name"`
+	// The recipient identifier.
+	RecipientId *int `pulumi:"recipientId"`
 }
 
 // A collection of values returned by getNotification.
@@ -91,9 +88,12 @@ func LookupNotificationOutput(ctx *pulumi.Context, args LookupNotificationOutput
 
 // A collection of arguments for invoking getNotification.
 type LookupNotificationOutputArgs struct {
-	InstanceId  pulumi.IntInput       `pulumi:"instanceId"`
-	Name        pulumi.StringPtrInput `pulumi:"name"`
-	RecipientId pulumi.IntPtrInput    `pulumi:"recipientId"`
+	// The CloudAMQP instance identifier.
+	InstanceId pulumi.IntInput `pulumi:"instanceId"`
+	// The name set for the recipient.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The recipient identifier.
+	RecipientId pulumi.IntPtrInput `pulumi:"recipientId"`
 }
 
 func (LookupNotificationOutputArgs) ElementType() reflect.Type {

@@ -18,12 +18,6 @@ import * as utilities from "./utilities";
  *     name: "default",
  * });
  * ```
- * ## Argument reference
- *
- * * `instanceId`   - (Required) The CloudAMQP instance identifier.
- * * `recipientId`  - (Optional) The recipient identifier.
- * * `name`          - (Optional) The name set for the recipient.
- *
  * ## Attributes reference
  *
  * All attributes reference are computed
@@ -41,9 +35,7 @@ export function getNotification(args: GetNotificationArgs, opts?: pulumi.InvokeO
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("cloudamqp:index/getNotification:getNotification", {
         "instanceId": args.instanceId,
         "name": args.name,
@@ -55,8 +47,17 @@ export function getNotification(args: GetNotificationArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getNotification.
  */
 export interface GetNotificationArgs {
+    /**
+     * The CloudAMQP instance identifier.
+     */
     instanceId: number;
+    /**
+     * The name set for the recipient.
+     */
     name?: string;
+    /**
+     * The recipient identifier.
+     */
     recipientId?: number;
 }
 
@@ -83,7 +84,16 @@ export function getNotificationOutput(args: GetNotificationOutputArgs, opts?: pu
  * A collection of arguments for invoking getNotification.
  */
 export interface GetNotificationOutputArgs {
+    /**
+     * The CloudAMQP instance identifier.
+     */
     instanceId: pulumi.Input<number>;
+    /**
+     * The name set for the recipient.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The recipient identifier.
+     */
     recipientId?: pulumi.Input<number>;
 }

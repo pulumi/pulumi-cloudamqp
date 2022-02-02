@@ -106,7 +106,7 @@ type SecurityFirewallInput interface {
 }
 
 func (*SecurityFirewall) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecurityFirewall)(nil))
+	return reflect.TypeOf((**SecurityFirewall)(nil)).Elem()
 }
 
 func (i *SecurityFirewall) ToSecurityFirewallOutput() SecurityFirewallOutput {
@@ -115,35 +115,6 @@ func (i *SecurityFirewall) ToSecurityFirewallOutput() SecurityFirewallOutput {
 
 func (i *SecurityFirewall) ToSecurityFirewallOutputWithContext(ctx context.Context) SecurityFirewallOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecurityFirewallOutput)
-}
-
-func (i *SecurityFirewall) ToSecurityFirewallPtrOutput() SecurityFirewallPtrOutput {
-	return i.ToSecurityFirewallPtrOutputWithContext(context.Background())
-}
-
-func (i *SecurityFirewall) ToSecurityFirewallPtrOutputWithContext(ctx context.Context) SecurityFirewallPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecurityFirewallPtrOutput)
-}
-
-type SecurityFirewallPtrInput interface {
-	pulumi.Input
-
-	ToSecurityFirewallPtrOutput() SecurityFirewallPtrOutput
-	ToSecurityFirewallPtrOutputWithContext(ctx context.Context) SecurityFirewallPtrOutput
-}
-
-type securityFirewallPtrType SecurityFirewallArgs
-
-func (*securityFirewallPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SecurityFirewall)(nil))
-}
-
-func (i *securityFirewallPtrType) ToSecurityFirewallPtrOutput() SecurityFirewallPtrOutput {
-	return i.ToSecurityFirewallPtrOutputWithContext(context.Background())
-}
-
-func (i *securityFirewallPtrType) ToSecurityFirewallPtrOutputWithContext(ctx context.Context) SecurityFirewallPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecurityFirewallPtrOutput)
 }
 
 // SecurityFirewallArrayInput is an input type that accepts SecurityFirewallArray and SecurityFirewallArrayOutput values.
@@ -199,7 +170,7 @@ func (i SecurityFirewallMap) ToSecurityFirewallMapOutputWithContext(ctx context.
 type SecurityFirewallOutput struct{ *pulumi.OutputState }
 
 func (SecurityFirewallOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecurityFirewall)(nil))
+	return reflect.TypeOf((**SecurityFirewall)(nil)).Elem()
 }
 
 func (o SecurityFirewallOutput) ToSecurityFirewallOutput() SecurityFirewallOutput {
@@ -210,44 +181,10 @@ func (o SecurityFirewallOutput) ToSecurityFirewallOutputWithContext(ctx context.
 	return o
 }
 
-func (o SecurityFirewallOutput) ToSecurityFirewallPtrOutput() SecurityFirewallPtrOutput {
-	return o.ToSecurityFirewallPtrOutputWithContext(context.Background())
-}
-
-func (o SecurityFirewallOutput) ToSecurityFirewallPtrOutputWithContext(ctx context.Context) SecurityFirewallPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecurityFirewall) *SecurityFirewall {
-		return &v
-	}).(SecurityFirewallPtrOutput)
-}
-
-type SecurityFirewallPtrOutput struct{ *pulumi.OutputState }
-
-func (SecurityFirewallPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SecurityFirewall)(nil))
-}
-
-func (o SecurityFirewallPtrOutput) ToSecurityFirewallPtrOutput() SecurityFirewallPtrOutput {
-	return o
-}
-
-func (o SecurityFirewallPtrOutput) ToSecurityFirewallPtrOutputWithContext(ctx context.Context) SecurityFirewallPtrOutput {
-	return o
-}
-
-func (o SecurityFirewallPtrOutput) Elem() SecurityFirewallOutput {
-	return o.ApplyT(func(v *SecurityFirewall) SecurityFirewall {
-		if v != nil {
-			return *v
-		}
-		var ret SecurityFirewall
-		return ret
-	}).(SecurityFirewallOutput)
-}
-
 type SecurityFirewallArrayOutput struct{ *pulumi.OutputState }
 
 func (SecurityFirewallArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SecurityFirewall)(nil))
+	return reflect.TypeOf((*[]*SecurityFirewall)(nil)).Elem()
 }
 
 func (o SecurityFirewallArrayOutput) ToSecurityFirewallArrayOutput() SecurityFirewallArrayOutput {
@@ -259,15 +196,15 @@ func (o SecurityFirewallArrayOutput) ToSecurityFirewallArrayOutputWithContext(ct
 }
 
 func (o SecurityFirewallArrayOutput) Index(i pulumi.IntInput) SecurityFirewallOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecurityFirewall {
-		return vs[0].([]SecurityFirewall)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecurityFirewall {
+		return vs[0].([]*SecurityFirewall)[vs[1].(int)]
 	}).(SecurityFirewallOutput)
 }
 
 type SecurityFirewallMapOutput struct{ *pulumi.OutputState }
 
 func (SecurityFirewallMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SecurityFirewall)(nil))
+	return reflect.TypeOf((*map[string]*SecurityFirewall)(nil)).Elem()
 }
 
 func (o SecurityFirewallMapOutput) ToSecurityFirewallMapOutput() SecurityFirewallMapOutput {
@@ -279,18 +216,16 @@ func (o SecurityFirewallMapOutput) ToSecurityFirewallMapOutputWithContext(ctx co
 }
 
 func (o SecurityFirewallMapOutput) MapIndex(k pulumi.StringInput) SecurityFirewallOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SecurityFirewall {
-		return vs[0].(map[string]SecurityFirewall)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SecurityFirewall {
+		return vs[0].(map[string]*SecurityFirewall)[vs[1].(string)]
 	}).(SecurityFirewallOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityFirewallInput)(nil)).Elem(), &SecurityFirewall{})
-	pulumi.RegisterInputType(reflect.TypeOf((*SecurityFirewallPtrInput)(nil)).Elem(), &SecurityFirewall{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityFirewallArrayInput)(nil)).Elem(), SecurityFirewallArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityFirewallMapInput)(nil)).Elem(), SecurityFirewallMap{})
 	pulumi.RegisterOutputType(SecurityFirewallOutput{})
-	pulumi.RegisterOutputType(SecurityFirewallPtrOutput{})
 	pulumi.RegisterOutputType(SecurityFirewallArrayOutput{})
 	pulumi.RegisterOutputType(SecurityFirewallMapOutput{})
 }

@@ -36,12 +36,6 @@ import (
 // 	})
 // }
 // ```
-// ## Argument reference
-//
-// * `instanceId` - (Required) The CloudAMQP instance identifier.
-// * `alarmId`    - (Optional) The alarm identifier. Either use this or `type` to give `Alarm` necessary information to retrieve the alarm.
-// * `type`        - (Optional) The alarm type. Either use this or `alarmId` to give `Alarm` necessary information when retrieve the alarm.
-//
 // ## Attributes reference
 //
 // All attributes reference are computed
@@ -69,9 +63,12 @@ func LookupAlarm(ctx *pulumi.Context, args *LookupAlarmArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getAlarm.
 type LookupAlarmArgs struct {
-	AlarmId    *int    `pulumi:"alarmId"`
-	InstanceId int     `pulumi:"instanceId"`
-	Type       *string `pulumi:"type"`
+	// The alarm identifier. Either use this or `type` to give `Alarm` necessary information to retrieve the alarm.
+	AlarmId *int `pulumi:"alarmId"`
+	// The CloudAMQP instance identifier.
+	InstanceId int `pulumi:"instanceId"`
+	// The alarm type. Either use this or `alarmId` to give `Alarm` necessary information when retrieve the alarm.
+	Type *string `pulumi:"type"`
 }
 
 // A collection of values returned by getAlarm.
@@ -101,9 +98,12 @@ func LookupAlarmOutput(ctx *pulumi.Context, args LookupAlarmOutputArgs, opts ...
 
 // A collection of arguments for invoking getAlarm.
 type LookupAlarmOutputArgs struct {
-	AlarmId    pulumi.IntPtrInput    `pulumi:"alarmId"`
-	InstanceId pulumi.IntInput       `pulumi:"instanceId"`
-	Type       pulumi.StringPtrInput `pulumi:"type"`
+	// The alarm identifier. Either use this or `type` to give `Alarm` necessary information to retrieve the alarm.
+	AlarmId pulumi.IntPtrInput `pulumi:"alarmId"`
+	// The CloudAMQP instance identifier.
+	InstanceId pulumi.IntInput `pulumi:"instanceId"`
+	// The alarm type. Either use this or `alarmId` to give `Alarm` necessary information when retrieve the alarm.
+	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
 func (LookupAlarmOutputArgs) ElementType() reflect.Type {

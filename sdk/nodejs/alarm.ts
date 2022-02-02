@@ -147,19 +147,19 @@ export class Alarm extends pulumi.CustomResource {
      */
     constructor(name: string, args: AlarmArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AlarmArgs | AlarmState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AlarmState | undefined;
-            inputs["enabled"] = state ? state.enabled : undefined;
-            inputs["instanceId"] = state ? state.instanceId : undefined;
-            inputs["messageType"] = state ? state.messageType : undefined;
-            inputs["queueRegex"] = state ? state.queueRegex : undefined;
-            inputs["recipients"] = state ? state.recipients : undefined;
-            inputs["timeThreshold"] = state ? state.timeThreshold : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["valueThreshold"] = state ? state.valueThreshold : undefined;
-            inputs["vhostRegex"] = state ? state.vhostRegex : undefined;
+            resourceInputs["enabled"] = state ? state.enabled : undefined;
+            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
+            resourceInputs["messageType"] = state ? state.messageType : undefined;
+            resourceInputs["queueRegex"] = state ? state.queueRegex : undefined;
+            resourceInputs["recipients"] = state ? state.recipients : undefined;
+            resourceInputs["timeThreshold"] = state ? state.timeThreshold : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["valueThreshold"] = state ? state.valueThreshold : undefined;
+            resourceInputs["vhostRegex"] = state ? state.vhostRegex : undefined;
         } else {
             const args = argsOrState as AlarmArgs | undefined;
             if ((!args || args.enabled === undefined) && !opts.urn) {
@@ -174,20 +174,18 @@ export class Alarm extends pulumi.CustomResource {
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            inputs["enabled"] = args ? args.enabled : undefined;
-            inputs["instanceId"] = args ? args.instanceId : undefined;
-            inputs["messageType"] = args ? args.messageType : undefined;
-            inputs["queueRegex"] = args ? args.queueRegex : undefined;
-            inputs["recipients"] = args ? args.recipients : undefined;
-            inputs["timeThreshold"] = args ? args.timeThreshold : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["valueThreshold"] = args ? args.valueThreshold : undefined;
-            inputs["vhostRegex"] = args ? args.vhostRegex : undefined;
+            resourceInputs["enabled"] = args ? args.enabled : undefined;
+            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
+            resourceInputs["messageType"] = args ? args.messageType : undefined;
+            resourceInputs["queueRegex"] = args ? args.queueRegex : undefined;
+            resourceInputs["recipients"] = args ? args.recipients : undefined;
+            resourceInputs["timeThreshold"] = args ? args.timeThreshold : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["valueThreshold"] = args ? args.valueThreshold : undefined;
+            resourceInputs["vhostRegex"] = args ? args.vhostRegex : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Alarm.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Alarm.__pulumiType, name, resourceInputs, opts);
     }
 }
 

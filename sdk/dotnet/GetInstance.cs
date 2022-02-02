@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.CloudAmqp
 {
@@ -14,10 +13,6 @@ namespace Pulumi.CloudAmqp
     {
         /// <summary>
         /// Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.
-        /// 
-        /// ## Argument reference
-        /// 
-        /// * `instance_id` - (Required) The CloudAMQP instance identifier.
         /// 
         /// ## Attributes reference
         /// 
@@ -39,14 +34,10 @@ namespace Pulumi.CloudAmqp
         /// * `vhost`       - The virtual host configured in Rabbit MQ.
         /// </summary>
         public static Task<GetInstanceResult> InvokeAsync(GetInstanceArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetInstanceResult>("cloudamqp:index/getInstance:getInstance", args ?? new GetInstanceArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetInstanceResult>("cloudamqp:index/getInstance:getInstance", args ?? new GetInstanceArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.
-        /// 
-        /// ## Argument reference
-        /// 
-        /// * `instance_id` - (Required) The CloudAMQP instance identifier.
         /// 
         /// ## Attributes reference
         /// 
@@ -68,12 +59,15 @@ namespace Pulumi.CloudAmqp
         /// * `vhost`       - The virtual host configured in Rabbit MQ.
         /// </summary>
         public static Output<GetInstanceResult> Invoke(GetInstanceInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetInstanceResult>("cloudamqp:index/getInstance:getInstance", args ?? new GetInstanceInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetInstanceResult>("cloudamqp:index/getInstance:getInstance", args ?? new GetInstanceInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class GetInstanceArgs : Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The CloudAMQP instance identifier.
+        /// </summary>
         [Input("instanceId", required: true)]
         public int InstanceId { get; set; }
 
@@ -84,6 +78,9 @@ namespace Pulumi.CloudAmqp
 
     public sealed class GetInstanceInvokeArgs : Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The CloudAMQP instance identifier.
+        /// </summary>
         [Input("instanceId", required: true)]
         public Input<int> InstanceId { get; set; } = null!;
 

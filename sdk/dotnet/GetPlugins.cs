@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.CloudAmqp
 {
@@ -39,10 +38,6 @@ namespace Pulumi.CloudAmqp
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
-        /// ## Argument reference
-        /// 
-        /// * `instance_id` - (Required) The CloudAMQP instance identifier.
-        /// 
         /// ## Attributes reference
         /// 
         /// All attributes reference are computed
@@ -64,7 +59,7 @@ namespace Pulumi.CloudAmqp
         /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
         /// </summary>
         public static Task<GetPluginsResult> InvokeAsync(GetPluginsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetPluginsResult>("cloudamqp:index/getPlugins:getPlugins", args ?? new GetPluginsArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetPluginsResult>("cloudamqp:index/getPlugins:getPlugins", args ?? new GetPluginsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
@@ -93,10 +88,6 @@ namespace Pulumi.CloudAmqp
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
-        /// ## Argument reference
-        /// 
-        /// * `instance_id` - (Required) The CloudAMQP instance identifier.
-        /// 
         /// ## Attributes reference
         /// 
         /// All attributes reference are computed
@@ -118,12 +109,15 @@ namespace Pulumi.CloudAmqp
         /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
         /// </summary>
         public static Output<GetPluginsResult> Invoke(GetPluginsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetPluginsResult>("cloudamqp:index/getPlugins:getPlugins", args ?? new GetPluginsInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetPluginsResult>("cloudamqp:index/getPlugins:getPlugins", args ?? new GetPluginsInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class GetPluginsArgs : Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The CloudAMQP instance identifier.
+        /// </summary>
         [Input("instanceId", required: true)]
         public int InstanceId { get; set; }
 
@@ -134,6 +128,9 @@ namespace Pulumi.CloudAmqp
 
     public sealed class GetPluginsInvokeArgs : Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The CloudAMQP instance identifier.
+        /// </summary>
         [Input("instanceId", required: true)]
         public Input<int> InstanceId { get; set; } = null!;
 

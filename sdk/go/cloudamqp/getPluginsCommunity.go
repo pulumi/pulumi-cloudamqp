@@ -36,10 +36,6 @@ import (
 // 	})
 // }
 // ```
-// ## Argument reference
-//
-// * `instanceId` - (Required) The CloudAMQP instance identifier.
-//
 // ## Attributes reference
 //
 // All attributes reference are computed
@@ -69,6 +65,7 @@ func GetPluginsCommunity(ctx *pulumi.Context, args *GetPluginsCommunityArgs, opt
 
 // A collection of arguments for invoking getPluginsCommunity.
 type GetPluginsCommunityArgs struct {
+	// The CloudAMQP instance identifier.
 	InstanceId int `pulumi:"instanceId"`
 }
 
@@ -91,6 +88,7 @@ func GetPluginsCommunityOutput(ctx *pulumi.Context, args GetPluginsCommunityOutp
 
 // A collection of arguments for invoking getPluginsCommunity.
 type GetPluginsCommunityOutputArgs struct {
+	// The CloudAMQP instance identifier.
 	InstanceId pulumi.IntInput `pulumi:"instanceId"`
 }
 

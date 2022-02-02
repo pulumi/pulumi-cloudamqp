@@ -193,46 +193,44 @@ export class IntegrationLog extends pulumi.CustomResource {
      */
     constructor(name: string, args: IntegrationLogArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: IntegrationLogArgs | IntegrationLogState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IntegrationLogState | undefined;
-            inputs["accessKeyId"] = state ? state.accessKeyId : undefined;
-            inputs["apiKey"] = state ? state.apiKey : undefined;
-            inputs["clientEmail"] = state ? state.clientEmail : undefined;
-            inputs["hostPort"] = state ? state.hostPort : undefined;
-            inputs["instanceId"] = state ? state.instanceId : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["privateKey"] = state ? state.privateKey : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["region"] = state ? state.region : undefined;
-            inputs["secretAccessKey"] = state ? state.secretAccessKey : undefined;
-            inputs["tags"] = state ? state.tags : undefined;
-            inputs["token"] = state ? state.token : undefined;
-            inputs["url"] = state ? state.url : undefined;
+            resourceInputs["accessKeyId"] = state ? state.accessKeyId : undefined;
+            resourceInputs["apiKey"] = state ? state.apiKey : undefined;
+            resourceInputs["clientEmail"] = state ? state.clientEmail : undefined;
+            resourceInputs["hostPort"] = state ? state.hostPort : undefined;
+            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["privateKey"] = state ? state.privateKey : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["secretAccessKey"] = state ? state.secretAccessKey : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["token"] = state ? state.token : undefined;
+            resourceInputs["url"] = state ? state.url : undefined;
         } else {
             const args = argsOrState as IntegrationLogArgs | undefined;
             if ((!args || args.instanceId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            inputs["accessKeyId"] = args ? args.accessKeyId : undefined;
-            inputs["apiKey"] = args ? args.apiKey : undefined;
-            inputs["clientEmail"] = args ? args.clientEmail : undefined;
-            inputs["hostPort"] = args ? args.hostPort : undefined;
-            inputs["instanceId"] = args ? args.instanceId : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["privateKey"] = args ? args.privateKey : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["region"] = args ? args.region : undefined;
-            inputs["secretAccessKey"] = args ? args.secretAccessKey : undefined;
-            inputs["tags"] = args ? args.tags : undefined;
-            inputs["token"] = args ? args.token : undefined;
-            inputs["url"] = args ? args.url : undefined;
+            resourceInputs["accessKeyId"] = args ? args.accessKeyId : undefined;
+            resourceInputs["apiKey"] = args ? args.apiKey : undefined;
+            resourceInputs["clientEmail"] = args ? args.clientEmail : undefined;
+            resourceInputs["hostPort"] = args ? args.hostPort : undefined;
+            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["privateKey"] = args ? args.privateKey : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["secretAccessKey"] = args ? args.secretAccessKey : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["token"] = args ? args.token : undefined;
+            resourceInputs["url"] = args ? args.url : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(IntegrationLog.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(IntegrationLog.__pulumiType, name, resourceInputs, opts);
     }
 }
 

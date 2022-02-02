@@ -20,10 +20,6 @@ import * as utilities from "./utilities";
  *     instanceId: cloudamqp_instance.instance.id,
  * });
  * ```
- * ## Argument reference
- *
- * * `instanceId` - (Required) The CloudAMQP instance identifier.
- *
  * ## Attributes reference
  *
  * All attributes reference are computed
@@ -49,9 +45,7 @@ export function getPlugins(args: GetPluginsArgs, opts?: pulumi.InvokeOptions): P
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("cloudamqp:index/getPlugins:getPlugins", {
         "instanceId": args.instanceId,
     }, opts);
@@ -61,6 +55,9 @@ export function getPlugins(args: GetPluginsArgs, opts?: pulumi.InvokeOptions): P
  * A collection of arguments for invoking getPlugins.
  */
 export interface GetPluginsArgs {
+    /**
+     * The CloudAMQP instance identifier.
+     */
     instanceId: number;
 }
 
@@ -84,5 +81,8 @@ export function getPluginsOutput(args: GetPluginsOutputArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getPlugins.
  */
 export interface GetPluginsOutputArgs {
+    /**
+     * The CloudAMQP instance identifier.
+     */
     instanceId: pulumi.Input<number>;
 }

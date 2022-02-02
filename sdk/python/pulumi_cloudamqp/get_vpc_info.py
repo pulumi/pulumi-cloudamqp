@@ -103,10 +103,6 @@ def get_vpc_info(instance_id: Optional[int] = None,
 
     vpc_info = cloudamqp.get_vpc_info(instance_id=cloudamqp_instance["instance"]["id"])
     ```
-    ## Argument reference
-
-    * `instance_id` - (Required) The CloudAMQP instance identifier.
-
     ## Attributes reference
 
     All attributes reference are computed
@@ -120,6 +116,9 @@ def get_vpc_info(instance_id: Optional[int] = None,
     ## Dependency
 
     This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+
+    :param int instance_id: The CloudAMQP instance identifier.
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
@@ -154,10 +153,6 @@ def get_vpc_info_output(instance_id: Optional[pulumi.Input[int]] = None,
 
     vpc_info = cloudamqp.get_vpc_info(instance_id=cloudamqp_instance["instance"]["id"])
     ```
-    ## Argument reference
-
-    * `instance_id` - (Required) The CloudAMQP instance identifier.
-
     ## Attributes reference
 
     All attributes reference are computed
@@ -171,5 +166,8 @@ def get_vpc_info_output(instance_id: Optional[pulumi.Input[int]] = None,
     ## Dependency
 
     This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+
+    :param int instance_id: The CloudAMQP instance identifier.
     """
     ...

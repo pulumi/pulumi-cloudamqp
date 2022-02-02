@@ -18,12 +18,6 @@ import * as utilities from "./utilities";
  *     type: "cpu",
  * });
  * ```
- * ## Argument reference
- *
- * * `instanceId` - (Required) The CloudAMQP instance identifier.
- * * `alarmId`    - (Optional) The alarm identifier. Either use this or `type` to give `cloudamqp.Alarm` necessary information to retrieve the alarm.
- * * `type`        - (Optional) The alarm type. Either use this or `alarmId` to give `cloudamqp.Alarm` necessary information when retrieve the alarm.
- *
  * ## Attributes reference
  *
  * All attributes reference are computed
@@ -46,9 +40,7 @@ export function getAlarm(args: GetAlarmArgs, opts?: pulumi.InvokeOptions): Promi
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("cloudamqp:index/getAlarm:getAlarm", {
         "alarmId": args.alarmId,
         "instanceId": args.instanceId,
@@ -60,8 +52,17 @@ export function getAlarm(args: GetAlarmArgs, opts?: pulumi.InvokeOptions): Promi
  * A collection of arguments for invoking getAlarm.
  */
 export interface GetAlarmArgs {
+    /**
+     * The alarm identifier. Either use this or `type` to give `cloudamqp.Alarm` necessary information to retrieve the alarm.
+     */
     alarmId?: number;
+    /**
+     * The CloudAMQP instance identifier.
+     */
     instanceId: number;
+    /**
+     * The alarm type. Either use this or `alarmId` to give `cloudamqp.Alarm` necessary information when retrieve the alarm.
+     */
     type?: string;
 }
 
@@ -93,7 +94,16 @@ export function getAlarmOutput(args: GetAlarmOutputArgs, opts?: pulumi.InvokeOpt
  * A collection of arguments for invoking getAlarm.
  */
 export interface GetAlarmOutputArgs {
+    /**
+     * The alarm identifier. Either use this or `type` to give `cloudamqp.Alarm` necessary information to retrieve the alarm.
+     */
     alarmId?: pulumi.Input<number>;
+    /**
+     * The CloudAMQP instance identifier.
+     */
     instanceId: pulumi.Input<number>;
+    /**
+     * The alarm type. Either use this or `alarmId` to give `cloudamqp.Alarm` necessary information when retrieve the alarm.
+     */
     type?: pulumi.Input<string>;
 }

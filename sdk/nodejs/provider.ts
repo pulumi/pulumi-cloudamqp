@@ -42,19 +42,17 @@ export class Provider extends pulumi.ProviderResource {
      * @param opts A bag of options that control this resource's behavior.
      */
     constructor(name: string, args: ProviderArgs, opts?: pulumi.ResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
             if ((!args || args.apikey === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'apikey'");
             }
-            inputs["apikey"] = args ? args.apikey : undefined;
-            inputs["baseurl"] = args ? args.baseurl : undefined;
+            resourceInputs["apikey"] = args ? args.apikey : undefined;
+            resourceInputs["baseurl"] = args ? args.baseurl : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Provider.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 }
 
