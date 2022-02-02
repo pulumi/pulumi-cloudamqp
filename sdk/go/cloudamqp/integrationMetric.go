@@ -256,7 +256,7 @@ type IntegrationMetricInput interface {
 }
 
 func (*IntegrationMetric) ElementType() reflect.Type {
-	return reflect.TypeOf((*IntegrationMetric)(nil))
+	return reflect.TypeOf((**IntegrationMetric)(nil)).Elem()
 }
 
 func (i *IntegrationMetric) ToIntegrationMetricOutput() IntegrationMetricOutput {
@@ -265,35 +265,6 @@ func (i *IntegrationMetric) ToIntegrationMetricOutput() IntegrationMetricOutput 
 
 func (i *IntegrationMetric) ToIntegrationMetricOutputWithContext(ctx context.Context) IntegrationMetricOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricOutput)
-}
-
-func (i *IntegrationMetric) ToIntegrationMetricPtrOutput() IntegrationMetricPtrOutput {
-	return i.ToIntegrationMetricPtrOutputWithContext(context.Background())
-}
-
-func (i *IntegrationMetric) ToIntegrationMetricPtrOutputWithContext(ctx context.Context) IntegrationMetricPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPtrOutput)
-}
-
-type IntegrationMetricPtrInput interface {
-	pulumi.Input
-
-	ToIntegrationMetricPtrOutput() IntegrationMetricPtrOutput
-	ToIntegrationMetricPtrOutputWithContext(ctx context.Context) IntegrationMetricPtrOutput
-}
-
-type integrationMetricPtrType IntegrationMetricArgs
-
-func (*integrationMetricPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**IntegrationMetric)(nil))
-}
-
-func (i *integrationMetricPtrType) ToIntegrationMetricPtrOutput() IntegrationMetricPtrOutput {
-	return i.ToIntegrationMetricPtrOutputWithContext(context.Background())
-}
-
-func (i *integrationMetricPtrType) ToIntegrationMetricPtrOutputWithContext(ctx context.Context) IntegrationMetricPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPtrOutput)
 }
 
 // IntegrationMetricArrayInput is an input type that accepts IntegrationMetricArray and IntegrationMetricArrayOutput values.
@@ -349,7 +320,7 @@ func (i IntegrationMetricMap) ToIntegrationMetricMapOutputWithContext(ctx contex
 type IntegrationMetricOutput struct{ *pulumi.OutputState }
 
 func (IntegrationMetricOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*IntegrationMetric)(nil))
+	return reflect.TypeOf((**IntegrationMetric)(nil)).Elem()
 }
 
 func (o IntegrationMetricOutput) ToIntegrationMetricOutput() IntegrationMetricOutput {
@@ -360,44 +331,10 @@ func (o IntegrationMetricOutput) ToIntegrationMetricOutputWithContext(ctx contex
 	return o
 }
 
-func (o IntegrationMetricOutput) ToIntegrationMetricPtrOutput() IntegrationMetricPtrOutput {
-	return o.ToIntegrationMetricPtrOutputWithContext(context.Background())
-}
-
-func (o IntegrationMetricOutput) ToIntegrationMetricPtrOutputWithContext(ctx context.Context) IntegrationMetricPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v IntegrationMetric) *IntegrationMetric {
-		return &v
-	}).(IntegrationMetricPtrOutput)
-}
-
-type IntegrationMetricPtrOutput struct{ *pulumi.OutputState }
-
-func (IntegrationMetricPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**IntegrationMetric)(nil))
-}
-
-func (o IntegrationMetricPtrOutput) ToIntegrationMetricPtrOutput() IntegrationMetricPtrOutput {
-	return o
-}
-
-func (o IntegrationMetricPtrOutput) ToIntegrationMetricPtrOutputWithContext(ctx context.Context) IntegrationMetricPtrOutput {
-	return o
-}
-
-func (o IntegrationMetricPtrOutput) Elem() IntegrationMetricOutput {
-	return o.ApplyT(func(v *IntegrationMetric) IntegrationMetric {
-		if v != nil {
-			return *v
-		}
-		var ret IntegrationMetric
-		return ret
-	}).(IntegrationMetricOutput)
-}
-
 type IntegrationMetricArrayOutput struct{ *pulumi.OutputState }
 
 func (IntegrationMetricArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]IntegrationMetric)(nil))
+	return reflect.TypeOf((*[]*IntegrationMetric)(nil)).Elem()
 }
 
 func (o IntegrationMetricArrayOutput) ToIntegrationMetricArrayOutput() IntegrationMetricArrayOutput {
@@ -409,15 +346,15 @@ func (o IntegrationMetricArrayOutput) ToIntegrationMetricArrayOutputWithContext(
 }
 
 func (o IntegrationMetricArrayOutput) Index(i pulumi.IntInput) IntegrationMetricOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IntegrationMetric {
-		return vs[0].([]IntegrationMetric)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IntegrationMetric {
+		return vs[0].([]*IntegrationMetric)[vs[1].(int)]
 	}).(IntegrationMetricOutput)
 }
 
 type IntegrationMetricMapOutput struct{ *pulumi.OutputState }
 
 func (IntegrationMetricMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]IntegrationMetric)(nil))
+	return reflect.TypeOf((*map[string]*IntegrationMetric)(nil)).Elem()
 }
 
 func (o IntegrationMetricMapOutput) ToIntegrationMetricMapOutput() IntegrationMetricMapOutput {
@@ -429,18 +366,16 @@ func (o IntegrationMetricMapOutput) ToIntegrationMetricMapOutputWithContext(ctx 
 }
 
 func (o IntegrationMetricMapOutput) MapIndex(k pulumi.StringInput) IntegrationMetricOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) IntegrationMetric {
-		return vs[0].(map[string]IntegrationMetric)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *IntegrationMetric {
+		return vs[0].(map[string]*IntegrationMetric)[vs[1].(string)]
 	}).(IntegrationMetricOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricInput)(nil)).Elem(), &IntegrationMetric{})
-	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPtrInput)(nil)).Elem(), &IntegrationMetric{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricArrayInput)(nil)).Elem(), IntegrationMetricArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricMapInput)(nil)).Elem(), IntegrationMetricMap{})
 	pulumi.RegisterOutputType(IntegrationMetricOutput{})
-	pulumi.RegisterOutputType(IntegrationMetricPtrOutput{})
 	pulumi.RegisterOutputType(IntegrationMetricArrayOutput{})
 	pulumi.RegisterOutputType(IntegrationMetricMapOutput{})
 }

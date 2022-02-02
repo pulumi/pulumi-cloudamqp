@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.CloudAmqp
 {
@@ -38,12 +37,6 @@ namespace Pulumi.CloudAmqp
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
-        /// ## Argument reference
-        /// 
-        /// * `instance_id`   - (Required) The CloudAMQP instance identifier.
-        /// * `recipient_id`  - (Optional) The recipient identifier.
-        /// * `name`          - (Optional) The name set for the recipient.
-        /// 
         /// ## Attributes reference
         /// 
         /// All attributes reference are computed
@@ -57,7 +50,7 @@ namespace Pulumi.CloudAmqp
         /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
         /// </summary>
         public static Task<GetNotificationResult> InvokeAsync(GetNotificationArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetNotificationResult>("cloudamqp:index/getNotification:getNotification", args ?? new GetNotificationArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetNotificationResult>("cloudamqp:index/getNotification:getNotification", args ?? new GetNotificationArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipient_id` or `name`.
@@ -85,12 +78,6 @@ namespace Pulumi.CloudAmqp
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
-        /// ## Argument reference
-        /// 
-        /// * `instance_id`   - (Required) The CloudAMQP instance identifier.
-        /// * `recipient_id`  - (Optional) The recipient identifier.
-        /// * `name`          - (Optional) The name set for the recipient.
-        /// 
         /// ## Attributes reference
         /// 
         /// All attributes reference are computed
@@ -104,18 +91,27 @@ namespace Pulumi.CloudAmqp
         /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
         /// </summary>
         public static Output<GetNotificationResult> Invoke(GetNotificationInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetNotificationResult>("cloudamqp:index/getNotification:getNotification", args ?? new GetNotificationInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetNotificationResult>("cloudamqp:index/getNotification:getNotification", args ?? new GetNotificationInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class GetNotificationArgs : Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The CloudAMQP instance identifier.
+        /// </summary>
         [Input("instanceId", required: true)]
         public int InstanceId { get; set; }
 
+        /// <summary>
+        /// The name set for the recipient.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// The recipient identifier.
+        /// </summary>
         [Input("recipientId")]
         public int? RecipientId { get; set; }
 
@@ -126,12 +122,21 @@ namespace Pulumi.CloudAmqp
 
     public sealed class GetNotificationInvokeArgs : Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The CloudAMQP instance identifier.
+        /// </summary>
         [Input("instanceId", required: true)]
         public Input<int> InstanceId { get; set; } = null!;
 
+        /// <summary>
+        /// The name set for the recipient.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The recipient identifier.
+        /// </summary>
         [Input("recipientId")]
         public Input<int>? RecipientId { get; set; }
 

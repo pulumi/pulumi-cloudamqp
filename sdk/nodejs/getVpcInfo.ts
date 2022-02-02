@@ -19,10 +19,6 @@ import * as utilities from "./utilities";
  *     instanceId: cloudamqp_instance.instance.id,
  * });
  * ```
- * ## Argument reference
- *
- * * `instanceId` - (Required) The CloudAMQP instance identifier.
- *
  * ## Attributes reference
  *
  * All attributes reference are computed
@@ -42,9 +38,7 @@ export function getVpcInfo(args: GetVpcInfoArgs, opts?: pulumi.InvokeOptions): P
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("cloudamqp:index/getVpcInfo:getVpcInfo", {
         "instanceId": args.instanceId,
     }, opts);
@@ -54,6 +48,9 @@ export function getVpcInfo(args: GetVpcInfoArgs, opts?: pulumi.InvokeOptions): P
  * A collection of arguments for invoking getVpcInfo.
  */
 export interface GetVpcInfoArgs {
+    /**
+     * The CloudAMQP instance identifier.
+     */
     instanceId: number;
 }
 
@@ -80,5 +77,8 @@ export function getVpcInfoOutput(args: GetVpcInfoOutputArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getVpcInfo.
  */
 export interface GetVpcInfoOutputArgs {
+    /**
+     * The CloudAMQP instance identifier.
+     */
     instanceId: pulumi.Input<number>;
 }

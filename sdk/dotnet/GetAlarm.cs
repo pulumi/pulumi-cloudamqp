@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.CloudAmqp
 {
@@ -38,12 +37,6 @@ namespace Pulumi.CloudAmqp
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
-        /// ## Argument reference
-        /// 
-        /// * `instance_id` - (Required) The CloudAMQP instance identifier.
-        /// * `alarm_id`    - (Optional) The alarm identifier. Either use this or `type` to give `cloudamqp.Alarm` necessary information to retrieve the alarm.
-        /// * `type`        - (Optional) The alarm type. Either use this or `alarm_id` to give `cloudamqp.Alarm` necessary information when retrieve the alarm.
-        /// 
         /// ## Attributes reference
         /// 
         /// All attributes reference are computed
@@ -62,7 +55,7 @@ namespace Pulumi.CloudAmqp
         /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
         /// </summary>
         public static Task<GetAlarmResult> InvokeAsync(GetAlarmArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAlarmResult>("cloudamqp:index/getAlarm:getAlarm", args ?? new GetAlarmArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetAlarmResult>("cloudamqp:index/getAlarm:getAlarm", args ?? new GetAlarmArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to retrieve information about default or created alarms. Either use `alarm_id` or `type` to retrieve the alarm.
@@ -90,12 +83,6 @@ namespace Pulumi.CloudAmqp
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
-        /// ## Argument reference
-        /// 
-        /// * `instance_id` - (Required) The CloudAMQP instance identifier.
-        /// * `alarm_id`    - (Optional) The alarm identifier. Either use this or `type` to give `cloudamqp.Alarm` necessary information to retrieve the alarm.
-        /// * `type`        - (Optional) The alarm type. Either use this or `alarm_id` to give `cloudamqp.Alarm` necessary information when retrieve the alarm.
-        /// 
         /// ## Attributes reference
         /// 
         /// All attributes reference are computed
@@ -114,18 +101,27 @@ namespace Pulumi.CloudAmqp
         /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
         /// </summary>
         public static Output<GetAlarmResult> Invoke(GetAlarmInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAlarmResult>("cloudamqp:index/getAlarm:getAlarm", args ?? new GetAlarmInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetAlarmResult>("cloudamqp:index/getAlarm:getAlarm", args ?? new GetAlarmInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class GetAlarmArgs : Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The alarm identifier. Either use this or `type` to give `cloudamqp.Alarm` necessary information to retrieve the alarm.
+        /// </summary>
         [Input("alarmId")]
         public int? AlarmId { get; set; }
 
+        /// <summary>
+        /// The CloudAMQP instance identifier.
+        /// </summary>
         [Input("instanceId", required: true)]
         public int InstanceId { get; set; }
 
+        /// <summary>
+        /// The alarm type. Either use this or `alarm_id` to give `cloudamqp.Alarm` necessary information when retrieve the alarm.
+        /// </summary>
         [Input("type")]
         public string? Type { get; set; }
 
@@ -136,12 +132,21 @@ namespace Pulumi.CloudAmqp
 
     public sealed class GetAlarmInvokeArgs : Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The alarm identifier. Either use this or `type` to give `cloudamqp.Alarm` necessary information to retrieve the alarm.
+        /// </summary>
         [Input("alarmId")]
         public Input<int>? AlarmId { get; set; }
 
+        /// <summary>
+        /// The CloudAMQP instance identifier.
+        /// </summary>
         [Input("instanceId", required: true)]
         public Input<int> InstanceId { get; set; } = null!;
 
+        /// <summary>
+        /// The alarm type. Either use this or `alarm_id` to give `cloudamqp.Alarm` necessary information when retrieve the alarm.
+        /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 

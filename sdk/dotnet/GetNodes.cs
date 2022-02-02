@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.CloudAmqp
 {
@@ -37,10 +36,6 @@ namespace Pulumi.CloudAmqp
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
-        /// ## Argument reference
-        /// 
-        /// * `instance_id` - (Required) The CloudAMQP instance identifier.
-        /// 
         /// ## Attributes reference
         /// 
         /// All attributes reference are computed
@@ -65,7 +60,7 @@ namespace Pulumi.CloudAmqp
         /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
         /// </summary>
         public static Task<GetNodesResult> InvokeAsync(GetNodesArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetNodesResult>("cloudamqp:index/getNodes:getNodes", args ?? new GetNodesArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetNodesResult>("cloudamqp:index/getNodes:getNodes", args ?? new GetNodesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to retrieve information about the node(s) created by CloudAMQP instance.
@@ -92,10 +87,6 @@ namespace Pulumi.CloudAmqp
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
-        /// ## Argument reference
-        /// 
-        /// * `instance_id` - (Required) The CloudAMQP instance identifier.
-        /// 
         /// ## Attributes reference
         /// 
         /// All attributes reference are computed
@@ -120,12 +111,15 @@ namespace Pulumi.CloudAmqp
         /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
         /// </summary>
         public static Output<GetNodesResult> Invoke(GetNodesInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetNodesResult>("cloudamqp:index/getNodes:getNodes", args ?? new GetNodesInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetNodesResult>("cloudamqp:index/getNodes:getNodes", args ?? new GetNodesInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class GetNodesArgs : Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The CloudAMQP instance identifier.
+        /// </summary>
         [Input("instanceId", required: true)]
         public int InstanceId { get; set; }
 
@@ -136,6 +130,9 @@ namespace Pulumi.CloudAmqp
 
     public sealed class GetNodesInvokeArgs : Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The CloudAMQP instance identifier.
+        /// </summary>
         [Input("instanceId", required: true)]
         public Input<int> InstanceId { get; set; } = null!;
 

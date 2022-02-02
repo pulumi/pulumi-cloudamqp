@@ -101,14 +101,14 @@ export class Notification extends pulumi.CustomResource {
      */
     constructor(name: string, args: NotificationArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: NotificationArgs | NotificationState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as NotificationState | undefined;
-            inputs["instanceId"] = state ? state.instanceId : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["value"] = state ? state.value : undefined;
+            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["value"] = state ? state.value : undefined;
         } else {
             const args = argsOrState as NotificationArgs | undefined;
             if ((!args || args.instanceId === undefined) && !opts.urn) {
@@ -120,15 +120,13 @@ export class Notification extends pulumi.CustomResource {
             if ((!args || args.value === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'value'");
             }
-            inputs["instanceId"] = args ? args.instanceId : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["value"] = args ? args.value : undefined;
+            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["value"] = args ? args.value : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Notification.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Notification.__pulumiType, name, resourceInputs, opts);
     }
 }
 

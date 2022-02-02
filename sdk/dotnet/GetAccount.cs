@@ -29,7 +29,7 @@ namespace Pulumi.CloudAmqp
         /// This data source depends on apikey set in the provider configuration.
         /// </summary>
         public static Task<GetAccountResult> InvokeAsync(InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAccountResult>("cloudamqp:index/getAccount:getAccount", InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetAccountResult>("cloudamqp:index/getAccount:getAccount", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

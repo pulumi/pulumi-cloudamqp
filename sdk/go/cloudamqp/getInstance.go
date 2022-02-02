@@ -12,10 +12,6 @@ import (
 
 // Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.
 //
-// ## Argument reference
-//
-// * `instanceId` - (Required) The CloudAMQP instance identifier.
-//
 // ## Attributes reference
 //
 // All attributes reference are computed
@@ -45,6 +41,7 @@ func LookupInstance(ctx *pulumi.Context, args *LookupInstanceArgs, opts ...pulum
 
 // A collection of arguments for invoking getInstance.
 type LookupInstanceArgs struct {
+	// The CloudAMQP instance identifier.
 	InstanceId int `pulumi:"instanceId"`
 }
 
@@ -82,6 +79,7 @@ func LookupInstanceOutput(ctx *pulumi.Context, args LookupInstanceOutputArgs, op
 
 // A collection of arguments for invoking getInstance.
 type LookupInstanceOutputArgs struct {
+	// The CloudAMQP instance identifier.
 	InstanceId pulumi.IntInput `pulumi:"instanceId"`
 }
 

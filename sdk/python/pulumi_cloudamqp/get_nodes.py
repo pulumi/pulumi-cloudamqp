@@ -75,10 +75,6 @@ def get_nodes(instance_id: Optional[int] = None,
 
     nodes = cloudamqp.get_nodes(instance_id=cloudamqp_instance["instance"]["id"])
     ```
-    ## Argument reference
-
-    * `instance_id` - (Required) The CloudAMQP instance identifier.
-
     ## Attributes reference
 
     All attributes reference are computed
@@ -101,6 +97,9 @@ def get_nodes(instance_id: Optional[int] = None,
     ## Dependency
 
     This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+
+    :param int instance_id: The CloudAMQP instance identifier.
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
@@ -130,10 +129,6 @@ def get_nodes_output(instance_id: Optional[pulumi.Input[int]] = None,
 
     nodes = cloudamqp.get_nodes(instance_id=cloudamqp_instance["instance"]["id"])
     ```
-    ## Argument reference
-
-    * `instance_id` - (Required) The CloudAMQP instance identifier.
-
     ## Attributes reference
 
     All attributes reference are computed
@@ -156,5 +151,8 @@ def get_nodes_output(instance_id: Optional[pulumi.Input[int]] = None,
     ## Dependency
 
     This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+
+    :param int instance_id: The CloudAMQP instance identifier.
     """
     ...

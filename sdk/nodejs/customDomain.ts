@@ -86,12 +86,12 @@ export class CustomDomain extends pulumi.CustomResource {
      */
     constructor(name: string, args: CustomDomainArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: CustomDomainArgs | CustomDomainState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CustomDomainState | undefined;
-            inputs["hostname"] = state ? state.hostname : undefined;
-            inputs["instanceId"] = state ? state.instanceId : undefined;
+            resourceInputs["hostname"] = state ? state.hostname : undefined;
+            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
         } else {
             const args = argsOrState as CustomDomainArgs | undefined;
             if ((!args || args.hostname === undefined) && !opts.urn) {
@@ -100,13 +100,11 @@ export class CustomDomain extends pulumi.CustomResource {
             if ((!args || args.instanceId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            inputs["hostname"] = args ? args.hostname : undefined;
-            inputs["instanceId"] = args ? args.instanceId : undefined;
+            resourceInputs["hostname"] = args ? args.hostname : undefined;
+            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(CustomDomain.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(CustomDomain.__pulumiType, name, resourceInputs, opts);
     }
 }
 

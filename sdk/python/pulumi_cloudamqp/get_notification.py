@@ -104,12 +104,6 @@ def get_notification(instance_id: Optional[int] = None,
     default_recipient = cloudamqp.get_notification(instance_id=cloudamqp_instance["instance"]["id"],
         name="default")
     ```
-    ## Argument reference
-
-    * `instance_id`   - (Required) The CloudAMQP instance identifier.
-    * `recipient_id`  - (Optional) The recipient identifier.
-    * `name`          - (Optional) The name set for the recipient.
-
     ## Attributes reference
 
     All attributes reference are computed
@@ -121,6 +115,11 @@ def get_notification(instance_id: Optional[int] = None,
     ## Dependency
 
     This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+
+    :param int instance_id: The CloudAMQP instance identifier.
+    :param str name: The name set for the recipient.
+    :param int recipient_id: The recipient identifier.
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
@@ -158,12 +157,6 @@ def get_notification_output(instance_id: Optional[pulumi.Input[int]] = None,
     default_recipient = cloudamqp.get_notification(instance_id=cloudamqp_instance["instance"]["id"],
         name="default")
     ```
-    ## Argument reference
-
-    * `instance_id`   - (Required) The CloudAMQP instance identifier.
-    * `recipient_id`  - (Optional) The recipient identifier.
-    * `name`          - (Optional) The name set for the recipient.
-
     ## Attributes reference
 
     All attributes reference are computed
@@ -175,5 +168,10 @@ def get_notification_output(instance_id: Optional[pulumi.Input[int]] = None,
     ## Dependency
 
     This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+
+    :param int instance_id: The CloudAMQP instance identifier.
+    :param str name: The name set for the recipient.
+    :param int recipient_id: The recipient identifier.
     """
     ...

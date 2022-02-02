@@ -63,13 +63,13 @@ export class VpcPeering extends pulumi.CustomResource {
      */
     constructor(name: string, args: VpcPeeringArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VpcPeeringArgs | VpcPeeringState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpcPeeringState | undefined;
-            inputs["instanceId"] = state ? state.instanceId : undefined;
-            inputs["peeringId"] = state ? state.peeringId : undefined;
-            inputs["status"] = state ? state.status : undefined;
+            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
+            resourceInputs["peeringId"] = state ? state.peeringId : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
         } else {
             const args = argsOrState as VpcPeeringArgs | undefined;
             if ((!args || args.instanceId === undefined) && !opts.urn) {
@@ -78,14 +78,12 @@ export class VpcPeering extends pulumi.CustomResource {
             if ((!args || args.peeringId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'peeringId'");
             }
-            inputs["instanceId"] = args ? args.instanceId : undefined;
-            inputs["peeringId"] = args ? args.peeringId : undefined;
-            inputs["status"] = undefined /*out*/;
+            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
+            resourceInputs["peeringId"] = args ? args.peeringId : undefined;
+            resourceInputs["status"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(VpcPeering.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(VpcPeering.__pulumiType, name, resourceInputs, opts);
     }
 }
 

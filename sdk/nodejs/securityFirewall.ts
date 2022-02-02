@@ -60,12 +60,12 @@ export class SecurityFirewall extends pulumi.CustomResource {
      */
     constructor(name: string, args: SecurityFirewallArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecurityFirewallArgs | SecurityFirewallState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecurityFirewallState | undefined;
-            inputs["instanceId"] = state ? state.instanceId : undefined;
-            inputs["rules"] = state ? state.rules : undefined;
+            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
+            resourceInputs["rules"] = state ? state.rules : undefined;
         } else {
             const args = argsOrState as SecurityFirewallArgs | undefined;
             if ((!args || args.instanceId === undefined) && !opts.urn) {
@@ -74,13 +74,11 @@ export class SecurityFirewall extends pulumi.CustomResource {
             if ((!args || args.rules === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'rules'");
             }
-            inputs["instanceId"] = args ? args.instanceId : undefined;
-            inputs["rules"] = args ? args.rules : undefined;
+            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
+            resourceInputs["rules"] = args ? args.rules : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SecurityFirewall.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SecurityFirewall.__pulumiType, name, resourceInputs, opts);
     }
 }
 

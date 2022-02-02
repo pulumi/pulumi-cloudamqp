@@ -110,52 +110,50 @@ export class IntegrationMetric extends pulumi.CustomResource {
      */
     constructor(name: string, args: IntegrationMetricArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: IntegrationMetricArgs | IntegrationMetricState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IntegrationMetricState | undefined;
-            inputs["accessKeyId"] = state ? state.accessKeyId : undefined;
-            inputs["apiKey"] = state ? state.apiKey : undefined;
-            inputs["clientEmail"] = state ? state.clientEmail : undefined;
-            inputs["email"] = state ? state.email : undefined;
-            inputs["instanceId"] = state ? state.instanceId : undefined;
-            inputs["licenseKey"] = state ? state.licenseKey : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["privateKey"] = state ? state.privateKey : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["queueAllowlist"] = state ? state.queueAllowlist : undefined;
-            inputs["queueWhitelist"] = state ? state.queueWhitelist : undefined;
-            inputs["region"] = state ? state.region : undefined;
-            inputs["secretAccessKey"] = state ? state.secretAccessKey : undefined;
-            inputs["tags"] = state ? state.tags : undefined;
-            inputs["vhostAllowlist"] = state ? state.vhostAllowlist : undefined;
-            inputs["vhostWhitelist"] = state ? state.vhostWhitelist : undefined;
+            resourceInputs["accessKeyId"] = state ? state.accessKeyId : undefined;
+            resourceInputs["apiKey"] = state ? state.apiKey : undefined;
+            resourceInputs["clientEmail"] = state ? state.clientEmail : undefined;
+            resourceInputs["email"] = state ? state.email : undefined;
+            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
+            resourceInputs["licenseKey"] = state ? state.licenseKey : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["privateKey"] = state ? state.privateKey : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["queueAllowlist"] = state ? state.queueAllowlist : undefined;
+            resourceInputs["queueWhitelist"] = state ? state.queueWhitelist : undefined;
+            resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["secretAccessKey"] = state ? state.secretAccessKey : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["vhostAllowlist"] = state ? state.vhostAllowlist : undefined;
+            resourceInputs["vhostWhitelist"] = state ? state.vhostWhitelist : undefined;
         } else {
             const args = argsOrState as IntegrationMetricArgs | undefined;
             if ((!args || args.instanceId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            inputs["accessKeyId"] = args ? args.accessKeyId : undefined;
-            inputs["apiKey"] = args ? args.apiKey : undefined;
-            inputs["clientEmail"] = args ? args.clientEmail : undefined;
-            inputs["email"] = args ? args.email : undefined;
-            inputs["instanceId"] = args ? args.instanceId : undefined;
-            inputs["licenseKey"] = args ? args.licenseKey : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["privateKey"] = args ? args.privateKey : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["queueAllowlist"] = args ? args.queueAllowlist : undefined;
-            inputs["queueWhitelist"] = args ? args.queueWhitelist : undefined;
-            inputs["region"] = args ? args.region : undefined;
-            inputs["secretAccessKey"] = args ? args.secretAccessKey : undefined;
-            inputs["tags"] = args ? args.tags : undefined;
-            inputs["vhostAllowlist"] = args ? args.vhostAllowlist : undefined;
-            inputs["vhostWhitelist"] = args ? args.vhostWhitelist : undefined;
+            resourceInputs["accessKeyId"] = args ? args.accessKeyId : undefined;
+            resourceInputs["apiKey"] = args ? args.apiKey : undefined;
+            resourceInputs["clientEmail"] = args ? args.clientEmail : undefined;
+            resourceInputs["email"] = args ? args.email : undefined;
+            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
+            resourceInputs["licenseKey"] = args ? args.licenseKey : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["privateKey"] = args ? args.privateKey : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["queueAllowlist"] = args ? args.queueAllowlist : undefined;
+            resourceInputs["queueWhitelist"] = args ? args.queueWhitelist : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["secretAccessKey"] = args ? args.secretAccessKey : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["vhostAllowlist"] = args ? args.vhostAllowlist : undefined;
+            resourceInputs["vhostWhitelist"] = args ? args.vhostWhitelist : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(IntegrationMetric.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(IntegrationMetric.__pulumiType, name, resourceInputs, opts);
     }
 }
 

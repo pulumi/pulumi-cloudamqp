@@ -201,10 +201,6 @@ def get_instance(instance_id: Optional[int] = None,
     """
     Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.
 
-    ## Argument reference
-
-    * `instance_id` - (Required) The CloudAMQP instance identifier.
-
     ## Attributes reference
 
     All attributes reference are computed
@@ -223,6 +219,9 @@ def get_instance(instance_id: Optional[int] = None,
     * `host`        - The external hostname for the CloudAMQP instance.
     * `host_internal` - The internal hostname for the CloudAMQP instance.
     * `vhost`       - The virtual host configured in Rabbit MQ.
+
+
+    :param int instance_id: The CloudAMQP instance identifier.
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
@@ -259,10 +258,6 @@ def get_instance_output(instance_id: Optional[pulumi.Input[int]] = None,
     """
     Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.
 
-    ## Argument reference
-
-    * `instance_id` - (Required) The CloudAMQP instance identifier.
-
     ## Attributes reference
 
     All attributes reference are computed
@@ -281,5 +276,8 @@ def get_instance_output(instance_id: Optional[pulumi.Input[int]] = None,
     * `host`        - The external hostname for the CloudAMQP instance.
     * `host_internal` - The internal hostname for the CloudAMQP instance.
     * `vhost`       - The virtual host configured in Rabbit MQ.
+
+
+    :param int instance_id: The CloudAMQP instance identifier.
     """
     ...

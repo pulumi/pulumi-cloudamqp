@@ -140,26 +140,26 @@ export class Instance extends pulumi.CustomResource {
      */
     constructor(name: string, args: InstanceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: InstanceArgs | InstanceState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as InstanceState | undefined;
-            inputs["apikey"] = state ? state.apikey : undefined;
-            inputs["dedicated"] = state ? state.dedicated : undefined;
-            inputs["host"] = state ? state.host : undefined;
-            inputs["hostInternal"] = state ? state.hostInternal : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["noDefaultAlarms"] = state ? state.noDefaultAlarms : undefined;
-            inputs["nodes"] = state ? state.nodes : undefined;
-            inputs["plan"] = state ? state.plan : undefined;
-            inputs["ready"] = state ? state.ready : undefined;
-            inputs["region"] = state ? state.region : undefined;
-            inputs["rmqVersion"] = state ? state.rmqVersion : undefined;
-            inputs["tags"] = state ? state.tags : undefined;
-            inputs["url"] = state ? state.url : undefined;
-            inputs["vhost"] = state ? state.vhost : undefined;
-            inputs["vpcId"] = state ? state.vpcId : undefined;
-            inputs["vpcSubnet"] = state ? state.vpcSubnet : undefined;
+            resourceInputs["apikey"] = state ? state.apikey : undefined;
+            resourceInputs["dedicated"] = state ? state.dedicated : undefined;
+            resourceInputs["host"] = state ? state.host : undefined;
+            resourceInputs["hostInternal"] = state ? state.hostInternal : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["noDefaultAlarms"] = state ? state.noDefaultAlarms : undefined;
+            resourceInputs["nodes"] = state ? state.nodes : undefined;
+            resourceInputs["plan"] = state ? state.plan : undefined;
+            resourceInputs["ready"] = state ? state.ready : undefined;
+            resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["rmqVersion"] = state ? state.rmqVersion : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["url"] = state ? state.url : undefined;
+            resourceInputs["vhost"] = state ? state.vhost : undefined;
+            resourceInputs["vpcId"] = state ? state.vpcId : undefined;
+            resourceInputs["vpcSubnet"] = state ? state.vpcSubnet : undefined;
         } else {
             const args = argsOrState as InstanceArgs | undefined;
             if ((!args || args.plan === undefined) && !opts.urn) {
@@ -168,27 +168,25 @@ export class Instance extends pulumi.CustomResource {
             if ((!args || args.region === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'region'");
             }
-            inputs["name"] = args ? args.name : undefined;
-            inputs["noDefaultAlarms"] = args ? args.noDefaultAlarms : undefined;
-            inputs["nodes"] = args ? args.nodes : undefined;
-            inputs["plan"] = args ? args.plan : undefined;
-            inputs["region"] = args ? args.region : undefined;
-            inputs["rmqVersion"] = args ? args.rmqVersion : undefined;
-            inputs["tags"] = args ? args.tags : undefined;
-            inputs["vpcId"] = args ? args.vpcId : undefined;
-            inputs["vpcSubnet"] = args ? args.vpcSubnet : undefined;
-            inputs["apikey"] = undefined /*out*/;
-            inputs["dedicated"] = undefined /*out*/;
-            inputs["host"] = undefined /*out*/;
-            inputs["hostInternal"] = undefined /*out*/;
-            inputs["ready"] = undefined /*out*/;
-            inputs["url"] = undefined /*out*/;
-            inputs["vhost"] = undefined /*out*/;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["noDefaultAlarms"] = args ? args.noDefaultAlarms : undefined;
+            resourceInputs["nodes"] = args ? args.nodes : undefined;
+            resourceInputs["plan"] = args ? args.plan : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["rmqVersion"] = args ? args.rmqVersion : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["vpcId"] = args ? args.vpcId : undefined;
+            resourceInputs["vpcSubnet"] = args ? args.vpcSubnet : undefined;
+            resourceInputs["apikey"] = undefined /*out*/;
+            resourceInputs["dedicated"] = undefined /*out*/;
+            resourceInputs["host"] = undefined /*out*/;
+            resourceInputs["hostInternal"] = undefined /*out*/;
+            resourceInputs["ready"] = undefined /*out*/;
+            resourceInputs["url"] = undefined /*out*/;
+            resourceInputs["vhost"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Instance.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Instance.__pulumiType, name, resourceInputs, opts);
     }
 }
 

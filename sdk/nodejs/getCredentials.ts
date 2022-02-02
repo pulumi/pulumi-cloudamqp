@@ -17,10 +17,6 @@ import * as utilities from "./utilities";
  *     instanceId: cloudamqp_instance.instance.id,
  * });
  * ```
- * ## Argument reference
- *
- * * `instanceId` - (Required) The CloudAMQP instance identifier.
- *
  * ## Attributes reference
  *
  * All attributes reference are computed.
@@ -38,9 +34,7 @@ export function getCredentials(args: GetCredentialsArgs, opts?: pulumi.InvokeOpt
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("cloudamqp:index/getCredentials:getCredentials", {
         "instanceId": args.instanceId,
     }, opts);
@@ -50,6 +44,9 @@ export function getCredentials(args: GetCredentialsArgs, opts?: pulumi.InvokeOpt
  * A collection of arguments for invoking getCredentials.
  */
 export interface GetCredentialsArgs {
+    /**
+     * The CloudAMQP instance identifier.
+     */
     instanceId: number;
 }
 
@@ -74,5 +71,8 @@ export function getCredentialsOutput(args: GetCredentialsOutputArgs, opts?: pulu
  * A collection of arguments for invoking getCredentials.
  */
 export interface GetCredentialsOutputArgs {
+    /**
+     * The CloudAMQP instance identifier.
+     */
     instanceId: pulumi.Input<number>;
 }

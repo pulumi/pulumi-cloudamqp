@@ -98,16 +98,16 @@ export class Webhook extends pulumi.CustomResource {
      */
     constructor(name: string, args: WebhookArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WebhookArgs | WebhookState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WebhookState | undefined;
-            inputs["concurrency"] = state ? state.concurrency : undefined;
-            inputs["instanceId"] = state ? state.instanceId : undefined;
-            inputs["queue"] = state ? state.queue : undefined;
-            inputs["retryInterval"] = state ? state.retryInterval : undefined;
-            inputs["vhost"] = state ? state.vhost : undefined;
-            inputs["webhookUri"] = state ? state.webhookUri : undefined;
+            resourceInputs["concurrency"] = state ? state.concurrency : undefined;
+            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
+            resourceInputs["queue"] = state ? state.queue : undefined;
+            resourceInputs["retryInterval"] = state ? state.retryInterval : undefined;
+            resourceInputs["vhost"] = state ? state.vhost : undefined;
+            resourceInputs["webhookUri"] = state ? state.webhookUri : undefined;
         } else {
             const args = argsOrState as WebhookArgs | undefined;
             if ((!args || args.concurrency === undefined) && !opts.urn) {
@@ -128,17 +128,15 @@ export class Webhook extends pulumi.CustomResource {
             if ((!args || args.webhookUri === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'webhookUri'");
             }
-            inputs["concurrency"] = args ? args.concurrency : undefined;
-            inputs["instanceId"] = args ? args.instanceId : undefined;
-            inputs["queue"] = args ? args.queue : undefined;
-            inputs["retryInterval"] = args ? args.retryInterval : undefined;
-            inputs["vhost"] = args ? args.vhost : undefined;
-            inputs["webhookUri"] = args ? args.webhookUri : undefined;
+            resourceInputs["concurrency"] = args ? args.concurrency : undefined;
+            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
+            resourceInputs["queue"] = args ? args.queue : undefined;
+            resourceInputs["retryInterval"] = args ? args.retryInterval : undefined;
+            resourceInputs["vhost"] = args ? args.vhost : undefined;
+            resourceInputs["webhookUri"] = args ? args.webhookUri : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Webhook.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Webhook.__pulumiType, name, resourceInputs, opts);
     }
 }
 

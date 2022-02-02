@@ -7,10 +7,6 @@ import * as utilities from "./utilities";
 /**
  * Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.
  *
- * ## Argument reference
- *
- * * `instanceId` - (Required) The CloudAMQP instance identifier.
- *
  * ## Attributes reference
  *
  * All attributes reference are computed
@@ -35,9 +31,7 @@ export function getInstance(args: GetInstanceArgs, opts?: pulumi.InvokeOptions):
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("cloudamqp:index/getInstance:getInstance", {
         "instanceId": args.instanceId,
     }, opts);
@@ -47,6 +41,9 @@ export function getInstance(args: GetInstanceArgs, opts?: pulumi.InvokeOptions):
  * A collection of arguments for invoking getInstance.
  */
 export interface GetInstanceArgs {
+    /**
+     * The CloudAMQP instance identifier.
+     */
     instanceId: number;
 }
 
@@ -85,5 +82,8 @@ export function getInstanceOutput(args: GetInstanceOutputArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getInstance.
  */
 export interface GetInstanceOutputArgs {
+    /**
+     * The CloudAMQP instance identifier.
+     */
     instanceId: pulumi.Input<number>;
 }

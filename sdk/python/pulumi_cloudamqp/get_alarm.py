@@ -149,12 +149,6 @@ def get_alarm(alarm_id: Optional[int] = None,
     default_cpu_alarm = cloudamqp.get_alarm(instance_id=cloudamqp_instance["instance"]["id"],
         type="cpu")
     ```
-    ## Argument reference
-
-    * `instance_id` - (Required) The CloudAMQP instance identifier.
-    * `alarm_id`    - (Optional) The alarm identifier. Either use this or `type` to give `Alarm` necessary information to retrieve the alarm.
-    * `type`        - (Optional) The alarm type. Either use this or `alarm_id` to give `Alarm` necessary information when retrieve the alarm.
-
     ## Attributes reference
 
     All attributes reference are computed
@@ -171,6 +165,11 @@ def get_alarm(alarm_id: Optional[int] = None,
     ## Dependency
 
     This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+
+    :param int alarm_id: The alarm identifier. Either use this or `type` to give `Alarm` necessary information to retrieve the alarm.
+    :param int instance_id: The CloudAMQP instance identifier.
+    :param str type: The alarm type. Either use this or `alarm_id` to give `Alarm` necessary information when retrieve the alarm.
     """
     __args__ = dict()
     __args__['alarmId'] = alarm_id
@@ -213,12 +212,6 @@ def get_alarm_output(alarm_id: Optional[pulumi.Input[Optional[int]]] = None,
     default_cpu_alarm = cloudamqp.get_alarm(instance_id=cloudamqp_instance["instance"]["id"],
         type="cpu")
     ```
-    ## Argument reference
-
-    * `instance_id` - (Required) The CloudAMQP instance identifier.
-    * `alarm_id`    - (Optional) The alarm identifier. Either use this or `type` to give `Alarm` necessary information to retrieve the alarm.
-    * `type`        - (Optional) The alarm type. Either use this or `alarm_id` to give `Alarm` necessary information when retrieve the alarm.
-
     ## Attributes reference
 
     All attributes reference are computed
@@ -235,5 +228,10 @@ def get_alarm_output(alarm_id: Optional[pulumi.Input[Optional[int]]] = None,
     ## Dependency
 
     This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+
+    :param int alarm_id: The alarm identifier. Either use this or `type` to give `Alarm` necessary information to retrieve the alarm.
+    :param int instance_id: The CloudAMQP instance identifier.
+    :param str type: The alarm type. Either use this or `alarm_id` to give `Alarm` necessary information when retrieve the alarm.
     """
     ...
