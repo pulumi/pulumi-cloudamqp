@@ -24,10 +24,9 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		opt0 := "default"
 // 		_, err := cloudamqp.LookupNotification(ctx, &GetNotificationArgs{
 // 			InstanceId: cloudamqp_instance.Instance.Id,
-// 			Name:       &opt0,
+// 			Name:       pulumi.StringRef("default"),
 // 		}, nil)
 // 		if err != nil {
 // 			return err

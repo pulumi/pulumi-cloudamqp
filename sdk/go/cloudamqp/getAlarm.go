@@ -24,10 +24,9 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		opt0 := "cpu"
 // 		_, err := cloudamqp.LookupAlarm(ctx, &GetAlarmArgs{
 // 			InstanceId: cloudamqp_instance.Instance.Id,
-// 			Type:       &opt0,
+// 			Type:       pulumi.StringRef("cpu"),
 // 		}, nil)
 // 		if err != nil {
 // 			return err
