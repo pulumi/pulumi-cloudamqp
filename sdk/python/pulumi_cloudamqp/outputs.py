@@ -27,7 +27,7 @@ class SecurityFirewallRule(dict):
         :param str ip: Source ip and netmask for the rule. (e.g. 10.56.72.0/24)
         :param str description: Description name of the rule. e.g. Default.
         :param Sequence[int] ports: Custom ports to be opened
-        :param Sequence[str] services: Pre-defined service ports
+        :param Sequence[str] services: Pre-defined service ports, see table below
         """
         pulumi.set(__self__, "ip", ip)
         if description is not None:
@@ -65,7 +65,7 @@ class SecurityFirewallRule(dict):
     @pulumi.getter
     def services(self) -> Optional[Sequence[str]]:
         """
-        Pre-defined service ports
+        Pre-defined service ports, see table below
         """
         return pulumi.get(self, "services")
 

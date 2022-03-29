@@ -40,7 +40,7 @@ namespace Pulumi.CloudAmqp.Inputs
         private InputList<string>? _services;
 
         /// <summary>
-        /// Pre-defined service ports
+        /// Pre-defined service ports, see table below
         /// </summary>
         public InputList<string> Services
         {

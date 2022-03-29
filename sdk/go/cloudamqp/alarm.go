@@ -19,10 +19,10 @@ import (
 //
 // ## Alarm Type reference
 //
-// Valid options for notification type.
+// Supported alarm types: `cpu, memory, disk, queue, connection, consumer, netsplit, server_unreachable, notice`
 //
-// Required arguments for all alarms: *instance_id*, *type* and *enabled*
-// Optional argument for all alarms: *tags*, *queue_regex*, *vhost_regex*
+// Required arguments for all alarms: `instance_id, type, enabled`<br>
+// Optional argument for all alarms: `tags, queue_regex, vhostRegex`
 //
 // | Name | Type | Shared | Dedicated | Required arguments |
 // | ---- | ---- | ---- | ---- | ---- |
@@ -64,6 +64,8 @@ type Alarm struct {
 	TimeThreshold pulumi.IntPtrOutput `pulumi:"timeThreshold"`
 	// The alarm type, see valid options below.
 	Type pulumi.StringOutput `pulumi:"type"`
+	// Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+	ValueCalculation pulumi.StringPtrOutput `pulumi:"valueCalculation"`
 	// The value to trigger the alarm for.
 	ValueThreshold pulumi.IntPtrOutput `pulumi:"valueThreshold"`
 	// Regex for which vhost to check
@@ -125,6 +127,8 @@ type alarmState struct {
 	TimeThreshold *int `pulumi:"timeThreshold"`
 	// The alarm type, see valid options below.
 	Type *string `pulumi:"type"`
+	// Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+	ValueCalculation *string `pulumi:"valueCalculation"`
 	// The value to trigger the alarm for.
 	ValueThreshold *int `pulumi:"valueThreshold"`
 	// Regex for which vhost to check
@@ -146,6 +150,8 @@ type AlarmState struct {
 	TimeThreshold pulumi.IntPtrInput
 	// The alarm type, see valid options below.
 	Type pulumi.StringPtrInput
+	// Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+	ValueCalculation pulumi.StringPtrInput
 	// The value to trigger the alarm for.
 	ValueThreshold pulumi.IntPtrInput
 	// Regex for which vhost to check
@@ -171,6 +177,8 @@ type alarmArgs struct {
 	TimeThreshold *int `pulumi:"timeThreshold"`
 	// The alarm type, see valid options below.
 	Type string `pulumi:"type"`
+	// Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+	ValueCalculation *string `pulumi:"valueCalculation"`
 	// The value to trigger the alarm for.
 	ValueThreshold *int `pulumi:"valueThreshold"`
 	// Regex for which vhost to check
@@ -193,6 +201,8 @@ type AlarmArgs struct {
 	TimeThreshold pulumi.IntPtrInput
 	// The alarm type, see valid options below.
 	Type pulumi.StringInput
+	// Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+	ValueCalculation pulumi.StringPtrInput
 	// The value to trigger the alarm for.
 	ValueThreshold pulumi.IntPtrInput
 	// Regex for which vhost to check

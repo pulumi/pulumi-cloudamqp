@@ -49,7 +49,7 @@ export interface SecurityFirewallRule {
      */
     ports?: number[];
     /**
-     * Pre-defined service ports
+     * Pre-defined service ports, see table below
      */
     services?: string[];
 }

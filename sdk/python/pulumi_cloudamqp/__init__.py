@@ -15,6 +15,7 @@ from .get_nodes import *
 from .get_notification import *
 from .get_plugins import *
 from .get_plugins_community import *
+from .get_vpc_gcp_info import *
 from .get_vpc_info import *
 from .instance import *
 from .integration_log import *
@@ -24,6 +25,7 @@ from .plugin import *
 from .plugin_community import *
 from .provider import *
 from .security_firewall import *
+from .vpc_gcp_peering import *
 from .vpc_peering import *
 from .webhook import *
 from ._inputs import *
@@ -109,6 +111,14 @@ _utilities.register(
   "fqn": "pulumi_cloudamqp",
   "classes": {
    "cloudamqp:index/securityFirewall:SecurityFirewall": "SecurityFirewall"
+  }
+ },
+ {
+  "pkg": "cloudamqp",
+  "mod": "index/vpcGcpPeering",
+  "fqn": "pulumi_cloudamqp",
+  "classes": {
+   "cloudamqp:index/vpcGcpPeering:VpcGcpPeering": "VpcGcpPeering"
   }
  },
  {

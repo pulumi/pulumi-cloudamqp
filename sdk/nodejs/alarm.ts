@@ -44,10 +44,10 @@ import * as utilities from "./utilities";
  * ```
  * ## Alarm Type reference
  *
- * Valid options for notification type.
+ * Supported alarm types: `cpu, memory, disk, queue, connection, consumer, netsplit, server_unreachable, notice`
  *
- * Required arguments for all alarms: *instance_id*, *type* and *enabled*
- * Optional argument for all alarms: *tags*, *queue_regex*, *vhost_regex*
+ * Required arguments for all alarms: `instance_id, type, enabled`<br>
+ * Optional argument for all alarms: `tags, queue_regex, vhostRegex`
  *
  * | Name | Type | Shared | Dedicated | Required arguments |
  * | ---- | ---- | ---- | ---- | ---- |
@@ -130,6 +130,10 @@ export class Alarm extends pulumi.CustomResource {
      */
     public readonly type!: pulumi.Output<string>;
     /**
+     * Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+     */
+    public readonly valueCalculation!: pulumi.Output<string | undefined>;
+    /**
      * The value to trigger the alarm for.
      */
     public readonly valueThreshold!: pulumi.Output<number | undefined>;
@@ -158,6 +162,7 @@ export class Alarm extends pulumi.CustomResource {
             resourceInputs["recipients"] = state ? state.recipients : undefined;
             resourceInputs["timeThreshold"] = state ? state.timeThreshold : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["valueCalculation"] = state ? state.valueCalculation : undefined;
             resourceInputs["valueThreshold"] = state ? state.valueThreshold : undefined;
             resourceInputs["vhostRegex"] = state ? state.vhostRegex : undefined;
         } else {
@@ -181,6 +186,7 @@ export class Alarm extends pulumi.CustomResource {
             resourceInputs["recipients"] = args ? args.recipients : undefined;
             resourceInputs["timeThreshold"] = args ? args.timeThreshold : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["valueCalculation"] = args ? args.valueCalculation : undefined;
             resourceInputs["valueThreshold"] = args ? args.valueThreshold : undefined;
             resourceInputs["vhostRegex"] = args ? args.vhostRegex : undefined;
         }
@@ -221,6 +227,10 @@ export interface AlarmState {
      * The alarm type, see valid options below.
      */
     type?: pulumi.Input<string>;
+    /**
+     * Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+     */
+    valueCalculation?: pulumi.Input<string>;
     /**
      * The value to trigger the alarm for.
      */
@@ -263,6 +273,10 @@ export interface AlarmArgs {
      * The alarm type, see valid options below.
      */
     type: pulumi.Input<string>;
+    /**
+     * Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+     */
+    valueCalculation?: pulumi.Input<string>;
     /**
      * The value to trigger the alarm for.
      */

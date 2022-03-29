@@ -89,6 +89,7 @@ func Provider() tfbridge.ProviderInfo {
 			"cloudamqp_integration_metric": {Tok: makeResource(mainMod, "IntegrationMetric")},
 			"cloudamqp_webhook":            {Tok: makeResource(mainMod, "Webhook")},
 			"cloudamqp_custom_domain":      {Tok: makeResource(mainMod, "CustomDomain")},
+			"cloudamqp_vpc_gcp_peering":    {Tok: makeResource(mainMod, "VpcGcpPeering")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"cloudamqp_credentials":       {Tok: makeDataSource(mainMod, "getCredentials")},
@@ -100,6 +101,7 @@ func Provider() tfbridge.ProviderInfo {
 			"cloudamqp_alarm":             {Tok: makeDataSource(mainMod, "getAlarm")},
 			"cloudamqp_nodes":             {Tok: makeDataSource(mainMod, "getNodes")},
 			"cloudamqp_account":           {Tok: makeDataSource(mainMod, "getAccount")},
+			"cloudamqp_vpc_gcp_info":      {Tok: makeDataSource(mainMod, "getVpcGcpInfo")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			Dependencies: map[string]string{

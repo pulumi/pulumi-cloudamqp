@@ -18,7 +18,7 @@ export interface SecurityFirewallRule {
      */
     ports?: pulumi.Input<pulumi.Input<number>[]>;
     /**
-     * Pre-defined service ports
+     * Pre-defined service ports, see table below
      */
     services?: pulumi.Input<pulumi.Input<string>[]>;
 }
