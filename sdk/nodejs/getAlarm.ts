@@ -22,18 +22,27 @@ import * as utilities from "./utilities";
  *
  * All attributes reference are computed
  *
- * * `id`              - The identifier for this resource.
- * * `enabled`         - Enable/disable status of the alarm.
- * * `valueThreshold` - The value threshold that triggers the alarm.
- * * `timeThreshold`  - The time interval (in seconds) the `valueThreshold` should be active before trigger an alarm.
- * * `queueRegex`     - Regular expression for which queue to check.
- * * `vhostRegex`     - Regular expression for which vhost to check
- * * `recipients`      - Identifier for recipient to be notified.
- * * `messageType`    - Message type `(total, unacked, ready)` used by queue alarm type.
+ * * `id`                  - The identifier for this resource.
+ * * `enabled`             - Enable/disable status of the alarm.
+ * * `valueThreshold`     - The value threshold that triggers the alarm.
+ * * `reminderInternval`  - The reminder interval (in seconds) to resend the alarm if not resolved. Leave empty or set to 0 to not receive any reminders.
+ * * `timeThreshold`      - The time interval (in seconds) the `valueThreshold` should be active before trigger an alarm.
+ * * `queueRegex`         - Regular expression for which queue to check.
+ * * `vhostRegex`         - Regular expression for which vhost to check
+ * * `recipients`          - Identifier for recipient to be notified.
+ * * `messageType`        - Message type `(total, unacked, ready)` used by queue alarm type.
+ *
+ * Specific attribute for `disk` alarm
+ *
+ * * `valueCalculation`   - Disk value threshold calculation, `(fixed, percentage)` of disk space remaining.
  *
  * ## Dependency
  *
  * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ *
+ * ## Alarm types
+ *
+ * `cpu, memory, disk, queue, connection, consumer, netsplit, server_unreachable, notice`
  */
 export function getAlarm(args: GetAlarmArgs, opts?: pulumi.InvokeOptions): Promise<GetAlarmResult> {
     if (!opts) {
@@ -45,6 +54,7 @@ export function getAlarm(args: GetAlarmArgs, opts?: pulumi.InvokeOptions): Promi
         "alarmId": args.alarmId,
         "instanceId": args.instanceId,
         "type": args.type,
+        "valueCalculation": args.valueCalculation,
     }, opts);
 }
 
@@ -61,9 +71,10 @@ export interface GetAlarmArgs {
      */
     instanceId: number;
     /**
-     * The alarm type. Either use this or `alarmId` to give `cloudamqp.Alarm` necessary information when retrieve the alarm.
+     * The alarm type. Either use this or `alarmId` to give `cloudamqp.Alarm` necessary information when retrieve the alarm. Supported alarm types
      */
     type?: string;
+    valueCalculation?: string;
 }
 
 /**
@@ -82,6 +93,7 @@ export interface GetAlarmResult {
     readonly recipients: number[];
     readonly timeThreshold: number;
     readonly type?: string;
+    readonly valueCalculation?: string;
     readonly valueThreshold: number;
     readonly vhostRegex: string;
 }
@@ -103,7 +115,8 @@ export interface GetAlarmOutputArgs {
      */
     instanceId: pulumi.Input<number>;
     /**
-     * The alarm type. Either use this or `alarmId` to give `cloudamqp.Alarm` necessary information when retrieve the alarm.
+     * The alarm type. Either use this or `alarmId` to give `cloudamqp.Alarm` necessary information when retrieve the alarm. Supported alarm types
      */
     type?: pulumi.Input<string>;
+    valueCalculation?: pulumi.Input<string>;
 }

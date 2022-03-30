@@ -26,7 +26,7 @@ namespace Pulumi.CloudAmqp.Outputs
         /// </summary>
         public readonly ImmutableArray<int> Ports;
         /// <summary>
-        /// Pre-defined service ports
+        /// Pre-defined service ports, see table below
         /// </summary>
         public readonly ImmutableArray<string> Services;
 

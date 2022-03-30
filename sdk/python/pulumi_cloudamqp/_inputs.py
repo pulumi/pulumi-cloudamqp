@@ -23,7 +23,7 @@ class SecurityFirewallRuleArgs:
         :param pulumi.Input[str] ip: Source ip and netmask for the rule. (e.g. 10.56.72.0/24)
         :param pulumi.Input[str] description: Description name of the rule. e.g. Default.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] ports: Custom ports to be opened
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] services: Pre-defined service ports
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] services: Pre-defined service ports, see table below
         """
         pulumi.set(__self__, "ip", ip)
         if description is not None:
@@ -73,7 +73,7 @@ class SecurityFirewallRuleArgs:
     @pulumi.getter
     def services(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Pre-defined service ports
+        Pre-defined service ports, see table below
         """
         return pulumi.get(self, "services")
 

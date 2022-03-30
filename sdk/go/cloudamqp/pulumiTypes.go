@@ -17,7 +17,7 @@ type SecurityFirewallRule struct {
 	Ip string `pulumi:"ip"`
 	// Custom ports to be opened
 	Ports []int `pulumi:"ports"`
-	// Pre-defined service ports
+	// Pre-defined service ports, see table below
 	Services []string `pulumi:"services"`
 }
 
@@ -39,7 +39,7 @@ type SecurityFirewallRuleArgs struct {
 	Ip pulumi.StringInput `pulumi:"ip"`
 	// Custom ports to be opened
 	Ports pulumi.IntArrayInput `pulumi:"ports"`
-	// Pre-defined service ports
+	// Pre-defined service ports, see table below
 	Services pulumi.StringArrayInput `pulumi:"services"`
 }
 
@@ -109,7 +109,7 @@ func (o SecurityFirewallRuleOutput) Ports() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v SecurityFirewallRule) []int { return v.Ports }).(pulumi.IntArrayOutput)
 }
 
-// Pre-defined service ports
+// Pre-defined service ports, see table below
 func (o SecurityFirewallRuleOutput) Services() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecurityFirewallRule) []string { return v.Services }).(pulumi.StringArrayOutput)
 }

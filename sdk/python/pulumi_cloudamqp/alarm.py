@@ -20,6 +20,7 @@ class AlarmArgs:
                  message_type: Optional[pulumi.Input[str]] = None,
                  queue_regex: Optional[pulumi.Input[str]] = None,
                  time_threshold: Optional[pulumi.Input[int]] = None,
+                 value_calculation: Optional[pulumi.Input[str]] = None,
                  value_threshold: Optional[pulumi.Input[int]] = None,
                  vhost_regex: Optional[pulumi.Input[str]] = None):
         """
@@ -31,6 +32,7 @@ class AlarmArgs:
         :param pulumi.Input[str] message_type: Message type `(total, unacked, ready)` used by queue alarm type.
         :param pulumi.Input[str] queue_regex: Regex for which queue to check.
         :param pulumi.Input[int] time_threshold: The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
+        :param pulumi.Input[str] value_calculation: Disk value threshold calculation, `fixed, percentage` of disk space remaining.
         :param pulumi.Input[int] value_threshold: The value to trigger the alarm for.
         :param pulumi.Input[str] vhost_regex: Regex for which vhost to check
         """
@@ -44,6 +46,8 @@ class AlarmArgs:
             pulumi.set(__self__, "queue_regex", queue_regex)
         if time_threshold is not None:
             pulumi.set(__self__, "time_threshold", time_threshold)
+        if value_calculation is not None:
+            pulumi.set(__self__, "value_calculation", value_calculation)
         if value_threshold is not None:
             pulumi.set(__self__, "value_threshold", value_threshold)
         if vhost_regex is not None:
@@ -134,6 +138,18 @@ class AlarmArgs:
         pulumi.set(self, "time_threshold", value)
 
     @property
+    @pulumi.getter(name="valueCalculation")
+    def value_calculation(self) -> Optional[pulumi.Input[str]]:
+        """
+        Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+        """
+        return pulumi.get(self, "value_calculation")
+
+    @value_calculation.setter
+    def value_calculation(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value_calculation", value)
+
+    @property
     @pulumi.getter(name="valueThreshold")
     def value_threshold(self) -> Optional[pulumi.Input[int]]:
         """
@@ -168,6 +184,7 @@ class _AlarmState:
                  recipients: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  time_threshold: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None,
+                 value_calculation: Optional[pulumi.Input[str]] = None,
                  value_threshold: Optional[pulumi.Input[int]] = None,
                  vhost_regex: Optional[pulumi.Input[str]] = None):
         """
@@ -179,6 +196,7 @@ class _AlarmState:
         :param pulumi.Input[Sequence[pulumi.Input[int]]] recipients: Identifier for recipient to be notified. Leave empty to notify all recipients.
         :param pulumi.Input[int] time_threshold: The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
         :param pulumi.Input[str] type: The alarm type, see valid options below.
+        :param pulumi.Input[str] value_calculation: Disk value threshold calculation, `fixed, percentage` of disk space remaining.
         :param pulumi.Input[int] value_threshold: The value to trigger the alarm for.
         :param pulumi.Input[str] vhost_regex: Regex for which vhost to check
         """
@@ -196,6 +214,8 @@ class _AlarmState:
             pulumi.set(__self__, "time_threshold", time_threshold)
         if type is not None:
             pulumi.set(__self__, "type", type)
+        if value_calculation is not None:
+            pulumi.set(__self__, "value_calculation", value_calculation)
         if value_threshold is not None:
             pulumi.set(__self__, "value_threshold", value_threshold)
         if vhost_regex is not None:
@@ -286,6 +306,18 @@ class _AlarmState:
         pulumi.set(self, "type", value)
 
     @property
+    @pulumi.getter(name="valueCalculation")
+    def value_calculation(self) -> Optional[pulumi.Input[str]]:
+        """
+        Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+        """
+        return pulumi.get(self, "value_calculation")
+
+    @value_calculation.setter
+    def value_calculation(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value_calculation", value)
+
+    @property
     @pulumi.getter(name="valueThreshold")
     def value_threshold(self) -> Optional[pulumi.Input[int]]:
         """
@@ -322,6 +354,7 @@ class Alarm(pulumi.CustomResource):
                  recipients: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  time_threshold: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None,
+                 value_calculation: Optional[pulumi.Input[str]] = None,
                  value_threshold: Optional[pulumi.Input[int]] = None,
                  vhost_regex: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -334,10 +367,10 @@ class Alarm(pulumi.CustomResource):
 
         ## Alarm Type reference
 
-        Valid options for notification type.
+        Supported alarm types: `cpu, memory, disk, queue, connection, consumer, netsplit, server_unreachable, notice`
 
-        Required arguments for all alarms: *instance_id*, *type* and *enabled*
-        Optional argument for all alarms: *tags*, *queue_regex*, *vhost_regex*
+        Required arguments for all alarms: `instance_id, type, enabled`<br>
+        Optional argument for all alarms: `tags, queue_regex, vhost_regex`
 
         | Name | Type | Shared | Dedicated | Required arguments |
         | ---- | ---- | ---- | ---- | ---- |
@@ -372,6 +405,7 @@ class Alarm(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[int]]] recipients: Identifier for recipient to be notified. Leave empty to notify all recipients.
         :param pulumi.Input[int] time_threshold: The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
         :param pulumi.Input[str] type: The alarm type, see valid options below.
+        :param pulumi.Input[str] value_calculation: Disk value threshold calculation, `fixed, percentage` of disk space remaining.
         :param pulumi.Input[int] value_threshold: The value to trigger the alarm for.
         :param pulumi.Input[str] vhost_regex: Regex for which vhost to check
         """
@@ -390,10 +424,10 @@ class Alarm(pulumi.CustomResource):
 
         ## Alarm Type reference
 
-        Valid options for notification type.
+        Supported alarm types: `cpu, memory, disk, queue, connection, consumer, netsplit, server_unreachable, notice`
 
-        Required arguments for all alarms: *instance_id*, *type* and *enabled*
-        Optional argument for all alarms: *tags*, *queue_regex*, *vhost_regex*
+        Required arguments for all alarms: `instance_id, type, enabled`<br>
+        Optional argument for all alarms: `tags, queue_regex, vhost_regex`
 
         | Name | Type | Shared | Dedicated | Required arguments |
         | ---- | ---- | ---- | ---- | ---- |
@@ -441,6 +475,7 @@ class Alarm(pulumi.CustomResource):
                  recipients: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  time_threshold: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None,
+                 value_calculation: Optional[pulumi.Input[str]] = None,
                  value_threshold: Optional[pulumi.Input[int]] = None,
                  vhost_regex: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -470,6 +505,7 @@ class Alarm(pulumi.CustomResource):
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
+            __props__.__dict__["value_calculation"] = value_calculation
             __props__.__dict__["value_threshold"] = value_threshold
             __props__.__dict__["vhost_regex"] = vhost_regex
         super(Alarm, __self__).__init__(
@@ -489,6 +525,7 @@ class Alarm(pulumi.CustomResource):
             recipients: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
             time_threshold: Optional[pulumi.Input[int]] = None,
             type: Optional[pulumi.Input[str]] = None,
+            value_calculation: Optional[pulumi.Input[str]] = None,
             value_threshold: Optional[pulumi.Input[int]] = None,
             vhost_regex: Optional[pulumi.Input[str]] = None) -> 'Alarm':
         """
@@ -505,6 +542,7 @@ class Alarm(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[int]]] recipients: Identifier for recipient to be notified. Leave empty to notify all recipients.
         :param pulumi.Input[int] time_threshold: The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
         :param pulumi.Input[str] type: The alarm type, see valid options below.
+        :param pulumi.Input[str] value_calculation: Disk value threshold calculation, `fixed, percentage` of disk space remaining.
         :param pulumi.Input[int] value_threshold: The value to trigger the alarm for.
         :param pulumi.Input[str] vhost_regex: Regex for which vhost to check
         """
@@ -519,6 +557,7 @@ class Alarm(pulumi.CustomResource):
         __props__.__dict__["recipients"] = recipients
         __props__.__dict__["time_threshold"] = time_threshold
         __props__.__dict__["type"] = type
+        __props__.__dict__["value_calculation"] = value_calculation
         __props__.__dict__["value_threshold"] = value_threshold
         __props__.__dict__["vhost_regex"] = vhost_regex
         return Alarm(resource_name, opts=opts, __props__=__props__)
@@ -578,6 +617,14 @@ class Alarm(pulumi.CustomResource):
         The alarm type, see valid options below.
         """
         return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="valueCalculation")
+    def value_calculation(self) -> pulumi.Output[Optional[str]]:
+        """
+        Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+        """
+        return pulumi.get(self, "value_calculation")
 
     @property
     @pulumi.getter(name="valueThreshold")

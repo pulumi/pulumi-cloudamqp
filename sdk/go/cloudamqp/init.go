@@ -38,6 +38,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &PluginCommunity{}
 	case "cloudamqp:index/securityFirewall:SecurityFirewall":
 		r = &SecurityFirewall{}
+	case "cloudamqp:index/vpcGcpPeering:VpcGcpPeering":
+		r = &VpcGcpPeering{}
 	case "cloudamqp:index/vpcPeering:VpcPeering":
 		r = &VpcPeering{}
 	case "cloudamqp:index/webhook:Webhook":
@@ -116,6 +118,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"cloudamqp",
 		"index/securityFirewall",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"cloudamqp",
+		"index/vpcGcpPeering",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

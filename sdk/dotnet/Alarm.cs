@@ -18,10 +18,10 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ## Alarm Type reference
     /// 
-    /// Valid options for notification type.
+    /// Supported alarm types: `cpu, memory, disk, queue, connection, consumer, netsplit, server_unreachable, notice`
     /// 
-    /// Required arguments for all alarms: *instance_id*, *type* and *enabled*
-    /// Optional argument for all alarms: *tags*, *queue_regex*, *vhost_regex*
+    /// Required arguments for all alarms: `instance_id, type, enabled`&lt;br&gt;
+    /// Optional argument for all alarms: `tags, queue_regex, vhost_regex`
     /// 
     /// | Name | Type | Shared | Dedicated | Required arguments |
     /// | ---- | ---- | ---- | ---- | ---- |
@@ -91,6 +91,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
+
+        /// <summary>
+        /// Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+        /// </summary>
+        [Output("valueCalculation")]
+        public Output<string?> ValueCalculation { get; private set; } = null!;
 
         /// <summary>
         /// The value to trigger the alarm for.
@@ -199,6 +205,12 @@ namespace Pulumi.CloudAmqp
         public Input<string> Type { get; set; } = null!;
 
         /// <summary>
+        /// Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+        /// </summary>
+        [Input("valueCalculation")]
+        public Input<string>? ValueCalculation { get; set; }
+
+        /// <summary>
         /// The value to trigger the alarm for.
         /// </summary>
         [Input("valueThreshold")]
@@ -264,6 +276,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
+
+        /// <summary>
+        /// Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+        /// </summary>
+        [Input("valueCalculation")]
+        public Input<string>? ValueCalculation { get; set; }
 
         /// <summary>
         /// The value to trigger the alarm for.
