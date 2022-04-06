@@ -66,6 +66,12 @@ namespace Pulumi.CloudAmqp
     ///             PrivateKey = @var.Stackdriver_private_key,
     ///             ClientEmail = @var.Stackdriver_client_email,
     ///         });
+    ///         var scalyr = new CloudAmqp.IntegrationLog("scalyr", new CloudAmqp.IntegrationLogArgs
+    ///         {
+    ///             InstanceId = cloudamqp_instance.Instance.Id,
+    ///             Token = @var.Scalyr_token,
+    ///             Host = @var.Scalyr_host,
+    ///         });
     ///     }
     /// 
     /// }
@@ -93,6 +99,7 @@ namespace Pulumi.CloudAmqp
     /// | splunk     | Create a HTTP Event Collector token at https://.cloud.splunk.com/en-US/manager/search/http-eventcollector |
     /// | datadog       | Create a Datadog API key at app.datadoghq.com |
     /// | stackdriver   | Create a service account and add 'monitor metrics writer' role, then download credentials. |
+    /// | scalyr        | Create a Log write token at https://app.scalyr.com/keys |
     /// 
     /// ## Integration Type reference
     /// 
@@ -109,6 +116,7 @@ namespace Pulumi.CloudAmqp
     /// | Splunk | splunk | token, host_port |
     /// | Data Dog | datadog | region, api_keys, tags |
     /// | Stackdriver | stackdriver | project_id, private_key, client_email |
+    /// | Scalyr | scalyr | token, host |
     /// 
     /// ## Dependency
     /// 
@@ -142,6 +150,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Output("clientEmail")]
         public Output<string?> ClientEmail { get; private set; } = null!;
+
+        /// <summary>
+        /// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+        /// </summary>
+        [Output("host")]
+        public Output<string?> Host { get; private set; } = null!;
 
         /// <summary>
         /// Destination to send the logs.
@@ -268,6 +282,12 @@ namespace Pulumi.CloudAmqp
         public Input<string>? ClientEmail { get; set; }
 
         /// <summary>
+        /// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+        /// </summary>
+        [Input("host")]
+        public Input<string>? Host { get; set; }
+
+        /// <summary>
         /// Destination to send the logs.
         /// </summary>
         [Input("hostPort")]
@@ -351,6 +371,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Input("clientEmail")]
         public Input<string>? ClientEmail { get; set; }
+
+        /// <summary>
+        /// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+        /// </summary>
+        [Input("host")]
+        public Input<string>? Host { get; set; }
 
         /// <summary>
         /// Destination to send the logs.

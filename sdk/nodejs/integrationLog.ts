@@ -50,6 +50,11 @@ import * as utilities from "./utilities";
  *     privateKey: _var.stackdriver_private_key,
  *     clientEmail: _var.stackdriver_client_email,
  * });
+ * const scalyr = new cloudamqp.IntegrationLog("scalyr", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     token: _var.scalyr_token,
+ *     host: _var.scalyr_host,
+ * });
  * ```
  * ## Argument Reference (cloudwatchlog)
  *
@@ -74,6 +79,7 @@ import * as utilities from "./utilities";
  * | splunk     | Create a HTTP Event Collector token at https://.cloud.splunk.com/en-US/manager/search/http-eventcollector |
  * | datadog       | Create a Datadog API key at app.datadoghq.com |
  * | stackdriver   | Create a service account and add 'monitor metrics writer' role, then download credentials. |
+ * | scalyr        | Create a Log write token at https://app.scalyr.com/keys |
  *
  * ## Integration Type reference
  *
@@ -90,6 +96,7 @@ import * as utilities from "./utilities";
  * | Splunk | splunk | token, hostPort |
  * | Data Dog | datadog | region, api_keys, tags |
  * | Stackdriver | stackdriver | project_id, private_key, clientEmail |
+ * | Scalyr | scalyr | token, host |
  *
  * ## Dependency
  *
@@ -143,6 +150,10 @@ export class IntegrationLog extends pulumi.CustomResource {
      * The client email registered for the integration service.
      */
     public readonly clientEmail!: pulumi.Output<string | undefined>;
+    /**
+     * The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+     */
+    public readonly host!: pulumi.Output<string | undefined>;
     /**
      * Destination to send the logs.
      */
@@ -200,6 +211,7 @@ export class IntegrationLog extends pulumi.CustomResource {
             resourceInputs["accessKeyId"] = state ? state.accessKeyId : undefined;
             resourceInputs["apiKey"] = state ? state.apiKey : undefined;
             resourceInputs["clientEmail"] = state ? state.clientEmail : undefined;
+            resourceInputs["host"] = state ? state.host : undefined;
             resourceInputs["hostPort"] = state ? state.hostPort : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -218,6 +230,7 @@ export class IntegrationLog extends pulumi.CustomResource {
             resourceInputs["accessKeyId"] = args ? args.accessKeyId : undefined;
             resourceInputs["apiKey"] = args ? args.apiKey : undefined;
             resourceInputs["clientEmail"] = args ? args.clientEmail : undefined;
+            resourceInputs["host"] = args ? args.host : undefined;
             resourceInputs["hostPort"] = args ? args.hostPort : undefined;
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -250,6 +263,10 @@ export interface IntegrationLogState {
      * The client email registered for the integration service.
      */
     clientEmail?: pulumi.Input<string>;
+    /**
+     * The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+     */
+    host?: pulumi.Input<string>;
     /**
      * Destination to send the logs.
      */
@@ -308,6 +325,10 @@ export interface IntegrationLogArgs {
      * The client email registered for the integration service.
      */
     clientEmail?: pulumi.Input<string>;
+    /**
+     * The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+     */
+    host?: pulumi.Input<string>;
     /**
      * Destination to send the logs.
      */

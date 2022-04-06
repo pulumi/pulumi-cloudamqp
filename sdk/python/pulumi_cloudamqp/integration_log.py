@@ -17,6 +17,7 @@ class IntegrationLogArgs:
                  access_key_id: Optional[pulumi.Input[str]] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
                  client_email: Optional[pulumi.Input[str]] = None,
+                 host: Optional[pulumi.Input[str]] = None,
                  host_port: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
@@ -32,6 +33,7 @@ class IntegrationLogArgs:
         :param pulumi.Input[str] access_key_id: AWS access key identifier.
         :param pulumi.Input[str] api_key: The API key.
         :param pulumi.Input[str] client_email: The client email registered for the integration service.
+        :param pulumi.Input[str] host: The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
         :param pulumi.Input[str] host_port: Destination to send the logs.
         :param pulumi.Input[str] name: The name of the third party log integration. See
         :param pulumi.Input[str] private_key: The private access key.
@@ -49,6 +51,8 @@ class IntegrationLogArgs:
             pulumi.set(__self__, "api_key", api_key)
         if client_email is not None:
             pulumi.set(__self__, "client_email", client_email)
+        if host is not None:
+            pulumi.set(__self__, "host", host)
         if host_port is not None:
             pulumi.set(__self__, "host_port", host_port)
         if name is not None:
@@ -115,6 +119,18 @@ class IntegrationLogArgs:
     @client_email.setter
     def client_email(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "client_email", value)
+
+    @property
+    @pulumi.getter
+    def host(self) -> Optional[pulumi.Input[str]]:
+        """
+        The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+        """
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "host", value)
 
     @property
     @pulumi.getter(name="hostPort")
@@ -231,6 +247,7 @@ class _IntegrationLogState:
                  access_key_id: Optional[pulumi.Input[str]] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
                  client_email: Optional[pulumi.Input[str]] = None,
+                 host: Optional[pulumi.Input[str]] = None,
                  host_port: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -246,6 +263,7 @@ class _IntegrationLogState:
         :param pulumi.Input[str] access_key_id: AWS access key identifier.
         :param pulumi.Input[str] api_key: The API key.
         :param pulumi.Input[str] client_email: The client email registered for the integration service.
+        :param pulumi.Input[str] host: The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
         :param pulumi.Input[str] host_port: Destination to send the logs.
         :param pulumi.Input[int] instance_id: Instance identifier used to make proxy calls
         :param pulumi.Input[str] name: The name of the third party log integration. See
@@ -263,6 +281,8 @@ class _IntegrationLogState:
             pulumi.set(__self__, "api_key", api_key)
         if client_email is not None:
             pulumi.set(__self__, "client_email", client_email)
+        if host is not None:
+            pulumi.set(__self__, "host", host)
         if host_port is not None:
             pulumi.set(__self__, "host_port", host_port)
         if instance_id is not None:
@@ -319,6 +339,18 @@ class _IntegrationLogState:
     @client_email.setter
     def client_email(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "client_email", value)
+
+    @property
+    @pulumi.getter
+    def host(self) -> Optional[pulumi.Input[str]]:
+        """
+        The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+        """
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "host", value)
 
     @property
     @pulumi.getter(name="hostPort")
@@ -449,6 +481,7 @@ class IntegrationLog(pulumi.CustomResource):
                  access_key_id: Optional[pulumi.Input[str]] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
                  client_email: Optional[pulumi.Input[str]] = None,
+                 host: Optional[pulumi.Input[str]] = None,
                  host_port: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -499,6 +532,10 @@ class IntegrationLog(pulumi.CustomResource):
             project_id=var["stackdriver_project_id"],
             private_key=var["stackdriver_private_key"],
             client_email=var["stackdriver_client_email"])
+        scalyr = cloudamqp.IntegrationLog("scalyr",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            token=var["scalyr_token"],
+            host=var["scalyr_host"])
         ```
         ## Argument Reference (cloudwatchlog)
 
@@ -523,6 +560,7 @@ class IntegrationLog(pulumi.CustomResource):
         | splunk     | Create a HTTP Event Collector token at https://.cloud.splunk.com/en-US/manager/search/http-eventcollector |
         | datadog       | Create a Datadog API key at app.datadoghq.com |
         | stackdriver   | Create a service account and add 'monitor metrics writer' role, then download credentials. |
+        | scalyr        | Create a Log write token at https://app.scalyr.com/keys |
 
         ## Integration Type reference
 
@@ -539,6 +577,7 @@ class IntegrationLog(pulumi.CustomResource):
         | Splunk | splunk | token, host_port |
         | Data Dog | datadog | region, api_keys, tags |
         | Stackdriver | stackdriver | project_id, private_key, client_email |
+        | Scalyr | scalyr | token, host |
 
         ## Dependency
 
@@ -557,6 +596,7 @@ class IntegrationLog(pulumi.CustomResource):
         :param pulumi.Input[str] access_key_id: AWS access key identifier.
         :param pulumi.Input[str] api_key: The API key.
         :param pulumi.Input[str] client_email: The client email registered for the integration service.
+        :param pulumi.Input[str] host: The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
         :param pulumi.Input[str] host_port: Destination to send the logs.
         :param pulumi.Input[int] instance_id: Instance identifier used to make proxy calls
         :param pulumi.Input[str] name: The name of the third party log integration. See
@@ -613,6 +653,10 @@ class IntegrationLog(pulumi.CustomResource):
             project_id=var["stackdriver_project_id"],
             private_key=var["stackdriver_private_key"],
             client_email=var["stackdriver_client_email"])
+        scalyr = cloudamqp.IntegrationLog("scalyr",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            token=var["scalyr_token"],
+            host=var["scalyr_host"])
         ```
         ## Argument Reference (cloudwatchlog)
 
@@ -637,6 +681,7 @@ class IntegrationLog(pulumi.CustomResource):
         | splunk     | Create a HTTP Event Collector token at https://.cloud.splunk.com/en-US/manager/search/http-eventcollector |
         | datadog       | Create a Datadog API key at app.datadoghq.com |
         | stackdriver   | Create a service account and add 'monitor metrics writer' role, then download credentials. |
+        | scalyr        | Create a Log write token at https://app.scalyr.com/keys |
 
         ## Integration Type reference
 
@@ -653,6 +698,7 @@ class IntegrationLog(pulumi.CustomResource):
         | Splunk | splunk | token, host_port |
         | Data Dog | datadog | region, api_keys, tags |
         | Stackdriver | stackdriver | project_id, private_key, client_email |
+        | Scalyr | scalyr | token, host |
 
         ## Dependency
 
@@ -684,6 +730,7 @@ class IntegrationLog(pulumi.CustomResource):
                  access_key_id: Optional[pulumi.Input[str]] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
                  client_email: Optional[pulumi.Input[str]] = None,
+                 host: Optional[pulumi.Input[str]] = None,
                  host_port: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -709,6 +756,7 @@ class IntegrationLog(pulumi.CustomResource):
             __props__.__dict__["access_key_id"] = access_key_id
             __props__.__dict__["api_key"] = api_key
             __props__.__dict__["client_email"] = client_email
+            __props__.__dict__["host"] = host
             __props__.__dict__["host_port"] = host_port
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
@@ -734,6 +782,7 @@ class IntegrationLog(pulumi.CustomResource):
             access_key_id: Optional[pulumi.Input[str]] = None,
             api_key: Optional[pulumi.Input[str]] = None,
             client_email: Optional[pulumi.Input[str]] = None,
+            host: Optional[pulumi.Input[str]] = None,
             host_port: Optional[pulumi.Input[str]] = None,
             instance_id: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -754,6 +803,7 @@ class IntegrationLog(pulumi.CustomResource):
         :param pulumi.Input[str] access_key_id: AWS access key identifier.
         :param pulumi.Input[str] api_key: The API key.
         :param pulumi.Input[str] client_email: The client email registered for the integration service.
+        :param pulumi.Input[str] host: The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
         :param pulumi.Input[str] host_port: Destination to send the logs.
         :param pulumi.Input[int] instance_id: Instance identifier used to make proxy calls
         :param pulumi.Input[str] name: The name of the third party log integration. See
@@ -772,6 +822,7 @@ class IntegrationLog(pulumi.CustomResource):
         __props__.__dict__["access_key_id"] = access_key_id
         __props__.__dict__["api_key"] = api_key
         __props__.__dict__["client_email"] = client_email
+        __props__.__dict__["host"] = host
         __props__.__dict__["host_port"] = host_port
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["name"] = name
@@ -807,6 +858,14 @@ class IntegrationLog(pulumi.CustomResource):
         The client email registered for the integration service.
         """
         return pulumi.get(self, "client_email")
+
+    @property
+    @pulumi.getter
+    def host(self) -> pulumi.Output[Optional[str]]:
+        """
+        The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+        """
+        return pulumi.get(self, "host")
 
     @property
     @pulumi.getter(name="hostPort")

@@ -83,6 +83,14 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
+// 		_, err = cloudamqp.NewIntegrationLog(ctx, "scalyr", &cloudamqp.IntegrationLogArgs{
+// 			InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+// 			Token:      pulumi.Any(_var.Scalyr_token),
+// 			Host:       pulumi.Any(_var.Scalyr_host),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
 // 		return nil
 // 	})
 // }
@@ -110,6 +118,7 @@ import (
 // | splunk     | Create a HTTP Event Collector token at https://.cloud.splunk.com/en-US/manager/search/http-eventcollector |
 // | datadog       | Create a Datadog API key at app.datadoghq.com |
 // | stackdriver   | Create a service account and add 'monitor metrics writer' role, then download credentials. |
+// | scalyr        | Create a Log write token at https://app.scalyr.com/keys |
 //
 // ## Integration Type reference
 //
@@ -126,6 +135,7 @@ import (
 // | Splunk | splunk | token, hostPort |
 // | Data Dog | datadog | region, api_keys, tags |
 // | Stackdriver | stackdriver | project_id, private_key, clientEmail |
+// | Scalyr | scalyr | token, host |
 //
 // ## Dependency
 //
@@ -147,6 +157,8 @@ type IntegrationLog struct {
 	ApiKey pulumi.StringPtrOutput `pulumi:"apiKey"`
 	// The client email registered for the integration service.
 	ClientEmail pulumi.StringPtrOutput `pulumi:"clientEmail"`
+	// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+	Host pulumi.StringPtrOutput `pulumi:"host"`
 	// Destination to send the logs.
 	HostPort pulumi.StringPtrOutput `pulumi:"hostPort"`
 	// Instance identifier used to make proxy calls
@@ -207,6 +219,8 @@ type integrationLogState struct {
 	ApiKey *string `pulumi:"apiKey"`
 	// The client email registered for the integration service.
 	ClientEmail *string `pulumi:"clientEmail"`
+	// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+	Host *string `pulumi:"host"`
 	// Destination to send the logs.
 	HostPort *string `pulumi:"hostPort"`
 	// Instance identifier used to make proxy calls
@@ -236,6 +250,8 @@ type IntegrationLogState struct {
 	ApiKey pulumi.StringPtrInput
 	// The client email registered for the integration service.
 	ClientEmail pulumi.StringPtrInput
+	// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+	Host pulumi.StringPtrInput
 	// Destination to send the logs.
 	HostPort pulumi.StringPtrInput
 	// Instance identifier used to make proxy calls
@@ -269,6 +285,8 @@ type integrationLogArgs struct {
 	ApiKey *string `pulumi:"apiKey"`
 	// The client email registered for the integration service.
 	ClientEmail *string `pulumi:"clientEmail"`
+	// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+	Host *string `pulumi:"host"`
 	// Destination to send the logs.
 	HostPort *string `pulumi:"hostPort"`
 	// Instance identifier used to make proxy calls
@@ -299,6 +317,8 @@ type IntegrationLogArgs struct {
 	ApiKey pulumi.StringPtrInput
 	// The client email registered for the integration service.
 	ClientEmail pulumi.StringPtrInput
+	// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+	Host pulumi.StringPtrInput
 	// Destination to send the logs.
 	HostPort pulumi.StringPtrInput
 	// Instance identifier used to make proxy calls
