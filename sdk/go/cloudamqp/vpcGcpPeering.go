@@ -16,14 +16,16 @@ type VpcGcpPeering struct {
 
 	// VPC peering auto created routes
 	AutoCreateRoutes pulumi.BoolOutput `pulumi:"autoCreateRoutes"`
-	// The CloudAMQP instance ID.
-	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
+	// The CloudAMQP instance identifier.
+	InstanceId pulumi.IntPtrOutput `pulumi:"instanceId"`
 	// Network uri of the VPC network to which you will peer with.
 	PeerNetworkUri pulumi.StringOutput `pulumi:"peerNetworkUri"`
 	// VPC peering state
 	State pulumi.StringOutput `pulumi:"state"`
 	// VPC peering state details
 	StateDetails pulumi.StringOutput `pulumi:"stateDetails"`
+	// The managed VPC identifier.
+	VpcId pulumi.StringPtrOutput `pulumi:"vpcId"`
 }
 
 // NewVpcGcpPeering registers a new resource with the given unique name, arguments, and options.
@@ -33,9 +35,6 @@ func NewVpcGcpPeering(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.InstanceId == nil {
-		return nil, errors.New("invalid value for required argument 'InstanceId'")
-	}
 	if args.PeerNetworkUri == nil {
 		return nil, errors.New("invalid value for required argument 'PeerNetworkUri'")
 	}
@@ -63,7 +62,7 @@ func GetVpcGcpPeering(ctx *pulumi.Context,
 type vpcGcpPeeringState struct {
 	// VPC peering auto created routes
 	AutoCreateRoutes *bool `pulumi:"autoCreateRoutes"`
-	// The CloudAMQP instance ID.
+	// The CloudAMQP instance identifier.
 	InstanceId *int `pulumi:"instanceId"`
 	// Network uri of the VPC network to which you will peer with.
 	PeerNetworkUri *string `pulumi:"peerNetworkUri"`
@@ -71,12 +70,14 @@ type vpcGcpPeeringState struct {
 	State *string `pulumi:"state"`
 	// VPC peering state details
 	StateDetails *string `pulumi:"stateDetails"`
+	// The managed VPC identifier.
+	VpcId *string `pulumi:"vpcId"`
 }
 
 type VpcGcpPeeringState struct {
 	// VPC peering auto created routes
 	AutoCreateRoutes pulumi.BoolPtrInput
-	// The CloudAMQP instance ID.
+	// The CloudAMQP instance identifier.
 	InstanceId pulumi.IntPtrInput
 	// Network uri of the VPC network to which you will peer with.
 	PeerNetworkUri pulumi.StringPtrInput
@@ -84,6 +85,8 @@ type VpcGcpPeeringState struct {
 	State pulumi.StringPtrInput
 	// VPC peering state details
 	StateDetails pulumi.StringPtrInput
+	// The managed VPC identifier.
+	VpcId pulumi.StringPtrInput
 }
 
 func (VpcGcpPeeringState) ElementType() reflect.Type {
@@ -91,18 +94,22 @@ func (VpcGcpPeeringState) ElementType() reflect.Type {
 }
 
 type vpcGcpPeeringArgs struct {
-	// The CloudAMQP instance ID.
-	InstanceId int `pulumi:"instanceId"`
+	// The CloudAMQP instance identifier.
+	InstanceId *int `pulumi:"instanceId"`
 	// Network uri of the VPC network to which you will peer with.
 	PeerNetworkUri string `pulumi:"peerNetworkUri"`
+	// The managed VPC identifier.
+	VpcId *string `pulumi:"vpcId"`
 }
 
 // The set of arguments for constructing a VpcGcpPeering resource.
 type VpcGcpPeeringArgs struct {
-	// The CloudAMQP instance ID.
-	InstanceId pulumi.IntInput
+	// The CloudAMQP instance identifier.
+	InstanceId pulumi.IntPtrInput
 	// Network uri of the VPC network to which you will peer with.
 	PeerNetworkUri pulumi.StringInput
+	// The managed VPC identifier.
+	VpcId pulumi.StringPtrInput
 }
 
 func (VpcGcpPeeringArgs) ElementType() reflect.Type {

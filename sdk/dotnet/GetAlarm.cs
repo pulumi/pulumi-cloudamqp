@@ -44,7 +44,7 @@ namespace Pulumi.CloudAmqp
         /// * `id`                  - The identifier for this resource.
         /// * `enabled`             - Enable/disable status of the alarm.
         /// * `value_threshold`     - The value threshold that triggers the alarm.
-        /// * `reminder_internval`  - The reminder interval (in seconds) to resend the alarm if not resolved. Leave empty or set to 0 to not receive any reminders.
+        /// * `reminder_interval`   - The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders.
         /// * `time_threshold`      - The time interval (in seconds) the `value_threshold` should be active before trigger an alarm.
         /// * `queue_regex`         - Regular expression for which queue to check.
         /// * `vhost_regex`         - Regular expression for which vhost to check
@@ -99,7 +99,7 @@ namespace Pulumi.CloudAmqp
         /// * `id`                  - The identifier for this resource.
         /// * `enabled`             - Enable/disable status of the alarm.
         /// * `value_threshold`     - The value threshold that triggers the alarm.
-        /// * `reminder_internval`  - The reminder interval (in seconds) to resend the alarm if not resolved. Leave empty or set to 0 to not receive any reminders.
+        /// * `reminder_interval`   - The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders.
         /// * `time_threshold`      - The time interval (in seconds) the `value_threshold` should be active before trigger an alarm.
         /// * `queue_regex`         - Regular expression for which queue to check.
         /// * `vhost_regex`         - Regular expression for which vhost to check
@@ -193,6 +193,7 @@ namespace Pulumi.CloudAmqp
         public readonly string MessageType;
         public readonly string QueueRegex;
         public readonly ImmutableArray<int> Recipients;
+        public readonly int ReminderInterval;
         public readonly int TimeThreshold;
         public readonly string? Type;
         public readonly string? ValueCalculation;
@@ -215,6 +216,8 @@ namespace Pulumi.CloudAmqp
 
             ImmutableArray<int> recipients,
 
+            int reminderInterval,
+
             int timeThreshold,
 
             string? type,
@@ -232,6 +235,7 @@ namespace Pulumi.CloudAmqp
             MessageType = messageType;
             QueueRegex = queueRegex;
             Recipients = recipients;
+            ReminderInterval = reminderInterval;
             TimeThreshold = timeThreshold;
             Type = type;
             ValueCalculation = valueCalculation;

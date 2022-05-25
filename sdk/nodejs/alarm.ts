@@ -91,6 +91,10 @@ export class Alarm extends pulumi.CustomResource {
      */
     public readonly recipients!: pulumi.Output<number[]>;
     /**
+     * The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+     */
+    public readonly reminderInterval!: pulumi.Output<number | undefined>;
+    /**
      * The time interval (in seconds) the `valueThreshold` should be active before triggering an alarm.
      */
     public readonly timeThreshold!: pulumi.Output<number | undefined>;
@@ -129,6 +133,7 @@ export class Alarm extends pulumi.CustomResource {
             resourceInputs["messageType"] = state ? state.messageType : undefined;
             resourceInputs["queueRegex"] = state ? state.queueRegex : undefined;
             resourceInputs["recipients"] = state ? state.recipients : undefined;
+            resourceInputs["reminderInterval"] = state ? state.reminderInterval : undefined;
             resourceInputs["timeThreshold"] = state ? state.timeThreshold : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["valueCalculation"] = state ? state.valueCalculation : undefined;
@@ -153,6 +158,7 @@ export class Alarm extends pulumi.CustomResource {
             resourceInputs["messageType"] = args ? args.messageType : undefined;
             resourceInputs["queueRegex"] = args ? args.queueRegex : undefined;
             resourceInputs["recipients"] = args ? args.recipients : undefined;
+            resourceInputs["reminderInterval"] = args ? args.reminderInterval : undefined;
             resourceInputs["timeThreshold"] = args ? args.timeThreshold : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["valueCalculation"] = args ? args.valueCalculation : undefined;
@@ -188,6 +194,10 @@ export interface AlarmState {
      * Identifier for recipient to be notified. Leave empty to notify all recipients.
      */
     recipients?: pulumi.Input<pulumi.Input<number>[]>;
+    /**
+     * The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+     */
+    reminderInterval?: pulumi.Input<number>;
     /**
      * The time interval (in seconds) the `valueThreshold` should be active before triggering an alarm.
      */
@@ -234,6 +244,10 @@ export interface AlarmArgs {
      * Identifier for recipient to be notified. Leave empty to notify all recipients.
      */
     recipients: pulumi.Input<pulumi.Input<number>[]>;
+    /**
+     * The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+     */
+    reminderInterval?: pulumi.Input<number>;
     /**
      * The time interval (in seconds) the `valueThreshold` should be active before triggering an alarm.
      */

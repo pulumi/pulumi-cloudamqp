@@ -12,7 +12,17 @@ namespace Pulumi.CloudAmqp
     /// <summary>
     /// ## Import
     /// 
-    /// `cloudamqp_vpc_peering` can be imported using the CloudAMQP instance identifier.
+    /// *Pre v1.16.0* `cloudamqp_vpc_peering` can be imported using the CloudAMQP instance identifier.
+    /// 
+    /// ```sh
+    ///  $ pulumi import cloudamqp:index/vpcPeering:VpcPeering &lt;resource_name&gt; &lt;instance_id&gt;`
+    /// ```
+    /// 
+    ///  *Post v1.16.0* `cloudamqp_vpc_peering` can be imported using the CloudAMQP managed VPC identifier or instance identifier.
+    /// 
+    /// ```sh
+    ///  $ pulumi import cloudamqp:index/vpcPeering:VpcPeering &lt;resource_name&gt; &lt;vpc_id&gt;`
+    /// ```
     /// 
     /// ```sh
     ///  $ pulumi import cloudamqp:index/vpcPeering:VpcPeering &lt;resource_name&gt; &lt;instance_id&gt;`
@@ -22,10 +32,10 @@ namespace Pulumi.CloudAmqp
     public partial class VpcPeering : Pulumi.CustomResource
     {
         /// <summary>
-        /// The CloudAMQP instance ID.
+        /// The CloudAMQP instance identifier.
         /// </summary>
         [Output("instanceId")]
-        public Output<int> InstanceId { get; private set; } = null!;
+        public Output<int?> InstanceId { get; private set; } = null!;
 
         /// <summary>
         /// Peering identifier created by AW peering request.
@@ -34,10 +44,28 @@ namespace Pulumi.CloudAmqp
         public Output<string> PeeringId { get; private set; } = null!;
 
         /// <summary>
+        /// Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+        /// </summary>
+        [Output("sleep")]
+        public Output<int?> Sleep { get; private set; } = null!;
+
+        /// <summary>
         /// VPC peering status
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
+
+        /// <summary>
+        /// - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        /// </summary>
+        [Output("timeout")]
+        public Output<int?> Timeout { get; private set; } = null!;
+
+        /// <summary>
+        /// The managed VPC identifier.
+        /// </summary>
+        [Output("vpcId")]
+        public Output<string?> VpcId { get; private set; } = null!;
 
 
         /// <summary>
@@ -86,16 +114,34 @@ namespace Pulumi.CloudAmqp
     public sealed class VpcPeeringArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The CloudAMQP instance ID.
+        /// The CloudAMQP instance identifier.
         /// </summary>
-        [Input("instanceId", required: true)]
-        public Input<int> InstanceId { get; set; } = null!;
+        [Input("instanceId")]
+        public Input<int>? InstanceId { get; set; }
 
         /// <summary>
         /// Peering identifier created by AW peering request.
         /// </summary>
         [Input("peeringId", required: true)]
         public Input<string> PeeringId { get; set; } = null!;
+
+        /// <summary>
+        /// Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+        /// </summary>
+        [Input("sleep")]
+        public Input<int>? Sleep { get; set; }
+
+        /// <summary>
+        /// - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        /// </summary>
+        [Input("timeout")]
+        public Input<int>? Timeout { get; set; }
+
+        /// <summary>
+        /// The managed VPC identifier.
+        /// </summary>
+        [Input("vpcId")]
+        public Input<string>? VpcId { get; set; }
 
         public VpcPeeringArgs()
         {
@@ -105,7 +151,7 @@ namespace Pulumi.CloudAmqp
     public sealed class VpcPeeringState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The CloudAMQP instance ID.
+        /// The CloudAMQP instance identifier.
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
@@ -117,10 +163,28 @@ namespace Pulumi.CloudAmqp
         public Input<string>? PeeringId { get; set; }
 
         /// <summary>
+        /// Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+        /// </summary>
+        [Input("sleep")]
+        public Input<int>? Sleep { get; set; }
+
+        /// <summary>
         /// VPC peering status
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        /// <summary>
+        /// - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        /// </summary>
+        [Input("timeout")]
+        public Input<int>? Timeout { get; set; }
+
+        /// <summary>
+        /// The managed VPC identifier.
+        /// </summary>
+        [Input("vpcId")]
+        public Input<string>? VpcId { get; set; }
 
         public VpcPeeringState()
         {

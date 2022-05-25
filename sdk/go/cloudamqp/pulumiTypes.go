@@ -252,6 +252,130 @@ func (o GetAccountInstanceArrayOutput) Index(i pulumi.IntInput) GetAccountInstan
 	}).(GetAccountInstanceOutput)
 }
 
+type GetAccountVpcsVpc struct {
+	Id      int      `pulumi:"id"`
+	Name    string   `pulumi:"name"`
+	Region  string   `pulumi:"region"`
+	Subnet  string   `pulumi:"subnet"`
+	Tags    []string `pulumi:"tags"`
+	VpcName string   `pulumi:"vpcName"`
+}
+
+// GetAccountVpcsVpcInput is an input type that accepts GetAccountVpcsVpcArgs and GetAccountVpcsVpcOutput values.
+// You can construct a concrete instance of `GetAccountVpcsVpcInput` via:
+//
+//          GetAccountVpcsVpcArgs{...}
+type GetAccountVpcsVpcInput interface {
+	pulumi.Input
+
+	ToGetAccountVpcsVpcOutput() GetAccountVpcsVpcOutput
+	ToGetAccountVpcsVpcOutputWithContext(context.Context) GetAccountVpcsVpcOutput
+}
+
+type GetAccountVpcsVpcArgs struct {
+	Id      pulumi.IntInput         `pulumi:"id"`
+	Name    pulumi.StringInput      `pulumi:"name"`
+	Region  pulumi.StringInput      `pulumi:"region"`
+	Subnet  pulumi.StringInput      `pulumi:"subnet"`
+	Tags    pulumi.StringArrayInput `pulumi:"tags"`
+	VpcName pulumi.StringInput      `pulumi:"vpcName"`
+}
+
+func (GetAccountVpcsVpcArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountVpcsVpc)(nil)).Elem()
+}
+
+func (i GetAccountVpcsVpcArgs) ToGetAccountVpcsVpcOutput() GetAccountVpcsVpcOutput {
+	return i.ToGetAccountVpcsVpcOutputWithContext(context.Background())
+}
+
+func (i GetAccountVpcsVpcArgs) ToGetAccountVpcsVpcOutputWithContext(ctx context.Context) GetAccountVpcsVpcOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccountVpcsVpcOutput)
+}
+
+// GetAccountVpcsVpcArrayInput is an input type that accepts GetAccountVpcsVpcArray and GetAccountVpcsVpcArrayOutput values.
+// You can construct a concrete instance of `GetAccountVpcsVpcArrayInput` via:
+//
+//          GetAccountVpcsVpcArray{ GetAccountVpcsVpcArgs{...} }
+type GetAccountVpcsVpcArrayInput interface {
+	pulumi.Input
+
+	ToGetAccountVpcsVpcArrayOutput() GetAccountVpcsVpcArrayOutput
+	ToGetAccountVpcsVpcArrayOutputWithContext(context.Context) GetAccountVpcsVpcArrayOutput
+}
+
+type GetAccountVpcsVpcArray []GetAccountVpcsVpcInput
+
+func (GetAccountVpcsVpcArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccountVpcsVpc)(nil)).Elem()
+}
+
+func (i GetAccountVpcsVpcArray) ToGetAccountVpcsVpcArrayOutput() GetAccountVpcsVpcArrayOutput {
+	return i.ToGetAccountVpcsVpcArrayOutputWithContext(context.Background())
+}
+
+func (i GetAccountVpcsVpcArray) ToGetAccountVpcsVpcArrayOutputWithContext(ctx context.Context) GetAccountVpcsVpcArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccountVpcsVpcArrayOutput)
+}
+
+type GetAccountVpcsVpcOutput struct{ *pulumi.OutputState }
+
+func (GetAccountVpcsVpcOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountVpcsVpc)(nil)).Elem()
+}
+
+func (o GetAccountVpcsVpcOutput) ToGetAccountVpcsVpcOutput() GetAccountVpcsVpcOutput {
+	return o
+}
+
+func (o GetAccountVpcsVpcOutput) ToGetAccountVpcsVpcOutputWithContext(ctx context.Context) GetAccountVpcsVpcOutput {
+	return o
+}
+
+func (o GetAccountVpcsVpcOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAccountVpcsVpc) int { return v.Id }).(pulumi.IntOutput)
+}
+
+func (o GetAccountVpcsVpcOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountVpcsVpc) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetAccountVpcsVpcOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountVpcsVpc) string { return v.Region }).(pulumi.StringOutput)
+}
+
+func (o GetAccountVpcsVpcOutput) Subnet() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountVpcsVpc) string { return v.Subnet }).(pulumi.StringOutput)
+}
+
+func (o GetAccountVpcsVpcOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAccountVpcsVpc) []string { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+func (o GetAccountVpcsVpcOutput) VpcName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountVpcsVpc) string { return v.VpcName }).(pulumi.StringOutput)
+}
+
+type GetAccountVpcsVpcArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAccountVpcsVpcArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccountVpcsVpc)(nil)).Elem()
+}
+
+func (o GetAccountVpcsVpcArrayOutput) ToGetAccountVpcsVpcArrayOutput() GetAccountVpcsVpcArrayOutput {
+	return o
+}
+
+func (o GetAccountVpcsVpcArrayOutput) ToGetAccountVpcsVpcArrayOutputWithContext(ctx context.Context) GetAccountVpcsVpcArrayOutput {
+	return o
+}
+
+func (o GetAccountVpcsVpcArrayOutput) Index(i pulumi.IntInput) GetAccountVpcsVpcOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAccountVpcsVpc {
+		return vs[0].([]GetAccountVpcsVpc)[vs[1].(int)]
+	}).(GetAccountVpcsVpcOutput)
+}
+
 type GetNodesNode struct {
 	Configured      bool   `pulumi:"configured"`
 	ErlangVersion   string `pulumi:"erlangVersion"`
@@ -605,6 +729,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityFirewallRuleArrayInput)(nil)).Elem(), SecurityFirewallRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountInstanceInput)(nil)).Elem(), GetAccountInstanceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountInstanceArrayInput)(nil)).Elem(), GetAccountInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountVpcsVpcInput)(nil)).Elem(), GetAccountVpcsVpcArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountVpcsVpcArrayInput)(nil)).Elem(), GetAccountVpcsVpcArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeInput)(nil)).Elem(), GetNodesNodeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeArrayInput)(nil)).Elem(), GetNodesNodeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPluginsCommunityPluginInput)(nil)).Elem(), GetPluginsCommunityPluginArgs{})
@@ -615,6 +741,8 @@ func init() {
 	pulumi.RegisterOutputType(SecurityFirewallRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetAccountInstanceOutput{})
 	pulumi.RegisterOutputType(GetAccountInstanceArrayOutput{})
+	pulumi.RegisterOutputType(GetAccountVpcsVpcOutput{})
+	pulumi.RegisterOutputType(GetAccountVpcsVpcArrayOutput{})
 	pulumi.RegisterOutputType(GetNodesNodeOutput{})
 	pulumi.RegisterOutputType(GetNodesNodeArrayOutput{})
 	pulumi.RegisterOutputType(GetPluginsCommunityPluginOutput{})

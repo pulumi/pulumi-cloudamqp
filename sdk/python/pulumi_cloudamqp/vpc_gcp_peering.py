@@ -13,27 +13,20 @@ __all__ = ['VpcGcpPeeringArgs', 'VpcGcpPeering']
 @pulumi.input_type
 class VpcGcpPeeringArgs:
     def __init__(__self__, *,
-                 instance_id: pulumi.Input[int],
-                 peer_network_uri: pulumi.Input[str]):
+                 peer_network_uri: pulumi.Input[str],
+                 instance_id: Optional[pulumi.Input[int]] = None,
+                 vpc_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a VpcGcpPeering resource.
-        :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] peer_network_uri: Network uri of the VPC network to which you will peer with.
+        :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
+        :param pulumi.Input[str] vpc_id: The managed VPC identifier.
         """
-        pulumi.set(__self__, "instance_id", instance_id)
         pulumi.set(__self__, "peer_network_uri", peer_network_uri)
-
-    @property
-    @pulumi.getter(name="instanceId")
-    def instance_id(self) -> pulumi.Input[int]:
-        """
-        The CloudAMQP instance ID.
-        """
-        return pulumi.get(self, "instance_id")
-
-    @instance_id.setter
-    def instance_id(self, value: pulumi.Input[int]):
-        pulumi.set(self, "instance_id", value)
+        if instance_id is not None:
+            pulumi.set(__self__, "instance_id", instance_id)
+        if vpc_id is not None:
+            pulumi.set(__self__, "vpc_id", vpc_id)
 
     @property
     @pulumi.getter(name="peerNetworkUri")
@@ -47,6 +40,30 @@ class VpcGcpPeeringArgs:
     def peer_network_uri(self, value: pulumi.Input[str]):
         pulumi.set(self, "peer_network_uri", value)
 
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        The CloudAMQP instance identifier.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @instance_id.setter
+    def instance_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "instance_id", value)
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The managed VPC identifier.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @vpc_id.setter
+    def vpc_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vpc_id", value)
+
 
 @pulumi.input_type
 class _VpcGcpPeeringState:
@@ -55,14 +72,16 @@ class _VpcGcpPeeringState:
                  instance_id: Optional[pulumi.Input[int]] = None,
                  peer_network_uri: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[str]] = None,
-                 state_details: Optional[pulumi.Input[str]] = None):
+                 state_details: Optional[pulumi.Input[str]] = None,
+                 vpc_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering VpcGcpPeering resources.
         :param pulumi.Input[bool] auto_create_routes: VPC peering auto created routes
-        :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
         :param pulumi.Input[str] peer_network_uri: Network uri of the VPC network to which you will peer with.
         :param pulumi.Input[str] state: VPC peering state
         :param pulumi.Input[str] state_details: VPC peering state details
+        :param pulumi.Input[str] vpc_id: The managed VPC identifier.
         """
         if auto_create_routes is not None:
             pulumi.set(__self__, "auto_create_routes", auto_create_routes)
@@ -74,6 +93,8 @@ class _VpcGcpPeeringState:
             pulumi.set(__self__, "state", state)
         if state_details is not None:
             pulumi.set(__self__, "state_details", state_details)
+        if vpc_id is not None:
+            pulumi.set(__self__, "vpc_id", vpc_id)
 
     @property
     @pulumi.getter(name="autoCreateRoutes")
@@ -91,7 +112,7 @@ class _VpcGcpPeeringState:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[int]]:
         """
-        The CloudAMQP instance ID.
+        The CloudAMQP instance identifier.
         """
         return pulumi.get(self, "instance_id")
 
@@ -135,6 +156,18 @@ class _VpcGcpPeeringState:
     def state_details(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "state_details", value)
 
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The managed VPC identifier.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @vpc_id.setter
+    def vpc_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vpc_id", value)
+
 
 class VpcGcpPeering(pulumi.CustomResource):
     @overload
@@ -143,13 +176,15 @@ class VpcGcpPeering(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  peer_network_uri: Optional[pulumi.Input[str]] = None,
+                 vpc_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Create a VpcGcpPeering resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
         :param pulumi.Input[str] peer_network_uri: Network uri of the VPC network to which you will peer with.
+        :param pulumi.Input[str] vpc_id: The managed VPC identifier.
         """
         ...
     @overload
@@ -176,6 +211,7 @@ class VpcGcpPeering(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  peer_network_uri: Optional[pulumi.Input[str]] = None,
+                 vpc_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -188,12 +224,11 @@ class VpcGcpPeering(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = VpcGcpPeeringArgs.__new__(VpcGcpPeeringArgs)
 
-            if instance_id is None and not opts.urn:
-                raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
             if peer_network_uri is None and not opts.urn:
                 raise TypeError("Missing required property 'peer_network_uri'")
             __props__.__dict__["peer_network_uri"] = peer_network_uri
+            __props__.__dict__["vpc_id"] = vpc_id
             __props__.__dict__["auto_create_routes"] = None
             __props__.__dict__["state"] = None
             __props__.__dict__["state_details"] = None
@@ -211,7 +246,8 @@ class VpcGcpPeering(pulumi.CustomResource):
             instance_id: Optional[pulumi.Input[int]] = None,
             peer_network_uri: Optional[pulumi.Input[str]] = None,
             state: Optional[pulumi.Input[str]] = None,
-            state_details: Optional[pulumi.Input[str]] = None) -> 'VpcGcpPeering':
+            state_details: Optional[pulumi.Input[str]] = None,
+            vpc_id: Optional[pulumi.Input[str]] = None) -> 'VpcGcpPeering':
         """
         Get an existing VpcGcpPeering resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -220,10 +256,11 @@ class VpcGcpPeering(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] auto_create_routes: VPC peering auto created routes
-        :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
         :param pulumi.Input[str] peer_network_uri: Network uri of the VPC network to which you will peer with.
         :param pulumi.Input[str] state: VPC peering state
         :param pulumi.Input[str] state_details: VPC peering state details
+        :param pulumi.Input[str] vpc_id: The managed VPC identifier.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -234,6 +271,7 @@ class VpcGcpPeering(pulumi.CustomResource):
         __props__.__dict__["peer_network_uri"] = peer_network_uri
         __props__.__dict__["state"] = state
         __props__.__dict__["state_details"] = state_details
+        __props__.__dict__["vpc_id"] = vpc_id
         return VpcGcpPeering(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -246,9 +284,9 @@ class VpcGcpPeering(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> pulumi.Output[int]:
+    def instance_id(self) -> pulumi.Output[Optional[int]]:
         """
-        The CloudAMQP instance ID.
+        The CloudAMQP instance identifier.
         """
         return pulumi.get(self, "instance_id")
 
@@ -275,4 +313,12 @@ class VpcGcpPeering(pulumi.CustomResource):
         VPC peering state details
         """
         return pulumi.get(self, "state_details")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The managed VPC identifier.
+        """
+        return pulumi.get(self, "vpc_id")
 

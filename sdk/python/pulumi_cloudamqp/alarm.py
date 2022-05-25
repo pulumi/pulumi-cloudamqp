@@ -19,6 +19,7 @@ class AlarmArgs:
                  type: pulumi.Input[str],
                  message_type: Optional[pulumi.Input[str]] = None,
                  queue_regex: Optional[pulumi.Input[str]] = None,
+                 reminder_interval: Optional[pulumi.Input[int]] = None,
                  time_threshold: Optional[pulumi.Input[int]] = None,
                  value_calculation: Optional[pulumi.Input[str]] = None,
                  value_threshold: Optional[pulumi.Input[int]] = None,
@@ -31,6 +32,7 @@ class AlarmArgs:
         :param pulumi.Input[str] type: The alarm type, see valid options below.
         :param pulumi.Input[str] message_type: Message type `(total, unacked, ready)` used by queue alarm type.
         :param pulumi.Input[str] queue_regex: Regex for which queue to check.
+        :param pulumi.Input[int] reminder_interval: The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
         :param pulumi.Input[int] time_threshold: The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
         :param pulumi.Input[str] value_calculation: Disk value threshold calculation, `fixed, percentage` of disk space remaining.
         :param pulumi.Input[int] value_threshold: The value to trigger the alarm for.
@@ -44,6 +46,8 @@ class AlarmArgs:
             pulumi.set(__self__, "message_type", message_type)
         if queue_regex is not None:
             pulumi.set(__self__, "queue_regex", queue_regex)
+        if reminder_interval is not None:
+            pulumi.set(__self__, "reminder_interval", reminder_interval)
         if time_threshold is not None:
             pulumi.set(__self__, "time_threshold", time_threshold)
         if value_calculation is not None:
@@ -126,6 +130,18 @@ class AlarmArgs:
         pulumi.set(self, "queue_regex", value)
 
     @property
+    @pulumi.getter(name="reminderInterval")
+    def reminder_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+        """
+        return pulumi.get(self, "reminder_interval")
+
+    @reminder_interval.setter
+    def reminder_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "reminder_interval", value)
+
+    @property
     @pulumi.getter(name="timeThreshold")
     def time_threshold(self) -> Optional[pulumi.Input[int]]:
         """
@@ -182,6 +198,7 @@ class _AlarmState:
                  message_type: Optional[pulumi.Input[str]] = None,
                  queue_regex: Optional[pulumi.Input[str]] = None,
                  recipients: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
+                 reminder_interval: Optional[pulumi.Input[int]] = None,
                  time_threshold: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  value_calculation: Optional[pulumi.Input[str]] = None,
@@ -194,6 +211,7 @@ class _AlarmState:
         :param pulumi.Input[str] message_type: Message type `(total, unacked, ready)` used by queue alarm type.
         :param pulumi.Input[str] queue_regex: Regex for which queue to check.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] recipients: Identifier for recipient to be notified. Leave empty to notify all recipients.
+        :param pulumi.Input[int] reminder_interval: The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
         :param pulumi.Input[int] time_threshold: The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
         :param pulumi.Input[str] type: The alarm type, see valid options below.
         :param pulumi.Input[str] value_calculation: Disk value threshold calculation, `fixed, percentage` of disk space remaining.
@@ -210,6 +228,8 @@ class _AlarmState:
             pulumi.set(__self__, "queue_regex", queue_regex)
         if recipients is not None:
             pulumi.set(__self__, "recipients", recipients)
+        if reminder_interval is not None:
+            pulumi.set(__self__, "reminder_interval", reminder_interval)
         if time_threshold is not None:
             pulumi.set(__self__, "time_threshold", time_threshold)
         if type is not None:
@@ -282,6 +302,18 @@ class _AlarmState:
         pulumi.set(self, "recipients", value)
 
     @property
+    @pulumi.getter(name="reminderInterval")
+    def reminder_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+        """
+        return pulumi.get(self, "reminder_interval")
+
+    @reminder_interval.setter
+    def reminder_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "reminder_interval", value)
+
+    @property
     @pulumi.getter(name="timeThreshold")
     def time_threshold(self) -> Optional[pulumi.Input[int]]:
         """
@@ -352,6 +384,7 @@ class Alarm(pulumi.CustomResource):
                  message_type: Optional[pulumi.Input[str]] = None,
                  queue_regex: Optional[pulumi.Input[str]] = None,
                  recipients: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
+                 reminder_interval: Optional[pulumi.Input[int]] = None,
                  time_threshold: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  value_calculation: Optional[pulumi.Input[str]] = None,
@@ -403,6 +436,7 @@ class Alarm(pulumi.CustomResource):
         :param pulumi.Input[str] message_type: Message type `(total, unacked, ready)` used by queue alarm type.
         :param pulumi.Input[str] queue_regex: Regex for which queue to check.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] recipients: Identifier for recipient to be notified. Leave empty to notify all recipients.
+        :param pulumi.Input[int] reminder_interval: The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
         :param pulumi.Input[int] time_threshold: The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
         :param pulumi.Input[str] type: The alarm type, see valid options below.
         :param pulumi.Input[str] value_calculation: Disk value threshold calculation, `fixed, percentage` of disk space remaining.
@@ -473,6 +507,7 @@ class Alarm(pulumi.CustomResource):
                  message_type: Optional[pulumi.Input[str]] = None,
                  queue_regex: Optional[pulumi.Input[str]] = None,
                  recipients: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
+                 reminder_interval: Optional[pulumi.Input[int]] = None,
                  time_threshold: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  value_calculation: Optional[pulumi.Input[str]] = None,
@@ -501,6 +536,7 @@ class Alarm(pulumi.CustomResource):
             if recipients is None and not opts.urn:
                 raise TypeError("Missing required property 'recipients'")
             __props__.__dict__["recipients"] = recipients
+            __props__.__dict__["reminder_interval"] = reminder_interval
             __props__.__dict__["time_threshold"] = time_threshold
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
@@ -523,6 +559,7 @@ class Alarm(pulumi.CustomResource):
             message_type: Optional[pulumi.Input[str]] = None,
             queue_regex: Optional[pulumi.Input[str]] = None,
             recipients: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
+            reminder_interval: Optional[pulumi.Input[int]] = None,
             time_threshold: Optional[pulumi.Input[int]] = None,
             type: Optional[pulumi.Input[str]] = None,
             value_calculation: Optional[pulumi.Input[str]] = None,
@@ -540,6 +577,7 @@ class Alarm(pulumi.CustomResource):
         :param pulumi.Input[str] message_type: Message type `(total, unacked, ready)` used by queue alarm type.
         :param pulumi.Input[str] queue_regex: Regex for which queue to check.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] recipients: Identifier for recipient to be notified. Leave empty to notify all recipients.
+        :param pulumi.Input[int] reminder_interval: The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
         :param pulumi.Input[int] time_threshold: The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
         :param pulumi.Input[str] type: The alarm type, see valid options below.
         :param pulumi.Input[str] value_calculation: Disk value threshold calculation, `fixed, percentage` of disk space remaining.
@@ -555,6 +593,7 @@ class Alarm(pulumi.CustomResource):
         __props__.__dict__["message_type"] = message_type
         __props__.__dict__["queue_regex"] = queue_regex
         __props__.__dict__["recipients"] = recipients
+        __props__.__dict__["reminder_interval"] = reminder_interval
         __props__.__dict__["time_threshold"] = time_threshold
         __props__.__dict__["type"] = type
         __props__.__dict__["value_calculation"] = value_calculation
@@ -601,6 +640,14 @@ class Alarm(pulumi.CustomResource):
         Identifier for recipient to be notified. Leave empty to notify all recipients.
         """
         return pulumi.get(self, "recipients")
+
+    @property
+    @pulumi.getter(name="reminderInterval")
+    def reminder_interval(self) -> pulumi.Output[Optional[int]]:
+        """
+        The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+        """
+        return pulumi.get(self, "reminder_interval")
 
     @property
     @pulumi.getter(name="timeThreshold")

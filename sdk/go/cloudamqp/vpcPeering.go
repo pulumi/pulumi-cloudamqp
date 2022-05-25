@@ -13,7 +13,17 @@ import (
 
 // ## Import
 //
-// `cloudamqp_vpc_peering` can be imported using the CloudAMQP instance identifier.
+// *Pre v1.16.0* `cloudamqp_vpc_peering` can be imported using the CloudAMQP instance identifier.
+//
+// ```sh
+//  $ pulumi import cloudamqp:index/vpcPeering:VpcPeering <resource_name> <instance_id>`
+// ```
+//
+//  *Post v1.16.0* `cloudamqp_vpc_peering` can be imported using the CloudAMQP managed VPC identifier or instance identifier.
+//
+// ```sh
+//  $ pulumi import cloudamqp:index/vpcPeering:VpcPeering <resource_name> <vpc_id>`
+// ```
 //
 // ```sh
 //  $ pulumi import cloudamqp:index/vpcPeering:VpcPeering <resource_name> <instance_id>`
@@ -21,12 +31,18 @@ import (
 type VpcPeering struct {
 	pulumi.CustomResourceState
 
-	// The CloudAMQP instance ID.
-	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
+	// The CloudAMQP instance identifier.
+	InstanceId pulumi.IntPtrOutput `pulumi:"instanceId"`
 	// Peering identifier created by AW peering request.
 	PeeringId pulumi.StringOutput `pulumi:"peeringId"`
+	// Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+	Sleep pulumi.IntPtrOutput `pulumi:"sleep"`
 	// VPC peering status
 	Status pulumi.StringOutput `pulumi:"status"`
+	// - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+	Timeout pulumi.IntPtrOutput `pulumi:"timeout"`
+	// The managed VPC identifier.
+	VpcId pulumi.StringPtrOutput `pulumi:"vpcId"`
 }
 
 // NewVpcPeering registers a new resource with the given unique name, arguments, and options.
@@ -36,9 +52,6 @@ func NewVpcPeering(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.InstanceId == nil {
-		return nil, errors.New("invalid value for required argument 'InstanceId'")
-	}
 	if args.PeeringId == nil {
 		return nil, errors.New("invalid value for required argument 'PeeringId'")
 	}
@@ -64,21 +77,33 @@ func GetVpcPeering(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpcPeering resources.
 type vpcPeeringState struct {
-	// The CloudAMQP instance ID.
+	// The CloudAMQP instance identifier.
 	InstanceId *int `pulumi:"instanceId"`
 	// Peering identifier created by AW peering request.
 	PeeringId *string `pulumi:"peeringId"`
+	// Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+	Sleep *int `pulumi:"sleep"`
 	// VPC peering status
 	Status *string `pulumi:"status"`
+	// - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+	Timeout *int `pulumi:"timeout"`
+	// The managed VPC identifier.
+	VpcId *string `pulumi:"vpcId"`
 }
 
 type VpcPeeringState struct {
-	// The CloudAMQP instance ID.
+	// The CloudAMQP instance identifier.
 	InstanceId pulumi.IntPtrInput
 	// Peering identifier created by AW peering request.
 	PeeringId pulumi.StringPtrInput
+	// Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+	Sleep pulumi.IntPtrInput
 	// VPC peering status
 	Status pulumi.StringPtrInput
+	// - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+	Timeout pulumi.IntPtrInput
+	// The managed VPC identifier.
+	VpcId pulumi.StringPtrInput
 }
 
 func (VpcPeeringState) ElementType() reflect.Type {
@@ -86,18 +111,30 @@ func (VpcPeeringState) ElementType() reflect.Type {
 }
 
 type vpcPeeringArgs struct {
-	// The CloudAMQP instance ID.
-	InstanceId int `pulumi:"instanceId"`
+	// The CloudAMQP instance identifier.
+	InstanceId *int `pulumi:"instanceId"`
 	// Peering identifier created by AW peering request.
 	PeeringId string `pulumi:"peeringId"`
+	// Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+	Sleep *int `pulumi:"sleep"`
+	// - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+	Timeout *int `pulumi:"timeout"`
+	// The managed VPC identifier.
+	VpcId *string `pulumi:"vpcId"`
 }
 
 // The set of arguments for constructing a VpcPeering resource.
 type VpcPeeringArgs struct {
-	// The CloudAMQP instance ID.
-	InstanceId pulumi.IntInput
+	// The CloudAMQP instance identifier.
+	InstanceId pulumi.IntPtrInput
 	// Peering identifier created by AW peering request.
 	PeeringId pulumi.StringInput
+	// Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+	Sleep pulumi.IntPtrInput
+	// - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+	Timeout pulumi.IntPtrInput
+	// The managed VPC identifier.
+	VpcId pulumi.StringPtrInput
 }
 
 func (VpcPeeringArgs) ElementType() reflect.Type {

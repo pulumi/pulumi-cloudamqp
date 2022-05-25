@@ -8,6 +8,7 @@ import * as utilities from "./utilities";
 export * from "./alarm";
 export * from "./customDomain";
 export * from "./getAccount";
+export * from "./getAccountVpcs";
 export * from "./getAlarm";
 export * from "./getCredentials";
 export * from "./getInstance";
@@ -15,6 +16,7 @@ export * from "./getNodes";
 export * from "./getNotification";
 export * from "./getPlugins";
 export * from "./getPluginsCommunity";
+export * from "./getUpgradableVersions";
 export * from "./getVpcGcpInfo";
 export * from "./getVpcInfo";
 export * from "./instance";
@@ -25,6 +27,8 @@ export * from "./plugin";
 export * from "./pluginCommunity";
 export * from "./provider";
 export * from "./securityFirewall";
+export * from "./upgradeRabbitmq";
+export * from "./vpc";
 export * from "./vpcGcpPeering";
 export * from "./vpcPeering";
 export * from "./webhook";
@@ -48,6 +52,8 @@ import { Notification } from "./notification";
 import { Plugin } from "./plugin";
 import { PluginCommunity } from "./pluginCommunity";
 import { SecurityFirewall } from "./securityFirewall";
+import { UpgradeRabbitmq } from "./upgradeRabbitmq";
+import { Vpc } from "./vpc";
 import { VpcGcpPeering } from "./vpcGcpPeering";
 import { VpcPeering } from "./vpcPeering";
 import { Webhook } from "./webhook";
@@ -74,6 +80,10 @@ const _module = {
                 return new PluginCommunity(name, <any>undefined, { urn })
             case "cloudamqp:index/securityFirewall:SecurityFirewall":
                 return new SecurityFirewall(name, <any>undefined, { urn })
+            case "cloudamqp:index/upgradeRabbitmq:UpgradeRabbitmq":
+                return new UpgradeRabbitmq(name, <any>undefined, { urn })
+            case "cloudamqp:index/vpc:Vpc":
+                return new Vpc(name, <any>undefined, { urn })
             case "cloudamqp:index/vpcGcpPeering:VpcGcpPeering":
                 return new VpcGcpPeering(name, <any>undefined, { urn })
             case "cloudamqp:index/vpcPeering:VpcPeering":
@@ -94,6 +104,8 @@ pulumi.runtime.registerResourceModule("cloudamqp", "index/notification", _module
 pulumi.runtime.registerResourceModule("cloudamqp", "index/plugin", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/pluginCommunity", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/securityFirewall", _module)
+pulumi.runtime.registerResourceModule("cloudamqp", "index/upgradeRabbitmq", _module)
+pulumi.runtime.registerResourceModule("cloudamqp", "index/vpc", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/vpcGcpPeering", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/vpcPeering", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/webhook", _module)

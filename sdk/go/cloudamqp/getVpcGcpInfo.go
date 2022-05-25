@@ -14,6 +14,13 @@ import (
 //
 // ## Example Usage
 //
+// <details>
+//   <summary>
+//     <b>
+//       <i>AWS VPC peering pre v1.16.0</i>
+//     </b>
+//   </summary>
+//
 // ```go
 // package main
 //
@@ -25,7 +32,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := cloudamqp.GetVpcGcpInfo(ctx, &GetVpcGcpInfoArgs{
-// 			InstanceId: cloudamqp_instance.Instance.Id,
+// 			InstanceId: pulumi.IntRef(cloudamqp_instance.Instance.Id),
 // 		}, nil)
 // 		if err != nil {
 // 			return err
@@ -34,6 +41,36 @@ import (
 // 	})
 // }
 // ```
+// </details>
+//
+// <details>
+//   <summary>
+//     <b>
+//       <i>AWS VPC peering post v1.16.0 (Managed VPC)</i>
+//     </b>
+//   </summary>
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := cloudamqp.GetVpcGcpInfo(ctx, &GetVpcGcpInfoArgs{
+// 			VpcId: pulumi.StringRef(cloudamqp_vpc.Vpc.Id),
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// </details>
 // ## Attributes reference
 //
 // All attributes reference are computed
@@ -45,7 +82,11 @@ import (
 //
 // ## Dependency
 //
-// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+// *Pre v1.16.0*
+// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+//
+// *Post v1.16.0*
+// This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
 func GetVpcGcpInfo(ctx *pulumi.Context, args *GetVpcGcpInfoArgs, opts ...pulumi.InvokeOption) (*GetVpcGcpInfoResult, error) {
 	var rv GetVpcGcpInfoResult
 	err := ctx.Invoke("cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo", args, &rv, opts...)
@@ -58,17 +99,20 @@ func GetVpcGcpInfo(ctx *pulumi.Context, args *GetVpcGcpInfoArgs, opts ...pulumi.
 // A collection of arguments for invoking getVpcGcpInfo.
 type GetVpcGcpInfoArgs struct {
 	// The CloudAMQP instance identifier.
-	InstanceId int `pulumi:"instanceId"`
+	InstanceId *int `pulumi:"instanceId"`
+	// The managed VPC identifier.
+	VpcId *string `pulumi:"vpcId"`
 }
 
 // A collection of values returned by getVpcGcpInfo.
 type GetVpcGcpInfoResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id         string `pulumi:"id"`
-	InstanceId int    `pulumi:"instanceId"`
-	Name       string `pulumi:"name"`
-	Network    string `pulumi:"network"`
-	VpcSubnet  string `pulumi:"vpcSubnet"`
+	Id         string  `pulumi:"id"`
+	InstanceId *int    `pulumi:"instanceId"`
+	Name       string  `pulumi:"name"`
+	Network    string  `pulumi:"network"`
+	VpcId      *string `pulumi:"vpcId"`
+	VpcSubnet  string  `pulumi:"vpcSubnet"`
 }
 
 func GetVpcGcpInfoOutput(ctx *pulumi.Context, args GetVpcGcpInfoOutputArgs, opts ...pulumi.InvokeOption) GetVpcGcpInfoResultOutput {
@@ -87,7 +131,9 @@ func GetVpcGcpInfoOutput(ctx *pulumi.Context, args GetVpcGcpInfoOutputArgs, opts
 // A collection of arguments for invoking getVpcGcpInfo.
 type GetVpcGcpInfoOutputArgs struct {
 	// The CloudAMQP instance identifier.
-	InstanceId pulumi.IntInput `pulumi:"instanceId"`
+	InstanceId pulumi.IntPtrInput `pulumi:"instanceId"`
+	// The managed VPC identifier.
+	VpcId pulumi.StringPtrInput `pulumi:"vpcId"`
 }
 
 func (GetVpcGcpInfoOutputArgs) ElementType() reflect.Type {
@@ -114,8 +160,8 @@ func (o GetVpcGcpInfoResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcGcpInfoResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o GetVpcGcpInfoResultOutput) InstanceId() pulumi.IntOutput {
-	return o.ApplyT(func(v GetVpcGcpInfoResult) int { return v.InstanceId }).(pulumi.IntOutput)
+func (o GetVpcGcpInfoResultOutput) InstanceId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetVpcGcpInfoResult) *int { return v.InstanceId }).(pulumi.IntPtrOutput)
 }
 
 func (o GetVpcGcpInfoResultOutput) Name() pulumi.StringOutput {
@@ -124,6 +170,10 @@ func (o GetVpcGcpInfoResultOutput) Name() pulumi.StringOutput {
 
 func (o GetVpcGcpInfoResultOutput) Network() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcGcpInfoResult) string { return v.Network }).(pulumi.StringOutput)
+}
+
+func (o GetVpcGcpInfoResultOutput) VpcId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetVpcGcpInfoResult) *string { return v.VpcId }).(pulumi.StringPtrOutput)
 }
 
 func (o GetVpcGcpInfoResultOutput) VpcSubnet() pulumi.StringOutput {

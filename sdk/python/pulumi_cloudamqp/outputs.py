@@ -11,6 +11,7 @@ from . import _utilities
 __all__ = [
     'SecurityFirewallRule',
     'GetAccountInstanceResult',
+    'GetAccountVpcsVpcResult',
     'GetNodesNodeResult',
     'GetPluginsCommunityPluginResult',
     'GetPluginsPluginResult',
@@ -104,6 +105,54 @@ class GetAccountInstanceResult(dict):
     @pulumi.getter
     def region(self) -> str:
         return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class GetAccountVpcsVpcResult(dict):
+    def __init__(__self__, *,
+                 id: int,
+                 name: str,
+                 region: str,
+                 subnet: str,
+                 vpc_name: str,
+                 tags: Optional[Sequence[str]] = None):
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "subnet", subnet)
+        pulumi.set(__self__, "vpc_name", vpc_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def subnet(self) -> str:
+        return pulumi.get(self, "subnet")
+
+    @property
+    @pulumi.getter(name="vpcName")
+    def vpc_name(self) -> str:
+        return pulumi.get(self, "vpc_name")
 
     @property
     @pulumi.getter

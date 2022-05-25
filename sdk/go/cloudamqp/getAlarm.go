@@ -42,7 +42,7 @@ import (
 // * `id`                  - The identifier for this resource.
 // * `enabled`             - Enable/disable status of the alarm.
 // * `valueThreshold`     - The value threshold that triggers the alarm.
-// * `reminderInternval`  - The reminder interval (in seconds) to resend the alarm if not resolved. Leave empty or set to 0 to not receive any reminders.
+// * `reminderInterval`   - The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders.
 // * `timeThreshold`      - The time interval (in seconds) the `valueThreshold` should be active before trigger an alarm.
 // * `queueRegex`         - Regular expression for which queue to check.
 // * `vhostRegex`         - Regular expression for which vhost to check
@@ -90,6 +90,7 @@ type LookupAlarmResult struct {
 	MessageType      string  `pulumi:"messageType"`
 	QueueRegex       string  `pulumi:"queueRegex"`
 	Recipients       []int   `pulumi:"recipients"`
+	ReminderInterval int     `pulumi:"reminderInterval"`
 	TimeThreshold    int     `pulumi:"timeThreshold"`
 	Type             *string `pulumi:"type"`
 	ValueCalculation *string `pulumi:"valueCalculation"`
@@ -167,6 +168,10 @@ func (o LookupAlarmResultOutput) QueueRegex() pulumi.StringOutput {
 
 func (o LookupAlarmResultOutput) Recipients() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v LookupAlarmResult) []int { return v.Recipients }).(pulumi.IntArrayOutput)
+}
+
+func (o LookupAlarmResultOutput) ReminderInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupAlarmResult) int { return v.ReminderInterval }).(pulumi.IntOutput)
 }
 
 func (o LookupAlarmResultOutput) TimeThreshold() pulumi.IntOutput {

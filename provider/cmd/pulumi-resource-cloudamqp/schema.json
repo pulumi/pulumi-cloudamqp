@@ -137,6 +137,74 @@
                 }
             }
         },
+        "cloudamqp:index/getAccountVpcsVpc:getAccountVpcsVpc": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "region": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "subnet": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "vpcName": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "id",
+                "name",
+                "region",
+                "subnet",
+                "vpcName"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "cloudamqp:index/getNodesNode:getNodesNode": {
             "properties": {
                 "configured": {
@@ -356,6 +424,10 @@
                     },
                     "description": "Identifier for recipient to be notified. Leave empty to notify all recipients.\n"
                 },
+                "reminderInterval": {
+                    "type": "integer",
+                    "description": "The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.\n"
+                },
                 "timeThreshold": {
                     "type": "integer",
                     "description": "The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.\n"
@@ -406,6 +478,10 @@
                         "type": "integer"
                     },
                     "description": "Identifier for recipient to be notified. Leave empty to notify all recipients.\n"
+                },
+                "reminderInterval": {
+                    "type": "integer",
+                    "description": "The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.\n"
                 },
                 "timeThreshold": {
                     "type": "integer",
@@ -459,6 +535,10 @@
                             "type": "integer"
                         },
                         "description": "Identifier for recipient to be notified. Leave empty to notify all recipients.\n"
+                    },
+                    "reminderInterval": {
+                        "type": "integer",
+                        "description": "The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.\n"
                     },
                     "timeThreshold": {
                         "type": "integer",
@@ -530,7 +610,7 @@
             }
         },
         "cloudamqp:index/instance:Instance": {
-            "description": "This resource allows you to create and manage a CloudAMQP instance running Rabbit MQ and deploy to multiple cloud platforms provider and over multiple regions, see Instance regions for more information.\n\nOnce the instance is created it will be assigned a unique identifier. All other resource and data sources created for this instance needs to reference the instance identifier.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\n// Minimum free lemur instance\nconst lemurInstance = new cloudamqp.Instance(\"lemur_instance\", {\n    plan: \"lemur\",\n    region: \"amazon-web-services::us-west-1\",\n});\n// New dedicated bunny instance\nconst instance = new cloudamqp.Instance(\"instance\", {\n    noDefaultAlarms: true,\n    plan: \"bunny-1\",\n    region: \"amazon-web-services::us-west-1\",\n    rmqVersion: \"3.8.3\",\n    tags: [\"terraform\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\n# Minimum free lemur instance\nlemur_instance = cloudamqp.Instance(\"lemurInstance\",\n    plan=\"lemur\",\n    region=\"amazon-web-services::us-west-1\")\n# New dedicated bunny instance\ninstance = cloudamqp.Instance(\"instance\",\n    no_default_alarms=True,\n    plan=\"bunny-1\",\n    region=\"amazon-web-services::us-west-1\",\n    rmq_version=\"3.8.3\",\n    tags=[\"terraform\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        // Minimum free lemur instance\n        var lemurInstance = new CloudAmqp.Instance(\"lemurInstance\", new CloudAmqp.InstanceArgs\n        {\n            Plan = \"lemur\",\n            Region = \"amazon-web-services::us-west-1\",\n        });\n        // New dedicated bunny instance\n        var instance = new CloudAmqp.Instance(\"instance\", new CloudAmqp.InstanceArgs\n        {\n            NoDefaultAlarms = true,\n            Plan = \"bunny-1\",\n            Region = \"amazon-web-services::us-west-1\",\n            RmqVersion = \"3.8.3\",\n            Tags = \n            {\n                \"terraform\",\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.NewInstance(ctx, \"lemurInstance\", \u0026cloudamqp.InstanceArgs{\n\t\t\tPlan:   pulumi.String(\"lemur\"),\n\t\t\tRegion: pulumi.String(\"amazon-web-services::us-west-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewInstance(ctx, \"instance\", \u0026cloudamqp.InstanceArgs{\n\t\t\tNoDefaultAlarms: pulumi.Bool(true),\n\t\t\tPlan:            pulumi.String(\"bunny-1\"),\n\t\t\tRegion:          pulumi.String(\"amazon-web-services::us-west-1\"),\n\t\t\tRmqVersion:      pulumi.String(\"3.8.3\"),\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"terraform\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n`cloudamqp_instance`can be imported using CloudAMQP internal identifier. To retrieve the identifier for an instance, use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances).\n\n```sh\n $ pulumi import cloudamqp:index/instance:Instance instance \u003cid\u003e`\n```\n\n ",
+            "description": "\n\n\n## Import\n\n`cloudamqp_instance`can be imported using CloudAMQP internal identifier.\n\n```sh\n $ pulumi import cloudamqp:index/instance:Instance instance \u003cid\u003e`\n```\n\n To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances). Or use the data source [`cloudamqp_account`](https://registry.terraform.io/providers/cloudamqp/cloudamqp/latest/docs/data-sources/account) to list all available instances for an account. ",
             "properties": {
                 "apikey": {
                     "type": "string",
@@ -548,6 +628,10 @@
                     "type": "string",
                     "description": "The internal hostname for the CloudAMQP instance.\n"
                 },
+                "keepAssociatedVpc": {
+                    "type": "boolean",
+                    "description": "Keep associated VPC when deleting instance, default set to false.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "Name of the CloudAMQP instance.\n"
@@ -558,7 +642,7 @@
                 },
                 "nodes": {
                     "type": "integer",
-                    "description": "Number of nodes, 1, 3 or 5 depending on plan used. **DEPRECATED. Old subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.**\n"
+                    "description": "Number of nodes, 1, 3 or 5 depending on plan used.\n"
                 },
                 "plan": {
                     "type": "string",
@@ -570,11 +654,11 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region to host the instance in. See Instance regions **Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.**\n"
+                    "description": "The region to host the instance in. See Instance regions\n"
                 },
                 "rmqVersion": {
                     "type": "string",
-                    "description": "The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**\n"
+                    "description": "The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.\n"
                 },
                 "tags": {
                     "type": "array",
@@ -597,7 +681,7 @@
                 },
                 "vpcSubnet": {
                     "type": "string",
-                    "description": "Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**\n"
+                    "description": "Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24.\n"
                 }
             },
             "required": [
@@ -618,6 +702,10 @@
                 "vpcSubnet"
             ],
             "inputProperties": {
+                "keepAssociatedVpc": {
+                    "type": "boolean",
+                    "description": "Keep associated VPC when deleting instance, default set to false.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "Name of the CloudAMQP instance.\n"
@@ -628,7 +716,7 @@
                 },
                 "nodes": {
                     "type": "integer",
-                    "description": "Number of nodes, 1, 3 or 5 depending on plan used. **DEPRECATED. Old subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.**\n"
+                    "description": "Number of nodes, 1, 3 or 5 depending on plan used.\n"
                 },
                 "plan": {
                     "type": "string",
@@ -636,11 +724,11 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region to host the instance in. See Instance regions **Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.**\n"
+                    "description": "The region to host the instance in. See Instance regions\n"
                 },
                 "rmqVersion": {
                     "type": "string",
-                    "description": "The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**\n"
+                    "description": "The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.\n"
                 },
                 "tags": {
                     "type": "array",
@@ -655,7 +743,7 @@
                 },
                 "vpcSubnet": {
                     "type": "string",
-                    "description": "Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**\n"
+                    "description": "Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24.\n"
                 }
             },
             "requiredInputs": [
@@ -681,6 +769,10 @@
                         "type": "string",
                         "description": "The internal hostname for the CloudAMQP instance.\n"
                     },
+                    "keepAssociatedVpc": {
+                        "type": "boolean",
+                        "description": "Keep associated VPC when deleting instance, default set to false.\n"
+                    },
                     "name": {
                         "type": "string",
                         "description": "Name of the CloudAMQP instance.\n"
@@ -691,7 +783,7 @@
                     },
                     "nodes": {
                         "type": "integer",
-                        "description": "Number of nodes, 1, 3 or 5 depending on plan used. **DEPRECATED. Old subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.**\n"
+                        "description": "Number of nodes, 1, 3 or 5 depending on plan used.\n"
                     },
                     "plan": {
                         "type": "string",
@@ -703,11 +795,11 @@
                     },
                     "region": {
                         "type": "string",
-                        "description": "The region to host the instance in. See Instance regions **Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.**\n"
+                        "description": "The region to host the instance in. See Instance regions\n"
                     },
                     "rmqVersion": {
                         "type": "string",
-                        "description": "The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API. **Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.**\n"
+                        "description": "The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.\n"
                     },
                     "tags": {
                         "type": "array",
@@ -730,14 +822,14 @@
                     },
                     "vpcSubnet": {
                         "type": "string",
-                        "description": "Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24. **NOTE: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.**\n"
+                        "description": "Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24.\n"
                     }
                 },
                 "type": "object"
             }
         },
         "cloudamqp:index/integrationLog:IntegrationLog": {
-            "description": "This resource allows you to create and manage third party log integrations for a CloudAMQP instance. Once configured, the logs produced will be forward to corresponding integration.\n\nOnly available for dedicated subscription plans.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst cloudwatch = new cloudamqp.IntegrationLog(\"cloudwatch\", {\n    instanceId: cloudamqp_instance.instance.id,\n    accessKeyId: _var.aws_access_key_id,\n    secretAccessKey: _var.aws_secret_access_key,\n    region: _var.aws_region,\n});\nconst logentries = new cloudamqp.IntegrationLog(\"logentries\", {\n    instanceId: cloudamqp_instance.instance.id,\n    token: _var.logentries_token,\n});\nconst loggly = new cloudamqp.IntegrationLog(\"loggly\", {\n    instanceId: cloudamqp_instance.instance.id,\n    token: _var.loggly_token,\n});\nconst papertrail = new cloudamqp.IntegrationLog(\"papertrail\", {\n    instanceId: cloudamqp_instance.instance.id,\n    url: _var.papertrail_url,\n});\nconst splunk = new cloudamqp.IntegrationLog(\"splunk\", {\n    instanceId: cloudamqp_instance.instance.id,\n    token: _var.splunk_token,\n    hostPort: _var.splunk_host_port,\n});\nconst datadog = new cloudamqp.IntegrationLog(\"datadog\", {\n    instanceId: cloudamqp_instance.instance.id,\n    region: _var.datadog_region,\n    apiKey: _var.datadog_api_key,\n    tags: _var.datadog_tags,\n});\nconst stackdriver = new cloudamqp.IntegrationLog(\"stackdriver\", {\n    instanceId: cloudamqp_instance.instance.id,\n    projectId: _var.stackdriver_project_id,\n    privateKey: _var.stackdriver_private_key,\n    clientEmail: _var.stackdriver_client_email,\n});\nconst scalyr = new cloudamqp.IntegrationLog(\"scalyr\", {\n    instanceId: cloudamqp_instance.instance.id,\n    token: _var.scalyr_token,\n    host: _var.scalyr_host,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\ncloudwatch = cloudamqp.IntegrationLog(\"cloudwatch\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    access_key_id=var[\"aws_access_key_id\"],\n    secret_access_key=var[\"aws_secret_access_key\"],\n    region=var[\"aws_region\"])\nlogentries = cloudamqp.IntegrationLog(\"logentries\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    token=var[\"logentries_token\"])\nloggly = cloudamqp.IntegrationLog(\"loggly\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    token=var[\"loggly_token\"])\npapertrail = cloudamqp.IntegrationLog(\"papertrail\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    url=var[\"papertrail_url\"])\nsplunk = cloudamqp.IntegrationLog(\"splunk\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    token=var[\"splunk_token\"],\n    host_port=var[\"splunk_host_port\"])\ndatadog = cloudamqp.IntegrationLog(\"datadog\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    region=var[\"datadog_region\"],\n    api_key=var[\"datadog_api_key\"],\n    tags=var[\"datadog_tags\"])\nstackdriver = cloudamqp.IntegrationLog(\"stackdriver\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    project_id=var[\"stackdriver_project_id\"],\n    private_key=var[\"stackdriver_private_key\"],\n    client_email=var[\"stackdriver_client_email\"])\nscalyr = cloudamqp.IntegrationLog(\"scalyr\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    token=var[\"scalyr_token\"],\n    host=var[\"scalyr_host\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var cloudwatch = new CloudAmqp.IntegrationLog(\"cloudwatch\", new CloudAmqp.IntegrationLogArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            AccessKeyId = @var.Aws_access_key_id,\n            SecretAccessKey = @var.Aws_secret_access_key,\n            Region = @var.Aws_region,\n        });\n        var logentries = new CloudAmqp.IntegrationLog(\"logentries\", new CloudAmqp.IntegrationLogArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Token = @var.Logentries_token,\n        });\n        var loggly = new CloudAmqp.IntegrationLog(\"loggly\", new CloudAmqp.IntegrationLogArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Token = @var.Loggly_token,\n        });\n        var papertrail = new CloudAmqp.IntegrationLog(\"papertrail\", new CloudAmqp.IntegrationLogArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Url = @var.Papertrail_url,\n        });\n        var splunk = new CloudAmqp.IntegrationLog(\"splunk\", new CloudAmqp.IntegrationLogArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Token = @var.Splunk_token,\n            HostPort = @var.Splunk_host_port,\n        });\n        var datadog = new CloudAmqp.IntegrationLog(\"datadog\", new CloudAmqp.IntegrationLogArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Region = @var.Datadog_region,\n            ApiKey = @var.Datadog_api_key,\n            Tags = @var.Datadog_tags,\n        });\n        var stackdriver = new CloudAmqp.IntegrationLog(\"stackdriver\", new CloudAmqp.IntegrationLogArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            ProjectId = @var.Stackdriver_project_id,\n            PrivateKey = @var.Stackdriver_private_key,\n            ClientEmail = @var.Stackdriver_client_email,\n        });\n        var scalyr = new CloudAmqp.IntegrationLog(\"scalyr\", new CloudAmqp.IntegrationLogArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Token = @var.Scalyr_token,\n            Host = @var.Scalyr_host,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.NewIntegrationLog(ctx, \"cloudwatch\", \u0026cloudamqp.IntegrationLogArgs{\n\t\t\tInstanceId:      pulumi.Any(cloudamqp_instance.Instance.Id),\n\t\t\tAccessKeyId:     pulumi.Any(_var.Aws_access_key_id),\n\t\t\tSecretAccessKey: pulumi.Any(_var.Aws_secret_access_key),\n\t\t\tRegion:          pulumi.Any(_var.Aws_region),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewIntegrationLog(ctx, \"logentries\", \u0026cloudamqp.IntegrationLogArgs{\n\t\t\tInstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),\n\t\t\tToken:      pulumi.Any(_var.Logentries_token),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewIntegrationLog(ctx, \"loggly\", \u0026cloudamqp.IntegrationLogArgs{\n\t\t\tInstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),\n\t\t\tToken:      pulumi.Any(_var.Loggly_token),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewIntegrationLog(ctx, \"papertrail\", \u0026cloudamqp.IntegrationLogArgs{\n\t\t\tInstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),\n\t\t\tUrl:        pulumi.Any(_var.Papertrail_url),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewIntegrationLog(ctx, \"splunk\", \u0026cloudamqp.IntegrationLogArgs{\n\t\t\tInstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),\n\t\t\tToken:      pulumi.Any(_var.Splunk_token),\n\t\t\tHostPort:   pulumi.Any(_var.Splunk_host_port),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewIntegrationLog(ctx, \"datadog\", \u0026cloudamqp.IntegrationLogArgs{\n\t\t\tInstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),\n\t\t\tRegion:     pulumi.Any(_var.Datadog_region),\n\t\t\tApiKey:     pulumi.Any(_var.Datadog_api_key),\n\t\t\tTags:       pulumi.Any(_var.Datadog_tags),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewIntegrationLog(ctx, \"stackdriver\", \u0026cloudamqp.IntegrationLogArgs{\n\t\t\tInstanceId:  pulumi.Any(cloudamqp_instance.Instance.Id),\n\t\t\tProjectId:   pulumi.Any(_var.Stackdriver_project_id),\n\t\t\tPrivateKey:  pulumi.Any(_var.Stackdriver_private_key),\n\t\t\tClientEmail: pulumi.Any(_var.Stackdriver_client_email),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewIntegrationLog(ctx, \"scalyr\", \u0026cloudamqp.IntegrationLogArgs{\n\t\t\tInstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),\n\t\t\tToken:      pulumi.Any(_var.Scalyr_token),\n\t\t\tHost:       pulumi.Any(_var.Scalyr_host),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n## Argument Reference (cloudwatchlog)\n\nCloudwatch argument reference and example. Create an IAM user with programmatic access and the following permissions:\n\n* CreateLogGroup\n* CreateLogStream\n* DescribeLogGroups\n* DescribeLogStreams\n* PutLogEvents\n\n## Integration service reference\n\nValid names for third party log integration.\n\n| Name       | Description |\n|------------|---------------------------------------------------------------|\n| cloudwatchlog | Create a IAM with programmatic access. |\n| logentries | Create a Logentries token at https://logentries.com/app#/add-log/manual  |\n| loggly     | Create a Loggly token at https://your-company}.loggly.com/tokens |\n| papertrail | Create a Papertrail endpoint https://papertrailapp.com/systems/setup |\n| splunk     | Create a HTTP Event Collector token at https://.cloud.splunk.com/en-US/manager/search/http-eventcollector |\n| datadog       | Create a Datadog API key at app.datadoghq.com |\n| stackdriver   | Create a service account and add 'monitor metrics writer' role, then download credentials. |\n| scalyr        | Create a Log write token at https://app.scalyr.com/keys |\n\n## Integration Type reference\n\nValid arguments for third party log integrations.\n\nRequired arguments for all integrations: name\n\n| Name | Type | Required arguments |\n| ---- | ---- | ---- |\n| CloudWatch | cloudwatchlog | access_key_id, secret_access_key, region |\n| Log Entries | logentries | token |\n| Loggly | loggly | token |\n| Papertrail | papertrail | url |\n| Splunk | splunk | token, host_port |\n| Data Dog | datadog | region, api_keys, tags |\n| Stackdriver | stackdriver | project_id, private_key, client_email |\n| Scalyr | scalyr | token, host |\n\n## Dependency\n\nThis resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n\n\n## Import\n\n`cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.\n\n```sh\n $ pulumi import cloudamqp:index/integrationLog:IntegrationLog \u003cresource_name\u003e \u003cid\u003e,\u003cinstance_id\u003e`\n```\n\n ",
+            "description": "This resource allows you to create and manage third party log integrations for a CloudAMQP instance. Once configured, the logs produced will be forward to corresponding integration.\n\nOnly available for dedicated subscription plans.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n\u003cdetails\u003e\n  \u003csummary\u003e\n    \u003cb\u003e\n      \u003ci\u003eCloudwatch log integration\u003c/i\u003e\n    \u003c/b\u003e\n  \u003c/summary\u003e\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst cloudwatch = new cloudamqp.IntegrationLog(\"cloudwatch\", {\n    instanceId: cloudamqp_instance.instance.id,\n    accessKeyId: _var.aws_access_key_id,\n    secretAccessKey: _var.aws_secret_access_key,\n    region: _var.aws_region,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\ncloudwatch = cloudamqp.IntegrationLog(\"cloudwatch\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    access_key_id=var[\"aws_access_key_id\"],\n    secret_access_key=var[\"aws_secret_access_key\"],\n    region=var[\"aws_region\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var cloudwatch = new CloudAmqp.IntegrationLog(\"cloudwatch\", new CloudAmqp.IntegrationLogArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            AccessKeyId = @var.Aws_access_key_id,\n            SecretAccessKey = @var.Aws_secret_access_key,\n            Region = @var.Aws_region,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.NewIntegrationLog(ctx, \"cloudwatch\", \u0026cloudamqp.IntegrationLogArgs{\n\t\t\tInstanceId:      pulumi.Any(cloudamqp_instance.Instance.Id),\n\t\t\tAccessKeyId:     pulumi.Any(_var.Aws_access_key_id),\n\t\t\tSecretAccessKey: pulumi.Any(_var.Aws_secret_access_key),\n\t\t\tRegion:          pulumi.Any(_var.Aws_region),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\u003c/details\u003e\n\n\u003cdetails\u003e\n  \u003csummary\u003e\n    \u003cb\u003e\n      \u003ci\u003eLogentries log integration\u003c/i\u003e\n    \u003c/b\u003e\n  \u003c/summary\u003e\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst logentries = new cloudamqp.IntegrationLog(\"logentries\", {\n    instanceId: cloudamqp_instance.instance.id,\n    token: _var.logentries_token,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nlogentries = cloudamqp.IntegrationLog(\"logentries\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    token=var[\"logentries_token\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var logentries = new CloudAmqp.IntegrationLog(\"logentries\", new CloudAmqp.IntegrationLogArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Token = @var.Logentries_token,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.NewIntegrationLog(ctx, \"logentries\", \u0026cloudamqp.IntegrationLogArgs{\n\t\t\tInstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),\n\t\t\tToken:      pulumi.Any(_var.Logentries_token),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\u003c/details\u003e\n\n\u003cdetails\u003e\n  \u003csummary\u003e\n    \u003cb\u003e\n      \u003ci\u003eLoggly log integration\u003c/i\u003e\n    \u003c/b\u003e\n  \u003c/summary\u003e\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst loggly = new cloudamqp.IntegrationLog(\"loggly\", {\n    instanceId: cloudamqp_instance.instance.id,\n    token: _var.loggly_token,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nloggly = cloudamqp.IntegrationLog(\"loggly\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    token=var[\"loggly_token\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var loggly = new CloudAmqp.IntegrationLog(\"loggly\", new CloudAmqp.IntegrationLogArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Token = @var.Loggly_token,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.NewIntegrationLog(ctx, \"loggly\", \u0026cloudamqp.IntegrationLogArgs{\n\t\t\tInstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),\n\t\t\tToken:      pulumi.Any(_var.Loggly_token),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\u003c/details\u003e\n\n\u003cdetails\u003e\n  \u003csummary\u003e\n    \u003cb\u003e\n      \u003ci\u003ePapertrail log integration\u003c/i\u003e\n    \u003c/b\u003e\n  \u003c/summary\u003e\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst papertrail = new cloudamqp.IntegrationLog(\"papertrail\", {\n    instanceId: cloudamqp_instance.instance.id,\n    url: _var.papertrail_url,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\npapertrail = cloudamqp.IntegrationLog(\"papertrail\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    url=var[\"papertrail_url\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var papertrail = new CloudAmqp.IntegrationLog(\"papertrail\", new CloudAmqp.IntegrationLogArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Url = @var.Papertrail_url,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.NewIntegrationLog(ctx, \"papertrail\", \u0026cloudamqp.IntegrationLogArgs{\n\t\t\tInstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),\n\t\t\tUrl:        pulumi.Any(_var.Papertrail_url),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\u003c/details\u003e\n\n\u003cdetails\u003e\n  \u003csummary\u003e\n    \u003cb\u003e\n      \u003ci\u003eSplunk log integration\u003c/i\u003e\n    \u003c/b\u003e\n  \u003c/summary\u003e\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst splunk = new cloudamqp.IntegrationLog(\"splunk\", {\n    instanceId: cloudamqp_instance.instance.id,\n    token: _var.splunk_token,\n    hostPort: _var.splunk_host_port,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nsplunk = cloudamqp.IntegrationLog(\"splunk\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    token=var[\"splunk_token\"],\n    host_port=var[\"splunk_host_port\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var splunk = new CloudAmqp.IntegrationLog(\"splunk\", new CloudAmqp.IntegrationLogArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Token = @var.Splunk_token,\n            HostPort = @var.Splunk_host_port,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.NewIntegrationLog(ctx, \"splunk\", \u0026cloudamqp.IntegrationLogArgs{\n\t\t\tInstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),\n\t\t\tToken:      pulumi.Any(_var.Splunk_token),\n\t\t\tHostPort:   pulumi.Any(_var.Splunk_host_port),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\u003c/details\u003e\n\n\u003cdetails\u003e\n  \u003csummary\u003e\n    \u003cb\u003e\n      \u003ci\u003eDatadog log integration\u003c/i\u003e\n    \u003c/b\u003e\n  \u003c/summary\u003e\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst datadog = new cloudamqp.IntegrationLog(\"datadog\", {\n    instanceId: cloudamqp_instance.instance.id,\n    region: _var.datadog_region,\n    apiKey: _var.datadog_api_key,\n    tags: _var.datadog_tags,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\ndatadog = cloudamqp.IntegrationLog(\"datadog\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    region=var[\"datadog_region\"],\n    api_key=var[\"datadog_api_key\"],\n    tags=var[\"datadog_tags\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var datadog = new CloudAmqp.IntegrationLog(\"datadog\", new CloudAmqp.IntegrationLogArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Region = @var.Datadog_region,\n            ApiKey = @var.Datadog_api_key,\n            Tags = @var.Datadog_tags,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.NewIntegrationLog(ctx, \"datadog\", \u0026cloudamqp.IntegrationLogArgs{\n\t\t\tInstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),\n\t\t\tRegion:     pulumi.Any(_var.Datadog_region),\n\t\t\tApiKey:     pulumi.Any(_var.Datadog_api_key),\n\t\t\tTags:       pulumi.Any(_var.Datadog_tags),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\u003c/details\u003e\n\n\u003cdetails\u003e\n  \u003csummary\u003e\n    \u003cb\u003e\n      \u003ci\u003eStackdriver log integration\u003c/i\u003e\n    \u003c/b\u003e\n  \u003c/summary\u003e\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst stackdriver = new cloudamqp.IntegrationLog(\"stackdriver\", {\n    instanceId: cloudamqp_instance.instance.id,\n    projectId: _var.stackdriver_project_id,\n    privateKey: _var.stackdriver_private_key,\n    clientEmail: _var.stackdriver_client_email,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nstackdriver = cloudamqp.IntegrationLog(\"stackdriver\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    project_id=var[\"stackdriver_project_id\"],\n    private_key=var[\"stackdriver_private_key\"],\n    client_email=var[\"stackdriver_client_email\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var stackdriver = new CloudAmqp.IntegrationLog(\"stackdriver\", new CloudAmqp.IntegrationLogArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            ProjectId = @var.Stackdriver_project_id,\n            PrivateKey = @var.Stackdriver_private_key,\n            ClientEmail = @var.Stackdriver_client_email,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.NewIntegrationLog(ctx, \"stackdriver\", \u0026cloudamqp.IntegrationLogArgs{\n\t\t\tInstanceId:  pulumi.Any(cloudamqp_instance.Instance.Id),\n\t\t\tProjectId:   pulumi.Any(_var.Stackdriver_project_id),\n\t\t\tPrivateKey:  pulumi.Any(_var.Stackdriver_private_key),\n\t\t\tClientEmail: pulumi.Any(_var.Stackdriver_client_email),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\u003c/details\u003e\n\n\u003cdetails\u003e\n  \u003csummary\u003e\n    \u003cb\u003e\n      \u003ci\u003eScalyr log integration\u003c/i\u003e\n    \u003c/b\u003e\n  \u003c/summary\u003e\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst scalyr = new cloudamqp.IntegrationLog(\"scalyr\", {\n    instanceId: cloudamqp_instance.instance.id,\n    token: _var.scalyr_token,\n    host: _var.scalyr_host,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nscalyr = cloudamqp.IntegrationLog(\"scalyr\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    token=var[\"scalyr_token\"],\n    host=var[\"scalyr_host\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var scalyr = new CloudAmqp.IntegrationLog(\"scalyr\", new CloudAmqp.IntegrationLogArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Token = @var.Scalyr_token,\n            Host = @var.Scalyr_host,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.NewIntegrationLog(ctx, \"scalyr\", \u0026cloudamqp.IntegrationLogArgs{\n\t\t\tInstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),\n\t\t\tToken:      pulumi.Any(_var.Scalyr_token),\n\t\t\tHost:       pulumi.Any(_var.Scalyr_host),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\u003c/details\u003e\n{{% /example %}}\n{{% /examples %}}\n## Argument Reference (cloudwatchlog)\n\nCloudwatch argument reference and example. Create an IAM user with programmatic access and the following permissions:\n\n* CreateLogGroup\n* CreateLogStream\n* DescribeLogGroups\n* DescribeLogStreams\n* PutLogEvents\n\n## Integration service reference\n\nValid names for third party log integration.\n\n| Name       | Description |\n|------------|---------------------------------------------------------------|\n| cloudwatchlog | Create a IAM with programmatic access. |\n| logentries | Create a Logentries token at https://logentries.com/app#/add-log/manual  |\n| loggly     | Create a Loggly token at https://your-company}.loggly.com/tokens |\n| papertrail | Create a Papertrail endpoint https://papertrailapp.com/systems/setup |\n| splunk     | Create a HTTP Event Collector token at https://.cloud.splunk.com/en-US/manager/search/http-eventcollector |\n| datadog       | Create a Datadog API key at app.datadoghq.com |\n| stackdriver   | Create a service account and add 'monitor metrics writer' role, then download credentials. |\n| scalyr        | Create a Log write token at https://app.scalyr.com/keys |\n\n## Integration Type reference\n\nValid arguments for third party log integrations.\n\nRequired arguments for all integrations: name\n\n| Name | Type | Required arguments |\n| ---- | ---- | ---- |\n| CloudWatch | cloudwatchlog | access_key_id, secret_access_key, region |\n| Log Entries | logentries | token |\n| Loggly | loggly | token |\n| Papertrail | papertrail | url |\n| Splunk | splunk | token, host_port |\n| Data Dog | datadog | region, api_keys, tags |\n| Stackdriver | stackdriver | project_id, private_key, client_email |\n| Scalyr | scalyr | token, host |\n\n## Dependency\n\nThis resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n\n\n## Import\n\n`cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.\n\n```sh\n $ pulumi import cloudamqp:index/integrationLog:IntegrationLog \u003cresource_name\u003e \u003cid\u003e,\u003cinstance_id\u003e`\n```\n\n ",
             "properties": {
                 "accessKeyId": {
                     "type": "string",
@@ -1214,7 +1306,7 @@
             }
         },
         "cloudamqp:index/plugin:Plugin": {
-            "description": "This resource allows you to enable or disable Rabbit MQ plugins.\n\nOnly available for dedicated subscription plans.\n\n⚠️  From our go API wrapper [v1.4.0](https://github.com/84codes/go-api/releases/tag/v1.4.0) there is support for multiple retries when requesting information about plugins. This was introduced to avoid `ReadPlugin error 400: Timeout talking to backend`.\n\n**Enable multiple plugins:** Rabbit MQ can only change one plugin at a time. It will fail if multiple plugins resources are used, unless by creating dependencies with `depend_on` between the resources. Once one plugin has been enabled, the other will continue. See example below.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst rabbitmqTop = new cloudamqp.Plugin(\"rabbitmqTop\", {\n    instanceId: cloudamqp_instance.instance.id,\n    enabled: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nrabbitmq_top = cloudamqp.Plugin(\"rabbitmqTop\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    enabled=True)\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var rabbitmqTop = new CloudAmqp.Plugin(\"rabbitmqTop\", new CloudAmqp.PluginArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Enabled = true,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.NewPlugin(ctx, \"rabbitmqTop\", \u0026cloudamqp.PluginArgs{\n\t\t\tInstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),\n\t\t\tEnabled:    pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n**Enable multiple plugins**\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst rabbitmqTop = new cloudamqp.Plugin(\"rabbitmqTop\", {\n    instanceId: cloudamqp_instance.instance.id,\n    enabled: true,\n});\nconst rabbitmqAmqp10 = new cloudamqp.Plugin(\"rabbitmqAmqp10\", {\n    instanceId: cloudamqp_instance.instance.id,\n    enabled: true,\n}, {\n    dependsOn: [rabbitmqTop],\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nrabbitmq_top = cloudamqp.Plugin(\"rabbitmqTop\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    enabled=True)\nrabbitmq_amqp10 = cloudamqp.Plugin(\"rabbitmqAmqp10\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    enabled=True,\n    opts=pulumi.ResourceOptions(depends_on=[rabbitmq_top]))\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var rabbitmqTop = new CloudAmqp.Plugin(\"rabbitmqTop\", new CloudAmqp.PluginArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Enabled = true,\n        });\n        var rabbitmqAmqp10 = new CloudAmqp.Plugin(\"rabbitmqAmqp10\", new CloudAmqp.PluginArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Enabled = true,\n        }, new CustomResourceOptions\n        {\n            DependsOn = \n            {\n                rabbitmqTop,\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trabbitmqTop, err := cloudamqp.NewPlugin(ctx, \"rabbitmqTop\", \u0026cloudamqp.PluginArgs{\n\t\t\tInstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),\n\t\t\tEnabled:    pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewPlugin(ctx, \"rabbitmqAmqp10\", \u0026cloudamqp.PluginArgs{\n\t\t\tInstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),\n\t\t\tEnabled:    pulumi.Bool(true),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\trabbitmqTop,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n## Dependency\n\nThis resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n\nIf multiple plugins should be enable, create dependencies between the plugin resources. See example above.\n\n\n## Import\n\n`cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.\n\n```sh\n $ pulumi import cloudamqp:index/plugin:Plugin rabbitmq_management rabbitmq_management,\u003cinstance_id\u003e`\n```\n\n ",
+            "description": "This resource allows you to enable or disable Rabbit MQ plugins.\n\nOnly available for dedicated subscription plans.\n\n⚠️  From our go API wrapper [v1.4.0](https://github.com/84codes/go-api/releases/tag/v1.4.0) there is support for multiple retries when requesting information about plugins. This was introduced to avoid `ReadPlugin error 400: Timeout talking to backend`.\n\n**Enable multiple plugins:** Rabbit MQ can only change one plugin at a time. It will fail if multiple plugins resources are used, unless by creating dependencies with `depend_on` between the resources. Once one plugin has been enabled, the other will continue. See example below.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst rabbitmqTop = new cloudamqp.Plugin(\"rabbitmqTop\", {\n    instanceId: cloudamqp_instance.instance.id,\n    enabled: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nrabbitmq_top = cloudamqp.Plugin(\"rabbitmqTop\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    enabled=True)\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var rabbitmqTop = new CloudAmqp.Plugin(\"rabbitmqTop\", new CloudAmqp.PluginArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Enabled = true,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.NewPlugin(ctx, \"rabbitmqTop\", \u0026cloudamqp.PluginArgs{\n\t\t\tInstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),\n\t\t\tEnabled:    pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n**Enable multiple plugins**\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst rabbitmqTop = new cloudamqp.Plugin(\"rabbitmqTop\", {\n    instanceId: cloudamqp_instance.instance.id,\n    enabled: true,\n});\nconst rabbitmqAmqp10 = new cloudamqp.Plugin(\"rabbitmqAmqp10\", {\n    instanceId: cloudamqp_instance.instance.id,\n    enabled: true,\n}, {\n    dependsOn: [rabbitmqTop],\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nrabbitmq_top = cloudamqp.Plugin(\"rabbitmqTop\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    enabled=True)\nrabbitmq_amqp10 = cloudamqp.Plugin(\"rabbitmqAmqp10\",\n    instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    enabled=True,\n    opts=pulumi.ResourceOptions(depends_on=[rabbitmq_top]))\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var rabbitmqTop = new CloudAmqp.Plugin(\"rabbitmqTop\", new CloudAmqp.PluginArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Enabled = true,\n        });\n        var rabbitmqAmqp10 = new CloudAmqp.Plugin(\"rabbitmqAmqp10\", new CloudAmqp.PluginArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Enabled = true,\n        }, new CustomResourceOptions\n        {\n            DependsOn = \n            {\n                rabbitmqTop,\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trabbitmqTop, err := cloudamqp.NewPlugin(ctx, \"rabbitmqTop\", \u0026cloudamqp.PluginArgs{\n\t\t\tInstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),\n\t\t\tEnabled:    pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewPlugin(ctx, \"rabbitmqAmqp10\", \u0026cloudamqp.PluginArgs{\n\t\t\tInstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),\n\t\t\tEnabled:    pulumi.Bool(true),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\trabbitmqTop,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n## Dependency\n\nThis resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n\nIf multiple plugins should be enable, create dependencies between the plugin resources. See example above.\n\n\n## Import\n\n`cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.\n\n```sh\n $ pulumi import cloudamqp:index/plugin:Plugin rabbitmq_management rabbitmq_management,\u003cinstance_id\u003e`\n```\n\n ",
             "properties": {
                 "enabled": {
                     "type": "boolean",
@@ -1383,6 +1475,125 @@
                 "type": "object"
             }
         },
+        "cloudamqp:index/upgradeRabbitmq:UpgradeRabbitmq": {
+            "description": "This resource allows you to automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang. Depending on initial versions of RabbitMQ and Erlang of the CloudAMQP instance. Multiple runs may be needed to get to latest versions. (E.g. after completed upgrade, check data source `cloudamqp.getUpgradableVersions` to see if newer versions is available. Then delete `cloudamqp.UpgradeRabbitmq` and create it again to invoke the upgrade.\n\n\u003e :warning: **WARNING: Before using this resource.**\n\u003e\n\u003e Auto delete queues (queues that are marked AD) will be deleted during the update.\n\u003e\n\u003e Any custom plugins support has installed on your behalf will be disabled and you need to contact support@cloudamqp.com and ask to have them re-installed.\n\u003e\n\u003e TLS 1.0 and 1.1 will not be supported after the update.\n\nOnly available for dedicated subscription plans.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst versions = cloudamqp.getUpgradableVersions({\n    instanceId: cloudamqp_instance.instance.id,\n});\n// Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang\nconst upgrade = new cloudamqp.UpgradeRabbitmq(\"upgrade\", {instanceId: cloudamqp_instance.instance.id});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nversions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance[\"instance\"][\"id\"])\n# Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang\nupgrade = cloudamqp.UpgradeRabbitmq(\"upgrade\", instance_id=cloudamqp_instance[\"instance\"][\"id\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var versions = Output.Create(CloudAmqp.GetUpgradableVersions.InvokeAsync(new CloudAmqp.GetUpgradableVersionsArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n        }));\n        // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang\n        var upgrade = new CloudAmqp.UpgradeRabbitmq(\"upgrade\", new CloudAmqp.UpgradeRabbitmqArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.GetUpgradableVersions(ctx, \u0026GetUpgradableVersionsArgs{\n\t\t\tInstanceId: cloudamqp_instance.Instance.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewUpgradeRabbitmq(ctx, \"upgrade\", \u0026cloudamqp.UpgradeRabbitmqArgs{\n\t\t\tInstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst versions = cloudamqp.getUpgradableVersions({\n    instanceId: cloudamqp_instance.instance.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nversions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance[\"instance\"][\"id\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var versions = Output.Create(CloudAmqp.GetUpgradableVersions.InvokeAsync(new CloudAmqp.GetUpgradableVersionsArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.GetUpgradableVersions(ctx, \u0026GetUpgradableVersionsArgs{\n\t\t\tInstanceId: cloudamqp_instance.Instance.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\nIf newer version is still available to be upgradable in the data source, re-run again.\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst versions = cloudamqp.getUpgradableVersions({\n    instanceId: cloudamqp_instance.instance.id,\n});\n// Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang\nconst upgrade = new cloudamqp.UpgradeRabbitmq(\"upgrade\", {instanceId: cloudamqp_instance.instance.id});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nversions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance[\"instance\"][\"id\"])\n# Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang\nupgrade = cloudamqp.UpgradeRabbitmq(\"upgrade\", instance_id=cloudamqp_instance[\"instance\"][\"id\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var versions = Output.Create(CloudAmqp.GetUpgradableVersions.InvokeAsync(new CloudAmqp.GetUpgradableVersionsArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n        }));\n        // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang\n        var upgrade = new CloudAmqp.UpgradeRabbitmq(\"upgrade\", new CloudAmqp.UpgradeRabbitmqArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.GetUpgradableVersions(ctx, \u0026GetUpgradableVersionsArgs{\n\t\t\tInstanceId: cloudamqp_instance.Instance.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewUpgradeRabbitmq(ctx, \"upgrade\", \u0026cloudamqp.UpgradeRabbitmqArgs{\n\t\t\tInstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nNot possible to import this resource. ",
+            "properties": {
+                "instanceId": {
+                    "type": "integer",
+                    "description": "The CloudAMQP instance identifier\n"
+                }
+            },
+            "required": [
+                "instanceId"
+            ],
+            "inputProperties": {
+                "instanceId": {
+                    "type": "integer",
+                    "description": "The CloudAMQP instance identifier\n"
+                }
+            },
+            "requiredInputs": [
+                "instanceId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering UpgradeRabbitmq resources.\n",
+                "properties": {
+                    "instanceId": {
+                        "type": "integer",
+                        "description": "The CloudAMQP instance identifier\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "cloudamqp:index/vpc:Vpc": {
+            "description": "This resource allows you to manage standalone VPC.\n\nNew Cloudamqp instances can be added to the managed VPC. Set the instance *vpc_id* attribute to the managed vpc identifier , see example below, when creating the instance.\n\nOnly available for dedicated subscription plans.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\n// Managed VPC resource\nconst vpc = new cloudamqp.Vpc(\"vpc\", {\n    region: \"amazon-web-services::us-east-1\",\n    subnet: \"10.56.72.0/24\",\n    tags: [],\n});\n//  New instance, need to be created with a vpc\nconst instance = new cloudamqp.Instance(\"instance\", {\n    plan: \"bunny-1\",\n    region: \"amazon-web-services::us-east-1\",\n    nodes: 1,\n    tags: [],\n    rmqVersion: \"3.9.13\",\n    vpcId: cloudamq_vpc.vpc.id,\n});\nconst vpcInfo = cloudamqp.getVpcInfoOutput({\n    vpcId: vpc.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\n# Managed VPC resource\nvpc = cloudamqp.Vpc(\"vpc\",\n    region=\"amazon-web-services::us-east-1\",\n    subnet=\"10.56.72.0/24\",\n    tags=[])\n#  New instance, need to be created with a vpc\ninstance = cloudamqp.Instance(\"instance\",\n    plan=\"bunny-1\",\n    region=\"amazon-web-services::us-east-1\",\n    nodes=1,\n    tags=[],\n    rmq_version=\"3.9.13\",\n    vpc_id=cloudamq_vpc[\"vpc\"][\"id\"])\nvpc_info = cloudamqp.get_vpc_info_output(vpc_id=vpc.id)\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        // Managed VPC resource\n        var vpc = new CloudAmqp.Vpc(\"vpc\", new CloudAmqp.VpcArgs\n        {\n            Region = \"amazon-web-services::us-east-1\",\n            Subnet = \"10.56.72.0/24\",\n            Tags = {},\n        });\n        //  New instance, need to be created with a vpc\n        var instance = new CloudAmqp.Instance(\"instance\", new CloudAmqp.InstanceArgs\n        {\n            Plan = \"bunny-1\",\n            Region = \"amazon-web-services::us-east-1\",\n            Nodes = 1,\n            Tags = {},\n            RmqVersion = \"3.9.13\",\n            VpcId = cloudamq_vpc.Vpc.Id,\n        });\n        var vpcInfo = CloudAmqp.GetVpcInfo.Invoke(new CloudAmqp.GetVpcInfoInvokeArgs\n        {\n            VpcId = vpc.Id,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tvpc, err := cloudamqp.NewVpc(ctx, \"vpc\", \u0026cloudamqp.VpcArgs{\n\t\t\tRegion: pulumi.String(\"amazon-web-services::us-east-1\"),\n\t\t\tSubnet: pulumi.String(\"10.56.72.0/24\"),\n\t\t\tTags:   pulumi.StringArray{},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewInstance(ctx, \"instance\", \u0026cloudamqp.InstanceArgs{\n\t\t\tPlan:       pulumi.String(\"bunny-1\"),\n\t\t\tRegion:     pulumi.String(\"amazon-web-services::us-east-1\"),\n\t\t\tNodes:      pulumi.Int(1),\n\t\t\tTags:       pulumi.StringArray{},\n\t\t\tRmqVersion: pulumi.String(\"3.9.13\"),\n\t\t\tVpcId:      pulumi.Any(cloudamq_vpc.Vpc.Id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = cloudamqp.GetVpcInfoOutput(ctx, GetVpcInfoOutputArgs{\n\t\t\tVpcId: vpc.ID(),\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n`cloudamqp_vpc` can be imported using the CloudAMQP VPC identifier.\n\n```sh\n $ pulumi import cloudamqp:index/vpc:Vpc \u003cresource_name\u003e \u003cvpc_id\u003e`\n```\n\n To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-vpcs). Or use the data source [`cloudamqp_account_vpcs`](https://registry.terraform.io/providers/cloudamqp/cloudamqp/latest/docs/data-sources/account_vpcs) to list all available standalone VPCs for an account. ",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the VPC.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The hosted region for the managed standalone VPC\n"
+                },
+                "subnet": {
+                    "type": "string",
+                    "description": "The VPC subnet\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Tag the VPC with optional tags\n"
+                },
+                "vpcName": {
+                    "type": "string",
+                    "description": "VPC name given when hosted at the cloud provider\n"
+                }
+            },
+            "required": [
+                "name",
+                "region",
+                "subnet",
+                "vpcName"
+            ],
+            "inputProperties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the VPC.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The hosted region for the managed standalone VPC\n"
+                },
+                "subnet": {
+                    "type": "string",
+                    "description": "The VPC subnet\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Tag the VPC with optional tags\n"
+                }
+            },
+            "requiredInputs": [
+                "region",
+                "subnet"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Vpc resources.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the VPC.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The hosted region for the managed standalone VPC\n"
+                    },
+                    "subnet": {
+                        "type": "string",
+                        "description": "The VPC subnet\n"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Tag the VPC with optional tags\n"
+                    },
+                    "vpcName": {
+                        "type": "string",
+                        "description": "VPC name given when hosted at the cloud provider\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "cloudamqp:index/vpcGcpPeering:VpcGcpPeering": {
             "properties": {
                 "autoCreateRoutes": {
@@ -1391,7 +1602,7 @@
                 },
                 "instanceId": {
                     "type": "integer",
-                    "description": "The CloudAMQP instance ID.\n"
+                    "description": "The CloudAMQP instance identifier.\n"
                 },
                 "peerNetworkUri": {
                     "type": "string",
@@ -1404,11 +1615,14 @@
                 "stateDetails": {
                     "type": "string",
                     "description": "VPC peering state details\n"
+                },
+                "vpcId": {
+                    "type": "string",
+                    "description": "The managed VPC identifier.\n"
                 }
             },
             "required": [
                 "autoCreateRoutes",
-                "instanceId",
                 "peerNetworkUri",
                 "state",
                 "stateDetails"
@@ -1416,15 +1630,18 @@
             "inputProperties": {
                 "instanceId": {
                     "type": "integer",
-                    "description": "The CloudAMQP instance ID.\n"
+                    "description": "The CloudAMQP instance identifier.\n"
                 },
                 "peerNetworkUri": {
                     "type": "string",
                     "description": "Network uri of the VPC network to which you will peer with.\n"
+                },
+                "vpcId": {
+                    "type": "string",
+                    "description": "The managed VPC identifier.\n"
                 }
             },
             "requiredInputs": [
-                "instanceId",
                 "peerNetworkUri"
             ],
             "stateInputs": {
@@ -1436,7 +1653,7 @@
                     },
                     "instanceId": {
                         "type": "integer",
-                        "description": "The CloudAMQP instance ID.\n"
+                        "description": "The CloudAMQP instance identifier.\n"
                     },
                     "peerNetworkUri": {
                         "type": "string",
@@ -1449,44 +1666,70 @@
                     "stateDetails": {
                         "type": "string",
                         "description": "VPC peering state details\n"
+                    },
+                    "vpcId": {
+                        "type": "string",
+                        "description": "The managed VPC identifier.\n"
                     }
                 },
                 "type": "object"
             }
         },
         "cloudamqp:index/vpcPeering:VpcPeering": {
-            "description": "\n\n\n## Import\n\n`cloudamqp_vpc_peering` can be imported using the CloudAMQP instance identifier.\n\n```sh\n $ pulumi import cloudamqp:index/vpcPeering:VpcPeering \u003cresource_name\u003e \u003cinstance_id\u003e`\n```\n\n ",
+            "description": "\n\n\n## Import\n\n*Pre v1.16.0* `cloudamqp_vpc_peering` can be imported using the CloudAMQP instance identifier.\n\n```sh\n $ pulumi import cloudamqp:index/vpcPeering:VpcPeering \u003cresource_name\u003e \u003cinstance_id\u003e`\n```\n\n *Post v1.16.0* `cloudamqp_vpc_peering` can be imported using the CloudAMQP managed VPC identifier or instance identifier.\n\n```sh\n $ pulumi import cloudamqp:index/vpcPeering:VpcPeering \u003cresource_name\u003e \u003cvpc_id\u003e`\n```\n\n\n\n```sh\n $ pulumi import cloudamqp:index/vpcPeering:VpcPeering \u003cresource_name\u003e \u003cinstance_id\u003e`\n```\n\n ",
             "properties": {
                 "instanceId": {
                     "type": "integer",
-                    "description": "The CloudAMQP instance ID.\n"
+                    "description": "The CloudAMQP instance identifier.\n"
                 },
                 "peeringId": {
                     "type": "string",
                     "description": "Peering identifier created by AW peering request.\n"
                 },
+                "sleep": {
+                    "type": "integer",
+                    "description": "Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.\n"
+                },
                 "status": {
                     "type": "string",
                     "description": "VPC peering status\n"
+                },
+                "timeout": {
+                    "type": "integer",
+                    "description": "- Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.\n"
+                },
+                "vpcId": {
+                    "type": "string",
+                    "description": "The managed VPC identifier.\n"
                 }
             },
             "required": [
-                "instanceId",
                 "peeringId",
                 "status"
             ],
             "inputProperties": {
                 "instanceId": {
                     "type": "integer",
-                    "description": "The CloudAMQP instance ID.\n"
+                    "description": "The CloudAMQP instance identifier.\n"
                 },
                 "peeringId": {
                     "type": "string",
                     "description": "Peering identifier created by AW peering request.\n"
+                },
+                "sleep": {
+                    "type": "integer",
+                    "description": "Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.\n"
+                },
+                "timeout": {
+                    "type": "integer",
+                    "description": "- Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.\n"
+                },
+                "vpcId": {
+                    "type": "string",
+                    "description": "The managed VPC identifier.\n"
                 }
             },
             "requiredInputs": [
-                "instanceId",
                 "peeringId"
             ],
             "stateInputs": {
@@ -1494,15 +1737,27 @@
                 "properties": {
                     "instanceId": {
                         "type": "integer",
-                        "description": "The CloudAMQP instance ID.\n"
+                        "description": "The CloudAMQP instance identifier.\n"
                     },
                     "peeringId": {
                         "type": "string",
                         "description": "Peering identifier created by AW peering request.\n"
                     },
+                    "sleep": {
+                        "type": "integer",
+                        "description": "Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.\n"
+                    },
                     "status": {
                         "type": "string",
                         "description": "VPC peering status\n"
+                    },
+                    "timeout": {
+                        "type": "integer",
+                        "description": "- Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.\n"
+                    },
+                    "vpcId": {
+                        "type": "string",
+                        "description": "The managed VPC identifier.\n"
                     }
                 },
                 "type": "object"
@@ -1612,7 +1867,7 @@
     },
     "functions": {
         "cloudamqp:index/getAccount:getAccount": {
-            "description": "Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.\n\n## Attributes reference\n\nAll attributes reference are computed\n\n* `id`      - The identifier for this resource. Set to `na` since there is no unique identifier.\n* `name`    - The name of the instance.\n* `plan`    - The subscription plan used for the instance.\n* `region`  - The region were the instanece is located in.\n* `tags`    - The tags set for the instance.\n\n## Dependency\n\nThis data source depends on apikey set in the provider configuration.\n",
+            "description": "Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.\n\n## Attributes reference\n\nAll attributes reference are computed\n\n* `id`          - The identifier for this data source. Set to `na` since there is no unique identifier.\n* `instances`   - An array of instances. Each `instances` block consists of the fields documented below.\n\n___\n\nThe `instances` block consist of\n\n* `id`      - The instance identifier.\n* `name`    - The name of the instance.\n* `plan`    - The subscription plan used for the instance.\n* `region`  - The region were the instanece is located in.\n* `tags`    - Optional tags set for the instance.\n\n## Dependency\n\nThis data source depends on apikey set in the provider configuration.\n",
             "outputs": {
                 "description": "A collection of values returned by getAccount.\n",
                 "properties": {
@@ -1634,8 +1889,31 @@
                 ]
             }
         },
+        "cloudamqp:index/getAccountVpcs:getAccountVpcs": {
+            "description": "Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.\n\n## Attributes reference\n\nAll attributes reference are computed\n\n* `id`      - The identifier for this data source. Set to `na` since there is no unique identifier.\n* `vpcs`    - An array of VPCs. Each `vpcs` block consists of the fields documented below.\n\n___\n\nThe `vpcs` block consist of\n\n* `id`          - The VPC identifier.\n* `name`        - The internal VPC instance name.\n* `region`      - The region the VPC is hosted in.\n* `subnet`      - The VPC subnet.\n* `tags`        - Optional tags set for the VPC.\n* `vpc_name`    - VPC name given when hosted at the cloud provider.\n\n## Dependency\n\nThis data source depends on apikey set in the provider configuration.\n",
+            "outputs": {
+                "description": "A collection of values returned by getAccountVpcs.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "vpcs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/cloudamqp:index/getAccountVpcsVpc:getAccountVpcsVpc"
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "vpcs",
+                    "id"
+                ]
+            }
+        },
         "cloudamqp:index/getAlarm:getAlarm": {
-            "description": "Use this data source to retrieve information about default or created alarms. Either use `alarm_id` or `type` to retrieve the alarm.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst defaultCpuAlarm = cloudamqp.getAlarm({\n    instanceId: cloudamqp_instance.instance.id,\n    type: \"cpu\",\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\ndefault_cpu_alarm = cloudamqp.get_alarm(instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    type=\"cpu\")\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var defaultCpuAlarm = Output.Create(CloudAmqp.GetAlarm.InvokeAsync(new CloudAmqp.GetAlarmArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Type = \"cpu\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.LookupAlarm(ctx, \u0026GetAlarmArgs{\n\t\t\tInstanceId: cloudamqp_instance.Instance.Id,\n\t\t\tType:       pulumi.StringRef(\"cpu\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n## Attributes reference\n\nAll attributes reference are computed\n\n* `id`                  - The identifier for this resource.\n* `enabled`             - Enable/disable status of the alarm.\n* `value_threshold`     - The value threshold that triggers the alarm.\n* `reminder_internval`  - The reminder interval (in seconds) to resend the alarm if not resolved. Leave empty or set to 0 to not receive any reminders.\n* `time_threshold`      - The time interval (in seconds) the `value_threshold` should be active before trigger an alarm.\n* `queue_regex`         - Regular expression for which queue to check.\n* `vhost_regex`         - Regular expression for which vhost to check\n* `recipients`          - Identifier for recipient to be notified.\n* `message_type`        - Message type `(total, unacked, ready)` used by queue alarm type.\n\nSpecific attribute for `disk` alarm\n\n* `value_calculation`   - Disk value threshold calculation, `(fixed, percentage)` of disk space remaining.\n\n## Dependency\n\nThis data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n\n## Alarm types\n\n`cpu, memory, disk, queue, connection, consumer, netsplit, server_unreachable, notice`\n",
+            "description": "Use this data source to retrieve information about default or created alarms. Either use `alarm_id` or `type` to retrieve the alarm.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst defaultCpuAlarm = cloudamqp.getAlarm({\n    instanceId: cloudamqp_instance.instance.id,\n    type: \"cpu\",\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\ndefault_cpu_alarm = cloudamqp.get_alarm(instance_id=cloudamqp_instance[\"instance\"][\"id\"],\n    type=\"cpu\")\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var defaultCpuAlarm = Output.Create(CloudAmqp.GetAlarm.InvokeAsync(new CloudAmqp.GetAlarmArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n            Type = \"cpu\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.LookupAlarm(ctx, \u0026GetAlarmArgs{\n\t\t\tInstanceId: cloudamqp_instance.Instance.Id,\n\t\t\tType:       pulumi.StringRef(\"cpu\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n## Attributes reference\n\nAll attributes reference are computed\n\n* `id`                  - The identifier for this resource.\n* `enabled`             - Enable/disable status of the alarm.\n* `value_threshold`     - The value threshold that triggers the alarm.\n* `reminder_interval`   - The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders.\n* `time_threshold`      - The time interval (in seconds) the `value_threshold` should be active before trigger an alarm.\n* `queue_regex`         - Regular expression for which queue to check.\n* `vhost_regex`         - Regular expression for which vhost to check\n* `recipients`          - Identifier for recipient to be notified.\n* `message_type`        - Message type `(total, unacked, ready)` used by queue alarm type.\n\nSpecific attribute for `disk` alarm\n\n* `value_calculation`   - Disk value threshold calculation, `(fixed, percentage)` of disk space remaining.\n\n## Dependency\n\nThis data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n\n## Alarm types\n\n`cpu, memory, disk, queue, connection, consumer, netsplit, server_unreachable, notice`\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getAlarm.\n",
                 "properties": {
@@ -1688,6 +1966,9 @@
                             "type": "integer"
                         }
                     },
+                    "reminderInterval": {
+                        "type": "integer"
+                    },
                     "timeThreshold": {
                         "type": "integer"
                     },
@@ -1711,6 +1992,7 @@
                     "messageType",
                     "queueRegex",
                     "recipients",
+                    "reminderInterval",
                     "timeThreshold",
                     "valueThreshold",
                     "vhostRegex",
@@ -2034,10 +2316,10 @@
                 ]
             }
         },
-        "cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo": {
-            "description": "Use this data source to retrieve information about VPC for a CloudAMQP instance hosted in GCP.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst vpcInfo = cloudamqp.getVpcGcpInfo({\n    instanceId: cloudamqp_instance.instance.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nvpc_info = cloudamqp.get_vpc_gcp_info(instance_id=cloudamqp_instance[\"instance\"][\"id\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var vpcInfo = Output.Create(CloudAmqp.GetVpcGcpInfo.InvokeAsync(new CloudAmqp.GetVpcGcpInfoArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.GetVpcGcpInfo(ctx, \u0026GetVpcGcpInfoArgs{\n\t\t\tInstanceId: cloudamqp_instance.Instance.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n## Attributes reference\n\nAll attributes reference are computed\n\n* `id`                  - The identifier for this resource.\n* `name`                - The name of the VPC.\n* `vpc_subnet`          - Dedicated VPC subnet.\n* `network`             - VPC network uri.\n\n## Dependency\n\nThis data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n",
+        "cloudamqp:index/getUpgradableVersions:getUpgradableVersions": {
+            "description": "Use this data source to retrieve information about possible upgradable versions for RabbitMQ and Erlang.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst versions = cloudamqp.getUpgradableVersions({\n    instanceId: cloudamqp_instance.instance.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nversions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance[\"instance\"][\"id\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var versions = Output.Create(CloudAmqp.GetUpgradableVersions.InvokeAsync(new CloudAmqp.GetUpgradableVersionsArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.GetUpgradableVersions(ctx, \u0026GetUpgradableVersionsArgs{\n\t\t\tInstanceId: cloudamqp_instance.Instance.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n## Attributes reference\n\nAll attributes reference are computed\n\n* `new_rabbitmq_version`  - Possible upgradable version for RabbitMQ.\n* `new_erlang_version`    - Possible upgradable version for Erlang.\n\n## Dependency\n\nThis data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n",
             "inputs": {
-                "description": "A collection of arguments for invoking getVpcGcpInfo.\n",
+                "description": "A collection of arguments for invoking getUpgradableVersions.\n",
                 "properties": {
                     "instanceId": {
                         "type": "integer",
@@ -2048,6 +2330,48 @@
                 "required": [
                     "instanceId"
                 ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getUpgradableVersions.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "instanceId": {
+                        "type": "integer"
+                    },
+                    "newErlangVersion": {
+                        "type": "string"
+                    },
+                    "newRabbitmqVersion": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "instanceId",
+                    "newErlangVersion",
+                    "newRabbitmqVersion",
+                    "id"
+                ]
+            }
+        },
+        "cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo": {
+            "description": "Use this data source to retrieve information about VPC for a CloudAMQP instance hosted in GCP.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n\u003cdetails\u003e\n  \u003csummary\u003e\n    \u003cb\u003e\n      \u003ci\u003eAWS VPC peering pre v1.16.0\u003c/i\u003e\n    \u003c/b\u003e\n  \u003c/summary\u003e\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst vpcInfo = cloudamqp.getVpcGcpInfo({\n    instanceId: cloudamqp_instance.instance.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nvpc_info = cloudamqp.get_vpc_gcp_info(instance_id=cloudamqp_instance[\"instance\"][\"id\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var vpcInfo = Output.Create(CloudAmqp.GetVpcGcpInfo.InvokeAsync(new CloudAmqp.GetVpcGcpInfoArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.GetVpcGcpInfo(ctx, \u0026GetVpcGcpInfoArgs{\n\t\t\tInstanceId: pulumi.IntRef(cloudamqp_instance.Instance.Id),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\u003c/details\u003e\n\n\u003cdetails\u003e\n  \u003csummary\u003e\n    \u003cb\u003e\n      \u003ci\u003eAWS VPC peering post v1.16.0 (Managed VPC)\u003c/i\u003e\n    \u003c/b\u003e\n  \u003c/summary\u003e\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst vpcInfo = cloudamqp.getVpcGcpInfo({\n    vpcId: cloudamqp_vpc.vpc.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nvpc_info = cloudamqp.get_vpc_gcp_info(vpc_id=cloudamqp_vpc[\"vpc\"][\"id\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var vpcInfo = Output.Create(CloudAmqp.GetVpcGcpInfo.InvokeAsync(new CloudAmqp.GetVpcGcpInfoArgs\n        {\n            VpcId = cloudamqp_vpc.Vpc.Id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.GetVpcGcpInfo(ctx, \u0026GetVpcGcpInfoArgs{\n\t\t\tVpcId: pulumi.StringRef(cloudamqp_vpc.Vpc.Id),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\u003c/details\u003e\n{{% /example %}}\n{{% /examples %}}\n## Attributes reference\n\nAll attributes reference are computed\n\n* `id`                  - The identifier for this resource.\n* `name`                - The name of the VPC.\n* `vpc_subnet`          - Dedicated VPC subnet.\n* `network`             - VPC network uri.\n\n## Dependency\n\n*Pre v1.16.0*\nThis resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n\n*Post v1.16.0*\nThis resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getVpcGcpInfo.\n",
+                "properties": {
+                    "instanceId": {
+                        "type": "integer",
+                        "description": "The CloudAMQP instance identifier.\n"
+                    },
+                    "vpcId": {
+                        "type": "string",
+                        "description": "The managed VPC identifier.\n"
+                    }
+                },
+                "type": "object"
             },
             "outputs": {
                 "description": "A collection of values returned by getVpcGcpInfo.\n",
@@ -2065,13 +2389,15 @@
                     "network": {
                         "type": "string"
                     },
+                    "vpcId": {
+                        "type": "string"
+                    },
                     "vpcSubnet": {
                         "type": "string"
                     }
                 },
                 "type": "object",
                 "required": [
-                    "instanceId",
                     "name",
                     "network",
                     "vpcSubnet",
@@ -2080,19 +2406,20 @@
             }
         },
         "cloudamqp:index/getVpcInfo:getVpcInfo": {
-            "description": "Use this data source to retrieve information about VPC for a CloudAMQP instance.\n\nOnly available for CloudAMQP instances hosted in AWS.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst vpcInfo = cloudamqp.getVpcInfo({\n    instanceId: cloudamqp_instance.instance.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nvpc_info = cloudamqp.get_vpc_info(instance_id=cloudamqp_instance[\"instance\"][\"id\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var vpcInfo = Output.Create(CloudAmqp.GetVpcInfo.InvokeAsync(new CloudAmqp.GetVpcInfoArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.GetVpcInfo(ctx, \u0026GetVpcInfoArgs{\n\t\t\tInstanceId: cloudamqp_instance.Instance.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n## Attributes reference\n\nAll attributes reference are computed\n\n* `id`                  - The identifier for this resource.\n* `name`                - The name of the CloudAMQP instance.\n* `vpc_subnet`          - Dedicated VPC subnet.\n* `owner_id`            - AWS account identifier.\n* `security_group_id`   - AWS security group identifier.\n\n## Dependency\n\nThis data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n",
+            "description": "Use this data source to retrieve information about VPC for a CloudAMQP instance.\n\nOnly available for CloudAMQP instances hosted in AWS.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n\u003cdetails\u003e\n  \u003csummary\u003e\n    \u003cb\u003e\n      \u003ci\u003eAWS VPC peering pre v1.16.0\u003c/i\u003e\n    \u003c/b\u003e\n  \u003c/summary\u003e\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst vpcInfo = cloudamqp.getVpcInfo({\n    instanceId: cloudamqp_instance.instance.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nvpc_info = cloudamqp.get_vpc_info(instance_id=cloudamqp_instance[\"instance\"][\"id\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var vpcInfo = Output.Create(CloudAmqp.GetVpcInfo.InvokeAsync(new CloudAmqp.GetVpcInfoArgs\n        {\n            InstanceId = cloudamqp_instance.Instance.Id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.GetVpcInfo(ctx, \u0026GetVpcInfoArgs{\n\t\t\tInstanceId: pulumi.IntRef(cloudamqp_instance.Instance.Id),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\u003c/details\u003e\n\n\u003cdetails\u003e\n  \u003csummary\u003e\n    \u003cb\u003e\n      \u003ci\u003eAWS VPC peering post v1.16.0 (Managed VPC)\u003c/i\u003e\n    \u003c/b\u003e\n  \u003c/summary\u003e\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst vpcInfo = cloudamqp.getVpcInfo({\n    vpcId: cloudamqp_vpc.vpc.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nvpc_info = cloudamqp.get_vpc_info(vpc_id=cloudamqp_vpc[\"vpc\"][\"id\"])\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var vpcInfo = Output.Create(CloudAmqp.GetVpcInfo.InvokeAsync(new CloudAmqp.GetVpcInfoArgs\n        {\n            VpcId = cloudamqp_vpc.Vpc.Id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.GetVpcInfo(ctx, \u0026GetVpcInfoArgs{\n\t\t\tVpcId: pulumi.StringRef(cloudamqp_vpc.Vpc.Id),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\u003c/details\u003e\n\n{{% /example %}}\n{{% /examples %}}\n## Attributes reference\n\nAll attributes reference are computed\n\n* `id`                  - The identifier for this resource.\n* `name`                - The name of the CloudAMQP instance.\n* `vpc_subnet`          - Dedicated VPC subnet.\n* `owner_id`            - AWS account identifier.\n* `security_group_id`   - AWS security group identifier.\n\n## Dependency\n\n*Pre v1.16.0*\nThis resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n\n*Post v1.16.0*\nThis resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getVpcInfo.\n",
                 "properties": {
                     "instanceId": {
                         "type": "integer",
                         "description": "The CloudAMQP instance identifier.\n"
+                    },
+                    "vpcId": {
+                        "type": "string",
+                        "description": "The managed VPC identifier.\n"
                     }
                 },
-                "type": "object",
-                "required": [
-                    "instanceId"
-                ]
+                "type": "object"
             },
             "outputs": {
                 "description": "A collection of values returned by getVpcInfo.\n",
@@ -2113,13 +2440,15 @@
                     "securityGroupId": {
                         "type": "string"
                     },
+                    "vpcId": {
+                        "type": "string"
+                    },
                     "vpcSubnet": {
                         "type": "string"
                     }
                 },
                 "type": "object",
                 "required": [
-                    "instanceId",
                     "name",
                     "ownerId",
                     "securityGroupId",

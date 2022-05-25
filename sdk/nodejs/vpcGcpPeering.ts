@@ -37,9 +37,9 @@ export class VpcGcpPeering extends pulumi.CustomResource {
      */
     public /*out*/ readonly autoCreateRoutes!: pulumi.Output<boolean>;
     /**
-     * The CloudAMQP instance ID.
+     * The CloudAMQP instance identifier.
      */
-    public readonly instanceId!: pulumi.Output<number>;
+    public readonly instanceId!: pulumi.Output<number | undefined>;
     /**
      * Network uri of the VPC network to which you will peer with.
      */
@@ -52,6 +52,10 @@ export class VpcGcpPeering extends pulumi.CustomResource {
      * VPC peering state details
      */
     public /*out*/ readonly stateDetails!: pulumi.Output<string>;
+    /**
+     * The managed VPC identifier.
+     */
+    public readonly vpcId!: pulumi.Output<string | undefined>;
 
     /**
      * Create a VpcGcpPeering resource with the given unique name, arguments, and options.
@@ -71,16 +75,15 @@ export class VpcGcpPeering extends pulumi.CustomResource {
             resourceInputs["peerNetworkUri"] = state ? state.peerNetworkUri : undefined;
             resourceInputs["state"] = state ? state.state : undefined;
             resourceInputs["stateDetails"] = state ? state.stateDetails : undefined;
+            resourceInputs["vpcId"] = state ? state.vpcId : undefined;
         } else {
             const args = argsOrState as VpcGcpPeeringArgs | undefined;
-            if ((!args || args.instanceId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'instanceId'");
-            }
             if ((!args || args.peerNetworkUri === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'peerNetworkUri'");
             }
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["peerNetworkUri"] = args ? args.peerNetworkUri : undefined;
+            resourceInputs["vpcId"] = args ? args.vpcId : undefined;
             resourceInputs["autoCreateRoutes"] = undefined /*out*/;
             resourceInputs["state"] = undefined /*out*/;
             resourceInputs["stateDetails"] = undefined /*out*/;
@@ -99,7 +102,7 @@ export interface VpcGcpPeeringState {
      */
     autoCreateRoutes?: pulumi.Input<boolean>;
     /**
-     * The CloudAMQP instance ID.
+     * The CloudAMQP instance identifier.
      */
     instanceId?: pulumi.Input<number>;
     /**
@@ -114,6 +117,10 @@ export interface VpcGcpPeeringState {
      * VPC peering state details
      */
     stateDetails?: pulumi.Input<string>;
+    /**
+     * The managed VPC identifier.
+     */
+    vpcId?: pulumi.Input<string>;
 }
 
 /**
@@ -121,11 +128,15 @@ export interface VpcGcpPeeringState {
  */
 export interface VpcGcpPeeringArgs {
     /**
-     * The CloudAMQP instance ID.
+     * The CloudAMQP instance identifier.
      */
-    instanceId: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number>;
     /**
      * Network uri of the VPC network to which you will peer with.
      */
     peerNetworkUri: pulumi.Input<string>;
+    /**
+     * The managed VPC identifier.
+     */
+    vpcId?: pulumi.Input<string>;
 }

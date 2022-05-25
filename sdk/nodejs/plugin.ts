@@ -26,6 +26,7 @@ import * as utilities from "./utilities";
  * ```
  *
  * **Enable multiple plugins**
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";

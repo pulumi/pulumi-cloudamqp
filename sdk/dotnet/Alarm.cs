@@ -81,6 +81,12 @@ namespace Pulumi.CloudAmqp
         public Output<ImmutableArray<int>> Recipients { get; private set; } = null!;
 
         /// <summary>
+        /// The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+        /// </summary>
+        [Output("reminderInterval")]
+        public Output<int?> ReminderInterval { get; private set; } = null!;
+
+        /// <summary>
         /// The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
         /// </summary>
         [Output("timeThreshold")]
@@ -193,6 +199,12 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
+        /// The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+        /// </summary>
+        [Input("reminderInterval")]
+        public Input<int>? ReminderInterval { get; set; }
+
+        /// <summary>
         /// The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
         /// </summary>
         [Input("timeThreshold")]
@@ -264,6 +276,12 @@ namespace Pulumi.CloudAmqp
             get => _recipients ?? (_recipients = new InputList<int>());
             set => _recipients = value;
         }
+
+        /// <summary>
+        /// The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+        /// </summary>
+        [Input("reminderInterval")]
+        public Input<int>? ReminderInterval { get; set; }
 
         /// <summary>
         /// The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
