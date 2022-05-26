@@ -11,6 +11,13 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Cloudwatch log integration</i>
+ *     </b>
+ *   </summary>
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -21,41 +28,140 @@ import * as utilities from "./utilities";
  *     secretAccessKey: _var.aws_secret_access_key,
  *     region: _var.aws_region,
  * });
+ * ```
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Logentries log integration</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
  * const logentries = new cloudamqp.IntegrationLog("logentries", {
  *     instanceId: cloudamqp_instance.instance.id,
  *     token: _var.logentries_token,
  * });
+ * ```
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Loggly log integration</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
  * const loggly = new cloudamqp.IntegrationLog("loggly", {
  *     instanceId: cloudamqp_instance.instance.id,
  *     token: _var.loggly_token,
  * });
+ * ```
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Papertrail log integration</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
  * const papertrail = new cloudamqp.IntegrationLog("papertrail", {
  *     instanceId: cloudamqp_instance.instance.id,
  *     url: _var.papertrail_url,
  * });
+ * ```
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Splunk log integration</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
  * const splunk = new cloudamqp.IntegrationLog("splunk", {
  *     instanceId: cloudamqp_instance.instance.id,
  *     token: _var.splunk_token,
  *     hostPort: _var.splunk_host_port,
  * });
+ * ```
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Datadog log integration</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
  * const datadog = new cloudamqp.IntegrationLog("datadog", {
  *     instanceId: cloudamqp_instance.instance.id,
  *     region: _var.datadog_region,
  *     apiKey: _var.datadog_api_key,
  *     tags: _var.datadog_tags,
  * });
+ * ```
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Stackdriver log integration</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
  * const stackdriver = new cloudamqp.IntegrationLog("stackdriver", {
  *     instanceId: cloudamqp_instance.instance.id,
  *     projectId: _var.stackdriver_project_id,
  *     privateKey: _var.stackdriver_private_key,
  *     clientEmail: _var.stackdriver_client_email,
  * });
+ * ```
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Scalyr log integration</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
  * const scalyr = new cloudamqp.IntegrationLog("scalyr", {
  *     instanceId: cloudamqp_instance.instance.id,
  *     token: _var.scalyr_token,
  *     host: _var.scalyr_host,
  * });
  * ```
+ * </details>
  * ## Argument Reference (cloudwatchlog)
  *
  * Cloudwatch argument reference and example. Create an IAM user with programmatic access and the following permissions:

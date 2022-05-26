@@ -13,27 +13,28 @@ __all__ = ['VpcPeeringArgs', 'VpcPeering']
 @pulumi.input_type
 class VpcPeeringArgs:
     def __init__(__self__, *,
-                 instance_id: pulumi.Input[int],
-                 peering_id: pulumi.Input[str]):
+                 peering_id: pulumi.Input[str],
+                 instance_id: Optional[pulumi.Input[int]] = None,
+                 sleep: Optional[pulumi.Input[int]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
+                 vpc_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a VpcPeering resource.
-        :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] peering_id: Peering identifier created by AW peering request.
+        :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
+        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+        :param pulumi.Input[int] timeout: - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        :param pulumi.Input[str] vpc_id: The managed VPC identifier.
         """
-        pulumi.set(__self__, "instance_id", instance_id)
         pulumi.set(__self__, "peering_id", peering_id)
-
-    @property
-    @pulumi.getter(name="instanceId")
-    def instance_id(self) -> pulumi.Input[int]:
-        """
-        The CloudAMQP instance ID.
-        """
-        return pulumi.get(self, "instance_id")
-
-    @instance_id.setter
-    def instance_id(self, value: pulumi.Input[int]):
-        pulumi.set(self, "instance_id", value)
+        if instance_id is not None:
+            pulumi.set(__self__, "instance_id", instance_id)
+        if sleep is not None:
+            pulumi.set(__self__, "sleep", sleep)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+        if vpc_id is not None:
+            pulumi.set(__self__, "vpc_id", vpc_id)
 
     @property
     @pulumi.getter(name="peeringId")
@@ -47,31 +48,91 @@ class VpcPeeringArgs:
     def peering_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "peering_id", value)
 
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        The CloudAMQP instance identifier.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @instance_id.setter
+    def instance_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "instance_id", value)
+
+    @property
+    @pulumi.getter
+    def sleep(self) -> Optional[pulumi.Input[int]]:
+        """
+        Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+        """
+        return pulumi.get(self, "sleep")
+
+    @sleep.setter
+    def sleep(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "sleep", value)
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "timeout", value)
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The managed VPC identifier.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @vpc_id.setter
+    def vpc_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vpc_id", value)
+
 
 @pulumi.input_type
 class _VpcPeeringState:
     def __init__(__self__, *,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  peering_id: Optional[pulumi.Input[str]] = None,
-                 status: Optional[pulumi.Input[str]] = None):
+                 sleep: Optional[pulumi.Input[int]] = None,
+                 status: Optional[pulumi.Input[str]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
+                 vpc_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering VpcPeering resources.
-        :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
         :param pulumi.Input[str] peering_id: Peering identifier created by AW peering request.
+        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
         :param pulumi.Input[str] status: VPC peering status
+        :param pulumi.Input[int] timeout: - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        :param pulumi.Input[str] vpc_id: The managed VPC identifier.
         """
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
         if peering_id is not None:
             pulumi.set(__self__, "peering_id", peering_id)
+        if sleep is not None:
+            pulumi.set(__self__, "sleep", sleep)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+        if vpc_id is not None:
+            pulumi.set(__self__, "vpc_id", vpc_id)
 
     @property
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[int]]:
         """
-        The CloudAMQP instance ID.
+        The CloudAMQP instance identifier.
         """
         return pulumi.get(self, "instance_id")
 
@@ -93,6 +154,18 @@ class _VpcPeeringState:
 
     @property
     @pulumi.getter
+    def sleep(self) -> Optional[pulumi.Input[int]]:
+        """
+        Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+        """
+        return pulumi.get(self, "sleep")
+
+    @sleep.setter
+    def sleep(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "sleep", value)
+
+    @property
+    @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
         VPC peering status
@@ -103,6 +176,30 @@ class _VpcPeeringState:
     def status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "status", value)
 
+    @property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "timeout", value)
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The managed VPC identifier.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @vpc_id.setter
+    def vpc_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vpc_id", value)
+
 
 class VpcPeering(pulumi.CustomResource):
     @overload
@@ -111,11 +208,24 @@ class VpcPeering(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  peering_id: Optional[pulumi.Input[str]] = None,
+                 sleep: Optional[pulumi.Input[int]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
+                 vpc_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         ## Import
 
-        `cloudamqp_vpc_peering` can be imported using the CloudAMQP instance identifier.
+        *Pre v1.16.0* `cloudamqp_vpc_peering` can be imported using the CloudAMQP instance identifier.
+
+        ```sh
+         $ pulumi import cloudamqp:index/vpcPeering:VpcPeering <resource_name> <instance_id>`
+        ```
+
+         *Post v1.16.0* `cloudamqp_vpc_peering` can be imported using the CloudAMQP managed VPC identifier or instance identifier.
+
+        ```sh
+         $ pulumi import cloudamqp:index/vpcPeering:VpcPeering <resource_name> <vpc_id>`
+        ```
 
         ```sh
          $ pulumi import cloudamqp:index/vpcPeering:VpcPeering <resource_name> <instance_id>`
@@ -123,8 +233,11 @@ class VpcPeering(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
         :param pulumi.Input[str] peering_id: Peering identifier created by AW peering request.
+        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+        :param pulumi.Input[int] timeout: - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        :param pulumi.Input[str] vpc_id: The managed VPC identifier.
         """
         ...
     @overload
@@ -135,7 +248,17 @@ class VpcPeering(pulumi.CustomResource):
         """
         ## Import
 
-        `cloudamqp_vpc_peering` can be imported using the CloudAMQP instance identifier.
+        *Pre v1.16.0* `cloudamqp_vpc_peering` can be imported using the CloudAMQP instance identifier.
+
+        ```sh
+         $ pulumi import cloudamqp:index/vpcPeering:VpcPeering <resource_name> <instance_id>`
+        ```
+
+         *Post v1.16.0* `cloudamqp_vpc_peering` can be imported using the CloudAMQP managed VPC identifier or instance identifier.
+
+        ```sh
+         $ pulumi import cloudamqp:index/vpcPeering:VpcPeering <resource_name> <vpc_id>`
+        ```
 
         ```sh
          $ pulumi import cloudamqp:index/vpcPeering:VpcPeering <resource_name> <instance_id>`
@@ -158,6 +281,9 @@ class VpcPeering(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  peering_id: Optional[pulumi.Input[str]] = None,
+                 sleep: Optional[pulumi.Input[int]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
+                 vpc_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -170,12 +296,13 @@ class VpcPeering(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = VpcPeeringArgs.__new__(VpcPeeringArgs)
 
-            if instance_id is None and not opts.urn:
-                raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
             if peering_id is None and not opts.urn:
                 raise TypeError("Missing required property 'peering_id'")
             __props__.__dict__["peering_id"] = peering_id
+            __props__.__dict__["sleep"] = sleep
+            __props__.__dict__["timeout"] = timeout
+            __props__.__dict__["vpc_id"] = vpc_id
             __props__.__dict__["status"] = None
         super(VpcPeering, __self__).__init__(
             'cloudamqp:index/vpcPeering:VpcPeering',
@@ -189,7 +316,10 @@ class VpcPeering(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             instance_id: Optional[pulumi.Input[int]] = None,
             peering_id: Optional[pulumi.Input[str]] = None,
-            status: Optional[pulumi.Input[str]] = None) -> 'VpcPeering':
+            sleep: Optional[pulumi.Input[int]] = None,
+            status: Optional[pulumi.Input[str]] = None,
+            timeout: Optional[pulumi.Input[int]] = None,
+            vpc_id: Optional[pulumi.Input[str]] = None) -> 'VpcPeering':
         """
         Get an existing VpcPeering resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -197,9 +327,12 @@ class VpcPeering(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
         :param pulumi.Input[str] peering_id: Peering identifier created by AW peering request.
+        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
         :param pulumi.Input[str] status: VPC peering status
+        :param pulumi.Input[int] timeout: - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        :param pulumi.Input[str] vpc_id: The managed VPC identifier.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -207,14 +340,17 @@ class VpcPeering(pulumi.CustomResource):
 
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["peering_id"] = peering_id
+        __props__.__dict__["sleep"] = sleep
         __props__.__dict__["status"] = status
+        __props__.__dict__["timeout"] = timeout
+        __props__.__dict__["vpc_id"] = vpc_id
         return VpcPeering(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> pulumi.Output[int]:
+    def instance_id(self) -> pulumi.Output[Optional[int]]:
         """
-        The CloudAMQP instance ID.
+        The CloudAMQP instance identifier.
         """
         return pulumi.get(self, "instance_id")
 
@@ -228,9 +364,33 @@ class VpcPeering(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def sleep(self) -> pulumi.Output[Optional[int]]:
+        """
+        Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+        """
+        return pulumi.get(self, "sleep")
+
+    @property
+    @pulumi.getter
     def status(self) -> pulumi.Output[str]:
         """
         VPC peering status
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> pulumi.Output[Optional[int]]:
+        """
+        - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        """
+        return pulumi.get(self, "timeout")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The managed VPC identifier.
+        """
+        return pulumi.get(self, "vpc_id")
 

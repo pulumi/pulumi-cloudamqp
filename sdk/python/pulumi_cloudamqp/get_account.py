@@ -60,11 +60,18 @@ def get_account(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAcco
 
     All attributes reference are computed
 
-    * `id`      - The identifier for this resource. Set to `na` since there is no unique identifier.
+    * `id`          - The identifier for this data source. Set to `na` since there is no unique identifier.
+    * `instances`   - An array of instances. Each `instances` block consists of the fields documented below.
+
+    ***
+
+    The `instances` block consist of
+
+    * `id`      - The instance identifier.
     * `name`    - The name of the instance.
     * `plan`    - The subscription plan used for the instance.
     * `region`  - The region were the instanece is located in.
-    * `tags`    - The tags set for the instance.
+    * `tags`    - Optional tags set for the instance.
 
     ## Dependency
 

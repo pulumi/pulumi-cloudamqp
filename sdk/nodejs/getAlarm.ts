@@ -25,7 +25,7 @@ import * as utilities from "./utilities";
  * * `id`                  - The identifier for this resource.
  * * `enabled`             - Enable/disable status of the alarm.
  * * `valueThreshold`     - The value threshold that triggers the alarm.
- * * `reminderInternval`  - The reminder interval (in seconds) to resend the alarm if not resolved. Leave empty or set to 0 to not receive any reminders.
+ * * `reminderInterval`   - The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders.
  * * `timeThreshold`      - The time interval (in seconds) the `valueThreshold` should be active before trigger an alarm.
  * * `queueRegex`         - Regular expression for which queue to check.
  * * `vhostRegex`         - Regular expression for which vhost to check
@@ -91,6 +91,7 @@ export interface GetAlarmResult {
     readonly messageType: string;
     readonly queueRegex: string;
     readonly recipients: number[];
+    readonly reminderInterval: number;
     readonly timeThreshold: number;
     readonly type?: string;
     readonly valueCalculation?: string;

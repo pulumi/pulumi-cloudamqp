@@ -44,6 +44,7 @@ import (
 // ```
 //
 // **Enable multiple plugins**
+//
 // ```go
 // package main
 //

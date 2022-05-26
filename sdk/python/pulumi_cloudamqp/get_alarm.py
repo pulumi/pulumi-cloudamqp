@@ -20,7 +20,7 @@ class GetAlarmResult:
     """
     A collection of values returned by getAlarm.
     """
-    def __init__(__self__, alarm_id=None, enabled=None, id=None, instance_id=None, message_type=None, queue_regex=None, recipients=None, time_threshold=None, type=None, value_calculation=None, value_threshold=None, vhost_regex=None):
+    def __init__(__self__, alarm_id=None, enabled=None, id=None, instance_id=None, message_type=None, queue_regex=None, recipients=None, reminder_interval=None, time_threshold=None, type=None, value_calculation=None, value_threshold=None, vhost_regex=None):
         if alarm_id and not isinstance(alarm_id, int):
             raise TypeError("Expected argument 'alarm_id' to be a int")
         pulumi.set(__self__, "alarm_id", alarm_id)
@@ -42,6 +42,9 @@ class GetAlarmResult:
         if recipients and not isinstance(recipients, list):
             raise TypeError("Expected argument 'recipients' to be a list")
         pulumi.set(__self__, "recipients", recipients)
+        if reminder_interval and not isinstance(reminder_interval, int):
+            raise TypeError("Expected argument 'reminder_interval' to be a int")
+        pulumi.set(__self__, "reminder_interval", reminder_interval)
         if time_threshold and not isinstance(time_threshold, int):
             raise TypeError("Expected argument 'time_threshold' to be a int")
         pulumi.set(__self__, "time_threshold", time_threshold)
@@ -97,6 +100,11 @@ class GetAlarmResult:
         return pulumi.get(self, "recipients")
 
     @property
+    @pulumi.getter(name="reminderInterval")
+    def reminder_interval(self) -> int:
+        return pulumi.get(self, "reminder_interval")
+
+    @property
     @pulumi.getter(name="timeThreshold")
     def time_threshold(self) -> int:
         return pulumi.get(self, "time_threshold")
@@ -135,6 +143,7 @@ class AwaitableGetAlarmResult(GetAlarmResult):
             message_type=self.message_type,
             queue_regex=self.queue_regex,
             recipients=self.recipients,
+            reminder_interval=self.reminder_interval,
             time_threshold=self.time_threshold,
             type=self.type,
             value_calculation=self.value_calculation,
@@ -166,7 +175,7 @@ def get_alarm(alarm_id: Optional[int] = None,
     * `id`                  - The identifier for this resource.
     * `enabled`             - Enable/disable status of the alarm.
     * `value_threshold`     - The value threshold that triggers the alarm.
-    * `reminder_internval`  - The reminder interval (in seconds) to resend the alarm if not resolved. Leave empty or set to 0 to not receive any reminders.
+    * `reminder_interval`   - The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders.
     * `time_threshold`      - The time interval (in seconds) the `value_threshold` should be active before trigger an alarm.
     * `queue_regex`         - Regular expression for which queue to check.
     * `vhost_regex`         - Regular expression for which vhost to check
@@ -209,6 +218,7 @@ def get_alarm(alarm_id: Optional[int] = None,
         message_type=__ret__.message_type,
         queue_regex=__ret__.queue_regex,
         recipients=__ret__.recipients,
+        reminder_interval=__ret__.reminder_interval,
         time_threshold=__ret__.time_threshold,
         type=__ret__.type,
         value_calculation=__ret__.value_calculation,
@@ -241,7 +251,7 @@ def get_alarm_output(alarm_id: Optional[pulumi.Input[Optional[int]]] = None,
     * `id`                  - The identifier for this resource.
     * `enabled`             - Enable/disable status of the alarm.
     * `value_threshold`     - The value threshold that triggers the alarm.
-    * `reminder_internval`  - The reminder interval (in seconds) to resend the alarm if not resolved. Leave empty or set to 0 to not receive any reminders.
+    * `reminder_interval`   - The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders.
     * `time_threshold`      - The time interval (in seconds) the `value_threshold` should be active before trigger an alarm.
     * `queue_regex`         - Regular expression for which queue to check.
     * `vhost_regex`         - Regular expression for which vhost to check

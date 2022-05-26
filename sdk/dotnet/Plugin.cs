@@ -39,6 +39,7 @@ namespace Pulumi.CloudAmqp
     /// ```
     /// 
     /// **Enable multiple plugins**
+    /// 
     /// ```csharp
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;

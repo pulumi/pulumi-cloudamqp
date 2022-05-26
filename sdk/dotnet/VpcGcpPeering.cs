@@ -19,10 +19,10 @@ namespace Pulumi.CloudAmqp
         public Output<bool> AutoCreateRoutes { get; private set; } = null!;
 
         /// <summary>
-        /// The CloudAMQP instance ID.
+        /// The CloudAMQP instance identifier.
         /// </summary>
         [Output("instanceId")]
-        public Output<int> InstanceId { get; private set; } = null!;
+        public Output<int?> InstanceId { get; private set; } = null!;
 
         /// <summary>
         /// Network uri of the VPC network to which you will peer with.
@@ -41,6 +41,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Output("stateDetails")]
         public Output<string> StateDetails { get; private set; } = null!;
+
+        /// <summary>
+        /// The managed VPC identifier.
+        /// </summary>
+        [Output("vpcId")]
+        public Output<string?> VpcId { get; private set; } = null!;
 
 
         /// <summary>
@@ -89,16 +95,22 @@ namespace Pulumi.CloudAmqp
     public sealed class VpcGcpPeeringArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The CloudAMQP instance ID.
+        /// The CloudAMQP instance identifier.
         /// </summary>
-        [Input("instanceId", required: true)]
-        public Input<int> InstanceId { get; set; } = null!;
+        [Input("instanceId")]
+        public Input<int>? InstanceId { get; set; }
 
         /// <summary>
         /// Network uri of the VPC network to which you will peer with.
         /// </summary>
         [Input("peerNetworkUri", required: true)]
         public Input<string> PeerNetworkUri { get; set; } = null!;
+
+        /// <summary>
+        /// The managed VPC identifier.
+        /// </summary>
+        [Input("vpcId")]
+        public Input<string>? VpcId { get; set; }
 
         public VpcGcpPeeringArgs()
         {
@@ -114,7 +126,7 @@ namespace Pulumi.CloudAmqp
         public Input<bool>? AutoCreateRoutes { get; set; }
 
         /// <summary>
-        /// The CloudAMQP instance ID.
+        /// The CloudAMQP instance identifier.
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
@@ -136,6 +148,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Input("stateDetails")]
         public Input<string>? StateDetails { get; set; }
+
+        /// <summary>
+        /// The managed VPC identifier.
+        /// </summary>
+        [Input("vpcId")]
+        public Input<string>? VpcId { get; set; }
 
         public VpcGcpPeeringState()
         {

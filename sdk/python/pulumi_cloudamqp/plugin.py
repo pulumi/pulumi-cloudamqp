@@ -150,6 +150,7 @@ class Plugin(pulumi.CustomResource):
         ```
 
         **Enable multiple plugins**
+
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -209,6 +210,7 @@ class Plugin(pulumi.CustomResource):
         ```
 
         **Enable multiple plugins**
+
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp

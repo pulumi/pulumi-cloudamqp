@@ -60,6 +60,8 @@ type Alarm struct {
 	QueueRegex pulumi.StringPtrOutput `pulumi:"queueRegex"`
 	// Identifier for recipient to be notified. Leave empty to notify all recipients.
 	Recipients pulumi.IntArrayOutput `pulumi:"recipients"`
+	// The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+	ReminderInterval pulumi.IntPtrOutput `pulumi:"reminderInterval"`
 	// The time interval (in seconds) the `valueThreshold` should be active before triggering an alarm.
 	TimeThreshold pulumi.IntPtrOutput `pulumi:"timeThreshold"`
 	// The alarm type, see valid options below.
@@ -123,6 +125,8 @@ type alarmState struct {
 	QueueRegex *string `pulumi:"queueRegex"`
 	// Identifier for recipient to be notified. Leave empty to notify all recipients.
 	Recipients []int `pulumi:"recipients"`
+	// The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+	ReminderInterval *int `pulumi:"reminderInterval"`
 	// The time interval (in seconds) the `valueThreshold` should be active before triggering an alarm.
 	TimeThreshold *int `pulumi:"timeThreshold"`
 	// The alarm type, see valid options below.
@@ -146,6 +150,8 @@ type AlarmState struct {
 	QueueRegex pulumi.StringPtrInput
 	// Identifier for recipient to be notified. Leave empty to notify all recipients.
 	Recipients pulumi.IntArrayInput
+	// The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+	ReminderInterval pulumi.IntPtrInput
 	// The time interval (in seconds) the `valueThreshold` should be active before triggering an alarm.
 	TimeThreshold pulumi.IntPtrInput
 	// The alarm type, see valid options below.
@@ -173,6 +179,8 @@ type alarmArgs struct {
 	QueueRegex *string `pulumi:"queueRegex"`
 	// Identifier for recipient to be notified. Leave empty to notify all recipients.
 	Recipients []int `pulumi:"recipients"`
+	// The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+	ReminderInterval *int `pulumi:"reminderInterval"`
 	// The time interval (in seconds) the `valueThreshold` should be active before triggering an alarm.
 	TimeThreshold *int `pulumi:"timeThreshold"`
 	// The alarm type, see valid options below.
@@ -197,6 +205,8 @@ type AlarmArgs struct {
 	QueueRegex pulumi.StringPtrInput
 	// Identifier for recipient to be notified. Leave empty to notify all recipients.
 	Recipients pulumi.IntArrayInput
+	// The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+	ReminderInterval pulumi.IntPtrInput
 	// The time interval (in seconds) the `valueThreshold` should be active before triggering an alarm.
 	TimeThreshold pulumi.IntPtrInput
 	// The alarm type, see valid options below.

@@ -16,6 +16,13 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Cloudwatch log integration&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
     /// ```csharp
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
@@ -31,27 +38,132 @@ namespace Pulumi.CloudAmqp
     ///             SecretAccessKey = @var.Aws_secret_access_key,
     ///             Region = @var.Aws_region,
     ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Logentries log integration&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
     ///         var logentries = new CloudAmqp.IntegrationLog("logentries", new CloudAmqp.IntegrationLogArgs
     ///         {
     ///             InstanceId = cloudamqp_instance.Instance.Id,
     ///             Token = @var.Logentries_token,
     ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Loggly log integration&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
     ///         var loggly = new CloudAmqp.IntegrationLog("loggly", new CloudAmqp.IntegrationLogArgs
     ///         {
     ///             InstanceId = cloudamqp_instance.Instance.Id,
     ///             Token = @var.Loggly_token,
     ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Papertrail log integration&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
     ///         var papertrail = new CloudAmqp.IntegrationLog("papertrail", new CloudAmqp.IntegrationLogArgs
     ///         {
     ///             InstanceId = cloudamqp_instance.Instance.Id,
     ///             Url = @var.Papertrail_url,
     ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Splunk log integration&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
     ///         var splunk = new CloudAmqp.IntegrationLog("splunk", new CloudAmqp.IntegrationLogArgs
     ///         {
     ///             InstanceId = cloudamqp_instance.Instance.Id,
     ///             Token = @var.Splunk_token,
     ///             HostPort = @var.Splunk_host_port,
     ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Datadog log integration&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
     ///         var datadog = new CloudAmqp.IntegrationLog("datadog", new CloudAmqp.IntegrationLogArgs
     ///         {
     ///             InstanceId = cloudamqp_instance.Instance.Id,
@@ -59,6 +171,27 @@ namespace Pulumi.CloudAmqp
     ///             ApiKey = @var.Datadog_api_key,
     ///             Tags = @var.Datadog_tags,
     ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Stackdriver log integration&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
     ///         var stackdriver = new CloudAmqp.IntegrationLog("stackdriver", new CloudAmqp.IntegrationLogArgs
     ///         {
     ///             InstanceId = cloudamqp_instance.Instance.Id,
@@ -66,6 +199,27 @@ namespace Pulumi.CloudAmqp
     ///             PrivateKey = @var.Stackdriver_private_key,
     ///             ClientEmail = @var.Stackdriver_client_email,
     ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Scalyr log integration&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
     ///         var scalyr = new CloudAmqp.IntegrationLog("scalyr", new CloudAmqp.IntegrationLogArgs
     ///         {
     ///             InstanceId = cloudamqp_instance.Instance.Id,
@@ -76,6 +230,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// }
     /// ```
+    /// &lt;/details&gt;
     /// ## Argument Reference (cloudwatchlog)
     /// 
     /// Cloudwatch argument reference and example. Create an IAM user with programmatic access and the following permissions:

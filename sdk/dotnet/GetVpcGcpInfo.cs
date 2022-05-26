@@ -18,6 +18,13 @@ namespace Pulumi.CloudAmqp
         /// ## Example Usage
         /// {{% example %}}
         /// 
+        /// &lt;details&gt;
+        ///   &lt;summary&gt;
+        ///     &lt;b&gt;
+        ///       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
+        ///     &lt;/b&gt;
+        ///   &lt;/summary&gt;
+        /// 
         /// ```csharp
         /// using Pulumi;
         /// using CloudAmqp = Pulumi.CloudAmqp;
@@ -34,6 +41,32 @@ namespace Pulumi.CloudAmqp
         /// 
         /// }
         /// ```
+        /// &lt;/details&gt;
+        /// 
+        /// &lt;details&gt;
+        ///   &lt;summary&gt;
+        ///     &lt;b&gt;
+        ///       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
+        ///     &lt;/b&gt;
+        ///   &lt;/summary&gt;
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using CloudAmqp = Pulumi.CloudAmqp;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var vpcInfo = Output.Create(CloudAmqp.GetVpcGcpInfo.InvokeAsync(new CloudAmqp.GetVpcGcpInfoArgs
+        ///         {
+        ///             VpcId = cloudamqp_vpc.Vpc.Id,
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// &lt;/details&gt;
         /// {{% /example %}}
         /// {{% /examples %}}
         /// ## Attributes reference
@@ -47,9 +80,13 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ## Dependency
         /// 
-        /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+        /// *Pre v1.16.0*
+        /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+        /// 
+        /// *Post v1.16.0*
+        /// This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
         /// </summary>
-        public static Task<GetVpcGcpInfoResult> InvokeAsync(GetVpcGcpInfoArgs args, InvokeOptions? options = null)
+        public static Task<GetVpcGcpInfoResult> InvokeAsync(GetVpcGcpInfoArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetVpcGcpInfoResult>("cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo", args ?? new GetVpcGcpInfoArgs(), options.WithDefaults());
 
         /// <summary>
@@ -59,6 +96,13 @@ namespace Pulumi.CloudAmqp
         /// ## Example Usage
         /// {{% example %}}
         /// 
+        /// &lt;details&gt;
+        ///   &lt;summary&gt;
+        ///     &lt;b&gt;
+        ///       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
+        ///     &lt;/b&gt;
+        ///   &lt;/summary&gt;
+        /// 
         /// ```csharp
         /// using Pulumi;
         /// using CloudAmqp = Pulumi.CloudAmqp;
@@ -75,6 +119,32 @@ namespace Pulumi.CloudAmqp
         /// 
         /// }
         /// ```
+        /// &lt;/details&gt;
+        /// 
+        /// &lt;details&gt;
+        ///   &lt;summary&gt;
+        ///     &lt;b&gt;
+        ///       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
+        ///     &lt;/b&gt;
+        ///   &lt;/summary&gt;
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using CloudAmqp = Pulumi.CloudAmqp;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var vpcInfo = Output.Create(CloudAmqp.GetVpcGcpInfo.InvokeAsync(new CloudAmqp.GetVpcGcpInfoArgs
+        ///         {
+        ///             VpcId = cloudamqp_vpc.Vpc.Id,
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// &lt;/details&gt;
         /// {{% /example %}}
         /// {{% /examples %}}
         /// ## Attributes reference
@@ -88,9 +158,13 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ## Dependency
         /// 
-        /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+        /// *Pre v1.16.0*
+        /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+        /// 
+        /// *Post v1.16.0*
+        /// This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
         /// </summary>
-        public static Output<GetVpcGcpInfoResult> Invoke(GetVpcGcpInfoInvokeArgs args, InvokeOptions? options = null)
+        public static Output<GetVpcGcpInfoResult> Invoke(GetVpcGcpInfoInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetVpcGcpInfoResult>("cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo", args ?? new GetVpcGcpInfoInvokeArgs(), options.WithDefaults());
     }
 
@@ -100,8 +174,14 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// The CloudAMQP instance identifier.
         /// </summary>
-        [Input("instanceId", required: true)]
-        public int InstanceId { get; set; }
+        [Input("instanceId")]
+        public int? InstanceId { get; set; }
+
+        /// <summary>
+        /// The managed VPC identifier.
+        /// </summary>
+        [Input("vpcId")]
+        public string? VpcId { get; set; }
 
         public GetVpcGcpInfoArgs()
         {
@@ -113,8 +193,14 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// The CloudAMQP instance identifier.
         /// </summary>
-        [Input("instanceId", required: true)]
-        public Input<int> InstanceId { get; set; } = null!;
+        [Input("instanceId")]
+        public Input<int>? InstanceId { get; set; }
+
+        /// <summary>
+        /// The managed VPC identifier.
+        /// </summary>
+        [Input("vpcId")]
+        public Input<string>? VpcId { get; set; }
 
         public GetVpcGcpInfoInvokeArgs()
         {
@@ -129,20 +215,23 @@ namespace Pulumi.CloudAmqp
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        public readonly int InstanceId;
+        public readonly int? InstanceId;
         public readonly string Name;
         public readonly string Network;
+        public readonly string? VpcId;
         public readonly string VpcSubnet;
 
         [OutputConstructor]
         private GetVpcGcpInfoResult(
             string id,
 
-            int instanceId,
+            int? instanceId,
 
             string name,
 
             string network,
+
+            string? vpcId,
 
             string vpcSubnet)
         {
@@ -150,6 +239,7 @@ namespace Pulumi.CloudAmqp
             InstanceId = instanceId;
             Name = name;
             Network = network;
+            VpcId = vpcId;
             VpcSubnet = vpcSubnet;
         }
     }

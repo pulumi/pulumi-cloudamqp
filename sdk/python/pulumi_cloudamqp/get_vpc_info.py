@@ -20,7 +20,7 @@ class GetVpcInfoResult:
     """
     A collection of values returned by getVpcInfo.
     """
-    def __init__(__self__, id=None, instance_id=None, name=None, owner_id=None, security_group_id=None, vpc_subnet=None):
+    def __init__(__self__, id=None, instance_id=None, name=None, owner_id=None, security_group_id=None, vpc_id=None, vpc_subnet=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -36,6 +36,9 @@ class GetVpcInfoResult:
         if security_group_id and not isinstance(security_group_id, str):
             raise TypeError("Expected argument 'security_group_id' to be a str")
         pulumi.set(__self__, "security_group_id", security_group_id)
+        if vpc_id and not isinstance(vpc_id, str):
+            raise TypeError("Expected argument 'vpc_id' to be a str")
+        pulumi.set(__self__, "vpc_id", vpc_id)
         if vpc_subnet and not isinstance(vpc_subnet, str):
             raise TypeError("Expected argument 'vpc_subnet' to be a str")
         pulumi.set(__self__, "vpc_subnet", vpc_subnet)
@@ -50,7 +53,7 @@ class GetVpcInfoResult:
 
     @property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> int:
+    def instance_id(self) -> Optional[int]:
         return pulumi.get(self, "instance_id")
 
     @property
@@ -69,6 +72,11 @@ class GetVpcInfoResult:
         return pulumi.get(self, "security_group_id")
 
     @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> Optional[str]:
+        return pulumi.get(self, "vpc_id")
+
+    @property
     @pulumi.getter(name="vpcSubnet")
     def vpc_subnet(self) -> str:
         return pulumi.get(self, "vpc_subnet")
@@ -85,10 +93,12 @@ class AwaitableGetVpcInfoResult(GetVpcInfoResult):
             name=self.name,
             owner_id=self.owner_id,
             security_group_id=self.security_group_id,
+            vpc_id=self.vpc_id,
             vpc_subnet=self.vpc_subnet)
 
 
 def get_vpc_info(instance_id: Optional[int] = None,
+                 vpc_id: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcInfoResult:
     """
     Use this data source to retrieve information about VPC for a CloudAMQP instance.
@@ -97,12 +107,35 @@ def get_vpc_info(instance_id: Optional[int] = None,
 
     ## Example Usage
 
+    <details>
+      <summary>
+        <b>
+          <i>AWS VPC peering pre v1.16.0</i>
+        </b>
+      </summary>
+
     ```python
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
     vpc_info = cloudamqp.get_vpc_info(instance_id=cloudamqp_instance["instance"]["id"])
     ```
+    </details>
+
+    <details>
+      <summary>
+        <b>
+          <i>AWS VPC peering post v1.16.0 (Managed VPC)</i>
+        </b>
+      </summary>
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    vpc_info = cloudamqp.get_vpc_info(vpc_id=cloudamqp_vpc["vpc"]["id"])
+    ```
+    </details>
     ## Attributes reference
 
     All attributes reference are computed
@@ -115,13 +148,19 @@ def get_vpc_info(instance_id: Optional[int] = None,
 
     ## Dependency
 
-    This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+    *Pre v1.16.0*
+    This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+    *Post v1.16.0*
+    This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
 
 
     :param int instance_id: The CloudAMQP instance identifier.
+    :param str vpc_id: The managed VPC identifier.
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
+    __args__['vpcId'] = vpc_id
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
@@ -134,11 +173,13 @@ def get_vpc_info(instance_id: Optional[int] = None,
         name=__ret__.name,
         owner_id=__ret__.owner_id,
         security_group_id=__ret__.security_group_id,
+        vpc_id=__ret__.vpc_id,
         vpc_subnet=__ret__.vpc_subnet)
 
 
 @_utilities.lift_output_func(get_vpc_info)
-def get_vpc_info_output(instance_id: Optional[pulumi.Input[int]] = None,
+def get_vpc_info_output(instance_id: Optional[pulumi.Input[Optional[int]]] = None,
+                        vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcInfoResult]:
     """
     Use this data source to retrieve information about VPC for a CloudAMQP instance.
@@ -147,12 +188,35 @@ def get_vpc_info_output(instance_id: Optional[pulumi.Input[int]] = None,
 
     ## Example Usage
 
+    <details>
+      <summary>
+        <b>
+          <i>AWS VPC peering pre v1.16.0</i>
+        </b>
+      </summary>
+
     ```python
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
     vpc_info = cloudamqp.get_vpc_info(instance_id=cloudamqp_instance["instance"]["id"])
     ```
+    </details>
+
+    <details>
+      <summary>
+        <b>
+          <i>AWS VPC peering post v1.16.0 (Managed VPC)</i>
+        </b>
+      </summary>
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    vpc_info = cloudamqp.get_vpc_info(vpc_id=cloudamqp_vpc["vpc"]["id"])
+    ```
+    </details>
     ## Attributes reference
 
     All attributes reference are computed
@@ -165,9 +229,14 @@ def get_vpc_info_output(instance_id: Optional[pulumi.Input[int]] = None,
 
     ## Dependency
 
-    This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+    *Pre v1.16.0*
+    This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+    *Post v1.16.0*
+    This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
 
 
     :param int instance_id: The CloudAMQP instance identifier.
+    :param str vpc_id: The managed VPC identifier.
     """
     ...

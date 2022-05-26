@@ -12,6 +12,15 @@ export interface GetAccountInstance {
     tags?: string[];
 }
 
+export interface GetAccountVpcsVpc {
+    id: number;
+    name: string;
+    region: string;
+    subnet: string;
+    tags?: string[];
+    vpcName: string;
+}
+
 export interface GetNodesNode {
     configured: boolean;
     erlangVersion: string;

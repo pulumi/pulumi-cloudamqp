@@ -11,6 +11,13 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>AWS VPC peering pre v1.16.0</i>
+ *     </b>
+ *   </summary>
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -19,6 +26,24 @@ import * as utilities from "./utilities";
  *     instanceId: cloudamqp_instance.instance.id,
  * });
  * ```
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>AWS VPC peering post v1.16.0 (Managed VPC)</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const vpcInfo = cloudamqp.getVpcInfo({
+ *     vpcId: cloudamqp_vpc.vpc.id,
+ * });
+ * ```
+ * </details>
  * ## Attributes reference
  *
  * All attributes reference are computed
@@ -31,9 +56,14 @@ import * as utilities from "./utilities";
  *
  * ## Dependency
  *
- * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ * *Pre v1.16.0*
+ * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ *
+ * *Post v1.16.0*
+ * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
  */
-export function getVpcInfo(args: GetVpcInfoArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcInfoResult> {
+export function getVpcInfo(args?: GetVpcInfoArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcInfoResult> {
+    args = args || {};
     if (!opts) {
         opts = {}
     }
@@ -41,6 +71,7 @@ export function getVpcInfo(args: GetVpcInfoArgs, opts?: pulumi.InvokeOptions): P
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("cloudamqp:index/getVpcInfo:getVpcInfo", {
         "instanceId": args.instanceId,
+        "vpcId": args.vpcId,
     }, opts);
 }
 
@@ -51,7 +82,11 @@ export interface GetVpcInfoArgs {
     /**
      * The CloudAMQP instance identifier.
      */
-    instanceId: number;
+    instanceId?: number;
+    /**
+     * The managed VPC identifier.
+     */
+    vpcId?: string;
 }
 
 /**
@@ -62,14 +97,15 @@ export interface GetVpcInfoResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    readonly instanceId: number;
+    readonly instanceId?: number;
     readonly name: string;
     readonly ownerId: string;
     readonly securityGroupId: string;
+    readonly vpcId?: string;
     readonly vpcSubnet: string;
 }
 
-export function getVpcInfoOutput(args: GetVpcInfoOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcInfoResult> {
+export function getVpcInfoOutput(args?: GetVpcInfoOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcInfoResult> {
     return pulumi.output(args).apply(a => getVpcInfo(a, opts))
 }
 
@@ -80,5 +116,9 @@ export interface GetVpcInfoOutputArgs {
     /**
      * The CloudAMQP instance identifier.
      */
-    instanceId: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number>;
+    /**
+     * The managed VPC identifier.
+     */
+    vpcId?: pulumi.Input<string>;
 }

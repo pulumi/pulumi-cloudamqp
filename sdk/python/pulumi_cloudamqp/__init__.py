@@ -8,6 +8,7 @@ import typing
 from .alarm import *
 from .custom_domain import *
 from .get_account import *
+from .get_account_vpcs import *
 from .get_alarm import *
 from .get_credentials import *
 from .get_instance import *
@@ -15,6 +16,7 @@ from .get_nodes import *
 from .get_notification import *
 from .get_plugins import *
 from .get_plugins_community import *
+from .get_upgradable_versions import *
 from .get_vpc_gcp_info import *
 from .get_vpc_info import *
 from .instance import *
@@ -25,6 +27,8 @@ from .plugin import *
 from .plugin_community import *
 from .provider import *
 from .security_firewall import *
+from .upgrade_rabbitmq import *
+from .vpc import *
 from .vpc_gcp_peering import *
 from .vpc_peering import *
 from .webhook import *
@@ -111,6 +115,22 @@ _utilities.register(
   "fqn": "pulumi_cloudamqp",
   "classes": {
    "cloudamqp:index/securityFirewall:SecurityFirewall": "SecurityFirewall"
+  }
+ },
+ {
+  "pkg": "cloudamqp",
+  "mod": "index/upgradeRabbitmq",
+  "fqn": "pulumi_cloudamqp",
+  "classes": {
+   "cloudamqp:index/upgradeRabbitmq:UpgradeRabbitmq": "UpgradeRabbitmq"
+  }
+ },
+ {
+  "pkg": "cloudamqp",
+  "mod": "index/vpc",
+  "fqn": "pulumi_cloudamqp",
+  "classes": {
+   "cloudamqp:index/vpc:Vpc": "Vpc"
   }
  },
  {
