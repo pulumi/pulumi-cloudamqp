@@ -61,7 +61,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ## Alarm types
         /// 
-        /// `cpu, memory, disk, queue, connection, consumer, netsplit, server_unreachable, notice`
+        /// `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
         /// </summary>
         public static Task<GetAlarmResult> InvokeAsync(GetAlarmArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAlarmResult>("cloudamqp:index/getAlarm:getAlarm", args ?? new GetAlarmArgs(), options.WithDefaults());
@@ -116,7 +116,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ## Alarm types
         /// 
-        /// `cpu, memory, disk, queue, connection, consumer, netsplit, server_unreachable, notice`
+        /// `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
         /// </summary>
         public static Output<GetAlarmResult> Invoke(GetAlarmInvokeArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetAlarmResult>("cloudamqp:index/getAlarm:getAlarm", args ?? new GetAlarmInvokeArgs(), options.WithDefaults());

@@ -59,7 +59,7 @@ import (
 //
 // ## Alarm types
 //
-// `cpu, memory, disk, queue, connection, consumer, netsplit, server_unreachable, notice`
+// `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
 func LookupAlarm(ctx *pulumi.Context, args *LookupAlarmArgs, opts ...pulumi.InvokeOption) (*LookupAlarmResult, error) {
 	var rv LookupAlarmResult
 	err := ctx.Invoke("cloudamqp:index/getAlarm:getAlarm", args, &rv, opts...)
