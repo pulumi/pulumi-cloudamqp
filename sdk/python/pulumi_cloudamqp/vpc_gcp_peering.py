@@ -179,7 +179,10 @@ class VpcGcpPeering(pulumi.CustomResource):
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a VpcGcpPeering resource with the given unique name, props, and options.
+        ## Import
+
+        Not possible to import this resource.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
@@ -193,7 +196,10 @@ class VpcGcpPeering(pulumi.CustomResource):
                  args: VpcGcpPeeringArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a VpcGcpPeering resource with the given unique name, props, and options.
+        ## Import
+
+        Not possible to import this resource.
+
         :param str resource_name: The name of the resource.
         :param VpcGcpPeeringArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

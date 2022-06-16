@@ -4,6 +4,11 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * ## Import
+ *
+ * Not possible to import this resource.
+ */
 export class VpcGcpPeering extends pulumi.CustomResource {
     /**
      * Get an existing VpcGcpPeering resource's state with the given name, ID, and optional extra

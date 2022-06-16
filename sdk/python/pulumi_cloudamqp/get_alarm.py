@@ -192,7 +192,7 @@ def get_alarm(alarm_id: Optional[int] = None,
 
     ## Alarm types
 
-    `cpu, memory, disk, queue, connection, consumer, netsplit, server_unreachable, notice`
+    `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
 
 
     :param int alarm_id: The alarm identifier. Either use this or `type` to give `Alarm` necessary information to retrieve the alarm.
@@ -268,7 +268,7 @@ def get_alarm_output(alarm_id: Optional[pulumi.Input[Optional[int]]] = None,
 
     ## Alarm types
 
-    `cpu, memory, disk, queue, connection, consumer, netsplit, server_unreachable, notice`
+    `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
 
 
     :param int alarm_id: The alarm identifier. Either use this or `type` to give `Alarm` necessary information to retrieve the alarm.

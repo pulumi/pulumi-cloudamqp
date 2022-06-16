@@ -13,21 +13,7 @@ import (
 
 // ## Import
 //
-// *Pre v1.16.0* `cloudamqp_vpc_peering` can be imported using the CloudAMQP instance identifier.
-//
-// ```sh
-//  $ pulumi import cloudamqp:index/vpcPeering:VpcPeering <resource_name> <instance_id>`
-// ```
-//
-//  *Post v1.16.0* `cloudamqp_vpc_peering` can be imported using the CloudAMQP managed VPC identifier or instance identifier.
-//
-// ```sh
-//  $ pulumi import cloudamqp:index/vpcPeering:VpcPeering <resource_name> <vpc_id>`
-// ```
-//
-// ```sh
-//  $ pulumi import cloudamqp:index/vpcPeering:VpcPeering <resource_name> <instance_id>`
-// ```
+// Not possible to import this resource.
 type VpcPeering struct {
 	pulumi.CustomResourceState
 

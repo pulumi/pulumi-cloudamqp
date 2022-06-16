@@ -11,9 +11,42 @@ import * as utilities from "./utilities";
  *
  * Available for all subscription plans, but `lemur`and `tiger`are limited to fewer alarm types. The limited types supported can be seen in the table below in Alarm Type Reference.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * // New recipient
+ * const recipient01 = new cloudamqp.Notification("recipient01", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     type: "email",
+ *     value: "alarm@example.com",
+ * });
+ * // New cpu alarm
+ * const cpuAlarm = new cloudamqp.Alarm("cpuAlarm", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     type: "cpu",
+ *     enabled: true,
+ *     reminderInterval: 600,
+ *     valueThreshold: 95,
+ *     timeThreshold: 600,
+ *     recipients: [recipient01.id],
+ * });
+ * // New memory alarm
+ * const memoryAlarm = new cloudamqp.Alarm("memoryAlarm", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     type: "memory",
+ *     enabled: true,
+ *     reminderInterval: 600,
+ *     valueThreshold: 95,
+ *     timeThreshold: 600,
+ *     recipients: [recipient01.id],
+ * });
+ * ```
  * ## Alarm Type reference
  *
- * Supported alarm types: `cpu, memory, disk, queue, connection, consumer, netsplit, server_unreachable, notice`
+ * Supported alarm types: `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
  *
  * Required arguments for all alarms: `instance_id, type, enabled`<br>
  * Optional argument for all alarms: `tags, queue_regex, vhostRegex`
@@ -22,13 +55,14 @@ import * as utilities from "./utilities";
  * | ---- | ---- | ---- | ---- | ---- |
  * | CPU | cpu | - | &#10004; | time_threshold, valueThreshold |
  * | Memory | memory | - | &#10004;  | time_threshold, valueThreshold |
- * | Disk space | disk | - | &#10004;  | time_threshold, valueThreshold |
- * | Queue | queue | &#10004;  | &#10004;  | time_threshold, value_threshold, queue_regex, vhost_regex, messageType |
- * | Connection | connection | &#10004; | &#10004; | time_threshold, valueThreshold |
- * | Consumer | consumer | &#10004; | &#10004; | time_threshold, value_threshold, queue, vhost |
+ * | Disk space | disk | - | &#10004;  | time_threshold, valueThreshold |
+ * | Queue | queue | &#10004;  | &#10004; | time_threshold, value_threshold, queue_regex, vhost_regex, messageType |
+ * | Connection | connection | &#10004; | &#10004; | time_threshold, valueThreshold |
+ * | Connection flow | flow | &#10004; | &#10004; | time_threshold, valueThreshold |
+ * | Consumer | consumer | &#10004; | &#10004; | time_threshold, value_threshold, queue, vhost |
  * | Netsplit | netsplit | - | &#10004; | timeThreshold |
  * | Server unreachable | serverUnreachable  | - | &#10004;  | timeThreshold |
- * | Notice | notice | &#10004; | &#10004; | |
+ * | Notice | notice | &#10004; | &#10004; | |
  *
  * ## Dependency
  *

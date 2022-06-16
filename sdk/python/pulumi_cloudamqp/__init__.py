@@ -22,10 +22,12 @@ from .get_vpc_info import *
 from .instance import *
 from .integration_log import *
 from .integration_metric import *
+from .node_actions import *
 from .notification import *
 from .plugin import *
 from .plugin_community import *
 from .provider import *
+from .rabbit_configuration import *
 from .security_firewall import *
 from .upgrade_rabbitmq import *
 from .vpc import *
@@ -87,6 +89,14 @@ _utilities.register(
  },
  {
   "pkg": "cloudamqp",
+  "mod": "index/nodeActions",
+  "fqn": "pulumi_cloudamqp",
+  "classes": {
+   "cloudamqp:index/nodeActions:NodeActions": "NodeActions"
+  }
+ },
+ {
+  "pkg": "cloudamqp",
   "mod": "index/notification",
   "fqn": "pulumi_cloudamqp",
   "classes": {
@@ -107,6 +117,14 @@ _utilities.register(
   "fqn": "pulumi_cloudamqp",
   "classes": {
    "cloudamqp:index/pluginCommunity:PluginCommunity": "PluginCommunity"
+  }
+ },
+ {
+  "pkg": "cloudamqp",
+  "mod": "index/rabbitConfiguration",
+  "fqn": "pulumi_cloudamqp",
+  "classes": {
+   "cloudamqp:index/rabbitConfiguration:RabbitConfiguration": "RabbitConfiguration"
   }
  },
  {

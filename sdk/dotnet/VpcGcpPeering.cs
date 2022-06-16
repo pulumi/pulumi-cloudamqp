@@ -9,6 +9,11 @@ using Pulumi.Serialization;
 
 namespace Pulumi.CloudAmqp
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// Not possible to import this resource.
+    /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/vpcGcpPeering:VpcGcpPeering")]
     public partial class VpcGcpPeering : Pulumi.CustomResource
     {

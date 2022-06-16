@@ -42,7 +42,7 @@ import * as utilities from "./utilities";
  *
  * ## Alarm types
  *
- * `cpu, memory, disk, queue, connection, consumer, netsplit, server_unreachable, notice`
+ * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
  */
 export function getAlarm(args: GetAlarmArgs, opts?: pulumi.InvokeOptions): Promise<GetAlarmResult> {
     if (!opts) {
