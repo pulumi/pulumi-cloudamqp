@@ -16,9 +16,58 @@ namespace Pulumi.CloudAmqp
     /// 
     /// Available for all subscription plans, but `lemur`and `tiger`are limited to fewer alarm types. The limited types supported can be seen in the table below in Alarm Type Reference.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         // New recipient
+    ///         var recipient01 = new CloudAmqp.Notification("recipient01", new CloudAmqp.NotificationArgs
+    ///         {
+    ///             InstanceId = cloudamqp_instance.Instance.Id,
+    ///             Type = "email",
+    ///             Value = "alarm@example.com",
+    ///         });
+    ///         // New cpu alarm
+    ///         var cpuAlarm = new CloudAmqp.Alarm("cpuAlarm", new CloudAmqp.AlarmArgs
+    ///         {
+    ///             InstanceId = cloudamqp_instance.Instance.Id,
+    ///             Type = "cpu",
+    ///             Enabled = true,
+    ///             ReminderInterval = 600,
+    ///             ValueThreshold = 95,
+    ///             TimeThreshold = 600,
+    ///             Recipients = 
+    ///             {
+    ///                 recipient01.Id,
+    ///             },
+    ///         });
+    ///         // New memory alarm
+    ///         var memoryAlarm = new CloudAmqp.Alarm("memoryAlarm", new CloudAmqp.AlarmArgs
+    ///         {
+    ///             InstanceId = cloudamqp_instance.Instance.Id,
+    ///             Type = "memory",
+    ///             Enabled = true,
+    ///             ReminderInterval = 600,
+    ///             ValueThreshold = 95,
+    ///             TimeThreshold = 600,
+    ///             Recipients = 
+    ///             {
+    ///                 recipient01.Id,
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// ## Alarm Type reference
     /// 
-    /// Supported alarm types: `cpu, memory, disk, queue, connection, consumer, netsplit, server_unreachable, notice`
+    /// Supported alarm types: `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
     /// 
     /// Required arguments for all alarms: `instance_id, type, enabled`&lt;br&gt;
     /// Optional argument for all alarms: `tags, queue_regex, vhost_regex`
@@ -27,13 +76,14 @@ namespace Pulumi.CloudAmqp
     /// | ---- | ---- | ---- | ---- | ---- |
     /// | CPU | cpu | - | &amp;#10004; | time_threshold, value_threshold |
     /// | Memory | memory | - | &amp;#10004;  | time_threshold, value_threshold |
-    /// | Disk space | disk | - | &amp;#10004;  | time_threshold, value_threshold |
-    /// | Queue | queue | &amp;#10004;  | &amp;#10004;  | time_threshold, value_threshold, queue_regex, vhost_regex, message_type |
-    /// | Connection | connection | &amp;#10004; | &amp;#10004; | time_threshold, value_threshold |
-    /// | Consumer | consumer | &amp;#10004; | &amp;#10004; | time_threshold, value_threshold, queue, vhost |
+    /// | Disk space | disk | - | &amp;#10004;  | time_threshold, value_threshold |
+    /// | Queue | queue | &amp;#10004;  | &amp;#10004; | time_threshold, value_threshold, queue_regex, vhost_regex, message_type |
+    /// | Connection | connection | &amp;#10004; | &amp;#10004; | time_threshold, value_threshold |
+    /// | Connection flow | flow | &amp;#10004; | &amp;#10004; | time_threshold, value_threshold |
+    /// | Consumer | consumer | &amp;#10004; | &amp;#10004; | time_threshold, value_threshold, queue, vhost |
     /// | Netsplit | netsplit | - | &amp;#10004; | time_threshold |
     /// | Server unreachable | server_unreachable  | - | &amp;#10004;  | time_threshold |
-    /// | Notice | notice | &amp;#10004; | &amp;#10004; | |
+    /// | Notice | notice | &amp;#10004; | &amp;#10004; | |
     /// 
     /// ## Dependency
     /// 

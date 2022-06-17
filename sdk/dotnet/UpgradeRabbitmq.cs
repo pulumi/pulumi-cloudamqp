@@ -16,7 +16,7 @@ namespace Pulumi.CloudAmqp
     /// &gt; 
     /// &gt; Auto delete queues (queues that are marked AD) will be deleted during the update.
     /// &gt; 
-    /// &gt; Any custom plugins support has installed on your behalf will be disabled and you need to contact support@cloudamqp.com and ask to have them re-installed.
+    /// &gt; Any custom plugins support has installed on your behalf will be disabled and you need to contact support@cloudamqp.com and ask to have them re-installed.
     /// &gt; 
     /// &gt; TLS 1.0 and 1.1 will not be supported after the update.
     /// 

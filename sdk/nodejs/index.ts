@@ -22,10 +22,12 @@ export * from "./getVpcInfo";
 export * from "./instance";
 export * from "./integrationLog";
 export * from "./integrationMetric";
+export * from "./nodeActions";
 export * from "./notification";
 export * from "./plugin";
 export * from "./pluginCommunity";
 export * from "./provider";
+export * from "./rabbitConfiguration";
 export * from "./securityFirewall";
 export * from "./upgradeRabbitmq";
 export * from "./vpc";
@@ -48,9 +50,11 @@ import { CustomDomain } from "./customDomain";
 import { Instance } from "./instance";
 import { IntegrationLog } from "./integrationLog";
 import { IntegrationMetric } from "./integrationMetric";
+import { NodeActions } from "./nodeActions";
 import { Notification } from "./notification";
 import { Plugin } from "./plugin";
 import { PluginCommunity } from "./pluginCommunity";
+import { RabbitConfiguration } from "./rabbitConfiguration";
 import { SecurityFirewall } from "./securityFirewall";
 import { UpgradeRabbitmq } from "./upgradeRabbitmq";
 import { Vpc } from "./vpc";
@@ -72,12 +76,16 @@ const _module = {
                 return new IntegrationLog(name, <any>undefined, { urn })
             case "cloudamqp:index/integrationMetric:IntegrationMetric":
                 return new IntegrationMetric(name, <any>undefined, { urn })
+            case "cloudamqp:index/nodeActions:NodeActions":
+                return new NodeActions(name, <any>undefined, { urn })
             case "cloudamqp:index/notification:Notification":
                 return new Notification(name, <any>undefined, { urn })
             case "cloudamqp:index/plugin:Plugin":
                 return new Plugin(name, <any>undefined, { urn })
             case "cloudamqp:index/pluginCommunity:PluginCommunity":
                 return new PluginCommunity(name, <any>undefined, { urn })
+            case "cloudamqp:index/rabbitConfiguration:RabbitConfiguration":
+                return new RabbitConfiguration(name, <any>undefined, { urn })
             case "cloudamqp:index/securityFirewall:SecurityFirewall":
                 return new SecurityFirewall(name, <any>undefined, { urn })
             case "cloudamqp:index/upgradeRabbitmq:UpgradeRabbitmq":
@@ -100,9 +108,11 @@ pulumi.runtime.registerResourceModule("cloudamqp", "index/customDomain", _module
 pulumi.runtime.registerResourceModule("cloudamqp", "index/instance", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/integrationLog", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/integrationMetric", _module)
+pulumi.runtime.registerResourceModule("cloudamqp", "index/nodeActions", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/notification", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/plugin", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/pluginCommunity", _module)
+pulumi.runtime.registerResourceModule("cloudamqp", "index/rabbitConfiguration", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/securityFirewall", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/upgradeRabbitmq", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/vpc", _module)

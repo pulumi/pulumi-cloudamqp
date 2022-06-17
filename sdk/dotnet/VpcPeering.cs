@@ -12,21 +12,7 @@ namespace Pulumi.CloudAmqp
     /// <summary>
     /// ## Import
     /// 
-    /// *Pre v1.16.0* `cloudamqp_vpc_peering` can be imported using the CloudAMQP instance identifier.
-    /// 
-    /// ```sh
-    ///  $ pulumi import cloudamqp:index/vpcPeering:VpcPeering &lt;resource_name&gt; &lt;instance_id&gt;`
-    /// ```
-    /// 
-    ///  *Post v1.16.0* `cloudamqp_vpc_peering` can be imported using the CloudAMQP managed VPC identifier or instance identifier.
-    /// 
-    /// ```sh
-    ///  $ pulumi import cloudamqp:index/vpcPeering:VpcPeering &lt;resource_name&gt; &lt;vpc_id&gt;`
-    /// ```
-    /// 
-    /// ```sh
-    ///  $ pulumi import cloudamqp:index/vpcPeering:VpcPeering &lt;resource_name&gt; &lt;instance_id&gt;`
-    /// ```
+    /// Not possible to import this resource.
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/vpcPeering:VpcPeering")]
     public partial class VpcPeering : Pulumi.CustomResource

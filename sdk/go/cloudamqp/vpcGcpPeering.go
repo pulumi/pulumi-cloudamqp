@@ -11,6 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Import
+//
+// Not possible to import this resource.
 type VpcGcpPeering struct {
 	pulumi.CustomResourceState
 
