@@ -7,6 +7,7 @@ import * as utilities from "./utilities";
 // Export members:
 export * from "./alarm";
 export * from "./customDomain";
+export * from "./extraDiskSize";
 export * from "./getAccount";
 export * from "./getAccountVpcs";
 export * from "./getAlarm";
@@ -47,6 +48,7 @@ export {
 // Import resources to register:
 import { Alarm } from "./alarm";
 import { CustomDomain } from "./customDomain";
+import { ExtraDiskSize } from "./extraDiskSize";
 import { Instance } from "./instance";
 import { IntegrationLog } from "./integrationLog";
 import { IntegrationMetric } from "./integrationMetric";
@@ -70,6 +72,8 @@ const _module = {
                 return new Alarm(name, <any>undefined, { urn })
             case "cloudamqp:index/customDomain:CustomDomain":
                 return new CustomDomain(name, <any>undefined, { urn })
+            case "cloudamqp:index/extraDiskSize:ExtraDiskSize":
+                return new ExtraDiskSize(name, <any>undefined, { urn })
             case "cloudamqp:index/instance:Instance":
                 return new Instance(name, <any>undefined, { urn })
             case "cloudamqp:index/integrationLog:IntegrationLog":
@@ -105,6 +109,7 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("cloudamqp", "index/alarm", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/customDomain", _module)
+pulumi.runtime.registerResourceModule("cloudamqp", "index/extraDiskSize", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/instance", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/integrationLog", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/integrationMetric", _module)

@@ -377,13 +377,15 @@ func (o GetAccountVpcsVpcArrayOutput) Index(i pulumi.IntInput) GetAccountVpcsVpc
 }
 
 type GetNodesNode struct {
-	Configured      bool   `pulumi:"configured"`
-	ErlangVersion   string `pulumi:"erlangVersion"`
-	Hipe            bool   `pulumi:"hipe"`
-	Hostname        string `pulumi:"hostname"`
-	Name            string `pulumi:"name"`
-	RabbitmqVersion string `pulumi:"rabbitmqVersion"`
-	Running         bool   `pulumi:"running"`
+	AdditionalDiskSize int    `pulumi:"additionalDiskSize"`
+	Configured         bool   `pulumi:"configured"`
+	DiskSize           int    `pulumi:"diskSize"`
+	ErlangVersion      string `pulumi:"erlangVersion"`
+	Hipe               bool   `pulumi:"hipe"`
+	Hostname           string `pulumi:"hostname"`
+	Name               string `pulumi:"name"`
+	RabbitmqVersion    string `pulumi:"rabbitmqVersion"`
+	Running            bool   `pulumi:"running"`
 }
 
 // GetNodesNodeInput is an input type that accepts GetNodesNodeArgs and GetNodesNodeOutput values.
@@ -398,13 +400,15 @@ type GetNodesNodeInput interface {
 }
 
 type GetNodesNodeArgs struct {
-	Configured      pulumi.BoolInput   `pulumi:"configured"`
-	ErlangVersion   pulumi.StringInput `pulumi:"erlangVersion"`
-	Hipe            pulumi.BoolInput   `pulumi:"hipe"`
-	Hostname        pulumi.StringInput `pulumi:"hostname"`
-	Name            pulumi.StringInput `pulumi:"name"`
-	RabbitmqVersion pulumi.StringInput `pulumi:"rabbitmqVersion"`
-	Running         pulumi.BoolInput   `pulumi:"running"`
+	AdditionalDiskSize pulumi.IntInput    `pulumi:"additionalDiskSize"`
+	Configured         pulumi.BoolInput   `pulumi:"configured"`
+	DiskSize           pulumi.IntInput    `pulumi:"diskSize"`
+	ErlangVersion      pulumi.StringInput `pulumi:"erlangVersion"`
+	Hipe               pulumi.BoolInput   `pulumi:"hipe"`
+	Hostname           pulumi.StringInput `pulumi:"hostname"`
+	Name               pulumi.StringInput `pulumi:"name"`
+	RabbitmqVersion    pulumi.StringInput `pulumi:"rabbitmqVersion"`
+	Running            pulumi.BoolInput   `pulumi:"running"`
 }
 
 func (GetNodesNodeArgs) ElementType() reflect.Type {
@@ -458,8 +462,16 @@ func (o GetNodesNodeOutput) ToGetNodesNodeOutputWithContext(ctx context.Context)
 	return o
 }
 
+func (o GetNodesNodeOutput) AdditionalDiskSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodesNode) int { return v.AdditionalDiskSize }).(pulumi.IntOutput)
+}
+
 func (o GetNodesNodeOutput) Configured() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetNodesNode) bool { return v.Configured }).(pulumi.BoolOutput)
+}
+
+func (o GetNodesNodeOutput) DiskSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodesNode) int { return v.DiskSize }).(pulumi.IntOutput)
 }
 
 func (o GetNodesNodeOutput) ErlangVersion() pulumi.StringOutput {

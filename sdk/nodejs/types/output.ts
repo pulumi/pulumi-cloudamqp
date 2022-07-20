@@ -22,7 +22,9 @@ export interface GetAccountVpcsVpc {
 }
 
 export interface GetNodesNode {
+    additionalDiskSize: number;
     configured: boolean;
+    diskSize: number;
     erlangVersion: string;
     hipe: boolean;
     hostname: string;
