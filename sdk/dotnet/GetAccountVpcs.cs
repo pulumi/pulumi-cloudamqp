@@ -26,7 +26,7 @@ namespace Pulumi.CloudAmqp
         /// The `vpcs` block consist of
         /// 
         /// * `id`          - The VPC identifier.
-        /// * `name`        - The internal VPC instance name.
+        /// * `name`        - The VPC instance name.
         /// * `region`      - The region the VPC is hosted in.
         /// * `subnet`      - The VPC subnet.
         /// * `tags`        - Optional tags set for the VPC.

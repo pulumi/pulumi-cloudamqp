@@ -163,14 +163,18 @@ class GetAccountVpcsVpcResult(dict):
 @pulumi.output_type
 class GetNodesNodeResult(dict):
     def __init__(__self__, *,
+                 additional_disk_size: int,
                  configured: bool,
+                 disk_size: int,
                  erlang_version: str,
                  hipe: bool,
                  hostname: str,
                  name: str,
                  rabbitmq_version: str,
                  running: bool):
+        pulumi.set(__self__, "additional_disk_size", additional_disk_size)
         pulumi.set(__self__, "configured", configured)
+        pulumi.set(__self__, "disk_size", disk_size)
         pulumi.set(__self__, "erlang_version", erlang_version)
         pulumi.set(__self__, "hipe", hipe)
         pulumi.set(__self__, "hostname", hostname)
@@ -179,9 +183,19 @@ class GetNodesNodeResult(dict):
         pulumi.set(__self__, "running", running)
 
     @property
+    @pulumi.getter(name="additionalDiskSize")
+    def additional_disk_size(self) -> int:
+        return pulumi.get(self, "additional_disk_size")
+
+    @property
     @pulumi.getter
     def configured(self) -> bool:
         return pulumi.get(self, "configured")
+
+    @property
+    @pulumi.getter(name="diskSize")
+    def disk_size(self) -> int:
+        return pulumi.get(self, "disk_size")
 
     @property
     @pulumi.getter(name="erlangVersion")

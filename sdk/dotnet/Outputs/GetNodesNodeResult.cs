@@ -13,7 +13,9 @@ namespace Pulumi.CloudAmqp.Outputs
     [OutputType]
     public sealed class GetNodesNodeResult
     {
+        public readonly int AdditionalDiskSize;
         public readonly bool Configured;
+        public readonly int DiskSize;
         public readonly string ErlangVersion;
         public readonly bool Hipe;
         public readonly string Hostname;
@@ -23,7 +25,11 @@ namespace Pulumi.CloudAmqp.Outputs
 
         [OutputConstructor]
         private GetNodesNodeResult(
+            int additionalDiskSize,
+
             bool configured,
+
+            int diskSize,
 
             string erlangVersion,
 
@@ -37,7 +43,9 @@ namespace Pulumi.CloudAmqp.Outputs
 
             bool running)
         {
+            AdditionalDiskSize = additionalDiskSize;
             Configured = configured;
+            DiskSize = diskSize;
             ErlangVersion = erlangVersion;
             Hipe = hipe;
             Hostname = hostname;

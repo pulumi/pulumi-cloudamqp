@@ -24,6 +24,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Alarm{}
 	case "cloudamqp:index/customDomain:CustomDomain":
 		r = &CustomDomain{}
+	case "cloudamqp:index/extraDiskSize:ExtraDiskSize":
+		r = &ExtraDiskSize{}
 	case "cloudamqp:index/instance:Instance":
 		r = &Instance{}
 	case "cloudamqp:index/integrationLog:IntegrationLog":
@@ -88,6 +90,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"cloudamqp",
 		"index/customDomain",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"cloudamqp",
+		"index/extraDiskSize",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

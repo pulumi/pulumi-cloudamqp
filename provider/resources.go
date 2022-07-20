@@ -99,6 +99,14 @@ func Provider() tfbridge.ProviderInfo {
 			"cloudamqp_vpc":                    {Tok: makeResource(mainMod, "Vpc")},
 			"cloudamqp_node_actions":           {Tok: makeResource(mainMod, "NodeActions")},
 			"cloudamqp_rabbitmq_configuration": {Tok: makeResource(mainMod, "RabbitConfiguration")},
+			"cloudamqp_extra_disk_size": {
+				Tok: makeResource(mainMod, "ExtraDiskSize"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"extra_disk_size": {
+						CSharpName: "ExtraDiskSizeGb",
+					},
+				},
+			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"cloudamqp_credentials":         {Tok: makeDataSource(mainMod, "getCredentials")},

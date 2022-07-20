@@ -7,6 +7,7 @@ import typing
 # Export this package's modules as members:
 from .alarm import *
 from .custom_domain import *
+from .extra_disk_size import *
 from .get_account import *
 from .get_account_vpcs import *
 from .get_alarm import *
@@ -61,6 +62,14 @@ _utilities.register(
   "fqn": "pulumi_cloudamqp",
   "classes": {
    "cloudamqp:index/customDomain:CustomDomain": "CustomDomain"
+  }
+ },
+ {
+  "pkg": "cloudamqp",
+  "mod": "index/extraDiskSize",
+  "fqn": "pulumi_cloudamqp",
+  "classes": {
+   "cloudamqp:index/extraDiskSize:ExtraDiskSize": "ExtraDiskSize"
   }
  },
  {

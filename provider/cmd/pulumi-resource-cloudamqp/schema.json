@@ -207,8 +207,24 @@
         },
         "cloudamqp:index/getNodesNode:getNodesNode": {
             "properties": {
+                "additionalDiskSize": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "configured": {
                     "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "diskSize": {
+                    "type": "integer",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -266,7 +282,9 @@
             },
             "type": "object",
             "required": [
+                "additionalDiskSize",
                 "configured",
+                "diskSize",
                 "erlangVersion",
                 "hipe",
                 "hostname",
@@ -600,6 +618,66 @@
                     "hostname": {
                         "type": "string",
                         "description": "Your custom domain name.\n"
+                    },
+                    "instanceId": {
+                        "type": "integer",
+                        "description": "The CloudAMQP instance ID.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "cloudamqp:index/extraDiskSize:ExtraDiskSize": {
+            "description": "This resource allows you to expand the disk with additional storage capacity. There is no downtime when expanding the disk.\n\nOnly available for dedicated subscription plans hosted at Amazon Web Services (AWS) at this time.\n\n⚠️  Due to restrictions from cloud providers, it's only possible to resize the disk every 8 hours.\n\nPricing is available at [cloudamqp.com](https://www.cloudamqp.com/).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\n// Instance\nconst instance = new cloudamqp.Instance(\"instance\", {\n    plan: \"squirrel-1\",\n    region: \"amazon-web-services::us-west-2\",\n    rmqVersion: \"3.10.1\",\n});\n// Resize disk with 25 extra GB\nconst resizeDisk = new cloudamqp.ExtraDiskSize(\"resizeDisk\", {\n    instanceId: instance.id,\n    extraDiskSize: 25,\n});\nconst nodes = instance.id.apply(id =\u003e cloudamqp.getNodesOutput({\n    instanceId: id,\n}));\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\n# Instance\ninstance = cloudamqp.Instance(\"instance\",\n    plan=\"squirrel-1\",\n    region=\"amazon-web-services::us-west-2\",\n    rmq_version=\"3.10.1\")\n# Resize disk with 25 extra GB\nresize_disk = cloudamqp.ExtraDiskSize(\"resizeDisk\",\n    instance_id=instance.id,\n    extra_disk_size=25)\nnodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))\n```\n```csharp\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        // Instance\n        var instance = new CloudAmqp.Instance(\"instance\", new CloudAmqp.InstanceArgs\n        {\n            Plan = \"squirrel-1\",\n            Region = \"amazon-web-services::us-west-2\",\n            RmqVersion = \"3.10.1\",\n        });\n        // Resize disk with 25 extra GB\n        var resizeDisk = new CloudAmqp.ExtraDiskSize(\"resizeDisk\", new CloudAmqp.ExtraDiskSizeArgs\n        {\n            InstanceId = instance.Id,\n            ExtraDiskSize = 25,\n        });\n        var nodes = instance.Id.Apply(id =\u003e CloudAmqp.GetNodes.Invoke(new CloudAmqp.GetNodesInvokeArgs\n        {\n            InstanceId = id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tinstance, err := cloudamqp.NewInstance(ctx, \"instance\", \u0026cloudamqp.InstanceArgs{\n\t\t\tPlan:       pulumi.String(\"squirrel-1\"),\n\t\t\tRegion:     pulumi.String(\"amazon-web-services::us-west-2\"),\n\t\t\tRmqVersion: pulumi.String(\"3.10.1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewExtraDiskSize(ctx, \"resizeDisk\", \u0026cloudamqp.ExtraDiskSizeArgs{\n\t\t\tInstanceId:    instance.ID(),\n\t\t\tExtraDiskSize: pulumi.Int(25),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nNot possible to import this resource. ",
+            "properties": {
+                "extraDiskSize": {
+                    "type": "integer",
+                    "description": "Extra disk size in GB. Supported values: 25, 50, 100, 250, 500, 1000, 2000\n",
+                    "language": {
+                        "csharp": {
+                            "name": "ExtraDiskSizeGb"
+                        }
+                    }
+                },
+                "instanceId": {
+                    "type": "integer",
+                    "description": "The CloudAMQP instance ID.\n"
+                }
+            },
+            "required": [
+                "extraDiskSize",
+                "instanceId"
+            ],
+            "inputProperties": {
+                "extraDiskSize": {
+                    "type": "integer",
+                    "description": "Extra disk size in GB. Supported values: 25, 50, 100, 250, 500, 1000, 2000\n",
+                    "language": {
+                        "csharp": {
+                            "name": "ExtraDiskSizeGb"
+                        }
+                    }
+                },
+                "instanceId": {
+                    "type": "integer",
+                    "description": "The CloudAMQP instance ID.\n"
+                }
+            },
+            "requiredInputs": [
+                "extraDiskSize",
+                "instanceId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ExtraDiskSize resources.\n",
+                "properties": {
+                    "extraDiskSize": {
+                        "type": "integer",
+                        "description": "Extra disk size in GB. Supported values: 25, 50, 100, 250, 500, 1000, 2000\n",
+                        "language": {
+                            "csharp": {
+                                "name": "ExtraDiskSizeGb"
+                            }
+                        }
                     },
                     "instanceId": {
                         "type": "integer",
@@ -2086,7 +2164,7 @@
             }
         },
         "cloudamqp:index/getAccountVpcs:getAccountVpcs": {
-            "description": "Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.\n\n## Attributes reference\n\nAll attributes reference are computed\n\n* `id`      - The identifier for this data source. Set to `na` since there is no unique identifier.\n* `vpcs`    - An array of VPCs. Each `vpcs` block consists of the fields documented below.\n\n___\n\nThe `vpcs` block consist of\n\n* `id`          - The VPC identifier.\n* `name`        - The internal VPC instance name.\n* `region`      - The region the VPC is hosted in.\n* `subnet`      - The VPC subnet.\n* `tags`        - Optional tags set for the VPC.\n* `vpc_name`    - VPC name given when hosted at the cloud provider.\n\n## Dependency\n\nThis data source depends on apikey set in the provider configuration.\n",
+            "description": "Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.\n\n## Attributes reference\n\nAll attributes reference are computed\n\n* `id`      - The identifier for this data source. Set to `na` since there is no unique identifier.\n* `vpcs`    - An array of VPCs. Each `vpcs` block consists of the fields documented below.\n\n___\n\nThe `vpcs` block consist of\n\n* `id`          - The VPC identifier.\n* `name`        - The VPC instance name.\n* `region`      - The region the VPC is hosted in.\n* `subnet`      - The VPC subnet.\n* `tags`        - Optional tags set for the VPC.\n* `vpc_name`    - VPC name given when hosted at the cloud provider.\n\n## Dependency\n\nThis data source depends on apikey set in the provider configuration.\n",
             "outputs": {
                 "description": "A collection of values returned by getAccountVpcs.\n",
                 "properties": {
