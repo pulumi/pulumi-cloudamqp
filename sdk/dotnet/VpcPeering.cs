@@ -15,7 +15,7 @@ namespace Pulumi.CloudAmqp
     /// Not possible to import this resource.
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/vpcPeering:VpcPeering")]
-    public partial class VpcPeering : Pulumi.CustomResource
+    public partial class VpcPeering : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The CloudAMQP instance identifier.
@@ -97,7 +97,7 @@ namespace Pulumi.CloudAmqp
         }
     }
 
-    public sealed class VpcPeeringArgs : Pulumi.ResourceArgs
+    public sealed class VpcPeeringArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The CloudAMQP instance identifier.
@@ -132,9 +132,10 @@ namespace Pulumi.CloudAmqp
         public VpcPeeringArgs()
         {
         }
+        public static new VpcPeeringArgs Empty => new VpcPeeringArgs();
     }
 
-    public sealed class VpcPeeringState : Pulumi.ResourceArgs
+    public sealed class VpcPeeringState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The CloudAMQP instance identifier.
@@ -175,5 +176,6 @@ namespace Pulumi.CloudAmqp
         public VpcPeeringState()
         {
         }
+        public static new VpcPeeringState Empty => new VpcPeeringState();
     }
 }

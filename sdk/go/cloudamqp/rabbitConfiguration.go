@@ -17,16 +17,16 @@ import (
 //
 // ## Argument threshold values
 //
-// | Argument                     | Type   | Default   | Min   | Max       | Note                                                              |
-// |------------------------------|--------|-----------|-------|-----------|-------------------------------------------------------------------|
-// | heartbeat                    | int    | 120       | 1     | -         |                                                                   |
-// | connectionMax               | int    | -1        | 1     | -         | -1 in the provider corresponds to INFINITY in the RabbitMQ config |
-// | channelMax                  | int    | 0         | 0     | -         | 0 means "no limit"                                                |
-// | consumerTimeout             | int    | 7200000   | 10000 | 25000000  | Timeout in milliseconds                                           |
-// | vmMemoryHighWatermark     | float  | 0.81      | 0.4   | 0.9       |                                                                   |
-// | queueIndexEmbedMsgsBelow | int    | 4096      | 1     | 10485760  |                                                                   |
-// | maxMessageSize             | int    | 134217728 | 1     | 536870912 | Size in bytes                                                     |
-// | logExchangeLevel           | string | error     | -     | -         | debug, info, warning, error, critical                             |
+// | Argument | Type | Default | Min | Max | Unit | Affect | Note |
+// |---|---|---|---|---|---|---|---|
+// | heartbeat | int | 120 | 0 | - |  | Only effects new connections |  |
+// | connectionMax | int | -1 | 1 | - |  | RabbitMQ restart required | -1 in the provider corresponds to INFINITY in the RabbitMQ config |
+// | channelMax | int | 128 | 0 | - |  | Only effects new connections |  |
+// | consumerTimeout | int | 7200000 | 10000 | 86400000 | milliseconds | Only effects new channels | -1 in the provider corresponds to false (disable) in the RabbitMQ config |
+// | vmMemoryHighWatermark | float | 0.81 | 0.4 | 0.9 |  | Applied immediately |  |
+// | queueIndexEmbedMsgsBelow | int | 4096 | 1 | 10485760 | bytes | Applied immediately for new queues, requires restart for existing queues |  |
+// | maxMessageSize | int | 134217728 | 1 | 536870912 | bytes | Only effects new channels |  |
+// | logExchangeLevel | string | error | - | - |  | RabbitMQ restart required | debug, info, warning, error, critical |
 //
 // ## Dependency
 //
@@ -37,7 +37,9 @@ import (
 // `cloudamqp_rabbitmq_configuration` can be imported using the CloudAMQP instance identifier.
 //
 // ```sh
-//  $ pulumi import cloudamqp:index/rabbitConfiguration:RabbitConfiguration config <instance_id>`
+//
+//	$ pulumi import cloudamqp:index/rabbitConfiguration:RabbitConfiguration config <instance_id>`
+//
 // ```
 type RabbitConfiguration struct {
 	pulumi.CustomResourceState
@@ -208,7 +210,7 @@ func (i *RabbitConfiguration) ToRabbitConfigurationOutputWithContext(ctx context
 // RabbitConfigurationArrayInput is an input type that accepts RabbitConfigurationArray and RabbitConfigurationArrayOutput values.
 // You can construct a concrete instance of `RabbitConfigurationArrayInput` via:
 //
-//          RabbitConfigurationArray{ RabbitConfigurationArgs{...} }
+//	RabbitConfigurationArray{ RabbitConfigurationArgs{...} }
 type RabbitConfigurationArrayInput interface {
 	pulumi.Input
 
@@ -233,7 +235,7 @@ func (i RabbitConfigurationArray) ToRabbitConfigurationArrayOutputWithContext(ct
 // RabbitConfigurationMapInput is an input type that accepts RabbitConfigurationMap and RabbitConfigurationMapOutput values.
 // You can construct a concrete instance of `RabbitConfigurationMapInput` via:
 //
-//          RabbitConfigurationMap{ "key": RabbitConfigurationArgs{...} }
+//	RabbitConfigurationMap{ "key": RabbitConfigurationArgs{...} }
 type RabbitConfigurationMapInput interface {
 	pulumi.Input
 
@@ -267,6 +269,51 @@ func (o RabbitConfigurationOutput) ToRabbitConfigurationOutput() RabbitConfigura
 
 func (o RabbitConfigurationOutput) ToRabbitConfigurationOutputWithContext(ctx context.Context) RabbitConfigurationOutput {
 	return o
+}
+
+// Set the maximum permissible number of channels per connection.
+func (o RabbitConfigurationOutput) ChannelMax() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntPtrOutput { return v.ChannelMax }).(pulumi.IntPtrOutput)
+}
+
+// Set the maximum permissible number of connection.
+func (o RabbitConfigurationOutput) ConnectionMax() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntPtrOutput { return v.ConnectionMax }).(pulumi.IntPtrOutput)
+}
+
+// A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
+func (o RabbitConfigurationOutput) ConsumerTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntPtrOutput { return v.ConsumerTimeout }).(pulumi.IntPtrOutput)
+}
+
+// Set the server AMQP 0-9-1 heartbeat timeout in seconds.
+func (o RabbitConfigurationOutput) Heartbeat() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntPtrOutput { return v.Heartbeat }).(pulumi.IntPtrOutput)
+}
+
+// The CloudAMQP instance ID.
+func (o RabbitConfigurationOutput) InstanceId() pulumi.IntOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntOutput { return v.InstanceId }).(pulumi.IntOutput)
+}
+
+// Log level for the logger used for log integrations and the CloudAMQP Console log view.
+func (o RabbitConfigurationOutput) LogExchangeLevel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.StringPtrOutput { return v.LogExchangeLevel }).(pulumi.StringPtrOutput)
+}
+
+// The largest allowed message payload size in bytes.
+func (o RabbitConfigurationOutput) MaxMessageSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntPtrOutput { return v.MaxMessageSize }).(pulumi.IntPtrOutput)
+}
+
+// Size in bytes below which to embed messages in the queue index.
+func (o RabbitConfigurationOutput) QueueIndexEmbedMsgsBelow() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntPtrOutput { return v.QueueIndexEmbedMsgsBelow }).(pulumi.IntPtrOutput)
+}
+
+// When the server will enter memory based flow-control as relative to the maximum available memory.
+func (o RabbitConfigurationOutput) VmMemoryHighWatermark() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.Float64PtrOutput { return v.VmMemoryHighWatermark }).(pulumi.Float64PtrOutput)
 }
 
 type RabbitConfigurationArrayOutput struct{ *pulumi.OutputState }

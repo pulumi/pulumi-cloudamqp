@@ -26,20 +26,18 @@ namespace Pulumi.CloudAmqp
         ///   &lt;/summary&gt;
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using CloudAmqp = Pulumi.CloudAmqp;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var vpcInfo = CloudAmqp.GetVpcGcpInfo.Invoke(new()
         ///     {
-        ///         var vpcInfo = Output.Create(CloudAmqp.GetVpcGcpInfo.InvokeAsync(new CloudAmqp.GetVpcGcpInfoArgs
-        ///         {
-        ///             InstanceId = cloudamqp_instance.Instance.Id,
-        ///         }));
-        ///     }
+        ///         InstanceId = cloudamqp_instance.Instance.Id,
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// &lt;/details&gt;
         /// 
@@ -51,20 +49,18 @@ namespace Pulumi.CloudAmqp
         ///   &lt;/summary&gt;
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using CloudAmqp = Pulumi.CloudAmqp;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var vpcInfo = CloudAmqp.GetVpcGcpInfo.Invoke(new()
         ///     {
-        ///         var vpcInfo = Output.Create(CloudAmqp.GetVpcGcpInfo.InvokeAsync(new CloudAmqp.GetVpcGcpInfoArgs
-        ///         {
-        ///             VpcId = cloudamqp_vpc.Vpc.Id,
-        ///         }));
-        ///     }
+        ///         VpcId = cloudamqp_vpc.Vpc.Id,
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// &lt;/details&gt;
         /// {{% /example %}}
@@ -104,20 +100,18 @@ namespace Pulumi.CloudAmqp
         ///   &lt;/summary&gt;
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using CloudAmqp = Pulumi.CloudAmqp;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var vpcInfo = CloudAmqp.GetVpcGcpInfo.Invoke(new()
         ///     {
-        ///         var vpcInfo = Output.Create(CloudAmqp.GetVpcGcpInfo.InvokeAsync(new CloudAmqp.GetVpcGcpInfoArgs
-        ///         {
-        ///             InstanceId = cloudamqp_instance.Instance.Id,
-        ///         }));
-        ///     }
+        ///         InstanceId = cloudamqp_instance.Instance.Id,
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// &lt;/details&gt;
         /// 
@@ -129,20 +123,18 @@ namespace Pulumi.CloudAmqp
         ///   &lt;/summary&gt;
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using CloudAmqp = Pulumi.CloudAmqp;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var vpcInfo = CloudAmqp.GetVpcGcpInfo.Invoke(new()
         ///     {
-        ///         var vpcInfo = Output.Create(CloudAmqp.GetVpcGcpInfo.InvokeAsync(new CloudAmqp.GetVpcGcpInfoArgs
-        ///         {
-        ///             VpcId = cloudamqp_vpc.Vpc.Id,
-        ///         }));
-        ///     }
+        ///         VpcId = cloudamqp_vpc.Vpc.Id,
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// &lt;/details&gt;
         /// {{% /example %}}
@@ -169,7 +161,7 @@ namespace Pulumi.CloudAmqp
     }
 
 
-    public sealed class GetVpcGcpInfoArgs : Pulumi.InvokeArgs
+    public sealed class GetVpcGcpInfoArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The CloudAMQP instance identifier.
@@ -186,9 +178,10 @@ namespace Pulumi.CloudAmqp
         public GetVpcGcpInfoArgs()
         {
         }
+        public static new GetVpcGcpInfoArgs Empty => new GetVpcGcpInfoArgs();
     }
 
-    public sealed class GetVpcGcpInfoInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetVpcGcpInfoInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The CloudAMQP instance identifier.
@@ -205,6 +198,7 @@ namespace Pulumi.CloudAmqp
         public GetVpcGcpInfoInvokeArgs()
         {
         }
+        public static new GetVpcGcpInfoInvokeArgs Empty => new GetVpcGcpInfoInvokeArgs();
     }
 
 

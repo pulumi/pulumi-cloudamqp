@@ -14,7 +14,7 @@ import (
 //
 // ## Attributes reference
 //
-// All attributes reference are computed
+// # All attributes reference are computed
 //
 // * `id`          - The identifier for this resource.
 // * `name`        - The name of the CloudAMQP instance.

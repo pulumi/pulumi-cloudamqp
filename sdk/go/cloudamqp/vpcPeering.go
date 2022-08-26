@@ -149,7 +149,7 @@ func (i *VpcPeering) ToVpcPeeringOutputWithContext(ctx context.Context) VpcPeeri
 // VpcPeeringArrayInput is an input type that accepts VpcPeeringArray and VpcPeeringArrayOutput values.
 // You can construct a concrete instance of `VpcPeeringArrayInput` via:
 //
-//          VpcPeeringArray{ VpcPeeringArgs{...} }
+//	VpcPeeringArray{ VpcPeeringArgs{...} }
 type VpcPeeringArrayInput interface {
 	pulumi.Input
 
@@ -174,7 +174,7 @@ func (i VpcPeeringArray) ToVpcPeeringArrayOutputWithContext(ctx context.Context)
 // VpcPeeringMapInput is an input type that accepts VpcPeeringMap and VpcPeeringMapOutput values.
 // You can construct a concrete instance of `VpcPeeringMapInput` via:
 //
-//          VpcPeeringMap{ "key": VpcPeeringArgs{...} }
+//	VpcPeeringMap{ "key": VpcPeeringArgs{...} }
 type VpcPeeringMapInput interface {
 	pulumi.Input
 
@@ -208,6 +208,36 @@ func (o VpcPeeringOutput) ToVpcPeeringOutput() VpcPeeringOutput {
 
 func (o VpcPeeringOutput) ToVpcPeeringOutputWithContext(ctx context.Context) VpcPeeringOutput {
 	return o
+}
+
+// The CloudAMQP instance identifier.
+func (o VpcPeeringOutput) InstanceId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VpcPeering) pulumi.IntPtrOutput { return v.InstanceId }).(pulumi.IntPtrOutput)
+}
+
+// Peering identifier created by AW peering request.
+func (o VpcPeeringOutput) PeeringId() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpcPeering) pulumi.StringOutput { return v.PeeringId }).(pulumi.StringOutput)
+}
+
+// Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+func (o VpcPeeringOutput) Sleep() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VpcPeering) pulumi.IntPtrOutput { return v.Sleep }).(pulumi.IntPtrOutput)
+}
+
+// VPC peering status
+func (o VpcPeeringOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpcPeering) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+func (o VpcPeeringOutput) Timeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VpcPeering) pulumi.IntPtrOutput { return v.Timeout }).(pulumi.IntPtrOutput)
+}
+
+// The managed VPC identifier.
+func (o VpcPeeringOutput) VpcId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpcPeering) pulumi.StringPtrOutput { return v.VpcId }).(pulumi.StringPtrOutput)
 }
 
 type VpcPeeringArrayOutput struct{ *pulumi.OutputState }

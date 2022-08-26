@@ -25,22 +25,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := cloudamqp.NewPlugin(ctx, "rabbitmqTop", &cloudamqp.PluginArgs{
-// 			InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
-// 			Enabled:    pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewPlugin(ctx, "rabbitmqTop", &cloudamqp.PluginArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Enabled:    pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // **Enable multiple plugins**
@@ -49,31 +52,34 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		rabbitmqTop, err := cloudamqp.NewPlugin(ctx, "rabbitmqTop", &cloudamqp.PluginArgs{
-// 			InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
-// 			Enabled:    pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = cloudamqp.NewPlugin(ctx, "rabbitmqAmqp10", &cloudamqp.PluginArgs{
-// 			InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
-// 			Enabled:    pulumi.Bool(true),
-// 		}, pulumi.DependsOn([]pulumi.Resource{
-// 			rabbitmqTop,
-// 		}))
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			rabbitmqTop, err := cloudamqp.NewPlugin(ctx, "rabbitmqTop", &cloudamqp.PluginArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Enabled:    pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewPlugin(ctx, "rabbitmqAmqp10", &cloudamqp.PluginArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Enabled:    pulumi.Bool(true),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				rabbitmqTop,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ## Dependency
 //
@@ -86,7 +92,9 @@ import (
 // `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
 //
 // ```sh
-//  $ pulumi import cloudamqp:index/plugin:Plugin rabbitmq_management rabbitmq_management,<instance_id>`
+//
+//	$ pulumi import cloudamqp:index/plugin:Plugin rabbitmq_management rabbitmq_management,<instance_id>`
+//
 // ```
 type Plugin struct {
 	pulumi.CustomResourceState
@@ -200,7 +208,7 @@ func (i *Plugin) ToPluginOutputWithContext(ctx context.Context) PluginOutput {
 // PluginArrayInput is an input type that accepts PluginArray and PluginArrayOutput values.
 // You can construct a concrete instance of `PluginArrayInput` via:
 //
-//          PluginArray{ PluginArgs{...} }
+//	PluginArray{ PluginArgs{...} }
 type PluginArrayInput interface {
 	pulumi.Input
 
@@ -225,7 +233,7 @@ func (i PluginArray) ToPluginArrayOutputWithContext(ctx context.Context) PluginA
 // PluginMapInput is an input type that accepts PluginMap and PluginMapOutput values.
 // You can construct a concrete instance of `PluginMapInput` via:
 //
-//          PluginMap{ "key": PluginArgs{...} }
+//	PluginMap{ "key": PluginArgs{...} }
 type PluginMapInput interface {
 	pulumi.Input
 
@@ -259,6 +267,21 @@ func (o PluginOutput) ToPluginOutput() PluginOutput {
 
 func (o PluginOutput) ToPluginOutputWithContext(ctx context.Context) PluginOutput {
 	return o
+}
+
+// Enable or disable the plugins.
+func (o PluginOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Plugin) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The CloudAMQP instance ID.
+func (o PluginOutput) InstanceId() pulumi.IntOutput {
+	return o.ApplyT(func(v *Plugin) pulumi.IntOutput { return v.InstanceId }).(pulumi.IntOutput)
+}
+
+// The name of the Rabbit MQ plugin.
+func (o PluginOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Plugin) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
 type PluginArrayOutput struct{ *pulumi.OutputState }

@@ -19,20 +19,18 @@ namespace Pulumi.CloudAmqp
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using CloudAmqp = Pulumi.CloudAmqp;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var nodes = CloudAmqp.GetNodes.Invoke(new()
         ///     {
-        ///         var nodes = Output.Create(CloudAmqp.GetNodes.InvokeAsync(new CloudAmqp.GetNodesArgs
-        ///         {
-        ///             InstanceId = cloudamqp_instance.Instance.Id,
-        ///         }));
-        ///     }
+        ///         InstanceId = cloudamqp_instance.Instance.Id,
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -70,20 +68,18 @@ namespace Pulumi.CloudAmqp
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using CloudAmqp = Pulumi.CloudAmqp;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var nodes = CloudAmqp.GetNodes.Invoke(new()
         ///     {
-        ///         var nodes = Output.Create(CloudAmqp.GetNodes.InvokeAsync(new CloudAmqp.GetNodesArgs
-        ///         {
-        ///             InstanceId = cloudamqp_instance.Instance.Id,
-        ///         }));
-        ///     }
+        ///         InstanceId = cloudamqp_instance.Instance.Id,
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -115,7 +111,7 @@ namespace Pulumi.CloudAmqp
     }
 
 
-    public sealed class GetNodesArgs : Pulumi.InvokeArgs
+    public sealed class GetNodesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The CloudAMQP instance identifier.
@@ -126,9 +122,10 @@ namespace Pulumi.CloudAmqp
         public GetNodesArgs()
         {
         }
+        public static new GetNodesArgs Empty => new GetNodesArgs();
     }
 
-    public sealed class GetNodesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetNodesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The CloudAMQP instance identifier.
@@ -139,6 +136,7 @@ namespace Pulumi.CloudAmqp
         public GetNodesInvokeArgs()
         {
         }
+        public static new GetNodesInvokeArgs Empty => new GetNodesInvokeArgs();
     }
 
 

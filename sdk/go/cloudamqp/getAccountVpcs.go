@@ -11,14 +11,14 @@ import (
 //
 // ## Attributes reference
 //
-// All attributes reference are computed
+// # All attributes reference are computed
 //
 // * `id`      - The identifier for this data source. Set to `na` since there is no unique identifier.
 // * `vpcs`    - An array of VPCs. Each `vpcs` block consists of the fields documented below.
 //
 // ***
 //
-// The `vpcs` block consist of
+// # The `vpcs` block consist of
 //
 // * `id`          - The VPC identifier.
 // * `name`        - The VPC instance name.

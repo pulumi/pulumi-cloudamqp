@@ -21,52 +21,49 @@ namespace Pulumi.CloudAmqp
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var rabbitmqTop = new CloudAmqp.Plugin("rabbitmqTop", new()
     ///     {
-    ///         var rabbitmqTop = new CloudAmqp.Plugin("rabbitmqTop", new CloudAmqp.PluginArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///             Enabled = true,
-    ///         });
-    ///     }
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// **Enable multiple plugins**
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var rabbitmqTop = new CloudAmqp.Plugin("rabbitmqTop", new()
     ///     {
-    ///         var rabbitmqTop = new CloudAmqp.Plugin("rabbitmqTop", new CloudAmqp.PluginArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///             Enabled = true,
-    ///         });
-    ///         var rabbitmqAmqp10 = new CloudAmqp.Plugin("rabbitmqAmqp10", new CloudAmqp.PluginArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///             Enabled = true,
-    ///         }, new CustomResourceOptions
-    ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 rabbitmqTop,
-    ///             },
-    ///         });
-    ///     }
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    ///     var rabbitmqAmqp10 = new CloudAmqp.Plugin("rabbitmqAmqp10", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Enabled = true,
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             rabbitmqTop,
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// ## Dependency
     /// 
@@ -83,7 +80,7 @@ namespace Pulumi.CloudAmqp
     /// ```
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/plugin:Plugin")]
-    public partial class Plugin : Pulumi.CustomResource
+    public partial class Plugin : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Enable or disable the plugins.
@@ -147,7 +144,7 @@ namespace Pulumi.CloudAmqp
         }
     }
 
-    public sealed class PluginArgs : Pulumi.ResourceArgs
+    public sealed class PluginArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Enable or disable the plugins.
@@ -170,9 +167,10 @@ namespace Pulumi.CloudAmqp
         public PluginArgs()
         {
         }
+        public static new PluginArgs Empty => new PluginArgs();
     }
 
-    public sealed class PluginState : Pulumi.ResourceArgs
+    public sealed class PluginState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Enable or disable the plugins.
@@ -195,5 +193,6 @@ namespace Pulumi.CloudAmqp
         public PluginState()
         {
         }
+        public static new PluginState Empty => new PluginState();
     }
 }

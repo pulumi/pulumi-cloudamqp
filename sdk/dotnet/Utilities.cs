@@ -74,7 +74,7 @@ namespace Pulumi.CloudAmqp
         }
     }
 
-    internal sealed class CloudAmqpResourceTypeAttribute : Pulumi.ResourceTypeAttribute
+    internal sealed class CloudAmqpResourceTypeAttribute : global::Pulumi.ResourceTypeAttribute
     {
         public CloudAmqpResourceTypeAttribute(string type) : base(type, Utilities.Version)
         {

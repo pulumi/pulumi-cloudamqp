@@ -21,23 +21,26 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := cloudamqp.NewNotification(ctx, "recipient01", &cloudamqp.NotificationArgs{
-// 			InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
-// 			Type:       pulumi.String("email"),
-// 			Value:      pulumi.String("alarm@example.com"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewNotification(ctx, "recipient01", &cloudamqp.NotificationArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Type:       pulumi.String("email"),
+//				Value:      pulumi.String("alarm@example.com"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ## Notification Type reference
 //
@@ -61,7 +64,9 @@ import (
 // `cloudamqp_notification` can be imported using CloudAMQP internal identifier of a recipient together (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
 //
 // ```sh
-//  $ pulumi import cloudamqp:index/notification:Notification recipient <id>,<instance_id>`
+//
+//	$ pulumi import cloudamqp:index/notification:Notification recipient <id>,<instance_id>`
+//
 // ```
 type Notification struct {
 	pulumi.CustomResourceState
@@ -188,7 +193,7 @@ func (i *Notification) ToNotificationOutputWithContext(ctx context.Context) Noti
 // NotificationArrayInput is an input type that accepts NotificationArray and NotificationArrayOutput values.
 // You can construct a concrete instance of `NotificationArrayInput` via:
 //
-//          NotificationArray{ NotificationArgs{...} }
+//	NotificationArray{ NotificationArgs{...} }
 type NotificationArrayInput interface {
 	pulumi.Input
 
@@ -213,7 +218,7 @@ func (i NotificationArray) ToNotificationArrayOutputWithContext(ctx context.Cont
 // NotificationMapInput is an input type that accepts NotificationMap and NotificationMapOutput values.
 // You can construct a concrete instance of `NotificationMapInput` via:
 //
-//          NotificationMap{ "key": NotificationArgs{...} }
+//	NotificationMap{ "key": NotificationArgs{...} }
 type NotificationMapInput interface {
 	pulumi.Input
 
@@ -247,6 +252,26 @@ func (o NotificationOutput) ToNotificationOutput() NotificationOutput {
 
 func (o NotificationOutput) ToNotificationOutputWithContext(ctx context.Context) NotificationOutput {
 	return o
+}
+
+// The CloudAMQP instance ID.
+func (o NotificationOutput) InstanceId() pulumi.IntOutput {
+	return o.ApplyT(func(v *Notification) pulumi.IntOutput { return v.InstanceId }).(pulumi.IntOutput)
+}
+
+// Display name of the recipient.
+func (o NotificationOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Notification) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Type of the notification. See valid options below.
+func (o NotificationOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *Notification) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+// Endpoint to send the notification.
+func (o NotificationOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v *Notification) pulumi.StringOutput { return v.Value }).(pulumi.StringOutput)
 }
 
 type NotificationArrayOutput struct{ *pulumi.OutputState }

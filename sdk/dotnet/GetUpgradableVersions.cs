@@ -19,20 +19,18 @@ namespace Pulumi.CloudAmqp
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using CloudAmqp = Pulumi.CloudAmqp;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var versions = CloudAmqp.GetUpgradableVersions.Invoke(new()
         ///     {
-        ///         var versions = Output.Create(CloudAmqp.GetUpgradableVersions.InvokeAsync(new CloudAmqp.GetUpgradableVersionsArgs
-        ///         {
-        ///             InstanceId = cloudamqp_instance.Instance.Id,
-        ///         }));
-        ///     }
+        ///         InstanceId = cloudamqp_instance.Instance.Id,
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -58,20 +56,18 @@ namespace Pulumi.CloudAmqp
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using CloudAmqp = Pulumi.CloudAmqp;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var versions = CloudAmqp.GetUpgradableVersions.Invoke(new()
         ///     {
-        ///         var versions = Output.Create(CloudAmqp.GetUpgradableVersions.InvokeAsync(new CloudAmqp.GetUpgradableVersionsArgs
-        ///         {
-        ///             InstanceId = cloudamqp_instance.Instance.Id,
-        ///         }));
-        ///     }
+        ///         InstanceId = cloudamqp_instance.Instance.Id,
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -91,7 +87,7 @@ namespace Pulumi.CloudAmqp
     }
 
 
-    public sealed class GetUpgradableVersionsArgs : Pulumi.InvokeArgs
+    public sealed class GetUpgradableVersionsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The CloudAMQP instance identifier.
@@ -102,9 +98,10 @@ namespace Pulumi.CloudAmqp
         public GetUpgradableVersionsArgs()
         {
         }
+        public static new GetUpgradableVersionsArgs Empty => new GetUpgradableVersionsArgs();
     }
 
-    public sealed class GetUpgradableVersionsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetUpgradableVersionsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The CloudAMQP instance identifier.
@@ -115,6 +112,7 @@ namespace Pulumi.CloudAmqp
         public GetUpgradableVersionsInvokeArgs()
         {
         }
+        public static new GetUpgradableVersionsInvokeArgs Empty => new GetUpgradableVersionsInvokeArgs();
     }
 
 

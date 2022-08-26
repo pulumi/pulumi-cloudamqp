@@ -24,23 +24,21 @@ namespace Pulumi.CloudAmqp
     ///   &lt;/summary&gt;
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     // New recipient to receieve notifications
+    ///     var nodeAction = new CloudAmqp.NodeActions("nodeAction", new()
     ///     {
-    ///         // New recipient to receieve notifications
-    ///         var nodeAction = new CloudAmqp.NodeActions("nodeAction", new CloudAmqp.NodeActionsArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///             NodeName = "&lt;node name&gt;",
-    ///             Action = "restart",
-    ///         });
-    ///     }
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         NodeName = "&lt;node name&gt;",
+    ///         Action = "restart",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// &lt;/details&gt;
     /// 
@@ -55,51 +53,52 @@ namespace Pulumi.CloudAmqp
     ///   &lt;/summary&gt;
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var listNodes = CloudAmqp.GetNodes.Invoke(new()
     ///     {
-    ///         var listNodes = Output.Create(CloudAmqp.GetNodes.InvokeAsync(new CloudAmqp.GetNodesArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///         }));
-    ///         var restart01 = new CloudAmqp.NodeActions("restart01", new CloudAmqp.NodeActionsArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///             Action = "restart",
-    ///             NodeName = listNodes.Apply(listNodes =&gt; listNodes.Nodes?[0]?.Name),
-    ///         });
-    ///         var restart02 = new CloudAmqp.NodeActions("restart02", new CloudAmqp.NodeActionsArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///             Action = "restart",
-    ///             NodeName = listNodes.Apply(listNodes =&gt; listNodes.Nodes?[1]?.Name),
-    ///         }, new CustomResourceOptions
-    ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 restart01,
-    ///             },
-    ///         });
-    ///         var restart03 = new CloudAmqp.NodeActions("restart03", new CloudAmqp.NodeActionsArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///             Action = "restart",
-    ///             NodeName = listNodes.Apply(listNodes =&gt; listNodes.Nodes?[2]?.Name),
-    ///         }, new CustomResourceOptions
-    ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 restart01,
-    ///                 restart02,
-    ///             },
-    ///         });
-    ///     }
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///     });
     /// 
-    /// }
+    ///     var restart01 = new CloudAmqp.NodeActions("restart01", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Action = "restart",
+    ///         NodeName = listNodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[0]?.Name),
+    ///     });
+    /// 
+    ///     var restart02 = new CloudAmqp.NodeActions("restart02", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Action = "restart",
+    ///         NodeName = listNodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[1]?.Name),
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             restart01,
+    ///         },
+    ///     });
+    /// 
+    ///     var restart03 = new CloudAmqp.NodeActions("restart03", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Action = "restart",
+    ///         NodeName = listNodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[2]?.Name),
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             restart01,
+    ///             restart02,
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// &lt;/details&gt;
     /// 
@@ -111,64 +110,66 @@ namespace Pulumi.CloudAmqp
     ///   &lt;/summary&gt;
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var listNodes = CloudAmqp.GetNodes.Invoke(new()
     ///     {
-    ///         var listNodes = Output.Create(CloudAmqp.GetNodes.InvokeAsync(new CloudAmqp.GetNodesArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///         }));
-    ///         var rabbitmqConfig = new CloudAmqp.RabbitConfiguration("rabbitmqConfig", new CloudAmqp.RabbitConfigurationArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///             LogExchangeLevel = "info",
-    ///         });
-    ///         var restart01 = new CloudAmqp.NodeActions("restart01", new CloudAmqp.NodeActionsArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///             Action = "restart",
-    ///             NodeName = listNodes.Apply(listNodes =&gt; listNodes.Nodes?[0]?.Name),
-    ///         }, new CustomResourceOptions
-    ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 rabbitmqConfig,
-    ///             },
-    ///         });
-    ///         var restart02 = new CloudAmqp.NodeActions("restart02", new CloudAmqp.NodeActionsArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///             Action = "restart",
-    ///             NodeName = listNodes.Apply(listNodes =&gt; listNodes.Nodes?[1]?.Name),
-    ///         }, new CustomResourceOptions
-    ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 rabbitmqConfig,
-    ///                 restart01,
-    ///             },
-    ///         });
-    ///         var restart03 = new CloudAmqp.NodeActions("restart03", new CloudAmqp.NodeActionsArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///             Action = "restart",
-    ///             NodeName = listNodes.Apply(listNodes =&gt; listNodes.Nodes?[2]?.Name),
-    ///         }, new CustomResourceOptions
-    ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 rabbitmqConfig,
-    ///                 restart01,
-    ///                 restart02,
-    ///             },
-    ///         });
-    ///     }
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///     });
     /// 
-    /// }
+    ///     var rabbitmqConfig = new CloudAmqp.RabbitConfiguration("rabbitmqConfig", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         LogExchangeLevel = "info",
+    ///     });
+    /// 
+    ///     var restart01 = new CloudAmqp.NodeActions("restart01", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Action = "restart",
+    ///         NodeName = listNodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[0]?.Name),
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             rabbitmqConfig,
+    ///         },
+    ///     });
+    /// 
+    ///     var restart02 = new CloudAmqp.NodeActions("restart02", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Action = "restart",
+    ///         NodeName = listNodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[1]?.Name),
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             rabbitmqConfig,
+    ///             restart01,
+    ///         },
+    ///     });
+    /// 
+    ///     var restart03 = new CloudAmqp.NodeActions("restart03", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Action = "restart",
+    ///         NodeName = listNodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[2]?.Name),
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             rabbitmqConfig,
+    ///             restart01,
+    ///             restart02,
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// &lt;/details&gt;
     /// ## Action reference
@@ -192,7 +193,7 @@ namespace Pulumi.CloudAmqp
     /// This resource cannot be imported.
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/nodeActions:NodeActions")]
-    public partial class NodeActions : Pulumi.CustomResource
+    public partial class NodeActions : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The action to invoke on the node.
@@ -262,7 +263,7 @@ namespace Pulumi.CloudAmqp
         }
     }
 
-    public sealed class NodeActionsArgs : Pulumi.ResourceArgs
+    public sealed class NodeActionsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The action to invoke on the node.
@@ -285,9 +286,10 @@ namespace Pulumi.CloudAmqp
         public NodeActionsArgs()
         {
         }
+        public static new NodeActionsArgs Empty => new NodeActionsArgs();
     }
 
-    public sealed class NodeActionsState : Pulumi.ResourceArgs
+    public sealed class NodeActionsState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The action to invoke on the node.
@@ -316,5 +318,6 @@ namespace Pulumi.CloudAmqp
         public NodeActionsState()
         {
         }
+        public static new NodeActionsState Empty => new NodeActionsState();
     }
 }

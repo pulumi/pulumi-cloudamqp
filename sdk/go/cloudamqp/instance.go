@@ -16,10 +16,12 @@ import (
 // `cloudamqp_instance`can be imported using CloudAMQP internal identifier.
 //
 // ```sh
-//  $ pulumi import cloudamqp:index/instance:Instance instance <id>`
+//
+//	$ pulumi import cloudamqp:index/instance:Instance instance <id>`
+//
 // ```
 //
-//  To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances). Or use the data source [`cloudamqp_account`](https://registry.terraform.io/providers/cloudamqp/cloudamqp/latest/docs/data-sources/account) to list all available instances for an account.
+//	To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances). Or use the data source [`cloudamqp_account`](https://registry.terraform.io/providers/cloudamqp/cloudamqp/latest/docs/data-sources/account) to list all available instances for an account.
 type Instance struct {
 	pulumi.CustomResourceState
 
@@ -244,7 +246,7 @@ func (i *Instance) ToInstanceOutputWithContext(ctx context.Context) InstanceOutp
 // InstanceArrayInput is an input type that accepts InstanceArray and InstanceArrayOutput values.
 // You can construct a concrete instance of `InstanceArrayInput` via:
 //
-//          InstanceArray{ InstanceArgs{...} }
+//	InstanceArray{ InstanceArgs{...} }
 type InstanceArrayInput interface {
 	pulumi.Input
 
@@ -269,7 +271,7 @@ func (i InstanceArray) ToInstanceArrayOutputWithContext(ctx context.Context) Ins
 // InstanceMapInput is an input type that accepts InstanceMap and InstanceMapOutput values.
 // You can construct a concrete instance of `InstanceMapInput` via:
 //
-//          InstanceMap{ "key": InstanceArgs{...} }
+//	InstanceMap{ "key": InstanceArgs{...} }
 type InstanceMapInput interface {
 	pulumi.Input
 
@@ -303,6 +305,91 @@ func (o InstanceOutput) ToInstanceOutput() InstanceOutput {
 
 func (o InstanceOutput) ToInstanceOutputWithContext(ctx context.Context) InstanceOutput {
 	return o
+}
+
+// API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
+func (o InstanceOutput) Apikey() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.Apikey }).(pulumi.StringOutput)
+}
+
+// Is the instance hosted on a dedicated server
+func (o InstanceOutput) Dedicated() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Instance) pulumi.BoolOutput { return v.Dedicated }).(pulumi.BoolOutput)
+}
+
+// The external hostname for the CloudAMQP instance.
+func (o InstanceOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.Host }).(pulumi.StringOutput)
+}
+
+// The internal hostname for the CloudAMQP instance.
+func (o InstanceOutput) HostInternal() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.HostInternal }).(pulumi.StringOutput)
+}
+
+// Keep associated VPC when deleting instance, default set to false.
+func (o InstanceOutput) KeepAssociatedVpc() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Instance) pulumi.BoolPtrOutput { return v.KeepAssociatedVpc }).(pulumi.BoolPtrOutput)
+}
+
+// Name of the CloudAMQP instance.
+func (o InstanceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
+func (o InstanceOutput) NoDefaultAlarms() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Instance) pulumi.BoolOutput { return v.NoDefaultAlarms }).(pulumi.BoolOutput)
+}
+
+// Number of nodes, 1, 3 or 5 depending on plan used.
+func (o InstanceOutput) Nodes() pulumi.IntOutput {
+	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.Nodes }).(pulumi.IntOutput)
+}
+
+// The subscription plan. See available plans
+func (o InstanceOutput) Plan() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.Plan }).(pulumi.StringOutput)
+}
+
+// Flag describing if the resource is ready
+func (o InstanceOutput) Ready() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Instance) pulumi.BoolOutput { return v.Ready }).(pulumi.BoolOutput)
+}
+
+// The region to host the instance in. See Instance regions
+func (o InstanceOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.
+func (o InstanceOutput) RmqVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.RmqVersion }).(pulumi.StringOutput)
+}
+
+// One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
+func (o InstanceOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+// The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
+func (o InstanceOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.Url }).(pulumi.StringOutput)
+}
+
+// The virtual host used by Rabbit MQ.
+func (o InstanceOutput) Vhost() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.Vhost }).(pulumi.StringOutput)
+}
+
+// The VPC ID. Use this to create your instance in an existing VPC. See available example.
+func (o InstanceOutput) VpcId() pulumi.IntOutput {
+	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.VpcId }).(pulumi.IntOutput)
+}
+
+// Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24.
+func (o InstanceOutput) VpcSubnet() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.VpcSubnet }).(pulumi.StringOutput)
 }
 
 type InstanceArrayOutput struct{ *pulumi.OutputState }

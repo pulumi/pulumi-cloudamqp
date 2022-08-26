@@ -23,21 +23,19 @@ namespace Pulumi.CloudAmqp
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var settings = new CloudAmqp.CustomDomain("settings", new()
     ///     {
-    ///         var settings = new CloudAmqp.CustomDomain("settings", new CloudAmqp.CustomDomainArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///             Hostname = "myname.mydomain",
-    ///         });
-    ///     }
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Hostname = "myname.mydomain",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// ## Depedency
     /// 
@@ -54,7 +52,7 @@ namespace Pulumi.CloudAmqp
     ///  [Let's Encrypt]https://letsencrypt.org/
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/customDomain:CustomDomain")]
-    public partial class CustomDomain : Pulumi.CustomResource
+    public partial class CustomDomain : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Your custom domain name.
@@ -112,7 +110,7 @@ namespace Pulumi.CloudAmqp
         }
     }
 
-    public sealed class CustomDomainArgs : Pulumi.ResourceArgs
+    public sealed class CustomDomainArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Your custom domain name.
@@ -129,9 +127,10 @@ namespace Pulumi.CloudAmqp
         public CustomDomainArgs()
         {
         }
+        public static new CustomDomainArgs Empty => new CustomDomainArgs();
     }
 
-    public sealed class CustomDomainState : Pulumi.ResourceArgs
+    public sealed class CustomDomainState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Your custom domain name.
@@ -148,5 +147,6 @@ namespace Pulumi.CloudAmqp
         public CustomDomainState()
         {
         }
+        public static new CustomDomainState Empty => new CustomDomainState();
     }
 }

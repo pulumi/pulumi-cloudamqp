@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     [CloudAmqpResourceType("cloudamqp:index/integrationMetric:IntegrationMetric")]
-    public partial class IntegrationMetric : Pulumi.CustomResource
+    public partial class IntegrationMetric : global::Pulumi.CustomResource
     {
         /// <summary>
         /// AWS access key identifier. (Cloudwatch)
@@ -152,7 +152,7 @@ namespace Pulumi.CloudAmqp
         }
     }
 
-    public sealed class IntegrationMetricArgs : Pulumi.ResourceArgs
+    public sealed class IntegrationMetricArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// AWS access key identifier. (Cloudwatch)
@@ -253,9 +253,10 @@ namespace Pulumi.CloudAmqp
         public IntegrationMetricArgs()
         {
         }
+        public static new IntegrationMetricArgs Empty => new IntegrationMetricArgs();
     }
 
-    public sealed class IntegrationMetricState : Pulumi.ResourceArgs
+    public sealed class IntegrationMetricState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// AWS access key identifier. (Cloudwatch)
@@ -356,5 +357,6 @@ namespace Pulumi.CloudAmqp
         public IntegrationMetricState()
         {
         }
+        public static new IntegrationMetricState Empty => new IntegrationMetricState();
     }
 }

@@ -25,30 +25,33 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
-// 			Plan:       pulumi.String("squirrel-1"),
-// 			Region:     pulumi.String("amazon-web-services::us-west-2"),
-// 			RmqVersion: pulumi.String("3.10.1"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = cloudamqp.NewExtraDiskSize(ctx, "resizeDisk", &cloudamqp.ExtraDiskSizeArgs{
-// 			InstanceId:    instance.ID(),
-// 			ExtraDiskSize: pulumi.Int(25),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Plan:       pulumi.String("squirrel-1"),
+//				Region:     pulumi.String("amazon-web-services::us-west-2"),
+//				RmqVersion: pulumi.String("3.10.1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewExtraDiskSize(ctx, "resizeDisk", &cloudamqp.ExtraDiskSizeArgs{
+//				InstanceId:    instance.ID(),
+//				ExtraDiskSize: pulumi.Int(25),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -156,7 +159,7 @@ func (i *ExtraDiskSize) ToExtraDiskSizeOutputWithContext(ctx context.Context) Ex
 // ExtraDiskSizeArrayInput is an input type that accepts ExtraDiskSizeArray and ExtraDiskSizeArrayOutput values.
 // You can construct a concrete instance of `ExtraDiskSizeArrayInput` via:
 //
-//          ExtraDiskSizeArray{ ExtraDiskSizeArgs{...} }
+//	ExtraDiskSizeArray{ ExtraDiskSizeArgs{...} }
 type ExtraDiskSizeArrayInput interface {
 	pulumi.Input
 
@@ -181,7 +184,7 @@ func (i ExtraDiskSizeArray) ToExtraDiskSizeArrayOutputWithContext(ctx context.Co
 // ExtraDiskSizeMapInput is an input type that accepts ExtraDiskSizeMap and ExtraDiskSizeMapOutput values.
 // You can construct a concrete instance of `ExtraDiskSizeMapInput` via:
 //
-//          ExtraDiskSizeMap{ "key": ExtraDiskSizeArgs{...} }
+//	ExtraDiskSizeMap{ "key": ExtraDiskSizeArgs{...} }
 type ExtraDiskSizeMapInput interface {
 	pulumi.Input
 
@@ -215,6 +218,16 @@ func (o ExtraDiskSizeOutput) ToExtraDiskSizeOutput() ExtraDiskSizeOutput {
 
 func (o ExtraDiskSizeOutput) ToExtraDiskSizeOutputWithContext(ctx context.Context) ExtraDiskSizeOutput {
 	return o
+}
+
+// Extra disk size in GB. Supported values: 25, 50, 100, 250, 500, 1000, 2000
+func (o ExtraDiskSizeOutput) ExtraDiskSize() pulumi.IntOutput {
+	return o.ApplyT(func(v *ExtraDiskSize) pulumi.IntOutput { return v.ExtraDiskSize }).(pulumi.IntOutput)
+}
+
+// The CloudAMQP instance ID.
+func (o ExtraDiskSizeOutput) InstanceId() pulumi.IntOutput {
+	return o.ApplyT(func(v *ExtraDiskSize) pulumi.IntOutput { return v.InstanceId }).(pulumi.IntOutput)
 }
 
 type ExtraDiskSizeArrayOutput struct{ *pulumi.OutputState }

@@ -19,21 +19,19 @@ namespace Pulumi.CloudAmqp
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using CloudAmqp = Pulumi.CloudAmqp;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var defaultCpuAlarm = CloudAmqp.GetAlarm.Invoke(new()
         ///     {
-        ///         var defaultCpuAlarm = Output.Create(CloudAmqp.GetAlarm.InvokeAsync(new CloudAmqp.GetAlarmArgs
-        ///         {
-        ///             InstanceId = cloudamqp_instance.Instance.Id,
-        ///             Type = "cpu",
-        ///         }));
-        ///     }
+        ///         InstanceId = cloudamqp_instance.Instance.Id,
+        ///         Type = "cpu",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -74,21 +72,19 @@ namespace Pulumi.CloudAmqp
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using CloudAmqp = Pulumi.CloudAmqp;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var defaultCpuAlarm = CloudAmqp.GetAlarm.Invoke(new()
         ///     {
-        ///         var defaultCpuAlarm = Output.Create(CloudAmqp.GetAlarm.InvokeAsync(new CloudAmqp.GetAlarmArgs
-        ///         {
-        ///             InstanceId = cloudamqp_instance.Instance.Id,
-        ///             Type = "cpu",
-        ///         }));
-        ///     }
+        ///         InstanceId = cloudamqp_instance.Instance.Id,
+        ///         Type = "cpu",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -123,7 +119,7 @@ namespace Pulumi.CloudAmqp
     }
 
 
-    public sealed class GetAlarmArgs : Pulumi.InvokeArgs
+    public sealed class GetAlarmArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The alarm identifier. Either use this or `type` to give `cloudamqp.Alarm` necessary information to retrieve the alarm.
@@ -149,9 +145,10 @@ namespace Pulumi.CloudAmqp
         public GetAlarmArgs()
         {
         }
+        public static new GetAlarmArgs Empty => new GetAlarmArgs();
     }
 
-    public sealed class GetAlarmInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetAlarmInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The alarm identifier. Either use this or `type` to give `cloudamqp.Alarm` necessary information to retrieve the alarm.
@@ -177,6 +174,7 @@ namespace Pulumi.CloudAmqp
         public GetAlarmInvokeArgs()
         {
         }
+        public static new GetAlarmInvokeArgs Empty => new GetAlarmInvokeArgs();
     }
 
 

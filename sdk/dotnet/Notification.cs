@@ -17,23 +17,21 @@ namespace Pulumi.CloudAmqp
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     // New recipient to receieve notifications
+    ///     var recipient01 = new CloudAmqp.Notification("recipient01", new()
     ///     {
-    ///         // New recipient to receieve notifications
-    ///         var recipient01 = new CloudAmqp.Notification("recipient01", new CloudAmqp.NotificationArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///             Type = "email",
-    ///             Value = "alarm@example.com",
-    ///         });
-    ///     }
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Type = "email",
+    ///         Value = "alarm@example.com",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// ## Notification Type reference
     /// 
@@ -61,7 +59,7 @@ namespace Pulumi.CloudAmqp
     /// ```
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/notification:Notification")]
-    public partial class Notification : Pulumi.CustomResource
+    public partial class Notification : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The CloudAMQP instance ID.
@@ -131,7 +129,7 @@ namespace Pulumi.CloudAmqp
         }
     }
 
-    public sealed class NotificationArgs : Pulumi.ResourceArgs
+    public sealed class NotificationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The CloudAMQP instance ID.
@@ -160,9 +158,10 @@ namespace Pulumi.CloudAmqp
         public NotificationArgs()
         {
         }
+        public static new NotificationArgs Empty => new NotificationArgs();
     }
 
-    public sealed class NotificationState : Pulumi.ResourceArgs
+    public sealed class NotificationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The CloudAMQP instance ID.
@@ -191,5 +190,6 @@ namespace Pulumi.CloudAmqp
         public NotificationState()
         {
         }
+        public static new NotificationState Empty => new NotificationState();
     }
 }

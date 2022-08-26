@@ -23,37 +23,40 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		vpc, err := cloudamqp.NewVpc(ctx, "vpc", &cloudamqp.VpcArgs{
-// 			Region: pulumi.String("amazon-web-services::us-east-1"),
-// 			Subnet: pulumi.String("10.56.72.0/24"),
-// 			Tags:   pulumi.StringArray{},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
-// 			Plan:       pulumi.String("bunny-1"),
-// 			Region:     pulumi.String("amazon-web-services::us-east-1"),
-// 			Nodes:      pulumi.Int(1),
-// 			Tags:       pulumi.StringArray{},
-// 			RmqVersion: pulumi.String("3.9.13"),
-// 			VpcId:      pulumi.Any(cloudamq_vpc.Vpc.Id),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_ = cloudamqp.GetVpcInfoOutput(ctx, GetVpcInfoOutputArgs{
-// 			VpcId: vpc.ID(),
-// 		}, nil)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			vpc, err := cloudamqp.NewVpc(ctx, "vpc", &cloudamqp.VpcArgs{
+//				Region: pulumi.String("amazon-web-services::us-east-1"),
+//				Subnet: pulumi.String("10.56.72.0/24"),
+//				Tags:   pulumi.StringArray{},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Plan:       pulumi.String("bunny-1"),
+//				Region:     pulumi.String("amazon-web-services::us-east-1"),
+//				Nodes:      pulumi.Int(1),
+//				Tags:       pulumi.StringArray{},
+//				RmqVersion: pulumi.String("3.9.13"),
+//				VpcId:      pulumi.Any(cloudamq_vpc.Vpc.Id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = cloudamqp.GetVpcInfoOutput(ctx, GetVpcInfoOutputArgs{
+//				VpcId: vpc.ID(),
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -61,10 +64,12 @@ import (
 // `cloudamqp_vpc` can be imported using the CloudAMQP VPC identifier.
 //
 // ```sh
-//  $ pulumi import cloudamqp:index/vpc:Vpc <resource_name> <vpc_id>`
+//
+//	$ pulumi import cloudamqp:index/vpc:Vpc <resource_name> <vpc_id>`
+//
 // ```
 //
-//  To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-vpcs). Or use the data source [`cloudamqp_account_vpcs`](https://registry.terraform.io/providers/cloudamqp/cloudamqp/latest/docs/data-sources/account_vpcs) to list all available standalone VPCs for an account.
+//	To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-vpcs). Or use the data source [`cloudamqp_account_vpcs`](https://registry.terraform.io/providers/cloudamqp/cloudamqp/latest/docs/data-sources/account_vpcs) to list all available standalone VPCs for an account.
 type Vpc struct {
 	pulumi.CustomResourceState
 
@@ -193,7 +198,7 @@ func (i *Vpc) ToVpcOutputWithContext(ctx context.Context) VpcOutput {
 // VpcArrayInput is an input type that accepts VpcArray and VpcArrayOutput values.
 // You can construct a concrete instance of `VpcArrayInput` via:
 //
-//          VpcArray{ VpcArgs{...} }
+//	VpcArray{ VpcArgs{...} }
 type VpcArrayInput interface {
 	pulumi.Input
 
@@ -218,7 +223,7 @@ func (i VpcArray) ToVpcArrayOutputWithContext(ctx context.Context) VpcArrayOutpu
 // VpcMapInput is an input type that accepts VpcMap and VpcMapOutput values.
 // You can construct a concrete instance of `VpcMapInput` via:
 //
-//          VpcMap{ "key": VpcArgs{...} }
+//	VpcMap{ "key": VpcArgs{...} }
 type VpcMapInput interface {
 	pulumi.Input
 
@@ -252,6 +257,31 @@ func (o VpcOutput) ToVpcOutput() VpcOutput {
 
 func (o VpcOutput) ToVpcOutputWithContext(ctx context.Context) VpcOutput {
 	return o
+}
+
+// The name of the VPC.
+func (o VpcOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vpc) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The hosted region for the managed standalone VPC
+func (o VpcOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vpc) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// The VPC subnet
+func (o VpcOutput) Subnet() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vpc) pulumi.StringOutput { return v.Subnet }).(pulumi.StringOutput)
+}
+
+// Tag the VPC with optional tags
+func (o VpcOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Vpc) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+// VPC name given when hosted at the cloud provider
+func (o VpcOutput) VpcName() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vpc) pulumi.StringOutput { return v.VpcName }).(pulumi.StringOutput)
 }
 
 type VpcArrayOutput struct{ *pulumi.OutputState }

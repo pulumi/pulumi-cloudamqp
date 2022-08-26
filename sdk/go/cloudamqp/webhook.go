@@ -21,26 +21,29 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := cloudamqp.NewWebhook(ctx, "webhookQueue", &cloudamqp.WebhookArgs{
-// 			InstanceId:    pulumi.Any(cloudamqp_instance.Instance.Id),
-// 			Vhost:         pulumi.String("myvhost"),
-// 			Queue:         pulumi.String("webhook-queue"),
-// 			WebhookUri:    pulumi.String("https://example.com/webhook?key=secret"),
-// 			RetryInterval: pulumi.Int(5),
-// 			Concurrency:   pulumi.Int(5),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewWebhook(ctx, "webhookQueue", &cloudamqp.WebhookArgs{
+//				InstanceId:    pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Vhost:         pulumi.String("myvhost"),
+//				Queue:         pulumi.String("webhook-queue"),
+//				WebhookUri:    pulumi.String("https://example.com/webhook?key=secret"),
+//				RetryInterval: pulumi.Int(5),
+//				Concurrency:   pulumi.Int(5),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ## Dependency
 //
@@ -51,7 +54,9 @@ import (
 // `cloudamqp_webhook` can be imported using the resource identifier together with CloudAMQP instance identifier. The identifiers are CSV separated, see example below.
 //
 // ```sh
-//  $ pulumi import cloudamqp:index/webhook:Webhook webhook_queue <id>,<instance_id>`
+//
+//	$ pulumi import cloudamqp:index/webhook:Webhook webhook_queue <id>,<instance_id>`
+//
 // ```
 type Webhook struct {
 	pulumi.CustomResourceState
@@ -207,7 +212,7 @@ func (i *Webhook) ToWebhookOutputWithContext(ctx context.Context) WebhookOutput 
 // WebhookArrayInput is an input type that accepts WebhookArray and WebhookArrayOutput values.
 // You can construct a concrete instance of `WebhookArrayInput` via:
 //
-//          WebhookArray{ WebhookArgs{...} }
+//	WebhookArray{ WebhookArgs{...} }
 type WebhookArrayInput interface {
 	pulumi.Input
 
@@ -232,7 +237,7 @@ func (i WebhookArray) ToWebhookArrayOutputWithContext(ctx context.Context) Webho
 // WebhookMapInput is an input type that accepts WebhookMap and WebhookMapOutput values.
 // You can construct a concrete instance of `WebhookMapInput` via:
 //
-//          WebhookMap{ "key": WebhookArgs{...} }
+//	WebhookMap{ "key": WebhookArgs{...} }
 type WebhookMapInput interface {
 	pulumi.Input
 
@@ -266,6 +271,36 @@ func (o WebhookOutput) ToWebhookOutput() WebhookOutput {
 
 func (o WebhookOutput) ToWebhookOutputWithContext(ctx context.Context) WebhookOutput {
 	return o
+}
+
+// Max simultaneous requests to the endpoint.
+func (o WebhookOutput) Concurrency() pulumi.IntOutput {
+	return o.ApplyT(func(v *Webhook) pulumi.IntOutput { return v.Concurrency }).(pulumi.IntOutput)
+}
+
+// The CloudAMQP instance ID.
+func (o WebhookOutput) InstanceId() pulumi.IntOutput {
+	return o.ApplyT(func(v *Webhook) pulumi.IntOutput { return v.InstanceId }).(pulumi.IntOutput)
+}
+
+// A (durable) queue on your RabbitMQ instance.
+func (o WebhookOutput) Queue() pulumi.StringOutput {
+	return o.ApplyT(func(v *Webhook) pulumi.StringOutput { return v.Queue }).(pulumi.StringOutput)
+}
+
+// How often we retry if your endpoint fails (in seconds).
+func (o WebhookOutput) RetryInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *Webhook) pulumi.IntOutput { return v.RetryInterval }).(pulumi.IntOutput)
+}
+
+// The vhost the queue resides in.
+func (o WebhookOutput) Vhost() pulumi.StringOutput {
+	return o.ApplyT(func(v *Webhook) pulumi.StringOutput { return v.Vhost }).(pulumi.StringOutput)
+}
+
+// A POST request will be made for each message in the queue to this endpoint.
+func (o WebhookOutput) WebhookUri() pulumi.StringOutput {
+	return o.ApplyT(func(v *Webhook) pulumi.StringOutput { return v.WebhookUri }).(pulumi.StringOutput)
 }
 
 type WebhookArrayOutput struct{ *pulumi.OutputState }

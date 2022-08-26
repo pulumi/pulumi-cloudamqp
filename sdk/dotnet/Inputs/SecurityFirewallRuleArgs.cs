@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp.Inputs
 {
 
-    public sealed class SecurityFirewallRuleArgs : Pulumi.ResourceArgs
+    public sealed class SecurityFirewallRuleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Description name of the rule. e.g. Default.
@@ -51,5 +51,6 @@ namespace Pulumi.CloudAmqp.Inputs
         public SecurityFirewallRuleArgs()
         {
         }
+        public static new SecurityFirewallRuleArgs Empty => new SecurityFirewallRuleArgs();
     }
 }

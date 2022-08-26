@@ -19,51 +19,51 @@ namespace Pulumi.CloudAmqp
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     // New recipient
+    ///     var recipient01 = new CloudAmqp.Notification("recipient01", new()
     ///     {
-    ///         // New recipient
-    ///         var recipient01 = new CloudAmqp.Notification("recipient01", new CloudAmqp.NotificationArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///             Type = "email",
-    ///             Value = "alarm@example.com",
-    ///         });
-    ///         // New cpu alarm
-    ///         var cpuAlarm = new CloudAmqp.Alarm("cpuAlarm", new CloudAmqp.AlarmArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///             Type = "cpu",
-    ///             Enabled = true,
-    ///             ReminderInterval = 600,
-    ///             ValueThreshold = 95,
-    ///             TimeThreshold = 600,
-    ///             Recipients = 
-    ///             {
-    ///                 recipient01.Id,
-    ///             },
-    ///         });
-    ///         // New memory alarm
-    ///         var memoryAlarm = new CloudAmqp.Alarm("memoryAlarm", new CloudAmqp.AlarmArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///             Type = "memory",
-    ///             Enabled = true,
-    ///             ReminderInterval = 600,
-    ///             ValueThreshold = 95,
-    ///             TimeThreshold = 600,
-    ///             Recipients = 
-    ///             {
-    ///                 recipient01.Id,
-    ///             },
-    ///         });
-    ///     }
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Type = "email",
+    ///         Value = "alarm@example.com",
+    ///     });
     /// 
-    /// }
+    ///     // New cpu alarm
+    ///     var cpuAlarm = new CloudAmqp.Alarm("cpuAlarm", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Type = "cpu",
+    ///         Enabled = true,
+    ///         ReminderInterval = 600,
+    ///         ValueThreshold = 95,
+    ///         TimeThreshold = 600,
+    ///         Recipients = new[]
+    ///         {
+    ///             recipient01.Id,
+    ///         },
+    ///     });
+    /// 
+    ///     // New memory alarm
+    ///     var memoryAlarm = new CloudAmqp.Alarm("memoryAlarm", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Type = "memory",
+    ///         Enabled = true,
+    ///         ReminderInterval = 600,
+    ///         ValueThreshold = 95,
+    ///         TimeThreshold = 600,
+    ///         Recipients = new[]
+    ///         {
+    ///             recipient01.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// ## Alarm Type reference
     /// 
@@ -98,7 +98,7 @@ namespace Pulumi.CloudAmqp
     /// ```
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/alarm:Alarm")]
-    public partial class Alarm : Pulumi.CustomResource
+    public partial class Alarm : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Enable or disable the alarm to trigger.
@@ -210,7 +210,7 @@ namespace Pulumi.CloudAmqp
         }
     }
 
-    public sealed class AlarmArgs : Pulumi.ResourceArgs
+    public sealed class AlarmArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Enable or disable the alarm to trigger.
@@ -287,9 +287,10 @@ namespace Pulumi.CloudAmqp
         public AlarmArgs()
         {
         }
+        public static new AlarmArgs Empty => new AlarmArgs();
     }
 
-    public sealed class AlarmState : Pulumi.ResourceArgs
+    public sealed class AlarmState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Enable or disable the alarm to trigger.
@@ -366,5 +367,6 @@ namespace Pulumi.CloudAmqp
         public AlarmState()
         {
         }
+        public static new AlarmState Empty => new AlarmState();
     }
 }
