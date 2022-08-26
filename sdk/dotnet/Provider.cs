@@ -16,7 +16,7 @@ namespace Pulumi.CloudAmqp
     /// [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
     /// </summary>
     [CloudAmqpResourceType("pulumi:providers:cloudamqp")]
-    public partial class Provider : Pulumi.ProviderResource
+    public partial class Provider : global::Pulumi.ProviderResource
     {
         /// <summary>
         /// Key used to authentication to the CloudAMQP Customer API
@@ -56,7 +56,7 @@ namespace Pulumi.CloudAmqp
         }
     }
 
-    public sealed class ProviderArgs : Pulumi.ResourceArgs
+    public sealed class ProviderArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Key used to authentication to the CloudAMQP Customer API
@@ -73,5 +73,6 @@ namespace Pulumi.CloudAmqp
         public ProviderArgs()
         {
         }
+        public static new ProviderArgs Empty => new ProviderArgs();
     }
 }

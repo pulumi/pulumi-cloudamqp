@@ -19,7 +19,7 @@ namespace Pulumi.CloudAmqp
     /// ```
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/securityFirewall:SecurityFirewall")]
-    public partial class SecurityFirewall : Pulumi.CustomResource
+    public partial class SecurityFirewall : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The CloudAMQP instance ID.
@@ -77,7 +77,7 @@ namespace Pulumi.CloudAmqp
         }
     }
 
-    public sealed class SecurityFirewallArgs : Pulumi.ResourceArgs
+    public sealed class SecurityFirewallArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The CloudAMQP instance ID.
@@ -100,9 +100,10 @@ namespace Pulumi.CloudAmqp
         public SecurityFirewallArgs()
         {
         }
+        public static new SecurityFirewallArgs Empty => new SecurityFirewallArgs();
     }
 
-    public sealed class SecurityFirewallState : Pulumi.ResourceArgs
+    public sealed class SecurityFirewallState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The CloudAMQP instance ID.
@@ -125,5 +126,6 @@ namespace Pulumi.CloudAmqp
         public SecurityFirewallState()
         {
         }
+        public static new SecurityFirewallState Empty => new SecurityFirewallState();
     }
 }

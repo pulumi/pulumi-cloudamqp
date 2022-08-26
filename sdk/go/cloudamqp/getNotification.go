@@ -18,26 +18,29 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := cloudamqp.LookupNotification(ctx, &GetNotificationArgs{
-// 			InstanceId: cloudamqp_instance.Instance.Id,
-// 			Name:       pulumi.StringRef("default"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.LookupNotification(ctx, &GetNotificationArgs{
+//				InstanceId: cloudamqp_instance.Instance.Id,
+//				Name:       pulumi.StringRef("default"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ## Attributes reference
 //
-// All attributes reference are computed
+// # All attributes reference are computed
 //
 // * `id`    - The identifier for this resource.
 // * `type`  - The type of the recipient.

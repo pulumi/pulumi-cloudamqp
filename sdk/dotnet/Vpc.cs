@@ -19,37 +19,37 @@ namespace Pulumi.CloudAmqp
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     // Managed VPC resource
+    ///     var vpc = new CloudAmqp.Vpc("vpc", new()
     ///     {
-    ///         // Managed VPC resource
-    ///         var vpc = new CloudAmqp.Vpc("vpc", new CloudAmqp.VpcArgs
-    ///         {
-    ///             Region = "amazon-web-services::us-east-1",
-    ///             Subnet = "10.56.72.0/24",
-    ///             Tags = {},
-    ///         });
-    ///         //  New instance, need to be created with a vpc
-    ///         var instance = new CloudAmqp.Instance("instance", new CloudAmqp.InstanceArgs
-    ///         {
-    ///             Plan = "bunny-1",
-    ///             Region = "amazon-web-services::us-east-1",
-    ///             Nodes = 1,
-    ///             Tags = {},
-    ///             RmqVersion = "3.9.13",
-    ///             VpcId = cloudamq_vpc.Vpc.Id,
-    ///         });
-    ///         var vpcInfo = CloudAmqp.GetVpcInfo.Invoke(new CloudAmqp.GetVpcInfoInvokeArgs
-    ///         {
-    ///             VpcId = vpc.Id,
-    ///         });
-    ///     }
+    ///         Region = "amazon-web-services::us-east-1",
+    ///         Subnet = "10.56.72.0/24",
+    ///         Tags = new[] {},
+    ///     });
     /// 
-    /// }
+    ///     //  New instance, need to be created with a vpc
+    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     {
+    ///         Plan = "bunny-1",
+    ///         Region = "amazon-web-services::us-east-1",
+    ///         Nodes = 1,
+    ///         Tags = new[] {},
+    ///         RmqVersion = "3.9.13",
+    ///         VpcId = cloudamq_vpc.Vpc.Id,
+    ///     });
+    /// 
+    ///     var vpcInfo = CloudAmqp.GetVpcInfo.Invoke(new()
+    ///     {
+    ///         VpcId = vpc.Id,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -63,7 +63,7 @@ namespace Pulumi.CloudAmqp
     ///  To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-vpcs). Or use the data source [`cloudamqp_account_vpcs`](https://registry.terraform.io/providers/cloudamqp/cloudamqp/latest/docs/data-sources/account_vpcs) to list all available standalone VPCs for an account.
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/vpc:Vpc")]
-    public partial class Vpc : Pulumi.CustomResource
+    public partial class Vpc : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The name of the VPC.
@@ -139,7 +139,7 @@ namespace Pulumi.CloudAmqp
         }
     }
 
-    public sealed class VpcArgs : Pulumi.ResourceArgs
+    public sealed class VpcArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the VPC.
@@ -174,9 +174,10 @@ namespace Pulumi.CloudAmqp
         public VpcArgs()
         {
         }
+        public static new VpcArgs Empty => new VpcArgs();
     }
 
-    public sealed class VpcState : Pulumi.ResourceArgs
+    public sealed class VpcState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the VPC.
@@ -217,5 +218,6 @@ namespace Pulumi.CloudAmqp
         public VpcState()
         {
         }
+        public static new VpcState Empty => new VpcState();
     }
 }

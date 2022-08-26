@@ -25,66 +25,62 @@ namespace Pulumi.CloudAmqp
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var versions = CloudAmqp.GetUpgradableVersions.Invoke(new()
     ///     {
-    ///         var versions = Output.Create(CloudAmqp.GetUpgradableVersions.InvokeAsync(new CloudAmqp.GetUpgradableVersionsArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///         }));
-    ///         // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
-    ///         var upgrade = new CloudAmqp.UpgradeRabbitmq("upgrade", new CloudAmqp.UpgradeRabbitmqArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///         });
-    ///     }
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///     });
     /// 
-    /// }
+    ///     // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
+    ///     var upgrade = new CloudAmqp.UpgradeRabbitmq("upgrade", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var versions = CloudAmqp.GetUpgradableVersions.Invoke(new()
     ///     {
-    ///         var versions = Output.Create(CloudAmqp.GetUpgradableVersions.InvokeAsync(new CloudAmqp.GetUpgradableVersionsArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///         }));
-    ///     }
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// If newer version is still available to be upgradable in the data source, re-run again.
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var versions = CloudAmqp.GetUpgradableVersions.Invoke(new()
     ///     {
-    ///         var versions = Output.Create(CloudAmqp.GetUpgradableVersions.InvokeAsync(new CloudAmqp.GetUpgradableVersionsArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///         }));
-    ///         // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
-    ///         var upgrade = new CloudAmqp.UpgradeRabbitmq("upgrade", new CloudAmqp.UpgradeRabbitmqArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///         });
-    ///     }
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///     });
     /// 
-    /// }
+    ///     // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
+    ///     var upgrade = new CloudAmqp.UpgradeRabbitmq("upgrade", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -92,7 +88,7 @@ namespace Pulumi.CloudAmqp
     /// Not possible to import this resource.
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/upgradeRabbitmq:UpgradeRabbitmq")]
-    public partial class UpgradeRabbitmq : Pulumi.CustomResource
+    public partial class UpgradeRabbitmq : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The CloudAMQP instance identifier
@@ -144,7 +140,7 @@ namespace Pulumi.CloudAmqp
         }
     }
 
-    public sealed class UpgradeRabbitmqArgs : Pulumi.ResourceArgs
+    public sealed class UpgradeRabbitmqArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The CloudAMQP instance identifier
@@ -155,9 +151,10 @@ namespace Pulumi.CloudAmqp
         public UpgradeRabbitmqArgs()
         {
         }
+        public static new UpgradeRabbitmqArgs Empty => new UpgradeRabbitmqArgs();
     }
 
-    public sealed class UpgradeRabbitmqState : Pulumi.ResourceArgs
+    public sealed class UpgradeRabbitmqState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The CloudAMQP instance identifier
@@ -168,5 +165,6 @@ namespace Pulumi.CloudAmqp
         public UpgradeRabbitmqState()
         {
         }
+        public static new UpgradeRabbitmqState Empty => new UpgradeRabbitmqState();
     }
 }

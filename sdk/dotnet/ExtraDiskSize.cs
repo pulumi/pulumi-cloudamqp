@@ -21,33 +21,33 @@ namespace Pulumi.CloudAmqp
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     // Instance
+    ///     var instance = new CloudAmqp.Instance("instance", new()
     ///     {
-    ///         // Instance
-    ///         var instance = new CloudAmqp.Instance("instance", new CloudAmqp.InstanceArgs
-    ///         {
-    ///             Plan = "squirrel-1",
-    ///             Region = "amazon-web-services::us-west-2",
-    ///             RmqVersion = "3.10.1",
-    ///         });
-    ///         // Resize disk with 25 extra GB
-    ///         var resizeDisk = new CloudAmqp.ExtraDiskSize("resizeDisk", new CloudAmqp.ExtraDiskSizeArgs
-    ///         {
-    ///             InstanceId = instance.Id,
-    ///             ExtraDiskSize = 25,
-    ///         });
-    ///         var nodes = instance.Id.Apply(id =&gt; CloudAmqp.GetNodes.Invoke(new CloudAmqp.GetNodesInvokeArgs
-    ///         {
-    ///             InstanceId = id,
-    ///         }));
-    ///     }
+    ///         Plan = "squirrel-1",
+    ///         Region = "amazon-web-services::us-west-2",
+    ///         RmqVersion = "3.10.1",
+    ///     });
     /// 
-    /// }
+    ///     // Resize disk with 25 extra GB
+    ///     var resizeDisk = new CloudAmqp.ExtraDiskSize("resizeDisk", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         ExtraDiskSizeGb = 25,
+    ///     });
+    /// 
+    ///     var nodes = CloudAmqp.GetNodes.Invoke(new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -55,7 +55,7 @@ namespace Pulumi.CloudAmqp
     /// Not possible to import this resource.
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/extraDiskSize:ExtraDiskSize")]
-    public partial class ExtraDiskSize : Pulumi.CustomResource
+    public partial class ExtraDiskSize : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Extra disk size in GB. Supported values: 25, 50, 100, 250, 500, 1000, 2000
@@ -113,7 +113,7 @@ namespace Pulumi.CloudAmqp
         }
     }
 
-    public sealed class ExtraDiskSizeArgs : Pulumi.ResourceArgs
+    public sealed class ExtraDiskSizeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Extra disk size in GB. Supported values: 25, 50, 100, 250, 500, 1000, 2000
@@ -130,9 +130,10 @@ namespace Pulumi.CloudAmqp
         public ExtraDiskSizeArgs()
         {
         }
+        public static new ExtraDiskSizeArgs Empty => new ExtraDiskSizeArgs();
     }
 
-    public sealed class ExtraDiskSizeState : Pulumi.ResourceArgs
+    public sealed class ExtraDiskSizeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Extra disk size in GB. Supported values: 25, 50, 100, 250, 500, 1000, 2000
@@ -149,5 +150,6 @@ namespace Pulumi.CloudAmqp
         public ExtraDiskSizeState()
         {
         }
+        public static new ExtraDiskSizeState Empty => new ExtraDiskSizeState();
     }
 }

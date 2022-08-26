@@ -18,26 +18,29 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := cloudamqp.LookupAlarm(ctx, &GetAlarmArgs{
-// 			InstanceId: cloudamqp_instance.Instance.Id,
-// 			Type:       pulumi.StringRef("cpu"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.LookupAlarm(ctx, &GetAlarmArgs{
+//				InstanceId: cloudamqp_instance.Instance.Id,
+//				Type:       pulumi.StringRef("cpu"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ## Attributes reference
 //
-// All attributes reference are computed
+// # All attributes reference are computed
 //
 // * `id`                  - The identifier for this resource.
 // * `enabled`             - Enable/disable status of the alarm.
@@ -49,7 +52,7 @@ import (
 // * `recipients`          - Identifier for recipient to be notified.
 // * `messageType`        - Message type `(total, unacked, ready)` used by queue alarm type.
 //
-// Specific attribute for `disk` alarm
+// # Specific attribute for `disk` alarm
 //
 // * `valueCalculation`   - Disk value threshold calculation, `(fixed, percentage)` of disk space remaining.
 //

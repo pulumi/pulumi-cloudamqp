@@ -16,7 +16,9 @@ import (
 // `cloudamqp_security_firewall` can be imported using CloudAMQP instance identifier.
 //
 // ```sh
-//  $ pulumi import cloudamqp:index/securityFirewall:SecurityFirewall firewall <instance_id>`
+//
+//	$ pulumi import cloudamqp:index/securityFirewall:SecurityFirewall firewall <instance_id>`
+//
 // ```
 type SecurityFirewall struct {
 	pulumi.CustomResourceState
@@ -120,7 +122,7 @@ func (i *SecurityFirewall) ToSecurityFirewallOutputWithContext(ctx context.Conte
 // SecurityFirewallArrayInput is an input type that accepts SecurityFirewallArray and SecurityFirewallArrayOutput values.
 // You can construct a concrete instance of `SecurityFirewallArrayInput` via:
 //
-//          SecurityFirewallArray{ SecurityFirewallArgs{...} }
+//	SecurityFirewallArray{ SecurityFirewallArgs{...} }
 type SecurityFirewallArrayInput interface {
 	pulumi.Input
 
@@ -145,7 +147,7 @@ func (i SecurityFirewallArray) ToSecurityFirewallArrayOutputWithContext(ctx cont
 // SecurityFirewallMapInput is an input type that accepts SecurityFirewallMap and SecurityFirewallMapOutput values.
 // You can construct a concrete instance of `SecurityFirewallMapInput` via:
 //
-//          SecurityFirewallMap{ "key": SecurityFirewallArgs{...} }
+//	SecurityFirewallMap{ "key": SecurityFirewallArgs{...} }
 type SecurityFirewallMapInput interface {
 	pulumi.Input
 
@@ -179,6 +181,16 @@ func (o SecurityFirewallOutput) ToSecurityFirewallOutput() SecurityFirewallOutpu
 
 func (o SecurityFirewallOutput) ToSecurityFirewallOutputWithContext(ctx context.Context) SecurityFirewallOutput {
 	return o
+}
+
+// The CloudAMQP instance ID.
+func (o SecurityFirewallOutput) InstanceId() pulumi.IntOutput {
+	return o.ApplyT(func(v *SecurityFirewall) pulumi.IntOutput { return v.InstanceId }).(pulumi.IntOutput)
+}
+
+// An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+func (o SecurityFirewallOutput) Rules() SecurityFirewallRuleArrayOutput {
+	return o.ApplyT(func(v *SecurityFirewall) SecurityFirewallRuleArrayOutput { return v.Rules }).(SecurityFirewallRuleArrayOutput)
 }
 
 type SecurityFirewallArrayOutput struct{ *pulumi.OutputState }

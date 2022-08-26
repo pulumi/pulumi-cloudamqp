@@ -19,20 +19,18 @@ namespace Pulumi.CloudAmqp
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using CloudAmqp = Pulumi.CloudAmqp;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var credentials = CloudAmqp.GetCredentials.Invoke(new()
         ///     {
-        ///         var credentials = Output.Create(CloudAmqp.GetCredentials.InvokeAsync(new CloudAmqp.GetCredentialsArgs
-        ///         {
-        ///             InstanceId = cloudamqp_instance.Instance.Id,
-        ///         }));
-        ///     }
+        ///         InstanceId = cloudamqp_instance.Instance.Id,
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -59,20 +57,18 @@ namespace Pulumi.CloudAmqp
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using CloudAmqp = Pulumi.CloudAmqp;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var credentials = CloudAmqp.GetCredentials.Invoke(new()
         ///     {
-        ///         var credentials = Output.Create(CloudAmqp.GetCredentials.InvokeAsync(new CloudAmqp.GetCredentialsArgs
-        ///         {
-        ///             InstanceId = cloudamqp_instance.Instance.Id,
-        ///         }));
-        ///     }
+        ///         InstanceId = cloudamqp_instance.Instance.Id,
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -93,7 +89,7 @@ namespace Pulumi.CloudAmqp
     }
 
 
-    public sealed class GetCredentialsArgs : Pulumi.InvokeArgs
+    public sealed class GetCredentialsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The CloudAMQP instance identifier.
@@ -104,9 +100,10 @@ namespace Pulumi.CloudAmqp
         public GetCredentialsArgs()
         {
         }
+        public static new GetCredentialsArgs Empty => new GetCredentialsArgs();
     }
 
-    public sealed class GetCredentialsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetCredentialsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The CloudAMQP instance identifier.
@@ -117,6 +114,7 @@ namespace Pulumi.CloudAmqp
         public GetCredentialsInvokeArgs()
         {
         }
+        public static new GetCredentialsInvokeArgs Empty => new GetCredentialsInvokeArgs();
     }
 
 

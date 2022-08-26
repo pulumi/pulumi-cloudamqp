@@ -17,65 +17,73 @@ import (
 // ## Example Usage
 //
 // <details>
-//   <summary>
-//     <b>
-//       <i>AWS VPC peering pre v1.16.0</i>
-//     </b>
-//   </summary>
+//
+//	<summary>
+//	  <b>
+//	    <i>AWS VPC peering pre v1.16.0</i>
+//	  </b>
+//	</summary>
 //
 // ```go
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := cloudamqp.GetVpcInfo(ctx, &GetVpcInfoArgs{
-// 			InstanceId: pulumi.IntRef(cloudamqp_instance.Instance.Id),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.GetVpcInfo(ctx, &GetVpcInfoArgs{
+//				InstanceId: pulumi.IntRef(cloudamqp_instance.Instance.Id),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // </details>
 //
 // <details>
-//   <summary>
-//     <b>
-//       <i>AWS VPC peering post v1.16.0 (Managed VPC)</i>
-//     </b>
-//   </summary>
+//
+//	<summary>
+//	  <b>
+//	    <i>AWS VPC peering post v1.16.0 (Managed VPC)</i>
+//	  </b>
+//	</summary>
 //
 // ```go
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := cloudamqp.GetVpcInfo(ctx, &GetVpcInfoArgs{
-// 			VpcId: pulumi.StringRef(cloudamqp_vpc.Vpc.Id),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.GetVpcInfo(ctx, &GetVpcInfoArgs{
+//				VpcId: pulumi.StringRef(cloudamqp_vpc.Vpc.Id),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // </details>
 // ## Attributes reference
 //
-// All attributes reference are computed
+// # All attributes reference are computed
 //
 // * `id`                  - The identifier for this resource.
 // * `name`                - The name of the CloudAMQP instance.

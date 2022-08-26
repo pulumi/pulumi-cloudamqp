@@ -23,22 +23,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := cloudamqp.NewPluginCommunity(ctx, "rabbitmqDelayedMessageExchange", &cloudamqp.PluginCommunityArgs{
-// 			InstanceId: pulumi.Any(cloudamqp_instance.Instance_01.Id),
-// 			Enabled:    pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewPluginCommunity(ctx, "rabbitmqDelayedMessageExchange", &cloudamqp.PluginCommunityArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance_01.Id),
+//				Enabled:    pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ## Depedency
 //
@@ -49,7 +52,9 @@ import (
 // `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
 //
 // ```sh
-//  $ pulumi import cloudamqp:index/pluginCommunity:PluginCommunity <resource_name> <plugin_name>,<instance_id>`
+//
+//	$ pulumi import cloudamqp:index/pluginCommunity:PluginCommunity <resource_name> <plugin_name>,<instance_id>`
+//
 // ```
 type PluginCommunity struct {
 	pulumi.CustomResourceState
@@ -163,7 +168,7 @@ func (i *PluginCommunity) ToPluginCommunityOutputWithContext(ctx context.Context
 // PluginCommunityArrayInput is an input type that accepts PluginCommunityArray and PluginCommunityArrayOutput values.
 // You can construct a concrete instance of `PluginCommunityArrayInput` via:
 //
-//          PluginCommunityArray{ PluginCommunityArgs{...} }
+//	PluginCommunityArray{ PluginCommunityArgs{...} }
 type PluginCommunityArrayInput interface {
 	pulumi.Input
 
@@ -188,7 +193,7 @@ func (i PluginCommunityArray) ToPluginCommunityArrayOutputWithContext(ctx contex
 // PluginCommunityMapInput is an input type that accepts PluginCommunityMap and PluginCommunityMapOutput values.
 // You can construct a concrete instance of `PluginCommunityMapInput` via:
 //
-//          PluginCommunityMap{ "key": PluginCommunityArgs{...} }
+//	PluginCommunityMap{ "key": PluginCommunityArgs{...} }
 type PluginCommunityMapInput interface {
 	pulumi.Input
 
@@ -222,6 +227,21 @@ func (o PluginCommunityOutput) ToPluginCommunityOutput() PluginCommunityOutput {
 
 func (o PluginCommunityOutput) ToPluginCommunityOutputWithContext(ctx context.Context) PluginCommunityOutput {
 	return o
+}
+
+// Enable or disable the plugins.
+func (o PluginCommunityOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *PluginCommunity) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The CloudAMQP instance ID.
+func (o PluginCommunityOutput) InstanceId() pulumi.IntOutput {
+	return o.ApplyT(func(v *PluginCommunity) pulumi.IntOutput { return v.InstanceId }).(pulumi.IntOutput)
+}
+
+// The name of the Rabbit MQ community plugin.
+func (o PluginCommunityOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *PluginCommunity) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
 type PluginCommunityArrayOutput struct{ *pulumi.OutputState }

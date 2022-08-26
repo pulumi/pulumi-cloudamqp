@@ -17,25 +17,23 @@ namespace Pulumi.CloudAmqp
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var webhookQueue = new CloudAmqp.Webhook("webhookQueue", new()
     ///     {
-    ///         var webhookQueue = new CloudAmqp.Webhook("webhookQueue", new CloudAmqp.WebhookArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///             Vhost = "myvhost",
-    ///             Queue = "webhook-queue",
-    ///             WebhookUri = "https://example.com/webhook?key=secret",
-    ///             RetryInterval = 5,
-    ///             Concurrency = 5,
-    ///         });
-    ///     }
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Vhost = "myvhost",
+    ///         Queue = "webhook-queue",
+    ///         WebhookUri = "https://example.com/webhook?key=secret",
+    ///         RetryInterval = 5,
+    ///         Concurrency = 5,
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// ## Dependency
     /// 
@@ -50,7 +48,7 @@ namespace Pulumi.CloudAmqp
     /// ```
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/webhook:Webhook")]
-    public partial class Webhook : Pulumi.CustomResource
+    public partial class Webhook : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Max simultaneous requests to the endpoint.
@@ -132,7 +130,7 @@ namespace Pulumi.CloudAmqp
         }
     }
 
-    public sealed class WebhookArgs : Pulumi.ResourceArgs
+    public sealed class WebhookArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Max simultaneous requests to the endpoint.
@@ -173,9 +171,10 @@ namespace Pulumi.CloudAmqp
         public WebhookArgs()
         {
         }
+        public static new WebhookArgs Empty => new WebhookArgs();
     }
 
-    public sealed class WebhookState : Pulumi.ResourceArgs
+    public sealed class WebhookState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Max simultaneous requests to the endpoint.
@@ -216,5 +215,6 @@ namespace Pulumi.CloudAmqp
         public WebhookState()
         {
         }
+        public static new WebhookState Empty => new WebhookState();
     }
 }

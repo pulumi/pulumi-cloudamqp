@@ -27,22 +27,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := cloudamqp.NewCustomDomain(ctx, "settings", &cloudamqp.CustomDomainArgs{
-// 			InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
-// 			Hostname:   pulumi.String("myname.mydomain"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewCustomDomain(ctx, "settings", &cloudamqp.CustomDomainArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Hostname:   pulumi.String("myname.mydomain"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ## Depedency
 //
@@ -53,10 +56,12 @@ import (
 // `cloudamqp_custom_domain` can be imported using CloudAMQP instance identifier.
 //
 // ```sh
-//  $ pulumi import cloudamqp:index/customDomain:CustomDomain settings <instance_id>`
+//
+//	$ pulumi import cloudamqp:index/customDomain:CustomDomain settings <instance_id>`
+//
 // ```
 //
-//  [Let's Encrypt]https://letsencrypt.org/
+//	[Let's Encrypt]https://letsencrypt.org/
 type CustomDomain struct {
 	pulumi.CustomResourceState
 
@@ -159,7 +164,7 @@ func (i *CustomDomain) ToCustomDomainOutputWithContext(ctx context.Context) Cust
 // CustomDomainArrayInput is an input type that accepts CustomDomainArray and CustomDomainArrayOutput values.
 // You can construct a concrete instance of `CustomDomainArrayInput` via:
 //
-//          CustomDomainArray{ CustomDomainArgs{...} }
+//	CustomDomainArray{ CustomDomainArgs{...} }
 type CustomDomainArrayInput interface {
 	pulumi.Input
 
@@ -184,7 +189,7 @@ func (i CustomDomainArray) ToCustomDomainArrayOutputWithContext(ctx context.Cont
 // CustomDomainMapInput is an input type that accepts CustomDomainMap and CustomDomainMapOutput values.
 // You can construct a concrete instance of `CustomDomainMapInput` via:
 //
-//          CustomDomainMap{ "key": CustomDomainArgs{...} }
+//	CustomDomainMap{ "key": CustomDomainArgs{...} }
 type CustomDomainMapInput interface {
 	pulumi.Input
 
@@ -218,6 +223,16 @@ func (o CustomDomainOutput) ToCustomDomainOutput() CustomDomainOutput {
 
 func (o CustomDomainOutput) ToCustomDomainOutputWithContext(ctx context.Context) CustomDomainOutput {
 	return o
+}
+
+// Your custom domain name.
+func (o CustomDomainOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v *CustomDomain) pulumi.StringOutput { return v.Hostname }).(pulumi.StringOutput)
+}
+
+// The CloudAMQP instance ID.
+func (o CustomDomainOutput) InstanceId() pulumi.IntOutput {
+	return o.ApplyT(func(v *CustomDomain) pulumi.IntOutput { return v.InstanceId }).(pulumi.IntOutput)
 }
 
 type CustomDomainArrayOutput struct{ *pulumi.OutputState }

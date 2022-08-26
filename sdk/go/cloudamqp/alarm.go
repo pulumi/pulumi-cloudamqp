@@ -23,51 +23,54 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		recipient01, err := cloudamqp.NewNotification(ctx, "recipient01", &cloudamqp.NotificationArgs{
-// 			InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
-// 			Type:       pulumi.String("email"),
-// 			Value:      pulumi.String("alarm@example.com"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = cloudamqp.NewAlarm(ctx, "cpuAlarm", &cloudamqp.AlarmArgs{
-// 			InstanceId:       pulumi.Any(cloudamqp_instance.Instance.Id),
-// 			Type:             pulumi.String("cpu"),
-// 			Enabled:          pulumi.Bool(true),
-// 			ReminderInterval: pulumi.Int(600),
-// 			ValueThreshold:   pulumi.Int(95),
-// 			TimeThreshold:    pulumi.Int(600),
-// 			Recipients: pulumi.IntArray{
-// 				recipient01.ID(),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = cloudamqp.NewAlarm(ctx, "memoryAlarm", &cloudamqp.AlarmArgs{
-// 			InstanceId:       pulumi.Any(cloudamqp_instance.Instance.Id),
-// 			Type:             pulumi.String("memory"),
-// 			Enabled:          pulumi.Bool(true),
-// 			ReminderInterval: pulumi.Int(600),
-// 			ValueThreshold:   pulumi.Int(95),
-// 			TimeThreshold:    pulumi.Int(600),
-// 			Recipients: pulumi.IntArray{
-// 				recipient01.ID(),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			recipient01, err := cloudamqp.NewNotification(ctx, "recipient01", &cloudamqp.NotificationArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Type:       pulumi.String("email"),
+//				Value:      pulumi.String("alarm@example.com"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewAlarm(ctx, "cpuAlarm", &cloudamqp.AlarmArgs{
+//				InstanceId:       pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Type:             pulumi.String("cpu"),
+//				Enabled:          pulumi.Bool(true),
+//				ReminderInterval: pulumi.Int(600),
+//				ValueThreshold:   pulumi.Int(95),
+//				TimeThreshold:    pulumi.Int(600),
+//				Recipients: pulumi.IntArray{
+//					recipient01.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewAlarm(ctx, "memoryAlarm", &cloudamqp.AlarmArgs{
+//				InstanceId:       pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Type:             pulumi.String("memory"),
+//				Enabled:          pulumi.Bool(true),
+//				ReminderInterval: pulumi.Int(600),
+//				ValueThreshold:   pulumi.Int(95),
+//				TimeThreshold:    pulumi.Int(600),
+//				Recipients: pulumi.IntArray{
+//					recipient01.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ## Alarm Type reference
 //
@@ -98,7 +101,9 @@ import (
 // `cloudamqp_alarm` can be imported using CloudAMQP internal identifier of the alarm together (CSV separated) with the instance identifier. To retrieve the alarm identifier, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-alarms)
 //
 // ```sh
-//  $ pulumi import cloudamqp:index/alarm:Alarm alarm <id>,<instance_id>`
+//
+//	$ pulumi import cloudamqp:index/alarm:Alarm alarm <id>,<instance_id>`
+//
 // ```
 type Alarm struct {
 	pulumi.CustomResourceState
@@ -298,7 +303,7 @@ func (i *Alarm) ToAlarmOutputWithContext(ctx context.Context) AlarmOutput {
 // AlarmArrayInput is an input type that accepts AlarmArray and AlarmArrayOutput values.
 // You can construct a concrete instance of `AlarmArrayInput` via:
 //
-//          AlarmArray{ AlarmArgs{...} }
+//	AlarmArray{ AlarmArgs{...} }
 type AlarmArrayInput interface {
 	pulumi.Input
 
@@ -323,7 +328,7 @@ func (i AlarmArray) ToAlarmArrayOutputWithContext(ctx context.Context) AlarmArra
 // AlarmMapInput is an input type that accepts AlarmMap and AlarmMapOutput values.
 // You can construct a concrete instance of `AlarmMapInput` via:
 //
-//          AlarmMap{ "key": AlarmArgs{...} }
+//	AlarmMap{ "key": AlarmArgs{...} }
 type AlarmMapInput interface {
 	pulumi.Input
 
@@ -357,6 +362,61 @@ func (o AlarmOutput) ToAlarmOutput() AlarmOutput {
 
 func (o AlarmOutput) ToAlarmOutputWithContext(ctx context.Context) AlarmOutput {
 	return o
+}
+
+// Enable or disable the alarm to trigger.
+func (o AlarmOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Alarm) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The CloudAMQP instance ID.
+func (o AlarmOutput) InstanceId() pulumi.IntOutput {
+	return o.ApplyT(func(v *Alarm) pulumi.IntOutput { return v.InstanceId }).(pulumi.IntOutput)
+}
+
+// Message type `(total, unacked, ready)` used by queue alarm type.
+func (o AlarmOutput) MessageType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Alarm) pulumi.StringPtrOutput { return v.MessageType }).(pulumi.StringPtrOutput)
+}
+
+// Regex for which queue to check.
+func (o AlarmOutput) QueueRegex() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Alarm) pulumi.StringPtrOutput { return v.QueueRegex }).(pulumi.StringPtrOutput)
+}
+
+// Identifier for recipient to be notified. Leave empty to notify all recipients.
+func (o AlarmOutput) Recipients() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v *Alarm) pulumi.IntArrayOutput { return v.Recipients }).(pulumi.IntArrayOutput)
+}
+
+// The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+func (o AlarmOutput) ReminderInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Alarm) pulumi.IntPtrOutput { return v.ReminderInterval }).(pulumi.IntPtrOutput)
+}
+
+// The time interval (in seconds) the `valueThreshold` should be active before triggering an alarm.
+func (o AlarmOutput) TimeThreshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Alarm) pulumi.IntPtrOutput { return v.TimeThreshold }).(pulumi.IntPtrOutput)
+}
+
+// The alarm type, see valid options below.
+func (o AlarmOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *Alarm) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+// Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+func (o AlarmOutput) ValueCalculation() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Alarm) pulumi.StringPtrOutput { return v.ValueCalculation }).(pulumi.StringPtrOutput)
+}
+
+// The value to trigger the alarm for.
+func (o AlarmOutput) ValueThreshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Alarm) pulumi.IntPtrOutput { return v.ValueThreshold }).(pulumi.IntPtrOutput)
+}
+
+// Regex for which vhost to check
+func (o AlarmOutput) VhostRegex() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Alarm) pulumi.StringPtrOutput { return v.VhostRegex }).(pulumi.StringPtrOutput)
 }
 
 type AlarmArrayOutput struct{ *pulumi.OutputState }

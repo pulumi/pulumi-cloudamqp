@@ -15,7 +15,7 @@ namespace Pulumi.CloudAmqp
     /// Not possible to import this resource.
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/vpcGcpPeering:VpcGcpPeering")]
-    public partial class VpcGcpPeering : Pulumi.CustomResource
+    public partial class VpcGcpPeering : global::Pulumi.CustomResource
     {
         /// <summary>
         /// VPC peering auto created routes
@@ -97,7 +97,7 @@ namespace Pulumi.CloudAmqp
         }
     }
 
-    public sealed class VpcGcpPeeringArgs : Pulumi.ResourceArgs
+    public sealed class VpcGcpPeeringArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The CloudAMQP instance identifier.
@@ -120,9 +120,10 @@ namespace Pulumi.CloudAmqp
         public VpcGcpPeeringArgs()
         {
         }
+        public static new VpcGcpPeeringArgs Empty => new VpcGcpPeeringArgs();
     }
 
-    public sealed class VpcGcpPeeringState : Pulumi.ResourceArgs
+    public sealed class VpcGcpPeeringState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// VPC peering auto created routes
@@ -163,5 +164,6 @@ namespace Pulumi.CloudAmqp
         public VpcGcpPeeringState()
         {
         }
+        public static new VpcGcpPeeringState Empty => new VpcGcpPeeringState();
     }
 }

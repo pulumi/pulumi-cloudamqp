@@ -141,7 +141,7 @@ func (i *VpcGcpPeering) ToVpcGcpPeeringOutputWithContext(ctx context.Context) Vp
 // VpcGcpPeeringArrayInput is an input type that accepts VpcGcpPeeringArray and VpcGcpPeeringArrayOutput values.
 // You can construct a concrete instance of `VpcGcpPeeringArrayInput` via:
 //
-//          VpcGcpPeeringArray{ VpcGcpPeeringArgs{...} }
+//	VpcGcpPeeringArray{ VpcGcpPeeringArgs{...} }
 type VpcGcpPeeringArrayInput interface {
 	pulumi.Input
 
@@ -166,7 +166,7 @@ func (i VpcGcpPeeringArray) ToVpcGcpPeeringArrayOutputWithContext(ctx context.Co
 // VpcGcpPeeringMapInput is an input type that accepts VpcGcpPeeringMap and VpcGcpPeeringMapOutput values.
 // You can construct a concrete instance of `VpcGcpPeeringMapInput` via:
 //
-//          VpcGcpPeeringMap{ "key": VpcGcpPeeringArgs{...} }
+//	VpcGcpPeeringMap{ "key": VpcGcpPeeringArgs{...} }
 type VpcGcpPeeringMapInput interface {
 	pulumi.Input
 
@@ -200,6 +200,36 @@ func (o VpcGcpPeeringOutput) ToVpcGcpPeeringOutput() VpcGcpPeeringOutput {
 
 func (o VpcGcpPeeringOutput) ToVpcGcpPeeringOutputWithContext(ctx context.Context) VpcGcpPeeringOutput {
 	return o
+}
+
+// VPC peering auto created routes
+func (o VpcGcpPeeringOutput) AutoCreateRoutes() pulumi.BoolOutput {
+	return o.ApplyT(func(v *VpcGcpPeering) pulumi.BoolOutput { return v.AutoCreateRoutes }).(pulumi.BoolOutput)
+}
+
+// The CloudAMQP instance identifier.
+func (o VpcGcpPeeringOutput) InstanceId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VpcGcpPeering) pulumi.IntPtrOutput { return v.InstanceId }).(pulumi.IntPtrOutput)
+}
+
+// Network uri of the VPC network to which you will peer with.
+func (o VpcGcpPeeringOutput) PeerNetworkUri() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpcGcpPeering) pulumi.StringOutput { return v.PeerNetworkUri }).(pulumi.StringOutput)
+}
+
+// VPC peering state
+func (o VpcGcpPeeringOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpcGcpPeering) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
+}
+
+// VPC peering state details
+func (o VpcGcpPeeringOutput) StateDetails() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpcGcpPeering) pulumi.StringOutput { return v.StateDetails }).(pulumi.StringOutput)
+}
+
+// The managed VPC identifier.
+func (o VpcGcpPeeringOutput) VpcId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpcGcpPeering) pulumi.StringPtrOutput { return v.VpcId }).(pulumi.StringPtrOutput)
 }
 
 type VpcGcpPeeringArrayOutput struct{ *pulumi.OutputState }

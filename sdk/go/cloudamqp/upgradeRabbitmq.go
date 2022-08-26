@@ -29,48 +29,54 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := cloudamqp.GetUpgradableVersions(ctx, &GetUpgradableVersionsArgs{
-// 			InstanceId: cloudamqp_instance.Instance.Id,
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = cloudamqp.NewUpgradeRabbitmq(ctx, "upgrade", &cloudamqp.UpgradeRabbitmqArgs{
-// 			InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.GetUpgradableVersions(ctx, &GetUpgradableVersionsArgs{
+//				InstanceId: cloudamqp_instance.Instance.Id,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewUpgradeRabbitmq(ctx, "upgrade", &cloudamqp.UpgradeRabbitmqArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ```go
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := cloudamqp.GetUpgradableVersions(ctx, &GetUpgradableVersionsArgs{
-// 			InstanceId: cloudamqp_instance.Instance.Id,
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.GetUpgradableVersions(ctx, &GetUpgradableVersionsArgs{
+//				InstanceId: cloudamqp_instance.Instance.Id,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // If newer version is still available to be upgradable in the data source, re-run again.
@@ -79,27 +85,30 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := cloudamqp.GetUpgradableVersions(ctx, &GetUpgradableVersionsArgs{
-// 			InstanceId: cloudamqp_instance.Instance.Id,
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = cloudamqp.NewUpgradeRabbitmq(ctx, "upgrade", &cloudamqp.UpgradeRabbitmqArgs{
-// 			InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.GetUpgradableVersions(ctx, &GetUpgradableVersionsArgs{
+//				InstanceId: cloudamqp_instance.Instance.Id,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewUpgradeRabbitmq(ctx, "upgrade", &cloudamqp.UpgradeRabbitmqArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -194,7 +203,7 @@ func (i *UpgradeRabbitmq) ToUpgradeRabbitmqOutputWithContext(ctx context.Context
 // UpgradeRabbitmqArrayInput is an input type that accepts UpgradeRabbitmqArray and UpgradeRabbitmqArrayOutput values.
 // You can construct a concrete instance of `UpgradeRabbitmqArrayInput` via:
 //
-//          UpgradeRabbitmqArray{ UpgradeRabbitmqArgs{...} }
+//	UpgradeRabbitmqArray{ UpgradeRabbitmqArgs{...} }
 type UpgradeRabbitmqArrayInput interface {
 	pulumi.Input
 
@@ -219,7 +228,7 @@ func (i UpgradeRabbitmqArray) ToUpgradeRabbitmqArrayOutputWithContext(ctx contex
 // UpgradeRabbitmqMapInput is an input type that accepts UpgradeRabbitmqMap and UpgradeRabbitmqMapOutput values.
 // You can construct a concrete instance of `UpgradeRabbitmqMapInput` via:
 //
-//          UpgradeRabbitmqMap{ "key": UpgradeRabbitmqArgs{...} }
+//	UpgradeRabbitmqMap{ "key": UpgradeRabbitmqArgs{...} }
 type UpgradeRabbitmqMapInput interface {
 	pulumi.Input
 
@@ -253,6 +262,11 @@ func (o UpgradeRabbitmqOutput) ToUpgradeRabbitmqOutput() UpgradeRabbitmqOutput {
 
 func (o UpgradeRabbitmqOutput) ToUpgradeRabbitmqOutputWithContext(ctx context.Context) UpgradeRabbitmqOutput {
 	return o
+}
+
+// The CloudAMQP instance identifier
+func (o UpgradeRabbitmqOutput) InstanceId() pulumi.IntOutput {
+	return o.ApplyT(func(v *UpgradeRabbitmq) pulumi.IntOutput { return v.InstanceId }).(pulumi.IntOutput)
 }
 
 type UpgradeRabbitmqArrayOutput struct{ *pulumi.OutputState }

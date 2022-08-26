@@ -24,23 +24,21 @@ namespace Pulumi.CloudAmqp
     ///   &lt;/summary&gt;
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var cloudwatch = new CloudAmqp.IntegrationLog("cloudwatch", new()
     ///     {
-    ///         var cloudwatch = new CloudAmqp.IntegrationLog("cloudwatch", new CloudAmqp.IntegrationLogArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///             AccessKeyId = @var.Aws_access_key_id,
-    ///             SecretAccessKey = @var.Aws_secret_access_key,
-    ///             Region = @var.Aws_region,
-    ///         });
-    ///     }
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         AccessKeyId = @var.Aws_access_key_id,
+    ///         SecretAccessKey = @var.Aws_secret_access_key,
+    ///         Region = @var.Aws_region,
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// &lt;/details&gt;
     /// 
@@ -52,21 +50,19 @@ namespace Pulumi.CloudAmqp
     ///   &lt;/summary&gt;
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var logentries = new CloudAmqp.IntegrationLog("logentries", new()
     ///     {
-    ///         var logentries = new CloudAmqp.IntegrationLog("logentries", new CloudAmqp.IntegrationLogArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///             Token = @var.Logentries_token,
-    ///         });
-    ///     }
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Token = @var.Logentries_token,
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// &lt;/details&gt;
     /// 
@@ -78,21 +74,19 @@ namespace Pulumi.CloudAmqp
     ///   &lt;/summary&gt;
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var loggly = new CloudAmqp.IntegrationLog("loggly", new()
     ///     {
-    ///         var loggly = new CloudAmqp.IntegrationLog("loggly", new CloudAmqp.IntegrationLogArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///             Token = @var.Loggly_token,
-    ///         });
-    ///     }
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Token = @var.Loggly_token,
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// &lt;/details&gt;
     /// 
@@ -104,21 +98,19 @@ namespace Pulumi.CloudAmqp
     ///   &lt;/summary&gt;
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var papertrail = new CloudAmqp.IntegrationLog("papertrail", new()
     ///     {
-    ///         var papertrail = new CloudAmqp.IntegrationLog("papertrail", new CloudAmqp.IntegrationLogArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///             Url = @var.Papertrail_url,
-    ///         });
-    ///     }
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Url = @var.Papertrail_url,
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// &lt;/details&gt;
     /// 
@@ -130,22 +122,20 @@ namespace Pulumi.CloudAmqp
     ///   &lt;/summary&gt;
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var splunk = new CloudAmqp.IntegrationLog("splunk", new()
     ///     {
-    ///         var splunk = new CloudAmqp.IntegrationLog("splunk", new CloudAmqp.IntegrationLogArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///             Token = @var.Splunk_token,
-    ///             HostPort = @var.Splunk_host_port,
-    ///         });
-    ///     }
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Token = @var.Splunk_token,
+    ///         HostPort = @var.Splunk_host_port,
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// &lt;/details&gt;
     /// 
@@ -157,23 +147,21 @@ namespace Pulumi.CloudAmqp
     ///   &lt;/summary&gt;
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var datadog = new CloudAmqp.IntegrationLog("datadog", new()
     ///     {
-    ///         var datadog = new CloudAmqp.IntegrationLog("datadog", new CloudAmqp.IntegrationLogArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///             Region = @var.Datadog_region,
-    ///             ApiKey = @var.Datadog_api_key,
-    ///             Tags = @var.Datadog_tags,
-    ///         });
-    ///     }
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Region = @var.Datadog_region,
+    ///         ApiKey = @var.Datadog_api_key,
+    ///         Tags = @var.Datadog_tags,
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// &lt;/details&gt;
     /// 
@@ -185,23 +173,21 @@ namespace Pulumi.CloudAmqp
     ///   &lt;/summary&gt;
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var stackdriver = new CloudAmqp.IntegrationLog("stackdriver", new()
     ///     {
-    ///         var stackdriver = new CloudAmqp.IntegrationLog("stackdriver", new CloudAmqp.IntegrationLogArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///             ProjectId = @var.Stackdriver_project_id,
-    ///             PrivateKey = @var.Stackdriver_private_key,
-    ///             ClientEmail = @var.Stackdriver_client_email,
-    ///         });
-    ///     }
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         ProjectId = @var.Stackdriver_project_id,
+    ///         PrivateKey = @var.Stackdriver_private_key,
+    ///         ClientEmail = @var.Stackdriver_client_email,
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// &lt;/details&gt;
     /// 
@@ -213,22 +199,20 @@ namespace Pulumi.CloudAmqp
     ///   &lt;/summary&gt;
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var scalyr = new CloudAmqp.IntegrationLog("scalyr", new()
     ///     {
-    ///         var scalyr = new CloudAmqp.IntegrationLog("scalyr", new CloudAmqp.IntegrationLogArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance.Id,
-    ///             Token = @var.Scalyr_token,
-    ///             Host = @var.Scalyr_host,
-    ///         });
-    ///     }
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Token = @var.Scalyr_token,
+    ///         Host = @var.Scalyr_host,
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// &lt;/details&gt;
     /// ## Argument Reference (cloudwatchlog)
@@ -286,7 +270,7 @@ namespace Pulumi.CloudAmqp
     /// ```
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/integrationLog:IntegrationLog")]
-    public partial class IntegrationLog : Pulumi.CustomResource
+    public partial class IntegrationLog : global::Pulumi.CustomResource
     {
         /// <summary>
         /// AWS access key identifier.
@@ -416,7 +400,7 @@ namespace Pulumi.CloudAmqp
         }
     }
 
-    public sealed class IntegrationLogArgs : Pulumi.ResourceArgs
+    public sealed class IntegrationLogArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// AWS access key identifier.
@@ -505,9 +489,10 @@ namespace Pulumi.CloudAmqp
         public IntegrationLogArgs()
         {
         }
+        public static new IntegrationLogArgs Empty => new IntegrationLogArgs();
     }
 
-    public sealed class IntegrationLogState : Pulumi.ResourceArgs
+    public sealed class IntegrationLogState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// AWS access key identifier.
@@ -596,5 +581,6 @@ namespace Pulumi.CloudAmqp
         public IntegrationLogState()
         {
         }
+        public static new IntegrationLogState Empty => new IntegrationLogState();
     }
 }

@@ -24,7 +24,7 @@ type SecurityFirewallRule struct {
 // SecurityFirewallRuleInput is an input type that accepts SecurityFirewallRuleArgs and SecurityFirewallRuleOutput values.
 // You can construct a concrete instance of `SecurityFirewallRuleInput` via:
 //
-//          SecurityFirewallRuleArgs{...}
+//	SecurityFirewallRuleArgs{...}
 type SecurityFirewallRuleInput interface {
 	pulumi.Input
 
@@ -58,7 +58,7 @@ func (i SecurityFirewallRuleArgs) ToSecurityFirewallRuleOutputWithContext(ctx co
 // SecurityFirewallRuleArrayInput is an input type that accepts SecurityFirewallRuleArray and SecurityFirewallRuleArrayOutput values.
 // You can construct a concrete instance of `SecurityFirewallRuleArrayInput` via:
 //
-//          SecurityFirewallRuleArray{ SecurityFirewallRuleArgs{...} }
+//	SecurityFirewallRuleArray{ SecurityFirewallRuleArgs{...} }
 type SecurityFirewallRuleArrayInput interface {
 	pulumi.Input
 
@@ -145,7 +145,7 @@ type GetAccountInstance struct {
 // GetAccountInstanceInput is an input type that accepts GetAccountInstanceArgs and GetAccountInstanceOutput values.
 // You can construct a concrete instance of `GetAccountInstanceInput` via:
 //
-//          GetAccountInstanceArgs{...}
+//	GetAccountInstanceArgs{...}
 type GetAccountInstanceInput interface {
 	pulumi.Input
 
@@ -176,7 +176,7 @@ func (i GetAccountInstanceArgs) ToGetAccountInstanceOutputWithContext(ctx contex
 // GetAccountInstanceArrayInput is an input type that accepts GetAccountInstanceArray and GetAccountInstanceArrayOutput values.
 // You can construct a concrete instance of `GetAccountInstanceArrayInput` via:
 //
-//          GetAccountInstanceArray{ GetAccountInstanceArgs{...} }
+//	GetAccountInstanceArray{ GetAccountInstanceArgs{...} }
 type GetAccountInstanceArrayInput interface {
 	pulumi.Input
 
@@ -264,7 +264,7 @@ type GetAccountVpcsVpc struct {
 // GetAccountVpcsVpcInput is an input type that accepts GetAccountVpcsVpcArgs and GetAccountVpcsVpcOutput values.
 // You can construct a concrete instance of `GetAccountVpcsVpcInput` via:
 //
-//          GetAccountVpcsVpcArgs{...}
+//	GetAccountVpcsVpcArgs{...}
 type GetAccountVpcsVpcInput interface {
 	pulumi.Input
 
@@ -296,7 +296,7 @@ func (i GetAccountVpcsVpcArgs) ToGetAccountVpcsVpcOutputWithContext(ctx context.
 // GetAccountVpcsVpcArrayInput is an input type that accepts GetAccountVpcsVpcArray and GetAccountVpcsVpcArrayOutput values.
 // You can construct a concrete instance of `GetAccountVpcsVpcArrayInput` via:
 //
-//          GetAccountVpcsVpcArray{ GetAccountVpcsVpcArgs{...} }
+//	GetAccountVpcsVpcArray{ GetAccountVpcsVpcArgs{...} }
 type GetAccountVpcsVpcArrayInput interface {
 	pulumi.Input
 
@@ -391,7 +391,7 @@ type GetNodesNode struct {
 // GetNodesNodeInput is an input type that accepts GetNodesNodeArgs and GetNodesNodeOutput values.
 // You can construct a concrete instance of `GetNodesNodeInput` via:
 //
-//          GetNodesNodeArgs{...}
+//	GetNodesNodeArgs{...}
 type GetNodesNodeInput interface {
 	pulumi.Input
 
@@ -426,7 +426,7 @@ func (i GetNodesNodeArgs) ToGetNodesNodeOutputWithContext(ctx context.Context) G
 // GetNodesNodeArrayInput is an input type that accepts GetNodesNodeArray and GetNodesNodeArrayOutput values.
 // You can construct a concrete instance of `GetNodesNodeArrayInput` via:
 //
-//          GetNodesNodeArray{ GetNodesNodeArgs{...} }
+//	GetNodesNodeArray{ GetNodesNodeArgs{...} }
 type GetNodesNodeArrayInput interface {
 	pulumi.Input
 
@@ -527,7 +527,7 @@ type GetPluginsCommunityPlugin struct {
 // GetPluginsCommunityPluginInput is an input type that accepts GetPluginsCommunityPluginArgs and GetPluginsCommunityPluginOutput values.
 // You can construct a concrete instance of `GetPluginsCommunityPluginInput` via:
 //
-//          GetPluginsCommunityPluginArgs{...}
+//	GetPluginsCommunityPluginArgs{...}
 type GetPluginsCommunityPluginInput interface {
 	pulumi.Input
 
@@ -556,7 +556,7 @@ func (i GetPluginsCommunityPluginArgs) ToGetPluginsCommunityPluginOutputWithCont
 // GetPluginsCommunityPluginArrayInput is an input type that accepts GetPluginsCommunityPluginArray and GetPluginsCommunityPluginArrayOutput values.
 // You can construct a concrete instance of `GetPluginsCommunityPluginArrayInput` via:
 //
-//          GetPluginsCommunityPluginArray{ GetPluginsCommunityPluginArgs{...} }
+//	GetPluginsCommunityPluginArray{ GetPluginsCommunityPluginArgs{...} }
 type GetPluginsCommunityPluginArrayInput interface {
 	pulumi.Input
 
@@ -634,7 +634,7 @@ type GetPluginsPlugin struct {
 // GetPluginsPluginInput is an input type that accepts GetPluginsPluginArgs and GetPluginsPluginOutput values.
 // You can construct a concrete instance of `GetPluginsPluginInput` via:
 //
-//          GetPluginsPluginArgs{...}
+//	GetPluginsPluginArgs{...}
 type GetPluginsPluginInput interface {
 	pulumi.Input
 
@@ -664,7 +664,7 @@ func (i GetPluginsPluginArgs) ToGetPluginsPluginOutputWithContext(ctx context.Co
 // GetPluginsPluginArrayInput is an input type that accepts GetPluginsPluginArray and GetPluginsPluginArrayOutput values.
 // You can construct a concrete instance of `GetPluginsPluginArrayInput` via:
 //
-//          GetPluginsPluginArray{ GetPluginsPluginArgs{...} }
+//	GetPluginsPluginArray{ GetPluginsPluginArgs{...} }
 type GetPluginsPluginArrayInput interface {
 	pulumi.Input
 

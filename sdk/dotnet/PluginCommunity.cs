@@ -19,21 +19,19 @@ namespace Pulumi.CloudAmqp
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var rabbitmqDelayedMessageExchange = new CloudAmqp.PluginCommunity("rabbitmqDelayedMessageExchange", new()
     ///     {
-    ///         var rabbitmqDelayedMessageExchange = new CloudAmqp.PluginCommunity("rabbitmqDelayedMessageExchange", new CloudAmqp.PluginCommunityArgs
-    ///         {
-    ///             InstanceId = cloudamqp_instance.Instance_01.Id,
-    ///             Enabled = true,
-    ///         });
-    ///     }
+    ///         InstanceId = cloudamqp_instance.Instance_01.Id,
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// ## Depedency
     /// 
@@ -48,7 +46,7 @@ namespace Pulumi.CloudAmqp
     /// ```
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/pluginCommunity:PluginCommunity")]
-    public partial class PluginCommunity : Pulumi.CustomResource
+    public partial class PluginCommunity : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Enable or disable the plugins.
@@ -112,7 +110,7 @@ namespace Pulumi.CloudAmqp
         }
     }
 
-    public sealed class PluginCommunityArgs : Pulumi.ResourceArgs
+    public sealed class PluginCommunityArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Enable or disable the plugins.
@@ -135,9 +133,10 @@ namespace Pulumi.CloudAmqp
         public PluginCommunityArgs()
         {
         }
+        public static new PluginCommunityArgs Empty => new PluginCommunityArgs();
     }
 
-    public sealed class PluginCommunityState : Pulumi.ResourceArgs
+    public sealed class PluginCommunityState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Enable or disable the plugins.
@@ -160,5 +159,6 @@ namespace Pulumi.CloudAmqp
         public PluginCommunityState()
         {
         }
+        public static new PluginCommunityState Empty => new PluginCommunityState();
     }
 }

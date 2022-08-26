@@ -18,32 +18,35 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := cloudamqp.GetNodes(ctx, &GetNodesArgs{
-// 			InstanceId: cloudamqp_instance.Instance.Id,
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.GetNodes(ctx, &GetNodesArgs{
+//				InstanceId: cloudamqp_instance.Instance.Id,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ## Attributes reference
 //
-// All attributes reference are computed
+// # All attributes reference are computed
 //
 // * `id`    - The identifier for this resource.
 // * `nodes` - An array of node information. Each `nodes` block consists of the fields documented below.
 //
 // ***
 //
-// The `nodes` block consist of
+// # The `nodes` block consist of
 //
 // * `hostname`          - External hostname assigned to the node.
 // * `name`              - Name of the node.
