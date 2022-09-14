@@ -13,7 +13,6 @@ import com.pulumi.core.internal.Codegen;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -54,56 +53,56 @@ public class RabbitConfiguration extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="channelMax", type=Integer.class, parameters={})
-    private Output</* @Nullable */ Integer> channelMax;
+    private Output<Integer> channelMax;
 
     /**
      * @return Set the maximum permissible number of channels per connection.
      * 
      */
-    public Output<Optional<Integer>> channelMax() {
-        return Codegen.optional(this.channelMax);
+    public Output<Integer> channelMax() {
+        return this.channelMax;
     }
     /**
      * Set the maximum permissible number of connection.
      * 
      */
     @Export(name="connectionMax", type=Integer.class, parameters={})
-    private Output</* @Nullable */ Integer> connectionMax;
+    private Output<Integer> connectionMax;
 
     /**
      * @return Set the maximum permissible number of connection.
      * 
      */
-    public Output<Optional<Integer>> connectionMax() {
-        return Codegen.optional(this.connectionMax);
+    public Output<Integer> connectionMax() {
+        return this.connectionMax;
     }
     /**
      * A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
      * 
      */
     @Export(name="consumerTimeout", type=Integer.class, parameters={})
-    private Output</* @Nullable */ Integer> consumerTimeout;
+    private Output<Integer> consumerTimeout;
 
     /**
      * @return A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
      * 
      */
-    public Output<Optional<Integer>> consumerTimeout() {
-        return Codegen.optional(this.consumerTimeout);
+    public Output<Integer> consumerTimeout() {
+        return this.consumerTimeout;
     }
     /**
      * Set the server AMQP 0-9-1 heartbeat timeout in seconds.
      * 
      */
     @Export(name="heartbeat", type=Integer.class, parameters={})
-    private Output</* @Nullable */ Integer> heartbeat;
+    private Output<Integer> heartbeat;
 
     /**
      * @return Set the server AMQP 0-9-1 heartbeat timeout in seconds.
      * 
      */
-    public Output<Optional<Integer>> heartbeat() {
-        return Codegen.optional(this.heartbeat);
+    public Output<Integer> heartbeat() {
+        return this.heartbeat;
     }
     /**
      * The CloudAMQP instance ID.
@@ -124,56 +123,56 @@ public class RabbitConfiguration extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="logExchangeLevel", type=String.class, parameters={})
-    private Output</* @Nullable */ String> logExchangeLevel;
+    private Output<String> logExchangeLevel;
 
     /**
      * @return Log level for the logger used for log integrations and the CloudAMQP Console log view.
      * 
      */
-    public Output<Optional<String>> logExchangeLevel() {
-        return Codegen.optional(this.logExchangeLevel);
+    public Output<String> logExchangeLevel() {
+        return this.logExchangeLevel;
     }
     /**
      * The largest allowed message payload size in bytes.
      * 
      */
     @Export(name="maxMessageSize", type=Integer.class, parameters={})
-    private Output</* @Nullable */ Integer> maxMessageSize;
+    private Output<Integer> maxMessageSize;
 
     /**
      * @return The largest allowed message payload size in bytes.
      * 
      */
-    public Output<Optional<Integer>> maxMessageSize() {
-        return Codegen.optional(this.maxMessageSize);
+    public Output<Integer> maxMessageSize() {
+        return this.maxMessageSize;
     }
     /**
      * Size in bytes below which to embed messages in the queue index.
      * 
      */
     @Export(name="queueIndexEmbedMsgsBelow", type=Integer.class, parameters={})
-    private Output</* @Nullable */ Integer> queueIndexEmbedMsgsBelow;
+    private Output<Integer> queueIndexEmbedMsgsBelow;
 
     /**
      * @return Size in bytes below which to embed messages in the queue index.
      * 
      */
-    public Output<Optional<Integer>> queueIndexEmbedMsgsBelow() {
-        return Codegen.optional(this.queueIndexEmbedMsgsBelow);
+    public Output<Integer> queueIndexEmbedMsgsBelow() {
+        return this.queueIndexEmbedMsgsBelow;
     }
     /**
      * When the server will enter memory based flow-control as relative to the maximum available memory.
      * 
      */
     @Export(name="vmMemoryHighWatermark", type=Double.class, parameters={})
-    private Output</* @Nullable */ Double> vmMemoryHighWatermark;
+    private Output<Double> vmMemoryHighWatermark;
 
     /**
      * @return When the server will enter memory based flow-control as relative to the maximum available memory.
      * 
      */
-    public Output<Optional<Double>> vmMemoryHighWatermark() {
-        return Codegen.optional(this.vmMemoryHighWatermark);
+    public Output<Double> vmMemoryHighWatermark() {
+        return this.vmMemoryHighWatermark;
     }
 
     /**

@@ -504,7 +504,7 @@ class RabbitConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="channelMax")
-    def channel_max(self) -> pulumi.Output[Optional[int]]:
+    def channel_max(self) -> pulumi.Output[int]:
         """
         Set the maximum permissible number of channels per connection.
         """
@@ -512,7 +512,7 @@ class RabbitConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="connectionMax")
-    def connection_max(self) -> pulumi.Output[Optional[int]]:
+    def connection_max(self) -> pulumi.Output[int]:
         """
         Set the maximum permissible number of connection.
         """
@@ -520,7 +520,7 @@ class RabbitConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="consumerTimeout")
-    def consumer_timeout(self) -> pulumi.Output[Optional[int]]:
+    def consumer_timeout(self) -> pulumi.Output[int]:
         """
         A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
         """
@@ -528,7 +528,7 @@ class RabbitConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def heartbeat(self) -> pulumi.Output[Optional[int]]:
+    def heartbeat(self) -> pulumi.Output[int]:
         """
         Set the server AMQP 0-9-1 heartbeat timeout in seconds.
         """
@@ -544,7 +544,7 @@ class RabbitConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="logExchangeLevel")
-    def log_exchange_level(self) -> pulumi.Output[Optional[str]]:
+    def log_exchange_level(self) -> pulumi.Output[str]:
         """
         Log level for the logger used for log integrations and the CloudAMQP Console log view.
         """
@@ -552,7 +552,7 @@ class RabbitConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="maxMessageSize")
-    def max_message_size(self) -> pulumi.Output[Optional[int]]:
+    def max_message_size(self) -> pulumi.Output[int]:
         """
         The largest allowed message payload size in bytes.
         """
@@ -560,7 +560,7 @@ class RabbitConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="queueIndexEmbedMsgsBelow")
-    def queue_index_embed_msgs_below(self) -> pulumi.Output[Optional[int]]:
+    def queue_index_embed_msgs_below(self) -> pulumi.Output[int]:
         """
         Size in bytes below which to embed messages in the queue index.
         """
@@ -568,7 +568,7 @@ class RabbitConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="vmMemoryHighWatermark")
-    def vm_memory_high_watermark(self) -> pulumi.Output[Optional[float]]:
+    def vm_memory_high_watermark(self) -> pulumi.Output[float]:
         """
         When the server will enter memory based flow-control as relative to the maximum available memory.
         """

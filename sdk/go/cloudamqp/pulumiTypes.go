@@ -13,7 +13,7 @@ import (
 type SecurityFirewallRule struct {
 	// Description name of the rule. e.g. Default.
 	Description *string `pulumi:"description"`
-	// Source ip and netmask for the rule. (e.g. 10.56.72.0/24)
+	// CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
 	Ip string `pulumi:"ip"`
 	// Custom ports to be opened
 	Ports []int `pulumi:"ports"`
@@ -35,7 +35,7 @@ type SecurityFirewallRuleInput interface {
 type SecurityFirewallRuleArgs struct {
 	// Description name of the rule. e.g. Default.
 	Description pulumi.StringPtrInput `pulumi:"description"`
-	// Source ip and netmask for the rule. (e.g. 10.56.72.0/24)
+	// CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
 	Ip pulumi.StringInput `pulumi:"ip"`
 	// Custom ports to be opened
 	Ports pulumi.IntArrayInput `pulumi:"ports"`
@@ -99,7 +99,7 @@ func (o SecurityFirewallRuleOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecurityFirewallRule) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// Source ip and netmask for the rule. (e.g. 10.56.72.0/24)
+// CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
 func (o SecurityFirewallRuleOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v SecurityFirewallRule) string { return v.Ip }).(pulumi.StringOutput)
 }

@@ -10,67 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
-    /// This resource allows you to enable or disable Rabbit MQ plugins.
-    /// 
-    /// Only available for dedicated subscription plans.
-    /// 
-    /// ⚠️  From our go API wrapper [v1.4.0](https://github.com/84codes/go-api/releases/tag/v1.4.0) there is support for multiple retries when requesting information about plugins. This was introduced to avoid `ReadPlugin error 400: Timeout talking to backend`.
-    /// 
-    /// **Enable multiple plugins:** Rabbit MQ can only change one plugin at a time. It will fail if multiple plugins resources are used, unless by creating dependencies with `depend_on` between the resources. Once one plugin has been enabled, the other will continue. See example below.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using CloudAmqp = Pulumi.CloudAmqp;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var rabbitmqTop = new CloudAmqp.Plugin("rabbitmqTop", new()
-    ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         Enabled = true,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// **Enable multiple plugins**
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using CloudAmqp = Pulumi.CloudAmqp;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var rabbitmqTop = new CloudAmqp.Plugin("rabbitmqTop", new()
-    ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         Enabled = true,
-    ///     });
-    /// 
-    ///     var rabbitmqAmqp10 = new CloudAmqp.Plugin("rabbitmqAmqp10", new()
-    ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         Enabled = true,
-    ///     }, new CustomResourceOptions
-    ///     {
-    ///         DependsOn = new[]
-    ///         {
-    ///             rabbitmqTop,
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// ## Dependency
-    /// 
-    /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-    /// 
-    /// If multiple plugins should be enable, create dependencies between the plugin resources. See example above.
-    /// 
     /// ## Import
     /// 
     /// `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.

@@ -19,7 +19,7 @@ public final class SecurityFirewallRule {
      */
     private @Nullable String description;
     /**
-     * @return Source ip and netmask for the rule. (e.g. 10.56.72.0/24)
+     * @return CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
      * 
      */
     private String ip;
@@ -43,7 +43,7 @@ public final class SecurityFirewallRule {
         return Optional.ofNullable(this.description);
     }
     /**
-     * @return Source ip and netmask for the rule. (e.g. 10.56.72.0/24)
+     * @return CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
      * 
      */
     public String ip() {

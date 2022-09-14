@@ -10,7 +10,7 @@ export interface SecurityFirewallRule {
      */
     description?: pulumi.Input<string>;
     /**
-     * Source ip and netmask for the rule. (e.g. 10.56.72.0/24)
+     * CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
      */
     ip: pulumi.Input<string>;
     /**

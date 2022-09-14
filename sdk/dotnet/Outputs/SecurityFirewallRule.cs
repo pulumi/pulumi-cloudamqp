@@ -18,7 +18,7 @@ namespace Pulumi.CloudAmqp.Outputs
         /// </summary>
         public readonly string? Description;
         /// <summary>
-        /// Source ip and netmask for the rule. (e.g. 10.56.72.0/24)
+        /// CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
         /// </summary>
         public readonly string Ip;
         /// <summary>
