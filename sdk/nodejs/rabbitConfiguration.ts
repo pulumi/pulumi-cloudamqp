@@ -65,19 +65,19 @@ export class RabbitConfiguration extends pulumi.CustomResource {
     /**
      * Set the maximum permissible number of channels per connection.
      */
-    public readonly channelMax!: pulumi.Output<number | undefined>;
+    public readonly channelMax!: pulumi.Output<number>;
     /**
      * Set the maximum permissible number of connection.
      */
-    public readonly connectionMax!: pulumi.Output<number | undefined>;
+    public readonly connectionMax!: pulumi.Output<number>;
     /**
      * A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
      */
-    public readonly consumerTimeout!: pulumi.Output<number | undefined>;
+    public readonly consumerTimeout!: pulumi.Output<number>;
     /**
      * Set the server AMQP 0-9-1 heartbeat timeout in seconds.
      */
-    public readonly heartbeat!: pulumi.Output<number | undefined>;
+    public readonly heartbeat!: pulumi.Output<number>;
     /**
      * The CloudAMQP instance ID.
      */
@@ -85,19 +85,19 @@ export class RabbitConfiguration extends pulumi.CustomResource {
     /**
      * Log level for the logger used for log integrations and the CloudAMQP Console log view.
      */
-    public readonly logExchangeLevel!: pulumi.Output<string | undefined>;
+    public readonly logExchangeLevel!: pulumi.Output<string>;
     /**
      * The largest allowed message payload size in bytes.
      */
-    public readonly maxMessageSize!: pulumi.Output<number | undefined>;
+    public readonly maxMessageSize!: pulumi.Output<number>;
     /**
      * Size in bytes below which to embed messages in the queue index.
      */
-    public readonly queueIndexEmbedMsgsBelow!: pulumi.Output<number | undefined>;
+    public readonly queueIndexEmbedMsgsBelow!: pulumi.Output<number>;
     /**
      * When the server will enter memory based flow-control as relative to the maximum available memory.
      */
-    public readonly vmMemoryHighWatermark!: pulumi.Output<number | undefined>;
+    public readonly vmMemoryHighWatermark!: pulumi.Output<number>;
 
     /**
      * Create a RabbitConfiguration resource with the given unique name, arguments, and options.

@@ -26,7 +26,7 @@ class SecurityFirewallRule(dict):
                  ports: Optional[Sequence[int]] = None,
                  services: Optional[Sequence[str]] = None):
         """
-        :param str ip: Source ip and netmask for the rule. (e.g. 10.56.72.0/24)
+        :param str ip: CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
         :param str description: Description name of the rule. e.g. Default.
         :param Sequence[int] ports: Custom ports to be opened
         :param Sequence[str] services: Pre-defined service ports, see table below
@@ -43,7 +43,7 @@ class SecurityFirewallRule(dict):
     @pulumi.getter
     def ip(self) -> str:
         """
-        Source ip and netmask for the rule. (e.g. 10.56.72.0/24)
+        CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
         """
         return pulumi.get(self, "ip")
 

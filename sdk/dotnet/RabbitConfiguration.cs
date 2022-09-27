@@ -46,25 +46,25 @@ namespace Pulumi.CloudAmqp
         /// Set the maximum permissible number of channels per connection.
         /// </summary>
         [Output("channelMax")]
-        public Output<int?> ChannelMax { get; private set; } = null!;
+        public Output<int> ChannelMax { get; private set; } = null!;
 
         /// <summary>
         /// Set the maximum permissible number of connection.
         /// </summary>
         [Output("connectionMax")]
-        public Output<int?> ConnectionMax { get; private set; } = null!;
+        public Output<int> ConnectionMax { get; private set; } = null!;
 
         /// <summary>
         /// A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
         /// </summary>
         [Output("consumerTimeout")]
-        public Output<int?> ConsumerTimeout { get; private set; } = null!;
+        public Output<int> ConsumerTimeout { get; private set; } = null!;
 
         /// <summary>
         /// Set the server AMQP 0-9-1 heartbeat timeout in seconds.
         /// </summary>
         [Output("heartbeat")]
-        public Output<int?> Heartbeat { get; private set; } = null!;
+        public Output<int> Heartbeat { get; private set; } = null!;
 
         /// <summary>
         /// The CloudAMQP instance ID.
@@ -76,25 +76,25 @@ namespace Pulumi.CloudAmqp
         /// Log level for the logger used for log integrations and the CloudAMQP Console log view.
         /// </summary>
         [Output("logExchangeLevel")]
-        public Output<string?> LogExchangeLevel { get; private set; } = null!;
+        public Output<string> LogExchangeLevel { get; private set; } = null!;
 
         /// <summary>
         /// The largest allowed message payload size in bytes.
         /// </summary>
         [Output("maxMessageSize")]
-        public Output<int?> MaxMessageSize { get; private set; } = null!;
+        public Output<int> MaxMessageSize { get; private set; } = null!;
 
         /// <summary>
         /// Size in bytes below which to embed messages in the queue index.
         /// </summary>
         [Output("queueIndexEmbedMsgsBelow")]
-        public Output<int?> QueueIndexEmbedMsgsBelow { get; private set; } = null!;
+        public Output<int> QueueIndexEmbedMsgsBelow { get; private set; } = null!;
 
         /// <summary>
         /// When the server will enter memory based flow-control as relative to the maximum available memory.
         /// </summary>
         [Output("vmMemoryHighWatermark")]
-        public Output<double?> VmMemoryHighWatermark { get; private set; } = null!;
+        public Output<double> VmMemoryHighWatermark { get; private set; } = null!;
 
 
         /// <summary>

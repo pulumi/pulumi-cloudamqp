@@ -33,14 +33,14 @@ public final class SecurityFirewallRuleArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Source ip and netmask for the rule. (e.g. 10.56.72.0/24)
+     * CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
      * 
      */
     @Import(name="ip", required=true)
     private Output<String> ip;
 
     /**
-     * @return Source ip and netmask for the rule. (e.g. 10.56.72.0/24)
+     * @return CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
      * 
      */
     public Output<String> ip() {
@@ -126,7 +126,7 @@ public final class SecurityFirewallRuleArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param ip Source ip and netmask for the rule. (e.g. 10.56.72.0/24)
+         * @param ip CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
          * 
          * @return builder
          * 
@@ -137,7 +137,7 @@ public final class SecurityFirewallRuleArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param ip Source ip and netmask for the rule. (e.g. 10.56.72.0/24)
+         * @param ip CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
          * 
          * @return builder
          * 

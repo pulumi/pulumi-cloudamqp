@@ -14,7 +14,9 @@ namespace Pulumi.CloudAmqp
     /// 
     /// Only available for dedicated subscription plans.
     /// 
-    /// ⚠️  From our go API wrapper [v1.5.0](https://github.com/84codes/go-api/releases/tag/v1.5.0) there is support for multiple retries when requesting information about community plugins. This was introduced to avoid `ReadPluginCommunity error 400: Timeout talking to backend`.
+    /// &gt; From our go API wrapper [v1.5.0](https://github.com/84codes/go-api/releases/tag/v1.5.0) there is support for multiple retries when requesting information about community plugins. This was introduced to avoid `ReadPluginCommunity error 400: Timeout talking to backend`.
+    /// 
+    /// &gt; From our go API wrapper [v1.9.1](https://github.com/84codes/go-api/releases/tag/v1.9.1) there is support for asynchronous request for plugin/community actions. Solve issues reported when enable multiple plugins.
     /// 
     /// ## Example Usage
     /// 

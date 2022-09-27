@@ -45,23 +45,23 @@ type RabbitConfiguration struct {
 	pulumi.CustomResourceState
 
 	// Set the maximum permissible number of channels per connection.
-	ChannelMax pulumi.IntPtrOutput `pulumi:"channelMax"`
+	ChannelMax pulumi.IntOutput `pulumi:"channelMax"`
 	// Set the maximum permissible number of connection.
-	ConnectionMax pulumi.IntPtrOutput `pulumi:"connectionMax"`
+	ConnectionMax pulumi.IntOutput `pulumi:"connectionMax"`
 	// A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
-	ConsumerTimeout pulumi.IntPtrOutput `pulumi:"consumerTimeout"`
+	ConsumerTimeout pulumi.IntOutput `pulumi:"consumerTimeout"`
 	// Set the server AMQP 0-9-1 heartbeat timeout in seconds.
-	Heartbeat pulumi.IntPtrOutput `pulumi:"heartbeat"`
+	Heartbeat pulumi.IntOutput `pulumi:"heartbeat"`
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
 	// Log level for the logger used for log integrations and the CloudAMQP Console log view.
-	LogExchangeLevel pulumi.StringPtrOutput `pulumi:"logExchangeLevel"`
+	LogExchangeLevel pulumi.StringOutput `pulumi:"logExchangeLevel"`
 	// The largest allowed message payload size in bytes.
-	MaxMessageSize pulumi.IntPtrOutput `pulumi:"maxMessageSize"`
+	MaxMessageSize pulumi.IntOutput `pulumi:"maxMessageSize"`
 	// Size in bytes below which to embed messages in the queue index.
-	QueueIndexEmbedMsgsBelow pulumi.IntPtrOutput `pulumi:"queueIndexEmbedMsgsBelow"`
+	QueueIndexEmbedMsgsBelow pulumi.IntOutput `pulumi:"queueIndexEmbedMsgsBelow"`
 	// When the server will enter memory based flow-control as relative to the maximum available memory.
-	VmMemoryHighWatermark pulumi.Float64PtrOutput `pulumi:"vmMemoryHighWatermark"`
+	VmMemoryHighWatermark pulumi.Float64Output `pulumi:"vmMemoryHighWatermark"`
 }
 
 // NewRabbitConfiguration registers a new resource with the given unique name, arguments, and options.
@@ -272,23 +272,23 @@ func (o RabbitConfigurationOutput) ToRabbitConfigurationOutputWithContext(ctx co
 }
 
 // Set the maximum permissible number of channels per connection.
-func (o RabbitConfigurationOutput) ChannelMax() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntPtrOutput { return v.ChannelMax }).(pulumi.IntPtrOutput)
+func (o RabbitConfigurationOutput) ChannelMax() pulumi.IntOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntOutput { return v.ChannelMax }).(pulumi.IntOutput)
 }
 
 // Set the maximum permissible number of connection.
-func (o RabbitConfigurationOutput) ConnectionMax() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntPtrOutput { return v.ConnectionMax }).(pulumi.IntPtrOutput)
+func (o RabbitConfigurationOutput) ConnectionMax() pulumi.IntOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntOutput { return v.ConnectionMax }).(pulumi.IntOutput)
 }
 
 // A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
-func (o RabbitConfigurationOutput) ConsumerTimeout() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntPtrOutput { return v.ConsumerTimeout }).(pulumi.IntPtrOutput)
+func (o RabbitConfigurationOutput) ConsumerTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntOutput { return v.ConsumerTimeout }).(pulumi.IntOutput)
 }
 
 // Set the server AMQP 0-9-1 heartbeat timeout in seconds.
-func (o RabbitConfigurationOutput) Heartbeat() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntPtrOutput { return v.Heartbeat }).(pulumi.IntPtrOutput)
+func (o RabbitConfigurationOutput) Heartbeat() pulumi.IntOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntOutput { return v.Heartbeat }).(pulumi.IntOutput)
 }
 
 // The CloudAMQP instance ID.
@@ -297,23 +297,23 @@ func (o RabbitConfigurationOutput) InstanceId() pulumi.IntOutput {
 }
 
 // Log level for the logger used for log integrations and the CloudAMQP Console log view.
-func (o RabbitConfigurationOutput) LogExchangeLevel() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *RabbitConfiguration) pulumi.StringPtrOutput { return v.LogExchangeLevel }).(pulumi.StringPtrOutput)
+func (o RabbitConfigurationOutput) LogExchangeLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.StringOutput { return v.LogExchangeLevel }).(pulumi.StringOutput)
 }
 
 // The largest allowed message payload size in bytes.
-func (o RabbitConfigurationOutput) MaxMessageSize() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntPtrOutput { return v.MaxMessageSize }).(pulumi.IntPtrOutput)
+func (o RabbitConfigurationOutput) MaxMessageSize() pulumi.IntOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntOutput { return v.MaxMessageSize }).(pulumi.IntOutput)
 }
 
 // Size in bytes below which to embed messages in the queue index.
-func (o RabbitConfigurationOutput) QueueIndexEmbedMsgsBelow() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntPtrOutput { return v.QueueIndexEmbedMsgsBelow }).(pulumi.IntPtrOutput)
+func (o RabbitConfigurationOutput) QueueIndexEmbedMsgsBelow() pulumi.IntOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntOutput { return v.QueueIndexEmbedMsgsBelow }).(pulumi.IntOutput)
 }
 
 // When the server will enter memory based flow-control as relative to the maximum available memory.
-func (o RabbitConfigurationOutput) VmMemoryHighWatermark() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v *RabbitConfiguration) pulumi.Float64PtrOutput { return v.VmMemoryHighWatermark }).(pulumi.Float64PtrOutput)
+func (o RabbitConfigurationOutput) VmMemoryHighWatermark() pulumi.Float64Output {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.Float64Output { return v.VmMemoryHighWatermark }).(pulumi.Float64Output)
 }
 
 type RabbitConfigurationArrayOutput struct{ *pulumi.OutputState }
