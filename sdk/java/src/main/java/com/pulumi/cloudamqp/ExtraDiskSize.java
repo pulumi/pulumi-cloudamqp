@@ -18,7 +18,7 @@ import javax.annotation.Nullable;
  * 
  * Only available for dedicated subscription plans hosted at Amazon Web Services (AWS) at this time.
  * 
- * ⚠️  Due to restrictions from cloud providers, it&#39;s only possible to resize the disk every 8 hours.
+ * &gt; **WARNING:** Due to restrictions from cloud providers, it&#39;s only possible to resize the disk every 8 hours.
  * 
  * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/).
  * 

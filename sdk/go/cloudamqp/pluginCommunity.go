@@ -11,14 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource allows you to install or uninstall community plugins. Once installed the plugin will be available in `Plugin`.
-//
-// Only available for dedicated subscription plans.
-//
-// > From our go API wrapper [v1.5.0](https://github.com/84codes/go-api/releases/tag/v1.5.0) there is support for multiple retries when requesting information about community plugins. This was introduced to avoid `ReadPluginCommunity error 400: Timeout talking to backend`.
-//
-// > From our go API wrapper [v1.9.1](https://github.com/84codes/go-api/releases/tag/v1.9.1) there is support for asynchronous request for plugin/community actions. Solve issues reported when enable multiple plugins.
-//
 // ## Example Usage
 //
 // ```go
@@ -61,12 +53,16 @@ import (
 type PluginCommunity struct {
 	pulumi.CustomResourceState
 
+	// The description of the plugin.
+	Description pulumi.StringOutput `pulumi:"description"`
 	// Enable or disable the plugins.
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
 	// The name of the Rabbit MQ community plugin.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Required version of RabbitMQ.
+	Require pulumi.StringOutput `pulumi:"require"`
 }
 
 // NewPluginCommunity registers a new resource with the given unique name, arguments, and options.
@@ -104,21 +100,29 @@ func GetPluginCommunity(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering PluginCommunity resources.
 type pluginCommunityState struct {
+	// The description of the plugin.
+	Description *string `pulumi:"description"`
 	// Enable or disable the plugins.
 	Enabled *bool `pulumi:"enabled"`
 	// The CloudAMQP instance ID.
 	InstanceId *int `pulumi:"instanceId"`
 	// The name of the Rabbit MQ community plugin.
 	Name *string `pulumi:"name"`
+	// Required version of RabbitMQ.
+	Require *string `pulumi:"require"`
 }
 
 type PluginCommunityState struct {
+	// The description of the plugin.
+	Description pulumi.StringPtrInput
 	// Enable or disable the plugins.
 	Enabled pulumi.BoolPtrInput
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntPtrInput
 	// The name of the Rabbit MQ community plugin.
 	Name pulumi.StringPtrInput
+	// Required version of RabbitMQ.
+	Require pulumi.StringPtrInput
 }
 
 func (PluginCommunityState) ElementType() reflect.Type {
@@ -231,6 +235,11 @@ func (o PluginCommunityOutput) ToPluginCommunityOutputWithContext(ctx context.Co
 	return o
 }
 
+// The description of the plugin.
+func (o PluginCommunityOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *PluginCommunity) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
 // Enable or disable the plugins.
 func (o PluginCommunityOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *PluginCommunity) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
@@ -244,6 +253,11 @@ func (o PluginCommunityOutput) InstanceId() pulumi.IntOutput {
 // The name of the Rabbit MQ community plugin.
 func (o PluginCommunityOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *PluginCommunity) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Required version of RabbitMQ.
+func (o PluginCommunityOutput) Require() pulumi.StringOutput {
+	return o.ApplyT(func(v *PluginCommunity) pulumi.StringOutput { return v.Require }).(pulumi.StringOutput)
 }
 
 type PluginCommunityArrayOutput struct{ *pulumi.OutputState }

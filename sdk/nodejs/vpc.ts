@@ -31,6 +31,7 @@ import * as utilities from "./utilities";
  *     tags: [],
  *     rmqVersion: "3.9.13",
  *     vpcId: cloudamq_vpc.vpc.id,
+ *     keepAssociatedVpc: true,
  * });
  * const vpcInfo = cloudamqp.getVpcInfoOutput({
  *     vpcId: vpc.id,

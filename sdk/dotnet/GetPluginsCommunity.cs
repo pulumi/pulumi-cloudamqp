@@ -12,10 +12,6 @@ namespace Pulumi.CloudAmqp
     public static class GetPluginsCommunity
     {
         /// <summary>
-        /// Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
-        /// 
-        /// ⚠️  From our go API wrapper [v1.5.0](https://github.com/84codes/go-api/releases/tag/v1.5.0) there is support for multiple retries when requesting information about community plugins. This was introduced to avoid `ReadPluginCommunity error 400: Timeout talking to backend`.
-        /// 
         /// {{% examples %}}
         /// ## Example Usage
         /// {{% example %}}
@@ -59,10 +55,6 @@ namespace Pulumi.CloudAmqp
             => Pulumi.Deployment.Instance.InvokeAsync<GetPluginsCommunityResult>("cloudamqp:index/getPluginsCommunity:getPluginsCommunity", args ?? new GetPluginsCommunityArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
-        /// 
-        /// ⚠️  From our go API wrapper [v1.5.0](https://github.com/84codes/go-api/releases/tag/v1.5.0) there is support for multiple retries when requesting information about community plugins. This was introduced to avoid `ReadPluginCommunity error 400: Timeout talking to backend`.
-        /// 
         /// {{% examples %}}
         /// ## Example Usage
         /// {{% example %}}

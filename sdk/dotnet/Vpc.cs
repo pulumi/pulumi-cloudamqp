@@ -42,6 +42,7 @@ namespace Pulumi.CloudAmqp
     ///         Tags = new[] {},
     ///         RmqVersion = "3.9.13",
     ///         VpcId = cloudamq_vpc.Vpc.Id,
+    ///         KeepAssociatedVpc = true,
     ///     });
     /// 
     ///     var vpcInfo = CloudAmqp.GetVpcInfo.Invoke(new()

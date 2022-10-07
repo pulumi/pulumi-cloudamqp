@@ -10,14 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
-    /// This resource allows you to install or uninstall community plugins. Once installed the plugin will be available in `cloudamqp.Plugin`.
-    /// 
-    /// Only available for dedicated subscription plans.
-    /// 
-    /// &gt; From our go API wrapper [v1.5.0](https://github.com/84codes/go-api/releases/tag/v1.5.0) there is support for multiple retries when requesting information about community plugins. This was introduced to avoid `ReadPluginCommunity error 400: Timeout talking to backend`.
-    /// 
-    /// &gt; From our go API wrapper [v1.9.1](https://github.com/84codes/go-api/releases/tag/v1.9.1) there is support for asynchronous request for plugin/community actions. Solve issues reported when enable multiple plugins.
-    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -51,6 +43,12 @@ namespace Pulumi.CloudAmqp
     public partial class PluginCommunity : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The description of the plugin.
+        /// </summary>
+        [Output("description")]
+        public Output<string> Description { get; private set; } = null!;
+
+        /// <summary>
         /// Enable or disable the plugins.
         /// </summary>
         [Output("enabled")]
@@ -67,6 +65,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// Required version of RabbitMQ.
+        /// </summary>
+        [Output("require")]
+        public Output<string> Require { get; private set; } = null!;
 
 
         /// <summary>
@@ -141,6 +145,12 @@ namespace Pulumi.CloudAmqp
     public sealed class PluginCommunityState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The description of the plugin.
+        /// </summary>
+        [Input("description")]
+        public Input<string>? Description { get; set; }
+
+        /// <summary>
         /// Enable or disable the plugins.
         /// </summary>
         [Input("enabled")]
@@ -157,6 +167,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Required version of RabbitMQ.
+        /// </summary>
+        [Input("require")]
+        public Input<string>? Require { get; set; }
 
         public PluginCommunityState()
         {

@@ -40,12 +40,13 @@ import (
 //				return err
 //			}
 //			_, err = cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
-//				Plan:       pulumi.String("bunny-1"),
-//				Region:     pulumi.String("amazon-web-services::us-east-1"),
-//				Nodes:      pulumi.Int(1),
-//				Tags:       pulumi.StringArray{},
-//				RmqVersion: pulumi.String("3.9.13"),
-//				VpcId:      pulumi.Any(cloudamq_vpc.Vpc.Id),
+//				Plan:              pulumi.String("bunny-1"),
+//				Region:            pulumi.String("amazon-web-services::us-east-1"),
+//				Nodes:             pulumi.Int(1),
+//				Tags:              pulumi.StringArray{},
+//				RmqVersion:        pulumi.String("3.9.13"),
+//				VpcId:             pulumi.Any(cloudamq_vpc.Vpc.Id),
+//				KeepAssociatedVpc: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err

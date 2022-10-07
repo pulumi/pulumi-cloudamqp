@@ -61,6 +61,7 @@ import javax.annotation.Nullable;
  *             .tags()
  *             .rmqVersion(&#34;3.9.13&#34;)
  *             .vpcId(cloudamq_vpc.vpc().id())
+ *             .keepAssociatedVpc(true)
  *             .build());
  * 
  *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
