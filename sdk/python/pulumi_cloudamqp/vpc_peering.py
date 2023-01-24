@@ -24,7 +24,7 @@ class VpcPeeringArgs:
         :param pulumi.Input[str] peering_id: Peering identifier created by AW peering request.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
         :param pulumi.Input[int] sleep: Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
-        :param pulumi.Input[int] timeout: - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
         :param pulumi.Input[str] vpc_id: The managed VPC identifier.
         """
         pulumi.set(__self__, "peering_id", peering_id)
@@ -77,7 +77,7 @@ class VpcPeeringArgs:
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
         """
         return pulumi.get(self, "timeout")
 
@@ -113,7 +113,7 @@ class _VpcPeeringState:
         :param pulumi.Input[str] peering_id: Peering identifier created by AW peering request.
         :param pulumi.Input[int] sleep: Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
         :param pulumi.Input[str] status: VPC peering status
-        :param pulumi.Input[int] timeout: - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
         :param pulumi.Input[str] vpc_id: The managed VPC identifier.
         """
         if instance_id is not None:
@@ -181,7 +181,7 @@ class _VpcPeeringState:
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
         """
         return pulumi.get(self, "timeout")
 
@@ -223,7 +223,7 @@ class VpcPeering(pulumi.CustomResource):
         :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
         :param pulumi.Input[str] peering_id: Peering identifier created by AW peering request.
         :param pulumi.Input[int] sleep: Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
-        :param pulumi.Input[int] timeout: - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
         :param pulumi.Input[str] vpc_id: The managed VPC identifier.
         """
         ...
@@ -301,7 +301,7 @@ class VpcPeering(pulumi.CustomResource):
         :param pulumi.Input[str] peering_id: Peering identifier created by AW peering request.
         :param pulumi.Input[int] sleep: Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
         :param pulumi.Input[str] status: VPC peering status
-        :param pulumi.Input[int] timeout: - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
         :param pulumi.Input[str] vpc_id: The managed VPC identifier.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -352,7 +352,7 @@ class VpcPeering(pulumi.CustomResource):
     @pulumi.getter
     def timeout(self) -> pulumi.Output[Optional[int]]:
         """
-        - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
         """
         return pulumi.get(self, "timeout")
 

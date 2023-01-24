@@ -62,6 +62,21 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * Google Service Account private key credentials.
+     * 
+     */
+    @Import(name="credentials")
+    private @Nullable Output<String> credentials;
+
+    /**
+     * @return Google Service Account private key credentials.
+     * 
+     */
+    public Optional<Output<String>> credentials() {
+        return Optional.ofNullable(this.credentials);
+    }
+
+    /**
      * The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
      * 
      */
@@ -137,6 +152,21 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * Private key identifier. (Stackdriver)
+     * 
+     */
+    @Import(name="privateKeyId")
+    private @Nullable Output<String> privateKeyId;
+
+    /**
+     * @return Private key identifier. (Stackdriver)
+     * 
+     */
+    public Optional<Output<String>> privateKeyId() {
+        return Optional.ofNullable(this.privateKeyId);
+    }
+
+    /**
      * The project identifier.
      * 
      */
@@ -179,6 +209,21 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
      */
     public Optional<Output<String>> secretAccessKey() {
         return Optional.ofNullable(this.secretAccessKey);
+    }
+
+    /**
+     * Assign source type to the data exported, eg. generic_single_line. (Splunk)
+     * 
+     */
+    @Import(name="sourcetype")
+    private @Nullable Output<String> sourcetype;
+
+    /**
+     * @return Assign source type to the data exported, eg. generic_single_line. (Splunk)
+     * 
+     */
+    public Optional<Output<String>> sourcetype() {
+        return Optional.ofNullable(this.sourcetype);
     }
 
     /**
@@ -232,14 +277,17 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         this.accessKeyId = $.accessKeyId;
         this.apiKey = $.apiKey;
         this.clientEmail = $.clientEmail;
+        this.credentials = $.credentials;
         this.host = $.host;
         this.hostPort = $.hostPort;
         this.instanceId = $.instanceId;
         this.name = $.name;
         this.privateKey = $.privateKey;
+        this.privateKeyId = $.privateKeyId;
         this.projectId = $.projectId;
         this.region = $.region;
         this.secretAccessKey = $.secretAccessKey;
+        this.sourcetype = $.sourcetype;
         this.tags = $.tags;
         this.token = $.token;
         this.url = $.url;
@@ -324,6 +372,27 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
          */
         public Builder clientEmail(String clientEmail) {
             return clientEmail(Output.of(clientEmail));
+        }
+
+        /**
+         * @param credentials Google Service Account private key credentials.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder credentials(@Nullable Output<String> credentials) {
+            $.credentials = credentials;
+            return this;
+        }
+
+        /**
+         * @param credentials Google Service Account private key credentials.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder credentials(String credentials) {
+            return credentials(Output.of(credentials));
         }
 
         /**
@@ -432,6 +501,27 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
+         * @param privateKeyId Private key identifier. (Stackdriver)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyId(@Nullable Output<String> privateKeyId) {
+            $.privateKeyId = privateKeyId;
+            return this;
+        }
+
+        /**
+         * @param privateKeyId Private key identifier. (Stackdriver)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyId(String privateKeyId) {
+            return privateKeyId(Output.of(privateKeyId));
+        }
+
+        /**
          * @param projectId The project identifier.
          * 
          * @return builder
@@ -492,6 +582,27 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
          */
         public Builder secretAccessKey(String secretAccessKey) {
             return secretAccessKey(Output.of(secretAccessKey));
+        }
+
+        /**
+         * @param sourcetype Assign source type to the data exported, eg. generic_single_line. (Splunk)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sourcetype(@Nullable Output<String> sourcetype) {
+            $.sourcetype = sourcetype;
+            return this;
+        }
+
+        /**
+         * @param sourcetype Assign source type to the data exported, eg. generic_single_line. (Splunk)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sourcetype(String sourcetype) {
+            return sourcetype(Output.of(sourcetype));
         }
 
         /**

@@ -60,6 +60,10 @@ type RabbitConfiguration struct {
 	MaxMessageSize pulumi.IntOutput `pulumi:"maxMessageSize"`
 	// Size in bytes below which to embed messages in the queue index.
 	QueueIndexEmbedMsgsBelow pulumi.IntOutput `pulumi:"queueIndexEmbedMsgsBelow"`
+	// Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+	Sleep pulumi.IntPtrOutput `pulumi:"sleep"`
+	// Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+	Timeout pulumi.IntPtrOutput `pulumi:"timeout"`
 	// When the server will enter memory based flow-control as relative to the maximum available memory.
 	VmMemoryHighWatermark pulumi.Float64Output `pulumi:"vmMemoryHighWatermark"`
 }
@@ -112,6 +116,10 @@ type rabbitConfigurationState struct {
 	MaxMessageSize *int `pulumi:"maxMessageSize"`
 	// Size in bytes below which to embed messages in the queue index.
 	QueueIndexEmbedMsgsBelow *int `pulumi:"queueIndexEmbedMsgsBelow"`
+	// Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+	Sleep *int `pulumi:"sleep"`
+	// Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+	Timeout *int `pulumi:"timeout"`
 	// When the server will enter memory based flow-control as relative to the maximum available memory.
 	VmMemoryHighWatermark *float64 `pulumi:"vmMemoryHighWatermark"`
 }
@@ -133,6 +141,10 @@ type RabbitConfigurationState struct {
 	MaxMessageSize pulumi.IntPtrInput
 	// Size in bytes below which to embed messages in the queue index.
 	QueueIndexEmbedMsgsBelow pulumi.IntPtrInput
+	// Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+	Sleep pulumi.IntPtrInput
+	// Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+	Timeout pulumi.IntPtrInput
 	// When the server will enter memory based flow-control as relative to the maximum available memory.
 	VmMemoryHighWatermark pulumi.Float64PtrInput
 }
@@ -158,6 +170,10 @@ type rabbitConfigurationArgs struct {
 	MaxMessageSize *int `pulumi:"maxMessageSize"`
 	// Size in bytes below which to embed messages in the queue index.
 	QueueIndexEmbedMsgsBelow *int `pulumi:"queueIndexEmbedMsgsBelow"`
+	// Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+	Sleep *int `pulumi:"sleep"`
+	// Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+	Timeout *int `pulumi:"timeout"`
 	// When the server will enter memory based flow-control as relative to the maximum available memory.
 	VmMemoryHighWatermark *float64 `pulumi:"vmMemoryHighWatermark"`
 }
@@ -180,6 +196,10 @@ type RabbitConfigurationArgs struct {
 	MaxMessageSize pulumi.IntPtrInput
 	// Size in bytes below which to embed messages in the queue index.
 	QueueIndexEmbedMsgsBelow pulumi.IntPtrInput
+	// Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+	Sleep pulumi.IntPtrInput
+	// Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+	Timeout pulumi.IntPtrInput
 	// When the server will enter memory based flow-control as relative to the maximum available memory.
 	VmMemoryHighWatermark pulumi.Float64PtrInput
 }
@@ -309,6 +329,16 @@ func (o RabbitConfigurationOutput) MaxMessageSize() pulumi.IntOutput {
 // Size in bytes below which to embed messages in the queue index.
 func (o RabbitConfigurationOutput) QueueIndexEmbedMsgsBelow() pulumi.IntOutput {
 	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntOutput { return v.QueueIndexEmbedMsgsBelow }).(pulumi.IntOutput)
+}
+
+// Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+func (o RabbitConfigurationOutput) Sleep() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntPtrOutput { return v.Sleep }).(pulumi.IntPtrOutput)
+}
+
+// Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+func (o RabbitConfigurationOutput) Timeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntPtrOutput { return v.Timeout }).(pulumi.IntPtrOutput)
 }
 
 // When the server will enter memory based flow-control as relative to the maximum available memory.

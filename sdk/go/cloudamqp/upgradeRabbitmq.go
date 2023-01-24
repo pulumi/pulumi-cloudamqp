@@ -11,15 +11,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource allows you to automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang. Depending on initial versions of RabbitMQ and Erlang of the CloudAMQP instance. Multiple runs may be needed to get to latest versions. (E.g. after completed upgrade, check data source `getUpgradableVersions` to see if newer versions is available. Then delete `UpgradeRabbitmq` and create it again to invoke the upgrade.
+// This resource allows you to automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang. Depending on initial versions of RabbitMQ and Erlang of the CloudAMQP instance, multiple runs may be needed to get to latest versions. After completed upgrade, check data source `getUpgradableVersions` to see if newer versions is available. Then delete `UpgradeRabbitmq` and create it again to invoke the upgrade.
 //
-// > :warning: **WARNING: Before using this resource.**
-// >
-// > Auto delete queues (queues that are marked AD) will be deleted during the update.
-// >
-// > Any custom plugins support has installed on your behalf will be disabled and you need to contact support@cloudamqp.com and ask to have them re-installed.
-// >
-// > TLS 1.0 and 1.1 will not be supported after the update.
+// > **Important Upgrade Information**
+// > - All nodes in a cluster must run the same major and minor version of RabbitMQ. The entire cluster will be offline while upgrading major or minor versions.
+// > - Auto delete queues (queues that are marked AD) will be deleted during the update.
+// > - Any custom plugins support has installed on your behalf will be disabled and you need to contact support@cloudamqp.com and ask to have them re-installed.
+// > - TLS 1.0 and 1.1 will not be supported after the update.
 //
 // Only available for dedicated subscription plans.
 //
@@ -37,7 +35,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.GetUpgradableVersions(ctx, &GetUpgradableVersionsArgs{
+//			_, err := cloudamqp.GetUpgradableVersions(ctx, &cloudamqp.GetUpgradableVersionsArgs{
 //				InstanceId: cloudamqp_instance.Instance.Id,
 //			}, nil)
 //			if err != nil {
@@ -67,7 +65,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.GetUpgradableVersions(ctx, &GetUpgradableVersionsArgs{
+//			_, err := cloudamqp.GetUpgradableVersions(ctx, &cloudamqp.GetUpgradableVersionsArgs{
 //				InstanceId: cloudamqp_instance.Instance.Id,
 //			}, nil)
 //			if err != nil {
@@ -93,7 +91,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.GetUpgradableVersions(ctx, &GetUpgradableVersionsArgs{
+//			_, err := cloudamqp.GetUpgradableVersions(ctx, &cloudamqp.GetUpgradableVersionsArgs{
 //				InstanceId: cloudamqp_instance.Instance.Id,
 //			}, nil)
 //			if err != nil {

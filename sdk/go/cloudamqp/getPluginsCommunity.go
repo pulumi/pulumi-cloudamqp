@@ -10,10 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
-//
-// ⚠️  From our go API wrapper [v1.5.0](https://github.com/84codes/go-api/releases/tag/v1.5.0) there is support for multiple retries when requesting information about community plugins. This was introduced to avoid `ReadPluginCommunity error 400: Timeout talking to backend`.
-//
 // ## Example Usage
 //
 // ```go
@@ -28,7 +24,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.GetPluginsCommunity(ctx, &GetPluginsCommunityArgs{
+//			_, err := cloudamqp.GetPluginsCommunity(ctx, &cloudamqp.GetPluginsCommunityArgs{
 //				InstanceId: cloudamqp_instance.Instance.Id,
 //			}, nil)
 //			if err != nil {

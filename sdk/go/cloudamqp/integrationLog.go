@@ -15,287 +15,6 @@ import (
 //
 // Only available for dedicated subscription plans.
 //
-// ## Example Usage
-//
-// <details>
-//
-//	<summary>
-//	  <b>
-//	    <i>Cloudwatch log integration</i>
-//	  </b>
-//	</summary>
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.NewIntegrationLog(ctx, "cloudwatch", &cloudamqp.IntegrationLogArgs{
-//				InstanceId:      pulumi.Any(cloudamqp_instance.Instance.Id),
-//				AccessKeyId:     pulumi.Any(_var.Aws_access_key_id),
-//				SecretAccessKey: pulumi.Any(_var.Aws_secret_access_key),
-//				Region:          pulumi.Any(_var.Aws_region),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// </details>
-//
-// <details>
-//
-//	<summary>
-//	  <b>
-//	    <i>Logentries log integration</i>
-//	  </b>
-//	</summary>
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.NewIntegrationLog(ctx, "logentries", &cloudamqp.IntegrationLogArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
-//				Token:      pulumi.Any(_var.Logentries_token),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// </details>
-//
-// <details>
-//
-//	<summary>
-//	  <b>
-//	    <i>Loggly log integration</i>
-//	  </b>
-//	</summary>
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.NewIntegrationLog(ctx, "loggly", &cloudamqp.IntegrationLogArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
-//				Token:      pulumi.Any(_var.Loggly_token),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// </details>
-//
-// <details>
-//
-//	<summary>
-//	  <b>
-//	    <i>Papertrail log integration</i>
-//	  </b>
-//	</summary>
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.NewIntegrationLog(ctx, "papertrail", &cloudamqp.IntegrationLogArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
-//				Url:        pulumi.Any(_var.Papertrail_url),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// </details>
-//
-// <details>
-//
-//	<summary>
-//	  <b>
-//	    <i>Splunk log integration</i>
-//	  </b>
-//	</summary>
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.NewIntegrationLog(ctx, "splunk", &cloudamqp.IntegrationLogArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
-//				Token:      pulumi.Any(_var.Splunk_token),
-//				HostPort:   pulumi.Any(_var.Splunk_host_port),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// </details>
-//
-// <details>
-//
-//	<summary>
-//	  <b>
-//	    <i>Datadog log integration</i>
-//	  </b>
-//	</summary>
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.NewIntegrationLog(ctx, "datadog", &cloudamqp.IntegrationLogArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
-//				Region:     pulumi.Any(_var.Datadog_region),
-//				ApiKey:     pulumi.Any(_var.Datadog_api_key),
-//				Tags:       pulumi.Any(_var.Datadog_tags),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// </details>
-//
-// <details>
-//
-//	<summary>
-//	  <b>
-//	    <i>Stackdriver log integration</i>
-//	  </b>
-//	</summary>
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.NewIntegrationLog(ctx, "stackdriver", &cloudamqp.IntegrationLogArgs{
-//				InstanceId:  pulumi.Any(cloudamqp_instance.Instance.Id),
-//				ProjectId:   pulumi.Any(_var.Stackdriver_project_id),
-//				PrivateKey:  pulumi.Any(_var.Stackdriver_private_key),
-//				ClientEmail: pulumi.Any(_var.Stackdriver_client_email),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// </details>
-//
-// <details>
-//
-//	<summary>
-//	  <b>
-//	    <i>Scalyr log integration</i>
-//	  </b>
-//	</summary>
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.NewIntegrationLog(ctx, "scalyr", &cloudamqp.IntegrationLogArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
-//				Token:      pulumi.Any(_var.Scalyr_token),
-//				Host:       pulumi.Any(_var.Scalyr_host),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// </details>
 // ## Argument Reference (cloudwatchlog)
 //
 // Cloudwatch argument reference and example. Create an IAM user with programmatic access and the following permissions:
@@ -316,9 +35,9 @@ import (
 // | logentries | Create a Logentries token at https://logentries.com/app#/add-log/manual  |
 // | loggly     | Create a Loggly token at https://your-company}.loggly.com/tokens |
 // | papertrail | Create a Papertrail endpoint https://papertrailapp.com/systems/setup |
-// | splunk     | Create a HTTP Event Collector token at https://.cloud.splunk.com/en-US/manager/search/http-eventcollector |
+// | splunk     | Create a HTTP Event Collector token at `https://<your-splunk>.cloud.splunk.com/en-US/manager/search/http-eventcollector` |
 // | datadog       | Create a Datadog API key at app.datadoghq.com |
-// | stackdriver   | Create a service account and add 'monitor metrics writer' role, then download credentials. |
+// | stackdriver   | Create a service account and add 'monitor metrics writer' role from your Google Cloud Account |
 // | scalyr        | Create a Log write token at https://app.scalyr.com/keys |
 //
 // ## Integration Type reference
@@ -333,10 +52,12 @@ import (
 // | Log Entries | logentries | token |
 // | Loggly | loggly | token |
 // | Papertrail | papertrail | url |
-// | Splunk | splunk | token, hostPort |
+// | Splunk | splunk | token, host_port, sourcetype |
 // | Data Dog | datadog | region, api_keys, tags |
-// | Stackdriver | stackdriver | project_id, private_key, clientEmail |
+// | Stackdriver | stackdriver | credentials |
 // | Scalyr | scalyr | token, host |
+//
+// ***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments  : project_id, private_key, clientEmail
 //
 // ## Dependency
 //
@@ -359,7 +80,9 @@ type IntegrationLog struct {
 	// The API key.
 	ApiKey pulumi.StringPtrOutput `pulumi:"apiKey"`
 	// The client email registered for the integration service.
-	ClientEmail pulumi.StringPtrOutput `pulumi:"clientEmail"`
+	ClientEmail pulumi.StringOutput `pulumi:"clientEmail"`
+	// Google Service Account private key credentials.
+	Credentials pulumi.StringPtrOutput `pulumi:"credentials"`
 	// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
 	Host pulumi.StringPtrOutput `pulumi:"host"`
 	// Destination to send the logs.
@@ -369,13 +92,17 @@ type IntegrationLog struct {
 	// The name of the third party log integration. See
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The private access key.
-	PrivateKey pulumi.StringPtrOutput `pulumi:"privateKey"`
+	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
+	// Private key identifier. (Stackdriver)
+	PrivateKeyId pulumi.StringOutput `pulumi:"privateKeyId"`
 	// The project identifier.
-	ProjectId pulumi.StringPtrOutput `pulumi:"projectId"`
+	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Region hosting the integration service.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// AWS secret access key.
 	SecretAccessKey pulumi.StringPtrOutput `pulumi:"secretAccessKey"`
+	// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+	Sourcetype pulumi.StringPtrOutput `pulumi:"sourcetype"`
 	// Tag the integration, e.g. env=prod, region=europe.
 	Tags pulumi.StringPtrOutput `pulumi:"tags"`
 	// Token used for authentication.
@@ -394,6 +121,37 @@ func NewIntegrationLog(ctx *pulumi.Context,
 	if args.InstanceId == nil {
 		return nil, errors.New("invalid value for required argument 'InstanceId'")
 	}
+	if args.AccessKeyId != nil {
+		args.AccessKeyId = pulumi.ToSecret(args.AccessKeyId).(pulumi.StringPtrInput)
+	}
+	if args.ApiKey != nil {
+		args.ApiKey = pulumi.ToSecret(args.ApiKey).(pulumi.StringPtrInput)
+	}
+	if args.Credentials != nil {
+		args.Credentials = pulumi.ToSecret(args.Credentials).(pulumi.StringPtrInput)
+	}
+	if args.PrivateKey != nil {
+		args.PrivateKey = pulumi.ToSecret(args.PrivateKey).(pulumi.StringPtrInput)
+	}
+	if args.PrivateKeyId != nil {
+		args.PrivateKeyId = pulumi.ToSecret(args.PrivateKeyId).(pulumi.StringPtrInput)
+	}
+	if args.SecretAccessKey != nil {
+		args.SecretAccessKey = pulumi.ToSecret(args.SecretAccessKey).(pulumi.StringPtrInput)
+	}
+	if args.Token != nil {
+		args.Token = pulumi.ToSecret(args.Token).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"accessKeyId",
+		"apiKey",
+		"credentials",
+		"privateKey",
+		"privateKeyId",
+		"secretAccessKey",
+		"token",
+	})
+	opts = append(opts, secrets)
 	var resource IntegrationLog
 	err := ctx.RegisterResource("cloudamqp:index/integrationLog:IntegrationLog", name, args, &resource, opts...)
 	if err != nil {
@@ -422,6 +180,8 @@ type integrationLogState struct {
 	ApiKey *string `pulumi:"apiKey"`
 	// The client email registered for the integration service.
 	ClientEmail *string `pulumi:"clientEmail"`
+	// Google Service Account private key credentials.
+	Credentials *string `pulumi:"credentials"`
 	// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
 	Host *string `pulumi:"host"`
 	// Destination to send the logs.
@@ -432,12 +192,16 @@ type integrationLogState struct {
 	Name *string `pulumi:"name"`
 	// The private access key.
 	PrivateKey *string `pulumi:"privateKey"`
+	// Private key identifier. (Stackdriver)
+	PrivateKeyId *string `pulumi:"privateKeyId"`
 	// The project identifier.
 	ProjectId *string `pulumi:"projectId"`
 	// Region hosting the integration service.
 	Region *string `pulumi:"region"`
 	// AWS secret access key.
 	SecretAccessKey *string `pulumi:"secretAccessKey"`
+	// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+	Sourcetype *string `pulumi:"sourcetype"`
 	// Tag the integration, e.g. env=prod, region=europe.
 	Tags *string `pulumi:"tags"`
 	// Token used for authentication.
@@ -453,6 +217,8 @@ type IntegrationLogState struct {
 	ApiKey pulumi.StringPtrInput
 	// The client email registered for the integration service.
 	ClientEmail pulumi.StringPtrInput
+	// Google Service Account private key credentials.
+	Credentials pulumi.StringPtrInput
 	// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
 	Host pulumi.StringPtrInput
 	// Destination to send the logs.
@@ -463,12 +229,16 @@ type IntegrationLogState struct {
 	Name pulumi.StringPtrInput
 	// The private access key.
 	PrivateKey pulumi.StringPtrInput
+	// Private key identifier. (Stackdriver)
+	PrivateKeyId pulumi.StringPtrInput
 	// The project identifier.
 	ProjectId pulumi.StringPtrInput
 	// Region hosting the integration service.
 	Region pulumi.StringPtrInput
 	// AWS secret access key.
 	SecretAccessKey pulumi.StringPtrInput
+	// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+	Sourcetype pulumi.StringPtrInput
 	// Tag the integration, e.g. env=prod, region=europe.
 	Tags pulumi.StringPtrInput
 	// Token used for authentication.
@@ -488,6 +258,8 @@ type integrationLogArgs struct {
 	ApiKey *string `pulumi:"apiKey"`
 	// The client email registered for the integration service.
 	ClientEmail *string `pulumi:"clientEmail"`
+	// Google Service Account private key credentials.
+	Credentials *string `pulumi:"credentials"`
 	// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
 	Host *string `pulumi:"host"`
 	// Destination to send the logs.
@@ -498,12 +270,16 @@ type integrationLogArgs struct {
 	Name *string `pulumi:"name"`
 	// The private access key.
 	PrivateKey *string `pulumi:"privateKey"`
+	// Private key identifier. (Stackdriver)
+	PrivateKeyId *string `pulumi:"privateKeyId"`
 	// The project identifier.
 	ProjectId *string `pulumi:"projectId"`
 	// Region hosting the integration service.
 	Region *string `pulumi:"region"`
 	// AWS secret access key.
 	SecretAccessKey *string `pulumi:"secretAccessKey"`
+	// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+	Sourcetype *string `pulumi:"sourcetype"`
 	// Tag the integration, e.g. env=prod, region=europe.
 	Tags *string `pulumi:"tags"`
 	// Token used for authentication.
@@ -520,6 +296,8 @@ type IntegrationLogArgs struct {
 	ApiKey pulumi.StringPtrInput
 	// The client email registered for the integration service.
 	ClientEmail pulumi.StringPtrInput
+	// Google Service Account private key credentials.
+	Credentials pulumi.StringPtrInput
 	// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
 	Host pulumi.StringPtrInput
 	// Destination to send the logs.
@@ -530,12 +308,16 @@ type IntegrationLogArgs struct {
 	Name pulumi.StringPtrInput
 	// The private access key.
 	PrivateKey pulumi.StringPtrInput
+	// Private key identifier. (Stackdriver)
+	PrivateKeyId pulumi.StringPtrInput
 	// The project identifier.
 	ProjectId pulumi.StringPtrInput
 	// Region hosting the integration service.
 	Region pulumi.StringPtrInput
 	// AWS secret access key.
 	SecretAccessKey pulumi.StringPtrInput
+	// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+	Sourcetype pulumi.StringPtrInput
 	// Tag the integration, e.g. env=prod, region=europe.
 	Tags pulumi.StringPtrInput
 	// Token used for authentication.
@@ -642,8 +424,13 @@ func (o IntegrationLogOutput) ApiKey() pulumi.StringPtrOutput {
 }
 
 // The client email registered for the integration service.
-func (o IntegrationLogOutput) ClientEmail() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.ClientEmail }).(pulumi.StringPtrOutput)
+func (o IntegrationLogOutput) ClientEmail() pulumi.StringOutput {
+	return o.ApplyT(func(v *IntegrationLog) pulumi.StringOutput { return v.ClientEmail }).(pulumi.StringOutput)
+}
+
+// Google Service Account private key credentials.
+func (o IntegrationLogOutput) Credentials() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.Credentials }).(pulumi.StringPtrOutput)
 }
 
 // The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
@@ -667,13 +454,18 @@ func (o IntegrationLogOutput) Name() pulumi.StringOutput {
 }
 
 // The private access key.
-func (o IntegrationLogOutput) PrivateKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.PrivateKey }).(pulumi.StringPtrOutput)
+func (o IntegrationLogOutput) PrivateKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *IntegrationLog) pulumi.StringOutput { return v.PrivateKey }).(pulumi.StringOutput)
+}
+
+// Private key identifier. (Stackdriver)
+func (o IntegrationLogOutput) PrivateKeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v *IntegrationLog) pulumi.StringOutput { return v.PrivateKeyId }).(pulumi.StringOutput)
 }
 
 // The project identifier.
-func (o IntegrationLogOutput) ProjectId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.ProjectId }).(pulumi.StringPtrOutput)
+func (o IntegrationLogOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *IntegrationLog) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 // Region hosting the integration service.
@@ -684,6 +476,11 @@ func (o IntegrationLogOutput) Region() pulumi.StringPtrOutput {
 // AWS secret access key.
 func (o IntegrationLogOutput) SecretAccessKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.SecretAccessKey }).(pulumi.StringPtrOutput)
+}
+
+// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+func (o IntegrationLogOutput) Sourcetype() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.Sourcetype }).(pulumi.StringPtrOutput)
 }
 
 // Tag the integration, e.g. env=prod, region=europe.

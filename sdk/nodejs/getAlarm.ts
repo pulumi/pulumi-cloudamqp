@@ -45,11 +45,8 @@ import * as utilities from "./utilities";
  * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
  */
 export function getAlarm(args: GetAlarmArgs, opts?: pulumi.InvokeOptions): Promise<GetAlarmResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("cloudamqp:index/getAlarm:getAlarm", {
         "alarmId": args.alarmId,
         "instanceId": args.instanceId,
@@ -98,9 +95,48 @@ export interface GetAlarmResult {
     readonly valueThreshold: number;
     readonly vhostRegex: string;
 }
-
+/**
+ * Use this data source to retrieve information about default or created alarms. Either use `alarmId` or `type` to retrieve the alarm.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const defaultCpuAlarm = cloudamqp.getAlarm({
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     type: "cpu",
+ * });
+ * ```
+ * ## Attributes reference
+ *
+ * All attributes reference are computed
+ *
+ * * `id`                  - The identifier for this resource.
+ * * `enabled`             - Enable/disable status of the alarm.
+ * * `valueThreshold`     - The value threshold that triggers the alarm.
+ * * `reminderInterval`   - The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders.
+ * * `timeThreshold`      - The time interval (in seconds) the `valueThreshold` should be active before trigger an alarm.
+ * * `queueRegex`         - Regular expression for which queue to check.
+ * * `vhostRegex`         - Regular expression for which vhost to check
+ * * `recipients`          - Identifier for recipient to be notified.
+ * * `messageType`        - Message type `(total, unacked, ready)` used by queue alarm type.
+ *
+ * Specific attribute for `disk` alarm
+ *
+ * * `valueCalculation`   - Disk value threshold calculation, `(fixed, percentage)` of disk space remaining.
+ *
+ * ## Dependency
+ *
+ * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ *
+ * ## Alarm types
+ *
+ * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+ */
 export function getAlarmOutput(args: GetAlarmOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAlarmResult> {
-    return pulumi.output(args).apply(a => getAlarm(a, opts))
+    return pulumi.output(args).apply((a: any) => getAlarm(a, opts))
 }
 
 /**

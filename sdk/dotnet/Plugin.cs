@@ -22,6 +22,12 @@ namespace Pulumi.CloudAmqp
     public partial class Plugin : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The description of the plugin.
+        /// </summary>
+        [Output("description")]
+        public Output<string> Description { get; private set; } = null!;
+
+        /// <summary>
         /// Enable or disable the plugins.
         /// </summary>
         [Output("enabled")]
@@ -38,6 +44,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// The version of the plugin.
+        /// </summary>
+        [Output("version")]
+        public Output<string> Version { get; private set; } = null!;
 
 
         /// <summary>
@@ -112,6 +124,12 @@ namespace Pulumi.CloudAmqp
     public sealed class PluginState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The description of the plugin.
+        /// </summary>
+        [Input("description")]
+        public Input<string>? Description { get; set; }
+
+        /// <summary>
         /// Enable or disable the plugins.
         /// </summary>
         [Input("enabled")]
@@ -128,6 +146,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The version of the plugin.
+        /// </summary>
+        [Input("version")]
+        public Input<string>? Version { get; set; }
 
         public PluginState()
         {

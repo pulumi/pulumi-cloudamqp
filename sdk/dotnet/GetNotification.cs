@@ -48,7 +48,7 @@ namespace Pulumi.CloudAmqp
         /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
         /// </summary>
         public static Task<GetNotificationResult> InvokeAsync(GetNotificationArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetNotificationResult>("cloudamqp:index/getNotification:getNotification", args ?? new GetNotificationArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetNotificationResult>("cloudamqp:index/getNotification:getNotification", args ?? new GetNotificationArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipient_id` or `name`.
@@ -87,7 +87,7 @@ namespace Pulumi.CloudAmqp
         /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
         /// </summary>
         public static Output<GetNotificationResult> Invoke(GetNotificationInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetNotificationResult>("cloudamqp:index/getNotification:getNotification", args ?? new GetNotificationInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetNotificationResult>("cloudamqp:index/getNotification:getNotification", args ?? new GetNotificationInvokeArgs(), options.WithDefaults());
     }
 
 

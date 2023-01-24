@@ -15,7 +15,7 @@ import (
 //
 // Only available for dedicated subscription plans hosted at Amazon Web Services (AWS) at this time.
 //
-// ⚠️  Due to restrictions from cloud providers, it's only possible to resize the disk every 8 hours.
+// > **WARNING:** Due to restrictions from cloud providers, it's only possible to resize the disk every 8 hours.
 //
 // Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/).
 //
@@ -48,6 +48,11 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			_ = instance.ID().ApplyT(func(id string) (cloudamqp.GetNodesResult, error) {
+//				return cloudamqp.GetNodesOutput(ctx, cloudamqp.GetNodesOutputArgs{
+//					InstanceId: id,
+//				}, nil), nil
+//			}).(cloudamqp.GetNodesResultOutput)
 //			return nil
 //		})
 //	}

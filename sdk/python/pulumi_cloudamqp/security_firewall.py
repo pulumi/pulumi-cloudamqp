@@ -17,14 +17,22 @@ __all__ = ['SecurityFirewallArgs', 'SecurityFirewall']
 class SecurityFirewallArgs:
     def __init__(__self__, *,
                  instance_id: pulumi.Input[int],
-                 rules: pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]]):
+                 rules: pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]],
+                 sleep: Optional[pulumi.Input[int]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a SecurityFirewall resource.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
         """
         pulumi.set(__self__, "instance_id", instance_id)
         pulumi.set(__self__, "rules", rules)
+        if sleep is not None:
+            pulumi.set(__self__, "sleep", sleep)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -50,21 +58,53 @@ class SecurityFirewallArgs:
     def rules(self, value: pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]]):
         pulumi.set(self, "rules", value)
 
+    @property
+    @pulumi.getter
+    def sleep(self) -> Optional[pulumi.Input[int]]:
+        """
+        Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+        """
+        return pulumi.get(self, "sleep")
+
+    @sleep.setter
+    def sleep(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "sleep", value)
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "timeout", value)
+
 
 @pulumi.input_type
 class _SecurityFirewallState:
     def __init__(__self__, *,
                  instance_id: Optional[pulumi.Input[int]] = None,
-                 rules: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]]] = None):
+                 rules: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]]] = None,
+                 sleep: Optional[pulumi.Input[int]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering SecurityFirewall resources.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
         """
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
         if rules is not None:
             pulumi.set(__self__, "rules", rules)
+        if sleep is not None:
+            pulumi.set(__self__, "sleep", sleep)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -90,6 +130,30 @@ class _SecurityFirewallState:
     def rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]]]):
         pulumi.set(self, "rules", value)
 
+    @property
+    @pulumi.getter
+    def sleep(self) -> Optional[pulumi.Input[int]]:
+        """
+        Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+        """
+        return pulumi.get(self, "sleep")
+
+    @sleep.setter
+    def sleep(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "sleep", value)
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "timeout", value)
+
 
 class SecurityFirewall(pulumi.CustomResource):
     @overload
@@ -98,6 +162,8 @@ class SecurityFirewall(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecurityFirewallRuleArgs']]]]] = None,
+                 sleep: Optional[pulumi.Input[int]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
         ## Import
@@ -112,6 +178,8 @@ class SecurityFirewall(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecurityFirewallRuleArgs']]]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
         """
         ...
     @overload
@@ -145,6 +213,8 @@ class SecurityFirewall(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecurityFirewallRuleArgs']]]]] = None,
+                 sleep: Optional[pulumi.Input[int]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -160,6 +230,8 @@ class SecurityFirewall(pulumi.CustomResource):
             if rules is None and not opts.urn:
                 raise TypeError("Missing required property 'rules'")
             __props__.__dict__["rules"] = rules
+            __props__.__dict__["sleep"] = sleep
+            __props__.__dict__["timeout"] = timeout
         super(SecurityFirewall, __self__).__init__(
             'cloudamqp:index/securityFirewall:SecurityFirewall',
             resource_name,
@@ -171,7 +243,9 @@ class SecurityFirewall(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             instance_id: Optional[pulumi.Input[int]] = None,
-            rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecurityFirewallRuleArgs']]]]] = None) -> 'SecurityFirewall':
+            rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecurityFirewallRuleArgs']]]]] = None,
+            sleep: Optional[pulumi.Input[int]] = None,
+            timeout: Optional[pulumi.Input[int]] = None) -> 'SecurityFirewall':
         """
         Get an existing SecurityFirewall resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -181,6 +255,8 @@ class SecurityFirewall(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecurityFirewallRuleArgs']]]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -188,6 +264,8 @@ class SecurityFirewall(pulumi.CustomResource):
 
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["rules"] = rules
+        __props__.__dict__["sleep"] = sleep
+        __props__.__dict__["timeout"] = timeout
         return SecurityFirewall(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -205,4 +283,20 @@ class SecurityFirewall(pulumi.CustomResource):
         An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
         """
         return pulumi.get(self, "rules")
+
+    @property
+    @pulumi.getter
+    def sleep(self) -> pulumi.Output[Optional[int]]:
+        """
+        Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+        """
+        return pulumi.get(self, "sleep")
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> pulumi.Output[Optional[int]]:
+        """
+        Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+        """
+        return pulumi.get(self, "timeout")
 

@@ -38,6 +38,8 @@
         "notification.ts",
         "plugin.ts",
         "pluginCommunity.ts",
+        "privatelinkAws.ts",
+        "privatelinkAzure.ts",
         "provider.ts",
         "rabbitConfiguration.ts",
         "securityFirewall.ts",

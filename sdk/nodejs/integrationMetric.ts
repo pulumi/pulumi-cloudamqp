@@ -43,7 +43,11 @@ export class IntegrationMetric extends pulumi.CustomResource {
     /**
      * The client email. (Stackdriver)
      */
-    public readonly clientEmail!: pulumi.Output<string | undefined>;
+    public readonly clientEmail!: pulumi.Output<string>;
+    /**
+     * Base64Encoded credentials. (Stackdriver)
+     */
+    public readonly credentials!: pulumi.Output<string | undefined>;
     /**
      * The email address registred for the integration service. (Librato)
      */
@@ -63,11 +67,15 @@ export class IntegrationMetric extends pulumi.CustomResource {
     /**
      * The private key. (Stackdriver)
      */
-    public readonly privateKey!: pulumi.Output<string | undefined>;
+    public readonly privateKey!: pulumi.Output<string>;
+    /**
+     * Private key identifier. (Stackdriver)
+     */
+    public readonly privateKeyId!: pulumi.Output<string>;
     /**
      * Project ID. (Stackdriver)
      */
-    public readonly projectId!: pulumi.Output<string | undefined>;
+    public readonly projectId!: pulumi.Output<string>;
     /**
      * (optional) allowlist using regular expression
      */
@@ -117,11 +125,13 @@ export class IntegrationMetric extends pulumi.CustomResource {
             resourceInputs["accessKeyId"] = state ? state.accessKeyId : undefined;
             resourceInputs["apiKey"] = state ? state.apiKey : undefined;
             resourceInputs["clientEmail"] = state ? state.clientEmail : undefined;
+            resourceInputs["credentials"] = state ? state.credentials : undefined;
             resourceInputs["email"] = state ? state.email : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["licenseKey"] = state ? state.licenseKey : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["privateKey"] = state ? state.privateKey : undefined;
+            resourceInputs["privateKeyId"] = state ? state.privateKeyId : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["queueAllowlist"] = state ? state.queueAllowlist : undefined;
             resourceInputs["queueWhitelist"] = state ? state.queueWhitelist : undefined;
@@ -138,21 +148,25 @@ export class IntegrationMetric extends pulumi.CustomResource {
             resourceInputs["accessKeyId"] = args ? args.accessKeyId : undefined;
             resourceInputs["apiKey"] = args ? args.apiKey : undefined;
             resourceInputs["clientEmail"] = args ? args.clientEmail : undefined;
+            resourceInputs["credentials"] = args?.credentials ? pulumi.secret(args.credentials) : undefined;
             resourceInputs["email"] = args ? args.email : undefined;
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["licenseKey"] = args ? args.licenseKey : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["privateKey"] = args ? args.privateKey : undefined;
+            resourceInputs["privateKey"] = args?.privateKey ? pulumi.secret(args.privateKey) : undefined;
+            resourceInputs["privateKeyId"] = args?.privateKeyId ? pulumi.secret(args.privateKeyId) : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["queueAllowlist"] = args ? args.queueAllowlist : undefined;
             resourceInputs["queueWhitelist"] = args ? args.queueWhitelist : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["secretAccessKey"] = args ? args.secretAccessKey : undefined;
+            resourceInputs["secretAccessKey"] = args?.secretAccessKey ? pulumi.secret(args.secretAccessKey) : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["vhostAllowlist"] = args ? args.vhostAllowlist : undefined;
             resourceInputs["vhostWhitelist"] = args ? args.vhostWhitelist : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["credentials", "privateKey", "privateKeyId", "secretAccessKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(IntegrationMetric.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -174,6 +188,10 @@ export interface IntegrationMetricState {
      */
     clientEmail?: pulumi.Input<string>;
     /**
+     * Base64Encoded credentials. (Stackdriver)
+     */
+    credentials?: pulumi.Input<string>;
+    /**
      * The email address registred for the integration service. (Librato)
      */
     email?: pulumi.Input<string>;
@@ -193,6 +211,10 @@ export interface IntegrationMetricState {
      * The private key. (Stackdriver)
      */
     privateKey?: pulumi.Input<string>;
+    /**
+     * Private key identifier. (Stackdriver)
+     */
+    privateKeyId?: pulumi.Input<string>;
     /**
      * Project ID. (Stackdriver)
      */
@@ -248,6 +270,10 @@ export interface IntegrationMetricArgs {
      */
     clientEmail?: pulumi.Input<string>;
     /**
+     * Base64Encoded credentials. (Stackdriver)
+     */
+    credentials?: pulumi.Input<string>;
+    /**
      * The email address registred for the integration service. (Librato)
      */
     email?: pulumi.Input<string>;
@@ -267,6 +293,10 @@ export interface IntegrationMetricArgs {
      * The private key. (Stackdriver)
      */
     privateKey?: pulumi.Input<string>;
+    /**
+     * Private key identifier. (Stackdriver)
+     */
+    privateKeyId?: pulumi.Input<string>;
     /**
      * Project ID. (Stackdriver)
      */

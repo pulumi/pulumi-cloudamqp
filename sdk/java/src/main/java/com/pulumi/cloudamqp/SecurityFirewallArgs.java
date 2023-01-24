@@ -9,6 +9,8 @@ import com.pulumi.core.annotations.Import;
 import java.lang.Integer;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class SecurityFirewallArgs extends com.pulumi.resources.ResourceArgs {
@@ -45,11 +47,43 @@ public final class SecurityFirewallArgs extends com.pulumi.resources.ResourceArg
         return this.rules;
     }
 
+    /**
+     * Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+     * 
+     */
+    @Import(name="sleep")
+    private @Nullable Output<Integer> sleep;
+
+    /**
+     * @return Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+     * 
+     */
+    public Optional<Output<Integer>> sleep() {
+        return Optional.ofNullable(this.sleep);
+    }
+
+    /**
+     * Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+     * 
+     */
+    @Import(name="timeout")
+    private @Nullable Output<Integer> timeout;
+
+    /**
+     * @return Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+     * 
+     */
+    public Optional<Output<Integer>> timeout() {
+        return Optional.ofNullable(this.timeout);
+    }
+
     private SecurityFirewallArgs() {}
 
     private SecurityFirewallArgs(SecurityFirewallArgs $) {
         this.instanceId = $.instanceId;
         this.rules = $.rules;
+        this.sleep = $.sleep;
+        this.timeout = $.timeout;
     }
 
     public static Builder builder() {
@@ -120,6 +154,48 @@ public final class SecurityFirewallArgs extends com.pulumi.resources.ResourceArg
          */
         public Builder rules(SecurityFirewallRuleArgs... rules) {
             return rules(List.of(rules));
+        }
+
+        /**
+         * @param sleep Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sleep(@Nullable Output<Integer> sleep) {
+            $.sleep = sleep;
+            return this;
+        }
+
+        /**
+         * @param sleep Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sleep(Integer sleep) {
+            return sleep(Output.of(sleep));
+        }
+
+        /**
+         * @param timeout Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder timeout(@Nullable Output<Integer> timeout) {
+            $.timeout = timeout;
+            return this;
+        }
+
+        /**
+         * @param timeout Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder timeout(Integer timeout) {
+            return timeout(Output.of(timeout));
         }
 
         public SecurityFirewallArgs build() {

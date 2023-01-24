@@ -27,6 +27,10 @@ type SecurityFirewall struct {
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
 	// An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
 	Rules SecurityFirewallRuleArrayOutput `pulumi:"rules"`
+	// Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+	Sleep pulumi.IntPtrOutput `pulumi:"sleep"`
+	// Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+	Timeout pulumi.IntPtrOutput `pulumi:"timeout"`
 }
 
 // NewSecurityFirewall registers a new resource with the given unique name, arguments, and options.
@@ -68,6 +72,10 @@ type securityFirewallState struct {
 	InstanceId *int `pulumi:"instanceId"`
 	// An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
 	Rules []SecurityFirewallRule `pulumi:"rules"`
+	// Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+	Sleep *int `pulumi:"sleep"`
+	// Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+	Timeout *int `pulumi:"timeout"`
 }
 
 type SecurityFirewallState struct {
@@ -75,6 +83,10 @@ type SecurityFirewallState struct {
 	InstanceId pulumi.IntPtrInput
 	// An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
 	Rules SecurityFirewallRuleArrayInput
+	// Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+	Sleep pulumi.IntPtrInput
+	// Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+	Timeout pulumi.IntPtrInput
 }
 
 func (SecurityFirewallState) ElementType() reflect.Type {
@@ -86,6 +98,10 @@ type securityFirewallArgs struct {
 	InstanceId int `pulumi:"instanceId"`
 	// An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
 	Rules []SecurityFirewallRule `pulumi:"rules"`
+	// Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+	Sleep *int `pulumi:"sleep"`
+	// Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+	Timeout *int `pulumi:"timeout"`
 }
 
 // The set of arguments for constructing a SecurityFirewall resource.
@@ -94,6 +110,10 @@ type SecurityFirewallArgs struct {
 	InstanceId pulumi.IntInput
 	// An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
 	Rules SecurityFirewallRuleArrayInput
+	// Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+	Sleep pulumi.IntPtrInput
+	// Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+	Timeout pulumi.IntPtrInput
 }
 
 func (SecurityFirewallArgs) ElementType() reflect.Type {
@@ -191,6 +211,16 @@ func (o SecurityFirewallOutput) InstanceId() pulumi.IntOutput {
 // An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
 func (o SecurityFirewallOutput) Rules() SecurityFirewallRuleArrayOutput {
 	return o.ApplyT(func(v *SecurityFirewall) SecurityFirewallRuleArrayOutput { return v.Rules }).(SecurityFirewallRuleArrayOutput)
+}
+
+// Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+func (o SecurityFirewallOutput) Sleep() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecurityFirewall) pulumi.IntPtrOutput { return v.Sleep }).(pulumi.IntPtrOutput)
+}
+
+// Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+func (o SecurityFirewallOutput) Timeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecurityFirewall) pulumi.IntPtrOutput { return v.Timeout }).(pulumi.IntPtrOutput)
 }
 
 type SecurityFirewallArrayOutput struct{ *pulumi.OutputState }

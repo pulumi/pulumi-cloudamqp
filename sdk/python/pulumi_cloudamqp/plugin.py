@@ -68,21 +68,41 @@ class PluginArgs:
 @pulumi.input_type
 class _PluginState:
     def __init__(__self__, *,
+                 description: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 version: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Plugin resources.
+        :param pulumi.Input[str] description: The description of the plugin.
         :param pulumi.Input[bool] enabled: Enable or disable the plugins.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] name: The name of the Rabbit MQ plugin.
+        :param pulumi.Input[str] version: The version of the plugin.
         """
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        The description of the plugin.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
 
     @property
     @pulumi.getter
@@ -119,6 +139,18 @@ class _PluginState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        The version of the plugin.
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "version", value)
 
 
 class Plugin(pulumi.CustomResource):
@@ -194,6 +226,8 @@ class Plugin(pulumi.CustomResource):
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
             __props__.__dict__["name"] = name
+            __props__.__dict__["description"] = None
+            __props__.__dict__["version"] = None
         super(Plugin, __self__).__init__(
             'cloudamqp:index/plugin:Plugin',
             resource_name,
@@ -204,9 +238,11 @@ class Plugin(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            description: Optional[pulumi.Input[str]] = None,
             enabled: Optional[pulumi.Input[bool]] = None,
             instance_id: Optional[pulumi.Input[int]] = None,
-            name: Optional[pulumi.Input[str]] = None) -> 'Plugin':
+            name: Optional[pulumi.Input[str]] = None,
+            version: Optional[pulumi.Input[str]] = None) -> 'Plugin':
         """
         Get an existing Plugin resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -214,18 +250,30 @@ class Plugin(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: The description of the plugin.
         :param pulumi.Input[bool] enabled: Enable or disable the plugins.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] name: The name of the Rabbit MQ plugin.
+        :param pulumi.Input[str] version: The version of the plugin.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _PluginState.__new__(_PluginState)
 
+        __props__.__dict__["description"] = description
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["name"] = name
+        __props__.__dict__["version"] = version
         return Plugin(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def description(self) -> pulumi.Output[str]:
+        """
+        The description of the plugin.
+        """
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -250,4 +298,12 @@ class Plugin(pulumi.CustomResource):
         The name of the Rabbit MQ plugin.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def version(self) -> pulumi.Output[str]:
+        """
+        The version of the plugin.
+        """
+        return pulumi.get(self, "version")
 

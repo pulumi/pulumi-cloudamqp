@@ -12,6 +12,7 @@ import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -50,14 +51,28 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="clientEmail", type=String.class, parameters={})
-    private Output</* @Nullable */ String> clientEmail;
+    private Output<String> clientEmail;
 
     /**
      * @return The client email. (Stackdriver)
      * 
      */
-    public Output<Optional<String>> clientEmail() {
-        return Codegen.optional(this.clientEmail);
+    public Output<String> clientEmail() {
+        return this.clientEmail;
+    }
+    /**
+     * Base64Encoded credentials. (Stackdriver)
+     * 
+     */
+    @Export(name="credentials", type=String.class, parameters={})
+    private Output</* @Nullable */ String> credentials;
+
+    /**
+     * @return Base64Encoded credentials. (Stackdriver)
+     * 
+     */
+    public Output<Optional<String>> credentials() {
+        return Codegen.optional(this.credentials);
     }
     /**
      * The email address registred for the integration service. (Librato)
@@ -120,28 +135,42 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="privateKey", type=String.class, parameters={})
-    private Output</* @Nullable */ String> privateKey;
+    private Output<String> privateKey;
 
     /**
      * @return The private key. (Stackdriver)
      * 
      */
-    public Output<Optional<String>> privateKey() {
-        return Codegen.optional(this.privateKey);
+    public Output<String> privateKey() {
+        return this.privateKey;
+    }
+    /**
+     * Private key identifier. (Stackdriver)
+     * 
+     */
+    @Export(name="privateKeyId", type=String.class, parameters={})
+    private Output<String> privateKeyId;
+
+    /**
+     * @return Private key identifier. (Stackdriver)
+     * 
+     */
+    public Output<String> privateKeyId() {
+        return this.privateKeyId;
     }
     /**
      * Project ID. (Stackdriver)
      * 
      */
     @Export(name="projectId", type=String.class, parameters={})
-    private Output</* @Nullable */ String> projectId;
+    private Output<String> projectId;
 
     /**
      * @return Project ID. (Stackdriver)
      * 
      */
-    public Output<Optional<String>> projectId() {
-        return Codegen.optional(this.projectId);
+    public Output<String> projectId() {
+        return this.projectId;
     }
     /**
      * (optional) allowlist using regular expression
@@ -282,6 +311,12 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "credentials",
+                "privateKey",
+                "privateKeyId",
+                "secretAccessKey"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

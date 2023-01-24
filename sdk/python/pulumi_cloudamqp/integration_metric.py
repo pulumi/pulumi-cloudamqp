@@ -18,10 +18,12 @@ class IntegrationMetricArgs:
                  access_key_id: Optional[pulumi.Input[str]] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
                  client_email: Optional[pulumi.Input[str]] = None,
+                 credentials: Optional[pulumi.Input[str]] = None,
                  email: Optional[pulumi.Input[str]] = None,
                  license_key: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 private_key_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  queue_allowlist: Optional[pulumi.Input[str]] = None,
                  queue_whitelist: Optional[pulumi.Input[str]] = None,
@@ -36,10 +38,12 @@ class IntegrationMetricArgs:
         :param pulumi.Input[str] access_key_id: AWS access key identifier. (Cloudwatch)
         :param pulumi.Input[str] api_key: The API key for the integration service. (Librato)
         :param pulumi.Input[str] client_email: The client email. (Stackdriver)
+        :param pulumi.Input[str] credentials: Base64Encoded credentials. (Stackdriver)
         :param pulumi.Input[str] email: The email address registred for the integration service. (Librato)
         :param pulumi.Input[str] license_key: The license key registred for the integration service. (New Relic)
         :param pulumi.Input[str] name: The name of metrics integration
         :param pulumi.Input[str] private_key: The private key. (Stackdriver)
+        :param pulumi.Input[str] private_key_id: Private key identifier. (Stackdriver)
         :param pulumi.Input[str] project_id: Project ID. (Stackdriver)
         :param pulumi.Input[str] queue_allowlist: (optional) allowlist using regular expression
         :param pulumi.Input[str] queue_whitelist: **Deprecated**
@@ -56,6 +60,8 @@ class IntegrationMetricArgs:
             pulumi.set(__self__, "api_key", api_key)
         if client_email is not None:
             pulumi.set(__self__, "client_email", client_email)
+        if credentials is not None:
+            pulumi.set(__self__, "credentials", credentials)
         if email is not None:
             pulumi.set(__self__, "email", email)
         if license_key is not None:
@@ -64,6 +70,8 @@ class IntegrationMetricArgs:
             pulumi.set(__self__, "name", name)
         if private_key is not None:
             pulumi.set(__self__, "private_key", private_key)
+        if private_key_id is not None:
+            pulumi.set(__self__, "private_key_id", private_key_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if queue_allowlist is not None:
@@ -137,6 +145,18 @@ class IntegrationMetricArgs:
 
     @property
     @pulumi.getter
+    def credentials(self) -> Optional[pulumi.Input[str]]:
+        """
+        Base64Encoded credentials. (Stackdriver)
+        """
+        return pulumi.get(self, "credentials")
+
+    @credentials.setter
+    def credentials(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "credentials", value)
+
+    @property
+    @pulumi.getter
     def email(self) -> Optional[pulumi.Input[str]]:
         """
         The email address registred for the integration service. (Librato)
@@ -182,6 +202,18 @@ class IntegrationMetricArgs:
     @private_key.setter
     def private_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "private_key", value)
+
+    @property
+    @pulumi.getter(name="privateKeyId")
+    def private_key_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Private key identifier. (Stackdriver)
+        """
+        return pulumi.get(self, "private_key_id")
+
+    @private_key_id.setter
+    def private_key_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_key_id", value)
 
     @property
     @pulumi.getter(name="projectId")
@@ -286,11 +318,13 @@ class _IntegrationMetricState:
                  access_key_id: Optional[pulumi.Input[str]] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
                  client_email: Optional[pulumi.Input[str]] = None,
+                 credentials: Optional[pulumi.Input[str]] = None,
                  email: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  license_key: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 private_key_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  queue_allowlist: Optional[pulumi.Input[str]] = None,
                  queue_whitelist: Optional[pulumi.Input[str]] = None,
@@ -304,11 +338,13 @@ class _IntegrationMetricState:
         :param pulumi.Input[str] access_key_id: AWS access key identifier. (Cloudwatch)
         :param pulumi.Input[str] api_key: The API key for the integration service. (Librato)
         :param pulumi.Input[str] client_email: The client email. (Stackdriver)
+        :param pulumi.Input[str] credentials: Base64Encoded credentials. (Stackdriver)
         :param pulumi.Input[str] email: The email address registred for the integration service. (Librato)
         :param pulumi.Input[int] instance_id: Instance identifier
         :param pulumi.Input[str] license_key: The license key registred for the integration service. (New Relic)
         :param pulumi.Input[str] name: The name of metrics integration
         :param pulumi.Input[str] private_key: The private key. (Stackdriver)
+        :param pulumi.Input[str] private_key_id: Private key identifier. (Stackdriver)
         :param pulumi.Input[str] project_id: Project ID. (Stackdriver)
         :param pulumi.Input[str] queue_allowlist: (optional) allowlist using regular expression
         :param pulumi.Input[str] queue_whitelist: **Deprecated**
@@ -324,6 +360,8 @@ class _IntegrationMetricState:
             pulumi.set(__self__, "api_key", api_key)
         if client_email is not None:
             pulumi.set(__self__, "client_email", client_email)
+        if credentials is not None:
+            pulumi.set(__self__, "credentials", credentials)
         if email is not None:
             pulumi.set(__self__, "email", email)
         if instance_id is not None:
@@ -334,6 +372,8 @@ class _IntegrationMetricState:
             pulumi.set(__self__, "name", name)
         if private_key is not None:
             pulumi.set(__self__, "private_key", private_key)
+        if private_key_id is not None:
+            pulumi.set(__self__, "private_key_id", private_key_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if queue_allowlist is not None:
@@ -395,6 +435,18 @@ class _IntegrationMetricState:
 
     @property
     @pulumi.getter
+    def credentials(self) -> Optional[pulumi.Input[str]]:
+        """
+        Base64Encoded credentials. (Stackdriver)
+        """
+        return pulumi.get(self, "credentials")
+
+    @credentials.setter
+    def credentials(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "credentials", value)
+
+    @property
+    @pulumi.getter
     def email(self) -> Optional[pulumi.Input[str]]:
         """
         The email address registred for the integration service. (Librato)
@@ -452,6 +504,18 @@ class _IntegrationMetricState:
     @private_key.setter
     def private_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "private_key", value)
+
+    @property
+    @pulumi.getter(name="privateKeyId")
+    def private_key_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Private key identifier. (Stackdriver)
+        """
+        return pulumi.get(self, "private_key_id")
+
+    @private_key_id.setter
+    def private_key_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_key_id", value)
 
     @property
     @pulumi.getter(name="projectId")
@@ -558,11 +622,13 @@ class IntegrationMetric(pulumi.CustomResource):
                  access_key_id: Optional[pulumi.Input[str]] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
                  client_email: Optional[pulumi.Input[str]] = None,
+                 credentials: Optional[pulumi.Input[str]] = None,
                  email: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  license_key: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 private_key_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  queue_allowlist: Optional[pulumi.Input[str]] = None,
                  queue_whitelist: Optional[pulumi.Input[str]] = None,
@@ -579,11 +645,13 @@ class IntegrationMetric(pulumi.CustomResource):
         :param pulumi.Input[str] access_key_id: AWS access key identifier. (Cloudwatch)
         :param pulumi.Input[str] api_key: The API key for the integration service. (Librato)
         :param pulumi.Input[str] client_email: The client email. (Stackdriver)
+        :param pulumi.Input[str] credentials: Base64Encoded credentials. (Stackdriver)
         :param pulumi.Input[str] email: The email address registred for the integration service. (Librato)
         :param pulumi.Input[int] instance_id: Instance identifier
         :param pulumi.Input[str] license_key: The license key registred for the integration service. (New Relic)
         :param pulumi.Input[str] name: The name of metrics integration
         :param pulumi.Input[str] private_key: The private key. (Stackdriver)
+        :param pulumi.Input[str] private_key_id: Private key identifier. (Stackdriver)
         :param pulumi.Input[str] project_id: Project ID. (Stackdriver)
         :param pulumi.Input[str] queue_allowlist: (optional) allowlist using regular expression
         :param pulumi.Input[str] queue_whitelist: **Deprecated**
@@ -619,11 +687,13 @@ class IntegrationMetric(pulumi.CustomResource):
                  access_key_id: Optional[pulumi.Input[str]] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
                  client_email: Optional[pulumi.Input[str]] = None,
+                 credentials: Optional[pulumi.Input[str]] = None,
                  email: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  license_key: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 private_key_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  queue_allowlist: Optional[pulumi.Input[str]] = None,
                  queue_whitelist: Optional[pulumi.Input[str]] = None,
@@ -644,13 +714,15 @@ class IntegrationMetric(pulumi.CustomResource):
             __props__.__dict__["access_key_id"] = access_key_id
             __props__.__dict__["api_key"] = api_key
             __props__.__dict__["client_email"] = client_email
+            __props__.__dict__["credentials"] = None if credentials is None else pulumi.Output.secret(credentials)
             __props__.__dict__["email"] = email
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
             __props__.__dict__["license_key"] = license_key
             __props__.__dict__["name"] = name
-            __props__.__dict__["private_key"] = private_key
+            __props__.__dict__["private_key"] = None if private_key is None else pulumi.Output.secret(private_key)
+            __props__.__dict__["private_key_id"] = None if private_key_id is None else pulumi.Output.secret(private_key_id)
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["queue_allowlist"] = queue_allowlist
             if queue_whitelist is not None and not opts.urn:
@@ -658,13 +730,15 @@ class IntegrationMetric(pulumi.CustomResource):
                 pulumi.log.warn("""queue_whitelist is deprecated: use queue_allowlist instead""")
             __props__.__dict__["queue_whitelist"] = queue_whitelist
             __props__.__dict__["region"] = region
-            __props__.__dict__["secret_access_key"] = secret_access_key
+            __props__.__dict__["secret_access_key"] = None if secret_access_key is None else pulumi.Output.secret(secret_access_key)
             __props__.__dict__["tags"] = tags
             __props__.__dict__["vhost_allowlist"] = vhost_allowlist
             if vhost_whitelist is not None and not opts.urn:
                 warnings.warn("""use vhost_allowlist instead""", DeprecationWarning)
                 pulumi.log.warn("""vhost_whitelist is deprecated: use vhost_allowlist instead""")
             __props__.__dict__["vhost_whitelist"] = vhost_whitelist
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["credentials", "privateKey", "privateKeyId", "secretAccessKey"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(IntegrationMetric, __self__).__init__(
             'cloudamqp:index/integrationMetric:IntegrationMetric',
             resource_name,
@@ -678,11 +752,13 @@ class IntegrationMetric(pulumi.CustomResource):
             access_key_id: Optional[pulumi.Input[str]] = None,
             api_key: Optional[pulumi.Input[str]] = None,
             client_email: Optional[pulumi.Input[str]] = None,
+            credentials: Optional[pulumi.Input[str]] = None,
             email: Optional[pulumi.Input[str]] = None,
             instance_id: Optional[pulumi.Input[int]] = None,
             license_key: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             private_key: Optional[pulumi.Input[str]] = None,
+            private_key_id: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             queue_allowlist: Optional[pulumi.Input[str]] = None,
             queue_whitelist: Optional[pulumi.Input[str]] = None,
@@ -701,11 +777,13 @@ class IntegrationMetric(pulumi.CustomResource):
         :param pulumi.Input[str] access_key_id: AWS access key identifier. (Cloudwatch)
         :param pulumi.Input[str] api_key: The API key for the integration service. (Librato)
         :param pulumi.Input[str] client_email: The client email. (Stackdriver)
+        :param pulumi.Input[str] credentials: Base64Encoded credentials. (Stackdriver)
         :param pulumi.Input[str] email: The email address registred for the integration service. (Librato)
         :param pulumi.Input[int] instance_id: Instance identifier
         :param pulumi.Input[str] license_key: The license key registred for the integration service. (New Relic)
         :param pulumi.Input[str] name: The name of metrics integration
         :param pulumi.Input[str] private_key: The private key. (Stackdriver)
+        :param pulumi.Input[str] private_key_id: Private key identifier. (Stackdriver)
         :param pulumi.Input[str] project_id: Project ID. (Stackdriver)
         :param pulumi.Input[str] queue_allowlist: (optional) allowlist using regular expression
         :param pulumi.Input[str] queue_whitelist: **Deprecated**
@@ -722,11 +800,13 @@ class IntegrationMetric(pulumi.CustomResource):
         __props__.__dict__["access_key_id"] = access_key_id
         __props__.__dict__["api_key"] = api_key
         __props__.__dict__["client_email"] = client_email
+        __props__.__dict__["credentials"] = credentials
         __props__.__dict__["email"] = email
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["license_key"] = license_key
         __props__.__dict__["name"] = name
         __props__.__dict__["private_key"] = private_key
+        __props__.__dict__["private_key_id"] = private_key_id
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["queue_allowlist"] = queue_allowlist
         __props__.__dict__["queue_whitelist"] = queue_whitelist
@@ -755,11 +835,19 @@ class IntegrationMetric(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clientEmail")
-    def client_email(self) -> pulumi.Output[Optional[str]]:
+    def client_email(self) -> pulumi.Output[str]:
         """
         The client email. (Stackdriver)
         """
         return pulumi.get(self, "client_email")
+
+    @property
+    @pulumi.getter
+    def credentials(self) -> pulumi.Output[Optional[str]]:
+        """
+        Base64Encoded credentials. (Stackdriver)
+        """
+        return pulumi.get(self, "credentials")
 
     @property
     @pulumi.getter
@@ -795,15 +883,23 @@ class IntegrationMetric(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="privateKey")
-    def private_key(self) -> pulumi.Output[Optional[str]]:
+    def private_key(self) -> pulumi.Output[str]:
         """
         The private key. (Stackdriver)
         """
         return pulumi.get(self, "private_key")
 
     @property
+    @pulumi.getter(name="privateKeyId")
+    def private_key_id(self) -> pulumi.Output[str]:
+        """
+        Private key identifier. (Stackdriver)
+        """
+        return pulumi.get(self, "private_key_id")
+
+    @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> pulumi.Output[Optional[str]]:
+    def project_id(self) -> pulumi.Output[str]:
         """
         Project ID. (Stackdriver)
         """

@@ -12,6 +12,8 @@ import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.Map;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -41,10 +43,24 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var recipient01 = new Notification(&#34;recipient01&#34;, NotificationArgs.builder()        
+ *         var emailRecipient = new Notification(&#34;emailRecipient&#34;, NotificationArgs.builder()        
  *             .instanceId(cloudamqp_instance.instance().id())
  *             .type(&#34;email&#34;)
  *             .value(&#34;alarm@example.com&#34;)
+ *             .build());
+ * 
+ *         var victoropsRecipient = new Notification(&#34;victoropsRecipient&#34;, NotificationArgs.builder()        
+ *             .instanceId(cloudamqp_instance.instance().id())
+ *             .type(&#34;victorops&#34;)
+ *             .value(&#34;&lt;UUID&gt;&#34;)
+ *             .options(Map.of(&#34;rk&#34;, &#34;ROUTINGKEY&#34;))
+ *             .build());
+ * 
+ *         var pagerdutyRecipient = new Notification(&#34;pagerdutyRecipient&#34;, NotificationArgs.builder()        
+ *             .instanceId(cloudamqp_instance.instance().id())
+ *             .type(&#34;pagerduty&#34;)
+ *             .value(&#34;&lt;integration-key&gt;&#34;)
+ *             .options(Map.of(&#34;dedupkey&#34;, &#34;DEDUPKEY&#34;))
  *             .build());
  * 
  *     }
@@ -62,6 +78,13 @@ import javax.annotation.Nullable;
  * * opsgenie-eu
  * * slack
  * * teams
+ * 
+ * ## Options parameter
+ * 
+ * | Type      | Options  | Description                                                                                                                                                                                                                                                                      | Note                                                                                                                                    |
+ * |-----------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+ * | Victorops | rk       | Routing key to route alarm notification                                                                                                                                                                                                                                          | -                                                                                                                                        |
+ * | PagerDuty | dedupkey | Default the dedup key for PagerDuty is generated depending on what alarm has triggered, but here you can set what `dedup` key to use so even if the same alarm is triggered for different resources you only get one notification. Leave blank to use the generated dedup key. | If multiple alarms are triggered using this recipient, since they all share `dedup` key only the first alarm will be shown in PagerDuty |
  * 
  * ## Dependency
  * 
@@ -107,6 +130,20 @@ public class Notification extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
+     * Options argument (e.g. `rk` used for VictorOps routing key).
+     * 
+     */
+    @Export(name="options", type=Map.class, parameters={String.class, String.class})
+    private Output</* @Nullable */ Map<String,String>> options;
+
+    /**
+     * @return Options argument (e.g. `rk` used for VictorOps routing key).
+     * 
+     */
+    public Output<Optional<Map<String,String>>> options() {
+        return Codegen.optional(this.options);
+    }
+    /**
      * Type of the notification. See valid options below.
      * 
      */
@@ -121,14 +158,14 @@ public class Notification extends com.pulumi.resources.CustomResource {
         return this.type;
     }
     /**
-     * Endpoint to send the notification.
+     * Integration/API key or endpoint to send the notification.
      * 
      */
     @Export(name="value", type=String.class, parameters={})
     private Output<String> value;
 
     /**
-     * @return Endpoint to send the notification.
+     * @return Integration/API key or endpoint to send the notification.
      * 
      */
     public Output<String> value() {

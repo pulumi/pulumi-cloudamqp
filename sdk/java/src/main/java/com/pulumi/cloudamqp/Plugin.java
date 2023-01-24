@@ -28,6 +28,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="cloudamqp:index/plugin:Plugin")
 public class Plugin extends com.pulumi.resources.CustomResource {
     /**
+     * The description of the plugin.
+     * 
+     */
+    @Export(name="description", type=String.class, parameters={})
+    private Output<String> description;
+
+    /**
+     * @return The description of the plugin.
+     * 
+     */
+    public Output<String> description() {
+        return this.description;
+    }
+    /**
      * Enable or disable the plugins.
      * 
      */
@@ -68,6 +82,20 @@ public class Plugin extends com.pulumi.resources.CustomResource {
      */
     public Output<String> name() {
         return this.name;
+    }
+    /**
+     * The version of the plugin.
+     * 
+     */
+    @Export(name="version", type=String.class, parameters={})
+    private Output<String> version;
+
+    /**
+     * @return The version of the plugin.
+     * 
+     */
+    public Output<String> version() {
+        return this.version;
     }
 
     /**

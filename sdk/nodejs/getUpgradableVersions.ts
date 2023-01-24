@@ -29,11 +29,8 @@ import * as utilities from "./utilities";
  * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
  */
 export function getUpgradableVersions(args: GetUpgradableVersionsArgs, opts?: pulumi.InvokeOptions): Promise<GetUpgradableVersionsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("cloudamqp:index/getUpgradableVersions:getUpgradableVersions", {
         "instanceId": args.instanceId,
     }, opts);
@@ -61,9 +58,32 @@ export interface GetUpgradableVersionsResult {
     readonly newErlangVersion: string;
     readonly newRabbitmqVersion: string;
 }
-
+/**
+ * Use this data source to retrieve information about possible upgradable versions for RabbitMQ and Erlang.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const versions = cloudamqp.getUpgradableVersions({
+ *     instanceId: cloudamqp_instance.instance.id,
+ * });
+ * ```
+ * ## Attributes reference
+ *
+ * All attributes reference are computed
+ *
+ * * `newRabbitmqVersion`  - Possible upgradable version for RabbitMQ.
+ * * `newErlangVersion`    - Possible upgradable version for Erlang.
+ *
+ * ## Dependency
+ *
+ * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ */
 export function getUpgradableVersionsOutput(args: GetUpgradableVersionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetUpgradableVersionsResult> {
-    return pulumi.output(args).apply(a => getUpgradableVersions(a, opts))
+    return pulumi.output(args).apply((a: any) => getUpgradableVersions(a, opts))
 }
 
 /**

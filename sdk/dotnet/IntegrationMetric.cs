@@ -28,7 +28,13 @@ namespace Pulumi.CloudAmqp
         /// The client email. (Stackdriver)
         /// </summary>
         [Output("clientEmail")]
-        public Output<string?> ClientEmail { get; private set; } = null!;
+        public Output<string> ClientEmail { get; private set; } = null!;
+
+        /// <summary>
+        /// Base64Encoded credentials. (Stackdriver)
+        /// </summary>
+        [Output("credentials")]
+        public Output<string?> Credentials { get; private set; } = null!;
 
         /// <summary>
         /// The email address registred for the integration service. (Librato)
@@ -58,13 +64,19 @@ namespace Pulumi.CloudAmqp
         /// The private key. (Stackdriver)
         /// </summary>
         [Output("privateKey")]
-        public Output<string?> PrivateKey { get; private set; } = null!;
+        public Output<string> PrivateKey { get; private set; } = null!;
+
+        /// <summary>
+        /// Private key identifier. (Stackdriver)
+        /// </summary>
+        [Output("privateKeyId")]
+        public Output<string> PrivateKeyId { get; private set; } = null!;
 
         /// <summary>
         /// Project ID. (Stackdriver)
         /// </summary>
         [Output("projectId")]
-        public Output<string?> ProjectId { get; private set; } = null!;
+        public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
         /// (optional) allowlist using regular expression
@@ -131,6 +143,13 @@ namespace Pulumi.CloudAmqp
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "credentials",
+                    "privateKey",
+                    "privateKeyId",
+                    "secretAccessKey",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -172,6 +191,22 @@ namespace Pulumi.CloudAmqp
         [Input("clientEmail")]
         public Input<string>? ClientEmail { get; set; }
 
+        [Input("credentials")]
+        private Input<string>? _credentials;
+
+        /// <summary>
+        /// Base64Encoded credentials. (Stackdriver)
+        /// </summary>
+        public Input<string>? Credentials
+        {
+            get => _credentials;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _credentials = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
         /// <summary>
         /// The email address registred for the integration service. (Librato)
         /// </summary>
@@ -196,11 +231,37 @@ namespace Pulumi.CloudAmqp
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        [Input("privateKey")]
+        private Input<string>? _privateKey;
+
         /// <summary>
         /// The private key. (Stackdriver)
         /// </summary>
-        [Input("privateKey")]
-        public Input<string>? PrivateKey { get; set; }
+        public Input<string>? PrivateKey
+        {
+            get => _privateKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("privateKeyId")]
+        private Input<string>? _privateKeyId;
+
+        /// <summary>
+        /// Private key identifier. (Stackdriver)
+        /// </summary>
+        public Input<string>? PrivateKeyId
+        {
+            get => _privateKeyId;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKeyId = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Project ID. (Stackdriver)
@@ -226,11 +287,21 @@ namespace Pulumi.CloudAmqp
         [Input("region")]
         public Input<string>? Region { get; set; }
 
+        [Input("secretAccessKey")]
+        private Input<string>? _secretAccessKey;
+
         /// <summary>
         /// AWS secret key. (Cloudwatch)
         /// </summary>
-        [Input("secretAccessKey")]
-        public Input<string>? SecretAccessKey { get; set; }
+        public Input<string>? SecretAccessKey
+        {
+            get => _secretAccessKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretAccessKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// (optional) tags. E.g. env=prod,region=europe
@@ -276,6 +347,22 @@ namespace Pulumi.CloudAmqp
         [Input("clientEmail")]
         public Input<string>? ClientEmail { get; set; }
 
+        [Input("credentials")]
+        private Input<string>? _credentials;
+
+        /// <summary>
+        /// Base64Encoded credentials. (Stackdriver)
+        /// </summary>
+        public Input<string>? Credentials
+        {
+            get => _credentials;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _credentials = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
         /// <summary>
         /// The email address registred for the integration service. (Librato)
         /// </summary>
@@ -300,11 +387,37 @@ namespace Pulumi.CloudAmqp
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        [Input("privateKey")]
+        private Input<string>? _privateKey;
+
         /// <summary>
         /// The private key. (Stackdriver)
         /// </summary>
-        [Input("privateKey")]
-        public Input<string>? PrivateKey { get; set; }
+        public Input<string>? PrivateKey
+        {
+            get => _privateKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("privateKeyId")]
+        private Input<string>? _privateKeyId;
+
+        /// <summary>
+        /// Private key identifier. (Stackdriver)
+        /// </summary>
+        public Input<string>? PrivateKeyId
+        {
+            get => _privateKeyId;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKeyId = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Project ID. (Stackdriver)
@@ -330,11 +443,21 @@ namespace Pulumi.CloudAmqp
         [Input("region")]
         public Input<string>? Region { get; set; }
 
+        [Input("secretAccessKey")]
+        private Input<string>? _secretAccessKey;
+
         /// <summary>
         /// AWS secret key. (Cloudwatch)
         /// </summary>
-        [Input("secretAccessKey")]
-        public Input<string>? SecretAccessKey { get; set; }
+        public Input<string>? SecretAccessKey
+        {
+            get => _secretAccessKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretAccessKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// (optional) tags. E.g. env=prod,region=europe

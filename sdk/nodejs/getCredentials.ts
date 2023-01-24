@@ -30,11 +30,8 @@ import * as utilities from "./utilities";
  * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
  */
 export function getCredentials(args: GetCredentialsArgs, opts?: pulumi.InvokeOptions): Promise<GetCredentialsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("cloudamqp:index/getCredentials:getCredentials", {
         "instanceId": args.instanceId,
     }, opts);
@@ -62,9 +59,33 @@ export interface GetCredentialsResult {
     readonly password: string;
     readonly username: string;
 }
-
+/**
+ * Use this data source to retrieve information about the credentials of the configured user in Rabbit MQ. Information is extracted from `cloudamqp_instance.instance.url`.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const credentials = cloudamqp.getCredentials({
+ *     instanceId: cloudamqp_instance.instance.id,
+ * });
+ * ```
+ * ## Attributes reference
+ *
+ * All attributes reference are computed.
+ *
+ * * `id`          - The identifier for this data source.
+ * * `username`    - (Sensitive) The username for the configured user in Rabbit MQ.
+ * * `password`    - (Sensitive) The password used by the `username`.
+ *
+ * ## Dependency
+ *
+ * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ */
 export function getCredentialsOutput(args: GetCredentialsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCredentialsResult> {
-    return pulumi.output(args).apply(a => getCredentials(a, opts))
+    return pulumi.output(args).apply((a: any) => getCredentials(a, opts))
 }
 
 /**

@@ -16,10 +16,26 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * // New recipient to receieve notifications
- * const recipient01 = new cloudamqp.Notification("recipient01", {
+ * const emailRecipient = new cloudamqp.Notification("emailRecipient", {
  *     instanceId: cloudamqp_instance.instance.id,
  *     type: "email",
  *     value: "alarm@example.com",
+ * });
+ * const victoropsRecipient = new cloudamqp.Notification("victoropsRecipient", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     type: "victorops",
+ *     value: "<UUID>",
+ *     options: {
+ *         rk: "ROUTINGKEY",
+ *     },
+ * });
+ * const pagerdutyRecipient = new cloudamqp.Notification("pagerdutyRecipient", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     type: "pagerduty",
+ *     value: "<integration-key>",
+ *     options: {
+ *         dedupkey: "DEDUPKEY",
+ *     },
  * });
  * ```
  * ## Notification Type reference
@@ -34,6 +50,13 @@ import * as utilities from "./utilities";
  * * opsgenie-eu
  * * slack
  * * teams
+ *
+ * ## Options parameter
+ *
+ * | Type      | Options  | Description                                                                                                                                                                                                                                                                      | Note                                                                                                                                    |
+ * |-----------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+ * | Victorops | rk       | Routing key to route alarm notification                                                                                                                                                                                                                                          | -                                                                                                                                        |
+ * | PagerDuty | dedupkey | Default the dedup key for PagerDuty is generated depending on what alarm has triggered, but here you can set what `dedup` key to use so even if the same alarm is triggered for different resources you only get one notification. Leave blank to use the generated dedup key. | If multiple alarms are triggered using this recipient, since they all share `dedup` key only the first alarm will be shown in PagerDuty |
  *
  * ## Dependency
  *
@@ -84,11 +107,15 @@ export class Notification extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * Options argument (e.g. `rk` used for VictorOps routing key).
+     */
+    public readonly options!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * Type of the notification. See valid options below.
      */
     public readonly type!: pulumi.Output<string>;
     /**
-     * Endpoint to send the notification.
+     * Integration/API key or endpoint to send the notification.
      */
     public readonly value!: pulumi.Output<string>;
 
@@ -107,6 +134,7 @@ export class Notification extends pulumi.CustomResource {
             const state = argsOrState as NotificationState | undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["options"] = state ? state.options : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["value"] = state ? state.value : undefined;
         } else {
@@ -122,6 +150,7 @@ export class Notification extends pulumi.CustomResource {
             }
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["options"] = args ? args.options : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["value"] = args ? args.value : undefined;
         }
@@ -143,11 +172,15 @@ export interface NotificationState {
      */
     name?: pulumi.Input<string>;
     /**
+     * Options argument (e.g. `rk` used for VictorOps routing key).
+     */
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
      * Type of the notification. See valid options below.
      */
     type?: pulumi.Input<string>;
     /**
-     * Endpoint to send the notification.
+     * Integration/API key or endpoint to send the notification.
      */
     value?: pulumi.Input<string>;
 }
@@ -165,11 +198,15 @@ export interface NotificationArgs {
      */
     name?: pulumi.Input<string>;
     /**
+     * Options argument (e.g. `rk` used for VictorOps routing key).
+     */
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
      * Type of the notification. See valid options below.
      */
     type: pulumi.Input<string>;
     /**
-     * Endpoint to send the notification.
+     * Integration/API key or endpoint to send the notification.
      */
     value: pulumi.Input<string>;
 }

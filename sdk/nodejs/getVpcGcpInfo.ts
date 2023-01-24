@@ -61,11 +61,8 @@ import * as utilities from "./utilities";
  */
 export function getVpcGcpInfo(args?: GetVpcGcpInfoArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcGcpInfoResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo", {
         "instanceId": args.instanceId,
         "vpcId": args.vpcId,
@@ -100,9 +97,63 @@ export interface GetVpcGcpInfoResult {
     readonly vpcId?: string;
     readonly vpcSubnet: string;
 }
-
+/**
+ * Use this data source to retrieve information about VPC for a CloudAMQP instance hosted in GCP.
+ *
+ * ## Example Usage
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>AWS VPC peering pre v1.16.0</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const vpcInfo = cloudamqp.getVpcGcpInfo({
+ *     instanceId: cloudamqp_instance.instance.id,
+ * });
+ * ```
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>AWS VPC peering post v1.16.0 (Managed VPC)</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const vpcInfo = cloudamqp.getVpcGcpInfo({
+ *     vpcId: cloudamqp_vpc.vpc.id,
+ * });
+ * ```
+ * </details>
+ * ## Attributes reference
+ *
+ * All attributes reference are computed
+ *
+ * * `id`                  - The identifier for this resource.
+ * * `name`                - The name of the VPC.
+ * * `vpcSubnet`          - Dedicated VPC subnet.
+ * * `network`             - VPC network uri.
+ *
+ * ## Dependency
+ *
+ * *Pre v1.16.0*
+ * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ *
+ * *Post v1.16.0*
+ * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
+ */
 export function getVpcGcpInfoOutput(args?: GetVpcGcpInfoOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcGcpInfoResult> {
-    return pulumi.output(args).apply(a => getVpcGcpInfo(a, opts))
+    return pulumi.output(args).apply((a: any) => getVpcGcpInfo(a, opts))
 }
 
 /**

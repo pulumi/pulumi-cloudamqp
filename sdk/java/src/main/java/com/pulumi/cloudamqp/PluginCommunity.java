@@ -16,14 +16,6 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
- * This resource allows you to install or uninstall community plugins. Once installed the plugin will be available in `cloudamqp.Plugin`.
- * 
- * Only available for dedicated subscription plans.
- * 
- * &gt; From our go API wrapper [v1.5.0](https://github.com/84codes/go-api/releases/tag/v1.5.0) there is support for multiple retries when requesting information about community plugins. This was introduced to avoid `ReadPluginCommunity error 400: Timeout talking to backend`.
- * 
- * &gt; From our go API wrapper [v1.9.1](https://github.com/84codes/go-api/releases/tag/v1.9.1) there is support for asynchronous request for plugin/community actions. Solve issues reported when enable multiple plugins.
- * 
  * ## Example Usage
  * ```java
  * package generated_program;
@@ -70,6 +62,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="cloudamqp:index/pluginCommunity:PluginCommunity")
 public class PluginCommunity extends com.pulumi.resources.CustomResource {
     /**
+     * The description of the plugin.
+     * 
+     */
+    @Export(name="description", type=String.class, parameters={})
+    private Output<String> description;
+
+    /**
+     * @return The description of the plugin.
+     * 
+     */
+    public Output<String> description() {
+        return this.description;
+    }
+    /**
      * Enable or disable the plugins.
      * 
      */
@@ -110,6 +116,20 @@ public class PluginCommunity extends com.pulumi.resources.CustomResource {
      */
     public Output<String> name() {
         return this.name;
+    }
+    /**
+     * Required version of RabbitMQ.
+     * 
+     */
+    @Export(name="require", type=String.class, parameters={})
+    private Output<String> require;
+
+    /**
+     * @return Required version of RabbitMQ.
+     * 
+     */
+    public Output<String> require() {
+        return this.require;
     }
 
     /**

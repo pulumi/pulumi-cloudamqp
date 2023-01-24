@@ -13,6 +13,7 @@ import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
 import java.lang.Integer;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -54,6 +55,34 @@ public class SecurityFirewall extends com.pulumi.resources.CustomResource {
      */
     public Output<List<SecurityFirewallRule>> rules() {
         return this.rules;
+    }
+    /**
+     * Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+     * 
+     */
+    @Export(name="sleep", type=Integer.class, parameters={})
+    private Output</* @Nullable */ Integer> sleep;
+
+    /**
+     * @return Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+     * 
+     */
+    public Output<Optional<Integer>> sleep() {
+        return Codegen.optional(this.sleep);
+    }
+    /**
+     * Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+     * 
+     */
+    @Export(name="timeout", type=Integer.class, parameters={})
+    private Output</* @Nullable */ Integer> timeout;
+
+    /**
+     * @return Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+     * 
+     */
+    public Output<Optional<Integer>> timeout() {
+        return Codegen.optional(this.timeout);
     }
 
     /**

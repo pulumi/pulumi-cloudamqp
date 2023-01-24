@@ -87,7 +87,7 @@ namespace Pulumi.CloudAmqp
         /// This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
         /// </summary>
         public static Task<GetVpcInfoResult> InvokeAsync(GetVpcInfoArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetVpcInfoResult>("cloudamqp:index/getVpcInfo:getVpcInfo", args ?? new GetVpcInfoArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetVpcInfoResult>("cloudamqp:index/getVpcInfo:getVpcInfo", args ?? new GetVpcInfoArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to retrieve information about VPC for a CloudAMQP instance.
@@ -165,7 +165,7 @@ namespace Pulumi.CloudAmqp
         /// This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
         /// </summary>
         public static Output<GetVpcInfoResult> Invoke(GetVpcInfoInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetVpcInfoResult>("cloudamqp:index/getVpcInfo:getVpcInfo", args ?? new GetVpcInfoInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetVpcInfoResult>("cloudamqp:index/getVpcInfo:getVpcInfo", args ?? new GetVpcInfoInvokeArgs(), options.WithDefaults());
     }
 
 

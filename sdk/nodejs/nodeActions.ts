@@ -51,19 +51,19 @@ import * as utilities from "./utilities";
  * const restart01 = new cloudamqp.NodeActions("restart01", {
  *     instanceId: cloudamqp_instance.instance.id,
  *     action: "restart",
- *     nodeName: listNodes.then(listNodes => listNodes.nodes?[0]?.name),
+ *     nodeName: listNodes.then(listNodes => listNodes.nodes?.[0]?.name),
  * });
  * const restart02 = new cloudamqp.NodeActions("restart02", {
  *     instanceId: cloudamqp_instance.instance.id,
  *     action: "restart",
- *     nodeName: listNodes.then(listNodes => listNodes.nodes?[1]?.name),
+ *     nodeName: listNodes.then(listNodes => listNodes.nodes?.[1]?.name),
  * }, {
  *     dependsOn: [restart01],
  * });
  * const restart03 = new cloudamqp.NodeActions("restart03", {
  *     instanceId: cloudamqp_instance.instance.id,
  *     action: "restart",
- *     nodeName: listNodes.then(listNodes => listNodes.nodes?[2]?.name),
+ *     nodeName: listNodes.then(listNodes => listNodes.nodes?.[2]?.name),
  * }, {
  *     dependsOn: [
  *         restart01,
@@ -94,14 +94,14 @@ import * as utilities from "./utilities";
  * const restart01 = new cloudamqp.NodeActions("restart01", {
  *     instanceId: cloudamqp_instance.instance.id,
  *     action: "restart",
- *     nodeName: listNodes.then(listNodes => listNodes.nodes?[0]?.name),
+ *     nodeName: listNodes.then(listNodes => listNodes.nodes?.[0]?.name),
  * }, {
  *     dependsOn: [rabbitmqConfig],
  * });
  * const restart02 = new cloudamqp.NodeActions("restart02", {
  *     instanceId: cloudamqp_instance.instance.id,
  *     action: "restart",
- *     nodeName: listNodes.then(listNodes => listNodes.nodes?[1]?.name),
+ *     nodeName: listNodes.then(listNodes => listNodes.nodes?.[1]?.name),
  * }, {
  *     dependsOn: [
  *         rabbitmqConfig,
@@ -111,7 +111,7 @@ import * as utilities from "./utilities";
  * const restart03 = new cloudamqp.NodeActions("restart03", {
  *     instanceId: cloudamqp_instance.instance.id,
  *     action: "restart",
- *     nodeName: listNodes.then(listNodes => listNodes.nodes?[2]?.name),
+ *     nodeName: listNodes.then(listNodes => listNodes.nodes?.[2]?.name),
  * }, {
  *     dependsOn: [
  *         rabbitmqConfig,

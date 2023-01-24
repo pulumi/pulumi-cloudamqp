@@ -80,14 +80,14 @@ public class VpcPeering extends com.pulumi.resources.CustomResource {
         return this.status;
     }
     /**
-     * - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+     * Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
      * 
      */
     @Export(name="timeout", type=Integer.class, parameters={})
     private Output</* @Nullable */ Integer> timeout;
 
     /**
-     * @return - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+     * @return Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
      * 
      */
     public Output<Optional<Integer>> timeout() {

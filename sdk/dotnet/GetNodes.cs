@@ -58,7 +58,7 @@ namespace Pulumi.CloudAmqp
         /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
         /// </summary>
         public static Task<GetNodesResult> InvokeAsync(GetNodesArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetNodesResult>("cloudamqp:index/getNodes:getNodes", args ?? new GetNodesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetNodesResult>("cloudamqp:index/getNodes:getNodes", args ?? new GetNodesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to retrieve information about the node(s) created by CloudAMQP instance.
@@ -107,7 +107,7 @@ namespace Pulumi.CloudAmqp
         /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
         /// </summary>
         public static Output<GetNodesResult> Invoke(GetNodesInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetNodesResult>("cloudamqp:index/getNodes:getNodes", args ?? new GetNodesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetNodesResult>("cloudamqp:index/getNodes:getNodes", args ?? new GetNodesInvokeArgs(), options.WithDefaults());
     }
 
 

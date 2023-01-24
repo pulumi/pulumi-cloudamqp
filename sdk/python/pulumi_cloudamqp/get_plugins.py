@@ -66,10 +66,6 @@ class AwaitableGetPluginsResult(GetPluginsResult):
 def get_plugins(instance_id: Optional[int] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPluginsResult:
     """
-    Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
-
-    ⚠️  From our go API wrapper [v1.4.0](https://github.com/84codes/go-api/releases/tag/v1.4.0) there is support for multiple retries when requesting information about plugins. This was introduced to avoid `ReadPlugin error 400: Timeout talking to backend`.
-
     ## Example Usage
 
     ```python
@@ -116,10 +112,6 @@ def get_plugins(instance_id: Optional[int] = None,
 def get_plugins_output(instance_id: Optional[pulumi.Input[int]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPluginsResult]:
     """
-    Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
-
-    ⚠️  From our go API wrapper [v1.4.0](https://github.com/84codes/go-api/releases/tag/v1.4.0) there is support for multiple retries when requesting information about plugins. This was introduced to avoid `ReadPlugin error 400: Timeout talking to backend`.
-
     ## Example Usage
 
     ```python

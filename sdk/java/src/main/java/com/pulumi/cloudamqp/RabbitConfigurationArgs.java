@@ -138,6 +138,36 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
     }
 
     /**
+     * Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+     * 
+     */
+    @Import(name="sleep")
+    private @Nullable Output<Integer> sleep;
+
+    /**
+     * @return Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+     * 
+     */
+    public Optional<Output<Integer>> sleep() {
+        return Optional.ofNullable(this.sleep);
+    }
+
+    /**
+     * Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+     * 
+     */
+    @Import(name="timeout")
+    private @Nullable Output<Integer> timeout;
+
+    /**
+     * @return Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+     * 
+     */
+    public Optional<Output<Integer>> timeout() {
+        return Optional.ofNullable(this.timeout);
+    }
+
+    /**
      * When the server will enter memory based flow-control as relative to the maximum available memory.
      * 
      */
@@ -163,6 +193,8 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         this.logExchangeLevel = $.logExchangeLevel;
         this.maxMessageSize = $.maxMessageSize;
         this.queueIndexEmbedMsgsBelow = $.queueIndexEmbedMsgsBelow;
+        this.sleep = $.sleep;
+        this.timeout = $.timeout;
         this.vmMemoryHighWatermark = $.vmMemoryHighWatermark;
     }
 
@@ -350,6 +382,48 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
          */
         public Builder queueIndexEmbedMsgsBelow(Integer queueIndexEmbedMsgsBelow) {
             return queueIndexEmbedMsgsBelow(Output.of(queueIndexEmbedMsgsBelow));
+        }
+
+        /**
+         * @param sleep Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sleep(@Nullable Output<Integer> sleep) {
+            $.sleep = sleep;
+            return this;
+        }
+
+        /**
+         * @param sleep Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sleep(Integer sleep) {
+            return sleep(Output.of(sleep));
+        }
+
+        /**
+         * @param timeout Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder timeout(@Nullable Output<Integer> timeout) {
+            $.timeout = timeout;
+            return this;
+        }
+
+        /**
+         * @param timeout Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder timeout(Integer timeout) {
+            return timeout(Output.of(timeout));
         }
 
         /**

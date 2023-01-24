@@ -18,13 +18,16 @@ class IntegrationLogArgs:
                  access_key_id: Optional[pulumi.Input[str]] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
                  client_email: Optional[pulumi.Input[str]] = None,
+                 credentials: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  host_port: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 private_key_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  secret_access_key: Optional[pulumi.Input[str]] = None,
+                 sourcetype: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None):
@@ -34,13 +37,16 @@ class IntegrationLogArgs:
         :param pulumi.Input[str] access_key_id: AWS access key identifier.
         :param pulumi.Input[str] api_key: The API key.
         :param pulumi.Input[str] client_email: The client email registered for the integration service.
+        :param pulumi.Input[str] credentials: Google Service Account private key credentials.
         :param pulumi.Input[str] host: The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
         :param pulumi.Input[str] host_port: Destination to send the logs.
         :param pulumi.Input[str] name: The name of the third party log integration. See
         :param pulumi.Input[str] private_key: The private access key.
+        :param pulumi.Input[str] private_key_id: Private key identifier. (Stackdriver)
         :param pulumi.Input[str] project_id: The project identifier.
         :param pulumi.Input[str] region: Region hosting the integration service.
         :param pulumi.Input[str] secret_access_key: AWS secret access key.
+        :param pulumi.Input[str] sourcetype: Assign source type to the data exported, eg. generic_single_line. (Splunk)
         :param pulumi.Input[str] tags: Tag the integration, e.g. env=prod, region=europe.
         :param pulumi.Input[str] token: Token used for authentication.
         :param pulumi.Input[str] url: Endpoint to log integration.
@@ -52,6 +58,8 @@ class IntegrationLogArgs:
             pulumi.set(__self__, "api_key", api_key)
         if client_email is not None:
             pulumi.set(__self__, "client_email", client_email)
+        if credentials is not None:
+            pulumi.set(__self__, "credentials", credentials)
         if host is not None:
             pulumi.set(__self__, "host", host)
         if host_port is not None:
@@ -60,12 +68,16 @@ class IntegrationLogArgs:
             pulumi.set(__self__, "name", name)
         if private_key is not None:
             pulumi.set(__self__, "private_key", private_key)
+        if private_key_id is not None:
+            pulumi.set(__self__, "private_key_id", private_key_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if secret_access_key is not None:
             pulumi.set(__self__, "secret_access_key", secret_access_key)
+        if sourcetype is not None:
+            pulumi.set(__self__, "sourcetype", sourcetype)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if token is not None:
@@ -123,6 +135,18 @@ class IntegrationLogArgs:
 
     @property
     @pulumi.getter
+    def credentials(self) -> Optional[pulumi.Input[str]]:
+        """
+        Google Service Account private key credentials.
+        """
+        return pulumi.get(self, "credentials")
+
+    @credentials.setter
+    def credentials(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "credentials", value)
+
+    @property
+    @pulumi.getter
     def host(self) -> Optional[pulumi.Input[str]]:
         """
         The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
@@ -170,6 +194,18 @@ class IntegrationLogArgs:
         pulumi.set(self, "private_key", value)
 
     @property
+    @pulumi.getter(name="privateKeyId")
+    def private_key_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Private key identifier. (Stackdriver)
+        """
+        return pulumi.get(self, "private_key_id")
+
+    @private_key_id.setter
+    def private_key_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_key_id", value)
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -204,6 +240,18 @@ class IntegrationLogArgs:
     @secret_access_key.setter
     def secret_access_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "secret_access_key", value)
+
+    @property
+    @pulumi.getter
+    def sourcetype(self) -> Optional[pulumi.Input[str]]:
+        """
+        Assign source type to the data exported, eg. generic_single_line. (Splunk)
+        """
+        return pulumi.get(self, "sourcetype")
+
+    @sourcetype.setter
+    def sourcetype(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sourcetype", value)
 
     @property
     @pulumi.getter
@@ -248,14 +296,17 @@ class _IntegrationLogState:
                  access_key_id: Optional[pulumi.Input[str]] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
                  client_email: Optional[pulumi.Input[str]] = None,
+                 credentials: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  host_port: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 private_key_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  secret_access_key: Optional[pulumi.Input[str]] = None,
+                 sourcetype: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None):
@@ -264,14 +315,17 @@ class _IntegrationLogState:
         :param pulumi.Input[str] access_key_id: AWS access key identifier.
         :param pulumi.Input[str] api_key: The API key.
         :param pulumi.Input[str] client_email: The client email registered for the integration service.
+        :param pulumi.Input[str] credentials: Google Service Account private key credentials.
         :param pulumi.Input[str] host: The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
         :param pulumi.Input[str] host_port: Destination to send the logs.
         :param pulumi.Input[int] instance_id: Instance identifier used to make proxy calls
         :param pulumi.Input[str] name: The name of the third party log integration. See
         :param pulumi.Input[str] private_key: The private access key.
+        :param pulumi.Input[str] private_key_id: Private key identifier. (Stackdriver)
         :param pulumi.Input[str] project_id: The project identifier.
         :param pulumi.Input[str] region: Region hosting the integration service.
         :param pulumi.Input[str] secret_access_key: AWS secret access key.
+        :param pulumi.Input[str] sourcetype: Assign source type to the data exported, eg. generic_single_line. (Splunk)
         :param pulumi.Input[str] tags: Tag the integration, e.g. env=prod, region=europe.
         :param pulumi.Input[str] token: Token used for authentication.
         :param pulumi.Input[str] url: Endpoint to log integration.
@@ -282,6 +336,8 @@ class _IntegrationLogState:
             pulumi.set(__self__, "api_key", api_key)
         if client_email is not None:
             pulumi.set(__self__, "client_email", client_email)
+        if credentials is not None:
+            pulumi.set(__self__, "credentials", credentials)
         if host is not None:
             pulumi.set(__self__, "host", host)
         if host_port is not None:
@@ -292,12 +348,16 @@ class _IntegrationLogState:
             pulumi.set(__self__, "name", name)
         if private_key is not None:
             pulumi.set(__self__, "private_key", private_key)
+        if private_key_id is not None:
+            pulumi.set(__self__, "private_key_id", private_key_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if secret_access_key is not None:
             pulumi.set(__self__, "secret_access_key", secret_access_key)
+        if sourcetype is not None:
+            pulumi.set(__self__, "sourcetype", sourcetype)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if token is not None:
@@ -340,6 +400,18 @@ class _IntegrationLogState:
     @client_email.setter
     def client_email(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "client_email", value)
+
+    @property
+    @pulumi.getter
+    def credentials(self) -> Optional[pulumi.Input[str]]:
+        """
+        Google Service Account private key credentials.
+        """
+        return pulumi.get(self, "credentials")
+
+    @credentials.setter
+    def credentials(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "credentials", value)
 
     @property
     @pulumi.getter
@@ -402,6 +474,18 @@ class _IntegrationLogState:
         pulumi.set(self, "private_key", value)
 
     @property
+    @pulumi.getter(name="privateKeyId")
+    def private_key_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Private key identifier. (Stackdriver)
+        """
+        return pulumi.get(self, "private_key_id")
+
+    @private_key_id.setter
+    def private_key_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_key_id", value)
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -436,6 +520,18 @@ class _IntegrationLogState:
     @secret_access_key.setter
     def secret_access_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "secret_access_key", value)
+
+    @property
+    @pulumi.getter
+    def sourcetype(self) -> Optional[pulumi.Input[str]]:
+        """
+        Assign source type to the data exported, eg. generic_single_line. (Splunk)
+        """
+        return pulumi.get(self, "sourcetype")
+
+    @sourcetype.setter
+    def sourcetype(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sourcetype", value)
 
     @property
     @pulumi.getter
@@ -482,14 +578,17 @@ class IntegrationLog(pulumi.CustomResource):
                  access_key_id: Optional[pulumi.Input[str]] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
                  client_email: Optional[pulumi.Input[str]] = None,
+                 credentials: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  host_port: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 private_key_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  secret_access_key: Optional[pulumi.Input[str]] = None,
+                 sourcetype: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
@@ -499,151 +598,6 @@ class IntegrationLog(pulumi.CustomResource):
 
         Only available for dedicated subscription plans.
 
-        ## Example Usage
-
-        <details>
-          <summary>
-            <b>
-              <i>Cloudwatch log integration</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        cloudwatch = cloudamqp.IntegrationLog("cloudwatch",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            access_key_id=var["aws_access_key_id"],
-            secret_access_key=var["aws_secret_access_key"],
-            region=var["aws_region"])
-        ```
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>Logentries log integration</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        logentries = cloudamqp.IntegrationLog("logentries",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            token=var["logentries_token"])
-        ```
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>Loggly log integration</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        loggly = cloudamqp.IntegrationLog("loggly",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            token=var["loggly_token"])
-        ```
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>Papertrail log integration</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        papertrail = cloudamqp.IntegrationLog("papertrail",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            url=var["papertrail_url"])
-        ```
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>Splunk log integration</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        splunk = cloudamqp.IntegrationLog("splunk",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            token=var["splunk_token"],
-            host_port=var["splunk_host_port"])
-        ```
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>Datadog log integration</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        datadog = cloudamqp.IntegrationLog("datadog",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            region=var["datadog_region"],
-            api_key=var["datadog_api_key"],
-            tags=var["datadog_tags"])
-        ```
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>Stackdriver log integration</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        stackdriver = cloudamqp.IntegrationLog("stackdriver",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            project_id=var["stackdriver_project_id"],
-            private_key=var["stackdriver_private_key"],
-            client_email=var["stackdriver_client_email"])
-        ```
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>Scalyr log integration</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        scalyr = cloudamqp.IntegrationLog("scalyr",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            token=var["scalyr_token"],
-            host=var["scalyr_host"])
-        ```
-        </details>
         ## Argument Reference (cloudwatchlog)
 
         Cloudwatch argument reference and example. Create an IAM user with programmatic access and the following permissions:
@@ -664,9 +618,9 @@ class IntegrationLog(pulumi.CustomResource):
         | logentries | Create a Logentries token at https://logentries.com/app#/add-log/manual  |
         | loggly     | Create a Loggly token at https://your-company}.loggly.com/tokens |
         | papertrail | Create a Papertrail endpoint https://papertrailapp.com/systems/setup |
-        | splunk     | Create a HTTP Event Collector token at https://.cloud.splunk.com/en-US/manager/search/http-eventcollector |
+        | splunk     | Create a HTTP Event Collector token at `https://<your-splunk>.cloud.splunk.com/en-US/manager/search/http-eventcollector` |
         | datadog       | Create a Datadog API key at app.datadoghq.com |
-        | stackdriver   | Create a service account and add 'monitor metrics writer' role, then download credentials. |
+        | stackdriver   | Create a service account and add 'monitor metrics writer' role from your Google Cloud Account |
         | scalyr        | Create a Log write token at https://app.scalyr.com/keys |
 
         ## Integration Type reference
@@ -681,10 +635,12 @@ class IntegrationLog(pulumi.CustomResource):
         | Log Entries | logentries | token |
         | Loggly | loggly | token |
         | Papertrail | papertrail | url |
-        | Splunk | splunk | token, host_port |
+        | Splunk | splunk | token, host_port, sourcetype |
         | Data Dog | datadog | region, api_keys, tags |
-        | Stackdriver | stackdriver | project_id, private_key, client_email |
+        | Stackdriver | stackdriver | credentials |
         | Scalyr | scalyr | token, host |
+
+        ***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments  : project_id, private_key, client_email
 
         ## Dependency
 
@@ -703,14 +659,17 @@ class IntegrationLog(pulumi.CustomResource):
         :param pulumi.Input[str] access_key_id: AWS access key identifier.
         :param pulumi.Input[str] api_key: The API key.
         :param pulumi.Input[str] client_email: The client email registered for the integration service.
+        :param pulumi.Input[str] credentials: Google Service Account private key credentials.
         :param pulumi.Input[str] host: The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
         :param pulumi.Input[str] host_port: Destination to send the logs.
         :param pulumi.Input[int] instance_id: Instance identifier used to make proxy calls
         :param pulumi.Input[str] name: The name of the third party log integration. See
         :param pulumi.Input[str] private_key: The private access key.
+        :param pulumi.Input[str] private_key_id: Private key identifier. (Stackdriver)
         :param pulumi.Input[str] project_id: The project identifier.
         :param pulumi.Input[str] region: Region hosting the integration service.
         :param pulumi.Input[str] secret_access_key: AWS secret access key.
+        :param pulumi.Input[str] sourcetype: Assign source type to the data exported, eg. generic_single_line. (Splunk)
         :param pulumi.Input[str] tags: Tag the integration, e.g. env=prod, region=europe.
         :param pulumi.Input[str] token: Token used for authentication.
         :param pulumi.Input[str] url: Endpoint to log integration.
@@ -726,151 +685,6 @@ class IntegrationLog(pulumi.CustomResource):
 
         Only available for dedicated subscription plans.
 
-        ## Example Usage
-
-        <details>
-          <summary>
-            <b>
-              <i>Cloudwatch log integration</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        cloudwatch = cloudamqp.IntegrationLog("cloudwatch",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            access_key_id=var["aws_access_key_id"],
-            secret_access_key=var["aws_secret_access_key"],
-            region=var["aws_region"])
-        ```
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>Logentries log integration</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        logentries = cloudamqp.IntegrationLog("logentries",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            token=var["logentries_token"])
-        ```
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>Loggly log integration</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        loggly = cloudamqp.IntegrationLog("loggly",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            token=var["loggly_token"])
-        ```
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>Papertrail log integration</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        papertrail = cloudamqp.IntegrationLog("papertrail",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            url=var["papertrail_url"])
-        ```
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>Splunk log integration</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        splunk = cloudamqp.IntegrationLog("splunk",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            token=var["splunk_token"],
-            host_port=var["splunk_host_port"])
-        ```
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>Datadog log integration</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        datadog = cloudamqp.IntegrationLog("datadog",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            region=var["datadog_region"],
-            api_key=var["datadog_api_key"],
-            tags=var["datadog_tags"])
-        ```
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>Stackdriver log integration</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        stackdriver = cloudamqp.IntegrationLog("stackdriver",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            project_id=var["stackdriver_project_id"],
-            private_key=var["stackdriver_private_key"],
-            client_email=var["stackdriver_client_email"])
-        ```
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>Scalyr log integration</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        scalyr = cloudamqp.IntegrationLog("scalyr",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            token=var["scalyr_token"],
-            host=var["scalyr_host"])
-        ```
-        </details>
         ## Argument Reference (cloudwatchlog)
 
         Cloudwatch argument reference and example. Create an IAM user with programmatic access and the following permissions:
@@ -891,9 +705,9 @@ class IntegrationLog(pulumi.CustomResource):
         | logentries | Create a Logentries token at https://logentries.com/app#/add-log/manual  |
         | loggly     | Create a Loggly token at https://your-company}.loggly.com/tokens |
         | papertrail | Create a Papertrail endpoint https://papertrailapp.com/systems/setup |
-        | splunk     | Create a HTTP Event Collector token at https://.cloud.splunk.com/en-US/manager/search/http-eventcollector |
+        | splunk     | Create a HTTP Event Collector token at `https://<your-splunk>.cloud.splunk.com/en-US/manager/search/http-eventcollector` |
         | datadog       | Create a Datadog API key at app.datadoghq.com |
-        | stackdriver   | Create a service account and add 'monitor metrics writer' role, then download credentials. |
+        | stackdriver   | Create a service account and add 'monitor metrics writer' role from your Google Cloud Account |
         | scalyr        | Create a Log write token at https://app.scalyr.com/keys |
 
         ## Integration Type reference
@@ -908,10 +722,12 @@ class IntegrationLog(pulumi.CustomResource):
         | Log Entries | logentries | token |
         | Loggly | loggly | token |
         | Papertrail | papertrail | url |
-        | Splunk | splunk | token, host_port |
+        | Splunk | splunk | token, host_port, sourcetype |
         | Data Dog | datadog | region, api_keys, tags |
-        | Stackdriver | stackdriver | project_id, private_key, client_email |
+        | Stackdriver | stackdriver | credentials |
         | Scalyr | scalyr | token, host |
+
+        ***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments  : project_id, private_key, client_email
 
         ## Dependency
 
@@ -943,14 +759,17 @@ class IntegrationLog(pulumi.CustomResource):
                  access_key_id: Optional[pulumi.Input[str]] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
                  client_email: Optional[pulumi.Input[str]] = None,
+                 credentials: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  host_port: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 private_key_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  secret_access_key: Optional[pulumi.Input[str]] = None,
+                 sourcetype: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
@@ -963,22 +782,27 @@ class IntegrationLog(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = IntegrationLogArgs.__new__(IntegrationLogArgs)
 
-            __props__.__dict__["access_key_id"] = access_key_id
-            __props__.__dict__["api_key"] = api_key
+            __props__.__dict__["access_key_id"] = None if access_key_id is None else pulumi.Output.secret(access_key_id)
+            __props__.__dict__["api_key"] = None if api_key is None else pulumi.Output.secret(api_key)
             __props__.__dict__["client_email"] = client_email
+            __props__.__dict__["credentials"] = None if credentials is None else pulumi.Output.secret(credentials)
             __props__.__dict__["host"] = host
             __props__.__dict__["host_port"] = host_port
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
             __props__.__dict__["name"] = name
-            __props__.__dict__["private_key"] = private_key
+            __props__.__dict__["private_key"] = None if private_key is None else pulumi.Output.secret(private_key)
+            __props__.__dict__["private_key_id"] = None if private_key_id is None else pulumi.Output.secret(private_key_id)
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
-            __props__.__dict__["secret_access_key"] = secret_access_key
+            __props__.__dict__["secret_access_key"] = None if secret_access_key is None else pulumi.Output.secret(secret_access_key)
+            __props__.__dict__["sourcetype"] = sourcetype
             __props__.__dict__["tags"] = tags
-            __props__.__dict__["token"] = token
+            __props__.__dict__["token"] = None if token is None else pulumi.Output.secret(token)
             __props__.__dict__["url"] = url
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["accessKeyId", "apiKey", "credentials", "privateKey", "privateKeyId", "secretAccessKey", "token"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(IntegrationLog, __self__).__init__(
             'cloudamqp:index/integrationLog:IntegrationLog',
             resource_name,
@@ -992,14 +816,17 @@ class IntegrationLog(pulumi.CustomResource):
             access_key_id: Optional[pulumi.Input[str]] = None,
             api_key: Optional[pulumi.Input[str]] = None,
             client_email: Optional[pulumi.Input[str]] = None,
+            credentials: Optional[pulumi.Input[str]] = None,
             host: Optional[pulumi.Input[str]] = None,
             host_port: Optional[pulumi.Input[str]] = None,
             instance_id: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             private_key: Optional[pulumi.Input[str]] = None,
+            private_key_id: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             secret_access_key: Optional[pulumi.Input[str]] = None,
+            sourcetype: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[str]] = None,
             token: Optional[pulumi.Input[str]] = None,
             url: Optional[pulumi.Input[str]] = None) -> 'IntegrationLog':
@@ -1013,14 +840,17 @@ class IntegrationLog(pulumi.CustomResource):
         :param pulumi.Input[str] access_key_id: AWS access key identifier.
         :param pulumi.Input[str] api_key: The API key.
         :param pulumi.Input[str] client_email: The client email registered for the integration service.
+        :param pulumi.Input[str] credentials: Google Service Account private key credentials.
         :param pulumi.Input[str] host: The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
         :param pulumi.Input[str] host_port: Destination to send the logs.
         :param pulumi.Input[int] instance_id: Instance identifier used to make proxy calls
         :param pulumi.Input[str] name: The name of the third party log integration. See
         :param pulumi.Input[str] private_key: The private access key.
+        :param pulumi.Input[str] private_key_id: Private key identifier. (Stackdriver)
         :param pulumi.Input[str] project_id: The project identifier.
         :param pulumi.Input[str] region: Region hosting the integration service.
         :param pulumi.Input[str] secret_access_key: AWS secret access key.
+        :param pulumi.Input[str] sourcetype: Assign source type to the data exported, eg. generic_single_line. (Splunk)
         :param pulumi.Input[str] tags: Tag the integration, e.g. env=prod, region=europe.
         :param pulumi.Input[str] token: Token used for authentication.
         :param pulumi.Input[str] url: Endpoint to log integration.
@@ -1032,14 +862,17 @@ class IntegrationLog(pulumi.CustomResource):
         __props__.__dict__["access_key_id"] = access_key_id
         __props__.__dict__["api_key"] = api_key
         __props__.__dict__["client_email"] = client_email
+        __props__.__dict__["credentials"] = credentials
         __props__.__dict__["host"] = host
         __props__.__dict__["host_port"] = host_port
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["name"] = name
         __props__.__dict__["private_key"] = private_key
+        __props__.__dict__["private_key_id"] = private_key_id
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
         __props__.__dict__["secret_access_key"] = secret_access_key
+        __props__.__dict__["sourcetype"] = sourcetype
         __props__.__dict__["tags"] = tags
         __props__.__dict__["token"] = token
         __props__.__dict__["url"] = url
@@ -1063,11 +896,19 @@ class IntegrationLog(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clientEmail")
-    def client_email(self) -> pulumi.Output[Optional[str]]:
+    def client_email(self) -> pulumi.Output[str]:
         """
         The client email registered for the integration service.
         """
         return pulumi.get(self, "client_email")
+
+    @property
+    @pulumi.getter
+    def credentials(self) -> pulumi.Output[Optional[str]]:
+        """
+        Google Service Account private key credentials.
+        """
+        return pulumi.get(self, "credentials")
 
     @property
     @pulumi.getter
@@ -1103,15 +944,23 @@ class IntegrationLog(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="privateKey")
-    def private_key(self) -> pulumi.Output[Optional[str]]:
+    def private_key(self) -> pulumi.Output[str]:
         """
         The private access key.
         """
         return pulumi.get(self, "private_key")
 
     @property
+    @pulumi.getter(name="privateKeyId")
+    def private_key_id(self) -> pulumi.Output[str]:
+        """
+        Private key identifier. (Stackdriver)
+        """
+        return pulumi.get(self, "private_key_id")
+
+    @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> pulumi.Output[Optional[str]]:
+    def project_id(self) -> pulumi.Output[str]:
         """
         The project identifier.
         """
@@ -1132,6 +981,14 @@ class IntegrationLog(pulumi.CustomResource):
         AWS secret access key.
         """
         return pulumi.get(self, "secret_access_key")
+
+    @property
+    @pulumi.getter
+    def sourcetype(self) -> pulumi.Output[Optional[str]]:
+        """
+        Assign source type to the data exported, eg. generic_single_line. (Splunk)
+        """
+        return pulumi.get(self, "sourcetype")
 
     @property
     @pulumi.getter

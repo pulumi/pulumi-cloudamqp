@@ -148,6 +148,11 @@ namespace Pulumi.CloudAmqp
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "apikey",
+                    "url",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -245,11 +250,21 @@ namespace Pulumi.CloudAmqp
 
     public sealed class InstanceState : global::Pulumi.ResourceArgs
     {
+        [Input("apikey")]
+        private Input<string>? _apikey;
+
         /// <summary>
         /// API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
         /// </summary>
-        [Input("apikey")]
-        public Input<string>? Apikey { get; set; }
+        public Input<string>? Apikey
+        {
+            get => _apikey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _apikey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Is the instance hosted on a dedicated server
@@ -329,11 +344,21 @@ namespace Pulumi.CloudAmqp
             set => _tags = value;
         }
 
+        [Input("url")]
+        private Input<string>? _url;
+
         /// <summary>
         /// The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
         /// </summary>
-        [Input("url")]
-        public Input<string>? Url { get; set; }
+        public Input<string>? Url
+        {
+            get => _url;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _url = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The virtual host used by Rabbit MQ.

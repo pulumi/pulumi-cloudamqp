@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -47,6 +48,21 @@ public final class NotificationState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Options argument (e.g. `rk` used for VictorOps routing key).
+     * 
+     */
+    @Import(name="options")
+    private @Nullable Output<Map<String,String>> options;
+
+    /**
+     * @return Options argument (e.g. `rk` used for VictorOps routing key).
+     * 
+     */
+    public Optional<Output<Map<String,String>>> options() {
+        return Optional.ofNullable(this.options);
+    }
+
+    /**
      * Type of the notification. See valid options below.
      * 
      */
@@ -62,14 +78,14 @@ public final class NotificationState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Endpoint to send the notification.
+     * Integration/API key or endpoint to send the notification.
      * 
      */
     @Import(name="value")
     private @Nullable Output<String> value;
 
     /**
-     * @return Endpoint to send the notification.
+     * @return Integration/API key or endpoint to send the notification.
      * 
      */
     public Optional<Output<String>> value() {
@@ -81,6 +97,7 @@ public final class NotificationState extends com.pulumi.resources.ResourceArgs {
     private NotificationState(NotificationState $) {
         this.instanceId = $.instanceId;
         this.name = $.name;
+        this.options = $.options;
         this.type = $.type;
         this.value = $.value;
     }
@@ -146,6 +163,27 @@ public final class NotificationState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param options Options argument (e.g. `rk` used for VictorOps routing key).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder options(@Nullable Output<Map<String,String>> options) {
+            $.options = options;
+            return this;
+        }
+
+        /**
+         * @param options Options argument (e.g. `rk` used for VictorOps routing key).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder options(Map<String,String> options) {
+            return options(Output.of(options));
+        }
+
+        /**
          * @param type Type of the notification. See valid options below.
          * 
          * @return builder
@@ -167,7 +205,7 @@ public final class NotificationState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param value Endpoint to send the notification.
+         * @param value Integration/API key or endpoint to send the notification.
          * 
          * @return builder
          * 
@@ -178,7 +216,7 @@ public final class NotificationState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param value Endpoint to send the notification.
+         * @param value Integration/API key or endpoint to send the notification.
          * 
          * @return builder
          * 

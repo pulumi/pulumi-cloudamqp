@@ -14,15 +14,13 @@ import java.lang.Integer;
 import javax.annotation.Nullable;
 
 /**
- * This resource allows you to automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang. Depending on initial versions of RabbitMQ and Erlang of the CloudAMQP instance. Multiple runs may be needed to get to latest versions. (E.g. after completed upgrade, check data source `cloudamqp.getUpgradableVersions` to see if newer versions is available. Then delete `cloudamqp.UpgradeRabbitmq` and create it again to invoke the upgrade.
+ * This resource allows you to automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang. Depending on initial versions of RabbitMQ and Erlang of the CloudAMQP instance, multiple runs may be needed to get to latest versions. After completed upgrade, check data source `cloudamqp.getUpgradableVersions` to see if newer versions is available. Then delete `cloudamqp.UpgradeRabbitmq` and create it again to invoke the upgrade.
  * 
- * &gt; :warning: **WARNING: Before using this resource.**
- * &gt; 
- * &gt; Auto delete queues (queues that are marked AD) will be deleted during the update.
- * &gt; 
- * &gt; Any custom plugins support has installed on your behalf will be disabled and you need to contact support@cloudamqp.com and ask to have them re-installed.
- * &gt; 
- * &gt; TLS 1.0 and 1.1 will not be supported after the update.
+ * &gt; **Important Upgrade Information**
+ * &gt; - All nodes in a cluster must run the same major and minor version of RabbitMQ. The entire cluster will be offline while upgrading major or minor versions.
+ * &gt; - Auto delete queues (queues that are marked AD) will be deleted during the update.
+ * &gt; - Any custom plugins support has installed on your behalf will be disabled and you need to contact support@cloudamqp.com and ask to have them re-installed.
+ * &gt; - TLS 1.0 and 1.1 will not be supported after the update.
  * 
  * Only available for dedicated subscription plans.
  * 

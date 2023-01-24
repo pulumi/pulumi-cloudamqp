@@ -42,6 +42,10 @@ export class Plugin extends pulumi.CustomResource {
     }
 
     /**
+     * The description of the plugin.
+     */
+    public /*out*/ readonly description!: pulumi.Output<string>;
+    /**
      * Enable or disable the plugins.
      */
     public readonly enabled!: pulumi.Output<boolean>;
@@ -53,6 +57,10 @@ export class Plugin extends pulumi.CustomResource {
      * The name of the Rabbit MQ plugin.
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * The version of the plugin.
+     */
+    public /*out*/ readonly version!: pulumi.Output<string>;
 
     /**
      * Create a Plugin resource with the given unique name, arguments, and options.
@@ -67,9 +75,11 @@ export class Plugin extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PluginState | undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["enabled"] = state ? state.enabled : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as PluginArgs | undefined;
             if ((!args || args.enabled === undefined) && !opts.urn) {
@@ -81,6 +91,8 @@ export class Plugin extends pulumi.CustomResource {
             resourceInputs["enabled"] = args ? args.enabled : undefined;
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["description"] = undefined /*out*/;
+            resourceInputs["version"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Plugin.__pulumiType, name, resourceInputs, opts);
@@ -91,6 +103,10 @@ export class Plugin extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Plugin resources.
  */
 export interface PluginState {
+    /**
+     * The description of the plugin.
+     */
+    description?: pulumi.Input<string>;
     /**
      * Enable or disable the plugins.
      */
@@ -103,6 +119,10 @@ export interface PluginState {
      * The name of the Rabbit MQ plugin.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The version of the plugin.
+     */
+    version?: pulumi.Input<string>;
 }
 
 /**

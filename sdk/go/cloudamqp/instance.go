@@ -74,6 +74,11 @@ func NewInstance(ctx *pulumi.Context,
 	if args.Region == nil {
 		return nil, errors.New("invalid value for required argument 'Region'")
 	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"apikey",
+		"url",
+	})
+	opts = append(opts, secrets)
 	var resource Instance
 	err := ctx.RegisterResource("cloudamqp:index/instance:Instance", name, args, &resource, opts...)
 	if err != nil {
