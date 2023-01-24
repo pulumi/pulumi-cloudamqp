@@ -17,19 +17,23 @@ class NotificationArgs:
                  instance_id: pulumi.Input[int],
                  type: pulumi.Input[str],
                  value: pulumi.Input[str],
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a Notification resource.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] type: Type of the notification. See valid options below.
-        :param pulumi.Input[str] value: Endpoint to send the notification.
+        :param pulumi.Input[str] value: Integration/API key or endpoint to send the notification.
         :param pulumi.Input[str] name: Display name of the recipient.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Options argument (e.g. `rk` used for VictorOps routing key).
         """
         pulumi.set(__self__, "instance_id", instance_id)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "value", value)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if options is not None:
+            pulumi.set(__self__, "options", options)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -59,7 +63,7 @@ class NotificationArgs:
     @pulumi.getter
     def value(self) -> pulumi.Input[str]:
         """
-        Endpoint to send the notification.
+        Integration/API key or endpoint to send the notification.
         """
         return pulumi.get(self, "value")
 
@@ -79,25 +83,41 @@ class NotificationArgs:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+    @property
+    @pulumi.getter
+    def options(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Options argument (e.g. `rk` used for VictorOps routing key).
+        """
+        return pulumi.get(self, "options")
+
+    @options.setter
+    def options(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "options", value)
+
 
 @pulumi.input_type
 class _NotificationState:
     def __init__(__self__, *,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  value: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Notification resources.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] name: Display name of the recipient.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Options argument (e.g. `rk` used for VictorOps routing key).
         :param pulumi.Input[str] type: Type of the notification. See valid options below.
-        :param pulumi.Input[str] value: Endpoint to send the notification.
+        :param pulumi.Input[str] value: Integration/API key or endpoint to send the notification.
         """
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if options is not None:
+            pulumi.set(__self__, "options", options)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if value is not None:
@@ -129,6 +149,18 @@ class _NotificationState:
 
     @property
     @pulumi.getter
+    def options(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Options argument (e.g. `rk` used for VictorOps routing key).
+        """
+        return pulumi.get(self, "options")
+
+    @options.setter
+    def options(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "options", value)
+
+    @property
+    @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
         Type of the notification. See valid options below.
@@ -143,7 +175,7 @@ class _NotificationState:
     @pulumi.getter
     def value(self) -> Optional[pulumi.Input[str]]:
         """
-        Endpoint to send the notification.
+        Integration/API key or endpoint to send the notification.
         """
         return pulumi.get(self, "value")
 
@@ -159,6 +191,7 @@ class Notification(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  value: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -174,10 +207,24 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         # New recipient to receieve notifications
-        recipient01 = cloudamqp.Notification("recipient01",
+        email_recipient = cloudamqp.Notification("emailRecipient",
             instance_id=cloudamqp_instance["instance"]["id"],
             type="email",
             value="alarm@example.com")
+        victorops_recipient = cloudamqp.Notification("victoropsRecipient",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            type="victorops",
+            value="<UUID>",
+            options={
+                "rk": "ROUTINGKEY",
+            })
+        pagerduty_recipient = cloudamqp.Notification("pagerdutyRecipient",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            type="pagerduty",
+            value="<integration-key>",
+            options={
+                "dedupkey": "DEDUPKEY",
+            })
         ```
         ## Notification Type reference
 
@@ -191,6 +238,13 @@ class Notification(pulumi.CustomResource):
         * opsgenie-eu
         * slack
         * teams
+
+        ## Options parameter
+
+        | Type      | Options  | Description                                                                                                                                                                                                                                                                      | Note                                                                                                                                    |
+        |-----------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+        | Victorops | rk       | Routing key to route alarm notification                                                                                                                                                                                                                                          | -                                                                                                                                        |
+        | PagerDuty | dedupkey | Default the dedup key for PagerDuty is generated depending on what alarm has triggered, but here you can set what `dedup` key to use so even if the same alarm is triggered for different resources you only get one notification. Leave blank to use the generated dedup key. | If multiple alarms are triggered using this recipient, since they all share `dedup` key only the first alarm will be shown in PagerDuty |
 
         ## Dependency
 
@@ -208,8 +262,9 @@ class Notification(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] name: Display name of the recipient.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Options argument (e.g. `rk` used for VictorOps routing key).
         :param pulumi.Input[str] type: Type of the notification. See valid options below.
-        :param pulumi.Input[str] value: Endpoint to send the notification.
+        :param pulumi.Input[str] value: Integration/API key or endpoint to send the notification.
         """
         ...
     @overload
@@ -229,10 +284,24 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         # New recipient to receieve notifications
-        recipient01 = cloudamqp.Notification("recipient01",
+        email_recipient = cloudamqp.Notification("emailRecipient",
             instance_id=cloudamqp_instance["instance"]["id"],
             type="email",
             value="alarm@example.com")
+        victorops_recipient = cloudamqp.Notification("victoropsRecipient",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            type="victorops",
+            value="<UUID>",
+            options={
+                "rk": "ROUTINGKEY",
+            })
+        pagerduty_recipient = cloudamqp.Notification("pagerdutyRecipient",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            type="pagerduty",
+            value="<integration-key>",
+            options={
+                "dedupkey": "DEDUPKEY",
+            })
         ```
         ## Notification Type reference
 
@@ -246,6 +315,13 @@ class Notification(pulumi.CustomResource):
         * opsgenie-eu
         * slack
         * teams
+
+        ## Options parameter
+
+        | Type      | Options  | Description                                                                                                                                                                                                                                                                      | Note                                                                                                                                    |
+        |-----------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+        | Victorops | rk       | Routing key to route alarm notification                                                                                                                                                                                                                                          | -                                                                                                                                        |
+        | PagerDuty | dedupkey | Default the dedup key for PagerDuty is generated depending on what alarm has triggered, but here you can set what `dedup` key to use so even if the same alarm is triggered for different resources you only get one notification. Leave blank to use the generated dedup key. | If multiple alarms are triggered using this recipient, since they all share `dedup` key only the first alarm will be shown in PagerDuty |
 
         ## Dependency
 
@@ -276,6 +352,7 @@ class Notification(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  value: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -291,6 +368,7 @@ class Notification(pulumi.CustomResource):
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
             __props__.__dict__["name"] = name
+            __props__.__dict__["options"] = options
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
@@ -309,6 +387,7 @@ class Notification(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             instance_id: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             type: Optional[pulumi.Input[str]] = None,
             value: Optional[pulumi.Input[str]] = None) -> 'Notification':
         """
@@ -320,8 +399,9 @@ class Notification(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] name: Display name of the recipient.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Options argument (e.g. `rk` used for VictorOps routing key).
         :param pulumi.Input[str] type: Type of the notification. See valid options below.
-        :param pulumi.Input[str] value: Endpoint to send the notification.
+        :param pulumi.Input[str] value: Integration/API key or endpoint to send the notification.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -329,6 +409,7 @@ class Notification(pulumi.CustomResource):
 
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["name"] = name
+        __props__.__dict__["options"] = options
         __props__.__dict__["type"] = type
         __props__.__dict__["value"] = value
         return Notification(resource_name, opts=opts, __props__=__props__)
@@ -351,6 +432,14 @@ class Notification(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def options(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        Options argument (e.g. `rk` used for VictorOps routing key).
+        """
+        return pulumi.get(self, "options")
+
+    @property
+    @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
         Type of the notification. See valid options below.
@@ -361,7 +450,7 @@ class Notification(pulumi.CustomResource):
     @pulumi.getter
     def value(self) -> pulumi.Output[str]:
         """
-        Endpoint to send the notification.
+        Integration/API key or endpoint to send the notification.
         """
         return pulumi.get(self, "value")
 

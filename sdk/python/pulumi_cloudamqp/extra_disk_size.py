@@ -102,7 +102,7 @@ class ExtraDiskSize(pulumi.CustomResource):
 
         Only available for dedicated subscription plans hosted at Amazon Web Services (AWS) at this time.
 
-        ⚠️  Due to restrictions from cloud providers, it's only possible to resize the disk every 8 hours.
+        > **WARNING:** Due to restrictions from cloud providers, it's only possible to resize the disk every 8 hours.
 
         Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/).
 
@@ -144,7 +144,7 @@ class ExtraDiskSize(pulumi.CustomResource):
 
         Only available for dedicated subscription plans hosted at Amazon Web Services (AWS) at this time.
 
-        ⚠️  Due to restrictions from cloud providers, it's only possible to resize the disk every 8 hours.
+        > **WARNING:** Due to restrictions from cloud providers, it's only possible to resize the disk every 8 hours.
 
         Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/).
 

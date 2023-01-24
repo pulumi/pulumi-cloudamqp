@@ -5,14 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * This resource allows you to install or uninstall community plugins. Once installed the plugin will be available in `cloudamqp.Plugin`.
- *
- * Only available for dedicated subscription plans.
- *
- * > From our go API wrapper [v1.5.0](https://github.com/84codes/go-api/releases/tag/v1.5.0) there is support for multiple retries when requesting information about community plugins. This was introduced to avoid `ReadPluginCommunity error 400: Timeout talking to backend`.
- *
- * > From our go API wrapper [v1.9.1](https://github.com/84codes/go-api/releases/tag/v1.9.1) there is support for asynchronous request for plugin/community actions. Solve issues reported when enable multiple plugins.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -65,6 +57,10 @@ export class PluginCommunity extends pulumi.CustomResource {
     }
 
     /**
+     * The description of the plugin.
+     */
+    public /*out*/ readonly description!: pulumi.Output<string>;
+    /**
      * Enable or disable the plugins.
      */
     public readonly enabled!: pulumi.Output<boolean>;
@@ -76,6 +72,10 @@ export class PluginCommunity extends pulumi.CustomResource {
      * The name of the Rabbit MQ community plugin.
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Required version of RabbitMQ.
+     */
+    public /*out*/ readonly require!: pulumi.Output<string>;
 
     /**
      * Create a PluginCommunity resource with the given unique name, arguments, and options.
@@ -90,9 +90,11 @@ export class PluginCommunity extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PluginCommunityState | undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["enabled"] = state ? state.enabled : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["require"] = state ? state.require : undefined;
         } else {
             const args = argsOrState as PluginCommunityArgs | undefined;
             if ((!args || args.enabled === undefined) && !opts.urn) {
@@ -104,6 +106,8 @@ export class PluginCommunity extends pulumi.CustomResource {
             resourceInputs["enabled"] = args ? args.enabled : undefined;
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["description"] = undefined /*out*/;
+            resourceInputs["require"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(PluginCommunity.__pulumiType, name, resourceInputs, opts);
@@ -114,6 +118,10 @@ export class PluginCommunity extends pulumi.CustomResource {
  * Input properties used for looking up and filtering PluginCommunity resources.
  */
 export interface PluginCommunityState {
+    /**
+     * The description of the plugin.
+     */
+    description?: pulumi.Input<string>;
     /**
      * Enable or disable the plugins.
      */
@@ -126,6 +134,10 @@ export interface PluginCommunityState {
      * The name of the Rabbit MQ community plugin.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Required version of RabbitMQ.
+     */
+    require?: pulumi.Input<string>;
 }
 
 /**

@@ -25,7 +25,7 @@ type VpcPeering struct {
 	Sleep pulumi.IntPtrOutput `pulumi:"sleep"`
 	// VPC peering status
 	Status pulumi.StringOutput `pulumi:"status"`
-	// - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+	// Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
 	Timeout pulumi.IntPtrOutput `pulumi:"timeout"`
 	// The managed VPC identifier.
 	VpcId pulumi.StringPtrOutput `pulumi:"vpcId"`
@@ -71,7 +71,7 @@ type vpcPeeringState struct {
 	Sleep *int `pulumi:"sleep"`
 	// VPC peering status
 	Status *string `pulumi:"status"`
-	// - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+	// Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
 	Timeout *int `pulumi:"timeout"`
 	// The managed VPC identifier.
 	VpcId *string `pulumi:"vpcId"`
@@ -86,7 +86,7 @@ type VpcPeeringState struct {
 	Sleep pulumi.IntPtrInput
 	// VPC peering status
 	Status pulumi.StringPtrInput
-	// - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+	// Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
 	Timeout pulumi.IntPtrInput
 	// The managed VPC identifier.
 	VpcId pulumi.StringPtrInput
@@ -103,7 +103,7 @@ type vpcPeeringArgs struct {
 	PeeringId string `pulumi:"peeringId"`
 	// Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
 	Sleep *int `pulumi:"sleep"`
-	// - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+	// Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
 	Timeout *int `pulumi:"timeout"`
 	// The managed VPC identifier.
 	VpcId *string `pulumi:"vpcId"`
@@ -117,7 +117,7 @@ type VpcPeeringArgs struct {
 	PeeringId pulumi.StringInput
 	// Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
 	Sleep pulumi.IntPtrInput
-	// - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+	// Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
 	Timeout pulumi.IntPtrInput
 	// The managed VPC identifier.
 	VpcId pulumi.StringPtrInput
@@ -230,7 +230,7 @@ func (o VpcPeeringOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPeering) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
-// - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+// Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
 func (o VpcPeeringOutput) Timeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *VpcPeering) pulumi.IntPtrOutput { return v.Timeout }).(pulumi.IntPtrOutput)
 }

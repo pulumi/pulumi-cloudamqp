@@ -29,10 +29,32 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.NewNotification(ctx, "recipient01", &cloudamqp.NotificationArgs{
+//			_, err := cloudamqp.NewNotification(ctx, "emailRecipient", &cloudamqp.NotificationArgs{
 //				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
 //				Type:       pulumi.String("email"),
 //				Value:      pulumi.String("alarm@example.com"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewNotification(ctx, "victoropsRecipient", &cloudamqp.NotificationArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Type:       pulumi.String("victorops"),
+//				Value:      pulumi.String("<UUID>"),
+//				Options: pulumi.StringMap{
+//					"rk": pulumi.String("ROUTINGKEY"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewNotification(ctx, "pagerdutyRecipient", &cloudamqp.NotificationArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Type:       pulumi.String("pagerduty"),
+//				Value:      pulumi.String("<integration-key>"),
+//				Options: pulumi.StringMap{
+//					"dedupkey": pulumi.String("DEDUPKEY"),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -55,6 +77,13 @@ import (
 // * slack
 // * teams
 //
+// ## Options parameter
+//
+// | Type      | Options  | Description                                                                                                                                                                                                                                                                      | Note                                                                                                                                    |
+// |-----------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+// | Victorops | rk       | Routing key to route alarm notification                                                                                                                                                                                                                                          | -                                                                                                                                        |
+// | PagerDuty | dedupkey | Default the dedup key for PagerDuty is generated depending on what alarm has triggered, but here you can set what `dedup` key to use so even if the same alarm is triggered for different resources you only get one notification. Leave blank to use the generated dedup key. | If multiple alarms are triggered using this recipient, since they all share `dedup` key only the first alarm will be shown in PagerDuty |
+//
 // ## Dependency
 //
 // This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -75,9 +104,11 @@ type Notification struct {
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
 	// Display name of the recipient.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Options argument (e.g. `rk` used for VictorOps routing key).
+	Options pulumi.StringMapOutput `pulumi:"options"`
 	// Type of the notification. See valid options below.
 	Type pulumi.StringOutput `pulumi:"type"`
-	// Endpoint to send the notification.
+	// Integration/API key or endpoint to send the notification.
 	Value pulumi.StringOutput `pulumi:"value"`
 }
 
@@ -123,9 +154,11 @@ type notificationState struct {
 	InstanceId *int `pulumi:"instanceId"`
 	// Display name of the recipient.
 	Name *string `pulumi:"name"`
+	// Options argument (e.g. `rk` used for VictorOps routing key).
+	Options map[string]string `pulumi:"options"`
 	// Type of the notification. See valid options below.
 	Type *string `pulumi:"type"`
-	// Endpoint to send the notification.
+	// Integration/API key or endpoint to send the notification.
 	Value *string `pulumi:"value"`
 }
 
@@ -134,9 +167,11 @@ type NotificationState struct {
 	InstanceId pulumi.IntPtrInput
 	// Display name of the recipient.
 	Name pulumi.StringPtrInput
+	// Options argument (e.g. `rk` used for VictorOps routing key).
+	Options pulumi.StringMapInput
 	// Type of the notification. See valid options below.
 	Type pulumi.StringPtrInput
-	// Endpoint to send the notification.
+	// Integration/API key or endpoint to send the notification.
 	Value pulumi.StringPtrInput
 }
 
@@ -149,9 +184,11 @@ type notificationArgs struct {
 	InstanceId int `pulumi:"instanceId"`
 	// Display name of the recipient.
 	Name *string `pulumi:"name"`
+	// Options argument (e.g. `rk` used for VictorOps routing key).
+	Options map[string]string `pulumi:"options"`
 	// Type of the notification. See valid options below.
 	Type string `pulumi:"type"`
-	// Endpoint to send the notification.
+	// Integration/API key or endpoint to send the notification.
 	Value string `pulumi:"value"`
 }
 
@@ -161,9 +198,11 @@ type NotificationArgs struct {
 	InstanceId pulumi.IntInput
 	// Display name of the recipient.
 	Name pulumi.StringPtrInput
+	// Options argument (e.g. `rk` used for VictorOps routing key).
+	Options pulumi.StringMapInput
 	// Type of the notification. See valid options below.
 	Type pulumi.StringInput
-	// Endpoint to send the notification.
+	// Integration/API key or endpoint to send the notification.
 	Value pulumi.StringInput
 }
 
@@ -264,12 +303,17 @@ func (o NotificationOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Notification) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Options argument (e.g. `rk` used for VictorOps routing key).
+func (o NotificationOutput) Options() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Notification) pulumi.StringMapOutput { return v.Options }).(pulumi.StringMapOutput)
+}
+
 // Type of the notification. See valid options below.
 func (o NotificationOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Notification) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
-// Endpoint to send the notification.
+// Integration/API key or endpoint to send the notification.
 func (o NotificationOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v *Notification) pulumi.StringOutput { return v.Value }).(pulumi.StringOutput)
 }

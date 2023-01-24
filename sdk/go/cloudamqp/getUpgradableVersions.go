@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.GetUpgradableVersions(ctx, &GetUpgradableVersionsArgs{
+//			_, err := cloudamqp.GetUpgradableVersions(ctx, &cloudamqp.GetUpgradableVersionsArgs{
 //				InstanceId: cloudamqp_instance.Instance.Id,
 //			}, nil)
 //			if err != nil {

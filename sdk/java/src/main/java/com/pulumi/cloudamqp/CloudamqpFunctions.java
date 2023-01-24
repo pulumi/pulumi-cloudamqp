@@ -47,6 +47,37 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
      * 
+     * ## Example Usage
+     * 
+     * Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var instanceName = &#34;&lt;instance_name&gt;&#34;;
+     * 
+     *         final var instanceList = CloudamqpFunctions.getAccount();
+     * 
+     *         ctx.export(&#34;instanceId&#34;, &lt;nil&gt;);
+     *     }
+     * }
+     * ```
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -75,6 +106,37 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
      * 
+     * ## Example Usage
+     * 
+     * Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var instanceName = &#34;&lt;instance_name&gt;&#34;;
+     * 
+     *         final var instanceList = CloudamqpFunctions.getAccount();
+     * 
+     *         ctx.export(&#34;instanceId&#34;, &lt;nil&gt;);
+     *     }
+     * }
+     * ```
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -103,6 +165,37 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
      * 
+     * ## Example Usage
+     * 
+     * Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var instanceName = &#34;&lt;instance_name&gt;&#34;;
+     * 
+     *         final var instanceList = CloudamqpFunctions.getAccount();
+     * 
+     *         ctx.export(&#34;instanceId&#34;, &lt;nil&gt;);
+     *     }
+     * }
+     * ```
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -131,6 +224,37 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
      * 
+     * ## Example Usage
+     * 
+     * Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var instanceName = &#34;&lt;instance_name&gt;&#34;;
+     * 
+     *         final var instanceList = CloudamqpFunctions.getAccount();
+     * 
+     *         ctx.export(&#34;instanceId&#34;, &lt;nil&gt;);
+     *     }
+     * }
+     * ```
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -159,6 +283,37 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
      * 
+     * ## Example Usage
+     * 
+     * Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var instanceName = &#34;&lt;instance_name&gt;&#34;;
+     * 
+     *         final var instanceList = CloudamqpFunctions.getAccount();
+     * 
+     *         ctx.export(&#34;instanceId&#34;, &lt;nil&gt;);
+     *     }
+     * }
+     * ```
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -187,6 +342,37 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
      * 
+     * ## Example Usage
+     * 
+     * Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var instanceName = &#34;&lt;instance_name&gt;&#34;;
+     * 
+     *         final var instanceList = CloudamqpFunctions.getAccount();
+     * 
+     *         ctx.export(&#34;instanceId&#34;, &lt;nil&gt;);
+     *     }
+     * }
+     * ```
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -1367,10 +1553,6 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getNotification:getNotification", TypeShape.of(GetNotificationResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
-     * 
-     * ⚠️  From our go API wrapper [v1.4.0](https://github.com/84codes/go-api/releases/tag/v1.4.0) there is support for multiple retries when requesting information about plugins. This was introduced to avoid `ReadPlugin error 400: Timeout talking to backend`.
-     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -1425,10 +1607,6 @@ public final class CloudamqpFunctions {
         return getPlugins(args, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
-     * 
-     * ⚠️  From our go API wrapper [v1.4.0](https://github.com/84codes/go-api/releases/tag/v1.4.0) there is support for multiple retries when requesting information about plugins. This was introduced to avoid `ReadPlugin error 400: Timeout talking to backend`.
-     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -1483,10 +1661,6 @@ public final class CloudamqpFunctions {
         return getPluginsPlain(args, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
-     * 
-     * ⚠️  From our go API wrapper [v1.4.0](https://github.com/84codes/go-api/releases/tag/v1.4.0) there is support for multiple retries when requesting information about plugins. This was introduced to avoid `ReadPlugin error 400: Timeout talking to backend`.
-     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -1541,10 +1715,6 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getPlugins:getPlugins", TypeShape.of(GetPluginsResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
-     * 
-     * ⚠️  From our go API wrapper [v1.4.0](https://github.com/84codes/go-api/releases/tag/v1.4.0) there is support for multiple retries when requesting information about plugins. This was introduced to avoid `ReadPlugin error 400: Timeout talking to backend`.
-     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -1599,10 +1769,6 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getPlugins:getPlugins", TypeShape.of(GetPluginsResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
-     * 
-     * ⚠️  From our go API wrapper [v1.5.0](https://github.com/84codes/go-api/releases/tag/v1.5.0) there is support for multiple retries when requesting information about community plugins. This was introduced to avoid `ReadPluginCommunity error 400: Timeout talking to backend`.
-     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -1656,10 +1822,6 @@ public final class CloudamqpFunctions {
         return getPluginsCommunity(args, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
-     * 
-     * ⚠️  From our go API wrapper [v1.5.0](https://github.com/84codes/go-api/releases/tag/v1.5.0) there is support for multiple retries when requesting information about community plugins. This was introduced to avoid `ReadPluginCommunity error 400: Timeout talking to backend`.
-     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -1713,10 +1875,6 @@ public final class CloudamqpFunctions {
         return getPluginsCommunityPlain(args, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
-     * 
-     * ⚠️  From our go API wrapper [v1.5.0](https://github.com/84codes/go-api/releases/tag/v1.5.0) there is support for multiple retries when requesting information about community plugins. This was introduced to avoid `ReadPluginCommunity error 400: Timeout talking to backend`.
-     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -1770,10 +1928,6 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getPluginsCommunity:getPluginsCommunity", TypeShape.of(GetPluginsCommunityResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
-     * 
-     * ⚠️  From our go API wrapper [v1.5.0](https://github.com/84codes/go-api/releases/tag/v1.5.0) there is support for multiple retries when requesting information about community plugins. This was introduced to avoid `ReadPluginCommunity error 400: Timeout talking to backend`.
-     * 
      * ## Example Usage
      * ```java
      * package generated_program;

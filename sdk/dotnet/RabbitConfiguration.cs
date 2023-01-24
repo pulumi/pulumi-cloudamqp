@@ -91,6 +91,18 @@ namespace Pulumi.CloudAmqp
         public Output<int> QueueIndexEmbedMsgsBelow { get; private set; } = null!;
 
         /// <summary>
+        /// Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+        /// </summary>
+        [Output("sleep")]
+        public Output<int?> Sleep { get; private set; } = null!;
+
+        /// <summary>
+        /// Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+        /// </summary>
+        [Output("timeout")]
+        public Output<int?> Timeout { get; private set; } = null!;
+
+        /// <summary>
         /// When the server will enter memory based flow-control as relative to the maximum available memory.
         /// </summary>
         [Output("vmMemoryHighWatermark")]
@@ -191,6 +203,18 @@ namespace Pulumi.CloudAmqp
         public Input<int>? QueueIndexEmbedMsgsBelow { get; set; }
 
         /// <summary>
+        /// Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+        /// </summary>
+        [Input("sleep")]
+        public Input<int>? Sleep { get; set; }
+
+        /// <summary>
+        /// Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+        /// </summary>
+        [Input("timeout")]
+        public Input<int>? Timeout { get; set; }
+
+        /// <summary>
         /// When the server will enter memory based flow-control as relative to the maximum available memory.
         /// </summary>
         [Input("vmMemoryHighWatermark")]
@@ -251,6 +275,18 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Input("queueIndexEmbedMsgsBelow")]
         public Input<int>? QueueIndexEmbedMsgsBelow { get; set; }
+
+        /// <summary>
+        /// Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+        /// </summary>
+        [Input("sleep")]
+        public Input<int>? Sleep { get; set; }
+
+        /// <summary>
+        /// Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+        /// </summary>
+        [Input("timeout")]
+        public Input<int>? Timeout { get; set; }
 
         /// <summary>
         /// When the server will enter memory based flow-control as relative to the maximum available memory.

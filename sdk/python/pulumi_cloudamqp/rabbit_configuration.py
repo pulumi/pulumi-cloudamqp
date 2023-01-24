@@ -22,6 +22,8 @@ class RabbitConfigurationArgs:
                  log_exchange_level: Optional[pulumi.Input[str]] = None,
                  max_message_size: Optional[pulumi.Input[int]] = None,
                  queue_index_embed_msgs_below: Optional[pulumi.Input[int]] = None,
+                 sleep: Optional[pulumi.Input[int]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
                  vm_memory_high_watermark: Optional[pulumi.Input[float]] = None):
         """
         The set of arguments for constructing a RabbitConfiguration resource.
@@ -33,6 +35,8 @@ class RabbitConfigurationArgs:
         :param pulumi.Input[str] log_exchange_level: Log level for the logger used for log integrations and the CloudAMQP Console log view.
         :param pulumi.Input[int] max_message_size: The largest allowed message payload size in bytes.
         :param pulumi.Input[int] queue_index_embed_msgs_below: Size in bytes below which to embed messages in the queue index.
+        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
         :param pulumi.Input[float] vm_memory_high_watermark: When the server will enter memory based flow-control as relative to the maximum available memory.
         """
         pulumi.set(__self__, "instance_id", instance_id)
@@ -50,6 +54,10 @@ class RabbitConfigurationArgs:
             pulumi.set(__self__, "max_message_size", max_message_size)
         if queue_index_embed_msgs_below is not None:
             pulumi.set(__self__, "queue_index_embed_msgs_below", queue_index_embed_msgs_below)
+        if sleep is not None:
+            pulumi.set(__self__, "sleep", sleep)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
         if vm_memory_high_watermark is not None:
             pulumi.set(__self__, "vm_memory_high_watermark", vm_memory_high_watermark)
 
@@ -150,6 +158,30 @@ class RabbitConfigurationArgs:
         pulumi.set(self, "queue_index_embed_msgs_below", value)
 
     @property
+    @pulumi.getter
+    def sleep(self) -> Optional[pulumi.Input[int]]:
+        """
+        Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+        """
+        return pulumi.get(self, "sleep")
+
+    @sleep.setter
+    def sleep(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "sleep", value)
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "timeout", value)
+
+    @property
     @pulumi.getter(name="vmMemoryHighWatermark")
     def vm_memory_high_watermark(self) -> Optional[pulumi.Input[float]]:
         """
@@ -173,6 +205,8 @@ class _RabbitConfigurationState:
                  log_exchange_level: Optional[pulumi.Input[str]] = None,
                  max_message_size: Optional[pulumi.Input[int]] = None,
                  queue_index_embed_msgs_below: Optional[pulumi.Input[int]] = None,
+                 sleep: Optional[pulumi.Input[int]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
                  vm_memory_high_watermark: Optional[pulumi.Input[float]] = None):
         """
         Input properties used for looking up and filtering RabbitConfiguration resources.
@@ -184,6 +218,8 @@ class _RabbitConfigurationState:
         :param pulumi.Input[str] log_exchange_level: Log level for the logger used for log integrations and the CloudAMQP Console log view.
         :param pulumi.Input[int] max_message_size: The largest allowed message payload size in bytes.
         :param pulumi.Input[int] queue_index_embed_msgs_below: Size in bytes below which to embed messages in the queue index.
+        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
         :param pulumi.Input[float] vm_memory_high_watermark: When the server will enter memory based flow-control as relative to the maximum available memory.
         """
         if channel_max is not None:
@@ -202,6 +238,10 @@ class _RabbitConfigurationState:
             pulumi.set(__self__, "max_message_size", max_message_size)
         if queue_index_embed_msgs_below is not None:
             pulumi.set(__self__, "queue_index_embed_msgs_below", queue_index_embed_msgs_below)
+        if sleep is not None:
+            pulumi.set(__self__, "sleep", sleep)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
         if vm_memory_high_watermark is not None:
             pulumi.set(__self__, "vm_memory_high_watermark", vm_memory_high_watermark)
 
@@ -302,6 +342,30 @@ class _RabbitConfigurationState:
         pulumi.set(self, "queue_index_embed_msgs_below", value)
 
     @property
+    @pulumi.getter
+    def sleep(self) -> Optional[pulumi.Input[int]]:
+        """
+        Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+        """
+        return pulumi.get(self, "sleep")
+
+    @sleep.setter
+    def sleep(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "sleep", value)
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "timeout", value)
+
+    @property
     @pulumi.getter(name="vmMemoryHighWatermark")
     def vm_memory_high_watermark(self) -> Optional[pulumi.Input[float]]:
         """
@@ -327,6 +391,8 @@ class RabbitConfiguration(pulumi.CustomResource):
                  log_exchange_level: Optional[pulumi.Input[str]] = None,
                  max_message_size: Optional[pulumi.Input[int]] = None,
                  queue_index_embed_msgs_below: Optional[pulumi.Input[int]] = None,
+                 sleep: Optional[pulumi.Input[int]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
                  vm_memory_high_watermark: Optional[pulumi.Input[float]] = None,
                  __props__=None):
         """
@@ -369,6 +435,8 @@ class RabbitConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] log_exchange_level: Log level for the logger used for log integrations and the CloudAMQP Console log view.
         :param pulumi.Input[int] max_message_size: The largest allowed message payload size in bytes.
         :param pulumi.Input[int] queue_index_embed_msgs_below: Size in bytes below which to embed messages in the queue index.
+        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
         :param pulumi.Input[float] vm_memory_high_watermark: When the server will enter memory based flow-control as relative to the maximum available memory.
         """
         ...
@@ -430,6 +498,8 @@ class RabbitConfiguration(pulumi.CustomResource):
                  log_exchange_level: Optional[pulumi.Input[str]] = None,
                  max_message_size: Optional[pulumi.Input[int]] = None,
                  queue_index_embed_msgs_below: Optional[pulumi.Input[int]] = None,
+                 sleep: Optional[pulumi.Input[int]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
                  vm_memory_high_watermark: Optional[pulumi.Input[float]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -450,6 +520,8 @@ class RabbitConfiguration(pulumi.CustomResource):
             __props__.__dict__["log_exchange_level"] = log_exchange_level
             __props__.__dict__["max_message_size"] = max_message_size
             __props__.__dict__["queue_index_embed_msgs_below"] = queue_index_embed_msgs_below
+            __props__.__dict__["sleep"] = sleep
+            __props__.__dict__["timeout"] = timeout
             __props__.__dict__["vm_memory_high_watermark"] = vm_memory_high_watermark
         super(RabbitConfiguration, __self__).__init__(
             'cloudamqp:index/rabbitConfiguration:RabbitConfiguration',
@@ -469,6 +541,8 @@ class RabbitConfiguration(pulumi.CustomResource):
             log_exchange_level: Optional[pulumi.Input[str]] = None,
             max_message_size: Optional[pulumi.Input[int]] = None,
             queue_index_embed_msgs_below: Optional[pulumi.Input[int]] = None,
+            sleep: Optional[pulumi.Input[int]] = None,
+            timeout: Optional[pulumi.Input[int]] = None,
             vm_memory_high_watermark: Optional[pulumi.Input[float]] = None) -> 'RabbitConfiguration':
         """
         Get an existing RabbitConfiguration resource's state with the given name, id, and optional extra
@@ -485,6 +559,8 @@ class RabbitConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] log_exchange_level: Log level for the logger used for log integrations and the CloudAMQP Console log view.
         :param pulumi.Input[int] max_message_size: The largest allowed message payload size in bytes.
         :param pulumi.Input[int] queue_index_embed_msgs_below: Size in bytes below which to embed messages in the queue index.
+        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
         :param pulumi.Input[float] vm_memory_high_watermark: When the server will enter memory based flow-control as relative to the maximum available memory.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -499,6 +575,8 @@ class RabbitConfiguration(pulumi.CustomResource):
         __props__.__dict__["log_exchange_level"] = log_exchange_level
         __props__.__dict__["max_message_size"] = max_message_size
         __props__.__dict__["queue_index_embed_msgs_below"] = queue_index_embed_msgs_below
+        __props__.__dict__["sleep"] = sleep
+        __props__.__dict__["timeout"] = timeout
         __props__.__dict__["vm_memory_high_watermark"] = vm_memory_high_watermark
         return RabbitConfiguration(resource_name, opts=opts, __props__=__props__)
 
@@ -565,6 +643,22 @@ class RabbitConfiguration(pulumi.CustomResource):
         Size in bytes below which to embed messages in the queue index.
         """
         return pulumi.get(self, "queue_index_embed_msgs_below")
+
+    @property
+    @pulumi.getter
+    def sleep(self) -> pulumi.Output[Optional[int]]:
+        """
+        Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+        """
+        return pulumi.get(self, "sleep")
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> pulumi.Output[Optional[int]]:
+        """
+        Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+        """
+        return pulumi.get(self, "timeout")
 
     @property
     @pulumi.getter(name="vmMemoryHighWatermark")

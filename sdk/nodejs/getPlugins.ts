@@ -2,14 +2,11 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
- *
- * ⚠️  From our go API wrapper [v1.4.0](https://github.com/84codes/go-api/releases/tag/v1.4.0) there is support for multiple retries when requesting information about plugins. This was introduced to avoid `ReadPlugin error 400: Timeout talking to backend`.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -41,11 +38,8 @@ import * as utilities from "./utilities";
  * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
  */
 export function getPlugins(args: GetPluginsArgs, opts?: pulumi.InvokeOptions): Promise<GetPluginsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("cloudamqp:index/getPlugins:getPlugins", {
         "instanceId": args.instanceId,
     }, opts);
@@ -72,9 +66,39 @@ export interface GetPluginsResult {
     readonly instanceId: number;
     readonly plugins: outputs.GetPluginsPlugin[];
 }
-
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const plugins = cloudamqp.getPlugins({
+ *     instanceId: cloudamqp_instance.instance.id,
+ * });
+ * ```
+ * ## Attributes reference
+ *
+ * All attributes reference are computed
+ *
+ * * `id`      - The identifier for this resource.
+ * * `plugins` - An array of plugins. Each `plugins` block consists of the fields documented below.
+ *
+ * ***
+ *
+ * The `plugins` block consist of
+ *
+ * * `name`        - The type of the recipient.
+ * * `version`     - Rabbit MQ version that the plugins are shipped with.
+ * * `description` - Description of what the plugin does.
+ * * `enabled`     - Enable or disable information for the plugin.
+ *
+ * ## Dependency
+ *
+ * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ */
 export function getPluginsOutput(args: GetPluginsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPluginsResult> {
-    return pulumi.output(args).apply(a => getPlugins(a, opts))
+    return pulumi.output(args).apply((a: any) => getPlugins(a, opts))
 }
 
 /**

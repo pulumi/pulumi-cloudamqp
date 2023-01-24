@@ -27,6 +27,8 @@ from .node_actions import *
 from .notification import *
 from .plugin import *
 from .plugin_community import *
+from .privatelink_aws import *
+from .privatelink_azure import *
 from .provider import *
 from .rabbit_configuration import *
 from .security_firewall import *
@@ -126,6 +128,22 @@ _utilities.register(
   "fqn": "pulumi_cloudamqp",
   "classes": {
    "cloudamqp:index/pluginCommunity:PluginCommunity": "PluginCommunity"
+  }
+ },
+ {
+  "pkg": "cloudamqp",
+  "mod": "index/privatelinkAws",
+  "fqn": "pulumi_cloudamqp",
+  "classes": {
+   "cloudamqp:index/privatelinkAws:PrivatelinkAws": "PrivatelinkAws"
+  }
+ },
+ {
+  "pkg": "cloudamqp",
+  "mod": "index/privatelinkAzure",
+  "fqn": "pulumi_cloudamqp",
+  "classes": {
+   "cloudamqp:index/privatelinkAzure:PrivatelinkAzure": "PrivatelinkAzure"
   }
  },
  {

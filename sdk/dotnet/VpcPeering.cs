@@ -42,7 +42,7 @@ namespace Pulumi.CloudAmqp
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
-        /// - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        /// Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
         /// </summary>
         [Output("timeout")]
         public Output<int?> Timeout { get; private set; } = null!;
@@ -118,7 +118,7 @@ namespace Pulumi.CloudAmqp
         public Input<int>? Sleep { get; set; }
 
         /// <summary>
-        /// - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        /// Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
@@ -162,7 +162,7 @@ namespace Pulumi.CloudAmqp
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        /// Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }

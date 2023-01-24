@@ -569,6 +569,8 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["ready"] = None
             __props__.__dict__["url"] = None
             __props__.__dict__["vhost"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["apikey", "url"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Instance, __self__).__init__(
             'cloudamqp:index/instance:Instance',
             resource_name,

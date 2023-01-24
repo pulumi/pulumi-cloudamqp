@@ -23,12 +23,16 @@ import (
 type Plugin struct {
 	pulumi.CustomResourceState
 
+	// The description of the plugin.
+	Description pulumi.StringOutput `pulumi:"description"`
 	// Enable or disable the plugins.
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
 	// The name of the Rabbit MQ plugin.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The version of the plugin.
+	Version pulumi.StringOutput `pulumi:"version"`
 }
 
 // NewPlugin registers a new resource with the given unique name, arguments, and options.
@@ -66,21 +70,29 @@ func GetPlugin(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Plugin resources.
 type pluginState struct {
+	// The description of the plugin.
+	Description *string `pulumi:"description"`
 	// Enable or disable the plugins.
 	Enabled *bool `pulumi:"enabled"`
 	// The CloudAMQP instance ID.
 	InstanceId *int `pulumi:"instanceId"`
 	// The name of the Rabbit MQ plugin.
 	Name *string `pulumi:"name"`
+	// The version of the plugin.
+	Version *string `pulumi:"version"`
 }
 
 type PluginState struct {
+	// The description of the plugin.
+	Description pulumi.StringPtrInput
 	// Enable or disable the plugins.
 	Enabled pulumi.BoolPtrInput
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntPtrInput
 	// The name of the Rabbit MQ plugin.
 	Name pulumi.StringPtrInput
+	// The version of the plugin.
+	Version pulumi.StringPtrInput
 }
 
 func (PluginState) ElementType() reflect.Type {
@@ -193,6 +205,11 @@ func (o PluginOutput) ToPluginOutputWithContext(ctx context.Context) PluginOutpu
 	return o
 }
 
+// The description of the plugin.
+func (o PluginOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *Plugin) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
 // Enable or disable the plugins.
 func (o PluginOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Plugin) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
@@ -206,6 +223,11 @@ func (o PluginOutput) InstanceId() pulumi.IntOutput {
 // The name of the Rabbit MQ plugin.
 func (o PluginOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Plugin) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The version of the plugin.
+func (o PluginOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v *Plugin) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
 }
 
 type PluginArrayOutput struct{ *pulumi.OutputState }

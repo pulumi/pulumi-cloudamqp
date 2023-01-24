@@ -14,207 +14,6 @@ namespace Pulumi.CloudAmqp
     /// 
     /// Only available for dedicated subscription plans.
     /// 
-    /// ## Example Usage
-    /// 
-    /// &lt;details&gt;
-    ///   &lt;summary&gt;
-    ///     &lt;b&gt;
-    ///       &lt;i&gt;Cloudwatch log integration&lt;/i&gt;
-    ///     &lt;/b&gt;
-    ///   &lt;/summary&gt;
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using CloudAmqp = Pulumi.CloudAmqp;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var cloudwatch = new CloudAmqp.IntegrationLog("cloudwatch", new()
-    ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         AccessKeyId = @var.Aws_access_key_id,
-    ///         SecretAccessKey = @var.Aws_secret_access_key,
-    ///         Region = @var.Aws_region,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;/details&gt;
-    /// 
-    /// &lt;details&gt;
-    ///   &lt;summary&gt;
-    ///     &lt;b&gt;
-    ///       &lt;i&gt;Logentries log integration&lt;/i&gt;
-    ///     &lt;/b&gt;
-    ///   &lt;/summary&gt;
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using CloudAmqp = Pulumi.CloudAmqp;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var logentries = new CloudAmqp.IntegrationLog("logentries", new()
-    ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         Token = @var.Logentries_token,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;/details&gt;
-    /// 
-    /// &lt;details&gt;
-    ///   &lt;summary&gt;
-    ///     &lt;b&gt;
-    ///       &lt;i&gt;Loggly log integration&lt;/i&gt;
-    ///     &lt;/b&gt;
-    ///   &lt;/summary&gt;
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using CloudAmqp = Pulumi.CloudAmqp;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var loggly = new CloudAmqp.IntegrationLog("loggly", new()
-    ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         Token = @var.Loggly_token,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;/details&gt;
-    /// 
-    /// &lt;details&gt;
-    ///   &lt;summary&gt;
-    ///     &lt;b&gt;
-    ///       &lt;i&gt;Papertrail log integration&lt;/i&gt;
-    ///     &lt;/b&gt;
-    ///   &lt;/summary&gt;
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using CloudAmqp = Pulumi.CloudAmqp;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var papertrail = new CloudAmqp.IntegrationLog("papertrail", new()
-    ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         Url = @var.Papertrail_url,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;/details&gt;
-    /// 
-    /// &lt;details&gt;
-    ///   &lt;summary&gt;
-    ///     &lt;b&gt;
-    ///       &lt;i&gt;Splunk log integration&lt;/i&gt;
-    ///     &lt;/b&gt;
-    ///   &lt;/summary&gt;
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using CloudAmqp = Pulumi.CloudAmqp;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var splunk = new CloudAmqp.IntegrationLog("splunk", new()
-    ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         Token = @var.Splunk_token,
-    ///         HostPort = @var.Splunk_host_port,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;/details&gt;
-    /// 
-    /// &lt;details&gt;
-    ///   &lt;summary&gt;
-    ///     &lt;b&gt;
-    ///       &lt;i&gt;Datadog log integration&lt;/i&gt;
-    ///     &lt;/b&gt;
-    ///   &lt;/summary&gt;
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using CloudAmqp = Pulumi.CloudAmqp;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var datadog = new CloudAmqp.IntegrationLog("datadog", new()
-    ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         Region = @var.Datadog_region,
-    ///         ApiKey = @var.Datadog_api_key,
-    ///         Tags = @var.Datadog_tags,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;/details&gt;
-    /// 
-    /// &lt;details&gt;
-    ///   &lt;summary&gt;
-    ///     &lt;b&gt;
-    ///       &lt;i&gt;Stackdriver log integration&lt;/i&gt;
-    ///     &lt;/b&gt;
-    ///   &lt;/summary&gt;
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using CloudAmqp = Pulumi.CloudAmqp;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var stackdriver = new CloudAmqp.IntegrationLog("stackdriver", new()
-    ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         ProjectId = @var.Stackdriver_project_id,
-    ///         PrivateKey = @var.Stackdriver_private_key,
-    ///         ClientEmail = @var.Stackdriver_client_email,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;/details&gt;
-    /// 
-    /// &lt;details&gt;
-    ///   &lt;summary&gt;
-    ///     &lt;b&gt;
-    ///       &lt;i&gt;Scalyr log integration&lt;/i&gt;
-    ///     &lt;/b&gt;
-    ///   &lt;/summary&gt;
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using CloudAmqp = Pulumi.CloudAmqp;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var scalyr = new CloudAmqp.IntegrationLog("scalyr", new()
-    ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         Token = @var.Scalyr_token,
-    ///         Host = @var.Scalyr_host,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;/details&gt;
     /// ## Argument Reference (cloudwatchlog)
     /// 
     /// Cloudwatch argument reference and example. Create an IAM user with programmatic access and the following permissions:
@@ -235,9 +34,9 @@ namespace Pulumi.CloudAmqp
     /// | logentries | Create a Logentries token at https://logentries.com/app#/add-log/manual  |
     /// | loggly     | Create a Loggly token at https://your-company}.loggly.com/tokens |
     /// | papertrail | Create a Papertrail endpoint https://papertrailapp.com/systems/setup |
-    /// | splunk     | Create a HTTP Event Collector token at https://.cloud.splunk.com/en-US/manager/search/http-eventcollector |
+    /// | splunk     | Create a HTTP Event Collector token at `https://&lt;your-splunk&gt;.cloud.splunk.com/en-US/manager/search/http-eventcollector` |
     /// | datadog       | Create a Datadog API key at app.datadoghq.com |
-    /// | stackdriver   | Create a service account and add 'monitor metrics writer' role, then download credentials. |
+    /// | stackdriver   | Create a service account and add 'monitor metrics writer' role from your Google Cloud Account |
     /// | scalyr        | Create a Log write token at https://app.scalyr.com/keys |
     /// 
     /// ## Integration Type reference
@@ -252,10 +51,12 @@ namespace Pulumi.CloudAmqp
     /// | Log Entries | logentries | token |
     /// | Loggly | loggly | token |
     /// | Papertrail | papertrail | url |
-    /// | Splunk | splunk | token, host_port |
+    /// | Splunk | splunk | token, host_port, sourcetype |
     /// | Data Dog | datadog | region, api_keys, tags |
-    /// | Stackdriver | stackdriver | project_id, private_key, client_email |
+    /// | Stackdriver | stackdriver | credentials |
     /// | Scalyr | scalyr | token, host |
+    /// 
+    /// ***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments  : project_id, private_key, client_email
     /// 
     /// ## Dependency
     /// 
@@ -288,7 +89,13 @@ namespace Pulumi.CloudAmqp
         /// The client email registered for the integration service.
         /// </summary>
         [Output("clientEmail")]
-        public Output<string?> ClientEmail { get; private set; } = null!;
+        public Output<string> ClientEmail { get; private set; } = null!;
+
+        /// <summary>
+        /// Google Service Account private key credentials.
+        /// </summary>
+        [Output("credentials")]
+        public Output<string?> Credentials { get; private set; } = null!;
 
         /// <summary>
         /// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
@@ -318,13 +125,19 @@ namespace Pulumi.CloudAmqp
         /// The private access key.
         /// </summary>
         [Output("privateKey")]
-        public Output<string?> PrivateKey { get; private set; } = null!;
+        public Output<string> PrivateKey { get; private set; } = null!;
+
+        /// <summary>
+        /// Private key identifier. (Stackdriver)
+        /// </summary>
+        [Output("privateKeyId")]
+        public Output<string> PrivateKeyId { get; private set; } = null!;
 
         /// <summary>
         /// The project identifier.
         /// </summary>
         [Output("projectId")]
-        public Output<string?> ProjectId { get; private set; } = null!;
+        public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
         /// Region hosting the integration service.
@@ -337,6 +150,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Output("secretAccessKey")]
         public Output<string?> SecretAccessKey { get; private set; } = null!;
+
+        /// <summary>
+        /// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+        /// </summary>
+        [Output("sourcetype")]
+        public Output<string?> Sourcetype { get; private set; } = null!;
 
         /// <summary>
         /// Tag the integration, e.g. env=prod, region=europe.
@@ -379,6 +198,16 @@ namespace Pulumi.CloudAmqp
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "accessKeyId",
+                    "apiKey",
+                    "credentials",
+                    "privateKey",
+                    "privateKeyId",
+                    "secretAccessKey",
+                    "token",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -402,23 +231,59 @@ namespace Pulumi.CloudAmqp
 
     public sealed class IntegrationLogArgs : global::Pulumi.ResourceArgs
     {
+        [Input("accessKeyId")]
+        private Input<string>? _accessKeyId;
+
         /// <summary>
         /// AWS access key identifier.
         /// </summary>
-        [Input("accessKeyId")]
-        public Input<string>? AccessKeyId { get; set; }
+        public Input<string>? AccessKeyId
+        {
+            get => _accessKeyId;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _accessKeyId = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("apiKey")]
+        private Input<string>? _apiKey;
 
         /// <summary>
         /// The API key.
         /// </summary>
-        [Input("apiKey")]
-        public Input<string>? ApiKey { get; set; }
+        public Input<string>? ApiKey
+        {
+            get => _apiKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _apiKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The client email registered for the integration service.
         /// </summary>
         [Input("clientEmail")]
         public Input<string>? ClientEmail { get; set; }
+
+        [Input("credentials")]
+        private Input<string>? _credentials;
+
+        /// <summary>
+        /// Google Service Account private key credentials.
+        /// </summary>
+        public Input<string>? Credentials
+        {
+            get => _credentials;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _credentials = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
@@ -444,11 +309,37 @@ namespace Pulumi.CloudAmqp
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        [Input("privateKey")]
+        private Input<string>? _privateKey;
+
         /// <summary>
         /// The private access key.
         /// </summary>
-        [Input("privateKey")]
-        public Input<string>? PrivateKey { get; set; }
+        public Input<string>? PrivateKey
+        {
+            get => _privateKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("privateKeyId")]
+        private Input<string>? _privateKeyId;
+
+        /// <summary>
+        /// Private key identifier. (Stackdriver)
+        /// </summary>
+        public Input<string>? PrivateKeyId
+        {
+            get => _privateKeyId;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKeyId = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The project identifier.
@@ -462,11 +353,27 @@ namespace Pulumi.CloudAmqp
         [Input("region")]
         public Input<string>? Region { get; set; }
 
+        [Input("secretAccessKey")]
+        private Input<string>? _secretAccessKey;
+
         /// <summary>
         /// AWS secret access key.
         /// </summary>
-        [Input("secretAccessKey")]
-        public Input<string>? SecretAccessKey { get; set; }
+        public Input<string>? SecretAccessKey
+        {
+            get => _secretAccessKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretAccessKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+        /// </summary>
+        [Input("sourcetype")]
+        public Input<string>? Sourcetype { get; set; }
 
         /// <summary>
         /// Tag the integration, e.g. env=prod, region=europe.
@@ -474,11 +381,21 @@ namespace Pulumi.CloudAmqp
         [Input("tags")]
         public Input<string>? Tags { get; set; }
 
+        [Input("token")]
+        private Input<string>? _token;
+
         /// <summary>
         /// Token used for authentication.
         /// </summary>
-        [Input("token")]
-        public Input<string>? Token { get; set; }
+        public Input<string>? Token
+        {
+            get => _token;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Endpoint to log integration.
@@ -494,23 +411,59 @@ namespace Pulumi.CloudAmqp
 
     public sealed class IntegrationLogState : global::Pulumi.ResourceArgs
     {
+        [Input("accessKeyId")]
+        private Input<string>? _accessKeyId;
+
         /// <summary>
         /// AWS access key identifier.
         /// </summary>
-        [Input("accessKeyId")]
-        public Input<string>? AccessKeyId { get; set; }
+        public Input<string>? AccessKeyId
+        {
+            get => _accessKeyId;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _accessKeyId = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("apiKey")]
+        private Input<string>? _apiKey;
 
         /// <summary>
         /// The API key.
         /// </summary>
-        [Input("apiKey")]
-        public Input<string>? ApiKey { get; set; }
+        public Input<string>? ApiKey
+        {
+            get => _apiKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _apiKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The client email registered for the integration service.
         /// </summary>
         [Input("clientEmail")]
         public Input<string>? ClientEmail { get; set; }
+
+        [Input("credentials")]
+        private Input<string>? _credentials;
+
+        /// <summary>
+        /// Google Service Account private key credentials.
+        /// </summary>
+        public Input<string>? Credentials
+        {
+            get => _credentials;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _credentials = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
@@ -536,11 +489,37 @@ namespace Pulumi.CloudAmqp
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        [Input("privateKey")]
+        private Input<string>? _privateKey;
+
         /// <summary>
         /// The private access key.
         /// </summary>
-        [Input("privateKey")]
-        public Input<string>? PrivateKey { get; set; }
+        public Input<string>? PrivateKey
+        {
+            get => _privateKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("privateKeyId")]
+        private Input<string>? _privateKeyId;
+
+        /// <summary>
+        /// Private key identifier. (Stackdriver)
+        /// </summary>
+        public Input<string>? PrivateKeyId
+        {
+            get => _privateKeyId;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKeyId = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The project identifier.
@@ -554,11 +533,27 @@ namespace Pulumi.CloudAmqp
         [Input("region")]
         public Input<string>? Region { get; set; }
 
+        [Input("secretAccessKey")]
+        private Input<string>? _secretAccessKey;
+
         /// <summary>
         /// AWS secret access key.
         /// </summary>
-        [Input("secretAccessKey")]
-        public Input<string>? SecretAccessKey { get; set; }
+        public Input<string>? SecretAccessKey
+        {
+            get => _secretAccessKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretAccessKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+        /// </summary>
+        [Input("sourcetype")]
+        public Input<string>? Sourcetype { get; set; }
 
         /// <summary>
         /// Tag the integration, e.g. env=prod, region=europe.
@@ -566,11 +561,21 @@ namespace Pulumi.CloudAmqp
         [Input("tags")]
         public Input<string>? Tags { get; set; }
 
+        [Input("token")]
+        private Input<string>? _token;
+
         /// <summary>
         /// Token used for authentication.
         /// </summary>
-        [Input("token")]
-        public Input<string>? Token { get; set; }
+        public Input<string>? Token
+        {
+            get => _token;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Endpoint to log integration.

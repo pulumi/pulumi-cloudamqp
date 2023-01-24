@@ -62,6 +62,21 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * Base64Encoded credentials. (Stackdriver)
+     * 
+     */
+    @Import(name="credentials")
+    private @Nullable Output<String> credentials;
+
+    /**
+     * @return Base64Encoded credentials. (Stackdriver)
+     * 
+     */
+    public Optional<Output<String>> credentials() {
+        return Optional.ofNullable(this.credentials);
+    }
+
+    /**
      * The email address registred for the integration service. (Librato)
      * 
      */
@@ -134,6 +149,21 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
      */
     public Optional<Output<String>> privateKey() {
         return Optional.ofNullable(this.privateKey);
+    }
+
+    /**
+     * Private key identifier. (Stackdriver)
+     * 
+     */
+    @Import(name="privateKeyId")
+    private @Nullable Output<String> privateKeyId;
+
+    /**
+     * @return Private key identifier. (Stackdriver)
+     * 
+     */
+    public Optional<Output<String>> privateKeyId() {
+        return Optional.ofNullable(this.privateKeyId);
     }
 
     /**
@@ -278,11 +308,13 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         this.accessKeyId = $.accessKeyId;
         this.apiKey = $.apiKey;
         this.clientEmail = $.clientEmail;
+        this.credentials = $.credentials;
         this.email = $.email;
         this.instanceId = $.instanceId;
         this.licenseKey = $.licenseKey;
         this.name = $.name;
         this.privateKey = $.privateKey;
+        this.privateKeyId = $.privateKeyId;
         this.projectId = $.projectId;
         this.queueAllowlist = $.queueAllowlist;
         this.queueWhitelist = $.queueWhitelist;
@@ -372,6 +404,27 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder clientEmail(String clientEmail) {
             return clientEmail(Output.of(clientEmail));
+        }
+
+        /**
+         * @param credentials Base64Encoded credentials. (Stackdriver)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder credentials(@Nullable Output<String> credentials) {
+            $.credentials = credentials;
+            return this;
+        }
+
+        /**
+         * @param credentials Base64Encoded credentials. (Stackdriver)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder credentials(String credentials) {
+            return credentials(Output.of(credentials));
         }
 
         /**
@@ -477,6 +530,27 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder privateKey(String privateKey) {
             return privateKey(Output.of(privateKey));
+        }
+
+        /**
+         * @param privateKeyId Private key identifier. (Stackdriver)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyId(@Nullable Output<String> privateKeyId) {
+            $.privateKeyId = privateKeyId;
+            return this;
+        }
+
+        /**
+         * @param privateKeyId Private key identifier. (Stackdriver)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyId(String privateKeyId) {
+            return privateKeyId(Output.of(privateKeyId));
         }
 
         /**

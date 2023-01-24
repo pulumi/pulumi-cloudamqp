@@ -22,6 +22,8 @@ import javax.annotation.Nullable;
  * 
  * Only available for dedicated subscription plans.
  * 
+ * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
+ * 
  * ## Example Usage
  * ```java
  * package generated_program;
@@ -61,6 +63,7 @@ import javax.annotation.Nullable;
  *             .tags()
  *             .rmqVersion(&#34;3.9.13&#34;)
  *             .vpcId(cloudamq_vpc.vpc().id())
+ *             .keepAssociatedVpc(true)
  *             .build());
  * 
  *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()

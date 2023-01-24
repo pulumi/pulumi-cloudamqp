@@ -18,6 +18,21 @@ public final class PluginCommunityState extends com.pulumi.resources.ResourceArg
     public static final PluginCommunityState Empty = new PluginCommunityState();
 
     /**
+     * The description of the plugin.
+     * 
+     */
+    @Import(name="description")
+    private @Nullable Output<String> description;
+
+    /**
+     * @return The description of the plugin.
+     * 
+     */
+    public Optional<Output<String>> description() {
+        return Optional.ofNullable(this.description);
+    }
+
+    /**
      * Enable or disable the plugins.
      * 
      */
@@ -62,12 +77,29 @@ public final class PluginCommunityState extends com.pulumi.resources.ResourceArg
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * Required version of RabbitMQ.
+     * 
+     */
+    @Import(name="require")
+    private @Nullable Output<String> require;
+
+    /**
+     * @return Required version of RabbitMQ.
+     * 
+     */
+    public Optional<Output<String>> require() {
+        return Optional.ofNullable(this.require);
+    }
+
     private PluginCommunityState() {}
 
     private PluginCommunityState(PluginCommunityState $) {
+        this.description = $.description;
         this.enabled = $.enabled;
         this.instanceId = $.instanceId;
         this.name = $.name;
+        this.require = $.require;
     }
 
     public static Builder builder() {
@@ -86,6 +118,27 @@ public final class PluginCommunityState extends com.pulumi.resources.ResourceArg
 
         public Builder(PluginCommunityState defaults) {
             $ = new PluginCommunityState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param description The description of the plugin.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(@Nullable Output<String> description) {
+            $.description = description;
+            return this;
+        }
+
+        /**
+         * @param description The description of the plugin.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(String description) {
+            return description(Output.of(description));
         }
 
         /**
@@ -149,6 +202,27 @@ public final class PluginCommunityState extends com.pulumi.resources.ResourceArg
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param require Required version of RabbitMQ.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder require(@Nullable Output<String> require) {
+            $.require = require;
+            return this;
+        }
+
+        /**
+         * @param require Required version of RabbitMQ.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder require(String require) {
+            return require(Output.of(require));
         }
 
         public PluginCommunityState build() {

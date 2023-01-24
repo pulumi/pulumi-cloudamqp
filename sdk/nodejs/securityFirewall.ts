@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -50,6 +51,14 @@ export class SecurityFirewall extends pulumi.CustomResource {
      * An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
      */
     public readonly rules!: pulumi.Output<outputs.SecurityFirewallRule[]>;
+    /**
+     * Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+     */
+    public readonly sleep!: pulumi.Output<number | undefined>;
+    /**
+     * Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+     */
+    public readonly timeout!: pulumi.Output<number | undefined>;
 
     /**
      * Create a SecurityFirewall resource with the given unique name, arguments, and options.
@@ -66,6 +75,8 @@ export class SecurityFirewall extends pulumi.CustomResource {
             const state = argsOrState as SecurityFirewallState | undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["rules"] = state ? state.rules : undefined;
+            resourceInputs["sleep"] = state ? state.sleep : undefined;
+            resourceInputs["timeout"] = state ? state.timeout : undefined;
         } else {
             const args = argsOrState as SecurityFirewallArgs | undefined;
             if ((!args || args.instanceId === undefined) && !opts.urn) {
@@ -76,6 +87,8 @@ export class SecurityFirewall extends pulumi.CustomResource {
             }
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["rules"] = args ? args.rules : undefined;
+            resourceInputs["sleep"] = args ? args.sleep : undefined;
+            resourceInputs["timeout"] = args ? args.timeout : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecurityFirewall.__pulumiType, name, resourceInputs, opts);
@@ -94,6 +107,14 @@ export interface SecurityFirewallState {
      * An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
      */
     rules?: pulumi.Input<pulumi.Input<inputs.SecurityFirewallRule>[]>;
+    /**
+     * Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+     */
+    sleep?: pulumi.Input<number>;
+    /**
+     * Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+     */
+    timeout?: pulumi.Input<number>;
 }
 
 /**
@@ -108,4 +129,12 @@ export interface SecurityFirewallArgs {
      * An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
      */
     rules: pulumi.Input<pulumi.Input<inputs.SecurityFirewallRule>[]>;
+    /**
+     * Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+     */
+    sleep?: pulumi.Input<number>;
+    /**
+     * Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+     */
+    timeout?: pulumi.Input<number>;
 }

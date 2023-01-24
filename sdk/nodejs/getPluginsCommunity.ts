@@ -2,14 +2,11 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
- *
- * ⚠️  From our go API wrapper [v1.5.0](https://github.com/84codes/go-api/releases/tag/v1.5.0) there is support for multiple retries when requesting information about community plugins. This was introduced to avoid `ReadPluginCommunity error 400: Timeout talking to backend`.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -40,11 +37,8 @@ import * as utilities from "./utilities";
  * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
  */
 export function getPluginsCommunity(args: GetPluginsCommunityArgs, opts?: pulumi.InvokeOptions): Promise<GetPluginsCommunityResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("cloudamqp:index/getPluginsCommunity:getPluginsCommunity", {
         "instanceId": args.instanceId,
     }, opts);
@@ -71,9 +65,38 @@ export interface GetPluginsCommunityResult {
     readonly instanceId: number;
     readonly plugins: outputs.GetPluginsCommunityPlugin[];
 }
-
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const communitPlugins = cloudamqp.getPluginsCommunity({
+ *     instanceId: cloudamqp_instance.instance.id,
+ * });
+ * ```
+ * ## Attributes reference
+ *
+ * All attributes reference are computed
+ *
+ * * `id`      - The identifier for this resource.
+ * * `plugins` - An array of community plugins. Each `plugins` block consists of the fields documented below.
+ *
+ * ***
+ *
+ * The `plugins` block consists of
+ *
+ * * `name`        - The type of the recipient.
+ * * `require`     - Min. required Rabbit MQ version to be used.
+ * * `description` - Description of what the plugin does.
+ *
+ * ## Dependency
+ *
+ * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ */
 export function getPluginsCommunityOutput(args: GetPluginsCommunityOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPluginsCommunityResult> {
-    return pulumi.output(args).apply(a => getPluginsCommunity(a, opts))
+    return pulumi.output(args).apply((a: any) => getPluginsCommunity(a, opts))
 }
 
 /**

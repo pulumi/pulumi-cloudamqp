@@ -9,159 +9,6 @@ import * as utilities from "./utilities";
  *
  * Only available for dedicated subscription plans.
  *
- * ## Example Usage
- *
- * <details>
- *   <summary>
- *     <b>
- *       <i>Cloudwatch log integration</i>
- *     </b>
- *   </summary>
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const cloudwatch = new cloudamqp.IntegrationLog("cloudwatch", {
- *     instanceId: cloudamqp_instance.instance.id,
- *     accessKeyId: _var.aws_access_key_id,
- *     secretAccessKey: _var.aws_secret_access_key,
- *     region: _var.aws_region,
- * });
- * ```
- * </details>
- *
- * <details>
- *   <summary>
- *     <b>
- *       <i>Logentries log integration</i>
- *     </b>
- *   </summary>
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const logentries = new cloudamqp.IntegrationLog("logentries", {
- *     instanceId: cloudamqp_instance.instance.id,
- *     token: _var.logentries_token,
- * });
- * ```
- * </details>
- *
- * <details>
- *   <summary>
- *     <b>
- *       <i>Loggly log integration</i>
- *     </b>
- *   </summary>
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const loggly = new cloudamqp.IntegrationLog("loggly", {
- *     instanceId: cloudamqp_instance.instance.id,
- *     token: _var.loggly_token,
- * });
- * ```
- * </details>
- *
- * <details>
- *   <summary>
- *     <b>
- *       <i>Papertrail log integration</i>
- *     </b>
- *   </summary>
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const papertrail = new cloudamqp.IntegrationLog("papertrail", {
- *     instanceId: cloudamqp_instance.instance.id,
- *     url: _var.papertrail_url,
- * });
- * ```
- * </details>
- *
- * <details>
- *   <summary>
- *     <b>
- *       <i>Splunk log integration</i>
- *     </b>
- *   </summary>
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const splunk = new cloudamqp.IntegrationLog("splunk", {
- *     instanceId: cloudamqp_instance.instance.id,
- *     token: _var.splunk_token,
- *     hostPort: _var.splunk_host_port,
- * });
- * ```
- * </details>
- *
- * <details>
- *   <summary>
- *     <b>
- *       <i>Datadog log integration</i>
- *     </b>
- *   </summary>
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const datadog = new cloudamqp.IntegrationLog("datadog", {
- *     instanceId: cloudamqp_instance.instance.id,
- *     region: _var.datadog_region,
- *     apiKey: _var.datadog_api_key,
- *     tags: _var.datadog_tags,
- * });
- * ```
- * </details>
- *
- * <details>
- *   <summary>
- *     <b>
- *       <i>Stackdriver log integration</i>
- *     </b>
- *   </summary>
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const stackdriver = new cloudamqp.IntegrationLog("stackdriver", {
- *     instanceId: cloudamqp_instance.instance.id,
- *     projectId: _var.stackdriver_project_id,
- *     privateKey: _var.stackdriver_private_key,
- *     clientEmail: _var.stackdriver_client_email,
- * });
- * ```
- * </details>
- *
- * <details>
- *   <summary>
- *     <b>
- *       <i>Scalyr log integration</i>
- *     </b>
- *   </summary>
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const scalyr = new cloudamqp.IntegrationLog("scalyr", {
- *     instanceId: cloudamqp_instance.instance.id,
- *     token: _var.scalyr_token,
- *     host: _var.scalyr_host,
- * });
- * ```
- * </details>
  * ## Argument Reference (cloudwatchlog)
  *
  * Cloudwatch argument reference and example. Create an IAM user with programmatic access and the following permissions:
@@ -182,9 +29,9 @@ import * as utilities from "./utilities";
  * | logentries | Create a Logentries token at https://logentries.com/app#/add-log/manual  |
  * | loggly     | Create a Loggly token at https://your-company}.loggly.com/tokens |
  * | papertrail | Create a Papertrail endpoint https://papertrailapp.com/systems/setup |
- * | splunk     | Create a HTTP Event Collector token at https://.cloud.splunk.com/en-US/manager/search/http-eventcollector |
+ * | splunk     | Create a HTTP Event Collector token at `https://<your-splunk>.cloud.splunk.com/en-US/manager/search/http-eventcollector` |
  * | datadog       | Create a Datadog API key at app.datadoghq.com |
- * | stackdriver   | Create a service account and add 'monitor metrics writer' role, then download credentials. |
+ * | stackdriver   | Create a service account and add 'monitor metrics writer' role from your Google Cloud Account |
  * | scalyr        | Create a Log write token at https://app.scalyr.com/keys |
  *
  * ## Integration Type reference
@@ -199,10 +46,12 @@ import * as utilities from "./utilities";
  * | Log Entries | logentries | token |
  * | Loggly | loggly | token |
  * | Papertrail | papertrail | url |
- * | Splunk | splunk | token, hostPort |
+ * | Splunk | splunk | token, host_port, sourcetype |
  * | Data Dog | datadog | region, api_keys, tags |
- * | Stackdriver | stackdriver | project_id, private_key, clientEmail |
+ * | Stackdriver | stackdriver | credentials |
  * | Scalyr | scalyr | token, host |
+ *
+ * ***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments  : project_id, private_key, clientEmail
  *
  * ## Dependency
  *
@@ -255,7 +104,11 @@ export class IntegrationLog extends pulumi.CustomResource {
     /**
      * The client email registered for the integration service.
      */
-    public readonly clientEmail!: pulumi.Output<string | undefined>;
+    public readonly clientEmail!: pulumi.Output<string>;
+    /**
+     * Google Service Account private key credentials.
+     */
+    public readonly credentials!: pulumi.Output<string | undefined>;
     /**
      * The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
      */
@@ -275,11 +128,15 @@ export class IntegrationLog extends pulumi.CustomResource {
     /**
      * The private access key.
      */
-    public readonly privateKey!: pulumi.Output<string | undefined>;
+    public readonly privateKey!: pulumi.Output<string>;
+    /**
+     * Private key identifier. (Stackdriver)
+     */
+    public readonly privateKeyId!: pulumi.Output<string>;
     /**
      * The project identifier.
      */
-    public readonly projectId!: pulumi.Output<string | undefined>;
+    public readonly projectId!: pulumi.Output<string>;
     /**
      * Region hosting the integration service.
      */
@@ -288,6 +145,10 @@ export class IntegrationLog extends pulumi.CustomResource {
      * AWS secret access key.
      */
     public readonly secretAccessKey!: pulumi.Output<string | undefined>;
+    /**
+     * Assign source type to the data exported, eg. generic_single_line. (Splunk)
+     */
+    public readonly sourcetype!: pulumi.Output<string | undefined>;
     /**
      * Tag the integration, e.g. env=prod, region=europe.
      */
@@ -317,14 +178,17 @@ export class IntegrationLog extends pulumi.CustomResource {
             resourceInputs["accessKeyId"] = state ? state.accessKeyId : undefined;
             resourceInputs["apiKey"] = state ? state.apiKey : undefined;
             resourceInputs["clientEmail"] = state ? state.clientEmail : undefined;
+            resourceInputs["credentials"] = state ? state.credentials : undefined;
             resourceInputs["host"] = state ? state.host : undefined;
             resourceInputs["hostPort"] = state ? state.hostPort : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["privateKey"] = state ? state.privateKey : undefined;
+            resourceInputs["privateKeyId"] = state ? state.privateKeyId : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["secretAccessKey"] = state ? state.secretAccessKey : undefined;
+            resourceInputs["sourcetype"] = state ? state.sourcetype : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["token"] = state ? state.token : undefined;
             resourceInputs["url"] = state ? state.url : undefined;
@@ -333,22 +197,27 @@ export class IntegrationLog extends pulumi.CustomResource {
             if ((!args || args.instanceId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            resourceInputs["accessKeyId"] = args ? args.accessKeyId : undefined;
-            resourceInputs["apiKey"] = args ? args.apiKey : undefined;
+            resourceInputs["accessKeyId"] = args?.accessKeyId ? pulumi.secret(args.accessKeyId) : undefined;
+            resourceInputs["apiKey"] = args?.apiKey ? pulumi.secret(args.apiKey) : undefined;
             resourceInputs["clientEmail"] = args ? args.clientEmail : undefined;
+            resourceInputs["credentials"] = args?.credentials ? pulumi.secret(args.credentials) : undefined;
             resourceInputs["host"] = args ? args.host : undefined;
             resourceInputs["hostPort"] = args ? args.hostPort : undefined;
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["privateKey"] = args ? args.privateKey : undefined;
+            resourceInputs["privateKey"] = args?.privateKey ? pulumi.secret(args.privateKey) : undefined;
+            resourceInputs["privateKeyId"] = args?.privateKeyId ? pulumi.secret(args.privateKeyId) : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["secretAccessKey"] = args ? args.secretAccessKey : undefined;
+            resourceInputs["secretAccessKey"] = args?.secretAccessKey ? pulumi.secret(args.secretAccessKey) : undefined;
+            resourceInputs["sourcetype"] = args ? args.sourcetype : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["token"] = args ? args.token : undefined;
+            resourceInputs["token"] = args?.token ? pulumi.secret(args.token) : undefined;
             resourceInputs["url"] = args ? args.url : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["accessKeyId", "apiKey", "credentials", "privateKey", "privateKeyId", "secretAccessKey", "token"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(IntegrationLog.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -370,6 +239,10 @@ export interface IntegrationLogState {
      */
     clientEmail?: pulumi.Input<string>;
     /**
+     * Google Service Account private key credentials.
+     */
+    credentials?: pulumi.Input<string>;
+    /**
      * The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
      */
     host?: pulumi.Input<string>;
@@ -390,6 +263,10 @@ export interface IntegrationLogState {
      */
     privateKey?: pulumi.Input<string>;
     /**
+     * Private key identifier. (Stackdriver)
+     */
+    privateKeyId?: pulumi.Input<string>;
+    /**
      * The project identifier.
      */
     projectId?: pulumi.Input<string>;
@@ -401,6 +278,10 @@ export interface IntegrationLogState {
      * AWS secret access key.
      */
     secretAccessKey?: pulumi.Input<string>;
+    /**
+     * Assign source type to the data exported, eg. generic_single_line. (Splunk)
+     */
+    sourcetype?: pulumi.Input<string>;
     /**
      * Tag the integration, e.g. env=prod, region=europe.
      */
@@ -432,6 +313,10 @@ export interface IntegrationLogArgs {
      */
     clientEmail?: pulumi.Input<string>;
     /**
+     * Google Service Account private key credentials.
+     */
+    credentials?: pulumi.Input<string>;
+    /**
      * The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
      */
     host?: pulumi.Input<string>;
@@ -452,6 +337,10 @@ export interface IntegrationLogArgs {
      */
     privateKey?: pulumi.Input<string>;
     /**
+     * Private key identifier. (Stackdriver)
+     */
+    privateKeyId?: pulumi.Input<string>;
+    /**
      * The project identifier.
      */
     projectId?: pulumi.Input<string>;
@@ -463,6 +352,10 @@ export interface IntegrationLogArgs {
      * AWS secret access key.
      */
     secretAccessKey?: pulumi.Input<string>;
+    /**
+     * Assign source type to the data exported, eg. generic_single_line. (Splunk)
+     */
+    sourcetype?: pulumi.Input<string>;
     /**
      * Tag the integration, e.g. env=prod, region=europe.
      */

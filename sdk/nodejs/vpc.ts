@@ -11,6 +11,8 @@ import * as utilities from "./utilities";
  *
  * Only available for dedicated subscription plans.
  *
+ * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -31,6 +33,7 @@ import * as utilities from "./utilities";
  *     tags: [],
  *     rmqVersion: "3.9.13",
  *     vpcId: cloudamq_vpc.vpc.id,
+ *     keepAssociatedVpc: true,
  * });
  * const vpcInfo = cloudamqp.getVpcInfoOutput({
  *     vpcId: vpc.id,

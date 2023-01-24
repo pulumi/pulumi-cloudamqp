@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.LookupAlarm(ctx, &GetAlarmArgs{
+//			_, err := cloudamqp.LookupAlarm(ctx, &cloudamqp.LookupAlarmArgs{
 //				InstanceId: cloudamqp_instance.Instance.Id,
 //				Type:       pulumi.StringRef("cpu"),
 //			}, nil)

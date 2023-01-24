@@ -62,7 +62,7 @@ namespace Pulumi.CloudAmqp
         /// `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
         /// </summary>
         public static Task<GetAlarmResult> InvokeAsync(GetAlarmArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAlarmResult>("cloudamqp:index/getAlarm:getAlarm", args ?? new GetAlarmArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetAlarmResult>("cloudamqp:index/getAlarm:getAlarm", args ?? new GetAlarmArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to retrieve information about default or created alarms. Either use `alarm_id` or `type` to retrieve the alarm.
@@ -115,7 +115,7 @@ namespace Pulumi.CloudAmqp
         /// `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
         /// </summary>
         public static Output<GetAlarmResult> Invoke(GetAlarmInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAlarmResult>("cloudamqp:index/getAlarm:getAlarm", args ?? new GetAlarmInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetAlarmResult>("cloudamqp:index/getAlarm:getAlarm", args ?? new GetAlarmInvokeArgs(), options.WithDefaults());
     }
 
 

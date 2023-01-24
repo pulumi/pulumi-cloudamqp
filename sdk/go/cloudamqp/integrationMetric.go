@@ -19,7 +19,9 @@ type IntegrationMetric struct {
 	// The API key for the integration service. (Librato)
 	ApiKey pulumi.StringPtrOutput `pulumi:"apiKey"`
 	// The client email. (Stackdriver)
-	ClientEmail pulumi.StringPtrOutput `pulumi:"clientEmail"`
+	ClientEmail pulumi.StringOutput `pulumi:"clientEmail"`
+	// Base64Encoded credentials. (Stackdriver)
+	Credentials pulumi.StringPtrOutput `pulumi:"credentials"`
 	// The email address registred for the integration service. (Librato)
 	Email pulumi.StringPtrOutput `pulumi:"email"`
 	// Instance identifier
@@ -29,9 +31,11 @@ type IntegrationMetric struct {
 	// The name of metrics integration
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The private key. (Stackdriver)
-	PrivateKey pulumi.StringPtrOutput `pulumi:"privateKey"`
+	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
+	// Private key identifier. (Stackdriver)
+	PrivateKeyId pulumi.StringOutput `pulumi:"privateKeyId"`
 	// Project ID. (Stackdriver)
-	ProjectId pulumi.StringPtrOutput `pulumi:"projectId"`
+	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// (optional) allowlist using regular expression
 	QueueAllowlist pulumi.StringPtrOutput `pulumi:"queueAllowlist"`
 	// **Deprecated**
@@ -62,6 +66,25 @@ func NewIntegrationMetric(ctx *pulumi.Context,
 	if args.InstanceId == nil {
 		return nil, errors.New("invalid value for required argument 'InstanceId'")
 	}
+	if args.Credentials != nil {
+		args.Credentials = pulumi.ToSecret(args.Credentials).(pulumi.StringPtrInput)
+	}
+	if args.PrivateKey != nil {
+		args.PrivateKey = pulumi.ToSecret(args.PrivateKey).(pulumi.StringPtrInput)
+	}
+	if args.PrivateKeyId != nil {
+		args.PrivateKeyId = pulumi.ToSecret(args.PrivateKeyId).(pulumi.StringPtrInput)
+	}
+	if args.SecretAccessKey != nil {
+		args.SecretAccessKey = pulumi.ToSecret(args.SecretAccessKey).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"credentials",
+		"privateKey",
+		"privateKeyId",
+		"secretAccessKey",
+	})
+	opts = append(opts, secrets)
 	var resource IntegrationMetric
 	err := ctx.RegisterResource("cloudamqp:index/integrationMetric:IntegrationMetric", name, args, &resource, opts...)
 	if err != nil {
@@ -90,6 +113,8 @@ type integrationMetricState struct {
 	ApiKey *string `pulumi:"apiKey"`
 	// The client email. (Stackdriver)
 	ClientEmail *string `pulumi:"clientEmail"`
+	// Base64Encoded credentials. (Stackdriver)
+	Credentials *string `pulumi:"credentials"`
 	// The email address registred for the integration service. (Librato)
 	Email *string `pulumi:"email"`
 	// Instance identifier
@@ -100,6 +125,8 @@ type integrationMetricState struct {
 	Name *string `pulumi:"name"`
 	// The private key. (Stackdriver)
 	PrivateKey *string `pulumi:"privateKey"`
+	// Private key identifier. (Stackdriver)
+	PrivateKeyId *string `pulumi:"privateKeyId"`
 	// Project ID. (Stackdriver)
 	ProjectId *string `pulumi:"projectId"`
 	// (optional) allowlist using regular expression
@@ -129,6 +156,8 @@ type IntegrationMetricState struct {
 	ApiKey pulumi.StringPtrInput
 	// The client email. (Stackdriver)
 	ClientEmail pulumi.StringPtrInput
+	// Base64Encoded credentials. (Stackdriver)
+	Credentials pulumi.StringPtrInput
 	// The email address registred for the integration service. (Librato)
 	Email pulumi.StringPtrInput
 	// Instance identifier
@@ -139,6 +168,8 @@ type IntegrationMetricState struct {
 	Name pulumi.StringPtrInput
 	// The private key. (Stackdriver)
 	PrivateKey pulumi.StringPtrInput
+	// Private key identifier. (Stackdriver)
+	PrivateKeyId pulumi.StringPtrInput
 	// Project ID. (Stackdriver)
 	ProjectId pulumi.StringPtrInput
 	// (optional) allowlist using regular expression
@@ -172,6 +203,8 @@ type integrationMetricArgs struct {
 	ApiKey *string `pulumi:"apiKey"`
 	// The client email. (Stackdriver)
 	ClientEmail *string `pulumi:"clientEmail"`
+	// Base64Encoded credentials. (Stackdriver)
+	Credentials *string `pulumi:"credentials"`
 	// The email address registred for the integration service. (Librato)
 	Email *string `pulumi:"email"`
 	// Instance identifier
@@ -182,6 +215,8 @@ type integrationMetricArgs struct {
 	Name *string `pulumi:"name"`
 	// The private key. (Stackdriver)
 	PrivateKey *string `pulumi:"privateKey"`
+	// Private key identifier. (Stackdriver)
+	PrivateKeyId *string `pulumi:"privateKeyId"`
 	// Project ID. (Stackdriver)
 	ProjectId *string `pulumi:"projectId"`
 	// (optional) allowlist using regular expression
@@ -212,6 +247,8 @@ type IntegrationMetricArgs struct {
 	ApiKey pulumi.StringPtrInput
 	// The client email. (Stackdriver)
 	ClientEmail pulumi.StringPtrInput
+	// Base64Encoded credentials. (Stackdriver)
+	Credentials pulumi.StringPtrInput
 	// The email address registred for the integration service. (Librato)
 	Email pulumi.StringPtrInput
 	// Instance identifier
@@ -222,6 +259,8 @@ type IntegrationMetricArgs struct {
 	Name pulumi.StringPtrInput
 	// The private key. (Stackdriver)
 	PrivateKey pulumi.StringPtrInput
+	// Private key identifier. (Stackdriver)
+	PrivateKeyId pulumi.StringPtrInput
 	// Project ID. (Stackdriver)
 	ProjectId pulumi.StringPtrInput
 	// (optional) allowlist using regular expression
@@ -342,8 +381,13 @@ func (o IntegrationMetricOutput) ApiKey() pulumi.StringPtrOutput {
 }
 
 // The client email. (Stackdriver)
-func (o IntegrationMetricOutput) ClientEmail() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.ClientEmail }).(pulumi.StringPtrOutput)
+func (o IntegrationMetricOutput) ClientEmail() pulumi.StringOutput {
+	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringOutput { return v.ClientEmail }).(pulumi.StringOutput)
+}
+
+// Base64Encoded credentials. (Stackdriver)
+func (o IntegrationMetricOutput) Credentials() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.Credentials }).(pulumi.StringPtrOutput)
 }
 
 // The email address registred for the integration service. (Librato)
@@ -367,13 +411,18 @@ func (o IntegrationMetricOutput) Name() pulumi.StringOutput {
 }
 
 // The private key. (Stackdriver)
-func (o IntegrationMetricOutput) PrivateKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.PrivateKey }).(pulumi.StringPtrOutput)
+func (o IntegrationMetricOutput) PrivateKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringOutput { return v.PrivateKey }).(pulumi.StringOutput)
+}
+
+// Private key identifier. (Stackdriver)
+func (o IntegrationMetricOutput) PrivateKeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringOutput { return v.PrivateKeyId }).(pulumi.StringOutput)
 }
 
 // Project ID. (Stackdriver)
-func (o IntegrationMetricOutput) ProjectId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.ProjectId }).(pulumi.StringPtrOutput)
+func (o IntegrationMetricOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 // (optional) allowlist using regular expression

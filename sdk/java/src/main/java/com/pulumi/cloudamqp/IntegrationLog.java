@@ -12,6 +12,7 @@ import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -20,311 +21,6 @@ import javax.annotation.Nullable;
  * 
  * Only available for dedicated subscription plans.
  * 
- * ## Example Usage
- * 
- * &lt;details&gt;
- *   &lt;summary&gt;
- *     &lt;b&gt;
- *       &lt;i&gt;Cloudwatch log integration&lt;/i&gt;
- *     &lt;/b&gt;
- *   &lt;/summary&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.cloudamqp.IntegrationLog;
- * import com.pulumi.cloudamqp.IntegrationLogArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var cloudwatch = new IntegrationLog(&#34;cloudwatch&#34;, IntegrationLogArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
- *             .accessKeyId(var_.aws_access_key_id())
- *             .secretAccessKey(var_.aws_secret_access_key())
- *             .region(var_.aws_region())
- *             .build());
- * 
- *     }
- * }
- * ```
- * &lt;/details&gt;
- * 
- * &lt;details&gt;
- *   &lt;summary&gt;
- *     &lt;b&gt;
- *       &lt;i&gt;Logentries log integration&lt;/i&gt;
- *     &lt;/b&gt;
- *   &lt;/summary&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.cloudamqp.IntegrationLog;
- * import com.pulumi.cloudamqp.IntegrationLogArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var logentries = new IntegrationLog(&#34;logentries&#34;, IntegrationLogArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
- *             .token(var_.logentries_token())
- *             .build());
- * 
- *     }
- * }
- * ```
- * &lt;/details&gt;
- * 
- * &lt;details&gt;
- *   &lt;summary&gt;
- *     &lt;b&gt;
- *       &lt;i&gt;Loggly log integration&lt;/i&gt;
- *     &lt;/b&gt;
- *   &lt;/summary&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.cloudamqp.IntegrationLog;
- * import com.pulumi.cloudamqp.IntegrationLogArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var loggly = new IntegrationLog(&#34;loggly&#34;, IntegrationLogArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
- *             .token(var_.loggly_token())
- *             .build());
- * 
- *     }
- * }
- * ```
- * &lt;/details&gt;
- * 
- * &lt;details&gt;
- *   &lt;summary&gt;
- *     &lt;b&gt;
- *       &lt;i&gt;Papertrail log integration&lt;/i&gt;
- *     &lt;/b&gt;
- *   &lt;/summary&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.cloudamqp.IntegrationLog;
- * import com.pulumi.cloudamqp.IntegrationLogArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var papertrail = new IntegrationLog(&#34;papertrail&#34;, IntegrationLogArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
- *             .url(var_.papertrail_url())
- *             .build());
- * 
- *     }
- * }
- * ```
- * &lt;/details&gt;
- * 
- * &lt;details&gt;
- *   &lt;summary&gt;
- *     &lt;b&gt;
- *       &lt;i&gt;Splunk log integration&lt;/i&gt;
- *     &lt;/b&gt;
- *   &lt;/summary&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.cloudamqp.IntegrationLog;
- * import com.pulumi.cloudamqp.IntegrationLogArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var splunk = new IntegrationLog(&#34;splunk&#34;, IntegrationLogArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
- *             .token(var_.splunk_token())
- *             .hostPort(var_.splunk_host_port())
- *             .build());
- * 
- *     }
- * }
- * ```
- * &lt;/details&gt;
- * 
- * &lt;details&gt;
- *   &lt;summary&gt;
- *     &lt;b&gt;
- *       &lt;i&gt;Datadog log integration&lt;/i&gt;
- *     &lt;/b&gt;
- *   &lt;/summary&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.cloudamqp.IntegrationLog;
- * import com.pulumi.cloudamqp.IntegrationLogArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var datadog = new IntegrationLog(&#34;datadog&#34;, IntegrationLogArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
- *             .region(var_.datadog_region())
- *             .apiKey(var_.datadog_api_key())
- *             .tags(var_.datadog_tags())
- *             .build());
- * 
- *     }
- * }
- * ```
- * &lt;/details&gt;
- * 
- * &lt;details&gt;
- *   &lt;summary&gt;
- *     &lt;b&gt;
- *       &lt;i&gt;Stackdriver log integration&lt;/i&gt;
- *     &lt;/b&gt;
- *   &lt;/summary&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.cloudamqp.IntegrationLog;
- * import com.pulumi.cloudamqp.IntegrationLogArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var stackdriver = new IntegrationLog(&#34;stackdriver&#34;, IntegrationLogArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
- *             .projectId(var_.stackdriver_project_id())
- *             .privateKey(var_.stackdriver_private_key())
- *             .clientEmail(var_.stackdriver_client_email())
- *             .build());
- * 
- *     }
- * }
- * ```
- * &lt;/details&gt;
- * 
- * &lt;details&gt;
- *   &lt;summary&gt;
- *     &lt;b&gt;
- *       &lt;i&gt;Scalyr log integration&lt;/i&gt;
- *     &lt;/b&gt;
- *   &lt;/summary&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.cloudamqp.IntegrationLog;
- * import com.pulumi.cloudamqp.IntegrationLogArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var scalyr = new IntegrationLog(&#34;scalyr&#34;, IntegrationLogArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
- *             .token(var_.scalyr_token())
- *             .host(var_.scalyr_host())
- *             .build());
- * 
- *     }
- * }
- * ```
- * &lt;/details&gt;
  * ## Argument Reference (cloudwatchlog)
  * 
  * Cloudwatch argument reference and example. Create an IAM user with programmatic access and the following permissions:
@@ -345,9 +41,9 @@ import javax.annotation.Nullable;
  * | logentries | Create a Logentries token at https://logentries.com/app#/add-log/manual  |
  * | loggly     | Create a Loggly token at https://your-company}.loggly.com/tokens |
  * | papertrail | Create a Papertrail endpoint https://papertrailapp.com/systems/setup |
- * | splunk     | Create a HTTP Event Collector token at https://.cloud.splunk.com/en-US/manager/search/http-eventcollector |
+ * | splunk     | Create a HTTP Event Collector token at `https://&lt;your-splunk&gt;.cloud.splunk.com/en-US/manager/search/http-eventcollector` |
  * | datadog       | Create a Datadog API key at app.datadoghq.com |
- * | stackdriver   | Create a service account and add &#39;monitor metrics writer&#39; role, then download credentials. |
+ * | stackdriver   | Create a service account and add &#39;monitor metrics writer&#39; role from your Google Cloud Account |
  * | scalyr        | Create a Log write token at https://app.scalyr.com/keys |
  * 
  * ## Integration Type reference
@@ -362,10 +58,12 @@ import javax.annotation.Nullable;
  * | Log Entries | logentries | token |
  * | Loggly | loggly | token |
  * | Papertrail | papertrail | url |
- * | Splunk | splunk | token, host_port |
+ * | Splunk | splunk | token, host_port, sourcetype |
  * | Data Dog | datadog | region, api_keys, tags |
- * | Stackdriver | stackdriver | project_id, private_key, client_email |
+ * | Stackdriver | stackdriver | credentials |
  * | Scalyr | scalyr | token, host |
+ * 
+ * ***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments  : project_id, private_key, client_email
  * 
  * ## Dependency
  * 
@@ -415,14 +113,28 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="clientEmail", type=String.class, parameters={})
-    private Output</* @Nullable */ String> clientEmail;
+    private Output<String> clientEmail;
 
     /**
      * @return The client email registered for the integration service.
      * 
      */
-    public Output<Optional<String>> clientEmail() {
-        return Codegen.optional(this.clientEmail);
+    public Output<String> clientEmail() {
+        return this.clientEmail;
+    }
+    /**
+     * Google Service Account private key credentials.
+     * 
+     */
+    @Export(name="credentials", type=String.class, parameters={})
+    private Output</* @Nullable */ String> credentials;
+
+    /**
+     * @return Google Service Account private key credentials.
+     * 
+     */
+    public Output<Optional<String>> credentials() {
+        return Codegen.optional(this.credentials);
     }
     /**
      * The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
@@ -485,28 +197,42 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="privateKey", type=String.class, parameters={})
-    private Output</* @Nullable */ String> privateKey;
+    private Output<String> privateKey;
 
     /**
      * @return The private access key.
      * 
      */
-    public Output<Optional<String>> privateKey() {
-        return Codegen.optional(this.privateKey);
+    public Output<String> privateKey() {
+        return this.privateKey;
+    }
+    /**
+     * Private key identifier. (Stackdriver)
+     * 
+     */
+    @Export(name="privateKeyId", type=String.class, parameters={})
+    private Output<String> privateKeyId;
+
+    /**
+     * @return Private key identifier. (Stackdriver)
+     * 
+     */
+    public Output<String> privateKeyId() {
+        return this.privateKeyId;
     }
     /**
      * The project identifier.
      * 
      */
     @Export(name="projectId", type=String.class, parameters={})
-    private Output</* @Nullable */ String> projectId;
+    private Output<String> projectId;
 
     /**
      * @return The project identifier.
      * 
      */
-    public Output<Optional<String>> projectId() {
-        return Codegen.optional(this.projectId);
+    public Output<String> projectId() {
+        return this.projectId;
     }
     /**
      * Region hosting the integration service.
@@ -535,6 +261,20 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> secretAccessKey() {
         return Codegen.optional(this.secretAccessKey);
+    }
+    /**
+     * Assign source type to the data exported, eg. generic_single_line. (Splunk)
+     * 
+     */
+    @Export(name="sourcetype", type=String.class, parameters={})
+    private Output</* @Nullable */ String> sourcetype;
+
+    /**
+     * @return Assign source type to the data exported, eg. generic_single_line. (Splunk)
+     * 
+     */
+    public Output<Optional<String>> sourcetype() {
+        return Codegen.optional(this.sourcetype);
     }
     /**
      * Tag the integration, e.g. env=prod, region=europe.
@@ -611,6 +351,15 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "accessKeyId",
+                "apiKey",
+                "credentials",
+                "privateKey",
+                "privateKeyId",
+                "secretAccessKey",
+                "token"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

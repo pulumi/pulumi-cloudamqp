@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.GetCredentials(ctx, &GetCredentialsArgs{
+//			_, err := cloudamqp.GetCredentials(ctx, &cloudamqp.GetCredentialsArgs{
 //				InstanceId: cloudamqp_instance.Instance.Id,
 //			}, nil)
 //			if err != nil {

@@ -12,10 +12,6 @@ namespace Pulumi.CloudAmqp
     public static class GetPlugins
     {
         /// <summary>
-        /// Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
-        /// 
-        /// ⚠️  From our go API wrapper [v1.4.0](https://github.com/84codes/go-api/releases/tag/v1.4.0) there is support for multiple retries when requesting information about plugins. This was introduced to avoid `ReadPlugin error 400: Timeout talking to backend`.
-        /// 
         /// {{% examples %}}
         /// ## Example Usage
         /// {{% example %}}
@@ -57,13 +53,9 @@ namespace Pulumi.CloudAmqp
         /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
         /// </summary>
         public static Task<GetPluginsResult> InvokeAsync(GetPluginsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetPluginsResult>("cloudamqp:index/getPlugins:getPlugins", args ?? new GetPluginsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetPluginsResult>("cloudamqp:index/getPlugins:getPlugins", args ?? new GetPluginsArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
-        /// 
-        /// ⚠️  From our go API wrapper [v1.4.0](https://github.com/84codes/go-api/releases/tag/v1.4.0) there is support for multiple retries when requesting information about plugins. This was introduced to avoid `ReadPlugin error 400: Timeout talking to backend`.
-        /// 
         /// {{% examples %}}
         /// ## Example Usage
         /// {{% example %}}
@@ -105,7 +97,7 @@ namespace Pulumi.CloudAmqp
         /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
         /// </summary>
         public static Output<GetPluginsResult> Invoke(GetPluginsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetPluginsResult>("cloudamqp:index/getPlugins:getPlugins", args ?? new GetPluginsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetPluginsResult>("cloudamqp:index/getPlugins:getPlugins", args ?? new GetPluginsInvokeArgs(), options.WithDefaults());
     }
 
 

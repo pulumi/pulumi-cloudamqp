@@ -33,6 +33,18 @@ namespace Pulumi.CloudAmqp
         [Output("rules")]
         public Output<ImmutableArray<Outputs.SecurityFirewallRule>> Rules { get; private set; } = null!;
 
+        /// <summary>
+        /// Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+        /// </summary>
+        [Output("sleep")]
+        public Output<int?> Sleep { get; private set; } = null!;
+
+        /// <summary>
+        /// Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+        /// </summary>
+        [Output("timeout")]
+        public Output<int?> Timeout { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a SecurityFirewall resource with the given unique name, arguments, and options.
@@ -97,6 +109,18 @@ namespace Pulumi.CloudAmqp
             set => _rules = value;
         }
 
+        /// <summary>
+        /// Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+        /// </summary>
+        [Input("sleep")]
+        public Input<int>? Sleep { get; set; }
+
+        /// <summary>
+        /// Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+        /// </summary>
+        [Input("timeout")]
+        public Input<int>? Timeout { get; set; }
+
         public SecurityFirewallArgs()
         {
         }
@@ -122,6 +146,18 @@ namespace Pulumi.CloudAmqp
             get => _rules ?? (_rules = new InputList<Inputs.SecurityFirewallRuleGetArgs>());
             set => _rules = value;
         }
+
+        /// <summary>
+        /// Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+        /// </summary>
+        [Input("sleep")]
+        public Input<int>? Sleep { get; set; }
+
+        /// <summary>
+        /// Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+        /// </summary>
+        [Input("timeout")]
+        public Input<int>? Timeout { get; set; }
 
         public SecurityFirewallState()
         {

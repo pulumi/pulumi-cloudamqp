@@ -24,11 +24,33 @@ namespace Pulumi.CloudAmqp
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // New recipient to receieve notifications
-    ///     var recipient01 = new CloudAmqp.Notification("recipient01", new()
+    ///     var emailRecipient = new CloudAmqp.Notification("emailRecipient", new()
     ///     {
     ///         InstanceId = cloudamqp_instance.Instance.Id,
     ///         Type = "email",
     ///         Value = "alarm@example.com",
+    ///     });
+    /// 
+    ///     var victoropsRecipient = new CloudAmqp.Notification("victoropsRecipient", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Type = "victorops",
+    ///         Value = "&lt;UUID&gt;",
+    ///         Options = 
+    ///         {
+    ///             { "rk", "ROUTINGKEY" },
+    ///         },
+    ///     });
+    /// 
+    ///     var pagerdutyRecipient = new CloudAmqp.Notification("pagerdutyRecipient", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Type = "pagerduty",
+    ///         Value = "&lt;integration-key&gt;",
+    ///         Options = 
+    ///         {
+    ///             { "dedupkey", "DEDUPKEY" },
+    ///         },
     ///     });
     /// 
     /// });
@@ -45,6 +67,13 @@ namespace Pulumi.CloudAmqp
     /// * opsgenie-eu
     /// * slack
     /// * teams
+    /// 
+    /// ## Options parameter
+    /// 
+    /// | Type      | Options  | Description                                                                                                                                                                                                                                                                      | Note                                                                                                                                    |
+    /// |-----------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+    /// | Victorops | rk       | Routing key to route alarm notification                                                                                                                                                                                                                                          | -                                                                                                                                        |
+    /// | PagerDuty | dedupkey | Default the dedup key for PagerDuty is generated depending on what alarm has triggered, but here you can set what `dedup` key to use so even if the same alarm is triggered for different resources you only get one notification. Leave blank to use the generated dedup key. | If multiple alarms are triggered using this recipient, since they all share `dedup` key only the first alarm will be shown in PagerDuty |
     /// 
     /// ## Dependency
     /// 
@@ -74,13 +103,19 @@ namespace Pulumi.CloudAmqp
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// Options argument (e.g. `rk` used for VictorOps routing key).
+        /// </summary>
+        [Output("options")]
+        public Output<ImmutableDictionary<string, string>?> Options { get; private set; } = null!;
+
+        /// <summary>
         /// Type of the notification. See valid options below.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// Endpoint to send the notification.
+        /// Integration/API key or endpoint to send the notification.
         /// </summary>
         [Output("value")]
         public Output<string> Value { get; private set; } = null!;
@@ -143,6 +178,18 @@ namespace Pulumi.CloudAmqp
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        [Input("options")]
+        private InputMap<string>? _options;
+
+        /// <summary>
+        /// Options argument (e.g. `rk` used for VictorOps routing key).
+        /// </summary>
+        public InputMap<string> Options
+        {
+            get => _options ?? (_options = new InputMap<string>());
+            set => _options = value;
+        }
+
         /// <summary>
         /// Type of the notification. See valid options below.
         /// </summary>
@@ -150,7 +197,7 @@ namespace Pulumi.CloudAmqp
         public Input<string> Type { get; set; } = null!;
 
         /// <summary>
-        /// Endpoint to send the notification.
+        /// Integration/API key or endpoint to send the notification.
         /// </summary>
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;
@@ -175,6 +222,18 @@ namespace Pulumi.CloudAmqp
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        [Input("options")]
+        private InputMap<string>? _options;
+
+        /// <summary>
+        /// Options argument (e.g. `rk` used for VictorOps routing key).
+        /// </summary>
+        public InputMap<string> Options
+        {
+            get => _options ?? (_options = new InputMap<string>());
+            set => _options = value;
+        }
+
         /// <summary>
         /// Type of the notification. See valid options below.
         /// </summary>
@@ -182,7 +241,7 @@ namespace Pulumi.CloudAmqp
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// Endpoint to send the notification.
+        /// Integration/API key or endpoint to send the notification.
         /// </summary>
         [Input("value")]
         public Input<string>? Value { get; set; }

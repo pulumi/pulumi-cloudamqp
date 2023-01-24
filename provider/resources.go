@@ -34,30 +34,23 @@ const (
 	mainMod = "index" // the y module
 )
 
-// makeMember manufactures a type token for the package and the given module and type.
-func makeMember(mod string, mem string) tokens.ModuleMember {
-	return tokens.ModuleMember(mainPkg + ":" + mod + ":" + mem)
-}
-
-// makeType manufactures a type token for the package and the given module and type.
-func makeType(mod string, typ string) tokens.Type {
-	return tokens.Type(makeMember(mod, typ))
+func makeToken(mod, name string) string {
+	fulllMod := string(unicode.ToLower(rune(name[0]))) + name[1:]
+	return fmt.Sprintf("%s:%s/%s:%s", mainPkg, mod, fulllMod, name)
 }
 
 // makeDataSource manufactures a standard resource token given a module and resource name.  It
 // automatically uses the main package and names the file by simply lower casing the data source's
 // first character.
-func makeDataSource(mod string, res string) tokens.ModuleMember {
-	fn := string(unicode.ToLower(rune(res[0]))) + res[1:]
-	return makeMember(mod+"/"+fn, res)
+func makeDataSource(mod string, dataSource string) tokens.ModuleMember {
+	return tokens.ModuleMember(makeToken(mod, dataSource))
 }
 
 // makeResource manufactures a standard resource token given a module and resource name.  It
 // automatically uses the main package and names the file by simply lower casing the resource's
 // first character.
 func makeResource(mod string, res string) tokens.Type {
-	fn := string(unicode.ToLower(rune(res[0]))) + res[1:]
-	return makeType(mod+"/"+fn, res)
+	return tokens.Type(makeToken(mod, res))
 }
 
 func refProviderLicense(license tfbridge.TFProviderLicense) *tfbridge.TFProviderLicense {
@@ -153,6 +146,14 @@ func Provider() tfbridge.ProviderInfo {
 				mainPkg: "CloudAmqp",
 			},
 		},
+	}
+
+	err := prov.ComputeDefaults(tfbridge.TokensSingleModule("cloudamqp_", mainMod,
+		func(module, name string) (string, error) {
+			return makeToken(module, name), nil
+		}))
+	if err != nil {
+		panic(err)
 	}
 
 	prov.SetAutonaming(255, "-")

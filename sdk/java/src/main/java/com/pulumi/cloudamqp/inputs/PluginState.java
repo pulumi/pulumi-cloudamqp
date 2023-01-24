@@ -18,6 +18,21 @@ public final class PluginState extends com.pulumi.resources.ResourceArgs {
     public static final PluginState Empty = new PluginState();
 
     /**
+     * The description of the plugin.
+     * 
+     */
+    @Import(name="description")
+    private @Nullable Output<String> description;
+
+    /**
+     * @return The description of the plugin.
+     * 
+     */
+    public Optional<Output<String>> description() {
+        return Optional.ofNullable(this.description);
+    }
+
+    /**
      * Enable or disable the plugins.
      * 
      */
@@ -62,12 +77,29 @@ public final class PluginState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * The version of the plugin.
+     * 
+     */
+    @Import(name="version")
+    private @Nullable Output<String> version;
+
+    /**
+     * @return The version of the plugin.
+     * 
+     */
+    public Optional<Output<String>> version() {
+        return Optional.ofNullable(this.version);
+    }
+
     private PluginState() {}
 
     private PluginState(PluginState $) {
+        this.description = $.description;
         this.enabled = $.enabled;
         this.instanceId = $.instanceId;
         this.name = $.name;
+        this.version = $.version;
     }
 
     public static Builder builder() {
@@ -86,6 +118,27 @@ public final class PluginState extends com.pulumi.resources.ResourceArgs {
 
         public Builder(PluginState defaults) {
             $ = new PluginState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param description The description of the plugin.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(@Nullable Output<String> description) {
+            $.description = description;
+            return this;
+        }
+
+        /**
+         * @param description The description of the plugin.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(String description) {
+            return description(Output.of(description));
         }
 
         /**
@@ -149,6 +202,27 @@ public final class PluginState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param version The version of the plugin.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder version(@Nullable Output<String> version) {
+            $.version = version;
+            return this;
+        }
+
+        /**
+         * @param version The version of the plugin.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder version(String version) {
+            return version(Output.of(version));
         }
 
         public PluginState build() {

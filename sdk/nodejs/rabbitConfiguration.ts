@@ -95,6 +95,14 @@ export class RabbitConfiguration extends pulumi.CustomResource {
      */
     public readonly queueIndexEmbedMsgsBelow!: pulumi.Output<number>;
     /**
+     * Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+     */
+    public readonly sleep!: pulumi.Output<number | undefined>;
+    /**
+     * Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+     */
+    public readonly timeout!: pulumi.Output<number | undefined>;
+    /**
      * When the server will enter memory based flow-control as relative to the maximum available memory.
      */
     public readonly vmMemoryHighWatermark!: pulumi.Output<number>;
@@ -120,6 +128,8 @@ export class RabbitConfiguration extends pulumi.CustomResource {
             resourceInputs["logExchangeLevel"] = state ? state.logExchangeLevel : undefined;
             resourceInputs["maxMessageSize"] = state ? state.maxMessageSize : undefined;
             resourceInputs["queueIndexEmbedMsgsBelow"] = state ? state.queueIndexEmbedMsgsBelow : undefined;
+            resourceInputs["sleep"] = state ? state.sleep : undefined;
+            resourceInputs["timeout"] = state ? state.timeout : undefined;
             resourceInputs["vmMemoryHighWatermark"] = state ? state.vmMemoryHighWatermark : undefined;
         } else {
             const args = argsOrState as RabbitConfigurationArgs | undefined;
@@ -134,6 +144,8 @@ export class RabbitConfiguration extends pulumi.CustomResource {
             resourceInputs["logExchangeLevel"] = args ? args.logExchangeLevel : undefined;
             resourceInputs["maxMessageSize"] = args ? args.maxMessageSize : undefined;
             resourceInputs["queueIndexEmbedMsgsBelow"] = args ? args.queueIndexEmbedMsgsBelow : undefined;
+            resourceInputs["sleep"] = args ? args.sleep : undefined;
+            resourceInputs["timeout"] = args ? args.timeout : undefined;
             resourceInputs["vmMemoryHighWatermark"] = args ? args.vmMemoryHighWatermark : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -178,6 +190,14 @@ export interface RabbitConfigurationState {
      */
     queueIndexEmbedMsgsBelow?: pulumi.Input<number>;
     /**
+     * Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+     */
+    sleep?: pulumi.Input<number>;
+    /**
+     * Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+     */
+    timeout?: pulumi.Input<number>;
+    /**
      * When the server will enter memory based flow-control as relative to the maximum available memory.
      */
     vmMemoryHighWatermark?: pulumi.Input<number>;
@@ -219,6 +239,14 @@ export interface RabbitConfigurationArgs {
      * Size in bytes below which to embed messages in the queue index.
      */
     queueIndexEmbedMsgsBelow?: pulumi.Input<number>;
+    /**
+     * Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+     */
+    sleep?: pulumi.Input<number>;
+    /**
+     * Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+     */
+    timeout?: pulumi.Input<number>;
     /**
      * When the server will enter memory based flow-control as relative to the maximum available memory.
      */

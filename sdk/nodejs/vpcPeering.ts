@@ -54,7 +54,7 @@ export class VpcPeering extends pulumi.CustomResource {
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
-     * - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+     * Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
      */
     public readonly timeout!: pulumi.Output<number | undefined>;
     /**
@@ -119,7 +119,7 @@ export interface VpcPeeringState {
      */
     status?: pulumi.Input<string>;
     /**
-     * - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+     * Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
      */
     timeout?: pulumi.Input<number>;
     /**
@@ -145,7 +145,7 @@ export interface VpcPeeringArgs {
      */
     sleep?: pulumi.Input<number>;
     /**
-     * - Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+     * Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
      */
     timeout?: pulumi.Input<number>;
     /**

@@ -40,6 +40,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Plugin{}
 	case "cloudamqp:index/pluginCommunity:PluginCommunity":
 		r = &PluginCommunity{}
+	case "cloudamqp:index/privatelinkAws:PrivatelinkAws":
+		r = &PrivatelinkAws{}
+	case "cloudamqp:index/privatelinkAzure:PrivatelinkAzure":
+		r = &PrivatelinkAzure{}
 	case "cloudamqp:index/rabbitConfiguration:RabbitConfiguration":
 		r = &RabbitConfiguration{}
 	case "cloudamqp:index/securityFirewall:SecurityFirewall":
@@ -130,6 +134,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"cloudamqp",
 		"index/pluginCommunity",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"cloudamqp",
+		"index/privatelinkAws",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"cloudamqp",
+		"index/privatelinkAzure",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -5,36 +5,164 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export * from "./alarm";
-export * from "./customDomain";
-export * from "./extraDiskSize";
-export * from "./getAccount";
-export * from "./getAccountVpcs";
-export * from "./getAlarm";
-export * from "./getCredentials";
-export * from "./getInstance";
-export * from "./getNodes";
-export * from "./getNotification";
-export * from "./getPlugins";
-export * from "./getPluginsCommunity";
-export * from "./getUpgradableVersions";
-export * from "./getVpcGcpInfo";
-export * from "./getVpcInfo";
-export * from "./instance";
-export * from "./integrationLog";
-export * from "./integrationMetric";
-export * from "./nodeActions";
-export * from "./notification";
-export * from "./plugin";
-export * from "./pluginCommunity";
-export * from "./provider";
-export * from "./rabbitConfiguration";
-export * from "./securityFirewall";
-export * from "./upgradeRabbitmq";
-export * from "./vpc";
-export * from "./vpcGcpPeering";
-export * from "./vpcPeering";
-export * from "./webhook";
+export { AlarmArgs, AlarmState } from "./alarm";
+export type Alarm = import("./alarm").Alarm;
+export const Alarm: typeof import("./alarm").Alarm = null as any;
+utilities.lazyLoad(exports, ["Alarm"], () => require("./alarm"));
+
+export { CustomDomainArgs, CustomDomainState } from "./customDomain";
+export type CustomDomain = import("./customDomain").CustomDomain;
+export const CustomDomain: typeof import("./customDomain").CustomDomain = null as any;
+utilities.lazyLoad(exports, ["CustomDomain"], () => require("./customDomain"));
+
+export { ExtraDiskSizeArgs, ExtraDiskSizeState } from "./extraDiskSize";
+export type ExtraDiskSize = import("./extraDiskSize").ExtraDiskSize;
+export const ExtraDiskSize: typeof import("./extraDiskSize").ExtraDiskSize = null as any;
+utilities.lazyLoad(exports, ["ExtraDiskSize"], () => require("./extraDiskSize"));
+
+export { GetAccountResult } from "./getAccount";
+export const getAccount: typeof import("./getAccount").getAccount = null as any;
+utilities.lazyLoad(exports, ["getAccount"], () => require("./getAccount"));
+
+export { GetAccountVpcsResult } from "./getAccountVpcs";
+export const getAccountVpcs: typeof import("./getAccountVpcs").getAccountVpcs = null as any;
+utilities.lazyLoad(exports, ["getAccountVpcs"], () => require("./getAccountVpcs"));
+
+export { GetAlarmArgs, GetAlarmResult, GetAlarmOutputArgs } from "./getAlarm";
+export const getAlarm: typeof import("./getAlarm").getAlarm = null as any;
+export const getAlarmOutput: typeof import("./getAlarm").getAlarmOutput = null as any;
+utilities.lazyLoad(exports, ["getAlarm","getAlarmOutput"], () => require("./getAlarm"));
+
+export { GetCredentialsArgs, GetCredentialsResult, GetCredentialsOutputArgs } from "./getCredentials";
+export const getCredentials: typeof import("./getCredentials").getCredentials = null as any;
+export const getCredentialsOutput: typeof import("./getCredentials").getCredentialsOutput = null as any;
+utilities.lazyLoad(exports, ["getCredentials","getCredentialsOutput"], () => require("./getCredentials"));
+
+export { GetInstanceArgs, GetInstanceResult, GetInstanceOutputArgs } from "./getInstance";
+export const getInstance: typeof import("./getInstance").getInstance = null as any;
+export const getInstanceOutput: typeof import("./getInstance").getInstanceOutput = null as any;
+utilities.lazyLoad(exports, ["getInstance","getInstanceOutput"], () => require("./getInstance"));
+
+export { GetNodesArgs, GetNodesResult, GetNodesOutputArgs } from "./getNodes";
+export const getNodes: typeof import("./getNodes").getNodes = null as any;
+export const getNodesOutput: typeof import("./getNodes").getNodesOutput = null as any;
+utilities.lazyLoad(exports, ["getNodes","getNodesOutput"], () => require("./getNodes"));
+
+export { GetNotificationArgs, GetNotificationResult, GetNotificationOutputArgs } from "./getNotification";
+export const getNotification: typeof import("./getNotification").getNotification = null as any;
+export const getNotificationOutput: typeof import("./getNotification").getNotificationOutput = null as any;
+utilities.lazyLoad(exports, ["getNotification","getNotificationOutput"], () => require("./getNotification"));
+
+export { GetPluginsArgs, GetPluginsResult, GetPluginsOutputArgs } from "./getPlugins";
+export const getPlugins: typeof import("./getPlugins").getPlugins = null as any;
+export const getPluginsOutput: typeof import("./getPlugins").getPluginsOutput = null as any;
+utilities.lazyLoad(exports, ["getPlugins","getPluginsOutput"], () => require("./getPlugins"));
+
+export { GetPluginsCommunityArgs, GetPluginsCommunityResult, GetPluginsCommunityOutputArgs } from "./getPluginsCommunity";
+export const getPluginsCommunity: typeof import("./getPluginsCommunity").getPluginsCommunity = null as any;
+export const getPluginsCommunityOutput: typeof import("./getPluginsCommunity").getPluginsCommunityOutput = null as any;
+utilities.lazyLoad(exports, ["getPluginsCommunity","getPluginsCommunityOutput"], () => require("./getPluginsCommunity"));
+
+export { GetUpgradableVersionsArgs, GetUpgradableVersionsResult, GetUpgradableVersionsOutputArgs } from "./getUpgradableVersions";
+export const getUpgradableVersions: typeof import("./getUpgradableVersions").getUpgradableVersions = null as any;
+export const getUpgradableVersionsOutput: typeof import("./getUpgradableVersions").getUpgradableVersionsOutput = null as any;
+utilities.lazyLoad(exports, ["getUpgradableVersions","getUpgradableVersionsOutput"], () => require("./getUpgradableVersions"));
+
+export { GetVpcGcpInfoArgs, GetVpcGcpInfoResult, GetVpcGcpInfoOutputArgs } from "./getVpcGcpInfo";
+export const getVpcGcpInfo: typeof import("./getVpcGcpInfo").getVpcGcpInfo = null as any;
+export const getVpcGcpInfoOutput: typeof import("./getVpcGcpInfo").getVpcGcpInfoOutput = null as any;
+utilities.lazyLoad(exports, ["getVpcGcpInfo","getVpcGcpInfoOutput"], () => require("./getVpcGcpInfo"));
+
+export { GetVpcInfoArgs, GetVpcInfoResult, GetVpcInfoOutputArgs } from "./getVpcInfo";
+export const getVpcInfo: typeof import("./getVpcInfo").getVpcInfo = null as any;
+export const getVpcInfoOutput: typeof import("./getVpcInfo").getVpcInfoOutput = null as any;
+utilities.lazyLoad(exports, ["getVpcInfo","getVpcInfoOutput"], () => require("./getVpcInfo"));
+
+export { InstanceArgs, InstanceState } from "./instance";
+export type Instance = import("./instance").Instance;
+export const Instance: typeof import("./instance").Instance = null as any;
+utilities.lazyLoad(exports, ["Instance"], () => require("./instance"));
+
+export { IntegrationLogArgs, IntegrationLogState } from "./integrationLog";
+export type IntegrationLog = import("./integrationLog").IntegrationLog;
+export const IntegrationLog: typeof import("./integrationLog").IntegrationLog = null as any;
+utilities.lazyLoad(exports, ["IntegrationLog"], () => require("./integrationLog"));
+
+export { IntegrationMetricArgs, IntegrationMetricState } from "./integrationMetric";
+export type IntegrationMetric = import("./integrationMetric").IntegrationMetric;
+export const IntegrationMetric: typeof import("./integrationMetric").IntegrationMetric = null as any;
+utilities.lazyLoad(exports, ["IntegrationMetric"], () => require("./integrationMetric"));
+
+export { NodeActionsArgs, NodeActionsState } from "./nodeActions";
+export type NodeActions = import("./nodeActions").NodeActions;
+export const NodeActions: typeof import("./nodeActions").NodeActions = null as any;
+utilities.lazyLoad(exports, ["NodeActions"], () => require("./nodeActions"));
+
+export { NotificationArgs, NotificationState } from "./notification";
+export type Notification = import("./notification").Notification;
+export const Notification: typeof import("./notification").Notification = null as any;
+utilities.lazyLoad(exports, ["Notification"], () => require("./notification"));
+
+export { PluginArgs, PluginState } from "./plugin";
+export type Plugin = import("./plugin").Plugin;
+export const Plugin: typeof import("./plugin").Plugin = null as any;
+utilities.lazyLoad(exports, ["Plugin"], () => require("./plugin"));
+
+export { PluginCommunityArgs, PluginCommunityState } from "./pluginCommunity";
+export type PluginCommunity = import("./pluginCommunity").PluginCommunity;
+export const PluginCommunity: typeof import("./pluginCommunity").PluginCommunity = null as any;
+utilities.lazyLoad(exports, ["PluginCommunity"], () => require("./pluginCommunity"));
+
+export { PrivatelinkAwsArgs, PrivatelinkAwsState } from "./privatelinkAws";
+export type PrivatelinkAws = import("./privatelinkAws").PrivatelinkAws;
+export const PrivatelinkAws: typeof import("./privatelinkAws").PrivatelinkAws = null as any;
+utilities.lazyLoad(exports, ["PrivatelinkAws"], () => require("./privatelinkAws"));
+
+export { PrivatelinkAzureArgs, PrivatelinkAzureState } from "./privatelinkAzure";
+export type PrivatelinkAzure = import("./privatelinkAzure").PrivatelinkAzure;
+export const PrivatelinkAzure: typeof import("./privatelinkAzure").PrivatelinkAzure = null as any;
+utilities.lazyLoad(exports, ["PrivatelinkAzure"], () => require("./privatelinkAzure"));
+
+export { ProviderArgs } from "./provider";
+export type Provider = import("./provider").Provider;
+export const Provider: typeof import("./provider").Provider = null as any;
+utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+
+export { RabbitConfigurationArgs, RabbitConfigurationState } from "./rabbitConfiguration";
+export type RabbitConfiguration = import("./rabbitConfiguration").RabbitConfiguration;
+export const RabbitConfiguration: typeof import("./rabbitConfiguration").RabbitConfiguration = null as any;
+utilities.lazyLoad(exports, ["RabbitConfiguration"], () => require("./rabbitConfiguration"));
+
+export { SecurityFirewallArgs, SecurityFirewallState } from "./securityFirewall";
+export type SecurityFirewall = import("./securityFirewall").SecurityFirewall;
+export const SecurityFirewall: typeof import("./securityFirewall").SecurityFirewall = null as any;
+utilities.lazyLoad(exports, ["SecurityFirewall"], () => require("./securityFirewall"));
+
+export { UpgradeRabbitmqArgs, UpgradeRabbitmqState } from "./upgradeRabbitmq";
+export type UpgradeRabbitmq = import("./upgradeRabbitmq").UpgradeRabbitmq;
+export const UpgradeRabbitmq: typeof import("./upgradeRabbitmq").UpgradeRabbitmq = null as any;
+utilities.lazyLoad(exports, ["UpgradeRabbitmq"], () => require("./upgradeRabbitmq"));
+
+export { VpcArgs, VpcState } from "./vpc";
+export type Vpc = import("./vpc").Vpc;
+export const Vpc: typeof import("./vpc").Vpc = null as any;
+utilities.lazyLoad(exports, ["Vpc"], () => require("./vpc"));
+
+export { VpcGcpPeeringArgs, VpcGcpPeeringState } from "./vpcGcpPeering";
+export type VpcGcpPeering = import("./vpcGcpPeering").VpcGcpPeering;
+export const VpcGcpPeering: typeof import("./vpcGcpPeering").VpcGcpPeering = null as any;
+utilities.lazyLoad(exports, ["VpcGcpPeering"], () => require("./vpcGcpPeering"));
+
+export { VpcPeeringArgs, VpcPeeringState } from "./vpcPeering";
+export type VpcPeering = import("./vpcPeering").VpcPeering;
+export const VpcPeering: typeof import("./vpcPeering").VpcPeering = null as any;
+utilities.lazyLoad(exports, ["VpcPeering"], () => require("./vpcPeering"));
+
+export { WebhookArgs, WebhookState } from "./webhook";
+export type Webhook = import("./webhook").Webhook;
+export const Webhook: typeof import("./webhook").Webhook = null as any;
+utilities.lazyLoad(exports, ["Webhook"], () => require("./webhook"));
+
 
 // Export sub-modules:
 import * as config from "./config";
@@ -44,25 +172,6 @@ export {
     config,
     types,
 };
-
-// Import resources to register:
-import { Alarm } from "./alarm";
-import { CustomDomain } from "./customDomain";
-import { ExtraDiskSize } from "./extraDiskSize";
-import { Instance } from "./instance";
-import { IntegrationLog } from "./integrationLog";
-import { IntegrationMetric } from "./integrationMetric";
-import { NodeActions } from "./nodeActions";
-import { Notification } from "./notification";
-import { Plugin } from "./plugin";
-import { PluginCommunity } from "./pluginCommunity";
-import { RabbitConfiguration } from "./rabbitConfiguration";
-import { SecurityFirewall } from "./securityFirewall";
-import { UpgradeRabbitmq } from "./upgradeRabbitmq";
-import { Vpc } from "./vpc";
-import { VpcGcpPeering } from "./vpcGcpPeering";
-import { VpcPeering } from "./vpcPeering";
-import { Webhook } from "./webhook";
 
 const _module = {
     version: utilities.getVersion(),
@@ -88,6 +197,10 @@ const _module = {
                 return new Plugin(name, <any>undefined, { urn })
             case "cloudamqp:index/pluginCommunity:PluginCommunity":
                 return new PluginCommunity(name, <any>undefined, { urn })
+            case "cloudamqp:index/privatelinkAws:PrivatelinkAws":
+                return new PrivatelinkAws(name, <any>undefined, { urn })
+            case "cloudamqp:index/privatelinkAzure:PrivatelinkAzure":
+                return new PrivatelinkAzure(name, <any>undefined, { urn })
             case "cloudamqp:index/rabbitConfiguration:RabbitConfiguration":
                 return new RabbitConfiguration(name, <any>undefined, { urn })
             case "cloudamqp:index/securityFirewall:SecurityFirewall":
@@ -117,6 +230,8 @@ pulumi.runtime.registerResourceModule("cloudamqp", "index/nodeActions", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/notification", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/plugin", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/pluginCommunity", _module)
+pulumi.runtime.registerResourceModule("cloudamqp", "index/privatelinkAws", _module)
+pulumi.runtime.registerResourceModule("cloudamqp", "index/privatelinkAzure", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/rabbitConfiguration", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/securityFirewall", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/upgradeRabbitmq", _module)
@@ -124,9 +239,6 @@ pulumi.runtime.registerResourceModule("cloudamqp", "index/vpc", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/vpcGcpPeering", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/vpcPeering", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/webhook", _module)
-
-import { Provider } from "./provider";
-
 pulumi.runtime.registerResourcePackage("cloudamqp", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {
