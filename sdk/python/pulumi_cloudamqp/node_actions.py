@@ -171,7 +171,7 @@ class NodeActions(pulumi.CustomResource):
         ```
         </details>
 
-        Using data source `get_nodes` to restart RabbitMQ on all nodes.</br>
+        Using data source _get_nodes_ to restart RabbitMQ on all nodes.</br>
         ***Note: RabbitMQ restart on multiple nodes need to be chained, so one node restart at the time.***
 
         <details>
@@ -303,7 +303,7 @@ class NodeActions(pulumi.CustomResource):
         ```
         </details>
 
-        Using data source `get_nodes` to restart RabbitMQ on all nodes.</br>
+        Using data source _get_nodes_ to restart RabbitMQ on all nodes.</br>
         ***Note: RabbitMQ restart on multiple nodes need to be chained, so one node restart at the time.***
 
         <details>

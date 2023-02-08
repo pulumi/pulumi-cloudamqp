@@ -66,7 +66,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
                  instance_id: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        This resource allows you to automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang. Depending on initial versions of RabbitMQ and Erlang of the CloudAMQP instance, multiple runs may be needed to get to latest versions. After completed upgrade, check data source `get_upgradable_versions` to see if newer versions is available. Then delete `UpgradeRabbitmq` and create it again to invoke the upgrade.
+        This resource allows you to automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang. Depending on initial versions of RabbitMQ and Erlang of the CloudAMQP instance, multiple runs may be needed to get to latest versions. After completed upgrade, check data source _get_upgradable_versions_ to see if newer versions is available. Then delete `UpgradeRabbitmq` and create it again to invoke the upgrade.
 
         > **Important Upgrade Information**
         > - All nodes in a cluster must run the same major and minor version of RabbitMQ. The entire cluster will be offline while upgrading major or minor versions.
@@ -120,7 +120,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
                  args: UpgradeRabbitmqArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        This resource allows you to automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang. Depending on initial versions of RabbitMQ and Erlang of the CloudAMQP instance, multiple runs may be needed to get to latest versions. After completed upgrade, check data source `get_upgradable_versions` to see if newer versions is available. Then delete `UpgradeRabbitmq` and create it again to invoke the upgrade.
+        This resource allows you to automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang. Depending on initial versions of RabbitMQ and Erlang of the CloudAMQP instance, multiple runs may be needed to get to latest versions. After completed upgrade, check data source _get_upgradable_versions_ to see if newer versions is available. Then delete `UpgradeRabbitmq` and create it again to invoke the upgrade.
 
         > **Important Upgrade Information**
         > - All nodes in a cluster must run the same major and minor version of RabbitMQ. The entire cluster will be offline while upgrading major or minor versions.
