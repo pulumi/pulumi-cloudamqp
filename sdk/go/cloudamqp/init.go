@@ -28,6 +28,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ExtraDiskSize{}
 	case "cloudamqp:index/instance:Instance":
 		r = &Instance{}
+	case "cloudamqp:index/integrationAwsEventbridge:IntegrationAwsEventbridge":
+		r = &IntegrationAwsEventbridge{}
 	case "cloudamqp:index/integrationLog:IntegrationLog":
 		r = &IntegrationLog{}
 	case "cloudamqp:index/integrationMetric:IntegrationMetric":
@@ -104,6 +106,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"cloudamqp",
 		"index/instance",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"cloudamqp",
+		"index/integrationAwsEventbridge",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

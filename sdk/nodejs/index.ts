@@ -83,6 +83,11 @@ export type Instance = import("./instance").Instance;
 export const Instance: typeof import("./instance").Instance = null as any;
 utilities.lazyLoad(exports, ["Instance"], () => require("./instance"));
 
+export { IntegrationAwsEventbridgeArgs, IntegrationAwsEventbridgeState } from "./integrationAwsEventbridge";
+export type IntegrationAwsEventbridge = import("./integrationAwsEventbridge").IntegrationAwsEventbridge;
+export const IntegrationAwsEventbridge: typeof import("./integrationAwsEventbridge").IntegrationAwsEventbridge = null as any;
+utilities.lazyLoad(exports, ["IntegrationAwsEventbridge"], () => require("./integrationAwsEventbridge"));
+
 export { IntegrationLogArgs, IntegrationLogState } from "./integrationLog";
 export type IntegrationLog = import("./integrationLog").IntegrationLog;
 export const IntegrationLog: typeof import("./integrationLog").IntegrationLog = null as any;
@@ -185,6 +190,8 @@ const _module = {
                 return new ExtraDiskSize(name, <any>undefined, { urn })
             case "cloudamqp:index/instance:Instance":
                 return new Instance(name, <any>undefined, { urn })
+            case "cloudamqp:index/integrationAwsEventbridge:IntegrationAwsEventbridge":
+                return new IntegrationAwsEventbridge(name, <any>undefined, { urn })
             case "cloudamqp:index/integrationLog:IntegrationLog":
                 return new IntegrationLog(name, <any>undefined, { urn })
             case "cloudamqp:index/integrationMetric:IntegrationMetric":
@@ -224,6 +231,7 @@ pulumi.runtime.registerResourceModule("cloudamqp", "index/alarm", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/customDomain", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/extraDiskSize", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/instance", _module)
+pulumi.runtime.registerResourceModule("cloudamqp", "index/integrationAwsEventbridge", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/integrationLog", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/integrationMetric", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/nodeActions", _module)
