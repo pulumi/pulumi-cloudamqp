@@ -958,6 +958,128 @@
                 "type": "object"
             }
         },
+        "cloudamqp:index/integrationAwsEventbridge:IntegrationAwsEventbridge": {
+            "description": "This resource allows you to create and manage, an [AWS EventBridge](https://aws.amazon.com/eventbridge/) for a CloudAMQP instance. Once created, continue to map the EventBridge in the [AWS Eventbridge console](https://console.aws.amazon.com/events/home).\n\n\u003e  Our consumer needs to have exclusive usage to the configured queue and the maximum body size allowed on msgs by AWS is 256kb. The message body has to be valid JSON for AWS Eventbridge to accept it. If messages are too large or are not valid JSON, they will be rejected (tip: setup a dead-letter queue to catch them).\n\nNot possible to update this resource. Any changes made to the argument will destroy and recreate the resource. Hence why all arguments use ForceNew.\n\nOnly available for dedicated subscription plans.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst instance = new cloudamqp.Instance(\"instance\", {\n    plan: \"squirrel-1\",\n    region: \"amazon-web-services::us-west-1\",\n    rmqVersion: \"3.11.5\",\n    tags: [\"aws\"],\n});\nconst awsEventbridge = new cloudamqp.IntegrationAwsEventbridge(\"awsEventbridge\", {\n    instanceId: instance.id,\n    vhost: instance.vhost,\n    queue: \"\u003cQUEUE-NAME\u003e\",\n    awsAccountId: \"\u003cAWS-ACCOUNT-ID\u003e\",\n    awsRegion: \"us-west-1\",\n    withHeaders: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\ninstance = cloudamqp.Instance(\"instance\",\n    plan=\"squirrel-1\",\n    region=\"amazon-web-services::us-west-1\",\n    rmq_version=\"3.11.5\",\n    tags=[\"aws\"])\naws_eventbridge = cloudamqp.IntegrationAwsEventbridge(\"awsEventbridge\",\n    instance_id=instance.id,\n    vhost=instance.vhost,\n    queue=\"\u003cQUEUE-NAME\u003e\",\n    aws_account_id=\"\u003cAWS-ACCOUNT-ID\u003e\",\n    aws_region=\"us-west-1\",\n    with_headers=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var instance = new CloudAmqp.Instance(\"instance\", new()\n    {\n        Plan = \"squirrel-1\",\n        Region = \"amazon-web-services::us-west-1\",\n        RmqVersion = \"3.11.5\",\n        Tags = new[]\n        {\n            \"aws\",\n        },\n    });\n\n    var awsEventbridge = new CloudAmqp.IntegrationAwsEventbridge(\"awsEventbridge\", new()\n    {\n        InstanceId = instance.Id,\n        Vhost = instance.Vhost,\n        Queue = \"\u003cQUEUE-NAME\u003e\",\n        AwsAccountId = \"\u003cAWS-ACCOUNT-ID\u003e\",\n        AwsRegion = \"us-west-1\",\n        WithHeaders = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tinstance, err := cloudamqp.NewInstance(ctx, \"instance\", \u0026cloudamqp.InstanceArgs{\n\t\t\tPlan:       pulumi.String(\"squirrel-1\"),\n\t\t\tRegion:     pulumi.String(\"amazon-web-services::us-west-1\"),\n\t\t\tRmqVersion: pulumi.String(\"3.11.5\"),\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"aws\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewIntegrationAwsEventbridge(ctx, \"awsEventbridge\", \u0026cloudamqp.IntegrationAwsEventbridgeArgs{\n\t\t\tInstanceId:   instance.ID(),\n\t\t\tVhost:        instance.Vhost,\n\t\t\tQueue:        pulumi.String(\"\u003cQUEUE-NAME\u003e\"),\n\t\t\tAwsAccountId: pulumi.String(\"\u003cAWS-ACCOUNT-ID\u003e\"),\n\t\t\tAwsRegion:    pulumi.String(\"us-west-1\"),\n\t\t\tWithHeaders:  pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.cloudamqp.Instance;\nimport com.pulumi.cloudamqp.InstanceArgs;\nimport com.pulumi.cloudamqp.IntegrationAwsEventbridge;\nimport com.pulumi.cloudamqp.IntegrationAwsEventbridgeArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var instance = new Instance(\"instance\", InstanceArgs.builder()        \n            .plan(\"squirrel-1\")\n            .region(\"amazon-web-services::us-west-1\")\n            .rmqVersion(\"3.11.5\")\n            .tags(\"aws\")\n            .build());\n\n        var awsEventbridge = new IntegrationAwsEventbridge(\"awsEventbridge\", IntegrationAwsEventbridgeArgs.builder()        \n            .instanceId(instance.id())\n            .vhost(instance.vhost())\n            .queue(\"\u003cQUEUE-NAME\u003e\")\n            .awsAccountId(\"\u003cAWS-ACCOUNT-ID\u003e\")\n            .awsRegion(\"us-west-1\")\n            .withHeaders(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  instance:\n    type: cloudamqp:Instance\n    properties:\n      plan: squirrel-1\n      region: amazon-web-services::us-west-1\n      rmqVersion: 3.11.5\n      tags:\n        - aws\n  awsEventbridge:\n    type: cloudamqp:IntegrationAwsEventbridge\n    properties:\n      instanceId: ${instance.id}\n      vhost: ${instance.vhost}\n      queue: \u003cQUEUE-NAME\u003e\n      awsAccountId: \u003cAWS-ACCOUNT-ID\u003e\n      awsRegion: us-west-1\n      withHeaders: true\n```\n{{% /example %}}\n{{% /examples %}}\n## Argument references\n\nThe following arguments are supported:\n\n* `aws_account_id` - (ForceNew/Required) The 12 digit AWS Account ID where you want the events to be sent to.\n* `aws_region`- (ForceNew/Required) The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)\n* `vhost`- (ForceNew/Required) The VHost the queue resides in.\n* `queue` - (ForceNew/Required) A (durable) queue on your RabbitMQ instance.\n* `with_headers` - (ForceNew/Required) Include message headers in the event data. `({ \"headers\": { }, \"body\": { \"your\": \"message\" } })`\n\n## Dependency\n\nThis resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n\n\n## Import\n\n`cloudamqp_integration_aws_eventbridge` can be imported using CloudAMQP internal identifier of the AWS EventBridge together (CSV separated) with the instance identifier. To retrieve the AWS EventBridge identifier, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-eventbridges)\n\n```sh\n $ pulumi import cloudamqp:index/integrationAwsEventbridge:IntegrationAwsEventbridge aws_eventbridge \u003cid\u003e,\u003cinstance_id\u003e`\n```\n\n ",
+            "properties": {
+                "awsAccountId": {
+                    "type": "string",
+                    "description": "The 12 digit AWS Account ID where you want the events to be sent to.\n"
+                },
+                "awsRegion": {
+                    "type": "string",
+                    "description": "The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)\n"
+                },
+                "instanceId": {
+                    "type": "integer",
+                    "description": "Instance identifier\n"
+                },
+                "queue": {
+                    "type": "string",
+                    "description": "A (durable) queue on your RabbitMQ instance.\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "Always set to null, unless there is an error starting the EventBridge.\n"
+                },
+                "vhost": {
+                    "type": "string",
+                    "description": "The VHost the queue resides in.\n"
+                },
+                "withHeaders": {
+                    "type": "boolean",
+                    "description": "Include message headers in the event data.\n"
+                }
+            },
+            "required": [
+                "awsAccountId",
+                "awsRegion",
+                "instanceId",
+                "queue",
+                "status",
+                "vhost",
+                "withHeaders"
+            ],
+            "inputProperties": {
+                "awsAccountId": {
+                    "type": "string",
+                    "description": "The 12 digit AWS Account ID where you want the events to be sent to.\n",
+                    "willReplaceOnChanges": true
+                },
+                "awsRegion": {
+                    "type": "string",
+                    "description": "The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)\n",
+                    "willReplaceOnChanges": true
+                },
+                "instanceId": {
+                    "type": "integer",
+                    "description": "Instance identifier\n",
+                    "willReplaceOnChanges": true
+                },
+                "queue": {
+                    "type": "string",
+                    "description": "A (durable) queue on your RabbitMQ instance.\n",
+                    "willReplaceOnChanges": true
+                },
+                "vhost": {
+                    "type": "string",
+                    "description": "The VHost the queue resides in.\n",
+                    "willReplaceOnChanges": true
+                },
+                "withHeaders": {
+                    "type": "boolean",
+                    "description": "Include message headers in the event data.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "awsAccountId",
+                "awsRegion",
+                "instanceId",
+                "queue",
+                "vhost",
+                "withHeaders"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering IntegrationAwsEventbridge resources.\n",
+                "properties": {
+                    "awsAccountId": {
+                        "type": "string",
+                        "description": "The 12 digit AWS Account ID where you want the events to be sent to.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "awsRegion": {
+                        "type": "string",
+                        "description": "The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "instanceId": {
+                        "type": "integer",
+                        "description": "Instance identifier\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "queue": {
+                        "type": "string",
+                        "description": "A (durable) queue on your RabbitMQ instance.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "Always set to null, unless there is an error starting the EventBridge.\n"
+                    },
+                    "vhost": {
+                        "type": "string",
+                        "description": "The VHost the queue resides in.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "withHeaders": {
+                        "type": "boolean",
+                        "description": "Include message headers in the event data.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
         "cloudamqp:index/integrationLog:IntegrationLog": {
             "description": "This resource allows you to create and manage third party log integrations for a CloudAMQP instance. Once configured, the logs produced will be forward to corresponding integration.\n\nOnly available for dedicated subscription plans.\n\n## Argument Reference (cloudwatchlog)\n\nCloudwatch argument reference and example. Create an IAM user with programmatic access and the following permissions:\n\n* CreateLogGroup\n* CreateLogStream\n* DescribeLogGroups\n* DescribeLogStreams\n* PutLogEvents\n\n## Integration service reference\n\nValid names for third party log integration.\n\n| Name       | Description |\n|------------|---------------------------------------------------------------|\n| cloudwatchlog | Create a IAM with programmatic access. |\n| logentries | Create a Logentries token at https://logentries.com/app#/add-log/manual  |\n| loggly     | Create a Loggly token at https://your-company}.loggly.com/tokens |\n| papertrail | Create a Papertrail endpoint https://papertrailapp.com/systems/setup |\n| splunk     | Create a HTTP Event Collector token at `https://\u003cyour-splunk\u003e.cloud.splunk.com/en-US/manager/search/http-eventcollector` |\n| datadog       | Create a Datadog API key at app.datadoghq.com |\n| stackdriver   | Create a service account and add 'monitor metrics writer' role from your Google Cloud Account |\n| scalyr        | Create a Log write token at https://app.scalyr.com/keys |\n\n## Integration Type reference\n\nValid arguments for third party log integrations.\n\nRequired arguments for all integrations: name\n\n| Name | Type | Required arguments |\n| ---- | ---- | ---- |\n| CloudWatch | cloudwatchlog | access_key_id, secret_access_key, region |\n| Log Entries | logentries | token |\n| Loggly | loggly | token |\n| Papertrail | papertrail | url |\n| Splunk | splunk | token, host_port, sourcetype |\n| Data Dog | datadog | region, api_keys, tags |\n| Stackdriver | stackdriver | credentials |\n| Scalyr | scalyr | token, host |\n\n***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments  : project_id, private_key, client_email\n\n## Dependency\n\nThis resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n\n\n## Import\n\n`cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.\n\n```sh\n $ pulumi import cloudamqp:index/integrationLog:IntegrationLog \u003cresource_name\u003e \u003cid\u003e,\u003cinstance_id\u003e`\n```\n\n ",
             "properties": {
