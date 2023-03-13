@@ -32,6 +32,7 @@
         "getVpcInfo.ts",
         "index.ts",
         "instance.ts",
+        "integrationAwsEventbridge.ts",
         "integrationLog.ts",
         "integrationMetric.ts",
         "nodeActions.ts",

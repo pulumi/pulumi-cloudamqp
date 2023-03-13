@@ -21,6 +21,7 @@ from .get_upgradable_versions import *
 from .get_vpc_gcp_info import *
 from .get_vpc_info import *
 from .instance import *
+from .integration_aws_eventbridge import *
 from .integration_log import *
 from .integration_metric import *
 from .node_actions import *
@@ -80,6 +81,14 @@ _utilities.register(
   "fqn": "pulumi_cloudamqp",
   "classes": {
    "cloudamqp:index/instance:Instance": "Instance"
+  }
+ },
+ {
+  "pkg": "cloudamqp",
+  "mod": "index/integrationAwsEventbridge",
+  "fqn": "pulumi_cloudamqp",
+  "classes": {
+   "cloudamqp:index/integrationAwsEventbridge:IntegrationAwsEventbridge": "IntegrationAwsEventbridge"
   }
  },
  {
