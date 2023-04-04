@@ -212,8 +212,8 @@ contrib.go.opencensus.io/exporter/aws v0.0.0-20200617204711-c478e41e60e9/go.mod 
 contrib.go.opencensus.io/exporter/stackdriver v0.13.13/go.mod h1:5pSSGY0Bhuk7waTHuDf4aQ8D2DrhgETRo9fy6k3Xlzc=
 contrib.go.opencensus.io/integrations/ocsql v0.1.7/go.mod h1:8DsSdjz3F+APR+0z0WkU1aRorQCFfRxvqjUUPMbF3fE=
 dmitri.shuralyov.com/gpu/mtl v0.0.0-20190408044501-666a987793e9/go.mod h1:H6x//7gZCb22OMCxBHrMx7a5I7Hp++hsVxbQ4BYO7hU=
-github.com/84codes/go-api v1.11.0 h1:/kvrblq0hJELMODuaxNrrSX56nSHTFUiOm8DjeGf8yg=
-github.com/84codes/go-api v1.11.0/go.mod h1:QbG2CtOMJ6lHWP/9LjTvMZMe3bWAc9ld73H0e16vAPo=
+github.com/84codes/go-api v1.11.1 h1:P470XqlzVVApUtDVEPrDtp2Uojz7bpVafvVKLoJamKM=
+github.com/84codes/go-api v1.11.1/go.mod h1:QbG2CtOMJ6lHWP/9LjTvMZMe3bWAc9ld73H0e16vAPo=
 github.com/AdaLogics/go-fuzz-headers v0.0.0-20210715213245-6c3934b029d8/go.mod h1:CzsSbkDixRphAF5hS6wbMKq0eI6ccJRb7/A0M6JBnwg=
 github.com/AlecAivazis/survey/v2 v2.0.5 h1:xpZp+Q55wi5C7Iaze+40onHnEkex1jSc34CltJjOoPM=
 github.com/AlecAivazis/survey/v2 v2.0.5/go.mod h1:WYBhg6f0y/fNYUuesWQc0PKbJcEliGcYHB9sNT3Bg74=
@@ -509,8 +509,8 @@ github.com/circonus-labs/circonus-gometrics v2.3.1+incompatible/go.mod h1:nmEj6D
 github.com/circonus-labs/circonusllhist v0.1.3/go.mod h1:kMXHVDlOchFAehlya5ePtbp5jckzBHf4XRpQvBOLI+I=
 github.com/clbanning/x2j v0.0.0-20191024224557-825249438eec/go.mod h1:jMjuTZXRI4dUb/I5gc9Hdhagfvm9+RyrPryS/auMzxE=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
-github.com/cloudamqp/terraform-provider-cloudamqp v1.24.1 h1:eAnU/zjuaDNJ2rbpR8ABFf/e2ZRcTMlpELbUGFi3u3U=
-github.com/cloudamqp/terraform-provider-cloudamqp v1.24.1/go.mod h1:+lBvWUTY7edpKcSmH4ktLHP1Ah5Jbqcpuq/nKTQA/a4=
+github.com/cloudamqp/terraform-provider-cloudamqp v1.25.0 h1:z5BGR0IdXRsy8yNzG0DZloxogNocWGj6+jsdhbPq2Y0=
+github.com/cloudamqp/terraform-provider-cloudamqp v1.25.0/go.mod h1:AVx/l8WY13W1R0zc6i/h9meU7CMF/5d8JGblkrfubLw=
 github.com/cloudflare/circl v1.1.0 h1:bZgT/A+cikZnKIwn7xL2OBj012Bmvho/o6RpRvv3GKY=
 github.com/cloudflare/circl v1.1.0/go.mod h1:prBCrKB9DV4poKZY1l9zBXg2QJY7mvgRvtMxxK7fi4I=
 github.com/cncf/udpa/go v0.0.0-20191209042840-269d4d468f6f/go.mod h1:M8M6+tZqaGXZJjfX53e64911xZQV5JYwmTeXPW+k8Sc=
