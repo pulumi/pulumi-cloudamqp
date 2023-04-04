@@ -48,13 +48,17 @@ import (
 //
 // # The `nodes` block consist of
 //
-// * `hostname`          - External hostname assigned to the node.
-// * `name`              - Name of the node.
-// * `running`           - Is the node running?
-// * `rabbitmqVersion`  - Currently configured Rabbit MQ version on the node.
-// * `erlangVersion`    - Currently used Erlanbg version on the node.
-// * `hipe`              - Enable or disable High-performance Erlang.
-// * `configured`        - Is the node configured?
+// * `hostname`              - External hostname assigned to the node.
+// * `name`                  - Name of the node.
+// * `running`               - Is the node running?
+// * `rabbitmqVersion`      - Currently configured Rabbit MQ version on the node.
+// * `erlangVersion`        - Currently used Erlanbg version on the node.
+// * `hipe`                  - Enable or disable High-performance Erlang.
+// * `configured`            - Is the node configured?
+// * `diskSize`             - Subscription plan disk size
+// * `additionalDiskSize`  - Additional added disk size
+//
+// ***Note:*** *Total disk size = diskSize + additional_disk_size*
 //
 // ## Dependency
 //

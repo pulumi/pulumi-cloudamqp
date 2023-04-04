@@ -10,8 +10,50 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
+    'ExtraDiskSizeNodeArgs',
     'SecurityFirewallRuleArgs',
 ]
+
+@pulumi.input_type
+class ExtraDiskSizeNodeArgs:
+    def __init__(__self__, *,
+                 additional_disk_size: Optional[pulumi.Input[int]] = None,
+                 disk_size: Optional[pulumi.Input[int]] = None,
+                 name: Optional[pulumi.Input[str]] = None):
+        if additional_disk_size is not None:
+            pulumi.set(__self__, "additional_disk_size", additional_disk_size)
+        if disk_size is not None:
+            pulumi.set(__self__, "disk_size", disk_size)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter(name="additionalDiskSize")
+    def additional_disk_size(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "additional_disk_size")
+
+    @additional_disk_size.setter
+    def additional_disk_size(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "additional_disk_size", value)
+
+    @property
+    @pulumi.getter(name="diskSize")
+    def disk_size(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "disk_size")
+
+    @disk_size.setter
+    def disk_size(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "disk_size", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
 
 @pulumi.input_type
 class SecurityFirewallRuleArgs:

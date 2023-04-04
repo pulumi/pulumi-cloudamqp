@@ -87,13 +87,17 @@ def get_nodes(instance_id: Optional[int] = None,
 
     The `nodes` block consist of
 
-    * `hostname`          - External hostname assigned to the node.
-    * `name`              - Name of the node.
-    * `running`           - Is the node running?
-    * `rabbitmq_version`  - Currently configured Rabbit MQ version on the node.
-    * `erlang_version`    - Currently used Erlanbg version on the node.
-    * `hipe`              - Enable or disable High-performance Erlang.
-    * `configured`        - Is the node configured?
+    * `hostname`              - External hostname assigned to the node.
+    * `name`                  - Name of the node.
+    * `running`               - Is the node running?
+    * `rabbitmq_version`      - Currently configured Rabbit MQ version on the node.
+    * `erlang_version`        - Currently used Erlanbg version on the node.
+    * `hipe`                  - Enable or disable High-performance Erlang.
+    * `configured`            - Is the node configured?
+    * `disk_size`             - Subscription plan disk size
+    * `additional_disk_size`  - Additional added disk size
+
+    ***Note:*** *Total disk size = disk_size + additional_disk_size*
 
     ## Dependency
 
@@ -138,13 +142,17 @@ def get_nodes_output(instance_id: Optional[pulumi.Input[int]] = None,
 
     The `nodes` block consist of
 
-    * `hostname`          - External hostname assigned to the node.
-    * `name`              - Name of the node.
-    * `running`           - Is the node running?
-    * `rabbitmq_version`  - Currently configured Rabbit MQ version on the node.
-    * `erlang_version`    - Currently used Erlanbg version on the node.
-    * `hipe`              - Enable or disable High-performance Erlang.
-    * `configured`        - Is the node configured?
+    * `hostname`              - External hostname assigned to the node.
+    * `name`                  - Name of the node.
+    * `running`               - Is the node running?
+    * `rabbitmq_version`      - Currently configured Rabbit MQ version on the node.
+    * `erlang_version`        - Currently used Erlanbg version on the node.
+    * `hipe`                  - Enable or disable High-performance Erlang.
+    * `configured`            - Is the node configured?
+    * `disk_size`             - Subscription plan disk size
+    * `additional_disk_size`  - Additional added disk size
+
+    ***Note:*** *Total disk size = disk_size + additional_disk_size*
 
     ## Dependency
 

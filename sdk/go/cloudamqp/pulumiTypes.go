@@ -10,6 +10,112 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+type ExtraDiskSizeNode struct {
+	AdditionalDiskSize *int    `pulumi:"additionalDiskSize"`
+	DiskSize           *int    `pulumi:"diskSize"`
+	Name               *string `pulumi:"name"`
+}
+
+// ExtraDiskSizeNodeInput is an input type that accepts ExtraDiskSizeNodeArgs and ExtraDiskSizeNodeOutput values.
+// You can construct a concrete instance of `ExtraDiskSizeNodeInput` via:
+//
+//	ExtraDiskSizeNodeArgs{...}
+type ExtraDiskSizeNodeInput interface {
+	pulumi.Input
+
+	ToExtraDiskSizeNodeOutput() ExtraDiskSizeNodeOutput
+	ToExtraDiskSizeNodeOutputWithContext(context.Context) ExtraDiskSizeNodeOutput
+}
+
+type ExtraDiskSizeNodeArgs struct {
+	AdditionalDiskSize pulumi.IntPtrInput    `pulumi:"additionalDiskSize"`
+	DiskSize           pulumi.IntPtrInput    `pulumi:"diskSize"`
+	Name               pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (ExtraDiskSizeNodeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExtraDiskSizeNode)(nil)).Elem()
+}
+
+func (i ExtraDiskSizeNodeArgs) ToExtraDiskSizeNodeOutput() ExtraDiskSizeNodeOutput {
+	return i.ToExtraDiskSizeNodeOutputWithContext(context.Background())
+}
+
+func (i ExtraDiskSizeNodeArgs) ToExtraDiskSizeNodeOutputWithContext(ctx context.Context) ExtraDiskSizeNodeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExtraDiskSizeNodeOutput)
+}
+
+// ExtraDiskSizeNodeArrayInput is an input type that accepts ExtraDiskSizeNodeArray and ExtraDiskSizeNodeArrayOutput values.
+// You can construct a concrete instance of `ExtraDiskSizeNodeArrayInput` via:
+//
+//	ExtraDiskSizeNodeArray{ ExtraDiskSizeNodeArgs{...} }
+type ExtraDiskSizeNodeArrayInput interface {
+	pulumi.Input
+
+	ToExtraDiskSizeNodeArrayOutput() ExtraDiskSizeNodeArrayOutput
+	ToExtraDiskSizeNodeArrayOutputWithContext(context.Context) ExtraDiskSizeNodeArrayOutput
+}
+
+type ExtraDiskSizeNodeArray []ExtraDiskSizeNodeInput
+
+func (ExtraDiskSizeNodeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ExtraDiskSizeNode)(nil)).Elem()
+}
+
+func (i ExtraDiskSizeNodeArray) ToExtraDiskSizeNodeArrayOutput() ExtraDiskSizeNodeArrayOutput {
+	return i.ToExtraDiskSizeNodeArrayOutputWithContext(context.Background())
+}
+
+func (i ExtraDiskSizeNodeArray) ToExtraDiskSizeNodeArrayOutputWithContext(ctx context.Context) ExtraDiskSizeNodeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExtraDiskSizeNodeArrayOutput)
+}
+
+type ExtraDiskSizeNodeOutput struct{ *pulumi.OutputState }
+
+func (ExtraDiskSizeNodeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExtraDiskSizeNode)(nil)).Elem()
+}
+
+func (o ExtraDiskSizeNodeOutput) ToExtraDiskSizeNodeOutput() ExtraDiskSizeNodeOutput {
+	return o
+}
+
+func (o ExtraDiskSizeNodeOutput) ToExtraDiskSizeNodeOutputWithContext(ctx context.Context) ExtraDiskSizeNodeOutput {
+	return o
+}
+
+func (o ExtraDiskSizeNodeOutput) AdditionalDiskSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ExtraDiskSizeNode) *int { return v.AdditionalDiskSize }).(pulumi.IntPtrOutput)
+}
+
+func (o ExtraDiskSizeNodeOutput) DiskSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ExtraDiskSizeNode) *int { return v.DiskSize }).(pulumi.IntPtrOutput)
+}
+
+func (o ExtraDiskSizeNodeOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExtraDiskSizeNode) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type ExtraDiskSizeNodeArrayOutput struct{ *pulumi.OutputState }
+
+func (ExtraDiskSizeNodeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ExtraDiskSizeNode)(nil)).Elem()
+}
+
+func (o ExtraDiskSizeNodeArrayOutput) ToExtraDiskSizeNodeArrayOutput() ExtraDiskSizeNodeArrayOutput {
+	return o
+}
+
+func (o ExtraDiskSizeNodeArrayOutput) ToExtraDiskSizeNodeArrayOutputWithContext(ctx context.Context) ExtraDiskSizeNodeArrayOutput {
+	return o
+}
+
+func (o ExtraDiskSizeNodeArrayOutput) Index(i pulumi.IntInput) ExtraDiskSizeNodeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ExtraDiskSizeNode {
+		return vs[0].([]ExtraDiskSizeNode)[vs[1].(int)]
+	}).(ExtraDiskSizeNodeOutput)
+}
+
 type SecurityFirewallRule struct {
 	// Description name of the rule. e.g. Default.
 	Description *string `pulumi:"description"`
@@ -737,6 +843,8 @@ func (o GetPluginsPluginArrayOutput) Index(i pulumi.IntInput) GetPluginsPluginOu
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ExtraDiskSizeNodeInput)(nil)).Elem(), ExtraDiskSizeNodeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExtraDiskSizeNodeArrayInput)(nil)).Elem(), ExtraDiskSizeNodeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityFirewallRuleInput)(nil)).Elem(), SecurityFirewallRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityFirewallRuleArrayInput)(nil)).Elem(), SecurityFirewallRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountInstanceInput)(nil)).Elem(), GetAccountInstanceArgs{})
@@ -749,6 +857,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPluginsCommunityPluginArrayInput)(nil)).Elem(), GetPluginsCommunityPluginArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPluginsPluginInput)(nil)).Elem(), GetPluginsPluginArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPluginsPluginArrayInput)(nil)).Elem(), GetPluginsPluginArray{})
+	pulumi.RegisterOutputType(ExtraDiskSizeNodeOutput{})
+	pulumi.RegisterOutputType(ExtraDiskSizeNodeArrayOutput{})
 	pulumi.RegisterOutputType(SecurityFirewallRuleOutput{})
 	pulumi.RegisterOutputType(SecurityFirewallRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetAccountInstanceOutput{})

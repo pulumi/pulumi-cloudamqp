@@ -3,9 +3,12 @@
 
 package com.pulumi.cloudamqp.inputs;
 
+import com.pulumi.cloudamqp.inputs.ExtraDiskSizeNodeArgs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.Integer;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -16,14 +19,29 @@ public final class ExtraDiskSizeState extends com.pulumi.resources.ResourceArgs 
     public static final ExtraDiskSizeState Empty = new ExtraDiskSizeState();
 
     /**
-     * Extra disk size in GB. Supported values: 25, 50, 100, 250, 500, 1000, 2000
+     * When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
+     * 
+     */
+    @Import(name="allowDowntime")
+    private @Nullable Output<Boolean> allowDowntime;
+
+    /**
+     * @return When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
+     * 
+     */
+    public Optional<Output<Boolean>> allowDowntime() {
+        return Optional.ofNullable(this.allowDowntime);
+    }
+
+    /**
+     * Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
      * 
      */
     @Import(name="extraDiskSize")
     private @Nullable Output<Integer> extraDiskSize;
 
     /**
-     * @return Extra disk size in GB. Supported values: 25, 50, 100, 250, 500, 1000, 2000
+     * @return Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
      * 
      */
     public Optional<Output<Integer>> extraDiskSize() {
@@ -45,11 +63,52 @@ public final class ExtraDiskSizeState extends com.pulumi.resources.ResourceArgs 
         return Optional.ofNullable(this.instanceId);
     }
 
+    @Import(name="nodes")
+    private @Nullable Output<List<ExtraDiskSizeNodeArgs>> nodes;
+
+    public Optional<Output<List<ExtraDiskSizeNodeArgs>>> nodes() {
+        return Optional.ofNullable(this.nodes);
+    }
+
+    /**
+     * Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
+     * 
+     */
+    @Import(name="sleep")
+    private @Nullable Output<Integer> sleep;
+
+    /**
+     * @return Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
+     * 
+     */
+    public Optional<Output<Integer>> sleep() {
+        return Optional.ofNullable(this.sleep);
+    }
+
+    /**
+     * Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+     * 
+     */
+    @Import(name="timeout")
+    private @Nullable Output<Integer> timeout;
+
+    /**
+     * @return Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+     * 
+     */
+    public Optional<Output<Integer>> timeout() {
+        return Optional.ofNullable(this.timeout);
+    }
+
     private ExtraDiskSizeState() {}
 
     private ExtraDiskSizeState(ExtraDiskSizeState $) {
+        this.allowDowntime = $.allowDowntime;
         this.extraDiskSize = $.extraDiskSize;
         this.instanceId = $.instanceId;
+        this.nodes = $.nodes;
+        this.sleep = $.sleep;
+        this.timeout = $.timeout;
     }
 
     public static Builder builder() {
@@ -71,7 +130,28 @@ public final class ExtraDiskSizeState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param extraDiskSize Extra disk size in GB. Supported values: 25, 50, 100, 250, 500, 1000, 2000
+         * @param allowDowntime When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowDowntime(@Nullable Output<Boolean> allowDowntime) {
+            $.allowDowntime = allowDowntime;
+            return this;
+        }
+
+        /**
+         * @param allowDowntime When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowDowntime(Boolean allowDowntime) {
+            return allowDowntime(Output.of(allowDowntime));
+        }
+
+        /**
+         * @param extraDiskSize Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
          * 
          * @return builder
          * 
@@ -82,7 +162,7 @@ public final class ExtraDiskSizeState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param extraDiskSize Extra disk size in GB. Supported values: 25, 50, 100, 250, 500, 1000, 2000
+         * @param extraDiskSize Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
          * 
          * @return builder
          * 
@@ -110,6 +190,61 @@ public final class ExtraDiskSizeState extends com.pulumi.resources.ResourceArgs 
          */
         public Builder instanceId(Integer instanceId) {
             return instanceId(Output.of(instanceId));
+        }
+
+        public Builder nodes(@Nullable Output<List<ExtraDiskSizeNodeArgs>> nodes) {
+            $.nodes = nodes;
+            return this;
+        }
+
+        public Builder nodes(List<ExtraDiskSizeNodeArgs> nodes) {
+            return nodes(Output.of(nodes));
+        }
+
+        public Builder nodes(ExtraDiskSizeNodeArgs... nodes) {
+            return nodes(List.of(nodes));
+        }
+
+        /**
+         * @param sleep Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sleep(@Nullable Output<Integer> sleep) {
+            $.sleep = sleep;
+            return this;
+        }
+
+        /**
+         * @param sleep Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sleep(Integer sleep) {
+            return sleep(Output.of(sleep));
+        }
+
+        /**
+         * @param timeout Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder timeout(@Nullable Output<Integer> timeout) {
+            $.timeout = timeout;
+            return this;
+        }
+
+        /**
+         * @param timeout Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder timeout(Integer timeout) {
+            return timeout(Output.of(timeout));
         }
 
         public ExtraDiskSizeState build() {

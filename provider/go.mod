@@ -5,7 +5,7 @@ go 1.19
 replace github.com/hashicorp/vault => github.com/hashicorp/vault v1.2.0
 
 require (
-	github.com/cloudamqp/terraform-provider-cloudamqp v1.24.1
+	github.com/cloudamqp/terraform-provider-cloudamqp v1.25.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.42.1
 	github.com/pulumi/pulumi/sdk/v3 v3.56.0
 )
@@ -19,7 +19,7 @@ require (
 	cloud.google.com/go/logging v1.7.0 // indirect
 	cloud.google.com/go/longrunning v0.4.1 // indirect
 	cloud.google.com/go/storage v1.29.0 // indirect
-	github.com/84codes/go-api v1.11.0 // indirect
+	github.com/84codes/go-api v1.11.1 // indirect
 	github.com/AlecAivazis/survey/v2 v2.0.5 // indirect
 	github.com/Azure/azure-sdk-for-go v66.0.0+incompatible // indirect
 	github.com/Azure/azure-sdk-for-go/sdk/azcore v1.1.1 // indirect
