@@ -10,6 +10,7 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
+    'ExtraDiskSizeNode',
     'SecurityFirewallRule',
     'GetAccountInstanceResult',
     'GetAccountVpcsVpcResult',
@@ -17,6 +18,54 @@ __all__ = [
     'GetPluginsCommunityPluginResult',
     'GetPluginsPluginResult',
 ]
+
+@pulumi.output_type
+class ExtraDiskSizeNode(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "additionalDiskSize":
+            suggest = "additional_disk_size"
+        elif key == "diskSize":
+            suggest = "disk_size"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ExtraDiskSizeNode. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ExtraDiskSizeNode.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ExtraDiskSizeNode.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 additional_disk_size: Optional[int] = None,
+                 disk_size: Optional[int] = None,
+                 name: Optional[str] = None):
+        if additional_disk_size is not None:
+            pulumi.set(__self__, "additional_disk_size", additional_disk_size)
+        if disk_size is not None:
+            pulumi.set(__self__, "disk_size", disk_size)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter(name="additionalDiskSize")
+    def additional_disk_size(self) -> Optional[int]:
+        return pulumi.get(self, "additional_disk_size")
+
+    @property
+    @pulumi.getter(name="diskSize")
+    def disk_size(self) -> Optional[int]:
+        return pulumi.get(self, "disk_size")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
 
 @pulumi.output_type
 class SecurityFirewallRule(dict):

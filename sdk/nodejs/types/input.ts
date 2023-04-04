@@ -5,6 +5,12 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface ExtraDiskSizeNode {
+    additionalDiskSize?: pulumi.Input<number>;
+    diskSize?: pulumi.Input<number>;
+    name?: pulumi.Input<string>;
+}
+
 export interface SecurityFirewallRule {
     /**
      * Description name of the rule. e.g. Default.

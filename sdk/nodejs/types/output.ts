@@ -5,6 +5,12 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface ExtraDiskSizeNode {
+    additionalDiskSize: number;
+    diskSize: number;
+    name: string;
+}
+
 export interface GetAccountInstance {
     id: number;
     name: string;
