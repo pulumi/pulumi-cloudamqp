@@ -33,6 +33,21 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
     }
 
     /**
+     * Set how the cluster should handle network partition.
+     * 
+     */
+    @Import(name="clusterPartitionHandling")
+    private @Nullable Output<String> clusterPartitionHandling;
+
+    /**
+     * @return Set how the cluster should handle network partition.
+     * 
+     */
+    public Optional<Output<String>> clusterPartitionHandling() {
+        return Optional.ofNullable(this.clusterPartitionHandling);
+    }
+
+    /**
      * Set the maximum permissible number of connection.
      * 
      */
@@ -95,12 +110,16 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
     /**
      * Log level for the logger used for log integrations and the CloudAMQP Console log view.
      * 
+     * ***Note: Requires a restart of RabbitMQ to be applied.***
+     * 
      */
     @Import(name="logExchangeLevel")
     private @Nullable Output<String> logExchangeLevel;
 
     /**
      * @return Log level for the logger used for log integrations and the CloudAMQP Console log view.
+     * 
+     * ***Note: Requires a restart of RabbitMQ to be applied.***
      * 
      */
     public Optional<Output<String>> logExchangeLevel() {
@@ -186,6 +205,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
 
     private RabbitConfigurationArgs(RabbitConfigurationArgs $) {
         this.channelMax = $.channelMax;
+        this.clusterPartitionHandling = $.clusterPartitionHandling;
         this.connectionMax = $.connectionMax;
         this.consumerTimeout = $.consumerTimeout;
         this.heartbeat = $.heartbeat;
@@ -235,6 +255,27 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
          */
         public Builder channelMax(Integer channelMax) {
             return channelMax(Output.of(channelMax));
+        }
+
+        /**
+         * @param clusterPartitionHandling Set how the cluster should handle network partition.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clusterPartitionHandling(@Nullable Output<String> clusterPartitionHandling) {
+            $.clusterPartitionHandling = clusterPartitionHandling;
+            return this;
+        }
+
+        /**
+         * @param clusterPartitionHandling Set how the cluster should handle network partition.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clusterPartitionHandling(String clusterPartitionHandling) {
+            return clusterPartitionHandling(Output.of(clusterPartitionHandling));
         }
 
         /**
@@ -324,6 +365,8 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         /**
          * @param logExchangeLevel Log level for the logger used for log integrations and the CloudAMQP Console log view.
          * 
+         * ***Note: Requires a restart of RabbitMQ to be applied.***
+         * 
          * @return builder
          * 
          */
@@ -334,6 +377,8 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
 
         /**
          * @param logExchangeLevel Log level for the logger used for log integrations and the CloudAMQP Console log view.
+         * 
+         * ***Note: Requires a restart of RabbitMQ to be applied.***
          * 
          * @return builder
          * 

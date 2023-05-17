@@ -51,12 +51,16 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
     /**
      * Message type `(total, unacked, ready)` used by queue alarm type.
      * 
+     * Specific argument for `disk` alarm
+     * 
      */
     @Import(name="messageType")
     private @Nullable Output<String> messageType;
 
     /**
      * @return Message type `(total, unacked, ready)` used by queue alarm type.
+     * 
+     * Specific argument for `disk` alarm
      * 
      */
     public Optional<Output<String>> messageType() {
@@ -141,12 +145,16 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
     /**
      * Disk value threshold calculation, `fixed, percentage` of disk space remaining.
      * 
+     * Based on alarm type, different arguments are flagged as required or optional.
+     * 
      */
     @Import(name="valueCalculation")
     private @Nullable Output<String> valueCalculation;
 
     /**
      * @return Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+     * 
+     * Based on alarm type, different arguments are flagged as required or optional.
      * 
      */
     public Optional<Output<String>> valueCalculation() {
@@ -262,6 +270,8 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param messageType Message type `(total, unacked, ready)` used by queue alarm type.
          * 
+         * Specific argument for `disk` alarm
+         * 
          * @return builder
          * 
          */
@@ -272,6 +282,8 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param messageType Message type `(total, unacked, ready)` used by queue alarm type.
+         * 
+         * Specific argument for `disk` alarm
          * 
          * @return builder
          * 
@@ -398,6 +410,8 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param valueCalculation Disk value threshold calculation, `fixed, percentage` of disk space remaining.
          * 
+         * Based on alarm type, different arguments are flagged as required or optional.
+         * 
          * @return builder
          * 
          */
@@ -408,6 +422,8 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param valueCalculation Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+         * 
+         * Based on alarm type, different arguments are flagged as required or optional.
          * 
          * @return builder
          * 

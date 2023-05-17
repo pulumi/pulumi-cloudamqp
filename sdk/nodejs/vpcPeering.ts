@@ -39,6 +39,8 @@ export class VpcPeering extends pulumi.CustomResource {
 
     /**
      * The CloudAMQP instance identifier.
+     *
+     * ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
      */
     public readonly instanceId!: pulumi.Output<number | undefined>;
     /**
@@ -59,6 +61,8 @@ export class VpcPeering extends pulumi.CustomResource {
     public readonly timeout!: pulumi.Output<number | undefined>;
     /**
      * The managed VPC identifier.
+     *
+     * ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
      */
     public readonly vpcId!: pulumi.Output<string | undefined>;
 
@@ -104,6 +108,8 @@ export class VpcPeering extends pulumi.CustomResource {
 export interface VpcPeeringState {
     /**
      * The CloudAMQP instance identifier.
+     *
+     * ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
      */
     instanceId?: pulumi.Input<number>;
     /**
@@ -124,6 +130,8 @@ export interface VpcPeeringState {
     timeout?: pulumi.Input<number>;
     /**
      * The managed VPC identifier.
+     *
+     * ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
      */
     vpcId?: pulumi.Input<string>;
 }
@@ -134,6 +142,8 @@ export interface VpcPeeringState {
 export interface VpcPeeringArgs {
     /**
      * The CloudAMQP instance identifier.
+     *
+     * ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
      */
     instanceId?: pulumi.Input<number>;
     /**
@@ -150,6 +160,8 @@ export interface VpcPeeringArgs {
     timeout?: pulumi.Input<number>;
     /**
      * The managed VPC identifier.
+     *
+     * ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
      */
     vpcId?: pulumi.Input<string>;
 }

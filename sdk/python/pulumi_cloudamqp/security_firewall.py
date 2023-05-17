@@ -26,6 +26,10 @@ class SecurityFirewallArgs:
         :param pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
         :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
         :param pulumi.Input[int] timeout: Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+               
+               ___
+               
+               The `rules` block consists of:
         """
         pulumi.set(__self__, "instance_id", instance_id)
         pulumi.set(__self__, "rules", rules)
@@ -75,6 +79,10 @@ class SecurityFirewallArgs:
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
         Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+
+        ___
+
+        The `rules` block consists of:
         """
         return pulumi.get(self, "timeout")
 
@@ -96,6 +104,10 @@ class _SecurityFirewallState:
         :param pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
         :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
         :param pulumi.Input[int] timeout: Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+               
+               ___
+               
+               The `rules` block consists of:
         """
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
@@ -147,6 +159,10 @@ class _SecurityFirewallState:
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
         Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+
+        ___
+
+        The `rules` block consists of:
         """
         return pulumi.get(self, "timeout")
 
@@ -180,6 +196,10 @@ class SecurityFirewall(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecurityFirewallRuleArgs']]]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
         :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
         :param pulumi.Input[int] timeout: Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+               
+               ___
+               
+               The `rules` block consists of:
         """
         ...
     @overload
@@ -257,6 +277,10 @@ class SecurityFirewall(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecurityFirewallRuleArgs']]]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
         :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
         :param pulumi.Input[int] timeout: Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+               
+               ___
+               
+               The `rules` block consists of:
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -297,6 +321,10 @@ class SecurityFirewall(pulumi.CustomResource):
     def timeout(self) -> pulumi.Output[Optional[int]]:
         """
         Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+
+        ___
+
+        The `rules` block consists of:
         """
         return pulumi.get(self, "timeout")
 

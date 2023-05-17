@@ -20,6 +20,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
@@ -114,6 +115,8 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Message type `(total, unacked, ready)` used by queue alarm type.
+        /// 
+        /// Specific argument for `disk` alarm
         /// </summary>
         [Output("messageType")]
         public Output<string?> MessageType { get; private set; } = null!;
@@ -150,6 +153,8 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+        /// 
+        /// Based on alarm type, different arguments are flagged as required or optional.
         /// </summary>
         [Output("valueCalculation")]
         public Output<string?> ValueCalculation { get; private set; } = null!;
@@ -226,6 +231,8 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Message type `(total, unacked, ready)` used by queue alarm type.
+        /// 
+        /// Specific argument for `disk` alarm
         /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
@@ -268,6 +275,8 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+        /// 
+        /// Based on alarm type, different arguments are flagged as required or optional.
         /// </summary>
         [Input("valueCalculation")]
         public Input<string>? ValueCalculation { get; set; }
@@ -306,6 +315,8 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Message type `(total, unacked, ready)` used by queue alarm type.
+        /// 
+        /// Specific argument for `disk` alarm
         /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
@@ -348,6 +359,8 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+        /// 
+        /// Based on alarm type, different arguments are flagged as required or optional.
         /// </summary>
         [Input("valueCalculation")]
         public Input<string>? ValueCalculation { get; set; }

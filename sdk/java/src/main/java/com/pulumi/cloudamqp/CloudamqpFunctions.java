@@ -401,6 +401,7 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
      * 
+     * ## Example Usage
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -430,6 +431,7 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
      * 
+     * ## Example Usage
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -459,6 +461,7 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
      * 
+     * ## Example Usage
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -488,6 +491,7 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
      * 
+     * ## Example Usage
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -517,6 +521,7 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
      * 
+     * ## Example Usage
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -546,6 +551,7 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
      * 
+     * ## Example Usage
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -1037,6 +1043,8 @@ public final class CloudamqpFunctions {
      * * `host`        - The external hostname for the CloudAMQP instance.
      * * `host_internal` - The internal hostname for the CloudAMQP instance.
      * * `vhost`       - The virtual host configured in Rabbit MQ.
+     * * `dedicated`   - Information if the CloudAMQP instance is shared or dedicated.
+     * * `backend`     - Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
      * 
      */
     public static Output<GetInstanceResult> getInstance(GetInstanceArgs args) {
@@ -1063,6 +1071,8 @@ public final class CloudamqpFunctions {
      * * `host`        - The external hostname for the CloudAMQP instance.
      * * `host_internal` - The internal hostname for the CloudAMQP instance.
      * * `vhost`       - The virtual host configured in Rabbit MQ.
+     * * `dedicated`   - Information if the CloudAMQP instance is shared or dedicated.
+     * * `backend`     - Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
      * 
      */
     public static CompletableFuture<GetInstanceResult> getInstancePlain(GetInstancePlainArgs args) {
@@ -1089,6 +1099,8 @@ public final class CloudamqpFunctions {
      * * `host`        - The external hostname for the CloudAMQP instance.
      * * `host_internal` - The internal hostname for the CloudAMQP instance.
      * * `vhost`       - The virtual host configured in Rabbit MQ.
+     * * `dedicated`   - Information if the CloudAMQP instance is shared or dedicated.
+     * * `backend`     - Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
      * 
      */
     public static Output<GetInstanceResult> getInstance(GetInstanceArgs args, InvokeOptions options) {
@@ -1115,6 +1127,8 @@ public final class CloudamqpFunctions {
      * * `host`        - The external hostname for the CloudAMQP instance.
      * * `host_internal` - The internal hostname for the CloudAMQP instance.
      * * `vhost`       - The virtual host configured in Rabbit MQ.
+     * * `dedicated`   - Information if the CloudAMQP instance is shared or dedicated.
+     * * `backend`     - Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
      * 
      */
     public static CompletableFuture<GetInstanceResult> getInstancePlain(GetInstancePlainArgs args, InvokeOptions options) {
@@ -1412,6 +1426,7 @@ public final class CloudamqpFunctions {
      * * `id`    - The identifier for this resource.
      * * `type`  - The type of the recipient.
      * * `value` - The notification endpoint, where to send the notification.
+     * * `options`- Options argument (e.g. `rk` used for VictorOps routing key).
      * 
      * ## Dependency
      * 
@@ -1461,6 +1476,7 @@ public final class CloudamqpFunctions {
      * * `id`    - The identifier for this resource.
      * * `type`  - The type of the recipient.
      * * `value` - The notification endpoint, where to send the notification.
+     * * `options`- Options argument (e.g. `rk` used for VictorOps routing key).
      * 
      * ## Dependency
      * 
@@ -1510,6 +1526,7 @@ public final class CloudamqpFunctions {
      * * `id`    - The identifier for this resource.
      * * `type`  - The type of the recipient.
      * * `value` - The notification endpoint, where to send the notification.
+     * * `options`- Options argument (e.g. `rk` used for VictorOps routing key).
      * 
      * ## Dependency
      * 
@@ -1559,6 +1576,7 @@ public final class CloudamqpFunctions {
      * * `id`    - The identifier for this resource.
      * * `type`  - The type of the recipient.
      * * `value` - The notification endpoint, where to send the notification.
+     * * `options`- Options argument (e.g. `rk` used for VictorOps routing key).
      * 
      * ## Dependency
      * 

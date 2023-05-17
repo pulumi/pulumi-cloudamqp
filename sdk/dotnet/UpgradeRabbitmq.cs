@@ -18,12 +18,13 @@ namespace Pulumi.CloudAmqp
     /// &gt; - Any custom plugins support has installed on your behalf will be disabled and you need to contact support@cloudamqp.com and ask to have them re-installed.
     /// &gt; - TLS 1.0 and 1.1 will not be supported after the update.
     /// 
-    /// Only available for dedicated subscription plans.
+    /// Only available for dedicated subscription plans running ***RabbitMQ***.
     /// 
     /// ## Example Usage
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
@@ -45,6 +46,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
@@ -62,6 +64,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 

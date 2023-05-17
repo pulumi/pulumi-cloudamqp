@@ -113,6 +113,8 @@ type Alarm struct {
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
 	// Message type `(total, unacked, ready)` used by queue alarm type.
+	//
+	// Specific argument for `disk` alarm
 	MessageType pulumi.StringPtrOutput `pulumi:"messageType"`
 	// Regex for which queue to check.
 	QueueRegex pulumi.StringPtrOutput `pulumi:"queueRegex"`
@@ -125,6 +127,8 @@ type Alarm struct {
 	// The alarm type, see valid options below.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+	//
+	// Based on alarm type, different arguments are flagged as required or optional.
 	ValueCalculation pulumi.StringPtrOutput `pulumi:"valueCalculation"`
 	// The value to trigger the alarm for.
 	ValueThreshold pulumi.IntPtrOutput `pulumi:"valueThreshold"`
@@ -178,6 +182,8 @@ type alarmState struct {
 	// The CloudAMQP instance ID.
 	InstanceId *int `pulumi:"instanceId"`
 	// Message type `(total, unacked, ready)` used by queue alarm type.
+	//
+	// Specific argument for `disk` alarm
 	MessageType *string `pulumi:"messageType"`
 	// Regex for which queue to check.
 	QueueRegex *string `pulumi:"queueRegex"`
@@ -190,6 +196,8 @@ type alarmState struct {
 	// The alarm type, see valid options below.
 	Type *string `pulumi:"type"`
 	// Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+	//
+	// Based on alarm type, different arguments are flagged as required or optional.
 	ValueCalculation *string `pulumi:"valueCalculation"`
 	// The value to trigger the alarm for.
 	ValueThreshold *int `pulumi:"valueThreshold"`
@@ -203,6 +211,8 @@ type AlarmState struct {
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntPtrInput
 	// Message type `(total, unacked, ready)` used by queue alarm type.
+	//
+	// Specific argument for `disk` alarm
 	MessageType pulumi.StringPtrInput
 	// Regex for which queue to check.
 	QueueRegex pulumi.StringPtrInput
@@ -215,6 +225,8 @@ type AlarmState struct {
 	// The alarm type, see valid options below.
 	Type pulumi.StringPtrInput
 	// Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+	//
+	// Based on alarm type, different arguments are flagged as required or optional.
 	ValueCalculation pulumi.StringPtrInput
 	// The value to trigger the alarm for.
 	ValueThreshold pulumi.IntPtrInput
@@ -232,6 +244,8 @@ type alarmArgs struct {
 	// The CloudAMQP instance ID.
 	InstanceId int `pulumi:"instanceId"`
 	// Message type `(total, unacked, ready)` used by queue alarm type.
+	//
+	// Specific argument for `disk` alarm
 	MessageType *string `pulumi:"messageType"`
 	// Regex for which queue to check.
 	QueueRegex *string `pulumi:"queueRegex"`
@@ -244,6 +258,8 @@ type alarmArgs struct {
 	// The alarm type, see valid options below.
 	Type string `pulumi:"type"`
 	// Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+	//
+	// Based on alarm type, different arguments are flagged as required or optional.
 	ValueCalculation *string `pulumi:"valueCalculation"`
 	// The value to trigger the alarm for.
 	ValueThreshold *int `pulumi:"valueThreshold"`
@@ -258,6 +274,8 @@ type AlarmArgs struct {
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntInput
 	// Message type `(total, unacked, ready)` used by queue alarm type.
+	//
+	// Specific argument for `disk` alarm
 	MessageType pulumi.StringPtrInput
 	// Regex for which queue to check.
 	QueueRegex pulumi.StringPtrInput
@@ -270,6 +288,8 @@ type AlarmArgs struct {
 	// The alarm type, see valid options below.
 	Type pulumi.StringInput
 	// Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+	//
+	// Based on alarm type, different arguments are flagged as required or optional.
 	ValueCalculation pulumi.StringPtrInput
 	// The value to trigger the alarm for.
 	ValueThreshold pulumi.IntPtrInput
@@ -375,6 +395,8 @@ func (o AlarmOutput) InstanceId() pulumi.IntOutput {
 }
 
 // Message type `(total, unacked, ready)` used by queue alarm type.
+//
+// Specific argument for `disk` alarm
 func (o AlarmOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Alarm) pulumi.StringPtrOutput { return v.MessageType }).(pulumi.StringPtrOutput)
 }
@@ -405,6 +427,8 @@ func (o AlarmOutput) Type() pulumi.StringOutput {
 }
 
 // Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+//
+// Based on alarm type, different arguments are flagged as required or optional.
 func (o AlarmOutput) ValueCalculation() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Alarm) pulumi.StringPtrOutput { return v.ValueCalculation }).(pulumi.StringPtrOutput)
 }

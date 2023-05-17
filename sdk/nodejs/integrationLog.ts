@@ -147,6 +147,8 @@ export class IntegrationLog extends pulumi.CustomResource {
     public readonly secretAccessKey!: pulumi.Output<string | undefined>;
     /**
      * Assign source type to the data exported, eg. generic_single_line. (Splunk)
+     *
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
      */
     public readonly sourcetype!: pulumi.Output<string | undefined>;
     /**
@@ -280,6 +282,8 @@ export interface IntegrationLogState {
     secretAccessKey?: pulumi.Input<string>;
     /**
      * Assign source type to the data exported, eg. generic_single_line. (Splunk)
+     *
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
      */
     sourcetype?: pulumi.Input<string>;
     /**
@@ -354,6 +358,8 @@ export interface IntegrationLogArgs {
     secretAccessKey?: pulumi.Input<string>;
     /**
      * Assign source type to the data exported, eg. generic_single_line. (Splunk)
+     *
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
      */
     sourcetype?: pulumi.Input<string>;
     /**

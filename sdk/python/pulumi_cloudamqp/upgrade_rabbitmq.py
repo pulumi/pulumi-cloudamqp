@@ -66,7 +66,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
                  instance_id: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        This resource allows you to automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang. Depending on initial versions of RabbitMQ and Erlang of the CloudAMQP instance, multiple runs may be needed to get to latest versions. After completed upgrade, check data source _get_upgradable_versions_ to see if newer versions is available. Then delete `UpgradeRabbitmq` and create it again to invoke the upgrade.
+        This resource allows you to automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang. Depending on initial versions of RabbitMQ and Erlang of the CloudAMQP instance, multiple runs may be needed to get to latest versions. After completed upgrade, check data source `get_upgradable_versions` to see if newer versions is available. Then delete `UpgradeRabbitmq` and create it again to invoke the upgrade.
 
         > **Important Upgrade Information**
         > - All nodes in a cluster must run the same major and minor version of RabbitMQ. The entire cluster will be offline while upgrading major or minor versions.
@@ -74,7 +74,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         > - Any custom plugins support has installed on your behalf will be disabled and you need to contact support@cloudamqp.com and ask to have them re-installed.
         > - TLS 1.0 and 1.1 will not be supported after the update.
 
-        Only available for dedicated subscription plans.
+        Only available for dedicated subscription plans running ***RabbitMQ***.
 
         ## Example Usage
 
@@ -82,7 +82,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
+        versions = cloudamqp.get_upgradable_versions(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
         # Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
         upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=cloudamqp_instance["instance"]["id"])
         ```
@@ -91,7 +91,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
+        versions = cloudamqp.get_upgradable_versions(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
         ```
 
         If newer version is still available to be upgradable in the data source, re-run again.
@@ -100,7 +100,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
+        versions = cloudamqp.get_upgradable_versions(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
         # Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
         upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=cloudamqp_instance["instance"]["id"])
         ```
@@ -120,7 +120,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
                  args: UpgradeRabbitmqArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        This resource allows you to automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang. Depending on initial versions of RabbitMQ and Erlang of the CloudAMQP instance, multiple runs may be needed to get to latest versions. After completed upgrade, check data source _get_upgradable_versions_ to see if newer versions is available. Then delete `UpgradeRabbitmq` and create it again to invoke the upgrade.
+        This resource allows you to automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang. Depending on initial versions of RabbitMQ and Erlang of the CloudAMQP instance, multiple runs may be needed to get to latest versions. After completed upgrade, check data source `get_upgradable_versions` to see if newer versions is available. Then delete `UpgradeRabbitmq` and create it again to invoke the upgrade.
 
         > **Important Upgrade Information**
         > - All nodes in a cluster must run the same major and minor version of RabbitMQ. The entire cluster will be offline while upgrading major or minor versions.
@@ -128,7 +128,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         > - Any custom plugins support has installed on your behalf will be disabled and you need to contact support@cloudamqp.com and ask to have them re-installed.
         > - TLS 1.0 and 1.1 will not be supported after the update.
 
-        Only available for dedicated subscription plans.
+        Only available for dedicated subscription plans running ***RabbitMQ***.
 
         ## Example Usage
 
@@ -136,7 +136,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
+        versions = cloudamqp.get_upgradable_versions(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
         # Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
         upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=cloudamqp_instance["instance"]["id"])
         ```
@@ -145,7 +145,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
+        versions = cloudamqp.get_upgradable_versions(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
         ```
 
         If newer version is still available to be upgradable in the data source, re-run again.
@@ -154,7 +154,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
+        versions = cloudamqp.get_upgradable_versions(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
         # Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
         upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=cloudamqp_instance["instance"]["id"])
         ```

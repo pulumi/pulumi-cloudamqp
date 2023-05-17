@@ -6,6 +6,7 @@ package com.pulumi.cloudamqp.inputs;
 import com.pulumi.core.annotations.Import;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -45,6 +46,13 @@ public final class GetNotificationPlainArgs extends com.pulumi.resources.InvokeA
         return Optional.ofNullable(this.name);
     }
 
+    @Import(name="options")
+    private @Nullable Map<String,String> options;
+
+    public Optional<Map<String,String>> options() {
+        return Optional.ofNullable(this.options);
+    }
+
     /**
      * The recipient identifier.
      * 
@@ -65,6 +73,7 @@ public final class GetNotificationPlainArgs extends com.pulumi.resources.InvokeA
     private GetNotificationPlainArgs(GetNotificationPlainArgs $) {
         this.instanceId = $.instanceId;
         this.name = $.name;
+        this.options = $.options;
         this.recipientId = $.recipientId;
     }
 
@@ -105,6 +114,11 @@ public final class GetNotificationPlainArgs extends com.pulumi.resources.InvokeA
          */
         public Builder name(@Nullable String name) {
             $.name = name;
+            return this;
+        }
+
+        public Builder options(@Nullable Map<String,String> options) {
+            $.options = options;
             return this;
         }
 

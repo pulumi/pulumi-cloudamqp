@@ -65,12 +65,22 @@ public final class PrivatelinkAwsArgs extends com.pulumi.resources.ResourceArgs 
     /**
      * Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
      * 
+     * Allowed principals format: &lt;br&gt;
+     * `arn:aws:iam::aws-account-id:root` &lt;br&gt;
+     * `arn:aws:iam::aws-account-id:user/user-name` &lt;br&gt;
+     * `arn:aws:iam::aws-account-id:role/role-name`
+     * 
      */
     @Import(name="timeout")
     private @Nullable Output<Integer> timeout;
 
     /**
      * @return Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+     * 
+     * Allowed principals format: &lt;br&gt;
+     * `arn:aws:iam::aws-account-id:root` &lt;br&gt;
+     * `arn:aws:iam::aws-account-id:user/user-name` &lt;br&gt;
+     * `arn:aws:iam::aws-account-id:role/role-name`
      * 
      */
     public Optional<Output<Integer>> timeout() {
@@ -180,6 +190,11 @@ public final class PrivatelinkAwsArgs extends com.pulumi.resources.ResourceArgs 
         /**
          * @param timeout Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
          * 
+         * Allowed principals format: &lt;br&gt;
+         * `arn:aws:iam::aws-account-id:root` &lt;br&gt;
+         * `arn:aws:iam::aws-account-id:user/user-name` &lt;br&gt;
+         * `arn:aws:iam::aws-account-id:role/role-name`
+         * 
          * @return builder
          * 
          */
@@ -190,6 +205,11 @@ public final class PrivatelinkAwsArgs extends com.pulumi.resources.ResourceArgs 
 
         /**
          * @param timeout Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+         * 
+         * Allowed principals format: &lt;br&gt;
+         * `arn:aws:iam::aws-account-id:root` &lt;br&gt;
+         * `arn:aws:iam::aws-account-id:user/user-name` &lt;br&gt;
+         * `arn:aws:iam::aws-account-id:role/role-name`
          * 
          * @return builder
          * 

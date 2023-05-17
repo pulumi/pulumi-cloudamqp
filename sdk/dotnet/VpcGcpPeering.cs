@@ -10,6 +10,175 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
+    /// This resouce creates a VPC peering configuration for the CloudAMQP instance. The configuration will connect to another VPC network hosted on Google Cloud Platform (GCP). See the [GCP documentation](https://cloud.google.com/vpc/docs/using-vpc-peering) for more information on how to create the VPC peering configuration.
+    /// 
+    /// Only available for dedicated subscription plans.
+    /// 
+    /// Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
+    /// 
+    /// ## Example Usage
+    /// ### With Additional Firewall Rules
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;VPC peering pre v1.16.0&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // VPC peering configuration
+    ///     var vpcPeeringRequest = new CloudAmqp.VpcGcpPeering("vpcPeeringRequest", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         PeerNetworkUri = @var.Peer_network_uri,
+    ///     });
+    /// 
+    ///     // Firewall rules
+    ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewallSettings", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Rules = new[]
+    ///         {
+    ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
+    ///             {
+    ///                 Ip = @var.Peer_subnet,
+    ///                 Ports = new[]
+    ///                 {
+    ///                     15672,
+    ///                 },
+    ///                 Services = new[]
+    ///                 {
+    ///                     "AMQP",
+    ///                     "AMQPS",
+    ///                     "STREAM",
+    ///                     "STREAM_SSL",
+    ///                 },
+    ///                 Description = "VPC peering for &lt;NETWORK&gt;",
+    ///             },
+    ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
+    ///             {
+    ///                 Ip = "192.168.0.0/24",
+    ///                 Ports = new[]
+    ///                 {
+    ///                     4567,
+    ///                     4568,
+    ///                 },
+    ///                 Services = new[]
+    ///                 {
+    ///                     "AMQP",
+    ///                     "AMQPS",
+    ///                     "HTTPS",
+    ///                 },
+    ///             },
+    ///         },
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             vpcPeeringRequest,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // VPC peering configuration
+    ///     var vpcPeeringRequest = new CloudAmqp.VpcGcpPeering("vpcPeeringRequest", new()
+    ///     {
+    ///         VpcId = cloudamqp_vpc.Vpc.Id,
+    ///         PeerNetworkUri = @var.Peer_network_uri,
+    ///     });
+    /// 
+    ///     // Firewall rules
+    ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewallSettings", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Rules = new[]
+    ///         {
+    ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
+    ///             {
+    ///                 Ip = @var.Peer_subnet,
+    ///                 Ports = new[]
+    ///                 {
+    ///                     15672,
+    ///                 },
+    ///                 Services = new[]
+    ///                 {
+    ///                     "AMQP",
+    ///                     "AMQPS",
+    ///                     "STREAM",
+    ///                     "STREAM_SSL",
+    ///                 },
+    ///                 Description = "VPC peering for &lt;NETWORK&gt;",
+    ///             },
+    ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
+    ///             {
+    ///                 Ip = "192.168.0.0/24",
+    ///                 Ports = new[]
+    ///                 {
+    ///                     4567,
+    ///                     4568,
+    ///                 },
+    ///                 Services = new[]
+    ///                 {
+    ///                     "AMQP",
+    ///                     "AMQPS",
+    ///                     "HTTPS",
+    ///                 },
+    ///             },
+    ///         },
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             vpcPeeringRequest,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;/details&gt;
+    /// ## Depedency
+    /// 
+    /// *Pre v1.16.0*
+    /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+    /// 
+    /// *Post v1.16.0*
+    /// This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
+    /// 
+    /// ## Create VPC Peering with additional firewall rules
+    /// 
+    /// To create a VPC peering configuration with additional firewall rules, it's required to chain the cloudamqp.SecurityFirewall
+    /// resource to avoid parallel conflicting resource calls. This is done by adding dependency from the firewall resource to the VPC peering resource.
+    /// 
+    /// Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for the VPC peering also needs to be added.
+    /// 
+    /// See example below.
+    /// 
     /// ## Import
     /// 
     /// Not possible to import this resource.
@@ -25,6 +194,8 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// The CloudAMQP instance identifier.
+        /// 
+        /// ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
         /// </summary>
         [Output("instanceId")]
         public Output<int?> InstanceId { get; private set; } = null!;
@@ -49,6 +220,8 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// The managed VPC identifier.
+        /// 
+        /// ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
         /// </summary>
         [Output("vpcId")]
         public Output<string?> VpcId { get; private set; } = null!;
@@ -101,6 +274,8 @@ namespace Pulumi.CloudAmqp
     {
         /// <summary>
         /// The CloudAMQP instance identifier.
+        /// 
+        /// ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
@@ -113,6 +288,8 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// The managed VPC identifier.
+        /// 
+        /// ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
         /// </summary>
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }
@@ -133,6 +310,8 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// The CloudAMQP instance identifier.
+        /// 
+        /// ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
@@ -157,6 +336,8 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// The managed VPC identifier.
+        /// 
+        /// ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
         /// </summary>
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }

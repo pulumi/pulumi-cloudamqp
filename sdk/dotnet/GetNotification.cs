@@ -20,6 +20,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using CloudAmqp = Pulumi.CloudAmqp;
         /// 
@@ -42,6 +43,7 @@ namespace Pulumi.CloudAmqp
         /// * `id`    - The identifier for this resource.
         /// * `type`  - The type of the recipient.
         /// * `value` - The notification endpoint, where to send the notification.
+        /// * `options`- Options argument (e.g. `rk` used for VictorOps routing key).
         /// 
         /// ## Dependency
         /// 
@@ -59,6 +61,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using CloudAmqp = Pulumi.CloudAmqp;
         /// 
@@ -81,6 +84,7 @@ namespace Pulumi.CloudAmqp
         /// * `id`    - The identifier for this resource.
         /// * `type`  - The type of the recipient.
         /// * `value` - The notification endpoint, where to send the notification.
+        /// * `options`- Options argument (e.g. `rk` used for VictorOps routing key).
         /// 
         /// ## Dependency
         /// 
@@ -104,6 +108,14 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
+
+        [Input("options")]
+        private Dictionary<string, string>? _options;
+        public Dictionary<string, string> Options
+        {
+            get => _options ?? (_options = new Dictionary<string, string>());
+            set => _options = value;
+        }
 
         /// <summary>
         /// The recipient identifier.
@@ -131,6 +143,14 @@ namespace Pulumi.CloudAmqp
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        [Input("options")]
+        private InputMap<string>? _options;
+        public InputMap<string> Options
+        {
+            get => _options ?? (_options = new InputMap<string>());
+            set => _options = value;
+        }
+
         /// <summary>
         /// The recipient identifier.
         /// </summary>
@@ -153,6 +173,7 @@ namespace Pulumi.CloudAmqp
         public readonly string Id;
         public readonly int InstanceId;
         public readonly string? Name;
+        public readonly ImmutableDictionary<string, string>? Options;
         public readonly int? RecipientId;
         public readonly string Type;
         public readonly string Value;
@@ -165,6 +186,8 @@ namespace Pulumi.CloudAmqp
 
             string? name,
 
+            ImmutableDictionary<string, string>? options,
+
             int? recipientId,
 
             string type,
@@ -174,6 +197,7 @@ namespace Pulumi.CloudAmqp
             Id = id;
             InstanceId = instanceId;
             Name = name;
+            Options = options;
             RecipientId = recipientId;
             Type = type;
             Value = value;

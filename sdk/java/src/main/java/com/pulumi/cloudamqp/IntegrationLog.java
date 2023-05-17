@@ -265,12 +265,16 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
     /**
      * Assign source type to the data exported, eg. generic_single_line. (Splunk)
      * 
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+     * 
      */
     @Export(name="sourcetype", type=String.class, parameters={})
     private Output</* @Nullable */ String> sourcetype;
 
     /**
      * @return Assign source type to the data exported, eg. generic_single_line. (Splunk)
+     * 
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
      * 
      */
     public Output<Optional<String>> sourcetype() {

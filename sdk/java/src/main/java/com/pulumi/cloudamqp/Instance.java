@@ -18,6 +18,244 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * This resource allows you to create and manage a CloudAMQP instance running either ***RabbitMQ*** or ***LavinMQ*** and can be deployed to multiple cloud platforms provider and regions, see Instance regions for more information.
+ * 
+ * Once the instance is created it will be assigned a unique identifier. All other resources and data sources created for this instance needs to reference this unique instance identifier.
+ * 
+ * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
+ * 
+ * ## Example Usage
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Basic example of shared and dedicated instances&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var lemurInstance = new Instance(&#34;lemurInstance&#34;, InstanceArgs.builder()        
+ *             .plan(&#34;lemur&#34;)
+ *             .region(&#34;amazon-web-services::us-west-1&#34;)
+ *             .tags(&#34;rabbitmq&#34;)
+ *             .build());
+ * 
+ *         var lemmingInstance = new Instance(&#34;lemmingInstance&#34;, InstanceArgs.builder()        
+ *             .plan(&#34;lemming&#34;)
+ *             .region(&#34;amazon-web-services::us-west-1&#34;)
+ *             .tags(&#34;lavinmq&#34;)
+ *             .build());
+ * 
+ *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
+ *             .plan(&#34;bunny-1&#34;)
+ *             .region(&#34;amazon-web-services::us-west-1&#34;)
+ *             .tags(&#34;terraform&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Dedicated instance using attribute vpc_subnet to create VPC, pre v1.16.0&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
+ *             .plan(&#34;bunny-1&#34;)
+ *             .region(&#34;amazon-web-services::us-west-1&#34;)
+ *             .tags(&#34;terraform&#34;)
+ *             .vpcSubnet(&#34;10.56.72.0/24&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Dedicated instance using attribute vpc_subnet to create VPC and then import managed VPC, post v1.16.0 (Managed VPC)&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var instance01 = new Instance(&#34;instance01&#34;, InstanceArgs.builder()        
+ *             .plan(&#34;bunny-1&#34;)
+ *             .region(&#34;amazon-web-services::us-west-1&#34;)
+ *             .tags(&#34;terraform&#34;)
+ *             .vpcSubnet(&#34;10.56.72.0/24&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * Once the instance and the VPC are created, the VPC can be imported as managed VPC and added to the configuration file.
+ * Set attribute `vpc_id` to the managed VPC identifier. To keep the managed VPC when deleting the instance, set attribute `keep_associated_vpc` to true.
+ * For more information see guide Managed VPC.
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Vpc;
+ * import com.pulumi.cloudamqp.VpcArgs;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var vpc = new Vpc(&#34;vpc&#34;, VpcArgs.builder()        
+ *             .region(&#34;amazon-web-services::us-east-1&#34;)
+ *             .subnet(&#34;10.56.72.0/24&#34;)
+ *             .tags()
+ *             .build());
+ * 
+ *         var instance01 = new Instance(&#34;instance01&#34;, InstanceArgs.builder()        
+ *             .plan(&#34;bunny-1&#34;)
+ *             .region(&#34;amazon-web-services::us-west-1&#34;)
+ *             .tags(&#34;terraform&#34;)
+ *             .vpcId(vpc.id())
+ *             .keepAssociatedVpc(true)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Dedicated instances and managed VPC, post v1.16.0 (Managed VPC)&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Vpc;
+ * import com.pulumi.cloudamqp.VpcArgs;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var vpc = new Vpc(&#34;vpc&#34;, VpcArgs.builder()        
+ *             .region(&#34;amazon-web-services::us-east-1&#34;)
+ *             .subnet(&#34;10.56.72.0/24&#34;)
+ *             .tags()
+ *             .build());
+ * 
+ *         var instance01 = new Instance(&#34;instance01&#34;, InstanceArgs.builder()        
+ *             .plan(&#34;bunny-1&#34;)
+ *             .region(&#34;amazon-web-services::us-west-1&#34;)
+ *             .tags(&#34;terraform&#34;)
+ *             .vpcId(vpc.id())
+ *             .keepAssociatedVpc(true)
+ *             .build());
+ * 
+ *         var instance02 = new Instance(&#34;instance02&#34;, InstanceArgs.builder()        
+ *             .plan(&#34;bunny-1&#34;)
+ *             .region(&#34;amazon-web-services::us-west-1&#34;)
+ *             .tags(&#34;terraform&#34;)
+ *             .vpcId(vpc.id())
+ *             .keepAssociatedVpc(true)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * Set attribute `keep_associated_vpc` to true, will keep managed VPC when deleting the instances.
+ * &lt;/details&gt;
+ * 
  * ## Import
  * 
  * `cloudamqp_instance`can be imported using CloudAMQP internal identifier.
@@ -26,7 +264,7 @@ import javax.annotation.Nullable;
  *  $ pulumi import cloudamqp:index/instance:Instance instance &lt;id&gt;`
  * ```
  * 
- *  To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances). Or use the data source [`cloudamqp_account`](https://registry.terraform.io/providers/cloudamqp/cloudamqp/latest/docs/data-sources/account) to list all available instances for an account.
+ *  To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances). Or use the data source `cloudamqp_account` to list all available instances for an account.
  * 
  */
 @ResourceType(type="cloudamqp:index/instance:Instance")
@@ -46,14 +284,28 @@ public class Instance extends com.pulumi.resources.CustomResource {
         return this.apikey;
     }
     /**
-     * Is the instance hosted on a dedicated server
+     * Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
+     * 
+     */
+    @Export(name="backend", type=String.class, parameters={})
+    private Output<String> backend;
+
+    /**
+     * @return Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
+     * 
+     */
+    public Output<String> backend() {
+        return this.backend;
+    }
+    /**
+     * Information if the CloudAMQP instance is shared or dedicated.
      * 
      */
     @Export(name="dedicated", type=Boolean.class, parameters={})
     private Output<Boolean> dedicated;
 
     /**
-     * @return Is the instance hosted on a dedicated server
+     * @return Information if the CloudAMQP instance is shared or dedicated.
      * 
      */
     public Output<Boolean> dedicated() {
@@ -130,14 +382,18 @@ public class Instance extends com.pulumi.resources.CustomResource {
         return this.noDefaultAlarms;
     }
     /**
-     * Number of nodes, 1, 3 or 5 depending on plan used.
+     * Number of nodes, 1, 3 or 5 depending on plan used. Only needed for legacy plans, will otherwise be computed.
+     * 
+     * ***Deprecated: Legacy subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.***
      * 
      */
     @Export(name="nodes", type=Integer.class, parameters={})
     private Output<Integer> nodes;
 
     /**
-     * @return Number of nodes, 1, 3 or 5 depending on plan used.
+     * @return Number of nodes, 1, 3 or 5 depending on plan used. Only needed for legacy plans, will otherwise be computed.
+     * 
+     * ***Deprecated: Legacy subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.***
      * 
      */
     public Output<Integer> nodes() {
@@ -174,12 +430,16 @@ public class Instance extends com.pulumi.resources.CustomResource {
     /**
      * The region to host the instance in. See Instance regions
      * 
+     * ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
+     * 
      */
     @Export(name="region", type=String.class, parameters={})
     private Output<String> region;
 
     /**
      * @return The region to host the instance in. See Instance regions
+     * 
+     * ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
      * 
      */
     public Output<String> region() {
@@ -188,12 +448,16 @@ public class Instance extends com.pulumi.resources.CustomResource {
     /**
      * The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.
      * 
+     * ***Note: There is not yet any support in the provider to change the RMQ version. Once it&#39;s set in the initial creation, it will remain.***
+     * 
      */
     @Export(name="rmqVersion", type=String.class, parameters={})
     private Output<String> rmqVersion;
 
     /**
      * @return The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.
+     * 
+     * ***Note: There is not yet any support in the provider to change the RMQ version. Once it&#39;s set in the initial creation, it will remain.***
      * 
      */
     public Output<String> rmqVersion() {
@@ -258,12 +522,20 @@ public class Instance extends com.pulumi.resources.CustomResource {
     /**
      * Creates a dedicated VPC subnet, shouldn&#39;t overlap with other VPC subnet, default subnet used 10.56.72.0/24.
      * 
+     * ***Deprecated: Will be removed in next major version (v2.0)***
+     * 
+     * ***Note: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.***
+     * 
      */
     @Export(name="vpcSubnet", type=String.class, parameters={})
     private Output<String> vpcSubnet;
 
     /**
      * @return Creates a dedicated VPC subnet, shouldn&#39;t overlap with other VPC subnet, default subnet used 10.56.72.0/24.
+     * 
+     * ***Deprecated: Will be removed in next major version (v2.0)***
+     * 
+     * ***Note: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.***
      * 
      */
     public Output<String> vpcSubnet() {

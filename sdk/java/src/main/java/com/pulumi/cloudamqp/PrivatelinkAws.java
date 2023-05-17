@@ -218,12 +218,22 @@ public class PrivatelinkAws extends com.pulumi.resources.CustomResource {
     /**
      * Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
      * 
+     * Allowed principals format: &lt;br&gt;
+     * `arn:aws:iam::aws-account-id:root` &lt;br&gt;
+     * `arn:aws:iam::aws-account-id:user/user-name` &lt;br&gt;
+     * `arn:aws:iam::aws-account-id:role/role-name`
+     * 
      */
     @Export(name="timeout", type=Integer.class, parameters={})
     private Output</* @Nullable */ Integer> timeout;
 
     /**
      * @return Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+     * 
+     * Allowed principals format: &lt;br&gt;
+     * `arn:aws:iam::aws-account-id:root` &lt;br&gt;
+     * `arn:aws:iam::aws-account-id:user/user-name` &lt;br&gt;
+     * `arn:aws:iam::aws-account-id:role/role-name`
      * 
      */
     public Output<Optional<Integer>> timeout() {

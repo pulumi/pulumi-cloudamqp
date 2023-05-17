@@ -32,6 +32,8 @@ namespace Pulumi.CloudAmqp
         /// * `host`        - The external hostname for the CloudAMQP instance.
         /// * `host_internal` - The internal hostname for the CloudAMQP instance.
         /// * `vhost`       - The virtual host configured in Rabbit MQ.
+        /// * `dedicated`   - Information if the CloudAMQP instance is shared or dedicated.
+        /// * `backend`     - Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
         /// </summary>
         public static Task<GetInstanceResult> InvokeAsync(GetInstanceArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetInstanceResult>("cloudamqp:index/getInstance:getInstance", args ?? new GetInstanceArgs(), options.WithDefaults());
@@ -57,6 +59,8 @@ namespace Pulumi.CloudAmqp
         /// * `host`        - The external hostname for the CloudAMQP instance.
         /// * `host_internal` - The internal hostname for the CloudAMQP instance.
         /// * `vhost`       - The virtual host configured in Rabbit MQ.
+        /// * `dedicated`   - Information if the CloudAMQP instance is shared or dedicated.
+        /// * `backend`     - Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
         /// </summary>
         public static Output<GetInstanceResult> Invoke(GetInstanceInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetInstanceResult>("cloudamqp:index/getInstance:getInstance", args ?? new GetInstanceInvokeArgs(), options.WithDefaults());
@@ -96,6 +100,7 @@ namespace Pulumi.CloudAmqp
     public sealed class GetInstanceResult
     {
         public readonly string Apikey;
+        public readonly string Backend;
         public readonly bool Dedicated;
         public readonly string Host;
         public readonly string HostInternal;
@@ -120,6 +125,8 @@ namespace Pulumi.CloudAmqp
         [OutputConstructor]
         private GetInstanceResult(
             string apikey,
+
+            string backend,
 
             bool dedicated,
 
@@ -156,6 +163,7 @@ namespace Pulumi.CloudAmqp
             string vpcSubnet)
         {
             Apikey = apikey;
+            Backend = backend;
             Dedicated = dedicated;
             Host = host;
             HostInternal = hostInternal;

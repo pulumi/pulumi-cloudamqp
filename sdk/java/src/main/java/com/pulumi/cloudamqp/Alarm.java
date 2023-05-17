@@ -143,12 +143,16 @@ public class Alarm extends com.pulumi.resources.CustomResource {
     /**
      * Message type `(total, unacked, ready)` used by queue alarm type.
      * 
+     * Specific argument for `disk` alarm
+     * 
      */
     @Export(name="messageType", type=String.class, parameters={})
     private Output</* @Nullable */ String> messageType;
 
     /**
      * @return Message type `(total, unacked, ready)` used by queue alarm type.
+     * 
+     * Specific argument for `disk` alarm
      * 
      */
     public Output<Optional<String>> messageType() {
@@ -227,12 +231,16 @@ public class Alarm extends com.pulumi.resources.CustomResource {
     /**
      * Disk value threshold calculation, `fixed, percentage` of disk space remaining.
      * 
+     * Based on alarm type, different arguments are flagged as required or optional.
+     * 
      */
     @Export(name="valueCalculation", type=String.class, parameters={})
     private Output</* @Nullable */ String> valueCalculation;
 
     /**
      * @return Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+     * 
+     * Based on alarm type, different arguments are flagged as required or optional.
      * 
      */
     public Output<Optional<String>> valueCalculation() {

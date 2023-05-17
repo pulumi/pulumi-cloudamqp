@@ -153,6 +153,8 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+        /// 
+        /// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
         /// </summary>
         [Output("sourcetype")]
         public Output<string?> Sourcetype { get; private set; } = null!;
@@ -371,6 +373,8 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+        /// 
+        /// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
         /// </summary>
         [Input("sourcetype")]
         public Input<string>? Sourcetype { get; set; }
@@ -551,6 +555,8 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+        /// 
+        /// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
         /// </summary>
         [Input("sourcetype")]
         public Input<string>? Sourcetype { get; set; }

@@ -34,14 +34,29 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Is the instance hosted on a dedicated server
+     * Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
+     * 
+     */
+    @Import(name="backend")
+    private @Nullable Output<String> backend;
+
+    /**
+     * @return Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
+     * 
+     */
+    public Optional<Output<String>> backend() {
+        return Optional.ofNullable(this.backend);
+    }
+
+    /**
+     * Information if the CloudAMQP instance is shared or dedicated.
      * 
      */
     @Import(name="dedicated")
     private @Nullable Output<Boolean> dedicated;
 
     /**
-     * @return Is the instance hosted on a dedicated server
+     * @return Information if the CloudAMQP instance is shared or dedicated.
      * 
      */
     public Optional<Output<Boolean>> dedicated() {
@@ -124,14 +139,18 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Number of nodes, 1, 3 or 5 depending on plan used.
+     * Number of nodes, 1, 3 or 5 depending on plan used. Only needed for legacy plans, will otherwise be computed.
+     * 
+     * ***Deprecated: Legacy subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.***
      * 
      */
     @Import(name="nodes")
     private @Nullable Output<Integer> nodes;
 
     /**
-     * @return Number of nodes, 1, 3 or 5 depending on plan used.
+     * @return Number of nodes, 1, 3 or 5 depending on plan used. Only needed for legacy plans, will otherwise be computed.
+     * 
+     * ***Deprecated: Legacy subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.***
      * 
      */
     public Optional<Output<Integer>> nodes() {
@@ -171,12 +190,16 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     /**
      * The region to host the instance in. See Instance regions
      * 
+     * ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
+     * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
      * @return The region to host the instance in. See Instance regions
+     * 
+     * ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
      * 
      */
     public Optional<Output<String>> region() {
@@ -186,12 +209,16 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     /**
      * The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.
      * 
+     * ***Note: There is not yet any support in the provider to change the RMQ version. Once it&#39;s set in the initial creation, it will remain.***
+     * 
      */
     @Import(name="rmqVersion")
     private @Nullable Output<String> rmqVersion;
 
     /**
      * @return The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.
+     * 
+     * ***Note: There is not yet any support in the provider to change the RMQ version. Once it&#39;s set in the initial creation, it will remain.***
      * 
      */
     public Optional<Output<String>> rmqVersion() {
@@ -261,12 +288,20 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     /**
      * Creates a dedicated VPC subnet, shouldn&#39;t overlap with other VPC subnet, default subnet used 10.56.72.0/24.
      * 
+     * ***Deprecated: Will be removed in next major version (v2.0)***
+     * 
+     * ***Note: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.***
+     * 
      */
     @Import(name="vpcSubnet")
     private @Nullable Output<String> vpcSubnet;
 
     /**
      * @return Creates a dedicated VPC subnet, shouldn&#39;t overlap with other VPC subnet, default subnet used 10.56.72.0/24.
+     * 
+     * ***Deprecated: Will be removed in next major version (v2.0)***
+     * 
+     * ***Note: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.***
      * 
      */
     public Optional<Output<String>> vpcSubnet() {
@@ -277,6 +312,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
 
     private InstanceState(InstanceState $) {
         this.apikey = $.apikey;
+        this.backend = $.backend;
         this.dedicated = $.dedicated;
         this.host = $.host;
         this.hostInternal = $.hostInternal;
@@ -335,7 +371,28 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param dedicated Is the instance hosted on a dedicated server
+         * @param backend Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder backend(@Nullable Output<String> backend) {
+            $.backend = backend;
+            return this;
+        }
+
+        /**
+         * @param backend Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder backend(String backend) {
+            return backend(Output.of(backend));
+        }
+
+        /**
+         * @param dedicated Information if the CloudAMQP instance is shared or dedicated.
          * 
          * @return builder
          * 
@@ -346,7 +403,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param dedicated Is the instance hosted on a dedicated server
+         * @param dedicated Information if the CloudAMQP instance is shared or dedicated.
          * 
          * @return builder
          * 
@@ -461,7 +518,9 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param nodes Number of nodes, 1, 3 or 5 depending on plan used.
+         * @param nodes Number of nodes, 1, 3 or 5 depending on plan used. Only needed for legacy plans, will otherwise be computed.
+         * 
+         * ***Deprecated: Legacy subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.***
          * 
          * @return builder
          * 
@@ -472,7 +531,9 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param nodes Number of nodes, 1, 3 or 5 depending on plan used.
+         * @param nodes Number of nodes, 1, 3 or 5 depending on plan used. Only needed for legacy plans, will otherwise be computed.
+         * 
+         * ***Deprecated: Legacy subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.***
          * 
          * @return builder
          * 
@@ -526,6 +587,8 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param region The region to host the instance in. See Instance regions
          * 
+         * ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
+         * 
          * @return builder
          * 
          */
@@ -537,6 +600,8 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param region The region to host the instance in. See Instance regions
          * 
+         * ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
+         * 
          * @return builder
          * 
          */
@@ -546,6 +611,8 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param rmqVersion The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.
+         * 
+         * ***Note: There is not yet any support in the provider to change the RMQ version. Once it&#39;s set in the initial creation, it will remain.***
          * 
          * @return builder
          * 
@@ -557,6 +624,8 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param rmqVersion The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.
+         * 
+         * ***Note: There is not yet any support in the provider to change the RMQ version. Once it&#39;s set in the initial creation, it will remain.***
          * 
          * @return builder
          * 
@@ -662,6 +731,10 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param vpcSubnet Creates a dedicated VPC subnet, shouldn&#39;t overlap with other VPC subnet, default subnet used 10.56.72.0/24.
          * 
+         * ***Deprecated: Will be removed in next major version (v2.0)***
+         * 
+         * ***Note: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.***
+         * 
          * @return builder
          * 
          */
@@ -672,6 +745,10 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param vpcSubnet Creates a dedicated VPC subnet, shouldn&#39;t overlap with other VPC subnet, default subnet used 10.56.72.0/24.
+         * 
+         * ***Deprecated: Will be removed in next major version (v2.0)***
+         * 
+         * ***Note: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.***
          * 
          * @return builder
          * 

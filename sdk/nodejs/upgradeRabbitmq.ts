@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  * > - Any custom plugins support has installed on your behalf will be disabled and you need to contact support@cloudamqp.com and ask to have them re-installed.
  * > - TLS 1.0 and 1.1 will not be supported after the update.
  *
- * Only available for dedicated subscription plans.
+ * Only available for dedicated subscription plans running ***RabbitMQ***.
  *
  * ## Example Usage
  *

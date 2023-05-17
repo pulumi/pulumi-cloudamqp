@@ -28,6 +28,8 @@ class ExtraDiskSizeArgs:
         :param pulumi.Input[bool] allow_downtime: When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
         :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
         :param pulumi.Input[int] timeout: Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+               
+               ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
         """
         pulumi.set(__self__, "extra_disk_size", extra_disk_size)
         pulumi.set(__self__, "instance_id", instance_id)
@@ -91,6 +93,8 @@ class ExtraDiskSizeArgs:
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
         Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+
+        ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
         """
         return pulumi.get(self, "timeout")
 
@@ -115,6 +119,8 @@ class _ExtraDiskSizeState:
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
         :param pulumi.Input[int] timeout: Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+               
+               ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
         """
         if allow_downtime is not None:
             pulumi.set(__self__, "allow_downtime", allow_downtime)
@@ -191,6 +197,8 @@ class _ExtraDiskSizeState:
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
         Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+
+        ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
         """
         return pulumi.get(self, "timeout")
 
@@ -364,6 +372,8 @@ class ExtraDiskSize(pulumi.CustomResource):
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
         :param pulumi.Input[int] timeout: Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+               
+               ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
         """
         ...
     @overload
@@ -585,6 +595,8 @@ class ExtraDiskSize(pulumi.CustomResource):
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
         :param pulumi.Input[int] timeout: Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+               
+               ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -640,6 +652,8 @@ class ExtraDiskSize(pulumi.CustomResource):
     def timeout(self) -> pulumi.Output[Optional[int]]:
         """
         Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+
+        ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
         """
         return pulumi.get(self, "timeout")
 

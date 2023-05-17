@@ -102,6 +102,8 @@ type IntegrationLog struct {
 	// AWS secret access key.
 	SecretAccessKey pulumi.StringPtrOutput `pulumi:"secretAccessKey"`
 	// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+	//
+	// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
 	Sourcetype pulumi.StringPtrOutput `pulumi:"sourcetype"`
 	// Tag the integration, e.g. env=prod, region=europe.
 	Tags pulumi.StringPtrOutput `pulumi:"tags"`
@@ -201,6 +203,8 @@ type integrationLogState struct {
 	// AWS secret access key.
 	SecretAccessKey *string `pulumi:"secretAccessKey"`
 	// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+	//
+	// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
 	Sourcetype *string `pulumi:"sourcetype"`
 	// Tag the integration, e.g. env=prod, region=europe.
 	Tags *string `pulumi:"tags"`
@@ -238,6 +242,8 @@ type IntegrationLogState struct {
 	// AWS secret access key.
 	SecretAccessKey pulumi.StringPtrInput
 	// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+	//
+	// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
 	Sourcetype pulumi.StringPtrInput
 	// Tag the integration, e.g. env=prod, region=europe.
 	Tags pulumi.StringPtrInput
@@ -279,6 +285,8 @@ type integrationLogArgs struct {
 	// AWS secret access key.
 	SecretAccessKey *string `pulumi:"secretAccessKey"`
 	// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+	//
+	// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
 	Sourcetype *string `pulumi:"sourcetype"`
 	// Tag the integration, e.g. env=prod, region=europe.
 	Tags *string `pulumi:"tags"`
@@ -317,6 +325,8 @@ type IntegrationLogArgs struct {
 	// AWS secret access key.
 	SecretAccessKey pulumi.StringPtrInput
 	// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+	//
+	// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
 	Sourcetype pulumi.StringPtrInput
 	// Tag the integration, e.g. env=prod, region=europe.
 	Tags pulumi.StringPtrInput
@@ -479,6 +489,8 @@ func (o IntegrationLogOutput) SecretAccessKey() pulumi.StringPtrOutput {
 }
 
 // Assign source type to the data exported, eg. generic_single_line. (Splunk)
+//
+// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
 func (o IntegrationLogOutput) Sourcetype() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.Sourcetype }).(pulumi.StringPtrOutput)
 }

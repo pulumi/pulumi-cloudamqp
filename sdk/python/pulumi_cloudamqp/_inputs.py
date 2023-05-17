@@ -65,6 +65,28 @@ class SecurityFirewallRuleArgs:
         """
         :param pulumi.Input[str] ip: CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
         :param pulumi.Input[str] description: Description name of the rule. e.g. Default.
+               
+               Pre-defined services for RabbitMQ:
+               
+               | Service name | Port  |
+               |--------------|-------|
+               | AMQP         | 5672  |
+               | AMQPS        | 5671  |
+               | HTTPS        | 443   |
+               | MQTT         | 1883  |
+               | MQTTS        | 8883  |
+               | STOMP        | 61613 |
+               | STOMPS       | 61614 |
+               | STREAM       | 5552  |
+               | STREAM_SSL   | 5551  |
+               
+               Pre-defined services for LavinMQ:
+               
+               | Service name | Port  |
+               |--------------|-------|
+               | AMQP         | 5672  |
+               | AMQPS        | 5671  |
+               | HTTPS        | 443   |
         :param pulumi.Input[Sequence[pulumi.Input[int]]] ports: Custom ports to be opened
         :param pulumi.Input[Sequence[pulumi.Input[str]]] services: Pre-defined service ports, see table below
         """
@@ -93,6 +115,28 @@ class SecurityFirewallRuleArgs:
     def description(self) -> Optional[pulumi.Input[str]]:
         """
         Description name of the rule. e.g. Default.
+
+        Pre-defined services for RabbitMQ:
+
+        | Service name | Port  |
+        |--------------|-------|
+        | AMQP         | 5672  |
+        | AMQPS        | 5671  |
+        | HTTPS        | 443   |
+        | MQTT         | 1883  |
+        | MQTTS        | 8883  |
+        | STOMP        | 61613 |
+        | STOMPS       | 61614 |
+        | STREAM       | 5552  |
+        | STREAM_SSL   | 5551  |
+
+        Pre-defined services for LavinMQ:
+
+        | Service name | Port  |
+        |--------------|-------|
+        | AMQP         | 5672  |
+        | AMQPS        | 5671  |
+        | HTTPS        | 443   |
         """
         return pulumi.get(self, "description")
 

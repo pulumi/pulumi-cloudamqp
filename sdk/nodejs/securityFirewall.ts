@@ -57,6 +57,10 @@ export class SecurityFirewall extends pulumi.CustomResource {
     public readonly sleep!: pulumi.Output<number | undefined>;
     /**
      * Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+     *
+     * ___
+     *
+     * The `rules` block consists of:
      */
     public readonly timeout!: pulumi.Output<number | undefined>;
 
@@ -113,6 +117,10 @@ export interface SecurityFirewallState {
     sleep?: pulumi.Input<number>;
     /**
      * Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+     *
+     * ___
+     *
+     * The `rules` block consists of:
      */
     timeout?: pulumi.Input<number>;
 }
@@ -135,6 +143,10 @@ export interface SecurityFirewallArgs {
     sleep?: pulumi.Input<number>;
     /**
      * Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+     *
+     * ___
+     *
+     * The `rules` block consists of:
      */
     timeout?: pulumi.Input<number>;
 }

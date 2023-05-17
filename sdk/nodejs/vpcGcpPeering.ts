@@ -5,6 +5,131 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * This resouce creates a VPC peering configuration for the CloudAMQP instance. The configuration will connect to another VPC network hosted on Google Cloud Platform (GCP). See the [GCP documentation](https://cloud.google.com/vpc/docs/using-vpc-peering) for more information on how to create the VPC peering configuration.
+ *
+ * Only available for dedicated subscription plans.
+ *
+ * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
+ *
+ * ## Example Usage
+ * ### With Additional Firewall Rules
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>VPC peering pre v1.16.0</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * // VPC peering configuration
+ * const vpcPeeringRequest = new cloudamqp.VpcGcpPeering("vpcPeeringRequest", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     peerNetworkUri: _var.peer_network_uri,
+ * });
+ * // Firewall rules
+ * const firewallSettings = new cloudamqp.SecurityFirewall("firewallSettings", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     rules: [
+ *         {
+ *             ip: _var.peer_subnet,
+ *             ports: [15672],
+ *             services: [
+ *                 "AMQP",
+ *                 "AMQPS",
+ *                 "STREAM",
+ *                 "STREAM_SSL",
+ *             ],
+ *             description: "VPC peering for <NETWORK>",
+ *         },
+ *         {
+ *             ip: "192.168.0.0/24",
+ *             ports: [
+ *                 4567,
+ *                 4568,
+ *             ],
+ *             services: [
+ *                 "AMQP",
+ *                 "AMQPS",
+ *                 "HTTPS",
+ *             ],
+ *         },
+ *     ],
+ * }, {
+ *     dependsOn: [vpcPeeringRequest],
+ * });
+ * ```
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>VPC peering post v1.16.0 (Managed VPC)</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * // VPC peering configuration
+ * const vpcPeeringRequest = new cloudamqp.VpcGcpPeering("vpcPeeringRequest", {
+ *     vpcId: cloudamqp_vpc.vpc.id,
+ *     peerNetworkUri: _var.peer_network_uri,
+ * });
+ * // Firewall rules
+ * const firewallSettings = new cloudamqp.SecurityFirewall("firewallSettings", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     rules: [
+ *         {
+ *             ip: _var.peer_subnet,
+ *             ports: [15672],
+ *             services: [
+ *                 "AMQP",
+ *                 "AMQPS",
+ *                 "STREAM",
+ *                 "STREAM_SSL",
+ *             ],
+ *             description: "VPC peering for <NETWORK>",
+ *         },
+ *         {
+ *             ip: "192.168.0.0/24",
+ *             ports: [
+ *                 4567,
+ *                 4568,
+ *             ],
+ *             services: [
+ *                 "AMQP",
+ *                 "AMQPS",
+ *                 "HTTPS",
+ *             ],
+ *         },
+ *     ],
+ * }, {
+ *     dependsOn: [vpcPeeringRequest],
+ * });
+ * ```
+ * </details>
+ * ## Depedency
+ *
+ * *Pre v1.16.0*
+ * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ *
+ * *Post v1.16.0*
+ * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
+ *
+ * ## Create VPC Peering with additional firewall rules
+ *
+ * To create a VPC peering configuration with additional firewall rules, it's required to chain the cloudamqp.SecurityFirewall
+ * resource to avoid parallel conflicting resource calls. This is done by adding dependency from the firewall resource to the VPC peering resource.
+ *
+ * Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for the VPC peering also needs to be added.
+ *
+ * See example below.
+ *
  * ## Import
  *
  * Not possible to import this resource.
@@ -43,6 +168,8 @@ export class VpcGcpPeering extends pulumi.CustomResource {
     public /*out*/ readonly autoCreateRoutes!: pulumi.Output<boolean>;
     /**
      * The CloudAMQP instance identifier.
+     *
+     * ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
      */
     public readonly instanceId!: pulumi.Output<number | undefined>;
     /**
@@ -59,6 +186,8 @@ export class VpcGcpPeering extends pulumi.CustomResource {
     public /*out*/ readonly stateDetails!: pulumi.Output<string>;
     /**
      * The managed VPC identifier.
+     *
+     * ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
      */
     public readonly vpcId!: pulumi.Output<string | undefined>;
 
@@ -108,6 +237,8 @@ export interface VpcGcpPeeringState {
     autoCreateRoutes?: pulumi.Input<boolean>;
     /**
      * The CloudAMQP instance identifier.
+     *
+     * ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
      */
     instanceId?: pulumi.Input<number>;
     /**
@@ -124,6 +255,8 @@ export interface VpcGcpPeeringState {
     stateDetails?: pulumi.Input<string>;
     /**
      * The managed VPC identifier.
+     *
+     * ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
      */
     vpcId?: pulumi.Input<string>;
 }
@@ -134,6 +267,8 @@ export interface VpcGcpPeeringState {
 export interface VpcGcpPeeringArgs {
     /**
      * The CloudAMQP instance identifier.
+     *
+     * ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
      */
     instanceId?: pulumi.Input<number>;
     /**
@@ -142,6 +277,8 @@ export interface VpcGcpPeeringArgs {
     peerNetworkUri: pulumi.Input<string>;
     /**
      * The managed VPC identifier.
+     *
+     * ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
      */
     vpcId?: pulumi.Input<string>;
 }

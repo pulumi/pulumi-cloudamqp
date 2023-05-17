@@ -19,12 +19,16 @@ public final class VpcPeeringState extends com.pulumi.resources.ResourceArgs {
     /**
      * The CloudAMQP instance identifier.
      * 
+     * ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+     * 
      */
     @Import(name="instanceId")
     private @Nullable Output<Integer> instanceId;
 
     /**
      * @return The CloudAMQP instance identifier.
+     * 
+     * ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
      * 
      */
     public Optional<Output<Integer>> instanceId() {
@@ -94,12 +98,16 @@ public final class VpcPeeringState extends com.pulumi.resources.ResourceArgs {
     /**
      * The managed VPC identifier.
      * 
+     * ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
+     * 
      */
     @Import(name="vpcId")
     private @Nullable Output<String> vpcId;
 
     /**
      * @return The managed VPC identifier.
+     * 
+     * ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
      * 
      */
     public Optional<Output<String>> vpcId() {
@@ -138,6 +146,8 @@ public final class VpcPeeringState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param instanceId The CloudAMQP instance identifier.
          * 
+         * ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+         * 
          * @return builder
          * 
          */
@@ -148,6 +158,8 @@ public final class VpcPeeringState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param instanceId The CloudAMQP instance identifier.
+         * 
+         * ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
          * 
          * @return builder
          * 
@@ -243,6 +255,8 @@ public final class VpcPeeringState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param vpcId The managed VPC identifier.
          * 
+         * ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
+         * 
          * @return builder
          * 
          */
@@ -253,6 +267,8 @@ public final class VpcPeeringState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param vpcId The managed VPC identifier.
+         * 
+         * ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
          * 
          * @return builder
          * 

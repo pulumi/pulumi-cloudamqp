@@ -26,12 +26,16 @@ public class VpcPeering extends com.pulumi.resources.CustomResource {
     /**
      * The CloudAMQP instance identifier.
      * 
+     * ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+     * 
      */
     @Export(name="instanceId", type=Integer.class, parameters={})
     private Output</* @Nullable */ Integer> instanceId;
 
     /**
      * @return The CloudAMQP instance identifier.
+     * 
+     * ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
      * 
      */
     public Output<Optional<Integer>> instanceId() {
@@ -96,12 +100,16 @@ public class VpcPeering extends com.pulumi.resources.CustomResource {
     /**
      * The managed VPC identifier.
      * 
+     * ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
+     * 
      */
     @Export(name="vpcId", type=String.class, parameters={})
     private Output</* @Nullable */ String> vpcId;
 
     /**
      * @return The managed VPC identifier.
+     * 
+     * ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
      * 
      */
     public Output<Optional<String>> vpcId() {

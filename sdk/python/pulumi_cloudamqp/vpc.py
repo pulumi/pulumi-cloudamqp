@@ -219,7 +219,7 @@ class Vpc(pulumi.CustomResource):
          $ pulumi import cloudamqp:index/vpc:Vpc <resource_name> <vpc_id>`
         ```
 
-         To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-vpcs). Or use the data source [`cloudamqp_account_vpcs`](https://registry.terraform.io/providers/cloudamqp/cloudamqp/latest/docs/data-sources/account_vpcs) to list all available standalone VPCs for an account.
+         To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-vpcs). Or use the data source `cloudamqp_account_vpcs` to list all available standalone VPCs for an account.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -274,7 +274,7 @@ class Vpc(pulumi.CustomResource):
          $ pulumi import cloudamqp:index/vpc:Vpc <resource_name> <vpc_id>`
         ```
 
-         To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-vpcs). Or use the data source [`cloudamqp_account_vpcs`](https://registry.terraform.io/providers/cloudamqp/cloudamqp/latest/docs/data-sources/account_vpcs) to list all available standalone VPCs for an account.
+         To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-vpcs). Or use the data source `cloudamqp_account_vpcs` to list all available standalone VPCs for an account.
 
         :param str resource_name: The name of the resource.
         :param VpcArgs args: The arguments to use to populate this resource's properties.

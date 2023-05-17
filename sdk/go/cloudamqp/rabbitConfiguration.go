@@ -13,7 +13,7 @@ import (
 
 // This resource allows you update RabbitMQ config.
 //
-// Only available for dedicated subscription plans.
+// Only available for dedicated subscription plans running ***RabbitMQ***.
 //
 // ## Argument threshold values
 //
@@ -27,6 +27,9 @@ import (
 // | queueIndexEmbedMsgsBelow | int | 4096 | 1 | 10485760 | bytes | Applied immediately for new queues, requires restart for existing queues |  |
 // | maxMessageSize | int | 134217728 | 1 | 536870912 | bytes | Only effects new channels |  |
 // | logExchangeLevel | string | error | - | - |  | RabbitMQ restart required | debug, info, warning, error, critical |
+// | clusterPartitionHandling | string | see below | - | - |  | Applied immediately | autoheal, pause_minority, ignore |
+//
+//	*Note: Recommended setting for cluster_partition_handling: `autoheal` for cluster with 1-2 nodes, `pauseMinority` for cluster with 3 or more nodes. While `ignore` setting is not recommended.*
 //
 // ## Dependency
 //
@@ -46,6 +49,8 @@ type RabbitConfiguration struct {
 
 	// Set the maximum permissible number of channels per connection.
 	ChannelMax pulumi.IntOutput `pulumi:"channelMax"`
+	// Set how the cluster should handle network partition.
+	ClusterPartitionHandling pulumi.StringOutput `pulumi:"clusterPartitionHandling"`
 	// Set the maximum permissible number of connection.
 	ConnectionMax pulumi.IntOutput `pulumi:"connectionMax"`
 	// A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
@@ -55,6 +60,8 @@ type RabbitConfiguration struct {
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
 	// Log level for the logger used for log integrations and the CloudAMQP Console log view.
+	//
+	// ***Note: Requires a restart of RabbitMQ to be applied.***
 	LogExchangeLevel pulumi.StringOutput `pulumi:"logExchangeLevel"`
 	// The largest allowed message payload size in bytes.
 	MaxMessageSize pulumi.IntOutput `pulumi:"maxMessageSize"`
@@ -102,6 +109,8 @@ func GetRabbitConfiguration(ctx *pulumi.Context,
 type rabbitConfigurationState struct {
 	// Set the maximum permissible number of channels per connection.
 	ChannelMax *int `pulumi:"channelMax"`
+	// Set how the cluster should handle network partition.
+	ClusterPartitionHandling *string `pulumi:"clusterPartitionHandling"`
 	// Set the maximum permissible number of connection.
 	ConnectionMax *int `pulumi:"connectionMax"`
 	// A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
@@ -111,6 +120,8 @@ type rabbitConfigurationState struct {
 	// The CloudAMQP instance ID.
 	InstanceId *int `pulumi:"instanceId"`
 	// Log level for the logger used for log integrations and the CloudAMQP Console log view.
+	//
+	// ***Note: Requires a restart of RabbitMQ to be applied.***
 	LogExchangeLevel *string `pulumi:"logExchangeLevel"`
 	// The largest allowed message payload size in bytes.
 	MaxMessageSize *int `pulumi:"maxMessageSize"`
@@ -127,6 +138,8 @@ type rabbitConfigurationState struct {
 type RabbitConfigurationState struct {
 	// Set the maximum permissible number of channels per connection.
 	ChannelMax pulumi.IntPtrInput
+	// Set how the cluster should handle network partition.
+	ClusterPartitionHandling pulumi.StringPtrInput
 	// Set the maximum permissible number of connection.
 	ConnectionMax pulumi.IntPtrInput
 	// A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
@@ -136,6 +149,8 @@ type RabbitConfigurationState struct {
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntPtrInput
 	// Log level for the logger used for log integrations and the CloudAMQP Console log view.
+	//
+	// ***Note: Requires a restart of RabbitMQ to be applied.***
 	LogExchangeLevel pulumi.StringPtrInput
 	// The largest allowed message payload size in bytes.
 	MaxMessageSize pulumi.IntPtrInput
@@ -156,6 +171,8 @@ func (RabbitConfigurationState) ElementType() reflect.Type {
 type rabbitConfigurationArgs struct {
 	// Set the maximum permissible number of channels per connection.
 	ChannelMax *int `pulumi:"channelMax"`
+	// Set how the cluster should handle network partition.
+	ClusterPartitionHandling *string `pulumi:"clusterPartitionHandling"`
 	// Set the maximum permissible number of connection.
 	ConnectionMax *int `pulumi:"connectionMax"`
 	// A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
@@ -165,6 +182,8 @@ type rabbitConfigurationArgs struct {
 	// The CloudAMQP instance ID.
 	InstanceId int `pulumi:"instanceId"`
 	// Log level for the logger used for log integrations and the CloudAMQP Console log view.
+	//
+	// ***Note: Requires a restart of RabbitMQ to be applied.***
 	LogExchangeLevel *string `pulumi:"logExchangeLevel"`
 	// The largest allowed message payload size in bytes.
 	MaxMessageSize *int `pulumi:"maxMessageSize"`
@@ -182,6 +201,8 @@ type rabbitConfigurationArgs struct {
 type RabbitConfigurationArgs struct {
 	// Set the maximum permissible number of channels per connection.
 	ChannelMax pulumi.IntPtrInput
+	// Set how the cluster should handle network partition.
+	ClusterPartitionHandling pulumi.StringPtrInput
 	// Set the maximum permissible number of connection.
 	ConnectionMax pulumi.IntPtrInput
 	// A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
@@ -191,6 +212,8 @@ type RabbitConfigurationArgs struct {
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntInput
 	// Log level for the logger used for log integrations and the CloudAMQP Console log view.
+	//
+	// ***Note: Requires a restart of RabbitMQ to be applied.***
 	LogExchangeLevel pulumi.StringPtrInput
 	// The largest allowed message payload size in bytes.
 	MaxMessageSize pulumi.IntPtrInput
@@ -296,6 +319,11 @@ func (o RabbitConfigurationOutput) ChannelMax() pulumi.IntOutput {
 	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntOutput { return v.ChannelMax }).(pulumi.IntOutput)
 }
 
+// Set how the cluster should handle network partition.
+func (o RabbitConfigurationOutput) ClusterPartitionHandling() pulumi.StringOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.StringOutput { return v.ClusterPartitionHandling }).(pulumi.StringOutput)
+}
+
 // Set the maximum permissible number of connection.
 func (o RabbitConfigurationOutput) ConnectionMax() pulumi.IntOutput {
 	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntOutput { return v.ConnectionMax }).(pulumi.IntOutput)
@@ -317,6 +345,8 @@ func (o RabbitConfigurationOutput) InstanceId() pulumi.IntOutput {
 }
 
 // Log level for the logger used for log integrations and the CloudAMQP Console log view.
+//
+// ***Note: Requires a restart of RabbitMQ to be applied.***
 func (o RabbitConfigurationOutput) LogExchangeLevel() pulumi.StringOutput {
 	return o.ApplyT(func(v *RabbitConfiguration) pulumi.StringOutput { return v.LogExchangeLevel }).(pulumi.StringOutput)
 }

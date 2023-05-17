@@ -29,6 +29,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using CloudAmqp = Pulumi.CloudAmqp;
         /// 
@@ -52,6 +53,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using CloudAmqp = Pulumi.CloudAmqp;
         /// 
@@ -107,6 +109,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using CloudAmqp = Pulumi.CloudAmqp;
         /// 
@@ -130,6 +133,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using CloudAmqp = Pulumi.CloudAmqp;
         /// 
@@ -173,12 +177,16 @@ namespace Pulumi.CloudAmqp
     {
         /// <summary>
         /// The CloudAMQP instance identifier.
+        /// 
+        /// ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
         /// </summary>
         [Input("instanceId")]
         public int? InstanceId { get; set; }
 
         /// <summary>
         /// The managed VPC identifier.
+        /// 
+        /// ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
         /// </summary>
         [Input("vpcId")]
         public string? VpcId { get; set; }
@@ -193,12 +201,16 @@ namespace Pulumi.CloudAmqp
     {
         /// <summary>
         /// The CloudAMQP instance identifier.
+        /// 
+        /// ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
 
         /// <summary>
         /// The managed VPC identifier.
+        /// 
+        /// ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
         /// </summary>
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }

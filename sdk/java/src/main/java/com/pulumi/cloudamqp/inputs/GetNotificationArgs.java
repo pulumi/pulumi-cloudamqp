@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -46,6 +47,13 @@ public final class GetNotificationArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.name);
     }
 
+    @Import(name="options")
+    private @Nullable Output<Map<String,String>> options;
+
+    public Optional<Output<Map<String,String>>> options() {
+        return Optional.ofNullable(this.options);
+    }
+
     /**
      * The recipient identifier.
      * 
@@ -66,6 +74,7 @@ public final class GetNotificationArgs extends com.pulumi.resources.InvokeArgs {
     private GetNotificationArgs(GetNotificationArgs $) {
         this.instanceId = $.instanceId;
         this.name = $.name;
+        this.options = $.options;
         this.recipientId = $.recipientId;
     }
 
@@ -127,6 +136,15 @@ public final class GetNotificationArgs extends com.pulumi.resources.InvokeArgs {
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        public Builder options(@Nullable Output<Map<String,String>> options) {
+            $.options = options;
+            return this;
+        }
+
+        public Builder options(Map<String,String> options) {
+            return options(Output.of(options));
         }
 
         /**

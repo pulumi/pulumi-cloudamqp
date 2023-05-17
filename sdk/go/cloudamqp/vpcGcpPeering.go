@@ -11,6 +11,169 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// This resouce creates a VPC peering configuration for the CloudAMQP instance. The configuration will connect to another VPC network hosted on Google Cloud Platform (GCP). See the [GCP documentation](https://cloud.google.com/vpc/docs/using-vpc-peering) for more information on how to create the VPC peering configuration.
+//
+// Only available for dedicated subscription plans.
+//
+// Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
+//
+// ## Example Usage
+// ### With Additional Firewall Rules
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>VPC peering pre v1.16.0</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			vpcPeeringRequest, err := cloudamqp.NewVpcGcpPeering(ctx, "vpcPeeringRequest", &cloudamqp.VpcGcpPeeringArgs{
+//				InstanceId:     pulumi.Any(cloudamqp_instance.Instance.Id),
+//				PeerNetworkUri: pulumi.Any(_var.Peer_network_uri),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewSecurityFirewall(ctx, "firewallSettings", &cloudamqp.SecurityFirewallArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Rules: cloudamqp.SecurityFirewallRuleArray{
+//					&cloudamqp.SecurityFirewallRuleArgs{
+//						Ip: pulumi.Any(_var.Peer_subnet),
+//						Ports: pulumi.IntArray{
+//							pulumi.Int(15672),
+//						},
+//						Services: pulumi.StringArray{
+//							pulumi.String("AMQP"),
+//							pulumi.String("AMQPS"),
+//							pulumi.String("STREAM"),
+//							pulumi.String("STREAM_SSL"),
+//						},
+//						Description: pulumi.String("VPC peering for <NETWORK>"),
+//					},
+//					&cloudamqp.SecurityFirewallRuleArgs{
+//						Ip: pulumi.String("192.168.0.0/24"),
+//						Ports: pulumi.IntArray{
+//							pulumi.Int(4567),
+//							pulumi.Int(4568),
+//						},
+//						Services: pulumi.StringArray{
+//							pulumi.String("AMQP"),
+//							pulumi.String("AMQPS"),
+//							pulumi.String("HTTPS"),
+//						},
+//					},
+//				},
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				vpcPeeringRequest,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>VPC peering post v1.16.0 (Managed VPC)</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			vpcPeeringRequest, err := cloudamqp.NewVpcGcpPeering(ctx, "vpcPeeringRequest", &cloudamqp.VpcGcpPeeringArgs{
+//				VpcId:          pulumi.Any(cloudamqp_vpc.Vpc.Id),
+//				PeerNetworkUri: pulumi.Any(_var.Peer_network_uri),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewSecurityFirewall(ctx, "firewallSettings", &cloudamqp.SecurityFirewallArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Rules: cloudamqp.SecurityFirewallRuleArray{
+//					&cloudamqp.SecurityFirewallRuleArgs{
+//						Ip: pulumi.Any(_var.Peer_subnet),
+//						Ports: pulumi.IntArray{
+//							pulumi.Int(15672),
+//						},
+//						Services: pulumi.StringArray{
+//							pulumi.String("AMQP"),
+//							pulumi.String("AMQPS"),
+//							pulumi.String("STREAM"),
+//							pulumi.String("STREAM_SSL"),
+//						},
+//						Description: pulumi.String("VPC peering for <NETWORK>"),
+//					},
+//					&cloudamqp.SecurityFirewallRuleArgs{
+//						Ip: pulumi.String("192.168.0.0/24"),
+//						Ports: pulumi.IntArray{
+//							pulumi.Int(4567),
+//							pulumi.Int(4568),
+//						},
+//						Services: pulumi.StringArray{
+//							pulumi.String("AMQP"),
+//							pulumi.String("AMQPS"),
+//							pulumi.String("HTTPS"),
+//						},
+//					},
+//				},
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				vpcPeeringRequest,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// </details>
+// ## Depedency
+//
+// *Pre v1.16.0*
+// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+//
+// *Post v1.16.0*
+// This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
+//
+// ## Create VPC Peering with additional firewall rules
+//
+// To create a VPC peering configuration with additional firewall rules, it's required to chain the SecurityFirewall
+// resource to avoid parallel conflicting resource calls. This is done by adding dependency from the firewall resource to the VPC peering resource.
+//
+// Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for the VPC peering also needs to be added.
+//
+// See example below.
+//
 // ## Import
 //
 // Not possible to import this resource.
@@ -20,6 +183,8 @@ type VpcGcpPeering struct {
 	// VPC peering auto created routes
 	AutoCreateRoutes pulumi.BoolOutput `pulumi:"autoCreateRoutes"`
 	// The CloudAMQP instance identifier.
+	//
+	// ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
 	InstanceId pulumi.IntPtrOutput `pulumi:"instanceId"`
 	// Network uri of the VPC network to which you will peer with.
 	PeerNetworkUri pulumi.StringOutput `pulumi:"peerNetworkUri"`
@@ -28,6 +193,8 @@ type VpcGcpPeering struct {
 	// VPC peering state details
 	StateDetails pulumi.StringOutput `pulumi:"stateDetails"`
 	// The managed VPC identifier.
+	//
+	// ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
 	VpcId pulumi.StringPtrOutput `pulumi:"vpcId"`
 }
 
@@ -66,6 +233,8 @@ type vpcGcpPeeringState struct {
 	// VPC peering auto created routes
 	AutoCreateRoutes *bool `pulumi:"autoCreateRoutes"`
 	// The CloudAMQP instance identifier.
+	//
+	// ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
 	InstanceId *int `pulumi:"instanceId"`
 	// Network uri of the VPC network to which you will peer with.
 	PeerNetworkUri *string `pulumi:"peerNetworkUri"`
@@ -74,6 +243,8 @@ type vpcGcpPeeringState struct {
 	// VPC peering state details
 	StateDetails *string `pulumi:"stateDetails"`
 	// The managed VPC identifier.
+	//
+	// ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
 	VpcId *string `pulumi:"vpcId"`
 }
 
@@ -81,6 +252,8 @@ type VpcGcpPeeringState struct {
 	// VPC peering auto created routes
 	AutoCreateRoutes pulumi.BoolPtrInput
 	// The CloudAMQP instance identifier.
+	//
+	// ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
 	InstanceId pulumi.IntPtrInput
 	// Network uri of the VPC network to which you will peer with.
 	PeerNetworkUri pulumi.StringPtrInput
@@ -89,6 +262,8 @@ type VpcGcpPeeringState struct {
 	// VPC peering state details
 	StateDetails pulumi.StringPtrInput
 	// The managed VPC identifier.
+	//
+	// ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
 	VpcId pulumi.StringPtrInput
 }
 
@@ -98,20 +273,28 @@ func (VpcGcpPeeringState) ElementType() reflect.Type {
 
 type vpcGcpPeeringArgs struct {
 	// The CloudAMQP instance identifier.
+	//
+	// ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
 	InstanceId *int `pulumi:"instanceId"`
 	// Network uri of the VPC network to which you will peer with.
 	PeerNetworkUri string `pulumi:"peerNetworkUri"`
 	// The managed VPC identifier.
+	//
+	// ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
 	VpcId *string `pulumi:"vpcId"`
 }
 
 // The set of arguments for constructing a VpcGcpPeering resource.
 type VpcGcpPeeringArgs struct {
 	// The CloudAMQP instance identifier.
+	//
+	// ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
 	InstanceId pulumi.IntPtrInput
 	// Network uri of the VPC network to which you will peer with.
 	PeerNetworkUri pulumi.StringInput
 	// The managed VPC identifier.
+	//
+	// ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
 	VpcId pulumi.StringPtrInput
 }
 
@@ -208,6 +391,8 @@ func (o VpcGcpPeeringOutput) AutoCreateRoutes() pulumi.BoolOutput {
 }
 
 // The CloudAMQP instance identifier.
+//
+// ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
 func (o VpcGcpPeeringOutput) InstanceId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *VpcGcpPeering) pulumi.IntPtrOutput { return v.InstanceId }).(pulumi.IntPtrOutput)
 }
@@ -228,6 +413,8 @@ func (o VpcGcpPeeringOutput) StateDetails() pulumi.StringOutput {
 }
 
 // The managed VPC identifier.
+//
+// ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
 func (o VpcGcpPeeringOutput) VpcId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpcGcpPeering) pulumi.StringPtrOutput { return v.VpcId }).(pulumi.StringPtrOutput)
 }

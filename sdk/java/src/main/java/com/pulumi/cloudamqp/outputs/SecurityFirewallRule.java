@@ -16,6 +16,28 @@ public final class SecurityFirewallRule {
     /**
      * @return Description name of the rule. e.g. Default.
      * 
+     * Pre-defined services for RabbitMQ:
+     * 
+     * | Service name | Port  |
+     * |--------------|-------|
+     * | AMQP         | 5672  |
+     * | AMQPS        | 5671  |
+     * | HTTPS        | 443   |
+     * | MQTT         | 1883  |
+     * | MQTTS        | 8883  |
+     * | STOMP        | 61613 |
+     * | STOMPS       | 61614 |
+     * | STREAM       | 5552  |
+     * | STREAM_SSL   | 5551  |
+     * 
+     * Pre-defined services for LavinMQ:
+     * 
+     * | Service name | Port  |
+     * |--------------|-------|
+     * | AMQP         | 5672  |
+     * | AMQPS        | 5671  |
+     * | HTTPS        | 443   |
+     * 
      */
     private @Nullable String description;
     /**
@@ -37,6 +59,28 @@ public final class SecurityFirewallRule {
     private SecurityFirewallRule() {}
     /**
      * @return Description name of the rule. e.g. Default.
+     * 
+     * Pre-defined services for RabbitMQ:
+     * 
+     * | Service name | Port  |
+     * |--------------|-------|
+     * | AMQP         | 5672  |
+     * | AMQPS        | 5671  |
+     * | HTTPS        | 443   |
+     * | MQTT         | 1883  |
+     * | MQTTS        | 8883  |
+     * | STOMP        | 61613 |
+     * | STOMPS       | 61614 |
+     * | STREAM       | 5552  |
+     * | STREAM_SSL   | 5551  |
+     * 
+     * Pre-defined services for LavinMQ:
+     * 
+     * | Service name | Port  |
+     * |--------------|-------|
+     * | AMQP         | 5672  |
+     * | AMQPS        | 5671  |
+     * | HTTPS        | 443   |
      * 
      */
     public Optional<String> description() {

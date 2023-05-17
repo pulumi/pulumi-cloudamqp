@@ -214,12 +214,16 @@ public final class IntegrationLogArgs extends com.pulumi.resources.ResourceArgs 
     /**
      * Assign source type to the data exported, eg. generic_single_line. (Splunk)
      * 
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+     * 
      */
     @Import(name="sourcetype")
     private @Nullable Output<String> sourcetype;
 
     /**
      * @return Assign source type to the data exported, eg. generic_single_line. (Splunk)
+     * 
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
      * 
      */
     public Optional<Output<String>> sourcetype() {
@@ -587,6 +591,8 @@ public final class IntegrationLogArgs extends com.pulumi.resources.ResourceArgs 
         /**
          * @param sourcetype Assign source type to the data exported, eg. generic_single_line. (Splunk)
          * 
+         * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+         * 
          * @return builder
          * 
          */
@@ -597,6 +603,8 @@ public final class IntegrationLogArgs extends com.pulumi.resources.ResourceArgs 
 
         /**
          * @param sourcetype Assign source type to the data exported, eg. generic_single_line. (Splunk)
+         * 
+         * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
          * 
          * @return builder
          * 
