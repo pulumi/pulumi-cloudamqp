@@ -118,6 +118,28 @@ func (o ExtraDiskSizeNodeArrayOutput) Index(i pulumi.IntInput) ExtraDiskSizeNode
 
 type SecurityFirewallRule struct {
 	// Description name of the rule. e.g. Default.
+	//
+	// Pre-defined services for RabbitMQ:
+	//
+	// | Service name | Port  |
+	// |--------------|-------|
+	// | AMQP         | 5672  |
+	// | AMQPS        | 5671  |
+	// | HTTPS        | 443   |
+	// | MQTT         | 1883  |
+	// | MQTTS        | 8883  |
+	// | STOMP        | 61613 |
+	// | STOMPS       | 61614 |
+	// | STREAM       | 5552  |
+	// | STREAM_SSL   | 5551  |
+	//
+	// Pre-defined services for LavinMQ:
+	//
+	// | Service name | Port  |
+	// |--------------|-------|
+	// | AMQP         | 5672  |
+	// | AMQPS        | 5671  |
+	// | HTTPS        | 443   |
 	Description *string `pulumi:"description"`
 	// CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
 	Ip string `pulumi:"ip"`
@@ -140,6 +162,28 @@ type SecurityFirewallRuleInput interface {
 
 type SecurityFirewallRuleArgs struct {
 	// Description name of the rule. e.g. Default.
+	//
+	// Pre-defined services for RabbitMQ:
+	//
+	// | Service name | Port  |
+	// |--------------|-------|
+	// | AMQP         | 5672  |
+	// | AMQPS        | 5671  |
+	// | HTTPS        | 443   |
+	// | MQTT         | 1883  |
+	// | MQTTS        | 8883  |
+	// | STOMP        | 61613 |
+	// | STOMPS       | 61614 |
+	// | STREAM       | 5552  |
+	// | STREAM_SSL   | 5551  |
+	//
+	// Pre-defined services for LavinMQ:
+	//
+	// | Service name | Port  |
+	// |--------------|-------|
+	// | AMQP         | 5672  |
+	// | AMQPS        | 5671  |
+	// | HTTPS        | 443   |
 	Description pulumi.StringPtrInput `pulumi:"description"`
 	// CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
 	Ip pulumi.StringInput `pulumi:"ip"`
@@ -201,6 +245,28 @@ func (o SecurityFirewallRuleOutput) ToSecurityFirewallRuleOutputWithContext(ctx 
 }
 
 // Description name of the rule. e.g. Default.
+//
+// Pre-defined services for RabbitMQ:
+//
+// | Service name | Port  |
+// |--------------|-------|
+// | AMQP         | 5672  |
+// | AMQPS        | 5671  |
+// | HTTPS        | 443   |
+// | MQTT         | 1883  |
+// | MQTTS        | 8883  |
+// | STOMP        | 61613 |
+// | STOMPS       | 61614 |
+// | STREAM       | 5552  |
+// | STREAM_SSL   | 5551  |
+//
+// Pre-defined services for LavinMQ:
+//
+// | Service name | Port  |
+// |--------------|-------|
+// | AMQP         | 5672  |
+// | AMQPS        | 5671  |
+// | HTTPS        | 443   |
 func (o SecurityFirewallRuleOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecurityFirewallRule) *string { return v.Description }).(pulumi.StringPtrOutput)
 }

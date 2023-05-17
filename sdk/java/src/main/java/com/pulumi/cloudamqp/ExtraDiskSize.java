@@ -340,12 +340,16 @@ public class ExtraDiskSize extends com.pulumi.resources.CustomResource {
     /**
      * Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
      * 
+     * ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
+     * 
      */
     @Export(name="timeout", type=Integer.class, parameters={})
     private Output</* @Nullable */ Integer> timeout;
 
     /**
      * @return Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+     * 
+     * ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
      * 
      */
     public Output<Optional<Integer>> timeout() {

@@ -216,6 +216,8 @@ export class ExtraDiskSize extends pulumi.CustomResource {
     public readonly sleep!: pulumi.Output<number | undefined>;
     /**
      * Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+     *
+     * ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from v1.25.0.
      */
     public readonly timeout!: pulumi.Output<number | undefined>;
 
@@ -281,6 +283,8 @@ export interface ExtraDiskSizeState {
     sleep?: pulumi.Input<number>;
     /**
      * Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+     *
+     * ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from v1.25.0.
      */
     timeout?: pulumi.Input<number>;
 }
@@ -307,6 +311,8 @@ export interface ExtraDiskSizeArgs {
     sleep?: pulumi.Input<number>;
     /**
      * Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+     *
+     * ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from v1.25.0.
      */
     timeout?: pulumi.Input<number>;
 }

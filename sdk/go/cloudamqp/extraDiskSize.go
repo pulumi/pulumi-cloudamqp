@@ -261,6 +261,8 @@ type ExtraDiskSize struct {
 	// Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
 	Sleep pulumi.IntPtrOutput `pulumi:"sleep"`
 	// Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+	//
+	// ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from v1.25.0.
 	Timeout pulumi.IntPtrOutput `pulumi:"timeout"`
 }
 
@@ -309,6 +311,8 @@ type extraDiskSizeState struct {
 	// Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
 	Sleep *int `pulumi:"sleep"`
 	// Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+	//
+	// ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from v1.25.0.
 	Timeout *int `pulumi:"timeout"`
 }
 
@@ -323,6 +327,8 @@ type ExtraDiskSizeState struct {
 	// Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
 	Sleep pulumi.IntPtrInput
 	// Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+	//
+	// ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from v1.25.0.
 	Timeout pulumi.IntPtrInput
 }
 
@@ -340,6 +346,8 @@ type extraDiskSizeArgs struct {
 	// Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
 	Sleep *int `pulumi:"sleep"`
 	// Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+	//
+	// ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from v1.25.0.
 	Timeout *int `pulumi:"timeout"`
 }
 
@@ -354,6 +362,8 @@ type ExtraDiskSizeArgs struct {
 	// Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
 	Sleep pulumi.IntPtrInput
 	// Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+	//
+	// ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from v1.25.0.
 	Timeout pulumi.IntPtrInput
 }
 
@@ -469,6 +479,8 @@ func (o ExtraDiskSizeOutput) Sleep() pulumi.IntPtrOutput {
 }
 
 // Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+//
+// ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from v1.25.0.
 func (o ExtraDiskSizeOutput) Timeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ExtraDiskSize) pulumi.IntPtrOutput { return v.Timeout }).(pulumi.IntPtrOutput)
 }

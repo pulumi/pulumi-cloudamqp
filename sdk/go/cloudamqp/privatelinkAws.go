@@ -141,6 +141,11 @@ type PrivatelinkAws struct {
 	// PrivateLink status [enable, pending, disable]
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+	//
+	// Allowed principals format: <br>
+	// `arn:aws:iam::aws-account-id:root` <br>
+	// `arn:aws:iam::aws-account-id:user/user-name` <br>
+	// `arn:aws:iam::aws-account-id:role/role-name`
 	Timeout pulumi.IntPtrOutput `pulumi:"timeout"`
 }
 
@@ -192,6 +197,11 @@ type privatelinkAwsState struct {
 	// PrivateLink status [enable, pending, disable]
 	Status *string `pulumi:"status"`
 	// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+	//
+	// Allowed principals format: <br>
+	// `arn:aws:iam::aws-account-id:root` <br>
+	// `arn:aws:iam::aws-account-id:user/user-name` <br>
+	// `arn:aws:iam::aws-account-id:role/role-name`
 	Timeout *int `pulumi:"timeout"`
 }
 
@@ -209,6 +219,11 @@ type PrivatelinkAwsState struct {
 	// PrivateLink status [enable, pending, disable]
 	Status pulumi.StringPtrInput
 	// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+	//
+	// Allowed principals format: <br>
+	// `arn:aws:iam::aws-account-id:root` <br>
+	// `arn:aws:iam::aws-account-id:user/user-name` <br>
+	// `arn:aws:iam::aws-account-id:role/role-name`
 	Timeout pulumi.IntPtrInput
 }
 
@@ -224,6 +239,11 @@ type privatelinkAwsArgs struct {
 	// Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
 	Sleep *int `pulumi:"sleep"`
 	// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+	//
+	// Allowed principals format: <br>
+	// `arn:aws:iam::aws-account-id:root` <br>
+	// `arn:aws:iam::aws-account-id:user/user-name` <br>
+	// `arn:aws:iam::aws-account-id:role/role-name`
 	Timeout *int `pulumi:"timeout"`
 }
 
@@ -236,6 +256,11 @@ type PrivatelinkAwsArgs struct {
 	// Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
 	Sleep pulumi.IntPtrInput
 	// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+	//
+	// Allowed principals format: <br>
+	// `arn:aws:iam::aws-account-id:root` <br>
+	// `arn:aws:iam::aws-account-id:user/user-name` <br>
+	// `arn:aws:iam::aws-account-id:role/role-name`
 	Timeout pulumi.IntPtrInput
 }
 
@@ -357,6 +382,11 @@ func (o PrivatelinkAwsOutput) Status() pulumi.StringOutput {
 }
 
 // Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+//
+// Allowed principals format: <br>
+// `arn:aws:iam::aws-account-id:root` <br>
+// `arn:aws:iam::aws-account-id:user/user-name` <br>
+// `arn:aws:iam::aws-account-id:role/role-name`
 func (o PrivatelinkAwsOutput) Timeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *PrivatelinkAws) pulumi.IntPtrOutput { return v.Timeout }).(pulumi.IntPtrOutput)
 }

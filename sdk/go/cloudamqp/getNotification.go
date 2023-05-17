@@ -45,6 +45,7 @@ import (
 // * `id`    - The identifier for this resource.
 // * `type`  - The type of the recipient.
 // * `value` - The notification endpoint, where to send the notification.
+// * `options`- Options argument (e.g. `rk` used for VictorOps routing key).
 //
 // ## Dependency
 //
@@ -63,7 +64,8 @@ type LookupNotificationArgs struct {
 	// The CloudAMQP instance identifier.
 	InstanceId int `pulumi:"instanceId"`
 	// The name set for the recipient.
-	Name *string `pulumi:"name"`
+	Name    *string           `pulumi:"name"`
+	Options map[string]string `pulumi:"options"`
 	// The recipient identifier.
 	RecipientId *int `pulumi:"recipientId"`
 }
@@ -71,12 +73,13 @@ type LookupNotificationArgs struct {
 // A collection of values returned by getNotification.
 type LookupNotificationResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	InstanceId  int     `pulumi:"instanceId"`
-	Name        *string `pulumi:"name"`
-	RecipientId *int    `pulumi:"recipientId"`
-	Type        string  `pulumi:"type"`
-	Value       string  `pulumi:"value"`
+	Id          string            `pulumi:"id"`
+	InstanceId  int               `pulumi:"instanceId"`
+	Name        *string           `pulumi:"name"`
+	Options     map[string]string `pulumi:"options"`
+	RecipientId *int              `pulumi:"recipientId"`
+	Type        string            `pulumi:"type"`
+	Value       string            `pulumi:"value"`
 }
 
 func LookupNotificationOutput(ctx *pulumi.Context, args LookupNotificationOutputArgs, opts ...pulumi.InvokeOption) LookupNotificationResultOutput {
@@ -97,7 +100,8 @@ type LookupNotificationOutputArgs struct {
 	// The CloudAMQP instance identifier.
 	InstanceId pulumi.IntInput `pulumi:"instanceId"`
 	// The name set for the recipient.
-	Name pulumi.StringPtrInput `pulumi:"name"`
+	Name    pulumi.StringPtrInput `pulumi:"name"`
+	Options pulumi.StringMapInput `pulumi:"options"`
 	// The recipient identifier.
 	RecipientId pulumi.IntPtrInput `pulumi:"recipientId"`
 }
@@ -132,6 +136,10 @@ func (o LookupNotificationResultOutput) InstanceId() pulumi.IntOutput {
 
 func (o LookupNotificationResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupNotificationResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupNotificationResultOutput) Options() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupNotificationResult) map[string]string { return v.Options }).(pulumi.StringMapOutput)
 }
 
 func (o LookupNotificationResultOutput) RecipientId() pulumi.IntPtrOutput {

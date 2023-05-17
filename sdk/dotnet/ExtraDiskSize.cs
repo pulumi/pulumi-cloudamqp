@@ -44,6 +44,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
@@ -82,6 +83,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
@@ -120,6 +122,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
@@ -158,6 +161,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
@@ -244,6 +248,8 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+        /// 
+        /// ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
         /// </summary>
         [Output("timeout")]
         public Output<int?> Timeout { get; private set; } = null!;
@@ -320,6 +326,8 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+        /// 
+        /// ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
@@ -366,6 +374,8 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+        /// 
+        /// ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }

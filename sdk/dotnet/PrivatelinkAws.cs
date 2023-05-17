@@ -24,6 +24,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
@@ -56,6 +57,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
@@ -148,6 +150,11 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+        /// 
+        /// Allowed principals format: &lt;br&gt;
+        /// `arn:aws:iam::aws-account-id:root` &lt;br&gt;
+        /// `arn:aws:iam::aws-account-id:user/user-name` &lt;br&gt;
+        /// `arn:aws:iam::aws-account-id:role/role-name`
         /// </summary>
         [Output("timeout")]
         public Output<int?> Timeout { get; private set; } = null!;
@@ -224,6 +231,11 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+        /// 
+        /// Allowed principals format: &lt;br&gt;
+        /// `arn:aws:iam::aws-account-id:root` &lt;br&gt;
+        /// `arn:aws:iam::aws-account-id:user/user-name` &lt;br&gt;
+        /// `arn:aws:iam::aws-account-id:role/role-name`
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
@@ -286,6 +298,11 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+        /// 
+        /// Allowed principals format: &lt;br&gt;
+        /// `arn:aws:iam::aws-account-id:root` &lt;br&gt;
+        /// `arn:aws:iam::aws-account-id:user/user-name` &lt;br&gt;
+        /// `arn:aws:iam::aws-account-id:role/role-name`
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }

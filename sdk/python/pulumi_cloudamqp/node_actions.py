@@ -171,7 +171,7 @@ class NodeActions(pulumi.CustomResource):
         ```
         </details>
 
-        Using data source _get_nodes_ to restart RabbitMQ on all nodes.</br>
+        Using data source `get_nodes` to restart RabbitMQ on all nodes.</br>
         ***Note: RabbitMQ restart on multiple nodes need to be chained, so one node restart at the time.***
 
         <details>
@@ -185,7 +185,7 @@ class NodeActions(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        list_nodes = cloudamqp.get_nodes(instance_id=cloudamqp_instance["instance"]["id"])
+        list_nodes = cloudamqp.get_nodes(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
         restart01 = cloudamqp.NodeActions("restart01",
             instance_id=cloudamqp_instance["instance"]["id"],
             action="restart",
@@ -217,7 +217,7 @@ class NodeActions(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        list_nodes = cloudamqp.get_nodes(instance_id=cloudamqp_instance["instance"]["id"])
+        list_nodes = cloudamqp.get_nodes(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
         rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmqConfig",
             instance_id=cloudamqp_instance["instance"]["id"],
             log_exchange_level="info")
@@ -303,7 +303,7 @@ class NodeActions(pulumi.CustomResource):
         ```
         </details>
 
-        Using data source _get_nodes_ to restart RabbitMQ on all nodes.</br>
+        Using data source `get_nodes` to restart RabbitMQ on all nodes.</br>
         ***Note: RabbitMQ restart on multiple nodes need to be chained, so one node restart at the time.***
 
         <details>
@@ -317,7 +317,7 @@ class NodeActions(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        list_nodes = cloudamqp.get_nodes(instance_id=cloudamqp_instance["instance"]["id"])
+        list_nodes = cloudamqp.get_nodes(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
         restart01 = cloudamqp.NodeActions("restart01",
             instance_id=cloudamqp_instance["instance"]["id"],
             action="restart",
@@ -349,7 +349,7 @@ class NodeActions(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        list_nodes = cloudamqp.get_nodes(instance_id=cloudamqp_instance["instance"]["id"])
+        list_nodes = cloudamqp.get_nodes(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
         rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmqConfig",
             instance_id=cloudamqp_instance["instance"]["id"],
             log_exchange_level="info")

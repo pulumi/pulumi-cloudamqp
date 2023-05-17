@@ -123,6 +123,9 @@ export class PrivatelinkAzure extends pulumi.CustomResource {
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
      * Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+     *
+     * Approved subscriptions format: <br>
+     * `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
      */
     public readonly timeout!: pulumi.Output<number | undefined>;
 
@@ -197,6 +200,9 @@ export interface PrivatelinkAzureState {
     status?: pulumi.Input<string>;
     /**
      * Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+     *
+     * Approved subscriptions format: <br>
+     * `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
      */
     timeout?: pulumi.Input<number>;
 }
@@ -219,6 +225,9 @@ export interface PrivatelinkAzureArgs {
     sleep?: pulumi.Input<number>;
     /**
      * Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+     *
+     * Approved subscriptions format: <br>
+     * `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
      */
     timeout?: pulumi.Input<number>;
 }

@@ -13,6 +13,7 @@ import java.util.Objects;
 @CustomType
 public final class GetInstanceResult {
     private String apikey;
+    private String backend;
     private Boolean dedicated;
     private String host;
     private String hostInternal;
@@ -38,6 +39,9 @@ public final class GetInstanceResult {
     private GetInstanceResult() {}
     public String apikey() {
         return this.apikey;
+    }
+    public String backend() {
+        return this.backend;
     }
     public Boolean dedicated() {
         return this.dedicated;
@@ -105,6 +109,7 @@ public final class GetInstanceResult {
     @CustomType.Builder
     public static final class Builder {
         private String apikey;
+        private String backend;
         private Boolean dedicated;
         private String host;
         private String hostInternal;
@@ -126,6 +131,7 @@ public final class GetInstanceResult {
         public Builder(GetInstanceResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.apikey = defaults.apikey;
+    	      this.backend = defaults.backend;
     	      this.dedicated = defaults.dedicated;
     	      this.host = defaults.host;
     	      this.hostInternal = defaults.hostInternal;
@@ -148,6 +154,11 @@ public final class GetInstanceResult {
         @CustomType.Setter
         public Builder apikey(String apikey) {
             this.apikey = Objects.requireNonNull(apikey);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder backend(String backend) {
+            this.backend = Objects.requireNonNull(backend);
             return this;
         }
         @CustomType.Setter
@@ -241,6 +252,7 @@ public final class GetInstanceResult {
         public GetInstanceResult build() {
             final var o = new GetInstanceResult();
             o.apikey = apikey;
+            o.backend = backend;
             o.dedicated = dedicated;
             o.host = host;
             o.hostInternal = hostInternal;

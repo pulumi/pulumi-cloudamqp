@@ -7,7 +7,7 @@ import * as utilities from "./utilities";
 /**
  * This resource allows you update RabbitMQ config.
  *
- * Only available for dedicated subscription plans.
+ * Only available for dedicated subscription plans running ***RabbitMQ***.
  *
  * ## Argument threshold values
  *
@@ -21,6 +21,9 @@ import * as utilities from "./utilities";
  * | queueIndexEmbedMsgsBelow | int | 4096 | 1 | 10485760 | bytes | Applied immediately for new queues, requires restart for existing queues |  |
  * | maxMessageSize | int | 134217728 | 1 | 536870912 | bytes | Only effects new channels |  |
  * | logExchangeLevel | string | error | - | - |  | RabbitMQ restart required | debug, info, warning, error, critical |
+ * | clusterPartitionHandling | string | see below | - | - |  | Applied immediately | autoheal, pause_minority, ignore |
+ *
+ *   *Note: Recommended setting for cluster_partition_handling: `autoheal` for cluster with 1-2 nodes, `pauseMinority` for cluster with 3 or more nodes. While `ignore` setting is not recommended.*
  *
  * ## Dependency
  *
@@ -67,6 +70,10 @@ export class RabbitConfiguration extends pulumi.CustomResource {
      */
     public readonly channelMax!: pulumi.Output<number>;
     /**
+     * Set how the cluster should handle network partition.
+     */
+    public readonly clusterPartitionHandling!: pulumi.Output<string>;
+    /**
      * Set the maximum permissible number of connection.
      */
     public readonly connectionMax!: pulumi.Output<number>;
@@ -84,6 +91,8 @@ export class RabbitConfiguration extends pulumi.CustomResource {
     public readonly instanceId!: pulumi.Output<number>;
     /**
      * Log level for the logger used for log integrations and the CloudAMQP Console log view.
+     *
+     * ***Note: Requires a restart of RabbitMQ to be applied.***
      */
     public readonly logExchangeLevel!: pulumi.Output<string>;
     /**
@@ -121,6 +130,7 @@ export class RabbitConfiguration extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as RabbitConfigurationState | undefined;
             resourceInputs["channelMax"] = state ? state.channelMax : undefined;
+            resourceInputs["clusterPartitionHandling"] = state ? state.clusterPartitionHandling : undefined;
             resourceInputs["connectionMax"] = state ? state.connectionMax : undefined;
             resourceInputs["consumerTimeout"] = state ? state.consumerTimeout : undefined;
             resourceInputs["heartbeat"] = state ? state.heartbeat : undefined;
@@ -137,6 +147,7 @@ export class RabbitConfiguration extends pulumi.CustomResource {
                 throw new Error("Missing required property 'instanceId'");
             }
             resourceInputs["channelMax"] = args ? args.channelMax : undefined;
+            resourceInputs["clusterPartitionHandling"] = args ? args.clusterPartitionHandling : undefined;
             resourceInputs["connectionMax"] = args ? args.connectionMax : undefined;
             resourceInputs["consumerTimeout"] = args ? args.consumerTimeout : undefined;
             resourceInputs["heartbeat"] = args ? args.heartbeat : undefined;
@@ -162,6 +173,10 @@ export interface RabbitConfigurationState {
      */
     channelMax?: pulumi.Input<number>;
     /**
+     * Set how the cluster should handle network partition.
+     */
+    clusterPartitionHandling?: pulumi.Input<string>;
+    /**
      * Set the maximum permissible number of connection.
      */
     connectionMax?: pulumi.Input<number>;
@@ -179,6 +194,8 @@ export interface RabbitConfigurationState {
     instanceId?: pulumi.Input<number>;
     /**
      * Log level for the logger used for log integrations and the CloudAMQP Console log view.
+     *
+     * ***Note: Requires a restart of RabbitMQ to be applied.***
      */
     logExchangeLevel?: pulumi.Input<string>;
     /**
@@ -212,6 +229,10 @@ export interface RabbitConfigurationArgs {
      */
     channelMax?: pulumi.Input<number>;
     /**
+     * Set how the cluster should handle network partition.
+     */
+    clusterPartitionHandling?: pulumi.Input<string>;
+    /**
      * Set the maximum permissible number of connection.
      */
     connectionMax?: pulumi.Input<number>;
@@ -229,6 +250,8 @@ export interface RabbitConfigurationArgs {
     instanceId: pulumi.Input<number>;
     /**
      * Log level for the logger used for log integrations and the CloudAMQP Console log view.
+     *
+     * ***Note: Requires a restart of RabbitMQ to be applied.***
      */
     logExchangeLevel?: pulumi.Input<string>;
     /**

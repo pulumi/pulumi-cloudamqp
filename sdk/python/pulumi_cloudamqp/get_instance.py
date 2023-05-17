@@ -21,10 +21,13 @@ class GetInstanceResult:
     """
     A collection of values returned by getInstance.
     """
-    def __init__(__self__, apikey=None, dedicated=None, host=None, host_internal=None, id=None, instance_id=None, name=None, no_default_alarms=None, nodes=None, plan=None, ready=None, region=None, rmq_version=None, tags=None, url=None, vhost=None, vpc_id=None, vpc_subnet=None):
+    def __init__(__self__, apikey=None, backend=None, dedicated=None, host=None, host_internal=None, id=None, instance_id=None, name=None, no_default_alarms=None, nodes=None, plan=None, ready=None, region=None, rmq_version=None, tags=None, url=None, vhost=None, vpc_id=None, vpc_subnet=None):
         if apikey and not isinstance(apikey, str):
             raise TypeError("Expected argument 'apikey' to be a str")
         pulumi.set(__self__, "apikey", apikey)
+        if backend and not isinstance(backend, str):
+            raise TypeError("Expected argument 'backend' to be a str")
+        pulumi.set(__self__, "backend", backend)
         if dedicated and not isinstance(dedicated, bool):
             raise TypeError("Expected argument 'dedicated' to be a bool")
         pulumi.set(__self__, "dedicated", dedicated)
@@ -81,6 +84,11 @@ class GetInstanceResult:
     @pulumi.getter
     def apikey(self) -> str:
         return pulumi.get(self, "apikey")
+
+    @property
+    @pulumi.getter
+    def backend(self) -> str:
+        return pulumi.get(self, "backend")
 
     @property
     @pulumi.getter
@@ -178,6 +186,7 @@ class AwaitableGetInstanceResult(GetInstanceResult):
             yield self
         return GetInstanceResult(
             apikey=self.apikey,
+            backend=self.backend,
             dedicated=self.dedicated,
             host=self.host,
             host_internal=self.host_internal,
@@ -220,6 +229,8 @@ def get_instance(instance_id: Optional[int] = None,
     * `host`        - The external hostname for the CloudAMQP instance.
     * `host_internal` - The internal hostname for the CloudAMQP instance.
     * `vhost`       - The virtual host configured in Rabbit MQ.
+    * `dedicated`   - Information if the CloudAMQP instance is shared or dedicated.
+    * `backend`     - Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
 
 
     :param int instance_id: The CloudAMQP instance identifier.
@@ -231,6 +242,7 @@ def get_instance(instance_id: Optional[int] = None,
 
     return AwaitableGetInstanceResult(
         apikey=__ret__.apikey,
+        backend=__ret__.backend,
         dedicated=__ret__.dedicated,
         host=__ret__.host,
         host_internal=__ret__.host_internal,
@@ -274,6 +286,8 @@ def get_instance_output(instance_id: Optional[pulumi.Input[int]] = None,
     * `host`        - The external hostname for the CloudAMQP instance.
     * `host_internal` - The internal hostname for the CloudAMQP instance.
     * `vhost`       - The virtual host configured in Rabbit MQ.
+    * `dedicated`   - Information if the CloudAMQP instance is shared or dedicated.
+    * `backend`     - Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
 
 
     :param int instance_id: The CloudAMQP instance identifier.

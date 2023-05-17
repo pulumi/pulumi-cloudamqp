@@ -25,6 +25,8 @@ import * as utilities from "./utilities";
  * * `host`        - The external hostname for the CloudAMQP instance.
  * * `hostInternal` - The internal hostname for the CloudAMQP instance.
  * * `vhost`       - The virtual host configured in Rabbit MQ.
+ * * `dedicated`   - Information if the CloudAMQP instance is shared or dedicated.
+ * * `backend`     - Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
  */
 export function getInstance(args: GetInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceResult> {
 
@@ -49,6 +51,7 @@ export interface GetInstanceArgs {
  */
 export interface GetInstanceResult {
     readonly apikey: string;
+    readonly backend: string;
     readonly dedicated: boolean;
     readonly host: string;
     readonly hostInternal: string;
@@ -91,6 +94,8 @@ export interface GetInstanceResult {
  * * `host`        - The external hostname for the CloudAMQP instance.
  * * `hostInternal` - The internal hostname for the CloudAMQP instance.
  * * `vhost`       - The virtual host configured in Rabbit MQ.
+ * * `dedicated`   - Information if the CloudAMQP instance is shared or dedicated.
+ * * `backend`     - Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
  */
 export function getInstanceOutput(args: GetInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceResult> {
     return pulumi.output(args).apply((a: any) => getInstance(a, opts))

@@ -24,6 +24,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
@@ -56,6 +57,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
@@ -148,6 +150,9 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+        /// 
+        /// Approved subscriptions format: &lt;br&gt;
+        /// `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
         /// </summary>
         [Output("timeout")]
         public Output<int?> Timeout { get; private set; } = null!;
@@ -224,6 +229,9 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+        /// 
+        /// Approved subscriptions format: &lt;br&gt;
+        /// `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
@@ -280,6 +288,9 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+        /// 
+        /// Approved subscriptions format: &lt;br&gt;
+        /// `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }

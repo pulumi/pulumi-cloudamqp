@@ -218,12 +218,18 @@ public class PrivatelinkAzure extends com.pulumi.resources.CustomResource {
     /**
      * Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
      * 
+     * Approved subscriptions format: &lt;br&gt;
+     * `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
+     * 
      */
     @Export(name="timeout", type=Integer.class, parameters={})
     private Output</* @Nullable */ Integer> timeout;
 
     /**
      * @return Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+     * 
+     * Approved subscriptions format: &lt;br&gt;
+     * `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
      * 
      */
     public Output<Optional<Integer>> timeout() {

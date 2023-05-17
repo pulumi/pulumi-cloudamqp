@@ -166,7 +166,7 @@ def get_alarm(alarm_id: Optional[int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    default_cpu_alarm = cloudamqp.get_alarm(instance_id=cloudamqp_instance["instance"]["id"],
+    default_cpu_alarm = cloudamqp.get_alarm(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
         type="cpu")
     ```
     ## Attributes reference
@@ -239,7 +239,7 @@ def get_alarm_output(alarm_id: Optional[pulumi.Input[Optional[int]]] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    default_cpu_alarm = cloudamqp.get_alarm(instance_id=cloudamqp_instance["instance"]["id"],
+    default_cpu_alarm = cloudamqp.get_alarm(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
         type="cpu")
     ```
     ## Attributes reference

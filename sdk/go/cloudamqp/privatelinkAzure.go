@@ -141,6 +141,9 @@ type PrivatelinkAzure struct {
 	// PrivateLink status [enable, pending, disable]
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+	//
+	// Approved subscriptions format: <br>
+	// `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
 	Timeout pulumi.IntPtrOutput `pulumi:"timeout"`
 }
 
@@ -192,6 +195,9 @@ type privatelinkAzureState struct {
 	// PrivateLink status [enable, pending, disable]
 	Status *string `pulumi:"status"`
 	// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+	//
+	// Approved subscriptions format: <br>
+	// `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
 	Timeout *int `pulumi:"timeout"`
 }
 
@@ -209,6 +215,9 @@ type PrivatelinkAzureState struct {
 	// PrivateLink status [enable, pending, disable]
 	Status pulumi.StringPtrInput
 	// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+	//
+	// Approved subscriptions format: <br>
+	// `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
 	Timeout pulumi.IntPtrInput
 }
 
@@ -224,6 +233,9 @@ type privatelinkAzureArgs struct {
 	// Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
 	Sleep *int `pulumi:"sleep"`
 	// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+	//
+	// Approved subscriptions format: <br>
+	// `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
 	Timeout *int `pulumi:"timeout"`
 }
 
@@ -236,6 +248,9 @@ type PrivatelinkAzureArgs struct {
 	// Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
 	Sleep pulumi.IntPtrInput
 	// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+	//
+	// Approved subscriptions format: <br>
+	// `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
 	Timeout pulumi.IntPtrInput
 }
 
@@ -357,6 +372,9 @@ func (o PrivatelinkAzureOutput) Status() pulumi.StringOutput {
 }
 
 // Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+//
+// Approved subscriptions format: <br>
+// `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
 func (o PrivatelinkAzureOutput) Timeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *PrivatelinkAzure) pulumi.IntPtrOutput { return v.Timeout }).(pulumi.IntPtrOutput)
 }

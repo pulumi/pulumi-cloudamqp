@@ -24,6 +24,9 @@ class PrivatelinkAzureArgs:
         :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
         :param pulumi.Input[int] sleep: Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
         :param pulumi.Input[int] timeout: Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+               
+               Approved subscriptions format: <br>
+               `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
         """
         pulumi.set(__self__, "approved_subscriptions", approved_subscriptions)
         pulumi.set(__self__, "instance_id", instance_id)
@@ -73,6 +76,9 @@ class PrivatelinkAzureArgs:
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
         Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+
+        Approved subscriptions format: <br>
+        `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
         """
         return pulumi.get(self, "timeout")
 
@@ -100,6 +106,9 @@ class _PrivatelinkAzureState:
         :param pulumi.Input[int] sleep: Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
         :param pulumi.Input[str] status: PrivateLink status [enable, pending, disable]
         :param pulumi.Input[int] timeout: Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+               
+               Approved subscriptions format: <br>
+               `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
         """
         if approved_subscriptions is not None:
             pulumi.set(__self__, "approved_subscriptions", approved_subscriptions)
@@ -193,6 +202,9 @@ class _PrivatelinkAzureState:
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
         Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+
+        Approved subscriptions format: <br>
+        `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
         """
         return pulumi.get(self, "timeout")
 
@@ -277,6 +289,9 @@ class PrivatelinkAzure(pulumi.CustomResource):
         :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
         :param pulumi.Input[int] sleep: Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
         :param pulumi.Input[int] timeout: Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+               
+               Approved subscriptions format: <br>
+               `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
         """
         ...
     @overload
@@ -414,6 +429,9 @@ class PrivatelinkAzure(pulumi.CustomResource):
         :param pulumi.Input[int] sleep: Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
         :param pulumi.Input[str] status: PrivateLink status [enable, pending, disable]
         :param pulumi.Input[int] timeout: Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+               
+               Approved subscriptions format: <br>
+               `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -481,6 +499,9 @@ class PrivatelinkAzure(pulumi.CustomResource):
     def timeout(self) -> pulumi.Output[Optional[int]]:
         """
         Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+
+        Approved subscriptions format: <br>
+        `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
         """
         return pulumi.get(self, "timeout")
 

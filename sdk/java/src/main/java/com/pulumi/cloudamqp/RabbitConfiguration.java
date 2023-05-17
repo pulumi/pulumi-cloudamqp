@@ -19,7 +19,7 @@ import javax.annotation.Nullable;
 /**
  * This resource allows you update RabbitMQ config.
  * 
- * Only available for dedicated subscription plans.
+ * Only available for dedicated subscription plans running ***RabbitMQ***.
  * 
  * ## Argument threshold values
  * 
@@ -33,6 +33,9 @@ import javax.annotation.Nullable;
  * | queue_index_embed_msgs_below | int | 4096 | 1 | 10485760 | bytes | Applied immediately for new queues, requires restart for existing queues |  |
  * | max_message_size | int | 134217728 | 1 | 536870912 | bytes | Only effects new channels |  |
  * | log_exchange_level | string | error | - | - |  | RabbitMQ restart required | debug, info, warning, error, critical |
+ * | cluster_partition_handling | string | see below | - | - |  | Applied immediately | autoheal, pause_minority, ignore |
+ * 
+ *   *Note: Recommended setting for cluster_partition_handling: `autoheal` for cluster with 1-2 nodes, `pause_minority` for cluster with 3 or more nodes. While `ignore` setting is not recommended.*
  * 
  * ## Dependency
  * 
@@ -62,6 +65,20 @@ public class RabbitConfiguration extends com.pulumi.resources.CustomResource {
      */
     public Output<Integer> channelMax() {
         return this.channelMax;
+    }
+    /**
+     * Set how the cluster should handle network partition.
+     * 
+     */
+    @Export(name="clusterPartitionHandling", type=String.class, parameters={})
+    private Output<String> clusterPartitionHandling;
+
+    /**
+     * @return Set how the cluster should handle network partition.
+     * 
+     */
+    public Output<String> clusterPartitionHandling() {
+        return this.clusterPartitionHandling;
     }
     /**
      * Set the maximum permissible number of connection.
@@ -122,12 +139,16 @@ public class RabbitConfiguration extends com.pulumi.resources.CustomResource {
     /**
      * Log level for the logger used for log integrations and the CloudAMQP Console log view.
      * 
+     * ***Note: Requires a restart of RabbitMQ to be applied.***
+     * 
      */
     @Export(name="logExchangeLevel", type=String.class, parameters={})
     private Output<String> logExchangeLevel;
 
     /**
      * @return Log level for the logger used for log integrations and the CloudAMQP Console log view.
+     * 
+     * ***Note: Requires a restart of RabbitMQ to be applied.***
      * 
      */
     public Output<String> logExchangeLevel() {

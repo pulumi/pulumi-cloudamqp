@@ -6,6 +6,7 @@ package com.pulumi.cloudamqp.outputs;
 import com.pulumi.core.annotations.CustomType;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -19,6 +20,7 @@ public final class GetNotificationResult {
     private String id;
     private Integer instanceId;
     private @Nullable String name;
+    private @Nullable Map<String,String> options;
     private @Nullable Integer recipientId;
     private String type;
     private String value;
@@ -36,6 +38,9 @@ public final class GetNotificationResult {
     }
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
+    }
+    public Map<String,String> options() {
+        return this.options == null ? Map.of() : this.options;
     }
     public Optional<Integer> recipientId() {
         return Optional.ofNullable(this.recipientId);
@@ -59,6 +64,7 @@ public final class GetNotificationResult {
         private String id;
         private Integer instanceId;
         private @Nullable String name;
+        private @Nullable Map<String,String> options;
         private @Nullable Integer recipientId;
         private String type;
         private String value;
@@ -68,6 +74,7 @@ public final class GetNotificationResult {
     	      this.id = defaults.id;
     	      this.instanceId = defaults.instanceId;
     	      this.name = defaults.name;
+    	      this.options = defaults.options;
     	      this.recipientId = defaults.recipientId;
     	      this.type = defaults.type;
     	      this.value = defaults.value;
@@ -86,6 +93,11 @@ public final class GetNotificationResult {
         @CustomType.Setter
         public Builder name(@Nullable String name) {
             this.name = name;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder options(@Nullable Map<String,String> options) {
+            this.options = options;
             return this;
         }
         @CustomType.Setter
@@ -108,6 +120,7 @@ public final class GetNotificationResult {
             o.id = id;
             o.instanceId = instanceId;
             o.name = name;
+            o.options = options;
             o.recipientId = recipientId;
             o.type = type;
             o.value = value;

@@ -12,7 +12,7 @@ namespace Pulumi.CloudAmqp
     /// <summary>
     /// This resource allows you update RabbitMQ config.
     /// 
-    /// Only available for dedicated subscription plans.
+    /// Only available for dedicated subscription plans running ***RabbitMQ***.
     /// 
     /// ## Argument threshold values
     /// 
@@ -26,6 +26,9 @@ namespace Pulumi.CloudAmqp
     /// | queue_index_embed_msgs_below | int | 4096 | 1 | 10485760 | bytes | Applied immediately for new queues, requires restart for existing queues |  |
     /// | max_message_size | int | 134217728 | 1 | 536870912 | bytes | Only effects new channels |  |
     /// | log_exchange_level | string | error | - | - |  | RabbitMQ restart required | debug, info, warning, error, critical |
+    /// | cluster_partition_handling | string | see below | - | - |  | Applied immediately | autoheal, pause_minority, ignore |
+    /// 
+    ///   *Note: Recommended setting for cluster_partition_handling: `autoheal` for cluster with 1-2 nodes, `pause_minority` for cluster with 3 or more nodes. While `ignore` setting is not recommended.*
     /// 
     /// ## Dependency
     /// 
@@ -47,6 +50,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Output("channelMax")]
         public Output<int> ChannelMax { get; private set; } = null!;
+
+        /// <summary>
+        /// Set how the cluster should handle network partition.
+        /// </summary>
+        [Output("clusterPartitionHandling")]
+        public Output<string> ClusterPartitionHandling { get; private set; } = null!;
 
         /// <summary>
         /// Set the maximum permissible number of connection.
@@ -74,6 +83,8 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Log level for the logger used for log integrations and the CloudAMQP Console log view.
+        /// 
+        /// ***Note: Requires a restart of RabbitMQ to be applied.***
         /// </summary>
         [Output("logExchangeLevel")]
         public Output<string> LogExchangeLevel { get; private set; } = null!;
@@ -161,6 +172,12 @@ namespace Pulumi.CloudAmqp
         public Input<int>? ChannelMax { get; set; }
 
         /// <summary>
+        /// Set how the cluster should handle network partition.
+        /// </summary>
+        [Input("clusterPartitionHandling")]
+        public Input<string>? ClusterPartitionHandling { get; set; }
+
+        /// <summary>
         /// Set the maximum permissible number of connection.
         /// </summary>
         [Input("connectionMax")]
@@ -186,6 +203,8 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Log level for the logger used for log integrations and the CloudAMQP Console log view.
+        /// 
+        /// ***Note: Requires a restart of RabbitMQ to be applied.***
         /// </summary>
         [Input("logExchangeLevel")]
         public Input<string>? LogExchangeLevel { get; set; }
@@ -235,6 +254,12 @@ namespace Pulumi.CloudAmqp
         public Input<int>? ChannelMax { get; set; }
 
         /// <summary>
+        /// Set how the cluster should handle network partition.
+        /// </summary>
+        [Input("clusterPartitionHandling")]
+        public Input<string>? ClusterPartitionHandling { get; set; }
+
+        /// <summary>
         /// Set the maximum permissible number of connection.
         /// </summary>
         [Input("connectionMax")]
@@ -260,6 +285,8 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Log level for the logger used for log integrations and the CloudAMQP Console log view.
+        /// 
+        /// ***Note: Requires a restart of RabbitMQ to be applied.***
         /// </summary>
         [Input("logExchangeLevel")]
         public Input<string>? LogExchangeLevel { get; set; }

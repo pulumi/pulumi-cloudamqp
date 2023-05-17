@@ -19,6 +19,8 @@ namespace Pulumi.CloudAmqp
     {
         /// <summary>
         /// The CloudAMQP instance identifier.
+        /// 
+        /// ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
         /// </summary>
         [Output("instanceId")]
         public Output<int?> InstanceId { get; private set; } = null!;
@@ -49,6 +51,8 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// The managed VPC identifier.
+        /// 
+        /// ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
         /// </summary>
         [Output("vpcId")]
         public Output<string?> VpcId { get; private set; } = null!;
@@ -101,6 +105,8 @@ namespace Pulumi.CloudAmqp
     {
         /// <summary>
         /// The CloudAMQP instance identifier.
+        /// 
+        /// ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
@@ -125,6 +131,8 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// The managed VPC identifier.
+        /// 
+        /// ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
         /// </summary>
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }
@@ -139,6 +147,8 @@ namespace Pulumi.CloudAmqp
     {
         /// <summary>
         /// The CloudAMQP instance identifier.
+        /// 
+        /// ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
@@ -169,6 +179,8 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// The managed VPC identifier.
+        /// 
+        /// ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
         /// </summary>
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }

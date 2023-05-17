@@ -25,6 +25,7 @@ import * as utilities from "./utilities";
  * * `id`    - The identifier for this resource.
  * * `type`  - The type of the recipient.
  * * `value` - The notification endpoint, where to send the notification.
+ * * `options`- Options argument (e.g. `rk` used for VictorOps routing key).
  *
  * ## Dependency
  *
@@ -36,6 +37,7 @@ export function getNotification(args: GetNotificationArgs, opts?: pulumi.InvokeO
     return pulumi.runtime.invoke("cloudamqp:index/getNotification:getNotification", {
         "instanceId": args.instanceId,
         "name": args.name,
+        "options": args.options,
         "recipientId": args.recipientId,
     }, opts);
 }
@@ -52,6 +54,7 @@ export interface GetNotificationArgs {
      * The name set for the recipient.
      */
     name?: string;
+    options?: {[key: string]: string};
     /**
      * The recipient identifier.
      */
@@ -68,6 +71,7 @@ export interface GetNotificationResult {
     readonly id: string;
     readonly instanceId: number;
     readonly name?: string;
+    readonly options?: {[key: string]: string};
     readonly recipientId?: number;
     readonly type: string;
     readonly value: string;
@@ -93,6 +97,7 @@ export interface GetNotificationResult {
  * * `id`    - The identifier for this resource.
  * * `type`  - The type of the recipient.
  * * `value` - The notification endpoint, where to send the notification.
+ * * `options`- Options argument (e.g. `rk` used for VictorOps routing key).
  *
  * ## Dependency
  *
@@ -114,6 +119,7 @@ export interface GetNotificationOutputArgs {
      * The name set for the recipient.
      */
     name?: pulumi.Input<string>;
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The recipient identifier.
      */

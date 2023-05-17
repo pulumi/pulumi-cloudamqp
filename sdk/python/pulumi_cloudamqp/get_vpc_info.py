@@ -119,7 +119,7 @@ def get_vpc_info(instance_id: Optional[int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    vpc_info = cloudamqp.get_vpc_info(instance_id=cloudamqp_instance["instance"]["id"])
+    vpc_info = cloudamqp.get_vpc_info(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
     ```
     </details>
 
@@ -134,7 +134,7 @@ def get_vpc_info(instance_id: Optional[int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    vpc_info = cloudamqp.get_vpc_info(vpc_id=cloudamqp_vpc["vpc"]["id"])
+    vpc_info = cloudamqp.get_vpc_info(vpc_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
     ```
     </details>
     ## Attributes reference
@@ -157,7 +157,11 @@ def get_vpc_info(instance_id: Optional[int] = None,
 
 
     :param int instance_id: The CloudAMQP instance identifier.
+           
+           ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
     :param str vpc_id: The managed VPC identifier.
+           
+           ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
@@ -197,7 +201,7 @@ def get_vpc_info_output(instance_id: Optional[pulumi.Input[Optional[int]]] = Non
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    vpc_info = cloudamqp.get_vpc_info(instance_id=cloudamqp_instance["instance"]["id"])
+    vpc_info = cloudamqp.get_vpc_info(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
     ```
     </details>
 
@@ -212,7 +216,7 @@ def get_vpc_info_output(instance_id: Optional[pulumi.Input[Optional[int]]] = Non
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    vpc_info = cloudamqp.get_vpc_info(vpc_id=cloudamqp_vpc["vpc"]["id"])
+    vpc_info = cloudamqp.get_vpc_info(vpc_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
     ```
     </details>
     ## Attributes reference
@@ -235,6 +239,10 @@ def get_vpc_info_output(instance_id: Optional[pulumi.Input[Optional[int]]] = Non
 
 
     :param int instance_id: The CloudAMQP instance identifier.
+           
+           ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
     :param str vpc_id: The managed VPC identifier.
+           
+           ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
     """
     ...

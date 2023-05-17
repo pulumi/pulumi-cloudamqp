@@ -30,6 +30,8 @@ import (
 // * `host`        - The external hostname for the CloudAMQP instance.
 // * `hostInternal` - The internal hostname for the CloudAMQP instance.
 // * `vhost`       - The virtual host configured in Rabbit MQ.
+// * `dedicated`   - Information if the CloudAMQP instance is shared or dedicated.
+// * `backend`     - Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
 func LookupInstance(ctx *pulumi.Context, args *LookupInstanceArgs, opts ...pulumi.InvokeOption) (*LookupInstanceResult, error) {
 	var rv LookupInstanceResult
 	err := ctx.Invoke("cloudamqp:index/getInstance:getInstance", args, &rv, opts...)
@@ -48,6 +50,7 @@ type LookupInstanceArgs struct {
 // A collection of values returned by getInstance.
 type LookupInstanceResult struct {
 	Apikey       string `pulumi:"apikey"`
+	Backend      string `pulumi:"backend"`
 	Dedicated    bool   `pulumi:"dedicated"`
 	Host         string `pulumi:"host"`
 	HostInternal string `pulumi:"hostInternal"`
@@ -108,6 +111,10 @@ func (o LookupInstanceResultOutput) ToLookupInstanceResultOutputWithContext(ctx 
 
 func (o LookupInstanceResultOutput) Apikey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceResult) string { return v.Apikey }).(pulumi.StringOutput)
+}
+
+func (o LookupInstanceResultOutput) Backend() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInstanceResult) string { return v.Backend }).(pulumi.StringOutput)
 }
 
 func (o LookupInstanceResultOutput) Dedicated() pulumi.BoolOutput {

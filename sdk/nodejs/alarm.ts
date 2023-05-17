@@ -114,6 +114,8 @@ export class Alarm extends pulumi.CustomResource {
     public readonly instanceId!: pulumi.Output<number>;
     /**
      * Message type `(total, unacked, ready)` used by queue alarm type.
+     *
+     * Specific argument for `disk` alarm
      */
     public readonly messageType!: pulumi.Output<string | undefined>;
     /**
@@ -138,6 +140,8 @@ export class Alarm extends pulumi.CustomResource {
     public readonly type!: pulumi.Output<string>;
     /**
      * Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+     *
+     * Based on alarm type, different arguments are flagged as required or optional.
      */
     public readonly valueCalculation!: pulumi.Output<string | undefined>;
     /**
@@ -218,6 +222,8 @@ export interface AlarmState {
     instanceId?: pulumi.Input<number>;
     /**
      * Message type `(total, unacked, ready)` used by queue alarm type.
+     *
+     * Specific argument for `disk` alarm
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -242,6 +248,8 @@ export interface AlarmState {
     type?: pulumi.Input<string>;
     /**
      * Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+     *
+     * Based on alarm type, different arguments are flagged as required or optional.
      */
     valueCalculation?: pulumi.Input<string>;
     /**
@@ -268,6 +276,8 @@ export interface AlarmArgs {
     instanceId: pulumi.Input<number>;
     /**
      * Message type `(total, unacked, ready)` used by queue alarm type.
+     *
+     * Specific argument for `disk` alarm
      */
     messageType?: pulumi.Input<string>;
     /**
@@ -292,6 +302,8 @@ export interface AlarmArgs {
     type: pulumi.Input<string>;
     /**
      * Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+     *
+     * Based on alarm type, different arguments are flagged as required or optional.
      */
     valueCalculation?: pulumi.Input<string>;
     /**

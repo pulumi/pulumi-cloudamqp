@@ -123,6 +123,11 @@ export class PrivatelinkAws extends pulumi.CustomResource {
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
      * Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+     *
+     * Allowed principals format: <br>
+     * `arn:aws:iam::aws-account-id:root` <br>
+     * `arn:aws:iam::aws-account-id:user/user-name` <br>
+     * `arn:aws:iam::aws-account-id:role/role-name`
      */
     public readonly timeout!: pulumi.Output<number | undefined>;
 
@@ -197,6 +202,11 @@ export interface PrivatelinkAwsState {
     status?: pulumi.Input<string>;
     /**
      * Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+     *
+     * Allowed principals format: <br>
+     * `arn:aws:iam::aws-account-id:root` <br>
+     * `arn:aws:iam::aws-account-id:user/user-name` <br>
+     * `arn:aws:iam::aws-account-id:role/role-name`
      */
     timeout?: pulumi.Input<number>;
 }
@@ -219,6 +229,11 @@ export interface PrivatelinkAwsArgs {
     sleep?: pulumi.Input<number>;
     /**
      * Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+     *
+     * Allowed principals format: <br>
+     * `arn:aws:iam::aws-account-id:root` <br>
+     * `arn:aws:iam::aws-account-id:user/user-name` <br>
+     * `arn:aws:iam::aws-account-id:role/role-name`
      */
     timeout?: pulumi.Input<number>;
 }

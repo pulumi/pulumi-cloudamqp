@@ -32,10 +32,14 @@ class AlarmArgs:
         :param pulumi.Input[Sequence[pulumi.Input[int]]] recipients: Identifier for recipient to be notified. Leave empty to notify all recipients.
         :param pulumi.Input[str] type: The alarm type, see valid options below.
         :param pulumi.Input[str] message_type: Message type `(total, unacked, ready)` used by queue alarm type.
+               
+               Specific argument for `disk` alarm
         :param pulumi.Input[str] queue_regex: Regex for which queue to check.
         :param pulumi.Input[int] reminder_interval: The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
         :param pulumi.Input[int] time_threshold: The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
         :param pulumi.Input[str] value_calculation: Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+               
+               Based on alarm type, different arguments are flagged as required or optional.
         :param pulumi.Input[int] value_threshold: The value to trigger the alarm for.
         :param pulumi.Input[str] vhost_regex: Regex for which vhost to check
         """
@@ -111,6 +115,8 @@ class AlarmArgs:
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
         Message type `(total, unacked, ready)` used by queue alarm type.
+
+        Specific argument for `disk` alarm
         """
         return pulumi.get(self, "message_type")
 
@@ -159,6 +165,8 @@ class AlarmArgs:
     def value_calculation(self) -> Optional[pulumi.Input[str]]:
         """
         Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+
+        Based on alarm type, different arguments are flagged as required or optional.
         """
         return pulumi.get(self, "value_calculation")
 
@@ -210,12 +218,16 @@ class _AlarmState:
         :param pulumi.Input[bool] enabled: Enable or disable the alarm to trigger.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] message_type: Message type `(total, unacked, ready)` used by queue alarm type.
+               
+               Specific argument for `disk` alarm
         :param pulumi.Input[str] queue_regex: Regex for which queue to check.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] recipients: Identifier for recipient to be notified. Leave empty to notify all recipients.
         :param pulumi.Input[int] reminder_interval: The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
         :param pulumi.Input[int] time_threshold: The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
         :param pulumi.Input[str] type: The alarm type, see valid options below.
         :param pulumi.Input[str] value_calculation: Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+               
+               Based on alarm type, different arguments are flagged as required or optional.
         :param pulumi.Input[int] value_threshold: The value to trigger the alarm for.
         :param pulumi.Input[str] vhost_regex: Regex for which vhost to check
         """
@@ -271,6 +283,8 @@ class _AlarmState:
     def message_type(self) -> Optional[pulumi.Input[str]]:
         """
         Message type `(total, unacked, ready)` used by queue alarm type.
+
+        Specific argument for `disk` alarm
         """
         return pulumi.get(self, "message_type")
 
@@ -343,6 +357,8 @@ class _AlarmState:
     def value_calculation(self) -> Optional[pulumi.Input[str]]:
         """
         Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+
+        Based on alarm type, different arguments are flagged as required or optional.
         """
         return pulumi.get(self, "value_calculation")
 
@@ -466,12 +482,16 @@ class Alarm(pulumi.CustomResource):
         :param pulumi.Input[bool] enabled: Enable or disable the alarm to trigger.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] message_type: Message type `(total, unacked, ready)` used by queue alarm type.
+               
+               Specific argument for `disk` alarm
         :param pulumi.Input[str] queue_regex: Regex for which queue to check.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] recipients: Identifier for recipient to be notified. Leave empty to notify all recipients.
         :param pulumi.Input[int] reminder_interval: The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
         :param pulumi.Input[int] time_threshold: The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
         :param pulumi.Input[str] type: The alarm type, see valid options below.
         :param pulumi.Input[str] value_calculation: Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+               
+               Based on alarm type, different arguments are flagged as required or optional.
         :param pulumi.Input[int] value_threshold: The value to trigger the alarm for.
         :param pulumi.Input[str] vhost_regex: Regex for which vhost to check
         """
@@ -635,12 +655,16 @@ class Alarm(pulumi.CustomResource):
         :param pulumi.Input[bool] enabled: Enable or disable the alarm to trigger.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] message_type: Message type `(total, unacked, ready)` used by queue alarm type.
+               
+               Specific argument for `disk` alarm
         :param pulumi.Input[str] queue_regex: Regex for which queue to check.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] recipients: Identifier for recipient to be notified. Leave empty to notify all recipients.
         :param pulumi.Input[int] reminder_interval: The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
         :param pulumi.Input[int] time_threshold: The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
         :param pulumi.Input[str] type: The alarm type, see valid options below.
         :param pulumi.Input[str] value_calculation: Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+               
+               Based on alarm type, different arguments are flagged as required or optional.
         :param pulumi.Input[int] value_threshold: The value to trigger the alarm for.
         :param pulumi.Input[str] vhost_regex: Regex for which vhost to check
         """
@@ -682,6 +706,8 @@ class Alarm(pulumi.CustomResource):
     def message_type(self) -> pulumi.Output[Optional[str]]:
         """
         Message type `(total, unacked, ready)` used by queue alarm type.
+
+        Specific argument for `disk` alarm
         """
         return pulumi.get(self, "message_type")
 
@@ -730,6 +756,8 @@ class Alarm(pulumi.CustomResource):
     def value_calculation(self) -> pulumi.Output[Optional[str]]:
         """
         Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+
+        Based on alarm type, different arguments are flagged as required or optional.
         """
         return pulumi.get(self, "value_calculation")
 

@@ -24,6 +24,11 @@ class PrivatelinkAwsArgs:
         :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
         :param pulumi.Input[int] sleep: Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
         :param pulumi.Input[int] timeout: Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+               
+               Allowed principals format: <br>
+               `arn:aws:iam::aws-account-id:root` <br>
+               `arn:aws:iam::aws-account-id:user/user-name` <br>
+               `arn:aws:iam::aws-account-id:role/role-name`
         """
         pulumi.set(__self__, "allowed_principals", allowed_principals)
         pulumi.set(__self__, "instance_id", instance_id)
@@ -73,6 +78,11 @@ class PrivatelinkAwsArgs:
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
         Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+
+        Allowed principals format: <br>
+        `arn:aws:iam::aws-account-id:root` <br>
+        `arn:aws:iam::aws-account-id:user/user-name` <br>
+        `arn:aws:iam::aws-account-id:role/role-name`
         """
         return pulumi.get(self, "timeout")
 
@@ -100,6 +110,11 @@ class _PrivatelinkAwsState:
         :param pulumi.Input[int] sleep: Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
         :param pulumi.Input[str] status: PrivateLink status [enable, pending, disable]
         :param pulumi.Input[int] timeout: Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+               
+               Allowed principals format: <br>
+               `arn:aws:iam::aws-account-id:root` <br>
+               `arn:aws:iam::aws-account-id:user/user-name` <br>
+               `arn:aws:iam::aws-account-id:role/role-name`
         """
         if active_zones is not None:
             pulumi.set(__self__, "active_zones", active_zones)
@@ -193,6 +208,11 @@ class _PrivatelinkAwsState:
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
         Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+
+        Allowed principals format: <br>
+        `arn:aws:iam::aws-account-id:root` <br>
+        `arn:aws:iam::aws-account-id:user/user-name` <br>
+        `arn:aws:iam::aws-account-id:role/role-name`
         """
         return pulumi.get(self, "timeout")
 
@@ -277,6 +297,11 @@ class PrivatelinkAws(pulumi.CustomResource):
         :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
         :param pulumi.Input[int] sleep: Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
         :param pulumi.Input[int] timeout: Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+               
+               Allowed principals format: <br>
+               `arn:aws:iam::aws-account-id:root` <br>
+               `arn:aws:iam::aws-account-id:user/user-name` <br>
+               `arn:aws:iam::aws-account-id:role/role-name`
         """
         ...
     @overload
@@ -414,6 +439,11 @@ class PrivatelinkAws(pulumi.CustomResource):
         :param pulumi.Input[int] sleep: Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
         :param pulumi.Input[str] status: PrivateLink status [enable, pending, disable]
         :param pulumi.Input[int] timeout: Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+               
+               Allowed principals format: <br>
+               `arn:aws:iam::aws-account-id:root` <br>
+               `arn:aws:iam::aws-account-id:user/user-name` <br>
+               `arn:aws:iam::aws-account-id:role/role-name`
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -481,6 +511,11 @@ class PrivatelinkAws(pulumi.CustomResource):
     def timeout(self) -> pulumi.Output[Optional[int]]:
         """
         Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+
+        Allowed principals format: <br>
+        `arn:aws:iam::aws-account-id:root` <br>
+        `arn:aws:iam::aws-account-id:user/user-name` <br>
+        `arn:aws:iam::aws-account-id:role/role-name`
         """
         return pulumi.get(self, "timeout")
 

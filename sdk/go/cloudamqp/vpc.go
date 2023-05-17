@@ -72,7 +72,7 @@ import (
 //
 // ```
 //
-//	To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-vpcs). Or use the data source [`cloudamqp_account_vpcs`](https://registry.terraform.io/providers/cloudamqp/cloudamqp/latest/docs/data-sources/account_vpcs) to list all available standalone VPCs for an account.
+//	To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-vpcs). Or use the data source `cloudamqp_account_vpcs` to list all available standalone VPCs for an account.
 type Vpc struct {
 	pulumi.CustomResourceState
 

@@ -47,6 +47,8 @@ class IntegrationLogArgs:
         :param pulumi.Input[str] region: Region hosting the integration service.
         :param pulumi.Input[str] secret_access_key: AWS secret access key.
         :param pulumi.Input[str] sourcetype: Assign source type to the data exported, eg. generic_single_line. (Splunk)
+               
+               This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
         :param pulumi.Input[str] tags: Tag the integration, e.g. env=prod, region=europe.
         :param pulumi.Input[str] token: Token used for authentication.
         :param pulumi.Input[str] url: Endpoint to log integration.
@@ -246,6 +248,8 @@ class IntegrationLogArgs:
     def sourcetype(self) -> Optional[pulumi.Input[str]]:
         """
         Assign source type to the data exported, eg. generic_single_line. (Splunk)
+
+        This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
         """
         return pulumi.get(self, "sourcetype")
 
@@ -326,6 +330,8 @@ class _IntegrationLogState:
         :param pulumi.Input[str] region: Region hosting the integration service.
         :param pulumi.Input[str] secret_access_key: AWS secret access key.
         :param pulumi.Input[str] sourcetype: Assign source type to the data exported, eg. generic_single_line. (Splunk)
+               
+               This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
         :param pulumi.Input[str] tags: Tag the integration, e.g. env=prod, region=europe.
         :param pulumi.Input[str] token: Token used for authentication.
         :param pulumi.Input[str] url: Endpoint to log integration.
@@ -526,6 +532,8 @@ class _IntegrationLogState:
     def sourcetype(self) -> Optional[pulumi.Input[str]]:
         """
         Assign source type to the data exported, eg. generic_single_line. (Splunk)
+
+        This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
         """
         return pulumi.get(self, "sourcetype")
 
@@ -670,6 +678,8 @@ class IntegrationLog(pulumi.CustomResource):
         :param pulumi.Input[str] region: Region hosting the integration service.
         :param pulumi.Input[str] secret_access_key: AWS secret access key.
         :param pulumi.Input[str] sourcetype: Assign source type to the data exported, eg. generic_single_line. (Splunk)
+               
+               This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
         :param pulumi.Input[str] tags: Tag the integration, e.g. env=prod, region=europe.
         :param pulumi.Input[str] token: Token used for authentication.
         :param pulumi.Input[str] url: Endpoint to log integration.
@@ -851,6 +861,8 @@ class IntegrationLog(pulumi.CustomResource):
         :param pulumi.Input[str] region: Region hosting the integration service.
         :param pulumi.Input[str] secret_access_key: AWS secret access key.
         :param pulumi.Input[str] sourcetype: Assign source type to the data exported, eg. generic_single_line. (Splunk)
+               
+               This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
         :param pulumi.Input[str] tags: Tag the integration, e.g. env=prod, region=europe.
         :param pulumi.Input[str] token: Token used for authentication.
         :param pulumi.Input[str] url: Endpoint to log integration.
@@ -987,6 +999,8 @@ class IntegrationLog(pulumi.CustomResource):
     def sourcetype(self) -> pulumi.Output[Optional[str]]:
         """
         Assign source type to the data exported, eg. generic_single_line. (Splunk)
+
+        This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
         """
         return pulumi.get(self, "sourcetype")
 

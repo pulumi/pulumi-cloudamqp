@@ -78,10 +78,14 @@ export function getVpcInfo(args?: GetVpcInfoArgs, opts?: pulumi.InvokeOptions): 
 export interface GetVpcInfoArgs {
     /**
      * The CloudAMQP instance identifier.
+     *
+     * ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
      */
     instanceId?: number;
     /**
      * The managed VPC identifier.
+     *
+     * ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
      */
     vpcId?: string;
 }
@@ -169,10 +173,14 @@ export function getVpcInfoOutput(args?: GetVpcInfoOutputArgs, opts?: pulumi.Invo
 export interface GetVpcInfoOutputArgs {
     /**
      * The CloudAMQP instance identifier.
+     *
+     * ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
      */
     instanceId?: pulumi.Input<number>;
     /**
      * The managed VPC identifier.
+     *
+     * ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
      */
     vpcId?: pulumi.Input<string>;
 }

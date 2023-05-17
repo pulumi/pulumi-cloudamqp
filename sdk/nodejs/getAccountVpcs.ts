@@ -9,6 +9,18 @@ import * as utilities from "./utilities";
 /**
  * Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
  *
+ * ## Example Usage
+ *
+ * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const myVpcName = "<your VPC name>";
+ * const vpcList = cloudamqp.getAccountVpcs({});
+ * export const vpcId = vpcList.then(vpcList => .filter(vpc => vpc.name == myVpcName).map(vpc => (vpc))[0].id);
+ * ```
  * ## Attributes reference
  *
  * All attributes reference are computed

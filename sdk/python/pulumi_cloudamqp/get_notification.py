@@ -21,7 +21,7 @@ class GetNotificationResult:
     """
     A collection of values returned by getNotification.
     """
-    def __init__(__self__, id=None, instance_id=None, name=None, recipient_id=None, type=None, value=None):
+    def __init__(__self__, id=None, instance_id=None, name=None, options=None, recipient_id=None, type=None, value=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -31,6 +31,9 @@ class GetNotificationResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if options and not isinstance(options, dict):
+            raise TypeError("Expected argument 'options' to be a dict")
+        pulumi.set(__self__, "options", options)
         if recipient_id and not isinstance(recipient_id, int):
             raise TypeError("Expected argument 'recipient_id' to be a int")
         pulumi.set(__self__, "recipient_id", recipient_id)
@@ -60,6 +63,11 @@ class GetNotificationResult:
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter
+    def options(self) -> Optional[Mapping[str, str]]:
+        return pulumi.get(self, "options")
+
+    @property
     @pulumi.getter(name="recipientId")
     def recipient_id(self) -> Optional[int]:
         return pulumi.get(self, "recipient_id")
@@ -84,6 +92,7 @@ class AwaitableGetNotificationResult(GetNotificationResult):
             id=self.id,
             instance_id=self.instance_id,
             name=self.name,
+            options=self.options,
             recipient_id=self.recipient_id,
             type=self.type,
             value=self.value)
@@ -91,6 +100,7 @@ class AwaitableGetNotificationResult(GetNotificationResult):
 
 def get_notification(instance_id: Optional[int] = None,
                      name: Optional[str] = None,
+                     options: Optional[Mapping[str, str]] = None,
                      recipient_id: Optional[int] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNotificationResult:
     """
@@ -102,7 +112,7 @@ def get_notification(instance_id: Optional[int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    default_recipient = cloudamqp.get_notification(instance_id=cloudamqp_instance["instance"]["id"],
+    default_recipient = cloudamqp.get_notification(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
         name="default")
     ```
     ## Attributes reference
@@ -112,6 +122,7 @@ def get_notification(instance_id: Optional[int] = None,
     * `id`    - The identifier for this resource.
     * `type`  - The type of the recipient.
     * `value` - The notification endpoint, where to send the notification.
+    * `options`- Options argument (e.g. `rk` used for VictorOps routing key).
 
     ## Dependency
 
@@ -125,6 +136,7 @@ def get_notification(instance_id: Optional[int] = None,
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['name'] = name
+    __args__['options'] = options
     __args__['recipientId'] = recipient_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('cloudamqp:index/getNotification:getNotification', __args__, opts=opts, typ=GetNotificationResult).value
@@ -133,6 +145,7 @@ def get_notification(instance_id: Optional[int] = None,
         id=__ret__.id,
         instance_id=__ret__.instance_id,
         name=__ret__.name,
+        options=__ret__.options,
         recipient_id=__ret__.recipient_id,
         type=__ret__.type,
         value=__ret__.value)
@@ -141,6 +154,7 @@ def get_notification(instance_id: Optional[int] = None,
 @_utilities.lift_output_func(get_notification)
 def get_notification_output(instance_id: Optional[pulumi.Input[int]] = None,
                             name: Optional[pulumi.Input[Optional[str]]] = None,
+                            options: Optional[pulumi.Input[Optional[Mapping[str, str]]]] = None,
                             recipient_id: Optional[pulumi.Input[Optional[int]]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNotificationResult]:
     """
@@ -152,7 +166,7 @@ def get_notification_output(instance_id: Optional[pulumi.Input[int]] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    default_recipient = cloudamqp.get_notification(instance_id=cloudamqp_instance["instance"]["id"],
+    default_recipient = cloudamqp.get_notification(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
         name="default")
     ```
     ## Attributes reference
@@ -162,6 +176,7 @@ def get_notification_output(instance_id: Optional[pulumi.Input[int]] = None,
     * `id`    - The identifier for this resource.
     * `type`  - The type of the recipient.
     * `value` - The notification endpoint, where to send the notification.
+    * `options`- Options argument (e.g. `rk` used for VictorOps routing key).
 
     ## Dependency
 

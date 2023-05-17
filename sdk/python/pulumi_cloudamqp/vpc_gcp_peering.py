@@ -21,7 +21,11 @@ class VpcGcpPeeringArgs:
         The set of arguments for constructing a VpcGcpPeering resource.
         :param pulumi.Input[str] peer_network_uri: Network uri of the VPC network to which you will peer with.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
+               
+               ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
         :param pulumi.Input[str] vpc_id: The managed VPC identifier.
+               
+               ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
         """
         pulumi.set(__self__, "peer_network_uri", peer_network_uri)
         if instance_id is not None:
@@ -46,6 +50,8 @@ class VpcGcpPeeringArgs:
     def instance_id(self) -> Optional[pulumi.Input[int]]:
         """
         The CloudAMQP instance identifier.
+
+        ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
         """
         return pulumi.get(self, "instance_id")
 
@@ -58,6 +64,8 @@ class VpcGcpPeeringArgs:
     def vpc_id(self) -> Optional[pulumi.Input[str]]:
         """
         The managed VPC identifier.
+
+        ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
         """
         return pulumi.get(self, "vpc_id")
 
@@ -79,10 +87,14 @@ class _VpcGcpPeeringState:
         Input properties used for looking up and filtering VpcGcpPeering resources.
         :param pulumi.Input[bool] auto_create_routes: VPC peering auto created routes
         :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
+               
+               ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
         :param pulumi.Input[str] peer_network_uri: Network uri of the VPC network to which you will peer with.
         :param pulumi.Input[str] state: VPC peering state
         :param pulumi.Input[str] state_details: VPC peering state details
         :param pulumi.Input[str] vpc_id: The managed VPC identifier.
+               
+               ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
         """
         if auto_create_routes is not None:
             pulumi.set(__self__, "auto_create_routes", auto_create_routes)
@@ -114,6 +126,8 @@ class _VpcGcpPeeringState:
     def instance_id(self) -> Optional[pulumi.Input[int]]:
         """
         The CloudAMQP instance identifier.
+
+        ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
         """
         return pulumi.get(self, "instance_id")
 
@@ -162,6 +176,8 @@ class _VpcGcpPeeringState:
     def vpc_id(self) -> Optional[pulumi.Input[str]]:
         """
         The managed VPC identifier.
+
+        ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
         """
         return pulumi.get(self, "vpc_id")
 
@@ -180,6 +196,125 @@ class VpcGcpPeering(pulumi.CustomResource):
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        This resouce creates a VPC peering configuration for the CloudAMQP instance. The configuration will connect to another VPC network hosted on Google Cloud Platform (GCP). See the [GCP documentation](https://cloud.google.com/vpc/docs/using-vpc-peering) for more information on how to create the VPC peering configuration.
+
+        Only available for dedicated subscription plans.
+
+        Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
+
+        ## Example Usage
+        ### With Additional Firewall Rules
+
+        <details>
+          <summary>
+            <b>
+              <i>VPC peering pre v1.16.0</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # VPC peering configuration
+        vpc_peering_request = cloudamqp.VpcGcpPeering("vpcPeeringRequest",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            peer_network_uri=var["peer_network_uri"])
+        # Firewall rules
+        firewall_settings = cloudamqp.SecurityFirewall("firewallSettings",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            rules=[
+                cloudamqp.SecurityFirewallRuleArgs(
+                    ip=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+                    ports=[15672],
+                    services=[
+                        "AMQP",
+                        "AMQPS",
+                        "STREAM",
+                        "STREAM_SSL",
+                    ],
+                    description="VPC peering for <NETWORK>",
+                ),
+                cloudamqp.SecurityFirewallRuleArgs(
+                    ip="192.168.0.0/24",
+                    ports=[
+                        4567,
+                        4568,
+                    ],
+                    services=[
+                        "AMQP",
+                        "AMQPS",
+                        "HTTPS",
+                    ],
+                ),
+            ],
+            opts=pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
+        ```
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>VPC peering post v1.16.0 (Managed VPC)</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # VPC peering configuration
+        vpc_peering_request = cloudamqp.VpcGcpPeering("vpcPeeringRequest",
+            vpc_id=cloudamqp_vpc["vpc"]["id"],
+            peer_network_uri=var["peer_network_uri"])
+        # Firewall rules
+        firewall_settings = cloudamqp.SecurityFirewall("firewallSettings",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            rules=[
+                cloudamqp.SecurityFirewallRuleArgs(
+                    ip=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+                    ports=[15672],
+                    services=[
+                        "AMQP",
+                        "AMQPS",
+                        "STREAM",
+                        "STREAM_SSL",
+                    ],
+                    description="VPC peering for <NETWORK>",
+                ),
+                cloudamqp.SecurityFirewallRuleArgs(
+                    ip="192.168.0.0/24",
+                    ports=[
+                        4567,
+                        4568,
+                    ],
+                    services=[
+                        "AMQP",
+                        "AMQPS",
+                        "HTTPS",
+                    ],
+                ),
+            ],
+            opts=pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
+        ```
+        </details>
+        ## Depedency
+
+        *Pre v1.16.0*
+        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+        *Post v1.16.0*
+        This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
+
+        ## Create VPC Peering with additional firewall rules
+
+        To create a VPC peering configuration with additional firewall rules, it's required to chain the SecurityFirewall
+        resource to avoid parallel conflicting resource calls. This is done by adding dependency from the firewall resource to the VPC peering resource.
+
+        Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for the VPC peering also needs to be added.
+
+        See example below.
+
         ## Import
 
         Not possible to import this resource.
@@ -187,8 +322,12 @@ class VpcGcpPeering(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
+               
+               ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
         :param pulumi.Input[str] peer_network_uri: Network uri of the VPC network to which you will peer with.
         :param pulumi.Input[str] vpc_id: The managed VPC identifier.
+               
+               ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
         """
         ...
     @overload
@@ -197,6 +336,125 @@ class VpcGcpPeering(pulumi.CustomResource):
                  args: VpcGcpPeeringArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        This resouce creates a VPC peering configuration for the CloudAMQP instance. The configuration will connect to another VPC network hosted on Google Cloud Platform (GCP). See the [GCP documentation](https://cloud.google.com/vpc/docs/using-vpc-peering) for more information on how to create the VPC peering configuration.
+
+        Only available for dedicated subscription plans.
+
+        Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
+
+        ## Example Usage
+        ### With Additional Firewall Rules
+
+        <details>
+          <summary>
+            <b>
+              <i>VPC peering pre v1.16.0</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # VPC peering configuration
+        vpc_peering_request = cloudamqp.VpcGcpPeering("vpcPeeringRequest",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            peer_network_uri=var["peer_network_uri"])
+        # Firewall rules
+        firewall_settings = cloudamqp.SecurityFirewall("firewallSettings",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            rules=[
+                cloudamqp.SecurityFirewallRuleArgs(
+                    ip=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+                    ports=[15672],
+                    services=[
+                        "AMQP",
+                        "AMQPS",
+                        "STREAM",
+                        "STREAM_SSL",
+                    ],
+                    description="VPC peering for <NETWORK>",
+                ),
+                cloudamqp.SecurityFirewallRuleArgs(
+                    ip="192.168.0.0/24",
+                    ports=[
+                        4567,
+                        4568,
+                    ],
+                    services=[
+                        "AMQP",
+                        "AMQPS",
+                        "HTTPS",
+                    ],
+                ),
+            ],
+            opts=pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
+        ```
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>VPC peering post v1.16.0 (Managed VPC)</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # VPC peering configuration
+        vpc_peering_request = cloudamqp.VpcGcpPeering("vpcPeeringRequest",
+            vpc_id=cloudamqp_vpc["vpc"]["id"],
+            peer_network_uri=var["peer_network_uri"])
+        # Firewall rules
+        firewall_settings = cloudamqp.SecurityFirewall("firewallSettings",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            rules=[
+                cloudamqp.SecurityFirewallRuleArgs(
+                    ip=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+                    ports=[15672],
+                    services=[
+                        "AMQP",
+                        "AMQPS",
+                        "STREAM",
+                        "STREAM_SSL",
+                    ],
+                    description="VPC peering for <NETWORK>",
+                ),
+                cloudamqp.SecurityFirewallRuleArgs(
+                    ip="192.168.0.0/24",
+                    ports=[
+                        4567,
+                        4568,
+                    ],
+                    services=[
+                        "AMQP",
+                        "AMQPS",
+                        "HTTPS",
+                    ],
+                ),
+            ],
+            opts=pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
+        ```
+        </details>
+        ## Depedency
+
+        *Pre v1.16.0*
+        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+        *Post v1.16.0*
+        This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
+
+        ## Create VPC Peering with additional firewall rules
+
+        To create a VPC peering configuration with additional firewall rules, it's required to chain the SecurityFirewall
+        resource to avoid parallel conflicting resource calls. This is done by adding dependency from the firewall resource to the VPC peering resource.
+
+        Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for the VPC peering also needs to be added.
+
+        See example below.
+
         ## Import
 
         Not possible to import this resource.
@@ -261,10 +519,14 @@ class VpcGcpPeering(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] auto_create_routes: VPC peering auto created routes
         :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
+               
+               ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
         :param pulumi.Input[str] peer_network_uri: Network uri of the VPC network to which you will peer with.
         :param pulumi.Input[str] state: VPC peering state
         :param pulumi.Input[str] state_details: VPC peering state details
         :param pulumi.Input[str] vpc_id: The managed VPC identifier.
+               
+               ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -291,6 +553,8 @@ class VpcGcpPeering(pulumi.CustomResource):
     def instance_id(self) -> pulumi.Output[Optional[int]]:
         """
         The CloudAMQP instance identifier.
+
+        ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
         """
         return pulumi.get(self, "instance_id")
 
@@ -323,6 +587,8 @@ class VpcGcpPeering(pulumi.CustomResource):
     def vpc_id(self) -> pulumi.Output[Optional[str]]:
         """
         The managed VPC identifier.
+
+        ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
         """
         return pulumi.get(self, "vpc_id")
 

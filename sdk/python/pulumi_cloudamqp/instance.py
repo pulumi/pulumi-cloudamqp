@@ -28,14 +28,24 @@ class InstanceArgs:
         The set of arguments for constructing a Instance resource.
         :param pulumi.Input[str] plan: The subscription plan. See available plans
         :param pulumi.Input[str] region: The region to host the instance in. See Instance regions
+               
+               ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
         :param pulumi.Input[bool] keep_associated_vpc: Keep associated VPC when deleting instance, default set to false.
         :param pulumi.Input[str] name: Name of the CloudAMQP instance.
         :param pulumi.Input[bool] no_default_alarms: Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
-        :param pulumi.Input[int] nodes: Number of nodes, 1, 3 or 5 depending on plan used.
+        :param pulumi.Input[int] nodes: Number of nodes, 1, 3 or 5 depending on plan used. Only needed for legacy plans, will otherwise be computed.
+               
+               ***Deprecated: Legacy subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.***
         :param pulumi.Input[str] rmq_version: The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.
+               
+               ***Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.***
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
         :param pulumi.Input[int] vpc_id: The VPC ID. Use this to create your instance in an existing VPC. See available example.
         :param pulumi.Input[str] vpc_subnet: Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24.
+               
+               ***Deprecated: Will be removed in next major version (v2.0)***
+               
+               ***Note: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.***
         """
         pulumi.set(__self__, "plan", plan)
         pulumi.set(__self__, "region", region)
@@ -73,6 +83,8 @@ class InstanceArgs:
     def region(self) -> pulumi.Input[str]:
         """
         The region to host the instance in. See Instance regions
+
+        ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
         """
         return pulumi.get(self, "region")
 
@@ -120,7 +132,9 @@ class InstanceArgs:
     @pulumi.getter
     def nodes(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of nodes, 1, 3 or 5 depending on plan used.
+        Number of nodes, 1, 3 or 5 depending on plan used. Only needed for legacy plans, will otherwise be computed.
+
+        ***Deprecated: Legacy subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.***
         """
         return pulumi.get(self, "nodes")
 
@@ -133,6 +147,8 @@ class InstanceArgs:
     def rmq_version(self) -> Optional[pulumi.Input[str]]:
         """
         The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.
+
+        ***Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.***
         """
         return pulumi.get(self, "rmq_version")
 
@@ -169,6 +185,10 @@ class InstanceArgs:
     def vpc_subnet(self) -> Optional[pulumi.Input[str]]:
         """
         Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24.
+
+        ***Deprecated: Will be removed in next major version (v2.0)***
+
+        ***Note: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.***
         """
         return pulumi.get(self, "vpc_subnet")
 
@@ -181,6 +201,7 @@ class InstanceArgs:
 class _InstanceState:
     def __init__(__self__, *,
                  apikey: Optional[pulumi.Input[str]] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
                  dedicated: Optional[pulumi.Input[bool]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  host_internal: Optional[pulumi.Input[str]] = None,
@@ -200,25 +221,38 @@ class _InstanceState:
         """
         Input properties used for looking up and filtering Instance resources.
         :param pulumi.Input[str] apikey: API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
-        :param pulumi.Input[bool] dedicated: Is the instance hosted on a dedicated server
+        :param pulumi.Input[str] backend: Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
+        :param pulumi.Input[bool] dedicated: Information if the CloudAMQP instance is shared or dedicated.
         :param pulumi.Input[str] host: The external hostname for the CloudAMQP instance.
         :param pulumi.Input[str] host_internal: The internal hostname for the CloudAMQP instance.
         :param pulumi.Input[bool] keep_associated_vpc: Keep associated VPC when deleting instance, default set to false.
         :param pulumi.Input[str] name: Name of the CloudAMQP instance.
         :param pulumi.Input[bool] no_default_alarms: Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
-        :param pulumi.Input[int] nodes: Number of nodes, 1, 3 or 5 depending on plan used.
+        :param pulumi.Input[int] nodes: Number of nodes, 1, 3 or 5 depending on plan used. Only needed for legacy plans, will otherwise be computed.
+               
+               ***Deprecated: Legacy subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.***
         :param pulumi.Input[str] plan: The subscription plan. See available plans
         :param pulumi.Input[bool] ready: Flag describing if the resource is ready
         :param pulumi.Input[str] region: The region to host the instance in. See Instance regions
+               
+               ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
         :param pulumi.Input[str] rmq_version: The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.
+               
+               ***Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.***
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
         :param pulumi.Input[str] url: The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
         :param pulumi.Input[str] vhost: The virtual host used by Rabbit MQ.
         :param pulumi.Input[int] vpc_id: The VPC ID. Use this to create your instance in an existing VPC. See available example.
         :param pulumi.Input[str] vpc_subnet: Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24.
+               
+               ***Deprecated: Will be removed in next major version (v2.0)***
+               
+               ***Note: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.***
         """
         if apikey is not None:
             pulumi.set(__self__, "apikey", apikey)
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
         if dedicated is not None:
             pulumi.set(__self__, "dedicated", dedicated)
         if host is not None:
@@ -266,9 +300,21 @@ class _InstanceState:
 
     @property
     @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter
     def dedicated(self) -> Optional[pulumi.Input[bool]]:
         """
-        Is the instance hosted on a dedicated server
+        Information if the CloudAMQP instance is shared or dedicated.
         """
         return pulumi.get(self, "dedicated")
 
@@ -340,7 +386,9 @@ class _InstanceState:
     @pulumi.getter
     def nodes(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of nodes, 1, 3 or 5 depending on plan used.
+        Number of nodes, 1, 3 or 5 depending on plan used. Only needed for legacy plans, will otherwise be computed.
+
+        ***Deprecated: Legacy subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.***
         """
         return pulumi.get(self, "nodes")
 
@@ -377,6 +425,8 @@ class _InstanceState:
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         The region to host the instance in. See Instance regions
+
+        ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
         """
         return pulumi.get(self, "region")
 
@@ -389,6 +439,8 @@ class _InstanceState:
     def rmq_version(self) -> Optional[pulumi.Input[str]]:
         """
         The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.
+
+        ***Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.***
         """
         return pulumi.get(self, "rmq_version")
 
@@ -449,6 +501,10 @@ class _InstanceState:
     def vpc_subnet(self) -> Optional[pulumi.Input[str]]:
         """
         Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24.
+
+        ***Deprecated: Will be removed in next major version (v2.0)***
+
+        ***Note: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.***
         """
         return pulumi.get(self, "vpc_subnet")
 
@@ -474,6 +530,139 @@ class Instance(pulumi.CustomResource):
                  vpc_subnet: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        This resource allows you to create and manage a CloudAMQP instance running either ***RabbitMQ*** or ***LavinMQ*** and can be deployed to multiple cloud platforms provider and regions, see Instance regions for more information.
+
+        Once the instance is created it will be assigned a unique identifier. All other resources and data sources created for this instance needs to reference this unique instance identifier.
+
+        Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
+
+        ## Example Usage
+
+        <details>
+          <summary>
+            <b>
+              <i>Basic example of shared and dedicated instances</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # Minimum free lemur instance running RabbitMQ
+        lemur_instance = cloudamqp.Instance("lemurInstance",
+            plan="lemur",
+            region="amazon-web-services::us-west-1",
+            tags=["rabbitmq"])
+        # Minimum free lemming instance running LavinMQ
+        lemming_instance = cloudamqp.Instance("lemmingInstance",
+            plan="lemming",
+            region="amazon-web-services::us-west-1",
+            tags=["lavinmq"])
+        # New dedicated bunny instance running RabbitMQ
+        instance = cloudamqp.Instance("instance",
+            plan="bunny-1",
+            region="amazon-web-services::us-west-1",
+            tags=["terraform"])
+        ```
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Dedicated instance using attribute vpc_subnet to create VPC, pre v1.16.0</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        instance = cloudamqp.Instance("instance",
+            plan="bunny-1",
+            region="amazon-web-services::us-west-1",
+            tags=["terraform"],
+            vpc_subnet="10.56.72.0/24")
+        ```
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Dedicated instance using attribute vpc_subnet to create VPC and then import managed VPC, post v1.16.0 (Managed VPC)</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # Dedicated instance that also creates VPC
+        instance01 = cloudamqp.Instance("instance01",
+            plan="bunny-1",
+            region="amazon-web-services::us-west-1",
+            tags=["terraform"],
+            vpc_subnet="10.56.72.0/24")
+        ```
+
+        Once the instance and the VPC are created, the VPC can be imported as managed VPC and added to the configuration file.
+        Set attribute `vpc_id` to the managed VPC identifier. To keep the managed VPC when deleting the instance, set attribute `keep_associated_vpc` to true.
+        For more information see guide Managed VPC.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # Imported managed VPC
+        vpc = cloudamqp.Vpc("vpc",
+            region="amazon-web-services::us-east-1",
+            subnet="10.56.72.0/24",
+            tags=[])
+        # Add vpc_id and keep_associated_vpc attributes
+        instance01 = cloudamqp.Instance("instance01",
+            plan="bunny-1",
+            region="amazon-web-services::us-west-1",
+            tags=["terraform"],
+            vpc_id=vpc.id,
+            keep_associated_vpc=True)
+        ```
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Dedicated instances and managed VPC, post v1.16.0 (Managed VPC)</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # Managed VPC
+        vpc = cloudamqp.Vpc("vpc",
+            region="amazon-web-services::us-east-1",
+            subnet="10.56.72.0/24",
+            tags=[])
+        # First instance added to managed VPC
+        instance01 = cloudamqp.Instance("instance01",
+            plan="bunny-1",
+            region="amazon-web-services::us-west-1",
+            tags=["terraform"],
+            vpc_id=vpc.id,
+            keep_associated_vpc=True)
+        # Second instance added to managed VPC
+        instance02 = cloudamqp.Instance("instance02",
+            plan="bunny-1",
+            region="amazon-web-services::us-west-1",
+            tags=["terraform"],
+            vpc_id=vpc.id,
+            keep_associated_vpc=True)
+        ```
+
+        Set attribute `keep_associated_vpc` to true, will keep managed VPC when deleting the instances.
+        </details>
+
         ## Import
 
         `cloudamqp_instance`can be imported using CloudAMQP internal identifier.
@@ -482,20 +671,30 @@ class Instance(pulumi.CustomResource):
          $ pulumi import cloudamqp:index/instance:Instance instance <id>`
         ```
 
-         To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances). Or use the data source [`cloudamqp_account`](https://registry.terraform.io/providers/cloudamqp/cloudamqp/latest/docs/data-sources/account) to list all available instances for an account.
+         To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances). Or use the data source `cloudamqp_account` to list all available instances for an account.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] keep_associated_vpc: Keep associated VPC when deleting instance, default set to false.
         :param pulumi.Input[str] name: Name of the CloudAMQP instance.
         :param pulumi.Input[bool] no_default_alarms: Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
-        :param pulumi.Input[int] nodes: Number of nodes, 1, 3 or 5 depending on plan used.
+        :param pulumi.Input[int] nodes: Number of nodes, 1, 3 or 5 depending on plan used. Only needed for legacy plans, will otherwise be computed.
+               
+               ***Deprecated: Legacy subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.***
         :param pulumi.Input[str] plan: The subscription plan. See available plans
         :param pulumi.Input[str] region: The region to host the instance in. See Instance regions
+               
+               ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
         :param pulumi.Input[str] rmq_version: The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.
+               
+               ***Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.***
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
         :param pulumi.Input[int] vpc_id: The VPC ID. Use this to create your instance in an existing VPC. See available example.
         :param pulumi.Input[str] vpc_subnet: Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24.
+               
+               ***Deprecated: Will be removed in next major version (v2.0)***
+               
+               ***Note: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.***
         """
         ...
     @overload
@@ -504,6 +703,139 @@ class Instance(pulumi.CustomResource):
                  args: InstanceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        This resource allows you to create and manage a CloudAMQP instance running either ***RabbitMQ*** or ***LavinMQ*** and can be deployed to multiple cloud platforms provider and regions, see Instance regions for more information.
+
+        Once the instance is created it will be assigned a unique identifier. All other resources and data sources created for this instance needs to reference this unique instance identifier.
+
+        Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
+
+        ## Example Usage
+
+        <details>
+          <summary>
+            <b>
+              <i>Basic example of shared and dedicated instances</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # Minimum free lemur instance running RabbitMQ
+        lemur_instance = cloudamqp.Instance("lemurInstance",
+            plan="lemur",
+            region="amazon-web-services::us-west-1",
+            tags=["rabbitmq"])
+        # Minimum free lemming instance running LavinMQ
+        lemming_instance = cloudamqp.Instance("lemmingInstance",
+            plan="lemming",
+            region="amazon-web-services::us-west-1",
+            tags=["lavinmq"])
+        # New dedicated bunny instance running RabbitMQ
+        instance = cloudamqp.Instance("instance",
+            plan="bunny-1",
+            region="amazon-web-services::us-west-1",
+            tags=["terraform"])
+        ```
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Dedicated instance using attribute vpc_subnet to create VPC, pre v1.16.0</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        instance = cloudamqp.Instance("instance",
+            plan="bunny-1",
+            region="amazon-web-services::us-west-1",
+            tags=["terraform"],
+            vpc_subnet="10.56.72.0/24")
+        ```
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Dedicated instance using attribute vpc_subnet to create VPC and then import managed VPC, post v1.16.0 (Managed VPC)</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # Dedicated instance that also creates VPC
+        instance01 = cloudamqp.Instance("instance01",
+            plan="bunny-1",
+            region="amazon-web-services::us-west-1",
+            tags=["terraform"],
+            vpc_subnet="10.56.72.0/24")
+        ```
+
+        Once the instance and the VPC are created, the VPC can be imported as managed VPC and added to the configuration file.
+        Set attribute `vpc_id` to the managed VPC identifier. To keep the managed VPC when deleting the instance, set attribute `keep_associated_vpc` to true.
+        For more information see guide Managed VPC.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # Imported managed VPC
+        vpc = cloudamqp.Vpc("vpc",
+            region="amazon-web-services::us-east-1",
+            subnet="10.56.72.0/24",
+            tags=[])
+        # Add vpc_id and keep_associated_vpc attributes
+        instance01 = cloudamqp.Instance("instance01",
+            plan="bunny-1",
+            region="amazon-web-services::us-west-1",
+            tags=["terraform"],
+            vpc_id=vpc.id,
+            keep_associated_vpc=True)
+        ```
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Dedicated instances and managed VPC, post v1.16.0 (Managed VPC)</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # Managed VPC
+        vpc = cloudamqp.Vpc("vpc",
+            region="amazon-web-services::us-east-1",
+            subnet="10.56.72.0/24",
+            tags=[])
+        # First instance added to managed VPC
+        instance01 = cloudamqp.Instance("instance01",
+            plan="bunny-1",
+            region="amazon-web-services::us-west-1",
+            tags=["terraform"],
+            vpc_id=vpc.id,
+            keep_associated_vpc=True)
+        # Second instance added to managed VPC
+        instance02 = cloudamqp.Instance("instance02",
+            plan="bunny-1",
+            region="amazon-web-services::us-west-1",
+            tags=["terraform"],
+            vpc_id=vpc.id,
+            keep_associated_vpc=True)
+        ```
+
+        Set attribute `keep_associated_vpc` to true, will keep managed VPC when deleting the instances.
+        </details>
+
         ## Import
 
         `cloudamqp_instance`can be imported using CloudAMQP internal identifier.
@@ -512,7 +844,7 @@ class Instance(pulumi.CustomResource):
          $ pulumi import cloudamqp:index/instance:Instance instance <id>`
         ```
 
-         To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances). Or use the data source [`cloudamqp_account`](https://registry.terraform.io/providers/cloudamqp/cloudamqp/latest/docs/data-sources/account) to list all available instances for an account.
+         To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances). Or use the data source `cloudamqp_account` to list all available instances for an account.
 
         :param str resource_name: The name of the resource.
         :param InstanceArgs args: The arguments to use to populate this resource's properties.
@@ -563,6 +895,7 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["vpc_id"] = vpc_id
             __props__.__dict__["vpc_subnet"] = vpc_subnet
             __props__.__dict__["apikey"] = None
+            __props__.__dict__["backend"] = None
             __props__.__dict__["dedicated"] = None
             __props__.__dict__["host"] = None
             __props__.__dict__["host_internal"] = None
@@ -582,6 +915,7 @@ class Instance(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             apikey: Optional[pulumi.Input[str]] = None,
+            backend: Optional[pulumi.Input[str]] = None,
             dedicated: Optional[pulumi.Input[bool]] = None,
             host: Optional[pulumi.Input[str]] = None,
             host_internal: Optional[pulumi.Input[str]] = None,
@@ -606,28 +940,40 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] apikey: API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
-        :param pulumi.Input[bool] dedicated: Is the instance hosted on a dedicated server
+        :param pulumi.Input[str] backend: Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
+        :param pulumi.Input[bool] dedicated: Information if the CloudAMQP instance is shared or dedicated.
         :param pulumi.Input[str] host: The external hostname for the CloudAMQP instance.
         :param pulumi.Input[str] host_internal: The internal hostname for the CloudAMQP instance.
         :param pulumi.Input[bool] keep_associated_vpc: Keep associated VPC when deleting instance, default set to false.
         :param pulumi.Input[str] name: Name of the CloudAMQP instance.
         :param pulumi.Input[bool] no_default_alarms: Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
-        :param pulumi.Input[int] nodes: Number of nodes, 1, 3 or 5 depending on plan used.
+        :param pulumi.Input[int] nodes: Number of nodes, 1, 3 or 5 depending on plan used. Only needed for legacy plans, will otherwise be computed.
+               
+               ***Deprecated: Legacy subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.***
         :param pulumi.Input[str] plan: The subscription plan. See available plans
         :param pulumi.Input[bool] ready: Flag describing if the resource is ready
         :param pulumi.Input[str] region: The region to host the instance in. See Instance regions
+               
+               ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
         :param pulumi.Input[str] rmq_version: The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.
+               
+               ***Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.***
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
         :param pulumi.Input[str] url: The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
         :param pulumi.Input[str] vhost: The virtual host used by Rabbit MQ.
         :param pulumi.Input[int] vpc_id: The VPC ID. Use this to create your instance in an existing VPC. See available example.
         :param pulumi.Input[str] vpc_subnet: Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24.
+               
+               ***Deprecated: Will be removed in next major version (v2.0)***
+               
+               ***Note: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.***
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _InstanceState.__new__(_InstanceState)
 
         __props__.__dict__["apikey"] = apikey
+        __props__.__dict__["backend"] = backend
         __props__.__dict__["dedicated"] = dedicated
         __props__.__dict__["host"] = host
         __props__.__dict__["host_internal"] = host_internal
@@ -656,9 +1002,17 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def backend(self) -> pulumi.Output[str]:
+        """
+        Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
+        """
+        return pulumi.get(self, "backend")
+
+    @property
+    @pulumi.getter
     def dedicated(self) -> pulumi.Output[bool]:
         """
-        Is the instance hosted on a dedicated server
+        Information if the CloudAMQP instance is shared or dedicated.
         """
         return pulumi.get(self, "dedicated")
 
@@ -706,7 +1060,9 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter
     def nodes(self) -> pulumi.Output[int]:
         """
-        Number of nodes, 1, 3 or 5 depending on plan used.
+        Number of nodes, 1, 3 or 5 depending on plan used. Only needed for legacy plans, will otherwise be computed.
+
+        ***Deprecated: Legacy subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.***
         """
         return pulumi.get(self, "nodes")
 
@@ -731,6 +1087,8 @@ class Instance(pulumi.CustomResource):
     def region(self) -> pulumi.Output[str]:
         """
         The region to host the instance in. See Instance regions
+
+        ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
         """
         return pulumi.get(self, "region")
 
@@ -739,6 +1097,8 @@ class Instance(pulumi.CustomResource):
     def rmq_version(self) -> pulumi.Output[str]:
         """
         The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.
+
+        ***Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.***
         """
         return pulumi.get(self, "rmq_version")
 
@@ -779,6 +1139,10 @@ class Instance(pulumi.CustomResource):
     def vpc_subnet(self) -> pulumi.Output[str]:
         """
         Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24.
+
+        ***Deprecated: Will be removed in next major version (v2.0)***
+
+        ***Note: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.***
         """
         return pulumi.get(self, "vpc_subnet")
 

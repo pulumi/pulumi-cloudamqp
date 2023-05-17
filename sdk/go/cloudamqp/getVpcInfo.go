@@ -110,8 +110,12 @@ func GetVpcInfo(ctx *pulumi.Context, args *GetVpcInfoArgs, opts ...pulumi.Invoke
 // A collection of arguments for invoking getVpcInfo.
 type GetVpcInfoArgs struct {
 	// The CloudAMQP instance identifier.
+	//
+	// ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
 	InstanceId *int `pulumi:"instanceId"`
 	// The managed VPC identifier.
+	//
+	// ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
 	VpcId *string `pulumi:"vpcId"`
 }
 
@@ -143,8 +147,12 @@ func GetVpcInfoOutput(ctx *pulumi.Context, args GetVpcInfoOutputArgs, opts ...pu
 // A collection of arguments for invoking getVpcInfo.
 type GetVpcInfoOutputArgs struct {
 	// The CloudAMQP instance identifier.
+	//
+	// ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
 	InstanceId pulumi.IntPtrInput `pulumi:"instanceId"`
 	// The managed VPC identifier.
+	//
+	// ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
 	VpcId pulumi.StringPtrInput `pulumi:"vpcId"`
 }
 
