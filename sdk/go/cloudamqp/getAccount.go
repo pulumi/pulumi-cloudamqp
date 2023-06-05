@@ -9,6 +9,30 @@ import (
 
 // Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
 //
+// ## Example Usage
+//
+// Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
+//
+// ```go
+// package main
+//
+// import (
+//
+// "github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// "github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _ := "<instance_name>";
+// _, err := cloudamqp.GetAccount(ctx, nil, nil);
+// if err != nil {
+// return err
+// }
+// ctx.Export("instanceId", <nil>)
+// return nil
+// })
+// }
+// ```
 // ## Attributes reference
 //
 // # All attributes reference are computed
