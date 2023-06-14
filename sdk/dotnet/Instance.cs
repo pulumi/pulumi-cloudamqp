@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
-    /// This resource allows you to create and manage a CloudAMQP instance running either ***RabbitMQ*** or ***LavinMQ*** and can be deployed to multiple cloud platforms provider and regions, see Instance regions for more information.
+    /// This resource allows you to create and manage a CloudAMQP instance running either [**RabbitMQ**](https://www.rabbitmq.com/) or [**LavinMQ**](https://lavinmq.com/) and can be deployed to multiple cloud platforms provider and regions, see Instance regions for more information.
     /// 
     /// Once the instance is created it will be assigned a unique identifier. All other resources and data sources created for this instance needs to reference this unique instance identifier.
     /// 

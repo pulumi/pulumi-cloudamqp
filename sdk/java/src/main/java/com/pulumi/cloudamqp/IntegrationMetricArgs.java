@@ -92,6 +92,36 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * External identifier that match the role you created. (Cloudwatch)
+     * 
+     */
+    @Import(name="iamExternalId")
+    private @Nullable Output<String> iamExternalId;
+
+    /**
+     * @return External identifier that match the role you created. (Cloudwatch)
+     * 
+     */
+    public Optional<Output<String>> iamExternalId() {
+        return Optional.ofNullable(this.iamExternalId);
+    }
+
+    /**
+     * The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+     * 
+     */
+    @Import(name="iamRole")
+    private @Nullable Output<String> iamRole;
+
+    /**
+     * @return The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+     * 
+     */
+    public Optional<Output<String>> iamRole() {
+        return Optional.ofNullable(this.iamRole);
+    }
+
+    /**
      * Instance identifier
      * 
      */
@@ -310,6 +340,8 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         this.clientEmail = $.clientEmail;
         this.credentials = $.credentials;
         this.email = $.email;
+        this.iamExternalId = $.iamExternalId;
+        this.iamRole = $.iamRole;
         this.instanceId = $.instanceId;
         this.licenseKey = $.licenseKey;
         this.name = $.name;
@@ -446,6 +478,48 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder email(String email) {
             return email(Output.of(email));
+        }
+
+        /**
+         * @param iamExternalId External identifier that match the role you created. (Cloudwatch)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder iamExternalId(@Nullable Output<String> iamExternalId) {
+            $.iamExternalId = iamExternalId;
+            return this;
+        }
+
+        /**
+         * @param iamExternalId External identifier that match the role you created. (Cloudwatch)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder iamExternalId(String iamExternalId) {
+            return iamExternalId(Output.of(iamExternalId));
+        }
+
+        /**
+         * @param iamRole The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder iamRole(@Nullable Output<String> iamRole) {
+            $.iamRole = iamRole;
+            return this;
+        }
+
+        /**
+         * @param iamRole The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder iamRole(String iamRole) {
+            return iamRole(Output.of(iamRole));
         }
 
         /**

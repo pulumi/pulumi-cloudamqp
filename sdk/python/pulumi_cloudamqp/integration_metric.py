@@ -20,6 +20,8 @@ class IntegrationMetricArgs:
                  client_email: Optional[pulumi.Input[str]] = None,
                  credentials: Optional[pulumi.Input[str]] = None,
                  email: Optional[pulumi.Input[str]] = None,
+                 iam_external_id: Optional[pulumi.Input[str]] = None,
+                 iam_role: Optional[pulumi.Input[str]] = None,
                  license_key: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
@@ -40,6 +42,8 @@ class IntegrationMetricArgs:
         :param pulumi.Input[str] client_email: The client email. (Stackdriver)
         :param pulumi.Input[str] credentials: Base64Encoded credentials. (Stackdriver)
         :param pulumi.Input[str] email: The email address registred for the integration service. (Librato)
+        :param pulumi.Input[str] iam_external_id: External identifier that match the role you created. (Cloudwatch)
+        :param pulumi.Input[str] iam_role: The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
         :param pulumi.Input[str] license_key: The license key registred for the integration service. (New Relic)
         :param pulumi.Input[str] name: The name of metrics integration
         :param pulumi.Input[str] private_key: The private key. (Stackdriver)
@@ -64,6 +68,10 @@ class IntegrationMetricArgs:
             pulumi.set(__self__, "credentials", credentials)
         if email is not None:
             pulumi.set(__self__, "email", email)
+        if iam_external_id is not None:
+            pulumi.set(__self__, "iam_external_id", iam_external_id)
+        if iam_role is not None:
+            pulumi.set(__self__, "iam_role", iam_role)
         if license_key is not None:
             pulumi.set(__self__, "license_key", license_key)
         if name is not None:
@@ -166,6 +174,30 @@ class IntegrationMetricArgs:
     @email.setter
     def email(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "email", value)
+
+    @property
+    @pulumi.getter(name="iamExternalId")
+    def iam_external_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        External identifier that match the role you created. (Cloudwatch)
+        """
+        return pulumi.get(self, "iam_external_id")
+
+    @iam_external_id.setter
+    def iam_external_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "iam_external_id", value)
+
+    @property
+    @pulumi.getter(name="iamRole")
+    def iam_role(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+        """
+        return pulumi.get(self, "iam_role")
+
+    @iam_role.setter
+    def iam_role(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "iam_role", value)
 
     @property
     @pulumi.getter(name="licenseKey")
@@ -320,6 +352,8 @@ class _IntegrationMetricState:
                  client_email: Optional[pulumi.Input[str]] = None,
                  credentials: Optional[pulumi.Input[str]] = None,
                  email: Optional[pulumi.Input[str]] = None,
+                 iam_external_id: Optional[pulumi.Input[str]] = None,
+                 iam_role: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  license_key: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -340,6 +374,8 @@ class _IntegrationMetricState:
         :param pulumi.Input[str] client_email: The client email. (Stackdriver)
         :param pulumi.Input[str] credentials: Base64Encoded credentials. (Stackdriver)
         :param pulumi.Input[str] email: The email address registred for the integration service. (Librato)
+        :param pulumi.Input[str] iam_external_id: External identifier that match the role you created. (Cloudwatch)
+        :param pulumi.Input[str] iam_role: The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
         :param pulumi.Input[int] instance_id: Instance identifier
         :param pulumi.Input[str] license_key: The license key registred for the integration service. (New Relic)
         :param pulumi.Input[str] name: The name of metrics integration
@@ -364,6 +400,10 @@ class _IntegrationMetricState:
             pulumi.set(__self__, "credentials", credentials)
         if email is not None:
             pulumi.set(__self__, "email", email)
+        if iam_external_id is not None:
+            pulumi.set(__self__, "iam_external_id", iam_external_id)
+        if iam_role is not None:
+            pulumi.set(__self__, "iam_role", iam_role)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
         if license_key is not None:
@@ -456,6 +496,30 @@ class _IntegrationMetricState:
     @email.setter
     def email(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "email", value)
+
+    @property
+    @pulumi.getter(name="iamExternalId")
+    def iam_external_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        External identifier that match the role you created. (Cloudwatch)
+        """
+        return pulumi.get(self, "iam_external_id")
+
+    @iam_external_id.setter
+    def iam_external_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "iam_external_id", value)
+
+    @property
+    @pulumi.getter(name="iamRole")
+    def iam_role(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+        """
+        return pulumi.get(self, "iam_role")
+
+    @iam_role.setter
+    def iam_role(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "iam_role", value)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -624,6 +688,8 @@ class IntegrationMetric(pulumi.CustomResource):
                  client_email: Optional[pulumi.Input[str]] = None,
                  credentials: Optional[pulumi.Input[str]] = None,
                  email: Optional[pulumi.Input[str]] = None,
+                 iam_external_id: Optional[pulumi.Input[str]] = None,
+                 iam_role: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  license_key: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -647,6 +713,8 @@ class IntegrationMetric(pulumi.CustomResource):
         :param pulumi.Input[str] client_email: The client email. (Stackdriver)
         :param pulumi.Input[str] credentials: Base64Encoded credentials. (Stackdriver)
         :param pulumi.Input[str] email: The email address registred for the integration service. (Librato)
+        :param pulumi.Input[str] iam_external_id: External identifier that match the role you created. (Cloudwatch)
+        :param pulumi.Input[str] iam_role: The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
         :param pulumi.Input[int] instance_id: Instance identifier
         :param pulumi.Input[str] license_key: The license key registred for the integration service. (New Relic)
         :param pulumi.Input[str] name: The name of metrics integration
@@ -689,6 +757,8 @@ class IntegrationMetric(pulumi.CustomResource):
                  client_email: Optional[pulumi.Input[str]] = None,
                  credentials: Optional[pulumi.Input[str]] = None,
                  email: Optional[pulumi.Input[str]] = None,
+                 iam_external_id: Optional[pulumi.Input[str]] = None,
+                 iam_role: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  license_key: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -716,6 +786,8 @@ class IntegrationMetric(pulumi.CustomResource):
             __props__.__dict__["client_email"] = client_email
             __props__.__dict__["credentials"] = None if credentials is None else pulumi.Output.secret(credentials)
             __props__.__dict__["email"] = email
+            __props__.__dict__["iam_external_id"] = iam_external_id
+            __props__.__dict__["iam_role"] = iam_role
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
@@ -754,6 +826,8 @@ class IntegrationMetric(pulumi.CustomResource):
             client_email: Optional[pulumi.Input[str]] = None,
             credentials: Optional[pulumi.Input[str]] = None,
             email: Optional[pulumi.Input[str]] = None,
+            iam_external_id: Optional[pulumi.Input[str]] = None,
+            iam_role: Optional[pulumi.Input[str]] = None,
             instance_id: Optional[pulumi.Input[int]] = None,
             license_key: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -779,6 +853,8 @@ class IntegrationMetric(pulumi.CustomResource):
         :param pulumi.Input[str] client_email: The client email. (Stackdriver)
         :param pulumi.Input[str] credentials: Base64Encoded credentials. (Stackdriver)
         :param pulumi.Input[str] email: The email address registred for the integration service. (Librato)
+        :param pulumi.Input[str] iam_external_id: External identifier that match the role you created. (Cloudwatch)
+        :param pulumi.Input[str] iam_role: The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
         :param pulumi.Input[int] instance_id: Instance identifier
         :param pulumi.Input[str] license_key: The license key registred for the integration service. (New Relic)
         :param pulumi.Input[str] name: The name of metrics integration
@@ -802,6 +878,8 @@ class IntegrationMetric(pulumi.CustomResource):
         __props__.__dict__["client_email"] = client_email
         __props__.__dict__["credentials"] = credentials
         __props__.__dict__["email"] = email
+        __props__.__dict__["iam_external_id"] = iam_external_id
+        __props__.__dict__["iam_role"] = iam_role
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["license_key"] = license_key
         __props__.__dict__["name"] = name
@@ -856,6 +934,22 @@ class IntegrationMetric(pulumi.CustomResource):
         The email address registred for the integration service. (Librato)
         """
         return pulumi.get(self, "email")
+
+    @property
+    @pulumi.getter(name="iamExternalId")
+    def iam_external_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        External identifier that match the role you created. (Cloudwatch)
+        """
+        return pulumi.get(self, "iam_external_id")
+
+    @property
+    @pulumi.getter(name="iamRole")
+    def iam_role(self) -> pulumi.Output[Optional[str]]:
+        """
+        The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+        """
+        return pulumi.get(self, "iam_role")
 
     @property
     @pulumi.getter(name="instanceId")

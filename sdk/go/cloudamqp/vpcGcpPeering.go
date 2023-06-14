@@ -13,80 +13,28 @@ import (
 
 // This resouce creates a VPC peering configuration for the CloudAMQP instance. The configuration will connect to another VPC network hosted on Google Cloud Platform (GCP). See the [GCP documentation](https://cloud.google.com/vpc/docs/using-vpc-peering) for more information on how to create the VPC peering configuration.
 //
-// Only available for dedicated subscription plans.
-//
-// Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
-//
-// ## Example Usage
-// ### With Additional Firewall Rules
-//
+// > **Note:** Creating a VPC peering will automatically add firewall rules for the peered subnet.
 // <details>
 //
 //	<summary>
-//	  <b>
-//	    <i>VPC peering pre v1.16.0</i>
-//	  </b>
-//	</summary>
+//	   <i>Default VPC peering firewall rule</i>
+//	 </summary>
 //
 // ```go
 // package main
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			vpcPeeringRequest, err := cloudamqp.NewVpcGcpPeering(ctx, "vpcPeeringRequest", &cloudamqp.VpcGcpPeeringArgs{
-//				InstanceId:     pulumi.Any(cloudamqp_instance.Instance.Id),
-//				PeerNetworkUri: pulumi.Any(_var.Peer_network_uri),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = cloudamqp.NewSecurityFirewall(ctx, "firewallSettings", &cloudamqp.SecurityFirewallArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
-//				Rules: cloudamqp.SecurityFirewallRuleArray{
-//					&cloudamqp.SecurityFirewallRuleArgs{
-//						Ip: pulumi.Any(_var.Peer_subnet),
-//						Ports: pulumi.IntArray{
-//							pulumi.Int(15672),
-//						},
-//						Services: pulumi.StringArray{
-//							pulumi.String("AMQP"),
-//							pulumi.String("AMQPS"),
-//							pulumi.String("STREAM"),
-//							pulumi.String("STREAM_SSL"),
-//						},
-//						Description: pulumi.String("VPC peering for <NETWORK>"),
-//					},
-//					&cloudamqp.SecurityFirewallRuleArgs{
-//						Ip: pulumi.String("192.168.0.0/24"),
-//						Ports: pulumi.IntArray{
-//							pulumi.Int(4567),
-//							pulumi.Int(4568),
-//						},
-//						Services: pulumi.StringArray{
-//							pulumi.String("AMQP"),
-//							pulumi.String("AMQPS"),
-//							pulumi.String("HTTPS"),
-//						},
-//					},
-//				},
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				vpcPeeringRequest,
-//			}))
-//			if err != nil {
-//				return err
-//			}
 //			return nil
 //		})
 //	}
 //
-// ```
 // </details>
 //
 // <details>
@@ -133,16 +81,12 @@ import (
 //						Description: pulumi.String("VPC peering for <NETWORK>"),
 //					},
 //					&cloudamqp.SecurityFirewallRuleArgs{
-//						Ip: pulumi.String("192.168.0.0/24"),
-//						Ports: pulumi.IntArray{
-//							pulumi.Int(4567),
-//							pulumi.Int(4568),
-//						},
+//						Ip:    pulumi.String("0.0.0.0/0"),
+//						Ports: pulumi.IntArray{},
 //						Services: pulumi.StringArray{
-//							pulumi.String("AMQP"),
-//							pulumi.String("AMQPS"),
 //							pulumi.String("HTTPS"),
 //						},
+//						Description: pulumi.String("MGMT interface"),
 //					},
 //				},
 //			}, pulumi.DependsOn([]pulumi.Resource{
@@ -157,6 +101,8 @@ import (
 //
 // ```
 // </details>
+// {{% /example %}}
+// {{% /examples %}}
 // ## Depedency
 //
 // *Pre v1.16.0*

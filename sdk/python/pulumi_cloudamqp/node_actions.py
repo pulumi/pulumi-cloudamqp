@@ -185,7 +185,7 @@ class NodeActions(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        list_nodes = cloudamqp.get_nodes(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+        list_nodes = cloudamqp.get_nodes(instance_id=cloudamqp_instance["instance"]["id"])
         restart01 = cloudamqp.NodeActions("restart01",
             instance_id=cloudamqp_instance["instance"]["id"],
             action="restart",
@@ -217,7 +217,7 @@ class NodeActions(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        list_nodes = cloudamqp.get_nodes(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+        list_nodes = cloudamqp.get_nodes(instance_id=cloudamqp_instance["instance"]["id"])
         rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmqConfig",
             instance_id=cloudamqp_instance["instance"]["id"],
             log_exchange_level="info")
@@ -317,7 +317,7 @@ class NodeActions(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        list_nodes = cloudamqp.get_nodes(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+        list_nodes = cloudamqp.get_nodes(instance_id=cloudamqp_instance["instance"]["id"])
         restart01 = cloudamqp.NodeActions("restart01",
             instance_id=cloudamqp_instance["instance"]["id"],
             action="restart",
@@ -349,7 +349,7 @@ class NodeActions(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        list_nodes = cloudamqp.get_nodes(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+        list_nodes = cloudamqp.get_nodes(instance_id=cloudamqp_instance["instance"]["id"])
         rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmqConfig",
             instance_id=cloudamqp_instance["instance"]["id"],
             log_exchange_level="info")

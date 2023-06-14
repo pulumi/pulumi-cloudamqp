@@ -19,15 +19,61 @@ import javax.annotation.Nullable;
 /**
  * Enable PrivateLink for a CloudAMQP instance hosted in Azure. If no existing VPC available when enable PrivateLink, a new VPC will be created with subnet `10.52.72.0/24`.
  * 
- * More information about [CloudAMQP Privatelink](https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#azure-privatelink).
+ * &gt; **Note:** Enabling PrivateLink will automatically add firewall rules for the peered subnet.
+ * &lt;details&gt;
+ *  &lt;summary&gt;
+ *     &lt;i&gt;Default PrivateLink firewall rule&lt;/i&gt;
+ *   &lt;/summary&gt;
+ * ```typescript
+ * import * as pulumi from &#34;@pulumi/pulumi&#34;;
+ * ```
+ * ```python
+ * import pulumi
+ * ```
+ * ```csharp
+ * using System.Collections.Generic;
+ * using System.Linq;
+ * using Pulumi;
+ * 
+ * return await Deployment.RunAsync(() =&gt;
+ * {
+ * });
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *     }
+ * }
+ * ```
+ * &lt;/details&gt;
+ * 
+ * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html) where you can also find more information about [CloudAMQP PrivateLink](https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#azure-privatelink).
  * 
  * Only available for dedicated subscription plans.
  * 
- * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
- * 
  * ## Example Usage
  * 
- * CloudAMQP instance without existing VPC
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;CloudAMQP instance without existing VPC&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
  * ```java
  * package generated_program;
  * 
@@ -52,10 +98,9 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
- *             .plan(&#34;squirrel-1&#34;)
+ *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;azure-arm::westus&#34;)
- *             .tags(&#34;test&#34;)
- *             .rmqVersion(&#34;3.10.8&#34;)
+ *             .tags()
  *             .build());
  * 
  *         var privatelink = new PrivatelinkAzure(&#34;privatelink&#34;, PrivatelinkAzureArgs.builder()        
@@ -66,8 +111,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;/details&gt;
  * 
- * CloudAMQP instance already in an existing VPC.
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;CloudAMQP instance in an existing VPC&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
  * ```java
  * package generated_program;
  * 
@@ -96,14 +147,13 @@ import javax.annotation.Nullable;
  *         var vpc = new Vpc(&#34;vpc&#34;, VpcArgs.builder()        
  *             .region(&#34;azure-arm::westus&#34;)
  *             .subnet(&#34;10.56.72.0/24&#34;)
- *             .tags(&#34;test&#34;)
+ *             .tags()
  *             .build());
  * 
  *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
- *             .plan(&#34;squirrel-1&#34;)
+ *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;azure-arm::westus&#34;)
- *             .tags(&#34;test&#34;)
- *             .rmqVersion(&#34;3.10.8&#34;)
+ *             .tags()
  *             .vpcId(vpc.id())
  *             .keepAssociatedVpc(true)
  *             .build());
@@ -116,9 +166,101 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;/details&gt;
+ * ### With Additional Firewall Rules
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;CloudAMQP instance in an existing VPC with managed firewall rules&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Vpc;
+ * import com.pulumi.cloudamqp.VpcArgs;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import com.pulumi.cloudamqp.PrivatelinkAzure;
+ * import com.pulumi.cloudamqp.PrivatelinkAzureArgs;
+ * import com.pulumi.cloudamqp.SecurityFirewall;
+ * import com.pulumi.cloudamqp.SecurityFirewallArgs;
+ * import com.pulumi.cloudamqp.inputs.SecurityFirewallRuleArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var vpc = new Vpc(&#34;vpc&#34;, VpcArgs.builder()        
+ *             .region(&#34;azure-arm::westus&#34;)
+ *             .subnet(&#34;10.56.72.0/24&#34;)
+ *             .tags()
+ *             .build());
+ * 
+ *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
+ *             .plan(&#34;bunny-1&#34;)
+ *             .region(&#34;azure-arm::westus&#34;)
+ *             .tags()
+ *             .vpcId(vpc.id())
+ *             .keepAssociatedVpc(true)
+ *             .build());
+ * 
+ *         var privatelink = new PrivatelinkAzure(&#34;privatelink&#34;, PrivatelinkAzureArgs.builder()        
+ *             .instanceId(instance.id())
+ *             .approvedSubscriptions(&#34;XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX&#34;)
+ *             .build());
+ * 
+ *         var firewallSettings = new SecurityFirewall(&#34;firewallSettings&#34;, SecurityFirewallArgs.builder()        
+ *             .instanceId(instance.id())
+ *             .rules(            
+ *                 SecurityFirewallRuleArgs.builder()
+ *                     .description(&#34;Custom PrivateLink setup&#34;)
+ *                     .ip(vpc.subnet())
+ *                     .ports()
+ *                     .services(                    
+ *                         &#34;AMQP&#34;,
+ *                         &#34;AMQPS&#34;,
+ *                         &#34;HTTPS&#34;,
+ *                         &#34;STREAM&#34;,
+ *                         &#34;STREAM_SSL&#34;)
+ *                     .build(),
+ *                 SecurityFirewallRuleArgs.builder()
+ *                     .description(&#34;MGMT interface&#34;)
+ *                     .ip(&#34;0.0.0.0/0&#34;)
+ *                     .ports()
+ *                     .services(&#34;HTTPS&#34;)
+ *                     .build())
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(privatelink)
+ *                 .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;/details&gt;
  * ## Depedency
  * 
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ * 
+ * ## Create PrivateLink with additional firewall rules
+ * 
+ * To create a PrivateLink configuration with additional firewall rules, it&#39;s required to chain the cloudamqp.SecurityFirewall
+ * resource to avoid parallel conflicting resource calls. You can do this by making the firewall resource depend on the PrivateLink resource, `cloudamqp_privatelink_azure.privatelink`.
+ * 
+ * Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for the PrivateLink also needs to be added.
  * 
  * ## Import
  * 

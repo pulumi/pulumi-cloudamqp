@@ -43,6 +43,18 @@ namespace Pulumi.CloudAmqp
         public Output<string?> Email { get; private set; } = null!;
 
         /// <summary>
+        /// External identifier that match the role you created. (Cloudwatch)
+        /// </summary>
+        [Output("iamExternalId")]
+        public Output<string?> IamExternalId { get; private set; } = null!;
+
+        /// <summary>
+        /// The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+        /// </summary>
+        [Output("iamRole")]
+        public Output<string?> IamRole { get; private set; } = null!;
+
+        /// <summary>
         /// Instance identifier
         /// </summary>
         [Output("instanceId")]
@@ -214,6 +226,18 @@ namespace Pulumi.CloudAmqp
         public Input<string>? Email { get; set; }
 
         /// <summary>
+        /// External identifier that match the role you created. (Cloudwatch)
+        /// </summary>
+        [Input("iamExternalId")]
+        public Input<string>? IamExternalId { get; set; }
+
+        /// <summary>
+        /// The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+        /// </summary>
+        [Input("iamRole")]
+        public Input<string>? IamRole { get; set; }
+
+        /// <summary>
         /// Instance identifier
         /// </summary>
         [Input("instanceId", required: true)]
@@ -368,6 +392,18 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Input("email")]
         public Input<string>? Email { get; set; }
+
+        /// <summary>
+        /// External identifier that match the role you created. (Cloudwatch)
+        /// </summary>
+        [Input("iamExternalId")]
+        public Input<string>? IamExternalId { get; set; }
+
+        /// <summary>
+        /// The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+        /// </summary>
+        [Input("iamRole")]
+        public Input<string>? IamRole { get; set; }
 
         /// <summary>
         /// Instance identifier

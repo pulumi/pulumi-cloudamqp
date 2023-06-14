@@ -50,6 +50,7 @@ export class Provider extends pulumi.ProviderResource {
             }
             resourceInputs["apikey"] = args ? args.apikey : undefined;
             resourceInputs["baseurl"] = args ? args.baseurl : undefined;
+            resourceInputs["enableFasterInstanceDestroy"] = pulumi.output(args ? args.enableFasterInstanceDestroy : undefined).apply(JSON.stringify);
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
@@ -68,4 +69,8 @@ export interface ProviderArgs {
      * Base URL to CloudAMQP Customer website
      */
     baseurl?: pulumi.Input<string>;
+    /**
+     * Skips destroying backend resources on 'terraform destroy'
+     */
+    enableFasterInstanceDestroy?: pulumi.Input<boolean>;
 }

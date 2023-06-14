@@ -47,6 +47,8 @@ type providerArgs struct {
 	Apikey string `pulumi:"apikey"`
 	// Base URL to CloudAMQP Customer website
 	Baseurl *string `pulumi:"baseurl"`
+	// Skips destroying backend resources on 'terraform destroy'
+	EnableFasterInstanceDestroy *bool `pulumi:"enableFasterInstanceDestroy"`
 }
 
 // The set of arguments for constructing a Provider resource.
@@ -55,6 +57,8 @@ type ProviderArgs struct {
 	Apikey pulumi.StringInput
 	// Base URL to CloudAMQP Customer website
 	Baseurl pulumi.StringPtrInput
+	// Skips destroying backend resources on 'terraform destroy'
+	EnableFasterInstanceDestroy pulumi.BoolPtrInput
 }
 
 func (ProviderArgs) ElementType() reflect.Type {

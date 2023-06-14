@@ -74,7 +74,7 @@ def get_nodes(instance_id: Optional[int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    nodes = cloudamqp.get_nodes(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+    nodes = cloudamqp.get_nodes(instance_id=cloudamqp_instance["instance"]["id"])
     ```
     ## Attributes reference
 
@@ -129,7 +129,7 @@ def get_nodes_output(instance_id: Optional[pulumi.Input[int]] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    nodes = cloudamqp.get_nodes(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+    nodes = cloudamqp.get_nodes(instance_id=cloudamqp_instance["instance"]["id"])
     ```
     ## Attributes reference
 

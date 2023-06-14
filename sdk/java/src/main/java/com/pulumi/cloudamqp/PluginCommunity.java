@@ -16,40 +16,6 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
- * ## Example Usage
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.cloudamqp.PluginCommunity;
- * import com.pulumi.cloudamqp.PluginCommunityArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var rabbitmqDelayedMessageExchange = new PluginCommunity(&#34;rabbitmqDelayedMessageExchange&#34;, PluginCommunityArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance_01().id())
- *             .enabled(true)
- *             .build());
- * 
- *     }
- * }
- * ```
- * ## Depedency
- * 
- * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
- * 
  * ## Import
  * 
  * `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.

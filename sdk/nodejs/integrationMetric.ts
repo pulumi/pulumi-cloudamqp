@@ -53,6 +53,14 @@ export class IntegrationMetric extends pulumi.CustomResource {
      */
     public readonly email!: pulumi.Output<string | undefined>;
     /**
+     * External identifier that match the role you created. (Cloudwatch)
+     */
+    public readonly iamExternalId!: pulumi.Output<string | undefined>;
+    /**
+     * The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+     */
+    public readonly iamRole!: pulumi.Output<string | undefined>;
+    /**
      * Instance identifier
      */
     public readonly instanceId!: pulumi.Output<number>;
@@ -127,6 +135,8 @@ export class IntegrationMetric extends pulumi.CustomResource {
             resourceInputs["clientEmail"] = state ? state.clientEmail : undefined;
             resourceInputs["credentials"] = state ? state.credentials : undefined;
             resourceInputs["email"] = state ? state.email : undefined;
+            resourceInputs["iamExternalId"] = state ? state.iamExternalId : undefined;
+            resourceInputs["iamRole"] = state ? state.iamRole : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["licenseKey"] = state ? state.licenseKey : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -150,6 +160,8 @@ export class IntegrationMetric extends pulumi.CustomResource {
             resourceInputs["clientEmail"] = args ? args.clientEmail : undefined;
             resourceInputs["credentials"] = args?.credentials ? pulumi.secret(args.credentials) : undefined;
             resourceInputs["email"] = args ? args.email : undefined;
+            resourceInputs["iamExternalId"] = args ? args.iamExternalId : undefined;
+            resourceInputs["iamRole"] = args ? args.iamRole : undefined;
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["licenseKey"] = args ? args.licenseKey : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -195,6 +207,14 @@ export interface IntegrationMetricState {
      * The email address registred for the integration service. (Librato)
      */
     email?: pulumi.Input<string>;
+    /**
+     * External identifier that match the role you created. (Cloudwatch)
+     */
+    iamExternalId?: pulumi.Input<string>;
+    /**
+     * The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+     */
+    iamRole?: pulumi.Input<string>;
     /**
      * Instance identifier
      */
@@ -277,6 +297,14 @@ export interface IntegrationMetricArgs {
      * The email address registred for the integration service. (Librato)
      */
     email?: pulumi.Input<string>;
+    /**
+     * External identifier that match the role you created. (Cloudwatch)
+     */
+    iamExternalId?: pulumi.Input<string>;
+    /**
+     * The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+     */
+    iamRole?: pulumi.Input<string>;
     /**
      * Instance identifier
      */
