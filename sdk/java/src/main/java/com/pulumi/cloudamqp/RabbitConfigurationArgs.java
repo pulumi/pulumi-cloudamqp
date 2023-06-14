@@ -110,7 +110,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
     /**
      * Log level for the logger used for log integrations and the CloudAMQP Console log view.
      * 
-     * ***Note: Requires a restart of RabbitMQ to be applied.***
+     * *Note: Requires a restart of RabbitMQ to be applied.*
      * 
      */
     @Import(name="logExchangeLevel")
@@ -119,7 +119,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
     /**
      * @return Log level for the logger used for log integrations and the CloudAMQP Console log view.
      * 
-     * ***Note: Requires a restart of RabbitMQ to be applied.***
+     * *Note: Requires a restart of RabbitMQ to be applied.*
      * 
      */
     public Optional<Output<String>> logExchangeLevel() {
@@ -142,14 +142,14 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Size in bytes below which to embed messages in the queue index.
+     * Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
      * 
      */
     @Import(name="queueIndexEmbedMsgsBelow")
     private @Nullable Output<Integer> queueIndexEmbedMsgsBelow;
 
     /**
-     * @return Size in bytes below which to embed messages in the queue index.
+     * @return Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
      * 
      */
     public Optional<Output<Integer>> queueIndexEmbedMsgsBelow() {
@@ -365,7 +365,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         /**
          * @param logExchangeLevel Log level for the logger used for log integrations and the CloudAMQP Console log view.
          * 
-         * ***Note: Requires a restart of RabbitMQ to be applied.***
+         * *Note: Requires a restart of RabbitMQ to be applied.*
          * 
          * @return builder
          * 
@@ -378,7 +378,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         /**
          * @param logExchangeLevel Log level for the logger used for log integrations and the CloudAMQP Console log view.
          * 
-         * ***Note: Requires a restart of RabbitMQ to be applied.***
+         * *Note: Requires a restart of RabbitMQ to be applied.*
          * 
          * @return builder
          * 
@@ -409,7 +409,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param queueIndexEmbedMsgsBelow Size in bytes below which to embed messages in the queue index.
+         * @param queueIndexEmbedMsgsBelow Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
          * 
          * @return builder
          * 
@@ -420,7 +420,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param queueIndexEmbedMsgsBelow Size in bytes below which to embed messages in the queue index.
+         * @param queueIndexEmbedMsgsBelow Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
          * 
          * @return builder
          * 

@@ -15,6 +15,141 @@ import (
 //
 // Only available for dedicated subscription plans running ***RabbitMQ***.
 //
+// ## Example Usage
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>RabbitMQ configuration with default values</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewRabbitConfiguration(ctx, "rabbitmqConfig", &cloudamqp.RabbitConfigurationArgs{
+//				InstanceId:               pulumi.Any(cloudamqp_instance.Instance.Id),
+//				ChannelMax:               pulumi.Int(0),
+//				ConnectionMax:            -1,
+//				ConsumerTimeout:          pulumi.Int(7200000),
+//				Heartbeat:                pulumi.Int(120),
+//				LogExchangeLevel:         pulumi.String("error"),
+//				MaxMessageSize:           pulumi.Int(134217728),
+//				QueueIndexEmbedMsgsBelow: pulumi.Int(4096),
+//				VmMemoryHighWatermark:    pulumi.Float64(0.81),
+//				ClusterPartitionHandling: pulumi.String("autoheal"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Change log level and combine `NodeActions` for RabbitMQ restart</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			rabbitmqConfig, err := cloudamqp.NewRabbitConfiguration(ctx, "rabbitmqConfig", &cloudamqp.RabbitConfigurationArgs{
+//				InstanceId:               pulumi.Any(cloudamqp_instance.Instance.Id),
+//				ChannelMax:               pulumi.Int(0),
+//				ConnectionMax:            -1,
+//				ConsumerTimeout:          pulumi.Int(7200000),
+//				Heartbeat:                pulumi.Int(120),
+//				LogExchangeLevel:         pulumi.String("info"),
+//				MaxMessageSize:           pulumi.Int(134217728),
+//				QueueIndexEmbedMsgsBelow: pulumi.Int(4096),
+//				VmMemoryHighWatermark:    pulumi.Float64(0.81),
+//				ClusterPartitionHandling: pulumi.String("autoheal"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			listNodes, err := cloudamqp.GetNodes(ctx, &cloudamqp.GetNodesArgs{
+//				InstanceId: cloudamqp_instance.Instance.Id,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewNodeActions(ctx, "nodeAction", &cloudamqp.NodeActionsArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				NodeName:   *pulumi.String(listNodes.Nodes[0].Name),
+//				Action:     pulumi.String("restart"),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				rabbitmqConfig,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Only change log level for exchange. All other values will be read from the RabbitMQ configuration.</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewRabbitConfiguration(ctx, "rabbitConfig", &cloudamqp.RabbitConfigurationArgs{
+//				InstanceId:       pulumi.Any(cloudamqp_instance.Instance.Id),
+//				LogExchangeLevel: pulumi.String("info"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// </details>
 // ## Argument threshold values
 //
 // | Argument | Type | Default | Min | Max | Unit | Affect | Note |
@@ -24,7 +159,7 @@ import (
 // | channelMax | int | 128 | 0 | - |  | Only effects new connections |  |
 // | consumerTimeout | int | 7200000 | 10000 | 86400000 | milliseconds | Only effects new channels | -1 in the provider corresponds to false (disable) in the RabbitMQ config |
 // | vmMemoryHighWatermark | float | 0.81 | 0.4 | 0.9 |  | Applied immediately |  |
-// | queueIndexEmbedMsgsBelow | int | 4096 | 1 | 10485760 | bytes | Applied immediately for new queues, requires restart for existing queues |  |
+// | queueIndexEmbedMsgsBelow | int | 4096 | 0 | 10485760 | bytes | Applied immediately for new queues, requires restart for existing queues |  |
 // | maxMessageSize | int | 134217728 | 1 | 536870912 | bytes | Only effects new channels |  |
 // | logExchangeLevel | string | error | - | - |  | RabbitMQ restart required | debug, info, warning, error, critical |
 // | clusterPartitionHandling | string | see below | - | - |  | Applied immediately | autoheal, pause_minority, ignore |
@@ -61,11 +196,11 @@ type RabbitConfiguration struct {
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
 	// Log level for the logger used for log integrations and the CloudAMQP Console log view.
 	//
-	// ***Note: Requires a restart of RabbitMQ to be applied.***
+	// *Note: Requires a restart of RabbitMQ to be applied.*
 	LogExchangeLevel pulumi.StringOutput `pulumi:"logExchangeLevel"`
 	// The largest allowed message payload size in bytes.
 	MaxMessageSize pulumi.IntOutput `pulumi:"maxMessageSize"`
-	// Size in bytes below which to embed messages in the queue index.
+	// Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
 	QueueIndexEmbedMsgsBelow pulumi.IntOutput `pulumi:"queueIndexEmbedMsgsBelow"`
 	// Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
 	Sleep pulumi.IntPtrOutput `pulumi:"sleep"`
@@ -121,11 +256,11 @@ type rabbitConfigurationState struct {
 	InstanceId *int `pulumi:"instanceId"`
 	// Log level for the logger used for log integrations and the CloudAMQP Console log view.
 	//
-	// ***Note: Requires a restart of RabbitMQ to be applied.***
+	// *Note: Requires a restart of RabbitMQ to be applied.*
 	LogExchangeLevel *string `pulumi:"logExchangeLevel"`
 	// The largest allowed message payload size in bytes.
 	MaxMessageSize *int `pulumi:"maxMessageSize"`
-	// Size in bytes below which to embed messages in the queue index.
+	// Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
 	QueueIndexEmbedMsgsBelow *int `pulumi:"queueIndexEmbedMsgsBelow"`
 	// Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
 	Sleep *int `pulumi:"sleep"`
@@ -150,11 +285,11 @@ type RabbitConfigurationState struct {
 	InstanceId pulumi.IntPtrInput
 	// Log level for the logger used for log integrations and the CloudAMQP Console log view.
 	//
-	// ***Note: Requires a restart of RabbitMQ to be applied.***
+	// *Note: Requires a restart of RabbitMQ to be applied.*
 	LogExchangeLevel pulumi.StringPtrInput
 	// The largest allowed message payload size in bytes.
 	MaxMessageSize pulumi.IntPtrInput
-	// Size in bytes below which to embed messages in the queue index.
+	// Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
 	QueueIndexEmbedMsgsBelow pulumi.IntPtrInput
 	// Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
 	Sleep pulumi.IntPtrInput
@@ -183,11 +318,11 @@ type rabbitConfigurationArgs struct {
 	InstanceId int `pulumi:"instanceId"`
 	// Log level for the logger used for log integrations and the CloudAMQP Console log view.
 	//
-	// ***Note: Requires a restart of RabbitMQ to be applied.***
+	// *Note: Requires a restart of RabbitMQ to be applied.*
 	LogExchangeLevel *string `pulumi:"logExchangeLevel"`
 	// The largest allowed message payload size in bytes.
 	MaxMessageSize *int `pulumi:"maxMessageSize"`
-	// Size in bytes below which to embed messages in the queue index.
+	// Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
 	QueueIndexEmbedMsgsBelow *int `pulumi:"queueIndexEmbedMsgsBelow"`
 	// Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
 	Sleep *int `pulumi:"sleep"`
@@ -213,11 +348,11 @@ type RabbitConfigurationArgs struct {
 	InstanceId pulumi.IntInput
 	// Log level for the logger used for log integrations and the CloudAMQP Console log view.
 	//
-	// ***Note: Requires a restart of RabbitMQ to be applied.***
+	// *Note: Requires a restart of RabbitMQ to be applied.*
 	LogExchangeLevel pulumi.StringPtrInput
 	// The largest allowed message payload size in bytes.
 	MaxMessageSize pulumi.IntPtrInput
-	// Size in bytes below which to embed messages in the queue index.
+	// Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
 	QueueIndexEmbedMsgsBelow pulumi.IntPtrInput
 	// Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
 	Sleep pulumi.IntPtrInput
@@ -346,7 +481,7 @@ func (o RabbitConfigurationOutput) InstanceId() pulumi.IntOutput {
 
 // Log level for the logger used for log integrations and the CloudAMQP Console log view.
 //
-// ***Note: Requires a restart of RabbitMQ to be applied.***
+// *Note: Requires a restart of RabbitMQ to be applied.*
 func (o RabbitConfigurationOutput) LogExchangeLevel() pulumi.StringOutput {
 	return o.ApplyT(func(v *RabbitConfiguration) pulumi.StringOutput { return v.LogExchangeLevel }).(pulumi.StringOutput)
 }
@@ -356,7 +491,7 @@ func (o RabbitConfigurationOutput) MaxMessageSize() pulumi.IntOutput {
 	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntOutput { return v.MaxMessageSize }).(pulumi.IntOutput)
 }
 
-// Size in bytes below which to embed messages in the queue index.
+// Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
 func (o RabbitConfigurationOutput) QueueIndexEmbedMsgsBelow() pulumi.IntOutput {
 	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntOutput { return v.QueueIndexEmbedMsgsBelow }).(pulumi.IntOutput)
 }

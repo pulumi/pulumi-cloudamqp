@@ -82,7 +82,7 @@ def get_upgradable_versions(instance_id: Optional[int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    versions = cloudamqp.get_upgradable_versions(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+    versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
     ```
     ## Attributes reference
 
@@ -122,7 +122,7 @@ def get_upgradable_versions_output(instance_id: Optional[pulumi.Input[int]] = No
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    versions = cloudamqp.get_upgradable_versions(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+    versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
     ```
     ## Attributes reference
 

@@ -70,6 +70,12 @@ namespace Pulumi.CloudAmqp
         [Input("baseurl")]
         public Input<string>? Baseurl { get; set; }
 
+        /// <summary>
+        /// Skips destroying backend resources on 'terraform destroy'
+        /// </summary>
+        [Input("enableFasterInstanceDestroy", json: true)]
+        public Input<bool>? EnableFasterInstanceDestroy { get; set; }
+
         public ProviderArgs()
         {
         }

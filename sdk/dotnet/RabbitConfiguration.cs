@@ -14,6 +14,116 @@ namespace Pulumi.CloudAmqp
     /// 
     /// Only available for dedicated subscription plans running ***RabbitMQ***.
     /// 
+    /// ## Example Usage
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;RabbitMQ configuration with default values&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var rabbitmqConfig = new CloudAmqp.RabbitConfiguration("rabbitmqConfig", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         ChannelMax = 0,
+    ///         ConnectionMax = -1,
+    ///         ConsumerTimeout = 7200000,
+    ///         Heartbeat = 120,
+    ///         LogExchangeLevel = "error",
+    ///         MaxMessageSize = 134217728,
+    ///         QueueIndexEmbedMsgsBelow = 4096,
+    ///         VmMemoryHighWatermark = 0.81,
+    ///         ClusterPartitionHandling = "autoheal",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Change log level and combine `cloudamqp.NodeActions` for RabbitMQ restart&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var rabbitmqConfig = new CloudAmqp.RabbitConfiguration("rabbitmqConfig", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         ChannelMax = 0,
+    ///         ConnectionMax = -1,
+    ///         ConsumerTimeout = 7200000,
+    ///         Heartbeat = 120,
+    ///         LogExchangeLevel = "info",
+    ///         MaxMessageSize = 134217728,
+    ///         QueueIndexEmbedMsgsBelow = 4096,
+    ///         VmMemoryHighWatermark = 0.81,
+    ///         ClusterPartitionHandling = "autoheal",
+    ///     });
+    /// 
+    ///     var listNodes = CloudAmqp.GetNodes.Invoke(new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///     });
+    /// 
+    ///     var nodeAction = new CloudAmqp.NodeActions("nodeAction", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         NodeName = listNodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[0]?.Name),
+    ///         Action = "restart",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             rabbitmqConfig,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Only change log level for exchange. All other values will be read from the RabbitMQ configuration.&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var rabbitConfig = new CloudAmqp.RabbitConfiguration("rabbitConfig", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         LogExchangeLevel = "info",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;/details&gt;
     /// ## Argument threshold values
     /// 
     /// | Argument | Type | Default | Min | Max | Unit | Affect | Note |
@@ -23,7 +133,7 @@ namespace Pulumi.CloudAmqp
     /// | channel_max | int | 128 | 0 | - |  | Only effects new connections |  |
     /// | consumer_timeout | int | 7200000 | 10000 | 86400000 | milliseconds | Only effects new channels | -1 in the provider corresponds to false (disable) in the RabbitMQ config |
     /// | vm_memory_high_watermark | float | 0.81 | 0.4 | 0.9 |  | Applied immediately |  |
-    /// | queue_index_embed_msgs_below | int | 4096 | 1 | 10485760 | bytes | Applied immediately for new queues, requires restart for existing queues |  |
+    /// | queue_index_embed_msgs_below | int | 4096 | 0 | 10485760 | bytes | Applied immediately for new queues, requires restart for existing queues |  |
     /// | max_message_size | int | 134217728 | 1 | 536870912 | bytes | Only effects new channels |  |
     /// | log_exchange_level | string | error | - | - |  | RabbitMQ restart required | debug, info, warning, error, critical |
     /// | cluster_partition_handling | string | see below | - | - |  | Applied immediately | autoheal, pause_minority, ignore |
@@ -84,7 +194,7 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Log level for the logger used for log integrations and the CloudAMQP Console log view.
         /// 
-        /// ***Note: Requires a restart of RabbitMQ to be applied.***
+        /// *Note: Requires a restart of RabbitMQ to be applied.*
         /// </summary>
         [Output("logExchangeLevel")]
         public Output<string> LogExchangeLevel { get; private set; } = null!;
@@ -96,7 +206,7 @@ namespace Pulumi.CloudAmqp
         public Output<int> MaxMessageSize { get; private set; } = null!;
 
         /// <summary>
-        /// Size in bytes below which to embed messages in the queue index.
+        /// Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
         /// </summary>
         [Output("queueIndexEmbedMsgsBelow")]
         public Output<int> QueueIndexEmbedMsgsBelow { get; private set; } = null!;
@@ -204,7 +314,7 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Log level for the logger used for log integrations and the CloudAMQP Console log view.
         /// 
-        /// ***Note: Requires a restart of RabbitMQ to be applied.***
+        /// *Note: Requires a restart of RabbitMQ to be applied.*
         /// </summary>
         [Input("logExchangeLevel")]
         public Input<string>? LogExchangeLevel { get; set; }
@@ -216,7 +326,7 @@ namespace Pulumi.CloudAmqp
         public Input<int>? MaxMessageSize { get; set; }
 
         /// <summary>
-        /// Size in bytes below which to embed messages in the queue index.
+        /// Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
         /// </summary>
         [Input("queueIndexEmbedMsgsBelow")]
         public Input<int>? QueueIndexEmbedMsgsBelow { get; set; }
@@ -286,7 +396,7 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Log level for the logger used for log integrations and the CloudAMQP Console log view.
         /// 
-        /// ***Note: Requires a restart of RabbitMQ to be applied.***
+        /// *Note: Requires a restart of RabbitMQ to be applied.*
         /// </summary>
         [Input("logExchangeLevel")]
         public Input<string>? LogExchangeLevel { get; set; }
@@ -298,7 +408,7 @@ namespace Pulumi.CloudAmqp
         public Input<int>? MaxMessageSize { get; set; }
 
         /// <summary>
-        /// Size in bytes below which to embed messages in the queue index.
+        /// Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
         /// </summary>
         [Input("queueIndexEmbedMsgsBelow")]
         public Input<int>? QueueIndexEmbedMsgsBelow { get; set; }

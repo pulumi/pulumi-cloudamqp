@@ -29,3 +29,14 @@ Object.defineProperty(exports, "baseurl", {
     enumerable: true,
 });
 
+/**
+ * Skips destroying backend resources on 'terraform destroy'
+ */
+export declare const enableFasterInstanceDestroy: boolean | undefined;
+Object.defineProperty(exports, "enableFasterInstanceDestroy", {
+    get() {
+        return __config.getObject<boolean>("enableFasterInstanceDestroy");
+    },
+    enumerable: true,
+});
+

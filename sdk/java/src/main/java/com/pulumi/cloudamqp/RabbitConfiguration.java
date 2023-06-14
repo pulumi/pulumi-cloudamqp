@@ -21,6 +21,60 @@ import javax.annotation.Nullable;
  * 
  * Only available for dedicated subscription plans running ***RabbitMQ***.
  * 
+ * ## Example Usage
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;RabbitMQ configuration with default values&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Change log level and combine `cloudamqp.NodeActions` for RabbitMQ restart&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Only change log level for exchange. All other values will be read from the RabbitMQ configuration.&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.RabbitConfiguration;
+ * import com.pulumi.cloudamqp.RabbitConfigurationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var rabbitConfig = new RabbitConfiguration(&#34;rabbitConfig&#34;, RabbitConfigurationArgs.builder()        
+ *             .instanceId(cloudamqp_instance.instance().id())
+ *             .logExchangeLevel(&#34;info&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;/details&gt;
  * ## Argument threshold values
  * 
  * | Argument | Type | Default | Min | Max | Unit | Affect | Note |
@@ -30,7 +84,7 @@ import javax.annotation.Nullable;
  * | channel_max | int | 128 | 0 | - |  | Only effects new connections |  |
  * | consumer_timeout | int | 7200000 | 10000 | 86400000 | milliseconds | Only effects new channels | -1 in the provider corresponds to false (disable) in the RabbitMQ config |
  * | vm_memory_high_watermark | float | 0.81 | 0.4 | 0.9 |  | Applied immediately |  |
- * | queue_index_embed_msgs_below | int | 4096 | 1 | 10485760 | bytes | Applied immediately for new queues, requires restart for existing queues |  |
+ * | queue_index_embed_msgs_below | int | 4096 | 0 | 10485760 | bytes | Applied immediately for new queues, requires restart for existing queues |  |
  * | max_message_size | int | 134217728 | 1 | 536870912 | bytes | Only effects new channels |  |
  * | log_exchange_level | string | error | - | - |  | RabbitMQ restart required | debug, info, warning, error, critical |
  * | cluster_partition_handling | string | see below | - | - |  | Applied immediately | autoheal, pause_minority, ignore |
@@ -139,7 +193,7 @@ public class RabbitConfiguration extends com.pulumi.resources.CustomResource {
     /**
      * Log level for the logger used for log integrations and the CloudAMQP Console log view.
      * 
-     * ***Note: Requires a restart of RabbitMQ to be applied.***
+     * *Note: Requires a restart of RabbitMQ to be applied.*
      * 
      */
     @Export(name="logExchangeLevel", type=String.class, parameters={})
@@ -148,7 +202,7 @@ public class RabbitConfiguration extends com.pulumi.resources.CustomResource {
     /**
      * @return Log level for the logger used for log integrations and the CloudAMQP Console log view.
      * 
-     * ***Note: Requires a restart of RabbitMQ to be applied.***
+     * *Note: Requires a restart of RabbitMQ to be applied.*
      * 
      */
     public Output<String> logExchangeLevel() {
@@ -169,14 +223,14 @@ public class RabbitConfiguration extends com.pulumi.resources.CustomResource {
         return this.maxMessageSize;
     }
     /**
-     * Size in bytes below which to embed messages in the queue index.
+     * Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
      * 
      */
     @Export(name="queueIndexEmbedMsgsBelow", type=Integer.class, parameters={})
     private Output<Integer> queueIndexEmbedMsgsBelow;
 
     /**
-     * @return Size in bytes below which to embed messages in the queue index.
+     * @return Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
      * 
      */
     public Output<Integer> queueIndexEmbedMsgsBelow() {

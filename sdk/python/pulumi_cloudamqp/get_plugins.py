@@ -72,7 +72,7 @@ def get_plugins(instance_id: Optional[int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    plugins = cloudamqp.get_plugins(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+    plugins = cloudamqp.get_plugins(instance_id=cloudamqp_instance["instance"]["id"])
     ```
     ## Attributes reference
 
@@ -118,7 +118,7 @@ def get_plugins_output(instance_id: Optional[pulumi.Input[int]] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    plugins = cloudamqp.get_plugins(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+    plugins = cloudamqp.get_plugins(instance_id=cloudamqp_instance["instance"]["id"])
     ```
     ## Attributes reference
 

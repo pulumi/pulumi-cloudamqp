@@ -14,6 +14,35 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
         /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using CloudAmqp = Pulumi.CloudAmqp;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myVpcName = "&lt;your VPC name&gt;";
+        /// 
+        ///     var vpcList = CloudAmqp.GetAccountVpcs.Invoke();
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["vpcId"] = .Where(vpc =&gt; vpc.Name == myVpcName).Select(vpc =&gt; 
+        ///         {
+        ///             return  vpc;
+        ///         })[0].Id,
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// ## Attributes reference
         /// 
         /// All attributes reference are computed

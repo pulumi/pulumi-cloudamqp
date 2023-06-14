@@ -82,7 +82,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        versions = cloudamqp.get_upgradable_versions(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+        versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
         # Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
         upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=cloudamqp_instance["instance"]["id"])
         ```
@@ -91,7 +91,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        versions = cloudamqp.get_upgradable_versions(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+        versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
         ```
 
         If newer version is still available to be upgradable in the data source, re-run again.
@@ -100,7 +100,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        versions = cloudamqp.get_upgradable_versions(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+        versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
         # Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
         upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=cloudamqp_instance["instance"]["id"])
         ```
@@ -136,7 +136,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        versions = cloudamqp.get_upgradable_versions(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+        versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
         # Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
         upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=cloudamqp_instance["instance"]["id"])
         ```
@@ -145,7 +145,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        versions = cloudamqp.get_upgradable_versions(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+        versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
         ```
 
         If newer version is still available to be upgradable in the data source, re-run again.
@@ -154,7 +154,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        versions = cloudamqp.get_upgradable_versions(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+        versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
         # Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
         upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=cloudamqp_instance["instance"]["id"])
         ```

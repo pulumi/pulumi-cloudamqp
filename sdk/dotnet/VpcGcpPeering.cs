@@ -12,83 +12,19 @@ namespace Pulumi.CloudAmqp
     /// <summary>
     /// This resouce creates a VPC peering configuration for the CloudAMQP instance. The configuration will connect to another VPC network hosted on Google Cloud Platform (GCP). See the [GCP documentation](https://cloud.google.com/vpc/docs/using-vpc-peering) for more information on how to create the VPC peering configuration.
     /// 
-    /// Only available for dedicated subscription plans.
-    /// 
-    /// Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
-    /// 
-    /// ## Example Usage
-    /// ### With Additional Firewall Rules
-    /// 
+    /// &gt; **Note:** Creating a VPC peering will automatically add firewall rules for the peered subnet.
     /// &lt;details&gt;
-    ///   &lt;summary&gt;
-    ///     &lt;b&gt;
-    ///       &lt;i&gt;VPC peering pre v1.16.0&lt;/i&gt;
-    ///     &lt;/b&gt;
+    ///  &lt;summary&gt;
+    ///     &lt;i&gt;Default VPC peering firewall rule&lt;/i&gt;
     ///   &lt;/summary&gt;
-    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    /// return await Deployment.RunAsync(() =&gt; 
+    /// return await Deployment.RunAsync(() =&gt;
     /// {
-    ///     // VPC peering configuration
-    ///     var vpcPeeringRequest = new CloudAmqp.VpcGcpPeering("vpcPeeringRequest", new()
-    ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         PeerNetworkUri = @var.Peer_network_uri,
-    ///     });
-    /// 
-    ///     // Firewall rules
-    ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewallSettings", new()
-    ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         Rules = new[]
-    ///         {
-    ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
-    ///             {
-    ///                 Ip = @var.Peer_subnet,
-    ///                 Ports = new[]
-    ///                 {
-    ///                     15672,
-    ///                 },
-    ///                 Services = new[]
-    ///                 {
-    ///                     "AMQP",
-    ///                     "AMQPS",
-    ///                     "STREAM",
-    ///                     "STREAM_SSL",
-    ///                 },
-    ///                 Description = "VPC peering for &lt;NETWORK&gt;",
-    ///             },
-    ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
-    ///             {
-    ///                 Ip = "192.168.0.0/24",
-    ///                 Ports = new[]
-    ///                 {
-    ///                     4567,
-    ///                     4568,
-    ///                 },
-    ///                 Services = new[]
-    ///                 {
-    ///                     "AMQP",
-    ///                     "AMQPS",
-    ///                     "HTTPS",
-    ///                 },
-    ///             },
-    ///         },
-    ///     }, new CustomResourceOptions
-    ///     {
-    ///         DependsOn = new[]
-    ///         {
-    ///             vpcPeeringRequest,
-    ///         },
-    ///     });
-    /// 
     /// });
-    /// ```
     /// &lt;/details&gt;
     /// 
     /// &lt;details&gt;
@@ -137,18 +73,13 @@ namespace Pulumi.CloudAmqp
     ///             },
     ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
     ///             {
-    ///                 Ip = "192.168.0.0/24",
-    ///                 Ports = new[]
-    ///                 {
-    ///                     4567,
-    ///                     4568,
-    ///                 },
+    ///                 Ip = "0.0.0.0/0",
+    ///                 Ports = new[] {},
     ///                 Services = new[]
     ///                 {
-    ///                     "AMQP",
-    ///                     "AMQPS",
     ///                     "HTTPS",
     ///                 },
+    ///                 Description = "MGMT interface",
     ///             },
     ///         },
     ///     }, new CustomResourceOptions
@@ -162,6 +93,8 @@ namespace Pulumi.CloudAmqp
     /// });
     /// ```
     /// &lt;/details&gt;
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// ## Depedency
     /// 
     /// *Pre v1.16.0*

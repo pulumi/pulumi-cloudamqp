@@ -5,21 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const rabbitmqDelayedMessageExchange = new cloudamqp.PluginCommunity("rabbitmqDelayedMessageExchange", {
- *     instanceId: cloudamqp_instance.instance_01.id,
- *     enabled: true,
- * });
- * ```
- * ## Depedency
- *
- * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
- *
  * ## Import
  *
  * `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
