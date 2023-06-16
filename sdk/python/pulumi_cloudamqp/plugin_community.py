@@ -163,20 +163,6 @@ class PluginCommunity(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        rabbitmq_delayed_message_exchange = cloudamqp.PluginCommunity("rabbitmqDelayedMessageExchange",
-            instance_id=cloudamqp_instance["instance_01"]["id"],
-            enabled=True)
-        ```
-        ## Depedency
-
-        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-
         ## Import
 
         `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
@@ -198,20 +184,6 @@ class PluginCommunity(pulumi.CustomResource):
                  args: PluginCommunityArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        rabbitmq_delayed_message_exchange = cloudamqp.PluginCommunity("rabbitmqDelayedMessageExchange",
-            instance_id=cloudamqp_instance["instance_01"]["id"],
-            enabled=True)
-        ```
-        ## Depedency
-
-        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-
         ## Import
 
         `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.

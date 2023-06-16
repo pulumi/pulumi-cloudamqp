@@ -89,6 +89,34 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.email);
     }
     /**
+     * External identifier that match the role you created. (Cloudwatch)
+     * 
+     */
+    @Export(name="iamExternalId", type=String.class, parameters={})
+    private Output</* @Nullable */ String> iamExternalId;
+
+    /**
+     * @return External identifier that match the role you created. (Cloudwatch)
+     * 
+     */
+    public Output<Optional<String>> iamExternalId() {
+        return Codegen.optional(this.iamExternalId);
+    }
+    /**
+     * The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+     * 
+     */
+    @Export(name="iamRole", type=String.class, parameters={})
+    private Output</* @Nullable */ String> iamRole;
+
+    /**
+     * @return The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+     * 
+     */
+    public Output<Optional<String>> iamRole() {
+        return Codegen.optional(this.iamRole);
+    }
+    /**
      * Instance identifier
      * 
      */

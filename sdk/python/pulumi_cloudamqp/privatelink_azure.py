@@ -226,31 +226,49 @@ class PrivatelinkAzure(pulumi.CustomResource):
         """
         Enable PrivateLink for a CloudAMQP instance hosted in Azure. If no existing VPC available when enable PrivateLink, a new VPC will be created with subnet `10.52.72.0/24`.
 
-        More information about [CloudAMQP Privatelink](https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#azure-privatelink).
+        > **Note:** Enabling PrivateLink will automatically add firewall rules for the peered subnet.
+        <details>
+         <summary>
+            <i>Default PrivateLink firewall rule</i>
+          </summary>
+        ```python
+        import pulumi
+        ```
+        </details>
+
+        Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html) where you can also find more information about [CloudAMQP PrivateLink](https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#azure-privatelink).
 
         Only available for dedicated subscription plans.
 
-        Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
-
         ## Example Usage
 
-        CloudAMQP instance without existing VPC
+        <details>
+          <summary>
+            <b>
+              <i>CloudAMQP instance without existing VPC</i>
+            </b>
+          </summary>
 
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
         instance = cloudamqp.Instance("instance",
-            plan="squirrel-1",
+            plan="bunny-1",
             region="azure-arm::westus",
-            tags=["test"],
-            rmq_version="3.10.8")
+            tags=[])
         privatelink = cloudamqp.PrivatelinkAzure("privatelink",
             instance_id=instance.id,
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         ```
+        </details>
 
-        CloudAMQP instance already in an existing VPC.
+        <details>
+          <summary>
+            <b>
+              <i>CloudAMQP instance in an existing VPC</i>
+            </b>
+          </summary>
 
         ```python
         import pulumi
@@ -259,21 +277,79 @@ class PrivatelinkAzure(pulumi.CustomResource):
         vpc = cloudamqp.Vpc("vpc",
             region="azure-arm::westus",
             subnet="10.56.72.0/24",
-            tags=["test"])
+            tags=[])
         instance = cloudamqp.Instance("instance",
-            plan="squirrel-1",
+            plan="bunny-1",
             region="azure-arm::westus",
-            tags=["test"],
-            rmq_version="3.10.8",
+            tags=[],
             vpc_id=vpc.id,
             keep_associated_vpc=True)
         privatelink = cloudamqp.PrivatelinkAzure("privatelink",
             instance_id=instance.id,
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         ```
+        </details>
+        ### With Additional Firewall Rules
+
+        <details>
+          <summary>
+            <b>
+              <i>CloudAMQP instance in an existing VPC with managed firewall rules</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        vpc = cloudamqp.Vpc("vpc",
+            region="azure-arm::westus",
+            subnet="10.56.72.0/24",
+            tags=[])
+        instance = cloudamqp.Instance("instance",
+            plan="bunny-1",
+            region="azure-arm::westus",
+            tags=[],
+            vpc_id=vpc.id,
+            keep_associated_vpc=True)
+        privatelink = cloudamqp.PrivatelinkAzure("privatelink",
+            instance_id=instance.id,
+            approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
+        firewall_settings = cloudamqp.SecurityFirewall("firewallSettings",
+            instance_id=instance.id,
+            rules=[
+                cloudamqp.SecurityFirewallRuleArgs(
+                    description="Custom PrivateLink setup",
+                    ip=vpc.subnet,
+                    ports=[],
+                    services=[
+                        "AMQP",
+                        "AMQPS",
+                        "HTTPS",
+                        "STREAM",
+                        "STREAM_SSL",
+                    ],
+                ),
+                cloudamqp.SecurityFirewallRuleArgs(
+                    description="MGMT interface",
+                    ip="0.0.0.0/0",
+                    ports=[],
+                    services=["HTTPS"],
+                ),
+            ],
+            opts=pulumi.ResourceOptions(depends_on=[privatelink]))
+        ```
+        </details>
         ## Depedency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+        ## Create PrivateLink with additional firewall rules
+
+        To create a PrivateLink configuration with additional firewall rules, it's required to chain the SecurityFirewall
+        resource to avoid parallel conflicting resource calls. You can do this by making the firewall resource depend on the PrivateLink resource, `cloudamqp_privatelink_azure.privatelink`.
+
+        Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for the PrivateLink also needs to be added.
 
         ## Import
 
@@ -302,31 +378,49 @@ class PrivatelinkAzure(pulumi.CustomResource):
         """
         Enable PrivateLink for a CloudAMQP instance hosted in Azure. If no existing VPC available when enable PrivateLink, a new VPC will be created with subnet `10.52.72.0/24`.
 
-        More information about [CloudAMQP Privatelink](https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#azure-privatelink).
+        > **Note:** Enabling PrivateLink will automatically add firewall rules for the peered subnet.
+        <details>
+         <summary>
+            <i>Default PrivateLink firewall rule</i>
+          </summary>
+        ```python
+        import pulumi
+        ```
+        </details>
+
+        Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html) where you can also find more information about [CloudAMQP PrivateLink](https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#azure-privatelink).
 
         Only available for dedicated subscription plans.
 
-        Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
-
         ## Example Usage
 
-        CloudAMQP instance without existing VPC
+        <details>
+          <summary>
+            <b>
+              <i>CloudAMQP instance without existing VPC</i>
+            </b>
+          </summary>
 
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
         instance = cloudamqp.Instance("instance",
-            plan="squirrel-1",
+            plan="bunny-1",
             region="azure-arm::westus",
-            tags=["test"],
-            rmq_version="3.10.8")
+            tags=[])
         privatelink = cloudamqp.PrivatelinkAzure("privatelink",
             instance_id=instance.id,
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         ```
+        </details>
 
-        CloudAMQP instance already in an existing VPC.
+        <details>
+          <summary>
+            <b>
+              <i>CloudAMQP instance in an existing VPC</i>
+            </b>
+          </summary>
 
         ```python
         import pulumi
@@ -335,21 +429,79 @@ class PrivatelinkAzure(pulumi.CustomResource):
         vpc = cloudamqp.Vpc("vpc",
             region="azure-arm::westus",
             subnet="10.56.72.0/24",
-            tags=["test"])
+            tags=[])
         instance = cloudamqp.Instance("instance",
-            plan="squirrel-1",
+            plan="bunny-1",
             region="azure-arm::westus",
-            tags=["test"],
-            rmq_version="3.10.8",
+            tags=[],
             vpc_id=vpc.id,
             keep_associated_vpc=True)
         privatelink = cloudamqp.PrivatelinkAzure("privatelink",
             instance_id=instance.id,
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         ```
+        </details>
+        ### With Additional Firewall Rules
+
+        <details>
+          <summary>
+            <b>
+              <i>CloudAMQP instance in an existing VPC with managed firewall rules</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        vpc = cloudamqp.Vpc("vpc",
+            region="azure-arm::westus",
+            subnet="10.56.72.0/24",
+            tags=[])
+        instance = cloudamqp.Instance("instance",
+            plan="bunny-1",
+            region="azure-arm::westus",
+            tags=[],
+            vpc_id=vpc.id,
+            keep_associated_vpc=True)
+        privatelink = cloudamqp.PrivatelinkAzure("privatelink",
+            instance_id=instance.id,
+            approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
+        firewall_settings = cloudamqp.SecurityFirewall("firewallSettings",
+            instance_id=instance.id,
+            rules=[
+                cloudamqp.SecurityFirewallRuleArgs(
+                    description="Custom PrivateLink setup",
+                    ip=vpc.subnet,
+                    ports=[],
+                    services=[
+                        "AMQP",
+                        "AMQPS",
+                        "HTTPS",
+                        "STREAM",
+                        "STREAM_SSL",
+                    ],
+                ),
+                cloudamqp.SecurityFirewallRuleArgs(
+                    description="MGMT interface",
+                    ip="0.0.0.0/0",
+                    ports=[],
+                    services=["HTTPS"],
+                ),
+            ],
+            opts=pulumi.ResourceOptions(depends_on=[privatelink]))
+        ```
+        </details>
         ## Depedency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+        ## Create PrivateLink with additional firewall rules
+
+        To create a PrivateLink configuration with additional firewall rules, it's required to chain the SecurityFirewall
+        resource to avoid parallel conflicting resource calls. You can do this by making the firewall resource depend on the PrivateLink resource, `cloudamqp_privatelink_azure.privatelink`.
+
+        Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for the PrivateLink also needs to be added.
 
         ## Import
 

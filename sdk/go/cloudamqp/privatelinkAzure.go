@@ -13,55 +13,37 @@ import (
 
 // Enable PrivateLink for a CloudAMQP instance hosted in Azure. If no existing VPC available when enable PrivateLink, a new VPC will be created with subnet `10.52.72.0/24`.
 //
-// More information about [CloudAMQP Privatelink](https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#azure-privatelink).
+// > **Note:** Enabling PrivateLink will automatically add firewall rules for the peered subnet.
+// <details>
 //
-// Only available for dedicated subscription plans.
-//
-// Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
-//
-// ## Example Usage
-//
-// # CloudAMQP instance without existing VPC
+//	<summary>
+//	   <i>Default PrivateLink firewall rule</i>
+//	 </summary>
 //
 // ```go
 // package main
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
-//				Plan:   pulumi.String("squirrel-1"),
-//				Region: pulumi.String("azure-arm::westus"),
-//				Tags: pulumi.StringArray{
-//					pulumi.String("test"),
-//				},
-//				RmqVersion: pulumi.String("3.10.8"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = cloudamqp.NewPrivatelinkAzure(ctx, "privatelink", &cloudamqp.PrivatelinkAzureArgs{
-//				InstanceId: instance.ID(),
-//				ApprovedSubscriptions: pulumi.StringArray{
-//					pulumi.String("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
 //			return nil
 //		})
 //	}
 //
-// ```
+// </details>
 //
-// CloudAMQP instance already in an existing VPC.
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>CloudAMQP instance in an existing VPC</i>
+//	  </b>
+//	</summary>
 //
 // ```go
 // package main
@@ -78,20 +60,15 @@ import (
 //			vpc, err := cloudamqp.NewVpc(ctx, "vpc", &cloudamqp.VpcArgs{
 //				Region: pulumi.String("azure-arm::westus"),
 //				Subnet: pulumi.String("10.56.72.0/24"),
-//				Tags: pulumi.StringArray{
-//					pulumi.String("test"),
-//				},
+//				Tags:   pulumi.StringArray{},
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
-//				Plan:   pulumi.String("squirrel-1"),
-//				Region: pulumi.String("azure-arm::westus"),
-//				Tags: pulumi.StringArray{
-//					pulumi.String("test"),
-//				},
-//				RmqVersion:        pulumi.String("3.10.8"),
+//				Plan:              pulumi.String("bunny-1"),
+//				Region:            pulumi.String("azure-arm::westus"),
+//				Tags:              pulumi.StringArray{},
 //				VpcId:             vpc.ID(),
 //				KeepAssociatedVpc: pulumi.Bool(true),
 //			})
@@ -112,9 +89,105 @@ import (
 //	}
 //
 // ```
+// </details>
+//
+// {{% /example %}}
+// ### With Additional Firewall Rules
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>CloudAMQP instance in an existing VPC with managed firewall rules</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			vpc, err := cloudamqp.NewVpc(ctx, "vpc", &cloudamqp.VpcArgs{
+//				Region: pulumi.String("azure-arm::westus"),
+//				Subnet: pulumi.String("10.56.72.0/24"),
+//				Tags:   pulumi.StringArray{},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Plan:              pulumi.String("bunny-1"),
+//				Region:            pulumi.String("azure-arm::westus"),
+//				Tags:              pulumi.StringArray{},
+//				VpcId:             vpc.ID(),
+//				KeepAssociatedVpc: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			privatelink, err := cloudamqp.NewPrivatelinkAzure(ctx, "privatelink", &cloudamqp.PrivatelinkAzureArgs{
+//				InstanceId: instance.ID(),
+//				ApprovedSubscriptions: pulumi.StringArray{
+//					pulumi.String("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewSecurityFirewall(ctx, "firewallSettings", &cloudamqp.SecurityFirewallArgs{
+//				InstanceId: instance.ID(),
+//				Rules: cloudamqp.SecurityFirewallRuleArray{
+//					&cloudamqp.SecurityFirewallRuleArgs{
+//						Description: pulumi.String("Custom PrivateLink setup"),
+//						Ip:          vpc.Subnet,
+//						Ports:       pulumi.IntArray{},
+//						Services: pulumi.StringArray{
+//							pulumi.String("AMQP"),
+//							pulumi.String("AMQPS"),
+//							pulumi.String("HTTPS"),
+//							pulumi.String("STREAM"),
+//							pulumi.String("STREAM_SSL"),
+//						},
+//					},
+//					&cloudamqp.SecurityFirewallRuleArgs{
+//						Description: pulumi.String("MGMT interface"),
+//						Ip:          pulumi.String("0.0.0.0/0"),
+//						Ports:       pulumi.IntArray{},
+//						Services: pulumi.StringArray{
+//							pulumi.String("HTTPS"),
+//						},
+//					},
+//				},
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				privatelink,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// </details>
+// {{% /examples %}}
 // ## Depedency
 //
 // This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+//
+// ## Create PrivateLink with additional firewall rules
+//
+// To create a PrivateLink configuration with additional firewall rules, it's required to chain the SecurityFirewall
+// resource to avoid parallel conflicting resource calls. You can do this by making the firewall resource depend on the PrivateLink resource, `cloudamqp_privatelink_azure.privatelink`.
+//
+// Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for the PrivateLink also needs to be added.
 //
 // ## Import
 //

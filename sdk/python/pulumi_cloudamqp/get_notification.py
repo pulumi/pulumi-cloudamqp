@@ -112,7 +112,7 @@ def get_notification(instance_id: Optional[int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    default_recipient = cloudamqp.get_notification(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+    default_recipient = cloudamqp.get_notification(instance_id=cloudamqp_instance["instance"]["id"],
         name="default")
     ```
     ## Attributes reference
@@ -166,7 +166,7 @@ def get_notification_output(instance_id: Optional[pulumi.Input[int]] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    default_recipient = cloudamqp.get_notification(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+    default_recipient = cloudamqp.get_notification(instance_id=cloudamqp_instance["instance"]["id"],
         name="default")
     ```
     ## Attributes reference

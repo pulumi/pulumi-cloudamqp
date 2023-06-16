@@ -119,7 +119,7 @@ def get_vpc_info(instance_id: Optional[int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    vpc_info = cloudamqp.get_vpc_info(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+    vpc_info = cloudamqp.get_vpc_info(instance_id=cloudamqp_instance["instance"]["id"])
     ```
     </details>
 
@@ -134,7 +134,7 @@ def get_vpc_info(instance_id: Optional[int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    vpc_info = cloudamqp.get_vpc_info(vpc_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+    vpc_info = cloudamqp.get_vpc_info(vpc_id=cloudamqp_vpc["vpc"]["id"])
     ```
     </details>
     ## Attributes reference
@@ -201,7 +201,7 @@ def get_vpc_info_output(instance_id: Optional[pulumi.Input[Optional[int]]] = Non
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    vpc_info = cloudamqp.get_vpc_info(instance_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+    vpc_info = cloudamqp.get_vpc_info(instance_id=cloudamqp_instance["instance"]["id"])
     ```
     </details>
 
@@ -216,7 +216,7 @@ def get_vpc_info_output(instance_id: Optional[pulumi.Input[Optional[int]]] = Non
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    vpc_info = cloudamqp.get_vpc_info(vpc_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+    vpc_info = cloudamqp.get_vpc_info(vpc_id=cloudamqp_vpc["vpc"]["id"])
     ```
     </details>
     ## Attributes reference

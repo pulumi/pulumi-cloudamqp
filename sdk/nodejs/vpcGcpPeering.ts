@@ -7,9 +7,19 @@ import * as utilities from "./utilities";
 /**
  * This resouce creates a VPC peering configuration for the CloudAMQP instance. The configuration will connect to another VPC network hosted on Google Cloud Platform (GCP). See the [GCP documentation](https://cloud.google.com/vpc/docs/using-vpc-peering) for more information on how to create the VPC peering configuration.
  *
- * Only available for dedicated subscription plans.
+ * > **Note:** Creating a VPC peering will automatically add firewall rules for the peered subnet.
+ * <details>
+ *  <summary>
+ *     <i>Default VPC peering firewall rule</i>
+ *   </summary>
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * ```
+ * </details>
  *
  * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
+ *
+ * Only available for dedicated subscription plans.
  *
  * ## Example Usage
  * ### With Additional Firewall Rules
@@ -96,16 +106,10 @@ import * as utilities from "./utilities";
  *             description: "VPC peering for <NETWORK>",
  *         },
  *         {
- *             ip: "192.168.0.0/24",
- *             ports: [
- *                 4567,
- *                 4568,
- *             ],
- *             services: [
- *                 "AMQP",
- *                 "AMQPS",
- *                 "HTTPS",
- *             ],
+ *             ip: "0.0.0.0/0",
+ *             ports: [],
+ *             services: ["HTTPS"],
+ *             description: "MGMT interface",
  *         },
  *     ],
  * }, {

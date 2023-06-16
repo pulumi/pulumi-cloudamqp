@@ -19,9 +19,52 @@ import javax.annotation.Nullable;
 /**
  * This resouce creates a VPC peering configuration for the CloudAMQP instance. The configuration will connect to another VPC network hosted on Google Cloud Platform (GCP). See the [GCP documentation](https://cloud.google.com/vpc/docs/using-vpc-peering) for more information on how to create the VPC peering configuration.
  * 
- * Only available for dedicated subscription plans.
+ * &gt; **Note:** Creating a VPC peering will automatically add firewall rules for the peered subnet.
+ * &lt;details&gt;
+ *  &lt;summary&gt;
+ *     &lt;i&gt;Default VPC peering firewall rule&lt;/i&gt;
+ *   &lt;/summary&gt;
+ * ```typescript
+ * import * as pulumi from &#34;@pulumi/pulumi&#34;;
+ * ```
+ * ```python
+ * import pulumi
+ * ```
+ * ```csharp
+ * using System.Collections.Generic;
+ * using System.Linq;
+ * using Pulumi;
+ * 
+ * return await Deployment.RunAsync(() =&gt;
+ * {
+ * });
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *     }
+ * }
+ * ```
+ * &lt;/details&gt;
  * 
  * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
+ * 
+ * Only available for dedicated subscription plans.
  * 
  * ## Example Usage
  * ### With Additional Firewall Rules
@@ -144,14 +187,10 @@ import javax.annotation.Nullable;
  *                     .description(&#34;VPC peering for &lt;NETWORK&gt;&#34;)
  *                     .build(),
  *                 SecurityFirewallRuleArgs.builder()
- *                     .ip(&#34;192.168.0.0/24&#34;)
- *                     .ports(                    
- *                         4567,
- *                         4568)
- *                     .services(                    
- *                         &#34;AMQP&#34;,
- *                         &#34;AMQPS&#34;,
- *                         &#34;HTTPS&#34;)
+ *                     .ip(&#34;0.0.0.0/0&#34;)
+ *                     .ports()
+ *                     .services(&#34;HTTPS&#34;)
+ *                     .description(&#34;MGMT interface&#34;)
  *                     .build())
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(vpcPeeringRequest)

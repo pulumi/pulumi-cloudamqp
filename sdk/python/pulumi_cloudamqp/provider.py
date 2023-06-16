@@ -15,15 +15,19 @@ __all__ = ['ProviderArgs', 'Provider']
 class ProviderArgs:
     def __init__(__self__, *,
                  apikey: pulumi.Input[str],
-                 baseurl: Optional[pulumi.Input[str]] = None):
+                 baseurl: Optional[pulumi.Input[str]] = None,
+                 enable_faster_instance_destroy: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a Provider resource.
         :param pulumi.Input[str] apikey: Key used to authentication to the CloudAMQP Customer API
         :param pulumi.Input[str] baseurl: Base URL to CloudAMQP Customer website
+        :param pulumi.Input[bool] enable_faster_instance_destroy: Skips destroying backend resources on 'terraform destroy'
         """
         pulumi.set(__self__, "apikey", apikey)
         if baseurl is not None:
             pulumi.set(__self__, "baseurl", baseurl)
+        if enable_faster_instance_destroy is not None:
+            pulumi.set(__self__, "enable_faster_instance_destroy", enable_faster_instance_destroy)
 
     @property
     @pulumi.getter
@@ -49,6 +53,18 @@ class ProviderArgs:
     def baseurl(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "baseurl", value)
 
+    @property
+    @pulumi.getter(name="enableFasterInstanceDestroy")
+    def enable_faster_instance_destroy(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Skips destroying backend resources on 'terraform destroy'
+        """
+        return pulumi.get(self, "enable_faster_instance_destroy")
+
+    @enable_faster_instance_destroy.setter
+    def enable_faster_instance_destroy(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_faster_instance_destroy", value)
+
 
 class Provider(pulumi.ProviderResource):
     @overload
@@ -57,6 +73,7 @@ class Provider(pulumi.ProviderResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  apikey: Optional[pulumi.Input[str]] = None,
                  baseurl: Optional[pulumi.Input[str]] = None,
+                 enable_faster_instance_destroy: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
         The provider type for the cloudamqp package. By default, resources use package-wide configuration
@@ -68,6 +85,7 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] apikey: Key used to authentication to the CloudAMQP Customer API
         :param pulumi.Input[str] baseurl: Base URL to CloudAMQP Customer website
+        :param pulumi.Input[bool] enable_faster_instance_destroy: Skips destroying backend resources on 'terraform destroy'
         """
         ...
     @overload
@@ -98,6 +116,7 @@ class Provider(pulumi.ProviderResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  apikey: Optional[pulumi.Input[str]] = None,
                  baseurl: Optional[pulumi.Input[str]] = None,
+                 enable_faster_instance_destroy: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -111,6 +130,7 @@ class Provider(pulumi.ProviderResource):
                 raise TypeError("Missing required property 'apikey'")
             __props__.__dict__["apikey"] = apikey
             __props__.__dict__["baseurl"] = baseurl
+            __props__.__dict__["enable_faster_instance_destroy"] = pulumi.Output.from_input(enable_faster_instance_destroy).apply(pulumi.runtime.to_json) if enable_faster_instance_destroy is not None else None
         super(Provider, __self__).__init__(
             'cloudamqp',
             resource_name,

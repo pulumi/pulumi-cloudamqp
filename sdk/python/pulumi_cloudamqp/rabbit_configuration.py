@@ -36,9 +36,9 @@ class RabbitConfigurationArgs:
         :param pulumi.Input[int] heartbeat: Set the server AMQP 0-9-1 heartbeat timeout in seconds.
         :param pulumi.Input[str] log_exchange_level: Log level for the logger used for log integrations and the CloudAMQP Console log view.
                
-               ***Note: Requires a restart of RabbitMQ to be applied.***
+               *Note: Requires a restart of RabbitMQ to be applied.*
         :param pulumi.Input[int] max_message_size: The largest allowed message payload size in bytes.
-        :param pulumi.Input[int] queue_index_embed_msgs_below: Size in bytes below which to embed messages in the queue index.
+        :param pulumi.Input[int] queue_index_embed_msgs_below: Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
         :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
         :param pulumi.Input[int] timeout: Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
         :param pulumi.Input[float] vm_memory_high_watermark: When the server will enter memory based flow-control as relative to the maximum available memory.
@@ -145,7 +145,7 @@ class RabbitConfigurationArgs:
         """
         Log level for the logger used for log integrations and the CloudAMQP Console log view.
 
-        ***Note: Requires a restart of RabbitMQ to be applied.***
+        *Note: Requires a restart of RabbitMQ to be applied.*
         """
         return pulumi.get(self, "log_exchange_level")
 
@@ -169,7 +169,7 @@ class RabbitConfigurationArgs:
     @pulumi.getter(name="queueIndexEmbedMsgsBelow")
     def queue_index_embed_msgs_below(self) -> Optional[pulumi.Input[int]]:
         """
-        Size in bytes below which to embed messages in the queue index.
+        Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
         """
         return pulumi.get(self, "queue_index_embed_msgs_below")
 
@@ -239,9 +239,9 @@ class _RabbitConfigurationState:
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] log_exchange_level: Log level for the logger used for log integrations and the CloudAMQP Console log view.
                
-               ***Note: Requires a restart of RabbitMQ to be applied.***
+               *Note: Requires a restart of RabbitMQ to be applied.*
         :param pulumi.Input[int] max_message_size: The largest allowed message payload size in bytes.
-        :param pulumi.Input[int] queue_index_embed_msgs_below: Size in bytes below which to embed messages in the queue index.
+        :param pulumi.Input[int] queue_index_embed_msgs_below: Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
         :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
         :param pulumi.Input[int] timeout: Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
         :param pulumi.Input[float] vm_memory_high_watermark: When the server will enter memory based flow-control as relative to the maximum available memory.
@@ -349,7 +349,7 @@ class _RabbitConfigurationState:
         """
         Log level for the logger used for log integrations and the CloudAMQP Console log view.
 
-        ***Note: Requires a restart of RabbitMQ to be applied.***
+        *Note: Requires a restart of RabbitMQ to be applied.*
         """
         return pulumi.get(self, "log_exchange_level")
 
@@ -373,7 +373,7 @@ class _RabbitConfigurationState:
     @pulumi.getter(name="queueIndexEmbedMsgsBelow")
     def queue_index_embed_msgs_below(self) -> Optional[pulumi.Input[int]]:
         """
-        Size in bytes below which to embed messages in the queue index.
+        Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
         """
         return pulumi.get(self, "queue_index_embed_msgs_below")
 
@@ -441,6 +441,80 @@ class RabbitConfiguration(pulumi.CustomResource):
 
         Only available for dedicated subscription plans running ***RabbitMQ***.
 
+        ## Example Usage
+
+        <details>
+          <summary>
+            <b>
+              <i>RabbitMQ configuration with default values</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmqConfig",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            channel_max=0,
+            connection_max=-1,
+            consumer_timeout=7200000,
+            heartbeat=120,
+            log_exchange_level="error",
+            max_message_size=134217728,
+            queue_index_embed_msgs_below=4096,
+            vm_memory_high_watermark=0.81,
+            cluster_partition_handling="autoheal")
+        ```
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Change log level and combine `NodeActions` for RabbitMQ restart</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmqConfig",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            channel_max=0,
+            connection_max=-1,
+            consumer_timeout=7200000,
+            heartbeat=120,
+            log_exchange_level="info",
+            max_message_size=134217728,
+            queue_index_embed_msgs_below=4096,
+            vm_memory_high_watermark=0.81,
+            cluster_partition_handling="autoheal")
+        list_nodes = cloudamqp.get_nodes(instance_id=cloudamqp_instance["instance"]["id"])
+        node_action = cloudamqp.NodeActions("nodeAction",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            node_name=list_nodes.nodes[0].name,
+            action="restart",
+            opts=pulumi.ResourceOptions(depends_on=[rabbitmq_config]))
+        ```
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Only change log level for exchange. All other values will be read from the RabbitMQ configuration.</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        rabbit_config = cloudamqp.RabbitConfiguration("rabbitConfig",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            log_exchange_level="info")
+        ```
+        </details>
         ## Argument threshold values
 
         | Argument | Type | Default | Min | Max | Unit | Affect | Note |
@@ -450,7 +524,7 @@ class RabbitConfiguration(pulumi.CustomResource):
         | channel_max | int | 128 | 0 | - |  | Only effects new connections |  |
         | consumer_timeout | int | 7200000 | 10000 | 86400000 | milliseconds | Only effects new channels | -1 in the provider corresponds to false (disable) in the RabbitMQ config |
         | vm_memory_high_watermark | float | 0.81 | 0.4 | 0.9 |  | Applied immediately |  |
-        | queue_index_embed_msgs_below | int | 4096 | 1 | 10485760 | bytes | Applied immediately for new queues, requires restart for existing queues |  |
+        | queue_index_embed_msgs_below | int | 4096 | 0 | 10485760 | bytes | Applied immediately for new queues, requires restart for existing queues |  |
         | max_message_size | int | 134217728 | 1 | 536870912 | bytes | Only effects new channels |  |
         | log_exchange_level | string | error | - | - |  | RabbitMQ restart required | debug, info, warning, error, critical |
         | cluster_partition_handling | string | see below | - | - |  | Applied immediately | autoheal, pause_minority, ignore |
@@ -479,9 +553,9 @@ class RabbitConfiguration(pulumi.CustomResource):
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] log_exchange_level: Log level for the logger used for log integrations and the CloudAMQP Console log view.
                
-               ***Note: Requires a restart of RabbitMQ to be applied.***
+               *Note: Requires a restart of RabbitMQ to be applied.*
         :param pulumi.Input[int] max_message_size: The largest allowed message payload size in bytes.
-        :param pulumi.Input[int] queue_index_embed_msgs_below: Size in bytes below which to embed messages in the queue index.
+        :param pulumi.Input[int] queue_index_embed_msgs_below: Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
         :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
         :param pulumi.Input[int] timeout: Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
         :param pulumi.Input[float] vm_memory_high_watermark: When the server will enter memory based flow-control as relative to the maximum available memory.
@@ -497,6 +571,80 @@ class RabbitConfiguration(pulumi.CustomResource):
 
         Only available for dedicated subscription plans running ***RabbitMQ***.
 
+        ## Example Usage
+
+        <details>
+          <summary>
+            <b>
+              <i>RabbitMQ configuration with default values</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmqConfig",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            channel_max=0,
+            connection_max=-1,
+            consumer_timeout=7200000,
+            heartbeat=120,
+            log_exchange_level="error",
+            max_message_size=134217728,
+            queue_index_embed_msgs_below=4096,
+            vm_memory_high_watermark=0.81,
+            cluster_partition_handling="autoheal")
+        ```
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Change log level and combine `NodeActions` for RabbitMQ restart</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmqConfig",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            channel_max=0,
+            connection_max=-1,
+            consumer_timeout=7200000,
+            heartbeat=120,
+            log_exchange_level="info",
+            max_message_size=134217728,
+            queue_index_embed_msgs_below=4096,
+            vm_memory_high_watermark=0.81,
+            cluster_partition_handling="autoheal")
+        list_nodes = cloudamqp.get_nodes(instance_id=cloudamqp_instance["instance"]["id"])
+        node_action = cloudamqp.NodeActions("nodeAction",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            node_name=list_nodes.nodes[0].name,
+            action="restart",
+            opts=pulumi.ResourceOptions(depends_on=[rabbitmq_config]))
+        ```
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Only change log level for exchange. All other values will be read from the RabbitMQ configuration.</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        rabbit_config = cloudamqp.RabbitConfiguration("rabbitConfig",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            log_exchange_level="info")
+        ```
+        </details>
         ## Argument threshold values
 
         | Argument | Type | Default | Min | Max | Unit | Affect | Note |
@@ -506,7 +654,7 @@ class RabbitConfiguration(pulumi.CustomResource):
         | channel_max | int | 128 | 0 | - |  | Only effects new connections |  |
         | consumer_timeout | int | 7200000 | 10000 | 86400000 | milliseconds | Only effects new channels | -1 in the provider corresponds to false (disable) in the RabbitMQ config |
         | vm_memory_high_watermark | float | 0.81 | 0.4 | 0.9 |  | Applied immediately |  |
-        | queue_index_embed_msgs_below | int | 4096 | 1 | 10485760 | bytes | Applied immediately for new queues, requires restart for existing queues |  |
+        | queue_index_embed_msgs_below | int | 4096 | 0 | 10485760 | bytes | Applied immediately for new queues, requires restart for existing queues |  |
         | max_message_size | int | 134217728 | 1 | 536870912 | bytes | Only effects new channels |  |
         | log_exchange_level | string | error | - | - |  | RabbitMQ restart required | debug, info, warning, error, critical |
         | cluster_partition_handling | string | see below | - | - |  | Applied immediately | autoheal, pause_minority, ignore |
@@ -612,9 +760,9 @@ class RabbitConfiguration(pulumi.CustomResource):
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] log_exchange_level: Log level for the logger used for log integrations and the CloudAMQP Console log view.
                
-               ***Note: Requires a restart of RabbitMQ to be applied.***
+               *Note: Requires a restart of RabbitMQ to be applied.*
         :param pulumi.Input[int] max_message_size: The largest allowed message payload size in bytes.
-        :param pulumi.Input[int] queue_index_embed_msgs_below: Size in bytes below which to embed messages in the queue index.
+        :param pulumi.Input[int] queue_index_embed_msgs_below: Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
         :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
         :param pulumi.Input[int] timeout: Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
         :param pulumi.Input[float] vm_memory_high_watermark: When the server will enter memory based flow-control as relative to the maximum available memory.
@@ -691,7 +839,7 @@ class RabbitConfiguration(pulumi.CustomResource):
         """
         Log level for the logger used for log integrations and the CloudAMQP Console log view.
 
-        ***Note: Requires a restart of RabbitMQ to be applied.***
+        *Note: Requires a restart of RabbitMQ to be applied.*
         """
         return pulumi.get(self, "log_exchange_level")
 
@@ -707,7 +855,7 @@ class RabbitConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="queueIndexEmbedMsgsBelow")
     def queue_index_embed_msgs_below(self) -> pulumi.Output[int]:
         """
-        Size in bytes below which to embed messages in the queue index.
+        Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
         """
         return pulumi.get(self, "queue_index_embed_msgs_below")
 

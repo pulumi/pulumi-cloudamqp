@@ -9,6 +9,87 @@ import * as utilities from "./utilities";
  *
  * Only available for dedicated subscription plans running ***RabbitMQ***.
  *
+ * ## Example Usage
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>RabbitMQ configuration with default values</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const rabbitmqConfig = new cloudamqp.RabbitConfiguration("rabbitmqConfig", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     channelMax: 0,
+ *     connectionMax: -1,
+ *     consumerTimeout: 7200000,
+ *     heartbeat: 120,
+ *     logExchangeLevel: "error",
+ *     maxMessageSize: 134217728,
+ *     queueIndexEmbedMsgsBelow: 4096,
+ *     vmMemoryHighWatermark: 0.81,
+ *     clusterPartitionHandling: "autoheal",
+ * });
+ * ```
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Change log level and combine `cloudamqp.NodeActions` for RabbitMQ restart</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const rabbitmqConfig = new cloudamqp.RabbitConfiguration("rabbitmqConfig", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     channelMax: 0,
+ *     connectionMax: -1,
+ *     consumerTimeout: 7200000,
+ *     heartbeat: 120,
+ *     logExchangeLevel: "info",
+ *     maxMessageSize: 134217728,
+ *     queueIndexEmbedMsgsBelow: 4096,
+ *     vmMemoryHighWatermark: 0.81,
+ *     clusterPartitionHandling: "autoheal",
+ * });
+ * const listNodes = cloudamqp.getNodes({
+ *     instanceId: cloudamqp_instance.instance.id,
+ * });
+ * const nodeAction = new cloudamqp.NodeActions("nodeAction", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     nodeName: listNodes.then(listNodes => listNodes.nodes?.[0]?.name),
+ *     action: "restart",
+ * }, {
+ *     dependsOn: [rabbitmqConfig],
+ * });
+ * ```
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Only change log level for exchange. All other values will be read from the RabbitMQ configuration.</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const rabbitConfig = new cloudamqp.RabbitConfiguration("rabbitConfig", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     logExchangeLevel: "info",
+ * });
+ * ```
+ * </details>
  * ## Argument threshold values
  *
  * | Argument | Type | Default | Min | Max | Unit | Affect | Note |
@@ -18,7 +99,7 @@ import * as utilities from "./utilities";
  * | channelMax | int | 128 | 0 | - |  | Only effects new connections |  |
  * | consumerTimeout | int | 7200000 | 10000 | 86400000 | milliseconds | Only effects new channels | -1 in the provider corresponds to false (disable) in the RabbitMQ config |
  * | vmMemoryHighWatermark | float | 0.81 | 0.4 | 0.9 |  | Applied immediately |  |
- * | queueIndexEmbedMsgsBelow | int | 4096 | 1 | 10485760 | bytes | Applied immediately for new queues, requires restart for existing queues |  |
+ * | queueIndexEmbedMsgsBelow | int | 4096 | 0 | 10485760 | bytes | Applied immediately for new queues, requires restart for existing queues |  |
  * | maxMessageSize | int | 134217728 | 1 | 536870912 | bytes | Only effects new channels |  |
  * | logExchangeLevel | string | error | - | - |  | RabbitMQ restart required | debug, info, warning, error, critical |
  * | clusterPartitionHandling | string | see below | - | - |  | Applied immediately | autoheal, pause_minority, ignore |
@@ -92,7 +173,7 @@ export class RabbitConfiguration extends pulumi.CustomResource {
     /**
      * Log level for the logger used for log integrations and the CloudAMQP Console log view.
      *
-     * ***Note: Requires a restart of RabbitMQ to be applied.***
+     * *Note: Requires a restart of RabbitMQ to be applied.*
      */
     public readonly logExchangeLevel!: pulumi.Output<string>;
     /**
@@ -100,7 +181,7 @@ export class RabbitConfiguration extends pulumi.CustomResource {
      */
     public readonly maxMessageSize!: pulumi.Output<number>;
     /**
-     * Size in bytes below which to embed messages in the queue index.
+     * Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
      */
     public readonly queueIndexEmbedMsgsBelow!: pulumi.Output<number>;
     /**
@@ -195,7 +276,7 @@ export interface RabbitConfigurationState {
     /**
      * Log level for the logger used for log integrations and the CloudAMQP Console log view.
      *
-     * ***Note: Requires a restart of RabbitMQ to be applied.***
+     * *Note: Requires a restart of RabbitMQ to be applied.*
      */
     logExchangeLevel?: pulumi.Input<string>;
     /**
@@ -203,7 +284,7 @@ export interface RabbitConfigurationState {
      */
     maxMessageSize?: pulumi.Input<number>;
     /**
-     * Size in bytes below which to embed messages in the queue index.
+     * Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
      */
     queueIndexEmbedMsgsBelow?: pulumi.Input<number>;
     /**
@@ -251,7 +332,7 @@ export interface RabbitConfigurationArgs {
     /**
      * Log level for the logger used for log integrations and the CloudAMQP Console log view.
      *
-     * ***Note: Requires a restart of RabbitMQ to be applied.***
+     * *Note: Requires a restart of RabbitMQ to be applied.*
      */
     logExchangeLevel?: pulumi.Input<string>;
     /**
@@ -259,7 +340,7 @@ export interface RabbitConfigurationArgs {
      */
     maxMessageSize?: pulumi.Input<number>;
     /**
-     * Size in bytes below which to embed messages in the queue index.
+     * Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
      */
     queueIndexEmbedMsgsBelow?: pulumi.Input<number>;
     /**

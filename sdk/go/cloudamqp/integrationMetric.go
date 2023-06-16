@@ -24,6 +24,10 @@ type IntegrationMetric struct {
 	Credentials pulumi.StringPtrOutput `pulumi:"credentials"`
 	// The email address registred for the integration service. (Librato)
 	Email pulumi.StringPtrOutput `pulumi:"email"`
+	// External identifier that match the role you created. (Cloudwatch)
+	IamExternalId pulumi.StringPtrOutput `pulumi:"iamExternalId"`
+	// The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+	IamRole pulumi.StringPtrOutput `pulumi:"iamRole"`
 	// Instance identifier
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
 	// The license key registred for the integration service. (New Relic)
@@ -117,6 +121,10 @@ type integrationMetricState struct {
 	Credentials *string `pulumi:"credentials"`
 	// The email address registred for the integration service. (Librato)
 	Email *string `pulumi:"email"`
+	// External identifier that match the role you created. (Cloudwatch)
+	IamExternalId *string `pulumi:"iamExternalId"`
+	// The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+	IamRole *string `pulumi:"iamRole"`
 	// Instance identifier
 	InstanceId *int `pulumi:"instanceId"`
 	// The license key registred for the integration service. (New Relic)
@@ -160,6 +168,10 @@ type IntegrationMetricState struct {
 	Credentials pulumi.StringPtrInput
 	// The email address registred for the integration service. (Librato)
 	Email pulumi.StringPtrInput
+	// External identifier that match the role you created. (Cloudwatch)
+	IamExternalId pulumi.StringPtrInput
+	// The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+	IamRole pulumi.StringPtrInput
 	// Instance identifier
 	InstanceId pulumi.IntPtrInput
 	// The license key registred for the integration service. (New Relic)
@@ -207,6 +219,10 @@ type integrationMetricArgs struct {
 	Credentials *string `pulumi:"credentials"`
 	// The email address registred for the integration service. (Librato)
 	Email *string `pulumi:"email"`
+	// External identifier that match the role you created. (Cloudwatch)
+	IamExternalId *string `pulumi:"iamExternalId"`
+	// The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+	IamRole *string `pulumi:"iamRole"`
 	// Instance identifier
 	InstanceId int `pulumi:"instanceId"`
 	// The license key registred for the integration service. (New Relic)
@@ -251,6 +267,10 @@ type IntegrationMetricArgs struct {
 	Credentials pulumi.StringPtrInput
 	// The email address registred for the integration service. (Librato)
 	Email pulumi.StringPtrInput
+	// External identifier that match the role you created. (Cloudwatch)
+	IamExternalId pulumi.StringPtrInput
+	// The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+	IamRole pulumi.StringPtrInput
 	// Instance identifier
 	InstanceId pulumi.IntInput
 	// The license key registred for the integration service. (New Relic)
@@ -393,6 +413,16 @@ func (o IntegrationMetricOutput) Credentials() pulumi.StringPtrOutput {
 // The email address registred for the integration service. (Librato)
 func (o IntegrationMetricOutput) Email() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.Email }).(pulumi.StringPtrOutput)
+}
+
+// External identifier that match the role you created. (Cloudwatch)
+func (o IntegrationMetricOutput) IamExternalId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.IamExternalId }).(pulumi.StringPtrOutput)
+}
+
+// The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+func (o IntegrationMetricOutput) IamRole() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.IamRole }).(pulumi.StringPtrOutput)
 }
 
 // Instance identifier

@@ -10,28 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using CloudAmqp = Pulumi.CloudAmqp;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var rabbitmqDelayedMessageExchange = new CloudAmqp.PluginCommunity("rabbitmqDelayedMessageExchange", new()
-    ///     {
-    ///         InstanceId = cloudamqp_instance.Instance_01.Id,
-    ///         Enabled = true,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// ## Depedency
-    /// 
-    /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-    /// 
     /// ## Import
     /// 
     /// `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
