@@ -11,10 +11,6 @@ import (
 
 func getApiKey(t *testing.T) string {
 	name := os.Getenv("CLOUDAMQP_APIKEY")
-	if name == "" {
-		t.Skipf("Skipping test due to missing CLOUDAMQP_APIKEY environment variable")
-	}
-
 	return name
 }
 
