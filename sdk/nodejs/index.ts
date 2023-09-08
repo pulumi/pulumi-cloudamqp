@@ -22,11 +22,13 @@ utilities.lazyLoad(exports, ["ExtraDiskSize"], () => require("./extraDiskSize"))
 
 export { GetAccountResult } from "./getAccount";
 export const getAccount: typeof import("./getAccount").getAccount = null as any;
-utilities.lazyLoad(exports, ["getAccount"], () => require("./getAccount"));
+export const getAccountOutput: typeof import("./getAccount").getAccountOutput = null as any;
+utilities.lazyLoad(exports, ["getAccount","getAccountOutput"], () => require("./getAccount"));
 
 export { GetAccountVpcsResult } from "./getAccountVpcs";
 export const getAccountVpcs: typeof import("./getAccountVpcs").getAccountVpcs = null as any;
-utilities.lazyLoad(exports, ["getAccountVpcs"], () => require("./getAccountVpcs"));
+export const getAccountVpcsOutput: typeof import("./getAccountVpcs").getAccountVpcsOutput = null as any;
+utilities.lazyLoad(exports, ["getAccountVpcs","getAccountVpcsOutput"], () => require("./getAccountVpcs"));
 
 export { GetAlarmArgs, GetAlarmResult, GetAlarmOutputArgs } from "./getAlarm";
 export const getAlarm: typeof import("./getAlarm").getAlarm = null as any;

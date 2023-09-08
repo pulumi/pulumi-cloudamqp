@@ -8,168 +8,11 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
-// This resource allows you update RabbitMQ config.
-//
-// Only available for dedicated subscription plans running ***RabbitMQ***.
-//
-// ## Example Usage
-//
-// <details>
-//
-//	<summary>
-//	  <b>
-//	    <i>RabbitMQ configuration with default values</i>
-//	  </b>
-//	</summary>
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.NewRabbitConfiguration(ctx, "rabbitmqConfig", &cloudamqp.RabbitConfigurationArgs{
-//				InstanceId:               pulumi.Any(cloudamqp_instance.Instance.Id),
-//				ChannelMax:               pulumi.Int(0),
-//				ConnectionMax:            -1,
-//				ConsumerTimeout:          pulumi.Int(7200000),
-//				Heartbeat:                pulumi.Int(120),
-//				LogExchangeLevel:         pulumi.String("error"),
-//				MaxMessageSize:           pulumi.Int(134217728),
-//				QueueIndexEmbedMsgsBelow: pulumi.Int(4096),
-//				VmMemoryHighWatermark:    pulumi.Float64(0.81),
-//				ClusterPartitionHandling: pulumi.String("autoheal"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// </details>
-//
-// <details>
-//
-//	<summary>
-//	  <b>
-//	    <i>Change log level and combine `NodeActions` for RabbitMQ restart</i>
-//	  </b>
-//	</summary>
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			rabbitmqConfig, err := cloudamqp.NewRabbitConfiguration(ctx, "rabbitmqConfig", &cloudamqp.RabbitConfigurationArgs{
-//				InstanceId:               pulumi.Any(cloudamqp_instance.Instance.Id),
-//				ChannelMax:               pulumi.Int(0),
-//				ConnectionMax:            -1,
-//				ConsumerTimeout:          pulumi.Int(7200000),
-//				Heartbeat:                pulumi.Int(120),
-//				LogExchangeLevel:         pulumi.String("info"),
-//				MaxMessageSize:           pulumi.Int(134217728),
-//				QueueIndexEmbedMsgsBelow: pulumi.Int(4096),
-//				VmMemoryHighWatermark:    pulumi.Float64(0.81),
-//				ClusterPartitionHandling: pulumi.String("autoheal"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			listNodes, err := cloudamqp.GetNodes(ctx, &cloudamqp.GetNodesArgs{
-//				InstanceId: cloudamqp_instance.Instance.Id,
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = cloudamqp.NewNodeActions(ctx, "nodeAction", &cloudamqp.NodeActionsArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
-//				NodeName:   *pulumi.String(listNodes.Nodes[0].Name),
-//				Action:     pulumi.String("restart"),
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				rabbitmqConfig,
-//			}))
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// </details>
-//
-// <details>
-//
-//	<summary>
-//	  <b>
-//	    <i>Only change log level for exchange. All other values will be read from the RabbitMQ configuration.</i>
-//	  </b>
-//	</summary>
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.NewRabbitConfiguration(ctx, "rabbitConfig", &cloudamqp.RabbitConfigurationArgs{
-//				InstanceId:       pulumi.Any(cloudamqp_instance.Instance.Id),
-//				LogExchangeLevel: pulumi.String("info"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// </details>
-// ## Argument threshold values
-//
-// | Argument | Type | Default | Min | Max | Unit | Affect | Note |
-// |---|---|---|---|---|---|---|---|
-// | heartbeat | int | 120 | 0 | - |  | Only effects new connections |  |
-// | connectionMax | int | -1 | 1 | - |  | RabbitMQ restart required | -1 in the provider corresponds to INFINITY in the RabbitMQ config |
-// | channelMax | int | 128 | 0 | - |  | Only effects new connections |  |
-// | consumerTimeout | int | 7200000 | 10000 | 86400000 | milliseconds | Only effects new channels | -1 in the provider corresponds to false (disable) in the RabbitMQ config |
-// | vmMemoryHighWatermark | float | 0.81 | 0.4 | 0.9 |  | Applied immediately |  |
-// | queueIndexEmbedMsgsBelow | int | 4096 | 0 | 10485760 | bytes | Applied immediately for new queues, requires restart for existing queues |  |
-// | maxMessageSize | int | 134217728 | 1 | 536870912 | bytes | Only effects new channels |  |
-// | logExchangeLevel | string | error | - | - |  | RabbitMQ restart required | debug, info, warning, error, critical |
-// | clusterPartitionHandling | string | see below | - | - |  | Applied immediately | autoheal, pause_minority, ignore |
-//
-//	*Note: Recommended setting for cluster_partition_handling: `autoheal` for cluster with 1-2 nodes, `pauseMinority` for cluster with 3 or more nodes. While `ignore` setting is not recommended.*
-//
-// ## Dependency
-//
-// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-//
 // ## Import
 //
 // `cloudamqp_rabbitmq_configuration` can be imported using the CloudAMQP instance identifier.
@@ -220,6 +63,7 @@ func NewRabbitConfiguration(ctx *pulumi.Context,
 	if args.InstanceId == nil {
 		return nil, errors.New("invalid value for required argument 'InstanceId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RabbitConfiguration
 	err := ctx.RegisterResource("cloudamqp:index/rabbitConfiguration:RabbitConfiguration", name, args, &resource, opts...)
 	if err != nil {
@@ -385,6 +229,12 @@ func (i *RabbitConfiguration) ToRabbitConfigurationOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(RabbitConfigurationOutput)
 }
 
+func (i *RabbitConfiguration) ToOutput(ctx context.Context) pulumix.Output[*RabbitConfiguration] {
+	return pulumix.Output[*RabbitConfiguration]{
+		OutputState: i.ToRabbitConfigurationOutputWithContext(ctx).OutputState,
+	}
+}
+
 // RabbitConfigurationArrayInput is an input type that accepts RabbitConfigurationArray and RabbitConfigurationArrayOutput values.
 // You can construct a concrete instance of `RabbitConfigurationArrayInput` via:
 //
@@ -408,6 +258,12 @@ func (i RabbitConfigurationArray) ToRabbitConfigurationArrayOutput() RabbitConfi
 
 func (i RabbitConfigurationArray) ToRabbitConfigurationArrayOutputWithContext(ctx context.Context) RabbitConfigurationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RabbitConfigurationArrayOutput)
+}
+
+func (i RabbitConfigurationArray) ToOutput(ctx context.Context) pulumix.Output[[]*RabbitConfiguration] {
+	return pulumix.Output[[]*RabbitConfiguration]{
+		OutputState: i.ToRabbitConfigurationArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // RabbitConfigurationMapInput is an input type that accepts RabbitConfigurationMap and RabbitConfigurationMapOutput values.
@@ -435,6 +291,12 @@ func (i RabbitConfigurationMap) ToRabbitConfigurationMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(RabbitConfigurationMapOutput)
 }
 
+func (i RabbitConfigurationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RabbitConfiguration] {
+	return pulumix.Output[map[string]*RabbitConfiguration]{
+		OutputState: i.ToRabbitConfigurationMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RabbitConfigurationOutput struct{ *pulumi.OutputState }
 
 func (RabbitConfigurationOutput) ElementType() reflect.Type {
@@ -447,6 +309,12 @@ func (o RabbitConfigurationOutput) ToRabbitConfigurationOutput() RabbitConfigura
 
 func (o RabbitConfigurationOutput) ToRabbitConfigurationOutputWithContext(ctx context.Context) RabbitConfigurationOutput {
 	return o
+}
+
+func (o RabbitConfigurationOutput) ToOutput(ctx context.Context) pulumix.Output[*RabbitConfiguration] {
+	return pulumix.Output[*RabbitConfiguration]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Set the maximum permissible number of channels per connection.
@@ -525,6 +393,12 @@ func (o RabbitConfigurationArrayOutput) ToRabbitConfigurationArrayOutputWithCont
 	return o
 }
 
+func (o RabbitConfigurationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RabbitConfiguration] {
+	return pulumix.Output[[]*RabbitConfiguration]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o RabbitConfigurationArrayOutput) Index(i pulumi.IntInput) RabbitConfigurationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RabbitConfiguration {
 		return vs[0].([]*RabbitConfiguration)[vs[1].(int)]
@@ -543,6 +417,12 @@ func (o RabbitConfigurationMapOutput) ToRabbitConfigurationMapOutput() RabbitCon
 
 func (o RabbitConfigurationMapOutput) ToRabbitConfigurationMapOutputWithContext(ctx context.Context) RabbitConfigurationMapOutput {
 	return o
+}
+
+func (o RabbitConfigurationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RabbitConfiguration] {
+	return pulumix.Output[map[string]*RabbitConfiguration]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RabbitConfigurationMapOutput) MapIndex(k pulumi.StringInput) RabbitConfigurationOutput {

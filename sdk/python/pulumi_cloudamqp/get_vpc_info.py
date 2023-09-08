@@ -170,13 +170,13 @@ def get_vpc_info(instance_id: Optional[int] = None,
     __ret__ = pulumi.runtime.invoke('cloudamqp:index/getVpcInfo:getVpcInfo', __args__, opts=opts, typ=GetVpcInfoResult).value
 
     return AwaitableGetVpcInfoResult(
-        id=__ret__.id,
-        instance_id=__ret__.instance_id,
-        name=__ret__.name,
-        owner_id=__ret__.owner_id,
-        security_group_id=__ret__.security_group_id,
-        vpc_id=__ret__.vpc_id,
-        vpc_subnet=__ret__.vpc_subnet)
+        id=pulumi.get(__ret__, 'id'),
+        instance_id=pulumi.get(__ret__, 'instance_id'),
+        name=pulumi.get(__ret__, 'name'),
+        owner_id=pulumi.get(__ret__, 'owner_id'),
+        security_group_id=pulumi.get(__ret__, 'security_group_id'),
+        vpc_id=pulumi.get(__ret__, 'vpc_id'),
+        vpc_subnet=pulumi.get(__ret__, 'vpc_subnet'))
 
 
 @_utilities.lift_output_func(get_vpc_info)

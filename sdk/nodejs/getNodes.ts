@@ -34,7 +34,7 @@ import * as utilities from "./utilities";
  * * `name`                  - Name of the node.
  * * `running`               - Is the node running?
  * * `rabbitmqVersion`      - Currently configured Rabbit MQ version on the node.
- * * `erlangVersion`        - Currently used Erlanbg version on the node.
+ * * `erlangVersion`        - Currently used Erlang version on the node.
  * * `hipe`                  - Enable or disable High-performance Erlang.
  * * `configured`            - Is the node configured?
  * * `diskSize`             - Subscription plan disk size
@@ -103,7 +103,7 @@ export interface GetNodesResult {
  * * `name`                  - Name of the node.
  * * `running`               - Is the node running?
  * * `rabbitmqVersion`      - Currently configured Rabbit MQ version on the node.
- * * `erlangVersion`        - Currently used Erlanbg version on the node.
+ * * `erlangVersion`        - Currently used Erlang version on the node.
  * * `hipe`                  - Enable or disable High-performance Erlang.
  * * `configured`            - Is the node configured?
  * * `diskSize`             - Subscription plan disk size

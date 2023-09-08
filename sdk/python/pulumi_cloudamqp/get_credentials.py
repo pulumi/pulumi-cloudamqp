@@ -105,10 +105,10 @@ def get_credentials(instance_id: Optional[int] = None,
     __ret__ = pulumi.runtime.invoke('cloudamqp:index/getCredentials:getCredentials', __args__, opts=opts, typ=GetCredentialsResult).value
 
     return AwaitableGetCredentialsResult(
-        id=__ret__.id,
-        instance_id=__ret__.instance_id,
-        password=__ret__.password,
-        username=__ret__.username)
+        id=pulumi.get(__ret__, 'id'),
+        instance_id=pulumi.get(__ret__, 'instance_id'),
+        password=pulumi.get(__ret__, 'password'),
+        username=pulumi.get(__ret__, 'username'))
 
 
 @_utilities.lift_output_func(get_credentials)

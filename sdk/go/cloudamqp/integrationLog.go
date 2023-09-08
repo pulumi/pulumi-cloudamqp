@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This resource allows you to create and manage third party log integrations for a CloudAMQP instance. Once configured, the logs produced will be forward to corresponding integration.
@@ -154,6 +156,7 @@ func NewIntegrationLog(ctx *pulumi.Context,
 		"token",
 	})
 	opts = append(opts, secrets)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource IntegrationLog
 	err := ctx.RegisterResource("cloudamqp:index/integrationLog:IntegrationLog", name, args, &resource, opts...)
 	if err != nil {
@@ -359,6 +362,12 @@ func (i *IntegrationLog) ToIntegrationLogOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogOutput)
 }
 
+func (i *IntegrationLog) ToOutput(ctx context.Context) pulumix.Output[*IntegrationLog] {
+	return pulumix.Output[*IntegrationLog]{
+		OutputState: i.ToIntegrationLogOutputWithContext(ctx).OutputState,
+	}
+}
+
 // IntegrationLogArrayInput is an input type that accepts IntegrationLogArray and IntegrationLogArrayOutput values.
 // You can construct a concrete instance of `IntegrationLogArrayInput` via:
 //
@@ -382,6 +391,12 @@ func (i IntegrationLogArray) ToIntegrationLogArrayOutput() IntegrationLogArrayOu
 
 func (i IntegrationLogArray) ToIntegrationLogArrayOutputWithContext(ctx context.Context) IntegrationLogArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogArrayOutput)
+}
+
+func (i IntegrationLogArray) ToOutput(ctx context.Context) pulumix.Output[[]*IntegrationLog] {
+	return pulumix.Output[[]*IntegrationLog]{
+		OutputState: i.ToIntegrationLogArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // IntegrationLogMapInput is an input type that accepts IntegrationLogMap and IntegrationLogMapOutput values.
@@ -409,6 +424,12 @@ func (i IntegrationLogMap) ToIntegrationLogMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogMapOutput)
 }
 
+func (i IntegrationLogMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*IntegrationLog] {
+	return pulumix.Output[map[string]*IntegrationLog]{
+		OutputState: i.ToIntegrationLogMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type IntegrationLogOutput struct{ *pulumi.OutputState }
 
 func (IntegrationLogOutput) ElementType() reflect.Type {
@@ -421,6 +442,12 @@ func (o IntegrationLogOutput) ToIntegrationLogOutput() IntegrationLogOutput {
 
 func (o IntegrationLogOutput) ToIntegrationLogOutputWithContext(ctx context.Context) IntegrationLogOutput {
 	return o
+}
+
+func (o IntegrationLogOutput) ToOutput(ctx context.Context) pulumix.Output[*IntegrationLog] {
+	return pulumix.Output[*IntegrationLog]{
+		OutputState: o.OutputState,
+	}
 }
 
 // AWS access key identifier.
@@ -524,6 +551,12 @@ func (o IntegrationLogArrayOutput) ToIntegrationLogArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o IntegrationLogArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*IntegrationLog] {
+	return pulumix.Output[[]*IntegrationLog]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o IntegrationLogArrayOutput) Index(i pulumi.IntInput) IntegrationLogOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IntegrationLog {
 		return vs[0].([]*IntegrationLog)[vs[1].(int)]
@@ -542,6 +575,12 @@ func (o IntegrationLogMapOutput) ToIntegrationLogMapOutput() IntegrationLogMapOu
 
 func (o IntegrationLogMapOutput) ToIntegrationLogMapOutputWithContext(ctx context.Context) IntegrationLogMapOutput {
 	return o
+}
+
+func (o IntegrationLogMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*IntegrationLog] {
+	return pulumix.Output[map[string]*IntegrationLog]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o IntegrationLogMapOutput) MapIndex(k pulumi.StringInput) IntegrationLogOutput {

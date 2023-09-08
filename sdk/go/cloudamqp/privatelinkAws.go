@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Enable PrivateLink for a CloudAMQP instance hosted in AWS. If no existing VPC available when enable PrivateLink, a new VPC will be created with subnet `10.52.72.0/24`.
@@ -235,6 +237,7 @@ func NewPrivatelinkAws(ctx *pulumi.Context,
 	if args.InstanceId == nil {
 		return nil, errors.New("invalid value for required argument 'InstanceId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource PrivatelinkAws
 	err := ctx.RegisterResource("cloudamqp:index/privatelinkAws:PrivatelinkAws", name, args, &resource, opts...)
 	if err != nil {
@@ -360,6 +363,12 @@ func (i *PrivatelinkAws) ToPrivatelinkAwsOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(PrivatelinkAwsOutput)
 }
 
+func (i *PrivatelinkAws) ToOutput(ctx context.Context) pulumix.Output[*PrivatelinkAws] {
+	return pulumix.Output[*PrivatelinkAws]{
+		OutputState: i.ToPrivatelinkAwsOutputWithContext(ctx).OutputState,
+	}
+}
+
 // PrivatelinkAwsArrayInput is an input type that accepts PrivatelinkAwsArray and PrivatelinkAwsArrayOutput values.
 // You can construct a concrete instance of `PrivatelinkAwsArrayInput` via:
 //
@@ -383,6 +392,12 @@ func (i PrivatelinkAwsArray) ToPrivatelinkAwsArrayOutput() PrivatelinkAwsArrayOu
 
 func (i PrivatelinkAwsArray) ToPrivatelinkAwsArrayOutputWithContext(ctx context.Context) PrivatelinkAwsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PrivatelinkAwsArrayOutput)
+}
+
+func (i PrivatelinkAwsArray) ToOutput(ctx context.Context) pulumix.Output[[]*PrivatelinkAws] {
+	return pulumix.Output[[]*PrivatelinkAws]{
+		OutputState: i.ToPrivatelinkAwsArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // PrivatelinkAwsMapInput is an input type that accepts PrivatelinkAwsMap and PrivatelinkAwsMapOutput values.
@@ -410,6 +425,12 @@ func (i PrivatelinkAwsMap) ToPrivatelinkAwsMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(PrivatelinkAwsMapOutput)
 }
 
+func (i PrivatelinkAwsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*PrivatelinkAws] {
+	return pulumix.Output[map[string]*PrivatelinkAws]{
+		OutputState: i.ToPrivatelinkAwsMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type PrivatelinkAwsOutput struct{ *pulumi.OutputState }
 
 func (PrivatelinkAwsOutput) ElementType() reflect.Type {
@@ -422,6 +443,12 @@ func (o PrivatelinkAwsOutput) ToPrivatelinkAwsOutput() PrivatelinkAwsOutput {
 
 func (o PrivatelinkAwsOutput) ToPrivatelinkAwsOutputWithContext(ctx context.Context) PrivatelinkAwsOutput {
 	return o
+}
+
+func (o PrivatelinkAwsOutput) ToOutput(ctx context.Context) pulumix.Output[*PrivatelinkAws] {
+	return pulumix.Output[*PrivatelinkAws]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Covering availability zones used when creating an Endpoint from other VPC.
@@ -478,6 +505,12 @@ func (o PrivatelinkAwsArrayOutput) ToPrivatelinkAwsArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o PrivatelinkAwsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*PrivatelinkAws] {
+	return pulumix.Output[[]*PrivatelinkAws]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o PrivatelinkAwsArrayOutput) Index(i pulumi.IntInput) PrivatelinkAwsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *PrivatelinkAws {
 		return vs[0].([]*PrivatelinkAws)[vs[1].(int)]
@@ -496,6 +529,12 @@ func (o PrivatelinkAwsMapOutput) ToPrivatelinkAwsMapOutput() PrivatelinkAwsMapOu
 
 func (o PrivatelinkAwsMapOutput) ToPrivatelinkAwsMapOutputWithContext(ctx context.Context) PrivatelinkAwsMapOutput {
 	return o
+}
+
+func (o PrivatelinkAwsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*PrivatelinkAws] {
+	return pulumix.Output[map[string]*PrivatelinkAws]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o PrivatelinkAwsMapOutput) MapIndex(k pulumi.StringInput) PrivatelinkAwsOutput {

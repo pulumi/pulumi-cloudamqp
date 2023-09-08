@@ -50,7 +50,7 @@ namespace Pulumi.CloudAmqp
         /// * `name`                  - Name of the node.
         /// * `running`               - Is the node running?
         /// * `rabbitmq_version`      - Currently configured Rabbit MQ version on the node.
-        /// * `erlang_version`        - Currently used Erlanbg version on the node.
+        /// * `erlang_version`        - Currently used Erlang version on the node.
         /// * `hipe`                  - Enable or disable High-performance Erlang.
         /// * `configured`            - Is the node configured?
         /// * `disk_size`             - Subscription plan disk size
@@ -104,7 +104,7 @@ namespace Pulumi.CloudAmqp
         /// * `name`                  - Name of the node.
         /// * `running`               - Is the node running?
         /// * `rabbitmq_version`      - Currently configured Rabbit MQ version on the node.
-        /// * `erlang_version`        - Currently used Erlanbg version on the node.
+        /// * `erlang_version`        - Currently used Erlang version on the node.
         /// * `hipe`                  - Enable or disable High-performance Erlang.
         /// * `configured`            - Is the node configured?
         /// * `disk_size`             - Subscription plan disk size

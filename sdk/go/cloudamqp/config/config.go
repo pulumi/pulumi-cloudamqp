@@ -4,9 +4,12 @@
 package config
 
 import (
+	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
+
+var _ = internal.GetEnvOrDefault
 
 // Key used to authentication to the CloudAMQP Customer API
 func GetApikey(ctx *pulumi.Context) string {

@@ -209,19 +209,19 @@ def get_alarm(alarm_id: Optional[int] = None,
     __ret__ = pulumi.runtime.invoke('cloudamqp:index/getAlarm:getAlarm', __args__, opts=opts, typ=GetAlarmResult).value
 
     return AwaitableGetAlarmResult(
-        alarm_id=__ret__.alarm_id,
-        enabled=__ret__.enabled,
-        id=__ret__.id,
-        instance_id=__ret__.instance_id,
-        message_type=__ret__.message_type,
-        queue_regex=__ret__.queue_regex,
-        recipients=__ret__.recipients,
-        reminder_interval=__ret__.reminder_interval,
-        time_threshold=__ret__.time_threshold,
-        type=__ret__.type,
-        value_calculation=__ret__.value_calculation,
-        value_threshold=__ret__.value_threshold,
-        vhost_regex=__ret__.vhost_regex)
+        alarm_id=pulumi.get(__ret__, 'alarm_id'),
+        enabled=pulumi.get(__ret__, 'enabled'),
+        id=pulumi.get(__ret__, 'id'),
+        instance_id=pulumi.get(__ret__, 'instance_id'),
+        message_type=pulumi.get(__ret__, 'message_type'),
+        queue_regex=pulumi.get(__ret__, 'queue_regex'),
+        recipients=pulumi.get(__ret__, 'recipients'),
+        reminder_interval=pulumi.get(__ret__, 'reminder_interval'),
+        time_threshold=pulumi.get(__ret__, 'time_threshold'),
+        type=pulumi.get(__ret__, 'type'),
+        value_calculation=pulumi.get(__ret__, 'value_calculation'),
+        value_threshold=pulumi.get(__ret__, 'value_threshold'),
+        vhost_regex=pulumi.get(__ret__, 'vhost_regex'))
 
 
 @_utilities.lift_output_func(get_alarm)

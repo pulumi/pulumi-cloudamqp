@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to retrieve information about VPC for a CloudAMQP instance.
@@ -99,6 +101,7 @@ import (
 // *Post v1.16.0*
 // This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
 func GetVpcInfo(ctx *pulumi.Context, args *GetVpcInfoArgs, opts ...pulumi.InvokeOption) (*GetVpcInfoResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetVpcInfoResult
 	err := ctx.Invoke("cloudamqp:index/getVpcInfo:getVpcInfo", args, &rv, opts...)
 	if err != nil {
@@ -173,6 +176,12 @@ func (o GetVpcInfoResultOutput) ToGetVpcInfoResultOutput() GetVpcInfoResultOutpu
 
 func (o GetVpcInfoResultOutput) ToGetVpcInfoResultOutputWithContext(ctx context.Context) GetVpcInfoResultOutput {
 	return o
+}
+
+func (o GetVpcInfoResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetVpcInfoResult] {
+	return pulumix.Output[GetVpcInfoResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

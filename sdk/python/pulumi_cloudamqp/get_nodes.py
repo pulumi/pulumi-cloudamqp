@@ -91,7 +91,7 @@ def get_nodes(instance_id: Optional[int] = None,
     * `name`                  - Name of the node.
     * `running`               - Is the node running?
     * `rabbitmq_version`      - Currently configured Rabbit MQ version on the node.
-    * `erlang_version`        - Currently used Erlanbg version on the node.
+    * `erlang_version`        - Currently used Erlang version on the node.
     * `hipe`                  - Enable or disable High-performance Erlang.
     * `configured`            - Is the node configured?
     * `disk_size`             - Subscription plan disk size
@@ -112,9 +112,9 @@ def get_nodes(instance_id: Optional[int] = None,
     __ret__ = pulumi.runtime.invoke('cloudamqp:index/getNodes:getNodes', __args__, opts=opts, typ=GetNodesResult).value
 
     return AwaitableGetNodesResult(
-        id=__ret__.id,
-        instance_id=__ret__.instance_id,
-        nodes=__ret__.nodes)
+        id=pulumi.get(__ret__, 'id'),
+        instance_id=pulumi.get(__ret__, 'instance_id'),
+        nodes=pulumi.get(__ret__, 'nodes'))
 
 
 @_utilities.lift_output_func(get_nodes)
@@ -146,7 +146,7 @@ def get_nodes_output(instance_id: Optional[pulumi.Input[int]] = None,
     * `name`                  - Name of the node.
     * `running`               - Is the node running?
     * `rabbitmq_version`      - Currently configured Rabbit MQ version on the node.
-    * `erlang_version`        - Currently used Erlanbg version on the node.
+    * `erlang_version`        - Currently used Erlang version on the node.
     * `hipe`                  - Enable or disable High-performance Erlang.
     * `configured`            - Is the node configured?
     * `disk_size`             - Subscription plan disk size

@@ -277,6 +277,9 @@ class IntegrationMetricArgs:
         """
         **Deprecated**
         """
+        warnings.warn("""use queue_allowlist instead""", DeprecationWarning)
+        pulumi.log.warn("""queue_whitelist is deprecated: use queue_allowlist instead""")
+
         return pulumi.get(self, "queue_whitelist")
 
     @queue_whitelist.setter
@@ -337,6 +340,9 @@ class IntegrationMetricArgs:
         """
         **Deprecated**
         """
+        warnings.warn("""use vhost_allowlist instead""", DeprecationWarning)
+        pulumi.log.warn("""vhost_whitelist is deprecated: use vhost_allowlist instead""")
+
         return pulumi.get(self, "vhost_whitelist")
 
     @vhost_whitelist.setter
@@ -611,6 +617,9 @@ class _IntegrationMetricState:
         """
         **Deprecated**
         """
+        warnings.warn("""use queue_allowlist instead""", DeprecationWarning)
+        pulumi.log.warn("""queue_whitelist is deprecated: use queue_allowlist instead""")
+
         return pulumi.get(self, "queue_whitelist")
 
     @queue_whitelist.setter
@@ -671,6 +680,9 @@ class _IntegrationMetricState:
         """
         **Deprecated**
         """
+        warnings.warn("""use vhost_allowlist instead""", DeprecationWarning)
+        pulumi.log.warn("""vhost_whitelist is deprecated: use vhost_allowlist instead""")
+
         return pulumi.get(self, "vhost_whitelist")
 
     @vhost_whitelist.setter
@@ -1013,6 +1025,9 @@ class IntegrationMetric(pulumi.CustomResource):
         """
         **Deprecated**
         """
+        warnings.warn("""use queue_allowlist instead""", DeprecationWarning)
+        pulumi.log.warn("""queue_whitelist is deprecated: use queue_allowlist instead""")
+
         return pulumi.get(self, "queue_whitelist")
 
     @property
@@ -1053,5 +1068,8 @@ class IntegrationMetric(pulumi.CustomResource):
         """
         **Deprecated**
         """
+        warnings.warn("""use vhost_allowlist instead""", DeprecationWarning)
+        pulumi.log.warn("""vhost_whitelist is deprecated: use vhost_allowlist instead""")
+
         return pulumi.get(self, "vhost_whitelist")
 

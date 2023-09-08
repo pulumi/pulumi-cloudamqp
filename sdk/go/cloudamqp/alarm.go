@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This resource allows you to create and manage alarms to trigger based on a set of conditions. Once triggerd a notification will be sent to the assigned recipients. When creating a new instance, there will also be a set of default alarms (cpu, memory and disk) created. All default alarms uses the default recipient for notifications.
@@ -92,6 +94,8 @@ import (
 // | Server unreachable | serverUnreachable  | - | &#10004;  | timeThreshold |
 // | Notice | notice | &#10004; | &#10004; | |
 //
+// > Notice alarm is manadatory! Only one can exists and cannot be deleted. Setting `noDefaultAlarm` to true, will still create this alarm.
+//
 // ## Dependency
 //
 // This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -155,6 +159,7 @@ func NewAlarm(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Alarm
 	err := ctx.RegisterResource("cloudamqp:index/alarm:Alarm", name, args, &resource, opts...)
 	if err != nil {
@@ -320,6 +325,12 @@ func (i *Alarm) ToAlarmOutputWithContext(ctx context.Context) AlarmOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AlarmOutput)
 }
 
+func (i *Alarm) ToOutput(ctx context.Context) pulumix.Output[*Alarm] {
+	return pulumix.Output[*Alarm]{
+		OutputState: i.ToAlarmOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AlarmArrayInput is an input type that accepts AlarmArray and AlarmArrayOutput values.
 // You can construct a concrete instance of `AlarmArrayInput` via:
 //
@@ -343,6 +354,12 @@ func (i AlarmArray) ToAlarmArrayOutput() AlarmArrayOutput {
 
 func (i AlarmArray) ToAlarmArrayOutputWithContext(ctx context.Context) AlarmArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AlarmArrayOutput)
+}
+
+func (i AlarmArray) ToOutput(ctx context.Context) pulumix.Output[[]*Alarm] {
+	return pulumix.Output[[]*Alarm]{
+		OutputState: i.ToAlarmArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AlarmMapInput is an input type that accepts AlarmMap and AlarmMapOutput values.
@@ -370,6 +387,12 @@ func (i AlarmMap) ToAlarmMapOutputWithContext(ctx context.Context) AlarmMapOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(AlarmMapOutput)
 }
 
+func (i AlarmMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Alarm] {
+	return pulumix.Output[map[string]*Alarm]{
+		OutputState: i.ToAlarmMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AlarmOutput struct{ *pulumi.OutputState }
 
 func (AlarmOutput) ElementType() reflect.Type {
@@ -382,6 +405,12 @@ func (o AlarmOutput) ToAlarmOutput() AlarmOutput {
 
 func (o AlarmOutput) ToAlarmOutputWithContext(ctx context.Context) AlarmOutput {
 	return o
+}
+
+func (o AlarmOutput) ToOutput(ctx context.Context) pulumix.Output[*Alarm] {
+	return pulumix.Output[*Alarm]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Enable or disable the alarm to trigger.
@@ -457,6 +486,12 @@ func (o AlarmArrayOutput) ToAlarmArrayOutputWithContext(ctx context.Context) Ala
 	return o
 }
 
+func (o AlarmArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Alarm] {
+	return pulumix.Output[[]*Alarm]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AlarmArrayOutput) Index(i pulumi.IntInput) AlarmOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Alarm {
 		return vs[0].([]*Alarm)[vs[1].(int)]
@@ -475,6 +510,12 @@ func (o AlarmMapOutput) ToAlarmMapOutput() AlarmMapOutput {
 
 func (o AlarmMapOutput) ToAlarmMapOutputWithContext(ctx context.Context) AlarmMapOutput {
 	return o
+}
+
+func (o AlarmMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Alarm] {
+	return pulumix.Output[map[string]*Alarm]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AlarmMapOutput) MapIndex(k pulumi.StringInput) AlarmOutput {

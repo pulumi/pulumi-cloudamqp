@@ -147,6 +147,49 @@ import * as utilities from "./utilities";
  *
  * Set attribute `keepAssociatedVpc` to true, will keep managed VPC when deleting the instances.
  * </details>
+ * ## Upgrade and downgrade
+ *
+ * It's possible to upgrade or downgrade your subscription plan, this will either increase or decrease the underlying resource used for by the CloudAMQP instance. To do this, change the argument `plan` in the configuration and apply the changes. See available plans.
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Upgrade the subscription plan</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * // Upgraded CloudAMQP instance configuration
+ * const instance = new cloudamqp.Instance("instance", {
+ *     plan: "bunny-1",
+ *     region: "amazon-web-services::us-west-1",
+ *     tags: ["terraform"],
+ * });
+ * ```
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Downgrade number of nodes from 3 to 1</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * // Downgraded CloudAMQP instance configuration
+ * const instance = new cloudamqp.Instance("instance", {
+ *     plan: "bunny-1",
+ *     region: "amazon-web-services::us-west-1",
+ *     tags: ["terraform"],
+ * });
+ * ```
+ * </details>
  *
  * ## Import
  *

@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipientId` or `name`.
@@ -51,6 +53,7 @@ import (
 //
 // This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 func LookupNotification(ctx *pulumi.Context, args *LookupNotificationArgs, opts ...pulumi.InvokeOption) (*LookupNotificationResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupNotificationResult
 	err := ctx.Invoke("cloudamqp:index/getNotification:getNotification", args, &rv, opts...)
 	if err != nil {
@@ -123,6 +126,12 @@ func (o LookupNotificationResultOutput) ToLookupNotificationResultOutput() Looku
 
 func (o LookupNotificationResultOutput) ToLookupNotificationResultOutputWithContext(ctx context.Context) LookupNotificationResultOutput {
 	return o
+}
+
+func (o LookupNotificationResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupNotificationResult] {
+	return pulumix.Output[LookupNotificationResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Enable PrivateLink for a CloudAMQP instance hosted in Azure. If no existing VPC available when enable PrivateLink, a new VPC will be created with subnet `10.52.72.0/24`.
@@ -233,6 +235,7 @@ func NewPrivatelinkAzure(ctx *pulumi.Context,
 	if args.InstanceId == nil {
 		return nil, errors.New("invalid value for required argument 'InstanceId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource PrivatelinkAzure
 	err := ctx.RegisterResource("cloudamqp:index/privatelinkAzure:PrivatelinkAzure", name, args, &resource, opts...)
 	if err != nil {
@@ -350,6 +353,12 @@ func (i *PrivatelinkAzure) ToPrivatelinkAzureOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(PrivatelinkAzureOutput)
 }
 
+func (i *PrivatelinkAzure) ToOutput(ctx context.Context) pulumix.Output[*PrivatelinkAzure] {
+	return pulumix.Output[*PrivatelinkAzure]{
+		OutputState: i.ToPrivatelinkAzureOutputWithContext(ctx).OutputState,
+	}
+}
+
 // PrivatelinkAzureArrayInput is an input type that accepts PrivatelinkAzureArray and PrivatelinkAzureArrayOutput values.
 // You can construct a concrete instance of `PrivatelinkAzureArrayInput` via:
 //
@@ -373,6 +382,12 @@ func (i PrivatelinkAzureArray) ToPrivatelinkAzureArrayOutput() PrivatelinkAzureA
 
 func (i PrivatelinkAzureArray) ToPrivatelinkAzureArrayOutputWithContext(ctx context.Context) PrivatelinkAzureArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PrivatelinkAzureArrayOutput)
+}
+
+func (i PrivatelinkAzureArray) ToOutput(ctx context.Context) pulumix.Output[[]*PrivatelinkAzure] {
+	return pulumix.Output[[]*PrivatelinkAzure]{
+		OutputState: i.ToPrivatelinkAzureArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // PrivatelinkAzureMapInput is an input type that accepts PrivatelinkAzureMap and PrivatelinkAzureMapOutput values.
@@ -400,6 +415,12 @@ func (i PrivatelinkAzureMap) ToPrivatelinkAzureMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(PrivatelinkAzureMapOutput)
 }
 
+func (i PrivatelinkAzureMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*PrivatelinkAzure] {
+	return pulumix.Output[map[string]*PrivatelinkAzure]{
+		OutputState: i.ToPrivatelinkAzureMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type PrivatelinkAzureOutput struct{ *pulumi.OutputState }
 
 func (PrivatelinkAzureOutput) ElementType() reflect.Type {
@@ -412,6 +433,12 @@ func (o PrivatelinkAzureOutput) ToPrivatelinkAzureOutput() PrivatelinkAzureOutpu
 
 func (o PrivatelinkAzureOutput) ToPrivatelinkAzureOutputWithContext(ctx context.Context) PrivatelinkAzureOutput {
 	return o
+}
+
+func (o PrivatelinkAzureOutput) ToOutput(ctx context.Context) pulumix.Output[*PrivatelinkAzure] {
+	return pulumix.Output[*PrivatelinkAzure]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Approved subscriptions to access the endpoint service. See format below.
@@ -466,6 +493,12 @@ func (o PrivatelinkAzureArrayOutput) ToPrivatelinkAzureArrayOutputWithContext(ct
 	return o
 }
 
+func (o PrivatelinkAzureArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*PrivatelinkAzure] {
+	return pulumix.Output[[]*PrivatelinkAzure]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o PrivatelinkAzureArrayOutput) Index(i pulumi.IntInput) PrivatelinkAzureOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *PrivatelinkAzure {
 		return vs[0].([]*PrivatelinkAzure)[vs[1].(int)]
@@ -484,6 +517,12 @@ func (o PrivatelinkAzureMapOutput) ToPrivatelinkAzureMapOutput() PrivatelinkAzur
 
 func (o PrivatelinkAzureMapOutput) ToPrivatelinkAzureMapOutputWithContext(ctx context.Context) PrivatelinkAzureMapOutput {
 	return o
+}
+
+func (o PrivatelinkAzureMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*PrivatelinkAzure] {
+	return pulumix.Output[map[string]*PrivatelinkAzure]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o PrivatelinkAzureMapOutput) MapIndex(k pulumi.StringInput) PrivatelinkAzureOutput {

@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -45,6 +47,7 @@ func NewVpcPeering(ctx *pulumi.Context,
 	if args.PeeringId == nil {
 		return nil, errors.New("invalid value for required argument 'PeeringId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource VpcPeering
 	err := ctx.RegisterResource("cloudamqp:index/vpcPeering:VpcPeering", name, args, &resource, opts...)
 	if err != nil {
@@ -166,6 +169,12 @@ func (i *VpcPeering) ToVpcPeeringOutputWithContext(ctx context.Context) VpcPeeri
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPeeringOutput)
 }
 
+func (i *VpcPeering) ToOutput(ctx context.Context) pulumix.Output[*VpcPeering] {
+	return pulumix.Output[*VpcPeering]{
+		OutputState: i.ToVpcPeeringOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpcPeeringArrayInput is an input type that accepts VpcPeeringArray and VpcPeeringArrayOutput values.
 // You can construct a concrete instance of `VpcPeeringArrayInput` via:
 //
@@ -189,6 +198,12 @@ func (i VpcPeeringArray) ToVpcPeeringArrayOutput() VpcPeeringArrayOutput {
 
 func (i VpcPeeringArray) ToVpcPeeringArrayOutputWithContext(ctx context.Context) VpcPeeringArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPeeringArrayOutput)
+}
+
+func (i VpcPeeringArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpcPeering] {
+	return pulumix.Output[[]*VpcPeering]{
+		OutputState: i.ToVpcPeeringArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // VpcPeeringMapInput is an input type that accepts VpcPeeringMap and VpcPeeringMapOutput values.
@@ -216,6 +231,12 @@ func (i VpcPeeringMap) ToVpcPeeringMapOutputWithContext(ctx context.Context) Vpc
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPeeringMapOutput)
 }
 
+func (i VpcPeeringMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpcPeering] {
+	return pulumix.Output[map[string]*VpcPeering]{
+		OutputState: i.ToVpcPeeringMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpcPeeringOutput struct{ *pulumi.OutputState }
 
 func (VpcPeeringOutput) ElementType() reflect.Type {
@@ -228,6 +249,12 @@ func (o VpcPeeringOutput) ToVpcPeeringOutput() VpcPeeringOutput {
 
 func (o VpcPeeringOutput) ToVpcPeeringOutputWithContext(ctx context.Context) VpcPeeringOutput {
 	return o
+}
+
+func (o VpcPeeringOutput) ToOutput(ctx context.Context) pulumix.Output[*VpcPeering] {
+	return pulumix.Output[*VpcPeering]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The CloudAMQP instance identifier.
@@ -278,6 +305,12 @@ func (o VpcPeeringArrayOutput) ToVpcPeeringArrayOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o VpcPeeringArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpcPeering] {
+	return pulumix.Output[[]*VpcPeering]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VpcPeeringArrayOutput) Index(i pulumi.IntInput) VpcPeeringOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpcPeering {
 		return vs[0].([]*VpcPeering)[vs[1].(int)]
@@ -296,6 +329,12 @@ func (o VpcPeeringMapOutput) ToVpcPeeringMapOutput() VpcPeeringMapOutput {
 
 func (o VpcPeeringMapOutput) ToVpcPeeringMapOutputWithContext(ctx context.Context) VpcPeeringMapOutput {
 	return o
+}
+
+func (o VpcPeeringMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpcPeering] {
+	return pulumix.Output[map[string]*VpcPeering]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpcPeeringMapOutput) MapIndex(k pulumi.StringInput) VpcPeeringOutput {

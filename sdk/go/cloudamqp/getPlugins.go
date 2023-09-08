@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -55,6 +57,7 @@ import (
 //
 // This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 func GetPlugins(ctx *pulumi.Context, args *GetPluginsArgs, opts ...pulumi.InvokeOption) (*GetPluginsResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetPluginsResult
 	err := ctx.Invoke("cloudamqp:index/getPlugins:getPlugins", args, &rv, opts...)
 	if err != nil {
@@ -113,6 +116,12 @@ func (o GetPluginsResultOutput) ToGetPluginsResultOutput() GetPluginsResultOutpu
 
 func (o GetPluginsResultOutput) ToGetPluginsResultOutputWithContext(ctx context.Context) GetPluginsResultOutput {
 	return o
+}
+
+func (o GetPluginsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetPluginsResult] {
+	return pulumix.Output[GetPluginsResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.
