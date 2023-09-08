@@ -63,6 +63,59 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         public static Task<GetAccountResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAccountResult>("cloudamqp:index/getAccount:getAccount", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using CloudAmqp = Pulumi.CloudAmqp;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var instanceName = "&lt;instance_name&gt;";
+        /// 
+        ///     var instanceList = CloudAmqp.GetAccount.Invoke();
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["instanceId"] = &lt;nil&gt;,
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// ## Attributes reference
+        /// 
+        /// All attributes reference are computed
+        /// 
+        /// * `id`          - The identifier for this data source. Set to `na` since there is no unique identifier.
+        /// * `instances`   - An array of instances. Each `instances` block consists of the fields documented below.
+        /// 
+        /// ___
+        /// 
+        /// The `instances` block consist of
+        /// 
+        /// * `id`      - The instance identifier.
+        /// * `name`    - The name of the instance.
+        /// * `plan`    - The subscription plan used for the instance.
+        /// * `region`  - The region were the instanece is located in.
+        /// * `tags`    - Optional tags set for the instance.
+        /// 
+        /// ## Dependency
+        /// 
+        /// This data source depends on apikey set in the provider configuration.
+        /// </summary>
+        public static Output<GetAccountResult> Invoke(InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetAccountResult>("cloudamqp:index/getAccount:getAccount", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

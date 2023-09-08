@@ -104,10 +104,10 @@ def get_upgradable_versions(instance_id: Optional[int] = None,
     __ret__ = pulumi.runtime.invoke('cloudamqp:index/getUpgradableVersions:getUpgradableVersions', __args__, opts=opts, typ=GetUpgradableVersionsResult).value
 
     return AwaitableGetUpgradableVersionsResult(
-        id=__ret__.id,
-        instance_id=__ret__.instance_id,
-        new_erlang_version=__ret__.new_erlang_version,
-        new_rabbitmq_version=__ret__.new_rabbitmq_version)
+        id=pulumi.get(__ret__, 'id'),
+        instance_id=pulumi.get(__ret__, 'instance_id'),
+        new_erlang_version=pulumi.get(__ret__, 'new_erlang_version'),
+        new_rabbitmq_version=pulumi.get(__ret__, 'new_rabbitmq_version'))
 
 
 @_utilities.lift_output_func(get_upgradable_versions)

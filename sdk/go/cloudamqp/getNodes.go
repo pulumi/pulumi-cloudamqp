@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to retrieve information about the node(s) created by CloudAMQP instance.
@@ -52,7 +54,7 @@ import (
 // * `name`                  - Name of the node.
 // * `running`               - Is the node running?
 // * `rabbitmqVersion`      - Currently configured Rabbit MQ version on the node.
-// * `erlangVersion`        - Currently used Erlanbg version on the node.
+// * `erlangVersion`        - Currently used Erlang version on the node.
 // * `hipe`                  - Enable or disable High-performance Erlang.
 // * `configured`            - Is the node configured?
 // * `diskSize`             - Subscription plan disk size
@@ -64,6 +66,7 @@ import (
 //
 // This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 func GetNodes(ctx *pulumi.Context, args *GetNodesArgs, opts ...pulumi.InvokeOption) (*GetNodesResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetNodesResult
 	err := ctx.Invoke("cloudamqp:index/getNodes:getNodes", args, &rv, opts...)
 	if err != nil {
@@ -122,6 +125,12 @@ func (o GetNodesResultOutput) ToGetNodesResultOutput() GetNodesResultOutput {
 
 func (o GetNodesResultOutput) ToGetNodesResultOutputWithContext(ctx context.Context) GetNodesResultOutput {
 	return o
+}
+
+func (o GetNodesResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetNodesResult] {
+	return pulumix.Output[GetNodesResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

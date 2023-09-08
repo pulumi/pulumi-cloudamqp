@@ -4,6 +4,7 @@
 package cloudamqp
 
 import (
+	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -58,6 +59,7 @@ import (
 //
 // This data source depends on apikey set in the provider configuration.
 func GetAccountVpcs(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetAccountVpcsResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAccountVpcsResult
 	err := ctx.Invoke("cloudamqp:index/getAccountVpcs:getAccountVpcs", nil, &rv, opts...)
 	if err != nil {

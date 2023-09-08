@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This resource allows you to create and manage, an [AWS EventBridge](https://aws.amazon.com/eventbridge/) for a CloudAMQP instance. Once created, continue to map the EventBridge in the [AWS Eventbridge console](https://console.aws.amazon.com/events/home).
@@ -127,6 +129,7 @@ func NewIntegrationAwsEventbridge(ctx *pulumi.Context,
 	if args.WithHeaders == nil {
 		return nil, errors.New("invalid value for required argument 'WithHeaders'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource IntegrationAwsEventbridge
 	err := ctx.RegisterResource("cloudamqp:index/integrationAwsEventbridge:IntegrationAwsEventbridge", name, args, &resource, opts...)
 	if err != nil {
@@ -240,6 +243,12 @@ func (i *IntegrationAwsEventbridge) ToIntegrationAwsEventbridgeOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(IntegrationAwsEventbridgeOutput)
 }
 
+func (i *IntegrationAwsEventbridge) ToOutput(ctx context.Context) pulumix.Output[*IntegrationAwsEventbridge] {
+	return pulumix.Output[*IntegrationAwsEventbridge]{
+		OutputState: i.ToIntegrationAwsEventbridgeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // IntegrationAwsEventbridgeArrayInput is an input type that accepts IntegrationAwsEventbridgeArray and IntegrationAwsEventbridgeArrayOutput values.
 // You can construct a concrete instance of `IntegrationAwsEventbridgeArrayInput` via:
 //
@@ -263,6 +272,12 @@ func (i IntegrationAwsEventbridgeArray) ToIntegrationAwsEventbridgeArrayOutput()
 
 func (i IntegrationAwsEventbridgeArray) ToIntegrationAwsEventbridgeArrayOutputWithContext(ctx context.Context) IntegrationAwsEventbridgeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IntegrationAwsEventbridgeArrayOutput)
+}
+
+func (i IntegrationAwsEventbridgeArray) ToOutput(ctx context.Context) pulumix.Output[[]*IntegrationAwsEventbridge] {
+	return pulumix.Output[[]*IntegrationAwsEventbridge]{
+		OutputState: i.ToIntegrationAwsEventbridgeArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // IntegrationAwsEventbridgeMapInput is an input type that accepts IntegrationAwsEventbridgeMap and IntegrationAwsEventbridgeMapOutput values.
@@ -290,6 +305,12 @@ func (i IntegrationAwsEventbridgeMap) ToIntegrationAwsEventbridgeMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(IntegrationAwsEventbridgeMapOutput)
 }
 
+func (i IntegrationAwsEventbridgeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*IntegrationAwsEventbridge] {
+	return pulumix.Output[map[string]*IntegrationAwsEventbridge]{
+		OutputState: i.ToIntegrationAwsEventbridgeMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type IntegrationAwsEventbridgeOutput struct{ *pulumi.OutputState }
 
 func (IntegrationAwsEventbridgeOutput) ElementType() reflect.Type {
@@ -302,6 +323,12 @@ func (o IntegrationAwsEventbridgeOutput) ToIntegrationAwsEventbridgeOutput() Int
 
 func (o IntegrationAwsEventbridgeOutput) ToIntegrationAwsEventbridgeOutputWithContext(ctx context.Context) IntegrationAwsEventbridgeOutput {
 	return o
+}
+
+func (o IntegrationAwsEventbridgeOutput) ToOutput(ctx context.Context) pulumix.Output[*IntegrationAwsEventbridge] {
+	return pulumix.Output[*IntegrationAwsEventbridge]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The 12 digit AWS Account ID where you want the events to be sent to.
@@ -353,6 +380,12 @@ func (o IntegrationAwsEventbridgeArrayOutput) ToIntegrationAwsEventbridgeArrayOu
 	return o
 }
 
+func (o IntegrationAwsEventbridgeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*IntegrationAwsEventbridge] {
+	return pulumix.Output[[]*IntegrationAwsEventbridge]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o IntegrationAwsEventbridgeArrayOutput) Index(i pulumi.IntInput) IntegrationAwsEventbridgeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IntegrationAwsEventbridge {
 		return vs[0].([]*IntegrationAwsEventbridge)[vs[1].(int)]
@@ -371,6 +404,12 @@ func (o IntegrationAwsEventbridgeMapOutput) ToIntegrationAwsEventbridgeMapOutput
 
 func (o IntegrationAwsEventbridgeMapOutput) ToIntegrationAwsEventbridgeMapOutputWithContext(ctx context.Context) IntegrationAwsEventbridgeMapOutput {
 	return o
+}
+
+func (o IntegrationAwsEventbridgeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*IntegrationAwsEventbridge] {
+	return pulumix.Output[map[string]*IntegrationAwsEventbridge]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o IntegrationAwsEventbridgeMapOutput) MapIndex(k pulumi.StringInput) IntegrationAwsEventbridgeOutput {

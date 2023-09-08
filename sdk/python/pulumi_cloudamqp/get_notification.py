@@ -142,13 +142,13 @@ def get_notification(instance_id: Optional[int] = None,
     __ret__ = pulumi.runtime.invoke('cloudamqp:index/getNotification:getNotification', __args__, opts=opts, typ=GetNotificationResult).value
 
     return AwaitableGetNotificationResult(
-        id=__ret__.id,
-        instance_id=__ret__.instance_id,
-        name=__ret__.name,
-        options=__ret__.options,
-        recipient_id=__ret__.recipient_id,
-        type=__ret__.type,
-        value=__ret__.value)
+        id=pulumi.get(__ret__, 'id'),
+        instance_id=pulumi.get(__ret__, 'instance_id'),
+        name=pulumi.get(__ret__, 'name'),
+        options=pulumi.get(__ret__, 'options'),
+        recipient_id=pulumi.get(__ret__, 'recipient_id'),
+        type=pulumi.get(__ret__, 'type'),
+        value=pulumi.get(__ret__, 'value'))
 
 
 @_utilities.lift_output_func(get_notification)

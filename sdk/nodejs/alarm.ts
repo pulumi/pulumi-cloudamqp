@@ -64,6 +64,8 @@ import * as utilities from "./utilities";
  * | Server unreachable | serverUnreachable  | - | &#10004;  | timeThreshold |
  * | Notice | notice | &#10004; | &#10004; | |
  *
+ * > Notice alarm is manadatory! Only one can exists and cannot be deleted. Setting `noDefaultAlarm` to true, will still create this alarm.
+ *
  * ## Dependency
  *
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.

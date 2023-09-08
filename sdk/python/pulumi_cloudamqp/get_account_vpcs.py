@@ -96,5 +96,5 @@ def get_account_vpcs(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGe
     __ret__ = pulumi.runtime.invoke('cloudamqp:index/getAccountVpcs:getAccountVpcs', __args__, opts=opts, typ=GetAccountVpcsResult).value
 
     return AwaitableGetAccountVpcsResult(
-        id=__ret__.id,
-        vpcs=__ret__.vpcs)
+        id=pulumi.get(__ret__, 'id'),
+        vpcs=pulumi.get(__ret__, 'vpcs'))

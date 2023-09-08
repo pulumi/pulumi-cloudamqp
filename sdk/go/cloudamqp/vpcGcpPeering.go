@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This resouce creates a VPC peering configuration for the CloudAMQP instance. The configuration will connect to another VPC network hosted on Google Cloud Platform (GCP). See the [GCP documentation](https://cloud.google.com/vpc/docs/using-vpc-peering) for more information on how to create the VPC peering configuration.
@@ -154,6 +156,7 @@ func NewVpcGcpPeering(ctx *pulumi.Context,
 	if args.PeerNetworkUri == nil {
 		return nil, errors.New("invalid value for required argument 'PeerNetworkUri'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource VpcGcpPeering
 	err := ctx.RegisterResource("cloudamqp:index/vpcGcpPeering:VpcGcpPeering", name, args, &resource, opts...)
 	if err != nil {
@@ -267,6 +270,12 @@ func (i *VpcGcpPeering) ToVpcGcpPeeringOutputWithContext(ctx context.Context) Vp
 	return pulumi.ToOutputWithContext(ctx, i).(VpcGcpPeeringOutput)
 }
 
+func (i *VpcGcpPeering) ToOutput(ctx context.Context) pulumix.Output[*VpcGcpPeering] {
+	return pulumix.Output[*VpcGcpPeering]{
+		OutputState: i.ToVpcGcpPeeringOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpcGcpPeeringArrayInput is an input type that accepts VpcGcpPeeringArray and VpcGcpPeeringArrayOutput values.
 // You can construct a concrete instance of `VpcGcpPeeringArrayInput` via:
 //
@@ -290,6 +299,12 @@ func (i VpcGcpPeeringArray) ToVpcGcpPeeringArrayOutput() VpcGcpPeeringArrayOutpu
 
 func (i VpcGcpPeeringArray) ToVpcGcpPeeringArrayOutputWithContext(ctx context.Context) VpcGcpPeeringArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpcGcpPeeringArrayOutput)
+}
+
+func (i VpcGcpPeeringArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpcGcpPeering] {
+	return pulumix.Output[[]*VpcGcpPeering]{
+		OutputState: i.ToVpcGcpPeeringArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // VpcGcpPeeringMapInput is an input type that accepts VpcGcpPeeringMap and VpcGcpPeeringMapOutput values.
@@ -317,6 +332,12 @@ func (i VpcGcpPeeringMap) ToVpcGcpPeeringMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(VpcGcpPeeringMapOutput)
 }
 
+func (i VpcGcpPeeringMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpcGcpPeering] {
+	return pulumix.Output[map[string]*VpcGcpPeering]{
+		OutputState: i.ToVpcGcpPeeringMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpcGcpPeeringOutput struct{ *pulumi.OutputState }
 
 func (VpcGcpPeeringOutput) ElementType() reflect.Type {
@@ -329,6 +350,12 @@ func (o VpcGcpPeeringOutput) ToVpcGcpPeeringOutput() VpcGcpPeeringOutput {
 
 func (o VpcGcpPeeringOutput) ToVpcGcpPeeringOutputWithContext(ctx context.Context) VpcGcpPeeringOutput {
 	return o
+}
+
+func (o VpcGcpPeeringOutput) ToOutput(ctx context.Context) pulumix.Output[*VpcGcpPeering] {
+	return pulumix.Output[*VpcGcpPeering]{
+		OutputState: o.OutputState,
+	}
 }
 
 // VPC peering auto created routes
@@ -379,6 +406,12 @@ func (o VpcGcpPeeringArrayOutput) ToVpcGcpPeeringArrayOutputWithContext(ctx cont
 	return o
 }
 
+func (o VpcGcpPeeringArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpcGcpPeering] {
+	return pulumix.Output[[]*VpcGcpPeering]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VpcGcpPeeringArrayOutput) Index(i pulumi.IntInput) VpcGcpPeeringOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpcGcpPeering {
 		return vs[0].([]*VpcGcpPeering)[vs[1].(int)]
@@ -397,6 +430,12 @@ func (o VpcGcpPeeringMapOutput) ToVpcGcpPeeringMapOutput() VpcGcpPeeringMapOutpu
 
 func (o VpcGcpPeeringMapOutput) ToVpcGcpPeeringMapOutputWithContext(ctx context.Context) VpcGcpPeeringMapOutput {
 	return o
+}
+
+func (o VpcGcpPeeringMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpcGcpPeering] {
+	return pulumix.Output[map[string]*VpcGcpPeering]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpcGcpPeeringMapOutput) MapIndex(k pulumi.StringInput) VpcGcpPeeringOutput {

@@ -22,7 +22,7 @@ import (
 	"github.com/cloudamqp/terraform-provider-cloudamqp/cloudamqp"
 	"github.com/pulumi/pulumi-cloudamqp/provider/v3/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/x"
+	tfbridgetokens "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v1"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 )
@@ -149,11 +149,8 @@ func Provider() tfbridge.ProviderInfo {
 		},
 	}
 
-	err := x.ComputeDefaults(&prov, x.TokensSingleModule("cloudamqp_", mainMod,
-		x.MakeStandardToken(mainPkg)))
-	if err != nil {
-		panic(err)
-	}
+	prov.MustComputeTokens(tfbridgetokens.SingleModule("cloudamqp_", mainMod,
+		tfbridgetokens.MakeStandard(mainPkg)))
 
 	prov.SetAutonaming(255, "-")
 

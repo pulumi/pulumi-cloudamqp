@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to retrieve information about default or created alarms. Either use `alarmId` or `type` to retrieve the alarm.
@@ -64,6 +66,7 @@ import (
 //
 // `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
 func LookupAlarm(ctx *pulumi.Context, args *LookupAlarmArgs, opts ...pulumi.InvokeOption) (*LookupAlarmResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAlarmResult
 	err := ctx.Invoke("cloudamqp:index/getAlarm:getAlarm", args, &rv, opts...)
 	if err != nil {
@@ -142,6 +145,12 @@ func (o LookupAlarmResultOutput) ToLookupAlarmResultOutput() LookupAlarmResultOu
 
 func (o LookupAlarmResultOutput) ToLookupAlarmResultOutputWithContext(ctx context.Context) LookupAlarmResultOutput {
 	return o
+}
+
+func (o LookupAlarmResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAlarmResult] {
+	return pulumix.Output[LookupAlarmResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupAlarmResultOutput) AlarmId() pulumi.IntPtrOutput {

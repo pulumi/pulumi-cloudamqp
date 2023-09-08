@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This resource allows you to create and manage recipients to receive alarm notifications. There will always be a default recipient created upon instance creation. This recipient will use team email and receive notifications from default alarms.
@@ -128,6 +130,7 @@ func NewNotification(ctx *pulumi.Context,
 	if args.Value == nil {
 		return nil, errors.New("invalid value for required argument 'Value'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Notification
 	err := ctx.RegisterResource("cloudamqp:index/notification:Notification", name, args, &resource, opts...)
 	if err != nil {
@@ -229,6 +232,12 @@ func (i *Notification) ToNotificationOutputWithContext(ctx context.Context) Noti
 	return pulumi.ToOutputWithContext(ctx, i).(NotificationOutput)
 }
 
+func (i *Notification) ToOutput(ctx context.Context) pulumix.Output[*Notification] {
+	return pulumix.Output[*Notification]{
+		OutputState: i.ToNotificationOutputWithContext(ctx).OutputState,
+	}
+}
+
 // NotificationArrayInput is an input type that accepts NotificationArray and NotificationArrayOutput values.
 // You can construct a concrete instance of `NotificationArrayInput` via:
 //
@@ -252,6 +261,12 @@ func (i NotificationArray) ToNotificationArrayOutput() NotificationArrayOutput {
 
 func (i NotificationArray) ToNotificationArrayOutputWithContext(ctx context.Context) NotificationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NotificationArrayOutput)
+}
+
+func (i NotificationArray) ToOutput(ctx context.Context) pulumix.Output[[]*Notification] {
+	return pulumix.Output[[]*Notification]{
+		OutputState: i.ToNotificationArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // NotificationMapInput is an input type that accepts NotificationMap and NotificationMapOutput values.
@@ -279,6 +294,12 @@ func (i NotificationMap) ToNotificationMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(NotificationMapOutput)
 }
 
+func (i NotificationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Notification] {
+	return pulumix.Output[map[string]*Notification]{
+		OutputState: i.ToNotificationMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type NotificationOutput struct{ *pulumi.OutputState }
 
 func (NotificationOutput) ElementType() reflect.Type {
@@ -291,6 +312,12 @@ func (o NotificationOutput) ToNotificationOutput() NotificationOutput {
 
 func (o NotificationOutput) ToNotificationOutputWithContext(ctx context.Context) NotificationOutput {
 	return o
+}
+
+func (o NotificationOutput) ToOutput(ctx context.Context) pulumix.Output[*Notification] {
+	return pulumix.Output[*Notification]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The CloudAMQP instance ID.
@@ -332,6 +359,12 @@ func (o NotificationArrayOutput) ToNotificationArrayOutputWithContext(ctx contex
 	return o
 }
 
+func (o NotificationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Notification] {
+	return pulumix.Output[[]*Notification]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o NotificationArrayOutput) Index(i pulumi.IntInput) NotificationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Notification {
 		return vs[0].([]*Notification)[vs[1].(int)]
@@ -350,6 +383,12 @@ func (o NotificationMapOutput) ToNotificationMapOutput() NotificationMapOutput {
 
 func (o NotificationMapOutput) ToNotificationMapOutputWithContext(ctx context.Context) NotificationMapOutput {
 	return o
+}
+
+func (o NotificationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Notification] {
+	return pulumix.Output[map[string]*Notification]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o NotificationMapOutput) MapIndex(k pulumi.StringInput) NotificationOutput {

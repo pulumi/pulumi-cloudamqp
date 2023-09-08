@@ -102,9 +102,9 @@ def get_plugins_community(instance_id: Optional[int] = None,
     __ret__ = pulumi.runtime.invoke('cloudamqp:index/getPluginsCommunity:getPluginsCommunity', __args__, opts=opts, typ=GetPluginsCommunityResult).value
 
     return AwaitableGetPluginsCommunityResult(
-        id=__ret__.id,
-        instance_id=__ret__.instance_id,
-        plugins=__ret__.plugins)
+        id=pulumi.get(__ret__, 'id'),
+        instance_id=pulumi.get(__ret__, 'instance_id'),
+        plugins=pulumi.get(__ret__, 'plugins'))
 
 
 @_utilities.lift_output_func(get_plugins_community)

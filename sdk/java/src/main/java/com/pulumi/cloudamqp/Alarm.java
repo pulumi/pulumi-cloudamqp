@@ -97,6 +97,8 @@ import javax.annotation.Nullable;
  * | Server unreachable | server_unreachable  | - | &amp;#10004;  | time_threshold |
  * | Notice | notice | &amp;#10004; | &amp;#10004; | |
  * 
+ * &gt; Notice alarm is manadatory! Only one can exists and cannot be deleted. Setting `no_default_alarm` to true, will still create this alarm.
+ * 
  * ## Dependency
  * 
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
