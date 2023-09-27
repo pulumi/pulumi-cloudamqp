@@ -6,6 +6,7 @@ package com.pulumi.cloudamqp;
 import com.pulumi.cloudamqp.InstanceArgs;
 import com.pulumi.cloudamqp.Utilities;
 import com.pulumi.cloudamqp.inputs.InstanceState;
+import com.pulumi.cloudamqp.outputs.InstanceCopySetting;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Export;
 import com.pulumi.core.annotations.ResourceType;
@@ -18,7 +19,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * This resource allows you to create and manage a CloudAMQP instance running either [**RabbitMQ**](https://www.rabbitmq.com/) or [**LavinMQ**](https://lavinmq.com/) and can be deployed to multiple cloud platforms provider and regions, see Instance regions for more information.
+ * This resource allows you to create and manage a CloudAMQP instance running either [**RabbitMQ**](https://www.rabbitmq.com/) or [**LavinMQ**](https://lavinmq.com/) and can be deployed to multiple cloud platforms provider and regions, see instance regions for more information.
  * 
  * Once the instance is created it will be assigned a unique identifier. All other resources and data sources created for this instance needs to reference this unique instance identifier.
  * 
@@ -335,6 +336,65 @@ import javax.annotation.Nullable;
  * ```
  * &lt;/details&gt;
  * 
+ * ## Copy settings to a new dedicated instance
+ * 
+ * With copy settings it&#39;s possible to create a new dedicated instance with settings such as alarms, config, etc. from another dedicated instance. This can be done by adding the `copy_settings` block to this resource and populate `subscription_id` with a CloudAMQP instance identifier from another already existing instance.
+ * 
+ * Then add the settings to be copied over to the new dedicated instance. Settings that can be copied [alarms, config, definitions, firewall, logs, metrics, plugins]
+ * 
+ * &gt; `rmq_version` argument is required when doing this action. Must match the RabbitMQ version of the dedicated instance to be copied from.
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Copy settings from a dedicated instance to a new dedicated instance&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import com.pulumi.cloudamqp.inputs.InstanceCopySettingArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var instance02 = new Instance(&#34;instance02&#34;, InstanceArgs.builder()        
+ *             .plan(&#34;squirrel-1&#34;)
+ *             .region(&#34;amazon-web-services::us-west-1&#34;)
+ *             .rmqVersion(&#34;3.12.2&#34;)
+ *             .tags(&#34;terraform&#34;)
+ *             .copySettings(InstanceCopySettingArgs.builder()
+ *                 .subscriptionId(var_.instance_id())
+ *                 .settings(                
+ *                     &#34;alarms&#34;,
+ *                     &#34;config&#34;,
+ *                     &#34;definitions&#34;,
+ *                     &#34;firewall&#34;,
+ *                     &#34;logs&#34;,
+ *                     &#34;metrics&#34;,
+ *                     &#34;plugins&#34;)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;/details&gt;
+ * 
  * ## Import
  * 
  * `cloudamqp_instance`can be imported using CloudAMQP internal identifier.
@@ -343,7 +403,7 @@ import javax.annotation.Nullable;
  *  $ pulumi import cloudamqp:index/instance:Instance instance &lt;id&gt;`
  * ```
  * 
- *  To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances). Or use the data source `cloudamqp_account` to list all available instances for an account.
+ *  To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances). Or use the data source [`cloudamqp_account`](./data-sources/account.md) to list all available instances for an account.
  * 
  */
 @ResourceType(type="cloudamqp:index/instance:Instance")
@@ -375,6 +435,28 @@ public class Instance extends com.pulumi.resources.CustomResource {
      */
     public Output<String> backend() {
         return this.backend;
+    }
+    /**
+     * Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+     * 
+     * ***
+     * 
+     * The `copy_settings` block consists of:
+     * 
+     */
+    @Export(name="copySettings", type=List.class, parameters={InstanceCopySetting.class})
+    private Output</* @Nullable */ List<InstanceCopySetting>> copySettings;
+
+    /**
+     * @return Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+     * 
+     * ***
+     * 
+     * The `copy_settings` block consists of:
+     * 
+     */
+    public Output<Optional<List<InstanceCopySetting>>> copySettings() {
+        return Codegen.optional(this.copySettings);
     }
     /**
      * Information if the CloudAMQP instance is shared or dedicated.
@@ -507,7 +589,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
         return this.ready;
     }
     /**
-     * The region to host the instance in. See Instance regions
+     * The region to host the instance in. See instance regions
      * 
      * ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
      * 
@@ -516,7 +598,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
     private Output<String> region;
 
     /**
-     * @return The region to host the instance in. See Instance regions
+     * @return The region to host the instance in. See instance regions
      * 
      * ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
      * 

@@ -316,6 +316,24 @@ public class VpcGcpPeering extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> vpcId() {
         return Codegen.optional(this.vpcId);
     }
+    /**
+     * Makes the resource wait until the peering is connected.
+     * 
+     * ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+     * 
+     */
+    @Export(name="waitOnPeeringStatus", type=Boolean.class, parameters={})
+    private Output</* @Nullable */ Boolean> waitOnPeeringStatus;
+
+    /**
+     * @return Makes the resource wait until the peering is connected.
+     * 
+     * ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+     * 
+     */
+    public Output<Optional<Boolean>> waitOnPeeringStatus() {
+        return Codegen.optional(this.waitOnPeeringStatus);
+    }
 
     /**
      *

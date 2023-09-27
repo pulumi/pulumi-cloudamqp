@@ -11,6 +11,19 @@ export interface ExtraDiskSizeNode {
     name?: pulumi.Input<string>;
 }
 
+export interface InstanceCopySetting {
+    /**
+     * Array of one or more settings to be copied. Allowed values: [alarms, config, definitions, firewall, logs, metrics, plugins]
+     *
+     * See more below, copy settings
+     */
+    settings: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Instance identifier of the CloudAMQP instance to copy the settings from.
+     */
+    subscriptionId: pulumi.Input<string>;
+}
+
 export interface SecurityFirewallRule {
     /**
      * Description name of the rule. e.g. Default.

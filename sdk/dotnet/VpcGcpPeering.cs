@@ -159,6 +159,14 @@ namespace Pulumi.CloudAmqp
         [Output("vpcId")]
         public Output<string?> VpcId { get; private set; } = null!;
 
+        /// <summary>
+        /// Makes the resource wait until the peering is connected.
+        /// 
+        /// ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+        /// </summary>
+        [Output("waitOnPeeringStatus")]
+        public Output<bool?> WaitOnPeeringStatus { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a VpcGcpPeering resource with the given unique name, arguments, and options.
@@ -227,6 +235,14 @@ namespace Pulumi.CloudAmqp
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }
 
+        /// <summary>
+        /// Makes the resource wait until the peering is connected.
+        /// 
+        /// ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+        /// </summary>
+        [Input("waitOnPeeringStatus")]
+        public Input<bool>? WaitOnPeeringStatus { get; set; }
+
         public VpcGcpPeeringArgs()
         {
         }
@@ -274,6 +290,14 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }
+
+        /// <summary>
+        /// Makes the resource wait until the peering is connected.
+        /// 
+        /// ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+        /// </summary>
+        [Input("waitOnPeeringStatus")]
+        public Input<bool>? WaitOnPeeringStatus { get; set; }
 
         public VpcGcpPeeringState()
         {

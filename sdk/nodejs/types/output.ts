@@ -53,6 +53,19 @@ export interface GetPluginsPlugin {
     version: string;
 }
 
+export interface InstanceCopySetting {
+    /**
+     * Array of one or more settings to be copied. Allowed values: [alarms, config, definitions, firewall, logs, metrics, plugins]
+     *
+     * See more below, copy settings
+     */
+    settings: string[];
+    /**
+     * Instance identifier of the CloudAMQP instance to copy the settings from.
+     */
+    subscriptionId: string;
+}
+
 export interface SecurityFirewallRule {
     /**
      * Description name of the rule. e.g. Default.

@@ -11,6 +11,7 @@ from . import _utilities
 
 __all__ = [
     'ExtraDiskSizeNode',
+    'InstanceCopySetting',
     'SecurityFirewallRule',
     'GetAccountInstanceResult',
     'GetAccountVpcsVpcResult',
@@ -65,6 +66,56 @@ class ExtraDiskSizeNode(dict):
     @pulumi.getter
     def name(self) -> Optional[str]:
         return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class InstanceCopySetting(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "subscriptionId":
+            suggest = "subscription_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in InstanceCopySetting. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        InstanceCopySetting.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        InstanceCopySetting.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 settings: Sequence[str],
+                 subscription_id: str):
+        """
+        :param Sequence[str] settings: Array of one or more settings to be copied. Allowed values: [alarms, config, definitions, firewall, logs, metrics, plugins]
+               
+               See more below, copy settings
+        :param str subscription_id: Instance identifier of the CloudAMQP instance to copy the settings from.
+        """
+        pulumi.set(__self__, "settings", settings)
+        pulumi.set(__self__, "subscription_id", subscription_id)
+
+    @property
+    @pulumi.getter
+    def settings(self) -> Sequence[str]:
+        """
+        Array of one or more settings to be copied. Allowed values: [alarms, config, definitions, firewall, logs, metrics, plugins]
+
+        See more below, copy settings
+        """
+        return pulumi.get(self, "settings")
+
+    @property
+    @pulumi.getter(name="subscriptionId")
+    def subscription_id(self) -> str:
+        """
+        Instance identifier of the CloudAMQP instance to copy the settings from.
+        """
+        return pulumi.get(self, "subscription_id")
 
 
 @pulumi.output_type

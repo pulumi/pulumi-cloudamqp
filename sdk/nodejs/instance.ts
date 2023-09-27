@@ -2,10 +2,12 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * This resource allows you to create and manage a CloudAMQP instance running either [**RabbitMQ**](https://www.rabbitmq.com/) or [**LavinMQ**](https://lavinmq.com/) and can be deployed to multiple cloud platforms provider and regions, see Instance regions for more information.
+ * This resource allows you to create and manage a CloudAMQP instance running either [**RabbitMQ**](https://www.rabbitmq.com/) or [**LavinMQ**](https://lavinmq.com/) and can be deployed to multiple cloud platforms provider and regions, see instance regions for more information.
  *
  * Once the instance is created it will be assigned a unique identifier. All other resources and data sources created for this instance needs to reference this unique instance identifier.
  *
@@ -191,6 +193,46 @@ import * as utilities from "./utilities";
  * ```
  * </details>
  *
+ * ## Copy settings to a new dedicated instance
+ *
+ * With copy settings it's possible to create a new dedicated instance with settings such as alarms, config, etc. from another dedicated instance. This can be done by adding the `copySettings` block to this resource and populate `subscriptionId` with a CloudAMQP instance identifier from another already existing instance.
+ *
+ * Then add the settings to be copied over to the new dedicated instance. Settings that can be copied [alarms, config, definitions, firewall, logs, metrics, plugins]
+ *
+ * > `rmqVersion` argument is required when doing this action. Must match the RabbitMQ version of the dedicated instance to be copied from.
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Copy settings from a dedicated instance to a new dedicated instance</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const instance02 = new cloudamqp.Instance("instance02", {
+ *     plan: "squirrel-1",
+ *     region: "amazon-web-services::us-west-1",
+ *     rmqVersion: "3.12.2",
+ *     tags: ["terraform"],
+ *     copySettings: [{
+ *         subscriptionId: _var.instance_id,
+ *         settings: [
+ *             "alarms",
+ *             "config",
+ *             "definitions",
+ *             "firewall",
+ *             "logs",
+ *             "metrics",
+ *             "plugins",
+ *         ],
+ *     }],
+ * });
+ * ```
+ * </details>
+ *
  * ## Import
  *
  * `cloudamqp_instance`can be imported using CloudAMQP internal identifier.
@@ -199,7 +241,7 @@ import * as utilities from "./utilities";
  *  $ pulumi import cloudamqp:index/instance:Instance instance <id>`
  * ```
  *
- *  To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances). Or use the data source `cloudamqp_account` to list all available instances for an account.
+ *  To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances). Or use the data source [`cloudamqp_account`](./data-sources/account.md) to list all available instances for an account.
  */
 export class Instance extends pulumi.CustomResource {
     /**
@@ -237,6 +279,14 @@ export class Instance extends pulumi.CustomResource {
      * Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
      */
     public /*out*/ readonly backend!: pulumi.Output<string>;
+    /**
+     * Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+     *
+     * ___
+     *
+     * The `copySettings` block consists of:
+     */
+    public readonly copySettings!: pulumi.Output<outputs.InstanceCopySetting[] | undefined>;
     /**
      * Information if the CloudAMQP instance is shared or dedicated.
      */
@@ -276,7 +326,7 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly ready!: pulumi.Output<boolean>;
     /**
-     * The region to host the instance in. See Instance regions
+     * The region to host the instance in. See instance regions
      *
      * ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
      */
@@ -327,6 +377,7 @@ export class Instance extends pulumi.CustomResource {
             const state = argsOrState as InstanceState | undefined;
             resourceInputs["apikey"] = state ? state.apikey : undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["copySettings"] = state ? state.copySettings : undefined;
             resourceInputs["dedicated"] = state ? state.dedicated : undefined;
             resourceInputs["host"] = state ? state.host : undefined;
             resourceInputs["hostInternal"] = state ? state.hostInternal : undefined;
@@ -351,6 +402,7 @@ export class Instance extends pulumi.CustomResource {
             if ((!args || args.region === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'region'");
             }
+            resourceInputs["copySettings"] = args ? args.copySettings : undefined;
             resourceInputs["keepAssociatedVpc"] = args ? args.keepAssociatedVpc : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["noDefaultAlarms"] = args ? args.noDefaultAlarms : undefined;
@@ -390,6 +442,14 @@ export interface InstanceState {
      */
     backend?: pulumi.Input<string>;
     /**
+     * Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+     *
+     * ___
+     *
+     * The `copySettings` block consists of:
+     */
+    copySettings?: pulumi.Input<pulumi.Input<inputs.InstanceCopySetting>[]>;
+    /**
      * Information if the CloudAMQP instance is shared or dedicated.
      */
     dedicated?: pulumi.Input<boolean>;
@@ -428,7 +488,7 @@ export interface InstanceState {
      */
     ready?: pulumi.Input<boolean>;
     /**
-     * The region to host the instance in. See Instance regions
+     * The region to host the instance in. See instance regions
      *
      * ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
      */
@@ -470,6 +530,14 @@ export interface InstanceState {
  */
 export interface InstanceArgs {
     /**
+     * Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+     *
+     * ___
+     *
+     * The `copySettings` block consists of:
+     */
+    copySettings?: pulumi.Input<pulumi.Input<inputs.InstanceCopySetting>[]>;
+    /**
      * Keep associated VPC when deleting instance, default set to false.
      */
     keepAssociatedVpc?: pulumi.Input<boolean>;
@@ -492,7 +560,7 @@ export interface InstanceArgs {
      */
     plan: pulumi.Input<string>;
     /**
-     * The region to host the instance in. See Instance regions
+     * The region to host the instance in. See instance regions
      *
      * ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
      */

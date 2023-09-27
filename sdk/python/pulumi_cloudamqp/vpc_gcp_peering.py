@@ -16,7 +16,8 @@ class VpcGcpPeeringArgs:
     def __init__(__self__, *,
                  peer_network_uri: pulumi.Input[str],
                  instance_id: Optional[pulumi.Input[int]] = None,
-                 vpc_id: Optional[pulumi.Input[str]] = None):
+                 vpc_id: Optional[pulumi.Input[str]] = None,
+                 wait_on_peering_status: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a VpcGcpPeering resource.
         :param pulumi.Input[str] peer_network_uri: Network uri of the VPC network to which you will peer with.
@@ -26,12 +27,17 @@ class VpcGcpPeeringArgs:
         :param pulumi.Input[str] vpc_id: The managed VPC identifier.
                
                ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
+        :param pulumi.Input[bool] wait_on_peering_status: Makes the resource wait until the peering is connected.
+               
+               ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
         """
         pulumi.set(__self__, "peer_network_uri", peer_network_uri)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
         if vpc_id is not None:
             pulumi.set(__self__, "vpc_id", vpc_id)
+        if wait_on_peering_status is not None:
+            pulumi.set(__self__, "wait_on_peering_status", wait_on_peering_status)
 
     @property
     @pulumi.getter(name="peerNetworkUri")
@@ -73,6 +79,20 @@ class VpcGcpPeeringArgs:
     def vpc_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vpc_id", value)
 
+    @property
+    @pulumi.getter(name="waitOnPeeringStatus")
+    def wait_on_peering_status(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Makes the resource wait until the peering is connected.
+
+        ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+        """
+        return pulumi.get(self, "wait_on_peering_status")
+
+    @wait_on_peering_status.setter
+    def wait_on_peering_status(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "wait_on_peering_status", value)
+
 
 @pulumi.input_type
 class _VpcGcpPeeringState:
@@ -82,7 +102,8 @@ class _VpcGcpPeeringState:
                  peer_network_uri: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[str]] = None,
                  state_details: Optional[pulumi.Input[str]] = None,
-                 vpc_id: Optional[pulumi.Input[str]] = None):
+                 vpc_id: Optional[pulumi.Input[str]] = None,
+                 wait_on_peering_status: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering VpcGcpPeering resources.
         :param pulumi.Input[bool] auto_create_routes: VPC peering auto created routes
@@ -95,6 +116,9 @@ class _VpcGcpPeeringState:
         :param pulumi.Input[str] vpc_id: The managed VPC identifier.
                
                ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
+        :param pulumi.Input[bool] wait_on_peering_status: Makes the resource wait until the peering is connected.
+               
+               ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
         """
         if auto_create_routes is not None:
             pulumi.set(__self__, "auto_create_routes", auto_create_routes)
@@ -108,6 +132,8 @@ class _VpcGcpPeeringState:
             pulumi.set(__self__, "state_details", state_details)
         if vpc_id is not None:
             pulumi.set(__self__, "vpc_id", vpc_id)
+        if wait_on_peering_status is not None:
+            pulumi.set(__self__, "wait_on_peering_status", wait_on_peering_status)
 
     @property
     @pulumi.getter(name="autoCreateRoutes")
@@ -185,6 +211,20 @@ class _VpcGcpPeeringState:
     def vpc_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vpc_id", value)
 
+    @property
+    @pulumi.getter(name="waitOnPeeringStatus")
+    def wait_on_peering_status(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Makes the resource wait until the peering is connected.
+
+        ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+        """
+        return pulumi.get(self, "wait_on_peering_status")
+
+    @wait_on_peering_status.setter
+    def wait_on_peering_status(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "wait_on_peering_status", value)
+
 
 class VpcGcpPeering(pulumi.CustomResource):
     @overload
@@ -194,6 +234,7 @@ class VpcGcpPeering(pulumi.CustomResource):
                  instance_id: Optional[pulumi.Input[int]] = None,
                  peer_network_uri: Optional[pulumi.Input[str]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
+                 wait_on_peering_status: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
         This resouce creates a VPC peering configuration for the CloudAMQP instance. The configuration will connect to another VPC network hosted on Google Cloud Platform (GCP). See the [GCP documentation](https://cloud.google.com/vpc/docs/using-vpc-peering) for more information on how to create the VPC peering configuration.
@@ -332,6 +373,9 @@ class VpcGcpPeering(pulumi.CustomResource):
         :param pulumi.Input[str] vpc_id: The managed VPC identifier.
                
                ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
+        :param pulumi.Input[bool] wait_on_peering_status: Makes the resource wait until the peering is connected.
+               
+               ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
         """
         ...
     @overload
@@ -485,6 +529,7 @@ class VpcGcpPeering(pulumi.CustomResource):
                  instance_id: Optional[pulumi.Input[int]] = None,
                  peer_network_uri: Optional[pulumi.Input[str]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
+                 wait_on_peering_status: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -499,6 +544,7 @@ class VpcGcpPeering(pulumi.CustomResource):
                 raise TypeError("Missing required property 'peer_network_uri'")
             __props__.__dict__["peer_network_uri"] = peer_network_uri
             __props__.__dict__["vpc_id"] = vpc_id
+            __props__.__dict__["wait_on_peering_status"] = wait_on_peering_status
             __props__.__dict__["auto_create_routes"] = None
             __props__.__dict__["state"] = None
             __props__.__dict__["state_details"] = None
@@ -517,7 +563,8 @@ class VpcGcpPeering(pulumi.CustomResource):
             peer_network_uri: Optional[pulumi.Input[str]] = None,
             state: Optional[pulumi.Input[str]] = None,
             state_details: Optional[pulumi.Input[str]] = None,
-            vpc_id: Optional[pulumi.Input[str]] = None) -> 'VpcGcpPeering':
+            vpc_id: Optional[pulumi.Input[str]] = None,
+            wait_on_peering_status: Optional[pulumi.Input[bool]] = None) -> 'VpcGcpPeering':
         """
         Get an existing VpcGcpPeering resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -535,6 +582,9 @@ class VpcGcpPeering(pulumi.CustomResource):
         :param pulumi.Input[str] vpc_id: The managed VPC identifier.
                
                ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
+        :param pulumi.Input[bool] wait_on_peering_status: Makes the resource wait until the peering is connected.
+               
+               ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -546,6 +596,7 @@ class VpcGcpPeering(pulumi.CustomResource):
         __props__.__dict__["state"] = state
         __props__.__dict__["state_details"] = state_details
         __props__.__dict__["vpc_id"] = vpc_id
+        __props__.__dict__["wait_on_peering_status"] = wait_on_peering_status
         return VpcGcpPeering(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -599,4 +650,14 @@ class VpcGcpPeering(pulumi.CustomResource):
         ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
         """
         return pulumi.get(self, "vpc_id")
+
+    @property
+    @pulumi.getter(name="waitOnPeeringStatus")
+    def wait_on_peering_status(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Makes the resource wait until the peering is connected.
+
+        ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+        """
+        return pulumi.get(self, "wait_on_peering_status")
 

@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['InstanceArgs', 'Instance']
 
@@ -16,6 +18,7 @@ class InstanceArgs:
     def __init__(__self__, *,
                  plan: pulumi.Input[str],
                  region: pulumi.Input[str],
+                 copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceCopySettingArgs']]]] = None,
                  keep_associated_vpc: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  no_default_alarms: Optional[pulumi.Input[bool]] = None,
@@ -27,9 +30,14 @@ class InstanceArgs:
         """
         The set of arguments for constructing a Instance resource.
         :param pulumi.Input[str] plan: The subscription plan. See available plans
-        :param pulumi.Input[str] region: The region to host the instance in. See Instance regions
+        :param pulumi.Input[str] region: The region to host the instance in. See instance regions
                
                ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceCopySettingArgs']]] copy_settings: Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+               
+               ___
+               
+               The `copy_settings` block consists of:
         :param pulumi.Input[bool] keep_associated_vpc: Keep associated VPC when deleting instance, default set to false.
         :param pulumi.Input[str] name: Name of the CloudAMQP instance.
         :param pulumi.Input[bool] no_default_alarms: Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
@@ -49,6 +57,8 @@ class InstanceArgs:
         """
         pulumi.set(__self__, "plan", plan)
         pulumi.set(__self__, "region", region)
+        if copy_settings is not None:
+            pulumi.set(__self__, "copy_settings", copy_settings)
         if keep_associated_vpc is not None:
             pulumi.set(__self__, "keep_associated_vpc", keep_associated_vpc)
         if name is not None:
@@ -82,7 +92,7 @@ class InstanceArgs:
     @pulumi.getter
     def region(self) -> pulumi.Input[str]:
         """
-        The region to host the instance in. See Instance regions
+        The region to host the instance in. See instance regions
 
         ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
         """
@@ -91,6 +101,22 @@ class InstanceArgs:
     @region.setter
     def region(self, value: pulumi.Input[str]):
         pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter(name="copySettings")
+    def copy_settings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceCopySettingArgs']]]]:
+        """
+        Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+
+        ___
+
+        The `copy_settings` block consists of:
+        """
+        return pulumi.get(self, "copy_settings")
+
+    @copy_settings.setter
+    def copy_settings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceCopySettingArgs']]]]):
+        pulumi.set(self, "copy_settings", value)
 
     @property
     @pulumi.getter(name="keepAssociatedVpc")
@@ -202,6 +228,7 @@ class _InstanceState:
     def __init__(__self__, *,
                  apikey: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceCopySettingArgs']]]] = None,
                  dedicated: Optional[pulumi.Input[bool]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  host_internal: Optional[pulumi.Input[str]] = None,
@@ -222,6 +249,11 @@ class _InstanceState:
         Input properties used for looking up and filtering Instance resources.
         :param pulumi.Input[str] apikey: API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
         :param pulumi.Input[str] backend: Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceCopySettingArgs']]] copy_settings: Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+               
+               ___
+               
+               The `copy_settings` block consists of:
         :param pulumi.Input[bool] dedicated: Information if the CloudAMQP instance is shared or dedicated.
         :param pulumi.Input[str] host: The external hostname for the CloudAMQP instance.
         :param pulumi.Input[str] host_internal: The internal hostname for the CloudAMQP instance.
@@ -233,7 +265,7 @@ class _InstanceState:
                ***Deprecated: Legacy subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.***
         :param pulumi.Input[str] plan: The subscription plan. See available plans
         :param pulumi.Input[bool] ready: Flag describing if the resource is ready
-        :param pulumi.Input[str] region: The region to host the instance in. See Instance regions
+        :param pulumi.Input[str] region: The region to host the instance in. See instance regions
                
                ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
         :param pulumi.Input[str] rmq_version: The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.
@@ -253,6 +285,8 @@ class _InstanceState:
             pulumi.set(__self__, "apikey", apikey)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if copy_settings is not None:
+            pulumi.set(__self__, "copy_settings", copy_settings)
         if dedicated is not None:
             pulumi.set(__self__, "dedicated", dedicated)
         if host is not None:
@@ -309,6 +343,22 @@ class _InstanceState:
     @backend.setter
     def backend(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="copySettings")
+    def copy_settings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceCopySettingArgs']]]]:
+        """
+        Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+
+        ___
+
+        The `copy_settings` block consists of:
+        """
+        return pulumi.get(self, "copy_settings")
+
+    @copy_settings.setter
+    def copy_settings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceCopySettingArgs']]]]):
+        pulumi.set(self, "copy_settings", value)
 
     @property
     @pulumi.getter
@@ -424,7 +474,7 @@ class _InstanceState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region to host the instance in. See Instance regions
+        The region to host the instance in. See instance regions
 
         ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
         """
@@ -518,6 +568,7 @@ class Instance(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceCopySettingArgs']]]]] = None,
                  keep_associated_vpc: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  no_default_alarms: Optional[pulumi.Input[bool]] = None,
@@ -530,7 +581,7 @@ class Instance(pulumi.CustomResource):
                  vpc_subnet: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        This resource allows you to create and manage a CloudAMQP instance running either [**RabbitMQ**](https://www.rabbitmq.com/) or [**LavinMQ**](https://lavinmq.com/) and can be deployed to multiple cloud platforms provider and regions, see Instance regions for more information.
+        This resource allows you to create and manage a CloudAMQP instance running either [**RabbitMQ**](https://www.rabbitmq.com/) or [**LavinMQ**](https://lavinmq.com/) and can be deployed to multiple cloud platforms provider and regions, see instance regions for more information.
 
         Once the instance is created it will be assigned a unique identifier. All other resources and data sources created for this instance needs to reference this unique instance identifier.
 
@@ -704,6 +755,45 @@ class Instance(pulumi.CustomResource):
         ```
         </details>
 
+        ## Copy settings to a new dedicated instance
+
+        With copy settings it's possible to create a new dedicated instance with settings such as alarms, config, etc. from another dedicated instance. This can be done by adding the `copy_settings` block to this resource and populate `subscription_id` with a CloudAMQP instance identifier from another already existing instance.
+
+        Then add the settings to be copied over to the new dedicated instance. Settings that can be copied [alarms, config, definitions, firewall, logs, metrics, plugins]
+
+        > `rmq_version` argument is required when doing this action. Must match the RabbitMQ version of the dedicated instance to be copied from.
+
+        <details>
+          <summary>
+            <b>
+              <i>Copy settings from a dedicated instance to a new dedicated instance</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        instance02 = cloudamqp.Instance("instance02",
+            plan="squirrel-1",
+            region="amazon-web-services::us-west-1",
+            rmq_version="3.12.2",
+            tags=["terraform"],
+            copy_settings=[cloudamqp.InstanceCopySettingArgs(
+                subscription_id=var["instance_id"],
+                settings=[
+                    "alarms",
+                    "config",
+                    "definitions",
+                    "firewall",
+                    "logs",
+                    "metrics",
+                    "plugins",
+                ],
+            )])
+        ```
+        </details>
+
         ## Import
 
         `cloudamqp_instance`can be imported using CloudAMQP internal identifier.
@@ -712,10 +802,15 @@ class Instance(pulumi.CustomResource):
          $ pulumi import cloudamqp:index/instance:Instance instance <id>`
         ```
 
-         To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances). Or use the data source `cloudamqp_account` to list all available instances for an account.
+         To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances). Or use the data source [`cloudamqp_account`](./data-sources/account.md) to list all available instances for an account.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceCopySettingArgs']]]] copy_settings: Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+               
+               ___
+               
+               The `copy_settings` block consists of:
         :param pulumi.Input[bool] keep_associated_vpc: Keep associated VPC when deleting instance, default set to false.
         :param pulumi.Input[str] name: Name of the CloudAMQP instance.
         :param pulumi.Input[bool] no_default_alarms: Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
@@ -723,7 +818,7 @@ class Instance(pulumi.CustomResource):
                
                ***Deprecated: Legacy subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.***
         :param pulumi.Input[str] plan: The subscription plan. See available plans
-        :param pulumi.Input[str] region: The region to host the instance in. See Instance regions
+        :param pulumi.Input[str] region: The region to host the instance in. See instance regions
                
                ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
         :param pulumi.Input[str] rmq_version: The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.
@@ -744,7 +839,7 @@ class Instance(pulumi.CustomResource):
                  args: InstanceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        This resource allows you to create and manage a CloudAMQP instance running either [**RabbitMQ**](https://www.rabbitmq.com/) or [**LavinMQ**](https://lavinmq.com/) and can be deployed to multiple cloud platforms provider and regions, see Instance regions for more information.
+        This resource allows you to create and manage a CloudAMQP instance running either [**RabbitMQ**](https://www.rabbitmq.com/) or [**LavinMQ**](https://lavinmq.com/) and can be deployed to multiple cloud platforms provider and regions, see instance regions for more information.
 
         Once the instance is created it will be assigned a unique identifier. All other resources and data sources created for this instance needs to reference this unique instance identifier.
 
@@ -918,6 +1013,45 @@ class Instance(pulumi.CustomResource):
         ```
         </details>
 
+        ## Copy settings to a new dedicated instance
+
+        With copy settings it's possible to create a new dedicated instance with settings such as alarms, config, etc. from another dedicated instance. This can be done by adding the `copy_settings` block to this resource and populate `subscription_id` with a CloudAMQP instance identifier from another already existing instance.
+
+        Then add the settings to be copied over to the new dedicated instance. Settings that can be copied [alarms, config, definitions, firewall, logs, metrics, plugins]
+
+        > `rmq_version` argument is required when doing this action. Must match the RabbitMQ version of the dedicated instance to be copied from.
+
+        <details>
+          <summary>
+            <b>
+              <i>Copy settings from a dedicated instance to a new dedicated instance</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        instance02 = cloudamqp.Instance("instance02",
+            plan="squirrel-1",
+            region="amazon-web-services::us-west-1",
+            rmq_version="3.12.2",
+            tags=["terraform"],
+            copy_settings=[cloudamqp.InstanceCopySettingArgs(
+                subscription_id=var["instance_id"],
+                settings=[
+                    "alarms",
+                    "config",
+                    "definitions",
+                    "firewall",
+                    "logs",
+                    "metrics",
+                    "plugins",
+                ],
+            )])
+        ```
+        </details>
+
         ## Import
 
         `cloudamqp_instance`can be imported using CloudAMQP internal identifier.
@@ -926,7 +1060,7 @@ class Instance(pulumi.CustomResource):
          $ pulumi import cloudamqp:index/instance:Instance instance <id>`
         ```
 
-         To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances). Or use the data source `cloudamqp_account` to list all available instances for an account.
+         To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances). Or use the data source [`cloudamqp_account`](./data-sources/account.md) to list all available instances for an account.
 
         :param str resource_name: The name of the resource.
         :param InstanceArgs args: The arguments to use to populate this resource's properties.
@@ -943,6 +1077,7 @@ class Instance(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceCopySettingArgs']]]]] = None,
                  keep_associated_vpc: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  no_default_alarms: Optional[pulumi.Input[bool]] = None,
@@ -962,6 +1097,7 @@ class Instance(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = InstanceArgs.__new__(InstanceArgs)
 
+            __props__.__dict__["copy_settings"] = copy_settings
             __props__.__dict__["keep_associated_vpc"] = keep_associated_vpc
             __props__.__dict__["name"] = name
             __props__.__dict__["no_default_alarms"] = no_default_alarms
@@ -998,6 +1134,7 @@ class Instance(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             apikey: Optional[pulumi.Input[str]] = None,
             backend: Optional[pulumi.Input[str]] = None,
+            copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceCopySettingArgs']]]]] = None,
             dedicated: Optional[pulumi.Input[bool]] = None,
             host: Optional[pulumi.Input[str]] = None,
             host_internal: Optional[pulumi.Input[str]] = None,
@@ -1023,6 +1160,11 @@ class Instance(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] apikey: API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
         :param pulumi.Input[str] backend: Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceCopySettingArgs']]]] copy_settings: Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+               
+               ___
+               
+               The `copy_settings` block consists of:
         :param pulumi.Input[bool] dedicated: Information if the CloudAMQP instance is shared or dedicated.
         :param pulumi.Input[str] host: The external hostname for the CloudAMQP instance.
         :param pulumi.Input[str] host_internal: The internal hostname for the CloudAMQP instance.
@@ -1034,7 +1176,7 @@ class Instance(pulumi.CustomResource):
                ***Deprecated: Legacy subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.***
         :param pulumi.Input[str] plan: The subscription plan. See available plans
         :param pulumi.Input[bool] ready: Flag describing if the resource is ready
-        :param pulumi.Input[str] region: The region to host the instance in. See Instance regions
+        :param pulumi.Input[str] region: The region to host the instance in. See instance regions
                
                ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
         :param pulumi.Input[str] rmq_version: The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.
@@ -1056,6 +1198,7 @@ class Instance(pulumi.CustomResource):
 
         __props__.__dict__["apikey"] = apikey
         __props__.__dict__["backend"] = backend
+        __props__.__dict__["copy_settings"] = copy_settings
         __props__.__dict__["dedicated"] = dedicated
         __props__.__dict__["host"] = host
         __props__.__dict__["host_internal"] = host_internal
@@ -1089,6 +1232,18 @@ class Instance(pulumi.CustomResource):
         Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
         """
         return pulumi.get(self, "backend")
+
+    @property
+    @pulumi.getter(name="copySettings")
+    def copy_settings(self) -> pulumi.Output[Optional[Sequence['outputs.InstanceCopySetting']]]:
+        """
+        Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+
+        ___
+
+        The `copy_settings` block consists of:
+        """
+        return pulumi.get(self, "copy_settings")
 
     @property
     @pulumi.getter
@@ -1168,7 +1323,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        The region to host the instance in. See Instance regions
+        The region to host the instance in. See instance regions
 
         ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
         """

@@ -194,6 +194,12 @@ export class VpcGcpPeering extends pulumi.CustomResource {
      * ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
      */
     public readonly vpcId!: pulumi.Output<string | undefined>;
+    /**
+     * Makes the resource wait until the peering is connected.
+     *
+     * ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+     */
+    public readonly waitOnPeeringStatus!: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a VpcGcpPeering resource with the given unique name, arguments, and options.
@@ -214,6 +220,7 @@ export class VpcGcpPeering extends pulumi.CustomResource {
             resourceInputs["state"] = state ? state.state : undefined;
             resourceInputs["stateDetails"] = state ? state.stateDetails : undefined;
             resourceInputs["vpcId"] = state ? state.vpcId : undefined;
+            resourceInputs["waitOnPeeringStatus"] = state ? state.waitOnPeeringStatus : undefined;
         } else {
             const args = argsOrState as VpcGcpPeeringArgs | undefined;
             if ((!args || args.peerNetworkUri === undefined) && !opts.urn) {
@@ -222,6 +229,7 @@ export class VpcGcpPeering extends pulumi.CustomResource {
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["peerNetworkUri"] = args ? args.peerNetworkUri : undefined;
             resourceInputs["vpcId"] = args ? args.vpcId : undefined;
+            resourceInputs["waitOnPeeringStatus"] = args ? args.waitOnPeeringStatus : undefined;
             resourceInputs["autoCreateRoutes"] = undefined /*out*/;
             resourceInputs["state"] = undefined /*out*/;
             resourceInputs["stateDetails"] = undefined /*out*/;
@@ -263,6 +271,12 @@ export interface VpcGcpPeeringState {
      * ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
      */
     vpcId?: pulumi.Input<string>;
+    /**
+     * Makes the resource wait until the peering is connected.
+     *
+     * ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+     */
+    waitOnPeeringStatus?: pulumi.Input<boolean>;
 }
 
 /**
@@ -285,4 +299,10 @@ export interface VpcGcpPeeringArgs {
      * ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
      */
     vpcId?: pulumi.Input<string>;
+    /**
+     * Makes the resource wait until the peering is connected.
+     *
+     * ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+     */
+    waitOnPeeringStatus?: pulumi.Input<boolean>;
 }
