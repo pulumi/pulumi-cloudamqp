@@ -5,6 +5,7 @@ package com.pulumi.cloudamqp;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -69,12 +70,32 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.vpcId);
     }
 
+    /**
+     * Makes the resource wait until the peering is connected.
+     * 
+     * ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+     * 
+     */
+    @Import(name="waitOnPeeringStatus")
+    private @Nullable Output<Boolean> waitOnPeeringStatus;
+
+    /**
+     * @return Makes the resource wait until the peering is connected.
+     * 
+     * ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+     * 
+     */
+    public Optional<Output<Boolean>> waitOnPeeringStatus() {
+        return Optional.ofNullable(this.waitOnPeeringStatus);
+    }
+
     private VpcGcpPeeringArgs() {}
 
     private VpcGcpPeeringArgs(VpcGcpPeeringArgs $) {
         this.instanceId = $.instanceId;
         this.peerNetworkUri = $.peerNetworkUri;
         this.vpcId = $.vpcId;
+        this.waitOnPeeringStatus = $.waitOnPeeringStatus;
     }
 
     public static Builder builder() {
@@ -164,6 +185,31 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder vpcId(String vpcId) {
             return vpcId(Output.of(vpcId));
+        }
+
+        /**
+         * @param waitOnPeeringStatus Makes the resource wait until the peering is connected.
+         * 
+         * ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+         * 
+         * @return builder
+         * 
+         */
+        public Builder waitOnPeeringStatus(@Nullable Output<Boolean> waitOnPeeringStatus) {
+            $.waitOnPeeringStatus = waitOnPeeringStatus;
+            return this;
+        }
+
+        /**
+         * @param waitOnPeeringStatus Makes the resource wait until the peering is connected.
+         * 
+         * ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+         * 
+         * @return builder
+         * 
+         */
+        public Builder waitOnPeeringStatus(Boolean waitOnPeeringStatus) {
+            return waitOnPeeringStatus(Output.of(waitOnPeeringStatus));
         }
 
         public VpcGcpPeeringArgs build() {

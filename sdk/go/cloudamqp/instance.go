@@ -13,7 +13,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
-// This resource allows you to create and manage a CloudAMQP instance running either [**RabbitMQ**](https://www.rabbitmq.com/) or [**LavinMQ**](https://lavinmq.com/) and can be deployed to multiple cloud platforms provider and regions, see Instance regions for more information.
+// This resource allows you to create and manage a CloudAMQP instance running either [**RabbitMQ**](https://www.rabbitmq.com/) or [**LavinMQ**](https://lavinmq.com/) and can be deployed to multiple cloud platforms provider and regions, see instance regions for more information.
 //
 // Once the instance is created it will be assigned a unique identifier. All other resources and data sources created for this instance needs to reference this unique instance identifier.
 //
@@ -334,6 +334,66 @@ import (
 // ```
 // </details>
 //
+// ## Copy settings to a new dedicated instance
+//
+// With copy settings it's possible to create a new dedicated instance with settings such as alarms, config, etc. from another dedicated instance. This can be done by adding the `copySettings` block to this resource and populate `subscriptionId` with a CloudAMQP instance identifier from another already existing instance.
+//
+// Then add the settings to be copied over to the new dedicated instance. Settings that can be copied [alarms, config, definitions, firewall, logs, metrics, plugins]
+//
+// > `rmqVersion` argument is required when doing this action. Must match the RabbitMQ version of the dedicated instance to be copied from.
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Copy settings from a dedicated instance to a new dedicated instance</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewInstance(ctx, "instance02", &cloudamqp.InstanceArgs{
+//				Plan:       pulumi.String("squirrel-1"),
+//				Region:     pulumi.String("amazon-web-services::us-west-1"),
+//				RmqVersion: pulumi.String("3.12.2"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("terraform"),
+//				},
+//				CopySettings: cloudamqp.InstanceCopySettingArray{
+//					&cloudamqp.InstanceCopySettingArgs{
+//						SubscriptionId: pulumi.Any(_var.Instance_id),
+//						Settings: pulumi.StringArray{
+//							pulumi.String("alarms"),
+//							pulumi.String("config"),
+//							pulumi.String("definitions"),
+//							pulumi.String("firewall"),
+//							pulumi.String("logs"),
+//							pulumi.String("metrics"),
+//							pulumi.String("plugins"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// </details>
+//
 // ## Import
 //
 // `cloudamqp_instance`can be imported using CloudAMQP internal identifier.
@@ -344,7 +404,7 @@ import (
 //
 // ```
 //
-//	To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances). Or use the data source `cloudamqp_account` to list all available instances for an account.
+//	To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances). Or use the data source [`cloudamqp_account`](./data-sources/account.md) to list all available instances for an account.
 type Instance struct {
 	pulumi.CustomResourceState
 
@@ -352,6 +412,12 @@ type Instance struct {
 	Apikey pulumi.StringOutput `pulumi:"apikey"`
 	// Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
 	Backend pulumi.StringOutput `pulumi:"backend"`
+	// Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+	//
+	// ***
+	//
+	// The `copySettings` block consists of:
+	CopySettings InstanceCopySettingArrayOutput `pulumi:"copySettings"`
 	// Information if the CloudAMQP instance is shared or dedicated.
 	Dedicated pulumi.BoolOutput `pulumi:"dedicated"`
 	// The external hostname for the CloudAMQP instance.
@@ -372,7 +438,7 @@ type Instance struct {
 	Plan pulumi.StringOutput `pulumi:"plan"`
 	// Flag describing if the resource is ready
 	Ready pulumi.BoolOutput `pulumi:"ready"`
-	// The region to host the instance in. See Instance regions
+	// The region to host the instance in. See instance regions
 	//
 	// ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -441,6 +507,12 @@ type instanceState struct {
 	Apikey *string `pulumi:"apikey"`
 	// Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
 	Backend *string `pulumi:"backend"`
+	// Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+	//
+	// ***
+	//
+	// The `copySettings` block consists of:
+	CopySettings []InstanceCopySetting `pulumi:"copySettings"`
 	// Information if the CloudAMQP instance is shared or dedicated.
 	Dedicated *bool `pulumi:"dedicated"`
 	// The external hostname for the CloudAMQP instance.
@@ -461,7 +533,7 @@ type instanceState struct {
 	Plan *string `pulumi:"plan"`
 	// Flag describing if the resource is ready
 	Ready *bool `pulumi:"ready"`
-	// The region to host the instance in. See Instance regions
+	// The region to host the instance in. See instance regions
 	//
 	// ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
 	Region *string `pulumi:"region"`
@@ -490,6 +562,12 @@ type InstanceState struct {
 	Apikey pulumi.StringPtrInput
 	// Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
 	Backend pulumi.StringPtrInput
+	// Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+	//
+	// ***
+	//
+	// The `copySettings` block consists of:
+	CopySettings InstanceCopySettingArrayInput
 	// Information if the CloudAMQP instance is shared or dedicated.
 	Dedicated pulumi.BoolPtrInput
 	// The external hostname for the CloudAMQP instance.
@@ -510,7 +588,7 @@ type InstanceState struct {
 	Plan pulumi.StringPtrInput
 	// Flag describing if the resource is ready
 	Ready pulumi.BoolPtrInput
-	// The region to host the instance in. See Instance regions
+	// The region to host the instance in. See instance regions
 	//
 	// ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
 	Region pulumi.StringPtrInput
@@ -539,6 +617,12 @@ func (InstanceState) ElementType() reflect.Type {
 }
 
 type instanceArgs struct {
+	// Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+	//
+	// ***
+	//
+	// The `copySettings` block consists of:
+	CopySettings []InstanceCopySetting `pulumi:"copySettings"`
 	// Keep associated VPC when deleting instance, default set to false.
 	KeepAssociatedVpc *bool `pulumi:"keepAssociatedVpc"`
 	// Name of the CloudAMQP instance.
@@ -551,7 +635,7 @@ type instanceArgs struct {
 	Nodes *int `pulumi:"nodes"`
 	// The subscription plan. See available plans
 	Plan string `pulumi:"plan"`
-	// The region to host the instance in. See Instance regions
+	// The region to host the instance in. See instance regions
 	//
 	// ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
 	Region string `pulumi:"region"`
@@ -573,6 +657,12 @@ type instanceArgs struct {
 
 // The set of arguments for constructing a Instance resource.
 type InstanceArgs struct {
+	// Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+	//
+	// ***
+	//
+	// The `copySettings` block consists of:
+	CopySettings InstanceCopySettingArrayInput
 	// Keep associated VPC when deleting instance, default set to false.
 	KeepAssociatedVpc pulumi.BoolPtrInput
 	// Name of the CloudAMQP instance.
@@ -585,7 +675,7 @@ type InstanceArgs struct {
 	Nodes pulumi.IntPtrInput
 	// The subscription plan. See available plans
 	Plan pulumi.StringInput
-	// The region to host the instance in. See Instance regions
+	// The region to host the instance in. See instance regions
 	//
 	// ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
 	Region pulumi.StringInput
@@ -726,6 +816,15 @@ func (o InstanceOutput) Backend() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
 }
 
+// Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+//
+// ***
+//
+// The `copySettings` block consists of:
+func (o InstanceOutput) CopySettings() InstanceCopySettingArrayOutput {
+	return o.ApplyT(func(v *Instance) InstanceCopySettingArrayOutput { return v.CopySettings }).(InstanceCopySettingArrayOutput)
+}
+
 // Information if the CloudAMQP instance is shared or dedicated.
 func (o InstanceOutput) Dedicated() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Instance) pulumi.BoolOutput { return v.Dedicated }).(pulumi.BoolOutput)
@@ -773,7 +872,7 @@ func (o InstanceOutput) Ready() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Instance) pulumi.BoolOutput { return v.Ready }).(pulumi.BoolOutput)
 }
 
-// The region to host the instance in. See Instance regions
+// The region to host the instance in. See instance regions
 //
 // ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
 func (o InstanceOutput) Region() pulumi.StringOutput {

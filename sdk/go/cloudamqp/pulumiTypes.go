@@ -144,6 +144,142 @@ func (o ExtraDiskSizeNodeArrayOutput) Index(i pulumi.IntInput) ExtraDiskSizeNode
 	}).(ExtraDiskSizeNodeOutput)
 }
 
+type InstanceCopySetting struct {
+	// Array of one or more settings to be copied. Allowed values: [alarms, config, definitions, firewall, logs, metrics, plugins]
+	//
+	// See more below, copy settings
+	Settings []string `pulumi:"settings"`
+	// Instance identifier of the CloudAMQP instance to copy the settings from.
+	SubscriptionId string `pulumi:"subscriptionId"`
+}
+
+// InstanceCopySettingInput is an input type that accepts InstanceCopySettingArgs and InstanceCopySettingOutput values.
+// You can construct a concrete instance of `InstanceCopySettingInput` via:
+//
+//	InstanceCopySettingArgs{...}
+type InstanceCopySettingInput interface {
+	pulumi.Input
+
+	ToInstanceCopySettingOutput() InstanceCopySettingOutput
+	ToInstanceCopySettingOutputWithContext(context.Context) InstanceCopySettingOutput
+}
+
+type InstanceCopySettingArgs struct {
+	// Array of one or more settings to be copied. Allowed values: [alarms, config, definitions, firewall, logs, metrics, plugins]
+	//
+	// See more below, copy settings
+	Settings pulumi.StringArrayInput `pulumi:"settings"`
+	// Instance identifier of the CloudAMQP instance to copy the settings from.
+	SubscriptionId pulumi.StringInput `pulumi:"subscriptionId"`
+}
+
+func (InstanceCopySettingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceCopySetting)(nil)).Elem()
+}
+
+func (i InstanceCopySettingArgs) ToInstanceCopySettingOutput() InstanceCopySettingOutput {
+	return i.ToInstanceCopySettingOutputWithContext(context.Background())
+}
+
+func (i InstanceCopySettingArgs) ToInstanceCopySettingOutputWithContext(ctx context.Context) InstanceCopySettingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceCopySettingOutput)
+}
+
+func (i InstanceCopySettingArgs) ToOutput(ctx context.Context) pulumix.Output[InstanceCopySetting] {
+	return pulumix.Output[InstanceCopySetting]{
+		OutputState: i.ToInstanceCopySettingOutputWithContext(ctx).OutputState,
+	}
+}
+
+// InstanceCopySettingArrayInput is an input type that accepts InstanceCopySettingArray and InstanceCopySettingArrayOutput values.
+// You can construct a concrete instance of `InstanceCopySettingArrayInput` via:
+//
+//	InstanceCopySettingArray{ InstanceCopySettingArgs{...} }
+type InstanceCopySettingArrayInput interface {
+	pulumi.Input
+
+	ToInstanceCopySettingArrayOutput() InstanceCopySettingArrayOutput
+	ToInstanceCopySettingArrayOutputWithContext(context.Context) InstanceCopySettingArrayOutput
+}
+
+type InstanceCopySettingArray []InstanceCopySettingInput
+
+func (InstanceCopySettingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceCopySetting)(nil)).Elem()
+}
+
+func (i InstanceCopySettingArray) ToInstanceCopySettingArrayOutput() InstanceCopySettingArrayOutput {
+	return i.ToInstanceCopySettingArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceCopySettingArray) ToInstanceCopySettingArrayOutputWithContext(ctx context.Context) InstanceCopySettingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceCopySettingArrayOutput)
+}
+
+func (i InstanceCopySettingArray) ToOutput(ctx context.Context) pulumix.Output[[]InstanceCopySetting] {
+	return pulumix.Output[[]InstanceCopySetting]{
+		OutputState: i.ToInstanceCopySettingArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type InstanceCopySettingOutput struct{ *pulumi.OutputState }
+
+func (InstanceCopySettingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceCopySetting)(nil)).Elem()
+}
+
+func (o InstanceCopySettingOutput) ToInstanceCopySettingOutput() InstanceCopySettingOutput {
+	return o
+}
+
+func (o InstanceCopySettingOutput) ToInstanceCopySettingOutputWithContext(ctx context.Context) InstanceCopySettingOutput {
+	return o
+}
+
+func (o InstanceCopySettingOutput) ToOutput(ctx context.Context) pulumix.Output[InstanceCopySetting] {
+	return pulumix.Output[InstanceCopySetting]{
+		OutputState: o.OutputState,
+	}
+}
+
+// Array of one or more settings to be copied. Allowed values: [alarms, config, definitions, firewall, logs, metrics, plugins]
+//
+// See more below, copy settings
+func (o InstanceCopySettingOutput) Settings() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v InstanceCopySetting) []string { return v.Settings }).(pulumi.StringArrayOutput)
+}
+
+// Instance identifier of the CloudAMQP instance to copy the settings from.
+func (o InstanceCopySettingOutput) SubscriptionId() pulumi.StringOutput {
+	return o.ApplyT(func(v InstanceCopySetting) string { return v.SubscriptionId }).(pulumi.StringOutput)
+}
+
+type InstanceCopySettingArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceCopySettingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceCopySetting)(nil)).Elem()
+}
+
+func (o InstanceCopySettingArrayOutput) ToInstanceCopySettingArrayOutput() InstanceCopySettingArrayOutput {
+	return o
+}
+
+func (o InstanceCopySettingArrayOutput) ToInstanceCopySettingArrayOutputWithContext(ctx context.Context) InstanceCopySettingArrayOutput {
+	return o
+}
+
+func (o InstanceCopySettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]InstanceCopySetting] {
+	return pulumix.Output[[]InstanceCopySetting]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o InstanceCopySettingArrayOutput) Index(i pulumi.IntInput) InstanceCopySettingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceCopySetting {
+		return vs[0].([]InstanceCopySetting)[vs[1].(int)]
+	}).(InstanceCopySettingOutput)
+}
+
 type SecurityFirewallRule struct {
 	// Description name of the rule. e.g. Default.
 	//
@@ -1083,6 +1219,8 @@ func (o GetPluginsPluginArrayOutput) Index(i pulumi.IntInput) GetPluginsPluginOu
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ExtraDiskSizeNodeInput)(nil)).Elem(), ExtraDiskSizeNodeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ExtraDiskSizeNodeArrayInput)(nil)).Elem(), ExtraDiskSizeNodeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceCopySettingInput)(nil)).Elem(), InstanceCopySettingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceCopySettingArrayInput)(nil)).Elem(), InstanceCopySettingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityFirewallRuleInput)(nil)).Elem(), SecurityFirewallRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityFirewallRuleArrayInput)(nil)).Elem(), SecurityFirewallRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountInstanceInput)(nil)).Elem(), GetAccountInstanceArgs{})
@@ -1097,6 +1235,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPluginsPluginArrayInput)(nil)).Elem(), GetPluginsPluginArray{})
 	pulumi.RegisterOutputType(ExtraDiskSizeNodeOutput{})
 	pulumi.RegisterOutputType(ExtraDiskSizeNodeArrayOutput{})
+	pulumi.RegisterOutputType(InstanceCopySettingOutput{})
+	pulumi.RegisterOutputType(InstanceCopySettingArrayOutput{})
 	pulumi.RegisterOutputType(SecurityFirewallRuleOutput{})
 	pulumi.RegisterOutputType(SecurityFirewallRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetAccountInstanceOutput{})

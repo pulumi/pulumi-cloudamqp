@@ -11,6 +11,7 @@ from . import _utilities
 
 __all__ = [
     'ExtraDiskSizeNodeArgs',
+    'InstanceCopySettingArgs',
     'SecurityFirewallRuleArgs',
 ]
 
@@ -53,6 +54,47 @@ class ExtraDiskSizeNodeArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class InstanceCopySettingArgs:
+    def __init__(__self__, *,
+                 settings: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 subscription_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] settings: Array of one or more settings to be copied. Allowed values: [alarms, config, definitions, firewall, logs, metrics, plugins]
+               
+               See more below, copy settings
+        :param pulumi.Input[str] subscription_id: Instance identifier of the CloudAMQP instance to copy the settings from.
+        """
+        pulumi.set(__self__, "settings", settings)
+        pulumi.set(__self__, "subscription_id", subscription_id)
+
+    @property
+    @pulumi.getter
+    def settings(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        Array of one or more settings to be copied. Allowed values: [alarms, config, definitions, firewall, logs, metrics, plugins]
+
+        See more below, copy settings
+        """
+        return pulumi.get(self, "settings")
+
+    @settings.setter
+    def settings(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "settings", value)
+
+    @property
+    @pulumi.getter(name="subscriptionId")
+    def subscription_id(self) -> pulumi.Input[str]:
+        """
+        Instance identifier of the CloudAMQP instance to copy the settings from.
+        """
+        return pulumi.get(self, "subscription_id")
+
+    @subscription_id.setter
+    def subscription_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "subscription_id", value)
 
 
 @pulumi.input_type

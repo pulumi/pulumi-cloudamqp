@@ -3,6 +3,7 @@
 
 package com.pulumi.cloudamqp;
 
+import com.pulumi.cloudamqp.inputs.InstanceCopySettingArgs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
@@ -17,6 +18,29 @@ import javax.annotation.Nullable;
 public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final InstanceArgs Empty = new InstanceArgs();
+
+    /**
+     * Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+     * 
+     * ***
+     * 
+     * The `copy_settings` block consists of:
+     * 
+     */
+    @Import(name="copySettings")
+    private @Nullable Output<List<InstanceCopySettingArgs>> copySettings;
+
+    /**
+     * @return Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+     * 
+     * ***
+     * 
+     * The `copy_settings` block consists of:
+     * 
+     */
+    public Optional<Output<List<InstanceCopySettingArgs>>> copySettings() {
+        return Optional.ofNullable(this.copySettings);
+    }
 
     /**
      * Keep associated VPC when deleting instance, default set to false.
@@ -98,7 +122,7 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The region to host the instance in. See Instance regions
+     * The region to host the instance in. See instance regions
      * 
      * ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
      * 
@@ -107,7 +131,7 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
     private Output<String> region;
 
     /**
-     * @return The region to host the instance in. See Instance regions
+     * @return The region to host the instance in. See instance regions
      * 
      * ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
      * 
@@ -191,6 +215,7 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
     private InstanceArgs() {}
 
     private InstanceArgs(InstanceArgs $) {
+        this.copySettings = $.copySettings;
         this.keepAssociatedVpc = $.keepAssociatedVpc;
         this.name = $.name;
         this.noDefaultAlarms = $.noDefaultAlarms;
@@ -219,6 +244,49 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder(InstanceArgs defaults) {
             $ = new InstanceArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param copySettings Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+         * 
+         * ***
+         * 
+         * The `copy_settings` block consists of:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder copySettings(@Nullable Output<List<InstanceCopySettingArgs>> copySettings) {
+            $.copySettings = copySettings;
+            return this;
+        }
+
+        /**
+         * @param copySettings Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+         * 
+         * ***
+         * 
+         * The `copy_settings` block consists of:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder copySettings(List<InstanceCopySettingArgs> copySettings) {
+            return copySettings(Output.of(copySettings));
+        }
+
+        /**
+         * @param copySettings Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+         * 
+         * ***
+         * 
+         * The `copy_settings` block consists of:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder copySettings(InstanceCopySettingArgs... copySettings) {
+            return copySettings(List.of(copySettings));
         }
 
         /**
@@ -331,7 +399,7 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param region The region to host the instance in. See Instance regions
+         * @param region The region to host the instance in. See instance regions
          * 
          * ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
          * 
@@ -344,7 +412,7 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param region The region to host the instance in. See Instance regions
+         * @param region The region to host the instance in. See instance regions
          * 
          * ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
          * 

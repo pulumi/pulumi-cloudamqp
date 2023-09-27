@@ -144,6 +144,10 @@ type VpcGcpPeering struct {
 	//
 	// ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
 	VpcId pulumi.StringPtrOutput `pulumi:"vpcId"`
+	// Makes the resource wait until the peering is connected.
+	//
+	// ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+	WaitOnPeeringStatus pulumi.BoolPtrOutput `pulumi:"waitOnPeeringStatus"`
 }
 
 // NewVpcGcpPeering registers a new resource with the given unique name, arguments, and options.
@@ -195,6 +199,10 @@ type vpcGcpPeeringState struct {
 	//
 	// ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
 	VpcId *string `pulumi:"vpcId"`
+	// Makes the resource wait until the peering is connected.
+	//
+	// ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+	WaitOnPeeringStatus *bool `pulumi:"waitOnPeeringStatus"`
 }
 
 type VpcGcpPeeringState struct {
@@ -214,6 +222,10 @@ type VpcGcpPeeringState struct {
 	//
 	// ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
 	VpcId pulumi.StringPtrInput
+	// Makes the resource wait until the peering is connected.
+	//
+	// ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+	WaitOnPeeringStatus pulumi.BoolPtrInput
 }
 
 func (VpcGcpPeeringState) ElementType() reflect.Type {
@@ -231,6 +243,10 @@ type vpcGcpPeeringArgs struct {
 	//
 	// ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
 	VpcId *string `pulumi:"vpcId"`
+	// Makes the resource wait until the peering is connected.
+	//
+	// ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+	WaitOnPeeringStatus *bool `pulumi:"waitOnPeeringStatus"`
 }
 
 // The set of arguments for constructing a VpcGcpPeering resource.
@@ -245,6 +261,10 @@ type VpcGcpPeeringArgs struct {
 	//
 	// ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
 	VpcId pulumi.StringPtrInput
+	// Makes the resource wait until the peering is connected.
+	//
+	// ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+	WaitOnPeeringStatus pulumi.BoolPtrInput
 }
 
 func (VpcGcpPeeringArgs) ElementType() reflect.Type {
@@ -390,6 +410,13 @@ func (o VpcGcpPeeringOutput) StateDetails() pulumi.StringOutput {
 // ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
 func (o VpcGcpPeeringOutput) VpcId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpcGcpPeering) pulumi.StringPtrOutput { return v.VpcId }).(pulumi.StringPtrOutput)
+}
+
+// Makes the resource wait until the peering is connected.
+//
+// ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+func (o VpcGcpPeeringOutput) WaitOnPeeringStatus() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *VpcGcpPeering) pulumi.BoolPtrOutput { return v.WaitOnPeeringStatus }).(pulumi.BoolPtrOutput)
 }
 
 type VpcGcpPeeringArrayOutput struct{ *pulumi.OutputState }
