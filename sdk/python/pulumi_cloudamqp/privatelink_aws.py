@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['PrivatelinkAwsArgs', 'PrivatelinkAws']
@@ -30,12 +30,27 @@ class PrivatelinkAwsArgs:
                `arn:aws:iam::aws-account-id:user/user-name` <br>
                `arn:aws:iam::aws-account-id:role/role-name`
         """
-        pulumi.set(__self__, "allowed_principals", allowed_principals)
-        pulumi.set(__self__, "instance_id", instance_id)
+        PrivatelinkAwsArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            allowed_principals=allowed_principals,
+            instance_id=instance_id,
+            sleep=sleep,
+            timeout=timeout,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             allowed_principals: pulumi.Input[Sequence[pulumi.Input[str]]],
+             instance_id: pulumi.Input[int],
+             sleep: Optional[pulumi.Input[int]] = None,
+             timeout: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("allowed_principals", allowed_principals)
+        _setter("instance_id", instance_id)
         if sleep is not None:
-            pulumi.set(__self__, "sleep", sleep)
+            _setter("sleep", sleep)
         if timeout is not None:
-            pulumi.set(__self__, "timeout", timeout)
+            _setter("timeout", timeout)
 
     @property
     @pulumi.getter(name="allowedPrincipals")
@@ -116,20 +131,41 @@ class _PrivatelinkAwsState:
                `arn:aws:iam::aws-account-id:user/user-name` <br>
                `arn:aws:iam::aws-account-id:role/role-name`
         """
+        _PrivatelinkAwsState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            active_zones=active_zones,
+            allowed_principals=allowed_principals,
+            instance_id=instance_id,
+            service_name=service_name,
+            sleep=sleep,
+            status=status,
+            timeout=timeout,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             active_zones: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             allowed_principals: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             instance_id: Optional[pulumi.Input[int]] = None,
+             service_name: Optional[pulumi.Input[str]] = None,
+             sleep: Optional[pulumi.Input[int]] = None,
+             status: Optional[pulumi.Input[str]] = None,
+             timeout: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if active_zones is not None:
-            pulumi.set(__self__, "active_zones", active_zones)
+            _setter("active_zones", active_zones)
         if allowed_principals is not None:
-            pulumi.set(__self__, "allowed_principals", allowed_principals)
+            _setter("allowed_principals", allowed_principals)
         if instance_id is not None:
-            pulumi.set(__self__, "instance_id", instance_id)
+            _setter("instance_id", instance_id)
         if service_name is not None:
-            pulumi.set(__self__, "service_name", service_name)
+            _setter("service_name", service_name)
         if sleep is not None:
-            pulumi.set(__self__, "sleep", sleep)
+            _setter("sleep", sleep)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
         if timeout is not None:
-            pulumi.set(__self__, "timeout", timeout)
+            _setter("timeout", timeout)
 
     @property
     @pulumi.getter(name="activeZones")
@@ -531,6 +567,10 @@ class PrivatelinkAws(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            PrivatelinkAwsArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

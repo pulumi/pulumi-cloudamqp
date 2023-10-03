@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['VpcArgs', 'Vpc']
@@ -25,12 +25,27 @@ class VpcArgs:
         :param pulumi.Input[str] name: The name of the VPC.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Tag the VPC with optional tags
         """
-        pulumi.set(__self__, "region", region)
-        pulumi.set(__self__, "subnet", subnet)
+        VpcArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            region=region,
+            subnet=subnet,
+            name=name,
+            tags=tags,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             region: pulumi.Input[str],
+             subnet: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("region", region)
+        _setter("subnet", subnet)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
 
     @property
     @pulumi.getter
@@ -97,16 +112,33 @@ class _VpcState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Tag the VPC with optional tags
         :param pulumi.Input[str] vpc_name: VPC name given when hosted at the cloud provider
         """
+        _VpcState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            region=region,
+            subnet=subnet,
+            tags=tags,
+            vpc_name=vpc_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             subnet: Optional[pulumi.Input[str]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             vpc_name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if subnet is not None:
-            pulumi.set(__self__, "subnet", subnet)
+            _setter("subnet", subnet)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
         if vpc_name is not None:
-            pulumi.set(__self__, "vpc_name", vpc_name)
+            _setter("vpc_name", vpc_name)
 
     @property
     @pulumi.getter
@@ -286,6 +318,10 @@ class Vpc(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            VpcArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

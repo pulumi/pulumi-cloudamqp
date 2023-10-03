@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['CustomDomainArgs', 'CustomDomain']
@@ -21,8 +21,19 @@ class CustomDomainArgs:
         :param pulumi.Input[str] hostname: Your custom domain name.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         """
-        pulumi.set(__self__, "hostname", hostname)
-        pulumi.set(__self__, "instance_id", instance_id)
+        CustomDomainArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            hostname=hostname,
+            instance_id=instance_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             hostname: pulumi.Input[str],
+             instance_id: pulumi.Input[int],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("hostname", hostname)
+        _setter("instance_id", instance_id)
 
     @property
     @pulumi.getter
@@ -59,10 +70,21 @@ class _CustomDomainState:
         :param pulumi.Input[str] hostname: Your custom domain name.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         """
+        _CustomDomainState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            hostname=hostname,
+            instance_id=instance_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             hostname: Optional[pulumi.Input[str]] = None,
+             instance_id: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if hostname is not None:
-            pulumi.set(__self__, "hostname", hostname)
+            _setter("hostname", hostname)
         if instance_id is not None:
-            pulumi.set(__self__, "instance_id", instance_id)
+            _setter("instance_id", instance_id)
 
     @property
     @pulumi.getter
@@ -188,6 +210,10 @@ class CustomDomain(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            CustomDomainArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

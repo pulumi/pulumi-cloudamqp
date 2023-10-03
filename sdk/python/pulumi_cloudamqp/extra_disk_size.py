@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -31,14 +31,31 @@ class ExtraDiskSizeArgs:
                
                ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
         """
-        pulumi.set(__self__, "extra_disk_size", extra_disk_size)
-        pulumi.set(__self__, "instance_id", instance_id)
+        ExtraDiskSizeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            extra_disk_size=extra_disk_size,
+            instance_id=instance_id,
+            allow_downtime=allow_downtime,
+            sleep=sleep,
+            timeout=timeout,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             extra_disk_size: pulumi.Input[int],
+             instance_id: pulumi.Input[int],
+             allow_downtime: Optional[pulumi.Input[bool]] = None,
+             sleep: Optional[pulumi.Input[int]] = None,
+             timeout: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("extra_disk_size", extra_disk_size)
+        _setter("instance_id", instance_id)
         if allow_downtime is not None:
-            pulumi.set(__self__, "allow_downtime", allow_downtime)
+            _setter("allow_downtime", allow_downtime)
         if sleep is not None:
-            pulumi.set(__self__, "sleep", sleep)
+            _setter("sleep", sleep)
         if timeout is not None:
-            pulumi.set(__self__, "timeout", timeout)
+            _setter("timeout", timeout)
 
     @property
     @pulumi.getter(name="extraDiskSize")
@@ -122,18 +139,37 @@ class _ExtraDiskSizeState:
                
                ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
         """
+        _ExtraDiskSizeState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            allow_downtime=allow_downtime,
+            extra_disk_size=extra_disk_size,
+            instance_id=instance_id,
+            nodes=nodes,
+            sleep=sleep,
+            timeout=timeout,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             allow_downtime: Optional[pulumi.Input[bool]] = None,
+             extra_disk_size: Optional[pulumi.Input[int]] = None,
+             instance_id: Optional[pulumi.Input[int]] = None,
+             nodes: Optional[pulumi.Input[Sequence[pulumi.Input['ExtraDiskSizeNodeArgs']]]] = None,
+             sleep: Optional[pulumi.Input[int]] = None,
+             timeout: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if allow_downtime is not None:
-            pulumi.set(__self__, "allow_downtime", allow_downtime)
+            _setter("allow_downtime", allow_downtime)
         if extra_disk_size is not None:
-            pulumi.set(__self__, "extra_disk_size", extra_disk_size)
+            _setter("extra_disk_size", extra_disk_size)
         if instance_id is not None:
-            pulumi.set(__self__, "instance_id", instance_id)
+            _setter("instance_id", instance_id)
         if nodes is not None:
-            pulumi.set(__self__, "nodes", nodes)
+            _setter("nodes", nodes)
         if sleep is not None:
-            pulumi.set(__self__, "sleep", sleep)
+            _setter("sleep", sleep)
         if timeout is not None:
-            pulumi.set(__self__, "timeout", timeout)
+            _setter("timeout", timeout)
 
     @property
     @pulumi.getter(name="allowDowntime")
@@ -538,6 +574,10 @@ class ExtraDiskSize(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ExtraDiskSizeArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

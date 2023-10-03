@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 
@@ -14,6 +14,7 @@ __all__ = [
     'GetAccountResult',
     'AwaitableGetAccountResult',
     'get_account',
+    'get_account_output',
 ]
 
 @pulumi.output_type
@@ -97,3 +98,44 @@ def get_account(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAcco
     return AwaitableGetAccountResult(
         id=pulumi.get(__ret__, 'id'),
         instances=pulumi.get(__ret__, 'instances'))
+
+
+@_utilities.lift_output_func(get_account)
+def get_account_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccountResult]:
+    """
+    Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
+
+    ## Example Usage
+
+    Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    instance_name = "<instance_name>"
+    instance_list = cloudamqp.get_account()
+    pulumi.export("instanceId", <nil>)
+    ```
+    ## Attributes reference
+
+    All attributes reference are computed
+
+    * `id`          - The identifier for this data source. Set to `na` since there is no unique identifier.
+    * `instances`   - An array of instances. Each `instances` block consists of the fields documented below.
+
+    ***
+
+    The `instances` block consist of
+
+    * `id`      - The instance identifier.
+    * `name`    - The name of the instance.
+    * `plan`    - The subscription plan used for the instance.
+    * `region`  - The region were the instanece is located in.
+    * `tags`    - Optional tags set for the instance.
+
+    ## Dependency
+
+    This data source depends on apikey set in the provider configuration.
+    """
+    ...

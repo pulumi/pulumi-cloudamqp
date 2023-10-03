@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['PrivatelinkAzureArgs', 'PrivatelinkAzure']
@@ -28,12 +28,27 @@ class PrivatelinkAzureArgs:
                Approved subscriptions format: <br>
                `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
         """
-        pulumi.set(__self__, "approved_subscriptions", approved_subscriptions)
-        pulumi.set(__self__, "instance_id", instance_id)
+        PrivatelinkAzureArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            approved_subscriptions=approved_subscriptions,
+            instance_id=instance_id,
+            sleep=sleep,
+            timeout=timeout,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             approved_subscriptions: pulumi.Input[Sequence[pulumi.Input[str]]],
+             instance_id: pulumi.Input[int],
+             sleep: Optional[pulumi.Input[int]] = None,
+             timeout: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("approved_subscriptions", approved_subscriptions)
+        _setter("instance_id", instance_id)
         if sleep is not None:
-            pulumi.set(__self__, "sleep", sleep)
+            _setter("sleep", sleep)
         if timeout is not None:
-            pulumi.set(__self__, "timeout", timeout)
+            _setter("timeout", timeout)
 
     @property
     @pulumi.getter(name="approvedSubscriptions")
@@ -110,20 +125,41 @@ class _PrivatelinkAzureState:
                Approved subscriptions format: <br>
                `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
         """
+        _PrivatelinkAzureState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            approved_subscriptions=approved_subscriptions,
+            instance_id=instance_id,
+            server_name=server_name,
+            service_name=service_name,
+            sleep=sleep,
+            status=status,
+            timeout=timeout,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             approved_subscriptions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             instance_id: Optional[pulumi.Input[int]] = None,
+             server_name: Optional[pulumi.Input[str]] = None,
+             service_name: Optional[pulumi.Input[str]] = None,
+             sleep: Optional[pulumi.Input[int]] = None,
+             status: Optional[pulumi.Input[str]] = None,
+             timeout: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if approved_subscriptions is not None:
-            pulumi.set(__self__, "approved_subscriptions", approved_subscriptions)
+            _setter("approved_subscriptions", approved_subscriptions)
         if instance_id is not None:
-            pulumi.set(__self__, "instance_id", instance_id)
+            _setter("instance_id", instance_id)
         if server_name is not None:
-            pulumi.set(__self__, "server_name", server_name)
+            _setter("server_name", server_name)
         if service_name is not None:
-            pulumi.set(__self__, "service_name", service_name)
+            _setter("service_name", service_name)
         if sleep is not None:
-            pulumi.set(__self__, "sleep", sleep)
+            _setter("sleep", sleep)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
         if timeout is not None:
-            pulumi.set(__self__, "timeout", timeout)
+            _setter("timeout", timeout)
 
     @property
     @pulumi.getter(name="approvedSubscriptions")
@@ -521,6 +557,10 @@ class PrivatelinkAzure(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            PrivatelinkAzureArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
