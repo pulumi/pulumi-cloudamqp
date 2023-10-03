@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['VpcGcpPeeringArgs', 'VpcGcpPeering']
@@ -31,13 +31,28 @@ class VpcGcpPeeringArgs:
                
                ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
         """
-        pulumi.set(__self__, "peer_network_uri", peer_network_uri)
+        VpcGcpPeeringArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            peer_network_uri=peer_network_uri,
+            instance_id=instance_id,
+            vpc_id=vpc_id,
+            wait_on_peering_status=wait_on_peering_status,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             peer_network_uri: pulumi.Input[str],
+             instance_id: Optional[pulumi.Input[int]] = None,
+             vpc_id: Optional[pulumi.Input[str]] = None,
+             wait_on_peering_status: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("peer_network_uri", peer_network_uri)
         if instance_id is not None:
-            pulumi.set(__self__, "instance_id", instance_id)
+            _setter("instance_id", instance_id)
         if vpc_id is not None:
-            pulumi.set(__self__, "vpc_id", vpc_id)
+            _setter("vpc_id", vpc_id)
         if wait_on_peering_status is not None:
-            pulumi.set(__self__, "wait_on_peering_status", wait_on_peering_status)
+            _setter("wait_on_peering_status", wait_on_peering_status)
 
     @property
     @pulumi.getter(name="peerNetworkUri")
@@ -120,20 +135,41 @@ class _VpcGcpPeeringState:
                
                ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
         """
+        _VpcGcpPeeringState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            auto_create_routes=auto_create_routes,
+            instance_id=instance_id,
+            peer_network_uri=peer_network_uri,
+            state=state,
+            state_details=state_details,
+            vpc_id=vpc_id,
+            wait_on_peering_status=wait_on_peering_status,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             auto_create_routes: Optional[pulumi.Input[bool]] = None,
+             instance_id: Optional[pulumi.Input[int]] = None,
+             peer_network_uri: Optional[pulumi.Input[str]] = None,
+             state: Optional[pulumi.Input[str]] = None,
+             state_details: Optional[pulumi.Input[str]] = None,
+             vpc_id: Optional[pulumi.Input[str]] = None,
+             wait_on_peering_status: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if auto_create_routes is not None:
-            pulumi.set(__self__, "auto_create_routes", auto_create_routes)
+            _setter("auto_create_routes", auto_create_routes)
         if instance_id is not None:
-            pulumi.set(__self__, "instance_id", instance_id)
+            _setter("instance_id", instance_id)
         if peer_network_uri is not None:
-            pulumi.set(__self__, "peer_network_uri", peer_network_uri)
+            _setter("peer_network_uri", peer_network_uri)
         if state is not None:
-            pulumi.set(__self__, "state", state)
+            _setter("state", state)
         if state_details is not None:
-            pulumi.set(__self__, "state_details", state_details)
+            _setter("state_details", state_details)
         if vpc_id is not None:
-            pulumi.set(__self__, "vpc_id", vpc_id)
+            _setter("vpc_id", vpc_id)
         if wait_on_peering_status is not None:
-            pulumi.set(__self__, "wait_on_peering_status", wait_on_peering_status)
+            _setter("wait_on_peering_status", wait_on_peering_status)
 
     @property
     @pulumi.getter(name="autoCreateRoutes")
@@ -521,6 +557,10 @@ class VpcGcpPeering(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            VpcGcpPeeringArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

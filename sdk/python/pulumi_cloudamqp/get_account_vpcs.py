@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 
@@ -14,6 +14,7 @@ __all__ = [
     'GetAccountVpcsResult',
     'AwaitableGetAccountVpcsResult',
     'get_account_vpcs',
+    'get_account_vpcs_output',
 ]
 
 @pulumi.output_type
@@ -98,3 +99,45 @@ def get_account_vpcs(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGe
     return AwaitableGetAccountVpcsResult(
         id=pulumi.get(__ret__, 'id'),
         vpcs=pulumi.get(__ret__, 'vpcs'))
+
+
+@_utilities.lift_output_func(get_account_vpcs)
+def get_account_vpcs_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccountVpcsResult]:
+    """
+    Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
+
+    ## Example Usage
+
+    Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    my_vpc_name = "<your VPC name>"
+    vpc_list = cloudamqp.get_account_vpcs()
+    pulumi.export("vpcId", [vpc for vpc in vpc_list.vpcs if vpc.name == my_vpc_name][0].id)
+    ```
+    ## Attributes reference
+
+    All attributes reference are computed
+
+    * `id`      - The identifier for this data source. Set to `na` since there is no unique identifier.
+    * `vpcs`    - An array of VPCs. Each `vpcs` block consists of the fields documented below.
+
+    ***
+
+    The `vpcs` block consist of
+
+    * `id`          - The VPC identifier.
+    * `name`        - The VPC instance name.
+    * `region`      - The region the VPC is hosted in.
+    * `subnet`      - The VPC subnet.
+    * `tags`        - Optional tags set for the VPC.
+    * `vpc_name`    - VPC name given when hosted at the cloud provider.
+
+    ## Dependency
+
+    This data source depends on apikey set in the provider configuration.
+    """
+    ...

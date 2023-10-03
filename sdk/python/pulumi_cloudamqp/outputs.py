@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -45,12 +45,25 @@ class ExtraDiskSizeNode(dict):
                  additional_disk_size: Optional[int] = None,
                  disk_size: Optional[int] = None,
                  name: Optional[str] = None):
+        ExtraDiskSizeNode._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            additional_disk_size=additional_disk_size,
+            disk_size=disk_size,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             additional_disk_size: Optional[int] = None,
+             disk_size: Optional[int] = None,
+             name: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if additional_disk_size is not None:
-            pulumi.set(__self__, "additional_disk_size", additional_disk_size)
+            _setter("additional_disk_size", additional_disk_size)
         if disk_size is not None:
-            pulumi.set(__self__, "disk_size", disk_size)
+            _setter("disk_size", disk_size)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="additionalDiskSize")
@@ -96,8 +109,19 @@ class InstanceCopySetting(dict):
                See more below, copy settings
         :param str subscription_id: Instance identifier of the CloudAMQP instance to copy the settings from.
         """
-        pulumi.set(__self__, "settings", settings)
-        pulumi.set(__self__, "subscription_id", subscription_id)
+        InstanceCopySetting._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            settings=settings,
+            subscription_id=subscription_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             settings: Sequence[str],
+             subscription_id: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("settings", settings)
+        _setter("subscription_id", subscription_id)
 
     @property
     @pulumi.getter
@@ -153,13 +177,28 @@ class SecurityFirewallRule(dict):
         :param Sequence[int] ports: Custom ports to be opened
         :param Sequence[str] services: Pre-defined service ports, see table below
         """
-        pulumi.set(__self__, "ip", ip)
+        SecurityFirewallRule._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            ip=ip,
+            description=description,
+            ports=ports,
+            services=services,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             ip: str,
+             description: Optional[str] = None,
+             ports: Optional[Sequence[int]] = None,
+             services: Optional[Sequence[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("ip", ip)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if ports is not None:
-            pulumi.set(__self__, "ports", ports)
+            _setter("ports", ports)
         if services is not None:
-            pulumi.set(__self__, "services", services)
+            _setter("services", services)
 
     @property
     @pulumi.getter
@@ -224,12 +263,29 @@ class GetAccountInstanceResult(dict):
                  plan: str,
                  region: str,
                  tags: Optional[Sequence[str]] = None):
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "plan", plan)
-        pulumi.set(__self__, "region", region)
+        GetAccountInstanceResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            name=name,
+            plan=plan,
+            region=region,
+            tags=tags,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             id: int,
+             name: str,
+             plan: str,
+             region: str,
+             tags: Optional[Sequence[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("id", id)
+        _setter("name", name)
+        _setter("plan", plan)
+        _setter("region", region)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
 
     @property
     @pulumi.getter
@@ -266,13 +322,32 @@ class GetAccountVpcsVpcResult(dict):
                  subnet: str,
                  vpc_name: str,
                  tags: Optional[Sequence[str]] = None):
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "region", region)
-        pulumi.set(__self__, "subnet", subnet)
-        pulumi.set(__self__, "vpc_name", vpc_name)
+        GetAccountVpcsVpcResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            name=name,
+            region=region,
+            subnet=subnet,
+            vpc_name=vpc_name,
+            tags=tags,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             id: int,
+             name: str,
+             region: str,
+             subnet: str,
+             vpc_name: str,
+             tags: Optional[Sequence[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("id", id)
+        _setter("name", name)
+        _setter("region", region)
+        _setter("subnet", subnet)
+        _setter("vpc_name", vpc_name)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
 
     @property
     @pulumi.getter
@@ -317,15 +392,40 @@ class GetNodesNodeResult(dict):
                  name: str,
                  rabbitmq_version: str,
                  running: bool):
-        pulumi.set(__self__, "additional_disk_size", additional_disk_size)
-        pulumi.set(__self__, "configured", configured)
-        pulumi.set(__self__, "disk_size", disk_size)
-        pulumi.set(__self__, "erlang_version", erlang_version)
-        pulumi.set(__self__, "hipe", hipe)
-        pulumi.set(__self__, "hostname", hostname)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "rabbitmq_version", rabbitmq_version)
-        pulumi.set(__self__, "running", running)
+        GetNodesNodeResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            additional_disk_size=additional_disk_size,
+            configured=configured,
+            disk_size=disk_size,
+            erlang_version=erlang_version,
+            hipe=hipe,
+            hostname=hostname,
+            name=name,
+            rabbitmq_version=rabbitmq_version,
+            running=running,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             additional_disk_size: int,
+             configured: bool,
+             disk_size: int,
+             erlang_version: str,
+             hipe: bool,
+             hostname: str,
+             name: str,
+             rabbitmq_version: str,
+             running: bool,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("additional_disk_size", additional_disk_size)
+        _setter("configured", configured)
+        _setter("disk_size", disk_size)
+        _setter("erlang_version", erlang_version)
+        _setter("hipe", hipe)
+        _setter("hostname", hostname)
+        _setter("name", name)
+        _setter("rabbitmq_version", rabbitmq_version)
+        _setter("running", running)
 
     @property
     @pulumi.getter(name="additionalDiskSize")
@@ -379,9 +479,22 @@ class GetPluginsCommunityPluginResult(dict):
                  description: str,
                  name: str,
                  require: str):
-        pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "require", require)
+        GetPluginsCommunityPluginResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            description=description,
+            name=name,
+            require=require,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             description: str,
+             name: str,
+             require: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("description", description)
+        _setter("name", name)
+        _setter("require", require)
 
     @property
     @pulumi.getter
@@ -406,10 +519,25 @@ class GetPluginsPluginResult(dict):
                  enabled: bool,
                  name: str,
                  version: str):
-        pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "version", version)
+        GetPluginsPluginResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            description=description,
+            enabled=enabled,
+            name=name,
+            version=version,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             description: str,
+             enabled: bool,
+             name: str,
+             version: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("description", description)
+        _setter("enabled", enabled)
+        _setter("name", name)
+        _setter("version", version)
 
     @property
     @pulumi.getter

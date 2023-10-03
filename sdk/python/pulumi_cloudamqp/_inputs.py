@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -21,12 +21,25 @@ class ExtraDiskSizeNodeArgs:
                  additional_disk_size: Optional[pulumi.Input[int]] = None,
                  disk_size: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None):
+        ExtraDiskSizeNodeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            additional_disk_size=additional_disk_size,
+            disk_size=disk_size,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             additional_disk_size: Optional[pulumi.Input[int]] = None,
+             disk_size: Optional[pulumi.Input[int]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if additional_disk_size is not None:
-            pulumi.set(__self__, "additional_disk_size", additional_disk_size)
+            _setter("additional_disk_size", additional_disk_size)
         if disk_size is not None:
-            pulumi.set(__self__, "disk_size", disk_size)
+            _setter("disk_size", disk_size)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="additionalDiskSize")
@@ -67,8 +80,19 @@ class InstanceCopySettingArgs:
                See more below, copy settings
         :param pulumi.Input[str] subscription_id: Instance identifier of the CloudAMQP instance to copy the settings from.
         """
-        pulumi.set(__self__, "settings", settings)
-        pulumi.set(__self__, "subscription_id", subscription_id)
+        InstanceCopySettingArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            settings=settings,
+            subscription_id=subscription_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             settings: pulumi.Input[Sequence[pulumi.Input[str]]],
+             subscription_id: pulumi.Input[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("settings", settings)
+        _setter("subscription_id", subscription_id)
 
     @property
     @pulumi.getter
@@ -132,13 +156,28 @@ class SecurityFirewallRuleArgs:
         :param pulumi.Input[Sequence[pulumi.Input[int]]] ports: Custom ports to be opened
         :param pulumi.Input[Sequence[pulumi.Input[str]]] services: Pre-defined service ports, see table below
         """
-        pulumi.set(__self__, "ip", ip)
+        SecurityFirewallRuleArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            ip=ip,
+            description=description,
+            ports=ports,
+            services=services,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             ip: pulumi.Input[str],
+             description: Optional[pulumi.Input[str]] = None,
+             ports: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
+             services: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("ip", ip)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if ports is not None:
-            pulumi.set(__self__, "ports", ports)
+            _setter("ports", ports)
         if services is not None:
-            pulumi.set(__self__, "services", services)
+            _setter("services", services)
 
     @property
     @pulumi.getter

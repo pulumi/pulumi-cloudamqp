@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['AlarmArgs', 'Alarm']
@@ -43,24 +43,53 @@ class AlarmArgs:
         :param pulumi.Input[int] value_threshold: The value to trigger the alarm for.
         :param pulumi.Input[str] vhost_regex: Regex for which vhost to check
         """
-        pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "instance_id", instance_id)
-        pulumi.set(__self__, "recipients", recipients)
-        pulumi.set(__self__, "type", type)
+        AlarmArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            enabled=enabled,
+            instance_id=instance_id,
+            recipients=recipients,
+            type=type,
+            message_type=message_type,
+            queue_regex=queue_regex,
+            reminder_interval=reminder_interval,
+            time_threshold=time_threshold,
+            value_calculation=value_calculation,
+            value_threshold=value_threshold,
+            vhost_regex=vhost_regex,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             enabled: pulumi.Input[bool],
+             instance_id: pulumi.Input[int],
+             recipients: pulumi.Input[Sequence[pulumi.Input[int]]],
+             type: pulumi.Input[str],
+             message_type: Optional[pulumi.Input[str]] = None,
+             queue_regex: Optional[pulumi.Input[str]] = None,
+             reminder_interval: Optional[pulumi.Input[int]] = None,
+             time_threshold: Optional[pulumi.Input[int]] = None,
+             value_calculation: Optional[pulumi.Input[str]] = None,
+             value_threshold: Optional[pulumi.Input[int]] = None,
+             vhost_regex: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("enabled", enabled)
+        _setter("instance_id", instance_id)
+        _setter("recipients", recipients)
+        _setter("type", type)
         if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
+            _setter("message_type", message_type)
         if queue_regex is not None:
-            pulumi.set(__self__, "queue_regex", queue_regex)
+            _setter("queue_regex", queue_regex)
         if reminder_interval is not None:
-            pulumi.set(__self__, "reminder_interval", reminder_interval)
+            _setter("reminder_interval", reminder_interval)
         if time_threshold is not None:
-            pulumi.set(__self__, "time_threshold", time_threshold)
+            _setter("time_threshold", time_threshold)
         if value_calculation is not None:
-            pulumi.set(__self__, "value_calculation", value_calculation)
+            _setter("value_calculation", value_calculation)
         if value_threshold is not None:
-            pulumi.set(__self__, "value_threshold", value_threshold)
+            _setter("value_threshold", value_threshold)
         if vhost_regex is not None:
-            pulumi.set(__self__, "vhost_regex", vhost_regex)
+            _setter("vhost_regex", vhost_regex)
 
     @property
     @pulumi.getter
@@ -231,28 +260,57 @@ class _AlarmState:
         :param pulumi.Input[int] value_threshold: The value to trigger the alarm for.
         :param pulumi.Input[str] vhost_regex: Regex for which vhost to check
         """
+        _AlarmState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            enabled=enabled,
+            instance_id=instance_id,
+            message_type=message_type,
+            queue_regex=queue_regex,
+            recipients=recipients,
+            reminder_interval=reminder_interval,
+            time_threshold=time_threshold,
+            type=type,
+            value_calculation=value_calculation,
+            value_threshold=value_threshold,
+            vhost_regex=vhost_regex,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             enabled: Optional[pulumi.Input[bool]] = None,
+             instance_id: Optional[pulumi.Input[int]] = None,
+             message_type: Optional[pulumi.Input[str]] = None,
+             queue_regex: Optional[pulumi.Input[str]] = None,
+             recipients: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
+             reminder_interval: Optional[pulumi.Input[int]] = None,
+             time_threshold: Optional[pulumi.Input[int]] = None,
+             type: Optional[pulumi.Input[str]] = None,
+             value_calculation: Optional[pulumi.Input[str]] = None,
+             value_threshold: Optional[pulumi.Input[int]] = None,
+             vhost_regex: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if instance_id is not None:
-            pulumi.set(__self__, "instance_id", instance_id)
+            _setter("instance_id", instance_id)
         if message_type is not None:
-            pulumi.set(__self__, "message_type", message_type)
+            _setter("message_type", message_type)
         if queue_regex is not None:
-            pulumi.set(__self__, "queue_regex", queue_regex)
+            _setter("queue_regex", queue_regex)
         if recipients is not None:
-            pulumi.set(__self__, "recipients", recipients)
+            _setter("recipients", recipients)
         if reminder_interval is not None:
-            pulumi.set(__self__, "reminder_interval", reminder_interval)
+            _setter("reminder_interval", reminder_interval)
         if time_threshold is not None:
-            pulumi.set(__self__, "time_threshold", time_threshold)
+            _setter("time_threshold", time_threshold)
         if type is not None:
-            pulumi.set(__self__, "type", type)
+            _setter("type", type)
         if value_calculation is not None:
-            pulumi.set(__self__, "value_calculation", value_calculation)
+            _setter("value_calculation", value_calculation)
         if value_threshold is not None:
-            pulumi.set(__self__, "value_threshold", value_threshold)
+            _setter("value_threshold", value_threshold)
         if vhost_regex is not None:
-            pulumi.set(__self__, "vhost_regex", vhost_regex)
+            _setter("vhost_regex", vhost_regex)
 
     @property
     @pulumi.getter
@@ -584,6 +642,10 @@ class Alarm(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            AlarmArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
