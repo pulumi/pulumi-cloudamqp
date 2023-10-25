@@ -95,6 +95,37 @@ def get_vpc_gcp_info(instance_id: Optional[int] = None,
     """
     Use this data source to retrieve information about VPC for a CloudAMQP instance hosted in GCP.
 
+    ## Example Usage
+
+    <details>
+      <summary>
+        <b>
+          <i>AWS VPC peering pre v1.16.0</i>
+        </b>
+      </summary>
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    vpc_info = cloudamqp.get_vpc_gcp_info(instance_id=cloudamqp_instance["instance"]["id"])
+    ```
+    </details>
+
+    <details>
+      <summary>
+        <b>
+          <i>AWS VPC peering post v1.16.0 (Managed VPC)</i>
+        </b>
+      </summary>
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    vpc_info = cloudamqp.get_vpc_gcp_info(vpc_id=cloudamqp_vpc["vpc"]["id"])
+    ```
+    </details>
     ## Attributes reference
 
     All attributes reference are computed
@@ -142,6 +173,37 @@ def get_vpc_gcp_info_output(instance_id: Optional[pulumi.Input[Optional[int]]] =
     """
     Use this data source to retrieve information about VPC for a CloudAMQP instance hosted in GCP.
 
+    ## Example Usage
+
+    <details>
+      <summary>
+        <b>
+          <i>AWS VPC peering pre v1.16.0</i>
+        </b>
+      </summary>
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    vpc_info = cloudamqp.get_vpc_gcp_info(instance_id=cloudamqp_instance["instance"]["id"])
+    ```
+    </details>
+
+    <details>
+      <summary>
+        <b>
+          <i>AWS VPC peering post v1.16.0 (Managed VPC)</i>
+        </b>
+      </summary>
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    vpc_info = cloudamqp.get_vpc_gcp_info(vpc_id=cloudamqp_vpc["vpc"]["id"])
+    ```
+    </details>
     ## Attributes reference
 
     All attributes reference are computed

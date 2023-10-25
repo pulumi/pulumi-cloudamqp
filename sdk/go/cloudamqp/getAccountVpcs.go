@@ -14,6 +14,33 @@ import (
 
 // Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
 //
+// ## Example Usage
+//
+// Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myVpcName := "<your VPC name>"
+//			vpcList, err := cloudamqp.GetAccountVpcs(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("vpcId", "TODO: For expression"[0].Id)
+//			return nil
+//		})
+//	}
+//
+// ```
 // ## Attributes reference
 //
 // # All attributes reference are computed

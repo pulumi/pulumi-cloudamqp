@@ -248,6 +248,32 @@ class Notification(pulumi.CustomResource):
 
         Available for all subscription plans.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # New recipient to receieve notifications
+        email_recipient = cloudamqp.Notification("emailRecipient",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            type="email",
+            value="alarm@example.com")
+        victorops_recipient = cloudamqp.Notification("victoropsRecipient",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            type="victorops",
+            value="<UUID>",
+            options={
+                "rk": "ROUTINGKEY",
+            })
+        pagerduty_recipient = cloudamqp.Notification("pagerdutyRecipient",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            type="pagerduty",
+            value="<integration-key>",
+            options={
+                "dedupkey": "DEDUPKEY",
+            })
+        ```
         ## Notification Type reference
 
         Valid options for notification type.
@@ -299,6 +325,32 @@ class Notification(pulumi.CustomResource):
 
         Available for all subscription plans.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # New recipient to receieve notifications
+        email_recipient = cloudamqp.Notification("emailRecipient",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            type="email",
+            value="alarm@example.com")
+        victorops_recipient = cloudamqp.Notification("victoropsRecipient",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            type="victorops",
+            value="<UUID>",
+            options={
+                "rk": "ROUTINGKEY",
+            })
+        pagerduty_recipient = cloudamqp.Notification("pagerdutyRecipient",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            type="pagerduty",
+            value="<integration-key>",
+            options={
+                "dedupkey": "DEDUPKEY",
+            })
+        ```
         ## Notification Type reference
 
         Valid options for notification type.

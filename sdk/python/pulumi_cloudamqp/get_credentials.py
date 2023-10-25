@@ -76,6 +76,14 @@ def get_credentials(instance_id: Optional[int] = None,
     """
     Use this data source to retrieve information about the credentials of the configured user in Rabbit MQ. Information is extracted from `cloudamqp_instance.instance.url`.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    credentials = cloudamqp.get_credentials(instance_id=cloudamqp_instance["instance"]["id"])
+    ```
     ## Attributes reference
 
     All attributes reference are computed.
@@ -109,6 +117,14 @@ def get_credentials_output(instance_id: Optional[pulumi.Input[int]] = None,
     """
     Use this data source to retrieve information about the credentials of the configured user in Rabbit MQ. Information is extracted from `cloudamqp_instance.instance.url`.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    credentials = cloudamqp.get_credentials(instance_id=cloudamqp_instance["instance"]["id"])
+    ```
     ## Attributes reference
 
     All attributes reference are computed.

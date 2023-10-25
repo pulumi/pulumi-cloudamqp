@@ -17,6 +17,55 @@ import (
 //
 // Available for all subscription plans.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewNotification(ctx, "emailRecipient", &cloudamqp.NotificationArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Type:       pulumi.String("email"),
+//				Value:      pulumi.String("alarm@example.com"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewNotification(ctx, "victoropsRecipient", &cloudamqp.NotificationArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Type:       pulumi.String("victorops"),
+//				Value:      pulumi.String("<UUID>"),
+//				Options: pulumi.StringMap{
+//					"rk": pulumi.String("ROUTINGKEY"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewNotification(ctx, "pagerdutyRecipient", &cloudamqp.NotificationArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Type:       pulumi.String("pagerduty"),
+//				Value:      pulumi.String("<integration-key>"),
+//				Options: pulumi.StringMap{
+//					"dedupkey": pulumi.String("DEDUPKEY"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 // ## Notification Type reference
 //
 // Valid options for notification type.

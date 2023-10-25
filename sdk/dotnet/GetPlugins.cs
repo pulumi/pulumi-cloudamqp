@@ -12,6 +12,27 @@ namespace Pulumi.CloudAmqp
     public static class GetPlugins
     {
         /// <summary>
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using CloudAmqp = Pulumi.CloudAmqp;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var plugins = CloudAmqp.GetPlugins.Invoke(new()
+        ///     {
+        ///         InstanceId = cloudamqp_instance.Instance.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// ## Attributes reference
         /// 
         /// All attributes reference are computed
@@ -36,6 +57,27 @@ namespace Pulumi.CloudAmqp
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPluginsResult>("cloudamqp:index/getPlugins:getPlugins", args ?? new GetPluginsArgs(), options.WithDefaults());
 
         /// <summary>
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using CloudAmqp = Pulumi.CloudAmqp;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var plugins = CloudAmqp.GetPlugins.Invoke(new()
+        ///     {
+        ///         InstanceId = cloudamqp_instance.Instance.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// ## Attributes reference
         /// 
         /// All attributes reference are computed

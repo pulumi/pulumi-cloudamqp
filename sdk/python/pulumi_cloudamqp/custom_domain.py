@@ -142,6 +142,16 @@ class CustomDomain(pulumi.CustomResource):
 
         Only available for dedicated subscription plans.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        settings = cloudamqp.CustomDomain("settings",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            hostname="myname.mydomain")
+        ```
         ## Depedency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -178,6 +188,16 @@ class CustomDomain(pulumi.CustomResource):
 
         Only available for dedicated subscription plans.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        settings = cloudamqp.CustomDomain("settings",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            hostname="myname.mydomain")
+        ```
         ## Depedency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.

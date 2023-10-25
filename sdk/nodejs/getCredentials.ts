@@ -7,6 +7,16 @@ import * as utilities from "./utilities";
 /**
  * Use this data source to retrieve information about the credentials of the configured user in Rabbit MQ. Information is extracted from `cloudamqp_instance.instance.url`.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const credentials = cloudamqp.getCredentials({
+ *     instanceId: cloudamqp_instance.instance.id,
+ * });
+ * ```
  * ## Attributes reference
  *
  * All attributes reference are computed.
@@ -52,6 +62,16 @@ export interface GetCredentialsResult {
 /**
  * Use this data source to retrieve information about the credentials of the configured user in Rabbit MQ. Information is extracted from `cloudamqp_instance.instance.url`.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const credentials = cloudamqp.getCredentials({
+ *     instanceId: cloudamqp_instance.instance.id,
+ * });
+ * ```
  * ## Attributes reference
  *
  * All attributes reference are computed.

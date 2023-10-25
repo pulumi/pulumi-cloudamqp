@@ -58,6 +58,18 @@ def get_account(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAcco
     """
     Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
 
+    ## Example Usage
+
+    Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    instance_name = "<instance_name>"
+    instance_list = cloudamqp.get_account()
+    pulumi.export("instanceId", <nil>)
+    ```
     ## Attributes reference
 
     All attributes reference are computed
@@ -93,6 +105,18 @@ def get_account_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Ou
     """
     Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
 
+    ## Example Usage
+
+    Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    instance_name = "<instance_name>"
+    instance_list = cloudamqp.get_account()
+    pulumi.export("instanceId", <nil>)
+    ```
     ## Attributes reference
 
     All attributes reference are computed

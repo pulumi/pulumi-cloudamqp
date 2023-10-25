@@ -296,6 +296,20 @@ class Webhook(pulumi.CustomResource):
 
         Only available for dedicated subscription plans.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        webhook_queue = cloudamqp.Webhook("webhookQueue",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            vhost="myvhost",
+            queue="webhook-queue",
+            webhook_uri="https://example.com/webhook?key=secret",
+            retry_interval=5,
+            concurrency=5)
+        ```
         ## Dependency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -328,6 +342,20 @@ class Webhook(pulumi.CustomResource):
 
         Only available for dedicated subscription plans.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        webhook_queue = cloudamqp.Webhook("webhookQueue",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            vhost="myvhost",
+            queue="webhook-queue",
+            webhook_uri="https://example.com/webhook?key=secret",
+            retry_interval=5,
+            concurrency=5)
+        ```
         ## Dependency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.

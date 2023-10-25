@@ -24,6 +24,94 @@ import (
 //
 // Only available for dedicated subscription plans running ***RabbitMQ***.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.GetUpgradableVersions(ctx, &cloudamqp.GetUpgradableVersionsArgs{
+//				InstanceId: cloudamqp_instance.Instance.Id,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewUpgradeRabbitmq(ctx, "upgrade", &cloudamqp.UpgradeRabbitmqArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.GetUpgradableVersions(ctx, &cloudamqp.GetUpgradableVersionsArgs{
+//				InstanceId: cloudamqp_instance.Instance.Id,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// If newer version is still available to be upgradable in the data source, re-run again.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.GetUpgradableVersions(ctx, &cloudamqp.GetUpgradableVersionsArgs{
+//				InstanceId: cloudamqp_instance.Instance.Id,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewUpgradeRabbitmq(ctx, "upgrade", &cloudamqp.UpgradeRabbitmqArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Not possible to import this resource.

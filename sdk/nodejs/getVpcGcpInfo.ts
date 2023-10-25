@@ -7,6 +7,41 @@ import * as utilities from "./utilities";
 /**
  * Use this data source to retrieve information about VPC for a CloudAMQP instance hosted in GCP.
  *
+ * ## Example Usage
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>AWS VPC peering pre v1.16.0</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const vpcInfo = cloudamqp.getVpcGcpInfo({
+ *     instanceId: cloudamqp_instance.instance.id,
+ * });
+ * ```
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>AWS VPC peering post v1.16.0 (Managed VPC)</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const vpcInfo = cloudamqp.getVpcGcpInfo({
+ *     vpcId: cloudamqp_vpc.vpc.id,
+ * });
+ * ```
+ * </details>
  * ## Attributes reference
  *
  * All attributes reference are computed
@@ -69,6 +104,41 @@ export interface GetVpcGcpInfoResult {
 /**
  * Use this data source to retrieve information about VPC for a CloudAMQP instance hosted in GCP.
  *
+ * ## Example Usage
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>AWS VPC peering pre v1.16.0</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const vpcInfo = cloudamqp.getVpcGcpInfo({
+ *     instanceId: cloudamqp_instance.instance.id,
+ * });
+ * ```
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>AWS VPC peering post v1.16.0 (Managed VPC)</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const vpcInfo = cloudamqp.getVpcGcpInfo({
+ *     vpcId: cloudamqp_vpc.vpc.id,
+ * });
+ * ```
+ * </details>
  * ## Attributes reference
  *
  * All attributes reference are computed

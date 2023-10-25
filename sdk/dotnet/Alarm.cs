@@ -16,6 +16,56 @@ namespace Pulumi.CloudAmqp
     /// 
     /// Available for all subscription plans, but `lemur`and `tiger`are limited to fewer alarm types. The limited types supported can be seen in the table below in Alarm Type Reference.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // New recipient
+    ///     var recipient01 = new CloudAmqp.Notification("recipient01", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Type = "email",
+    ///         Value = "alarm@example.com",
+    ///     });
+    /// 
+    ///     // New cpu alarm
+    ///     var cpuAlarm = new CloudAmqp.Alarm("cpuAlarm", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Type = "cpu",
+    ///         Enabled = true,
+    ///         ReminderInterval = 600,
+    ///         ValueThreshold = 95,
+    ///         TimeThreshold = 600,
+    ///         Recipients = new[]
+    ///         {
+    ///             recipient01.Id,
+    ///         },
+    ///     });
+    /// 
+    ///     // New memory alarm
+    ///     var memoryAlarm = new CloudAmqp.Alarm("memoryAlarm", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Type = "memory",
+    ///         Enabled = true,
+    ///         ReminderInterval = 600,
+    ///         ValueThreshold = 95,
+    ///         TimeThreshold = 600,
+    ///         Recipients = new[]
+    ///         {
+    ///             recipient01.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// ## Alarm Type reference
     /// 
     /// Supported alarm types: `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`

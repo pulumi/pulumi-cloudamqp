@@ -36,6 +36,196 @@ import (
 //
 // Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/) and only available for dedicated subscription plans.
 //
+// ## Example Usage
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>AWS extra disk size (pre v1.25.0)</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Plan:   pulumi.String("bunny-1"),
+//				Region: pulumi.String("amazon-web-services::us-west-2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewExtraDiskSize(ctx, "resizeDisk", &cloudamqp.ExtraDiskSizeArgs{
+//				InstanceId:    instance.ID(),
+//				ExtraDiskSize: pulumi.Int(25),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = instance.ID().ApplyT(func(id string) (cloudamqp.GetNodesResult, error) {
+//				return cloudamqp.GetNodesOutput(ctx, cloudamqp.GetNodesOutputArgs{
+//					InstanceId: id,
+//				}, nil), nil
+//			}).(cloudamqp.GetNodesResultOutput)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>AWS extra disk size without downtime</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Plan:   pulumi.String("bunny-1"),
+//				Region: pulumi.String("amazon-web-services::us-west-2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewExtraDiskSize(ctx, "resizeDisk", &cloudamqp.ExtraDiskSizeArgs{
+//				InstanceId:    instance.ID(),
+//				ExtraDiskSize: pulumi.Int(25),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = instance.ID().ApplyT(func(id string) (cloudamqp.GetNodesResult, error) {
+//				return cloudamqp.GetNodesOutput(ctx, cloudamqp.GetNodesOutputArgs{
+//					InstanceId: id,
+//				}, nil), nil
+//			}).(cloudamqp.GetNodesResultOutput)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>GCE extra disk size without downtime</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Plan:   pulumi.String("bunny-1"),
+//				Region: pulumi.String("google-compute-engine::us-central1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewExtraDiskSize(ctx, "resizeDisk", &cloudamqp.ExtraDiskSizeArgs{
+//				InstanceId:    instance.ID(),
+//				ExtraDiskSize: pulumi.Int(25),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = instance.ID().ApplyT(func(id string) (cloudamqp.GetNodesResult, error) {
+//				return cloudamqp.GetNodesOutput(ctx, cloudamqp.GetNodesOutputArgs{
+//					InstanceId: id,
+//				}, nil), nil
+//			}).(cloudamqp.GetNodesResultOutput)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Azure extra disk size with downtime</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Plan:   pulumi.String("bunny-1"),
+//				Region: pulumi.String("azure-arm::centralus"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewExtraDiskSize(ctx, "resizeDisk", &cloudamqp.ExtraDiskSizeArgs{
+//				InstanceId:    instance.ID(),
+//				ExtraDiskSize: pulumi.Int(25),
+//				AllowDowntime: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = instance.ID().ApplyT(func(id string) (cloudamqp.GetNodesResult, error) {
+//				return cloudamqp.GetNodesOutput(ctx, cloudamqp.GetNodesOutputArgs{
+//					InstanceId: id,
+//				}, nil), nil
+//			}).(cloudamqp.GetNodesResultOutput)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
 // ## Attributes reference
 //
 // # All attributes reference are computed

@@ -9,6 +9,35 @@ import * as utilities from "./utilities";
  *
  * Available for all subscription plans.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * // New recipient to receieve notifications
+ * const emailRecipient = new cloudamqp.Notification("emailRecipient", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     type: "email",
+ *     value: "alarm@example.com",
+ * });
+ * const victoropsRecipient = new cloudamqp.Notification("victoropsRecipient", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     type: "victorops",
+ *     value: "<UUID>",
+ *     options: {
+ *         rk: "ROUTINGKEY",
+ *     },
+ * });
+ * const pagerdutyRecipient = new cloudamqp.Notification("pagerdutyRecipient", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     type: "pagerduty",
+ *     value: "<integration-key>",
+ *     options: {
+ *         dedupkey: "DEDUPKEY",
+ *     },
+ * });
+ * ```
  * ## Notification Type reference
  *
  * Valid options for notification type.

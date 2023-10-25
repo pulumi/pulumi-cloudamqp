@@ -9,6 +9,16 @@ import * as utilities from "./utilities";
 /**
  * Use this data source to retrieve information about the node(s) created by CloudAMQP instance.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const nodes = cloudamqp.getNodes({
+ *     instanceId: cloudamqp_instance.instance.id,
+ * });
+ * ```
  * ## Attributes reference
  *
  * All attributes reference are computed
@@ -68,6 +78,16 @@ export interface GetNodesResult {
 /**
  * Use this data source to retrieve information about the node(s) created by CloudAMQP instance.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const nodes = cloudamqp.getNodes({
+ *     instanceId: cloudamqp_instance.instance.id,
+ * });
+ * ```
  * ## Attributes reference
  *
  * All attributes reference are computed

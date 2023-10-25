@@ -12,12 +12,111 @@ import * as utilities from "./utilities";
  *  <summary>
  *     <i>Default VPC peering firewall rule</i>
  *   </summary>
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * ```
  * </details>
  *
  * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
  *
  * Only available for dedicated subscription plans.
  *
+ * ## Example Usage
+ * ### With Additional Firewall Rules
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>VPC peering pre v1.16.0</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * // VPC peering configuration
+ * const vpcPeeringRequest = new cloudamqp.VpcGcpPeering("vpcPeeringRequest", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     peerNetworkUri: _var.peer_network_uri,
+ * });
+ * // Firewall rules
+ * const firewallSettings = new cloudamqp.SecurityFirewall("firewallSettings", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     rules: [
+ *         {
+ *             ip: _var.peer_subnet,
+ *             ports: [15672],
+ *             services: [
+ *                 "AMQP",
+ *                 "AMQPS",
+ *                 "STREAM",
+ *                 "STREAM_SSL",
+ *             ],
+ *             description: "VPC peering for <NETWORK>",
+ *         },
+ *         {
+ *             ip: "192.168.0.0/24",
+ *             ports: [
+ *                 4567,
+ *                 4568,
+ *             ],
+ *             services: [
+ *                 "AMQP",
+ *                 "AMQPS",
+ *                 "HTTPS",
+ *             ],
+ *         },
+ *     ],
+ * }, {
+ *     dependsOn: [vpcPeeringRequest],
+ * });
+ * ```
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>VPC peering post v1.16.0 (Managed VPC)</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * // VPC peering configuration
+ * const vpcPeeringRequest = new cloudamqp.VpcGcpPeering("vpcPeeringRequest", {
+ *     vpcId: cloudamqp_vpc.vpc.id,
+ *     peerNetworkUri: _var.peer_network_uri,
+ * });
+ * // Firewall rules
+ * const firewallSettings = new cloudamqp.SecurityFirewall("firewallSettings", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     rules: [
+ *         {
+ *             ip: _var.peer_subnet,
+ *             ports: [15672],
+ *             services: [
+ *                 "AMQP",
+ *                 "AMQPS",
+ *                 "STREAM",
+ *                 "STREAM_SSL",
+ *             ],
+ *             description: "VPC peering for <NETWORK>",
+ *         },
+ *         {
+ *             ip: "0.0.0.0/0",
+ *             ports: [],
+ *             services: ["HTTPS"],
+ *             description: "MGMT interface",
+ *         },
+ *     ],
+ * }, {
+ *     dependsOn: [vpcPeeringRequest],
+ * });
+ * ```
+ * </details>
  * ## Depedency
  *
  * *Pre v1.16.0*

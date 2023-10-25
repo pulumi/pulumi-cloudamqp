@@ -21,6 +21,70 @@ namespace Pulumi.CloudAmqp
     /// 
     /// Only available for dedicated subscription plans running ***RabbitMQ***.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var versions = CloudAmqp.GetUpgradableVersions.Invoke(new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///     });
+    /// 
+    ///     // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
+    ///     var upgrade = new CloudAmqp.UpgradeRabbitmq("upgrade", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var versions = CloudAmqp.GetUpgradableVersions.Invoke(new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// If newer version is still available to be upgradable in the data source, re-run again.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var versions = CloudAmqp.GetUpgradableVersions.Invoke(new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///     });
+    /// 
+    ///     // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
+    ///     var upgrade = new CloudAmqp.UpgradeRabbitmq("upgrade", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Not possible to import this resource.
