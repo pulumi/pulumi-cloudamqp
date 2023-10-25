@@ -14,6 +14,27 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Use this data source to retrieve information about the node(s) created by CloudAMQP instance.
         /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using CloudAmqp = Pulumi.CloudAmqp;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var nodes = CloudAmqp.GetNodes.Invoke(new()
+        ///     {
+        ///         InstanceId = cloudamqp_instance.Instance.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// ## Attributes reference
         /// 
         /// All attributes reference are computed
@@ -47,6 +68,27 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Use this data source to retrieve information about the node(s) created by CloudAMQP instance.
         /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using CloudAmqp = Pulumi.CloudAmqp;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var nodes = CloudAmqp.GetNodes.Invoke(new()
+        ///     {
+        ///         InstanceId = cloudamqp_instance.Instance.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// ## Attributes reference
         /// 
         /// All attributes reference are computed

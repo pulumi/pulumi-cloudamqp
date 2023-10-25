@@ -22,12 +22,89 @@ import (
 //	   <i>Default VPC peering firewall rule</i>
 //	 </summary>
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			return nil
+//		})
+//	}
+//
 // </details>
 //
-// Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
+// <details>
 //
-// Only available for dedicated subscription plans.
+//	<summary>
+//	  <b>
+//	    <i>VPC peering post v1.16.0 (Managed VPC)</i>
+//	  </b>
+//	</summary>
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			vpcPeeringRequest, err := cloudamqp.NewVpcGcpPeering(ctx, "vpcPeeringRequest", &cloudamqp.VpcGcpPeeringArgs{
+//				VpcId:          pulumi.Any(cloudamqp_vpc.Vpc.Id),
+//				PeerNetworkUri: pulumi.Any(_var.Peer_network_uri),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewSecurityFirewall(ctx, "firewallSettings", &cloudamqp.SecurityFirewallArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Rules: cloudamqp.SecurityFirewallRuleArray{
+//					&cloudamqp.SecurityFirewallRuleArgs{
+//						Ip: pulumi.Any(_var.Peer_subnet),
+//						Ports: pulumi.IntArray{
+//							pulumi.Int(15672),
+//						},
+//						Services: pulumi.StringArray{
+//							pulumi.String("AMQP"),
+//							pulumi.String("AMQPS"),
+//							pulumi.String("STREAM"),
+//							pulumi.String("STREAM_SSL"),
+//						},
+//						Description: pulumi.String("VPC peering for <NETWORK>"),
+//					},
+//					&cloudamqp.SecurityFirewallRuleArgs{
+//						Ip:    pulumi.String("0.0.0.0/0"),
+//						Ports: pulumi.IntArray{},
+//						Services: pulumi.StringArray{
+//							pulumi.String("HTTPS"),
+//						},
+//						Description: pulumi.String("MGMT interface"),
+//					},
+//				},
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				vpcPeeringRequest,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// </details>
+// {{% /example %}}
+// {{% /examples %}}
 // ## Depedency
 //
 // *Pre v1.16.0*

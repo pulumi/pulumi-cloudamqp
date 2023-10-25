@@ -17,6 +17,36 @@ import (
 //
 // Only available for dedicated subscription plans.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewWebhook(ctx, "webhookQueue", &cloudamqp.WebhookArgs{
+//				InstanceId:    pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Vhost:         pulumi.String("myvhost"),
+//				Queue:         pulumi.String("webhook-queue"),
+//				WebhookUri:    pulumi.String("https://example.com/webhook?key=secret"),
+//				RetryInterval: pulumi.Int(5),
+//				Concurrency:   pulumi.Int(5),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 // ## Dependency
 //
 // This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.

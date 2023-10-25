@@ -7,6 +7,16 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const plugins = cloudamqp.getPlugins({
+ *     instanceId: cloudamqp_instance.instance.id,
+ * });
+ * ```
  * ## Attributes reference
  *
  * All attributes reference are computed
@@ -57,6 +67,16 @@ export interface GetPluginsResult {
     readonly plugins: outputs.GetPluginsPlugin[];
 }
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const plugins = cloudamqp.getPlugins({
+ *     instanceId: cloudamqp_instance.instance.id,
+ * });
+ * ```
  * ## Attributes reference
  *
  * All attributes reference are computed

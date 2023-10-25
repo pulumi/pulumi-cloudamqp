@@ -322,6 +322,25 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
 
         Only available for dedicated subscription plans.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        instance = cloudamqp.Instance("instance",
+            plan="squirrel-1",
+            region="amazon-web-services::us-west-1",
+            rmq_version="3.11.5",
+            tags=["aws"])
+        aws_eventbridge = cloudamqp.IntegrationAwsEventbridge("awsEventbridge",
+            instance_id=instance.id,
+            vhost=instance.vhost,
+            queue="<QUEUE-NAME>",
+            aws_account_id="<AWS-ACCOUNT-ID>",
+            aws_region="us-west-1",
+            with_headers=True)
+        ```
         ## Argument references
 
         The following arguments are supported:
@@ -368,6 +387,25 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
 
         Only available for dedicated subscription plans.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        instance = cloudamqp.Instance("instance",
+            plan="squirrel-1",
+            region="amazon-web-services::us-west-1",
+            rmq_version="3.11.5",
+            tags=["aws"])
+        aws_eventbridge = cloudamqp.IntegrationAwsEventbridge("awsEventbridge",
+            instance_id=instance.id,
+            vhost=instance.vhost,
+            queue="<QUEUE-NAME>",
+            aws_account_id="<AWS-ACCOUNT-ID>",
+            aws_region="us-west-1",
+            with_headers=True)
+        ```
         ## Argument references
 
         The following arguments are supported:

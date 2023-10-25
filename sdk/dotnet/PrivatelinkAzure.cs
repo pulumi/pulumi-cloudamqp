@@ -17,12 +17,145 @@ namespace Pulumi.CloudAmqp
     ///  &lt;summary&gt;
     ///     &lt;i&gt;Default PrivateLink firewall rule&lt;/i&gt;
     ///   &lt;/summary&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt;
+    /// {
+    /// });
     /// &lt;/details&gt;
     /// 
-    /// Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html) where you can also find more information about [CloudAMQP PrivateLink](https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#azure-privatelink).
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;CloudAMQP instance in an existing VPC&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
     /// 
-    /// Only available for dedicated subscription plans.
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var vpc = new CloudAmqp.Vpc("vpc", new()
+    ///     {
+    ///         Region = "azure-arm::westus",
+    ///         Subnet = "10.56.72.0/24",
+    ///         Tags = new[] {},
+    ///     });
+    /// 
+    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     {
+    ///         Plan = "bunny-1",
+    ///         Region = "azure-arm::westus",
+    ///         Tags = new[] {},
+    ///         VpcId = vpc.Id,
+    ///         KeepAssociatedVpc = true,
+    ///     });
+    /// 
+    ///     var privatelink = new CloudAmqp.PrivatelinkAzure("privatelink", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         ApprovedSubscriptions = new[]
+    ///         {
+    ///             "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;/details&gt;
+    /// 
+    /// {{% /example %}}
+    /// ### With Additional Firewall Rules
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;CloudAMQP instance in an existing VPC with managed firewall rules&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var vpc = new CloudAmqp.Vpc("vpc", new()
+    ///     {
+    ///         Region = "azure-arm::westus",
+    ///         Subnet = "10.56.72.0/24",
+    ///         Tags = new[] {},
+    ///     });
+    /// 
+    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     {
+    ///         Plan = "bunny-1",
+    ///         Region = "azure-arm::westus",
+    ///         Tags = new[] {},
+    ///         VpcId = vpc.Id,
+    ///         KeepAssociatedVpc = true,
+    ///     });
+    /// 
+    ///     var privatelink = new CloudAmqp.PrivatelinkAzure("privatelink", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         ApprovedSubscriptions = new[]
+    ///         {
+    ///             "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+    ///         },
+    ///     });
+    /// 
+    ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewallSettings", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Rules = new[]
+    ///         {
+    ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
+    ///             {
+    ///                 Description = "Custom PrivateLink setup",
+    ///                 Ip = vpc.Subnet,
+    ///                 Ports = new() { },
+    ///                 Services = new[]
+    ///                 {
+    ///                     "AMQP",
+    ///                     "AMQPS",
+    ///                     "HTTPS",
+    ///                     "STREAM",
+    ///                     "STREAM_SSL",
+    ///                 },
+    ///             },
+    ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
+    ///             {
+    ///                 Description = "MGMT interface",
+    ///                 Ip = "0.0.0.0/0",
+    ///                 Ports = new() { },
+    ///                 Services = new[]
+    ///                 {
+    ///                     "HTTPS",
+    ///                 },
+    ///             },
+    ///         },
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             privatelink,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;/details&gt;
+    /// {{% /examples %}}
     /// ## Depedency
     /// 
     /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.

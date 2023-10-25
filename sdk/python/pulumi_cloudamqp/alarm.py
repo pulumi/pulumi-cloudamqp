@@ -517,6 +517,36 @@ class Alarm(pulumi.CustomResource):
 
         Available for all subscription plans, but `lemur`and `tiger`are limited to fewer alarm types. The limited types supported can be seen in the table below in Alarm Type Reference.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # New recipient
+        recipient01 = cloudamqp.Notification("recipient01",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            type="email",
+            value="alarm@example.com")
+        # New cpu alarm
+        cpu_alarm = cloudamqp.Alarm("cpuAlarm",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            type="cpu",
+            enabled=True,
+            reminder_interval=600,
+            value_threshold=95,
+            time_threshold=600,
+            recipients=[recipient01.id])
+        # New memory alarm
+        memory_alarm = cloudamqp.Alarm("memoryAlarm",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            type="memory",
+            enabled=True,
+            reminder_interval=600,
+            value_threshold=95,
+            time_threshold=600,
+            recipients=[recipient01.id])
+        ```
         ## Alarm Type reference
 
         Supported alarm types: `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
@@ -582,6 +612,36 @@ class Alarm(pulumi.CustomResource):
 
         Available for all subscription plans, but `lemur`and `tiger`are limited to fewer alarm types. The limited types supported can be seen in the table below in Alarm Type Reference.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # New recipient
+        recipient01 = cloudamqp.Notification("recipient01",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            type="email",
+            value="alarm@example.com")
+        # New cpu alarm
+        cpu_alarm = cloudamqp.Alarm("cpuAlarm",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            type="cpu",
+            enabled=True,
+            reminder_interval=600,
+            value_threshold=95,
+            time_threshold=600,
+            recipients=[recipient01.id])
+        # New memory alarm
+        memory_alarm = cloudamqp.Alarm("memoryAlarm",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            type="memory",
+            enabled=True,
+            reminder_interval=600,
+            value_threshold=95,
+            time_threshold=600,
+            recipients=[recipient01.id])
+        ```
         ## Alarm Type reference
 
         Supported alarm types: `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`

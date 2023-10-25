@@ -9,6 +9,118 @@ import * as utilities from "./utilities";
  *
  * Only available for dedicated subscription plans.
  *
+ * ## Example Usage
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Already know the node identifier (e.g. from state file)</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * // New recipient to receieve notifications
+ * const nodeAction = new cloudamqp.NodeActions("nodeAction", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     nodeName: "<node name>",
+ *     action: "restart",
+ * });
+ * ```
+ * </details>
+ *
+ * Using data source `cloudamqp.getNodes` to restart RabbitMQ on all nodes.</br>
+ * ***Note: RabbitMQ restart on multiple nodes need to be chained, so one node restart at the time.***
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Multi node RabbitMQ restart</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const listNodes = cloudamqp.getNodes({
+ *     instanceId: cloudamqp_instance.instance.id,
+ * });
+ * const restart01 = new cloudamqp.NodeActions("restart01", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     action: "restart",
+ *     nodeName: listNodes.then(listNodes => listNodes.nodes?.[0]?.name),
+ * });
+ * const restart02 = new cloudamqp.NodeActions("restart02", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     action: "restart",
+ *     nodeName: listNodes.then(listNodes => listNodes.nodes?.[1]?.name),
+ * }, {
+ *     dependsOn: [restart01],
+ * });
+ * const restart03 = new cloudamqp.NodeActions("restart03", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     action: "restart",
+ *     nodeName: listNodes.then(listNodes => listNodes.nodes?.[2]?.name),
+ * }, {
+ *     dependsOn: [
+ *         restart01,
+ *         restart02,
+ *     ],
+ * });
+ * ```
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Combine log level configuration change with multi node RabbitMQ restart</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const listNodes = cloudamqp.getNodes({
+ *     instanceId: cloudamqp_instance.instance.id,
+ * });
+ * const rabbitmqConfig = new cloudamqp.RabbitConfiguration("rabbitmqConfig", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     logExchangeLevel: "info",
+ * });
+ * const restart01 = new cloudamqp.NodeActions("restart01", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     action: "restart",
+ *     nodeName: listNodes.then(listNodes => listNodes.nodes?.[0]?.name),
+ * }, {
+ *     dependsOn: [rabbitmqConfig],
+ * });
+ * const restart02 = new cloudamqp.NodeActions("restart02", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     action: "restart",
+ *     nodeName: listNodes.then(listNodes => listNodes.nodes?.[1]?.name),
+ * }, {
+ *     dependsOn: [
+ *         rabbitmqConfig,
+ *         restart01,
+ *     ],
+ * });
+ * const restart03 = new cloudamqp.NodeActions("restart03", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     action: "restart",
+ *     nodeName: listNodes.then(listNodes => listNodes.nodes?.[2]?.name),
+ * }, {
+ *     dependsOn: [
+ *         rabbitmqConfig,
+ *         restart01,
+ *         restart02,
+ *     ],
+ * });
+ * ```
+ * </details>
  * ## Action reference
  *
  * Valid options for action.

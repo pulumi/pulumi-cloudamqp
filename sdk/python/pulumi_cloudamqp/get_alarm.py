@@ -160,6 +160,15 @@ def get_alarm(alarm_id: Optional[int] = None,
     """
     Use this data source to retrieve information about default or created alarms. Either use `alarm_id` or `type` to retrieve the alarm.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    default_cpu_alarm = cloudamqp.get_alarm(instance_id=cloudamqp_instance["instance"]["id"],
+        type="cpu")
+    ```
     ## Attributes reference
 
     All attributes reference are computed
@@ -224,6 +233,15 @@ def get_alarm_output(alarm_id: Optional[pulumi.Input[Optional[int]]] = None,
     """
     Use this data source to retrieve information about default or created alarms. Either use `alarm_id` or `type` to retrieve the alarm.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    default_cpu_alarm = cloudamqp.get_alarm(instance_id=cloudamqp_instance["instance"]["id"],
+        type="cpu")
+    ```
     ## Attributes reference
 
     All attributes reference are computed

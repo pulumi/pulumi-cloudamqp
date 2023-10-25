@@ -14,6 +14,31 @@ import (
 
 // Use this data source to retrieve information about the node(s) created by CloudAMQP instance.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.GetNodes(ctx, &cloudamqp.GetNodesArgs{
+//				InstanceId: cloudamqp_instance.Instance.Id,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 // ## Attributes reference
 //
 // # All attributes reference are computed

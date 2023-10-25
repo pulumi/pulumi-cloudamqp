@@ -17,12 +17,84 @@ namespace Pulumi.CloudAmqp
     ///  &lt;summary&gt;
     ///     &lt;i&gt;Default VPC peering firewall rule&lt;/i&gt;
     ///   &lt;/summary&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt;
+    /// {
+    /// });
     /// &lt;/details&gt;
     /// 
-    /// Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
     /// 
-    /// Only available for dedicated subscription plans.
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // VPC peering configuration
+    ///     var vpcPeeringRequest = new CloudAmqp.VpcGcpPeering("vpcPeeringRequest", new()
+    ///     {
+    ///         VpcId = cloudamqp_vpc.Vpc.Id,
+    ///         PeerNetworkUri = @var.Peer_network_uri,
+    ///     });
+    /// 
+    ///     // Firewall rules
+    ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewallSettings", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Rules = new[]
+    ///         {
+    ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
+    ///             {
+    ///                 Ip = @var.Peer_subnet,
+    ///                 Ports = new[]
+    ///                 {
+    ///                     15672,
+    ///                 },
+    ///                 Services = new[]
+    ///                 {
+    ///                     "AMQP",
+    ///                     "AMQPS",
+    ///                     "STREAM",
+    ///                     "STREAM_SSL",
+    ///                 },
+    ///                 Description = "VPC peering for &lt;NETWORK&gt;",
+    ///             },
+    ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
+    ///             {
+    ///                 Ip = "0.0.0.0/0",
+    ///                 Ports = new() { },
+    ///                 Services = new[]
+    ///                 {
+    ///                     "HTTPS",
+    ///                 },
+    ///                 Description = "MGMT interface",
+    ///             },
+    ///         },
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             vpcPeeringRequest,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;/details&gt;
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// ## Depedency
     /// 
     /// *Pre v1.16.0*

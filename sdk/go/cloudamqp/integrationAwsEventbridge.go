@@ -21,6 +21,47 @@ import (
 //
 // Only available for dedicated subscription plans.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Plan:       pulumi.String("squirrel-1"),
+//				Region:     pulumi.String("amazon-web-services::us-west-1"),
+//				RmqVersion: pulumi.String("3.11.5"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("aws"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewIntegrationAwsEventbridge(ctx, "awsEventbridge", &cloudamqp.IntegrationAwsEventbridgeArgs{
+//				InstanceId:   instance.ID(),
+//				Vhost:        instance.Vhost,
+//				Queue:        pulumi.String("<QUEUE-NAME>"),
+//				AwsAccountId: pulumi.String("<AWS-ACCOUNT-ID>"),
+//				AwsRegion:    pulumi.String("us-west-1"),
+//				WithHeaders:  pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 // ## Argument references
 //
 // The following arguments are supported:

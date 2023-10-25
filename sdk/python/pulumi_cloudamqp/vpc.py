@@ -230,6 +230,29 @@ class Vpc(pulumi.CustomResource):
 
         Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # Managed VPC resource
+        vpc = cloudamqp.Vpc("vpc",
+            region="amazon-web-services::us-east-1",
+            subnet="10.56.72.0/24",
+            tags=[])
+        #  New instance, need to be created with a vpc
+        instance = cloudamqp.Instance("instance",
+            plan="bunny-1",
+            region="amazon-web-services::us-east-1",
+            nodes=1,
+            tags=[],
+            rmq_version="3.9.13",
+            vpc_id=cloudamq_vpc["vpc"]["id"],
+            keep_associated_vpc=True)
+        vpc_info = cloudamqp.get_vpc_info_output(vpc_id=vpc.id)
+        ```
+
         ## Import
 
         `cloudamqp_vpc` can be imported using the CloudAMQP VPC identifier.
@@ -261,6 +284,29 @@ class Vpc(pulumi.CustomResource):
         Only available for dedicated subscription plans.
 
         Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # Managed VPC resource
+        vpc = cloudamqp.Vpc("vpc",
+            region="amazon-web-services::us-east-1",
+            subnet="10.56.72.0/24",
+            tags=[])
+        #  New instance, need to be created with a vpc
+        instance = cloudamqp.Instance("instance",
+            plan="bunny-1",
+            region="amazon-web-services::us-east-1",
+            nodes=1,
+            tags=[],
+            rmq_version="3.9.13",
+            vpc_id=cloudamq_vpc["vpc"]["id"],
+            keep_associated_vpc=True)
+        vpc_info = cloudamqp.get_vpc_info_output(vpc_id=vpc.id)
+        ```
 
         ## Import
 

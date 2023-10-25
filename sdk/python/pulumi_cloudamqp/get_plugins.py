@@ -66,6 +66,14 @@ class AwaitableGetPluginsResult(GetPluginsResult):
 def get_plugins(instance_id: Optional[int] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPluginsResult:
     """
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    plugins = cloudamqp.get_plugins(instance_id=cloudamqp_instance["instance"]["id"])
+    ```
     ## Attributes reference
 
     All attributes reference are computed
@@ -104,6 +112,14 @@ def get_plugins(instance_id: Optional[int] = None,
 def get_plugins_output(instance_id: Optional[pulumi.Input[int]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPluginsResult]:
     """
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    plugins = cloudamqp.get_plugins(instance_id=cloudamqp_instance["instance"]["id"])
+    ```
     ## Attributes reference
 
     All attributes reference are computed

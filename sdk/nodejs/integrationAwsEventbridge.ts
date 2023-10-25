@@ -13,6 +13,27 @@ import * as utilities from "./utilities";
  *
  * Only available for dedicated subscription plans.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const instance = new cloudamqp.Instance("instance", {
+ *     plan: "squirrel-1",
+ *     region: "amazon-web-services::us-west-1",
+ *     rmqVersion: "3.11.5",
+ *     tags: ["aws"],
+ * });
+ * const awsEventbridge = new cloudamqp.IntegrationAwsEventbridge("awsEventbridge", {
+ *     instanceId: instance.id,
+ *     vhost: instance.vhost,
+ *     queue: "<QUEUE-NAME>",
+ *     awsAccountId: "<AWS-ACCOUNT-ID>",
+ *     awsRegion: "us-west-1",
+ *     withHeaders: true,
+ * });
+ * ```
  * ## Argument references
  *
  * The following arguments are supported:

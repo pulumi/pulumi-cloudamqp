@@ -18,6 +18,39 @@ namespace Pulumi.CloudAmqp
     /// 
     /// Only available for dedicated subscription plans.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     {
+    ///         Plan = "squirrel-1",
+    ///         Region = "amazon-web-services::us-west-1",
+    ///         RmqVersion = "3.11.5",
+    ///         Tags = new[]
+    ///         {
+    ///             "aws",
+    ///         },
+    ///     });
+    /// 
+    ///     var awsEventbridge = new CloudAmqp.IntegrationAwsEventbridge("awsEventbridge", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Vhost = instance.Vhost,
+    ///         Queue = "&lt;QUEUE-NAME&gt;",
+    ///         AwsAccountId = "&lt;AWS-ACCOUNT-ID&gt;",
+    ///         AwsRegion = "us-west-1",
+    ///         WithHeaders = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// ## Argument references
     /// 
     /// The following arguments are supported:
