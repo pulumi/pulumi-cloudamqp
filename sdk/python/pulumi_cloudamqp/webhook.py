@@ -41,13 +41,33 @@ class WebhookArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             concurrency: pulumi.Input[int],
-             instance_id: pulumi.Input[int],
-             queue: pulumi.Input[str],
-             retry_interval: pulumi.Input[int],
-             vhost: pulumi.Input[str],
-             webhook_uri: pulumi.Input[str],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             concurrency: Optional[pulumi.Input[int]] = None,
+             instance_id: Optional[pulumi.Input[int]] = None,
+             queue: Optional[pulumi.Input[str]] = None,
+             retry_interval: Optional[pulumi.Input[int]] = None,
+             vhost: Optional[pulumi.Input[str]] = None,
+             webhook_uri: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if concurrency is None:
+            raise TypeError("Missing 'concurrency' argument")
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if instance_id is None:
+            raise TypeError("Missing 'instance_id' argument")
+        if queue is None:
+            raise TypeError("Missing 'queue' argument")
+        if retry_interval is None and 'retryInterval' in kwargs:
+            retry_interval = kwargs['retryInterval']
+        if retry_interval is None:
+            raise TypeError("Missing 'retry_interval' argument")
+        if vhost is None:
+            raise TypeError("Missing 'vhost' argument")
+        if webhook_uri is None and 'webhookUri' in kwargs:
+            webhook_uri = kwargs['webhookUri']
+        if webhook_uri is None:
+            raise TypeError("Missing 'webhook_uri' argument")
+
         _setter("concurrency", concurrency)
         _setter("instance_id", instance_id)
         _setter("queue", queue)
@@ -164,7 +184,15 @@ class _WebhookState:
              retry_interval: Optional[pulumi.Input[int]] = None,
              vhost: Optional[pulumi.Input[str]] = None,
              webhook_uri: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if retry_interval is None and 'retryInterval' in kwargs:
+            retry_interval = kwargs['retryInterval']
+        if webhook_uri is None and 'webhookUri' in kwargs:
+            webhook_uri = kwargs['webhookUri']
+
         if concurrency is not None:
             _setter("concurrency", concurrency)
         if instance_id is not None:
@@ -268,20 +296,6 @@ class Webhook(pulumi.CustomResource):
 
         Only available for dedicated subscription plans.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        webhook_queue = cloudamqp.Webhook("webhookQueue",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            vhost="myvhost",
-            queue="webhook-queue",
-            webhook_uri="https://example.com/webhook?key=secret",
-            retry_interval=5,
-            concurrency=5)
-        ```
         ## Dependency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -314,20 +328,6 @@ class Webhook(pulumi.CustomResource):
 
         Only available for dedicated subscription plans.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        webhook_queue = cloudamqp.Webhook("webhookQueue",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            vhost="myvhost",
-            queue="webhook-queue",
-            webhook_uri="https://example.com/webhook?key=secret",
-            retry_interval=5,
-            concurrency=5)
-        ```
         ## Dependency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.

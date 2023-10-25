@@ -26,8 +26,14 @@ class UpgradeRabbitmqArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             instance_id: pulumi.Input[int],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             instance_id: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if instance_id is None:
+            raise TypeError("Missing 'instance_id' argument")
+
         _setter("instance_id", instance_id)
 
     @property
@@ -59,7 +65,11 @@ class _UpgradeRabbitmqState:
     def _configure(
              _setter: Callable[[Any, Any], None],
              instance_id: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+
         if instance_id is not None:
             _setter("instance_id", instance_id)
 
@@ -95,35 +105,6 @@ class UpgradeRabbitmq(pulumi.CustomResource):
 
         Only available for dedicated subscription plans running ***RabbitMQ***.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
-        # Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
-        upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=cloudamqp_instance["instance"]["id"])
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
-        ```
-
-        If newer version is still available to be upgradable in the data source, re-run again.
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
-        # Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
-        upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=cloudamqp_instance["instance"]["id"])
-        ```
-
         ## Import
 
         Not possible to import this resource.
@@ -149,35 +130,6 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         > - TLS 1.0 and 1.1 will not be supported after the update.
 
         Only available for dedicated subscription plans running ***RabbitMQ***.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
-        # Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
-        upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=cloudamqp_instance["instance"]["id"])
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
-        ```
-
-        If newer version is still available to be upgradable in the data source, re-run again.
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
-        # Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
-        upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=cloudamqp_instance["instance"]["id"])
-        ```
 
         ## Import
 

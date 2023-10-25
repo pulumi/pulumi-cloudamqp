@@ -9,21 +9,6 @@ import * as utilities from "./utilities";
  *
  * Only available for dedicated subscription plans.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const webhookQueue = new cloudamqp.Webhook("webhookQueue", {
- *     instanceId: cloudamqp_instance.instance.id,
- *     vhost: "myvhost",
- *     queue: "webhook-queue",
- *     webhookUri: "https://example.com/webhook?key=secret",
- *     retryInterval: 5,
- *     concurrency: 5,
- * });
- * ```
  * ## Dependency
  *
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.

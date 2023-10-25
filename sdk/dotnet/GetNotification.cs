@@ -14,28 +14,6 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipient_id` or `name`.
         /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using CloudAmqp = Pulumi.CloudAmqp;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var defaultRecipient = CloudAmqp.GetNotification.Invoke(new()
-        ///     {
-        ///         InstanceId = cloudamqp_instance.Instance.Id,
-        ///         Name = "default",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// ## Attributes reference
         /// 
         /// All attributes reference are computed
@@ -55,28 +33,6 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipient_id` or `name`.
         /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using CloudAmqp = Pulumi.CloudAmqp;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var defaultRecipient = CloudAmqp.GetNotification.Invoke(new()
-        ///     {
-        ///         InstanceId = cloudamqp_instance.Instance.Id,
-        ///         Name = "default",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// ## Attributes reference
         /// 
         /// All attributes reference are computed

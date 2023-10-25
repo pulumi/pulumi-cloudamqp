@@ -12,125 +12,12 @@ import * as utilities from "./utilities";
  *  <summary>
  *     <i>Default PrivateLink firewall rule</i>
  *   </summary>
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * ```
  * </details>
  *
  * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html) where you can also find more information about [CloudAMQP PrivateLink](https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#aws-privatelink).
  *
  * Only available for dedicated subscription plans.
  *
- * ## Example Usage
- *
- * <details>
- *   <summary>
- *     <b>
- *       <i>CloudAMQP instance without existing VPC</i>
- *     </b>
- *   </summary>
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const instance = new cloudamqp.Instance("instance", {
- *     plan: "bunny-1",
- *     region: "amazon-web-services::us-west-1",
- *     tags: [],
- * });
- * const privatelink = new cloudamqp.PrivatelinkAws("privatelink", {
- *     instanceId: instance.id,
- *     allowedPrincipals: ["arn:aws:iam::aws-account-id:user/user-name"],
- * });
- * ```
- * </details>
- *
- * <details>
- *   <summary>
- *     <b>
- *       <i>CloudAMQP instance in an existing VPC</i>
- *     </b>
- *   </summary>
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const vpc = new cloudamqp.Vpc("vpc", {
- *     region: "amazon-web-services::us-west-1",
- *     subnet: "10.56.72.0/24",
- *     tags: [],
- * });
- * const instance = new cloudamqp.Instance("instance", {
- *     plan: "bunny-1",
- *     region: "amazon-web-services::us-west-1",
- *     tags: [],
- *     vpcId: vpc.id,
- *     keepAssociatedVpc: true,
- * });
- * const privatelink = new cloudamqp.PrivatelinkAws("privatelink", {
- *     instanceId: instance.id,
- *     allowedPrincipals: ["arn:aws:iam::aws-account-id:user/user-name"],
- * });
- * ```
- * </details>
- * ### With Additional Firewall Rules
- *
- * <details>
- *   <summary>
- *     <b>
- *       <i>CloudAMQP instance in an existing VPC with managed firewall rules</i>
- *     </b>
- *   </summary>
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const vpc = new cloudamqp.Vpc("vpc", {
- *     region: "amazon-web-services::us-west-1",
- *     subnet: "10.56.72.0/24",
- *     tags: [],
- * });
- * const instance = new cloudamqp.Instance("instance", {
- *     plan: "bunny-1",
- *     region: "amazon-web-services::us-west-1",
- *     tags: [],
- *     vpcId: vpc.id,
- *     keepAssociatedVpc: true,
- * });
- * const privatelink = new cloudamqp.PrivatelinkAws("privatelink", {
- *     instanceId: instance.id,
- *     allowedPrincipals: ["arn:aws:iam::aws-account-id:user/user-name"],
- * });
- * const firewallSettings = new cloudamqp.SecurityFirewall("firewallSettings", {
- *     instanceId: instance.id,
- *     rules: [
- *         {
- *             Description: "Custom PrivateLink setup",
- *             ip: vpc.subnet,
- *             ports: [],
- *             services: [
- *                 "AMQP",
- *                 "AMQPS",
- *                 "HTTPS",
- *                 "STREAM",
- *                 "STREAM_SSL",
- *             ],
- *         },
- *         {
- *             description: "MGMT interface",
- *             ip: "0.0.0.0/0",
- *             ports: [],
- *             services: ["HTTPS"],
- *         },
- *     ],
- * }, {
- *     dependsOn: [privatelink],
- * });
- * ```
- * </details>
  * ## Depedency
  *
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.

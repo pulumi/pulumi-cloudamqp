@@ -20,24 +20,6 @@ namespace Pulumi.CloudAmqp
     /// 
     /// Only available for dedicated subscription plans.
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using CloudAmqp = Pulumi.CloudAmqp;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var settings = new CloudAmqp.CustomDomain("settings", new()
-    ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         Hostname = "myname.mydomain",
-    ///     });
-    /// 
-    /// });
-    /// ```
     /// ## Depedency
     /// 
     /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.

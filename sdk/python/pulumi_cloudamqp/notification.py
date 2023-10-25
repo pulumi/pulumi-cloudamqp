@@ -38,12 +38,22 @@ class NotificationArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             instance_id: pulumi.Input[int],
-             type: pulumi.Input[str],
-             value: pulumi.Input[str],
+             instance_id: Optional[pulumi.Input[int]] = None,
+             type: Optional[pulumi.Input[str]] = None,
+             value: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
              options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if instance_id is None:
+            raise TypeError("Missing 'instance_id' argument")
+        if type is None:
+            raise TypeError("Missing 'type' argument")
+        if value is None:
+            raise TypeError("Missing 'value' argument")
+
         _setter("instance_id", instance_id)
         _setter("type", type)
         _setter("value", value)
@@ -145,7 +155,11 @@ class _NotificationState:
              options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
              type: Optional[pulumi.Input[str]] = None,
              value: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+
         if instance_id is not None:
             _setter("instance_id", instance_id)
         if name is not None:
@@ -234,32 +248,6 @@ class Notification(pulumi.CustomResource):
 
         Available for all subscription plans.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # New recipient to receieve notifications
-        email_recipient = cloudamqp.Notification("emailRecipient",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            type="email",
-            value="alarm@example.com")
-        victorops_recipient = cloudamqp.Notification("victoropsRecipient",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            type="victorops",
-            value="<UUID>",
-            options={
-                "rk": "ROUTINGKEY",
-            })
-        pagerduty_recipient = cloudamqp.Notification("pagerdutyRecipient",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            type="pagerduty",
-            value="<integration-key>",
-            options={
-                "dedupkey": "DEDUPKEY",
-            })
-        ```
         ## Notification Type reference
 
         Valid options for notification type.
@@ -311,32 +299,6 @@ class Notification(pulumi.CustomResource):
 
         Available for all subscription plans.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # New recipient to receieve notifications
-        email_recipient = cloudamqp.Notification("emailRecipient",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            type="email",
-            value="alarm@example.com")
-        victorops_recipient = cloudamqp.Notification("victoropsRecipient",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            type="victorops",
-            value="<UUID>",
-            options={
-                "rk": "ROUTINGKEY",
-            })
-        pagerduty_recipient = cloudamqp.Notification("pagerdutyRecipient",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            type="pagerduty",
-            value="<integration-key>",
-            options={
-                "dedupkey": "DEDUPKEY",
-            })
-        ```
         ## Notification Type reference
 
         Valid options for notification type.

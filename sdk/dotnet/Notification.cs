@@ -14,48 +14,6 @@ namespace Pulumi.CloudAmqp
     /// 
     /// Available for all subscription plans.
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using CloudAmqp = Pulumi.CloudAmqp;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     // New recipient to receieve notifications
-    ///     var emailRecipient = new CloudAmqp.Notification("emailRecipient", new()
-    ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         Type = "email",
-    ///         Value = "alarm@example.com",
-    ///     });
-    /// 
-    ///     var victoropsRecipient = new CloudAmqp.Notification("victoropsRecipient", new()
-    ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         Type = "victorops",
-    ///         Value = "&lt;UUID&gt;",
-    ///         Options = 
-    ///         {
-    ///             { "rk", "ROUTINGKEY" },
-    ///         },
-    ///     });
-    /// 
-    ///     var pagerdutyRecipient = new CloudAmqp.Notification("pagerdutyRecipient", new()
-    ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         Type = "pagerduty",
-    ///         Value = "&lt;integration-key&gt;",
-    ///         Options = 
-    ///         {
-    ///             { "dedupkey", "DEDUPKEY" },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
     /// ## Notification Type reference
     /// 
     /// Valid options for notification type.

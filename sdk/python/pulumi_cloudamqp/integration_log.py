@@ -76,7 +76,7 @@ class IntegrationLogArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             instance_id: pulumi.Input[int],
+             instance_id: Optional[pulumi.Input[int]] = None,
              access_key_id: Optional[pulumi.Input[str]] = None,
              api_key: Optional[pulumi.Input[str]] = None,
              client_email: Optional[pulumi.Input[str]] = None,
@@ -93,7 +93,29 @@ class IntegrationLogArgs:
              tags: Optional[pulumi.Input[str]] = None,
              token: Optional[pulumi.Input[str]] = None,
              url: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if instance_id is None:
+            raise TypeError("Missing 'instance_id' argument")
+        if access_key_id is None and 'accessKeyId' in kwargs:
+            access_key_id = kwargs['accessKeyId']
+        if api_key is None and 'apiKey' in kwargs:
+            api_key = kwargs['apiKey']
+        if client_email is None and 'clientEmail' in kwargs:
+            client_email = kwargs['clientEmail']
+        if host_port is None and 'hostPort' in kwargs:
+            host_port = kwargs['hostPort']
+        if private_key is None and 'privateKey' in kwargs:
+            private_key = kwargs['privateKey']
+        if private_key_id is None and 'privateKeyId' in kwargs:
+            private_key_id = kwargs['privateKeyId']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if secret_access_key is None and 'secretAccessKey' in kwargs:
+            secret_access_key = kwargs['secretAccessKey']
+
         _setter("instance_id", instance_id)
         if access_key_id is not None:
             _setter("access_key_id", access_key_id)
@@ -417,7 +439,27 @@ class _IntegrationLogState:
              tags: Optional[pulumi.Input[str]] = None,
              token: Optional[pulumi.Input[str]] = None,
              url: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if access_key_id is None and 'accessKeyId' in kwargs:
+            access_key_id = kwargs['accessKeyId']
+        if api_key is None and 'apiKey' in kwargs:
+            api_key = kwargs['apiKey']
+        if client_email is None and 'clientEmail' in kwargs:
+            client_email = kwargs['clientEmail']
+        if host_port is None and 'hostPort' in kwargs:
+            host_port = kwargs['hostPort']
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if private_key is None and 'privateKey' in kwargs:
+            private_key = kwargs['privateKey']
+        if private_key_id is None and 'privateKeyId' in kwargs:
+            private_key_id = kwargs['privateKeyId']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if secret_access_key is None and 'secretAccessKey' in kwargs:
+            secret_access_key = kwargs['secretAccessKey']
+
         if access_key_id is not None:
             _setter("access_key_id", access_key_id)
         if api_key is not None:

@@ -76,14 +76,6 @@ def get_upgradable_versions(instance_id: Optional[int] = None,
     """
     Use this data source to retrieve information about possible upgradable versions for RabbitMQ and Erlang.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_cloudamqp as cloudamqp
-
-    versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
-    ```
     ## Attributes reference
 
     All attributes reference are computed
@@ -116,14 +108,6 @@ def get_upgradable_versions_output(instance_id: Optional[pulumi.Input[int]] = No
     """
     Use this data source to retrieve information about possible upgradable versions for RabbitMQ and Erlang.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_cloudamqp as cloudamqp
-
-    versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
-    ```
     ## Attributes reference
 
     All attributes reference are computed

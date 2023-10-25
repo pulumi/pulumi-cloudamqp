@@ -15,17 +15,6 @@ import * as utilities from "./utilities";
  *
  * Only available for dedicated subscription plans.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const settings = new cloudamqp.CustomDomain("settings", {
- *     instanceId: cloudamqp_instance.instance.id,
- *     hostname: "myname.mydomain",
- * });
- * ```
  * ## Depedency
  *
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.

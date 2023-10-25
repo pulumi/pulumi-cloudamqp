@@ -41,11 +41,19 @@ class SecurityFirewallArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             instance_id: pulumi.Input[int],
-             rules: pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]],
+             instance_id: Optional[pulumi.Input[int]] = None,
+             rules: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]]] = None,
              sleep: Optional[pulumi.Input[int]] = None,
              timeout: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if instance_id is None:
+            raise TypeError("Missing 'instance_id' argument")
+        if rules is None:
+            raise TypeError("Missing 'rules' argument")
+
         _setter("instance_id", instance_id)
         _setter("rules", rules)
         if sleep is not None:
@@ -138,7 +146,11 @@ class _SecurityFirewallState:
              rules: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]]] = None,
              sleep: Optional[pulumi.Input[int]] = None,
              timeout: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+
         if instance_id is not None:
             _setter("instance_id", instance_id)
         if rules is not None:

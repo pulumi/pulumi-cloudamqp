@@ -41,11 +41,23 @@ class VpcGcpPeeringArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             peer_network_uri: pulumi.Input[str],
+             peer_network_uri: Optional[pulumi.Input[str]] = None,
              instance_id: Optional[pulumi.Input[int]] = None,
              vpc_id: Optional[pulumi.Input[str]] = None,
              wait_on_peering_status: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if peer_network_uri is None and 'peerNetworkUri' in kwargs:
+            peer_network_uri = kwargs['peerNetworkUri']
+        if peer_network_uri is None:
+            raise TypeError("Missing 'peer_network_uri' argument")
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if vpc_id is None and 'vpcId' in kwargs:
+            vpc_id = kwargs['vpcId']
+        if wait_on_peering_status is None and 'waitOnPeeringStatus' in kwargs:
+            wait_on_peering_status = kwargs['waitOnPeeringStatus']
+
         _setter("peer_network_uri", peer_network_uri)
         if instance_id is not None:
             _setter("instance_id", instance_id)
@@ -155,7 +167,21 @@ class _VpcGcpPeeringState:
              state_details: Optional[pulumi.Input[str]] = None,
              vpc_id: Optional[pulumi.Input[str]] = None,
              wait_on_peering_status: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if auto_create_routes is None and 'autoCreateRoutes' in kwargs:
+            auto_create_routes = kwargs['autoCreateRoutes']
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if peer_network_uri is None and 'peerNetworkUri' in kwargs:
+            peer_network_uri = kwargs['peerNetworkUri']
+        if state_details is None and 'stateDetails' in kwargs:
+            state_details = kwargs['stateDetails']
+        if vpc_id is None and 'vpcId' in kwargs:
+            vpc_id = kwargs['vpcId']
+        if wait_on_peering_status is None and 'waitOnPeeringStatus' in kwargs:
+            wait_on_peering_status = kwargs['waitOnPeeringStatus']
+
         if auto_create_routes is not None:
             _setter("auto_create_routes", auto_create_routes)
         if instance_id is not None:
@@ -280,105 +306,12 @@ class VpcGcpPeering(pulumi.CustomResource):
          <summary>
             <i>Default VPC peering firewall rule</i>
           </summary>
-        ```python
-        import pulumi
-        ```
         </details>
 
         Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
 
         Only available for dedicated subscription plans.
 
-        ## Example Usage
-        ### With Additional Firewall Rules
-
-        <details>
-          <summary>
-            <b>
-              <i>VPC peering pre v1.16.0</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # VPC peering configuration
-        vpc_peering_request = cloudamqp.VpcGcpPeering("vpcPeeringRequest",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            peer_network_uri=var["peer_network_uri"])
-        # Firewall rules
-        firewall_settings = cloudamqp.SecurityFirewall("firewallSettings",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            rules=[
-                cloudamqp.SecurityFirewallRuleArgs(
-                    ip=var["peer_subnet"],
-                    ports=[15672],
-                    services=[
-                        "AMQP",
-                        "AMQPS",
-                        "STREAM",
-                        "STREAM_SSL",
-                    ],
-                    description="VPC peering for <NETWORK>",
-                ),
-                cloudamqp.SecurityFirewallRuleArgs(
-                    ip="192.168.0.0/24",
-                    ports=[
-                        4567,
-                        4568,
-                    ],
-                    services=[
-                        "AMQP",
-                        "AMQPS",
-                        "HTTPS",
-                    ],
-                ),
-            ],
-            opts=pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
-        ```
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>VPC peering post v1.16.0 (Managed VPC)</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # VPC peering configuration
-        vpc_peering_request = cloudamqp.VpcGcpPeering("vpcPeeringRequest",
-            vpc_id=cloudamqp_vpc["vpc"]["id"],
-            peer_network_uri=var["peer_network_uri"])
-        # Firewall rules
-        firewall_settings = cloudamqp.SecurityFirewall("firewallSettings",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            rules=[
-                cloudamqp.SecurityFirewallRuleArgs(
-                    ip=var["peer_subnet"],
-                    ports=[15672],
-                    services=[
-                        "AMQP",
-                        "AMQPS",
-                        "STREAM",
-                        "STREAM_SSL",
-                    ],
-                    description="VPC peering for <NETWORK>",
-                ),
-                cloudamqp.SecurityFirewallRuleArgs(
-                    ip="0.0.0.0/0",
-                    ports=[],
-                    services=["HTTPS"],
-                    description="MGMT interface",
-                ),
-            ],
-            opts=pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
-        ```
-        </details>
         ## Depedency
 
         *Pre v1.16.0*
@@ -427,105 +360,12 @@ class VpcGcpPeering(pulumi.CustomResource):
          <summary>
             <i>Default VPC peering firewall rule</i>
           </summary>
-        ```python
-        import pulumi
-        ```
         </details>
 
         Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
 
         Only available for dedicated subscription plans.
 
-        ## Example Usage
-        ### With Additional Firewall Rules
-
-        <details>
-          <summary>
-            <b>
-              <i>VPC peering pre v1.16.0</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # VPC peering configuration
-        vpc_peering_request = cloudamqp.VpcGcpPeering("vpcPeeringRequest",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            peer_network_uri=var["peer_network_uri"])
-        # Firewall rules
-        firewall_settings = cloudamqp.SecurityFirewall("firewallSettings",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            rules=[
-                cloudamqp.SecurityFirewallRuleArgs(
-                    ip=var["peer_subnet"],
-                    ports=[15672],
-                    services=[
-                        "AMQP",
-                        "AMQPS",
-                        "STREAM",
-                        "STREAM_SSL",
-                    ],
-                    description="VPC peering for <NETWORK>",
-                ),
-                cloudamqp.SecurityFirewallRuleArgs(
-                    ip="192.168.0.0/24",
-                    ports=[
-                        4567,
-                        4568,
-                    ],
-                    services=[
-                        "AMQP",
-                        "AMQPS",
-                        "HTTPS",
-                    ],
-                ),
-            ],
-            opts=pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
-        ```
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>VPC peering post v1.16.0 (Managed VPC)</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # VPC peering configuration
-        vpc_peering_request = cloudamqp.VpcGcpPeering("vpcPeeringRequest",
-            vpc_id=cloudamqp_vpc["vpc"]["id"],
-            peer_network_uri=var["peer_network_uri"])
-        # Firewall rules
-        firewall_settings = cloudamqp.SecurityFirewall("firewallSettings",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            rules=[
-                cloudamqp.SecurityFirewallRuleArgs(
-                    ip=var["peer_subnet"],
-                    ports=[15672],
-                    services=[
-                        "AMQP",
-                        "AMQPS",
-                        "STREAM",
-                        "STREAM_SSL",
-                    ],
-                    description="VPC peering for <NETWORK>",
-                ),
-                cloudamqp.SecurityFirewallRuleArgs(
-                    ip="0.0.0.0/0",
-                    ports=[],
-                    services=["HTTPS"],
-                    description="MGMT interface",
-                ),
-            ],
-            opts=pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
-        ```
-        </details>
         ## Depedency
 
         *Pre v1.16.0*

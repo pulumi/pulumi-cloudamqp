@@ -83,7 +83,7 @@ class IntegrationMetricArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             instance_id: pulumi.Input[int],
+             instance_id: Optional[pulumi.Input[int]] = None,
              access_key_id: Optional[pulumi.Input[str]] = None,
              api_key: Optional[pulumi.Input[str]] = None,
              client_email: Optional[pulumi.Input[str]] = None,
@@ -103,7 +103,41 @@ class IntegrationMetricArgs:
              tags: Optional[pulumi.Input[str]] = None,
              vhost_allowlist: Optional[pulumi.Input[str]] = None,
              vhost_whitelist: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if instance_id is None:
+            raise TypeError("Missing 'instance_id' argument")
+        if access_key_id is None and 'accessKeyId' in kwargs:
+            access_key_id = kwargs['accessKeyId']
+        if api_key is None and 'apiKey' in kwargs:
+            api_key = kwargs['apiKey']
+        if client_email is None and 'clientEmail' in kwargs:
+            client_email = kwargs['clientEmail']
+        if iam_external_id is None and 'iamExternalId' in kwargs:
+            iam_external_id = kwargs['iamExternalId']
+        if iam_role is None and 'iamRole' in kwargs:
+            iam_role = kwargs['iamRole']
+        if license_key is None and 'licenseKey' in kwargs:
+            license_key = kwargs['licenseKey']
+        if private_key is None and 'privateKey' in kwargs:
+            private_key = kwargs['privateKey']
+        if private_key_id is None and 'privateKeyId' in kwargs:
+            private_key_id = kwargs['privateKeyId']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if queue_allowlist is None and 'queueAllowlist' in kwargs:
+            queue_allowlist = kwargs['queueAllowlist']
+        if queue_whitelist is None and 'queueWhitelist' in kwargs:
+            queue_whitelist = kwargs['queueWhitelist']
+        if secret_access_key is None and 'secretAccessKey' in kwargs:
+            secret_access_key = kwargs['secretAccessKey']
+        if vhost_allowlist is None and 'vhostAllowlist' in kwargs:
+            vhost_allowlist = kwargs['vhostAllowlist']
+        if vhost_whitelist is None and 'vhostWhitelist' in kwargs:
+            vhost_whitelist = kwargs['vhostWhitelist']
+
         _setter("instance_id", instance_id)
         if access_key_id is not None:
             _setter("access_key_id", access_key_id)
@@ -489,7 +523,39 @@ class _IntegrationMetricState:
              tags: Optional[pulumi.Input[str]] = None,
              vhost_allowlist: Optional[pulumi.Input[str]] = None,
              vhost_whitelist: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if access_key_id is None and 'accessKeyId' in kwargs:
+            access_key_id = kwargs['accessKeyId']
+        if api_key is None and 'apiKey' in kwargs:
+            api_key = kwargs['apiKey']
+        if client_email is None and 'clientEmail' in kwargs:
+            client_email = kwargs['clientEmail']
+        if iam_external_id is None and 'iamExternalId' in kwargs:
+            iam_external_id = kwargs['iamExternalId']
+        if iam_role is None and 'iamRole' in kwargs:
+            iam_role = kwargs['iamRole']
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if license_key is None and 'licenseKey' in kwargs:
+            license_key = kwargs['licenseKey']
+        if private_key is None and 'privateKey' in kwargs:
+            private_key = kwargs['privateKey']
+        if private_key_id is None and 'privateKeyId' in kwargs:
+            private_key_id = kwargs['privateKeyId']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if queue_allowlist is None and 'queueAllowlist' in kwargs:
+            queue_allowlist = kwargs['queueAllowlist']
+        if queue_whitelist is None and 'queueWhitelist' in kwargs:
+            queue_whitelist = kwargs['queueWhitelist']
+        if secret_access_key is None and 'secretAccessKey' in kwargs:
+            secret_access_key = kwargs['secretAccessKey']
+        if vhost_allowlist is None and 'vhostAllowlist' in kwargs:
+            vhost_allowlist = kwargs['vhostAllowlist']
+        if vhost_whitelist is None and 'vhostWhitelist' in kwargs:
+            vhost_whitelist = kwargs['vhostWhitelist']
+
         if access_key_id is not None:
             _setter("access_key_id", access_key_id)
         if api_key is not None:

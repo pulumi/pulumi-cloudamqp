@@ -66,14 +66,6 @@ class AwaitableGetPluginsCommunityResult(GetPluginsCommunityResult):
 def get_plugins_community(instance_id: Optional[int] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPluginsCommunityResult:
     """
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_cloudamqp as cloudamqp
-
-    communit_plugins = cloudamqp.get_plugins_community(instance_id=cloudamqp_instance["instance"]["id"])
-    ```
     ## Attributes reference
 
     All attributes reference are computed
@@ -111,14 +103,6 @@ def get_plugins_community(instance_id: Optional[int] = None,
 def get_plugins_community_output(instance_id: Optional[pulumi.Input[int]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPluginsCommunityResult]:
     """
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_cloudamqp as cloudamqp
-
-    communit_plugins = cloudamqp.get_plugins_community(instance_id=cloudamqp_instance["instance"]["id"])
-    ```
     ## Attributes reference
 
     All attributes reference are computed

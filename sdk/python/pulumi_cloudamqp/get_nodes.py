@@ -68,14 +68,6 @@ def get_nodes(instance_id: Optional[int] = None,
     """
     Use this data source to retrieve information about the node(s) created by CloudAMQP instance.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_cloudamqp as cloudamqp
-
-    nodes = cloudamqp.get_nodes(instance_id=cloudamqp_instance["instance"]["id"])
-    ```
     ## Attributes reference
 
     All attributes reference are computed
@@ -123,14 +115,6 @@ def get_nodes_output(instance_id: Optional[pulumi.Input[int]] = None,
     """
     Use this data source to retrieve information about the node(s) created by CloudAMQP instance.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_cloudamqp as cloudamqp
-
-    nodes = cloudamqp.get_nodes(instance_id=cloudamqp_instance["instance"]["id"])
-    ```
     ## Attributes reference
 
     All attributes reference are computed

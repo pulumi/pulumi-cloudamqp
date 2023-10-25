@@ -21,49 +21,6 @@ import (
 //
 // Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			vpc, err := cloudamqp.NewVpc(ctx, "vpc", &cloudamqp.VpcArgs{
-//				Region: pulumi.String("amazon-web-services::us-east-1"),
-//				Subnet: pulumi.String("10.56.72.0/24"),
-//				Tags:   pulumi.StringArray{},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
-//				Plan:              pulumi.String("bunny-1"),
-//				Region:            pulumi.String("amazon-web-services::us-east-1"),
-//				Nodes:             pulumi.Int(1),
-//				Tags:              pulumi.StringArray{},
-//				RmqVersion:        pulumi.String("3.9.13"),
-//				VpcId:             pulumi.Any(cloudamq_vpc.Vpc.Id),
-//				KeepAssociatedVpc: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_ = cloudamqp.GetVpcInfoOutput(ctx, cloudamqp.GetVpcInfoOutputArgs{
-//				VpcId: vpc.ID(),
-//			}, nil)
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // `cloudamqp_vpc` can be imported using the CloudAMQP VPC identifier.

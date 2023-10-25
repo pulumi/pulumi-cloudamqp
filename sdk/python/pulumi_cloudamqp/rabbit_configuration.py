@@ -61,7 +61,7 @@ class RabbitConfigurationArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             instance_id: pulumi.Input[int],
+             instance_id: Optional[pulumi.Input[int]] = None,
              channel_max: Optional[pulumi.Input[int]] = None,
              cluster_partition_handling: Optional[pulumi.Input[str]] = None,
              connection_max: Optional[pulumi.Input[int]] = None,
@@ -73,7 +73,29 @@ class RabbitConfigurationArgs:
              sleep: Optional[pulumi.Input[int]] = None,
              timeout: Optional[pulumi.Input[int]] = None,
              vm_memory_high_watermark: Optional[pulumi.Input[float]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if instance_id is None:
+            raise TypeError("Missing 'instance_id' argument")
+        if channel_max is None and 'channelMax' in kwargs:
+            channel_max = kwargs['channelMax']
+        if cluster_partition_handling is None and 'clusterPartitionHandling' in kwargs:
+            cluster_partition_handling = kwargs['clusterPartitionHandling']
+        if connection_max is None and 'connectionMax' in kwargs:
+            connection_max = kwargs['connectionMax']
+        if consumer_timeout is None and 'consumerTimeout' in kwargs:
+            consumer_timeout = kwargs['consumerTimeout']
+        if log_exchange_level is None and 'logExchangeLevel' in kwargs:
+            log_exchange_level = kwargs['logExchangeLevel']
+        if max_message_size is None and 'maxMessageSize' in kwargs:
+            max_message_size = kwargs['maxMessageSize']
+        if queue_index_embed_msgs_below is None and 'queueIndexEmbedMsgsBelow' in kwargs:
+            queue_index_embed_msgs_below = kwargs['queueIndexEmbedMsgsBelow']
+        if vm_memory_high_watermark is None and 'vmMemoryHighWatermark' in kwargs:
+            vm_memory_high_watermark = kwargs['vmMemoryHighWatermark']
+
         _setter("instance_id", instance_id)
         if channel_max is not None:
             _setter("channel_max", channel_max)
@@ -307,7 +329,27 @@ class _RabbitConfigurationState:
              sleep: Optional[pulumi.Input[int]] = None,
              timeout: Optional[pulumi.Input[int]] = None,
              vm_memory_high_watermark: Optional[pulumi.Input[float]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if channel_max is None and 'channelMax' in kwargs:
+            channel_max = kwargs['channelMax']
+        if cluster_partition_handling is None and 'clusterPartitionHandling' in kwargs:
+            cluster_partition_handling = kwargs['clusterPartitionHandling']
+        if connection_max is None and 'connectionMax' in kwargs:
+            connection_max = kwargs['connectionMax']
+        if consumer_timeout is None and 'consumerTimeout' in kwargs:
+            consumer_timeout = kwargs['consumerTimeout']
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if log_exchange_level is None and 'logExchangeLevel' in kwargs:
+            log_exchange_level = kwargs['logExchangeLevel']
+        if max_message_size is None and 'maxMessageSize' in kwargs:
+            max_message_size = kwargs['maxMessageSize']
+        if queue_index_embed_msgs_below is None and 'queueIndexEmbedMsgsBelow' in kwargs:
+            queue_index_embed_msgs_below = kwargs['queueIndexEmbedMsgsBelow']
+        if vm_memory_high_watermark is None and 'vmMemoryHighWatermark' in kwargs:
+            vm_memory_high_watermark = kwargs['vmMemoryHighWatermark']
+
         if channel_max is not None:
             _setter("channel_max", channel_max)
         if cluster_partition_handling is not None:

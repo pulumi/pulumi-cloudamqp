@@ -106,37 +106,6 @@ def get_vpc_info(instance_id: Optional[int] = None,
 
     Only available for CloudAMQP instances hosted in AWS.
 
-    ## Example Usage
-
-    <details>
-      <summary>
-        <b>
-          <i>AWS VPC peering pre v1.16.0</i>
-        </b>
-      </summary>
-
-    ```python
-    import pulumi
-    import pulumi_cloudamqp as cloudamqp
-
-    vpc_info = cloudamqp.get_vpc_info(instance_id=cloudamqp_instance["instance"]["id"])
-    ```
-    </details>
-
-    <details>
-      <summary>
-        <b>
-          <i>AWS VPC peering post v1.16.0 (Managed VPC)</i>
-        </b>
-      </summary>
-
-    ```python
-    import pulumi
-    import pulumi_cloudamqp as cloudamqp
-
-    vpc_info = cloudamqp.get_vpc_info(vpc_id=cloudamqp_vpc["vpc"]["id"])
-    ```
-    </details>
     ## Attributes reference
 
     All attributes reference are computed
@@ -188,37 +157,6 @@ def get_vpc_info_output(instance_id: Optional[pulumi.Input[Optional[int]]] = Non
 
     Only available for CloudAMQP instances hosted in AWS.
 
-    ## Example Usage
-
-    <details>
-      <summary>
-        <b>
-          <i>AWS VPC peering pre v1.16.0</i>
-        </b>
-      </summary>
-
-    ```python
-    import pulumi
-    import pulumi_cloudamqp as cloudamqp
-
-    vpc_info = cloudamqp.get_vpc_info(instance_id=cloudamqp_instance["instance"]["id"])
-    ```
-    </details>
-
-    <details>
-      <summary>
-        <b>
-          <i>AWS VPC peering post v1.16.0 (Managed VPC)</i>
-        </b>
-      </summary>
-
-    ```python
-    import pulumi
-    import pulumi_cloudamqp as cloudamqp
-
-    vpc_info = cloudamqp.get_vpc_info(vpc_id=cloudamqp_vpc["vpc"]["id"])
-    ```
-    </details>
     ## Attributes reference
 
     All attributes reference are computed

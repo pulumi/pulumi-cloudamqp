@@ -9,18 +9,6 @@ import * as utilities from "./utilities";
 /**
  * Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
  *
- * ## Example Usage
- *
- * Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const instanceName = "<instance_name>";
- * const instanceList = cloudamqp.getAccount({});
- * export const instanceId = <nil>;
- * ```
  * ## Attributes reference
  *
  * All attributes reference are computed
@@ -62,18 +50,6 @@ export interface GetAccountResult {
 /**
  * Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
  *
- * ## Example Usage
- *
- * Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const instanceName = "<instance_name>";
- * const instanceList = cloudamqp.getAccount({});
- * export const instanceId = <nil>;
- * ```
  * ## Attributes reference
  *
  * All attributes reference are computed

@@ -60,10 +60,10 @@ class AlarmArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             enabled: pulumi.Input[bool],
-             instance_id: pulumi.Input[int],
-             recipients: pulumi.Input[Sequence[pulumi.Input[int]]],
-             type: pulumi.Input[str],
+             enabled: Optional[pulumi.Input[bool]] = None,
+             instance_id: Optional[pulumi.Input[int]] = None,
+             recipients: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
+             type: Optional[pulumi.Input[str]] = None,
              message_type: Optional[pulumi.Input[str]] = None,
              queue_regex: Optional[pulumi.Input[str]] = None,
              reminder_interval: Optional[pulumi.Input[int]] = None,
@@ -71,7 +71,33 @@ class AlarmArgs:
              value_calculation: Optional[pulumi.Input[str]] = None,
              value_threshold: Optional[pulumi.Input[int]] = None,
              vhost_regex: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if enabled is None:
+            raise TypeError("Missing 'enabled' argument")
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if instance_id is None:
+            raise TypeError("Missing 'instance_id' argument")
+        if recipients is None:
+            raise TypeError("Missing 'recipients' argument")
+        if type is None:
+            raise TypeError("Missing 'type' argument")
+        if message_type is None and 'messageType' in kwargs:
+            message_type = kwargs['messageType']
+        if queue_regex is None and 'queueRegex' in kwargs:
+            queue_regex = kwargs['queueRegex']
+        if reminder_interval is None and 'reminderInterval' in kwargs:
+            reminder_interval = kwargs['reminderInterval']
+        if time_threshold is None and 'timeThreshold' in kwargs:
+            time_threshold = kwargs['timeThreshold']
+        if value_calculation is None and 'valueCalculation' in kwargs:
+            value_calculation = kwargs['valueCalculation']
+        if value_threshold is None and 'valueThreshold' in kwargs:
+            value_threshold = kwargs['valueThreshold']
+        if vhost_regex is None and 'vhostRegex' in kwargs:
+            vhost_regex = kwargs['vhostRegex']
+
         _setter("enabled", enabled)
         _setter("instance_id", instance_id)
         _setter("recipients", recipients)
@@ -288,7 +314,25 @@ class _AlarmState:
              value_calculation: Optional[pulumi.Input[str]] = None,
              value_threshold: Optional[pulumi.Input[int]] = None,
              vhost_regex: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if message_type is None and 'messageType' in kwargs:
+            message_type = kwargs['messageType']
+        if queue_regex is None and 'queueRegex' in kwargs:
+            queue_regex = kwargs['queueRegex']
+        if reminder_interval is None and 'reminderInterval' in kwargs:
+            reminder_interval = kwargs['reminderInterval']
+        if time_threshold is None and 'timeThreshold' in kwargs:
+            time_threshold = kwargs['timeThreshold']
+        if value_calculation is None and 'valueCalculation' in kwargs:
+            value_calculation = kwargs['valueCalculation']
+        if value_threshold is None and 'valueThreshold' in kwargs:
+            value_threshold = kwargs['valueThreshold']
+        if vhost_regex is None and 'vhostRegex' in kwargs:
+            vhost_regex = kwargs['vhostRegex']
+
         if enabled is not None:
             _setter("enabled", enabled)
         if instance_id is not None:
@@ -473,36 +517,6 @@ class Alarm(pulumi.CustomResource):
 
         Available for all subscription plans, but `lemur`and `tiger`are limited to fewer alarm types. The limited types supported can be seen in the table below in Alarm Type Reference.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # New recipient
-        recipient01 = cloudamqp.Notification("recipient01",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            type="email",
-            value="alarm@example.com")
-        # New cpu alarm
-        cpu_alarm = cloudamqp.Alarm("cpuAlarm",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            type="cpu",
-            enabled=True,
-            reminder_interval=600,
-            value_threshold=95,
-            time_threshold=600,
-            recipients=[recipient01.id])
-        # New memory alarm
-        memory_alarm = cloudamqp.Alarm("memoryAlarm",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            type="memory",
-            enabled=True,
-            reminder_interval=600,
-            value_threshold=95,
-            time_threshold=600,
-            recipients=[recipient01.id])
-        ```
         ## Alarm Type reference
 
         Supported alarm types: `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
@@ -568,36 +582,6 @@ class Alarm(pulumi.CustomResource):
 
         Available for all subscription plans, but `lemur`and `tiger`are limited to fewer alarm types. The limited types supported can be seen in the table below in Alarm Type Reference.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # New recipient
-        recipient01 = cloudamqp.Notification("recipient01",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            type="email",
-            value="alarm@example.com")
-        # New cpu alarm
-        cpu_alarm = cloudamqp.Alarm("cpuAlarm",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            type="cpu",
-            enabled=True,
-            reminder_interval=600,
-            value_threshold=95,
-            time_threshold=600,
-            recipients=[recipient01.id])
-        # New memory alarm
-        memory_alarm = cloudamqp.Alarm("memoryAlarm",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            type="memory",
-            enabled=True,
-            reminder_interval=600,
-            value_threshold=95,
-            time_threshold=600,
-            recipients=[recipient01.id])
-        ```
         ## Alarm Type reference
 
         Supported alarm types: `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`

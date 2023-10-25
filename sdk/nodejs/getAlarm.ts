@@ -7,17 +7,6 @@ import * as utilities from "./utilities";
 /**
  * Use this data source to retrieve information about default or created alarms. Either use `alarmId` or `type` to retrieve the alarm.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const defaultCpuAlarm = cloudamqp.getAlarm({
- *     instanceId: cloudamqp_instance.instance.id,
- *     type: "cpu",
- * });
- * ```
  * ## Attributes reference
  *
  * All attributes reference are computed
@@ -98,17 +87,6 @@ export interface GetAlarmResult {
 /**
  * Use this data source to retrieve information about default or created alarms. Either use `alarmId` or `type` to retrieve the alarm.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const defaultCpuAlarm = cloudamqp.getAlarm({
- *     instanceId: cloudamqp_instance.instance.id,
- *     type: "cpu",
- * });
- * ```
  * ## Attributes reference
  *
  * All attributes reference are computed

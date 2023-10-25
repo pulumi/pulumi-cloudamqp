@@ -7,16 +7,6 @@ import * as utilities from "./utilities";
 /**
  * Use this data source to retrieve information about possible upgradable versions for RabbitMQ and Erlang.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const versions = cloudamqp.getUpgradableVersions({
- *     instanceId: cloudamqp_instance.instance.id,
- * });
- * ```
  * ## Attributes reference
  *
  * All attributes reference are computed
@@ -61,16 +51,6 @@ export interface GetUpgradableVersionsResult {
 /**
  * Use this data source to retrieve information about possible upgradable versions for RabbitMQ and Erlang.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const versions = cloudamqp.getUpgradableVersions({
- *     instanceId: cloudamqp_instance.instance.id,
- * });
- * ```
  * ## Attributes reference
  *
  * All attributes reference are computed

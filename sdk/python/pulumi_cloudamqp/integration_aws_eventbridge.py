@@ -41,13 +41,35 @@ class IntegrationAwsEventbridgeArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             aws_account_id: pulumi.Input[str],
-             aws_region: pulumi.Input[str],
-             instance_id: pulumi.Input[int],
-             queue: pulumi.Input[str],
-             vhost: pulumi.Input[str],
-             with_headers: pulumi.Input[bool],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             aws_account_id: Optional[pulumi.Input[str]] = None,
+             aws_region: Optional[pulumi.Input[str]] = None,
+             instance_id: Optional[pulumi.Input[int]] = None,
+             queue: Optional[pulumi.Input[str]] = None,
+             vhost: Optional[pulumi.Input[str]] = None,
+             with_headers: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if aws_account_id is None and 'awsAccountId' in kwargs:
+            aws_account_id = kwargs['awsAccountId']
+        if aws_account_id is None:
+            raise TypeError("Missing 'aws_account_id' argument")
+        if aws_region is None and 'awsRegion' in kwargs:
+            aws_region = kwargs['awsRegion']
+        if aws_region is None:
+            raise TypeError("Missing 'aws_region' argument")
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if instance_id is None:
+            raise TypeError("Missing 'instance_id' argument")
+        if queue is None:
+            raise TypeError("Missing 'queue' argument")
+        if vhost is None:
+            raise TypeError("Missing 'vhost' argument")
+        if with_headers is None and 'withHeaders' in kwargs:
+            with_headers = kwargs['withHeaders']
+        if with_headers is None:
+            raise TypeError("Missing 'with_headers' argument")
+
         _setter("aws_account_id", aws_account_id)
         _setter("aws_region", aws_region)
         _setter("instance_id", instance_id)
@@ -168,7 +190,17 @@ class _IntegrationAwsEventbridgeState:
              status: Optional[pulumi.Input[str]] = None,
              vhost: Optional[pulumi.Input[str]] = None,
              with_headers: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if aws_account_id is None and 'awsAccountId' in kwargs:
+            aws_account_id = kwargs['awsAccountId']
+        if aws_region is None and 'awsRegion' in kwargs:
+            aws_region = kwargs['awsRegion']
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if with_headers is None and 'withHeaders' in kwargs:
+            with_headers = kwargs['withHeaders']
+
         if aws_account_id is not None:
             _setter("aws_account_id", aws_account_id)
         if aws_region is not None:
@@ -290,25 +322,6 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
 
         Only available for dedicated subscription plans.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        instance = cloudamqp.Instance("instance",
-            plan="squirrel-1",
-            region="amazon-web-services::us-west-1",
-            rmq_version="3.11.5",
-            tags=["aws"])
-        aws_eventbridge = cloudamqp.IntegrationAwsEventbridge("awsEventbridge",
-            instance_id=instance.id,
-            vhost=instance.vhost,
-            queue="<QUEUE-NAME>",
-            aws_account_id="<AWS-ACCOUNT-ID>",
-            aws_region="us-west-1",
-            with_headers=True)
-        ```
         ## Argument references
 
         The following arguments are supported:
@@ -355,25 +368,6 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
 
         Only available for dedicated subscription plans.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        instance = cloudamqp.Instance("instance",
-            plan="squirrel-1",
-            region="amazon-web-services::us-west-1",
-            rmq_version="3.11.5",
-            tags=["aws"])
-        aws_eventbridge = cloudamqp.IntegrationAwsEventbridge("awsEventbridge",
-            instance_id=instance.id,
-            vhost=instance.vhost,
-            queue="<QUEUE-NAME>",
-            aws_account_id="<AWS-ACCOUNT-ID>",
-            aws_region="us-west-1",
-            with_headers=True)
-        ```
         ## Argument references
 
         The following arguments are supported:

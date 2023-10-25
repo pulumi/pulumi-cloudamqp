@@ -19,61 +19,6 @@ import (
 //
 // Available for all subscription plans, but `lemur`and `tiger`are limited to fewer alarm types. The limited types supported can be seen in the table below in Alarm Type Reference.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			recipient01, err := cloudamqp.NewNotification(ctx, "recipient01", &cloudamqp.NotificationArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
-//				Type:       pulumi.String("email"),
-//				Value:      pulumi.String("alarm@example.com"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = cloudamqp.NewAlarm(ctx, "cpuAlarm", &cloudamqp.AlarmArgs{
-//				InstanceId:       pulumi.Any(cloudamqp_instance.Instance.Id),
-//				Type:             pulumi.String("cpu"),
-//				Enabled:          pulumi.Bool(true),
-//				ReminderInterval: pulumi.Int(600),
-//				ValueThreshold:   pulumi.Int(95),
-//				TimeThreshold:    pulumi.Int(600),
-//				Recipients: pulumi.IntArray{
-//					recipient01.ID(),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = cloudamqp.NewAlarm(ctx, "memoryAlarm", &cloudamqp.AlarmArgs{
-//				InstanceId:       pulumi.Any(cloudamqp_instance.Instance.Id),
-//				Type:             pulumi.String("memory"),
-//				Enabled:          pulumi.Bool(true),
-//				ReminderInterval: pulumi.Int(600),
-//				ValueThreshold:   pulumi.Int(95),
-//				TimeThreshold:    pulumi.Int(600),
-//				Recipients: pulumi.IntArray{
-//					recipient01.ID(),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 // ## Alarm Type reference
 //
 // Supported alarm types: `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`

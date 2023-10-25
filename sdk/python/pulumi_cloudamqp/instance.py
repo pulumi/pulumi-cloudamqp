@@ -72,8 +72,8 @@ class InstanceArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             plan: pulumi.Input[str],
-             region: pulumi.Input[str],
+             plan: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
              copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceCopySettingArgs']]]] = None,
              keep_associated_vpc: Optional[pulumi.Input[bool]] = None,
              name: Optional[pulumi.Input[str]] = None,
@@ -83,7 +83,25 @@ class InstanceArgs:
              tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
              vpc_id: Optional[pulumi.Input[int]] = None,
              vpc_subnet: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if plan is None:
+            raise TypeError("Missing 'plan' argument")
+        if region is None:
+            raise TypeError("Missing 'region' argument")
+        if copy_settings is None and 'copySettings' in kwargs:
+            copy_settings = kwargs['copySettings']
+        if keep_associated_vpc is None and 'keepAssociatedVpc' in kwargs:
+            keep_associated_vpc = kwargs['keepAssociatedVpc']
+        if no_default_alarms is None and 'noDefaultAlarms' in kwargs:
+            no_default_alarms = kwargs['noDefaultAlarms']
+        if rmq_version is None and 'rmqVersion' in kwargs:
+            rmq_version = kwargs['rmqVersion']
+        if vpc_id is None and 'vpcId' in kwargs:
+            vpc_id = kwargs['vpcId']
+        if vpc_subnet is None and 'vpcSubnet' in kwargs:
+            vpc_subnet = kwargs['vpcSubnet']
+
         _setter("plan", plan)
         _setter("region", region)
         if copy_settings is not None:
@@ -354,7 +372,23 @@ class _InstanceState:
              vhost: Optional[pulumi.Input[str]] = None,
              vpc_id: Optional[pulumi.Input[int]] = None,
              vpc_subnet: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if copy_settings is None and 'copySettings' in kwargs:
+            copy_settings = kwargs['copySettings']
+        if host_internal is None and 'hostInternal' in kwargs:
+            host_internal = kwargs['hostInternal']
+        if keep_associated_vpc is None and 'keepAssociatedVpc' in kwargs:
+            keep_associated_vpc = kwargs['keepAssociatedVpc']
+        if no_default_alarms is None and 'noDefaultAlarms' in kwargs:
+            no_default_alarms = kwargs['noDefaultAlarms']
+        if rmq_version is None and 'rmqVersion' in kwargs:
+            rmq_version = kwargs['rmqVersion']
+        if vpc_id is None and 'vpcId' in kwargs:
+            vpc_id = kwargs['vpcId']
+        if vpc_subnet is None and 'vpcSubnet' in kwargs:
+            vpc_subnet = kwargs['vpcSubnet']
+
         if apikey is not None:
             _setter("apikey", apikey)
         if backend is not None:
@@ -661,213 +695,6 @@ class Instance(pulumi.CustomResource):
 
         Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
 
-        ## Example Usage
-
-        <details>
-          <summary>
-            <b>
-              <i>Basic example of shared and dedicated instances</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # Minimum free lemur instance running RabbitMQ
-        lemur_instance = cloudamqp.Instance("lemurInstance",
-            plan="lemur",
-            region="amazon-web-services::us-west-1",
-            tags=["rabbitmq"])
-        # Minimum free lemming instance running LavinMQ
-        lemming_instance = cloudamqp.Instance("lemmingInstance",
-            plan="lemming",
-            region="amazon-web-services::us-west-1",
-            tags=["lavinmq"])
-        # New dedicated bunny instance running RabbitMQ
-        instance = cloudamqp.Instance("instance",
-            plan="bunny-1",
-            region="amazon-web-services::us-west-1",
-            tags=["terraform"])
-        ```
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>Dedicated instance using attribute vpc_subnet to create VPC, pre v1.16.0</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        instance = cloudamqp.Instance("instance",
-            plan="bunny-1",
-            region="amazon-web-services::us-west-1",
-            tags=["terraform"],
-            vpc_subnet="10.56.72.0/24")
-        ```
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>Dedicated instance using attribute vpc_subnet to create VPC and then import managed VPC, post v1.16.0 (Managed VPC)</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # Dedicated instance that also creates VPC
-        instance01 = cloudamqp.Instance("instance01",
-            plan="bunny-1",
-            region="amazon-web-services::us-west-1",
-            tags=["terraform"],
-            vpc_subnet="10.56.72.0/24")
-        ```
-
-        Once the instance and the VPC are created, the VPC can be imported as managed VPC and added to the configuration file.
-        Set attribute `vpc_id` to the managed VPC identifier. To keep the managed VPC when deleting the instance, set attribute `keep_associated_vpc` to true.
-        For more information see guide Managed VPC.
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # Imported managed VPC
-        vpc = cloudamqp.Vpc("vpc",
-            region="amazon-web-services::us-east-1",
-            subnet="10.56.72.0/24",
-            tags=[])
-        # Add vpc_id and keep_associated_vpc attributes
-        instance01 = cloudamqp.Instance("instance01",
-            plan="bunny-1",
-            region="amazon-web-services::us-west-1",
-            tags=["terraform"],
-            vpc_id=vpc.id,
-            keep_associated_vpc=True)
-        ```
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>Dedicated instances and managed VPC, post v1.16.0 (Managed VPC)</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # Managed VPC
-        vpc = cloudamqp.Vpc("vpc",
-            region="amazon-web-services::us-east-1",
-            subnet="10.56.72.0/24",
-            tags=[])
-        # First instance added to managed VPC
-        instance01 = cloudamqp.Instance("instance01",
-            plan="bunny-1",
-            region="amazon-web-services::us-west-1",
-            tags=["terraform"],
-            vpc_id=vpc.id,
-            keep_associated_vpc=True)
-        # Second instance added to managed VPC
-        instance02 = cloudamqp.Instance("instance02",
-            plan="bunny-1",
-            region="amazon-web-services::us-west-1",
-            tags=["terraform"],
-            vpc_id=vpc.id,
-            keep_associated_vpc=True)
-        ```
-
-        Set attribute `keep_associated_vpc` to true, will keep managed VPC when deleting the instances.
-        </details>
-        ## Upgrade and downgrade
-
-        It's possible to upgrade or downgrade your subscription plan, this will either increase or decrease the underlying resource used for by the CloudAMQP instance. To do this, change the argument `plan` in the configuration and apply the changes. See available plans.
-
-        <details>
-          <summary>
-            <b>
-              <i>Upgrade the subscription plan</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # Upgraded CloudAMQP instance configuration
-        instance = cloudamqp.Instance("instance",
-            plan="bunny-1",
-            region="amazon-web-services::us-west-1",
-            tags=["terraform"])
-        ```
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>Downgrade number of nodes from 3 to 1</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # Downgraded CloudAMQP instance configuration
-        instance = cloudamqp.Instance("instance",
-            plan="bunny-1",
-            region="amazon-web-services::us-west-1",
-            tags=["terraform"])
-        ```
-        </details>
-
-        ## Copy settings to a new dedicated instance
-
-        With copy settings it's possible to create a new dedicated instance with settings such as alarms, config, etc. from another dedicated instance. This can be done by adding the `copy_settings` block to this resource and populate `subscription_id` with a CloudAMQP instance identifier from another already existing instance.
-
-        Then add the settings to be copied over to the new dedicated instance. Settings that can be copied [alarms, config, definitions, firewall, logs, metrics, plugins]
-
-        > `rmq_version` argument is required when doing this action. Must match the RabbitMQ version of the dedicated instance to be copied from.
-
-        <details>
-          <summary>
-            <b>
-              <i>Copy settings from a dedicated instance to a new dedicated instance</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        instance02 = cloudamqp.Instance("instance02",
-            plan="squirrel-1",
-            region="amazon-web-services::us-west-1",
-            rmq_version="3.12.2",
-            tags=["terraform"],
-            copy_settings=[cloudamqp.InstanceCopySettingArgs(
-                subscription_id=var["instance_id"],
-                settings=[
-                    "alarms",
-                    "config",
-                    "definitions",
-                    "firewall",
-                    "logs",
-                    "metrics",
-                    "plugins",
-                ],
-            )])
-        ```
-        </details>
-
         ## Import
 
         `cloudamqp_instance`can be imported using CloudAMQP internal identifier.
@@ -918,213 +745,6 @@ class Instance(pulumi.CustomResource):
         Once the instance is created it will be assigned a unique identifier. All other resources and data sources created for this instance needs to reference this unique instance identifier.
 
         Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
-
-        ## Example Usage
-
-        <details>
-          <summary>
-            <b>
-              <i>Basic example of shared and dedicated instances</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # Minimum free lemur instance running RabbitMQ
-        lemur_instance = cloudamqp.Instance("lemurInstance",
-            plan="lemur",
-            region="amazon-web-services::us-west-1",
-            tags=["rabbitmq"])
-        # Minimum free lemming instance running LavinMQ
-        lemming_instance = cloudamqp.Instance("lemmingInstance",
-            plan="lemming",
-            region="amazon-web-services::us-west-1",
-            tags=["lavinmq"])
-        # New dedicated bunny instance running RabbitMQ
-        instance = cloudamqp.Instance("instance",
-            plan="bunny-1",
-            region="amazon-web-services::us-west-1",
-            tags=["terraform"])
-        ```
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>Dedicated instance using attribute vpc_subnet to create VPC, pre v1.16.0</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        instance = cloudamqp.Instance("instance",
-            plan="bunny-1",
-            region="amazon-web-services::us-west-1",
-            tags=["terraform"],
-            vpc_subnet="10.56.72.0/24")
-        ```
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>Dedicated instance using attribute vpc_subnet to create VPC and then import managed VPC, post v1.16.0 (Managed VPC)</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # Dedicated instance that also creates VPC
-        instance01 = cloudamqp.Instance("instance01",
-            plan="bunny-1",
-            region="amazon-web-services::us-west-1",
-            tags=["terraform"],
-            vpc_subnet="10.56.72.0/24")
-        ```
-
-        Once the instance and the VPC are created, the VPC can be imported as managed VPC and added to the configuration file.
-        Set attribute `vpc_id` to the managed VPC identifier. To keep the managed VPC when deleting the instance, set attribute `keep_associated_vpc` to true.
-        For more information see guide Managed VPC.
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # Imported managed VPC
-        vpc = cloudamqp.Vpc("vpc",
-            region="amazon-web-services::us-east-1",
-            subnet="10.56.72.0/24",
-            tags=[])
-        # Add vpc_id and keep_associated_vpc attributes
-        instance01 = cloudamqp.Instance("instance01",
-            plan="bunny-1",
-            region="amazon-web-services::us-west-1",
-            tags=["terraform"],
-            vpc_id=vpc.id,
-            keep_associated_vpc=True)
-        ```
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>Dedicated instances and managed VPC, post v1.16.0 (Managed VPC)</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # Managed VPC
-        vpc = cloudamqp.Vpc("vpc",
-            region="amazon-web-services::us-east-1",
-            subnet="10.56.72.0/24",
-            tags=[])
-        # First instance added to managed VPC
-        instance01 = cloudamqp.Instance("instance01",
-            plan="bunny-1",
-            region="amazon-web-services::us-west-1",
-            tags=["terraform"],
-            vpc_id=vpc.id,
-            keep_associated_vpc=True)
-        # Second instance added to managed VPC
-        instance02 = cloudamqp.Instance("instance02",
-            plan="bunny-1",
-            region="amazon-web-services::us-west-1",
-            tags=["terraform"],
-            vpc_id=vpc.id,
-            keep_associated_vpc=True)
-        ```
-
-        Set attribute `keep_associated_vpc` to true, will keep managed VPC when deleting the instances.
-        </details>
-        ## Upgrade and downgrade
-
-        It's possible to upgrade or downgrade your subscription plan, this will either increase or decrease the underlying resource used for by the CloudAMQP instance. To do this, change the argument `plan` in the configuration and apply the changes. See available plans.
-
-        <details>
-          <summary>
-            <b>
-              <i>Upgrade the subscription plan</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # Upgraded CloudAMQP instance configuration
-        instance = cloudamqp.Instance("instance",
-            plan="bunny-1",
-            region="amazon-web-services::us-west-1",
-            tags=["terraform"])
-        ```
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>Downgrade number of nodes from 3 to 1</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # Downgraded CloudAMQP instance configuration
-        instance = cloudamqp.Instance("instance",
-            plan="bunny-1",
-            region="amazon-web-services::us-west-1",
-            tags=["terraform"])
-        ```
-        </details>
-
-        ## Copy settings to a new dedicated instance
-
-        With copy settings it's possible to create a new dedicated instance with settings such as alarms, config, etc. from another dedicated instance. This can be done by adding the `copy_settings` block to this resource and populate `subscription_id` with a CloudAMQP instance identifier from another already existing instance.
-
-        Then add the settings to be copied over to the new dedicated instance. Settings that can be copied [alarms, config, definitions, firewall, logs, metrics, plugins]
-
-        > `rmq_version` argument is required when doing this action. Must match the RabbitMQ version of the dedicated instance to be copied from.
-
-        <details>
-          <summary>
-            <b>
-              <i>Copy settings from a dedicated instance to a new dedicated instance</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        instance02 = cloudamqp.Instance("instance02",
-            plan="squirrel-1",
-            region="amazon-web-services::us-west-1",
-            rmq_version="3.12.2",
-            tags=["terraform"],
-            copy_settings=[cloudamqp.InstanceCopySettingArgs(
-                subscription_id=var["instance_id"],
-                settings=[
-                    "alarms",
-                    "config",
-                    "definitions",
-                    "firewall",
-                    "logs",
-                    "metrics",
-                    "plugins",
-                ],
-            )])
-        ```
-        </details>
 
         ## Import
 

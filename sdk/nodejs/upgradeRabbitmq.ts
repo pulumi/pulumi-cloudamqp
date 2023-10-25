@@ -16,41 +16,6 @@ import * as utilities from "./utilities";
  *
  * Only available for dedicated subscription plans running ***RabbitMQ***.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const versions = cloudamqp.getUpgradableVersions({
- *     instanceId: cloudamqp_instance.instance.id,
- * });
- * // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
- * const upgrade = new cloudamqp.UpgradeRabbitmq("upgrade", {instanceId: cloudamqp_instance.instance.id});
- * ```
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const versions = cloudamqp.getUpgradableVersions({
- *     instanceId: cloudamqp_instance.instance.id,
- * });
- * ```
- *
- * If newer version is still available to be upgradable in the data source, re-run again.
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const versions = cloudamqp.getUpgradableVersions({
- *     instanceId: cloudamqp_instance.instance.id,
- * });
- * // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
- * const upgrade = new cloudamqp.UpgradeRabbitmq("upgrade", {instanceId: cloudamqp_instance.instance.id});
- * ```
- *
  * ## Import
  *
  * Not possible to import this resource.
