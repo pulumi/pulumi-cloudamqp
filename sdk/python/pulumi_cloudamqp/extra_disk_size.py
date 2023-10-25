@@ -42,12 +42,24 @@ class ExtraDiskSizeArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             extra_disk_size: pulumi.Input[int],
-             instance_id: pulumi.Input[int],
+             extra_disk_size: Optional[pulumi.Input[int]] = None,
+             instance_id: Optional[pulumi.Input[int]] = None,
              allow_downtime: Optional[pulumi.Input[bool]] = None,
              sleep: Optional[pulumi.Input[int]] = None,
              timeout: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if extra_disk_size is None and 'extraDiskSize' in kwargs:
+            extra_disk_size = kwargs['extraDiskSize']
+        if extra_disk_size is None:
+            raise TypeError("Missing 'extra_disk_size' argument")
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if instance_id is None:
+            raise TypeError("Missing 'instance_id' argument")
+        if allow_downtime is None and 'allowDowntime' in kwargs:
+            allow_downtime = kwargs['allowDowntime']
+
         _setter("extra_disk_size", extra_disk_size)
         _setter("instance_id", instance_id)
         if allow_downtime is not None:
@@ -157,7 +169,15 @@ class _ExtraDiskSizeState:
              nodes: Optional[pulumi.Input[Sequence[pulumi.Input['ExtraDiskSizeNodeArgs']]]] = None,
              sleep: Optional[pulumi.Input[int]] = None,
              timeout: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if allow_downtime is None and 'allowDowntime' in kwargs:
+            allow_downtime = kwargs['allowDowntime']
+        if extra_disk_size is None and 'extraDiskSize' in kwargs:
+            extra_disk_size = kwargs['extraDiskSize']
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+
         if allow_downtime is not None:
             _setter("allow_downtime", allow_downtime)
         if extra_disk_size is not None:
@@ -278,104 +298,6 @@ class ExtraDiskSize(pulumi.CustomResource):
 
         Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/) and only available for dedicated subscription plans.
 
-        ## Example Usage
-
-        <details>
-          <summary>
-            <b>
-              <i>AWS extra disk size (pre v1.25.0)</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # Instance
-        instance = cloudamqp.Instance("instance",
-            plan="bunny-1",
-            region="amazon-web-services::us-west-2")
-        # Resize disk with 25 extra GB
-        resize_disk = cloudamqp.ExtraDiskSize("resizeDisk",
-            instance_id=instance.id,
-            extra_disk_size=25)
-        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
-        ```
-
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>AWS extra disk size without downtime</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # Instance
-        instance = cloudamqp.Instance("instance",
-            plan="bunny-1",
-            region="amazon-web-services::us-west-2")
-        # Resize disk with 25 extra GB, without downtime
-        resize_disk = cloudamqp.ExtraDiskSize("resizeDisk",
-            instance_id=instance.id,
-            extra_disk_size=25)
-        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
-        ```
-
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>GCE extra disk size without downtime</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # Instance
-        instance = cloudamqp.Instance("instance",
-            plan="bunny-1",
-            region="google-compute-engine::us-central1")
-        # Resize disk with 25 extra GB, without downtime
-        resize_disk = cloudamqp.ExtraDiskSize("resizeDisk",
-            instance_id=instance.id,
-            extra_disk_size=25)
-        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
-        ```
-
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>Azure extra disk size with downtime</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # Instance
-        instance = cloudamqp.Instance("instance",
-            plan="bunny-1",
-            region="azure-arm::centralus")
-        # Resize disk with 25 extra GB, with downtime
-        resize_disk = cloudamqp.ExtraDiskSize("resizeDisk",
-            instance_id=instance.id,
-            extra_disk_size=25,
-            allow_downtime=True)
-        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
-        ```
-
-        </details>
         ## Attributes reference
 
         All attributes reference are computed
@@ -441,104 +363,6 @@ class ExtraDiskSize(pulumi.CustomResource):
 
         Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/) and only available for dedicated subscription plans.
 
-        ## Example Usage
-
-        <details>
-          <summary>
-            <b>
-              <i>AWS extra disk size (pre v1.25.0)</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # Instance
-        instance = cloudamqp.Instance("instance",
-            plan="bunny-1",
-            region="amazon-web-services::us-west-2")
-        # Resize disk with 25 extra GB
-        resize_disk = cloudamqp.ExtraDiskSize("resizeDisk",
-            instance_id=instance.id,
-            extra_disk_size=25)
-        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
-        ```
-
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>AWS extra disk size without downtime</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # Instance
-        instance = cloudamqp.Instance("instance",
-            plan="bunny-1",
-            region="amazon-web-services::us-west-2")
-        # Resize disk with 25 extra GB, without downtime
-        resize_disk = cloudamqp.ExtraDiskSize("resizeDisk",
-            instance_id=instance.id,
-            extra_disk_size=25)
-        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
-        ```
-
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>GCE extra disk size without downtime</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # Instance
-        instance = cloudamqp.Instance("instance",
-            plan="bunny-1",
-            region="google-compute-engine::us-central1")
-        # Resize disk with 25 extra GB, without downtime
-        resize_disk = cloudamqp.ExtraDiskSize("resizeDisk",
-            instance_id=instance.id,
-            extra_disk_size=25)
-        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
-        ```
-
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>Azure extra disk size with downtime</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # Instance
-        instance = cloudamqp.Instance("instance",
-            plan="bunny-1",
-            region="azure-arm::centralus")
-        # Resize disk with 25 extra GB, with downtime
-        resize_disk = cloudamqp.ExtraDiskSize("resizeDisk",
-            instance_id=instance.id,
-            extra_disk_size=25,
-            allow_downtime=True)
-        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
-        ```
-
-        </details>
         ## Attributes reference
 
         All attributes reference are computed

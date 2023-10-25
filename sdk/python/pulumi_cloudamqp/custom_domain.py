@@ -29,9 +29,17 @@ class CustomDomainArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             hostname: pulumi.Input[str],
-             instance_id: pulumi.Input[int],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             hostname: Optional[pulumi.Input[str]] = None,
+             instance_id: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if hostname is None:
+            raise TypeError("Missing 'hostname' argument")
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if instance_id is None:
+            raise TypeError("Missing 'instance_id' argument")
+
         _setter("hostname", hostname)
         _setter("instance_id", instance_id)
 
@@ -80,7 +88,11 @@ class _CustomDomainState:
              _setter: Callable[[Any, Any], None],
              hostname: Optional[pulumi.Input[str]] = None,
              instance_id: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+
         if hostname is not None:
             _setter("hostname", hostname)
         if instance_id is not None:
@@ -130,16 +142,6 @@ class CustomDomain(pulumi.CustomResource):
 
         Only available for dedicated subscription plans.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        settings = cloudamqp.CustomDomain("settings",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            hostname="myname.mydomain")
-        ```
         ## Depedency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -176,16 +178,6 @@ class CustomDomain(pulumi.CustomResource):
 
         Only available for dedicated subscription plans.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        settings = cloudamqp.CustomDomain("settings",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            hostname="myname.mydomain")
-        ```
         ## Depedency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.

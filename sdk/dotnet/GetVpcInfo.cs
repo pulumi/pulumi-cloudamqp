@@ -16,60 +16,6 @@ namespace Pulumi.CloudAmqp
         /// 
         /// Only available for CloudAMQP instances hosted in AWS.
         /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// &lt;details&gt;
-        ///   &lt;summary&gt;
-        ///     &lt;b&gt;
-        ///       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
-        ///     &lt;/b&gt;
-        ///   &lt;/summary&gt;
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using CloudAmqp = Pulumi.CloudAmqp;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var vpcInfo = CloudAmqp.GetVpcInfo.Invoke(new()
-        ///     {
-        ///         InstanceId = cloudamqp_instance.Instance.Id,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;/details&gt;
-        /// 
-        /// &lt;details&gt;
-        ///   &lt;summary&gt;
-        ///     &lt;b&gt;
-        ///       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
-        ///     &lt;/b&gt;
-        ///   &lt;/summary&gt;
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using CloudAmqp = Pulumi.CloudAmqp;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var vpcInfo = CloudAmqp.GetVpcInfo.Invoke(new()
-        ///     {
-        ///         VpcId = cloudamqp_vpc.Vpc.Id,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;/details&gt;
-        /// 
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// ## Attributes reference
         /// 
         /// All attributes reference are computed
@@ -96,60 +42,6 @@ namespace Pulumi.CloudAmqp
         /// 
         /// Only available for CloudAMQP instances hosted in AWS.
         /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// &lt;details&gt;
-        ///   &lt;summary&gt;
-        ///     &lt;b&gt;
-        ///       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
-        ///     &lt;/b&gt;
-        ///   &lt;/summary&gt;
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using CloudAmqp = Pulumi.CloudAmqp;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var vpcInfo = CloudAmqp.GetVpcInfo.Invoke(new()
-        ///     {
-        ///         InstanceId = cloudamqp_instance.Instance.Id,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;/details&gt;
-        /// 
-        /// &lt;details&gt;
-        ///   &lt;summary&gt;
-        ///     &lt;b&gt;
-        ///       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
-        ///     &lt;/b&gt;
-        ///   &lt;/summary&gt;
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using CloudAmqp = Pulumi.CloudAmqp;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var vpcInfo = CloudAmqp.GetVpcInfo.Invoke(new()
-        ///     {
-        ///         VpcId = cloudamqp_vpc.Vpc.Id,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;/details&gt;
-        /// 
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// ## Attributes reference
         /// 
         /// All attributes reference are computed

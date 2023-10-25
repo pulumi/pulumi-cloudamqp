@@ -33,7 +33,13 @@ class ExtraDiskSizeNodeArgs:
              additional_disk_size: Optional[pulumi.Input[int]] = None,
              disk_size: Optional[pulumi.Input[int]] = None,
              name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if additional_disk_size is None and 'additionalDiskSize' in kwargs:
+            additional_disk_size = kwargs['additionalDiskSize']
+        if disk_size is None and 'diskSize' in kwargs:
+            disk_size = kwargs['diskSize']
+
         if additional_disk_size is not None:
             _setter("additional_disk_size", additional_disk_size)
         if disk_size is not None:
@@ -88,9 +94,17 @@ class InstanceCopySettingArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             settings: pulumi.Input[Sequence[pulumi.Input[str]]],
-             subscription_id: pulumi.Input[str],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             settings: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             subscription_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if settings is None:
+            raise TypeError("Missing 'settings' argument")
+        if subscription_id is None and 'subscriptionId' in kwargs:
+            subscription_id = kwargs['subscriptionId']
+        if subscription_id is None:
+            raise TypeError("Missing 'subscription_id' argument")
+
         _setter("settings", settings)
         _setter("subscription_id", subscription_id)
 
@@ -166,11 +180,15 @@ class SecurityFirewallRuleArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             ip: pulumi.Input[str],
+             ip: Optional[pulumi.Input[str]] = None,
              description: Optional[pulumi.Input[str]] = None,
              ports: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
              services: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if ip is None:
+            raise TypeError("Missing 'ip' argument")
+
         _setter("ip", ip)
         if description is not None:
             _setter("description", description)

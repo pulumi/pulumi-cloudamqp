@@ -4,37 +4,16 @@
 package cloudamqp
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
 //
-// ## Example Usage
-//
-// Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-// func main() {
-// pulumi.Run(func(ctx *pulumi.Context) error {
-// _ := "<instance_name>";
-// _, err := cloudamqp.GetAccount(ctx, nil, nil);
-// if err != nil {
-// return err
-// }
-// ctx.Export("instanceId", <nil>)
-// return nil
-// })
-// }
-// ```
 // ## Attributes reference
 //
 // # All attributes reference are computed
@@ -70,4 +49,49 @@ type GetAccountResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id        string               `pulumi:"id"`
 	Instances []GetAccountInstance `pulumi:"instances"`
+}
+
+func GetAccountOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetAccountResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetAccountResult, error) {
+		r, err := GetAccount(ctx, opts...)
+		var s GetAccountResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetAccountResultOutput)
+}
+
+// A collection of values returned by getAccount.
+type GetAccountResultOutput struct{ *pulumi.OutputState }
+
+func (GetAccountResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountResult)(nil)).Elem()
+}
+
+func (o GetAccountResultOutput) ToGetAccountResultOutput() GetAccountResultOutput {
+	return o
+}
+
+func (o GetAccountResultOutput) ToGetAccountResultOutputWithContext(ctx context.Context) GetAccountResultOutput {
+	return o
+}
+
+func (o GetAccountResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetAccountResult] {
+	return pulumix.Output[GetAccountResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetAccountResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetAccountResultOutput) Instances() GetAccountInstanceArrayOutput {
+	return o.ApplyT(func(v GetAccountResult) []GetAccountInstance { return v.Instances }).(GetAccountInstanceArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetAccountResultOutput{})
 }

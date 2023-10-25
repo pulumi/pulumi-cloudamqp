@@ -14,28 +14,6 @@ namespace Pulumi.CloudAmqp
     /// 
     /// Only available for dedicated subscription plans.
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using CloudAmqp = Pulumi.CloudAmqp;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var webhookQueue = new CloudAmqp.Webhook("webhookQueue", new()
-    ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         Vhost = "myvhost",
-    ///         Queue = "webhook-queue",
-    ///         WebhookUri = "https://example.com/webhook?key=secret",
-    ///         RetryInterval = 5,
-    ///         Concurrency = 5,
-    ///     });
-    /// 
-    /// });
-    /// ```
     /// ## Dependency
     /// 
     /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.

@@ -32,10 +32,18 @@ class PluginCommunityArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             enabled: pulumi.Input[bool],
-             instance_id: pulumi.Input[int],
+             enabled: Optional[pulumi.Input[bool]] = None,
+             instance_id: Optional[pulumi.Input[int]] = None,
              name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if enabled is None:
+            raise TypeError("Missing 'enabled' argument")
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if instance_id is None:
+            raise TypeError("Missing 'instance_id' argument")
+
         _setter("enabled", enabled)
         _setter("instance_id", instance_id)
         if name is not None:
@@ -110,7 +118,11 @@ class _PluginCommunityState:
              instance_id: Optional[pulumi.Input[int]] = None,
              name: Optional[pulumi.Input[str]] = None,
              require: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+
         if description is not None:
             _setter("description", description)
         if enabled is not None:

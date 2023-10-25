@@ -32,10 +32,16 @@ class ProviderArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             apikey: pulumi.Input[str],
+             apikey: Optional[pulumi.Input[str]] = None,
              baseurl: Optional[pulumi.Input[str]] = None,
              enable_faster_instance_destroy: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if apikey is None:
+            raise TypeError("Missing 'apikey' argument")
+        if enable_faster_instance_destroy is None and 'enableFasterInstanceDestroy' in kwargs:
+            enable_faster_instance_destroy = kwargs['enableFasterInstanceDestroy']
+
         _setter("apikey", apikey)
         if baseurl is not None:
             _setter("baseurl", baseurl)

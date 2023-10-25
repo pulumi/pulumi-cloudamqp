@@ -4,39 +4,16 @@
 package cloudamqp
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
 //
-// ## Example Usage
-//
-// Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			myVpcName := "<your VPC name>"
-//			vpcList, err := cloudamqp.GetAccountVpcs(ctx, nil, nil)
-//			if err != nil {
-//				return err
-//			}
-//			ctx.Export("vpcId", "TODO: For expression"[0].Id)
-//			return nil
-//		})
-//	}
-//
-// ```
 // ## Attributes reference
 //
 // # All attributes reference are computed
@@ -73,4 +50,49 @@ type GetAccountVpcsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id   string              `pulumi:"id"`
 	Vpcs []GetAccountVpcsVpc `pulumi:"vpcs"`
+}
+
+func GetAccountVpcsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetAccountVpcsResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetAccountVpcsResult, error) {
+		r, err := GetAccountVpcs(ctx, opts...)
+		var s GetAccountVpcsResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetAccountVpcsResultOutput)
+}
+
+// A collection of values returned by getAccountVpcs.
+type GetAccountVpcsResultOutput struct{ *pulumi.OutputState }
+
+func (GetAccountVpcsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountVpcsResult)(nil)).Elem()
+}
+
+func (o GetAccountVpcsResultOutput) ToGetAccountVpcsResultOutput() GetAccountVpcsResultOutput {
+	return o
+}
+
+func (o GetAccountVpcsResultOutput) ToGetAccountVpcsResultOutputWithContext(ctx context.Context) GetAccountVpcsResultOutput {
+	return o
+}
+
+func (o GetAccountVpcsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetAccountVpcsResult] {
+	return pulumix.Output[GetAccountVpcsResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetAccountVpcsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountVpcsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetAccountVpcsResultOutput) Vpcs() GetAccountVpcsVpcArrayOutput {
+	return o.ApplyT(func(v GetAccountVpcsResult) []GetAccountVpcsVpc { return v.Vpcs }).(GetAccountVpcsVpcArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetAccountVpcsResultOutput{})
 }

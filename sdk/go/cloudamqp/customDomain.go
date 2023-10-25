@@ -23,32 +23,6 @@ import (
 //
 // Only available for dedicated subscription plans.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.NewCustomDomain(ctx, "settings", &cloudamqp.CustomDomainArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
-//				Hostname:   pulumi.String("myname.mydomain"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 // ## Depedency
 //
 // This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.

@@ -32,10 +32,22 @@ class NodeActionsArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             action: pulumi.Input[str],
-             instance_id: pulumi.Input[int],
-             node_name: pulumi.Input[str],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             action: Optional[pulumi.Input[str]] = None,
+             instance_id: Optional[pulumi.Input[int]] = None,
+             node_name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if action is None:
+            raise TypeError("Missing 'action' argument")
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if instance_id is None:
+            raise TypeError("Missing 'instance_id' argument")
+        if node_name is None and 'nodeName' in kwargs:
+            node_name = kwargs['nodeName']
+        if node_name is None:
+            raise TypeError("Missing 'node_name' argument")
+
         _setter("action", action)
         _setter("instance_id", instance_id)
         _setter("node_name", node_name)
@@ -105,7 +117,13 @@ class _NodeActionsState:
              instance_id: Optional[pulumi.Input[int]] = None,
              node_name: Optional[pulumi.Input[str]] = None,
              running: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if node_name is None and 'nodeName' in kwargs:
+            node_name = kwargs['nodeName']
+
         if action is not None:
             _setter("action", action)
         if instance_id is not None:
@@ -178,101 +196,6 @@ class NodeActions(pulumi.CustomResource):
 
         Only available for dedicated subscription plans.
 
-        ## Example Usage
-
-        <details>
-          <summary>
-            <b>
-              <i>Already know the node identifier (e.g. from state file)</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # New recipient to receieve notifications
-        node_action = cloudamqp.NodeActions("nodeAction",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            node_name="<node name>",
-            action="restart")
-        ```
-        </details>
-
-        Using data source `get_nodes` to restart RabbitMQ on all nodes.</br>
-        ***Note: RabbitMQ restart on multiple nodes need to be chained, so one node restart at the time.***
-
-        <details>
-          <summary>
-            <b>
-              <i>Multi node RabbitMQ restart</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        list_nodes = cloudamqp.get_nodes(instance_id=cloudamqp_instance["instance"]["id"])
-        restart01 = cloudamqp.NodeActions("restart01",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            action="restart",
-            node_name=list_nodes.nodes[0].name)
-        restart02 = cloudamqp.NodeActions("restart02",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            action="restart",
-            node_name=list_nodes.nodes[1].name,
-            opts=pulumi.ResourceOptions(depends_on=[restart01]))
-        restart03 = cloudamqp.NodeActions("restart03",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            action="restart",
-            node_name=list_nodes.nodes[2].name,
-            opts=pulumi.ResourceOptions(depends_on=[
-                    restart01,
-                    restart02,
-                ]))
-        ```
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>Combine log level configuration change with multi node RabbitMQ restart</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        list_nodes = cloudamqp.get_nodes(instance_id=cloudamqp_instance["instance"]["id"])
-        rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmqConfig",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            log_exchange_level="info")
-        restart01 = cloudamqp.NodeActions("restart01",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            action="restart",
-            node_name=list_nodes.nodes[0].name,
-            opts=pulumi.ResourceOptions(depends_on=[rabbitmq_config]))
-        restart02 = cloudamqp.NodeActions("restart02",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            action="restart",
-            node_name=list_nodes.nodes[1].name,
-            opts=pulumi.ResourceOptions(depends_on=[
-                    rabbitmq_config,
-                    restart01,
-                ]))
-        restart03 = cloudamqp.NodeActions("restart03",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            action="restart",
-            node_name=list_nodes.nodes[2].name,
-            opts=pulumi.ResourceOptions(depends_on=[
-                    rabbitmq_config,
-                    restart01,
-                    restart02,
-                ]))
-        ```
-        </details>
         ## Action reference
 
         Valid options for action.
@@ -310,101 +233,6 @@ class NodeActions(pulumi.CustomResource):
 
         Only available for dedicated subscription plans.
 
-        ## Example Usage
-
-        <details>
-          <summary>
-            <b>
-              <i>Already know the node identifier (e.g. from state file)</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        # New recipient to receieve notifications
-        node_action = cloudamqp.NodeActions("nodeAction",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            node_name="<node name>",
-            action="restart")
-        ```
-        </details>
-
-        Using data source `get_nodes` to restart RabbitMQ on all nodes.</br>
-        ***Note: RabbitMQ restart on multiple nodes need to be chained, so one node restart at the time.***
-
-        <details>
-          <summary>
-            <b>
-              <i>Multi node RabbitMQ restart</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        list_nodes = cloudamqp.get_nodes(instance_id=cloudamqp_instance["instance"]["id"])
-        restart01 = cloudamqp.NodeActions("restart01",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            action="restart",
-            node_name=list_nodes.nodes[0].name)
-        restart02 = cloudamqp.NodeActions("restart02",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            action="restart",
-            node_name=list_nodes.nodes[1].name,
-            opts=pulumi.ResourceOptions(depends_on=[restart01]))
-        restart03 = cloudamqp.NodeActions("restart03",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            action="restart",
-            node_name=list_nodes.nodes[2].name,
-            opts=pulumi.ResourceOptions(depends_on=[
-                    restart01,
-                    restart02,
-                ]))
-        ```
-        </details>
-
-        <details>
-          <summary>
-            <b>
-              <i>Combine log level configuration change with multi node RabbitMQ restart</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        list_nodes = cloudamqp.get_nodes(instance_id=cloudamqp_instance["instance"]["id"])
-        rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmqConfig",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            log_exchange_level="info")
-        restart01 = cloudamqp.NodeActions("restart01",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            action="restart",
-            node_name=list_nodes.nodes[0].name,
-            opts=pulumi.ResourceOptions(depends_on=[rabbitmq_config]))
-        restart02 = cloudamqp.NodeActions("restart02",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            action="restart",
-            node_name=list_nodes.nodes[1].name,
-            opts=pulumi.ResourceOptions(depends_on=[
-                    rabbitmq_config,
-                    restart01,
-                ]))
-        restart03 = cloudamqp.NodeActions("restart03",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            action="restart",
-            node_name=list_nodes.nodes[2].name,
-            opts=pulumi.ResourceOptions(depends_on=[
-                    rabbitmq_config,
-                    restart01,
-                    restart02,
-                ]))
-        ```
-        </details>
         ## Action reference
 
         Valid options for action.

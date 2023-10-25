@@ -18,44 +18,6 @@ namespace Pulumi.CloudAmqp
     /// 
     /// Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using CloudAmqp = Pulumi.CloudAmqp;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     // Managed VPC resource
-    ///     var vpc = new CloudAmqp.Vpc("vpc", new()
-    ///     {
-    ///         Region = "amazon-web-services::us-east-1",
-    ///         Subnet = "10.56.72.0/24",
-    ///         Tags = new[] {},
-    ///     });
-    /// 
-    ///     //  New instance, need to be created with a vpc
-    ///     var instance = new CloudAmqp.Instance("instance", new()
-    ///     {
-    ///         Plan = "bunny-1",
-    ///         Region = "amazon-web-services::us-east-1",
-    ///         Nodes = 1,
-    ///         Tags = new[] {},
-    ///         RmqVersion = "3.9.13",
-    ///         VpcId = cloudamq_vpc.Vpc.Id,
-    ///         KeepAssociatedVpc = true,
-    ///     });
-    /// 
-    ///     var vpcInfo = CloudAmqp.GetVpcInfo.Invoke(new()
-    ///     {
-    ///         VpcId = vpc.Id,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// `cloudamqp_vpc` can be imported using the CloudAMQP VPC identifier.

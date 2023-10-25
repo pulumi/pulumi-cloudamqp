@@ -13,33 +13,6 @@ import * as utilities from "./utilities";
  *
  * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * // Managed VPC resource
- * const vpc = new cloudamqp.Vpc("vpc", {
- *     region: "amazon-web-services::us-east-1",
- *     subnet: "10.56.72.0/24",
- *     tags: [],
- * });
- * //  New instance, need to be created with a vpc
- * const instance = new cloudamqp.Instance("instance", {
- *     plan: "bunny-1",
- *     region: "amazon-web-services::us-east-1",
- *     nodes: 1,
- *     tags: [],
- *     rmqVersion: "3.9.13",
- *     vpcId: cloudamq_vpc.vpc.id,
- *     keepAssociatedVpc: true,
- * });
- * const vpcInfo = cloudamqp.getVpcInfoOutput({
- *     vpcId: vpc.id,
- * });
- * ```
- *
  * ## Import
  *
  * `cloudamqp_vpc` can be imported using the CloudAMQP VPC identifier.

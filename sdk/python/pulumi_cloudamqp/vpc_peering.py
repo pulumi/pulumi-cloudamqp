@@ -42,12 +42,22 @@ class VpcPeeringArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             peering_id: pulumi.Input[str],
+             peering_id: Optional[pulumi.Input[str]] = None,
              instance_id: Optional[pulumi.Input[int]] = None,
              sleep: Optional[pulumi.Input[int]] = None,
              timeout: Optional[pulumi.Input[int]] = None,
              vpc_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if peering_id is None and 'peeringId' in kwargs:
+            peering_id = kwargs['peeringId']
+        if peering_id is None:
+            raise TypeError("Missing 'peering_id' argument")
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if vpc_id is None and 'vpcId' in kwargs:
+            vpc_id = kwargs['vpcId']
+
         _setter("peering_id", peering_id)
         if instance_id is not None:
             _setter("instance_id", instance_id)
@@ -163,7 +173,15 @@ class _VpcPeeringState:
              status: Optional[pulumi.Input[str]] = None,
              timeout: Optional[pulumi.Input[int]] = None,
              vpc_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if peering_id is None and 'peeringId' in kwargs:
+            peering_id = kwargs['peeringId']
+        if vpc_id is None and 'vpcId' in kwargs:
+            vpc_id = kwargs['vpcId']
+
         if instance_id is not None:
             _setter("instance_id", instance_id)
         if peering_id is not None:
