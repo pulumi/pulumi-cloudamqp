@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['VpcPeeringArgs', 'VpcPeering']
@@ -31,42 +31,15 @@ class VpcPeeringArgs:
                
                ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
         """
-        VpcPeeringArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            peering_id=peering_id,
-            instance_id=instance_id,
-            sleep=sleep,
-            timeout=timeout,
-            vpc_id=vpc_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             peering_id: Optional[pulumi.Input[str]] = None,
-             instance_id: Optional[pulumi.Input[int]] = None,
-             sleep: Optional[pulumi.Input[int]] = None,
-             timeout: Optional[pulumi.Input[int]] = None,
-             vpc_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if peering_id is None and 'peeringId' in kwargs:
-            peering_id = kwargs['peeringId']
-        if peering_id is None:
-            raise TypeError("Missing 'peering_id' argument")
-        if instance_id is None and 'instanceId' in kwargs:
-            instance_id = kwargs['instanceId']
-        if vpc_id is None and 'vpcId' in kwargs:
-            vpc_id = kwargs['vpcId']
-
-        _setter("peering_id", peering_id)
+        pulumi.set(__self__, "peering_id", peering_id)
         if instance_id is not None:
-            _setter("instance_id", instance_id)
+            pulumi.set(__self__, "instance_id", instance_id)
         if sleep is not None:
-            _setter("sleep", sleep)
+            pulumi.set(__self__, "sleep", sleep)
         if timeout is not None:
-            _setter("timeout", timeout)
+            pulumi.set(__self__, "timeout", timeout)
         if vpc_id is not None:
-            _setter("vpc_id", vpc_id)
+            pulumi.set(__self__, "vpc_id", vpc_id)
 
     @property
     @pulumi.getter(name="peeringId")
@@ -155,45 +128,18 @@ class _VpcPeeringState:
                
                ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
         """
-        _VpcPeeringState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            instance_id=instance_id,
-            peering_id=peering_id,
-            sleep=sleep,
-            status=status,
-            timeout=timeout,
-            vpc_id=vpc_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             instance_id: Optional[pulumi.Input[int]] = None,
-             peering_id: Optional[pulumi.Input[str]] = None,
-             sleep: Optional[pulumi.Input[int]] = None,
-             status: Optional[pulumi.Input[str]] = None,
-             timeout: Optional[pulumi.Input[int]] = None,
-             vpc_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if instance_id is None and 'instanceId' in kwargs:
-            instance_id = kwargs['instanceId']
-        if peering_id is None and 'peeringId' in kwargs:
-            peering_id = kwargs['peeringId']
-        if vpc_id is None and 'vpcId' in kwargs:
-            vpc_id = kwargs['vpcId']
-
         if instance_id is not None:
-            _setter("instance_id", instance_id)
+            pulumi.set(__self__, "instance_id", instance_id)
         if peering_id is not None:
-            _setter("peering_id", peering_id)
+            pulumi.set(__self__, "peering_id", peering_id)
         if sleep is not None:
-            _setter("sleep", sleep)
+            pulumi.set(__self__, "sleep", sleep)
         if status is not None:
-            _setter("status", status)
+            pulumi.set(__self__, "status", status)
         if timeout is not None:
-            _setter("timeout", timeout)
+            pulumi.set(__self__, "timeout", timeout)
         if vpc_id is not None:
-            _setter("vpc_id", vpc_id)
+            pulumi.set(__self__, "vpc_id", vpc_id)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -321,10 +267,6 @@ class VpcPeering(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            VpcPeeringArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

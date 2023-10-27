@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['RabbitConfigurationArgs', 'RabbitConfiguration']
@@ -43,82 +43,29 @@ class RabbitConfigurationArgs:
         :param pulumi.Input[int] timeout: Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
         :param pulumi.Input[float] vm_memory_high_watermark: When the server will enter memory based flow-control as relative to the maximum available memory.
         """
-        RabbitConfigurationArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            instance_id=instance_id,
-            channel_max=channel_max,
-            cluster_partition_handling=cluster_partition_handling,
-            connection_max=connection_max,
-            consumer_timeout=consumer_timeout,
-            heartbeat=heartbeat,
-            log_exchange_level=log_exchange_level,
-            max_message_size=max_message_size,
-            queue_index_embed_msgs_below=queue_index_embed_msgs_below,
-            sleep=sleep,
-            timeout=timeout,
-            vm_memory_high_watermark=vm_memory_high_watermark,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             instance_id: Optional[pulumi.Input[int]] = None,
-             channel_max: Optional[pulumi.Input[int]] = None,
-             cluster_partition_handling: Optional[pulumi.Input[str]] = None,
-             connection_max: Optional[pulumi.Input[int]] = None,
-             consumer_timeout: Optional[pulumi.Input[int]] = None,
-             heartbeat: Optional[pulumi.Input[int]] = None,
-             log_exchange_level: Optional[pulumi.Input[str]] = None,
-             max_message_size: Optional[pulumi.Input[int]] = None,
-             queue_index_embed_msgs_below: Optional[pulumi.Input[int]] = None,
-             sleep: Optional[pulumi.Input[int]] = None,
-             timeout: Optional[pulumi.Input[int]] = None,
-             vm_memory_high_watermark: Optional[pulumi.Input[float]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if instance_id is None and 'instanceId' in kwargs:
-            instance_id = kwargs['instanceId']
-        if instance_id is None:
-            raise TypeError("Missing 'instance_id' argument")
-        if channel_max is None and 'channelMax' in kwargs:
-            channel_max = kwargs['channelMax']
-        if cluster_partition_handling is None and 'clusterPartitionHandling' in kwargs:
-            cluster_partition_handling = kwargs['clusterPartitionHandling']
-        if connection_max is None and 'connectionMax' in kwargs:
-            connection_max = kwargs['connectionMax']
-        if consumer_timeout is None and 'consumerTimeout' in kwargs:
-            consumer_timeout = kwargs['consumerTimeout']
-        if log_exchange_level is None and 'logExchangeLevel' in kwargs:
-            log_exchange_level = kwargs['logExchangeLevel']
-        if max_message_size is None and 'maxMessageSize' in kwargs:
-            max_message_size = kwargs['maxMessageSize']
-        if queue_index_embed_msgs_below is None and 'queueIndexEmbedMsgsBelow' in kwargs:
-            queue_index_embed_msgs_below = kwargs['queueIndexEmbedMsgsBelow']
-        if vm_memory_high_watermark is None and 'vmMemoryHighWatermark' in kwargs:
-            vm_memory_high_watermark = kwargs['vmMemoryHighWatermark']
-
-        _setter("instance_id", instance_id)
+        pulumi.set(__self__, "instance_id", instance_id)
         if channel_max is not None:
-            _setter("channel_max", channel_max)
+            pulumi.set(__self__, "channel_max", channel_max)
         if cluster_partition_handling is not None:
-            _setter("cluster_partition_handling", cluster_partition_handling)
+            pulumi.set(__self__, "cluster_partition_handling", cluster_partition_handling)
         if connection_max is not None:
-            _setter("connection_max", connection_max)
+            pulumi.set(__self__, "connection_max", connection_max)
         if consumer_timeout is not None:
-            _setter("consumer_timeout", consumer_timeout)
+            pulumi.set(__self__, "consumer_timeout", consumer_timeout)
         if heartbeat is not None:
-            _setter("heartbeat", heartbeat)
+            pulumi.set(__self__, "heartbeat", heartbeat)
         if log_exchange_level is not None:
-            _setter("log_exchange_level", log_exchange_level)
+            pulumi.set(__self__, "log_exchange_level", log_exchange_level)
         if max_message_size is not None:
-            _setter("max_message_size", max_message_size)
+            pulumi.set(__self__, "max_message_size", max_message_size)
         if queue_index_embed_msgs_below is not None:
-            _setter("queue_index_embed_msgs_below", queue_index_embed_msgs_below)
+            pulumi.set(__self__, "queue_index_embed_msgs_below", queue_index_embed_msgs_below)
         if sleep is not None:
-            _setter("sleep", sleep)
+            pulumi.set(__self__, "sleep", sleep)
         if timeout is not None:
-            _setter("timeout", timeout)
+            pulumi.set(__self__, "timeout", timeout)
         if vm_memory_high_watermark is not None:
-            _setter("vm_memory_high_watermark", vm_memory_high_watermark)
+            pulumi.set(__self__, "vm_memory_high_watermark", vm_memory_high_watermark)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -299,81 +246,30 @@ class _RabbitConfigurationState:
         :param pulumi.Input[int] timeout: Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
         :param pulumi.Input[float] vm_memory_high_watermark: When the server will enter memory based flow-control as relative to the maximum available memory.
         """
-        _RabbitConfigurationState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            channel_max=channel_max,
-            cluster_partition_handling=cluster_partition_handling,
-            connection_max=connection_max,
-            consumer_timeout=consumer_timeout,
-            heartbeat=heartbeat,
-            instance_id=instance_id,
-            log_exchange_level=log_exchange_level,
-            max_message_size=max_message_size,
-            queue_index_embed_msgs_below=queue_index_embed_msgs_below,
-            sleep=sleep,
-            timeout=timeout,
-            vm_memory_high_watermark=vm_memory_high_watermark,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             channel_max: Optional[pulumi.Input[int]] = None,
-             cluster_partition_handling: Optional[pulumi.Input[str]] = None,
-             connection_max: Optional[pulumi.Input[int]] = None,
-             consumer_timeout: Optional[pulumi.Input[int]] = None,
-             heartbeat: Optional[pulumi.Input[int]] = None,
-             instance_id: Optional[pulumi.Input[int]] = None,
-             log_exchange_level: Optional[pulumi.Input[str]] = None,
-             max_message_size: Optional[pulumi.Input[int]] = None,
-             queue_index_embed_msgs_below: Optional[pulumi.Input[int]] = None,
-             sleep: Optional[pulumi.Input[int]] = None,
-             timeout: Optional[pulumi.Input[int]] = None,
-             vm_memory_high_watermark: Optional[pulumi.Input[float]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if channel_max is None and 'channelMax' in kwargs:
-            channel_max = kwargs['channelMax']
-        if cluster_partition_handling is None and 'clusterPartitionHandling' in kwargs:
-            cluster_partition_handling = kwargs['clusterPartitionHandling']
-        if connection_max is None and 'connectionMax' in kwargs:
-            connection_max = kwargs['connectionMax']
-        if consumer_timeout is None and 'consumerTimeout' in kwargs:
-            consumer_timeout = kwargs['consumerTimeout']
-        if instance_id is None and 'instanceId' in kwargs:
-            instance_id = kwargs['instanceId']
-        if log_exchange_level is None and 'logExchangeLevel' in kwargs:
-            log_exchange_level = kwargs['logExchangeLevel']
-        if max_message_size is None and 'maxMessageSize' in kwargs:
-            max_message_size = kwargs['maxMessageSize']
-        if queue_index_embed_msgs_below is None and 'queueIndexEmbedMsgsBelow' in kwargs:
-            queue_index_embed_msgs_below = kwargs['queueIndexEmbedMsgsBelow']
-        if vm_memory_high_watermark is None and 'vmMemoryHighWatermark' in kwargs:
-            vm_memory_high_watermark = kwargs['vmMemoryHighWatermark']
-
         if channel_max is not None:
-            _setter("channel_max", channel_max)
+            pulumi.set(__self__, "channel_max", channel_max)
         if cluster_partition_handling is not None:
-            _setter("cluster_partition_handling", cluster_partition_handling)
+            pulumi.set(__self__, "cluster_partition_handling", cluster_partition_handling)
         if connection_max is not None:
-            _setter("connection_max", connection_max)
+            pulumi.set(__self__, "connection_max", connection_max)
         if consumer_timeout is not None:
-            _setter("consumer_timeout", consumer_timeout)
+            pulumi.set(__self__, "consumer_timeout", consumer_timeout)
         if heartbeat is not None:
-            _setter("heartbeat", heartbeat)
+            pulumi.set(__self__, "heartbeat", heartbeat)
         if instance_id is not None:
-            _setter("instance_id", instance_id)
+            pulumi.set(__self__, "instance_id", instance_id)
         if log_exchange_level is not None:
-            _setter("log_exchange_level", log_exchange_level)
+            pulumi.set(__self__, "log_exchange_level", log_exchange_level)
         if max_message_size is not None:
-            _setter("max_message_size", max_message_size)
+            pulumi.set(__self__, "max_message_size", max_message_size)
         if queue_index_embed_msgs_below is not None:
-            _setter("queue_index_embed_msgs_below", queue_index_embed_msgs_below)
+            pulumi.set(__self__, "queue_index_embed_msgs_below", queue_index_embed_msgs_below)
         if sleep is not None:
-            _setter("sleep", sleep)
+            pulumi.set(__self__, "sleep", sleep)
         if timeout is not None:
-            _setter("timeout", timeout)
+            pulumi.set(__self__, "timeout", timeout)
         if vm_memory_high_watermark is not None:
-            _setter("vm_memory_high_watermark", vm_memory_high_watermark)
+            pulumi.set(__self__, "vm_memory_high_watermark", vm_memory_high_watermark)
 
     @property
     @pulumi.getter(name="channelMax")
@@ -591,10 +487,6 @@ class RabbitConfiguration(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            RabbitConfigurationArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
