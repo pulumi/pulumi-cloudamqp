@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['NodeActionsArgs', 'NodeActions']
@@ -23,34 +23,9 @@ class NodeActionsArgs:
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] node_name: The node name, e.g `green-guinea-pig-01`.
         """
-        NodeActionsArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            action=action,
-            instance_id=instance_id,
-            node_name=node_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             action: Optional[pulumi.Input[str]] = None,
-             instance_id: Optional[pulumi.Input[int]] = None,
-             node_name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if action is None:
-            raise TypeError("Missing 'action' argument")
-        if instance_id is None and 'instanceId' in kwargs:
-            instance_id = kwargs['instanceId']
-        if instance_id is None:
-            raise TypeError("Missing 'instance_id' argument")
-        if node_name is None and 'nodeName' in kwargs:
-            node_name = kwargs['nodeName']
-        if node_name is None:
-            raise TypeError("Missing 'node_name' argument")
-
-        _setter("action", action)
-        _setter("instance_id", instance_id)
-        _setter("node_name", node_name)
+        pulumi.set(__self__, "action", action)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "node_name", node_name)
 
     @property
     @pulumi.getter
@@ -103,35 +78,14 @@ class _NodeActionsState:
         :param pulumi.Input[str] node_name: The node name, e.g `green-guinea-pig-01`.
         :param pulumi.Input[bool] running: If the node is running.
         """
-        _NodeActionsState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            action=action,
-            instance_id=instance_id,
-            node_name=node_name,
-            running=running,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             action: Optional[pulumi.Input[str]] = None,
-             instance_id: Optional[pulumi.Input[int]] = None,
-             node_name: Optional[pulumi.Input[str]] = None,
-             running: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if instance_id is None and 'instanceId' in kwargs:
-            instance_id = kwargs['instanceId']
-        if node_name is None and 'nodeName' in kwargs:
-            node_name = kwargs['nodeName']
-
         if action is not None:
-            _setter("action", action)
+            pulumi.set(__self__, "action", action)
         if instance_id is not None:
-            _setter("instance_id", instance_id)
+            pulumi.set(__self__, "instance_id", instance_id)
         if node_name is not None:
-            _setter("node_name", node_name)
+            pulumi.set(__self__, "node_name", node_name)
         if running is not None:
-            _setter("running", running)
+            pulumi.set(__self__, "running", running)
 
     @property
     @pulumi.getter
@@ -453,10 +407,6 @@ class NodeActions(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            NodeActionsArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

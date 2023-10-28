@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -21,31 +21,12 @@ class ExtraDiskSizeNodeArgs:
                  additional_disk_size: Optional[pulumi.Input[int]] = None,
                  disk_size: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None):
-        ExtraDiskSizeNodeArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            additional_disk_size=additional_disk_size,
-            disk_size=disk_size,
-            name=name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             additional_disk_size: Optional[pulumi.Input[int]] = None,
-             disk_size: Optional[pulumi.Input[int]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if additional_disk_size is None and 'additionalDiskSize' in kwargs:
-            additional_disk_size = kwargs['additionalDiskSize']
-        if disk_size is None and 'diskSize' in kwargs:
-            disk_size = kwargs['diskSize']
-
         if additional_disk_size is not None:
-            _setter("additional_disk_size", additional_disk_size)
+            pulumi.set(__self__, "additional_disk_size", additional_disk_size)
         if disk_size is not None:
-            _setter("disk_size", disk_size)
+            pulumi.set(__self__, "disk_size", disk_size)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter(name="additionalDiskSize")
@@ -86,27 +67,8 @@ class InstanceCopySettingArgs:
                See more below, copy settings
         :param pulumi.Input[str] subscription_id: Instance identifier of the CloudAMQP instance to copy the settings from.
         """
-        InstanceCopySettingArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            settings=settings,
-            subscription_id=subscription_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             settings: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             subscription_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if settings is None:
-            raise TypeError("Missing 'settings' argument")
-        if subscription_id is None and 'subscriptionId' in kwargs:
-            subscription_id = kwargs['subscriptionId']
-        if subscription_id is None:
-            raise TypeError("Missing 'subscription_id' argument")
-
-        _setter("settings", settings)
-        _setter("subscription_id", subscription_id)
+        pulumi.set(__self__, "settings", settings)
+        pulumi.set(__self__, "subscription_id", subscription_id)
 
     @property
     @pulumi.getter
@@ -170,32 +132,13 @@ class SecurityFirewallRuleArgs:
         :param pulumi.Input[Sequence[pulumi.Input[int]]] ports: Custom ports to be opened
         :param pulumi.Input[Sequence[pulumi.Input[str]]] services: Pre-defined service ports, see table below
         """
-        SecurityFirewallRuleArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            ip=ip,
-            description=description,
-            ports=ports,
-            services=services,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             ip: Optional[pulumi.Input[str]] = None,
-             description: Optional[pulumi.Input[str]] = None,
-             ports: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
-             services: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if ip is None:
-            raise TypeError("Missing 'ip' argument")
-
-        _setter("ip", ip)
+        pulumi.set(__self__, "ip", ip)
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if ports is not None:
-            _setter("ports", ports)
+            pulumi.set(__self__, "ports", ports)
         if services is not None:
-            _setter("services", services)
+            pulumi.set(__self__, "services", services)
 
     @property
     @pulumi.getter

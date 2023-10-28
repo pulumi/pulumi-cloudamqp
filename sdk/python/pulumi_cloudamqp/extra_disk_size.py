@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -31,43 +31,14 @@ class ExtraDiskSizeArgs:
                
                ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
         """
-        ExtraDiskSizeArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            extra_disk_size=extra_disk_size,
-            instance_id=instance_id,
-            allow_downtime=allow_downtime,
-            sleep=sleep,
-            timeout=timeout,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             extra_disk_size: Optional[pulumi.Input[int]] = None,
-             instance_id: Optional[pulumi.Input[int]] = None,
-             allow_downtime: Optional[pulumi.Input[bool]] = None,
-             sleep: Optional[pulumi.Input[int]] = None,
-             timeout: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if extra_disk_size is None and 'extraDiskSize' in kwargs:
-            extra_disk_size = kwargs['extraDiskSize']
-        if extra_disk_size is None:
-            raise TypeError("Missing 'extra_disk_size' argument")
-        if instance_id is None and 'instanceId' in kwargs:
-            instance_id = kwargs['instanceId']
-        if instance_id is None:
-            raise TypeError("Missing 'instance_id' argument")
-        if allow_downtime is None and 'allowDowntime' in kwargs:
-            allow_downtime = kwargs['allowDowntime']
-
-        _setter("extra_disk_size", extra_disk_size)
-        _setter("instance_id", instance_id)
+        pulumi.set(__self__, "extra_disk_size", extra_disk_size)
+        pulumi.set(__self__, "instance_id", instance_id)
         if allow_downtime is not None:
-            _setter("allow_downtime", allow_downtime)
+            pulumi.set(__self__, "allow_downtime", allow_downtime)
         if sleep is not None:
-            _setter("sleep", sleep)
+            pulumi.set(__self__, "sleep", sleep)
         if timeout is not None:
-            _setter("timeout", timeout)
+            pulumi.set(__self__, "timeout", timeout)
 
     @property
     @pulumi.getter(name="extraDiskSize")
@@ -151,45 +122,18 @@ class _ExtraDiskSizeState:
                
                ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
         """
-        _ExtraDiskSizeState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            allow_downtime=allow_downtime,
-            extra_disk_size=extra_disk_size,
-            instance_id=instance_id,
-            nodes=nodes,
-            sleep=sleep,
-            timeout=timeout,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             allow_downtime: Optional[pulumi.Input[bool]] = None,
-             extra_disk_size: Optional[pulumi.Input[int]] = None,
-             instance_id: Optional[pulumi.Input[int]] = None,
-             nodes: Optional[pulumi.Input[Sequence[pulumi.Input['ExtraDiskSizeNodeArgs']]]] = None,
-             sleep: Optional[pulumi.Input[int]] = None,
-             timeout: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if allow_downtime is None and 'allowDowntime' in kwargs:
-            allow_downtime = kwargs['allowDowntime']
-        if extra_disk_size is None and 'extraDiskSize' in kwargs:
-            extra_disk_size = kwargs['extraDiskSize']
-        if instance_id is None and 'instanceId' in kwargs:
-            instance_id = kwargs['instanceId']
-
         if allow_downtime is not None:
-            _setter("allow_downtime", allow_downtime)
+            pulumi.set(__self__, "allow_downtime", allow_downtime)
         if extra_disk_size is not None:
-            _setter("extra_disk_size", extra_disk_size)
+            pulumi.set(__self__, "extra_disk_size", extra_disk_size)
         if instance_id is not None:
-            _setter("instance_id", instance_id)
+            pulumi.set(__self__, "instance_id", instance_id)
         if nodes is not None:
-            _setter("nodes", nodes)
+            pulumi.set(__self__, "nodes", nodes)
         if sleep is not None:
-            _setter("sleep", sleep)
+            pulumi.set(__self__, "sleep", sleep)
         if timeout is not None:
-            _setter("timeout", timeout)
+            pulumi.set(__self__, "timeout", timeout)
 
     @property
     @pulumi.getter(name="allowDowntime")
@@ -594,10 +538,6 @@ class ExtraDiskSize(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            ExtraDiskSizeArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

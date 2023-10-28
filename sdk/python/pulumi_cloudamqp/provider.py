@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['ProviderArgs', 'Provider']
@@ -23,30 +23,11 @@ class ProviderArgs:
         :param pulumi.Input[str] baseurl: Base URL to CloudAMQP Customer website
         :param pulumi.Input[bool] enable_faster_instance_destroy: Skips destroying backend resources on 'terraform destroy'
         """
-        ProviderArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            apikey=apikey,
-            baseurl=baseurl,
-            enable_faster_instance_destroy=enable_faster_instance_destroy,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             apikey: Optional[pulumi.Input[str]] = None,
-             baseurl: Optional[pulumi.Input[str]] = None,
-             enable_faster_instance_destroy: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if apikey is None:
-            raise TypeError("Missing 'apikey' argument")
-        if enable_faster_instance_destroy is None and 'enableFasterInstanceDestroy' in kwargs:
-            enable_faster_instance_destroy = kwargs['enableFasterInstanceDestroy']
-
-        _setter("apikey", apikey)
+        pulumi.set(__self__, "apikey", apikey)
         if baseurl is not None:
-            _setter("baseurl", baseurl)
+            pulumi.set(__self__, "baseurl", baseurl)
         if enable_faster_instance_destroy is not None:
-            _setter("enable_faster_instance_destroy", enable_faster_instance_destroy)
+            pulumi.set(__self__, "enable_faster_instance_destroy", enable_faster_instance_destroy)
 
     @property
     @pulumi.getter
@@ -128,10 +109,6 @@ class Provider(pulumi.ProviderResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            ProviderArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

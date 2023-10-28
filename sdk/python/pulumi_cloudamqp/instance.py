@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -55,73 +55,26 @@ class InstanceArgs:
                
                ***Note: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.***
         """
-        InstanceArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            plan=plan,
-            region=region,
-            copy_settings=copy_settings,
-            keep_associated_vpc=keep_associated_vpc,
-            name=name,
-            no_default_alarms=no_default_alarms,
-            nodes=nodes,
-            rmq_version=rmq_version,
-            tags=tags,
-            vpc_id=vpc_id,
-            vpc_subnet=vpc_subnet,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             plan: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceCopySettingArgs']]]] = None,
-             keep_associated_vpc: Optional[pulumi.Input[bool]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             no_default_alarms: Optional[pulumi.Input[bool]] = None,
-             nodes: Optional[pulumi.Input[int]] = None,
-             rmq_version: Optional[pulumi.Input[str]] = None,
-             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             vpc_id: Optional[pulumi.Input[int]] = None,
-             vpc_subnet: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if plan is None:
-            raise TypeError("Missing 'plan' argument")
-        if region is None:
-            raise TypeError("Missing 'region' argument")
-        if copy_settings is None and 'copySettings' in kwargs:
-            copy_settings = kwargs['copySettings']
-        if keep_associated_vpc is None and 'keepAssociatedVpc' in kwargs:
-            keep_associated_vpc = kwargs['keepAssociatedVpc']
-        if no_default_alarms is None and 'noDefaultAlarms' in kwargs:
-            no_default_alarms = kwargs['noDefaultAlarms']
-        if rmq_version is None and 'rmqVersion' in kwargs:
-            rmq_version = kwargs['rmqVersion']
-        if vpc_id is None and 'vpcId' in kwargs:
-            vpc_id = kwargs['vpcId']
-        if vpc_subnet is None and 'vpcSubnet' in kwargs:
-            vpc_subnet = kwargs['vpcSubnet']
-
-        _setter("plan", plan)
-        _setter("region", region)
+        pulumi.set(__self__, "plan", plan)
+        pulumi.set(__self__, "region", region)
         if copy_settings is not None:
-            _setter("copy_settings", copy_settings)
+            pulumi.set(__self__, "copy_settings", copy_settings)
         if keep_associated_vpc is not None:
-            _setter("keep_associated_vpc", keep_associated_vpc)
+            pulumi.set(__self__, "keep_associated_vpc", keep_associated_vpc)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if no_default_alarms is not None:
-            _setter("no_default_alarms", no_default_alarms)
+            pulumi.set(__self__, "no_default_alarms", no_default_alarms)
         if nodes is not None:
-            _setter("nodes", nodes)
+            pulumi.set(__self__, "nodes", nodes)
         if rmq_version is not None:
-            _setter("rmq_version", rmq_version)
+            pulumi.set(__self__, "rmq_version", rmq_version)
         if tags is not None:
-            _setter("tags", tags)
+            pulumi.set(__self__, "tags", tags)
         if vpc_id is not None:
-            _setter("vpc_id", vpc_id)
+            pulumi.set(__self__, "vpc_id", vpc_id)
         if vpc_subnet is not None:
-            _setter("vpc_subnet", vpc_subnet)
+            pulumi.set(__self__, "vpc_subnet", vpc_subnet)
 
     @property
     @pulumi.getter
@@ -328,105 +281,44 @@ class _InstanceState:
                
                ***Note: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.***
         """
-        _InstanceState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            apikey=apikey,
-            backend=backend,
-            copy_settings=copy_settings,
-            dedicated=dedicated,
-            host=host,
-            host_internal=host_internal,
-            keep_associated_vpc=keep_associated_vpc,
-            name=name,
-            no_default_alarms=no_default_alarms,
-            nodes=nodes,
-            plan=plan,
-            ready=ready,
-            region=region,
-            rmq_version=rmq_version,
-            tags=tags,
-            url=url,
-            vhost=vhost,
-            vpc_id=vpc_id,
-            vpc_subnet=vpc_subnet,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             apikey: Optional[pulumi.Input[str]] = None,
-             backend: Optional[pulumi.Input[str]] = None,
-             copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceCopySettingArgs']]]] = None,
-             dedicated: Optional[pulumi.Input[bool]] = None,
-             host: Optional[pulumi.Input[str]] = None,
-             host_internal: Optional[pulumi.Input[str]] = None,
-             keep_associated_vpc: Optional[pulumi.Input[bool]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             no_default_alarms: Optional[pulumi.Input[bool]] = None,
-             nodes: Optional[pulumi.Input[int]] = None,
-             plan: Optional[pulumi.Input[str]] = None,
-             ready: Optional[pulumi.Input[bool]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             rmq_version: Optional[pulumi.Input[str]] = None,
-             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             url: Optional[pulumi.Input[str]] = None,
-             vhost: Optional[pulumi.Input[str]] = None,
-             vpc_id: Optional[pulumi.Input[int]] = None,
-             vpc_subnet: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if copy_settings is None and 'copySettings' in kwargs:
-            copy_settings = kwargs['copySettings']
-        if host_internal is None and 'hostInternal' in kwargs:
-            host_internal = kwargs['hostInternal']
-        if keep_associated_vpc is None and 'keepAssociatedVpc' in kwargs:
-            keep_associated_vpc = kwargs['keepAssociatedVpc']
-        if no_default_alarms is None and 'noDefaultAlarms' in kwargs:
-            no_default_alarms = kwargs['noDefaultAlarms']
-        if rmq_version is None and 'rmqVersion' in kwargs:
-            rmq_version = kwargs['rmqVersion']
-        if vpc_id is None and 'vpcId' in kwargs:
-            vpc_id = kwargs['vpcId']
-        if vpc_subnet is None and 'vpcSubnet' in kwargs:
-            vpc_subnet = kwargs['vpcSubnet']
-
         if apikey is not None:
-            _setter("apikey", apikey)
+            pulumi.set(__self__, "apikey", apikey)
         if backend is not None:
-            _setter("backend", backend)
+            pulumi.set(__self__, "backend", backend)
         if copy_settings is not None:
-            _setter("copy_settings", copy_settings)
+            pulumi.set(__self__, "copy_settings", copy_settings)
         if dedicated is not None:
-            _setter("dedicated", dedicated)
+            pulumi.set(__self__, "dedicated", dedicated)
         if host is not None:
-            _setter("host", host)
+            pulumi.set(__self__, "host", host)
         if host_internal is not None:
-            _setter("host_internal", host_internal)
+            pulumi.set(__self__, "host_internal", host_internal)
         if keep_associated_vpc is not None:
-            _setter("keep_associated_vpc", keep_associated_vpc)
+            pulumi.set(__self__, "keep_associated_vpc", keep_associated_vpc)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if no_default_alarms is not None:
-            _setter("no_default_alarms", no_default_alarms)
+            pulumi.set(__self__, "no_default_alarms", no_default_alarms)
         if nodes is not None:
-            _setter("nodes", nodes)
+            pulumi.set(__self__, "nodes", nodes)
         if plan is not None:
-            _setter("plan", plan)
+            pulumi.set(__self__, "plan", plan)
         if ready is not None:
-            _setter("ready", ready)
+            pulumi.set(__self__, "ready", ready)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if rmq_version is not None:
-            _setter("rmq_version", rmq_version)
+            pulumi.set(__self__, "rmq_version", rmq_version)
         if tags is not None:
-            _setter("tags", tags)
+            pulumi.set(__self__, "tags", tags)
         if url is not None:
-            _setter("url", url)
+            pulumi.set(__self__, "url", url)
         if vhost is not None:
-            _setter("vhost", vhost)
+            pulumi.set(__self__, "vhost", vhost)
         if vpc_id is not None:
-            _setter("vpc_id", vpc_id)
+            pulumi.set(__self__, "vpc_id", vpc_id)
         if vpc_subnet is not None:
-            _setter("vpc_subnet", vpc_subnet)
+            pulumi.set(__self__, "vpc_subnet", vpc_subnet)
 
     @property
     @pulumi.getter
@@ -1180,10 +1072,6 @@ class Instance(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            InstanceArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

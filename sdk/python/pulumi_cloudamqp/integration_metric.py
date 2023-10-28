@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['IntegrationMetricArgs', 'IntegrationMetric']
@@ -57,132 +57,51 @@ class IntegrationMetricArgs:
         :param pulumi.Input[str] vhost_allowlist: (optional) allowlist using regular expression
         :param pulumi.Input[str] vhost_whitelist: **Deprecated**
         """
-        IntegrationMetricArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            instance_id=instance_id,
-            access_key_id=access_key_id,
-            api_key=api_key,
-            client_email=client_email,
-            credentials=credentials,
-            email=email,
-            iam_external_id=iam_external_id,
-            iam_role=iam_role,
-            license_key=license_key,
-            name=name,
-            private_key=private_key,
-            private_key_id=private_key_id,
-            project_id=project_id,
-            queue_allowlist=queue_allowlist,
-            queue_whitelist=queue_whitelist,
-            region=region,
-            secret_access_key=secret_access_key,
-            tags=tags,
-            vhost_allowlist=vhost_allowlist,
-            vhost_whitelist=vhost_whitelist,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             instance_id: Optional[pulumi.Input[int]] = None,
-             access_key_id: Optional[pulumi.Input[str]] = None,
-             api_key: Optional[pulumi.Input[str]] = None,
-             client_email: Optional[pulumi.Input[str]] = None,
-             credentials: Optional[pulumi.Input[str]] = None,
-             email: Optional[pulumi.Input[str]] = None,
-             iam_external_id: Optional[pulumi.Input[str]] = None,
-             iam_role: Optional[pulumi.Input[str]] = None,
-             license_key: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             private_key: Optional[pulumi.Input[str]] = None,
-             private_key_id: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             queue_allowlist: Optional[pulumi.Input[str]] = None,
-             queue_whitelist: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             secret_access_key: Optional[pulumi.Input[str]] = None,
-             tags: Optional[pulumi.Input[str]] = None,
-             vhost_allowlist: Optional[pulumi.Input[str]] = None,
-             vhost_whitelist: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if instance_id is None and 'instanceId' in kwargs:
-            instance_id = kwargs['instanceId']
-        if instance_id is None:
-            raise TypeError("Missing 'instance_id' argument")
-        if access_key_id is None and 'accessKeyId' in kwargs:
-            access_key_id = kwargs['accessKeyId']
-        if api_key is None and 'apiKey' in kwargs:
-            api_key = kwargs['apiKey']
-        if client_email is None and 'clientEmail' in kwargs:
-            client_email = kwargs['clientEmail']
-        if iam_external_id is None and 'iamExternalId' in kwargs:
-            iam_external_id = kwargs['iamExternalId']
-        if iam_role is None and 'iamRole' in kwargs:
-            iam_role = kwargs['iamRole']
-        if license_key is None and 'licenseKey' in kwargs:
-            license_key = kwargs['licenseKey']
-        if private_key is None and 'privateKey' in kwargs:
-            private_key = kwargs['privateKey']
-        if private_key_id is None and 'privateKeyId' in kwargs:
-            private_key_id = kwargs['privateKeyId']
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if queue_allowlist is None and 'queueAllowlist' in kwargs:
-            queue_allowlist = kwargs['queueAllowlist']
-        if queue_whitelist is None and 'queueWhitelist' in kwargs:
-            queue_whitelist = kwargs['queueWhitelist']
-        if secret_access_key is None and 'secretAccessKey' in kwargs:
-            secret_access_key = kwargs['secretAccessKey']
-        if vhost_allowlist is None and 'vhostAllowlist' in kwargs:
-            vhost_allowlist = kwargs['vhostAllowlist']
-        if vhost_whitelist is None and 'vhostWhitelist' in kwargs:
-            vhost_whitelist = kwargs['vhostWhitelist']
-
-        _setter("instance_id", instance_id)
+        pulumi.set(__self__, "instance_id", instance_id)
         if access_key_id is not None:
-            _setter("access_key_id", access_key_id)
+            pulumi.set(__self__, "access_key_id", access_key_id)
         if api_key is not None:
-            _setter("api_key", api_key)
+            pulumi.set(__self__, "api_key", api_key)
         if client_email is not None:
-            _setter("client_email", client_email)
+            pulumi.set(__self__, "client_email", client_email)
         if credentials is not None:
-            _setter("credentials", credentials)
+            pulumi.set(__self__, "credentials", credentials)
         if email is not None:
-            _setter("email", email)
+            pulumi.set(__self__, "email", email)
         if iam_external_id is not None:
-            _setter("iam_external_id", iam_external_id)
+            pulumi.set(__self__, "iam_external_id", iam_external_id)
         if iam_role is not None:
-            _setter("iam_role", iam_role)
+            pulumi.set(__self__, "iam_role", iam_role)
         if license_key is not None:
-            _setter("license_key", license_key)
+            pulumi.set(__self__, "license_key", license_key)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if private_key is not None:
-            _setter("private_key", private_key)
+            pulumi.set(__self__, "private_key", private_key)
         if private_key_id is not None:
-            _setter("private_key_id", private_key_id)
+            pulumi.set(__self__, "private_key_id", private_key_id)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if queue_allowlist is not None:
-            _setter("queue_allowlist", queue_allowlist)
+            pulumi.set(__self__, "queue_allowlist", queue_allowlist)
         if queue_whitelist is not None:
             warnings.warn("""use queue_allowlist instead""", DeprecationWarning)
             pulumi.log.warn("""queue_whitelist is deprecated: use queue_allowlist instead""")
         if queue_whitelist is not None:
-            _setter("queue_whitelist", queue_whitelist)
+            pulumi.set(__self__, "queue_whitelist", queue_whitelist)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if secret_access_key is not None:
-            _setter("secret_access_key", secret_access_key)
+            pulumi.set(__self__, "secret_access_key", secret_access_key)
         if tags is not None:
-            _setter("tags", tags)
+            pulumi.set(__self__, "tags", tags)
         if vhost_allowlist is not None:
-            _setter("vhost_allowlist", vhost_allowlist)
+            pulumi.set(__self__, "vhost_allowlist", vhost_allowlist)
         if vhost_whitelist is not None:
             warnings.warn("""use vhost_allowlist instead""", DeprecationWarning)
             pulumi.log.warn("""vhost_whitelist is deprecated: use vhost_allowlist instead""")
         if vhost_whitelist is not None:
-            _setter("vhost_whitelist", vhost_whitelist)
+            pulumi.set(__self__, "vhost_whitelist", vhost_whitelist)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -477,131 +396,52 @@ class _IntegrationMetricState:
         :param pulumi.Input[str] vhost_allowlist: (optional) allowlist using regular expression
         :param pulumi.Input[str] vhost_whitelist: **Deprecated**
         """
-        _IntegrationMetricState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            access_key_id=access_key_id,
-            api_key=api_key,
-            client_email=client_email,
-            credentials=credentials,
-            email=email,
-            iam_external_id=iam_external_id,
-            iam_role=iam_role,
-            instance_id=instance_id,
-            license_key=license_key,
-            name=name,
-            private_key=private_key,
-            private_key_id=private_key_id,
-            project_id=project_id,
-            queue_allowlist=queue_allowlist,
-            queue_whitelist=queue_whitelist,
-            region=region,
-            secret_access_key=secret_access_key,
-            tags=tags,
-            vhost_allowlist=vhost_allowlist,
-            vhost_whitelist=vhost_whitelist,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             access_key_id: Optional[pulumi.Input[str]] = None,
-             api_key: Optional[pulumi.Input[str]] = None,
-             client_email: Optional[pulumi.Input[str]] = None,
-             credentials: Optional[pulumi.Input[str]] = None,
-             email: Optional[pulumi.Input[str]] = None,
-             iam_external_id: Optional[pulumi.Input[str]] = None,
-             iam_role: Optional[pulumi.Input[str]] = None,
-             instance_id: Optional[pulumi.Input[int]] = None,
-             license_key: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             private_key: Optional[pulumi.Input[str]] = None,
-             private_key_id: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             queue_allowlist: Optional[pulumi.Input[str]] = None,
-             queue_whitelist: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             secret_access_key: Optional[pulumi.Input[str]] = None,
-             tags: Optional[pulumi.Input[str]] = None,
-             vhost_allowlist: Optional[pulumi.Input[str]] = None,
-             vhost_whitelist: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if access_key_id is None and 'accessKeyId' in kwargs:
-            access_key_id = kwargs['accessKeyId']
-        if api_key is None and 'apiKey' in kwargs:
-            api_key = kwargs['apiKey']
-        if client_email is None and 'clientEmail' in kwargs:
-            client_email = kwargs['clientEmail']
-        if iam_external_id is None and 'iamExternalId' in kwargs:
-            iam_external_id = kwargs['iamExternalId']
-        if iam_role is None and 'iamRole' in kwargs:
-            iam_role = kwargs['iamRole']
-        if instance_id is None and 'instanceId' in kwargs:
-            instance_id = kwargs['instanceId']
-        if license_key is None and 'licenseKey' in kwargs:
-            license_key = kwargs['licenseKey']
-        if private_key is None and 'privateKey' in kwargs:
-            private_key = kwargs['privateKey']
-        if private_key_id is None and 'privateKeyId' in kwargs:
-            private_key_id = kwargs['privateKeyId']
-        if project_id is None and 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if queue_allowlist is None and 'queueAllowlist' in kwargs:
-            queue_allowlist = kwargs['queueAllowlist']
-        if queue_whitelist is None and 'queueWhitelist' in kwargs:
-            queue_whitelist = kwargs['queueWhitelist']
-        if secret_access_key is None and 'secretAccessKey' in kwargs:
-            secret_access_key = kwargs['secretAccessKey']
-        if vhost_allowlist is None and 'vhostAllowlist' in kwargs:
-            vhost_allowlist = kwargs['vhostAllowlist']
-        if vhost_whitelist is None and 'vhostWhitelist' in kwargs:
-            vhost_whitelist = kwargs['vhostWhitelist']
-
         if access_key_id is not None:
-            _setter("access_key_id", access_key_id)
+            pulumi.set(__self__, "access_key_id", access_key_id)
         if api_key is not None:
-            _setter("api_key", api_key)
+            pulumi.set(__self__, "api_key", api_key)
         if client_email is not None:
-            _setter("client_email", client_email)
+            pulumi.set(__self__, "client_email", client_email)
         if credentials is not None:
-            _setter("credentials", credentials)
+            pulumi.set(__self__, "credentials", credentials)
         if email is not None:
-            _setter("email", email)
+            pulumi.set(__self__, "email", email)
         if iam_external_id is not None:
-            _setter("iam_external_id", iam_external_id)
+            pulumi.set(__self__, "iam_external_id", iam_external_id)
         if iam_role is not None:
-            _setter("iam_role", iam_role)
+            pulumi.set(__self__, "iam_role", iam_role)
         if instance_id is not None:
-            _setter("instance_id", instance_id)
+            pulumi.set(__self__, "instance_id", instance_id)
         if license_key is not None:
-            _setter("license_key", license_key)
+            pulumi.set(__self__, "license_key", license_key)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if private_key is not None:
-            _setter("private_key", private_key)
+            pulumi.set(__self__, "private_key", private_key)
         if private_key_id is not None:
-            _setter("private_key_id", private_key_id)
+            pulumi.set(__self__, "private_key_id", private_key_id)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if queue_allowlist is not None:
-            _setter("queue_allowlist", queue_allowlist)
+            pulumi.set(__self__, "queue_allowlist", queue_allowlist)
         if queue_whitelist is not None:
             warnings.warn("""use queue_allowlist instead""", DeprecationWarning)
             pulumi.log.warn("""queue_whitelist is deprecated: use queue_allowlist instead""")
         if queue_whitelist is not None:
-            _setter("queue_whitelist", queue_whitelist)
+            pulumi.set(__self__, "queue_whitelist", queue_whitelist)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if secret_access_key is not None:
-            _setter("secret_access_key", secret_access_key)
+            pulumi.set(__self__, "secret_access_key", secret_access_key)
         if tags is not None:
-            _setter("tags", tags)
+            pulumi.set(__self__, "tags", tags)
         if vhost_allowlist is not None:
-            _setter("vhost_allowlist", vhost_allowlist)
+            pulumi.set(__self__, "vhost_allowlist", vhost_allowlist)
         if vhost_whitelist is not None:
             warnings.warn("""use vhost_allowlist instead""", DeprecationWarning)
             pulumi.log.warn("""vhost_whitelist is deprecated: use vhost_allowlist instead""")
         if vhost_whitelist is not None:
-            _setter("vhost_whitelist", vhost_whitelist)
+            pulumi.set(__self__, "vhost_whitelist", vhost_whitelist)
 
     @property
     @pulumi.getter(name="accessKeyId")
@@ -919,10 +759,6 @@ class IntegrationMetric(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            IntegrationMetricArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

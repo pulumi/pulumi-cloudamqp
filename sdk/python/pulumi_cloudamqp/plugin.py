@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['PluginArgs', 'Plugin']
@@ -23,31 +23,10 @@ class PluginArgs:
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] name: The name of the Rabbit MQ plugin.
         """
-        PluginArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            enabled=enabled,
-            instance_id=instance_id,
-            name=name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             enabled: Optional[pulumi.Input[bool]] = None,
-             instance_id: Optional[pulumi.Input[int]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if enabled is None:
-            raise TypeError("Missing 'enabled' argument")
-        if instance_id is None and 'instanceId' in kwargs:
-            instance_id = kwargs['instanceId']
-        if instance_id is None:
-            raise TypeError("Missing 'instance_id' argument")
-
-        _setter("enabled", enabled)
-        _setter("instance_id", instance_id)
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "instance_id", instance_id)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
@@ -102,37 +81,16 @@ class _PluginState:
         :param pulumi.Input[str] name: The name of the Rabbit MQ plugin.
         :param pulumi.Input[str] version: The version of the plugin.
         """
-        _PluginState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            description=description,
-            enabled=enabled,
-            instance_id=instance_id,
-            name=name,
-            version=version,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             description: Optional[pulumi.Input[str]] = None,
-             enabled: Optional[pulumi.Input[bool]] = None,
-             instance_id: Optional[pulumi.Input[int]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             version: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if instance_id is None and 'instanceId' in kwargs:
-            instance_id = kwargs['instanceId']
-
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if enabled is not None:
-            _setter("enabled", enabled)
+            pulumi.set(__self__, "enabled", enabled)
         if instance_id is not None:
-            _setter("instance_id", instance_id)
+            pulumi.set(__self__, "instance_id", instance_id)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if version is not None:
-            _setter("version", version)
+            pulumi.set(__self__, "version", version)
 
     @property
     @pulumi.getter
@@ -244,10 +202,6 @@ class Plugin(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            PluginArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
