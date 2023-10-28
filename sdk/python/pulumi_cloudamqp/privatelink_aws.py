@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['PrivatelinkAwsArgs', 'PrivatelinkAws']
@@ -30,37 +30,12 @@ class PrivatelinkAwsArgs:
                `arn:aws:iam::aws-account-id:user/user-name` <br>
                `arn:aws:iam::aws-account-id:role/role-name`
         """
-        PrivatelinkAwsArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            allowed_principals=allowed_principals,
-            instance_id=instance_id,
-            sleep=sleep,
-            timeout=timeout,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             allowed_principals: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             instance_id: Optional[pulumi.Input[int]] = None,
-             sleep: Optional[pulumi.Input[int]] = None,
-             timeout: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if allowed_principals is None and 'allowedPrincipals' in kwargs:
-            allowed_principals = kwargs['allowedPrincipals']
-        if allowed_principals is None:
-            raise TypeError("Missing 'allowed_principals' argument")
-        if instance_id is None and 'instanceId' in kwargs:
-            instance_id = kwargs['instanceId']
-        if instance_id is None:
-            raise TypeError("Missing 'instance_id' argument")
-
-        _setter("allowed_principals", allowed_principals)
-        _setter("instance_id", instance_id)
+        pulumi.set(__self__, "allowed_principals", allowed_principals)
+        pulumi.set(__self__, "instance_id", instance_id)
         if sleep is not None:
-            _setter("sleep", sleep)
+            pulumi.set(__self__, "sleep", sleep)
         if timeout is not None:
-            _setter("timeout", timeout)
+            pulumi.set(__self__, "timeout", timeout)
 
     @property
     @pulumi.getter(name="allowedPrincipals")
@@ -141,51 +116,20 @@ class _PrivatelinkAwsState:
                `arn:aws:iam::aws-account-id:user/user-name` <br>
                `arn:aws:iam::aws-account-id:role/role-name`
         """
-        _PrivatelinkAwsState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            active_zones=active_zones,
-            allowed_principals=allowed_principals,
-            instance_id=instance_id,
-            service_name=service_name,
-            sleep=sleep,
-            status=status,
-            timeout=timeout,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             active_zones: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             allowed_principals: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             instance_id: Optional[pulumi.Input[int]] = None,
-             service_name: Optional[pulumi.Input[str]] = None,
-             sleep: Optional[pulumi.Input[int]] = None,
-             status: Optional[pulumi.Input[str]] = None,
-             timeout: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if active_zones is None and 'activeZones' in kwargs:
-            active_zones = kwargs['activeZones']
-        if allowed_principals is None and 'allowedPrincipals' in kwargs:
-            allowed_principals = kwargs['allowedPrincipals']
-        if instance_id is None and 'instanceId' in kwargs:
-            instance_id = kwargs['instanceId']
-        if service_name is None and 'serviceName' in kwargs:
-            service_name = kwargs['serviceName']
-
         if active_zones is not None:
-            _setter("active_zones", active_zones)
+            pulumi.set(__self__, "active_zones", active_zones)
         if allowed_principals is not None:
-            _setter("allowed_principals", allowed_principals)
+            pulumi.set(__self__, "allowed_principals", allowed_principals)
         if instance_id is not None:
-            _setter("instance_id", instance_id)
+            pulumi.set(__self__, "instance_id", instance_id)
         if service_name is not None:
-            _setter("service_name", service_name)
+            pulumi.set(__self__, "service_name", service_name)
         if sleep is not None:
-            _setter("sleep", sleep)
+            pulumi.set(__self__, "sleep", sleep)
         if status is not None:
-            _setter("status", status)
+            pulumi.set(__self__, "status", status)
         if timeout is not None:
-            _setter("timeout", timeout)
+            pulumi.set(__self__, "timeout", timeout)
 
     @property
     @pulumi.getter(name="activeZones")
@@ -587,10 +531,6 @@ class PrivatelinkAws(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            PrivatelinkAwsArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
