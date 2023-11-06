@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['IntegrationAwsEventbridgeArgs', 'IntegrationAwsEventbridge']
@@ -29,12 +29,53 @@ class IntegrationAwsEventbridgeArgs:
         :param pulumi.Input[str] vhost: The VHost the queue resides in.
         :param pulumi.Input[bool] with_headers: Include message headers in the event data.
         """
-        pulumi.set(__self__, "aws_account_id", aws_account_id)
-        pulumi.set(__self__, "aws_region", aws_region)
-        pulumi.set(__self__, "instance_id", instance_id)
-        pulumi.set(__self__, "queue", queue)
-        pulumi.set(__self__, "vhost", vhost)
-        pulumi.set(__self__, "with_headers", with_headers)
+        IntegrationAwsEventbridgeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            aws_account_id=aws_account_id,
+            aws_region=aws_region,
+            instance_id=instance_id,
+            queue=queue,
+            vhost=vhost,
+            with_headers=with_headers,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             aws_account_id: Optional[pulumi.Input[str]] = None,
+             aws_region: Optional[pulumi.Input[str]] = None,
+             instance_id: Optional[pulumi.Input[int]] = None,
+             queue: Optional[pulumi.Input[str]] = None,
+             vhost: Optional[pulumi.Input[str]] = None,
+             with_headers: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if aws_account_id is None and 'awsAccountId' in kwargs:
+            aws_account_id = kwargs['awsAccountId']
+        if aws_account_id is None:
+            raise TypeError("Missing 'aws_account_id' argument")
+        if aws_region is None and 'awsRegion' in kwargs:
+            aws_region = kwargs['awsRegion']
+        if aws_region is None:
+            raise TypeError("Missing 'aws_region' argument")
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if instance_id is None:
+            raise TypeError("Missing 'instance_id' argument")
+        if queue is None:
+            raise TypeError("Missing 'queue' argument")
+        if vhost is None:
+            raise TypeError("Missing 'vhost' argument")
+        if with_headers is None and 'withHeaders' in kwargs:
+            with_headers = kwargs['withHeaders']
+        if with_headers is None:
+            raise TypeError("Missing 'with_headers' argument")
+
+        _setter("aws_account_id", aws_account_id)
+        _setter("aws_region", aws_region)
+        _setter("instance_id", instance_id)
+        _setter("queue", queue)
+        _setter("vhost", vhost)
+        _setter("with_headers", with_headers)
 
     @property
     @pulumi.getter(name="awsAccountId")
@@ -129,20 +170,51 @@ class _IntegrationAwsEventbridgeState:
         :param pulumi.Input[str] vhost: The VHost the queue resides in.
         :param pulumi.Input[bool] with_headers: Include message headers in the event data.
         """
+        _IntegrationAwsEventbridgeState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            aws_account_id=aws_account_id,
+            aws_region=aws_region,
+            instance_id=instance_id,
+            queue=queue,
+            status=status,
+            vhost=vhost,
+            with_headers=with_headers,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             aws_account_id: Optional[pulumi.Input[str]] = None,
+             aws_region: Optional[pulumi.Input[str]] = None,
+             instance_id: Optional[pulumi.Input[int]] = None,
+             queue: Optional[pulumi.Input[str]] = None,
+             status: Optional[pulumi.Input[str]] = None,
+             vhost: Optional[pulumi.Input[str]] = None,
+             with_headers: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if aws_account_id is None and 'awsAccountId' in kwargs:
+            aws_account_id = kwargs['awsAccountId']
+        if aws_region is None and 'awsRegion' in kwargs:
+            aws_region = kwargs['awsRegion']
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if with_headers is None and 'withHeaders' in kwargs:
+            with_headers = kwargs['withHeaders']
+
         if aws_account_id is not None:
-            pulumi.set(__self__, "aws_account_id", aws_account_id)
+            _setter("aws_account_id", aws_account_id)
         if aws_region is not None:
-            pulumi.set(__self__, "aws_region", aws_region)
+            _setter("aws_region", aws_region)
         if instance_id is not None:
-            pulumi.set(__self__, "instance_id", instance_id)
+            _setter("instance_id", instance_id)
         if queue is not None:
-            pulumi.set(__self__, "queue", queue)
+            _setter("queue", queue)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
         if vhost is not None:
-            pulumi.set(__self__, "vhost", vhost)
+            _setter("vhost", vhost)
         if with_headers is not None:
-            pulumi.set(__self__, "with_headers", with_headers)
+            _setter("with_headers", with_headers)
 
     @property
     @pulumi.getter(name="awsAccountId")
@@ -366,6 +438,10 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            IntegrationAwsEventbridgeArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

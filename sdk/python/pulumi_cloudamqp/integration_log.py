@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['IntegrationLogArgs', 'IntegrationLog']
@@ -53,39 +53,102 @@ class IntegrationLogArgs:
         :param pulumi.Input[str] token: Token used for authentication.
         :param pulumi.Input[str] url: Endpoint to log integration.
         """
-        pulumi.set(__self__, "instance_id", instance_id)
+        IntegrationLogArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            instance_id=instance_id,
+            access_key_id=access_key_id,
+            api_key=api_key,
+            client_email=client_email,
+            credentials=credentials,
+            host=host,
+            host_port=host_port,
+            name=name,
+            private_key=private_key,
+            private_key_id=private_key_id,
+            project_id=project_id,
+            region=region,
+            secret_access_key=secret_access_key,
+            sourcetype=sourcetype,
+            tags=tags,
+            token=token,
+            url=url,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             instance_id: Optional[pulumi.Input[int]] = None,
+             access_key_id: Optional[pulumi.Input[str]] = None,
+             api_key: Optional[pulumi.Input[str]] = None,
+             client_email: Optional[pulumi.Input[str]] = None,
+             credentials: Optional[pulumi.Input[str]] = None,
+             host: Optional[pulumi.Input[str]] = None,
+             host_port: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             private_key: Optional[pulumi.Input[str]] = None,
+             private_key_id: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             secret_access_key: Optional[pulumi.Input[str]] = None,
+             sourcetype: Optional[pulumi.Input[str]] = None,
+             tags: Optional[pulumi.Input[str]] = None,
+             token: Optional[pulumi.Input[str]] = None,
+             url: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if instance_id is None:
+            raise TypeError("Missing 'instance_id' argument")
+        if access_key_id is None and 'accessKeyId' in kwargs:
+            access_key_id = kwargs['accessKeyId']
+        if api_key is None and 'apiKey' in kwargs:
+            api_key = kwargs['apiKey']
+        if client_email is None and 'clientEmail' in kwargs:
+            client_email = kwargs['clientEmail']
+        if host_port is None and 'hostPort' in kwargs:
+            host_port = kwargs['hostPort']
+        if private_key is None and 'privateKey' in kwargs:
+            private_key = kwargs['privateKey']
+        if private_key_id is None and 'privateKeyId' in kwargs:
+            private_key_id = kwargs['privateKeyId']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if secret_access_key is None and 'secretAccessKey' in kwargs:
+            secret_access_key = kwargs['secretAccessKey']
+
+        _setter("instance_id", instance_id)
         if access_key_id is not None:
-            pulumi.set(__self__, "access_key_id", access_key_id)
+            _setter("access_key_id", access_key_id)
         if api_key is not None:
-            pulumi.set(__self__, "api_key", api_key)
+            _setter("api_key", api_key)
         if client_email is not None:
-            pulumi.set(__self__, "client_email", client_email)
+            _setter("client_email", client_email)
         if credentials is not None:
-            pulumi.set(__self__, "credentials", credentials)
+            _setter("credentials", credentials)
         if host is not None:
-            pulumi.set(__self__, "host", host)
+            _setter("host", host)
         if host_port is not None:
-            pulumi.set(__self__, "host_port", host_port)
+            _setter("host_port", host_port)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if private_key is not None:
-            pulumi.set(__self__, "private_key", private_key)
+            _setter("private_key", private_key)
         if private_key_id is not None:
-            pulumi.set(__self__, "private_key_id", private_key_id)
+            _setter("private_key_id", private_key_id)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if secret_access_key is not None:
-            pulumi.set(__self__, "secret_access_key", secret_access_key)
+            _setter("secret_access_key", secret_access_key)
         if sourcetype is not None:
-            pulumi.set(__self__, "sourcetype", sourcetype)
+            _setter("sourcetype", sourcetype)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
         if token is not None:
-            pulumi.set(__self__, "token", token)
+            _setter("token", token)
         if url is not None:
-            pulumi.set(__self__, "url", url)
+            _setter("url", url)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -336,40 +399,101 @@ class _IntegrationLogState:
         :param pulumi.Input[str] token: Token used for authentication.
         :param pulumi.Input[str] url: Endpoint to log integration.
         """
+        _IntegrationLogState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            access_key_id=access_key_id,
+            api_key=api_key,
+            client_email=client_email,
+            credentials=credentials,
+            host=host,
+            host_port=host_port,
+            instance_id=instance_id,
+            name=name,
+            private_key=private_key,
+            private_key_id=private_key_id,
+            project_id=project_id,
+            region=region,
+            secret_access_key=secret_access_key,
+            sourcetype=sourcetype,
+            tags=tags,
+            token=token,
+            url=url,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             access_key_id: Optional[pulumi.Input[str]] = None,
+             api_key: Optional[pulumi.Input[str]] = None,
+             client_email: Optional[pulumi.Input[str]] = None,
+             credentials: Optional[pulumi.Input[str]] = None,
+             host: Optional[pulumi.Input[str]] = None,
+             host_port: Optional[pulumi.Input[str]] = None,
+             instance_id: Optional[pulumi.Input[int]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             private_key: Optional[pulumi.Input[str]] = None,
+             private_key_id: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             secret_access_key: Optional[pulumi.Input[str]] = None,
+             sourcetype: Optional[pulumi.Input[str]] = None,
+             tags: Optional[pulumi.Input[str]] = None,
+             token: Optional[pulumi.Input[str]] = None,
+             url: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if access_key_id is None and 'accessKeyId' in kwargs:
+            access_key_id = kwargs['accessKeyId']
+        if api_key is None and 'apiKey' in kwargs:
+            api_key = kwargs['apiKey']
+        if client_email is None and 'clientEmail' in kwargs:
+            client_email = kwargs['clientEmail']
+        if host_port is None and 'hostPort' in kwargs:
+            host_port = kwargs['hostPort']
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if private_key is None and 'privateKey' in kwargs:
+            private_key = kwargs['privateKey']
+        if private_key_id is None and 'privateKeyId' in kwargs:
+            private_key_id = kwargs['privateKeyId']
+        if project_id is None and 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if secret_access_key is None and 'secretAccessKey' in kwargs:
+            secret_access_key = kwargs['secretAccessKey']
+
         if access_key_id is not None:
-            pulumi.set(__self__, "access_key_id", access_key_id)
+            _setter("access_key_id", access_key_id)
         if api_key is not None:
-            pulumi.set(__self__, "api_key", api_key)
+            _setter("api_key", api_key)
         if client_email is not None:
-            pulumi.set(__self__, "client_email", client_email)
+            _setter("client_email", client_email)
         if credentials is not None:
-            pulumi.set(__self__, "credentials", credentials)
+            _setter("credentials", credentials)
         if host is not None:
-            pulumi.set(__self__, "host", host)
+            _setter("host", host)
         if host_port is not None:
-            pulumi.set(__self__, "host_port", host_port)
+            _setter("host_port", host_port)
         if instance_id is not None:
-            pulumi.set(__self__, "instance_id", instance_id)
+            _setter("instance_id", instance_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if private_key is not None:
-            pulumi.set(__self__, "private_key", private_key)
+            _setter("private_key", private_key)
         if private_key_id is not None:
-            pulumi.set(__self__, "private_key_id", private_key_id)
+            _setter("private_key_id", private_key_id)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if secret_access_key is not None:
-            pulumi.set(__self__, "secret_access_key", secret_access_key)
+            _setter("secret_access_key", secret_access_key)
         if sourcetype is not None:
-            pulumi.set(__self__, "sourcetype", sourcetype)
+            _setter("sourcetype", sourcetype)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
         if token is not None:
-            pulumi.set(__self__, "token", token)
+            _setter("token", token)
         if url is not None:
-            pulumi.set(__self__, "url", url)
+            _setter("url", url)
 
     @property
     @pulumi.getter(name="accessKeyId")
@@ -761,6 +885,10 @@ class IntegrationLog(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            IntegrationLogArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['WebhookArgs', 'Webhook']
@@ -29,12 +29,51 @@ class WebhookArgs:
         :param pulumi.Input[str] vhost: The vhost the queue resides in.
         :param pulumi.Input[str] webhook_uri: A POST request will be made for each message in the queue to this endpoint.
         """
-        pulumi.set(__self__, "concurrency", concurrency)
-        pulumi.set(__self__, "instance_id", instance_id)
-        pulumi.set(__self__, "queue", queue)
-        pulumi.set(__self__, "retry_interval", retry_interval)
-        pulumi.set(__self__, "vhost", vhost)
-        pulumi.set(__self__, "webhook_uri", webhook_uri)
+        WebhookArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            concurrency=concurrency,
+            instance_id=instance_id,
+            queue=queue,
+            retry_interval=retry_interval,
+            vhost=vhost,
+            webhook_uri=webhook_uri,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             concurrency: Optional[pulumi.Input[int]] = None,
+             instance_id: Optional[pulumi.Input[int]] = None,
+             queue: Optional[pulumi.Input[str]] = None,
+             retry_interval: Optional[pulumi.Input[int]] = None,
+             vhost: Optional[pulumi.Input[str]] = None,
+             webhook_uri: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if concurrency is None:
+            raise TypeError("Missing 'concurrency' argument")
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if instance_id is None:
+            raise TypeError("Missing 'instance_id' argument")
+        if queue is None:
+            raise TypeError("Missing 'queue' argument")
+        if retry_interval is None and 'retryInterval' in kwargs:
+            retry_interval = kwargs['retryInterval']
+        if retry_interval is None:
+            raise TypeError("Missing 'retry_interval' argument")
+        if vhost is None:
+            raise TypeError("Missing 'vhost' argument")
+        if webhook_uri is None and 'webhookUri' in kwargs:
+            webhook_uri = kwargs['webhookUri']
+        if webhook_uri is None:
+            raise TypeError("Missing 'webhook_uri' argument")
+
+        _setter("concurrency", concurrency)
+        _setter("instance_id", instance_id)
+        _setter("queue", queue)
+        _setter("retry_interval", retry_interval)
+        _setter("vhost", vhost)
+        _setter("webhook_uri", webhook_uri)
 
     @property
     @pulumi.getter
@@ -127,18 +166,45 @@ class _WebhookState:
         :param pulumi.Input[str] vhost: The vhost the queue resides in.
         :param pulumi.Input[str] webhook_uri: A POST request will be made for each message in the queue to this endpoint.
         """
+        _WebhookState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            concurrency=concurrency,
+            instance_id=instance_id,
+            queue=queue,
+            retry_interval=retry_interval,
+            vhost=vhost,
+            webhook_uri=webhook_uri,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             concurrency: Optional[pulumi.Input[int]] = None,
+             instance_id: Optional[pulumi.Input[int]] = None,
+             queue: Optional[pulumi.Input[str]] = None,
+             retry_interval: Optional[pulumi.Input[int]] = None,
+             vhost: Optional[pulumi.Input[str]] = None,
+             webhook_uri: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if retry_interval is None and 'retryInterval' in kwargs:
+            retry_interval = kwargs['retryInterval']
+        if webhook_uri is None and 'webhookUri' in kwargs:
+            webhook_uri = kwargs['webhookUri']
+
         if concurrency is not None:
-            pulumi.set(__self__, "concurrency", concurrency)
+            _setter("concurrency", concurrency)
         if instance_id is not None:
-            pulumi.set(__self__, "instance_id", instance_id)
+            _setter("instance_id", instance_id)
         if queue is not None:
-            pulumi.set(__self__, "queue", queue)
+            _setter("queue", queue)
         if retry_interval is not None:
-            pulumi.set(__self__, "retry_interval", retry_interval)
+            _setter("retry_interval", retry_interval)
         if vhost is not None:
-            pulumi.set(__self__, "vhost", vhost)
+            _setter("vhost", vhost)
         if webhook_uri is not None:
-            pulumi.set(__self__, "webhook_uri", webhook_uri)
+            _setter("webhook_uri", webhook_uri)
 
     @property
     @pulumi.getter
@@ -312,6 +378,10 @@ class Webhook(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            WebhookArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

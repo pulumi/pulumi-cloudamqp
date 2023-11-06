@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -45,12 +45,31 @@ class ExtraDiskSizeNode(dict):
                  additional_disk_size: Optional[int] = None,
                  disk_size: Optional[int] = None,
                  name: Optional[str] = None):
+        ExtraDiskSizeNode._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            additional_disk_size=additional_disk_size,
+            disk_size=disk_size,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             additional_disk_size: Optional[int] = None,
+             disk_size: Optional[int] = None,
+             name: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if additional_disk_size is None and 'additionalDiskSize' in kwargs:
+            additional_disk_size = kwargs['additionalDiskSize']
+        if disk_size is None and 'diskSize' in kwargs:
+            disk_size = kwargs['diskSize']
+
         if additional_disk_size is not None:
-            pulumi.set(__self__, "additional_disk_size", additional_disk_size)
+            _setter("additional_disk_size", additional_disk_size)
         if disk_size is not None:
-            pulumi.set(__self__, "disk_size", disk_size)
+            _setter("disk_size", disk_size)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="additionalDiskSize")
@@ -96,8 +115,27 @@ class InstanceCopySetting(dict):
                See more below, copy settings
         :param str subscription_id: Instance identifier of the CloudAMQP instance to copy the settings from.
         """
-        pulumi.set(__self__, "settings", settings)
-        pulumi.set(__self__, "subscription_id", subscription_id)
+        InstanceCopySetting._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            settings=settings,
+            subscription_id=subscription_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             settings: Optional[Sequence[str]] = None,
+             subscription_id: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if settings is None:
+            raise TypeError("Missing 'settings' argument")
+        if subscription_id is None and 'subscriptionId' in kwargs:
+            subscription_id = kwargs['subscriptionId']
+        if subscription_id is None:
+            raise TypeError("Missing 'subscription_id' argument")
+
+        _setter("settings", settings)
+        _setter("subscription_id", subscription_id)
 
     @property
     @pulumi.getter
@@ -153,13 +191,32 @@ class SecurityFirewallRule(dict):
         :param Sequence[int] ports: Custom ports to be opened
         :param Sequence[str] services: Pre-defined service ports, see table below
         """
-        pulumi.set(__self__, "ip", ip)
+        SecurityFirewallRule._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            ip=ip,
+            description=description,
+            ports=ports,
+            services=services,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             ip: Optional[str] = None,
+             description: Optional[str] = None,
+             ports: Optional[Sequence[int]] = None,
+             services: Optional[Sequence[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if ip is None:
+            raise TypeError("Missing 'ip' argument")
+
+        _setter("ip", ip)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if ports is not None:
-            pulumi.set(__self__, "ports", ports)
+            _setter("ports", ports)
         if services is not None:
-            pulumi.set(__self__, "services", services)
+            _setter("services", services)
 
     @property
     @pulumi.getter
@@ -224,12 +281,39 @@ class GetAccountInstanceResult(dict):
                  plan: str,
                  region: str,
                  tags: Optional[Sequence[str]] = None):
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "plan", plan)
-        pulumi.set(__self__, "region", region)
+        GetAccountInstanceResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            name=name,
+            plan=plan,
+            region=region,
+            tags=tags,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             id: Optional[int] = None,
+             name: Optional[str] = None,
+             plan: Optional[str] = None,
+             region: Optional[str] = None,
+             tags: Optional[Sequence[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if id is None:
+            raise TypeError("Missing 'id' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if plan is None:
+            raise TypeError("Missing 'plan' argument")
+        if region is None:
+            raise TypeError("Missing 'region' argument")
+
+        _setter("id", id)
+        _setter("name", name)
+        _setter("plan", plan)
+        _setter("region", region)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
 
     @property
     @pulumi.getter
@@ -266,13 +350,46 @@ class GetAccountVpcsVpcResult(dict):
                  subnet: str,
                  vpc_name: str,
                  tags: Optional[Sequence[str]] = None):
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "region", region)
-        pulumi.set(__self__, "subnet", subnet)
-        pulumi.set(__self__, "vpc_name", vpc_name)
+        GetAccountVpcsVpcResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            name=name,
+            region=region,
+            subnet=subnet,
+            vpc_name=vpc_name,
+            tags=tags,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             id: Optional[int] = None,
+             name: Optional[str] = None,
+             region: Optional[str] = None,
+             subnet: Optional[str] = None,
+             vpc_name: Optional[str] = None,
+             tags: Optional[Sequence[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if id is None:
+            raise TypeError("Missing 'id' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if region is None:
+            raise TypeError("Missing 'region' argument")
+        if subnet is None:
+            raise TypeError("Missing 'subnet' argument")
+        if vpc_name is None and 'vpcName' in kwargs:
+            vpc_name = kwargs['vpcName']
+        if vpc_name is None:
+            raise TypeError("Missing 'vpc_name' argument")
+
+        _setter("id", id)
+        _setter("name", name)
+        _setter("region", region)
+        _setter("subnet", subnet)
+        _setter("vpc_name", vpc_name)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
 
     @property
     @pulumi.getter
@@ -317,15 +434,68 @@ class GetNodesNodeResult(dict):
                  name: str,
                  rabbitmq_version: str,
                  running: bool):
-        pulumi.set(__self__, "additional_disk_size", additional_disk_size)
-        pulumi.set(__self__, "configured", configured)
-        pulumi.set(__self__, "disk_size", disk_size)
-        pulumi.set(__self__, "erlang_version", erlang_version)
-        pulumi.set(__self__, "hipe", hipe)
-        pulumi.set(__self__, "hostname", hostname)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "rabbitmq_version", rabbitmq_version)
-        pulumi.set(__self__, "running", running)
+        GetNodesNodeResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            additional_disk_size=additional_disk_size,
+            configured=configured,
+            disk_size=disk_size,
+            erlang_version=erlang_version,
+            hipe=hipe,
+            hostname=hostname,
+            name=name,
+            rabbitmq_version=rabbitmq_version,
+            running=running,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             additional_disk_size: Optional[int] = None,
+             configured: Optional[bool] = None,
+             disk_size: Optional[int] = None,
+             erlang_version: Optional[str] = None,
+             hipe: Optional[bool] = None,
+             hostname: Optional[str] = None,
+             name: Optional[str] = None,
+             rabbitmq_version: Optional[str] = None,
+             running: Optional[bool] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if additional_disk_size is None and 'additionalDiskSize' in kwargs:
+            additional_disk_size = kwargs['additionalDiskSize']
+        if additional_disk_size is None:
+            raise TypeError("Missing 'additional_disk_size' argument")
+        if configured is None:
+            raise TypeError("Missing 'configured' argument")
+        if disk_size is None and 'diskSize' in kwargs:
+            disk_size = kwargs['diskSize']
+        if disk_size is None:
+            raise TypeError("Missing 'disk_size' argument")
+        if erlang_version is None and 'erlangVersion' in kwargs:
+            erlang_version = kwargs['erlangVersion']
+        if erlang_version is None:
+            raise TypeError("Missing 'erlang_version' argument")
+        if hipe is None:
+            raise TypeError("Missing 'hipe' argument")
+        if hostname is None:
+            raise TypeError("Missing 'hostname' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if rabbitmq_version is None and 'rabbitmqVersion' in kwargs:
+            rabbitmq_version = kwargs['rabbitmqVersion']
+        if rabbitmq_version is None:
+            raise TypeError("Missing 'rabbitmq_version' argument")
+        if running is None:
+            raise TypeError("Missing 'running' argument")
+
+        _setter("additional_disk_size", additional_disk_size)
+        _setter("configured", configured)
+        _setter("disk_size", disk_size)
+        _setter("erlang_version", erlang_version)
+        _setter("hipe", hipe)
+        _setter("hostname", hostname)
+        _setter("name", name)
+        _setter("rabbitmq_version", rabbitmq_version)
+        _setter("running", running)
 
     @property
     @pulumi.getter(name="additionalDiskSize")
@@ -379,9 +549,30 @@ class GetPluginsCommunityPluginResult(dict):
                  description: str,
                  name: str,
                  require: str):
-        pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "require", require)
+        GetPluginsCommunityPluginResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            description=description,
+            name=name,
+            require=require,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             description: Optional[str] = None,
+             name: Optional[str] = None,
+             require: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if description is None:
+            raise TypeError("Missing 'description' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if require is None:
+            raise TypeError("Missing 'require' argument")
+
+        _setter("description", description)
+        _setter("name", name)
+        _setter("require", require)
 
     @property
     @pulumi.getter
@@ -406,10 +597,35 @@ class GetPluginsPluginResult(dict):
                  enabled: bool,
                  name: str,
                  version: str):
-        pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "version", version)
+        GetPluginsPluginResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            description=description,
+            enabled=enabled,
+            name=name,
+            version=version,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             description: Optional[str] = None,
+             enabled: Optional[bool] = None,
+             name: Optional[str] = None,
+             version: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if description is None:
+            raise TypeError("Missing 'description' argument")
+        if enabled is None:
+            raise TypeError("Missing 'enabled' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if version is None:
+            raise TypeError("Missing 'version' argument")
+
+        _setter("description", description)
+        _setter("enabled", enabled)
+        _setter("name", name)
+        _setter("version", version)
 
     @property
     @pulumi.getter
