@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -229,12 +228,6 @@ func (i *RabbitConfiguration) ToRabbitConfigurationOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(RabbitConfigurationOutput)
 }
 
-func (i *RabbitConfiguration) ToOutput(ctx context.Context) pulumix.Output[*RabbitConfiguration] {
-	return pulumix.Output[*RabbitConfiguration]{
-		OutputState: i.ToRabbitConfigurationOutputWithContext(ctx).OutputState,
-	}
-}
-
 // RabbitConfigurationArrayInput is an input type that accepts RabbitConfigurationArray and RabbitConfigurationArrayOutput values.
 // You can construct a concrete instance of `RabbitConfigurationArrayInput` via:
 //
@@ -258,12 +251,6 @@ func (i RabbitConfigurationArray) ToRabbitConfigurationArrayOutput() RabbitConfi
 
 func (i RabbitConfigurationArray) ToRabbitConfigurationArrayOutputWithContext(ctx context.Context) RabbitConfigurationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RabbitConfigurationArrayOutput)
-}
-
-func (i RabbitConfigurationArray) ToOutput(ctx context.Context) pulumix.Output[[]*RabbitConfiguration] {
-	return pulumix.Output[[]*RabbitConfiguration]{
-		OutputState: i.ToRabbitConfigurationArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // RabbitConfigurationMapInput is an input type that accepts RabbitConfigurationMap and RabbitConfigurationMapOutput values.
@@ -291,12 +278,6 @@ func (i RabbitConfigurationMap) ToRabbitConfigurationMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(RabbitConfigurationMapOutput)
 }
 
-func (i RabbitConfigurationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RabbitConfiguration] {
-	return pulumix.Output[map[string]*RabbitConfiguration]{
-		OutputState: i.ToRabbitConfigurationMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type RabbitConfigurationOutput struct{ *pulumi.OutputState }
 
 func (RabbitConfigurationOutput) ElementType() reflect.Type {
@@ -309,12 +290,6 @@ func (o RabbitConfigurationOutput) ToRabbitConfigurationOutput() RabbitConfigura
 
 func (o RabbitConfigurationOutput) ToRabbitConfigurationOutputWithContext(ctx context.Context) RabbitConfigurationOutput {
 	return o
-}
-
-func (o RabbitConfigurationOutput) ToOutput(ctx context.Context) pulumix.Output[*RabbitConfiguration] {
-	return pulumix.Output[*RabbitConfiguration]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Set the maximum permissible number of channels per connection.
@@ -393,12 +368,6 @@ func (o RabbitConfigurationArrayOutput) ToRabbitConfigurationArrayOutputWithCont
 	return o
 }
 
-func (o RabbitConfigurationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RabbitConfiguration] {
-	return pulumix.Output[[]*RabbitConfiguration]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o RabbitConfigurationArrayOutput) Index(i pulumi.IntInput) RabbitConfigurationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RabbitConfiguration {
 		return vs[0].([]*RabbitConfiguration)[vs[1].(int)]
@@ -417,12 +386,6 @@ func (o RabbitConfigurationMapOutput) ToRabbitConfigurationMapOutput() RabbitCon
 
 func (o RabbitConfigurationMapOutput) ToRabbitConfigurationMapOutputWithContext(ctx context.Context) RabbitConfigurationMapOutput {
 	return o
-}
-
-func (o RabbitConfigurationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RabbitConfiguration] {
-	return pulumix.Output[map[string]*RabbitConfiguration]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RabbitConfigurationMapOutput) MapIndex(k pulumi.StringInput) RabbitConfigurationOutput {

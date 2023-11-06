@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -162,12 +161,6 @@ func (i *SecurityFirewall) ToSecurityFirewallOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SecurityFirewallOutput)
 }
 
-func (i *SecurityFirewall) ToOutput(ctx context.Context) pulumix.Output[*SecurityFirewall] {
-	return pulumix.Output[*SecurityFirewall]{
-		OutputState: i.ToSecurityFirewallOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecurityFirewallArrayInput is an input type that accepts SecurityFirewallArray and SecurityFirewallArrayOutput values.
 // You can construct a concrete instance of `SecurityFirewallArrayInput` via:
 //
@@ -191,12 +184,6 @@ func (i SecurityFirewallArray) ToSecurityFirewallArrayOutput() SecurityFirewallA
 
 func (i SecurityFirewallArray) ToSecurityFirewallArrayOutputWithContext(ctx context.Context) SecurityFirewallArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecurityFirewallArrayOutput)
-}
-
-func (i SecurityFirewallArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecurityFirewall] {
-	return pulumix.Output[[]*SecurityFirewall]{
-		OutputState: i.ToSecurityFirewallArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SecurityFirewallMapInput is an input type that accepts SecurityFirewallMap and SecurityFirewallMapOutput values.
@@ -224,12 +211,6 @@ func (i SecurityFirewallMap) ToSecurityFirewallMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(SecurityFirewallMapOutput)
 }
 
-func (i SecurityFirewallMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecurityFirewall] {
-	return pulumix.Output[map[string]*SecurityFirewall]{
-		OutputState: i.ToSecurityFirewallMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecurityFirewallOutput struct{ *pulumi.OutputState }
 
 func (SecurityFirewallOutput) ElementType() reflect.Type {
@@ -242,12 +223,6 @@ func (o SecurityFirewallOutput) ToSecurityFirewallOutput() SecurityFirewallOutpu
 
 func (o SecurityFirewallOutput) ToSecurityFirewallOutputWithContext(ctx context.Context) SecurityFirewallOutput {
 	return o
-}
-
-func (o SecurityFirewallOutput) ToOutput(ctx context.Context) pulumix.Output[*SecurityFirewall] {
-	return pulumix.Output[*SecurityFirewall]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The CloudAMQP instance ID.
@@ -288,12 +263,6 @@ func (o SecurityFirewallArrayOutput) ToSecurityFirewallArrayOutputWithContext(ct
 	return o
 }
 
-func (o SecurityFirewallArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecurityFirewall] {
-	return pulumix.Output[[]*SecurityFirewall]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SecurityFirewallArrayOutput) Index(i pulumi.IntInput) SecurityFirewallOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecurityFirewall {
 		return vs[0].([]*SecurityFirewall)[vs[1].(int)]
@@ -312,12 +281,6 @@ func (o SecurityFirewallMapOutput) ToSecurityFirewallMapOutput() SecurityFirewal
 
 func (o SecurityFirewallMapOutput) ToSecurityFirewallMapOutputWithContext(ctx context.Context) SecurityFirewallMapOutput {
 	return o
-}
-
-func (o SecurityFirewallMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecurityFirewall] {
-	return pulumix.Output[map[string]*SecurityFirewall]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecurityFirewallMapOutput) MapIndex(k pulumi.StringInput) SecurityFirewallOutput {

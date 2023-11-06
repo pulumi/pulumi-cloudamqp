@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
@@ -103,12 +102,6 @@ func (o GetAccountVpcsResultOutput) ToGetAccountVpcsResultOutput() GetAccountVpc
 
 func (o GetAccountVpcsResultOutput) ToGetAccountVpcsResultOutputWithContext(ctx context.Context) GetAccountVpcsResultOutput {
 	return o
-}
-
-func (o GetAccountVpcsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetAccountVpcsResult] {
-	return pulumix.Output[GetAccountVpcsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.
