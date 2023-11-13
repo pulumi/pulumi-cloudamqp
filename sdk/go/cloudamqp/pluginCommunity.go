@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -144,12 +143,6 @@ func (i *PluginCommunity) ToPluginCommunityOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(PluginCommunityOutput)
 }
 
-func (i *PluginCommunity) ToOutput(ctx context.Context) pulumix.Output[*PluginCommunity] {
-	return pulumix.Output[*PluginCommunity]{
-		OutputState: i.ToPluginCommunityOutputWithContext(ctx).OutputState,
-	}
-}
-
 // PluginCommunityArrayInput is an input type that accepts PluginCommunityArray and PluginCommunityArrayOutput values.
 // You can construct a concrete instance of `PluginCommunityArrayInput` via:
 //
@@ -173,12 +166,6 @@ func (i PluginCommunityArray) ToPluginCommunityArrayOutput() PluginCommunityArra
 
 func (i PluginCommunityArray) ToPluginCommunityArrayOutputWithContext(ctx context.Context) PluginCommunityArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PluginCommunityArrayOutput)
-}
-
-func (i PluginCommunityArray) ToOutput(ctx context.Context) pulumix.Output[[]*PluginCommunity] {
-	return pulumix.Output[[]*PluginCommunity]{
-		OutputState: i.ToPluginCommunityArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // PluginCommunityMapInput is an input type that accepts PluginCommunityMap and PluginCommunityMapOutput values.
@@ -206,12 +193,6 @@ func (i PluginCommunityMap) ToPluginCommunityMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(PluginCommunityMapOutput)
 }
 
-func (i PluginCommunityMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*PluginCommunity] {
-	return pulumix.Output[map[string]*PluginCommunity]{
-		OutputState: i.ToPluginCommunityMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type PluginCommunityOutput struct{ *pulumi.OutputState }
 
 func (PluginCommunityOutput) ElementType() reflect.Type {
@@ -224,12 +205,6 @@ func (o PluginCommunityOutput) ToPluginCommunityOutput() PluginCommunityOutput {
 
 func (o PluginCommunityOutput) ToPluginCommunityOutputWithContext(ctx context.Context) PluginCommunityOutput {
 	return o
-}
-
-func (o PluginCommunityOutput) ToOutput(ctx context.Context) pulumix.Output[*PluginCommunity] {
-	return pulumix.Output[*PluginCommunity]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The description of the plugin.
@@ -271,12 +246,6 @@ func (o PluginCommunityArrayOutput) ToPluginCommunityArrayOutputWithContext(ctx 
 	return o
 }
 
-func (o PluginCommunityArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*PluginCommunity] {
-	return pulumix.Output[[]*PluginCommunity]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o PluginCommunityArrayOutput) Index(i pulumi.IntInput) PluginCommunityOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *PluginCommunity {
 		return vs[0].([]*PluginCommunity)[vs[1].(int)]
@@ -295,12 +264,6 @@ func (o PluginCommunityMapOutput) ToPluginCommunityMapOutput() PluginCommunityMa
 
 func (o PluginCommunityMapOutput) ToPluginCommunityMapOutputWithContext(ctx context.Context) PluginCommunityMapOutput {
 	return o
-}
-
-func (o PluginCommunityMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*PluginCommunity] {
-	return pulumix.Output[map[string]*PluginCommunity]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o PluginCommunityMapOutput) MapIndex(k pulumi.StringInput) PluginCommunityOutput {

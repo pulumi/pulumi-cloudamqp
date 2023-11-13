@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to retrieve information about the credentials of the configured user in Rabbit MQ. Information is extracted from `cloudamqp_instance.instance.url`.
@@ -111,12 +110,6 @@ func (o GetCredentialsResultOutput) ToGetCredentialsResultOutput() GetCredential
 
 func (o GetCredentialsResultOutput) ToGetCredentialsResultOutputWithContext(ctx context.Context) GetCredentialsResultOutput {
 	return o
-}
-
-func (o GetCredentialsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetCredentialsResult] {
-	return pulumix.Output[GetCredentialsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This resource allows you to invoke actions on a specific node.
@@ -329,12 +328,6 @@ func (i *NodeActions) ToNodeActionsOutputWithContext(ctx context.Context) NodeAc
 	return pulumi.ToOutputWithContext(ctx, i).(NodeActionsOutput)
 }
 
-func (i *NodeActions) ToOutput(ctx context.Context) pulumix.Output[*NodeActions] {
-	return pulumix.Output[*NodeActions]{
-		OutputState: i.ToNodeActionsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // NodeActionsArrayInput is an input type that accepts NodeActionsArray and NodeActionsArrayOutput values.
 // You can construct a concrete instance of `NodeActionsArrayInput` via:
 //
@@ -358,12 +351,6 @@ func (i NodeActionsArray) ToNodeActionsArrayOutput() NodeActionsArrayOutput {
 
 func (i NodeActionsArray) ToNodeActionsArrayOutputWithContext(ctx context.Context) NodeActionsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NodeActionsArrayOutput)
-}
-
-func (i NodeActionsArray) ToOutput(ctx context.Context) pulumix.Output[[]*NodeActions] {
-	return pulumix.Output[[]*NodeActions]{
-		OutputState: i.ToNodeActionsArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // NodeActionsMapInput is an input type that accepts NodeActionsMap and NodeActionsMapOutput values.
@@ -391,12 +378,6 @@ func (i NodeActionsMap) ToNodeActionsMapOutputWithContext(ctx context.Context) N
 	return pulumi.ToOutputWithContext(ctx, i).(NodeActionsMapOutput)
 }
 
-func (i NodeActionsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*NodeActions] {
-	return pulumix.Output[map[string]*NodeActions]{
-		OutputState: i.ToNodeActionsMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type NodeActionsOutput struct{ *pulumi.OutputState }
 
 func (NodeActionsOutput) ElementType() reflect.Type {
@@ -409,12 +390,6 @@ func (o NodeActionsOutput) ToNodeActionsOutput() NodeActionsOutput {
 
 func (o NodeActionsOutput) ToNodeActionsOutputWithContext(ctx context.Context) NodeActionsOutput {
 	return o
-}
-
-func (o NodeActionsOutput) ToOutput(ctx context.Context) pulumix.Output[*NodeActions] {
-	return pulumix.Output[*NodeActions]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The action to invoke on the node.
@@ -451,12 +426,6 @@ func (o NodeActionsArrayOutput) ToNodeActionsArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o NodeActionsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*NodeActions] {
-	return pulumix.Output[[]*NodeActions]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o NodeActionsArrayOutput) Index(i pulumi.IntInput) NodeActionsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *NodeActions {
 		return vs[0].([]*NodeActions)[vs[1].(int)]
@@ -475,12 +444,6 @@ func (o NodeActionsMapOutput) ToNodeActionsMapOutput() NodeActionsMapOutput {
 
 func (o NodeActionsMapOutput) ToNodeActionsMapOutputWithContext(ctx context.Context) NodeActionsMapOutput {
 	return o
-}
-
-func (o NodeActionsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*NodeActions] {
-	return pulumix.Output[map[string]*NodeActions]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o NodeActionsMapOutput) MapIndex(k pulumi.StringInput) NodeActionsOutput {
