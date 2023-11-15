@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to retrieve information about possible upgradable versions for RabbitMQ and Erlang.
@@ -110,12 +109,6 @@ func (o GetUpgradableVersionsResultOutput) ToGetUpgradableVersionsResultOutput()
 
 func (o GetUpgradableVersionsResultOutput) ToGetUpgradableVersionsResultOutputWithContext(ctx context.Context) GetUpgradableVersionsResultOutput {
 	return o
-}
-
-func (o GetUpgradableVersionsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetUpgradableVersionsResult] {
-	return pulumix.Output[GetUpgradableVersionsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

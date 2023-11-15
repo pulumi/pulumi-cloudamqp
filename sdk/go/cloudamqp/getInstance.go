@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.
@@ -110,12 +109,6 @@ func (o LookupInstanceResultOutput) ToLookupInstanceResultOutput() LookupInstanc
 
 func (o LookupInstanceResultOutput) ToLookupInstanceResultOutputWithContext(ctx context.Context) LookupInstanceResultOutput {
 	return o
-}
-
-func (o LookupInstanceResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupInstanceResult] {
-	return pulumix.Output[LookupInstanceResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupInstanceResultOutput) Apikey() pulumi.StringOutput {

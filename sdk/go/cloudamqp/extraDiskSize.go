@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This resource allows you to resize the disk with additional storage capacity.
@@ -393,12 +392,6 @@ func (i *ExtraDiskSize) ToExtraDiskSizeOutputWithContext(ctx context.Context) Ex
 	return pulumi.ToOutputWithContext(ctx, i).(ExtraDiskSizeOutput)
 }
 
-func (i *ExtraDiskSize) ToOutput(ctx context.Context) pulumix.Output[*ExtraDiskSize] {
-	return pulumix.Output[*ExtraDiskSize]{
-		OutputState: i.ToExtraDiskSizeOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ExtraDiskSizeArrayInput is an input type that accepts ExtraDiskSizeArray and ExtraDiskSizeArrayOutput values.
 // You can construct a concrete instance of `ExtraDiskSizeArrayInput` via:
 //
@@ -422,12 +415,6 @@ func (i ExtraDiskSizeArray) ToExtraDiskSizeArrayOutput() ExtraDiskSizeArrayOutpu
 
 func (i ExtraDiskSizeArray) ToExtraDiskSizeArrayOutputWithContext(ctx context.Context) ExtraDiskSizeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ExtraDiskSizeArrayOutput)
-}
-
-func (i ExtraDiskSizeArray) ToOutput(ctx context.Context) pulumix.Output[[]*ExtraDiskSize] {
-	return pulumix.Output[[]*ExtraDiskSize]{
-		OutputState: i.ToExtraDiskSizeArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ExtraDiskSizeMapInput is an input type that accepts ExtraDiskSizeMap and ExtraDiskSizeMapOutput values.
@@ -455,12 +442,6 @@ func (i ExtraDiskSizeMap) ToExtraDiskSizeMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(ExtraDiskSizeMapOutput)
 }
 
-func (i ExtraDiskSizeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ExtraDiskSize] {
-	return pulumix.Output[map[string]*ExtraDiskSize]{
-		OutputState: i.ToExtraDiskSizeMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ExtraDiskSizeOutput struct{ *pulumi.OutputState }
 
 func (ExtraDiskSizeOutput) ElementType() reflect.Type {
@@ -473,12 +454,6 @@ func (o ExtraDiskSizeOutput) ToExtraDiskSizeOutput() ExtraDiskSizeOutput {
 
 func (o ExtraDiskSizeOutput) ToExtraDiskSizeOutputWithContext(ctx context.Context) ExtraDiskSizeOutput {
 	return o
-}
-
-func (o ExtraDiskSizeOutput) ToOutput(ctx context.Context) pulumix.Output[*ExtraDiskSize] {
-	return pulumix.Output[*ExtraDiskSize]{
-		OutputState: o.OutputState,
-	}
 }
 
 // When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
@@ -526,12 +501,6 @@ func (o ExtraDiskSizeArrayOutput) ToExtraDiskSizeArrayOutputWithContext(ctx cont
 	return o
 }
 
-func (o ExtraDiskSizeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ExtraDiskSize] {
-	return pulumix.Output[[]*ExtraDiskSize]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ExtraDiskSizeArrayOutput) Index(i pulumi.IntInput) ExtraDiskSizeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ExtraDiskSize {
 		return vs[0].([]*ExtraDiskSize)[vs[1].(int)]
@@ -550,12 +519,6 @@ func (o ExtraDiskSizeMapOutput) ToExtraDiskSizeMapOutput() ExtraDiskSizeMapOutpu
 
 func (o ExtraDiskSizeMapOutput) ToExtraDiskSizeMapOutputWithContext(ctx context.Context) ExtraDiskSizeMapOutput {
 	return o
-}
-
-func (o ExtraDiskSizeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ExtraDiskSize] {
-	return pulumix.Output[map[string]*ExtraDiskSize]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ExtraDiskSizeMapOutput) MapIndex(k pulumi.StringInput) ExtraDiskSizeOutput {

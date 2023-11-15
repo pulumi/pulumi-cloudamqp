@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type IntegrationMetric struct {
@@ -329,12 +328,6 @@ func (i *IntegrationMetric) ToIntegrationMetricOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricOutput)
 }
 
-func (i *IntegrationMetric) ToOutput(ctx context.Context) pulumix.Output[*IntegrationMetric] {
-	return pulumix.Output[*IntegrationMetric]{
-		OutputState: i.ToIntegrationMetricOutputWithContext(ctx).OutputState,
-	}
-}
-
 // IntegrationMetricArrayInput is an input type that accepts IntegrationMetricArray and IntegrationMetricArrayOutput values.
 // You can construct a concrete instance of `IntegrationMetricArrayInput` via:
 //
@@ -358,12 +351,6 @@ func (i IntegrationMetricArray) ToIntegrationMetricArrayOutput() IntegrationMetr
 
 func (i IntegrationMetricArray) ToIntegrationMetricArrayOutputWithContext(ctx context.Context) IntegrationMetricArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricArrayOutput)
-}
-
-func (i IntegrationMetricArray) ToOutput(ctx context.Context) pulumix.Output[[]*IntegrationMetric] {
-	return pulumix.Output[[]*IntegrationMetric]{
-		OutputState: i.ToIntegrationMetricArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // IntegrationMetricMapInput is an input type that accepts IntegrationMetricMap and IntegrationMetricMapOutput values.
@@ -391,12 +378,6 @@ func (i IntegrationMetricMap) ToIntegrationMetricMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricMapOutput)
 }
 
-func (i IntegrationMetricMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*IntegrationMetric] {
-	return pulumix.Output[map[string]*IntegrationMetric]{
-		OutputState: i.ToIntegrationMetricMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type IntegrationMetricOutput struct{ *pulumi.OutputState }
 
 func (IntegrationMetricOutput) ElementType() reflect.Type {
@@ -409,12 +390,6 @@ func (o IntegrationMetricOutput) ToIntegrationMetricOutput() IntegrationMetricOu
 
 func (o IntegrationMetricOutput) ToIntegrationMetricOutputWithContext(ctx context.Context) IntegrationMetricOutput {
 	return o
-}
-
-func (o IntegrationMetricOutput) ToOutput(ctx context.Context) pulumix.Output[*IntegrationMetric] {
-	return pulumix.Output[*IntegrationMetric]{
-		OutputState: o.OutputState,
-	}
 }
 
 // AWS access key identifier. (Cloudwatch)
@@ -535,12 +510,6 @@ func (o IntegrationMetricArrayOutput) ToIntegrationMetricArrayOutputWithContext(
 	return o
 }
 
-func (o IntegrationMetricArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*IntegrationMetric] {
-	return pulumix.Output[[]*IntegrationMetric]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o IntegrationMetricArrayOutput) Index(i pulumi.IntInput) IntegrationMetricOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IntegrationMetric {
 		return vs[0].([]*IntegrationMetric)[vs[1].(int)]
@@ -559,12 +528,6 @@ func (o IntegrationMetricMapOutput) ToIntegrationMetricMapOutput() IntegrationMe
 
 func (o IntegrationMetricMapOutput) ToIntegrationMetricMapOutputWithContext(ctx context.Context) IntegrationMetricMapOutput {
 	return o
-}
-
-func (o IntegrationMetricMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*IntegrationMetric] {
-	return pulumix.Output[map[string]*IntegrationMetric]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o IntegrationMetricMapOutput) MapIndex(k pulumi.StringInput) IntegrationMetricOutput {
