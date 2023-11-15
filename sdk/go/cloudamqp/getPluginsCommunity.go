@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -115,12 +114,6 @@ func (o GetPluginsCommunityResultOutput) ToGetPluginsCommunityResultOutput() Get
 
 func (o GetPluginsCommunityResultOutput) ToGetPluginsCommunityResultOutputWithContext(ctx context.Context) GetPluginsCommunityResultOutput {
 	return o
-}
-
-func (o GetPluginsCommunityResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetPluginsCommunityResult] {
-	return pulumix.Output[GetPluginsCommunityResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

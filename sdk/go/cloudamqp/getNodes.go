@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to retrieve information about the node(s) created by CloudAMQP instance.
@@ -125,12 +124,6 @@ func (o GetNodesResultOutput) ToGetNodesResultOutput() GetNodesResultOutput {
 
 func (o GetNodesResultOutput) ToGetNodesResultOutputWithContext(ctx context.Context) GetNodesResultOutput {
 	return o
-}
-
-func (o GetNodesResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetNodesResult] {
-	return pulumix.Output[GetNodesResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

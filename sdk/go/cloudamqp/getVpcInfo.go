@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to retrieve information about VPC for a CloudAMQP instance.
@@ -176,12 +175,6 @@ func (o GetVpcInfoResultOutput) ToGetVpcInfoResultOutput() GetVpcInfoResultOutpu
 
 func (o GetVpcInfoResultOutput) ToGetVpcInfoResultOutputWithContext(ctx context.Context) GetVpcInfoResultOutput {
 	return o
-}
-
-func (o GetVpcInfoResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetVpcInfoResult] {
-	return pulumix.Output[GetVpcInfoResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.
