@@ -226,13 +226,13 @@ namespace Pulumi.CloudAmqp
         public Output<bool?> AllowDowntime { get; private set; } = null!;
 
         /// <summary>
-        /// Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+        /// (ForceNew/Required) Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
         /// </summary>
         [Output("extraDiskSize")]
         public Output<int> ExtraDiskSizeGb { get; private set; } = null!;
 
         /// <summary>
-        /// The CloudAMQP instance ID.
+        /// (ForceNew/Required) The CloudAMQP instance ID.
         /// </summary>
         [Output("instanceId")]
         public Output<int> InstanceId { get; private set; } = null!;
@@ -307,13 +307,13 @@ namespace Pulumi.CloudAmqp
         public Input<bool>? AllowDowntime { get; set; }
 
         /// <summary>
-        /// Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+        /// (ForceNew/Required) Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
         /// </summary>
         [Input("extraDiskSize", required: true)]
         public Input<int> ExtraDiskSizeGb { get; set; } = null!;
 
         /// <summary>
-        /// The CloudAMQP instance ID.
+        /// (ForceNew/Required) The CloudAMQP instance ID.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<int> InstanceId { get; set; } = null!;
@@ -347,13 +347,13 @@ namespace Pulumi.CloudAmqp
         public Input<bool>? AllowDowntime { get; set; }
 
         /// <summary>
-        /// Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+        /// (ForceNew/Required) Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
         /// </summary>
         [Input("extraDiskSize")]
         public Input<int>? ExtraDiskSizeGb { get; set; }
 
         /// <summary>
-        /// The CloudAMQP instance ID.
+        /// (ForceNew/Required) The CloudAMQP instance ID.
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }

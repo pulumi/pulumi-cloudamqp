@@ -58,7 +58,8 @@ export class SecurityFirewall extends pulumi.CustomResource {
     /**
      * Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
      *
-     * ___
+     *
+     *
      *
      * The `rules` block consists of:
      */
@@ -118,7 +119,8 @@ export interface SecurityFirewallState {
     /**
      * Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
      *
-     * ___
+     *
+     *
      *
      * The `rules` block consists of:
      */
@@ -144,7 +146,8 @@ export interface SecurityFirewallArgs {
     /**
      * Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
      *
-     * ___
+     *
+     *
      *
      * The `rules` block consists of:
      */

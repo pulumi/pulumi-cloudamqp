@@ -439,8 +439,6 @@ public class Instance extends com.pulumi.resources.CustomResource {
     /**
      * Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
      * 
-     * ***
-     * 
      * The `copy_settings` block consists of:
      * 
      */
@@ -449,8 +447,6 @@ public class Instance extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
-     * 
-     * ***
      * 
      * The `copy_settings` block consists of:
      * 

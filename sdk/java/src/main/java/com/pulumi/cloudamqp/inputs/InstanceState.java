@@ -52,8 +52,6 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     /**
      * Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
      * 
-     * ***
-     * 
      * The `copy_settings` block consists of:
      * 
      */
@@ -62,8 +60,6 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
-     * 
-     * ***
      * 
      * The `copy_settings` block consists of:
      * 
@@ -419,8 +415,6 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param copySettings Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
          * 
-         * ***
-         * 
          * The `copy_settings` block consists of:
          * 
          * @return builder
@@ -434,8 +428,6 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param copySettings Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
          * 
-         * ***
-         * 
          * The `copy_settings` block consists of:
          * 
          * @return builder
@@ -447,8 +439,6 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param copySettings Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
-         * 
-         * ***
          * 
          * The `copy_settings` block consists of:
          * 

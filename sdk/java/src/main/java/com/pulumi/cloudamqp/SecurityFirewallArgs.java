@@ -65,8 +65,6 @@ public final class SecurityFirewallArgs extends com.pulumi.resources.ResourceArg
     /**
      * Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
      * 
-     * ***
-     * 
      * The `rules` block consists of:
      * 
      */
@@ -75,8 +73,6 @@ public final class SecurityFirewallArgs extends com.pulumi.resources.ResourceArg
 
     /**
      * @return Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
-     * 
-     * ***
      * 
      * The `rules` block consists of:
      * 
@@ -188,8 +184,6 @@ public final class SecurityFirewallArgs extends com.pulumi.resources.ResourceArg
         /**
          * @param timeout Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
          * 
-         * ***
-         * 
          * The `rules` block consists of:
          * 
          * @return builder
@@ -202,8 +196,6 @@ public final class SecurityFirewallArgs extends com.pulumi.resources.ResourceArg
 
         /**
          * @param timeout Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
-         * 
-         * ***
          * 
          * The `rules` block consists of:
          * 

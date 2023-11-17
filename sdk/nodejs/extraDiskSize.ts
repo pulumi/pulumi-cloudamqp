@@ -202,11 +202,11 @@ export class ExtraDiskSize extends pulumi.CustomResource {
      */
     public readonly allowDowntime!: pulumi.Output<boolean | undefined>;
     /**
-     * Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+     * (ForceNew/Required) Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
      */
     public readonly extraDiskSize!: pulumi.Output<number>;
     /**
-     * The CloudAMQP instance ID.
+     * (ForceNew/Required) The CloudAMQP instance ID.
      */
     public readonly instanceId!: pulumi.Output<number>;
     public /*out*/ readonly nodes!: pulumi.Output<outputs.ExtraDiskSizeNode[]>;
@@ -269,11 +269,11 @@ export interface ExtraDiskSizeState {
      */
     allowDowntime?: pulumi.Input<boolean>;
     /**
-     * Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+     * (ForceNew/Required) Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
      */
     extraDiskSize?: pulumi.Input<number>;
     /**
-     * The CloudAMQP instance ID.
+     * (ForceNew/Required) The CloudAMQP instance ID.
      */
     instanceId?: pulumi.Input<number>;
     nodes?: pulumi.Input<pulumi.Input<inputs.ExtraDiskSizeNode>[]>;
@@ -298,11 +298,11 @@ export interface ExtraDiskSizeArgs {
      */
     allowDowntime?: pulumi.Input<boolean>;
     /**
-     * Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+     * (ForceNew/Required) Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
      */
     extraDiskSize: pulumi.Input<number>;
     /**
-     * The CloudAMQP instance ID.
+     * (ForceNew/Required) The CloudAMQP instance ID.
      */
     instanceId: pulumi.Input<number>;
     /**

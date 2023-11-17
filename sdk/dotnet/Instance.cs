@@ -368,7 +368,8 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
         /// 
-        /// ___
+        /// 
+        /// 
         /// 
         /// The `copy_settings` block consists of:
         /// </summary>
@@ -538,7 +539,8 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
         /// 
-        /// ___
+        /// 
+        /// 
         /// 
         /// The `copy_settings` block consists of:
         /// </summary>
@@ -660,7 +662,8 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
         /// 
-        /// ___
+        /// 
+        /// 
         /// 
         /// The `copy_settings` block consists of:
         /// </summary>

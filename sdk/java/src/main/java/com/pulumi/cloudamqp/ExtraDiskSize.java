@@ -290,28 +290,28 @@ public class ExtraDiskSize extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.allowDowntime);
     }
     /**
-     * Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+     * (ForceNew/Required) Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
      * 
      */
     @Export(name="extraDiskSize", type=Integer.class, parameters={})
     private Output<Integer> extraDiskSize;
 
     /**
-     * @return Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+     * @return (ForceNew/Required) Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
      * 
      */
     public Output<Integer> extraDiskSize() {
         return this.extraDiskSize;
     }
     /**
-     * The CloudAMQP instance ID.
+     * (ForceNew/Required) The CloudAMQP instance ID.
      * 
      */
     @Export(name="instanceId", type=Integer.class, parameters={})
     private Output<Integer> instanceId;
 
     /**
-     * @return The CloudAMQP instance ID.
+     * @return (ForceNew/Required) The CloudAMQP instance ID.
      * 
      */
     public Output<Integer> instanceId() {

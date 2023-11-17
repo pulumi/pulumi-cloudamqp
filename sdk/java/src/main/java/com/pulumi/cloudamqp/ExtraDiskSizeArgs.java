@@ -32,14 +32,14 @@ public final class ExtraDiskSizeArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+     * (ForceNew/Required) Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
      * 
      */
     @Import(name="extraDiskSize", required=true)
     private Output<Integer> extraDiskSize;
 
     /**
-     * @return Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+     * @return (ForceNew/Required) Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
      * 
      */
     public Output<Integer> extraDiskSize() {
@@ -47,14 +47,14 @@ public final class ExtraDiskSizeArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The CloudAMQP instance ID.
+     * (ForceNew/Required) The CloudAMQP instance ID.
      * 
      */
     @Import(name="instanceId", required=true)
     private Output<Integer> instanceId;
 
     /**
-     * @return The CloudAMQP instance ID.
+     * @return (ForceNew/Required) The CloudAMQP instance ID.
      * 
      */
     public Output<Integer> instanceId() {
@@ -145,7 +145,7 @@ public final class ExtraDiskSizeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param extraDiskSize Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+         * @param extraDiskSize (ForceNew/Required) Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
          * 
          * @return builder
          * 
@@ -156,7 +156,7 @@ public final class ExtraDiskSizeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param extraDiskSize Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+         * @param extraDiskSize (ForceNew/Required) Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
          * 
          * @return builder
          * 
@@ -166,7 +166,7 @@ public final class ExtraDiskSizeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param instanceId The CloudAMQP instance ID.
+         * @param instanceId (ForceNew/Required) The CloudAMQP instance ID.
          * 
          * @return builder
          * 
@@ -177,7 +177,7 @@ public final class ExtraDiskSizeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param instanceId The CloudAMQP instance ID.
+         * @param instanceId (ForceNew/Required) The CloudAMQP instance ID.
          * 
          * @return builder
          * 

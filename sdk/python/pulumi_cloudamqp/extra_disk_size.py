@@ -23,8 +23,8 @@ class ExtraDiskSizeArgs:
                  timeout: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a ExtraDiskSize resource.
-        :param pulumi.Input[int] extra_disk_size: Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
-        :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[int] extra_disk_size: (ForceNew/Required) Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+        :param pulumi.Input[int] instance_id: (ForceNew/Required) The CloudAMQP instance ID.
         :param pulumi.Input[bool] allow_downtime: When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
         :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
         :param pulumi.Input[int] timeout: Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
@@ -44,7 +44,7 @@ class ExtraDiskSizeArgs:
     @pulumi.getter(name="extraDiskSize")
     def extra_disk_size(self) -> pulumi.Input[int]:
         """
-        Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+        (ForceNew/Required) Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
         """
         return pulumi.get(self, "extra_disk_size")
 
@@ -56,7 +56,7 @@ class ExtraDiskSizeArgs:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Input[int]:
         """
-        The CloudAMQP instance ID.
+        (ForceNew/Required) The CloudAMQP instance ID.
         """
         return pulumi.get(self, "instance_id")
 
@@ -115,8 +115,8 @@ class _ExtraDiskSizeState:
         """
         Input properties used for looking up and filtering ExtraDiskSize resources.
         :param pulumi.Input[bool] allow_downtime: When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
-        :param pulumi.Input[int] extra_disk_size: Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
-        :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[int] extra_disk_size: (ForceNew/Required) Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+        :param pulumi.Input[int] instance_id: (ForceNew/Required) The CloudAMQP instance ID.
         :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
         :param pulumi.Input[int] timeout: Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
                
@@ -151,7 +151,7 @@ class _ExtraDiskSizeState:
     @pulumi.getter(name="extraDiskSize")
     def extra_disk_size(self) -> Optional[pulumi.Input[int]]:
         """
-        Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+        (ForceNew/Required) Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
         """
         return pulumi.get(self, "extra_disk_size")
 
@@ -163,7 +163,7 @@ class _ExtraDiskSizeState:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[int]]:
         """
-        The CloudAMQP instance ID.
+        (ForceNew/Required) The CloudAMQP instance ID.
         """
         return pulumi.get(self, "instance_id")
 
@@ -368,8 +368,8 @@ class ExtraDiskSize(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_downtime: When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
-        :param pulumi.Input[int] extra_disk_size: Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
-        :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[int] extra_disk_size: (ForceNew/Required) Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+        :param pulumi.Input[int] instance_id: (ForceNew/Required) The CloudAMQP instance ID.
         :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
         :param pulumi.Input[int] timeout: Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
                
@@ -591,8 +591,8 @@ class ExtraDiskSize(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_downtime: When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
-        :param pulumi.Input[int] extra_disk_size: Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
-        :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[int] extra_disk_size: (ForceNew/Required) Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+        :param pulumi.Input[int] instance_id: (ForceNew/Required) The CloudAMQP instance ID.
         :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
         :param pulumi.Input[int] timeout: Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
                
@@ -622,7 +622,7 @@ class ExtraDiskSize(pulumi.CustomResource):
     @pulumi.getter(name="extraDiskSize")
     def extra_disk_size(self) -> pulumi.Output[int]:
         """
-        Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+        (ForceNew/Required) Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
         """
         return pulumi.get(self, "extra_disk_size")
 
@@ -630,7 +630,7 @@ class ExtraDiskSize(pulumi.CustomResource):
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[int]:
         """
-        The CloudAMQP instance ID.
+        (ForceNew/Required) The CloudAMQP instance ID.
         """
         return pulumi.get(self, "instance_id")
 

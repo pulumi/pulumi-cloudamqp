@@ -282,7 +282,8 @@ export class Instance extends pulumi.CustomResource {
     /**
      * Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
      *
-     * ___
+     *
+     *
      *
      * The `copySettings` block consists of:
      */
@@ -444,7 +445,8 @@ export interface InstanceState {
     /**
      * Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
      *
-     * ___
+     *
+     *
      *
      * The `copySettings` block consists of:
      */
@@ -532,7 +534,8 @@ export interface InstanceArgs {
     /**
      * Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
      *
-     * ___
+     *
+     *
      *
      * The `copySettings` block consists of:
      */

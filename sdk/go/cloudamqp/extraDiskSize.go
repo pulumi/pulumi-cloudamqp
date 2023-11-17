@@ -254,9 +254,9 @@ type ExtraDiskSize struct {
 
 	// When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
 	AllowDowntime pulumi.BoolPtrOutput `pulumi:"allowDowntime"`
-	// Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+	// (ForceNew/Required) Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
 	ExtraDiskSize pulumi.IntOutput `pulumi:"extraDiskSize"`
-	// The CloudAMQP instance ID.
+	// (ForceNew/Required) The CloudAMQP instance ID.
 	InstanceId pulumi.IntOutput             `pulumi:"instanceId"`
 	Nodes      ExtraDiskSizeNodeArrayOutput `pulumi:"nodes"`
 	// Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
@@ -305,9 +305,9 @@ func GetExtraDiskSize(ctx *pulumi.Context,
 type extraDiskSizeState struct {
 	// When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
 	AllowDowntime *bool `pulumi:"allowDowntime"`
-	// Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+	// (ForceNew/Required) Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
 	ExtraDiskSize *int `pulumi:"extraDiskSize"`
-	// The CloudAMQP instance ID.
+	// (ForceNew/Required) The CloudAMQP instance ID.
 	InstanceId *int                `pulumi:"instanceId"`
 	Nodes      []ExtraDiskSizeNode `pulumi:"nodes"`
 	// Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
@@ -321,9 +321,9 @@ type extraDiskSizeState struct {
 type ExtraDiskSizeState struct {
 	// When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
 	AllowDowntime pulumi.BoolPtrInput
-	// Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+	// (ForceNew/Required) Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
 	ExtraDiskSize pulumi.IntPtrInput
-	// The CloudAMQP instance ID.
+	// (ForceNew/Required) The CloudAMQP instance ID.
 	InstanceId pulumi.IntPtrInput
 	Nodes      ExtraDiskSizeNodeArrayInput
 	// Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
@@ -341,9 +341,9 @@ func (ExtraDiskSizeState) ElementType() reflect.Type {
 type extraDiskSizeArgs struct {
 	// When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
 	AllowDowntime *bool `pulumi:"allowDowntime"`
-	// Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+	// (ForceNew/Required) Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
 	ExtraDiskSize int `pulumi:"extraDiskSize"`
-	// The CloudAMQP instance ID.
+	// (ForceNew/Required) The CloudAMQP instance ID.
 	InstanceId int `pulumi:"instanceId"`
 	// Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
 	Sleep *int `pulumi:"sleep"`
@@ -357,9 +357,9 @@ type extraDiskSizeArgs struct {
 type ExtraDiskSizeArgs struct {
 	// When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
 	AllowDowntime pulumi.BoolPtrInput
-	// Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+	// (ForceNew/Required) Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
 	ExtraDiskSize pulumi.IntInput
-	// The CloudAMQP instance ID.
+	// (ForceNew/Required) The CloudAMQP instance ID.
 	InstanceId pulumi.IntInput
 	// Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
 	Sleep pulumi.IntPtrInput
@@ -461,12 +461,12 @@ func (o ExtraDiskSizeOutput) AllowDowntime() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ExtraDiskSize) pulumi.BoolPtrOutput { return v.AllowDowntime }).(pulumi.BoolPtrOutput)
 }
 
-// Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+// (ForceNew/Required) Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
 func (o ExtraDiskSizeOutput) ExtraDiskSize() pulumi.IntOutput {
 	return o.ApplyT(func(v *ExtraDiskSize) pulumi.IntOutput { return v.ExtraDiskSize }).(pulumi.IntOutput)
 }
 
-// The CloudAMQP instance ID.
+// (ForceNew/Required) The CloudAMQP instance ID.
 func (o ExtraDiskSizeOutput) InstanceId() pulumi.IntOutput {
 	return o.ApplyT(func(v *ExtraDiskSize) pulumi.IntOutput { return v.InstanceId }).(pulumi.IntOutput)
 }

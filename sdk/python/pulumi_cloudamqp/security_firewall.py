@@ -27,7 +27,8 @@ class SecurityFirewallArgs:
         :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
         :param pulumi.Input[int] timeout: Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
                
-               ___
+               
+               
                
                The `rules` block consists of:
         """
@@ -80,7 +81,8 @@ class SecurityFirewallArgs:
         """
         Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
 
-        ___
+
+
 
         The `rules` block consists of:
         """
@@ -105,7 +107,8 @@ class _SecurityFirewallState:
         :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
         :param pulumi.Input[int] timeout: Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
                
-               ___
+               
+               
                
                The `rules` block consists of:
         """
@@ -160,7 +163,8 @@ class _SecurityFirewallState:
         """
         Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
 
-        ___
+
+
 
         The `rules` block consists of:
         """
@@ -197,7 +201,8 @@ class SecurityFirewall(pulumi.CustomResource):
         :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
         :param pulumi.Input[int] timeout: Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
                
-               ___
+               
+               
                
                The `rules` block consists of:
         """
@@ -278,7 +283,8 @@ class SecurityFirewall(pulumi.CustomResource):
         :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
         :param pulumi.Input[int] timeout: Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
                
-               ___
+               
+               
                
                The `rules` block consists of:
         """
@@ -322,7 +328,8 @@ class SecurityFirewall(pulumi.CustomResource):
         """
         Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
 
-        ___
+
+
 
         The `rules` block consists of:
         """

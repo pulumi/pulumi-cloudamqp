@@ -413,8 +413,6 @@ type Instance struct {
 	Backend pulumi.StringOutput `pulumi:"backend"`
 	// Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
 	//
-	// ***
-	//
 	// The `copySettings` block consists of:
 	CopySettings InstanceCopySettingArrayOutput `pulumi:"copySettings"`
 	// Information if the CloudAMQP instance is shared or dedicated.
@@ -508,8 +506,6 @@ type instanceState struct {
 	Backend *string `pulumi:"backend"`
 	// Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
 	//
-	// ***
-	//
 	// The `copySettings` block consists of:
 	CopySettings []InstanceCopySetting `pulumi:"copySettings"`
 	// Information if the CloudAMQP instance is shared or dedicated.
@@ -562,8 +558,6 @@ type InstanceState struct {
 	// Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
 	Backend pulumi.StringPtrInput
 	// Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
-	//
-	// ***
 	//
 	// The `copySettings` block consists of:
 	CopySettings InstanceCopySettingArrayInput
@@ -618,8 +612,6 @@ func (InstanceState) ElementType() reflect.Type {
 type instanceArgs struct {
 	// Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
 	//
-	// ***
-	//
 	// The `copySettings` block consists of:
 	CopySettings []InstanceCopySetting `pulumi:"copySettings"`
 	// Keep associated VPC when deleting instance, default set to false.
@@ -657,8 +649,6 @@ type instanceArgs struct {
 // The set of arguments for constructing a Instance resource.
 type InstanceArgs struct {
 	// Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
-	//
-	// ***
 	//
 	// The `copySettings` block consists of:
 	CopySettings InstanceCopySettingArrayInput
@@ -792,8 +782,6 @@ func (o InstanceOutput) Backend() pulumi.StringOutput {
 }
 
 // Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
-//
-// ***
 //
 // The `copySettings` block consists of:
 func (o InstanceOutput) CopySettings() InstanceCopySettingArrayOutput {
