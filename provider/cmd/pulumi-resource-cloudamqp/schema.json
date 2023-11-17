@@ -579,7 +579,7 @@
                 },
                 "extraDiskSize": {
                     "type": "integer",
-                    "description": "Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000\n",
+                    "description": "(ForceNew/Required) Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000\n",
                     "language": {
                         "csharp": {
                             "name": "ExtraDiskSizeGb"
@@ -588,7 +588,7 @@
                 },
                 "instanceId": {
                     "type": "integer",
-                    "description": "The CloudAMQP instance ID.\n"
+                    "description": "(ForceNew/Required) The CloudAMQP instance ID.\n"
                 },
                 "nodes": {
                     "type": "array",
@@ -617,7 +617,7 @@
                 },
                 "extraDiskSize": {
                     "type": "integer",
-                    "description": "Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000\n",
+                    "description": "(ForceNew/Required) Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000\n",
                     "language": {
                         "csharp": {
                             "name": "ExtraDiskSizeGb"
@@ -627,7 +627,7 @@
                 },
                 "instanceId": {
                     "type": "integer",
-                    "description": "The CloudAMQP instance ID.\n",
+                    "description": "(ForceNew/Required) The CloudAMQP instance ID.\n",
                     "willReplaceOnChanges": true
                 },
                 "sleep": {
@@ -652,7 +652,7 @@
                     },
                     "extraDiskSize": {
                         "type": "integer",
-                        "description": "Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000\n",
+                        "description": "(ForceNew/Required) Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000\n",
                         "language": {
                             "csharp": {
                                 "name": "ExtraDiskSizeGb"
@@ -662,7 +662,7 @@
                     },
                     "instanceId": {
                         "type": "integer",
-                        "description": "The CloudAMQP instance ID.\n",
+                        "description": "(ForceNew/Required) The CloudAMQP instance ID.\n",
                         "willReplaceOnChanges": true
                     },
                     "nodes": {
@@ -700,7 +700,7 @@
                     "items": {
                         "$ref": "#/types/cloudamqp:index/InstanceCopySetting:InstanceCopySetting"
                     },
-                    "description": "Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.\n\n___\n\nThe `copy_settings` block consists of:\n"
+                    "description": "Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.\n\n\n\n\nThe `copy_settings` block consists of:\n"
                 },
                 "dedicated": {
                     "type": "boolean",
@@ -795,7 +795,7 @@
                     "items": {
                         "$ref": "#/types/cloudamqp:index/InstanceCopySetting:InstanceCopySetting"
                     },
-                    "description": "Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.\n\n___\n\nThe `copy_settings` block consists of:\n"
+                    "description": "Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.\n\n\n\n\nThe `copy_settings` block consists of:\n"
                 },
                 "keepAssociatedVpc": {
                     "type": "boolean",
@@ -865,7 +865,7 @@
                         "items": {
                             "$ref": "#/types/cloudamqp:index/InstanceCopySetting:InstanceCopySetting"
                         },
-                        "description": "Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.\n\n___\n\nThe `copy_settings` block consists of:\n"
+                        "description": "Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.\n\n\n\n\nThe `copy_settings` block consists of:\n"
                     },
                     "dedicated": {
                         "type": "boolean",
@@ -2331,7 +2331,7 @@
                 },
                 "timeout": {
                     "type": "integer",
-                    "description": "Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.\n\n___\n\nThe `rules` block consists of:\n"
+                    "description": "Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.\n\n\n\n\nThe `rules` block consists of:\n"
                 }
             },
             "required": [
@@ -2357,7 +2357,7 @@
                 },
                 "timeout": {
                     "type": "integer",
-                    "description": "Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.\n\n___\n\nThe `rules` block consists of:\n"
+                    "description": "Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.\n\n\n\n\nThe `rules` block consists of:\n"
                 }
             },
             "requiredInputs": [
@@ -2385,7 +2385,7 @@
                     },
                     "timeout": {
                         "type": "integer",
-                        "description": "Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.\n\n___\n\nThe `rules` block consists of:\n"
+                        "description": "Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.\n\n\n\n\nThe `rules` block consists of:\n"
                     }
                 },
                 "type": "object"
