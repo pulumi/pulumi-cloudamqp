@@ -88,13 +88,13 @@ public final class GetAccountInstance {
             return tags(List.of(tags));
         }
         public GetAccountInstance build() {
-            final var o = new GetAccountInstance();
-            o.id = id;
-            o.name = name;
-            o.plan = plan;
-            o.region = region;
-            o.tags = tags;
-            return o;
+            final var _resultValue = new GetAccountInstance();
+            _resultValue.id = id;
+            _resultValue.name = name;
+            _resultValue.plan = plan;
+            _resultValue.region = region;
+            _resultValue.tags = tags;
+            return _resultValue;
         }
     }
 }

@@ -31,7 +31,7 @@ public class PluginCommunity extends com.pulumi.resources.CustomResource {
      * The description of the plugin.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output<String> description;
 
     /**
@@ -45,7 +45,7 @@ public class PluginCommunity extends com.pulumi.resources.CustomResource {
      * Enable or disable the plugins.
      * 
      */
-    @Export(name="enabled", type=Boolean.class, parameters={})
+    @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> enabled;
 
     /**
@@ -59,7 +59,7 @@ public class PluginCommunity extends com.pulumi.resources.CustomResource {
      * The CloudAMQP instance ID.
      * 
      */
-    @Export(name="instanceId", type=Integer.class, parameters={})
+    @Export(name="instanceId", refs={Integer.class}, tree="[0]")
     private Output<Integer> instanceId;
 
     /**
@@ -73,7 +73,7 @@ public class PluginCommunity extends com.pulumi.resources.CustomResource {
      * The name of the Rabbit MQ community plugin.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -87,7 +87,7 @@ public class PluginCommunity extends com.pulumi.resources.CustomResource {
      * Required version of RabbitMQ.
      * 
      */
-    @Export(name="require", type=String.class, parameters={})
+    @Export(name="require", refs={String.class}, tree="[0]")
     private Output<String> require;
 
     /**

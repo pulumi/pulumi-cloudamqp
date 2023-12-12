@@ -62,10 +62,10 @@ public final class GetAccountVpcsResult {
             return vpcs(List.of(vpcs));
         }
         public GetAccountVpcsResult build() {
-            final var o = new GetAccountVpcsResult();
-            o.id = id;
-            o.vpcs = vpcs;
-            return o;
+            final var _resultValue = new GetAccountVpcsResult();
+            _resultValue.id = id;
+            _resultValue.vpcs = vpcs;
+            return _resultValue;
         }
     }
 }

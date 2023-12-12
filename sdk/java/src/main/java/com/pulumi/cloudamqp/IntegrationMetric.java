@@ -22,7 +22,7 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      * AWS access key identifier. (Cloudwatch)
      * 
      */
-    @Export(name="accessKeyId", type=String.class, parameters={})
+    @Export(name="accessKeyId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> accessKeyId;
 
     /**
@@ -36,7 +36,7 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      * The API key for the integration service. (Librato)
      * 
      */
-    @Export(name="apiKey", type=String.class, parameters={})
+    @Export(name="apiKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> apiKey;
 
     /**
@@ -50,7 +50,7 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      * The client email. (Stackdriver)
      * 
      */
-    @Export(name="clientEmail", type=String.class, parameters={})
+    @Export(name="clientEmail", refs={String.class}, tree="[0]")
     private Output<String> clientEmail;
 
     /**
@@ -64,7 +64,7 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      * Base64Encoded credentials. (Stackdriver)
      * 
      */
-    @Export(name="credentials", type=String.class, parameters={})
+    @Export(name="credentials", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> credentials;
 
     /**
@@ -78,7 +78,7 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      * The email address registred for the integration service. (Librato)
      * 
      */
-    @Export(name="email", type=String.class, parameters={})
+    @Export(name="email", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> email;
 
     /**
@@ -92,7 +92,7 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      * External identifier that match the role you created. (Cloudwatch)
      * 
      */
-    @Export(name="iamExternalId", type=String.class, parameters={})
+    @Export(name="iamExternalId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> iamExternalId;
 
     /**
@@ -106,7 +106,7 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      * The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
      * 
      */
-    @Export(name="iamRole", type=String.class, parameters={})
+    @Export(name="iamRole", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> iamRole;
 
     /**
@@ -120,7 +120,7 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      * Instance identifier
      * 
      */
-    @Export(name="instanceId", type=Integer.class, parameters={})
+    @Export(name="instanceId", refs={Integer.class}, tree="[0]")
     private Output<Integer> instanceId;
 
     /**
@@ -134,7 +134,7 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      * The license key registred for the integration service. (New Relic)
      * 
      */
-    @Export(name="licenseKey", type=String.class, parameters={})
+    @Export(name="licenseKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> licenseKey;
 
     /**
@@ -148,7 +148,7 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      * The name of metrics integration
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -162,7 +162,7 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      * The private key. (Stackdriver)
      * 
      */
-    @Export(name="privateKey", type=String.class, parameters={})
+    @Export(name="privateKey", refs={String.class}, tree="[0]")
     private Output<String> privateKey;
 
     /**
@@ -176,7 +176,7 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      * Private key identifier. (Stackdriver)
      * 
      */
-    @Export(name="privateKeyId", type=String.class, parameters={})
+    @Export(name="privateKeyId", refs={String.class}, tree="[0]")
     private Output<String> privateKeyId;
 
     /**
@@ -190,7 +190,7 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      * Project ID. (Stackdriver)
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -204,7 +204,7 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      * (optional) allowlist using regular expression
      * 
      */
-    @Export(name="queueAllowlist", type=String.class, parameters={})
+    @Export(name="queueAllowlist", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> queueAllowlist;
 
     /**
@@ -222,7 +222,7 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* use queue_allowlist instead */
-    @Export(name="queueWhitelist", type=String.class, parameters={})
+    @Export(name="queueWhitelist", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> queueWhitelist;
 
     /**
@@ -236,7 +236,7 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      * AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> region;
 
     /**
@@ -250,7 +250,7 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      * AWS secret key. (Cloudwatch)
      * 
      */
-    @Export(name="secretAccessKey", type=String.class, parameters={})
+    @Export(name="secretAccessKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> secretAccessKey;
 
     /**
@@ -264,7 +264,7 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      * (optional) tags. E.g. env=prod,region=europe
      * 
      */
-    @Export(name="tags", type=String.class, parameters={})
+    @Export(name="tags", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tags;
 
     /**
@@ -278,7 +278,7 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      * (optional) allowlist using regular expression
      * 
      */
-    @Export(name="vhostAllowlist", type=String.class, parameters={})
+    @Export(name="vhostAllowlist", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> vhostAllowlist;
 
     /**
@@ -296,7 +296,7 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* use vhost_allowlist instead */
-    @Export(name="vhostWhitelist", type=String.class, parameters={})
+    @Export(name="vhostWhitelist", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> vhostWhitelist;
 
     /**

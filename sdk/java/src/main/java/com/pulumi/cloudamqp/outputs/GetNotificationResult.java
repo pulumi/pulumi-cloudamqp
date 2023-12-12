@@ -116,15 +116,15 @@ public final class GetNotificationResult {
             return this;
         }
         public GetNotificationResult build() {
-            final var o = new GetNotificationResult();
-            o.id = id;
-            o.instanceId = instanceId;
-            o.name = name;
-            o.options = options;
-            o.recipientId = recipientId;
-            o.type = type;
-            o.value = value;
-            return o;
+            final var _resultValue = new GetNotificationResult();
+            _resultValue.id = id;
+            _resultValue.instanceId = instanceId;
+            _resultValue.name = name;
+            _resultValue.options = options;
+            _resultValue.recipientId = recipientId;
+            _resultValue.type = type;
+            _resultValue.value = value;
+            return _resultValue;
         }
     }
 }

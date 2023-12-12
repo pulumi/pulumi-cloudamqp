@@ -29,7 +29,7 @@ public class VpcPeering extends com.pulumi.resources.CustomResource {
      * ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
      * 
      */
-    @Export(name="instanceId", type=Integer.class, parameters={})
+    @Export(name="instanceId", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> instanceId;
 
     /**
@@ -45,7 +45,7 @@ public class VpcPeering extends com.pulumi.resources.CustomResource {
      * Peering identifier created by AW peering request.
      * 
      */
-    @Export(name="peeringId", type=String.class, parameters={})
+    @Export(name="peeringId", refs={String.class}, tree="[0]")
     private Output<String> peeringId;
 
     /**
@@ -59,7 +59,7 @@ public class VpcPeering extends com.pulumi.resources.CustomResource {
      * Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
      * 
      */
-    @Export(name="sleep", type=Integer.class, parameters={})
+    @Export(name="sleep", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> sleep;
 
     /**
@@ -73,7 +73,7 @@ public class VpcPeering extends com.pulumi.resources.CustomResource {
      * VPC peering status
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -87,7 +87,7 @@ public class VpcPeering extends com.pulumi.resources.CustomResource {
      * Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
      * 
      */
-    @Export(name="timeout", type=Integer.class, parameters={})
+    @Export(name="timeout", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> timeout;
 
     /**
@@ -103,7 +103,7 @@ public class VpcPeering extends com.pulumi.resources.CustomResource {
      * ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
      * 
      */
-    @Export(name="vpcId", type=String.class, parameters={})
+    @Export(name="vpcId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> vpcId;
 
     /**

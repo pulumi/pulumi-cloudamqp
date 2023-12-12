@@ -105,7 +105,7 @@ public class Notification extends com.pulumi.resources.CustomResource {
      * The CloudAMQP instance ID.
      * 
      */
-    @Export(name="instanceId", type=Integer.class, parameters={})
+    @Export(name="instanceId", refs={Integer.class}, tree="[0]")
     private Output<Integer> instanceId;
 
     /**
@@ -119,7 +119,7 @@ public class Notification extends com.pulumi.resources.CustomResource {
      * Display name of the recipient.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -133,7 +133,7 @@ public class Notification extends com.pulumi.resources.CustomResource {
      * Options argument (e.g. `rk` used for VictorOps routing key).
      * 
      */
-    @Export(name="options", type=Map.class, parameters={String.class, String.class})
+    @Export(name="options", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> options;
 
     /**
@@ -147,7 +147,7 @@ public class Notification extends com.pulumi.resources.CustomResource {
      * Type of the notification. See valid options below.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -161,7 +161,7 @@ public class Notification extends com.pulumi.resources.CustomResource {
      * Integration/API key or endpoint to send the notification.
      * 
      */
-    @Export(name="value", type=String.class, parameters={})
+    @Export(name="value", refs={String.class}, tree="[0]")
     private Output<String> value;
 
     /**

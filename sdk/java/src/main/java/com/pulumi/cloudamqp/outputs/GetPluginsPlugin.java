@@ -72,12 +72,12 @@ public final class GetPluginsPlugin {
             return this;
         }
         public GetPluginsPlugin build() {
-            final var o = new GetPluginsPlugin();
-            o.description = description;
-            o.enabled = enabled;
-            o.name = name;
-            o.version = version;
-            return o;
+            final var _resultValue = new GetPluginsPlugin();
+            _resultValue.description = description;
+            _resultValue.enabled = enabled;
+            _resultValue.name = name;
+            _resultValue.version = version;
+            return _resultValue;
         }
     }
 }

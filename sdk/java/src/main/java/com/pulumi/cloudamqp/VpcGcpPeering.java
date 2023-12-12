@@ -228,7 +228,7 @@ public class VpcGcpPeering extends com.pulumi.resources.CustomResource {
      * VPC peering auto created routes
      * 
      */
-    @Export(name="autoCreateRoutes", type=Boolean.class, parameters={})
+    @Export(name="autoCreateRoutes", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> autoCreateRoutes;
 
     /**
@@ -244,7 +244,7 @@ public class VpcGcpPeering extends com.pulumi.resources.CustomResource {
      * ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
      * 
      */
-    @Export(name="instanceId", type=Integer.class, parameters={})
+    @Export(name="instanceId", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> instanceId;
 
     /**
@@ -260,7 +260,7 @@ public class VpcGcpPeering extends com.pulumi.resources.CustomResource {
      * Network uri of the VPC network to which you will peer with.
      * 
      */
-    @Export(name="peerNetworkUri", type=String.class, parameters={})
+    @Export(name="peerNetworkUri", refs={String.class}, tree="[0]")
     private Output<String> peerNetworkUri;
 
     /**
@@ -274,7 +274,7 @@ public class VpcGcpPeering extends com.pulumi.resources.CustomResource {
      * VPC peering state
      * 
      */
-    @Export(name="state", type=String.class, parameters={})
+    @Export(name="state", refs={String.class}, tree="[0]")
     private Output<String> state;
 
     /**
@@ -288,7 +288,7 @@ public class VpcGcpPeering extends com.pulumi.resources.CustomResource {
      * VPC peering state details
      * 
      */
-    @Export(name="stateDetails", type=String.class, parameters={})
+    @Export(name="stateDetails", refs={String.class}, tree="[0]")
     private Output<String> stateDetails;
 
     /**
@@ -304,7 +304,7 @@ public class VpcGcpPeering extends com.pulumi.resources.CustomResource {
      * ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
      * 
      */
-    @Export(name="vpcId", type=String.class, parameters={})
+    @Export(name="vpcId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> vpcId;
 
     /**
@@ -322,7 +322,7 @@ public class VpcGcpPeering extends com.pulumi.resources.CustomResource {
      * ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
      * 
      */
-    @Export(name="waitOnPeeringStatus", type=Boolean.class, parameters={})
+    @Export(name="waitOnPeeringStatus", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> waitOnPeeringStatus;
 
     /**

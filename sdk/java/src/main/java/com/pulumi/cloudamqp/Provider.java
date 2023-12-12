@@ -26,7 +26,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * Key used to authentication to the CloudAMQP Customer API
      * 
      */
-    @Export(name="apikey", type=String.class, parameters={})
+    @Export(name="apikey", refs={String.class}, tree="[0]")
     private Output<String> apikey;
 
     /**
@@ -40,7 +40,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * Base URL to CloudAMQP Customer website
      * 
      */
-    @Export(name="baseurl", type=String.class, parameters={})
+    @Export(name="baseurl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> baseurl;
 
     /**

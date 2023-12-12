@@ -32,7 +32,7 @@ public class RabbitConfiguration extends com.pulumi.resources.CustomResource {
      * Set the maximum permissible number of channels per connection.
      * 
      */
-    @Export(name="channelMax", type=Integer.class, parameters={})
+    @Export(name="channelMax", refs={Integer.class}, tree="[0]")
     private Output<Integer> channelMax;
 
     /**
@@ -46,7 +46,7 @@ public class RabbitConfiguration extends com.pulumi.resources.CustomResource {
      * Set how the cluster should handle network partition.
      * 
      */
-    @Export(name="clusterPartitionHandling", type=String.class, parameters={})
+    @Export(name="clusterPartitionHandling", refs={String.class}, tree="[0]")
     private Output<String> clusterPartitionHandling;
 
     /**
@@ -60,7 +60,7 @@ public class RabbitConfiguration extends com.pulumi.resources.CustomResource {
      * Set the maximum permissible number of connection.
      * 
      */
-    @Export(name="connectionMax", type=Integer.class, parameters={})
+    @Export(name="connectionMax", refs={Integer.class}, tree="[0]")
     private Output<Integer> connectionMax;
 
     /**
@@ -74,7 +74,7 @@ public class RabbitConfiguration extends com.pulumi.resources.CustomResource {
      * A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
      * 
      */
-    @Export(name="consumerTimeout", type=Integer.class, parameters={})
+    @Export(name="consumerTimeout", refs={Integer.class}, tree="[0]")
     private Output<Integer> consumerTimeout;
 
     /**
@@ -88,7 +88,7 @@ public class RabbitConfiguration extends com.pulumi.resources.CustomResource {
      * Set the server AMQP 0-9-1 heartbeat timeout in seconds.
      * 
      */
-    @Export(name="heartbeat", type=Integer.class, parameters={})
+    @Export(name="heartbeat", refs={Integer.class}, tree="[0]")
     private Output<Integer> heartbeat;
 
     /**
@@ -102,7 +102,7 @@ public class RabbitConfiguration extends com.pulumi.resources.CustomResource {
      * The CloudAMQP instance ID.
      * 
      */
-    @Export(name="instanceId", type=Integer.class, parameters={})
+    @Export(name="instanceId", refs={Integer.class}, tree="[0]")
     private Output<Integer> instanceId;
 
     /**
@@ -118,7 +118,7 @@ public class RabbitConfiguration extends com.pulumi.resources.CustomResource {
      * *Note: Requires a restart of RabbitMQ to be applied.*
      * 
      */
-    @Export(name="logExchangeLevel", type=String.class, parameters={})
+    @Export(name="logExchangeLevel", refs={String.class}, tree="[0]")
     private Output<String> logExchangeLevel;
 
     /**
@@ -134,7 +134,7 @@ public class RabbitConfiguration extends com.pulumi.resources.CustomResource {
      * The largest allowed message payload size in bytes.
      * 
      */
-    @Export(name="maxMessageSize", type=Integer.class, parameters={})
+    @Export(name="maxMessageSize", refs={Integer.class}, tree="[0]")
     private Output<Integer> maxMessageSize;
 
     /**
@@ -148,7 +148,7 @@ public class RabbitConfiguration extends com.pulumi.resources.CustomResource {
      * Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
      * 
      */
-    @Export(name="queueIndexEmbedMsgsBelow", type=Integer.class, parameters={})
+    @Export(name="queueIndexEmbedMsgsBelow", refs={Integer.class}, tree="[0]")
     private Output<Integer> queueIndexEmbedMsgsBelow;
 
     /**
@@ -162,7 +162,7 @@ public class RabbitConfiguration extends com.pulumi.resources.CustomResource {
      * Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
      * 
      */
-    @Export(name="sleep", type=Integer.class, parameters={})
+    @Export(name="sleep", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> sleep;
 
     /**
@@ -176,7 +176,7 @@ public class RabbitConfiguration extends com.pulumi.resources.CustomResource {
      * Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
      * 
      */
-    @Export(name="timeout", type=Integer.class, parameters={})
+    @Export(name="timeout", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> timeout;
 
     /**
@@ -190,7 +190,7 @@ public class RabbitConfiguration extends com.pulumi.resources.CustomResource {
      * When the server will enter memory based flow-control as relative to the maximum available memory.
      * 
      */
-    @Export(name="vmMemoryHighWatermark", type=Double.class, parameters={})
+    @Export(name="vmMemoryHighWatermark", refs={Double.class}, tree="[0]")
     private Output<Double> vmMemoryHighWatermark;
 
     /**

@@ -157,12 +157,12 @@ public final class SecurityFirewallRule {
             return services(List.of(services));
         }
         public SecurityFirewallRule build() {
-            final var o = new SecurityFirewallRule();
-            o.description = description;
-            o.ip = ip;
-            o.ports = ports;
-            o.services = services;
-            return o;
+            final var _resultValue = new SecurityFirewallRule();
+            _resultValue.description = description;
+            _resultValue.ip = ip;
+            _resultValue.ports = ports;
+            _resultValue.services = services;
+            return _resultValue;
         }
     }
 }

@@ -99,14 +99,14 @@ public final class GetAccountVpcsVpc {
             return this;
         }
         public GetAccountVpcsVpc build() {
-            final var o = new GetAccountVpcsVpc();
-            o.id = id;
-            o.name = name;
-            o.region = region;
-            o.subnet = subnet;
-            o.tags = tags;
-            o.vpcName = vpcName;
-            return o;
+            final var _resultValue = new GetAccountVpcsVpc();
+            _resultValue.id = id;
+            _resultValue.name = name;
+            _resultValue.region = region;
+            _resultValue.subnet = subnet;
+            _resultValue.tags = tags;
+            _resultValue.vpcName = vpcName;
+            return _resultValue;
         }
     }
 }

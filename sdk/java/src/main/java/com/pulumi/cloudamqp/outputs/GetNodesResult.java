@@ -74,11 +74,11 @@ public final class GetNodesResult {
             return nodes(List.of(nodes));
         }
         public GetNodesResult build() {
-            final var o = new GetNodesResult();
-            o.id = id;
-            o.instanceId = instanceId;
-            o.nodes = nodes;
-            return o;
+            final var _resultValue = new GetNodesResult();
+            _resultValue.id = id;
+            _resultValue.instanceId = instanceId;
+            _resultValue.nodes = nodes;
+            return _resultValue;
         }
     }
 }

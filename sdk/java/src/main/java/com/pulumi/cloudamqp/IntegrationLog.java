@@ -84,7 +84,7 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
      * AWS access key identifier.
      * 
      */
-    @Export(name="accessKeyId", type=String.class, parameters={})
+    @Export(name="accessKeyId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> accessKeyId;
 
     /**
@@ -98,7 +98,7 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
      * The API key.
      * 
      */
-    @Export(name="apiKey", type=String.class, parameters={})
+    @Export(name="apiKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> apiKey;
 
     /**
@@ -112,7 +112,7 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
      * The client email registered for the integration service.
      * 
      */
-    @Export(name="clientEmail", type=String.class, parameters={})
+    @Export(name="clientEmail", refs={String.class}, tree="[0]")
     private Output<String> clientEmail;
 
     /**
@@ -126,7 +126,7 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
      * Google Service Account private key credentials.
      * 
      */
-    @Export(name="credentials", type=String.class, parameters={})
+    @Export(name="credentials", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> credentials;
 
     /**
@@ -140,7 +140,7 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
      * The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
      * 
      */
-    @Export(name="host", type=String.class, parameters={})
+    @Export(name="host", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> host;
 
     /**
@@ -154,7 +154,7 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
      * Destination to send the logs.
      * 
      */
-    @Export(name="hostPort", type=String.class, parameters={})
+    @Export(name="hostPort", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> hostPort;
 
     /**
@@ -168,7 +168,7 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
      * Instance identifier used to make proxy calls
      * 
      */
-    @Export(name="instanceId", type=Integer.class, parameters={})
+    @Export(name="instanceId", refs={Integer.class}, tree="[0]")
     private Output<Integer> instanceId;
 
     /**
@@ -182,7 +182,7 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
      * The name of the third party log integration. See
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -196,7 +196,7 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
      * The private access key.
      * 
      */
-    @Export(name="privateKey", type=String.class, parameters={})
+    @Export(name="privateKey", refs={String.class}, tree="[0]")
     private Output<String> privateKey;
 
     /**
@@ -210,7 +210,7 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
      * Private key identifier. (Stackdriver)
      * 
      */
-    @Export(name="privateKeyId", type=String.class, parameters={})
+    @Export(name="privateKeyId", refs={String.class}, tree="[0]")
     private Output<String> privateKeyId;
 
     /**
@@ -224,7 +224,7 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
      * The project identifier.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -238,7 +238,7 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
      * Region hosting the integration service.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> region;
 
     /**
@@ -252,7 +252,7 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
      * AWS secret access key.
      * 
      */
-    @Export(name="secretAccessKey", type=String.class, parameters={})
+    @Export(name="secretAccessKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> secretAccessKey;
 
     /**
@@ -268,7 +268,7 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
      * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
      * 
      */
-    @Export(name="sourcetype", type=String.class, parameters={})
+    @Export(name="sourcetype", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> sourcetype;
 
     /**
@@ -284,7 +284,7 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
      * Tag the integration, e.g. env=prod, region=europe.
      * 
      */
-    @Export(name="tags", type=String.class, parameters={})
+    @Export(name="tags", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tags;
 
     /**
@@ -298,7 +298,7 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
      * Token used for authentication.
      * 
      */
-    @Export(name="token", type=String.class, parameters={})
+    @Export(name="token", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> token;
 
     /**
@@ -312,7 +312,7 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
      * Endpoint to log integration.
      * 
      */
-    @Export(name="url", type=String.class, parameters={})
+    @Export(name="url", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> url;
 
     /**

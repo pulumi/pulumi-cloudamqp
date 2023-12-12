@@ -115,15 +115,15 @@ public final class GetVpcInfoResult {
             return this;
         }
         public GetVpcInfoResult build() {
-            final var o = new GetVpcInfoResult();
-            o.id = id;
-            o.instanceId = instanceId;
-            o.name = name;
-            o.ownerId = ownerId;
-            o.securityGroupId = securityGroupId;
-            o.vpcId = vpcId;
-            o.vpcSubnet = vpcSubnet;
-            return o;
+            final var _resultValue = new GetVpcInfoResult();
+            _resultValue.id = id;
+            _resultValue.instanceId = instanceId;
+            _resultValue.name = name;
+            _resultValue.ownerId = ownerId;
+            _resultValue.securityGroupId = securityGroupId;
+            _resultValue.vpcId = vpcId;
+            _resultValue.vpcSubnet = vpcSubnet;
+            return _resultValue;
         }
     }
 }

@@ -277,7 +277,7 @@ public class PrivatelinkAws extends com.pulumi.resources.CustomResource {
      * Covering availability zones used when creating an Endpoint from other VPC.
      * 
      */
-    @Export(name="activeZones", type=List.class, parameters={String.class})
+    @Export(name="activeZones", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> activeZones;
 
     /**
@@ -291,7 +291,7 @@ public class PrivatelinkAws extends com.pulumi.resources.CustomResource {
      * Allowed principals to access the endpoint service.
      * 
      */
-    @Export(name="allowedPrincipals", type=List.class, parameters={String.class})
+    @Export(name="allowedPrincipals", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> allowedPrincipals;
 
     /**
@@ -305,7 +305,7 @@ public class PrivatelinkAws extends com.pulumi.resources.CustomResource {
      * The CloudAMQP instance identifier.
      * 
      */
-    @Export(name="instanceId", type=Integer.class, parameters={})
+    @Export(name="instanceId", refs={Integer.class}, tree="[0]")
     private Output<Integer> instanceId;
 
     /**
@@ -319,7 +319,7 @@ public class PrivatelinkAws extends com.pulumi.resources.CustomResource {
      * Service name of the PrivateLink used when creating the endpoint from other VPC.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -333,7 +333,7 @@ public class PrivatelinkAws extends com.pulumi.resources.CustomResource {
      * Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
      * 
      */
-    @Export(name="sleep", type=Integer.class, parameters={})
+    @Export(name="sleep", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> sleep;
 
     /**
@@ -347,7 +347,7 @@ public class PrivatelinkAws extends com.pulumi.resources.CustomResource {
      * PrivateLink status [enable, pending, disable]
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -366,7 +366,7 @@ public class PrivatelinkAws extends com.pulumi.resources.CustomResource {
      * `arn:aws:iam::aws-account-id:role/role-name`
      * 
      */
-    @Export(name="timeout", type=Integer.class, parameters={})
+    @Export(name="timeout", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> timeout;
 
     /**

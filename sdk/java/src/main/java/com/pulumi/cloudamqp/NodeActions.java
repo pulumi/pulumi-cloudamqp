@@ -227,7 +227,7 @@ public class NodeActions extends com.pulumi.resources.CustomResource {
      * The action to invoke on the node.
      * 
      */
-    @Export(name="action", type=String.class, parameters={})
+    @Export(name="action", refs={String.class}, tree="[0]")
     private Output<String> action;
 
     /**
@@ -241,7 +241,7 @@ public class NodeActions extends com.pulumi.resources.CustomResource {
      * The CloudAMQP instance ID.
      * 
      */
-    @Export(name="instanceId", type=Integer.class, parameters={})
+    @Export(name="instanceId", refs={Integer.class}, tree="[0]")
     private Output<Integer> instanceId;
 
     /**
@@ -255,7 +255,7 @@ public class NodeActions extends com.pulumi.resources.CustomResource {
      * The node name, e.g `green-guinea-pig-01`.
      * 
      */
-    @Export(name="nodeName", type=String.class, parameters={})
+    @Export(name="nodeName", refs={String.class}, tree="[0]")
     private Output<String> nodeName;
 
     /**
@@ -269,7 +269,7 @@ public class NodeActions extends com.pulumi.resources.CustomResource {
      * If the node is running.
      * 
      */
-    @Export(name="running", type=Boolean.class, parameters={})
+    @Export(name="running", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> running;
 
     /**

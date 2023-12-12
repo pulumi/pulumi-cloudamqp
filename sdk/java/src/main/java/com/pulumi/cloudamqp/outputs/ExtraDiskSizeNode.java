@@ -63,11 +63,11 @@ public final class ExtraDiskSizeNode {
             return this;
         }
         public ExtraDiskSizeNode build() {
-            final var o = new ExtraDiskSizeNode();
-            o.additionalDiskSize = additionalDiskSize;
-            o.diskSize = diskSize;
-            o.name = name;
-            return o;
+            final var _resultValue = new ExtraDiskSizeNode();
+            _resultValue.additionalDiskSize = additionalDiskSize;
+            _resultValue.diskSize = diskSize;
+            _resultValue.name = name;
+            return _resultValue;
         }
     }
 }

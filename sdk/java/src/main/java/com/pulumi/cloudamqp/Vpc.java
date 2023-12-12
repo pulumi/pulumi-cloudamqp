@@ -91,7 +91,7 @@ public class Vpc extends com.pulumi.resources.CustomResource {
      * The name of the VPC.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -105,7 +105,7 @@ public class Vpc extends com.pulumi.resources.CustomResource {
      * The hosted region for the managed standalone VPC
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -119,7 +119,7 @@ public class Vpc extends com.pulumi.resources.CustomResource {
      * The VPC subnet
      * 
      */
-    @Export(name="subnet", type=String.class, parameters={})
+    @Export(name="subnet", refs={String.class}, tree="[0]")
     private Output<String> subnet;
 
     /**
@@ -133,7 +133,7 @@ public class Vpc extends com.pulumi.resources.CustomResource {
      * Tag the VPC with optional tags
      * 
      */
-    @Export(name="tags", type=List.class, parameters={String.class})
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tags;
 
     /**
@@ -147,7 +147,7 @@ public class Vpc extends com.pulumi.resources.CustomResource {
      * VPC name given when hosted at the cloud provider
      * 
      */
-    @Export(name="vpcName", type=String.class, parameters={})
+    @Export(name="vpcName", refs={String.class}, tree="[0]")
     private Output<String> vpcName;
 
     /**
