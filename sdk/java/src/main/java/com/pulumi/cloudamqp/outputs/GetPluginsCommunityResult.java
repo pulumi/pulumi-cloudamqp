@@ -74,11 +74,11 @@ public final class GetPluginsCommunityResult {
             return plugins(List.of(plugins));
         }
         public GetPluginsCommunityResult build() {
-            final var o = new GetPluginsCommunityResult();
-            o.id = id;
-            o.instanceId = instanceId;
-            o.plugins = plugins;
-            return o;
+            final var _resultValue = new GetPluginsCommunityResult();
+            _resultValue.id = id;
+            _resultValue.instanceId = instanceId;
+            _resultValue.plugins = plugins;
+            return _resultValue;
         }
     }
 }

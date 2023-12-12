@@ -72,7 +72,7 @@ public class Webhook extends com.pulumi.resources.CustomResource {
      * Max simultaneous requests to the endpoint.
      * 
      */
-    @Export(name="concurrency", type=Integer.class, parameters={})
+    @Export(name="concurrency", refs={Integer.class}, tree="[0]")
     private Output<Integer> concurrency;
 
     /**
@@ -86,7 +86,7 @@ public class Webhook extends com.pulumi.resources.CustomResource {
      * The CloudAMQP instance ID.
      * 
      */
-    @Export(name="instanceId", type=Integer.class, parameters={})
+    @Export(name="instanceId", refs={Integer.class}, tree="[0]")
     private Output<Integer> instanceId;
 
     /**
@@ -100,7 +100,7 @@ public class Webhook extends com.pulumi.resources.CustomResource {
      * A (durable) queue on your RabbitMQ instance.
      * 
      */
-    @Export(name="queue", type=String.class, parameters={})
+    @Export(name="queue", refs={String.class}, tree="[0]")
     private Output<String> queue;
 
     /**
@@ -114,7 +114,7 @@ public class Webhook extends com.pulumi.resources.CustomResource {
      * How often we retry if your endpoint fails (in seconds).
      * 
      */
-    @Export(name="retryInterval", type=Integer.class, parameters={})
+    @Export(name="retryInterval", refs={Integer.class}, tree="[0]")
     private Output<Integer> retryInterval;
 
     /**
@@ -128,7 +128,7 @@ public class Webhook extends com.pulumi.resources.CustomResource {
      * The vhost the queue resides in.
      * 
      */
-    @Export(name="vhost", type=String.class, parameters={})
+    @Export(name="vhost", refs={String.class}, tree="[0]")
     private Output<String> vhost;
 
     /**
@@ -142,7 +142,7 @@ public class Webhook extends com.pulumi.resources.CustomResource {
      * A POST request will be made for each message in the queue to this endpoint.
      * 
      */
-    @Export(name="webhookUri", type=String.class, parameters={})
+    @Export(name="webhookUri", refs={String.class}, tree="[0]")
     private Output<String> webhookUri;
 
     /**

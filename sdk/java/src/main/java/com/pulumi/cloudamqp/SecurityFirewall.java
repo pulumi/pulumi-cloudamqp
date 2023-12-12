@@ -32,7 +32,7 @@ public class SecurityFirewall extends com.pulumi.resources.CustomResource {
      * The CloudAMQP instance ID.
      * 
      */
-    @Export(name="instanceId", type=Integer.class, parameters={})
+    @Export(name="instanceId", refs={Integer.class}, tree="[0]")
     private Output<Integer> instanceId;
 
     /**
@@ -46,7 +46,7 @@ public class SecurityFirewall extends com.pulumi.resources.CustomResource {
      * An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
      * 
      */
-    @Export(name="rules", type=List.class, parameters={SecurityFirewallRule.class})
+    @Export(name="rules", refs={List.class,SecurityFirewallRule.class}, tree="[0,1]")
     private Output<List<SecurityFirewallRule>> rules;
 
     /**
@@ -60,7 +60,7 @@ public class SecurityFirewall extends com.pulumi.resources.CustomResource {
      * Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
      * 
      */
-    @Export(name="sleep", type=Integer.class, parameters={})
+    @Export(name="sleep", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> sleep;
 
     /**
@@ -78,7 +78,7 @@ public class SecurityFirewall extends com.pulumi.resources.CustomResource {
      * The `rules` block consists of:
      * 
      */
-    @Export(name="timeout", type=Integer.class, parameters={})
+    @Export(name="timeout", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> timeout;
 
     /**

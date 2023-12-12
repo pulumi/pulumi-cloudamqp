@@ -136,7 +136,7 @@ public class UpgradeRabbitmq extends com.pulumi.resources.CustomResource {
      * The CloudAMQP instance identifier
      * 
      */
-    @Export(name="instanceId", type=Integer.class, parameters={})
+    @Export(name="instanceId", refs={Integer.class}, tree="[0]")
     private Output<Integer> instanceId;
 
     /**

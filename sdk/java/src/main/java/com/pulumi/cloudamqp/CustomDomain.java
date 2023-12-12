@@ -76,7 +76,7 @@ public class CustomDomain extends com.pulumi.resources.CustomResource {
      * Your custom domain name.
      * 
      */
-    @Export(name="hostname", type=String.class, parameters={})
+    @Export(name="hostname", refs={String.class}, tree="[0]")
     private Output<String> hostname;
 
     /**
@@ -90,7 +90,7 @@ public class CustomDomain extends com.pulumi.resources.CustomResource {
      * The CloudAMQP instance ID.
      * 
      */
-    @Export(name="instanceId", type=Integer.class, parameters={})
+    @Export(name="instanceId", refs={Integer.class}, tree="[0]")
     private Output<Integer> instanceId;
 
     /**

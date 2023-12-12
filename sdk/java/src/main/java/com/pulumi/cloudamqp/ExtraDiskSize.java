@@ -279,7 +279,7 @@ public class ExtraDiskSize extends com.pulumi.resources.CustomResource {
      * When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
      * 
      */
-    @Export(name="allowDowntime", type=Boolean.class, parameters={})
+    @Export(name="allowDowntime", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> allowDowntime;
 
     /**
@@ -293,7 +293,7 @@ public class ExtraDiskSize extends com.pulumi.resources.CustomResource {
      * Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
      * 
      */
-    @Export(name="extraDiskSize", type=Integer.class, parameters={})
+    @Export(name="extraDiskSize", refs={Integer.class}, tree="[0]")
     private Output<Integer> extraDiskSize;
 
     /**
@@ -307,7 +307,7 @@ public class ExtraDiskSize extends com.pulumi.resources.CustomResource {
      * The CloudAMQP instance ID.
      * 
      */
-    @Export(name="instanceId", type=Integer.class, parameters={})
+    @Export(name="instanceId", refs={Integer.class}, tree="[0]")
     private Output<Integer> instanceId;
 
     /**
@@ -317,7 +317,7 @@ public class ExtraDiskSize extends com.pulumi.resources.CustomResource {
     public Output<Integer> instanceId() {
         return this.instanceId;
     }
-    @Export(name="nodes", type=List.class, parameters={ExtraDiskSizeNode.class})
+    @Export(name="nodes", refs={List.class,ExtraDiskSizeNode.class}, tree="[0,1]")
     private Output<List<ExtraDiskSizeNode>> nodes;
 
     public Output<List<ExtraDiskSizeNode>> nodes() {
@@ -327,7 +327,7 @@ public class ExtraDiskSize extends com.pulumi.resources.CustomResource {
      * Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
      * 
      */
-    @Export(name="sleep", type=Integer.class, parameters={})
+    @Export(name="sleep", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> sleep;
 
     /**
@@ -343,7 +343,7 @@ public class ExtraDiskSize extends com.pulumi.resources.CustomResource {
      * ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
      * 
      */
-    @Export(name="timeout", type=Integer.class, parameters={})
+    @Export(name="timeout", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> timeout;
 
     /**

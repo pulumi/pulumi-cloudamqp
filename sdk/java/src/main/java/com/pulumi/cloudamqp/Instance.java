@@ -412,7 +412,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * API key needed to communicate to CloudAMQP&#39;s second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
      * 
      */
-    @Export(name="apikey", type=String.class, parameters={})
+    @Export(name="apikey", refs={String.class}, tree="[0]")
     private Output<String> apikey;
 
     /**
@@ -426,7 +426,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
     /**
@@ -444,7 +444,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * The `copy_settings` block consists of:
      * 
      */
-    @Export(name="copySettings", type=List.class, parameters={InstanceCopySetting.class})
+    @Export(name="copySettings", refs={List.class,InstanceCopySetting.class}, tree="[0,1]")
     private Output</* @Nullable */ List<InstanceCopySetting>> copySettings;
 
     /**
@@ -462,7 +462,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * Information if the CloudAMQP instance is shared or dedicated.
      * 
      */
-    @Export(name="dedicated", type=Boolean.class, parameters={})
+    @Export(name="dedicated", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> dedicated;
 
     /**
@@ -476,7 +476,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * The external hostname for the CloudAMQP instance.
      * 
      */
-    @Export(name="host", type=String.class, parameters={})
+    @Export(name="host", refs={String.class}, tree="[0]")
     private Output<String> host;
 
     /**
@@ -490,7 +490,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * The internal hostname for the CloudAMQP instance.
      * 
      */
-    @Export(name="hostInternal", type=String.class, parameters={})
+    @Export(name="hostInternal", refs={String.class}, tree="[0]")
     private Output<String> hostInternal;
 
     /**
@@ -504,7 +504,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * Keep associated VPC when deleting instance, default set to false.
      * 
      */
-    @Export(name="keepAssociatedVpc", type=Boolean.class, parameters={})
+    @Export(name="keepAssociatedVpc", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> keepAssociatedVpc;
 
     /**
@@ -518,7 +518,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * Name of the CloudAMQP instance.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -532,7 +532,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
      * 
      */
-    @Export(name="noDefaultAlarms", type=Boolean.class, parameters={})
+    @Export(name="noDefaultAlarms", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> noDefaultAlarms;
 
     /**
@@ -548,7 +548,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * ***Deprecated: Legacy subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.***
      * 
      */
-    @Export(name="nodes", type=Integer.class, parameters={})
+    @Export(name="nodes", refs={Integer.class}, tree="[0]")
     private Output<Integer> nodes;
 
     /**
@@ -564,7 +564,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * The subscription plan. See available plans
      * 
      */
-    @Export(name="plan", type=String.class, parameters={})
+    @Export(name="plan", refs={String.class}, tree="[0]")
     private Output<String> plan;
 
     /**
@@ -578,7 +578,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * Flag describing if the resource is ready
      * 
      */
-    @Export(name="ready", type=Boolean.class, parameters={})
+    @Export(name="ready", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> ready;
 
     /**
@@ -594,7 +594,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -612,7 +612,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * ***Note: There is not yet any support in the provider to change the RMQ version. Once it&#39;s set in the initial creation, it will remain.***
      * 
      */
-    @Export(name="rmqVersion", type=String.class, parameters={})
+    @Export(name="rmqVersion", refs={String.class}, tree="[0]")
     private Output<String> rmqVersion;
 
     /**
@@ -628,7 +628,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
      * 
      */
-    @Export(name="tags", type=List.class, parameters={String.class})
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tags;
 
     /**
@@ -642,7 +642,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
      * 
      */
-    @Export(name="url", type=String.class, parameters={})
+    @Export(name="url", refs={String.class}, tree="[0]")
     private Output<String> url;
 
     /**
@@ -656,7 +656,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * The virtual host used by Rabbit MQ.
      * 
      */
-    @Export(name="vhost", type=String.class, parameters={})
+    @Export(name="vhost", refs={String.class}, tree="[0]")
     private Output<String> vhost;
 
     /**
@@ -670,7 +670,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * The VPC ID. Use this to create your instance in an existing VPC. See available example.
      * 
      */
-    @Export(name="vpcId", type=Integer.class, parameters={})
+    @Export(name="vpcId", refs={Integer.class}, tree="[0]")
     private Output<Integer> vpcId;
 
     /**
@@ -688,7 +688,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * ***Note: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.***
      * 
      */
-    @Export(name="vpcSubnet", type=String.class, parameters={})
+    @Export(name="vpcSubnet", refs={String.class}, tree="[0]")
     private Output<String> vpcSubnet;
 
     /**

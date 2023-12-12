@@ -250,27 +250,27 @@ public final class GetInstanceResult {
             return this;
         }
         public GetInstanceResult build() {
-            final var o = new GetInstanceResult();
-            o.apikey = apikey;
-            o.backend = backend;
-            o.dedicated = dedicated;
-            o.host = host;
-            o.hostInternal = hostInternal;
-            o.id = id;
-            o.instanceId = instanceId;
-            o.name = name;
-            o.noDefaultAlarms = noDefaultAlarms;
-            o.nodes = nodes;
-            o.plan = plan;
-            o.ready = ready;
-            o.region = region;
-            o.rmqVersion = rmqVersion;
-            o.tags = tags;
-            o.url = url;
-            o.vhost = vhost;
-            o.vpcId = vpcId;
-            o.vpcSubnet = vpcSubnet;
-            return o;
+            final var _resultValue = new GetInstanceResult();
+            _resultValue.apikey = apikey;
+            _resultValue.backend = backend;
+            _resultValue.dedicated = dedicated;
+            _resultValue.host = host;
+            _resultValue.hostInternal = hostInternal;
+            _resultValue.id = id;
+            _resultValue.instanceId = instanceId;
+            _resultValue.name = name;
+            _resultValue.noDefaultAlarms = noDefaultAlarms;
+            _resultValue.nodes = nodes;
+            _resultValue.plan = plan;
+            _resultValue.ready = ready;
+            _resultValue.region = region;
+            _resultValue.rmqVersion = rmqVersion;
+            _resultValue.tags = tags;
+            _resultValue.url = url;
+            _resultValue.vhost = vhost;
+            _resultValue.vpcId = vpcId;
+            _resultValue.vpcSubnet = vpcSubnet;
+            return _resultValue;
         }
     }
 }

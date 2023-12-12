@@ -80,12 +80,12 @@ public final class GetUpgradableVersionsResult {
             return this;
         }
         public GetUpgradableVersionsResult build() {
-            final var o = new GetUpgradableVersionsResult();
-            o.id = id;
-            o.instanceId = instanceId;
-            o.newErlangVersion = newErlangVersion;
-            o.newRabbitmqVersion = newRabbitmqVersion;
-            return o;
+            final var _resultValue = new GetUpgradableVersionsResult();
+            _resultValue.id = id;
+            _resultValue.instanceId = instanceId;
+            _resultValue.newErlangVersion = newErlangVersion;
+            _resultValue.newRabbitmqVersion = newRabbitmqVersion;
+            return _resultValue;
         }
     }
 }

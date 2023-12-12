@@ -186,21 +186,21 @@ public final class GetAlarmResult {
             return this;
         }
         public GetAlarmResult build() {
-            final var o = new GetAlarmResult();
-            o.alarmId = alarmId;
-            o.enabled = enabled;
-            o.id = id;
-            o.instanceId = instanceId;
-            o.messageType = messageType;
-            o.queueRegex = queueRegex;
-            o.recipients = recipients;
-            o.reminderInterval = reminderInterval;
-            o.timeThreshold = timeThreshold;
-            o.type = type;
-            o.valueCalculation = valueCalculation;
-            o.valueThreshold = valueThreshold;
-            o.vhostRegex = vhostRegex;
-            return o;
+            final var _resultValue = new GetAlarmResult();
+            _resultValue.alarmId = alarmId;
+            _resultValue.enabled = enabled;
+            _resultValue.id = id;
+            _resultValue.instanceId = instanceId;
+            _resultValue.messageType = messageType;
+            _resultValue.queueRegex = queueRegex;
+            _resultValue.recipients = recipients;
+            _resultValue.reminderInterval = reminderInterval;
+            _resultValue.timeThreshold = timeThreshold;
+            _resultValue.type = type;
+            _resultValue.valueCalculation = valueCalculation;
+            _resultValue.valueThreshold = valueThreshold;
+            _resultValue.vhostRegex = vhostRegex;
+            return _resultValue;
         }
     }
 }

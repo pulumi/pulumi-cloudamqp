@@ -104,14 +104,14 @@ public final class GetVpcGcpInfoResult {
             return this;
         }
         public GetVpcGcpInfoResult build() {
-            final var o = new GetVpcGcpInfoResult();
-            o.id = id;
-            o.instanceId = instanceId;
-            o.name = name;
-            o.network = network;
-            o.vpcId = vpcId;
-            o.vpcSubnet = vpcSubnet;
-            return o;
+            final var _resultValue = new GetVpcGcpInfoResult();
+            _resultValue.id = id;
+            _resultValue.instanceId = instanceId;
+            _resultValue.name = name;
+            _resultValue.network = network;
+            _resultValue.vpcId = vpcId;
+            _resultValue.vpcSubnet = vpcSubnet;
+            return _resultValue;
         }
     }
 }

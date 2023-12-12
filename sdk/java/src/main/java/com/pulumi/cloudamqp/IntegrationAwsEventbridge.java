@@ -96,7 +96,7 @@ public class IntegrationAwsEventbridge extends com.pulumi.resources.CustomResour
      * The 12 digit AWS Account ID where you want the events to be sent to.
      * 
      */
-    @Export(name="awsAccountId", type=String.class, parameters={})
+    @Export(name="awsAccountId", refs={String.class}, tree="[0]")
     private Output<String> awsAccountId;
 
     /**
@@ -110,7 +110,7 @@ public class IntegrationAwsEventbridge extends com.pulumi.resources.CustomResour
      * The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
      * 
      */
-    @Export(name="awsRegion", type=String.class, parameters={})
+    @Export(name="awsRegion", refs={String.class}, tree="[0]")
     private Output<String> awsRegion;
 
     /**
@@ -124,7 +124,7 @@ public class IntegrationAwsEventbridge extends com.pulumi.resources.CustomResour
      * Instance identifier
      * 
      */
-    @Export(name="instanceId", type=Integer.class, parameters={})
+    @Export(name="instanceId", refs={Integer.class}, tree="[0]")
     private Output<Integer> instanceId;
 
     /**
@@ -138,7 +138,7 @@ public class IntegrationAwsEventbridge extends com.pulumi.resources.CustomResour
      * A (durable) queue on your RabbitMQ instance.
      * 
      */
-    @Export(name="queue", type=String.class, parameters={})
+    @Export(name="queue", refs={String.class}, tree="[0]")
     private Output<String> queue;
 
     /**
@@ -152,7 +152,7 @@ public class IntegrationAwsEventbridge extends com.pulumi.resources.CustomResour
      * Always set to null, unless there is an error starting the EventBridge.
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -166,7 +166,7 @@ public class IntegrationAwsEventbridge extends com.pulumi.resources.CustomResour
      * The VHost the queue resides in.
      * 
      */
-    @Export(name="vhost", type=String.class, parameters={})
+    @Export(name="vhost", refs={String.class}, tree="[0]")
     private Output<String> vhost;
 
     /**
@@ -180,7 +180,7 @@ public class IntegrationAwsEventbridge extends com.pulumi.resources.CustomResour
      * Include message headers in the event data.
      * 
      */
-    @Export(name="withHeaders", type=Boolean.class, parameters={})
+    @Export(name="withHeaders", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> withHeaders;
 
     /**

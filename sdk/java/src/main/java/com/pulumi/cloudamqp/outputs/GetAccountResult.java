@@ -62,10 +62,10 @@ public final class GetAccountResult {
             return instances(List.of(instances));
         }
         public GetAccountResult build() {
-            final var o = new GetAccountResult();
-            o.id = id;
-            o.instances = instances;
-            return o;
+            final var _resultValue = new GetAccountResult();
+            _resultValue.id = id;
+            _resultValue.instances = instances;
+            return _resultValue;
         }
     }
 }

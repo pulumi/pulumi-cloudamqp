@@ -60,11 +60,11 @@ public final class GetPluginsCommunityPlugin {
             return this;
         }
         public GetPluginsCommunityPlugin build() {
-            final var o = new GetPluginsCommunityPlugin();
-            o.description = description;
-            o.name = name;
-            o.require = require;
-            return o;
+            final var _resultValue = new GetPluginsCommunityPlugin();
+            _resultValue.description = description;
+            _resultValue.name = name;
+            _resultValue.require = require;
+            return _resultValue;
         }
     }
 }

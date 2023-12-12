@@ -118,7 +118,7 @@ public class Alarm extends com.pulumi.resources.CustomResource {
      * Enable or disable the alarm to trigger.
      * 
      */
-    @Export(name="enabled", type=Boolean.class, parameters={})
+    @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> enabled;
 
     /**
@@ -132,7 +132,7 @@ public class Alarm extends com.pulumi.resources.CustomResource {
      * The CloudAMQP instance ID.
      * 
      */
-    @Export(name="instanceId", type=Integer.class, parameters={})
+    @Export(name="instanceId", refs={Integer.class}, tree="[0]")
     private Output<Integer> instanceId;
 
     /**
@@ -148,7 +148,7 @@ public class Alarm extends com.pulumi.resources.CustomResource {
      * Specific argument for `disk` alarm
      * 
      */
-    @Export(name="messageType", type=String.class, parameters={})
+    @Export(name="messageType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> messageType;
 
     /**
@@ -164,7 +164,7 @@ public class Alarm extends com.pulumi.resources.CustomResource {
      * Regex for which queue to check.
      * 
      */
-    @Export(name="queueRegex", type=String.class, parameters={})
+    @Export(name="queueRegex", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> queueRegex;
 
     /**
@@ -178,7 +178,7 @@ public class Alarm extends com.pulumi.resources.CustomResource {
      * Identifier for recipient to be notified. Leave empty to notify all recipients.
      * 
      */
-    @Export(name="recipients", type=List.class, parameters={Integer.class})
+    @Export(name="recipients", refs={List.class,Integer.class}, tree="[0,1]")
     private Output<List<Integer>> recipients;
 
     /**
@@ -192,7 +192,7 @@ public class Alarm extends com.pulumi.resources.CustomResource {
      * The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
      * 
      */
-    @Export(name="reminderInterval", type=Integer.class, parameters={})
+    @Export(name="reminderInterval", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> reminderInterval;
 
     /**
@@ -206,7 +206,7 @@ public class Alarm extends com.pulumi.resources.CustomResource {
      * The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
      * 
      */
-    @Export(name="timeThreshold", type=Integer.class, parameters={})
+    @Export(name="timeThreshold", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> timeThreshold;
 
     /**
@@ -220,7 +220,7 @@ public class Alarm extends com.pulumi.resources.CustomResource {
      * The alarm type, see valid options below.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -236,7 +236,7 @@ public class Alarm extends com.pulumi.resources.CustomResource {
      * Based on alarm type, different arguments are flagged as required or optional.
      * 
      */
-    @Export(name="valueCalculation", type=String.class, parameters={})
+    @Export(name="valueCalculation", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> valueCalculation;
 
     /**
@@ -252,7 +252,7 @@ public class Alarm extends com.pulumi.resources.CustomResource {
      * The value to trigger the alarm for.
      * 
      */
-    @Export(name="valueThreshold", type=Integer.class, parameters={})
+    @Export(name="valueThreshold", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> valueThreshold;
 
     /**
@@ -266,7 +266,7 @@ public class Alarm extends com.pulumi.resources.CustomResource {
      * Regex for which vhost to check
      * 
      */
-    @Export(name="vhostRegex", type=String.class, parameters={})
+    @Export(name="vhostRegex", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> vhostRegex;
 
     /**

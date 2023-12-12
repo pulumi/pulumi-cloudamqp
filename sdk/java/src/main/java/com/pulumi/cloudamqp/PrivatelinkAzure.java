@@ -277,7 +277,7 @@ public class PrivatelinkAzure extends com.pulumi.resources.CustomResource {
      * Approved subscriptions to access the endpoint service. See format below.
      * 
      */
-    @Export(name="approvedSubscriptions", type=List.class, parameters={String.class})
+    @Export(name="approvedSubscriptions", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> approvedSubscriptions;
 
     /**
@@ -291,7 +291,7 @@ public class PrivatelinkAzure extends com.pulumi.resources.CustomResource {
      * The CloudAMQP instance identifier.
      * 
      */
-    @Export(name="instanceId", type=Integer.class, parameters={})
+    @Export(name="instanceId", refs={Integer.class}, tree="[0]")
     private Output<Integer> instanceId;
 
     /**
@@ -305,7 +305,7 @@ public class PrivatelinkAzure extends com.pulumi.resources.CustomResource {
      * Name of the server having the PrivateLink enabled.
      * 
      */
-    @Export(name="serverName", type=String.class, parameters={})
+    @Export(name="serverName", refs={String.class}, tree="[0]")
     private Output<String> serverName;
 
     /**
@@ -319,7 +319,7 @@ public class PrivatelinkAzure extends com.pulumi.resources.CustomResource {
      * Service name (alias) of the PrivateLink, needed when creating the endpoint.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -333,7 +333,7 @@ public class PrivatelinkAzure extends com.pulumi.resources.CustomResource {
      * Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
      * 
      */
-    @Export(name="sleep", type=Integer.class, parameters={})
+    @Export(name="sleep", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> sleep;
 
     /**
@@ -347,7 +347,7 @@ public class PrivatelinkAzure extends com.pulumi.resources.CustomResource {
      * PrivateLink status [enable, pending, disable]
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -364,7 +364,7 @@ public class PrivatelinkAzure extends com.pulumi.resources.CustomResource {
      * `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
      * 
      */
-    @Export(name="timeout", type=Integer.class, parameters={})
+    @Export(name="timeout", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> timeout;
 
     /**

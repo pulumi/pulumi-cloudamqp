@@ -128,17 +128,17 @@ public final class GetNodesNode {
             return this;
         }
         public GetNodesNode build() {
-            final var o = new GetNodesNode();
-            o.additionalDiskSize = additionalDiskSize;
-            o.configured = configured;
-            o.diskSize = diskSize;
-            o.erlangVersion = erlangVersion;
-            o.hipe = hipe;
-            o.hostname = hostname;
-            o.name = name;
-            o.rabbitmqVersion = rabbitmqVersion;
-            o.running = running;
-            return o;
+            final var _resultValue = new GetNodesNode();
+            _resultValue.additionalDiskSize = additionalDiskSize;
+            _resultValue.configured = configured;
+            _resultValue.diskSize = diskSize;
+            _resultValue.erlangVersion = erlangVersion;
+            _resultValue.hipe = hipe;
+            _resultValue.hostname = hostname;
+            _resultValue.name = name;
+            _resultValue.rabbitmqVersion = rabbitmqVersion;
+            _resultValue.running = running;
+            return _resultValue;
         }
     }
 }

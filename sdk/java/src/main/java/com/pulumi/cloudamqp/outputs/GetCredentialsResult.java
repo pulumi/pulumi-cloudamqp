@@ -80,12 +80,12 @@ public final class GetCredentialsResult {
             return this;
         }
         public GetCredentialsResult build() {
-            final var o = new GetCredentialsResult();
-            o.id = id;
-            o.instanceId = instanceId;
-            o.password = password;
-            o.username = username;
-            return o;
+            final var _resultValue = new GetCredentialsResult();
+            _resultValue.id = id;
+            _resultValue.instanceId = instanceId;
+            _resultValue.password = password;
+            _resultValue.username = username;
+            return _resultValue;
         }
     }
 }

@@ -73,10 +73,10 @@ public final class InstanceCopySetting {
             return this;
         }
         public InstanceCopySetting build() {
-            final var o = new InstanceCopySetting();
-            o.settings = settings;
-            o.subscriptionId = subscriptionId;
-            return o;
+            final var _resultValue = new InstanceCopySetting();
+            _resultValue.settings = settings;
+            _resultValue.subscriptionId = subscriptionId;
+            return _resultValue;
         }
     }
 }
