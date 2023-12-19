@@ -21,7 +21,7 @@ class GetVpcGcpInfoResult:
     """
     A collection of values returned by getVpcGcpInfo.
     """
-    def __init__(__self__, id=None, instance_id=None, name=None, network=None, vpc_id=None, vpc_subnet=None):
+    def __init__(__self__, id=None, instance_id=None, name=None, network=None, sleep=None, timeout=None, vpc_id=None, vpc_subnet=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -34,6 +34,12 @@ class GetVpcGcpInfoResult:
         if network and not isinstance(network, str):
             raise TypeError("Expected argument 'network' to be a str")
         pulumi.set(__self__, "network", network)
+        if sleep and not isinstance(sleep, int):
+            raise TypeError("Expected argument 'sleep' to be a int")
+        pulumi.set(__self__, "sleep", sleep)
+        if timeout and not isinstance(timeout, int):
+            raise TypeError("Expected argument 'timeout' to be a int")
+        pulumi.set(__self__, "timeout", timeout)
         if vpc_id and not isinstance(vpc_id, str):
             raise TypeError("Expected argument 'vpc_id' to be a str")
         pulumi.set(__self__, "vpc_id", vpc_id)
@@ -65,6 +71,16 @@ class GetVpcGcpInfoResult:
         return pulumi.get(self, "network")
 
     @property
+    @pulumi.getter
+    def sleep(self) -> Optional[int]:
+        return pulumi.get(self, "sleep")
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> Optional[int]:
+        return pulumi.get(self, "timeout")
+
+    @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> Optional[str]:
         return pulumi.get(self, "vpc_id")
@@ -85,11 +101,15 @@ class AwaitableGetVpcGcpInfoResult(GetVpcGcpInfoResult):
             instance_id=self.instance_id,
             name=self.name,
             network=self.network,
+            sleep=self.sleep,
+            timeout=self.timeout,
             vpc_id=self.vpc_id,
             vpc_subnet=self.vpc_subnet)
 
 
 def get_vpc_gcp_info(instance_id: Optional[int] = None,
+                     sleep: Optional[int] = None,
+                     timeout: Optional[int] = None,
                      vpc_id: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcGcpInfoResult:
     """
@@ -110,6 +130,7 @@ def get_vpc_gcp_info(instance_id: Optional[int] = None,
 
     vpc_info = cloudamqp.get_vpc_gcp_info(instance_id=cloudamqp_instance["instance"]["id"])
     ```
+
     </details>
 
     <details>
@@ -125,6 +146,7 @@ def get_vpc_gcp_info(instance_id: Optional[int] = None,
 
     vpc_info = cloudamqp.get_vpc_gcp_info(vpc_id=cloudamqp_vpc["vpc"]["id"])
     ```
+
     </details>
     ## Attributes reference
 
@@ -147,12 +169,16 @@ def get_vpc_gcp_info(instance_id: Optional[int] = None,
     :param int instance_id: The CloudAMQP instance identifier.
            
            ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
+    :param int sleep: Configurable sleep time (seconds) between retries when reading peering. Default set to 10 seconds.
+    :param int timeout: Configurable timeout time (seconds) before retries times out. Default set to 1800 seconds.
     :param str vpc_id: The managed VPC identifier.
            
            ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
+    __args__['sleep'] = sleep
+    __args__['timeout'] = timeout
     __args__['vpcId'] = vpc_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo', __args__, opts=opts, typ=GetVpcGcpInfoResult).value
@@ -162,12 +188,16 @@ def get_vpc_gcp_info(instance_id: Optional[int] = None,
         instance_id=pulumi.get(__ret__, 'instance_id'),
         name=pulumi.get(__ret__, 'name'),
         network=pulumi.get(__ret__, 'network'),
+        sleep=pulumi.get(__ret__, 'sleep'),
+        timeout=pulumi.get(__ret__, 'timeout'),
         vpc_id=pulumi.get(__ret__, 'vpc_id'),
         vpc_subnet=pulumi.get(__ret__, 'vpc_subnet'))
 
 
 @_utilities.lift_output_func(get_vpc_gcp_info)
 def get_vpc_gcp_info_output(instance_id: Optional[pulumi.Input[Optional[int]]] = None,
+                            sleep: Optional[pulumi.Input[Optional[int]]] = None,
+                            timeout: Optional[pulumi.Input[Optional[int]]] = None,
                             vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcGcpInfoResult]:
     """
@@ -188,6 +218,7 @@ def get_vpc_gcp_info_output(instance_id: Optional[pulumi.Input[Optional[int]]] =
 
     vpc_info = cloudamqp.get_vpc_gcp_info(instance_id=cloudamqp_instance["instance"]["id"])
     ```
+
     </details>
 
     <details>
@@ -203,6 +234,7 @@ def get_vpc_gcp_info_output(instance_id: Optional[pulumi.Input[Optional[int]]] =
 
     vpc_info = cloudamqp.get_vpc_gcp_info(vpc_id=cloudamqp_vpc["vpc"]["id"])
     ```
+
     </details>
     ## Attributes reference
 
@@ -225,6 +257,8 @@ def get_vpc_gcp_info_output(instance_id: Optional[pulumi.Input[Optional[int]]] =
     :param int instance_id: The CloudAMQP instance identifier.
            
            ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
+    :param int sleep: Configurable sleep time (seconds) between retries when reading peering. Default set to 10 seconds.
+    :param int timeout: Configurable timeout time (seconds) before retries times out. Default set to 1800 seconds.
     :param str vpc_id: The managed VPC identifier.
            
            ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***

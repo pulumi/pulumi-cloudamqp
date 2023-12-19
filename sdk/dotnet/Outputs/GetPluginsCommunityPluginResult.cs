@@ -16,6 +16,8 @@ namespace Pulumi.CloudAmqp.Outputs
         public readonly string Description;
         public readonly string Name;
         public readonly string Require;
+        public readonly int? Sleep;
+        public readonly int? Timeout;
 
         [OutputConstructor]
         private GetPluginsCommunityPluginResult(
@@ -23,11 +25,17 @@ namespace Pulumi.CloudAmqp.Outputs
 
             string name,
 
-            string require)
+            string require,
+
+            int? sleep,
+
+            int? timeout)
         {
             Description = description;
             Name = name;
             Require = require;
+            Sleep = sleep;
+            Timeout = timeout;
         }
     }
 }

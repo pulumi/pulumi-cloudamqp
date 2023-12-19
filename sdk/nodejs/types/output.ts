@@ -44,12 +44,16 @@ export interface GetPluginsCommunityPlugin {
     description: string;
     name: string;
     require: string;
+    sleep?: number;
+    timeout?: number;
 }
 
 export interface GetPluginsPlugin {
     description: string;
     enabled: boolean;
     name: string;
+    sleep?: number;
+    timeout?: number;
     version: string;
 }
 

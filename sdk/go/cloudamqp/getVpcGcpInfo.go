@@ -46,6 +46,7 @@ import (
 //	}
 //
 // ```
+//
 // </details>
 //
 // <details>
@@ -79,6 +80,7 @@ import (
 //	}
 //
 // ```
+//
 // </details>
 // ## Attributes reference
 //
@@ -112,6 +114,10 @@ type GetVpcGcpInfoArgs struct {
 	//
 	// ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
 	InstanceId *int `pulumi:"instanceId"`
+	// Configurable sleep time (seconds) between retries when reading peering. Default set to 10 seconds.
+	Sleep *int `pulumi:"sleep"`
+	// Configurable timeout time (seconds) before retries times out. Default set to 1800 seconds.
+	Timeout *int `pulumi:"timeout"`
 	// The managed VPC identifier.
 	//
 	// ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
@@ -125,6 +131,8 @@ type GetVpcGcpInfoResult struct {
 	InstanceId *int    `pulumi:"instanceId"`
 	Name       string  `pulumi:"name"`
 	Network    string  `pulumi:"network"`
+	Sleep      *int    `pulumi:"sleep"`
+	Timeout    *int    `pulumi:"timeout"`
 	VpcId      *string `pulumi:"vpcId"`
 	VpcSubnet  string  `pulumi:"vpcSubnet"`
 }
@@ -148,6 +156,10 @@ type GetVpcGcpInfoOutputArgs struct {
 	//
 	// ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
 	InstanceId pulumi.IntPtrInput `pulumi:"instanceId"`
+	// Configurable sleep time (seconds) between retries when reading peering. Default set to 10 seconds.
+	Sleep pulumi.IntPtrInput `pulumi:"sleep"`
+	// Configurable timeout time (seconds) before retries times out. Default set to 1800 seconds.
+	Timeout pulumi.IntPtrInput `pulumi:"timeout"`
 	// The managed VPC identifier.
 	//
 	// ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
@@ -188,6 +200,14 @@ func (o GetVpcGcpInfoResultOutput) Name() pulumi.StringOutput {
 
 func (o GetVpcGcpInfoResultOutput) Network() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcGcpInfoResult) string { return v.Network }).(pulumi.StringOutput)
+}
+
+func (o GetVpcGcpInfoResultOutput) Sleep() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetVpcGcpInfoResult) *int { return v.Sleep }).(pulumi.IntPtrOutput)
+}
+
+func (o GetVpcGcpInfoResultOutput) Timeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetVpcGcpInfoResult) *int { return v.Timeout }).(pulumi.IntPtrOutput)
 }
 
 func (o GetVpcGcpInfoResultOutput) VpcId() pulumi.StringPtrOutput {

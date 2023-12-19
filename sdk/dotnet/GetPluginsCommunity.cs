@@ -12,6 +12,8 @@ namespace Pulumi.CloudAmqp
     public static class GetPluginsCommunity
     {
         /// <summary>
+        /// Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
+        /// 
         /// {{% examples %}}
         /// ## Example Usage
         /// {{% example %}}
@@ -39,6 +41,10 @@ namespace Pulumi.CloudAmqp
         /// 
         /// * `id`      - The identifier for this resource.
         /// * `plugins` - An array of community plugins. Each `plugins` block consists of the fields documented below.
+        /// * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
+        /// about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+        /// * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
+        /// information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
         /// 
         /// ___
         /// 
@@ -56,6 +62,8 @@ namespace Pulumi.CloudAmqp
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPluginsCommunityResult>("cloudamqp:index/getPluginsCommunity:getPluginsCommunity", args ?? new GetPluginsCommunityArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
+        /// 
         /// {{% examples %}}
         /// ## Example Usage
         /// {{% example %}}
@@ -83,6 +91,10 @@ namespace Pulumi.CloudAmqp
         /// 
         /// * `id`      - The identifier for this resource.
         /// * `plugins` - An array of community plugins. Each `plugins` block consists of the fields documented below.
+        /// * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
+        /// about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+        /// * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
+        /// information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
         /// 
         /// ___
         /// 

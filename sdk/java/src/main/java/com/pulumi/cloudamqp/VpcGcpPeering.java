@@ -20,24 +20,11 @@ import javax.annotation.Nullable;
  * This resouce creates a VPC peering configuration for the CloudAMQP instance. The configuration will connect to another VPC network hosted on Google Cloud Platform (GCP). See the [GCP documentation](https://cloud.google.com/vpc/docs/using-vpc-peering) for more information on how to create the VPC peering configuration.
  * 
  * &gt; **Note:** Creating a VPC peering will automatically add firewall rules for the peered subnet.
+ * 
  * &lt;details&gt;
  *  &lt;summary&gt;
  *     &lt;i&gt;Default VPC peering firewall rule&lt;/i&gt;
  *   &lt;/summary&gt;
- * ```typescript
- * import * as pulumi from &#34;@pulumi/pulumi&#34;;
- * ```
- * ```python
- * import pulumi
- * ```
- * ```csharp
- * using System.Collections.Generic;
- * using System.Linq;
- * using Pulumi;
- * 
- * return await Deployment.RunAsync(() =&gt;
- * {
- * });
  * ```java
  * package generated_program;
  * 
@@ -60,6 +47,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * 
  * &lt;/details&gt;
  * 
  * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
@@ -135,6 +123,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * 
  * &lt;/details&gt;
  * 
  * &lt;details&gt;
@@ -199,6 +188,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * 
  * &lt;/details&gt;
  * ## Depedency
  * 
@@ -239,18 +229,14 @@ public class VpcGcpPeering extends com.pulumi.resources.CustomResource {
         return this.autoCreateRoutes;
     }
     /**
-     * The CloudAMQP instance identifier.
-     * 
-     * ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+     * The CloudAMQP instance identifier. *Deprecated from v1.16.0*
      * 
      */
     @Export(name="instanceId", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> instanceId;
 
     /**
-     * @return The CloudAMQP instance identifier.
-     * 
-     * ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+     * @return The CloudAMQP instance identifier. *Deprecated from v1.16.0*
      * 
      */
     public Output<Optional<Integer>> instanceId() {
@@ -269,6 +255,22 @@ public class VpcGcpPeering extends com.pulumi.resources.CustomResource {
      */
     public Output<String> peerNetworkUri() {
         return this.peerNetworkUri;
+    }
+    /**
+     * Configurable sleep time (seconds) between retries when requesting or reading
+     * peering. Default set to 10 seconds. *Available from v1.29.0*
+     * 
+     */
+    @Export(name="sleep", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> sleep;
+
+    /**
+     * @return Configurable sleep time (seconds) between retries when requesting or reading
+     * peering. Default set to 10 seconds. *Available from v1.29.0*
+     * 
+     */
+    public Output<Optional<Integer>> sleep() {
+        return Codegen.optional(this.sleep);
     }
     /**
      * VPC peering state
@@ -299,18 +301,30 @@ public class VpcGcpPeering extends com.pulumi.resources.CustomResource {
         return this.stateDetails;
     }
     /**
-     * The managed VPC identifier.
+     * Configurable timeout time (seconds) before retries times out. Default set
+     * to 1800 seconds. *Available from v1.29.0*
      * 
-     * ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
+     */
+    @Export(name="timeout", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> timeout;
+
+    /**
+     * @return Configurable timeout time (seconds) before retries times out. Default set
+     * to 1800 seconds. *Available from v1.29.0*
+     * 
+     */
+    public Output<Optional<Integer>> timeout() {
+        return Codegen.optional(this.timeout);
+    }
+    /**
+     * The managed VPC identifier. *Available from v1.16.0*
      * 
      */
     @Export(name="vpcId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> vpcId;
 
     /**
-     * @return The managed VPC identifier.
-     * 
-     * ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
+     * @return The managed VPC identifier. *Available from v1.16.0*
      * 
      */
     public Output<Optional<String>> vpcId() {
@@ -318,8 +332,7 @@ public class VpcGcpPeering extends com.pulumi.resources.CustomResource {
     }
     /**
      * Makes the resource wait until the peering is connected.
-     * 
-     * ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+     * Default set to false. *Available from v1.28.0*
      * 
      */
     @Export(name="waitOnPeeringStatus", refs={Boolean.class}, tree="[0]")
@@ -327,8 +340,7 @@ public class VpcGcpPeering extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Makes the resource wait until the peering is connected.
-     * 
-     * ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+     * Default set to false. *Available from v1.28.0*
      * 
      */
     public Output<Optional<Boolean>> waitOnPeeringStatus() {

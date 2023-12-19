@@ -1587,6 +1587,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getNotification:getNotification", TypeShape.of(GetNotificationResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
+     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -1622,6 +1624,10 @@ public final class CloudamqpFunctions {
      * 
      * * `id`      - The identifier for this resource.
      * * `plugins` - An array of plugins. Each `plugins` block consists of the fields documented below.
+     * * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
+     *   about plugins. Default set to 10 seconds. *Available from v1.29.0*
+     * * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
+     *   information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
      * 
      * ***
      * 
@@ -1641,6 +1647,8 @@ public final class CloudamqpFunctions {
         return getPlugins(args, InvokeOptions.Empty);
     }
     /**
+     * Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
+     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -1676,6 +1684,10 @@ public final class CloudamqpFunctions {
      * 
      * * `id`      - The identifier for this resource.
      * * `plugins` - An array of plugins. Each `plugins` block consists of the fields documented below.
+     * * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
+     *   about plugins. Default set to 10 seconds. *Available from v1.29.0*
+     * * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
+     *   information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
      * 
      * ***
      * 
@@ -1695,6 +1707,8 @@ public final class CloudamqpFunctions {
         return getPluginsPlain(args, InvokeOptions.Empty);
     }
     /**
+     * Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
+     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -1730,6 +1744,10 @@ public final class CloudamqpFunctions {
      * 
      * * `id`      - The identifier for this resource.
      * * `plugins` - An array of plugins. Each `plugins` block consists of the fields documented below.
+     * * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
+     *   about plugins. Default set to 10 seconds. *Available from v1.29.0*
+     * * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
+     *   information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
      * 
      * ***
      * 
@@ -1749,6 +1767,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getPlugins:getPlugins", TypeShape.of(GetPluginsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
+     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -1784,6 +1804,10 @@ public final class CloudamqpFunctions {
      * 
      * * `id`      - The identifier for this resource.
      * * `plugins` - An array of plugins. Each `plugins` block consists of the fields documented below.
+     * * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
+     *   about plugins. Default set to 10 seconds. *Available from v1.29.0*
+     * * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
+     *   information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
      * 
      * ***
      * 
@@ -1803,6 +1827,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getPlugins:getPlugins", TypeShape.of(GetPluginsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
+     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -1838,6 +1864,10 @@ public final class CloudamqpFunctions {
      * 
      * * `id`      - The identifier for this resource.
      * * `plugins` - An array of community plugins. Each `plugins` block consists of the fields documented below.
+     * * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
+     *   about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+     * * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
+     *   information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
      * 
      * ***
      * 
@@ -1856,6 +1886,8 @@ public final class CloudamqpFunctions {
         return getPluginsCommunity(args, InvokeOptions.Empty);
     }
     /**
+     * Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
+     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -1891,6 +1923,10 @@ public final class CloudamqpFunctions {
      * 
      * * `id`      - The identifier for this resource.
      * * `plugins` - An array of community plugins. Each `plugins` block consists of the fields documented below.
+     * * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
+     *   about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+     * * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
+     *   information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
      * 
      * ***
      * 
@@ -1909,6 +1945,8 @@ public final class CloudamqpFunctions {
         return getPluginsCommunityPlain(args, InvokeOptions.Empty);
     }
     /**
+     * Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
+     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -1944,6 +1982,10 @@ public final class CloudamqpFunctions {
      * 
      * * `id`      - The identifier for this resource.
      * * `plugins` - An array of community plugins. Each `plugins` block consists of the fields documented below.
+     * * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
+     *   about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+     * * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
+     *   information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
      * 
      * ***
      * 
@@ -1962,6 +2004,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getPluginsCommunity:getPluginsCommunity", TypeShape.of(GetPluginsCommunityResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
+     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -1997,6 +2041,10 @@ public final class CloudamqpFunctions {
      * 
      * * `id`      - The identifier for this resource.
      * * `plugins` - An array of community plugins. Each `plugins` block consists of the fields documented below.
+     * * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
+     *   about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+     * * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
+     *   information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
      * 
      * ***
      * 
@@ -2241,6 +2289,7 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * 
      * &lt;/details&gt;
      * 
      * &lt;details&gt;
@@ -2277,6 +2326,7 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * 
      * &lt;/details&gt;
      * ## Attributes reference
      * 
@@ -2338,6 +2388,7 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * 
      * &lt;/details&gt;
      * 
      * &lt;details&gt;
@@ -2374,6 +2425,7 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * 
      * &lt;/details&gt;
      * ## Attributes reference
      * 
@@ -2435,6 +2487,7 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * 
      * &lt;/details&gt;
      * 
      * &lt;details&gt;
@@ -2471,6 +2524,7 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * 
      * &lt;/details&gt;
      * ## Attributes reference
      * 
@@ -2532,6 +2586,7 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * 
      * &lt;/details&gt;
      * 
      * &lt;details&gt;
@@ -2568,6 +2623,7 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * 
      * &lt;/details&gt;
      * ## Attributes reference
      * 
@@ -2629,6 +2685,7 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * 
      * &lt;/details&gt;
      * 
      * &lt;details&gt;
@@ -2665,6 +2722,7 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * 
      * &lt;/details&gt;
      * ## Attributes reference
      * 
@@ -2726,6 +2784,7 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * 
      * &lt;/details&gt;
      * 
      * &lt;details&gt;
@@ -2762,6 +2821,7 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * 
      * &lt;/details&gt;
      * ## Attributes reference
      * 

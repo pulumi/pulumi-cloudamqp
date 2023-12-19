@@ -17,27 +17,14 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Enable PrivateLink for a CloudAMQP instance hosted in AWS. If no existing VPC available when enable PrivateLink, a new VPC will be created with subnet `10.52.72.0/24`.
+ * Enable PrivateLink for a CloudAMQP instance hosted in AWS. If no existing VPC available when enable
+ * PrivateLink, a new VPC will be created with subnet `10.52.72.0/24`.
  * 
  * &gt; **Note:** Enabling PrivateLink will automatically add firewall rules for the peered subnet.
  * &lt;details&gt;
  *  &lt;summary&gt;
  *     &lt;i&gt;Default PrivateLink firewall rule&lt;/i&gt;
  *   &lt;/summary&gt;
- * ```typescript
- * import * as pulumi from &#34;@pulumi/pulumi&#34;;
- * ```
- * ```python
- * import pulumi
- * ```
- * ```csharp
- * using System.Collections.Generic;
- * using System.Linq;
- * using Pulumi;
- * 
- * return await Deployment.RunAsync(() =&gt;
- * {
- * });
  * ```java
  * package generated_program;
  * 
@@ -60,11 +47,17 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * 
  * &lt;/details&gt;
  * 
- * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html) where you can also find more information about [CloudAMQP PrivateLink](https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#aws-privatelink).
+ * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html)
+ * where you can also find more information about
+ * [CloudAMQP PrivateLink](https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#aws-privatelink).
  * 
  * Only available for dedicated subscription plans.
+ * 
+ * &gt; **Warning:** This resource considered deprecated and will be removed in next major version (v2.0).
+ * Recommended to start using the new resource`cloudamqp.VpcConnect`.
  * 
  * ## Example Usage
  * 
@@ -111,6 +104,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * 
  * &lt;/details&gt;
  * 
  * &lt;details&gt;
@@ -166,6 +160,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * 
  * &lt;/details&gt;
  * ### With Additional Firewall Rules
  * 
@@ -250,6 +245,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * 
  * &lt;/details&gt;
  * ## Depedency
  * 
@@ -258,9 +254,11 @@ import javax.annotation.Nullable;
  * ## Create PrivateLink with additional firewall rules
  * 
  * To create a PrivateLink configuration with additional firewall rules, it&#39;s required to chain the cloudamqp.SecurityFirewall
- * resource to avoid parallel conflicting resource calls. You can do this by making the firewall resource depend on the PrivateLink resource, `cloudamqp_privatelink_aws.privatelink`.
+ * resource to avoid parallel conflicting resource calls. You can do this by making the firewall
+ * resource depend on the PrivateLink resource, `cloudamqp_privatelink_aws.privatelink`.
  * 
- * Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for the PrivateLink also needs to be added.
+ * Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
+ * the PrivateLink also needs to be added.
  * 
  * ## Import
  * 
@@ -330,14 +328,16 @@ public class PrivatelinkAws extends com.pulumi.resources.CustomResource {
         return this.serviceName;
     }
     /**
-     * Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+     * Configurable sleep time (seconds) when enable PrivateLink.
+     * Default set to 10 seconds. *Available from v1.29.0*
      * 
      */
     @Export(name="sleep", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> sleep;
 
     /**
-     * @return Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+     * @return Configurable sleep time (seconds) when enable PrivateLink.
+     * Default set to 10 seconds. *Available from v1.29.0*
      * 
      */
     public Output<Optional<Integer>> sleep() {
@@ -358,7 +358,8 @@ public class PrivatelinkAws extends com.pulumi.resources.CustomResource {
         return this.status;
     }
     /**
-     * Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+     * Configurable timeout time (seconds) when enable PrivateLink.
+     * Default set to 1800 seconds. *Available from v1.29.0*
      * 
      * Allowed principals format: &lt;br&gt;
      * `arn:aws:iam::aws-account-id:root` &lt;br&gt;
@@ -370,7 +371,8 @@ public class PrivatelinkAws extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ Integer> timeout;
 
     /**
-     * @return Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+     * @return Configurable timeout time (seconds) when enable PrivateLink.
+     * Default set to 1800 seconds. *Available from v1.29.0*
      * 
      * Allowed principals format: &lt;br&gt;
      * `arn:aws:iam::aws-account-id:root` &lt;br&gt;

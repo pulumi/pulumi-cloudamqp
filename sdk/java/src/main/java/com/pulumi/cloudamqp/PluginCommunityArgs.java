@@ -62,12 +62,48 @@ public final class PluginCommunityArgs extends com.pulumi.resources.ResourceArgs
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * Configurable sleep time (seconds) for retries when requesting information
+     * about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+     * 
+     */
+    @Import(name="sleep")
+    private @Nullable Output<Integer> sleep;
+
+    /**
+     * @return Configurable sleep time (seconds) for retries when requesting information
+     * about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+     * 
+     */
+    public Optional<Output<Integer>> sleep() {
+        return Optional.ofNullable(this.sleep);
+    }
+
+    /**
+     * Configurable timeout time (seconds) for retries when requesting
+     * information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+     * 
+     */
+    @Import(name="timeout")
+    private @Nullable Output<Integer> timeout;
+
+    /**
+     * @return Configurable timeout time (seconds) for retries when requesting
+     * information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+     * 
+     */
+    public Optional<Output<Integer>> timeout() {
+        return Optional.ofNullable(this.timeout);
+    }
+
     private PluginCommunityArgs() {}
 
     private PluginCommunityArgs(PluginCommunityArgs $) {
         this.enabled = $.enabled;
         this.instanceId = $.instanceId;
         this.name = $.name;
+        this.sleep = $.sleep;
+        this.timeout = $.timeout;
     }
 
     public static Builder builder() {
@@ -149,6 +185,52 @@ public final class PluginCommunityArgs extends com.pulumi.resources.ResourceArgs
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param sleep Configurable sleep time (seconds) for retries when requesting information
+         * about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sleep(@Nullable Output<Integer> sleep) {
+            $.sleep = sleep;
+            return this;
+        }
+
+        /**
+         * @param sleep Configurable sleep time (seconds) for retries when requesting information
+         * about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sleep(Integer sleep) {
+            return sleep(Output.of(sleep));
+        }
+
+        /**
+         * @param timeout Configurable timeout time (seconds) for retries when requesting
+         * information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder timeout(@Nullable Output<Integer> timeout) {
+            $.timeout = timeout;
+            return this;
+        }
+
+        /**
+         * @param timeout Configurable timeout time (seconds) for retries when requesting
+         * information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder timeout(Integer timeout) {
+            return timeout(Output.of(timeout));
         }
 
         public PluginCommunityArgs build() {

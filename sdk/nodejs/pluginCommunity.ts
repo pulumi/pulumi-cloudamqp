@@ -61,6 +61,16 @@ export class PluginCommunity extends pulumi.CustomResource {
      * Required version of RabbitMQ.
      */
     public /*out*/ readonly require!: pulumi.Output<string>;
+    /**
+     * Configurable sleep time (seconds) for retries when requesting information
+     * about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+     */
+    public readonly sleep!: pulumi.Output<number | undefined>;
+    /**
+     * Configurable timeout time (seconds) for retries when requesting
+     * information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+     */
+    public readonly timeout!: pulumi.Output<number | undefined>;
 
     /**
      * Create a PluginCommunity resource with the given unique name, arguments, and options.
@@ -80,6 +90,8 @@ export class PluginCommunity extends pulumi.CustomResource {
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["require"] = state ? state.require : undefined;
+            resourceInputs["sleep"] = state ? state.sleep : undefined;
+            resourceInputs["timeout"] = state ? state.timeout : undefined;
         } else {
             const args = argsOrState as PluginCommunityArgs | undefined;
             if ((!args || args.enabled === undefined) && !opts.urn) {
@@ -91,6 +103,8 @@ export class PluginCommunity extends pulumi.CustomResource {
             resourceInputs["enabled"] = args ? args.enabled : undefined;
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["sleep"] = args ? args.sleep : undefined;
+            resourceInputs["timeout"] = args ? args.timeout : undefined;
             resourceInputs["description"] = undefined /*out*/;
             resourceInputs["require"] = undefined /*out*/;
         }
@@ -123,6 +137,16 @@ export interface PluginCommunityState {
      * Required version of RabbitMQ.
      */
     require?: pulumi.Input<string>;
+    /**
+     * Configurable sleep time (seconds) for retries when requesting information
+     * about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+     */
+    sleep?: pulumi.Input<number>;
+    /**
+     * Configurable timeout time (seconds) for retries when requesting
+     * information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+     */
+    timeout?: pulumi.Input<number>;
 }
 
 /**
@@ -141,4 +165,14 @@ export interface PluginCommunityArgs {
      * The name of the Rabbit MQ community plugin.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Configurable sleep time (seconds) for retries when requesting information
+     * about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+     */
+    sleep?: pulumi.Input<number>;
+    /**
+     * Configurable timeout time (seconds) for retries when requesting
+     * information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+     */
+    timeout?: pulumi.Input<number>;
 }

@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -23,6 +25,10 @@ import * as utilities from "./utilities";
  *
  * * `id`      - The identifier for this resource.
  * * `plugins` - An array of community plugins. Each `plugins` block consists of the fields documented below.
+ * * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
+ *   about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+ * * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
+ *   information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
  *
  * ***
  *
@@ -66,6 +72,8 @@ export interface GetPluginsCommunityResult {
     readonly plugins: outputs.GetPluginsCommunityPlugin[];
 }
 /**
+ * Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -82,6 +90,10 @@ export interface GetPluginsCommunityResult {
  *
  * * `id`      - The identifier for this resource.
  * * `plugins` - An array of community plugins. Each `plugins` block consists of the fields documented below.
+ * * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
+ *   about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+ * * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
+ *   information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
  *
  * ***
  *

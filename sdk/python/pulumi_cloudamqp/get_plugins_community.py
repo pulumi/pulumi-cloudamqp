@@ -66,6 +66,8 @@ class AwaitableGetPluginsCommunityResult(GetPluginsCommunityResult):
 def get_plugins_community(instance_id: Optional[int] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPluginsCommunityResult:
     """
+    Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
+
     ## Example Usage
 
     ```python
@@ -80,6 +82,10 @@ def get_plugins_community(instance_id: Optional[int] = None,
 
     * `id`      - The identifier for this resource.
     * `plugins` - An array of community plugins. Each `plugins` block consists of the fields documented below.
+    * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
+      about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+    * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
+      information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
 
     ***
 
@@ -111,6 +117,8 @@ def get_plugins_community(instance_id: Optional[int] = None,
 def get_plugins_community_output(instance_id: Optional[pulumi.Input[int]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPluginsCommunityResult]:
     """
+    Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
+
     ## Example Usage
 
     ```python
@@ -125,6 +133,10 @@ def get_plugins_community_output(instance_id: Optional[pulumi.Input[int]] = None
 
     * `id`      - The identifier for this resource.
     * `plugins` - An array of community plugins. Each `plugins` block consists of the fields documented below.
+    * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
+      about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+    * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
+      information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
 
     ***
 

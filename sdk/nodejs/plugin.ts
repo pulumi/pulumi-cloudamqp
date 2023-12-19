@@ -58,6 +58,16 @@ export class Plugin extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * Configurable sleep time (seconds) for retries when requesting information
+     * about plugins. Default set to 10 seconds. *Available from v1.29.0*
+     */
+    public readonly sleep!: pulumi.Output<number | undefined>;
+    /**
+     * Configurable timeout time (seconds) for retries when requesting
+     * information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+     */
+    public readonly timeout!: pulumi.Output<number | undefined>;
+    /**
      * The version of the plugin.
      */
     public /*out*/ readonly version!: pulumi.Output<string>;
@@ -79,6 +89,8 @@ export class Plugin extends pulumi.CustomResource {
             resourceInputs["enabled"] = state ? state.enabled : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["sleep"] = state ? state.sleep : undefined;
+            resourceInputs["timeout"] = state ? state.timeout : undefined;
             resourceInputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as PluginArgs | undefined;
@@ -91,6 +103,8 @@ export class Plugin extends pulumi.CustomResource {
             resourceInputs["enabled"] = args ? args.enabled : undefined;
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["sleep"] = args ? args.sleep : undefined;
+            resourceInputs["timeout"] = args ? args.timeout : undefined;
             resourceInputs["description"] = undefined /*out*/;
             resourceInputs["version"] = undefined /*out*/;
         }
@@ -120,6 +134,16 @@ export interface PluginState {
      */
     name?: pulumi.Input<string>;
     /**
+     * Configurable sleep time (seconds) for retries when requesting information
+     * about plugins. Default set to 10 seconds. *Available from v1.29.0*
+     */
+    sleep?: pulumi.Input<number>;
+    /**
+     * Configurable timeout time (seconds) for retries when requesting
+     * information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+     */
+    timeout?: pulumi.Input<number>;
+    /**
      * The version of the plugin.
      */
     version?: pulumi.Input<string>;
@@ -141,4 +165,14 @@ export interface PluginArgs {
      * The name of the Rabbit MQ plugin.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Configurable sleep time (seconds) for retries when requesting information
+     * about plugins. Default set to 10 seconds. *Available from v1.29.0*
+     */
+    sleep?: pulumi.Input<number>;
+    /**
+     * Configurable timeout time (seconds) for retries when requesting
+     * information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+     */
+    timeout?: pulumi.Input<number>;
 }
