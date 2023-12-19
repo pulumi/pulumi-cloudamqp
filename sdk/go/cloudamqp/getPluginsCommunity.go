@@ -11,6 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
+//
 // ## Example Usage
 //
 // ```go
@@ -40,8 +42,12 @@ import (
 //
 // # All attributes reference are computed
 //
-// * `id`      - The identifier for this resource.
-// * `plugins` - An array of community plugins. Each `plugins` block consists of the fields documented below.
+//   - `id`      - The identifier for this resource.
+//   - `plugins` - An array of community plugins. Each `plugins` block consists of the fields documented below.
+//   - `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
+//     about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+//   - `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
+//     information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
 //
 // ***
 //

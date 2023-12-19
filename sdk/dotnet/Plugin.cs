@@ -46,6 +46,20 @@ namespace Pulumi.CloudAmqp
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// Configurable sleep time (seconds) for retries when requesting information
+        /// about plugins. Default set to 10 seconds. *Available from v1.29.0*
+        /// </summary>
+        [Output("sleep")]
+        public Output<int?> Sleep { get; private set; } = null!;
+
+        /// <summary>
+        /// Configurable timeout time (seconds) for retries when requesting
+        /// information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+        /// </summary>
+        [Output("timeout")]
+        public Output<int?> Timeout { get; private set; } = null!;
+
+        /// <summary>
         /// The version of the plugin.
         /// </summary>
         [Output("version")]
@@ -115,6 +129,20 @@ namespace Pulumi.CloudAmqp
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Configurable sleep time (seconds) for retries when requesting information
+        /// about plugins. Default set to 10 seconds. *Available from v1.29.0*
+        /// </summary>
+        [Input("sleep")]
+        public Input<int>? Sleep { get; set; }
+
+        /// <summary>
+        /// Configurable timeout time (seconds) for retries when requesting
+        /// information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+        /// </summary>
+        [Input("timeout")]
+        public Input<int>? Timeout { get; set; }
+
         public PluginArgs()
         {
         }
@@ -146,6 +174,20 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Configurable sleep time (seconds) for retries when requesting information
+        /// about plugins. Default set to 10 seconds. *Available from v1.29.0*
+        /// </summary>
+        [Input("sleep")]
+        public Input<int>? Sleep { get; set; }
+
+        /// <summary>
+        /// Configurable timeout time (seconds) for retries when requesting
+        /// information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+        /// </summary>
+        [Input("timeout")]
+        public Input<int>? Timeout { get; set; }
 
         /// <summary>
         /// The version of the plugin.

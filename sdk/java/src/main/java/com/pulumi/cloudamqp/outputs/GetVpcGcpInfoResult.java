@@ -20,6 +20,8 @@ public final class GetVpcGcpInfoResult {
     private @Nullable Integer instanceId;
     private String name;
     private String network;
+    private @Nullable Integer sleep;
+    private @Nullable Integer timeout;
     private @Nullable String vpcId;
     private String vpcSubnet;
 
@@ -39,6 +41,12 @@ public final class GetVpcGcpInfoResult {
     }
     public String network() {
         return this.network;
+    }
+    public Optional<Integer> sleep() {
+        return Optional.ofNullable(this.sleep);
+    }
+    public Optional<Integer> timeout() {
+        return Optional.ofNullable(this.timeout);
     }
     public Optional<String> vpcId() {
         return Optional.ofNullable(this.vpcId);
@@ -60,6 +68,8 @@ public final class GetVpcGcpInfoResult {
         private @Nullable Integer instanceId;
         private String name;
         private String network;
+        private @Nullable Integer sleep;
+        private @Nullable Integer timeout;
         private @Nullable String vpcId;
         private String vpcSubnet;
         public Builder() {}
@@ -69,6 +79,8 @@ public final class GetVpcGcpInfoResult {
     	      this.instanceId = defaults.instanceId;
     	      this.name = defaults.name;
     	      this.network = defaults.network;
+    	      this.sleep = defaults.sleep;
+    	      this.timeout = defaults.timeout;
     	      this.vpcId = defaults.vpcId;
     	      this.vpcSubnet = defaults.vpcSubnet;
         }
@@ -94,6 +106,16 @@ public final class GetVpcGcpInfoResult {
             return this;
         }
         @CustomType.Setter
+        public Builder sleep(@Nullable Integer sleep) {
+            this.sleep = sleep;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder timeout(@Nullable Integer timeout) {
+            this.timeout = timeout;
+            return this;
+        }
+        @CustomType.Setter
         public Builder vpcId(@Nullable String vpcId) {
             this.vpcId = vpcId;
             return this;
@@ -109,6 +131,8 @@ public final class GetVpcGcpInfoResult {
             _resultValue.instanceId = instanceId;
             _resultValue.name = name;
             _resultValue.network = network;
+            _resultValue.sleep = sleep;
+            _resultValue.timeout = timeout;
             _resultValue.vpcId = vpcId;
             _resultValue.vpcSubnet = vpcSubnet;
             return _resultValue;

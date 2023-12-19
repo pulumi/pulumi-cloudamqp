@@ -5,6 +5,7 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .account_action import *
 from .alarm import *
 from .custom_domain import *
 from .extra_disk_size import *
@@ -35,6 +36,7 @@ from .rabbit_configuration import *
 from .security_firewall import *
 from .upgrade_rabbitmq import *
 from .vpc import *
+from .vpc_connect import *
 from .vpc_gcp_peering import *
 from .vpc_peering import *
 from .webhook import *
@@ -51,6 +53,14 @@ else:
 _utilities.register(
     resource_modules="""
 [
+ {
+  "pkg": "cloudamqp",
+  "mod": "index/accountAction",
+  "fqn": "pulumi_cloudamqp",
+  "classes": {
+   "cloudamqp:index/accountAction:AccountAction": "AccountAction"
+  }
+ },
  {
   "pkg": "cloudamqp",
   "mod": "index/alarm",
@@ -185,6 +195,14 @@ _utilities.register(
   "fqn": "pulumi_cloudamqp",
   "classes": {
    "cloudamqp:index/vpc:Vpc": "Vpc"
+  }
+ },
+ {
+  "pkg": "cloudamqp",
+  "mod": "index/vpcConnect",
+  "fqn": "pulumi_cloudamqp",
+  "classes": {
+   "cloudamqp:index/vpcConnect:VpcConnect": "VpcConnect"
   }
  },
  {

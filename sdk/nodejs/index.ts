@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { AccountActionArgs, AccountActionState } from "./accountAction";
+export type AccountAction = import("./accountAction").AccountAction;
+export const AccountAction: typeof import("./accountAction").AccountAction = null as any;
+utilities.lazyLoad(exports, ["AccountAction"], () => require("./accountAction"));
+
 export { AlarmArgs, AlarmState } from "./alarm";
 export type Alarm = import("./alarm").Alarm;
 export const Alarm: typeof import("./alarm").Alarm = null as any;
@@ -155,6 +160,11 @@ export type Vpc = import("./vpc").Vpc;
 export const Vpc: typeof import("./vpc").Vpc = null as any;
 utilities.lazyLoad(exports, ["Vpc"], () => require("./vpc"));
 
+export { VpcConnectArgs, VpcConnectState } from "./vpcConnect";
+export type VpcConnect = import("./vpcConnect").VpcConnect;
+export const VpcConnect: typeof import("./vpcConnect").VpcConnect = null as any;
+utilities.lazyLoad(exports, ["VpcConnect"], () => require("./vpcConnect"));
+
 export { VpcGcpPeeringArgs, VpcGcpPeeringState } from "./vpcGcpPeering";
 export type VpcGcpPeering = import("./vpcGcpPeering").VpcGcpPeering;
 export const VpcGcpPeering: typeof import("./vpcGcpPeering").VpcGcpPeering = null as any;
@@ -184,6 +194,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "cloudamqp:index/accountAction:AccountAction":
+                return new AccountAction(name, <any>undefined, { urn })
             case "cloudamqp:index/alarm:Alarm":
                 return new Alarm(name, <any>undefined, { urn })
             case "cloudamqp:index/customDomain:CustomDomain":
@@ -218,6 +230,8 @@ const _module = {
                 return new UpgradeRabbitmq(name, <any>undefined, { urn })
             case "cloudamqp:index/vpc:Vpc":
                 return new Vpc(name, <any>undefined, { urn })
+            case "cloudamqp:index/vpcConnect:VpcConnect":
+                return new VpcConnect(name, <any>undefined, { urn })
             case "cloudamqp:index/vpcGcpPeering:VpcGcpPeering":
                 return new VpcGcpPeering(name, <any>undefined, { urn })
             case "cloudamqp:index/vpcPeering:VpcPeering":
@@ -229,6 +243,7 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("cloudamqp", "index/accountAction", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/alarm", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/customDomain", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/extraDiskSize", _module)
@@ -246,6 +261,7 @@ pulumi.runtime.registerResourceModule("cloudamqp", "index/rabbitConfiguration", 
 pulumi.runtime.registerResourceModule("cloudamqp", "index/securityFirewall", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/upgradeRabbitmq", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/vpc", _module)
+pulumi.runtime.registerResourceModule("cloudamqp", "index/vpcConnect", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/vpcGcpPeering", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/vpcPeering", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/webhook", _module)

@@ -16,24 +16,29 @@ class VpcGcpPeeringArgs:
     def __init__(__self__, *,
                  peer_network_uri: pulumi.Input[str],
                  instance_id: Optional[pulumi.Input[int]] = None,
+                 sleep: Optional[pulumi.Input[int]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  wait_on_peering_status: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a VpcGcpPeering resource.
         :param pulumi.Input[str] peer_network_uri: Network uri of the VPC network to which you will peer with.
-        :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
-               
-               ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
-        :param pulumi.Input[str] vpc_id: The managed VPC identifier.
-               
-               ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
+        :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier. *Deprecated from v1.16.0*
+        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) between retries when requesting or reading
+               peering. Default set to 10 seconds. *Available from v1.29.0*
+        :param pulumi.Input[int] timeout: Configurable timeout time (seconds) before retries times out. Default set
+               to 1800 seconds. *Available from v1.29.0*
+        :param pulumi.Input[str] vpc_id: The managed VPC identifier. *Available from v1.16.0*
         :param pulumi.Input[bool] wait_on_peering_status: Makes the resource wait until the peering is connected.
-               
-               ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+               Default set to false. *Available from v1.28.0*
         """
         pulumi.set(__self__, "peer_network_uri", peer_network_uri)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
+        if sleep is not None:
+            pulumi.set(__self__, "sleep", sleep)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
         if vpc_id is not None:
             pulumi.set(__self__, "vpc_id", vpc_id)
         if wait_on_peering_status is not None:
@@ -55,9 +60,7 @@ class VpcGcpPeeringArgs:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[int]]:
         """
-        The CloudAMQP instance identifier.
-
-        ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+        The CloudAMQP instance identifier. *Deprecated from v1.16.0*
         """
         return pulumi.get(self, "instance_id")
 
@@ -66,12 +69,36 @@ class VpcGcpPeeringArgs:
         pulumi.set(self, "instance_id", value)
 
     @property
+    @pulumi.getter
+    def sleep(self) -> Optional[pulumi.Input[int]]:
+        """
+        Configurable sleep time (seconds) between retries when requesting or reading
+        peering. Default set to 10 seconds. *Available from v1.29.0*
+        """
+        return pulumi.get(self, "sleep")
+
+    @sleep.setter
+    def sleep(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "sleep", value)
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Configurable timeout time (seconds) before retries times out. Default set
+        to 1800 seconds. *Available from v1.29.0*
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "timeout", value)
+
+    @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The managed VPC identifier.
-
-        ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
+        The managed VPC identifier. *Available from v1.16.0*
         """
         return pulumi.get(self, "vpc_id")
 
@@ -84,8 +111,7 @@ class VpcGcpPeeringArgs:
     def wait_on_peering_status(self) -> Optional[pulumi.Input[bool]]:
         """
         Makes the resource wait until the peering is connected.
-
-        ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+        Default set to false. *Available from v1.28.0*
         """
         return pulumi.get(self, "wait_on_peering_status")
 
@@ -100,25 +126,26 @@ class _VpcGcpPeeringState:
                  auto_create_routes: Optional[pulumi.Input[bool]] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  peer_network_uri: Optional[pulumi.Input[str]] = None,
+                 sleep: Optional[pulumi.Input[int]] = None,
                  state: Optional[pulumi.Input[str]] = None,
                  state_details: Optional[pulumi.Input[str]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  wait_on_peering_status: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering VpcGcpPeering resources.
         :param pulumi.Input[bool] auto_create_routes: VPC peering auto created routes
-        :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
-               
-               ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+        :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier. *Deprecated from v1.16.0*
         :param pulumi.Input[str] peer_network_uri: Network uri of the VPC network to which you will peer with.
+        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) between retries when requesting or reading
+               peering. Default set to 10 seconds. *Available from v1.29.0*
         :param pulumi.Input[str] state: VPC peering state
         :param pulumi.Input[str] state_details: VPC peering state details
-        :param pulumi.Input[str] vpc_id: The managed VPC identifier.
-               
-               ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
+        :param pulumi.Input[int] timeout: Configurable timeout time (seconds) before retries times out. Default set
+               to 1800 seconds. *Available from v1.29.0*
+        :param pulumi.Input[str] vpc_id: The managed VPC identifier. *Available from v1.16.0*
         :param pulumi.Input[bool] wait_on_peering_status: Makes the resource wait until the peering is connected.
-               
-               ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+               Default set to false. *Available from v1.28.0*
         """
         if auto_create_routes is not None:
             pulumi.set(__self__, "auto_create_routes", auto_create_routes)
@@ -126,10 +153,14 @@ class _VpcGcpPeeringState:
             pulumi.set(__self__, "instance_id", instance_id)
         if peer_network_uri is not None:
             pulumi.set(__self__, "peer_network_uri", peer_network_uri)
+        if sleep is not None:
+            pulumi.set(__self__, "sleep", sleep)
         if state is not None:
             pulumi.set(__self__, "state", state)
         if state_details is not None:
             pulumi.set(__self__, "state_details", state_details)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
         if vpc_id is not None:
             pulumi.set(__self__, "vpc_id", vpc_id)
         if wait_on_peering_status is not None:
@@ -151,9 +182,7 @@ class _VpcGcpPeeringState:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[int]]:
         """
-        The CloudAMQP instance identifier.
-
-        ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+        The CloudAMQP instance identifier. *Deprecated from v1.16.0*
         """
         return pulumi.get(self, "instance_id")
 
@@ -172,6 +201,19 @@ class _VpcGcpPeeringState:
     @peer_network_uri.setter
     def peer_network_uri(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "peer_network_uri", value)
+
+    @property
+    @pulumi.getter
+    def sleep(self) -> Optional[pulumi.Input[int]]:
+        """
+        Configurable sleep time (seconds) between retries when requesting or reading
+        peering. Default set to 10 seconds. *Available from v1.29.0*
+        """
+        return pulumi.get(self, "sleep")
+
+    @sleep.setter
+    def sleep(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "sleep", value)
 
     @property
     @pulumi.getter
@@ -198,12 +240,23 @@ class _VpcGcpPeeringState:
         pulumi.set(self, "state_details", value)
 
     @property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Configurable timeout time (seconds) before retries times out. Default set
+        to 1800 seconds. *Available from v1.29.0*
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "timeout", value)
+
+    @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The managed VPC identifier.
-
-        ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
+        The managed VPC identifier. *Available from v1.16.0*
         """
         return pulumi.get(self, "vpc_id")
 
@@ -216,8 +269,7 @@ class _VpcGcpPeeringState:
     def wait_on_peering_status(self) -> Optional[pulumi.Input[bool]]:
         """
         Makes the resource wait until the peering is connected.
-
-        ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+        Default set to false. *Available from v1.28.0*
         """
         return pulumi.get(self, "wait_on_peering_status")
 
@@ -233,6 +285,8 @@ class VpcGcpPeering(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  peer_network_uri: Optional[pulumi.Input[str]] = None,
+                 sleep: Optional[pulumi.Input[int]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  wait_on_peering_status: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
@@ -240,13 +294,16 @@ class VpcGcpPeering(pulumi.CustomResource):
         This resouce creates a VPC peering configuration for the CloudAMQP instance. The configuration will connect to another VPC network hosted on Google Cloud Platform (GCP). See the [GCP documentation](https://cloud.google.com/vpc/docs/using-vpc-peering) for more information on how to create the VPC peering configuration.
 
         > **Note:** Creating a VPC peering will automatically add firewall rules for the peered subnet.
+
         <details>
          <summary>
             <i>Default VPC peering firewall rule</i>
           </summary>
+
         ```python
         import pulumi
         ```
+
         </details>
 
         Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
@@ -301,6 +358,7 @@ class VpcGcpPeering(pulumi.CustomResource):
             ],
             opts=pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
         ```
+
         </details>
 
         <details>
@@ -342,6 +400,7 @@ class VpcGcpPeering(pulumi.CustomResource):
             ],
             opts=pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
         ```
+
         </details>
         ## Depedency
 
@@ -366,16 +425,15 @@ class VpcGcpPeering(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
-               
-               ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+        :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier. *Deprecated from v1.16.0*
         :param pulumi.Input[str] peer_network_uri: Network uri of the VPC network to which you will peer with.
-        :param pulumi.Input[str] vpc_id: The managed VPC identifier.
-               
-               ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
+        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) between retries when requesting or reading
+               peering. Default set to 10 seconds. *Available from v1.29.0*
+        :param pulumi.Input[int] timeout: Configurable timeout time (seconds) before retries times out. Default set
+               to 1800 seconds. *Available from v1.29.0*
+        :param pulumi.Input[str] vpc_id: The managed VPC identifier. *Available from v1.16.0*
         :param pulumi.Input[bool] wait_on_peering_status: Makes the resource wait until the peering is connected.
-               
-               ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+               Default set to false. *Available from v1.28.0*
         """
         ...
     @overload
@@ -387,13 +445,16 @@ class VpcGcpPeering(pulumi.CustomResource):
         This resouce creates a VPC peering configuration for the CloudAMQP instance. The configuration will connect to another VPC network hosted on Google Cloud Platform (GCP). See the [GCP documentation](https://cloud.google.com/vpc/docs/using-vpc-peering) for more information on how to create the VPC peering configuration.
 
         > **Note:** Creating a VPC peering will automatically add firewall rules for the peered subnet.
+
         <details>
          <summary>
             <i>Default VPC peering firewall rule</i>
           </summary>
+
         ```python
         import pulumi
         ```
+
         </details>
 
         Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
@@ -448,6 +509,7 @@ class VpcGcpPeering(pulumi.CustomResource):
             ],
             opts=pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
         ```
+
         </details>
 
         <details>
@@ -489,6 +551,7 @@ class VpcGcpPeering(pulumi.CustomResource):
             ],
             opts=pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
         ```
+
         </details>
         ## Depedency
 
@@ -528,6 +591,8 @@ class VpcGcpPeering(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  peer_network_uri: Optional[pulumi.Input[str]] = None,
+                 sleep: Optional[pulumi.Input[int]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  wait_on_peering_status: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
@@ -543,6 +608,8 @@ class VpcGcpPeering(pulumi.CustomResource):
             if peer_network_uri is None and not opts.urn:
                 raise TypeError("Missing required property 'peer_network_uri'")
             __props__.__dict__["peer_network_uri"] = peer_network_uri
+            __props__.__dict__["sleep"] = sleep
+            __props__.__dict__["timeout"] = timeout
             __props__.__dict__["vpc_id"] = vpc_id
             __props__.__dict__["wait_on_peering_status"] = wait_on_peering_status
             __props__.__dict__["auto_create_routes"] = None
@@ -561,8 +628,10 @@ class VpcGcpPeering(pulumi.CustomResource):
             auto_create_routes: Optional[pulumi.Input[bool]] = None,
             instance_id: Optional[pulumi.Input[int]] = None,
             peer_network_uri: Optional[pulumi.Input[str]] = None,
+            sleep: Optional[pulumi.Input[int]] = None,
             state: Optional[pulumi.Input[str]] = None,
             state_details: Optional[pulumi.Input[str]] = None,
+            timeout: Optional[pulumi.Input[int]] = None,
             vpc_id: Optional[pulumi.Input[str]] = None,
             wait_on_peering_status: Optional[pulumi.Input[bool]] = None) -> 'VpcGcpPeering':
         """
@@ -573,18 +642,17 @@ class VpcGcpPeering(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] auto_create_routes: VPC peering auto created routes
-        :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
-               
-               ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+        :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier. *Deprecated from v1.16.0*
         :param pulumi.Input[str] peer_network_uri: Network uri of the VPC network to which you will peer with.
+        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) between retries when requesting or reading
+               peering. Default set to 10 seconds. *Available from v1.29.0*
         :param pulumi.Input[str] state: VPC peering state
         :param pulumi.Input[str] state_details: VPC peering state details
-        :param pulumi.Input[str] vpc_id: The managed VPC identifier.
-               
-               ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
+        :param pulumi.Input[int] timeout: Configurable timeout time (seconds) before retries times out. Default set
+               to 1800 seconds. *Available from v1.29.0*
+        :param pulumi.Input[str] vpc_id: The managed VPC identifier. *Available from v1.16.0*
         :param pulumi.Input[bool] wait_on_peering_status: Makes the resource wait until the peering is connected.
-               
-               ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+               Default set to false. *Available from v1.28.0*
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -593,8 +661,10 @@ class VpcGcpPeering(pulumi.CustomResource):
         __props__.__dict__["auto_create_routes"] = auto_create_routes
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["peer_network_uri"] = peer_network_uri
+        __props__.__dict__["sleep"] = sleep
         __props__.__dict__["state"] = state
         __props__.__dict__["state_details"] = state_details
+        __props__.__dict__["timeout"] = timeout
         __props__.__dict__["vpc_id"] = vpc_id
         __props__.__dict__["wait_on_peering_status"] = wait_on_peering_status
         return VpcGcpPeering(resource_name, opts=opts, __props__=__props__)
@@ -611,9 +681,7 @@ class VpcGcpPeering(pulumi.CustomResource):
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[Optional[int]]:
         """
-        The CloudAMQP instance identifier.
-
-        ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+        The CloudAMQP instance identifier. *Deprecated from v1.16.0*
         """
         return pulumi.get(self, "instance_id")
 
@@ -624,6 +692,15 @@ class VpcGcpPeering(pulumi.CustomResource):
         Network uri of the VPC network to which you will peer with.
         """
         return pulumi.get(self, "peer_network_uri")
+
+    @property
+    @pulumi.getter
+    def sleep(self) -> pulumi.Output[Optional[int]]:
+        """
+        Configurable sleep time (seconds) between retries when requesting or reading
+        peering. Default set to 10 seconds. *Available from v1.29.0*
+        """
+        return pulumi.get(self, "sleep")
 
     @property
     @pulumi.getter
@@ -642,12 +719,19 @@ class VpcGcpPeering(pulumi.CustomResource):
         return pulumi.get(self, "state_details")
 
     @property
+    @pulumi.getter
+    def timeout(self) -> pulumi.Output[Optional[int]]:
+        """
+        Configurable timeout time (seconds) before retries times out. Default set
+        to 1800 seconds. *Available from v1.29.0*
+        """
+        return pulumi.get(self, "timeout")
+
+    @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The managed VPC identifier.
-
-        ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
+        The managed VPC identifier. *Available from v1.16.0*
         """
         return pulumi.get(self, "vpc_id")
 
@@ -656,8 +740,7 @@ class VpcGcpPeering(pulumi.CustomResource):
     def wait_on_peering_status(self) -> pulumi.Output[Optional[bool]]:
         """
         Makes the resource wait until the peering is connected.
-
-        ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+        Default set to false. *Available from v1.28.0*
         """
         return pulumi.get(self, "wait_on_peering_status")
 

@@ -34,6 +34,12 @@ type PluginCommunity struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Required version of RabbitMQ.
 	Require pulumi.StringOutput `pulumi:"require"`
+	// Configurable sleep time (seconds) for retries when requesting information
+	// about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+	Sleep pulumi.IntPtrOutput `pulumi:"sleep"`
+	// Configurable timeout time (seconds) for retries when requesting
+	// information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+	Timeout pulumi.IntPtrOutput `pulumi:"timeout"`
 }
 
 // NewPluginCommunity registers a new resource with the given unique name, arguments, and options.
@@ -82,6 +88,12 @@ type pluginCommunityState struct {
 	Name *string `pulumi:"name"`
 	// Required version of RabbitMQ.
 	Require *string `pulumi:"require"`
+	// Configurable sleep time (seconds) for retries when requesting information
+	// about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+	Sleep *int `pulumi:"sleep"`
+	// Configurable timeout time (seconds) for retries when requesting
+	// information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+	Timeout *int `pulumi:"timeout"`
 }
 
 type PluginCommunityState struct {
@@ -95,6 +107,12 @@ type PluginCommunityState struct {
 	Name pulumi.StringPtrInput
 	// Required version of RabbitMQ.
 	Require pulumi.StringPtrInput
+	// Configurable sleep time (seconds) for retries when requesting information
+	// about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+	Sleep pulumi.IntPtrInput
+	// Configurable timeout time (seconds) for retries when requesting
+	// information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+	Timeout pulumi.IntPtrInput
 }
 
 func (PluginCommunityState) ElementType() reflect.Type {
@@ -108,6 +126,12 @@ type pluginCommunityArgs struct {
 	InstanceId int `pulumi:"instanceId"`
 	// The name of the Rabbit MQ community plugin.
 	Name *string `pulumi:"name"`
+	// Configurable sleep time (seconds) for retries when requesting information
+	// about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+	Sleep *int `pulumi:"sleep"`
+	// Configurable timeout time (seconds) for retries when requesting
+	// information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+	Timeout *int `pulumi:"timeout"`
 }
 
 // The set of arguments for constructing a PluginCommunity resource.
@@ -118,6 +142,12 @@ type PluginCommunityArgs struct {
 	InstanceId pulumi.IntInput
 	// The name of the Rabbit MQ community plugin.
 	Name pulumi.StringPtrInput
+	// Configurable sleep time (seconds) for retries when requesting information
+	// about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+	Sleep pulumi.IntPtrInput
+	// Configurable timeout time (seconds) for retries when requesting
+	// information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+	Timeout pulumi.IntPtrInput
 }
 
 func (PluginCommunityArgs) ElementType() reflect.Type {
@@ -230,6 +260,18 @@ func (o PluginCommunityOutput) Name() pulumi.StringOutput {
 // Required version of RabbitMQ.
 func (o PluginCommunityOutput) Require() pulumi.StringOutput {
 	return o.ApplyT(func(v *PluginCommunity) pulumi.StringOutput { return v.Require }).(pulumi.StringOutput)
+}
+
+// Configurable sleep time (seconds) for retries when requesting information
+// about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+func (o PluginCommunityOutput) Sleep() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *PluginCommunity) pulumi.IntPtrOutput { return v.Sleep }).(pulumi.IntPtrOutput)
+}
+
+// Configurable timeout time (seconds) for retries when requesting
+// information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+func (o PluginCommunityOutput) Timeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *PluginCommunity) pulumi.IntPtrOutput { return v.Timeout }).(pulumi.IntPtrOutput)
 }
 
 type PluginCommunityArrayOutput struct{ *pulumi.OutputState }

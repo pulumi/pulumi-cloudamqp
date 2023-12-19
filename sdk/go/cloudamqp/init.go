@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "cloudamqp:index/accountAction:AccountAction":
+		r = &AccountAction{}
 	case "cloudamqp:index/alarm:Alarm":
 		r = &Alarm{}
 	case "cloudamqp:index/customDomain:CustomDomain":
@@ -55,6 +57,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &UpgradeRabbitmq{}
 	case "cloudamqp:index/vpc:Vpc":
 		r = &Vpc{}
+	case "cloudamqp:index/vpcConnect:VpcConnect":
+		r = &VpcConnect{}
 	case "cloudamqp:index/vpcGcpPeering:VpcGcpPeering":
 		r = &VpcGcpPeering{}
 	case "cloudamqp:index/vpcPeering:VpcPeering":
@@ -92,6 +96,11 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"cloudamqp",
+		"index/accountAction",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"cloudamqp",
 		"index/alarm",
@@ -175,6 +184,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"cloudamqp",
 		"index/vpc",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"cloudamqp",
+		"index/vpcConnect",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -8,13 +8,16 @@ import * as utilities from "./utilities";
  * This resouce creates a VPC peering configuration for the CloudAMQP instance. The configuration will connect to another VPC network hosted on Google Cloud Platform (GCP). See the [GCP documentation](https://cloud.google.com/vpc/docs/using-vpc-peering) for more information on how to create the VPC peering configuration.
  *
  * > **Note:** Creating a VPC peering will automatically add firewall rules for the peered subnet.
+ *
  * <details>
  *  <summary>
  *     <i>Default VPC peering firewall rule</i>
  *   </summary>
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * ```
+ *
  * </details>
  *
  * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
@@ -72,6 +75,7 @@ import * as utilities from "./utilities";
  *     dependsOn: [vpcPeeringRequest],
  * });
  * ```
+ *
  * </details>
  *
  * <details>
@@ -116,6 +120,7 @@ import * as utilities from "./utilities";
  *     dependsOn: [vpcPeeringRequest],
  * });
  * ```
+ *
  * </details>
  * ## Depedency
  *
@@ -171,15 +176,18 @@ export class VpcGcpPeering extends pulumi.CustomResource {
      */
     public /*out*/ readonly autoCreateRoutes!: pulumi.Output<boolean>;
     /**
-     * The CloudAMQP instance identifier.
-     *
-     * ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+     * The CloudAMQP instance identifier. *Deprecated from v1.16.0*
      */
     public readonly instanceId!: pulumi.Output<number | undefined>;
     /**
      * Network uri of the VPC network to which you will peer with.
      */
     public readonly peerNetworkUri!: pulumi.Output<string>;
+    /**
+     * Configurable sleep time (seconds) between retries when requesting or reading
+     * peering. Default set to 10 seconds. *Available from v1.29.0*
+     */
+    public readonly sleep!: pulumi.Output<number | undefined>;
     /**
      * VPC peering state
      */
@@ -189,15 +197,17 @@ export class VpcGcpPeering extends pulumi.CustomResource {
      */
     public /*out*/ readonly stateDetails!: pulumi.Output<string>;
     /**
-     * The managed VPC identifier.
-     *
-     * ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
+     * Configurable timeout time (seconds) before retries times out. Default set
+     * to 1800 seconds. *Available from v1.29.0*
+     */
+    public readonly timeout!: pulumi.Output<number | undefined>;
+    /**
+     * The managed VPC identifier. *Available from v1.16.0*
      */
     public readonly vpcId!: pulumi.Output<string | undefined>;
     /**
      * Makes the resource wait until the peering is connected.
-     *
-     * ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+     * Default set to false. *Available from v1.28.0*
      */
     public readonly waitOnPeeringStatus!: pulumi.Output<boolean | undefined>;
 
@@ -217,8 +227,10 @@ export class VpcGcpPeering extends pulumi.CustomResource {
             resourceInputs["autoCreateRoutes"] = state ? state.autoCreateRoutes : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["peerNetworkUri"] = state ? state.peerNetworkUri : undefined;
+            resourceInputs["sleep"] = state ? state.sleep : undefined;
             resourceInputs["state"] = state ? state.state : undefined;
             resourceInputs["stateDetails"] = state ? state.stateDetails : undefined;
+            resourceInputs["timeout"] = state ? state.timeout : undefined;
             resourceInputs["vpcId"] = state ? state.vpcId : undefined;
             resourceInputs["waitOnPeeringStatus"] = state ? state.waitOnPeeringStatus : undefined;
         } else {
@@ -228,6 +240,8 @@ export class VpcGcpPeering extends pulumi.CustomResource {
             }
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["peerNetworkUri"] = args ? args.peerNetworkUri : undefined;
+            resourceInputs["sleep"] = args ? args.sleep : undefined;
+            resourceInputs["timeout"] = args ? args.timeout : undefined;
             resourceInputs["vpcId"] = args ? args.vpcId : undefined;
             resourceInputs["waitOnPeeringStatus"] = args ? args.waitOnPeeringStatus : undefined;
             resourceInputs["autoCreateRoutes"] = undefined /*out*/;
@@ -248,15 +262,18 @@ export interface VpcGcpPeeringState {
      */
     autoCreateRoutes?: pulumi.Input<boolean>;
     /**
-     * The CloudAMQP instance identifier.
-     *
-     * ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+     * The CloudAMQP instance identifier. *Deprecated from v1.16.0*
      */
     instanceId?: pulumi.Input<number>;
     /**
      * Network uri of the VPC network to which you will peer with.
      */
     peerNetworkUri?: pulumi.Input<string>;
+    /**
+     * Configurable sleep time (seconds) between retries when requesting or reading
+     * peering. Default set to 10 seconds. *Available from v1.29.0*
+     */
+    sleep?: pulumi.Input<number>;
     /**
      * VPC peering state
      */
@@ -266,15 +283,17 @@ export interface VpcGcpPeeringState {
      */
     stateDetails?: pulumi.Input<string>;
     /**
-     * The managed VPC identifier.
-     *
-     * ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
+     * Configurable timeout time (seconds) before retries times out. Default set
+     * to 1800 seconds. *Available from v1.29.0*
+     */
+    timeout?: pulumi.Input<number>;
+    /**
+     * The managed VPC identifier. *Available from v1.16.0*
      */
     vpcId?: pulumi.Input<string>;
     /**
      * Makes the resource wait until the peering is connected.
-     *
-     * ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+     * Default set to false. *Available from v1.28.0*
      */
     waitOnPeeringStatus?: pulumi.Input<boolean>;
 }
@@ -284,9 +303,7 @@ export interface VpcGcpPeeringState {
  */
 export interface VpcGcpPeeringArgs {
     /**
-     * The CloudAMQP instance identifier.
-     *
-     * ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+     * The CloudAMQP instance identifier. *Deprecated from v1.16.0*
      */
     instanceId?: pulumi.Input<number>;
     /**
@@ -294,15 +311,22 @@ export interface VpcGcpPeeringArgs {
      */
     peerNetworkUri: pulumi.Input<string>;
     /**
-     * The managed VPC identifier.
-     *
-     * ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
+     * Configurable sleep time (seconds) between retries when requesting or reading
+     * peering. Default set to 10 seconds. *Available from v1.29.0*
+     */
+    sleep?: pulumi.Input<number>;
+    /**
+     * Configurable timeout time (seconds) before retries times out. Default set
+     * to 1800 seconds. *Available from v1.29.0*
+     */
+    timeout?: pulumi.Input<number>;
+    /**
+     * The managed VPC identifier. *Available from v1.16.0*
      */
     vpcId?: pulumi.Input<string>;
     /**
      * Makes the resource wait until the peering is connected.
-     *
-     * ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+     * Default set to false. *Available from v1.28.0*
      */
     waitOnPeeringStatus?: pulumi.Input<boolean>;
 }

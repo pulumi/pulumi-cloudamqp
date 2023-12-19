@@ -10,21 +10,72 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
-    /// Enable PrivateLink for a CloudAMQP instance hosted in AWS. If no existing VPC available when enable PrivateLink, a new VPC will be created with subnet `10.52.72.0/24`.
+    /// Enable PrivateLink for a CloudAMQP instance hosted in AWS. If no existing VPC available when enable
+    /// PrivateLink, a new VPC will be created with subnet `10.52.72.0/24`.
     /// 
     /// &gt; **Note:** Enabling PrivateLink will automatically add firewall rules for the peered subnet.
     /// &lt;details&gt;
     ///  &lt;summary&gt;
     ///     &lt;i&gt;Default PrivateLink firewall rule&lt;/i&gt;
     ///   &lt;/summary&gt;
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
     /// 
-    /// return await Deployment.RunAsync(() =&gt;
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
     /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html)
+    /// where you can also find more information about
+    /// [CloudAMQP PrivateLink](https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#aws-privatelink).
+    /// 
+    /// Only available for dedicated subscription plans.
+    /// 
+    /// &gt; **Warning:** This resource considered deprecated and will be removed in next major version (v2.0).
+    /// Recommended to start using the new resource`cloudamqp.VpcConnect`.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;CloudAMQP instance without existing VPC&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     {
+    ///         Plan = "bunny-1",
+    ///         Region = "amazon-web-services::us-west-1",
+    ///         Tags = new[] {},
+    ///     });
+    /// 
+    ///     var privatelink = new CloudAmqp.PrivatelinkAws("privatelink", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         AllowedPrincipals = new[]
+    ///         {
+    ///             "arn:aws:iam::aws-account-id:user/user-name",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// &lt;/details&gt;
     /// 
     /// &lt;details&gt;
@@ -69,9 +120,8 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
-    /// &lt;/details&gt;
     /// 
-    /// {{% /example %}}
+    /// &lt;/details&gt;
     /// ### With Additional Firewall Rules
     /// 
     /// &lt;details&gt;
@@ -154,8 +204,8 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
+    /// 
     /// &lt;/details&gt;
-    /// {{% /examples %}}
     /// ## Depedency
     /// 
     /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -163,9 +213,11 @@ namespace Pulumi.CloudAmqp
     /// ## Create PrivateLink with additional firewall rules
     /// 
     /// To create a PrivateLink configuration with additional firewall rules, it's required to chain the cloudamqp.SecurityFirewall
-    /// resource to avoid parallel conflicting resource calls. You can do this by making the firewall resource depend on the PrivateLink resource, `cloudamqp_privatelink_aws.privatelink`.
+    /// resource to avoid parallel conflicting resource calls. You can do this by making the firewall
+    /// resource depend on the PrivateLink resource, `cloudamqp_privatelink_aws.privatelink`.
     /// 
-    /// Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for the PrivateLink also needs to be added.
+    /// Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
+    /// the PrivateLink also needs to be added.
     /// 
     /// ## Import
     /// 
@@ -203,7 +255,8 @@ namespace Pulumi.CloudAmqp
         public Output<string> ServiceName { get; private set; } = null!;
 
         /// <summary>
-        /// Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+        /// Configurable sleep time (seconds) when enable PrivateLink.
+        /// Default set to 10 seconds. *Available from v1.29.0*
         /// </summary>
         [Output("sleep")]
         public Output<int?> Sleep { get; private set; } = null!;
@@ -215,7 +268,8 @@ namespace Pulumi.CloudAmqp
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
-        /// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+        /// Configurable timeout time (seconds) when enable PrivateLink.
+        /// Default set to 1800 seconds. *Available from v1.29.0*
         /// 
         /// Allowed principals format: &lt;br&gt;
         /// `arn:aws:iam::aws-account-id:root` &lt;br&gt;
@@ -290,13 +344,15 @@ namespace Pulumi.CloudAmqp
         public Input<int> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+        /// Configurable sleep time (seconds) when enable PrivateLink.
+        /// Default set to 10 seconds. *Available from v1.29.0*
         /// </summary>
         [Input("sleep")]
         public Input<int>? Sleep { get; set; }
 
         /// <summary>
-        /// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+        /// Configurable timeout time (seconds) when enable PrivateLink.
+        /// Default set to 1800 seconds. *Available from v1.29.0*
         /// 
         /// Allowed principals format: &lt;br&gt;
         /// `arn:aws:iam::aws-account-id:root` &lt;br&gt;
@@ -351,7 +407,8 @@ namespace Pulumi.CloudAmqp
         public Input<string>? ServiceName { get; set; }
 
         /// <summary>
-        /// Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+        /// Configurable sleep time (seconds) when enable PrivateLink.
+        /// Default set to 10 seconds. *Available from v1.29.0*
         /// </summary>
         [Input("sleep")]
         public Input<int>? Sleep { get; set; }
@@ -363,7 +420,8 @@ namespace Pulumi.CloudAmqp
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+        /// Configurable timeout time (seconds) when enable PrivateLink.
+        /// Default set to 1800 seconds. *Available from v1.29.0*
         /// 
         /// Allowed principals format: &lt;br&gt;
         /// `arn:aws:iam::aws-account-id:root` &lt;br&gt;

@@ -13,18 +13,102 @@ namespace Pulumi.CloudAmqp
     /// This resouce creates a VPC peering configuration for the CloudAMQP instance. The configuration will connect to another VPC network hosted on Google Cloud Platform (GCP). See the [GCP documentation](https://cloud.google.com/vpc/docs/using-vpc-peering) for more information on how to create the VPC peering configuration.
     /// 
     /// &gt; **Note:** Creating a VPC peering will automatically add firewall rules for the peered subnet.
+    /// 
     /// &lt;details&gt;
     ///  &lt;summary&gt;
     ///     &lt;i&gt;Default VPC peering firewall rule&lt;/i&gt;
     ///   &lt;/summary&gt;
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
     /// 
-    /// return await Deployment.RunAsync(() =&gt;
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
     /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
+    /// 
+    /// Only available for dedicated subscription plans.
+    /// 
+    /// ## Example Usage
+    /// ### With Additional Firewall Rules
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;VPC peering pre v1.16.0&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // VPC peering configuration
+    ///     var vpcPeeringRequest = new CloudAmqp.VpcGcpPeering("vpcPeeringRequest", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         PeerNetworkUri = @var.Peer_network_uri,
+    ///     });
+    /// 
+    ///     // Firewall rules
+    ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewallSettings", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Rules = new[]
+    ///         {
+    ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
+    ///             {
+    ///                 Ip = @var.Peer_subnet,
+    ///                 Ports = new[]
+    ///                 {
+    ///                     15672,
+    ///                 },
+    ///                 Services = new[]
+    ///                 {
+    ///                     "AMQP",
+    ///                     "AMQPS",
+    ///                     "STREAM",
+    ///                     "STREAM_SSL",
+    ///                 },
+    ///                 Description = "VPC peering for &lt;NETWORK&gt;",
+    ///             },
+    ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
+    ///             {
+    ///                 Ip = "192.168.0.0/24",
+    ///                 Ports = new[]
+    ///                 {
+    ///                     4567,
+    ///                     4568,
+    ///                 },
+    ///                 Services = new[]
+    ///                 {
+    ///                     "AMQP",
+    ///                     "AMQPS",
+    ///                     "HTTPS",
+    ///                 },
+    ///             },
+    ///         },
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             vpcPeeringRequest,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// &lt;/details&gt;
     /// 
     /// &lt;details&gt;
@@ -92,9 +176,8 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
+    /// 
     /// &lt;/details&gt;
-    /// {{% /example %}}
-    /// {{% /examples %}}
     /// ## Depedency
     /// 
     /// *Pre v1.16.0*
@@ -126,9 +209,7 @@ namespace Pulumi.CloudAmqp
         public Output<bool> AutoCreateRoutes { get; private set; } = null!;
 
         /// <summary>
-        /// The CloudAMQP instance identifier.
-        /// 
-        /// ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+        /// The CloudAMQP instance identifier. *Deprecated from v1.16.0*
         /// </summary>
         [Output("instanceId")]
         public Output<int?> InstanceId { get; private set; } = null!;
@@ -138,6 +219,13 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Output("peerNetworkUri")]
         public Output<string> PeerNetworkUri { get; private set; } = null!;
+
+        /// <summary>
+        /// Configurable sleep time (seconds) between retries when requesting or reading
+        /// peering. Default set to 10 seconds. *Available from v1.29.0*
+        /// </summary>
+        [Output("sleep")]
+        public Output<int?> Sleep { get; private set; } = null!;
 
         /// <summary>
         /// VPC peering state
@@ -152,17 +240,21 @@ namespace Pulumi.CloudAmqp
         public Output<string> StateDetails { get; private set; } = null!;
 
         /// <summary>
-        /// The managed VPC identifier.
-        /// 
-        /// ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
+        /// Configurable timeout time (seconds) before retries times out. Default set
+        /// to 1800 seconds. *Available from v1.29.0*
+        /// </summary>
+        [Output("timeout")]
+        public Output<int?> Timeout { get; private set; } = null!;
+
+        /// <summary>
+        /// The managed VPC identifier. *Available from v1.16.0*
         /// </summary>
         [Output("vpcId")]
         public Output<string?> VpcId { get; private set; } = null!;
 
         /// <summary>
         /// Makes the resource wait until the peering is connected.
-        /// 
-        /// ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+        /// Default set to false. *Available from v1.28.0*
         /// </summary>
         [Output("waitOnPeeringStatus")]
         public Output<bool?> WaitOnPeeringStatus { get; private set; } = null!;
@@ -214,9 +306,7 @@ namespace Pulumi.CloudAmqp
     public sealed class VpcGcpPeeringArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The CloudAMQP instance identifier.
-        /// 
-        /// ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+        /// The CloudAMQP instance identifier. *Deprecated from v1.16.0*
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
@@ -228,17 +318,28 @@ namespace Pulumi.CloudAmqp
         public Input<string> PeerNetworkUri { get; set; } = null!;
 
         /// <summary>
-        /// The managed VPC identifier.
-        /// 
-        /// ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
+        /// Configurable sleep time (seconds) between retries when requesting or reading
+        /// peering. Default set to 10 seconds. *Available from v1.29.0*
+        /// </summary>
+        [Input("sleep")]
+        public Input<int>? Sleep { get; set; }
+
+        /// <summary>
+        /// Configurable timeout time (seconds) before retries times out. Default set
+        /// to 1800 seconds. *Available from v1.29.0*
+        /// </summary>
+        [Input("timeout")]
+        public Input<int>? Timeout { get; set; }
+
+        /// <summary>
+        /// The managed VPC identifier. *Available from v1.16.0*
         /// </summary>
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }
 
         /// <summary>
         /// Makes the resource wait until the peering is connected.
-        /// 
-        /// ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+        /// Default set to false. *Available from v1.28.0*
         /// </summary>
         [Input("waitOnPeeringStatus")]
         public Input<bool>? WaitOnPeeringStatus { get; set; }
@@ -258,9 +359,7 @@ namespace Pulumi.CloudAmqp
         public Input<bool>? AutoCreateRoutes { get; set; }
 
         /// <summary>
-        /// The CloudAMQP instance identifier.
-        /// 
-        /// ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+        /// The CloudAMQP instance identifier. *Deprecated from v1.16.0*
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
@@ -270,6 +369,13 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Input("peerNetworkUri")]
         public Input<string>? PeerNetworkUri { get; set; }
+
+        /// <summary>
+        /// Configurable sleep time (seconds) between retries when requesting or reading
+        /// peering. Default set to 10 seconds. *Available from v1.29.0*
+        /// </summary>
+        [Input("sleep")]
+        public Input<int>? Sleep { get; set; }
 
         /// <summary>
         /// VPC peering state
@@ -284,17 +390,21 @@ namespace Pulumi.CloudAmqp
         public Input<string>? StateDetails { get; set; }
 
         /// <summary>
-        /// The managed VPC identifier.
-        /// 
-        /// ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
+        /// Configurable timeout time (seconds) before retries times out. Default set
+        /// to 1800 seconds. *Available from v1.29.0*
+        /// </summary>
+        [Input("timeout")]
+        public Input<int>? Timeout { get; set; }
+
+        /// <summary>
+        /// The managed VPC identifier. *Available from v1.16.0*
         /// </summary>
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }
 
         /// <summary>
         /// Makes the resource wait until the peering is connected.
-        /// 
-        /// ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+        /// Default set to false. *Available from v1.28.0*
         /// </summary>
         [Input("waitOnPeeringStatus")]
         public Input<bool>? WaitOnPeeringStatus { get; set; }

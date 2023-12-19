@@ -13,6 +13,7 @@ import com.pulumi.core.internal.Codegen;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -82,6 +83,38 @@ public class Plugin extends com.pulumi.resources.CustomResource {
      */
     public Output<String> name() {
         return this.name;
+    }
+    /**
+     * Configurable sleep time (seconds) for retries when requesting information
+     * about plugins. Default set to 10 seconds. *Available from v1.29.0*
+     * 
+     */
+    @Export(name="sleep", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> sleep;
+
+    /**
+     * @return Configurable sleep time (seconds) for retries when requesting information
+     * about plugins. Default set to 10 seconds. *Available from v1.29.0*
+     * 
+     */
+    public Output<Optional<Integer>> sleep() {
+        return Codegen.optional(this.sleep);
+    }
+    /**
+     * Configurable timeout time (seconds) for retries when requesting
+     * information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+     * 
+     */
+    @Export(name="timeout", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> timeout;
+
+    /**
+     * @return Configurable timeout time (seconds) for retries when requesting
+     * information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+     * 
+     */
+    public Output<Optional<Integer>> timeout() {
+        return Codegen.optional(this.timeout);
     }
     /**
      * The version of the plugin.

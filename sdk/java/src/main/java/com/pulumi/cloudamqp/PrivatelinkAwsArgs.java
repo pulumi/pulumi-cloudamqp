@@ -48,14 +48,16 @@ public final class PrivatelinkAwsArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+     * Configurable sleep time (seconds) when enable PrivateLink.
+     * Default set to 10 seconds. *Available from v1.29.0*
      * 
      */
     @Import(name="sleep")
     private @Nullable Output<Integer> sleep;
 
     /**
-     * @return Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+     * @return Configurable sleep time (seconds) when enable PrivateLink.
+     * Default set to 10 seconds. *Available from v1.29.0*
      * 
      */
     public Optional<Output<Integer>> sleep() {
@@ -63,7 +65,8 @@ public final class PrivatelinkAwsArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+     * Configurable timeout time (seconds) when enable PrivateLink.
+     * Default set to 1800 seconds. *Available from v1.29.0*
      * 
      * Allowed principals format: &lt;br&gt;
      * `arn:aws:iam::aws-account-id:root` &lt;br&gt;
@@ -75,7 +78,8 @@ public final class PrivatelinkAwsArgs extends com.pulumi.resources.ResourceArgs 
     private @Nullable Output<Integer> timeout;
 
     /**
-     * @return Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+     * @return Configurable timeout time (seconds) when enable PrivateLink.
+     * Default set to 1800 seconds. *Available from v1.29.0*
      * 
      * Allowed principals format: &lt;br&gt;
      * `arn:aws:iam::aws-account-id:root` &lt;br&gt;
@@ -167,7 +171,8 @@ public final class PrivatelinkAwsArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param sleep Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+         * @param sleep Configurable sleep time (seconds) when enable PrivateLink.
+         * Default set to 10 seconds. *Available from v1.29.0*
          * 
          * @return builder
          * 
@@ -178,7 +183,8 @@ public final class PrivatelinkAwsArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param sleep Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+         * @param sleep Configurable sleep time (seconds) when enable PrivateLink.
+         * Default set to 10 seconds. *Available from v1.29.0*
          * 
          * @return builder
          * 
@@ -188,7 +194,8 @@ public final class PrivatelinkAwsArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param timeout Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+         * @param timeout Configurable timeout time (seconds) when enable PrivateLink.
+         * Default set to 1800 seconds. *Available from v1.29.0*
          * 
          * Allowed principals format: &lt;br&gt;
          * `arn:aws:iam::aws-account-id:root` &lt;br&gt;
@@ -204,7 +211,8 @@ public final class PrivatelinkAwsArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param timeout Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+         * @param timeout Configurable timeout time (seconds) when enable PrivateLink.
+         * Default set to 1800 seconds. *Available from v1.29.0*
          * 
          * Allowed principals format: &lt;br&gt;
          * `arn:aws:iam::aws-account-id:root` &lt;br&gt;

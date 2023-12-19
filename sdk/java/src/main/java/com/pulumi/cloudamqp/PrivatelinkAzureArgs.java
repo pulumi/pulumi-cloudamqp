@@ -18,14 +18,16 @@ public final class PrivatelinkAzureArgs extends com.pulumi.resources.ResourceArg
     public static final PrivatelinkAzureArgs Empty = new PrivatelinkAzureArgs();
 
     /**
-     * Approved subscriptions to access the endpoint service. See format below.
+     * Approved subscriptions to access the endpoint service.
+     * See format below.
      * 
      */
     @Import(name="approvedSubscriptions", required=true)
     private Output<List<String>> approvedSubscriptions;
 
     /**
-     * @return Approved subscriptions to access the endpoint service. See format below.
+     * @return Approved subscriptions to access the endpoint service.
+     * See format below.
      * 
      */
     public Output<List<String>> approvedSubscriptions() {
@@ -48,14 +50,16 @@ public final class PrivatelinkAzureArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+     * Configurable sleep time (seconds) when enable PrivateLink.
+     * Default set to 10 seconds. *Available from v1.29.0*
      * 
      */
     @Import(name="sleep")
     private @Nullable Output<Integer> sleep;
 
     /**
-     * @return Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+     * @return Configurable sleep time (seconds) when enable PrivateLink.
+     * Default set to 10 seconds. *Available from v1.29.0*
      * 
      */
     public Optional<Output<Integer>> sleep() {
@@ -63,9 +67,10 @@ public final class PrivatelinkAzureArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+     * Configurable timeout time (seconds) when enable PrivateLink.
+     * Default set to 1800 seconds. *Available from v1.29.0*
      * 
-     * Approved subscriptions format: &lt;br&gt;
+     * Approved subscriptions format (GUID): &lt;br&gt;
      * `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
      * 
      */
@@ -73,9 +78,10 @@ public final class PrivatelinkAzureArgs extends com.pulumi.resources.ResourceArg
     private @Nullable Output<Integer> timeout;
 
     /**
-     * @return Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+     * @return Configurable timeout time (seconds) when enable PrivateLink.
+     * Default set to 1800 seconds. *Available from v1.29.0*
      * 
-     * Approved subscriptions format: &lt;br&gt;
+     * Approved subscriptions format (GUID): &lt;br&gt;
      * `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
      * 
      */
@@ -111,7 +117,8 @@ public final class PrivatelinkAzureArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param approvedSubscriptions Approved subscriptions to access the endpoint service. See format below.
+         * @param approvedSubscriptions Approved subscriptions to access the endpoint service.
+         * See format below.
          * 
          * @return builder
          * 
@@ -122,7 +129,8 @@ public final class PrivatelinkAzureArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param approvedSubscriptions Approved subscriptions to access the endpoint service. See format below.
+         * @param approvedSubscriptions Approved subscriptions to access the endpoint service.
+         * See format below.
          * 
          * @return builder
          * 
@@ -132,7 +140,8 @@ public final class PrivatelinkAzureArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param approvedSubscriptions Approved subscriptions to access the endpoint service. See format below.
+         * @param approvedSubscriptions Approved subscriptions to access the endpoint service.
+         * See format below.
          * 
          * @return builder
          * 
@@ -163,7 +172,8 @@ public final class PrivatelinkAzureArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param sleep Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+         * @param sleep Configurable sleep time (seconds) when enable PrivateLink.
+         * Default set to 10 seconds. *Available from v1.29.0*
          * 
          * @return builder
          * 
@@ -174,7 +184,8 @@ public final class PrivatelinkAzureArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param sleep Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+         * @param sleep Configurable sleep time (seconds) when enable PrivateLink.
+         * Default set to 10 seconds. *Available from v1.29.0*
          * 
          * @return builder
          * 
@@ -184,9 +195,10 @@ public final class PrivatelinkAzureArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param timeout Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+         * @param timeout Configurable timeout time (seconds) when enable PrivateLink.
+         * Default set to 1800 seconds. *Available from v1.29.0*
          * 
-         * Approved subscriptions format: &lt;br&gt;
+         * Approved subscriptions format (GUID): &lt;br&gt;
          * `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
          * 
          * @return builder
@@ -198,9 +210,10 @@ public final class PrivatelinkAzureArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param timeout Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+         * @param timeout Configurable timeout time (seconds) when enable PrivateLink.
+         * Default set to 1800 seconds. *Available from v1.29.0*
          * 
-         * Approved subscriptions format: &lt;br&gt;
+         * Approved subscriptions format (GUID): &lt;br&gt;
          * `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
          * 
          * @return builder

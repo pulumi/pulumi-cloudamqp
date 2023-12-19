@@ -809,6 +809,8 @@ type GetPluginsCommunityPlugin struct {
 	Description string `pulumi:"description"`
 	Name        string `pulumi:"name"`
 	Require     string `pulumi:"require"`
+	Sleep       *int   `pulumi:"sleep"`
+	Timeout     *int   `pulumi:"timeout"`
 }
 
 // GetPluginsCommunityPluginInput is an input type that accepts GetPluginsCommunityPluginArgs and GetPluginsCommunityPluginOutput values.
@@ -826,6 +828,8 @@ type GetPluginsCommunityPluginArgs struct {
 	Description pulumi.StringInput `pulumi:"description"`
 	Name        pulumi.StringInput `pulumi:"name"`
 	Require     pulumi.StringInput `pulumi:"require"`
+	Sleep       pulumi.IntPtrInput `pulumi:"sleep"`
+	Timeout     pulumi.IntPtrInput `pulumi:"timeout"`
 }
 
 func (GetPluginsCommunityPluginArgs) ElementType() reflect.Type {
@@ -891,6 +895,14 @@ func (o GetPluginsCommunityPluginOutput) Require() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPluginsCommunityPlugin) string { return v.Require }).(pulumi.StringOutput)
 }
 
+func (o GetPluginsCommunityPluginOutput) Sleep() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetPluginsCommunityPlugin) *int { return v.Sleep }).(pulumi.IntPtrOutput)
+}
+
+func (o GetPluginsCommunityPluginOutput) Timeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetPluginsCommunityPlugin) *int { return v.Timeout }).(pulumi.IntPtrOutput)
+}
+
 type GetPluginsCommunityPluginArrayOutput struct{ *pulumi.OutputState }
 
 func (GetPluginsCommunityPluginArrayOutput) ElementType() reflect.Type {
@@ -915,6 +927,8 @@ type GetPluginsPlugin struct {
 	Description string `pulumi:"description"`
 	Enabled     bool   `pulumi:"enabled"`
 	Name        string `pulumi:"name"`
+	Sleep       *int   `pulumi:"sleep"`
+	Timeout     *int   `pulumi:"timeout"`
 	Version     string `pulumi:"version"`
 }
 
@@ -933,6 +947,8 @@ type GetPluginsPluginArgs struct {
 	Description pulumi.StringInput `pulumi:"description"`
 	Enabled     pulumi.BoolInput   `pulumi:"enabled"`
 	Name        pulumi.StringInput `pulumi:"name"`
+	Sleep       pulumi.IntPtrInput `pulumi:"sleep"`
+	Timeout     pulumi.IntPtrInput `pulumi:"timeout"`
 	Version     pulumi.StringInput `pulumi:"version"`
 }
 
@@ -997,6 +1013,14 @@ func (o GetPluginsPluginOutput) Enabled() pulumi.BoolOutput {
 
 func (o GetPluginsPluginOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPluginsPlugin) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetPluginsPluginOutput) Sleep() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetPluginsPlugin) *int { return v.Sleep }).(pulumi.IntPtrOutput)
+}
+
+func (o GetPluginsPluginOutput) Timeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetPluginsPlugin) *int { return v.Timeout }).(pulumi.IntPtrOutput)
 }
 
 func (o GetPluginsPluginOutput) Version() pulumi.StringOutput {
