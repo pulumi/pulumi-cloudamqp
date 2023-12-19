@@ -24,6 +24,7 @@ import * as utilities from "./utilities";
  *     instanceId: cloudamqp_instance.instance.id,
  * });
  * ```
+ *
  * </details>
  *
  * <details>
@@ -41,6 +42,7 @@ import * as utilities from "./utilities";
  *     vpcId: cloudamqp_vpc.vpc.id,
  * });
  * ```
+ *
  * </details>
  * ## Attributes reference
  *
@@ -65,6 +67,8 @@ export function getVpcGcpInfo(args?: GetVpcGcpInfoArgs, opts?: pulumi.InvokeOpti
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo", {
         "instanceId": args.instanceId,
+        "sleep": args.sleep,
+        "timeout": args.timeout,
         "vpcId": args.vpcId,
     }, opts);
 }
@@ -79,6 +83,14 @@ export interface GetVpcGcpInfoArgs {
      * ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
      */
     instanceId?: number;
+    /**
+     * Configurable sleep time (seconds) between retries when reading peering. Default set to 10 seconds.
+     */
+    sleep?: number;
+    /**
+     * Configurable timeout time (seconds) before retries times out. Default set to 1800 seconds.
+     */
+    timeout?: number;
     /**
      * The managed VPC identifier.
      *
@@ -98,6 +110,8 @@ export interface GetVpcGcpInfoResult {
     readonly instanceId?: number;
     readonly name: string;
     readonly network: string;
+    readonly sleep?: number;
+    readonly timeout?: number;
     readonly vpcId?: string;
     readonly vpcSubnet: string;
 }
@@ -121,6 +135,7 @@ export interface GetVpcGcpInfoResult {
  *     instanceId: cloudamqp_instance.instance.id,
  * });
  * ```
+ *
  * </details>
  *
  * <details>
@@ -138,6 +153,7 @@ export interface GetVpcGcpInfoResult {
  *     vpcId: cloudamqp_vpc.vpc.id,
  * });
  * ```
+ *
  * </details>
  * ## Attributes reference
  *
@@ -170,6 +186,14 @@ export interface GetVpcGcpInfoOutputArgs {
      * ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
      */
     instanceId?: pulumi.Input<number>;
+    /**
+     * Configurable sleep time (seconds) between retries when reading peering. Default set to 10 seconds.
+     */
+    sleep?: pulumi.Input<number>;
+    /**
+     * Configurable timeout time (seconds) before retries times out. Default set to 1800 seconds.
+     */
+    timeout?: pulumi.Input<number>;
     /**
      * The managed VPC identifier.
      *

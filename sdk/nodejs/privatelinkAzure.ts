@@ -5,21 +5,30 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Enable PrivateLink for a CloudAMQP instance hosted in Azure. If no existing VPC available when enable PrivateLink, a new VPC will be created with subnet `10.52.72.0/24`.
+ * Enable PrivateLink for a CloudAMQP instance hosted in Azure. If no existing VPC available when
+ * enable PrivateLink, a new VPC will be created with subnet `10.52.72.0/24`.
  *
  * > **Note:** Enabling PrivateLink will automatically add firewall rules for the peered subnet.
+ *
  * <details>
  *  <summary>
  *     <i>Default PrivateLink firewall rule</i>
  *   </summary>
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * ```
+ *
  * </details>
  *
- * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html) where you can also find more information about [CloudAMQP PrivateLink](https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#azure-privatelink).
+ * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html) where you can also
+ * find more information about
+ * [CloudAMQP PrivateLink](https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#azure-privatelink).
  *
  * Only available for dedicated subscription plans.
+ *
+ * > **Warning:** This resource considered deprecated and will be removed in next major version (v2.0).
+ * Recommended to start using the new resource`cloudamqp.VpcConnect`.
  *
  * ## Example Usage
  *
@@ -74,6 +83,7 @@ import * as utilities from "./utilities";
  *     approvedSubscriptions: ["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"],
  * });
  * ```
+ *
  * </details>
  * ### With Additional Firewall Rules
  *
@@ -130,6 +140,7 @@ import * as utilities from "./utilities";
  *     dependsOn: [privatelink],
  * });
  * ```
+ *
  * </details>
  * ## Depedency
  *
@@ -138,9 +149,11 @@ import * as utilities from "./utilities";
  * ## Create PrivateLink with additional firewall rules
  *
  * To create a PrivateLink configuration with additional firewall rules, it's required to chain the cloudamqp.SecurityFirewall
- * resource to avoid parallel conflicting resource calls. You can do this by making the firewall resource depend on the PrivateLink resource, `cloudamqp_privatelink_azure.privatelink`.
+ * resource to avoid parallel conflicting resource calls. You can do this by making the firewall
+ * resource depend on the PrivateLink resource, `cloudamqp_privatelink_azure.privatelink`.
  *
- * Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for the PrivateLink also needs to be added.
+ * Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
+ * the PrivateLink also needs to be added.
  *
  * ## Import
  *
@@ -179,7 +192,8 @@ export class PrivatelinkAzure extends pulumi.CustomResource {
     }
 
     /**
-     * Approved subscriptions to access the endpoint service. See format below.
+     * Approved subscriptions to access the endpoint service.
+     * See format below.
      */
     public readonly approvedSubscriptions!: pulumi.Output<string[]>;
     /**
@@ -195,7 +209,8 @@ export class PrivatelinkAzure extends pulumi.CustomResource {
      */
     public /*out*/ readonly serviceName!: pulumi.Output<string>;
     /**
-     * Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+     * Configurable sleep time (seconds) when enable PrivateLink.
+     * Default set to 10 seconds. *Available from v1.29.0*
      */
     public readonly sleep!: pulumi.Output<number | undefined>;
     /**
@@ -203,9 +218,10 @@ export class PrivatelinkAzure extends pulumi.CustomResource {
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
-     * Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+     * Configurable timeout time (seconds) when enable PrivateLink.
+     * Default set to 1800 seconds. *Available from v1.29.0*
      *
-     * Approved subscriptions format: <br>
+     * Approved subscriptions format (GUID): <br>
      * `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
      */
     public readonly timeout!: pulumi.Output<number | undefined>;
@@ -256,7 +272,8 @@ export class PrivatelinkAzure extends pulumi.CustomResource {
  */
 export interface PrivatelinkAzureState {
     /**
-     * Approved subscriptions to access the endpoint service. See format below.
+     * Approved subscriptions to access the endpoint service.
+     * See format below.
      */
     approvedSubscriptions?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -272,7 +289,8 @@ export interface PrivatelinkAzureState {
      */
     serviceName?: pulumi.Input<string>;
     /**
-     * Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+     * Configurable sleep time (seconds) when enable PrivateLink.
+     * Default set to 10 seconds. *Available from v1.29.0*
      */
     sleep?: pulumi.Input<number>;
     /**
@@ -280,9 +298,10 @@ export interface PrivatelinkAzureState {
      */
     status?: pulumi.Input<string>;
     /**
-     * Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+     * Configurable timeout time (seconds) when enable PrivateLink.
+     * Default set to 1800 seconds. *Available from v1.29.0*
      *
-     * Approved subscriptions format: <br>
+     * Approved subscriptions format (GUID): <br>
      * `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
      */
     timeout?: pulumi.Input<number>;
@@ -293,7 +312,8 @@ export interface PrivatelinkAzureState {
  */
 export interface PrivatelinkAzureArgs {
     /**
-     * Approved subscriptions to access the endpoint service. See format below.
+     * Approved subscriptions to access the endpoint service.
+     * See format below.
      */
     approvedSubscriptions: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -301,13 +321,15 @@ export interface PrivatelinkAzureArgs {
      */
     instanceId: pulumi.Input<number>;
     /**
-     * Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+     * Configurable sleep time (seconds) when enable PrivateLink.
+     * Default set to 10 seconds. *Available from v1.29.0*
      */
     sleep?: pulumi.Input<number>;
     /**
-     * Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+     * Configurable timeout time (seconds) when enable PrivateLink.
+     * Default set to 1800 seconds. *Available from v1.29.0*
      *
-     * Approved subscriptions format: <br>
+     * Approved subscriptions format (GUID): <br>
      * `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
      */
     timeout?: pulumi.Input<number>;

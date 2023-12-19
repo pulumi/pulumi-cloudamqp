@@ -16,17 +16,27 @@ class PluginArgs:
     def __init__(__self__, *,
                  enabled: pulumi.Input[bool],
                  instance_id: pulumi.Input[int],
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 sleep: Optional[pulumi.Input[int]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a Plugin resource.
         :param pulumi.Input[bool] enabled: Enable or disable the plugins.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] name: The name of the Rabbit MQ plugin.
+        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) for retries when requesting information
+               about plugins. Default set to 10 seconds. *Available from v1.29.0*
+        :param pulumi.Input[int] timeout: Configurable timeout time (seconds) for retries when requesting
+               information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
         """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "instance_id", instance_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if sleep is not None:
+            pulumi.set(__self__, "sleep", sleep)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
 
     @property
     @pulumi.getter
@@ -64,6 +74,32 @@ class PluginArgs:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+    @property
+    @pulumi.getter
+    def sleep(self) -> Optional[pulumi.Input[int]]:
+        """
+        Configurable sleep time (seconds) for retries when requesting information
+        about plugins. Default set to 10 seconds. *Available from v1.29.0*
+        """
+        return pulumi.get(self, "sleep")
+
+    @sleep.setter
+    def sleep(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "sleep", value)
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Configurable timeout time (seconds) for retries when requesting
+        information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "timeout", value)
+
 
 @pulumi.input_type
 class _PluginState:
@@ -72,6 +108,8 @@ class _PluginState:
                  enabled: Optional[pulumi.Input[bool]] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 sleep: Optional[pulumi.Input[int]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
                  version: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Plugin resources.
@@ -79,6 +117,10 @@ class _PluginState:
         :param pulumi.Input[bool] enabled: Enable or disable the plugins.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] name: The name of the Rabbit MQ plugin.
+        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) for retries when requesting information
+               about plugins. Default set to 10 seconds. *Available from v1.29.0*
+        :param pulumi.Input[int] timeout: Configurable timeout time (seconds) for retries when requesting
+               information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
         :param pulumi.Input[str] version: The version of the plugin.
         """
         if description is not None:
@@ -89,6 +131,10 @@ class _PluginState:
             pulumi.set(__self__, "instance_id", instance_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if sleep is not None:
+            pulumi.set(__self__, "sleep", sleep)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
         if version is not None:
             pulumi.set(__self__, "version", version)
 
@@ -142,6 +188,32 @@ class _PluginState:
 
     @property
     @pulumi.getter
+    def sleep(self) -> Optional[pulumi.Input[int]]:
+        """
+        Configurable sleep time (seconds) for retries when requesting information
+        about plugins. Default set to 10 seconds. *Available from v1.29.0*
+        """
+        return pulumi.get(self, "sleep")
+
+    @sleep.setter
+    def sleep(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "sleep", value)
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Configurable timeout time (seconds) for retries when requesting
+        information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "timeout", value)
+
+    @property
+    @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
         """
         The version of the plugin.
@@ -161,6 +233,8 @@ class Plugin(pulumi.CustomResource):
                  enabled: Optional[pulumi.Input[bool]] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 sleep: Optional[pulumi.Input[int]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
         ## Import
@@ -176,6 +250,10 @@ class Plugin(pulumi.CustomResource):
         :param pulumi.Input[bool] enabled: Enable or disable the plugins.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] name: The name of the Rabbit MQ plugin.
+        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) for retries when requesting information
+               about plugins. Default set to 10 seconds. *Available from v1.29.0*
+        :param pulumi.Input[int] timeout: Configurable timeout time (seconds) for retries when requesting
+               information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
         """
         ...
     @overload
@@ -210,6 +288,8 @@ class Plugin(pulumi.CustomResource):
                  enabled: Optional[pulumi.Input[bool]] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 sleep: Optional[pulumi.Input[int]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -226,6 +306,8 @@ class Plugin(pulumi.CustomResource):
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
             __props__.__dict__["name"] = name
+            __props__.__dict__["sleep"] = sleep
+            __props__.__dict__["timeout"] = timeout
             __props__.__dict__["description"] = None
             __props__.__dict__["version"] = None
         super(Plugin, __self__).__init__(
@@ -242,6 +324,8 @@ class Plugin(pulumi.CustomResource):
             enabled: Optional[pulumi.Input[bool]] = None,
             instance_id: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            sleep: Optional[pulumi.Input[int]] = None,
+            timeout: Optional[pulumi.Input[int]] = None,
             version: Optional[pulumi.Input[str]] = None) -> 'Plugin':
         """
         Get an existing Plugin resource's state with the given name, id, and optional extra
@@ -254,6 +338,10 @@ class Plugin(pulumi.CustomResource):
         :param pulumi.Input[bool] enabled: Enable or disable the plugins.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] name: The name of the Rabbit MQ plugin.
+        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) for retries when requesting information
+               about plugins. Default set to 10 seconds. *Available from v1.29.0*
+        :param pulumi.Input[int] timeout: Configurable timeout time (seconds) for retries when requesting
+               information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
         :param pulumi.Input[str] version: The version of the plugin.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -264,6 +352,8 @@ class Plugin(pulumi.CustomResource):
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["name"] = name
+        __props__.__dict__["sleep"] = sleep
+        __props__.__dict__["timeout"] = timeout
         __props__.__dict__["version"] = version
         return Plugin(resource_name, opts=opts, __props__=__props__)
 
@@ -298,6 +388,24 @@ class Plugin(pulumi.CustomResource):
         The name of the Rabbit MQ plugin.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def sleep(self) -> pulumi.Output[Optional[int]]:
+        """
+        Configurable sleep time (seconds) for retries when requesting information
+        about plugins. Default set to 10 seconds. *Available from v1.29.0*
+        """
+        return pulumi.get(self, "sleep")
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> pulumi.Output[Optional[int]]:
+        """
+        Configurable timeout time (seconds) for retries when requesting
+        information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+        """
+        return pulumi.get(self, "timeout")
 
     @property
     @pulumi.getter

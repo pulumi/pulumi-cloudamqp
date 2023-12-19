@@ -32,6 +32,12 @@ type Plugin struct {
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
 	// The name of the Rabbit MQ plugin.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Configurable sleep time (seconds) for retries when requesting information
+	// about plugins. Default set to 10 seconds. *Available from v1.29.0*
+	Sleep pulumi.IntPtrOutput `pulumi:"sleep"`
+	// Configurable timeout time (seconds) for retries when requesting
+	// information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+	Timeout pulumi.IntPtrOutput `pulumi:"timeout"`
 	// The version of the plugin.
 	Version pulumi.StringOutput `pulumi:"version"`
 }
@@ -80,6 +86,12 @@ type pluginState struct {
 	InstanceId *int `pulumi:"instanceId"`
 	// The name of the Rabbit MQ plugin.
 	Name *string `pulumi:"name"`
+	// Configurable sleep time (seconds) for retries when requesting information
+	// about plugins. Default set to 10 seconds. *Available from v1.29.0*
+	Sleep *int `pulumi:"sleep"`
+	// Configurable timeout time (seconds) for retries when requesting
+	// information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+	Timeout *int `pulumi:"timeout"`
 	// The version of the plugin.
 	Version *string `pulumi:"version"`
 }
@@ -93,6 +105,12 @@ type PluginState struct {
 	InstanceId pulumi.IntPtrInput
 	// The name of the Rabbit MQ plugin.
 	Name pulumi.StringPtrInput
+	// Configurable sleep time (seconds) for retries when requesting information
+	// about plugins. Default set to 10 seconds. *Available from v1.29.0*
+	Sleep pulumi.IntPtrInput
+	// Configurable timeout time (seconds) for retries when requesting
+	// information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+	Timeout pulumi.IntPtrInput
 	// The version of the plugin.
 	Version pulumi.StringPtrInput
 }
@@ -108,6 +126,12 @@ type pluginArgs struct {
 	InstanceId int `pulumi:"instanceId"`
 	// The name of the Rabbit MQ plugin.
 	Name *string `pulumi:"name"`
+	// Configurable sleep time (seconds) for retries when requesting information
+	// about plugins. Default set to 10 seconds. *Available from v1.29.0*
+	Sleep *int `pulumi:"sleep"`
+	// Configurable timeout time (seconds) for retries when requesting
+	// information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+	Timeout *int `pulumi:"timeout"`
 }
 
 // The set of arguments for constructing a Plugin resource.
@@ -118,6 +142,12 @@ type PluginArgs struct {
 	InstanceId pulumi.IntInput
 	// The name of the Rabbit MQ plugin.
 	Name pulumi.StringPtrInput
+	// Configurable sleep time (seconds) for retries when requesting information
+	// about plugins. Default set to 10 seconds. *Available from v1.29.0*
+	Sleep pulumi.IntPtrInput
+	// Configurable timeout time (seconds) for retries when requesting
+	// information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+	Timeout pulumi.IntPtrInput
 }
 
 func (PluginArgs) ElementType() reflect.Type {
@@ -225,6 +255,18 @@ func (o PluginOutput) InstanceId() pulumi.IntOutput {
 // The name of the Rabbit MQ plugin.
 func (o PluginOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Plugin) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Configurable sleep time (seconds) for retries when requesting information
+// about plugins. Default set to 10 seconds. *Available from v1.29.0*
+func (o PluginOutput) Sleep() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Plugin) pulumi.IntPtrOutput { return v.Sleep }).(pulumi.IntPtrOutput)
+}
+
+// Configurable timeout time (seconds) for retries when requesting
+// information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+func (o PluginOutput) Timeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Plugin) pulumi.IntPtrOutput { return v.Timeout }).(pulumi.IntPtrOutput)
 }
 
 // The version of the plugin.

@@ -16,6 +16,8 @@ namespace Pulumi.CloudAmqp.Outputs
         public readonly string Description;
         public readonly bool Enabled;
         public readonly string Name;
+        public readonly int? Sleep;
+        public readonly int? Timeout;
         public readonly string Version;
 
         [OutputConstructor]
@@ -26,11 +28,17 @@ namespace Pulumi.CloudAmqp.Outputs
 
             string name,
 
+            int? sleep,
+
+            int? timeout,
+
             string version)
         {
             Description = description;
             Enabled = enabled;
             Name = name;
+            Sleep = sleep;
+            Timeout = timeout;
             Version = version;
         }
     }

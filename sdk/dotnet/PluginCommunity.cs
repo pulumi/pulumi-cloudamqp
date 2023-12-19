@@ -51,6 +51,20 @@ namespace Pulumi.CloudAmqp
         [Output("require")]
         public Output<string> Require { get; private set; } = null!;
 
+        /// <summary>
+        /// Configurable sleep time (seconds) for retries when requesting information
+        /// about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+        /// </summary>
+        [Output("sleep")]
+        public Output<int?> Sleep { get; private set; } = null!;
+
+        /// <summary>
+        /// Configurable timeout time (seconds) for retries when requesting
+        /// information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+        /// </summary>
+        [Output("timeout")]
+        public Output<int?> Timeout { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a PluginCommunity resource with the given unique name, arguments, and options.
@@ -115,6 +129,20 @@ namespace Pulumi.CloudAmqp
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Configurable sleep time (seconds) for retries when requesting information
+        /// about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+        /// </summary>
+        [Input("sleep")]
+        public Input<int>? Sleep { get; set; }
+
+        /// <summary>
+        /// Configurable timeout time (seconds) for retries when requesting
+        /// information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+        /// </summary>
+        [Input("timeout")]
+        public Input<int>? Timeout { get; set; }
+
         public PluginCommunityArgs()
         {
         }
@@ -152,6 +180,20 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Input("require")]
         public Input<string>? Require { get; set; }
+
+        /// <summary>
+        /// Configurable sleep time (seconds) for retries when requesting information
+        /// about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+        /// </summary>
+        [Input("sleep")]
+        public Input<int>? Sleep { get; set; }
+
+        /// <summary>
+        /// Configurable timeout time (seconds) for retries when requesting
+        /// information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+        /// </summary>
+        [Input("timeout")]
+        public Input<int>? Timeout { get; set; }
 
         public PluginCommunityState()
         {

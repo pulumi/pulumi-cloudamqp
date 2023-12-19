@@ -36,6 +36,36 @@ public final class GetVpcGcpInfoArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
+     * Configurable sleep time (seconds) between retries when reading peering. Default set to 10 seconds.
+     * 
+     */
+    @Import(name="sleep")
+    private @Nullable Output<Integer> sleep;
+
+    /**
+     * @return Configurable sleep time (seconds) between retries when reading peering. Default set to 10 seconds.
+     * 
+     */
+    public Optional<Output<Integer>> sleep() {
+        return Optional.ofNullable(this.sleep);
+    }
+
+    /**
+     * Configurable timeout time (seconds) before retries times out. Default set to 1800 seconds.
+     * 
+     */
+    @Import(name="timeout")
+    private @Nullable Output<Integer> timeout;
+
+    /**
+     * @return Configurable timeout time (seconds) before retries times out. Default set to 1800 seconds.
+     * 
+     */
+    public Optional<Output<Integer>> timeout() {
+        return Optional.ofNullable(this.timeout);
+    }
+
+    /**
      * The managed VPC identifier.
      * 
      * ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
@@ -58,6 +88,8 @@ public final class GetVpcGcpInfoArgs extends com.pulumi.resources.InvokeArgs {
 
     private GetVpcGcpInfoArgs(GetVpcGcpInfoArgs $) {
         this.instanceId = $.instanceId;
+        this.sleep = $.sleep;
+        this.timeout = $.timeout;
         this.vpcId = $.vpcId;
     }
 
@@ -102,6 +134,48 @@ public final class GetVpcGcpInfoArgs extends com.pulumi.resources.InvokeArgs {
          */
         public Builder instanceId(Integer instanceId) {
             return instanceId(Output.of(instanceId));
+        }
+
+        /**
+         * @param sleep Configurable sleep time (seconds) between retries when reading peering. Default set to 10 seconds.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sleep(@Nullable Output<Integer> sleep) {
+            $.sleep = sleep;
+            return this;
+        }
+
+        /**
+         * @param sleep Configurable sleep time (seconds) between retries when reading peering. Default set to 10 seconds.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sleep(Integer sleep) {
+            return sleep(Output.of(sleep));
+        }
+
+        /**
+         * @param timeout Configurable timeout time (seconds) before retries times out. Default set to 1800 seconds.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder timeout(@Nullable Output<Integer> timeout) {
+            $.timeout = timeout;
+            return this;
+        }
+
+        /**
+         * @param timeout Configurable timeout time (seconds) before retries times out. Default set to 1800 seconds.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder timeout(Integer timeout) {
+            return timeout(Output.of(timeout));
         }
 
         /**

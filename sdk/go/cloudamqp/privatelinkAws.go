@@ -12,7 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Enable PrivateLink for a CloudAMQP instance hosted in AWS. If no existing VPC available when enable PrivateLink, a new VPC will be created with subnet `10.52.72.0/24`.
+// Enable PrivateLink for a CloudAMQP instance hosted in AWS. If no existing VPC available when enable
+// PrivateLink, a new VPC will be created with subnet `10.52.72.0/24`.
 //
 // > **Note:** Enabling PrivateLink will automatically add firewall rules for the peered subnet.
 // <details>
@@ -35,6 +36,64 @@ import (
 //			return nil
 //		})
 //	}
+//
+// ```
+//
+// </details>
+//
+// Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html)
+// where you can also find more information about
+// [CloudAMQP PrivateLink](https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#aws-privatelink).
+//
+// Only available for dedicated subscription plans.
+//
+// > **Warning:** This resource considered deprecated and will be removed in next major version (v2.0).
+// Recommended to start using the new resource`VpcConnect`.
+//
+// ## Example Usage
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>CloudAMQP instance without existing VPC</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Plan:   pulumi.String("bunny-1"),
+//				Region: pulumi.String("amazon-web-services::us-west-1"),
+//				Tags:   pulumi.StringArray{},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewPrivatelinkAws(ctx, "privatelink", &cloudamqp.PrivatelinkAwsArgs{
+//				InstanceId: instance.ID(),
+//				AllowedPrincipals: pulumi.StringArray{
+//					pulumi.String("arn:aws:iam::aws-account-id:user/user-name"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // </details>
 //
@@ -90,9 +149,8 @@ import (
 //	}
 //
 // ```
-// </details>
 //
-// {{% /example %}}
+// </details>
 // ### With Additional Firewall Rules
 //
 // <details>
@@ -177,8 +235,8 @@ import (
 //	}
 //
 // ```
+//
 // </details>
-// {{% /examples %}}
 // ## Depedency
 //
 // This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -186,9 +244,11 @@ import (
 // ## Create PrivateLink with additional firewall rules
 //
 // To create a PrivateLink configuration with additional firewall rules, it's required to chain the SecurityFirewall
-// resource to avoid parallel conflicting resource calls. You can do this by making the firewall resource depend on the PrivateLink resource, `cloudamqp_privatelink_aws.privatelink`.
+// resource to avoid parallel conflicting resource calls. You can do this by making the firewall
+// resource depend on the PrivateLink resource, `cloudamqp_privatelink_aws.privatelink`.
 //
-// Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for the PrivateLink also needs to be added.
+// Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
+// the PrivateLink also needs to be added.
 //
 // ## Import
 //
@@ -210,11 +270,13 @@ type PrivatelinkAws struct {
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
 	// Service name of the PrivateLink used when creating the endpoint from other VPC.
 	ServiceName pulumi.StringOutput `pulumi:"serviceName"`
-	// Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+	// Configurable sleep time (seconds) when enable PrivateLink.
+	// Default set to 10 seconds. *Available from v1.29.0*
 	Sleep pulumi.IntPtrOutput `pulumi:"sleep"`
 	// PrivateLink status [enable, pending, disable]
 	Status pulumi.StringOutput `pulumi:"status"`
-	// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+	// Configurable timeout time (seconds) when enable PrivateLink.
+	// Default set to 1800 seconds. *Available from v1.29.0*
 	//
 	// Allowed principals format: <br>
 	// `arn:aws:iam::aws-account-id:root` <br>
@@ -267,11 +329,13 @@ type privatelinkAwsState struct {
 	InstanceId *int `pulumi:"instanceId"`
 	// Service name of the PrivateLink used when creating the endpoint from other VPC.
 	ServiceName *string `pulumi:"serviceName"`
-	// Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+	// Configurable sleep time (seconds) when enable PrivateLink.
+	// Default set to 10 seconds. *Available from v1.29.0*
 	Sleep *int `pulumi:"sleep"`
 	// PrivateLink status [enable, pending, disable]
 	Status *string `pulumi:"status"`
-	// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+	// Configurable timeout time (seconds) when enable PrivateLink.
+	// Default set to 1800 seconds. *Available from v1.29.0*
 	//
 	// Allowed principals format: <br>
 	// `arn:aws:iam::aws-account-id:root` <br>
@@ -289,11 +353,13 @@ type PrivatelinkAwsState struct {
 	InstanceId pulumi.IntPtrInput
 	// Service name of the PrivateLink used when creating the endpoint from other VPC.
 	ServiceName pulumi.StringPtrInput
-	// Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+	// Configurable sleep time (seconds) when enable PrivateLink.
+	// Default set to 10 seconds. *Available from v1.29.0*
 	Sleep pulumi.IntPtrInput
 	// PrivateLink status [enable, pending, disable]
 	Status pulumi.StringPtrInput
-	// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+	// Configurable timeout time (seconds) when enable PrivateLink.
+	// Default set to 1800 seconds. *Available from v1.29.0*
 	//
 	// Allowed principals format: <br>
 	// `arn:aws:iam::aws-account-id:root` <br>
@@ -311,9 +377,11 @@ type privatelinkAwsArgs struct {
 	AllowedPrincipals []string `pulumi:"allowedPrincipals"`
 	// The CloudAMQP instance identifier.
 	InstanceId int `pulumi:"instanceId"`
-	// Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+	// Configurable sleep time (seconds) when enable PrivateLink.
+	// Default set to 10 seconds. *Available from v1.29.0*
 	Sleep *int `pulumi:"sleep"`
-	// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+	// Configurable timeout time (seconds) when enable PrivateLink.
+	// Default set to 1800 seconds. *Available from v1.29.0*
 	//
 	// Allowed principals format: <br>
 	// `arn:aws:iam::aws-account-id:root` <br>
@@ -328,9 +396,11 @@ type PrivatelinkAwsArgs struct {
 	AllowedPrincipals pulumi.StringArrayInput
 	// The CloudAMQP instance identifier.
 	InstanceId pulumi.IntInput
-	// Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+	// Configurable sleep time (seconds) when enable PrivateLink.
+	// Default set to 10 seconds. *Available from v1.29.0*
 	Sleep pulumi.IntPtrInput
-	// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+	// Configurable timeout time (seconds) when enable PrivateLink.
+	// Default set to 1800 seconds. *Available from v1.29.0*
 	//
 	// Allowed principals format: <br>
 	// `arn:aws:iam::aws-account-id:root` <br>
@@ -446,7 +516,8 @@ func (o PrivatelinkAwsOutput) ServiceName() pulumi.StringOutput {
 	return o.ApplyT(func(v *PrivatelinkAws) pulumi.StringOutput { return v.ServiceName }).(pulumi.StringOutput)
 }
 
-// Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+// Configurable sleep time (seconds) when enable PrivateLink.
+// Default set to 10 seconds. *Available from v1.29.0*
 func (o PrivatelinkAwsOutput) Sleep() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *PrivatelinkAws) pulumi.IntPtrOutput { return v.Sleep }).(pulumi.IntPtrOutput)
 }
@@ -456,7 +527,8 @@ func (o PrivatelinkAwsOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *PrivatelinkAws) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
-// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+// Configurable timeout time (seconds) when enable PrivateLink.
+// Default set to 1800 seconds. *Available from v1.29.0*
 //
 // Allowed principals format: <br>
 // `arn:aws:iam::aws-account-id:root` <br>

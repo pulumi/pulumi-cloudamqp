@@ -12,9 +12,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Enable PrivateLink for a CloudAMQP instance hosted in Azure. If no existing VPC available when enable PrivateLink, a new VPC will be created with subnet `10.52.72.0/24`.
+// Enable PrivateLink for a CloudAMQP instance hosted in Azure. If no existing VPC available when
+// enable PrivateLink, a new VPC will be created with subnet `10.52.72.0/24`.
 //
 // > **Note:** Enabling PrivateLink will automatically add firewall rules for the peered subnet.
+//
 // <details>
 //
 //	<summary>
@@ -36,6 +38,63 @@ import (
 //		})
 //	}
 //
+// ```
+//
+// </details>
+//
+// Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html) where you can also
+// find more information about
+// [CloudAMQP PrivateLink](https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#azure-privatelink).
+//
+// Only available for dedicated subscription plans.
+//
+// > **Warning:** This resource considered deprecated and will be removed in next major version (v2.0).
+// Recommended to start using the new resource`VpcConnect`.
+//
+// ## Example Usage
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>CloudAMQP instance without existing VPC</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Plan:   pulumi.String("bunny-1"),
+//				Region: pulumi.String("azure-arm::westus"),
+//				Tags:   pulumi.StringArray{},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewPrivatelinkAzure(ctx, "privatelink", &cloudamqp.PrivatelinkAzureArgs{
+//				InstanceId: instance.ID(),
+//				ApprovedSubscriptions: pulumi.StringArray{
+//					pulumi.String("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 // </details>
 //
 // <details>
@@ -90,9 +149,8 @@ import (
 //	}
 //
 // ```
-// </details>
 //
-// {{% /example %}}
+// </details>
 // ### With Additional Firewall Rules
 //
 // <details>
@@ -177,8 +235,8 @@ import (
 //	}
 //
 // ```
+//
 // </details>
-// {{% /examples %}}
 // ## Depedency
 //
 // This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -186,9 +244,11 @@ import (
 // ## Create PrivateLink with additional firewall rules
 //
 // To create a PrivateLink configuration with additional firewall rules, it's required to chain the SecurityFirewall
-// resource to avoid parallel conflicting resource calls. You can do this by making the firewall resource depend on the PrivateLink resource, `cloudamqp_privatelink_azure.privatelink`.
+// resource to avoid parallel conflicting resource calls. You can do this by making the firewall
+// resource depend on the PrivateLink resource, `cloudamqp_privatelink_azure.privatelink`.
 //
-// Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for the PrivateLink also needs to be added.
+// Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
+// the PrivateLink also needs to be added.
 //
 // ## Import
 //
@@ -202,7 +262,8 @@ import (
 type PrivatelinkAzure struct {
 	pulumi.CustomResourceState
 
-	// Approved subscriptions to access the endpoint service. See format below.
+	// Approved subscriptions to access the endpoint service.
+	// See format below.
 	ApprovedSubscriptions pulumi.StringArrayOutput `pulumi:"approvedSubscriptions"`
 	// The CloudAMQP instance identifier.
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
@@ -210,13 +271,15 @@ type PrivatelinkAzure struct {
 	ServerName pulumi.StringOutput `pulumi:"serverName"`
 	// Service name (alias) of the PrivateLink, needed when creating the endpoint.
 	ServiceName pulumi.StringOutput `pulumi:"serviceName"`
-	// Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+	// Configurable sleep time (seconds) when enable PrivateLink.
+	// Default set to 10 seconds. *Available from v1.29.0*
 	Sleep pulumi.IntPtrOutput `pulumi:"sleep"`
 	// PrivateLink status [enable, pending, disable]
 	Status pulumi.StringOutput `pulumi:"status"`
-	// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+	// Configurable timeout time (seconds) when enable PrivateLink.
+	// Default set to 1800 seconds. *Available from v1.29.0*
 	//
-	// Approved subscriptions format: <br>
+	// Approved subscriptions format (GUID): <br>
 	// `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
 	Timeout pulumi.IntPtrOutput `pulumi:"timeout"`
 }
@@ -257,7 +320,8 @@ func GetPrivatelinkAzure(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering PrivatelinkAzure resources.
 type privatelinkAzureState struct {
-	// Approved subscriptions to access the endpoint service. See format below.
+	// Approved subscriptions to access the endpoint service.
+	// See format below.
 	ApprovedSubscriptions []string `pulumi:"approvedSubscriptions"`
 	// The CloudAMQP instance identifier.
 	InstanceId *int `pulumi:"instanceId"`
@@ -265,19 +329,22 @@ type privatelinkAzureState struct {
 	ServerName *string `pulumi:"serverName"`
 	// Service name (alias) of the PrivateLink, needed when creating the endpoint.
 	ServiceName *string `pulumi:"serviceName"`
-	// Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+	// Configurable sleep time (seconds) when enable PrivateLink.
+	// Default set to 10 seconds. *Available from v1.29.0*
 	Sleep *int `pulumi:"sleep"`
 	// PrivateLink status [enable, pending, disable]
 	Status *string `pulumi:"status"`
-	// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+	// Configurable timeout time (seconds) when enable PrivateLink.
+	// Default set to 1800 seconds. *Available from v1.29.0*
 	//
-	// Approved subscriptions format: <br>
+	// Approved subscriptions format (GUID): <br>
 	// `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
 	Timeout *int `pulumi:"timeout"`
 }
 
 type PrivatelinkAzureState struct {
-	// Approved subscriptions to access the endpoint service. See format below.
+	// Approved subscriptions to access the endpoint service.
+	// See format below.
 	ApprovedSubscriptions pulumi.StringArrayInput
 	// The CloudAMQP instance identifier.
 	InstanceId pulumi.IntPtrInput
@@ -285,13 +352,15 @@ type PrivatelinkAzureState struct {
 	ServerName pulumi.StringPtrInput
 	// Service name (alias) of the PrivateLink, needed when creating the endpoint.
 	ServiceName pulumi.StringPtrInput
-	// Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+	// Configurable sleep time (seconds) when enable PrivateLink.
+	// Default set to 10 seconds. *Available from v1.29.0*
 	Sleep pulumi.IntPtrInput
 	// PrivateLink status [enable, pending, disable]
 	Status pulumi.StringPtrInput
-	// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+	// Configurable timeout time (seconds) when enable PrivateLink.
+	// Default set to 1800 seconds. *Available from v1.29.0*
 	//
-	// Approved subscriptions format: <br>
+	// Approved subscriptions format (GUID): <br>
 	// `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
 	Timeout pulumi.IntPtrInput
 }
@@ -301,30 +370,36 @@ func (PrivatelinkAzureState) ElementType() reflect.Type {
 }
 
 type privatelinkAzureArgs struct {
-	// Approved subscriptions to access the endpoint service. See format below.
+	// Approved subscriptions to access the endpoint service.
+	// See format below.
 	ApprovedSubscriptions []string `pulumi:"approvedSubscriptions"`
 	// The CloudAMQP instance identifier.
 	InstanceId int `pulumi:"instanceId"`
-	// Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+	// Configurable sleep time (seconds) when enable PrivateLink.
+	// Default set to 10 seconds. *Available from v1.29.0*
 	Sleep *int `pulumi:"sleep"`
-	// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+	// Configurable timeout time (seconds) when enable PrivateLink.
+	// Default set to 1800 seconds. *Available from v1.29.0*
 	//
-	// Approved subscriptions format: <br>
+	// Approved subscriptions format (GUID): <br>
 	// `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
 	Timeout *int `pulumi:"timeout"`
 }
 
 // The set of arguments for constructing a PrivatelinkAzure resource.
 type PrivatelinkAzureArgs struct {
-	// Approved subscriptions to access the endpoint service. See format below.
+	// Approved subscriptions to access the endpoint service.
+	// See format below.
 	ApprovedSubscriptions pulumi.StringArrayInput
 	// The CloudAMQP instance identifier.
 	InstanceId pulumi.IntInput
-	// Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+	// Configurable sleep time (seconds) when enable PrivateLink.
+	// Default set to 10 seconds. *Available from v1.29.0*
 	Sleep pulumi.IntPtrInput
-	// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+	// Configurable timeout time (seconds) when enable PrivateLink.
+	// Default set to 1800 seconds. *Available from v1.29.0*
 	//
-	// Approved subscriptions format: <br>
+	// Approved subscriptions format (GUID): <br>
 	// `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
 	Timeout pulumi.IntPtrInput
 }
@@ -416,7 +491,8 @@ func (o PrivatelinkAzureOutput) ToPrivatelinkAzureOutputWithContext(ctx context.
 	return o
 }
 
-// Approved subscriptions to access the endpoint service. See format below.
+// Approved subscriptions to access the endpoint service.
+// See format below.
 func (o PrivatelinkAzureOutput) ApprovedSubscriptions() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *PrivatelinkAzure) pulumi.StringArrayOutput { return v.ApprovedSubscriptions }).(pulumi.StringArrayOutput)
 }
@@ -436,7 +512,8 @@ func (o PrivatelinkAzureOutput) ServiceName() pulumi.StringOutput {
 	return o.ApplyT(func(v *PrivatelinkAzure) pulumi.StringOutput { return v.ServiceName }).(pulumi.StringOutput)
 }
 
-// Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+// Configurable sleep time (seconds) when enable PrivateLink.
+// Default set to 10 seconds. *Available from v1.29.0*
 func (o PrivatelinkAzureOutput) Sleep() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *PrivatelinkAzure) pulumi.IntPtrOutput { return v.Sleep }).(pulumi.IntPtrOutput)
 }
@@ -446,9 +523,10 @@ func (o PrivatelinkAzureOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *PrivatelinkAzure) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
-// Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+// Configurable timeout time (seconds) when enable PrivateLink.
+// Default set to 1800 seconds. *Available from v1.29.0*
 //
-// Approved subscriptions format: <br>
+// Approved subscriptions format (GUID): <br>
 // `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
 func (o PrivatelinkAzureOutput) Timeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *PrivatelinkAzure) pulumi.IntPtrOutput { return v.Timeout }).(pulumi.IntPtrOutput)

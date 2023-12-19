@@ -22,8 +22,10 @@ class PrivatelinkAwsArgs:
         The set of arguments for constructing a PrivatelinkAws resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_principals: Allowed principals to access the endpoint service.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
-        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
-        :param pulumi.Input[int] timeout: Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) when enable PrivateLink.
+               Default set to 10 seconds. *Available from v1.29.0*
+        :param pulumi.Input[int] timeout: Configurable timeout time (seconds) when enable PrivateLink.
+               Default set to 1800 seconds. *Available from v1.29.0*
                
                Allowed principals format: <br>
                `arn:aws:iam::aws-account-id:root` <br>
@@ -65,7 +67,8 @@ class PrivatelinkAwsArgs:
     @pulumi.getter
     def sleep(self) -> Optional[pulumi.Input[int]]:
         """
-        Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+        Configurable sleep time (seconds) when enable PrivateLink.
+        Default set to 10 seconds. *Available from v1.29.0*
         """
         return pulumi.get(self, "sleep")
 
@@ -77,7 +80,8 @@ class PrivatelinkAwsArgs:
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+        Configurable timeout time (seconds) when enable PrivateLink.
+        Default set to 1800 seconds. *Available from v1.29.0*
 
         Allowed principals format: <br>
         `arn:aws:iam::aws-account-id:root` <br>
@@ -107,9 +111,11 @@ class _PrivatelinkAwsState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_principals: Allowed principals to access the endpoint service.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
         :param pulumi.Input[str] service_name: Service name of the PrivateLink used when creating the endpoint from other VPC.
-        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) when enable PrivateLink.
+               Default set to 10 seconds. *Available from v1.29.0*
         :param pulumi.Input[str] status: PrivateLink status [enable, pending, disable]
-        :param pulumi.Input[int] timeout: Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time (seconds) when enable PrivateLink.
+               Default set to 1800 seconds. *Available from v1.29.0*
                
                Allowed principals format: <br>
                `arn:aws:iam::aws-account-id:root` <br>
@@ -183,7 +189,8 @@ class _PrivatelinkAwsState:
     @pulumi.getter
     def sleep(self) -> Optional[pulumi.Input[int]]:
         """
-        Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+        Configurable sleep time (seconds) when enable PrivateLink.
+        Default set to 10 seconds. *Available from v1.29.0*
         """
         return pulumi.get(self, "sleep")
 
@@ -207,7 +214,8 @@ class _PrivatelinkAwsState:
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+        Configurable timeout time (seconds) when enable PrivateLink.
+        Default set to 1800 seconds. *Available from v1.29.0*
 
         Allowed principals format: <br>
         `arn:aws:iam::aws-account-id:root` <br>
@@ -232,21 +240,29 @@ class PrivatelinkAws(pulumi.CustomResource):
                  timeout: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        Enable PrivateLink for a CloudAMQP instance hosted in AWS. If no existing VPC available when enable PrivateLink, a new VPC will be created with subnet `10.52.72.0/24`.
+        Enable PrivateLink for a CloudAMQP instance hosted in AWS. If no existing VPC available when enable
+        PrivateLink, a new VPC will be created with subnet `10.52.72.0/24`.
 
         > **Note:** Enabling PrivateLink will automatically add firewall rules for the peered subnet.
         <details>
          <summary>
             <i>Default PrivateLink firewall rule</i>
           </summary>
+
         ```python
         import pulumi
         ```
+
         </details>
 
-        Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html) where you can also find more information about [CloudAMQP PrivateLink](https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#aws-privatelink).
+        Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html)
+        where you can also find more information about
+        [CloudAMQP PrivateLink](https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#aws-privatelink).
 
         Only available for dedicated subscription plans.
+
+        > **Warning:** This resource considered deprecated and will be removed in next major version (v2.0).
+        Recommended to start using the new resource`VpcConnect`.
 
         ## Example Usage
 
@@ -269,6 +285,7 @@ class PrivatelinkAws(pulumi.CustomResource):
             instance_id=instance.id,
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         ```
+
         </details>
 
         <details>
@@ -296,6 +313,7 @@ class PrivatelinkAws(pulumi.CustomResource):
             instance_id=instance.id,
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         ```
+
         </details>
         ### With Additional Firewall Rules
 
@@ -347,6 +365,7 @@ class PrivatelinkAws(pulumi.CustomResource):
             ],
             opts=pulumi.ResourceOptions(depends_on=[privatelink]))
         ```
+
         </details>
         ## Depedency
 
@@ -355,9 +374,11 @@ class PrivatelinkAws(pulumi.CustomResource):
         ## Create PrivateLink with additional firewall rules
 
         To create a PrivateLink configuration with additional firewall rules, it's required to chain the SecurityFirewall
-        resource to avoid parallel conflicting resource calls. You can do this by making the firewall resource depend on the PrivateLink resource, `cloudamqp_privatelink_aws.privatelink`.
+        resource to avoid parallel conflicting resource calls. You can do this by making the firewall
+        resource depend on the PrivateLink resource, `cloudamqp_privatelink_aws.privatelink`.
 
-        Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for the PrivateLink also needs to be added.
+        Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
+        the PrivateLink also needs to be added.
 
         ## Import
 
@@ -371,8 +392,10 @@ class PrivatelinkAws(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_principals: Allowed principals to access the endpoint service.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
-        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
-        :param pulumi.Input[int] timeout: Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) when enable PrivateLink.
+               Default set to 10 seconds. *Available from v1.29.0*
+        :param pulumi.Input[int] timeout: Configurable timeout time (seconds) when enable PrivateLink.
+               Default set to 1800 seconds. *Available from v1.29.0*
                
                Allowed principals format: <br>
                `arn:aws:iam::aws-account-id:root` <br>
@@ -386,21 +409,29 @@ class PrivatelinkAws(pulumi.CustomResource):
                  args: PrivatelinkAwsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Enable PrivateLink for a CloudAMQP instance hosted in AWS. If no existing VPC available when enable PrivateLink, a new VPC will be created with subnet `10.52.72.0/24`.
+        Enable PrivateLink for a CloudAMQP instance hosted in AWS. If no existing VPC available when enable
+        PrivateLink, a new VPC will be created with subnet `10.52.72.0/24`.
 
         > **Note:** Enabling PrivateLink will automatically add firewall rules for the peered subnet.
         <details>
          <summary>
             <i>Default PrivateLink firewall rule</i>
           </summary>
+
         ```python
         import pulumi
         ```
+
         </details>
 
-        Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html) where you can also find more information about [CloudAMQP PrivateLink](https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#aws-privatelink).
+        Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html)
+        where you can also find more information about
+        [CloudAMQP PrivateLink](https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#aws-privatelink).
 
         Only available for dedicated subscription plans.
+
+        > **Warning:** This resource considered deprecated and will be removed in next major version (v2.0).
+        Recommended to start using the new resource`VpcConnect`.
 
         ## Example Usage
 
@@ -423,6 +454,7 @@ class PrivatelinkAws(pulumi.CustomResource):
             instance_id=instance.id,
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         ```
+
         </details>
 
         <details>
@@ -450,6 +482,7 @@ class PrivatelinkAws(pulumi.CustomResource):
             instance_id=instance.id,
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         ```
+
         </details>
         ### With Additional Firewall Rules
 
@@ -501,6 +534,7 @@ class PrivatelinkAws(pulumi.CustomResource):
             ],
             opts=pulumi.ResourceOptions(depends_on=[privatelink]))
         ```
+
         </details>
         ## Depedency
 
@@ -509,9 +543,11 @@ class PrivatelinkAws(pulumi.CustomResource):
         ## Create PrivateLink with additional firewall rules
 
         To create a PrivateLink configuration with additional firewall rules, it's required to chain the SecurityFirewall
-        resource to avoid parallel conflicting resource calls. You can do this by making the firewall resource depend on the PrivateLink resource, `cloudamqp_privatelink_aws.privatelink`.
+        resource to avoid parallel conflicting resource calls. You can do this by making the firewall
+        resource depend on the PrivateLink resource, `cloudamqp_privatelink_aws.privatelink`.
 
-        Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for the PrivateLink also needs to be added.
+        Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
+        the PrivateLink also needs to be added.
 
         ## Import
 
@@ -588,9 +624,11 @@ class PrivatelinkAws(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_principals: Allowed principals to access the endpoint service.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
         :param pulumi.Input[str] service_name: Service name of the PrivateLink used when creating the endpoint from other VPC.
-        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) when enable PrivateLink.
+               Default set to 10 seconds. *Available from v1.29.0*
         :param pulumi.Input[str] status: PrivateLink status [enable, pending, disable]
-        :param pulumi.Input[int] timeout: Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time (seconds) when enable PrivateLink.
+               Default set to 1800 seconds. *Available from v1.29.0*
                
                Allowed principals format: <br>
                `arn:aws:iam::aws-account-id:root` <br>
@@ -646,7 +684,8 @@ class PrivatelinkAws(pulumi.CustomResource):
     @pulumi.getter
     def sleep(self) -> pulumi.Output[Optional[int]]:
         """
-        Configurable sleep time (seconds) when enable PrivateLink. Default set to 60 seconds.
+        Configurable sleep time (seconds) when enable PrivateLink.
+        Default set to 10 seconds. *Available from v1.29.0*
         """
         return pulumi.get(self, "sleep")
 
@@ -662,7 +701,8 @@ class PrivatelinkAws(pulumi.CustomResource):
     @pulumi.getter
     def timeout(self) -> pulumi.Output[Optional[int]]:
         """
-        Configurable timeout time (seconds) when enable PrivateLink. Default set to 3600 seconds.
+        Configurable timeout time (seconds) when enable PrivateLink.
+        Default set to 1800 seconds. *Available from v1.29.0*
 
         Allowed principals format: <br>
         `arn:aws:iam::aws-account-id:root` <br>

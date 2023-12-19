@@ -40,6 +40,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// });
         /// ```
+        /// 
         /// &lt;/details&gt;
         /// 
         /// &lt;details&gt;
@@ -64,6 +65,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// });
         /// ```
+        /// 
         /// &lt;/details&gt;
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -116,6 +118,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// });
         /// ```
+        /// 
         /// &lt;/details&gt;
         /// 
         /// &lt;details&gt;
@@ -140,6 +143,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// });
         /// ```
+        /// 
         /// &lt;/details&gt;
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -176,6 +180,18 @@ namespace Pulumi.CloudAmqp
         public int? InstanceId { get; set; }
 
         /// <summary>
+        /// Configurable sleep time (seconds) between retries when reading peering. Default set to 10 seconds.
+        /// </summary>
+        [Input("sleep")]
+        public int? Sleep { get; set; }
+
+        /// <summary>
+        /// Configurable timeout time (seconds) before retries times out. Default set to 1800 seconds.
+        /// </summary>
+        [Input("timeout")]
+        public int? Timeout { get; set; }
+
+        /// <summary>
         /// The managed VPC identifier.
         /// 
         /// ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
@@ -198,6 +214,18 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
+
+        /// <summary>
+        /// Configurable sleep time (seconds) between retries when reading peering. Default set to 10 seconds.
+        /// </summary>
+        [Input("sleep")]
+        public Input<int>? Sleep { get; set; }
+
+        /// <summary>
+        /// Configurable timeout time (seconds) before retries times out. Default set to 1800 seconds.
+        /// </summary>
+        [Input("timeout")]
+        public Input<int>? Timeout { get; set; }
 
         /// <summary>
         /// The managed VPC identifier.
@@ -224,6 +252,8 @@ namespace Pulumi.CloudAmqp
         public readonly int? InstanceId;
         public readonly string Name;
         public readonly string Network;
+        public readonly int? Sleep;
+        public readonly int? Timeout;
         public readonly string? VpcId;
         public readonly string VpcSubnet;
 
@@ -237,6 +267,10 @@ namespace Pulumi.CloudAmqp
 
             string network,
 
+            int? sleep,
+
+            int? timeout,
+
             string? vpcId,
 
             string vpcSubnet)
@@ -245,6 +279,8 @@ namespace Pulumi.CloudAmqp
             InstanceId = instanceId;
             Name = name;
             Network = network;
+            Sleep = sleep;
+            Timeout = timeout;
             VpcId = vpcId;
             VpcSubnet = vpcSubnet;
         }

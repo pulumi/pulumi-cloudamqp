@@ -5,14 +5,19 @@ package com.pulumi.cloudamqp.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetPluginsPlugin {
     private String description;
     private Boolean enabled;
     private String name;
+    private @Nullable Integer sleep;
+    private @Nullable Integer timeout;
     private String version;
 
     private GetPluginsPlugin() {}
@@ -24,6 +29,12 @@ public final class GetPluginsPlugin {
     }
     public String name() {
         return this.name;
+    }
+    public Optional<Integer> sleep() {
+        return Optional.ofNullable(this.sleep);
+    }
+    public Optional<Integer> timeout() {
+        return Optional.ofNullable(this.timeout);
     }
     public String version() {
         return this.version;
@@ -41,6 +52,8 @@ public final class GetPluginsPlugin {
         private String description;
         private Boolean enabled;
         private String name;
+        private @Nullable Integer sleep;
+        private @Nullable Integer timeout;
         private String version;
         public Builder() {}
         public Builder(GetPluginsPlugin defaults) {
@@ -48,6 +61,8 @@ public final class GetPluginsPlugin {
     	      this.description = defaults.description;
     	      this.enabled = defaults.enabled;
     	      this.name = defaults.name;
+    	      this.sleep = defaults.sleep;
+    	      this.timeout = defaults.timeout;
     	      this.version = defaults.version;
         }
 
@@ -67,6 +82,16 @@ public final class GetPluginsPlugin {
             return this;
         }
         @CustomType.Setter
+        public Builder sleep(@Nullable Integer sleep) {
+            this.sleep = sleep;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder timeout(@Nullable Integer timeout) {
+            this.timeout = timeout;
+            return this;
+        }
+        @CustomType.Setter
         public Builder version(String version) {
             this.version = Objects.requireNonNull(version);
             return this;
@@ -76,6 +101,8 @@ public final class GetPluginsPlugin {
             _resultValue.description = description;
             _resultValue.enabled = enabled;
             _resultValue.name = name;
+            _resultValue.sleep = sleep;
+            _resultValue.timeout = timeout;
             _resultValue.version = version;
             return _resultValue;
         }

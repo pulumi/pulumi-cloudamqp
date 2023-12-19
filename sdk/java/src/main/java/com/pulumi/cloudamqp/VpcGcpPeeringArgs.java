@@ -18,18 +18,14 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
     public static final VpcGcpPeeringArgs Empty = new VpcGcpPeeringArgs();
 
     /**
-     * The CloudAMQP instance identifier.
-     * 
-     * ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+     * The CloudAMQP instance identifier. *Deprecated from v1.16.0*
      * 
      */
     @Import(name="instanceId")
     private @Nullable Output<Integer> instanceId;
 
     /**
-     * @return The CloudAMQP instance identifier.
-     * 
-     * ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+     * @return The CloudAMQP instance identifier. *Deprecated from v1.16.0*
      * 
      */
     public Optional<Output<Integer>> instanceId() {
@@ -52,18 +48,48 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The managed VPC identifier.
+     * Configurable sleep time (seconds) between retries when requesting or reading
+     * peering. Default set to 10 seconds. *Available from v1.29.0*
      * 
-     * ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
+     */
+    @Import(name="sleep")
+    private @Nullable Output<Integer> sleep;
+
+    /**
+     * @return Configurable sleep time (seconds) between retries when requesting or reading
+     * peering. Default set to 10 seconds. *Available from v1.29.0*
+     * 
+     */
+    public Optional<Output<Integer>> sleep() {
+        return Optional.ofNullable(this.sleep);
+    }
+
+    /**
+     * Configurable timeout time (seconds) before retries times out. Default set
+     * to 1800 seconds. *Available from v1.29.0*
+     * 
+     */
+    @Import(name="timeout")
+    private @Nullable Output<Integer> timeout;
+
+    /**
+     * @return Configurable timeout time (seconds) before retries times out. Default set
+     * to 1800 seconds. *Available from v1.29.0*
+     * 
+     */
+    public Optional<Output<Integer>> timeout() {
+        return Optional.ofNullable(this.timeout);
+    }
+
+    /**
+     * The managed VPC identifier. *Available from v1.16.0*
      * 
      */
     @Import(name="vpcId")
     private @Nullable Output<String> vpcId;
 
     /**
-     * @return The managed VPC identifier.
-     * 
-     * ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
+     * @return The managed VPC identifier. *Available from v1.16.0*
      * 
      */
     public Optional<Output<String>> vpcId() {
@@ -72,8 +98,7 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * Makes the resource wait until the peering is connected.
-     * 
-     * ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+     * Default set to false. *Available from v1.28.0*
      * 
      */
     @Import(name="waitOnPeeringStatus")
@@ -81,8 +106,7 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return Makes the resource wait until the peering is connected.
-     * 
-     * ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+     * Default set to false. *Available from v1.28.0*
      * 
      */
     public Optional<Output<Boolean>> waitOnPeeringStatus() {
@@ -94,6 +118,8 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
     private VpcGcpPeeringArgs(VpcGcpPeeringArgs $) {
         this.instanceId = $.instanceId;
         this.peerNetworkUri = $.peerNetworkUri;
+        this.sleep = $.sleep;
+        this.timeout = $.timeout;
         this.vpcId = $.vpcId;
         this.waitOnPeeringStatus = $.waitOnPeeringStatus;
     }
@@ -117,9 +143,7 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param instanceId The CloudAMQP instance identifier.
-         * 
-         * ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+         * @param instanceId The CloudAMQP instance identifier. *Deprecated from v1.16.0*
          * 
          * @return builder
          * 
@@ -130,9 +154,7 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param instanceId The CloudAMQP instance identifier.
-         * 
-         * ***Depreacted: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+         * @param instanceId The CloudAMQP instance identifier. *Deprecated from v1.16.0*
          * 
          * @return builder
          * 
@@ -163,9 +185,53 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param vpcId The managed VPC identifier.
+         * @param sleep Configurable sleep time (seconds) between retries when requesting or reading
+         * peering. Default set to 10 seconds. *Available from v1.29.0*
          * 
-         * ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
+         * @return builder
+         * 
+         */
+        public Builder sleep(@Nullable Output<Integer> sleep) {
+            $.sleep = sleep;
+            return this;
+        }
+
+        /**
+         * @param sleep Configurable sleep time (seconds) between retries when requesting or reading
+         * peering. Default set to 10 seconds. *Available from v1.29.0*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sleep(Integer sleep) {
+            return sleep(Output.of(sleep));
+        }
+
+        /**
+         * @param timeout Configurable timeout time (seconds) before retries times out. Default set
+         * to 1800 seconds. *Available from v1.29.0*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder timeout(@Nullable Output<Integer> timeout) {
+            $.timeout = timeout;
+            return this;
+        }
+
+        /**
+         * @param timeout Configurable timeout time (seconds) before retries times out. Default set
+         * to 1800 seconds. *Available from v1.29.0*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder timeout(Integer timeout) {
+            return timeout(Output.of(timeout));
+        }
+
+        /**
+         * @param vpcId The managed VPC identifier. *Available from v1.16.0*
          * 
          * @return builder
          * 
@@ -176,9 +242,7 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param vpcId The managed VPC identifier.
-         * 
-         * ***Note: Added as optional in version v1.16.0, will be required in next major version (v2.0)***
+         * @param vpcId The managed VPC identifier. *Available from v1.16.0*
          * 
          * @return builder
          * 
@@ -189,8 +253,7 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param waitOnPeeringStatus Makes the resource wait until the peering is connected.
-         * 
-         * ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+         * Default set to false. *Available from v1.28.0*
          * 
          * @return builder
          * 
@@ -202,8 +265,7 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param waitOnPeeringStatus Makes the resource wait until the peering is connected.
-         * 
-         * ***Note: Added as optional in version v1.28.0. Default set to false and will not wait until the peering is done from both VPCs***
+         * Default set to false. *Available from v1.28.0*
          * 
          * @return builder
          * 
