@@ -199,12 +199,105 @@ namespace Pulumi.CloudAmqp
     /// ```
     /// 
     /// &lt;/details&gt;
+    /// ### With Additional Firewall Rules
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;CloudAMQP instance in an existing VPC with managed firewall rules&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var vpc = new CloudAmqp.Vpc("vpc", new()
+    ///     {
+    ///         Region = "amazon-web-services::us-west-1",
+    ///         Subnet = "10.56.72.0/24",
+    ///         Tags = new[] {},
+    ///     });
+    /// 
+    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     {
+    ///         Plan = "bunny-1",
+    ///         Region = "amazon-web-services::us-west-1",
+    ///         Tags = new[] {},
+    ///         VpcId = vpc.Id,
+    ///         KeepAssociatedVpc = true,
+    ///     });
+    /// 
+    ///     var vpcConnect = new CloudAmqp.VpcConnect("vpcConnect", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         AllowedPrincipals = new[]
+    ///         {
+    ///             "arn:aws:iam::aws-account-id:user/user-name",
+    ///         },
+    ///     });
+    /// 
+    ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewallSettings", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Rules = new[]
+    ///         {
+    ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
+    ///             {
+    ///                 Description = "Custom PrivateLink setup",
+    ///                 Ip = vpc.Subnet,
+    ///                 Ports = new() { },
+    ///                 Services = new[]
+    ///                 {
+    ///                     "AMQP",
+    ///                     "AMQPS",
+    ///                     "HTTPS",
+    ///                     "STREAM",
+    ///                     "STREAM_SSL",
+    ///                 },
+    ///             },
+    ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
+    ///             {
+    ///                 Description = "MGMT interface",
+    ///                 Ip = "0.0.0.0/0",
+    ///                 Ports = new() { },
+    ///                 Services = new[]
+    ///                 {
+    ///                     "HTTPS",
+    ///                 },
+    ///             },
+    ///         },
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             vpcConnect,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
     /// ## Depedency
     /// 
     /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
     /// 
     /// Since `region` also is required, suggest to reuse the argument from CloudAMQP instance,
     /// `cloudamqp_instance.instance.region`.
+    /// 
+    /// ## Create VPC Connect with additional firewall rules
+    /// 
+    /// To create a PrivateLink/Private Service Connect configuration with additional firewall rules, it's required to chain the cloudamqp.SecurityFirewall
+    /// resource to avoid parallel conflicting resource calls. You can do this by making the firewall
+    /// resource depend on the VPC Connect resource, `cloudamqp_vpc_connect.vpc_connect`.
+    /// 
+    /// Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
+    /// the VPC Connect also needs to be added.
     /// 
     /// ## Import
     /// 
@@ -213,6 +306,8 @@ namespace Pulumi.CloudAmqp
     /// ```sh
     ///  $ pulumi import cloudamqp:index/vpcConnect:VpcConnect vpc_connect &lt;id&gt;`
     /// ```
+    /// 
+    ///  The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/vpcConnect:VpcConnect")]
     public partial class VpcConnect : global::Pulumi.CustomResource

@@ -118,7 +118,7 @@ import * as utilities from "./utilities";
  *     instanceId: instance.id,
  *     rules: [
  *         {
- *             Description: "Custom PrivateLink setup",
+ *             description: "Custom PrivateLink setup",
  *             ip: vpc.subnet,
  *             ports: [],
  *             services: [
@@ -162,6 +162,8 @@ import * as utilities from "./utilities";
  * ```sh
  *  $ pulumi import cloudamqp:index/privatelinkAzure:PrivatelinkAzure privatelink <id>`
  * ```
+ *
+ *  The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
  */
 export class PrivatelinkAzure extends pulumi.CustomResource {
     /**
