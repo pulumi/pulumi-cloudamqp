@@ -493,12 +493,73 @@ class VpcConnect(pulumi.CustomResource):
         ```
 
         </details>
+        ### With Additional Firewall Rules
+
+        <details>
+          <summary>
+            <b>
+              <i>CloudAMQP instance in an existing VPC with managed firewall rules</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        vpc = cloudamqp.Vpc("vpc",
+            region="amazon-web-services::us-west-1",
+            subnet="10.56.72.0/24",
+            tags=[])
+        instance = cloudamqp.Instance("instance",
+            plan="bunny-1",
+            region="amazon-web-services::us-west-1",
+            tags=[],
+            vpc_id=vpc.id,
+            keep_associated_vpc=True)
+        vpc_connect = cloudamqp.VpcConnect("vpcConnect",
+            instance_id=instance.id,
+            allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
+        firewall_settings = cloudamqp.SecurityFirewall("firewallSettings",
+            instance_id=instance.id,
+            rules=[
+                cloudamqp.SecurityFirewallRuleArgs(
+                    description="Custom PrivateLink setup",
+                    ip=vpc.subnet,
+                    ports=[],
+                    services=[
+                        "AMQP",
+                        "AMQPS",
+                        "HTTPS",
+                        "STREAM",
+                        "STREAM_SSL",
+                    ],
+                ),
+                cloudamqp.SecurityFirewallRuleArgs(
+                    description="MGMT interface",
+                    ip="0.0.0.0/0",
+                    ports=[],
+                    services=["HTTPS"],
+                ),
+            ],
+            opts=pulumi.ResourceOptions(depends_on=[vpc_connect]))
+        ```
+
+        </details>
         ## Depedency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 
         Since `region` also is required, suggest to reuse the argument from CloudAMQP instance,
         `cloudamqp_instance.instance.region`.
+
+        ## Create VPC Connect with additional firewall rules
+
+        To create a PrivateLink/Private Service Connect configuration with additional firewall rules, it's required to chain the SecurityFirewall
+        resource to avoid parallel conflicting resource calls. You can do this by making the firewall
+        resource depend on the VPC Connect resource, `cloudamqp_vpc_connect.vpc_connect`.
+
+        Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
+        the VPC Connect also needs to be added.
 
         ## Import
 
@@ -507,6 +568,8 @@ class VpcConnect(pulumi.CustomResource):
         ```sh
          $ pulumi import cloudamqp:index/vpcConnect:VpcConnect vpc_connect <id>`
         ```
+
+         The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -665,12 +728,73 @@ class VpcConnect(pulumi.CustomResource):
         ```
 
         </details>
+        ### With Additional Firewall Rules
+
+        <details>
+          <summary>
+            <b>
+              <i>CloudAMQP instance in an existing VPC with managed firewall rules</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        vpc = cloudamqp.Vpc("vpc",
+            region="amazon-web-services::us-west-1",
+            subnet="10.56.72.0/24",
+            tags=[])
+        instance = cloudamqp.Instance("instance",
+            plan="bunny-1",
+            region="amazon-web-services::us-west-1",
+            tags=[],
+            vpc_id=vpc.id,
+            keep_associated_vpc=True)
+        vpc_connect = cloudamqp.VpcConnect("vpcConnect",
+            instance_id=instance.id,
+            allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
+        firewall_settings = cloudamqp.SecurityFirewall("firewallSettings",
+            instance_id=instance.id,
+            rules=[
+                cloudamqp.SecurityFirewallRuleArgs(
+                    description="Custom PrivateLink setup",
+                    ip=vpc.subnet,
+                    ports=[],
+                    services=[
+                        "AMQP",
+                        "AMQPS",
+                        "HTTPS",
+                        "STREAM",
+                        "STREAM_SSL",
+                    ],
+                ),
+                cloudamqp.SecurityFirewallRuleArgs(
+                    description="MGMT interface",
+                    ip="0.0.0.0/0",
+                    ports=[],
+                    services=["HTTPS"],
+                ),
+            ],
+            opts=pulumi.ResourceOptions(depends_on=[vpc_connect]))
+        ```
+
+        </details>
         ## Depedency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 
         Since `region` also is required, suggest to reuse the argument from CloudAMQP instance,
         `cloudamqp_instance.instance.region`.
+
+        ## Create VPC Connect with additional firewall rules
+
+        To create a PrivateLink/Private Service Connect configuration with additional firewall rules, it's required to chain the SecurityFirewall
+        resource to avoid parallel conflicting resource calls. You can do this by making the firewall
+        resource depend on the VPC Connect resource, `cloudamqp_vpc_connect.vpc_connect`.
+
+        Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
+        the VPC Connect also needs to be added.
 
         ## Import
 
@@ -679,6 +803,8 @@ class VpcConnect(pulumi.CustomResource):
         ```sh
          $ pulumi import cloudamqp:index/vpcConnect:VpcConnect vpc_connect <id>`
         ```
+
+         The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
 
         :param str resource_name: The name of the resource.
         :param VpcConnectArgs args: The arguments to use to populate this resource's properties.

@@ -388,6 +388,8 @@ class PrivatelinkAws(pulumi.CustomResource):
          $ pulumi import cloudamqp:index/privatelinkAws:PrivatelinkAws privatelink <id>`
         ```
 
+         The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_principals: Allowed principals to access the endpoint service.
@@ -556,6 +558,8 @@ class PrivatelinkAws(pulumi.CustomResource):
         ```sh
          $ pulumi import cloudamqp:index/privatelinkAws:PrivatelinkAws privatelink <id>`
         ```
+
+         The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
 
         :param str resource_name: The name of the resource.
         :param PrivatelinkAwsArgs args: The arguments to use to populate this resource's properties.

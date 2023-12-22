@@ -403,7 +403,7 @@ import javax.annotation.Nullable;
  *  $ pulumi import cloudamqp:index/instance:Instance instance &lt;id&gt;`
  * ```
  * 
- *  To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances). Or use the data source [`cloudamqp_account`](./data-sources/account.md) to list all available instances for an account.
+ *  To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md) to list all available instances for an account.
  * 
  */
 @ResourceType(type="cloudamqp:index/instance:Instance")

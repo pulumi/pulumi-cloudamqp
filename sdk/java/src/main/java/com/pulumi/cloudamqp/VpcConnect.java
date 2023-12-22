@@ -263,12 +263,106 @@ import javax.annotation.Nullable;
  * ```
  * 
  * &lt;/details&gt;
+ * ### With Additional Firewall Rules
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;CloudAMQP instance in an existing VPC with managed firewall rules&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Vpc;
+ * import com.pulumi.cloudamqp.VpcArgs;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import com.pulumi.cloudamqp.VpcConnect;
+ * import com.pulumi.cloudamqp.VpcConnectArgs;
+ * import com.pulumi.cloudamqp.SecurityFirewall;
+ * import com.pulumi.cloudamqp.SecurityFirewallArgs;
+ * import com.pulumi.cloudamqp.inputs.SecurityFirewallRuleArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var vpc = new Vpc(&#34;vpc&#34;, VpcArgs.builder()        
+ *             .region(&#34;amazon-web-services::us-west-1&#34;)
+ *             .subnet(&#34;10.56.72.0/24&#34;)
+ *             .tags()
+ *             .build());
+ * 
+ *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
+ *             .plan(&#34;bunny-1&#34;)
+ *             .region(&#34;amazon-web-services::us-west-1&#34;)
+ *             .tags()
+ *             .vpcId(vpc.id())
+ *             .keepAssociatedVpc(true)
+ *             .build());
+ * 
+ *         var vpcConnect = new VpcConnect(&#34;vpcConnect&#34;, VpcConnectArgs.builder()        
+ *             .instanceId(instance.id())
+ *             .allowedPrincipals(&#34;arn:aws:iam::aws-account-id:user/user-name&#34;)
+ *             .build());
+ * 
+ *         var firewallSettings = new SecurityFirewall(&#34;firewallSettings&#34;, SecurityFirewallArgs.builder()        
+ *             .instanceId(instance.id())
+ *             .rules(            
+ *                 SecurityFirewallRuleArgs.builder()
+ *                     .description(&#34;Custom PrivateLink setup&#34;)
+ *                     .ip(vpc.subnet())
+ *                     .ports()
+ *                     .services(                    
+ *                         &#34;AMQP&#34;,
+ *                         &#34;AMQPS&#34;,
+ *                         &#34;HTTPS&#34;,
+ *                         &#34;STREAM&#34;,
+ *                         &#34;STREAM_SSL&#34;)
+ *                     .build(),
+ *                 SecurityFirewallRuleArgs.builder()
+ *                     .description(&#34;MGMT interface&#34;)
+ *                     .ip(&#34;0.0.0.0/0&#34;)
+ *                     .ports()
+ *                     .services(&#34;HTTPS&#34;)
+ *                     .build())
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(vpcConnect)
+ *                 .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * &lt;/details&gt;
  * ## Depedency
  * 
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
  * 
  * Since `region` also is required, suggest to reuse the argument from CloudAMQP instance,
  * `cloudamqp_instance.instance.region`.
+ * 
+ * ## Create VPC Connect with additional firewall rules
+ * 
+ * To create a PrivateLink/Private Service Connect configuration with additional firewall rules, it&#39;s required to chain the cloudamqp.SecurityFirewall
+ * resource to avoid parallel conflicting resource calls. You can do this by making the firewall
+ * resource depend on the VPC Connect resource, `cloudamqp_vpc_connect.vpc_connect`.
+ * 
+ * Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
+ * the VPC Connect also needs to be added.
  * 
  * ## Import
  * 
@@ -277,6 +371,8 @@ import javax.annotation.Nullable;
  * ```sh
  *  $ pulumi import cloudamqp:index/vpcConnect:VpcConnect vpc_connect &lt;id&gt;`
  * ```
+ * 
+ *  The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
  * 
  */
 @ResourceType(type="cloudamqp:index/vpcConnect:VpcConnect")
