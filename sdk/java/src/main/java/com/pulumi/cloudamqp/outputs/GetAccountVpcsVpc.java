@@ -4,6 +4,7 @@
 package com.pulumi.cloudamqp.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -67,26 +68,39 @@ public final class GetAccountVpcsVpc {
 
         @CustomType.Setter
         public Builder id(Integer id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetAccountVpcsVpc", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetAccountVpcsVpc", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder region(String region) {
-            this.region = Objects.requireNonNull(region);
+            if (region == null) {
+              throw new MissingRequiredPropertyException("GetAccountVpcsVpc", "region");
+            }
+            this.region = region;
             return this;
         }
         @CustomType.Setter
         public Builder subnet(String subnet) {
-            this.subnet = Objects.requireNonNull(subnet);
+            if (subnet == null) {
+              throw new MissingRequiredPropertyException("GetAccountVpcsVpc", "subnet");
+            }
+            this.subnet = subnet;
             return this;
         }
         @CustomType.Setter
         public Builder tags(@Nullable List<String> tags) {
+
             this.tags = tags;
             return this;
         }
@@ -95,7 +109,10 @@ public final class GetAccountVpcsVpc {
         }
         @CustomType.Setter
         public Builder vpcName(String vpcName) {
-            this.vpcName = Objects.requireNonNull(vpcName);
+            if (vpcName == null) {
+              throw new MissingRequiredPropertyException("GetAccountVpcsVpc", "vpcName");
+            }
+            this.vpcName = vpcName;
             return this;
         }
         public GetAccountVpcsVpc build() {

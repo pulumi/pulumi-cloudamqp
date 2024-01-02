@@ -5,6 +5,7 @@ package com.pulumi.cloudamqp;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -275,7 +276,9 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public VpcGcpPeeringArgs build() {
-            $.peerNetworkUri = Objects.requireNonNull($.peerNetworkUri, "expected parameter 'peerNetworkUri' to be non-null");
+            if ($.peerNetworkUri == null) {
+                throw new MissingRequiredPropertyException("VpcGcpPeeringArgs", "peerNetworkUri");
+            }
             return $;
         }
     }

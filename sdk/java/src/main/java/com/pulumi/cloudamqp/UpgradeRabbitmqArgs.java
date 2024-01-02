@@ -5,6 +5,7 @@ package com.pulumi.cloudamqp;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.util.Objects;
 
@@ -74,7 +75,9 @@ public final class UpgradeRabbitmqArgs extends com.pulumi.resources.ResourceArgs
         }
 
         public UpgradeRabbitmqArgs build() {
-            $.instanceId = Objects.requireNonNull($.instanceId, "expected parameter 'instanceId' to be non-null");
+            if ($.instanceId == null) {
+                throw new MissingRequiredPropertyException("UpgradeRabbitmqArgs", "instanceId");
+            }
             return $;
         }
     }

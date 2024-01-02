@@ -6,6 +6,7 @@ package com.pulumi.cloudamqp;
 import com.pulumi.cloudamqp.inputs.InstanceCopySettingArgs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -530,8 +531,12 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public InstanceArgs build() {
-            $.plan = Objects.requireNonNull($.plan, "expected parameter 'plan' to be non-null");
-            $.region = Objects.requireNonNull($.region, "expected parameter 'region' to be non-null");
+            if ($.plan == null) {
+                throw new MissingRequiredPropertyException("InstanceArgs", "plan");
+            }
+            if ($.region == null) {
+                throw new MissingRequiredPropertyException("InstanceArgs", "region");
+            }
             return $;
         }
     }

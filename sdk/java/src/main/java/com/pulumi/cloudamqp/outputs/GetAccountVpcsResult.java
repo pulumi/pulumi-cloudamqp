@@ -5,6 +5,7 @@ package com.pulumi.cloudamqp.outputs;
 
 import com.pulumi.cloudamqp.outputs.GetAccountVpcsVpc;
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -50,12 +51,18 @@ public final class GetAccountVpcsResult {
 
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetAccountVpcsResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder vpcs(List<GetAccountVpcsVpc> vpcs) {
-            this.vpcs = Objects.requireNonNull(vpcs);
+            if (vpcs == null) {
+              throw new MissingRequiredPropertyException("GetAccountVpcsResult", "vpcs");
+            }
+            this.vpcs = vpcs;
             return this;
         }
         public Builder vpcs(GetAccountVpcsVpc... vpcs) {

@@ -5,6 +5,7 @@ package com.pulumi.cloudamqp;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -677,7 +678,9 @@ public final class IntegrationLogArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         public IntegrationLogArgs build() {
-            $.instanceId = Objects.requireNonNull($.instanceId, "expected parameter 'instanceId' to be non-null");
+            if ($.instanceId == null) {
+                throw new MissingRequiredPropertyException("IntegrationLogArgs", "instanceId");
+            }
             return $;
         }
     }

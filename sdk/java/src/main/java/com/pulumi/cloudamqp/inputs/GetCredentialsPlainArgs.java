@@ -4,6 +4,7 @@
 package com.pulumi.cloudamqp.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.util.Objects;
 
@@ -63,7 +64,9 @@ public final class GetCredentialsPlainArgs extends com.pulumi.resources.InvokeAr
         }
 
         public GetCredentialsPlainArgs build() {
-            $.instanceId = Objects.requireNonNull($.instanceId, "expected parameter 'instanceId' to be non-null");
+            if ($.instanceId == null) {
+                throw new MissingRequiredPropertyException("GetCredentialsPlainArgs", "instanceId");
+            }
             return $;
         }
     }
