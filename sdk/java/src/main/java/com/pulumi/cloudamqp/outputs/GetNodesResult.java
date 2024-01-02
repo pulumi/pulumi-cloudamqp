@@ -5,6 +5,7 @@ package com.pulumi.cloudamqp.outputs;
 
 import com.pulumi.cloudamqp.outputs.GetNodesNode;
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -57,17 +58,26 @@ public final class GetNodesResult {
 
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetNodesResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder instanceId(Integer instanceId) {
-            this.instanceId = Objects.requireNonNull(instanceId);
+            if (instanceId == null) {
+              throw new MissingRequiredPropertyException("GetNodesResult", "instanceId");
+            }
+            this.instanceId = instanceId;
             return this;
         }
         @CustomType.Setter
         public Builder nodes(List<GetNodesNode> nodes) {
-            this.nodes = Objects.requireNonNull(nodes);
+            if (nodes == null) {
+              throw new MissingRequiredPropertyException("GetNodesResult", "nodes");
+            }
+            this.nodes = nodes;
             return this;
         }
         public Builder nodes(GetNodesNode... nodes) {

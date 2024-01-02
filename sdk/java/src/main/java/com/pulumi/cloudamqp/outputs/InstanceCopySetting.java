@@ -4,6 +4,7 @@
 package com.pulumi.cloudamqp.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -61,7 +62,10 @@ public final class InstanceCopySetting {
 
         @CustomType.Setter
         public Builder settings(List<String> settings) {
-            this.settings = Objects.requireNonNull(settings);
+            if (settings == null) {
+              throw new MissingRequiredPropertyException("InstanceCopySetting", "settings");
+            }
+            this.settings = settings;
             return this;
         }
         public Builder settings(String... settings) {
@@ -69,7 +73,10 @@ public final class InstanceCopySetting {
         }
         @CustomType.Setter
         public Builder subscriptionId(String subscriptionId) {
-            this.subscriptionId = Objects.requireNonNull(subscriptionId);
+            if (subscriptionId == null) {
+              throw new MissingRequiredPropertyException("InstanceCopySetting", "subscriptionId");
+            }
+            this.subscriptionId = subscriptionId;
             return this;
         }
         public InstanceCopySetting build() {

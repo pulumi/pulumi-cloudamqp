@@ -4,6 +4,7 @@
 package com.pulumi.cloudamqp.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
@@ -82,37 +83,52 @@ public final class GetNotificationResult {
 
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetNotificationResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder instanceId(Integer instanceId) {
-            this.instanceId = Objects.requireNonNull(instanceId);
+            if (instanceId == null) {
+              throw new MissingRequiredPropertyException("GetNotificationResult", "instanceId");
+            }
+            this.instanceId = instanceId;
             return this;
         }
         @CustomType.Setter
         public Builder name(@Nullable String name) {
+
             this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder options(@Nullable Map<String,String> options) {
+
             this.options = options;
             return this;
         }
         @CustomType.Setter
         public Builder recipientId(@Nullable Integer recipientId) {
+
             this.recipientId = recipientId;
             return this;
         }
         @CustomType.Setter
         public Builder type(String type) {
-            this.type = Objects.requireNonNull(type);
+            if (type == null) {
+              throw new MissingRequiredPropertyException("GetNotificationResult", "type");
+            }
+            this.type = type;
             return this;
         }
         @CustomType.Setter
         public Builder value(String value) {
-            this.value = Objects.requireNonNull(value);
+            if (value == null) {
+              throw new MissingRequiredPropertyException("GetNotificationResult", "value");
+            }
+            this.value = value;
             return this;
         }
         public GetNotificationResult build() {

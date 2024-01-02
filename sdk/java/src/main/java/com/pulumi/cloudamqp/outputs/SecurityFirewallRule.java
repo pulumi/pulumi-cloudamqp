@@ -4,6 +4,7 @@
 package com.pulumi.cloudamqp.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -132,16 +133,21 @@ public final class SecurityFirewallRule {
 
         @CustomType.Setter
         public Builder description(@Nullable String description) {
+
             this.description = description;
             return this;
         }
         @CustomType.Setter
         public Builder ip(String ip) {
-            this.ip = Objects.requireNonNull(ip);
+            if (ip == null) {
+              throw new MissingRequiredPropertyException("SecurityFirewallRule", "ip");
+            }
+            this.ip = ip;
             return this;
         }
         @CustomType.Setter
         public Builder ports(@Nullable List<Integer> ports) {
+
             this.ports = ports;
             return this;
         }
@@ -150,6 +156,7 @@ public final class SecurityFirewallRule {
         }
         @CustomType.Setter
         public Builder services(@Nullable List<String> services) {
+
             this.services = services;
             return this;
         }

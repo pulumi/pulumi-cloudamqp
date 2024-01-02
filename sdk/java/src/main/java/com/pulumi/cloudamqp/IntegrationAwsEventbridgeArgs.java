@@ -5,6 +5,7 @@ package com.pulumi.cloudamqp;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -261,12 +262,24 @@ public final class IntegrationAwsEventbridgeArgs extends com.pulumi.resources.Re
         }
 
         public IntegrationAwsEventbridgeArgs build() {
-            $.awsAccountId = Objects.requireNonNull($.awsAccountId, "expected parameter 'awsAccountId' to be non-null");
-            $.awsRegion = Objects.requireNonNull($.awsRegion, "expected parameter 'awsRegion' to be non-null");
-            $.instanceId = Objects.requireNonNull($.instanceId, "expected parameter 'instanceId' to be non-null");
-            $.queue = Objects.requireNonNull($.queue, "expected parameter 'queue' to be non-null");
-            $.vhost = Objects.requireNonNull($.vhost, "expected parameter 'vhost' to be non-null");
-            $.withHeaders = Objects.requireNonNull($.withHeaders, "expected parameter 'withHeaders' to be non-null");
+            if ($.awsAccountId == null) {
+                throw new MissingRequiredPropertyException("IntegrationAwsEventbridgeArgs", "awsAccountId");
+            }
+            if ($.awsRegion == null) {
+                throw new MissingRequiredPropertyException("IntegrationAwsEventbridgeArgs", "awsRegion");
+            }
+            if ($.instanceId == null) {
+                throw new MissingRequiredPropertyException("IntegrationAwsEventbridgeArgs", "instanceId");
+            }
+            if ($.queue == null) {
+                throw new MissingRequiredPropertyException("IntegrationAwsEventbridgeArgs", "queue");
+            }
+            if ($.vhost == null) {
+                throw new MissingRequiredPropertyException("IntegrationAwsEventbridgeArgs", "vhost");
+            }
+            if ($.withHeaders == null) {
+                throw new MissingRequiredPropertyException("IntegrationAwsEventbridgeArgs", "withHeaders");
+            }
             return $;
         }
     }

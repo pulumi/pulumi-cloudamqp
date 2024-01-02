@@ -5,6 +5,7 @@ package com.pulumi.cloudamqp;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -386,8 +387,12 @@ public final class VpcConnectArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public VpcConnectArgs build() {
-            $.instanceId = Objects.requireNonNull($.instanceId, "expected parameter 'instanceId' to be non-null");
-            $.region = Objects.requireNonNull($.region, "expected parameter 'region' to be non-null");
+            if ($.instanceId == null) {
+                throw new MissingRequiredPropertyException("VpcConnectArgs", "instanceId");
+            }
+            if ($.region == null) {
+                throw new MissingRequiredPropertyException("VpcConnectArgs", "region");
+            }
             return $;
         }
     }

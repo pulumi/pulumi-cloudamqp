@@ -6,6 +6,7 @@ package com.pulumi.cloudamqp;
 import com.pulumi.cloudamqp.inputs.SecurityFirewallRuleArgs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.util.List;
 import java.util.Objects;
@@ -215,8 +216,12 @@ public final class SecurityFirewallArgs extends com.pulumi.resources.ResourceArg
         }
 
         public SecurityFirewallArgs build() {
-            $.instanceId = Objects.requireNonNull($.instanceId, "expected parameter 'instanceId' to be non-null");
-            $.rules = Objects.requireNonNull($.rules, "expected parameter 'rules' to be non-null");
+            if ($.instanceId == null) {
+                throw new MissingRequiredPropertyException("SecurityFirewallArgs", "instanceId");
+            }
+            if ($.rules == null) {
+                throw new MissingRequiredPropertyException("SecurityFirewallArgs", "rules");
+            }
             return $;
         }
     }

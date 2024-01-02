@@ -4,6 +4,7 @@
 package com.pulumi.cloudamqp.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -61,22 +62,34 @@ public final class GetCredentialsResult {
 
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetCredentialsResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder instanceId(Integer instanceId) {
-            this.instanceId = Objects.requireNonNull(instanceId);
+            if (instanceId == null) {
+              throw new MissingRequiredPropertyException("GetCredentialsResult", "instanceId");
+            }
+            this.instanceId = instanceId;
             return this;
         }
         @CustomType.Setter
         public Builder password(String password) {
-            this.password = Objects.requireNonNull(password);
+            if (password == null) {
+              throw new MissingRequiredPropertyException("GetCredentialsResult", "password");
+            }
+            this.password = password;
             return this;
         }
         @CustomType.Setter
         public Builder username(String username) {
-            this.username = Objects.requireNonNull(username);
+            if (username == null) {
+              throw new MissingRequiredPropertyException("GetCredentialsResult", "username");
+            }
+            this.username = username;
             return this;
         }
         public GetCredentialsResult build() {

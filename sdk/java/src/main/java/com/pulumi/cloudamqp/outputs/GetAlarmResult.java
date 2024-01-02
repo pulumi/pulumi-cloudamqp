@@ -4,6 +4,7 @@
 package com.pulumi.cloudamqp.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -119,37 +120,56 @@ public final class GetAlarmResult {
 
         @CustomType.Setter
         public Builder alarmId(@Nullable Integer alarmId) {
+
             this.alarmId = alarmId;
             return this;
         }
         @CustomType.Setter
         public Builder enabled(Boolean enabled) {
-            this.enabled = Objects.requireNonNull(enabled);
+            if (enabled == null) {
+              throw new MissingRequiredPropertyException("GetAlarmResult", "enabled");
+            }
+            this.enabled = enabled;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetAlarmResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder instanceId(Integer instanceId) {
-            this.instanceId = Objects.requireNonNull(instanceId);
+            if (instanceId == null) {
+              throw new MissingRequiredPropertyException("GetAlarmResult", "instanceId");
+            }
+            this.instanceId = instanceId;
             return this;
         }
         @CustomType.Setter
         public Builder messageType(String messageType) {
-            this.messageType = Objects.requireNonNull(messageType);
+            if (messageType == null) {
+              throw new MissingRequiredPropertyException("GetAlarmResult", "messageType");
+            }
+            this.messageType = messageType;
             return this;
         }
         @CustomType.Setter
         public Builder queueRegex(String queueRegex) {
-            this.queueRegex = Objects.requireNonNull(queueRegex);
+            if (queueRegex == null) {
+              throw new MissingRequiredPropertyException("GetAlarmResult", "queueRegex");
+            }
+            this.queueRegex = queueRegex;
             return this;
         }
         @CustomType.Setter
         public Builder recipients(List<Integer> recipients) {
-            this.recipients = Objects.requireNonNull(recipients);
+            if (recipients == null) {
+              throw new MissingRequiredPropertyException("GetAlarmResult", "recipients");
+            }
+            this.recipients = recipients;
             return this;
         }
         public Builder recipients(Integer... recipients) {
@@ -157,32 +177,46 @@ public final class GetAlarmResult {
         }
         @CustomType.Setter
         public Builder reminderInterval(Integer reminderInterval) {
-            this.reminderInterval = Objects.requireNonNull(reminderInterval);
+            if (reminderInterval == null) {
+              throw new MissingRequiredPropertyException("GetAlarmResult", "reminderInterval");
+            }
+            this.reminderInterval = reminderInterval;
             return this;
         }
         @CustomType.Setter
         public Builder timeThreshold(Integer timeThreshold) {
-            this.timeThreshold = Objects.requireNonNull(timeThreshold);
+            if (timeThreshold == null) {
+              throw new MissingRequiredPropertyException("GetAlarmResult", "timeThreshold");
+            }
+            this.timeThreshold = timeThreshold;
             return this;
         }
         @CustomType.Setter
         public Builder type(@Nullable String type) {
+
             this.type = type;
             return this;
         }
         @CustomType.Setter
         public Builder valueCalculation(@Nullable String valueCalculation) {
+
             this.valueCalculation = valueCalculation;
             return this;
         }
         @CustomType.Setter
         public Builder valueThreshold(Integer valueThreshold) {
-            this.valueThreshold = Objects.requireNonNull(valueThreshold);
+            if (valueThreshold == null) {
+              throw new MissingRequiredPropertyException("GetAlarmResult", "valueThreshold");
+            }
+            this.valueThreshold = valueThreshold;
             return this;
         }
         @CustomType.Setter
         public Builder vhostRegex(String vhostRegex) {
-            this.vhostRegex = Objects.requireNonNull(vhostRegex);
+            if (vhostRegex == null) {
+              throw new MissingRequiredPropertyException("GetAlarmResult", "vhostRegex");
+            }
+            this.vhostRegex = vhostRegex;
             return this;
         }
         public GetAlarmResult build() {

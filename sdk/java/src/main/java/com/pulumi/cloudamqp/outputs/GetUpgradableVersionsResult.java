@@ -4,6 +4,7 @@
 package com.pulumi.cloudamqp.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -61,22 +62,34 @@ public final class GetUpgradableVersionsResult {
 
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetUpgradableVersionsResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder instanceId(Integer instanceId) {
-            this.instanceId = Objects.requireNonNull(instanceId);
+            if (instanceId == null) {
+              throw new MissingRequiredPropertyException("GetUpgradableVersionsResult", "instanceId");
+            }
+            this.instanceId = instanceId;
             return this;
         }
         @CustomType.Setter
         public Builder newErlangVersion(String newErlangVersion) {
-            this.newErlangVersion = Objects.requireNonNull(newErlangVersion);
+            if (newErlangVersion == null) {
+              throw new MissingRequiredPropertyException("GetUpgradableVersionsResult", "newErlangVersion");
+            }
+            this.newErlangVersion = newErlangVersion;
             return this;
         }
         @CustomType.Setter
         public Builder newRabbitmqVersion(String newRabbitmqVersion) {
-            this.newRabbitmqVersion = Objects.requireNonNull(newRabbitmqVersion);
+            if (newRabbitmqVersion == null) {
+              throw new MissingRequiredPropertyException("GetUpgradableVersionsResult", "newRabbitmqVersion");
+            }
+            this.newRabbitmqVersion = newRabbitmqVersion;
             return this;
         }
         public GetUpgradableVersionsResult build() {
