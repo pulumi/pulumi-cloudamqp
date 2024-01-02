@@ -5,6 +5,7 @@ package com.pulumi.cloudamqp.outputs;
 
 import com.pulumi.cloudamqp.outputs.GetPluginsCommunityPlugin;
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -57,17 +58,26 @@ public final class GetPluginsCommunityResult {
 
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetPluginsCommunityResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder instanceId(Integer instanceId) {
-            this.instanceId = Objects.requireNonNull(instanceId);
+            if (instanceId == null) {
+              throw new MissingRequiredPropertyException("GetPluginsCommunityResult", "instanceId");
+            }
+            this.instanceId = instanceId;
             return this;
         }
         @CustomType.Setter
         public Builder plugins(List<GetPluginsCommunityPlugin> plugins) {
-            this.plugins = Objects.requireNonNull(plugins);
+            if (plugins == null) {
+              throw new MissingRequiredPropertyException("GetPluginsCommunityResult", "plugins");
+            }
+            this.plugins = plugins;
             return this;
         }
         public Builder plugins(GetPluginsCommunityPlugin... plugins) {

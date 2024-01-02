@@ -5,6 +5,7 @@ package com.pulumi.cloudamqp;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -475,10 +476,18 @@ public final class AlarmArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public AlarmArgs build() {
-            $.enabled = Objects.requireNonNull($.enabled, "expected parameter 'enabled' to be non-null");
-            $.instanceId = Objects.requireNonNull($.instanceId, "expected parameter 'instanceId' to be non-null");
-            $.recipients = Objects.requireNonNull($.recipients, "expected parameter 'recipients' to be non-null");
-            $.type = Objects.requireNonNull($.type, "expected parameter 'type' to be non-null");
+            if ($.enabled == null) {
+                throw new MissingRequiredPropertyException("AlarmArgs", "enabled");
+            }
+            if ($.instanceId == null) {
+                throw new MissingRequiredPropertyException("AlarmArgs", "instanceId");
+            }
+            if ($.recipients == null) {
+                throw new MissingRequiredPropertyException("AlarmArgs", "recipients");
+            }
+            if ($.type == null) {
+                throw new MissingRequiredPropertyException("AlarmArgs", "type");
+            }
             return $;
         }
     }

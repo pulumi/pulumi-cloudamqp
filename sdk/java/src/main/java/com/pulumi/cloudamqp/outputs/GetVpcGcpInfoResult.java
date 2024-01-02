@@ -4,6 +4,7 @@
 package com.pulumi.cloudamqp.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -87,42 +88,58 @@ public final class GetVpcGcpInfoResult {
 
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetVpcGcpInfoResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder instanceId(@Nullable Integer instanceId) {
+
             this.instanceId = instanceId;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetVpcGcpInfoResult", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder network(String network) {
-            this.network = Objects.requireNonNull(network);
+            if (network == null) {
+              throw new MissingRequiredPropertyException("GetVpcGcpInfoResult", "network");
+            }
+            this.network = network;
             return this;
         }
         @CustomType.Setter
         public Builder sleep(@Nullable Integer sleep) {
+
             this.sleep = sleep;
             return this;
         }
         @CustomType.Setter
         public Builder timeout(@Nullable Integer timeout) {
+
             this.timeout = timeout;
             return this;
         }
         @CustomType.Setter
         public Builder vpcId(@Nullable String vpcId) {
+
             this.vpcId = vpcId;
             return this;
         }
         @CustomType.Setter
         public Builder vpcSubnet(String vpcSubnet) {
-            this.vpcSubnet = Objects.requireNonNull(vpcSubnet);
+            if (vpcSubnet == null) {
+              throw new MissingRequiredPropertyException("GetVpcGcpInfoResult", "vpcSubnet");
+            }
+            this.vpcSubnet = vpcSubnet;
             return this;
         }
         public GetVpcGcpInfoResult build() {

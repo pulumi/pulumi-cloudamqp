@@ -4,6 +4,7 @@
 package com.pulumi.cloudamqp.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -153,77 +154,122 @@ public final class GetInstanceResult {
 
         @CustomType.Setter
         public Builder apikey(String apikey) {
-            this.apikey = Objects.requireNonNull(apikey);
+            if (apikey == null) {
+              throw new MissingRequiredPropertyException("GetInstanceResult", "apikey");
+            }
+            this.apikey = apikey;
             return this;
         }
         @CustomType.Setter
         public Builder backend(String backend) {
-            this.backend = Objects.requireNonNull(backend);
+            if (backend == null) {
+              throw new MissingRequiredPropertyException("GetInstanceResult", "backend");
+            }
+            this.backend = backend;
             return this;
         }
         @CustomType.Setter
         public Builder dedicated(Boolean dedicated) {
-            this.dedicated = Objects.requireNonNull(dedicated);
+            if (dedicated == null) {
+              throw new MissingRequiredPropertyException("GetInstanceResult", "dedicated");
+            }
+            this.dedicated = dedicated;
             return this;
         }
         @CustomType.Setter
         public Builder host(String host) {
-            this.host = Objects.requireNonNull(host);
+            if (host == null) {
+              throw new MissingRequiredPropertyException("GetInstanceResult", "host");
+            }
+            this.host = host;
             return this;
         }
         @CustomType.Setter
         public Builder hostInternal(String hostInternal) {
-            this.hostInternal = Objects.requireNonNull(hostInternal);
+            if (hostInternal == null) {
+              throw new MissingRequiredPropertyException("GetInstanceResult", "hostInternal");
+            }
+            this.hostInternal = hostInternal;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetInstanceResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder instanceId(Integer instanceId) {
-            this.instanceId = Objects.requireNonNull(instanceId);
+            if (instanceId == null) {
+              throw new MissingRequiredPropertyException("GetInstanceResult", "instanceId");
+            }
+            this.instanceId = instanceId;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetInstanceResult", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder noDefaultAlarms(Boolean noDefaultAlarms) {
-            this.noDefaultAlarms = Objects.requireNonNull(noDefaultAlarms);
+            if (noDefaultAlarms == null) {
+              throw new MissingRequiredPropertyException("GetInstanceResult", "noDefaultAlarms");
+            }
+            this.noDefaultAlarms = noDefaultAlarms;
             return this;
         }
         @CustomType.Setter
         public Builder nodes(Integer nodes) {
-            this.nodes = Objects.requireNonNull(nodes);
+            if (nodes == null) {
+              throw new MissingRequiredPropertyException("GetInstanceResult", "nodes");
+            }
+            this.nodes = nodes;
             return this;
         }
         @CustomType.Setter
         public Builder plan(String plan) {
-            this.plan = Objects.requireNonNull(plan);
+            if (plan == null) {
+              throw new MissingRequiredPropertyException("GetInstanceResult", "plan");
+            }
+            this.plan = plan;
             return this;
         }
         @CustomType.Setter
         public Builder ready(Boolean ready) {
-            this.ready = Objects.requireNonNull(ready);
+            if (ready == null) {
+              throw new MissingRequiredPropertyException("GetInstanceResult", "ready");
+            }
+            this.ready = ready;
             return this;
         }
         @CustomType.Setter
         public Builder region(String region) {
-            this.region = Objects.requireNonNull(region);
+            if (region == null) {
+              throw new MissingRequiredPropertyException("GetInstanceResult", "region");
+            }
+            this.region = region;
             return this;
         }
         @CustomType.Setter
         public Builder rmqVersion(String rmqVersion) {
-            this.rmqVersion = Objects.requireNonNull(rmqVersion);
+            if (rmqVersion == null) {
+              throw new MissingRequiredPropertyException("GetInstanceResult", "rmqVersion");
+            }
+            this.rmqVersion = rmqVersion;
             return this;
         }
         @CustomType.Setter
         public Builder tags(List<String> tags) {
-            this.tags = Objects.requireNonNull(tags);
+            if (tags == null) {
+              throw new MissingRequiredPropertyException("GetInstanceResult", "tags");
+            }
+            this.tags = tags;
             return this;
         }
         public Builder tags(String... tags) {
@@ -231,22 +277,34 @@ public final class GetInstanceResult {
         }
         @CustomType.Setter
         public Builder url(String url) {
-            this.url = Objects.requireNonNull(url);
+            if (url == null) {
+              throw new MissingRequiredPropertyException("GetInstanceResult", "url");
+            }
+            this.url = url;
             return this;
         }
         @CustomType.Setter
         public Builder vhost(String vhost) {
-            this.vhost = Objects.requireNonNull(vhost);
+            if (vhost == null) {
+              throw new MissingRequiredPropertyException("GetInstanceResult", "vhost");
+            }
+            this.vhost = vhost;
             return this;
         }
         @CustomType.Setter
         public Builder vpcId(Integer vpcId) {
-            this.vpcId = Objects.requireNonNull(vpcId);
+            if (vpcId == null) {
+              throw new MissingRequiredPropertyException("GetInstanceResult", "vpcId");
+            }
+            this.vpcId = vpcId;
             return this;
         }
         @CustomType.Setter
         public Builder vpcSubnet(String vpcSubnet) {
-            this.vpcSubnet = Objects.requireNonNull(vpcSubnet);
+            if (vpcSubnet == null) {
+              throw new MissingRequiredPropertyException("GetInstanceResult", "vpcSubnet");
+            }
+            this.vpcSubnet = vpcSubnet;
             return this;
         }
         public GetInstanceResult build() {

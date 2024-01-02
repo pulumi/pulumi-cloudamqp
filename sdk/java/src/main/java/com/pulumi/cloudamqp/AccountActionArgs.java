@@ -5,6 +5,7 @@ package com.pulumi.cloudamqp;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -112,8 +113,12 @@ public final class AccountActionArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public AccountActionArgs build() {
-            $.action = Objects.requireNonNull($.action, "expected parameter 'action' to be non-null");
-            $.instanceId = Objects.requireNonNull($.instanceId, "expected parameter 'instanceId' to be non-null");
+            if ($.action == null) {
+                throw new MissingRequiredPropertyException("AccountActionArgs", "action");
+            }
+            if ($.instanceId == null) {
+                throw new MissingRequiredPropertyException("AccountActionArgs", "instanceId");
+            }
             return $;
         }
     }

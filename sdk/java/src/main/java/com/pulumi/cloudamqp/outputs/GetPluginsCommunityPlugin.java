@@ -4,6 +4,7 @@
 package com.pulumi.cloudamqp.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -61,26 +62,37 @@ public final class GetPluginsCommunityPlugin {
 
         @CustomType.Setter
         public Builder description(String description) {
-            this.description = Objects.requireNonNull(description);
+            if (description == null) {
+              throw new MissingRequiredPropertyException("GetPluginsCommunityPlugin", "description");
+            }
+            this.description = description;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetPluginsCommunityPlugin", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder require(String require) {
-            this.require = Objects.requireNonNull(require);
+            if (require == null) {
+              throw new MissingRequiredPropertyException("GetPluginsCommunityPlugin", "require");
+            }
+            this.require = require;
             return this;
         }
         @CustomType.Setter
         public Builder sleep(@Nullable Integer sleep) {
+
             this.sleep = sleep;
             return this;
         }
         @CustomType.Setter
         public Builder timeout(@Nullable Integer timeout) {
+
             this.timeout = timeout;
             return this;
         }

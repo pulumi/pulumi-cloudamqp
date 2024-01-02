@@ -5,6 +5,7 @@ package com.pulumi.cloudamqp;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -260,12 +261,24 @@ public final class WebhookArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public WebhookArgs build() {
-            $.concurrency = Objects.requireNonNull($.concurrency, "expected parameter 'concurrency' to be non-null");
-            $.instanceId = Objects.requireNonNull($.instanceId, "expected parameter 'instanceId' to be non-null");
-            $.queue = Objects.requireNonNull($.queue, "expected parameter 'queue' to be non-null");
-            $.retryInterval = Objects.requireNonNull($.retryInterval, "expected parameter 'retryInterval' to be non-null");
-            $.vhost = Objects.requireNonNull($.vhost, "expected parameter 'vhost' to be non-null");
-            $.webhookUri = Objects.requireNonNull($.webhookUri, "expected parameter 'webhookUri' to be non-null");
+            if ($.concurrency == null) {
+                throw new MissingRequiredPropertyException("WebhookArgs", "concurrency");
+            }
+            if ($.instanceId == null) {
+                throw new MissingRequiredPropertyException("WebhookArgs", "instanceId");
+            }
+            if ($.queue == null) {
+                throw new MissingRequiredPropertyException("WebhookArgs", "queue");
+            }
+            if ($.retryInterval == null) {
+                throw new MissingRequiredPropertyException("WebhookArgs", "retryInterval");
+            }
+            if ($.vhost == null) {
+                throw new MissingRequiredPropertyException("WebhookArgs", "vhost");
+            }
+            if ($.webhookUri == null) {
+                throw new MissingRequiredPropertyException("WebhookArgs", "webhookUri");
+            }
             return $;
         }
     }

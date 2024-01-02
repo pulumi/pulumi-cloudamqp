@@ -5,6 +5,7 @@ package com.pulumi.cloudamqp.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -132,8 +133,12 @@ public final class InstanceCopySettingArgs extends com.pulumi.resources.Resource
         }
 
         public InstanceCopySettingArgs build() {
-            $.settings = Objects.requireNonNull($.settings, "expected parameter 'settings' to be non-null");
-            $.subscriptionId = Objects.requireNonNull($.subscriptionId, "expected parameter 'subscriptionId' to be non-null");
+            if ($.settings == null) {
+                throw new MissingRequiredPropertyException("InstanceCopySettingArgs", "settings");
+            }
+            if ($.subscriptionId == null) {
+                throw new MissingRequiredPropertyException("InstanceCopySettingArgs", "subscriptionId");
+            }
             return $;
         }
     }

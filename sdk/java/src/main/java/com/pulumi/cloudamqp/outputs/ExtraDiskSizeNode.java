@@ -49,16 +49,19 @@ public final class ExtraDiskSizeNode {
 
         @CustomType.Setter
         public Builder additionalDiskSize(@Nullable Integer additionalDiskSize) {
+
             this.additionalDiskSize = additionalDiskSize;
             return this;
         }
         @CustomType.Setter
         public Builder diskSize(@Nullable Integer diskSize) {
+
             this.diskSize = diskSize;
             return this;
         }
         @CustomType.Setter
         public Builder name(@Nullable String name) {
+
             this.name = name;
             return this;
         }

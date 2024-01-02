@@ -4,6 +4,7 @@
 package com.pulumi.cloudamqp.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -84,47 +85,74 @@ public final class GetNodesNode {
 
         @CustomType.Setter
         public Builder additionalDiskSize(Integer additionalDiskSize) {
-            this.additionalDiskSize = Objects.requireNonNull(additionalDiskSize);
+            if (additionalDiskSize == null) {
+              throw new MissingRequiredPropertyException("GetNodesNode", "additionalDiskSize");
+            }
+            this.additionalDiskSize = additionalDiskSize;
             return this;
         }
         @CustomType.Setter
         public Builder configured(Boolean configured) {
-            this.configured = Objects.requireNonNull(configured);
+            if (configured == null) {
+              throw new MissingRequiredPropertyException("GetNodesNode", "configured");
+            }
+            this.configured = configured;
             return this;
         }
         @CustomType.Setter
         public Builder diskSize(Integer diskSize) {
-            this.diskSize = Objects.requireNonNull(diskSize);
+            if (diskSize == null) {
+              throw new MissingRequiredPropertyException("GetNodesNode", "diskSize");
+            }
+            this.diskSize = diskSize;
             return this;
         }
         @CustomType.Setter
         public Builder erlangVersion(String erlangVersion) {
-            this.erlangVersion = Objects.requireNonNull(erlangVersion);
+            if (erlangVersion == null) {
+              throw new MissingRequiredPropertyException("GetNodesNode", "erlangVersion");
+            }
+            this.erlangVersion = erlangVersion;
             return this;
         }
         @CustomType.Setter
         public Builder hipe(Boolean hipe) {
-            this.hipe = Objects.requireNonNull(hipe);
+            if (hipe == null) {
+              throw new MissingRequiredPropertyException("GetNodesNode", "hipe");
+            }
+            this.hipe = hipe;
             return this;
         }
         @CustomType.Setter
         public Builder hostname(String hostname) {
-            this.hostname = Objects.requireNonNull(hostname);
+            if (hostname == null) {
+              throw new MissingRequiredPropertyException("GetNodesNode", "hostname");
+            }
+            this.hostname = hostname;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetNodesNode", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder rabbitmqVersion(String rabbitmqVersion) {
-            this.rabbitmqVersion = Objects.requireNonNull(rabbitmqVersion);
+            if (rabbitmqVersion == null) {
+              throw new MissingRequiredPropertyException("GetNodesNode", "rabbitmqVersion");
+            }
+            this.rabbitmqVersion = rabbitmqVersion;
             return this;
         }
         @CustomType.Setter
         public Builder running(Boolean running) {
-            this.running = Objects.requireNonNull(running);
+            if (running == null) {
+              throw new MissingRequiredPropertyException("GetNodesNode", "running");
+            }
+            this.running = running;
             return this;
         }
         public GetNodesNode build() {

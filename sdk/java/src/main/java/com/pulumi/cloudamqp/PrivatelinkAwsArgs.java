@@ -5,6 +5,7 @@ package com.pulumi.cloudamqp;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -227,8 +228,12 @@ public final class PrivatelinkAwsArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         public PrivatelinkAwsArgs build() {
-            $.allowedPrincipals = Objects.requireNonNull($.allowedPrincipals, "expected parameter 'allowedPrincipals' to be non-null");
-            $.instanceId = Objects.requireNonNull($.instanceId, "expected parameter 'instanceId' to be non-null");
+            if ($.allowedPrincipals == null) {
+                throw new MissingRequiredPropertyException("PrivatelinkAwsArgs", "allowedPrincipals");
+            }
+            if ($.instanceId == null) {
+                throw new MissingRequiredPropertyException("PrivatelinkAwsArgs", "instanceId");
+            }
             return $;
         }
     }
