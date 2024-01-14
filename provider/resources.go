@@ -20,11 +20,13 @@ import (
 	"unicode"
 
 	"github.com/cloudamqp/terraform-provider-cloudamqp/cloudamqp"
-	"github.com/pulumi/pulumi-cloudamqp/provider/v3/pkg/version"
+
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tfbridgetokens "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v1"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+
+	"github.com/pulumi/pulumi-cloudamqp/provider/v3/pkg/version"
 )
 
 // all of the token components used below.
