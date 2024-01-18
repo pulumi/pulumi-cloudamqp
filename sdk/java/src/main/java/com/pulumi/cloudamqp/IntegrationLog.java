@@ -45,6 +45,7 @@ import javax.annotation.Nullable;
  * | datadog       | Create a Datadog API key at app.datadoghq.com |
  * | stackdriver   | Create a service account and add &#39;monitor metrics writer&#39; role from your Google Cloud Account |
  * | scalyr        | Create a Log write token at https://app.scalyr.com/keys |
+ * | coralogix     | Create Send-Your-Data API key https://coralogix.com/docs/send-your-data-api-key/ |
  * 
  * ## Integration Type reference
  * 
@@ -62,6 +63,7 @@ import javax.annotation.Nullable;
  * | Data Dog | datadog | region, api_keys, tags |
  * | Stackdriver | stackdriver | credentials |
  * | Scalyr | scalyr | token, host |
+ * | Coralogix | coralogix | private_key, endpoint, application, subsystem |
  * 
  * ***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments  : project_id, private_key, client_email
  * 
@@ -109,6 +111,20 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.apiKey);
     }
     /**
+     * The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+     * 
+     */
+    @Export(name="application", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> application;
+
+    /**
+     * @return The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+     * 
+     */
+    public Output<Optional<String>> application() {
+        return Codegen.optional(this.application);
+    }
+    /**
      * The client email registered for the integration service.
      * 
      */
@@ -135,6 +151,20 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> credentials() {
         return Codegen.optional(this.credentials);
+    }
+    /**
+     * The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+     * 
+     */
+    @Export(name="endpoint", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> endpoint;
+
+    /**
+     * @return The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+     * 
+     */
+    public Output<Optional<String>> endpoint() {
+        return Codegen.optional(this.endpoint);
     }
     /**
      * The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
@@ -265,8 +295,6 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
     /**
      * Assign source type to the data exported, eg. generic_single_line. (Splunk)
      * 
-     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
-     * 
      */
     @Export(name="sourcetype", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> sourcetype;
@@ -274,11 +302,27 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
     /**
      * @return Assign source type to the data exported, eg. generic_single_line. (Splunk)
      * 
-     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
-     * 
      */
     public Output<Optional<String>> sourcetype() {
         return Codegen.optional(this.sourcetype);
+    }
+    /**
+     * The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+     * 
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+     * 
+     */
+    @Export(name="subsystem", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> subsystem;
+
+    /**
+     * @return The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+     * 
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+     * 
+     */
+    public Output<Optional<String>> subsystem() {
+        return Codegen.optional(this.subsystem);
     }
     /**
      * Tag the integration, e.g. env=prod, region=europe.

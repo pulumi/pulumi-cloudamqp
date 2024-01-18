@@ -33,6 +33,7 @@ import * as utilities from "./utilities";
  * | datadog       | Create a Datadog API key at app.datadoghq.com |
  * | stackdriver   | Create a service account and add 'monitor metrics writer' role from your Google Cloud Account |
  * | scalyr        | Create a Log write token at https://app.scalyr.com/keys |
+ * | coralogix     | Create Send-Your-Data API key https://coralogix.com/docs/send-your-data-api-key/ |
  *
  * ## Integration Type reference
  *
@@ -50,6 +51,7 @@ import * as utilities from "./utilities";
  * | Data Dog | datadog | region, api_keys, tags |
  * | Stackdriver | stackdriver | credentials |
  * | Scalyr | scalyr | token, host |
+ * | Coralogix | coralogix | private_key, endpoint, application, subsystem |
  *
  * ***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments  : project_id, private_key, clientEmail
  *
@@ -102,6 +104,10 @@ export class IntegrationLog extends pulumi.CustomResource {
      */
     public readonly apiKey!: pulumi.Output<string | undefined>;
     /**
+     * The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+     */
+    public readonly application!: pulumi.Output<string | undefined>;
+    /**
      * The client email registered for the integration service.
      */
     public readonly clientEmail!: pulumi.Output<string>;
@@ -109,6 +115,10 @@ export class IntegrationLog extends pulumi.CustomResource {
      * Google Service Account private key credentials.
      */
     public readonly credentials!: pulumi.Output<string | undefined>;
+    /**
+     * The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+     */
+    public readonly endpoint!: pulumi.Output<string | undefined>;
     /**
      * The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
      */
@@ -147,10 +157,14 @@ export class IntegrationLog extends pulumi.CustomResource {
     public readonly secretAccessKey!: pulumi.Output<string | undefined>;
     /**
      * Assign source type to the data exported, eg. generic_single_line. (Splunk)
+     */
+    public readonly sourcetype!: pulumi.Output<string | undefined>;
+    /**
+     * The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
      *
      * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
      */
-    public readonly sourcetype!: pulumi.Output<string | undefined>;
+    public readonly subsystem!: pulumi.Output<string | undefined>;
     /**
      * Tag the integration, e.g. env=prod, region=europe.
      */
@@ -179,8 +193,10 @@ export class IntegrationLog extends pulumi.CustomResource {
             const state = argsOrState as IntegrationLogState | undefined;
             resourceInputs["accessKeyId"] = state ? state.accessKeyId : undefined;
             resourceInputs["apiKey"] = state ? state.apiKey : undefined;
+            resourceInputs["application"] = state ? state.application : undefined;
             resourceInputs["clientEmail"] = state ? state.clientEmail : undefined;
             resourceInputs["credentials"] = state ? state.credentials : undefined;
+            resourceInputs["endpoint"] = state ? state.endpoint : undefined;
             resourceInputs["host"] = state ? state.host : undefined;
             resourceInputs["hostPort"] = state ? state.hostPort : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
@@ -191,6 +207,7 @@ export class IntegrationLog extends pulumi.CustomResource {
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["secretAccessKey"] = state ? state.secretAccessKey : undefined;
             resourceInputs["sourcetype"] = state ? state.sourcetype : undefined;
+            resourceInputs["subsystem"] = state ? state.subsystem : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["token"] = state ? state.token : undefined;
             resourceInputs["url"] = state ? state.url : undefined;
@@ -201,8 +218,10 @@ export class IntegrationLog extends pulumi.CustomResource {
             }
             resourceInputs["accessKeyId"] = args?.accessKeyId ? pulumi.secret(args.accessKeyId) : undefined;
             resourceInputs["apiKey"] = args?.apiKey ? pulumi.secret(args.apiKey) : undefined;
+            resourceInputs["application"] = args ? args.application : undefined;
             resourceInputs["clientEmail"] = args ? args.clientEmail : undefined;
             resourceInputs["credentials"] = args?.credentials ? pulumi.secret(args.credentials) : undefined;
+            resourceInputs["endpoint"] = args ? args.endpoint : undefined;
             resourceInputs["host"] = args ? args.host : undefined;
             resourceInputs["hostPort"] = args ? args.hostPort : undefined;
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
@@ -213,6 +232,7 @@ export class IntegrationLog extends pulumi.CustomResource {
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["secretAccessKey"] = args?.secretAccessKey ? pulumi.secret(args.secretAccessKey) : undefined;
             resourceInputs["sourcetype"] = args ? args.sourcetype : undefined;
+            resourceInputs["subsystem"] = args ? args.subsystem : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["token"] = args?.token ? pulumi.secret(args.token) : undefined;
             resourceInputs["url"] = args ? args.url : undefined;
@@ -237,6 +257,10 @@ export interface IntegrationLogState {
      */
     apiKey?: pulumi.Input<string>;
     /**
+     * The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+     */
+    application?: pulumi.Input<string>;
+    /**
      * The client email registered for the integration service.
      */
     clientEmail?: pulumi.Input<string>;
@@ -244,6 +268,10 @@ export interface IntegrationLogState {
      * Google Service Account private key credentials.
      */
     credentials?: pulumi.Input<string>;
+    /**
+     * The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+     */
+    endpoint?: pulumi.Input<string>;
     /**
      * The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
      */
@@ -282,10 +310,14 @@ export interface IntegrationLogState {
     secretAccessKey?: pulumi.Input<string>;
     /**
      * Assign source type to the data exported, eg. generic_single_line. (Splunk)
+     */
+    sourcetype?: pulumi.Input<string>;
+    /**
+     * The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
      *
      * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
      */
-    sourcetype?: pulumi.Input<string>;
+    subsystem?: pulumi.Input<string>;
     /**
      * Tag the integration, e.g. env=prod, region=europe.
      */
@@ -313,6 +345,10 @@ export interface IntegrationLogArgs {
      */
     apiKey?: pulumi.Input<string>;
     /**
+     * The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+     */
+    application?: pulumi.Input<string>;
+    /**
      * The client email registered for the integration service.
      */
     clientEmail?: pulumi.Input<string>;
@@ -320,6 +356,10 @@ export interface IntegrationLogArgs {
      * Google Service Account private key credentials.
      */
     credentials?: pulumi.Input<string>;
+    /**
+     * The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+     */
+    endpoint?: pulumi.Input<string>;
     /**
      * The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
      */
@@ -358,10 +398,14 @@ export interface IntegrationLogArgs {
     secretAccessKey?: pulumi.Input<string>;
     /**
      * Assign source type to the data exported, eg. generic_single_line. (Splunk)
+     */
+    sourcetype?: pulumi.Input<string>;
+    /**
+     * The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
      *
      * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
      */
-    sourcetype?: pulumi.Input<string>;
+    subsystem?: pulumi.Input<string>;
     /**
      * Tag the integration, e.g. env=prod, region=europe.
      */

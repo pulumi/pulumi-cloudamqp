@@ -40,6 +40,7 @@ import (
 // | datadog       | Create a Datadog API key at app.datadoghq.com |
 // | stackdriver   | Create a service account and add 'monitor metrics writer' role from your Google Cloud Account |
 // | scalyr        | Create a Log write token at https://app.scalyr.com/keys |
+// | coralogix     | Create Send-Your-Data API key https://coralogix.com/docs/send-your-data-api-key/ |
 //
 // ## Integration Type reference
 //
@@ -57,6 +58,7 @@ import (
 // | Data Dog | datadog | region, api_keys, tags |
 // | Stackdriver | stackdriver | credentials |
 // | Scalyr | scalyr | token, host |
+// | Coralogix | coralogix | private_key, endpoint, application, subsystem |
 //
 // ***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments  : project_id, private_key, clientEmail
 //
@@ -80,10 +82,14 @@ type IntegrationLog struct {
 	AccessKeyId pulumi.StringPtrOutput `pulumi:"accessKeyId"`
 	// The API key.
 	ApiKey pulumi.StringPtrOutput `pulumi:"apiKey"`
+	// The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+	Application pulumi.StringPtrOutput `pulumi:"application"`
 	// The client email registered for the integration service.
 	ClientEmail pulumi.StringOutput `pulumi:"clientEmail"`
 	// Google Service Account private key credentials.
 	Credentials pulumi.StringPtrOutput `pulumi:"credentials"`
+	// The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+	Endpoint pulumi.StringPtrOutput `pulumi:"endpoint"`
 	// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
 	Host pulumi.StringPtrOutput `pulumi:"host"`
 	// Destination to send the logs.
@@ -103,9 +109,11 @@ type IntegrationLog struct {
 	// AWS secret access key.
 	SecretAccessKey pulumi.StringPtrOutput `pulumi:"secretAccessKey"`
 	// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+	Sourcetype pulumi.StringPtrOutput `pulumi:"sourcetype"`
+	// The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
 	//
 	// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
-	Sourcetype pulumi.StringPtrOutput `pulumi:"sourcetype"`
+	Subsystem pulumi.StringPtrOutput `pulumi:"subsystem"`
 	// Tag the integration, e.g. env=prod, region=europe.
 	Tags pulumi.StringPtrOutput `pulumi:"tags"`
 	// Token used for authentication.
@@ -182,10 +190,14 @@ type integrationLogState struct {
 	AccessKeyId *string `pulumi:"accessKeyId"`
 	// The API key.
 	ApiKey *string `pulumi:"apiKey"`
+	// The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+	Application *string `pulumi:"application"`
 	// The client email registered for the integration service.
 	ClientEmail *string `pulumi:"clientEmail"`
 	// Google Service Account private key credentials.
 	Credentials *string `pulumi:"credentials"`
+	// The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+	Endpoint *string `pulumi:"endpoint"`
 	// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
 	Host *string `pulumi:"host"`
 	// Destination to send the logs.
@@ -205,9 +217,11 @@ type integrationLogState struct {
 	// AWS secret access key.
 	SecretAccessKey *string `pulumi:"secretAccessKey"`
 	// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+	Sourcetype *string `pulumi:"sourcetype"`
+	// The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
 	//
 	// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
-	Sourcetype *string `pulumi:"sourcetype"`
+	Subsystem *string `pulumi:"subsystem"`
 	// Tag the integration, e.g. env=prod, region=europe.
 	Tags *string `pulumi:"tags"`
 	// Token used for authentication.
@@ -221,10 +235,14 @@ type IntegrationLogState struct {
 	AccessKeyId pulumi.StringPtrInput
 	// The API key.
 	ApiKey pulumi.StringPtrInput
+	// The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+	Application pulumi.StringPtrInput
 	// The client email registered for the integration service.
 	ClientEmail pulumi.StringPtrInput
 	// Google Service Account private key credentials.
 	Credentials pulumi.StringPtrInput
+	// The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+	Endpoint pulumi.StringPtrInput
 	// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
 	Host pulumi.StringPtrInput
 	// Destination to send the logs.
@@ -244,9 +262,11 @@ type IntegrationLogState struct {
 	// AWS secret access key.
 	SecretAccessKey pulumi.StringPtrInput
 	// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+	Sourcetype pulumi.StringPtrInput
+	// The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
 	//
 	// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
-	Sourcetype pulumi.StringPtrInput
+	Subsystem pulumi.StringPtrInput
 	// Tag the integration, e.g. env=prod, region=europe.
 	Tags pulumi.StringPtrInput
 	// Token used for authentication.
@@ -264,10 +284,14 @@ type integrationLogArgs struct {
 	AccessKeyId *string `pulumi:"accessKeyId"`
 	// The API key.
 	ApiKey *string `pulumi:"apiKey"`
+	// The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+	Application *string `pulumi:"application"`
 	// The client email registered for the integration service.
 	ClientEmail *string `pulumi:"clientEmail"`
 	// Google Service Account private key credentials.
 	Credentials *string `pulumi:"credentials"`
+	// The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+	Endpoint *string `pulumi:"endpoint"`
 	// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
 	Host *string `pulumi:"host"`
 	// Destination to send the logs.
@@ -287,9 +311,11 @@ type integrationLogArgs struct {
 	// AWS secret access key.
 	SecretAccessKey *string `pulumi:"secretAccessKey"`
 	// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+	Sourcetype *string `pulumi:"sourcetype"`
+	// The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
 	//
 	// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
-	Sourcetype *string `pulumi:"sourcetype"`
+	Subsystem *string `pulumi:"subsystem"`
 	// Tag the integration, e.g. env=prod, region=europe.
 	Tags *string `pulumi:"tags"`
 	// Token used for authentication.
@@ -304,10 +330,14 @@ type IntegrationLogArgs struct {
 	AccessKeyId pulumi.StringPtrInput
 	// The API key.
 	ApiKey pulumi.StringPtrInput
+	// The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+	Application pulumi.StringPtrInput
 	// The client email registered for the integration service.
 	ClientEmail pulumi.StringPtrInput
 	// Google Service Account private key credentials.
 	Credentials pulumi.StringPtrInput
+	// The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+	Endpoint pulumi.StringPtrInput
 	// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
 	Host pulumi.StringPtrInput
 	// Destination to send the logs.
@@ -327,9 +357,11 @@ type IntegrationLogArgs struct {
 	// AWS secret access key.
 	SecretAccessKey pulumi.StringPtrInput
 	// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+	Sourcetype pulumi.StringPtrInput
+	// The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
 	//
 	// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
-	Sourcetype pulumi.StringPtrInput
+	Subsystem pulumi.StringPtrInput
 	// Tag the integration, e.g. env=prod, region=europe.
 	Tags pulumi.StringPtrInput
 	// Token used for authentication.
@@ -435,6 +467,11 @@ func (o IntegrationLogOutput) ApiKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.ApiKey }).(pulumi.StringPtrOutput)
 }
 
+// The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+func (o IntegrationLogOutput) Application() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.Application }).(pulumi.StringPtrOutput)
+}
+
 // The client email registered for the integration service.
 func (o IntegrationLogOutput) ClientEmail() pulumi.StringOutput {
 	return o.ApplyT(func(v *IntegrationLog) pulumi.StringOutput { return v.ClientEmail }).(pulumi.StringOutput)
@@ -443,6 +480,11 @@ func (o IntegrationLogOutput) ClientEmail() pulumi.StringOutput {
 // Google Service Account private key credentials.
 func (o IntegrationLogOutput) Credentials() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.Credentials }).(pulumi.StringPtrOutput)
+}
+
+// The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+func (o IntegrationLogOutput) Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.Endpoint }).(pulumi.StringPtrOutput)
 }
 
 // The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
@@ -491,10 +533,15 @@ func (o IntegrationLogOutput) SecretAccessKey() pulumi.StringPtrOutput {
 }
 
 // Assign source type to the data exported, eg. generic_single_line. (Splunk)
-//
-// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
 func (o IntegrationLogOutput) Sourcetype() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.Sourcetype }).(pulumi.StringPtrOutput)
+}
+
+// The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+//
+// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+func (o IntegrationLogOutput) Subsystem() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.Subsystem }).(pulumi.StringPtrOutput)
 }
 
 // Tag the integration, e.g. env=prod, region=europe.
