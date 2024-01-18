@@ -1124,7 +1124,7 @@
             }
         },
         "cloudamqp:index/integrationLog:IntegrationLog": {
-            "description": "This resource allows you to create and manage third party log integrations for a CloudAMQP instance. Once configured, the logs produced will be forward to corresponding integration.\n\nOnly available for dedicated subscription plans.\n\n## Argument Reference (cloudwatchlog)\n\nCloudwatch argument reference and example. Create an IAM user with programmatic access and the following permissions:\n\n* CreateLogGroup\n* CreateLogStream\n* DescribeLogGroups\n* DescribeLogStreams\n* PutLogEvents\n\n## Integration service reference\n\nValid names for third party log integration.\n\n| Name       | Description |\n|------------|---------------------------------------------------------------|\n| cloudwatchlog | Create a IAM with programmatic access. |\n| logentries | Create a Logentries token at https://logentries.com/app#/add-log/manual  |\n| loggly     | Create a Loggly token at https://your-company}.loggly.com/tokens |\n| papertrail | Create a Papertrail endpoint https://papertrailapp.com/systems/setup |\n| splunk     | Create a HTTP Event Collector token at `https://\u003cyour-splunk\u003e.cloud.splunk.com/en-US/manager/search/http-eventcollector` |\n| datadog       | Create a Datadog API key at app.datadoghq.com |\n| stackdriver   | Create a service account and add 'monitor metrics writer' role from your Google Cloud Account |\n| scalyr        | Create a Log write token at https://app.scalyr.com/keys |\n\n## Integration Type reference\n\nValid arguments for third party log integrations.\n\nRequired arguments for all integrations: name\n\n| Name | Type | Required arguments |\n| ---- | ---- | ---- |\n| CloudWatch | cloudwatchlog | access_key_id, secret_access_key, region |\n| Log Entries | logentries | token |\n| Loggly | loggly | token |\n| Papertrail | papertrail | url |\n| Splunk | splunk | token, host_port, sourcetype |\n| Data Dog | datadog | region, api_keys, tags |\n| Stackdriver | stackdriver | credentials |\n| Scalyr | scalyr | token, host |\n\n***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments  : project_id, private_key, client_email\n\n## Dependency\n\nThis resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n\n\n## Import\n\n`cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.\n\n```sh\n $ pulumi import cloudamqp:index/integrationLog:IntegrationLog \u003cresource_name\u003e \u003cid\u003e,\u003cinstance_id\u003e`\n```\n\n ",
+            "description": "This resource allows you to create and manage third party log integrations for a CloudAMQP instance. Once configured, the logs produced will be forward to corresponding integration.\n\nOnly available for dedicated subscription plans.\n\n## Argument Reference (cloudwatchlog)\n\nCloudwatch argument reference and example. Create an IAM user with programmatic access and the following permissions:\n\n* CreateLogGroup\n* CreateLogStream\n* DescribeLogGroups\n* DescribeLogStreams\n* PutLogEvents\n\n## Integration service reference\n\nValid names for third party log integration.\n\n| Name       | Description |\n|------------|---------------------------------------------------------------|\n| cloudwatchlog | Create a IAM with programmatic access. |\n| logentries | Create a Logentries token at https://logentries.com/app#/add-log/manual  |\n| loggly     | Create a Loggly token at https://your-company}.loggly.com/tokens |\n| papertrail | Create a Papertrail endpoint https://papertrailapp.com/systems/setup |\n| splunk     | Create a HTTP Event Collector token at `https://\u003cyour-splunk\u003e.cloud.splunk.com/en-US/manager/search/http-eventcollector` |\n| datadog       | Create a Datadog API key at app.datadoghq.com |\n| stackdriver   | Create a service account and add 'monitor metrics writer' role from your Google Cloud Account |\n| scalyr        | Create a Log write token at https://app.scalyr.com/keys |\n| coralogix     | Create Send-Your-Data API key https://coralogix.com/docs/send-your-data-api-key/ |\n\n## Integration Type reference\n\nValid arguments for third party log integrations.\n\nRequired arguments for all integrations: name\n\n| Name | Type | Required arguments |\n| ---- | ---- | ---- |\n| CloudWatch | cloudwatchlog | access_key_id, secret_access_key, region |\n| Log Entries | logentries | token |\n| Loggly | loggly | token |\n| Papertrail | papertrail | url |\n| Splunk | splunk | token, host_port, sourcetype |\n| Data Dog | datadog | region, api_keys, tags |\n| Stackdriver | stackdriver | credentials |\n| Scalyr | scalyr | token, host |\n| Coralogix | coralogix | private_key, endpoint, application, subsystem |\n\n***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments  : project_id, private_key, client_email\n\n## Dependency\n\nThis resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n\n\n## Import\n\n`cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.\n\n```sh\n $ pulumi import cloudamqp:index/integrationLog:IntegrationLog \u003cresource_name\u003e \u003cid\u003e,\u003cinstance_id\u003e`\n```\n\n ",
             "properties": {
                 "accessKeyId": {
                     "type": "string",
@@ -1136,6 +1136,10 @@
                     "description": "The API key.\n",
                     "secret": true
                 },
+                "application": {
+                    "type": "string",
+                    "description": "The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)\n"
+                },
                 "clientEmail": {
                     "type": "string",
                     "description": "The client email registered for the integration service.\n"
@@ -1144,6 +1148,10 @@
                     "type": "string",
                     "description": "Google Service Account private key credentials.\n",
                     "secret": true
+                },
+                "endpoint": {
+                    "type": "string",
+                    "description": "The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).\n"
                 },
                 "host": {
                     "type": "string",
@@ -1186,7 +1194,11 @@
                 },
                 "sourcetype": {
                     "type": "string",
-                    "description": "Assign source type to the data exported, eg. generic_single_line. (Splunk)\n\nThis is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.\n"
+                    "description": "Assign source type to the data exported, eg. generic_single_line. (Splunk)\n"
+                },
+                "subsystem": {
+                    "type": "string",
+                    "description": "The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)\n\nThis is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.\n"
                 },
                 "tags": {
                     "type": "string",
@@ -1221,6 +1233,10 @@
                     "description": "The API key.\n",
                     "secret": true
                 },
+                "application": {
+                    "type": "string",
+                    "description": "The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)\n"
+                },
                 "clientEmail": {
                     "type": "string",
                     "description": "The client email registered for the integration service.\n"
@@ -1229,6 +1245,10 @@
                     "type": "string",
                     "description": "Google Service Account private key credentials.\n",
                     "secret": true
+                },
+                "endpoint": {
+                    "type": "string",
+                    "description": "The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).\n"
                 },
                 "host": {
                     "type": "string",
@@ -1272,7 +1292,11 @@
                 },
                 "sourcetype": {
                     "type": "string",
-                    "description": "Assign source type to the data exported, eg. generic_single_line. (Splunk)\n\nThis is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.\n"
+                    "description": "Assign source type to the data exported, eg. generic_single_line. (Splunk)\n"
+                },
+                "subsystem": {
+                    "type": "string",
+                    "description": "The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)\n\nThis is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.\n"
                 },
                 "tags": {
                     "type": "string",
@@ -1304,6 +1328,10 @@
                         "description": "The API key.\n",
                         "secret": true
                     },
+                    "application": {
+                        "type": "string",
+                        "description": "The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)\n"
+                    },
                     "clientEmail": {
                         "type": "string",
                         "description": "The client email registered for the integration service.\n"
@@ -1312,6 +1340,10 @@
                         "type": "string",
                         "description": "Google Service Account private key credentials.\n",
                         "secret": true
+                    },
+                    "endpoint": {
+                        "type": "string",
+                        "description": "The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).\n"
                     },
                     "host": {
                         "type": "string",
@@ -1355,7 +1387,11 @@
                     },
                     "sourcetype": {
                         "type": "string",
-                        "description": "Assign source type to the data exported, eg. generic_single_line. (Splunk)\n\nThis is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.\n"
+                        "description": "Assign source type to the data exported, eg. generic_single_line. (Splunk)\n"
+                    },
+                    "subsystem": {
+                        "type": "string",
+                        "description": "The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)\n\nThis is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.\n"
                     },
                     "tags": {
                         "type": "string",
