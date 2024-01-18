@@ -48,6 +48,21 @@ public final class IntegrationLogArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
+     * The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+     * 
+     */
+    @Import(name="application")
+    private @Nullable Output<String> application;
+
+    /**
+     * @return The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+     * 
+     */
+    public Optional<Output<String>> application() {
+        return Optional.ofNullable(this.application);
+    }
+
+    /**
      * The client email registered for the integration service.
      * 
      */
@@ -75,6 +90,21 @@ public final class IntegrationLogArgs extends com.pulumi.resources.ResourceArgs 
      */
     public Optional<Output<String>> credentials() {
         return Optional.ofNullable(this.credentials);
+    }
+
+    /**
+     * The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+     * 
+     */
+    @Import(name="endpoint")
+    private @Nullable Output<String> endpoint;
+
+    /**
+     * @return The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+     * 
+     */
+    public Optional<Output<String>> endpoint() {
+        return Optional.ofNullable(this.endpoint);
     }
 
     /**
@@ -215,8 +245,6 @@ public final class IntegrationLogArgs extends com.pulumi.resources.ResourceArgs 
     /**
      * Assign source type to the data exported, eg. generic_single_line. (Splunk)
      * 
-     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
-     * 
      */
     @Import(name="sourcetype")
     private @Nullable Output<String> sourcetype;
@@ -224,11 +252,28 @@ public final class IntegrationLogArgs extends com.pulumi.resources.ResourceArgs 
     /**
      * @return Assign source type to the data exported, eg. generic_single_line. (Splunk)
      * 
-     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
-     * 
      */
     public Optional<Output<String>> sourcetype() {
         return Optional.ofNullable(this.sourcetype);
+    }
+
+    /**
+     * The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+     * 
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+     * 
+     */
+    @Import(name="subsystem")
+    private @Nullable Output<String> subsystem;
+
+    /**
+     * @return The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+     * 
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+     * 
+     */
+    public Optional<Output<String>> subsystem() {
+        return Optional.ofNullable(this.subsystem);
     }
 
     /**
@@ -281,8 +326,10 @@ public final class IntegrationLogArgs extends com.pulumi.resources.ResourceArgs 
     private IntegrationLogArgs(IntegrationLogArgs $) {
         this.accessKeyId = $.accessKeyId;
         this.apiKey = $.apiKey;
+        this.application = $.application;
         this.clientEmail = $.clientEmail;
         this.credentials = $.credentials;
+        this.endpoint = $.endpoint;
         this.host = $.host;
         this.hostPort = $.hostPort;
         this.instanceId = $.instanceId;
@@ -293,6 +340,7 @@ public final class IntegrationLogArgs extends com.pulumi.resources.ResourceArgs 
         this.region = $.region;
         this.secretAccessKey = $.secretAccessKey;
         this.sourcetype = $.sourcetype;
+        this.subsystem = $.subsystem;
         this.tags = $.tags;
         this.token = $.token;
         this.url = $.url;
@@ -359,6 +407,27 @@ public final class IntegrationLogArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
+         * @param application The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder application(@Nullable Output<String> application) {
+            $.application = application;
+            return this;
+        }
+
+        /**
+         * @param application The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder application(String application) {
+            return application(Output.of(application));
+        }
+
+        /**
          * @param clientEmail The client email registered for the integration service.
          * 
          * @return builder
@@ -398,6 +467,27 @@ public final class IntegrationLogArgs extends com.pulumi.resources.ResourceArgs 
          */
         public Builder credentials(String credentials) {
             return credentials(Output.of(credentials));
+        }
+
+        /**
+         * @param endpoint The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder endpoint(@Nullable Output<String> endpoint) {
+            $.endpoint = endpoint;
+            return this;
+        }
+
+        /**
+         * @param endpoint The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder endpoint(String endpoint) {
+            return endpoint(Output.of(endpoint));
         }
 
         /**
@@ -592,8 +682,6 @@ public final class IntegrationLogArgs extends com.pulumi.resources.ResourceArgs 
         /**
          * @param sourcetype Assign source type to the data exported, eg. generic_single_line. (Splunk)
          * 
-         * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
-         * 
          * @return builder
          * 
          */
@@ -605,13 +693,36 @@ public final class IntegrationLogArgs extends com.pulumi.resources.ResourceArgs 
         /**
          * @param sourcetype Assign source type to the data exported, eg. generic_single_line. (Splunk)
          * 
-         * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
-         * 
          * @return builder
          * 
          */
         public Builder sourcetype(String sourcetype) {
             return sourcetype(Output.of(sourcetype));
+        }
+
+        /**
+         * @param subsystem The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+         * 
+         * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder subsystem(@Nullable Output<String> subsystem) {
+            $.subsystem = subsystem;
+            return this;
+        }
+
+        /**
+         * @param subsystem The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+         * 
+         * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder subsystem(String subsystem) {
+            return subsystem(Output.of(subsystem));
         }
 
         /**

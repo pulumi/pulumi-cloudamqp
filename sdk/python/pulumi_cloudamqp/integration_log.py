@@ -17,8 +17,10 @@ class IntegrationLogArgs:
                  instance_id: pulumi.Input[int],
                  access_key_id: Optional[pulumi.Input[str]] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
+                 application: Optional[pulumi.Input[str]] = None,
                  client_email: Optional[pulumi.Input[str]] = None,
                  credentials: Optional[pulumi.Input[str]] = None,
+                 endpoint: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  host_port: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -28,6 +30,7 @@ class IntegrationLogArgs:
                  region: Optional[pulumi.Input[str]] = None,
                  secret_access_key: Optional[pulumi.Input[str]] = None,
                  sourcetype: Optional[pulumi.Input[str]] = None,
+                 subsystem: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None):
@@ -36,8 +39,10 @@ class IntegrationLogArgs:
         :param pulumi.Input[int] instance_id: Instance identifier used to make proxy calls
         :param pulumi.Input[str] access_key_id: AWS access key identifier.
         :param pulumi.Input[str] api_key: The API key.
+        :param pulumi.Input[str] application: The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
         :param pulumi.Input[str] client_email: The client email registered for the integration service.
         :param pulumi.Input[str] credentials: Google Service Account private key credentials.
+        :param pulumi.Input[str] endpoint: The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
         :param pulumi.Input[str] host: The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
         :param pulumi.Input[str] host_port: Destination to send the logs.
         :param pulumi.Input[str] name: The name of the third party log integration. See
@@ -47,6 +52,7 @@ class IntegrationLogArgs:
         :param pulumi.Input[str] region: Region hosting the integration service.
         :param pulumi.Input[str] secret_access_key: AWS secret access key.
         :param pulumi.Input[str] sourcetype: Assign source type to the data exported, eg. generic_single_line. (Splunk)
+        :param pulumi.Input[str] subsystem: The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
                
                This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
         :param pulumi.Input[str] tags: Tag the integration, e.g. env=prod, region=europe.
@@ -58,10 +64,14 @@ class IntegrationLogArgs:
             pulumi.set(__self__, "access_key_id", access_key_id)
         if api_key is not None:
             pulumi.set(__self__, "api_key", api_key)
+        if application is not None:
+            pulumi.set(__self__, "application", application)
         if client_email is not None:
             pulumi.set(__self__, "client_email", client_email)
         if credentials is not None:
             pulumi.set(__self__, "credentials", credentials)
+        if endpoint is not None:
+            pulumi.set(__self__, "endpoint", endpoint)
         if host is not None:
             pulumi.set(__self__, "host", host)
         if host_port is not None:
@@ -80,6 +90,8 @@ class IntegrationLogArgs:
             pulumi.set(__self__, "secret_access_key", secret_access_key)
         if sourcetype is not None:
             pulumi.set(__self__, "sourcetype", sourcetype)
+        if subsystem is not None:
+            pulumi.set(__self__, "subsystem", subsystem)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if token is not None:
@@ -124,6 +136,18 @@ class IntegrationLogArgs:
         pulumi.set(self, "api_key", value)
 
     @property
+    @pulumi.getter
+    def application(self) -> Optional[pulumi.Input[str]]:
+        """
+        The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+        """
+        return pulumi.get(self, "application")
+
+    @application.setter
+    def application(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "application", value)
+
+    @property
     @pulumi.getter(name="clientEmail")
     def client_email(self) -> Optional[pulumi.Input[str]]:
         """
@@ -146,6 +170,18 @@ class IntegrationLogArgs:
     @credentials.setter
     def credentials(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "credentials", value)
+
+    @property
+    @pulumi.getter
+    def endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+        """
+        return pulumi.get(self, "endpoint")
+
+    @endpoint.setter
+    def endpoint(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "endpoint", value)
 
     @property
     @pulumi.getter
@@ -248,14 +284,26 @@ class IntegrationLogArgs:
     def sourcetype(self) -> Optional[pulumi.Input[str]]:
         """
         Assign source type to the data exported, eg. generic_single_line. (Splunk)
-
-        This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
         """
         return pulumi.get(self, "sourcetype")
 
     @sourcetype.setter
     def sourcetype(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sourcetype", value)
+
+    @property
+    @pulumi.getter
+    def subsystem(self) -> Optional[pulumi.Input[str]]:
+        """
+        The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+
+        This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+        """
+        return pulumi.get(self, "subsystem")
+
+    @subsystem.setter
+    def subsystem(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "subsystem", value)
 
     @property
     @pulumi.getter
@@ -299,8 +347,10 @@ class _IntegrationLogState:
     def __init__(__self__, *,
                  access_key_id: Optional[pulumi.Input[str]] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
+                 application: Optional[pulumi.Input[str]] = None,
                  client_email: Optional[pulumi.Input[str]] = None,
                  credentials: Optional[pulumi.Input[str]] = None,
+                 endpoint: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  host_port: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
@@ -311,6 +361,7 @@ class _IntegrationLogState:
                  region: Optional[pulumi.Input[str]] = None,
                  secret_access_key: Optional[pulumi.Input[str]] = None,
                  sourcetype: Optional[pulumi.Input[str]] = None,
+                 subsystem: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None):
@@ -318,8 +369,10 @@ class _IntegrationLogState:
         Input properties used for looking up and filtering IntegrationLog resources.
         :param pulumi.Input[str] access_key_id: AWS access key identifier.
         :param pulumi.Input[str] api_key: The API key.
+        :param pulumi.Input[str] application: The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
         :param pulumi.Input[str] client_email: The client email registered for the integration service.
         :param pulumi.Input[str] credentials: Google Service Account private key credentials.
+        :param pulumi.Input[str] endpoint: The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
         :param pulumi.Input[str] host: The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
         :param pulumi.Input[str] host_port: Destination to send the logs.
         :param pulumi.Input[int] instance_id: Instance identifier used to make proxy calls
@@ -330,6 +383,7 @@ class _IntegrationLogState:
         :param pulumi.Input[str] region: Region hosting the integration service.
         :param pulumi.Input[str] secret_access_key: AWS secret access key.
         :param pulumi.Input[str] sourcetype: Assign source type to the data exported, eg. generic_single_line. (Splunk)
+        :param pulumi.Input[str] subsystem: The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
                
                This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
         :param pulumi.Input[str] tags: Tag the integration, e.g. env=prod, region=europe.
@@ -340,10 +394,14 @@ class _IntegrationLogState:
             pulumi.set(__self__, "access_key_id", access_key_id)
         if api_key is not None:
             pulumi.set(__self__, "api_key", api_key)
+        if application is not None:
+            pulumi.set(__self__, "application", application)
         if client_email is not None:
             pulumi.set(__self__, "client_email", client_email)
         if credentials is not None:
             pulumi.set(__self__, "credentials", credentials)
+        if endpoint is not None:
+            pulumi.set(__self__, "endpoint", endpoint)
         if host is not None:
             pulumi.set(__self__, "host", host)
         if host_port is not None:
@@ -364,6 +422,8 @@ class _IntegrationLogState:
             pulumi.set(__self__, "secret_access_key", secret_access_key)
         if sourcetype is not None:
             pulumi.set(__self__, "sourcetype", sourcetype)
+        if subsystem is not None:
+            pulumi.set(__self__, "subsystem", subsystem)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if token is not None:
@@ -396,6 +456,18 @@ class _IntegrationLogState:
         pulumi.set(self, "api_key", value)
 
     @property
+    @pulumi.getter
+    def application(self) -> Optional[pulumi.Input[str]]:
+        """
+        The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+        """
+        return pulumi.get(self, "application")
+
+    @application.setter
+    def application(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "application", value)
+
+    @property
     @pulumi.getter(name="clientEmail")
     def client_email(self) -> Optional[pulumi.Input[str]]:
         """
@@ -418,6 +490,18 @@ class _IntegrationLogState:
     @credentials.setter
     def credentials(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "credentials", value)
+
+    @property
+    @pulumi.getter
+    def endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+        """
+        return pulumi.get(self, "endpoint")
+
+    @endpoint.setter
+    def endpoint(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "endpoint", value)
 
     @property
     @pulumi.getter
@@ -532,14 +616,26 @@ class _IntegrationLogState:
     def sourcetype(self) -> Optional[pulumi.Input[str]]:
         """
         Assign source type to the data exported, eg. generic_single_line. (Splunk)
-
-        This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
         """
         return pulumi.get(self, "sourcetype")
 
     @sourcetype.setter
     def sourcetype(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sourcetype", value)
+
+    @property
+    @pulumi.getter
+    def subsystem(self) -> Optional[pulumi.Input[str]]:
+        """
+        The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+
+        This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+        """
+        return pulumi.get(self, "subsystem")
+
+    @subsystem.setter
+    def subsystem(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "subsystem", value)
 
     @property
     @pulumi.getter
@@ -585,8 +681,10 @@ class IntegrationLog(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_key_id: Optional[pulumi.Input[str]] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
+                 application: Optional[pulumi.Input[str]] = None,
                  client_email: Optional[pulumi.Input[str]] = None,
                  credentials: Optional[pulumi.Input[str]] = None,
+                 endpoint: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  host_port: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
@@ -597,6 +695,7 @@ class IntegrationLog(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  secret_access_key: Optional[pulumi.Input[str]] = None,
                  sourcetype: Optional[pulumi.Input[str]] = None,
+                 subsystem: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
@@ -630,6 +729,7 @@ class IntegrationLog(pulumi.CustomResource):
         | datadog       | Create a Datadog API key at app.datadoghq.com |
         | stackdriver   | Create a service account and add 'monitor metrics writer' role from your Google Cloud Account |
         | scalyr        | Create a Log write token at https://app.scalyr.com/keys |
+        | coralogix     | Create Send-Your-Data API key https://coralogix.com/docs/send-your-data-api-key/ |
 
         ## Integration Type reference
 
@@ -647,6 +747,7 @@ class IntegrationLog(pulumi.CustomResource):
         | Data Dog | datadog | region, api_keys, tags |
         | Stackdriver | stackdriver | credentials |
         | Scalyr | scalyr | token, host |
+        | Coralogix | coralogix | private_key, endpoint, application, subsystem |
 
         ***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments  : project_id, private_key, client_email
 
@@ -666,8 +767,10 @@ class IntegrationLog(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key_id: AWS access key identifier.
         :param pulumi.Input[str] api_key: The API key.
+        :param pulumi.Input[str] application: The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
         :param pulumi.Input[str] client_email: The client email registered for the integration service.
         :param pulumi.Input[str] credentials: Google Service Account private key credentials.
+        :param pulumi.Input[str] endpoint: The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
         :param pulumi.Input[str] host: The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
         :param pulumi.Input[str] host_port: Destination to send the logs.
         :param pulumi.Input[int] instance_id: Instance identifier used to make proxy calls
@@ -678,6 +781,7 @@ class IntegrationLog(pulumi.CustomResource):
         :param pulumi.Input[str] region: Region hosting the integration service.
         :param pulumi.Input[str] secret_access_key: AWS secret access key.
         :param pulumi.Input[str] sourcetype: Assign source type to the data exported, eg. generic_single_line. (Splunk)
+        :param pulumi.Input[str] subsystem: The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
                
                This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
         :param pulumi.Input[str] tags: Tag the integration, e.g. env=prod, region=europe.
@@ -719,6 +823,7 @@ class IntegrationLog(pulumi.CustomResource):
         | datadog       | Create a Datadog API key at app.datadoghq.com |
         | stackdriver   | Create a service account and add 'monitor metrics writer' role from your Google Cloud Account |
         | scalyr        | Create a Log write token at https://app.scalyr.com/keys |
+        | coralogix     | Create Send-Your-Data API key https://coralogix.com/docs/send-your-data-api-key/ |
 
         ## Integration Type reference
 
@@ -736,6 +841,7 @@ class IntegrationLog(pulumi.CustomResource):
         | Data Dog | datadog | region, api_keys, tags |
         | Stackdriver | stackdriver | credentials |
         | Scalyr | scalyr | token, host |
+        | Coralogix | coralogix | private_key, endpoint, application, subsystem |
 
         ***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments  : project_id, private_key, client_email
 
@@ -768,8 +874,10 @@ class IntegrationLog(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_key_id: Optional[pulumi.Input[str]] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
+                 application: Optional[pulumi.Input[str]] = None,
                  client_email: Optional[pulumi.Input[str]] = None,
                  credentials: Optional[pulumi.Input[str]] = None,
+                 endpoint: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  host_port: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
@@ -780,6 +888,7 @@ class IntegrationLog(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  secret_access_key: Optional[pulumi.Input[str]] = None,
                  sourcetype: Optional[pulumi.Input[str]] = None,
+                 subsystem: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
@@ -794,8 +903,10 @@ class IntegrationLog(pulumi.CustomResource):
 
             __props__.__dict__["access_key_id"] = None if access_key_id is None else pulumi.Output.secret(access_key_id)
             __props__.__dict__["api_key"] = None if api_key is None else pulumi.Output.secret(api_key)
+            __props__.__dict__["application"] = application
             __props__.__dict__["client_email"] = client_email
             __props__.__dict__["credentials"] = None if credentials is None else pulumi.Output.secret(credentials)
+            __props__.__dict__["endpoint"] = endpoint
             __props__.__dict__["host"] = host
             __props__.__dict__["host_port"] = host_port
             if instance_id is None and not opts.urn:
@@ -808,6 +919,7 @@ class IntegrationLog(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["secret_access_key"] = None if secret_access_key is None else pulumi.Output.secret(secret_access_key)
             __props__.__dict__["sourcetype"] = sourcetype
+            __props__.__dict__["subsystem"] = subsystem
             __props__.__dict__["tags"] = tags
             __props__.__dict__["token"] = None if token is None else pulumi.Output.secret(token)
             __props__.__dict__["url"] = url
@@ -825,8 +937,10 @@ class IntegrationLog(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             access_key_id: Optional[pulumi.Input[str]] = None,
             api_key: Optional[pulumi.Input[str]] = None,
+            application: Optional[pulumi.Input[str]] = None,
             client_email: Optional[pulumi.Input[str]] = None,
             credentials: Optional[pulumi.Input[str]] = None,
+            endpoint: Optional[pulumi.Input[str]] = None,
             host: Optional[pulumi.Input[str]] = None,
             host_port: Optional[pulumi.Input[str]] = None,
             instance_id: Optional[pulumi.Input[int]] = None,
@@ -837,6 +951,7 @@ class IntegrationLog(pulumi.CustomResource):
             region: Optional[pulumi.Input[str]] = None,
             secret_access_key: Optional[pulumi.Input[str]] = None,
             sourcetype: Optional[pulumi.Input[str]] = None,
+            subsystem: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[str]] = None,
             token: Optional[pulumi.Input[str]] = None,
             url: Optional[pulumi.Input[str]] = None) -> 'IntegrationLog':
@@ -849,8 +964,10 @@ class IntegrationLog(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key_id: AWS access key identifier.
         :param pulumi.Input[str] api_key: The API key.
+        :param pulumi.Input[str] application: The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
         :param pulumi.Input[str] client_email: The client email registered for the integration service.
         :param pulumi.Input[str] credentials: Google Service Account private key credentials.
+        :param pulumi.Input[str] endpoint: The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
         :param pulumi.Input[str] host: The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
         :param pulumi.Input[str] host_port: Destination to send the logs.
         :param pulumi.Input[int] instance_id: Instance identifier used to make proxy calls
@@ -861,6 +978,7 @@ class IntegrationLog(pulumi.CustomResource):
         :param pulumi.Input[str] region: Region hosting the integration service.
         :param pulumi.Input[str] secret_access_key: AWS secret access key.
         :param pulumi.Input[str] sourcetype: Assign source type to the data exported, eg. generic_single_line. (Splunk)
+        :param pulumi.Input[str] subsystem: The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
                
                This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
         :param pulumi.Input[str] tags: Tag the integration, e.g. env=prod, region=europe.
@@ -873,8 +991,10 @@ class IntegrationLog(pulumi.CustomResource):
 
         __props__.__dict__["access_key_id"] = access_key_id
         __props__.__dict__["api_key"] = api_key
+        __props__.__dict__["application"] = application
         __props__.__dict__["client_email"] = client_email
         __props__.__dict__["credentials"] = credentials
+        __props__.__dict__["endpoint"] = endpoint
         __props__.__dict__["host"] = host
         __props__.__dict__["host_port"] = host_port
         __props__.__dict__["instance_id"] = instance_id
@@ -885,6 +1005,7 @@ class IntegrationLog(pulumi.CustomResource):
         __props__.__dict__["region"] = region
         __props__.__dict__["secret_access_key"] = secret_access_key
         __props__.__dict__["sourcetype"] = sourcetype
+        __props__.__dict__["subsystem"] = subsystem
         __props__.__dict__["tags"] = tags
         __props__.__dict__["token"] = token
         __props__.__dict__["url"] = url
@@ -907,6 +1028,14 @@ class IntegrationLog(pulumi.CustomResource):
         return pulumi.get(self, "api_key")
 
     @property
+    @pulumi.getter
+    def application(self) -> pulumi.Output[Optional[str]]:
+        """
+        The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+        """
+        return pulumi.get(self, "application")
+
+    @property
     @pulumi.getter(name="clientEmail")
     def client_email(self) -> pulumi.Output[str]:
         """
@@ -921,6 +1050,14 @@ class IntegrationLog(pulumi.CustomResource):
         Google Service Account private key credentials.
         """
         return pulumi.get(self, "credentials")
+
+    @property
+    @pulumi.getter
+    def endpoint(self) -> pulumi.Output[Optional[str]]:
+        """
+        The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+        """
+        return pulumi.get(self, "endpoint")
 
     @property
     @pulumi.getter
@@ -999,10 +1136,18 @@ class IntegrationLog(pulumi.CustomResource):
     def sourcetype(self) -> pulumi.Output[Optional[str]]:
         """
         Assign source type to the data exported, eg. generic_single_line. (Splunk)
+        """
+        return pulumi.get(self, "sourcetype")
+
+    @property
+    @pulumi.getter
+    def subsystem(self) -> pulumi.Output[Optional[str]]:
+        """
+        The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
 
         This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
         """
-        return pulumi.get(self, "sourcetype")
+        return pulumi.get(self, "subsystem")
 
     @property
     @pulumi.getter

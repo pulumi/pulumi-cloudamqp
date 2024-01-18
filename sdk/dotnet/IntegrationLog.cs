@@ -38,6 +38,7 @@ namespace Pulumi.CloudAmqp
     /// | datadog       | Create a Datadog API key at app.datadoghq.com |
     /// | stackdriver   | Create a service account and add 'monitor metrics writer' role from your Google Cloud Account |
     /// | scalyr        | Create a Log write token at https://app.scalyr.com/keys |
+    /// | coralogix     | Create Send-Your-Data API key https://coralogix.com/docs/send-your-data-api-key/ |
     /// 
     /// ## Integration Type reference
     /// 
@@ -55,6 +56,7 @@ namespace Pulumi.CloudAmqp
     /// | Data Dog | datadog | region, api_keys, tags |
     /// | Stackdriver | stackdriver | credentials |
     /// | Scalyr | scalyr | token, host |
+    /// | Coralogix | coralogix | private_key, endpoint, application, subsystem |
     /// 
     /// ***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments  : project_id, private_key, client_email
     /// 
@@ -86,6 +88,12 @@ namespace Pulumi.CloudAmqp
         public Output<string?> ApiKey { get; private set; } = null!;
 
         /// <summary>
+        /// The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+        /// </summary>
+        [Output("application")]
+        public Output<string?> Application { get; private set; } = null!;
+
+        /// <summary>
         /// The client email registered for the integration service.
         /// </summary>
         [Output("clientEmail")]
@@ -96,6 +104,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Output("credentials")]
         public Output<string?> Credentials { get; private set; } = null!;
+
+        /// <summary>
+        /// The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+        /// </summary>
+        [Output("endpoint")]
+        public Output<string?> Endpoint { get; private set; } = null!;
 
         /// <summary>
         /// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
@@ -153,11 +167,17 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Assign source type to the data exported, eg. generic_single_line. (Splunk)
-        /// 
-        /// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
         /// </summary>
         [Output("sourcetype")]
         public Output<string?> Sourcetype { get; private set; } = null!;
+
+        /// <summary>
+        /// The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+        /// 
+        /// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+        /// </summary>
+        [Output("subsystem")]
+        public Output<string?> Subsystem { get; private set; } = null!;
 
         /// <summary>
         /// Tag the integration, e.g. env=prod, region=europe.
@@ -266,6 +286,12 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
+        /// The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+        /// </summary>
+        [Input("application")]
+        public Input<string>? Application { get; set; }
+
+        /// <summary>
         /// The client email registered for the integration service.
         /// </summary>
         [Input("clientEmail")]
@@ -286,6 +312,12 @@ namespace Pulumi.CloudAmqp
                 _credentials = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+        /// </summary>
+        [Input("endpoint")]
+        public Input<string>? Endpoint { get; set; }
 
         /// <summary>
         /// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
@@ -373,11 +405,17 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Assign source type to the data exported, eg. generic_single_line. (Splunk)
-        /// 
-        /// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
         /// </summary>
         [Input("sourcetype")]
         public Input<string>? Sourcetype { get; set; }
+
+        /// <summary>
+        /// The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+        /// 
+        /// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+        /// </summary>
+        [Input("subsystem")]
+        public Input<string>? Subsystem { get; set; }
 
         /// <summary>
         /// Tag the integration, e.g. env=prod, region=europe.
@@ -448,6 +486,12 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
+        /// The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+        /// </summary>
+        [Input("application")]
+        public Input<string>? Application { get; set; }
+
+        /// <summary>
         /// The client email registered for the integration service.
         /// </summary>
         [Input("clientEmail")]
@@ -468,6 +512,12 @@ namespace Pulumi.CloudAmqp
                 _credentials = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+        /// </summary>
+        [Input("endpoint")]
+        public Input<string>? Endpoint { get; set; }
 
         /// <summary>
         /// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
@@ -555,11 +605,17 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Assign source type to the data exported, eg. generic_single_line. (Splunk)
-        /// 
-        /// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
         /// </summary>
         [Input("sourcetype")]
         public Input<string>? Sourcetype { get; set; }
+
+        /// <summary>
+        /// The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+        /// 
+        /// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+        /// </summary>
+        [Input("subsystem")]
+        public Input<string>? Subsystem { get; set; }
 
         /// <summary>
         /// Tag the integration, e.g. env=prod, region=europe.
