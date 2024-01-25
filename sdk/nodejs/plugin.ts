@@ -46,25 +46,23 @@ export class Plugin extends pulumi.CustomResource {
      */
     public /*out*/ readonly description!: pulumi.Output<string>;
     /**
-     * Enable or disable the plugins.
+     * If the plugin is enabled
      */
     public readonly enabled!: pulumi.Output<boolean>;
     /**
-     * The CloudAMQP instance ID.
+     * Instance identifier
      */
     public readonly instanceId!: pulumi.Output<number>;
     /**
-     * The name of the Rabbit MQ plugin.
+     * The name of the plugin
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Configurable sleep time (seconds) for retries when requesting information
-     * about plugins. Default set to 10 seconds. *Available from v1.29.0*
+     * Configurable sleep time in seconds between retries for plugins
      */
     public readonly sleep!: pulumi.Output<number | undefined>;
     /**
-     * Configurable timeout time (seconds) for retries when requesting
-     * information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+     * Configurable timeout time in seconds for plugins
      */
     public readonly timeout!: pulumi.Output<number | undefined>;
     /**
@@ -122,25 +120,23 @@ export interface PluginState {
      */
     description?: pulumi.Input<string>;
     /**
-     * Enable or disable the plugins.
+     * If the plugin is enabled
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * The CloudAMQP instance ID.
+     * Instance identifier
      */
     instanceId?: pulumi.Input<number>;
     /**
-     * The name of the Rabbit MQ plugin.
+     * The name of the plugin
      */
     name?: pulumi.Input<string>;
     /**
-     * Configurable sleep time (seconds) for retries when requesting information
-     * about plugins. Default set to 10 seconds. *Available from v1.29.0*
+     * Configurable sleep time in seconds between retries for plugins
      */
     sleep?: pulumi.Input<number>;
     /**
-     * Configurable timeout time (seconds) for retries when requesting
-     * information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+     * Configurable timeout time in seconds for plugins
      */
     timeout?: pulumi.Input<number>;
     /**
@@ -154,25 +150,23 @@ export interface PluginState {
  */
 export interface PluginArgs {
     /**
-     * Enable or disable the plugins.
+     * If the plugin is enabled
      */
     enabled: pulumi.Input<boolean>;
     /**
-     * The CloudAMQP instance ID.
+     * Instance identifier
      */
     instanceId: pulumi.Input<number>;
     /**
-     * The name of the Rabbit MQ plugin.
+     * The name of the plugin
      */
     name?: pulumi.Input<string>;
     /**
-     * Configurable sleep time (seconds) for retries when requesting information
-     * about plugins. Default set to 10 seconds. *Available from v1.29.0*
+     * Configurable sleep time in seconds between retries for plugins
      */
     sleep?: pulumi.Input<number>;
     /**
-     * Configurable timeout time (seconds) for retries when requesting
-     * information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+     * Configurable timeout time in seconds for plugins
      */
     timeout?: pulumi.Input<number>;
 }

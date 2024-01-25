@@ -26,19 +26,17 @@ type PluginCommunity struct {
 
 	// The description of the plugin.
 	Description pulumi.StringOutput `pulumi:"description"`
-	// Enable or disable the plugins.
+	// If the plugin is enabled
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
-	// The CloudAMQP instance ID.
+	// Instance identifier
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
-	// The name of the Rabbit MQ community plugin.
+	// The name of the plugin
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Required version of RabbitMQ.
 	Require pulumi.StringOutput `pulumi:"require"`
-	// Configurable sleep time (seconds) for retries when requesting information
-	// about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+	// Configurable sleep time in seconds between retries for plugins
 	Sleep pulumi.IntPtrOutput `pulumi:"sleep"`
-	// Configurable timeout time (seconds) for retries when requesting
-	// information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+	// Configurable timeout time in seconds for plugins
 	Timeout pulumi.IntPtrOutput `pulumi:"timeout"`
 }
 
@@ -80,38 +78,34 @@ func GetPluginCommunity(ctx *pulumi.Context,
 type pluginCommunityState struct {
 	// The description of the plugin.
 	Description *string `pulumi:"description"`
-	// Enable or disable the plugins.
+	// If the plugin is enabled
 	Enabled *bool `pulumi:"enabled"`
-	// The CloudAMQP instance ID.
+	// Instance identifier
 	InstanceId *int `pulumi:"instanceId"`
-	// The name of the Rabbit MQ community plugin.
+	// The name of the plugin
 	Name *string `pulumi:"name"`
 	// Required version of RabbitMQ.
 	Require *string `pulumi:"require"`
-	// Configurable sleep time (seconds) for retries when requesting information
-	// about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+	// Configurable sleep time in seconds between retries for plugins
 	Sleep *int `pulumi:"sleep"`
-	// Configurable timeout time (seconds) for retries when requesting
-	// information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+	// Configurable timeout time in seconds for plugins
 	Timeout *int `pulumi:"timeout"`
 }
 
 type PluginCommunityState struct {
 	// The description of the plugin.
 	Description pulumi.StringPtrInput
-	// Enable or disable the plugins.
+	// If the plugin is enabled
 	Enabled pulumi.BoolPtrInput
-	// The CloudAMQP instance ID.
+	// Instance identifier
 	InstanceId pulumi.IntPtrInput
-	// The name of the Rabbit MQ community plugin.
+	// The name of the plugin
 	Name pulumi.StringPtrInput
 	// Required version of RabbitMQ.
 	Require pulumi.StringPtrInput
-	// Configurable sleep time (seconds) for retries when requesting information
-	// about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+	// Configurable sleep time in seconds between retries for plugins
 	Sleep pulumi.IntPtrInput
-	// Configurable timeout time (seconds) for retries when requesting
-	// information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+	// Configurable timeout time in seconds for plugins
 	Timeout pulumi.IntPtrInput
 }
 
@@ -120,33 +114,29 @@ func (PluginCommunityState) ElementType() reflect.Type {
 }
 
 type pluginCommunityArgs struct {
-	// Enable or disable the plugins.
+	// If the plugin is enabled
 	Enabled bool `pulumi:"enabled"`
-	// The CloudAMQP instance ID.
+	// Instance identifier
 	InstanceId int `pulumi:"instanceId"`
-	// The name of the Rabbit MQ community plugin.
+	// The name of the plugin
 	Name *string `pulumi:"name"`
-	// Configurable sleep time (seconds) for retries when requesting information
-	// about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+	// Configurable sleep time in seconds between retries for plugins
 	Sleep *int `pulumi:"sleep"`
-	// Configurable timeout time (seconds) for retries when requesting
-	// information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+	// Configurable timeout time in seconds for plugins
 	Timeout *int `pulumi:"timeout"`
 }
 
 // The set of arguments for constructing a PluginCommunity resource.
 type PluginCommunityArgs struct {
-	// Enable or disable the plugins.
+	// If the plugin is enabled
 	Enabled pulumi.BoolInput
-	// The CloudAMQP instance ID.
+	// Instance identifier
 	InstanceId pulumi.IntInput
-	// The name of the Rabbit MQ community plugin.
+	// The name of the plugin
 	Name pulumi.StringPtrInput
-	// Configurable sleep time (seconds) for retries when requesting information
-	// about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+	// Configurable sleep time in seconds between retries for plugins
 	Sleep pulumi.IntPtrInput
-	// Configurable timeout time (seconds) for retries when requesting
-	// information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+	// Configurable timeout time in seconds for plugins
 	Timeout pulumi.IntPtrInput
 }
 
@@ -242,17 +232,17 @@ func (o PluginCommunityOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *PluginCommunity) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
-// Enable or disable the plugins.
+// If the plugin is enabled
 func (o PluginCommunityOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *PluginCommunity) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// The CloudAMQP instance ID.
+// Instance identifier
 func (o PluginCommunityOutput) InstanceId() pulumi.IntOutput {
 	return o.ApplyT(func(v *PluginCommunity) pulumi.IntOutput { return v.InstanceId }).(pulumi.IntOutput)
 }
 
-// The name of the Rabbit MQ community plugin.
+// The name of the plugin
 func (o PluginCommunityOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *PluginCommunity) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -262,14 +252,12 @@ func (o PluginCommunityOutput) Require() pulumi.StringOutput {
 	return o.ApplyT(func(v *PluginCommunity) pulumi.StringOutput { return v.Require }).(pulumi.StringOutput)
 }
 
-// Configurable sleep time (seconds) for retries when requesting information
-// about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+// Configurable sleep time in seconds between retries for plugins
 func (o PluginCommunityOutput) Sleep() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *PluginCommunity) pulumi.IntPtrOutput { return v.Sleep }).(pulumi.IntPtrOutput)
 }
 
-// Configurable timeout time (seconds) for retries when requesting
-// information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+// Configurable timeout time in seconds for plugins
 func (o PluginCommunityOutput) Timeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *PluginCommunity) pulumi.IntPtrOutput { return v.Timeout }).(pulumi.IntPtrOutput)
 }

@@ -19,14 +19,14 @@ public final class PluginArgs extends com.pulumi.resources.ResourceArgs {
     public static final PluginArgs Empty = new PluginArgs();
 
     /**
-     * Enable or disable the plugins.
+     * If the plugin is enabled
      * 
      */
     @Import(name="enabled", required=true)
     private Output<Boolean> enabled;
 
     /**
-     * @return Enable or disable the plugins.
+     * @return If the plugin is enabled
      * 
      */
     public Output<Boolean> enabled() {
@@ -34,14 +34,14 @@ public final class PluginArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The CloudAMQP instance ID.
+     * Instance identifier
      * 
      */
     @Import(name="instanceId", required=true)
     private Output<Integer> instanceId;
 
     /**
-     * @return The CloudAMQP instance ID.
+     * @return Instance identifier
      * 
      */
     public Output<Integer> instanceId() {
@@ -49,14 +49,14 @@ public final class PluginArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The name of the Rabbit MQ plugin.
+     * The name of the plugin
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The name of the Rabbit MQ plugin.
+     * @return The name of the plugin
      * 
      */
     public Optional<Output<String>> name() {
@@ -64,16 +64,14 @@ public final class PluginArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Configurable sleep time (seconds) for retries when requesting information
-     * about plugins. Default set to 10 seconds. *Available from v1.29.0*
+     * Configurable sleep time in seconds between retries for plugins
      * 
      */
     @Import(name="sleep")
     private @Nullable Output<Integer> sleep;
 
     /**
-     * @return Configurable sleep time (seconds) for retries when requesting information
-     * about plugins. Default set to 10 seconds. *Available from v1.29.0*
+     * @return Configurable sleep time in seconds between retries for plugins
      * 
      */
     public Optional<Output<Integer>> sleep() {
@@ -81,16 +79,14 @@ public final class PluginArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Configurable timeout time (seconds) for retries when requesting
-     * information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+     * Configurable timeout time in seconds for plugins
      * 
      */
     @Import(name="timeout")
     private @Nullable Output<Integer> timeout;
 
     /**
-     * @return Configurable timeout time (seconds) for retries when requesting
-     * information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+     * @return Configurable timeout time in seconds for plugins
      * 
      */
     public Optional<Output<Integer>> timeout() {
@@ -126,7 +122,7 @@ public final class PluginArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param enabled Enable or disable the plugins.
+         * @param enabled If the plugin is enabled
          * 
          * @return builder
          * 
@@ -137,7 +133,7 @@ public final class PluginArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param enabled Enable or disable the plugins.
+         * @param enabled If the plugin is enabled
          * 
          * @return builder
          * 
@@ -147,7 +143,7 @@ public final class PluginArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param instanceId The CloudAMQP instance ID.
+         * @param instanceId Instance identifier
          * 
          * @return builder
          * 
@@ -158,7 +154,7 @@ public final class PluginArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param instanceId The CloudAMQP instance ID.
+         * @param instanceId Instance identifier
          * 
          * @return builder
          * 
@@ -168,7 +164,7 @@ public final class PluginArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name The name of the Rabbit MQ plugin.
+         * @param name The name of the plugin
          * 
          * @return builder
          * 
@@ -179,7 +175,7 @@ public final class PluginArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name The name of the Rabbit MQ plugin.
+         * @param name The name of the plugin
          * 
          * @return builder
          * 
@@ -189,8 +185,7 @@ public final class PluginArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sleep Configurable sleep time (seconds) for retries when requesting information
-         * about plugins. Default set to 10 seconds. *Available from v1.29.0*
+         * @param sleep Configurable sleep time in seconds between retries for plugins
          * 
          * @return builder
          * 
@@ -201,8 +196,7 @@ public final class PluginArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sleep Configurable sleep time (seconds) for retries when requesting information
-         * about plugins. Default set to 10 seconds. *Available from v1.29.0*
+         * @param sleep Configurable sleep time in seconds between retries for plugins
          * 
          * @return builder
          * 
@@ -212,8 +206,7 @@ public final class PluginArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param timeout Configurable timeout time (seconds) for retries when requesting
-         * information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+         * @param timeout Configurable timeout time in seconds for plugins
          * 
          * @return builder
          * 
@@ -224,8 +217,7 @@ public final class PluginArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param timeout Configurable timeout time (seconds) for retries when requesting
-         * information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+         * @param timeout Configurable timeout time in seconds for plugins
          * 
          * @return builder
          * 

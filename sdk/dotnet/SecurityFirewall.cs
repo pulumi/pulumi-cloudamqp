@@ -22,29 +22,22 @@ namespace Pulumi.CloudAmqp
     public partial class SecurityFirewall : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The CloudAMQP instance ID.
+        /// Instance identifier
         /// </summary>
         [Output("instanceId")]
         public Output<int> InstanceId { get; private set; } = null!;
 
-        /// <summary>
-        /// An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
-        /// </summary>
         [Output("rules")]
         public Output<ImmutableArray<Outputs.SecurityFirewallRule>> Rules { get; private set; } = null!;
 
         /// <summary>
-        /// Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+        /// Configurable sleep time in seconds between retries for firewall configuration
         /// </summary>
         [Output("sleep")]
         public Output<int?> Sleep { get; private set; } = null!;
 
         /// <summary>
-        /// Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
-        /// 
-        /// ___
-        /// 
-        /// The `rules` block consists of:
+        /// Configurable timeout time in seconds for firewall configuration
         /// </summary>
         [Output("timeout")]
         public Output<int?> Timeout { get; private set; } = null!;
@@ -96,17 +89,13 @@ namespace Pulumi.CloudAmqp
     public sealed class SecurityFirewallArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The CloudAMQP instance ID.
+        /// Instance identifier
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<int> InstanceId { get; set; } = null!;
 
         [Input("rules", required: true)]
         private InputList<Inputs.SecurityFirewallRuleArgs>? _rules;
-
-        /// <summary>
-        /// An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
-        /// </summary>
         public InputList<Inputs.SecurityFirewallRuleArgs> Rules
         {
             get => _rules ?? (_rules = new InputList<Inputs.SecurityFirewallRuleArgs>());
@@ -114,17 +103,13 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
-        /// Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+        /// Configurable sleep time in seconds between retries for firewall configuration
         /// </summary>
         [Input("sleep")]
         public Input<int>? Sleep { get; set; }
 
         /// <summary>
-        /// Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
-        /// 
-        /// ___
-        /// 
-        /// The `rules` block consists of:
+        /// Configurable timeout time in seconds for firewall configuration
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
@@ -138,17 +123,13 @@ namespace Pulumi.CloudAmqp
     public sealed class SecurityFirewallState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The CloudAMQP instance ID.
+        /// Instance identifier
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
 
         [Input("rules")]
         private InputList<Inputs.SecurityFirewallRuleGetArgs>? _rules;
-
-        /// <summary>
-        /// An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
-        /// </summary>
         public InputList<Inputs.SecurityFirewallRuleGetArgs> Rules
         {
             get => _rules ?? (_rules = new InputList<Inputs.SecurityFirewallRuleGetArgs>());
@@ -156,17 +137,13 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
-        /// Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+        /// Configurable sleep time in seconds between retries for firewall configuration
         /// </summary>
         [Input("sleep")]
         public Input<int>? Sleep { get; set; }
 
         /// <summary>
-        /// Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
-        /// 
-        /// ___
-        /// 
-        /// The `rules` block consists of:
+        /// Configurable timeout time in seconds for firewall configuration
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
