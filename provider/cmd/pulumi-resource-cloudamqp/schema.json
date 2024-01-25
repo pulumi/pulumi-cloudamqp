@@ -117,26 +117,22 @@
         "cloudamqp:index/SecurityFirewallRule:SecurityFirewallRule": {
             "properties": {
                 "description": {
-                    "type": "string",
-                    "description": "Description name of the rule. e.g. Default.\n\nPre-defined services for RabbitMQ:\n\n| Service name | Port  |\n|--------------|-------|\n| AMQP         | 5672  |\n| AMQPS        | 5671  |\n| HTTPS        | 443   |\n| MQTT         | 1883  |\n| MQTTS        | 8883  |\n| STOMP        | 61613 |\n| STOMPS       | 61614 |\n| STREAM       | 5552  |\n| STREAM_SSL   | 5551  |\n\nPre-defined services for LavinMQ:\n\n| Service name | Port  |\n|--------------|-------|\n| AMQP         | 5672  |\n| AMQPS        | 5671  |\n| HTTPS        | 443   |\n"
+                    "type": "string"
                 },
                 "ip": {
-                    "type": "string",
-                    "description": "CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)\n"
+                    "type": "string"
                 },
                 "ports": {
                     "type": "array",
                     "items": {
                         "type": "integer"
-                    },
-                    "description": "Custom ports to be opened\n"
+                    }
                 },
                 "services": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    },
-                    "description": "Pre-defined service ports, see table below\n"
+                    }
                 }
             },
             "type": "object",
@@ -1865,23 +1861,23 @@
                 },
                 "enabled": {
                     "type": "boolean",
-                    "description": "Enable or disable the plugins.\n"
+                    "description": "If the plugin is enabled\n"
                 },
                 "instanceId": {
                     "type": "integer",
-                    "description": "The CloudAMQP instance ID.\n"
+                    "description": "Instance identifier\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the Rabbit MQ plugin.\n"
+                    "description": "The name of the plugin\n"
                 },
                 "sleep": {
                     "type": "integer",
-                    "description": "Configurable sleep time (seconds) for retries when requesting information\nabout plugins. Default set to 10 seconds. *Available from v1.29.0*\n"
+                    "description": "Configurable sleep time in seconds between retries for plugins\n"
                 },
                 "timeout": {
                     "type": "integer",
-                    "description": "Configurable timeout time (seconds) for retries when requesting\ninformation about plugins. Default set to 1800 seconds. *Available from v1.29.0*\n"
+                    "description": "Configurable timeout time in seconds for plugins\n"
                 },
                 "version": {
                     "type": "string",
@@ -1898,24 +1894,24 @@
             "inputProperties": {
                 "enabled": {
                     "type": "boolean",
-                    "description": "Enable or disable the plugins.\n"
+                    "description": "If the plugin is enabled\n"
                 },
                 "instanceId": {
                     "type": "integer",
-                    "description": "The CloudAMQP instance ID.\n",
+                    "description": "Instance identifier\n",
                     "willReplaceOnChanges": true
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the Rabbit MQ plugin.\n"
+                    "description": "The name of the plugin\n"
                 },
                 "sleep": {
                     "type": "integer",
-                    "description": "Configurable sleep time (seconds) for retries when requesting information\nabout plugins. Default set to 10 seconds. *Available from v1.29.0*\n"
+                    "description": "Configurable sleep time in seconds between retries for plugins\n"
                 },
                 "timeout": {
                     "type": "integer",
-                    "description": "Configurable timeout time (seconds) for retries when requesting\ninformation about plugins. Default set to 1800 seconds. *Available from v1.29.0*\n"
+                    "description": "Configurable timeout time in seconds for plugins\n"
                 }
             },
             "requiredInputs": [
@@ -1931,24 +1927,24 @@
                     },
                     "enabled": {
                         "type": "boolean",
-                        "description": "Enable or disable the plugins.\n"
+                        "description": "If the plugin is enabled\n"
                     },
                     "instanceId": {
                         "type": "integer",
-                        "description": "The CloudAMQP instance ID.\n",
+                        "description": "Instance identifier\n",
                         "willReplaceOnChanges": true
                     },
                     "name": {
                         "type": "string",
-                        "description": "The name of the Rabbit MQ plugin.\n"
+                        "description": "The name of the plugin\n"
                     },
                     "sleep": {
                         "type": "integer",
-                        "description": "Configurable sleep time (seconds) for retries when requesting information\nabout plugins. Default set to 10 seconds. *Available from v1.29.0*\n"
+                        "description": "Configurable sleep time in seconds between retries for plugins\n"
                     },
                     "timeout": {
                         "type": "integer",
-                        "description": "Configurable timeout time (seconds) for retries when requesting\ninformation about plugins. Default set to 1800 seconds. *Available from v1.29.0*\n"
+                        "description": "Configurable timeout time in seconds for plugins\n"
                     },
                     "version": {
                         "type": "string",
@@ -1967,15 +1963,15 @@
                 },
                 "enabled": {
                     "type": "boolean",
-                    "description": "Enable or disable the plugins.\n"
+                    "description": "If the plugin is enabled\n"
                 },
                 "instanceId": {
                     "type": "integer",
-                    "description": "The CloudAMQP instance ID.\n"
+                    "description": "Instance identifier\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the Rabbit MQ community plugin.\n"
+                    "description": "The name of the plugin\n"
                 },
                 "require": {
                     "type": "string",
@@ -1983,11 +1979,11 @@
                 },
                 "sleep": {
                     "type": "integer",
-                    "description": "Configurable sleep time (seconds) for retries when requesting information\nabout community plugins. Default set to 10 seconds. *Available from v1.29.0*\n"
+                    "description": "Configurable sleep time in seconds between retries for plugins\n"
                 },
                 "timeout": {
                     "type": "integer",
-                    "description": "Configurable timeout time (seconds) for retries when requesting\ninformation about community plugins. Default set to 1800 seconds. *Available from v1.29.0*\n"
+                    "description": "Configurable timeout time in seconds for plugins\n"
                 }
             },
             "required": [
@@ -2000,24 +1996,24 @@
             "inputProperties": {
                 "enabled": {
                     "type": "boolean",
-                    "description": "Enable or disable the plugins.\n"
+                    "description": "If the plugin is enabled\n"
                 },
                 "instanceId": {
                     "type": "integer",
-                    "description": "The CloudAMQP instance ID.\n",
+                    "description": "Instance identifier\n",
                     "willReplaceOnChanges": true
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the Rabbit MQ community plugin.\n"
+                    "description": "The name of the plugin\n"
                 },
                 "sleep": {
                     "type": "integer",
-                    "description": "Configurable sleep time (seconds) for retries when requesting information\nabout community plugins. Default set to 10 seconds. *Available from v1.29.0*\n"
+                    "description": "Configurable sleep time in seconds between retries for plugins\n"
                 },
                 "timeout": {
                     "type": "integer",
-                    "description": "Configurable timeout time (seconds) for retries when requesting\ninformation about community plugins. Default set to 1800 seconds. *Available from v1.29.0*\n"
+                    "description": "Configurable timeout time in seconds for plugins\n"
                 }
             },
             "requiredInputs": [
@@ -2033,16 +2029,16 @@
                     },
                     "enabled": {
                         "type": "boolean",
-                        "description": "Enable or disable the plugins.\n"
+                        "description": "If the plugin is enabled\n"
                     },
                     "instanceId": {
                         "type": "integer",
-                        "description": "The CloudAMQP instance ID.\n",
+                        "description": "Instance identifier\n",
                         "willReplaceOnChanges": true
                     },
                     "name": {
                         "type": "string",
-                        "description": "The name of the Rabbit MQ community plugin.\n"
+                        "description": "The name of the plugin\n"
                     },
                     "require": {
                         "type": "string",
@@ -2050,11 +2046,11 @@
                     },
                     "sleep": {
                         "type": "integer",
-                        "description": "Configurable sleep time (seconds) for retries when requesting information\nabout community plugins. Default set to 10 seconds. *Available from v1.29.0*\n"
+                        "description": "Configurable sleep time in seconds between retries for plugins\n"
                     },
                     "timeout": {
                         "type": "integer",
-                        "description": "Configurable timeout time (seconds) for retries when requesting\ninformation about community plugins. Default set to 1800 seconds. *Available from v1.29.0*\n"
+                        "description": "Configurable timeout time in seconds for plugins\n"
                     }
                 },
                 "type": "object"
@@ -2459,22 +2455,21 @@
             "properties": {
                 "instanceId": {
                     "type": "integer",
-                    "description": "The CloudAMQP instance ID.\n"
+                    "description": "Instance identifier\n"
                 },
                 "rules": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/cloudamqp:index/SecurityFirewallRule:SecurityFirewallRule"
-                    },
-                    "description": "An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.\n"
+                    }
                 },
                 "sleep": {
                     "type": "integer",
-                    "description": "Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.\n"
+                    "description": "Configurable sleep time in seconds between retries for firewall configuration\n"
                 },
                 "timeout": {
                     "type": "integer",
-                    "description": "Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.\n\n___\n\nThe `rules` block consists of:\n"
+                    "description": "Configurable timeout time in seconds for firewall configuration\n"
                 }
             },
             "required": [
@@ -2484,23 +2479,22 @@
             "inputProperties": {
                 "instanceId": {
                     "type": "integer",
-                    "description": "The CloudAMQP instance ID.\n",
+                    "description": "Instance identifier\n",
                     "willReplaceOnChanges": true
                 },
                 "rules": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/cloudamqp:index/SecurityFirewallRule:SecurityFirewallRule"
-                    },
-                    "description": "An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.\n"
+                    }
                 },
                 "sleep": {
                     "type": "integer",
-                    "description": "Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.\n"
+                    "description": "Configurable sleep time in seconds between retries for firewall configuration\n"
                 },
                 "timeout": {
                     "type": "integer",
-                    "description": "Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.\n\n___\n\nThe `rules` block consists of:\n"
+                    "description": "Configurable timeout time in seconds for firewall configuration\n"
                 }
             },
             "requiredInputs": [
@@ -2512,23 +2506,22 @@
                 "properties": {
                     "instanceId": {
                         "type": "integer",
-                        "description": "The CloudAMQP instance ID.\n",
+                        "description": "Instance identifier\n",
                         "willReplaceOnChanges": true
                     },
                     "rules": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/cloudamqp:index/SecurityFirewallRule:SecurityFirewallRule"
-                        },
-                        "description": "An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.\n"
+                        }
                     },
                     "sleep": {
                         "type": "integer",
-                        "description": "Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.\n"
+                        "description": "Configurable sleep time in seconds between retries for firewall configuration\n"
                     },
                     "timeout": {
                         "type": "integer",
-                        "description": "Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.\n\n___\n\nThe `rules` block consists of:\n"
+                        "description": "Configurable timeout time in seconds for firewall configuration\n"
                     }
                 },
                 "type": "object"
