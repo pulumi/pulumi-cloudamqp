@@ -33,14 +33,14 @@ public final class PluginCommunityState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Enable or disable the plugins.
+     * If the plugin is enabled
      * 
      */
     @Import(name="enabled")
     private @Nullable Output<Boolean> enabled;
 
     /**
-     * @return Enable or disable the plugins.
+     * @return If the plugin is enabled
      * 
      */
     public Optional<Output<Boolean>> enabled() {
@@ -48,14 +48,14 @@ public final class PluginCommunityState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The CloudAMQP instance ID.
+     * Instance identifier
      * 
      */
     @Import(name="instanceId")
     private @Nullable Output<Integer> instanceId;
 
     /**
-     * @return The CloudAMQP instance ID.
+     * @return Instance identifier
      * 
      */
     public Optional<Output<Integer>> instanceId() {
@@ -63,14 +63,14 @@ public final class PluginCommunityState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The name of the Rabbit MQ community plugin.
+     * The name of the plugin
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The name of the Rabbit MQ community plugin.
+     * @return The name of the plugin
      * 
      */
     public Optional<Output<String>> name() {
@@ -93,16 +93,14 @@ public final class PluginCommunityState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Configurable sleep time (seconds) for retries when requesting information
-     * about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+     * Configurable sleep time in seconds between retries for plugins
      * 
      */
     @Import(name="sleep")
     private @Nullable Output<Integer> sleep;
 
     /**
-     * @return Configurable sleep time (seconds) for retries when requesting information
-     * about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+     * @return Configurable sleep time in seconds between retries for plugins
      * 
      */
     public Optional<Output<Integer>> sleep() {
@@ -110,16 +108,14 @@ public final class PluginCommunityState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Configurable timeout time (seconds) for retries when requesting
-     * information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+     * Configurable timeout time in seconds for plugins
      * 
      */
     @Import(name="timeout")
     private @Nullable Output<Integer> timeout;
 
     /**
-     * @return Configurable timeout time (seconds) for retries when requesting
-     * information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+     * @return Configurable timeout time in seconds for plugins
      * 
      */
     public Optional<Output<Integer>> timeout() {
@@ -178,7 +174,7 @@ public final class PluginCommunityState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param enabled Enable or disable the plugins.
+         * @param enabled If the plugin is enabled
          * 
          * @return builder
          * 
@@ -189,7 +185,7 @@ public final class PluginCommunityState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param enabled Enable or disable the plugins.
+         * @param enabled If the plugin is enabled
          * 
          * @return builder
          * 
@@ -199,7 +195,7 @@ public final class PluginCommunityState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param instanceId The CloudAMQP instance ID.
+         * @param instanceId Instance identifier
          * 
          * @return builder
          * 
@@ -210,7 +206,7 @@ public final class PluginCommunityState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param instanceId The CloudAMQP instance ID.
+         * @param instanceId Instance identifier
          * 
          * @return builder
          * 
@@ -220,7 +216,7 @@ public final class PluginCommunityState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param name The name of the Rabbit MQ community plugin.
+         * @param name The name of the plugin
          * 
          * @return builder
          * 
@@ -231,7 +227,7 @@ public final class PluginCommunityState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param name The name of the Rabbit MQ community plugin.
+         * @param name The name of the plugin
          * 
          * @return builder
          * 
@@ -262,8 +258,7 @@ public final class PluginCommunityState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param sleep Configurable sleep time (seconds) for retries when requesting information
-         * about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+         * @param sleep Configurable sleep time in seconds between retries for plugins
          * 
          * @return builder
          * 
@@ -274,8 +269,7 @@ public final class PluginCommunityState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param sleep Configurable sleep time (seconds) for retries when requesting information
-         * about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+         * @param sleep Configurable sleep time in seconds between retries for plugins
          * 
          * @return builder
          * 
@@ -285,8 +279,7 @@ public final class PluginCommunityState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param timeout Configurable timeout time (seconds) for retries when requesting
-         * information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+         * @param timeout Configurable timeout time in seconds for plugins
          * 
          * @return builder
          * 
@@ -297,8 +290,7 @@ public final class PluginCommunityState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param timeout Configurable timeout time (seconds) for retries when requesting
-         * information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+         * @param timeout Configurable timeout time in seconds for plugins
          * 
          * @return builder
          * 
