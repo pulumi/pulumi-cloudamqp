@@ -12,53 +12,29 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource allows you to create and manage third party log integrations for a CloudAMQP instance. Once configured, the logs produced will be forward to corresponding integration.
+// This resource allows you to create and manage third party log integrations for a CloudAMQP instance.
+// Once configured, the logs produced will be forward to corresponding integration.
 //
 // Only available for dedicated subscription plans.
 //
-// ## Argument Reference (cloudwatchlog)
-//
-// Cloudwatch argument reference and example. Create an IAM user with programmatic access and the following permissions:
-//
-// * CreateLogGroup
-// * CreateLogStream
-// * DescribeLogGroups
-// * DescribeLogStreams
-// * PutLogEvents
-//
-// ## Integration service reference
-//
-// Valid names for third party log integration.
-//
-// | Name       | Description |
-// |------------|---------------------------------------------------------------|
-// | cloudwatchlog | Create a IAM with programmatic access. |
-// | logentries | Create a Logentries token at https://logentries.com/app#/add-log/manual  |
-// | loggly     | Create a Loggly token at https://your-company}.loggly.com/tokens |
-// | papertrail | Create a Papertrail endpoint https://papertrailapp.com/systems/setup |
-// | splunk     | Create a HTTP Event Collector token at `https://<your-splunk>.cloud.splunk.com/en-US/manager/search/http-eventcollector` |
-// | datadog       | Create a Datadog API key at app.datadoghq.com |
-// | stackdriver   | Create a service account and add 'monitor metrics writer' role from your Google Cloud Account |
-// | scalyr        | Create a Log write token at https://app.scalyr.com/keys |
-// | coralogix     | Create Send-Your-Data API key https://coralogix.com/docs/send-your-data-api-key/ |
-//
 // ## Integration Type reference
 //
-// Valid arguments for third party log integrations.
+// Valid arguments for third party log integrations. See more information at [docs.cloudamqp.com](https://docs.cloudamqp.com/cloudamqp_api.html#add-log-integration)
 //
 // Required arguments for all integrations: name
 //
-// | Name | Type | Required arguments |
+// | Integration | name | Required arguments |
 // | ---- | ---- | ---- |
+// | Azure monitor | azureMonitor | tenant_id, application_id, application_secret, dce_uri, table, dcrId |
 // | CloudWatch | cloudwatchlog | access_key_id, secret_access_key, region |
+// | Coralogix | coralogix | private_key, endpoint, application, subsystem |
+// | Data Dog | datadog | region, api_keys, tags |
 // | Log Entries | logentries | token |
 // | Loggly | loggly | token |
 // | Papertrail | papertrail | url |
-// | Splunk | splunk | token, host_port, sourcetype |
-// | Data Dog | datadog | region, api_keys, tags |
-// | Stackdriver | stackdriver | credentials |
 // | Scalyr | scalyr | token, host |
-// | Coralogix | coralogix | private_key, endpoint, application, subsystem |
+// | Splunk | splunk | token, host_port, sourcetype |
+// | Stackdriver | stackdriver | credentials |
 //
 // ***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments  : project_id, private_key, clientEmail
 //
@@ -82,13 +58,23 @@ type IntegrationLog struct {
 	AccessKeyId pulumi.StringPtrOutput `pulumi:"accessKeyId"`
 	// The API key.
 	ApiKey pulumi.StringPtrOutput `pulumi:"apiKey"`
-	// The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+	// The application name for Coralogix.
 	Application pulumi.StringPtrOutput `pulumi:"application"`
+	// The application identifier for Azure monitor.
+	ApplicationId pulumi.StringPtrOutput `pulumi:"applicationId"`
+	// The application secret for Azure monitor.
+	ApplicationSecret pulumi.StringPtrOutput `pulumi:"applicationSecret"`
 	// The client email registered for the integration service.
 	ClientEmail pulumi.StringOutput `pulumi:"clientEmail"`
 	// Google Service Account private key credentials.
 	Credentials pulumi.StringPtrOutput `pulumi:"credentials"`
-	// The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+	// The data collection endpoint for Azure monitor.
+	DceUri pulumi.StringPtrOutput `pulumi:"dceUri"`
+	// ID of data collection rule that your DCE is linked to for Azure Monitor.
+	//
+	// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+	DcrId pulumi.StringPtrOutput `pulumi:"dcrId"`
+	// The syslog destination to send the logs to for Coralogix.
 	Endpoint pulumi.StringPtrOutput `pulumi:"endpoint"`
 	// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
 	Host pulumi.StringPtrOutput `pulumi:"host"`
@@ -97,6 +83,7 @@ type IntegrationLog struct {
 	// Instance identifier used to make proxy calls
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
 	// The name of the third party log integration. See
+	// Integration type reference
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The private access key.
 	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
@@ -110,12 +97,14 @@ type IntegrationLog struct {
 	SecretAccessKey pulumi.StringPtrOutput `pulumi:"secretAccessKey"`
 	// Assign source type to the data exported, eg. generic_single_line. (Splunk)
 	Sourcetype pulumi.StringPtrOutput `pulumi:"sourcetype"`
-	// The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
-	//
-	// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+	// The subsystem name for Coralogix.
 	Subsystem pulumi.StringPtrOutput `pulumi:"subsystem"`
-	// Tag the integration, e.g. env=prod, region=europe.
+	// The table name for Azure monitor.
+	Table pulumi.StringPtrOutput `pulumi:"table"`
+	// Tag the integration, e.g. env=prod,region=europe.
 	Tags pulumi.StringPtrOutput `pulumi:"tags"`
+	// The tenant identifier for Azure monitor.
+	TenantId pulumi.StringPtrOutput `pulumi:"tenantId"`
 	// Token used for authentication.
 	Token pulumi.StringPtrOutput `pulumi:"token"`
 	// Endpoint to log integration.
@@ -138,6 +127,9 @@ func NewIntegrationLog(ctx *pulumi.Context,
 	if args.ApiKey != nil {
 		args.ApiKey = pulumi.ToSecret(args.ApiKey).(pulumi.StringPtrInput)
 	}
+	if args.ApplicationSecret != nil {
+		args.ApplicationSecret = pulumi.ToSecret(args.ApplicationSecret).(pulumi.StringPtrInput)
+	}
 	if args.Credentials != nil {
 		args.Credentials = pulumi.ToSecret(args.Credentials).(pulumi.StringPtrInput)
 	}
@@ -156,6 +148,7 @@ func NewIntegrationLog(ctx *pulumi.Context,
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"accessKeyId",
 		"apiKey",
+		"applicationSecret",
 		"credentials",
 		"privateKey",
 		"privateKeyId",
@@ -190,13 +183,23 @@ type integrationLogState struct {
 	AccessKeyId *string `pulumi:"accessKeyId"`
 	// The API key.
 	ApiKey *string `pulumi:"apiKey"`
-	// The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+	// The application name for Coralogix.
 	Application *string `pulumi:"application"`
+	// The application identifier for Azure monitor.
+	ApplicationId *string `pulumi:"applicationId"`
+	// The application secret for Azure monitor.
+	ApplicationSecret *string `pulumi:"applicationSecret"`
 	// The client email registered for the integration service.
 	ClientEmail *string `pulumi:"clientEmail"`
 	// Google Service Account private key credentials.
 	Credentials *string `pulumi:"credentials"`
-	// The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+	// The data collection endpoint for Azure monitor.
+	DceUri *string `pulumi:"dceUri"`
+	// ID of data collection rule that your DCE is linked to for Azure Monitor.
+	//
+	// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+	DcrId *string `pulumi:"dcrId"`
+	// The syslog destination to send the logs to for Coralogix.
 	Endpoint *string `pulumi:"endpoint"`
 	// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
 	Host *string `pulumi:"host"`
@@ -205,6 +208,7 @@ type integrationLogState struct {
 	// Instance identifier used to make proxy calls
 	InstanceId *int `pulumi:"instanceId"`
 	// The name of the third party log integration. See
+	// Integration type reference
 	Name *string `pulumi:"name"`
 	// The private access key.
 	PrivateKey *string `pulumi:"privateKey"`
@@ -218,12 +222,14 @@ type integrationLogState struct {
 	SecretAccessKey *string `pulumi:"secretAccessKey"`
 	// Assign source type to the data exported, eg. generic_single_line. (Splunk)
 	Sourcetype *string `pulumi:"sourcetype"`
-	// The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
-	//
-	// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+	// The subsystem name for Coralogix.
 	Subsystem *string `pulumi:"subsystem"`
-	// Tag the integration, e.g. env=prod, region=europe.
+	// The table name for Azure monitor.
+	Table *string `pulumi:"table"`
+	// Tag the integration, e.g. env=prod,region=europe.
 	Tags *string `pulumi:"tags"`
+	// The tenant identifier for Azure monitor.
+	TenantId *string `pulumi:"tenantId"`
 	// Token used for authentication.
 	Token *string `pulumi:"token"`
 	// Endpoint to log integration.
@@ -235,13 +241,23 @@ type IntegrationLogState struct {
 	AccessKeyId pulumi.StringPtrInput
 	// The API key.
 	ApiKey pulumi.StringPtrInput
-	// The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+	// The application name for Coralogix.
 	Application pulumi.StringPtrInput
+	// The application identifier for Azure monitor.
+	ApplicationId pulumi.StringPtrInput
+	// The application secret for Azure monitor.
+	ApplicationSecret pulumi.StringPtrInput
 	// The client email registered for the integration service.
 	ClientEmail pulumi.StringPtrInput
 	// Google Service Account private key credentials.
 	Credentials pulumi.StringPtrInput
-	// The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+	// The data collection endpoint for Azure monitor.
+	DceUri pulumi.StringPtrInput
+	// ID of data collection rule that your DCE is linked to for Azure Monitor.
+	//
+	// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+	DcrId pulumi.StringPtrInput
+	// The syslog destination to send the logs to for Coralogix.
 	Endpoint pulumi.StringPtrInput
 	// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
 	Host pulumi.StringPtrInput
@@ -250,6 +266,7 @@ type IntegrationLogState struct {
 	// Instance identifier used to make proxy calls
 	InstanceId pulumi.IntPtrInput
 	// The name of the third party log integration. See
+	// Integration type reference
 	Name pulumi.StringPtrInput
 	// The private access key.
 	PrivateKey pulumi.StringPtrInput
@@ -263,12 +280,14 @@ type IntegrationLogState struct {
 	SecretAccessKey pulumi.StringPtrInput
 	// Assign source type to the data exported, eg. generic_single_line. (Splunk)
 	Sourcetype pulumi.StringPtrInput
-	// The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
-	//
-	// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+	// The subsystem name for Coralogix.
 	Subsystem pulumi.StringPtrInput
-	// Tag the integration, e.g. env=prod, region=europe.
+	// The table name for Azure monitor.
+	Table pulumi.StringPtrInput
+	// Tag the integration, e.g. env=prod,region=europe.
 	Tags pulumi.StringPtrInput
+	// The tenant identifier for Azure monitor.
+	TenantId pulumi.StringPtrInput
 	// Token used for authentication.
 	Token pulumi.StringPtrInput
 	// Endpoint to log integration.
@@ -284,13 +303,23 @@ type integrationLogArgs struct {
 	AccessKeyId *string `pulumi:"accessKeyId"`
 	// The API key.
 	ApiKey *string `pulumi:"apiKey"`
-	// The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+	// The application name for Coralogix.
 	Application *string `pulumi:"application"`
+	// The application identifier for Azure monitor.
+	ApplicationId *string `pulumi:"applicationId"`
+	// The application secret for Azure monitor.
+	ApplicationSecret *string `pulumi:"applicationSecret"`
 	// The client email registered for the integration service.
 	ClientEmail *string `pulumi:"clientEmail"`
 	// Google Service Account private key credentials.
 	Credentials *string `pulumi:"credentials"`
-	// The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+	// The data collection endpoint for Azure monitor.
+	DceUri *string `pulumi:"dceUri"`
+	// ID of data collection rule that your DCE is linked to for Azure Monitor.
+	//
+	// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+	DcrId *string `pulumi:"dcrId"`
+	// The syslog destination to send the logs to for Coralogix.
 	Endpoint *string `pulumi:"endpoint"`
 	// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
 	Host *string `pulumi:"host"`
@@ -299,6 +328,7 @@ type integrationLogArgs struct {
 	// Instance identifier used to make proxy calls
 	InstanceId int `pulumi:"instanceId"`
 	// The name of the third party log integration. See
+	// Integration type reference
 	Name *string `pulumi:"name"`
 	// The private access key.
 	PrivateKey *string `pulumi:"privateKey"`
@@ -312,12 +342,14 @@ type integrationLogArgs struct {
 	SecretAccessKey *string `pulumi:"secretAccessKey"`
 	// Assign source type to the data exported, eg. generic_single_line. (Splunk)
 	Sourcetype *string `pulumi:"sourcetype"`
-	// The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
-	//
-	// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+	// The subsystem name for Coralogix.
 	Subsystem *string `pulumi:"subsystem"`
-	// Tag the integration, e.g. env=prod, region=europe.
+	// The table name for Azure monitor.
+	Table *string `pulumi:"table"`
+	// Tag the integration, e.g. env=prod,region=europe.
 	Tags *string `pulumi:"tags"`
+	// The tenant identifier for Azure monitor.
+	TenantId *string `pulumi:"tenantId"`
 	// Token used for authentication.
 	Token *string `pulumi:"token"`
 	// Endpoint to log integration.
@@ -330,13 +362,23 @@ type IntegrationLogArgs struct {
 	AccessKeyId pulumi.StringPtrInput
 	// The API key.
 	ApiKey pulumi.StringPtrInput
-	// The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+	// The application name for Coralogix.
 	Application pulumi.StringPtrInput
+	// The application identifier for Azure monitor.
+	ApplicationId pulumi.StringPtrInput
+	// The application secret for Azure monitor.
+	ApplicationSecret pulumi.StringPtrInput
 	// The client email registered for the integration service.
 	ClientEmail pulumi.StringPtrInput
 	// Google Service Account private key credentials.
 	Credentials pulumi.StringPtrInput
-	// The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+	// The data collection endpoint for Azure monitor.
+	DceUri pulumi.StringPtrInput
+	// ID of data collection rule that your DCE is linked to for Azure Monitor.
+	//
+	// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+	DcrId pulumi.StringPtrInput
+	// The syslog destination to send the logs to for Coralogix.
 	Endpoint pulumi.StringPtrInput
 	// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
 	Host pulumi.StringPtrInput
@@ -345,6 +387,7 @@ type IntegrationLogArgs struct {
 	// Instance identifier used to make proxy calls
 	InstanceId pulumi.IntInput
 	// The name of the third party log integration. See
+	// Integration type reference
 	Name pulumi.StringPtrInput
 	// The private access key.
 	PrivateKey pulumi.StringPtrInput
@@ -358,12 +401,14 @@ type IntegrationLogArgs struct {
 	SecretAccessKey pulumi.StringPtrInput
 	// Assign source type to the data exported, eg. generic_single_line. (Splunk)
 	Sourcetype pulumi.StringPtrInput
-	// The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
-	//
-	// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+	// The subsystem name for Coralogix.
 	Subsystem pulumi.StringPtrInput
-	// Tag the integration, e.g. env=prod, region=europe.
+	// The table name for Azure monitor.
+	Table pulumi.StringPtrInput
+	// Tag the integration, e.g. env=prod,region=europe.
 	Tags pulumi.StringPtrInput
+	// The tenant identifier for Azure monitor.
+	TenantId pulumi.StringPtrInput
 	// Token used for authentication.
 	Token pulumi.StringPtrInput
 	// Endpoint to log integration.
@@ -467,9 +512,19 @@ func (o IntegrationLogOutput) ApiKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.ApiKey }).(pulumi.StringPtrOutput)
 }
 
-// The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+// The application name for Coralogix.
 func (o IntegrationLogOutput) Application() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.Application }).(pulumi.StringPtrOutput)
+}
+
+// The application identifier for Azure monitor.
+func (o IntegrationLogOutput) ApplicationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.ApplicationId }).(pulumi.StringPtrOutput)
+}
+
+// The application secret for Azure monitor.
+func (o IntegrationLogOutput) ApplicationSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.ApplicationSecret }).(pulumi.StringPtrOutput)
 }
 
 // The client email registered for the integration service.
@@ -482,7 +537,19 @@ func (o IntegrationLogOutput) Credentials() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.Credentials }).(pulumi.StringPtrOutput)
 }
 
-// The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+// The data collection endpoint for Azure monitor.
+func (o IntegrationLogOutput) DceUri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.DceUri }).(pulumi.StringPtrOutput)
+}
+
+// ID of data collection rule that your DCE is linked to for Azure Monitor.
+//
+// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+func (o IntegrationLogOutput) DcrId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.DcrId }).(pulumi.StringPtrOutput)
+}
+
+// The syslog destination to send the logs to for Coralogix.
 func (o IntegrationLogOutput) Endpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.Endpoint }).(pulumi.StringPtrOutput)
 }
@@ -503,6 +570,7 @@ func (o IntegrationLogOutput) InstanceId() pulumi.IntOutput {
 }
 
 // The name of the third party log integration. See
+// Integration type reference
 func (o IntegrationLogOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *IntegrationLog) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -537,16 +605,24 @@ func (o IntegrationLogOutput) Sourcetype() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.Sourcetype }).(pulumi.StringPtrOutput)
 }
 
-// The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
-//
-// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+// The subsystem name for Coralogix.
 func (o IntegrationLogOutput) Subsystem() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.Subsystem }).(pulumi.StringPtrOutput)
 }
 
-// Tag the integration, e.g. env=prod, region=europe.
+// The table name for Azure monitor.
+func (o IntegrationLogOutput) Table() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.Table }).(pulumi.StringPtrOutput)
+}
+
+// Tag the integration, e.g. env=prod,region=europe.
 func (o IntegrationLogOutput) Tags() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.Tags }).(pulumi.StringPtrOutput)
+}
+
+// The tenant identifier for Azure monitor.
+func (o IntegrationLogOutput) TenantId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.TenantId }).(pulumi.StringPtrOutput)
 }
 
 // Token used for authentication.

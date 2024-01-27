@@ -22,6 +22,11 @@ import javax.annotation.Nullable;
  * Available for all subscription plans.
  * 
  * ## Example Usage
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;Email recipient&lt;/b&gt;
+ *   &lt;/summary&gt;
  * ```java
  * package generated_program;
  * 
@@ -49,13 +54,74 @@ import javax.annotation.Nullable;
  *             .value(&#34;alarm@example.com&#34;)
  *             .build());
  * 
- *         var victoropsRecipient = new Notification(&#34;victoropsRecipient&#34;, NotificationArgs.builder()        
+ *     }
+ * }
+ * ```
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;OpsGenie recipient&lt;/b&gt;
+ *   &lt;/summary&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Notification;
+ * import com.pulumi.cloudamqp.NotificationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var opsgenieRecipient = new Notification(&#34;opsgenieRecipient&#34;, NotificationArgs.builder()        
  *             .instanceId(cloudamqp_instance.instance().id())
- *             .type(&#34;victorops&#34;)
- *             .value(&#34;&lt;UUID&gt;&#34;)
- *             .options(Map.of(&#34;rk&#34;, &#34;ROUTINGKEY&#34;))
+ *             .type(&#34;opsgenie&#34;)
+ *             .value(&#34;&lt;api-key&gt;&#34;)
  *             .build());
  * 
+ *     }
+ * }
+ * ```
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;Pagerduty recipient&lt;/b&gt;
+ *   &lt;/summary&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Notification;
+ * import com.pulumi.cloudamqp.NotificationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
  *         var pagerdutyRecipient = new Notification(&#34;pagerdutyRecipient&#34;, NotificationArgs.builder()        
  *             .instanceId(cloudamqp_instance.instance().id())
  *             .type(&#34;pagerduty&#34;)
@@ -66,24 +132,176 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;Signl4 recipient&lt;/b&gt;
+ *   &lt;/summary&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Notification;
+ * import com.pulumi.cloudamqp.NotificationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var signl4Recipient = new Notification(&#34;signl4Recipient&#34;, NotificationArgs.builder()        
+ *             .instanceId(cloudamqp_instance.instance().id())
+ *             .type(&#34;signl4&#34;)
+ *             .value(&#34;&lt;team-secret&gt;&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;Teams recipient&lt;/b&gt;
+ *   &lt;/summary&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Notification;
+ * import com.pulumi.cloudamqp.NotificationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var teamsRecipient = new Notification(&#34;teamsRecipient&#34;, NotificationArgs.builder()        
+ *             .instanceId(cloudamqp_instance.instance().id())
+ *             .type(&#34;teams&#34;)
+ *             .value(&#34;&lt;teams-webhook-url&gt;&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;Victorops recipient&lt;/b&gt;
+ *   &lt;/summary&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Notification;
+ * import com.pulumi.cloudamqp.NotificationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var victoropsRecipient = new Notification(&#34;victoropsRecipient&#34;, NotificationArgs.builder()        
+ *             .instanceId(cloudamqp_instance.instance().id())
+ *             .type(&#34;victorops&#34;)
+ *             .value(&#34;&lt;integration-key&gt;&#34;)
+ *             .options(Map.of(&#34;rk&#34;, &#34;ROUTINGKEY&#34;))
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;Webhook recipient&lt;/b&gt;
+ *   &lt;/summary&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Notification;
+ * import com.pulumi.cloudamqp.NotificationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var webhookRecipient = new Notification(&#34;webhookRecipient&#34;, NotificationArgs.builder()        
+ *             .instanceId(cloudamqp_instance.instance().id())
+ *             .type(&#34;webhook&#34;)
+ *             .value(&#34;&lt;webhook-url&gt;&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * &lt;/details&gt;
  * ## Notification Type reference
  * 
  * Valid options for notification type.
  * 
  * * email
- * * webhook
- * * pagerduty
- * * victorops
  * * opsgenie
  * * opsgenie-eu
+ * * pagerduty
+ * * signl4
  * * slack
  * * teams
+ * * victorops
+ * * webhook
  * 
  * ## Options parameter
  * 
- * | Type      | Options  | Description                                                                                                                                                                                                                                                                      | Note                                                                                                                                    |
- * |-----------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
- * | Victorops | rk       | Routing key to route alarm notification                                                                                                                                                                                                                                          | -                                                                                                                                        |
+ * | Type      | Options  | Description | Note |
+ * |---|---|---|---|
+ * | Victorops | rk       | Routing key to route alarm notification | - |
  * | PagerDuty | dedupkey | Default the dedup key for PagerDuty is generated depending on what alarm has triggered, but here you can set what `dedup` key to use so even if the same alarm is triggered for different resources you only get one notification. Leave blank to use the generated dedup key. | If multiple alarms are triggered using this recipient, since they all share `dedup` key only the first alarm will be shown in PagerDuty |
  * 
  * ## Dependency

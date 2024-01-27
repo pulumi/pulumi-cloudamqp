@@ -18,6 +18,12 @@ import (
 //
 // ## Example Usage
 //
+// <details>
+//
+//	<summary>
+//	  <b>Email recipient</b>
+//	</summary>
+//
 // ```go
 // package main
 //
@@ -38,18 +44,67 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = cloudamqp.NewNotification(ctx, "victoropsRecipient", &cloudamqp.NotificationArgs{
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>OpsGenie recipient</b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewNotification(ctx, "opsgenieRecipient", &cloudamqp.NotificationArgs{
 //				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
-//				Type:       pulumi.String("victorops"),
-//				Value:      pulumi.String("<UUID>"),
-//				Options: pulumi.StringMap{
-//					"rk": pulumi.String("ROUTINGKEY"),
-//				},
+//				Type:       pulumi.String("opsgenie"),
+//				Value:      pulumi.String("<api-key>"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = cloudamqp.NewNotification(ctx, "pagerdutyRecipient", &cloudamqp.NotificationArgs{
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>Pagerduty recipient</b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewNotification(ctx, "pagerdutyRecipient", &cloudamqp.NotificationArgs{
 //				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
 //				Type:       pulumi.String("pagerduty"),
 //				Value:      pulumi.String("<integration-key>"),
@@ -65,24 +120,166 @@ import (
 //	}
 //
 // ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>Signl4 recipient</b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewNotification(ctx, "signl4Recipient", &cloudamqp.NotificationArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Type:       pulumi.String("signl4"),
+//				Value:      pulumi.String("<team-secret>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>Teams recipient</b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewNotification(ctx, "teamsRecipient", &cloudamqp.NotificationArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Type:       pulumi.String("teams"),
+//				Value:      pulumi.String("<teams-webhook-url>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>Victorops recipient</b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewNotification(ctx, "victoropsRecipient", &cloudamqp.NotificationArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Type:       pulumi.String("victorops"),
+//				Value:      pulumi.String("<integration-key>"),
+//				Options: pulumi.StringMap{
+//					"rk": pulumi.String("ROUTINGKEY"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>Webhook recipient</b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewNotification(ctx, "webhookRecipient", &cloudamqp.NotificationArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Type:       pulumi.String("webhook"),
+//				Value:      pulumi.String("<webhook-url>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
 // ## Notification Type reference
 //
 // Valid options for notification type.
 //
 // * email
-// * webhook
-// * pagerduty
-// * victorops
 // * opsgenie
 // * opsgenie-eu
+// * pagerduty
+// * signl4
 // * slack
 // * teams
+// * victorops
+// * webhook
 //
 // ## Options parameter
 //
-// | Type      | Options  | Description                                                                                                                                                                                                                                                                      | Note                                                                                                                                    |
-// |-----------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
-// | Victorops | rk       | Routing key to route alarm notification                                                                                                                                                                                                                                          | -                                                                                                                                        |
+// | Type      | Options  | Description | Note |
+// |---|---|---|---|
+// | Victorops | rk       | Routing key to route alarm notification | - |
 // | PagerDuty | dedupkey | Default the dedup key for PagerDuty is generated depending on what alarm has triggered, but here you can set what `dedup` key to use so even if the same alarm is triggered for different resources you only get one notification. Leave blank to use the generated dedup key. | If multiple alarms are triggered using this recipient, since they all share `dedup` key only the first alarm will be shown in PagerDuty |
 //
 // ## Dependency

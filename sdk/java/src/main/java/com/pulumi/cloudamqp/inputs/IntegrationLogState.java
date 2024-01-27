@@ -47,18 +47,48 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+     * The application name for Coralogix.
      * 
      */
     @Import(name="application")
     private @Nullable Output<String> application;
 
     /**
-     * @return The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+     * @return The application name for Coralogix.
      * 
      */
     public Optional<Output<String>> application() {
         return Optional.ofNullable(this.application);
+    }
+
+    /**
+     * The application identifier for Azure monitor.
+     * 
+     */
+    @Import(name="applicationId")
+    private @Nullable Output<String> applicationId;
+
+    /**
+     * @return The application identifier for Azure monitor.
+     * 
+     */
+    public Optional<Output<String>> applicationId() {
+        return Optional.ofNullable(this.applicationId);
+    }
+
+    /**
+     * The application secret for Azure monitor.
+     * 
+     */
+    @Import(name="applicationSecret")
+    private @Nullable Output<String> applicationSecret;
+
+    /**
+     * @return The application secret for Azure monitor.
+     * 
+     */
+    public Optional<Output<String>> applicationSecret() {
+        return Optional.ofNullable(this.applicationSecret);
     }
 
     /**
@@ -92,14 +122,48 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+     * The data collection endpoint for Azure monitor.
+     * 
+     */
+    @Import(name="dceUri")
+    private @Nullable Output<String> dceUri;
+
+    /**
+     * @return The data collection endpoint for Azure monitor.
+     * 
+     */
+    public Optional<Output<String>> dceUri() {
+        return Optional.ofNullable(this.dceUri);
+    }
+
+    /**
+     * ID of data collection rule that your DCE is linked to for Azure Monitor.
+     * 
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+     * 
+     */
+    @Import(name="dcrId")
+    private @Nullable Output<String> dcrId;
+
+    /**
+     * @return ID of data collection rule that your DCE is linked to for Azure Monitor.
+     * 
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+     * 
+     */
+    public Optional<Output<String>> dcrId() {
+        return Optional.ofNullable(this.dcrId);
+    }
+
+    /**
+     * The syslog destination to send the logs to for Coralogix.
      * 
      */
     @Import(name="endpoint")
     private @Nullable Output<String> endpoint;
 
     /**
-     * @return The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+     * @return The syslog destination to send the logs to for Coralogix.
      * 
      */
     public Optional<Output<String>> endpoint() {
@@ -153,6 +217,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
 
     /**
      * The name of the third party log integration. See
+     * Integration type reference
      * 
      */
     @Import(name="name")
@@ -160,6 +225,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
 
     /**
      * @return The name of the third party log integration. See
+     * Integration type reference
      * 
      */
     public Optional<Output<String>> name() {
@@ -257,18 +323,14 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
-     * 
-     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+     * The subsystem name for Coralogix.
      * 
      */
     @Import(name="subsystem")
     private @Nullable Output<String> subsystem;
 
     /**
-     * @return The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
-     * 
-     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+     * @return The subsystem name for Coralogix.
      * 
      */
     public Optional<Output<String>> subsystem() {
@@ -276,18 +338,48 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Tag the integration, e.g. env=prod, region=europe.
+     * The table name for Azure monitor.
+     * 
+     */
+    @Import(name="table")
+    private @Nullable Output<String> table;
+
+    /**
+     * @return The table name for Azure monitor.
+     * 
+     */
+    public Optional<Output<String>> table() {
+        return Optional.ofNullable(this.table);
+    }
+
+    /**
+     * Tag the integration, e.g. env=prod,region=europe.
      * 
      */
     @Import(name="tags")
     private @Nullable Output<String> tags;
 
     /**
-     * @return Tag the integration, e.g. env=prod, region=europe.
+     * @return Tag the integration, e.g. env=prod,region=europe.
      * 
      */
     public Optional<Output<String>> tags() {
         return Optional.ofNullable(this.tags);
+    }
+
+    /**
+     * The tenant identifier for Azure monitor.
+     * 
+     */
+    @Import(name="tenantId")
+    private @Nullable Output<String> tenantId;
+
+    /**
+     * @return The tenant identifier for Azure monitor.
+     * 
+     */
+    public Optional<Output<String>> tenantId() {
+        return Optional.ofNullable(this.tenantId);
     }
 
     /**
@@ -326,8 +418,12 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         this.accessKeyId = $.accessKeyId;
         this.apiKey = $.apiKey;
         this.application = $.application;
+        this.applicationId = $.applicationId;
+        this.applicationSecret = $.applicationSecret;
         this.clientEmail = $.clientEmail;
         this.credentials = $.credentials;
+        this.dceUri = $.dceUri;
+        this.dcrId = $.dcrId;
         this.endpoint = $.endpoint;
         this.host = $.host;
         this.hostPort = $.hostPort;
@@ -340,7 +436,9 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         this.secretAccessKey = $.secretAccessKey;
         this.sourcetype = $.sourcetype;
         this.subsystem = $.subsystem;
+        this.table = $.table;
         this.tags = $.tags;
+        this.tenantId = $.tenantId;
         this.token = $.token;
         this.url = $.url;
     }
@@ -406,7 +504,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param application The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+         * @param application The application name for Coralogix.
          * 
          * @return builder
          * 
@@ -417,13 +515,55 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param application The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+         * @param application The application name for Coralogix.
          * 
          * @return builder
          * 
          */
         public Builder application(String application) {
             return application(Output.of(application));
+        }
+
+        /**
+         * @param applicationId The application identifier for Azure monitor.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder applicationId(@Nullable Output<String> applicationId) {
+            $.applicationId = applicationId;
+            return this;
+        }
+
+        /**
+         * @param applicationId The application identifier for Azure monitor.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder applicationId(String applicationId) {
+            return applicationId(Output.of(applicationId));
+        }
+
+        /**
+         * @param applicationSecret The application secret for Azure monitor.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder applicationSecret(@Nullable Output<String> applicationSecret) {
+            $.applicationSecret = applicationSecret;
+            return this;
+        }
+
+        /**
+         * @param applicationSecret The application secret for Azure monitor.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder applicationSecret(String applicationSecret) {
+            return applicationSecret(Output.of(applicationSecret));
         }
 
         /**
@@ -469,7 +609,53 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param endpoint The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+         * @param dceUri The data collection endpoint for Azure monitor.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dceUri(@Nullable Output<String> dceUri) {
+            $.dceUri = dceUri;
+            return this;
+        }
+
+        /**
+         * @param dceUri The data collection endpoint for Azure monitor.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dceUri(String dceUri) {
+            return dceUri(Output.of(dceUri));
+        }
+
+        /**
+         * @param dcrId ID of data collection rule that your DCE is linked to for Azure Monitor.
+         * 
+         * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dcrId(@Nullable Output<String> dcrId) {
+            $.dcrId = dcrId;
+            return this;
+        }
+
+        /**
+         * @param dcrId ID of data collection rule that your DCE is linked to for Azure Monitor.
+         * 
+         * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dcrId(String dcrId) {
+            return dcrId(Output.of(dcrId));
+        }
+
+        /**
+         * @param endpoint The syslog destination to send the logs to for Coralogix.
          * 
          * @return builder
          * 
@@ -480,7 +666,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param endpoint The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+         * @param endpoint The syslog destination to send the logs to for Coralogix.
          * 
          * @return builder
          * 
@@ -554,6 +740,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
 
         /**
          * @param name The name of the third party log integration. See
+         * Integration type reference
          * 
          * @return builder
          * 
@@ -565,6 +752,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
 
         /**
          * @param name The name of the third party log integration. See
+         * Integration type reference
          * 
          * @return builder
          * 
@@ -700,9 +888,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param subsystem The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
-         * 
-         * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+         * @param subsystem The subsystem name for Coralogix.
          * 
          * @return builder
          * 
@@ -713,9 +899,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param subsystem The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
-         * 
-         * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+         * @param subsystem The subsystem name for Coralogix.
          * 
          * @return builder
          * 
@@ -725,7 +909,28 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param tags Tag the integration, e.g. env=prod, region=europe.
+         * @param table The table name for Azure monitor.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder table(@Nullable Output<String> table) {
+            $.table = table;
+            return this;
+        }
+
+        /**
+         * @param table The table name for Azure monitor.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder table(String table) {
+            return table(Output.of(table));
+        }
+
+        /**
+         * @param tags Tag the integration, e.g. env=prod,region=europe.
          * 
          * @return builder
          * 
@@ -736,13 +941,34 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param tags Tag the integration, e.g. env=prod, region=europe.
+         * @param tags Tag the integration, e.g. env=prod,region=europe.
          * 
          * @return builder
          * 
          */
         public Builder tags(String tags) {
             return tags(Output.of(tags));
+        }
+
+        /**
+         * @param tenantId The tenant identifier for Azure monitor.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tenantId(@Nullable Output<String> tenantId) {
+            $.tenantId = tenantId;
+            return this;
+        }
+
+        /**
+         * @param tenantId The tenant identifier for Azure monitor.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tenantId(String tenantId) {
+            return tenantId(Output.of(tenantId));
         }
 
         /**

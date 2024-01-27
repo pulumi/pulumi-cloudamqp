@@ -10,53 +10,29 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
-    /// This resource allows you to create and manage third party log integrations for a CloudAMQP instance. Once configured, the logs produced will be forward to corresponding integration.
+    /// This resource allows you to create and manage third party log integrations for a CloudAMQP instance.
+    /// Once configured, the logs produced will be forward to corresponding integration.
     /// 
     /// Only available for dedicated subscription plans.
     /// 
-    /// ## Argument Reference (cloudwatchlog)
-    /// 
-    /// Cloudwatch argument reference and example. Create an IAM user with programmatic access and the following permissions:
-    /// 
-    /// * CreateLogGroup
-    /// * CreateLogStream
-    /// * DescribeLogGroups
-    /// * DescribeLogStreams
-    /// * PutLogEvents
-    /// 
-    /// ## Integration service reference
-    /// 
-    /// Valid names for third party log integration.
-    /// 
-    /// | Name       | Description |
-    /// |------------|---------------------------------------------------------------|
-    /// | cloudwatchlog | Create a IAM with programmatic access. |
-    /// | logentries | Create a Logentries token at https://logentries.com/app#/add-log/manual  |
-    /// | loggly     | Create a Loggly token at https://your-company}.loggly.com/tokens |
-    /// | papertrail | Create a Papertrail endpoint https://papertrailapp.com/systems/setup |
-    /// | splunk     | Create a HTTP Event Collector token at `https://&lt;your-splunk&gt;.cloud.splunk.com/en-US/manager/search/http-eventcollector` |
-    /// | datadog       | Create a Datadog API key at app.datadoghq.com |
-    /// | stackdriver   | Create a service account and add 'monitor metrics writer' role from your Google Cloud Account |
-    /// | scalyr        | Create a Log write token at https://app.scalyr.com/keys |
-    /// | coralogix     | Create Send-Your-Data API key https://coralogix.com/docs/send-your-data-api-key/ |
-    /// 
     /// ## Integration Type reference
     /// 
-    /// Valid arguments for third party log integrations.
+    /// Valid arguments for third party log integrations. See more information at [docs.cloudamqp.com](https://docs.cloudamqp.com/cloudamqp_api.html#add-log-integration)
     /// 
     /// Required arguments for all integrations: name
     /// 
-    /// | Name | Type | Required arguments |
+    /// | Integration | name | Required arguments |
     /// | ---- | ---- | ---- |
+    /// | Azure monitor | azure_monitor | tenant_id, application_id, application_secret, dce_uri, table, dcr_id |
     /// | CloudWatch | cloudwatchlog | access_key_id, secret_access_key, region |
+    /// | Coralogix | coralogix | private_key, endpoint, application, subsystem |
+    /// | Data Dog | datadog | region, api_keys, tags |
     /// | Log Entries | logentries | token |
     /// | Loggly | loggly | token |
     /// | Papertrail | papertrail | url |
-    /// | Splunk | splunk | token, host_port, sourcetype |
-    /// | Data Dog | datadog | region, api_keys, tags |
-    /// | Stackdriver | stackdriver | credentials |
     /// | Scalyr | scalyr | token, host |
-    /// | Coralogix | coralogix | private_key, endpoint, application, subsystem |
+    /// | Splunk | splunk | token, host_port, sourcetype |
+    /// | Stackdriver | stackdriver | credentials |
     /// 
     /// ***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments  : project_id, private_key, client_email
     /// 
@@ -88,10 +64,22 @@ namespace Pulumi.CloudAmqp
         public Output<string?> ApiKey { get; private set; } = null!;
 
         /// <summary>
-        /// The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+        /// The application name for Coralogix.
         /// </summary>
         [Output("application")]
         public Output<string?> Application { get; private set; } = null!;
+
+        /// <summary>
+        /// The application identifier for Azure monitor.
+        /// </summary>
+        [Output("applicationId")]
+        public Output<string?> ApplicationId { get; private set; } = null!;
+
+        /// <summary>
+        /// The application secret for Azure monitor.
+        /// </summary>
+        [Output("applicationSecret")]
+        public Output<string?> ApplicationSecret { get; private set; } = null!;
 
         /// <summary>
         /// The client email registered for the integration service.
@@ -106,7 +94,21 @@ namespace Pulumi.CloudAmqp
         public Output<string?> Credentials { get; private set; } = null!;
 
         /// <summary>
-        /// The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+        /// The data collection endpoint for Azure monitor.
+        /// </summary>
+        [Output("dceUri")]
+        public Output<string?> DceUri { get; private set; } = null!;
+
+        /// <summary>
+        /// ID of data collection rule that your DCE is linked to for Azure Monitor.
+        /// 
+        /// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+        /// </summary>
+        [Output("dcrId")]
+        public Output<string?> DcrId { get; private set; } = null!;
+
+        /// <summary>
+        /// The syslog destination to send the logs to for Coralogix.
         /// </summary>
         [Output("endpoint")]
         public Output<string?> Endpoint { get; private set; } = null!;
@@ -131,6 +133,7 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// The name of the third party log integration. See
+        /// Integration type reference
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -172,18 +175,28 @@ namespace Pulumi.CloudAmqp
         public Output<string?> Sourcetype { get; private set; } = null!;
 
         /// <summary>
-        /// The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
-        /// 
-        /// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+        /// The subsystem name for Coralogix.
         /// </summary>
         [Output("subsystem")]
         public Output<string?> Subsystem { get; private set; } = null!;
 
         /// <summary>
-        /// Tag the integration, e.g. env=prod, region=europe.
+        /// The table name for Azure monitor.
+        /// </summary>
+        [Output("table")]
+        public Output<string?> Table { get; private set; } = null!;
+
+        /// <summary>
+        /// Tag the integration, e.g. env=prod,region=europe.
         /// </summary>
         [Output("tags")]
         public Output<string?> Tags { get; private set; } = null!;
+
+        /// <summary>
+        /// The tenant identifier for Azure monitor.
+        /// </summary>
+        [Output("tenantId")]
+        public Output<string?> TenantId { get; private set; } = null!;
 
         /// <summary>
         /// Token used for authentication.
@@ -224,6 +237,7 @@ namespace Pulumi.CloudAmqp
                 {
                     "accessKeyId",
                     "apiKey",
+                    "applicationSecret",
                     "credentials",
                     "privateKey",
                     "privateKeyId",
@@ -286,10 +300,32 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
-        /// The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+        /// The application name for Coralogix.
         /// </summary>
         [Input("application")]
         public Input<string>? Application { get; set; }
+
+        /// <summary>
+        /// The application identifier for Azure monitor.
+        /// </summary>
+        [Input("applicationId")]
+        public Input<string>? ApplicationId { get; set; }
+
+        [Input("applicationSecret")]
+        private Input<string>? _applicationSecret;
+
+        /// <summary>
+        /// The application secret for Azure monitor.
+        /// </summary>
+        public Input<string>? ApplicationSecret
+        {
+            get => _applicationSecret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _applicationSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The client email registered for the integration service.
@@ -314,7 +350,21 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
-        /// The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+        /// The data collection endpoint for Azure monitor.
+        /// </summary>
+        [Input("dceUri")]
+        public Input<string>? DceUri { get; set; }
+
+        /// <summary>
+        /// ID of data collection rule that your DCE is linked to for Azure Monitor.
+        /// 
+        /// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+        /// </summary>
+        [Input("dcrId")]
+        public Input<string>? DcrId { get; set; }
+
+        /// <summary>
+        /// The syslog destination to send the logs to for Coralogix.
         /// </summary>
         [Input("endpoint")]
         public Input<string>? Endpoint { get; set; }
@@ -339,6 +389,7 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// The name of the third party log integration. See
+        /// Integration type reference
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -410,18 +461,28 @@ namespace Pulumi.CloudAmqp
         public Input<string>? Sourcetype { get; set; }
 
         /// <summary>
-        /// The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
-        /// 
-        /// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+        /// The subsystem name for Coralogix.
         /// </summary>
         [Input("subsystem")]
         public Input<string>? Subsystem { get; set; }
 
         /// <summary>
-        /// Tag the integration, e.g. env=prod, region=europe.
+        /// The table name for Azure monitor.
+        /// </summary>
+        [Input("table")]
+        public Input<string>? Table { get; set; }
+
+        /// <summary>
+        /// Tag the integration, e.g. env=prod,region=europe.
         /// </summary>
         [Input("tags")]
         public Input<string>? Tags { get; set; }
+
+        /// <summary>
+        /// The tenant identifier for Azure monitor.
+        /// </summary>
+        [Input("tenantId")]
+        public Input<string>? TenantId { get; set; }
 
         [Input("token")]
         private Input<string>? _token;
@@ -486,10 +547,32 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
-        /// The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+        /// The application name for Coralogix.
         /// </summary>
         [Input("application")]
         public Input<string>? Application { get; set; }
+
+        /// <summary>
+        /// The application identifier for Azure monitor.
+        /// </summary>
+        [Input("applicationId")]
+        public Input<string>? ApplicationId { get; set; }
+
+        [Input("applicationSecret")]
+        private Input<string>? _applicationSecret;
+
+        /// <summary>
+        /// The application secret for Azure monitor.
+        /// </summary>
+        public Input<string>? ApplicationSecret
+        {
+            get => _applicationSecret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _applicationSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The client email registered for the integration service.
@@ -514,7 +597,21 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
-        /// The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+        /// The data collection endpoint for Azure monitor.
+        /// </summary>
+        [Input("dceUri")]
+        public Input<string>? DceUri { get; set; }
+
+        /// <summary>
+        /// ID of data collection rule that your DCE is linked to for Azure Monitor.
+        /// 
+        /// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+        /// </summary>
+        [Input("dcrId")]
+        public Input<string>? DcrId { get; set; }
+
+        /// <summary>
+        /// The syslog destination to send the logs to for Coralogix.
         /// </summary>
         [Input("endpoint")]
         public Input<string>? Endpoint { get; set; }
@@ -539,6 +636,7 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// The name of the third party log integration. See
+        /// Integration type reference
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -610,18 +708,28 @@ namespace Pulumi.CloudAmqp
         public Input<string>? Sourcetype { get; set; }
 
         /// <summary>
-        /// The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
-        /// 
-        /// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+        /// The subsystem name for Coralogix.
         /// </summary>
         [Input("subsystem")]
         public Input<string>? Subsystem { get; set; }
 
         /// <summary>
-        /// Tag the integration, e.g. env=prod, region=europe.
+        /// The table name for Azure monitor.
+        /// </summary>
+        [Input("table")]
+        public Input<string>? Table { get; set; }
+
+        /// <summary>
+        /// Tag the integration, e.g. env=prod,region=europe.
         /// </summary>
         [Input("tags")]
         public Input<string>? Tags { get; set; }
+
+        /// <summary>
+        /// The tenant identifier for Azure monitor.
+        /// </summary>
+        [Input("tenantId")]
+        public Input<string>? TenantId { get; set; }
 
         [Input("token")]
         private Input<string>? _token;

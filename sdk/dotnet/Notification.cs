@@ -16,6 +16,11 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;Email recipient&lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -24,7 +29,6 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     // New recipient to receieve notifications
     ///     var emailRecipient = new CloudAmqp.Notification("emailRecipient", new()
     ///     {
     ///         InstanceId = cloudamqp_instance.Instance.Id,
@@ -32,17 +36,49 @@ namespace Pulumi.CloudAmqp
     ///         Value = "alarm@example.com",
     ///     });
     /// 
-    ///     var victoropsRecipient = new CloudAmqp.Notification("victoropsRecipient", new()
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;OpsGenie recipient&lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var opsgenieRecipient = new CloudAmqp.Notification("opsgenieRecipient", new()
     ///     {
     ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         Type = "victorops",
-    ///         Value = "&lt;UUID&gt;",
-    ///         Options = 
-    ///         {
-    ///             { "rk", "ROUTINGKEY" },
-    ///         },
+    ///         Type = "opsgenie",
+    ///         Value = "&lt;api-key&gt;",
     ///     });
     /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;Pagerduty recipient&lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
     ///     var pagerdutyRecipient = new CloudAmqp.Notification("pagerdutyRecipient", new()
     ///     {
     ///         InstanceId = cloudamqp_instance.Instance.Id,
@@ -56,24 +92,131 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;Signl4 recipient&lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var signl4Recipient = new CloudAmqp.Notification("signl4Recipient", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Type = "signl4",
+    ///         Value = "&lt;team-secret&gt;",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;Teams recipient&lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var teamsRecipient = new CloudAmqp.Notification("teamsRecipient", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Type = "teams",
+    ///         Value = "&lt;teams-webhook-url&gt;",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;Victorops recipient&lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var victoropsRecipient = new CloudAmqp.Notification("victoropsRecipient", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Type = "victorops",
+    ///         Value = "&lt;integration-key&gt;",
+    ///         Options = 
+    ///         {
+    ///             { "rk", "ROUTINGKEY" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;Webhook recipient&lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var webhookRecipient = new CloudAmqp.Notification("webhookRecipient", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Type = "webhook",
+    ///         Value = "&lt;webhook-url&gt;",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
     /// ## Notification Type reference
     /// 
     /// Valid options for notification type.
     /// 
     /// * email
-    /// * webhook
-    /// * pagerduty
-    /// * victorops
     /// * opsgenie
     /// * opsgenie-eu
+    /// * pagerduty
+    /// * signl4
     /// * slack
     /// * teams
+    /// * victorops
+    /// * webhook
     /// 
     /// ## Options parameter
     /// 
-    /// | Type      | Options  | Description                                                                                                                                                                                                                                                                      | Note                                                                                                                                    |
-    /// |-----------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
-    /// | Victorops | rk       | Routing key to route alarm notification                                                                                                                                                                                                                                          | -                                                                                                                                        |
+    /// | Type      | Options  | Description | Note |
+    /// |---|---|---|---|
+    /// | Victorops | rk       | Routing key to route alarm notification | - |
     /// | PagerDuty | dedupkey | Default the dedup key for PagerDuty is generated depending on what alarm has triggered, but here you can set what `dedup` key to use so even if the same alarm is triggered for different resources you only get one notification. Leave blank to use the generated dedup key. | If multiple alarms are triggered using this recipient, since they all share `dedup` key only the first alarm will be shown in PagerDuty |
     /// 
     /// ## Dependency
