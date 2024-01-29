@@ -5,53 +5,29 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * This resource allows you to create and manage third party log integrations for a CloudAMQP instance. Once configured, the logs produced will be forward to corresponding integration.
+ * This resource allows you to create and manage third party log integrations for a CloudAMQP instance.
+ * Once configured, the logs produced will be forward to corresponding integration.
  *
  * Only available for dedicated subscription plans.
  *
- * ## Argument Reference (cloudwatchlog)
- *
- * Cloudwatch argument reference and example. Create an IAM user with programmatic access and the following permissions:
- *
- * * CreateLogGroup
- * * CreateLogStream
- * * DescribeLogGroups
- * * DescribeLogStreams
- * * PutLogEvents
- *
- * ## Integration service reference
- *
- * Valid names for third party log integration.
- *
- * | Name       | Description |
- * |------------|---------------------------------------------------------------|
- * | cloudwatchlog | Create a IAM with programmatic access. |
- * | logentries | Create a Logentries token at https://logentries.com/app#/add-log/manual  |
- * | loggly     | Create a Loggly token at https://your-company}.loggly.com/tokens |
- * | papertrail | Create a Papertrail endpoint https://papertrailapp.com/systems/setup |
- * | splunk     | Create a HTTP Event Collector token at `https://<your-splunk>.cloud.splunk.com/en-US/manager/search/http-eventcollector` |
- * | datadog       | Create a Datadog API key at app.datadoghq.com |
- * | stackdriver   | Create a service account and add 'monitor metrics writer' role from your Google Cloud Account |
- * | scalyr        | Create a Log write token at https://app.scalyr.com/keys |
- * | coralogix     | Create Send-Your-Data API key https://coralogix.com/docs/send-your-data-api-key/ |
- *
  * ## Integration Type reference
  *
- * Valid arguments for third party log integrations.
+ * Valid arguments for third party log integrations. See more information at [docs.cloudamqp.com](https://docs.cloudamqp.com/cloudamqp_api.html#add-log-integration)
  *
  * Required arguments for all integrations: name
  *
- * | Name | Type | Required arguments |
+ * | Integration | name | Required arguments |
  * | ---- | ---- | ---- |
+ * | Azure monitor | azureMonitor | tenant_id, application_id, application_secret, dce_uri, table, dcrId |
  * | CloudWatch | cloudwatchlog | access_key_id, secret_access_key, region |
+ * | Coralogix | coralogix | private_key, endpoint, application, subsystem |
+ * | Data Dog | datadog | region, api_keys, tags |
  * | Log Entries | logentries | token |
  * | Loggly | loggly | token |
  * | Papertrail | papertrail | url |
- * | Splunk | splunk | token, host_port, sourcetype |
- * | Data Dog | datadog | region, api_keys, tags |
- * | Stackdriver | stackdriver | credentials |
  * | Scalyr | scalyr | token, host |
- * | Coralogix | coralogix | private_key, endpoint, application, subsystem |
+ * | Splunk | splunk | token, host_port, sourcetype |
+ * | Stackdriver | stackdriver | credentials |
  *
  * ***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments  : project_id, private_key, clientEmail
  *
@@ -104,9 +80,17 @@ export class IntegrationLog extends pulumi.CustomResource {
      */
     public readonly apiKey!: pulumi.Output<string | undefined>;
     /**
-     * The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+     * The application name for Coralogix.
      */
     public readonly application!: pulumi.Output<string | undefined>;
+    /**
+     * The application identifier for Azure monitor.
+     */
+    public readonly applicationId!: pulumi.Output<string | undefined>;
+    /**
+     * The application secret for Azure monitor.
+     */
+    public readonly applicationSecret!: pulumi.Output<string | undefined>;
     /**
      * The client email registered for the integration service.
      */
@@ -116,7 +100,17 @@ export class IntegrationLog extends pulumi.CustomResource {
      */
     public readonly credentials!: pulumi.Output<string | undefined>;
     /**
-     * The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+     * The data collection endpoint for Azure monitor.
+     */
+    public readonly dceUri!: pulumi.Output<string | undefined>;
+    /**
+     * ID of data collection rule that your DCE is linked to for Azure Monitor.
+     *
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+     */
+    public readonly dcrId!: pulumi.Output<string | undefined>;
+    /**
+     * The syslog destination to send the logs to for Coralogix.
      */
     public readonly endpoint!: pulumi.Output<string | undefined>;
     /**
@@ -133,6 +127,7 @@ export class IntegrationLog extends pulumi.CustomResource {
     public readonly instanceId!: pulumi.Output<number>;
     /**
      * The name of the third party log integration. See
+     * Integration type reference
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -160,15 +155,21 @@ export class IntegrationLog extends pulumi.CustomResource {
      */
     public readonly sourcetype!: pulumi.Output<string | undefined>;
     /**
-     * The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
-     *
-     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+     * The subsystem name for Coralogix.
      */
     public readonly subsystem!: pulumi.Output<string | undefined>;
     /**
-     * Tag the integration, e.g. env=prod, region=europe.
+     * The table name for Azure monitor.
+     */
+    public readonly table!: pulumi.Output<string | undefined>;
+    /**
+     * Tag the integration, e.g. env=prod,region=europe.
      */
     public readonly tags!: pulumi.Output<string | undefined>;
+    /**
+     * The tenant identifier for Azure monitor.
+     */
+    public readonly tenantId!: pulumi.Output<string | undefined>;
     /**
      * Token used for authentication.
      */
@@ -194,8 +195,12 @@ export class IntegrationLog extends pulumi.CustomResource {
             resourceInputs["accessKeyId"] = state ? state.accessKeyId : undefined;
             resourceInputs["apiKey"] = state ? state.apiKey : undefined;
             resourceInputs["application"] = state ? state.application : undefined;
+            resourceInputs["applicationId"] = state ? state.applicationId : undefined;
+            resourceInputs["applicationSecret"] = state ? state.applicationSecret : undefined;
             resourceInputs["clientEmail"] = state ? state.clientEmail : undefined;
             resourceInputs["credentials"] = state ? state.credentials : undefined;
+            resourceInputs["dceUri"] = state ? state.dceUri : undefined;
+            resourceInputs["dcrId"] = state ? state.dcrId : undefined;
             resourceInputs["endpoint"] = state ? state.endpoint : undefined;
             resourceInputs["host"] = state ? state.host : undefined;
             resourceInputs["hostPort"] = state ? state.hostPort : undefined;
@@ -208,7 +213,9 @@ export class IntegrationLog extends pulumi.CustomResource {
             resourceInputs["secretAccessKey"] = state ? state.secretAccessKey : undefined;
             resourceInputs["sourcetype"] = state ? state.sourcetype : undefined;
             resourceInputs["subsystem"] = state ? state.subsystem : undefined;
+            resourceInputs["table"] = state ? state.table : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["tenantId"] = state ? state.tenantId : undefined;
             resourceInputs["token"] = state ? state.token : undefined;
             resourceInputs["url"] = state ? state.url : undefined;
         } else {
@@ -219,8 +226,12 @@ export class IntegrationLog extends pulumi.CustomResource {
             resourceInputs["accessKeyId"] = args?.accessKeyId ? pulumi.secret(args.accessKeyId) : undefined;
             resourceInputs["apiKey"] = args?.apiKey ? pulumi.secret(args.apiKey) : undefined;
             resourceInputs["application"] = args ? args.application : undefined;
+            resourceInputs["applicationId"] = args ? args.applicationId : undefined;
+            resourceInputs["applicationSecret"] = args?.applicationSecret ? pulumi.secret(args.applicationSecret) : undefined;
             resourceInputs["clientEmail"] = args ? args.clientEmail : undefined;
             resourceInputs["credentials"] = args?.credentials ? pulumi.secret(args.credentials) : undefined;
+            resourceInputs["dceUri"] = args ? args.dceUri : undefined;
+            resourceInputs["dcrId"] = args ? args.dcrId : undefined;
             resourceInputs["endpoint"] = args ? args.endpoint : undefined;
             resourceInputs["host"] = args ? args.host : undefined;
             resourceInputs["hostPort"] = args ? args.hostPort : undefined;
@@ -233,12 +244,14 @@ export class IntegrationLog extends pulumi.CustomResource {
             resourceInputs["secretAccessKey"] = args?.secretAccessKey ? pulumi.secret(args.secretAccessKey) : undefined;
             resourceInputs["sourcetype"] = args ? args.sourcetype : undefined;
             resourceInputs["subsystem"] = args ? args.subsystem : undefined;
+            resourceInputs["table"] = args ? args.table : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["tenantId"] = args ? args.tenantId : undefined;
             resourceInputs["token"] = args?.token ? pulumi.secret(args.token) : undefined;
             resourceInputs["url"] = args ? args.url : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["accessKeyId", "apiKey", "credentials", "privateKey", "privateKeyId", "secretAccessKey", "token"] };
+        const secretOpts = { additionalSecretOutputs: ["accessKeyId", "apiKey", "applicationSecret", "credentials", "privateKey", "privateKeyId", "secretAccessKey", "token"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(IntegrationLog.__pulumiType, name, resourceInputs, opts);
     }
@@ -257,9 +270,17 @@ export interface IntegrationLogState {
      */
     apiKey?: pulumi.Input<string>;
     /**
-     * The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+     * The application name for Coralogix.
      */
     application?: pulumi.Input<string>;
+    /**
+     * The application identifier for Azure monitor.
+     */
+    applicationId?: pulumi.Input<string>;
+    /**
+     * The application secret for Azure monitor.
+     */
+    applicationSecret?: pulumi.Input<string>;
     /**
      * The client email registered for the integration service.
      */
@@ -269,7 +290,17 @@ export interface IntegrationLogState {
      */
     credentials?: pulumi.Input<string>;
     /**
-     * The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+     * The data collection endpoint for Azure monitor.
+     */
+    dceUri?: pulumi.Input<string>;
+    /**
+     * ID of data collection rule that your DCE is linked to for Azure Monitor.
+     *
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+     */
+    dcrId?: pulumi.Input<string>;
+    /**
+     * The syslog destination to send the logs to for Coralogix.
      */
     endpoint?: pulumi.Input<string>;
     /**
@@ -286,6 +317,7 @@ export interface IntegrationLogState {
     instanceId?: pulumi.Input<number>;
     /**
      * The name of the third party log integration. See
+     * Integration type reference
      */
     name?: pulumi.Input<string>;
     /**
@@ -313,15 +345,21 @@ export interface IntegrationLogState {
      */
     sourcetype?: pulumi.Input<string>;
     /**
-     * The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
-     *
-     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+     * The subsystem name for Coralogix.
      */
     subsystem?: pulumi.Input<string>;
     /**
-     * Tag the integration, e.g. env=prod, region=europe.
+     * The table name for Azure monitor.
+     */
+    table?: pulumi.Input<string>;
+    /**
+     * Tag the integration, e.g. env=prod,region=europe.
      */
     tags?: pulumi.Input<string>;
+    /**
+     * The tenant identifier for Azure monitor.
+     */
+    tenantId?: pulumi.Input<string>;
     /**
      * Token used for authentication.
      */
@@ -345,9 +383,17 @@ export interface IntegrationLogArgs {
      */
     apiKey?: pulumi.Input<string>;
     /**
-     * The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+     * The application name for Coralogix.
      */
     application?: pulumi.Input<string>;
+    /**
+     * The application identifier for Azure monitor.
+     */
+    applicationId?: pulumi.Input<string>;
+    /**
+     * The application secret for Azure monitor.
+     */
+    applicationSecret?: pulumi.Input<string>;
     /**
      * The client email registered for the integration service.
      */
@@ -357,7 +403,17 @@ export interface IntegrationLogArgs {
      */
     credentials?: pulumi.Input<string>;
     /**
-     * The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+     * The data collection endpoint for Azure monitor.
+     */
+    dceUri?: pulumi.Input<string>;
+    /**
+     * ID of data collection rule that your DCE is linked to for Azure Monitor.
+     *
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+     */
+    dcrId?: pulumi.Input<string>;
+    /**
+     * The syslog destination to send the logs to for Coralogix.
      */
     endpoint?: pulumi.Input<string>;
     /**
@@ -374,6 +430,7 @@ export interface IntegrationLogArgs {
     instanceId: pulumi.Input<number>;
     /**
      * The name of the third party log integration. See
+     * Integration type reference
      */
     name?: pulumi.Input<string>;
     /**
@@ -401,15 +458,21 @@ export interface IntegrationLogArgs {
      */
     sourcetype?: pulumi.Input<string>;
     /**
-     * The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
-     *
-     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+     * The subsystem name for Coralogix.
      */
     subsystem?: pulumi.Input<string>;
     /**
-     * Tag the integration, e.g. env=prod, region=europe.
+     * The table name for Azure monitor.
+     */
+    table?: pulumi.Input<string>;
+    /**
+     * Tag the integration, e.g. env=prod,region=europe.
      */
     tags?: pulumi.Input<string>;
+    /**
+     * The tenant identifier for Azure monitor.
+     */
+    tenantId?: pulumi.Input<string>;
     /**
      * Token used for authentication.
      */

@@ -202,22 +202,49 @@ class Notification(pulumi.CustomResource):
 
         ## Example Usage
 
+        <details>
+          <summary>
+            <b>Email recipient</b>
+          </summary>
+
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        # New recipient to receieve notifications
         email_recipient = cloudamqp.Notification("emailRecipient",
             instance_id=cloudamqp_instance["instance"]["id"],
             type="email",
             value="alarm@example.com")
-        victorops_recipient = cloudamqp.Notification("victoropsRecipient",
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>OpsGenie recipient</b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        opsgenie_recipient = cloudamqp.Notification("opsgenieRecipient",
             instance_id=cloudamqp_instance["instance"]["id"],
-            type="victorops",
-            value="<UUID>",
-            options={
-                "rk": "ROUTINGKEY",
-            })
+            type="opsgenie",
+            value="<api-key>")
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>Pagerduty recipient</b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
         pagerduty_recipient = cloudamqp.Notification("pagerdutyRecipient",
             instance_id=cloudamqp_instance["instance"]["id"],
             type="pagerduty",
@@ -226,24 +253,98 @@ class Notification(pulumi.CustomResource):
                 "dedupkey": "DEDUPKEY",
             })
         ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>Signl4 recipient</b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        signl4_recipient = cloudamqp.Notification("signl4Recipient",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            type="signl4",
+            value="<team-secret>")
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>Teams recipient</b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        teams_recipient = cloudamqp.Notification("teamsRecipient",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            type="teams",
+            value="<teams-webhook-url>")
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>Victorops recipient</b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        victorops_recipient = cloudamqp.Notification("victoropsRecipient",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            type="victorops",
+            value="<integration-key>",
+            options={
+                "rk": "ROUTINGKEY",
+            })
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>Webhook recipient</b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        webhook_recipient = cloudamqp.Notification("webhookRecipient",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            type="webhook",
+            value="<webhook-url>")
+        ```
+
+        </details>
         ## Notification Type reference
 
         Valid options for notification type.
 
         * email
-        * webhook
-        * pagerduty
-        * victorops
         * opsgenie
         * opsgenie-eu
+        * pagerduty
+        * signl4
         * slack
         * teams
+        * victorops
+        * webhook
 
         ## Options parameter
 
-        | Type      | Options  | Description                                                                                                                                                                                                                                                                      | Note                                                                                                                                    |
-        |-----------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
-        | Victorops | rk       | Routing key to route alarm notification                                                                                                                                                                                                                                          | -                                                                                                                                        |
+        | Type      | Options  | Description | Note |
+        |---|---|---|---|
+        | Victorops | rk       | Routing key to route alarm notification | - |
         | PagerDuty | dedupkey | Default the dedup key for PagerDuty is generated depending on what alarm has triggered, but here you can set what `dedup` key to use so even if the same alarm is triggered for different resources you only get one notification. Leave blank to use the generated dedup key. | If multiple alarms are triggered using this recipient, since they all share `dedup` key only the first alarm will be shown in PagerDuty |
 
         ## Dependency
@@ -279,22 +380,49 @@ class Notification(pulumi.CustomResource):
 
         ## Example Usage
 
+        <details>
+          <summary>
+            <b>Email recipient</b>
+          </summary>
+
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        # New recipient to receieve notifications
         email_recipient = cloudamqp.Notification("emailRecipient",
             instance_id=cloudamqp_instance["instance"]["id"],
             type="email",
             value="alarm@example.com")
-        victorops_recipient = cloudamqp.Notification("victoropsRecipient",
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>OpsGenie recipient</b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        opsgenie_recipient = cloudamqp.Notification("opsgenieRecipient",
             instance_id=cloudamqp_instance["instance"]["id"],
-            type="victorops",
-            value="<UUID>",
-            options={
-                "rk": "ROUTINGKEY",
-            })
+            type="opsgenie",
+            value="<api-key>")
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>Pagerduty recipient</b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
         pagerduty_recipient = cloudamqp.Notification("pagerdutyRecipient",
             instance_id=cloudamqp_instance["instance"]["id"],
             type="pagerduty",
@@ -303,24 +431,98 @@ class Notification(pulumi.CustomResource):
                 "dedupkey": "DEDUPKEY",
             })
         ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>Signl4 recipient</b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        signl4_recipient = cloudamqp.Notification("signl4Recipient",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            type="signl4",
+            value="<team-secret>")
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>Teams recipient</b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        teams_recipient = cloudamqp.Notification("teamsRecipient",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            type="teams",
+            value="<teams-webhook-url>")
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>Victorops recipient</b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        victorops_recipient = cloudamqp.Notification("victoropsRecipient",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            type="victorops",
+            value="<integration-key>",
+            options={
+                "rk": "ROUTINGKEY",
+            })
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>Webhook recipient</b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        webhook_recipient = cloudamqp.Notification("webhookRecipient",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            type="webhook",
+            value="<webhook-url>")
+        ```
+
+        </details>
         ## Notification Type reference
 
         Valid options for notification type.
 
         * email
-        * webhook
-        * pagerduty
-        * victorops
         * opsgenie
         * opsgenie-eu
+        * pagerduty
+        * signl4
         * slack
         * teams
+        * victorops
+        * webhook
 
         ## Options parameter
 
-        | Type      | Options  | Description                                                                                                                                                                                                                                                                      | Note                                                                                                                                    |
-        |-----------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
-        | Victorops | rk       | Routing key to route alarm notification                                                                                                                                                                                                                                          | -                                                                                                                                        |
+        | Type      | Options  | Description | Note |
+        |---|---|---|---|
+        | Victorops | rk       | Routing key to route alarm notification | - |
         | PagerDuty | dedupkey | Default the dedup key for PagerDuty is generated depending on what alarm has triggered, but here you can set what `dedup` key to use so even if the same alarm is triggered for different resources you only get one notification. Leave blank to use the generated dedup key. | If multiple alarms are triggered using this recipient, since they all share `dedup` key only the first alarm will be shown in PagerDuty |
 
         ## Dependency

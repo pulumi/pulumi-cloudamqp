@@ -17,53 +17,29 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * This resource allows you to create and manage third party log integrations for a CloudAMQP instance. Once configured, the logs produced will be forward to corresponding integration.
+ * This resource allows you to create and manage third party log integrations for a CloudAMQP instance.
+ * Once configured, the logs produced will be forward to corresponding integration.
  * 
  * Only available for dedicated subscription plans.
  * 
- * ## Argument Reference (cloudwatchlog)
- * 
- * Cloudwatch argument reference and example. Create an IAM user with programmatic access and the following permissions:
- * 
- * * CreateLogGroup
- * * CreateLogStream
- * * DescribeLogGroups
- * * DescribeLogStreams
- * * PutLogEvents
- * 
- * ## Integration service reference
- * 
- * Valid names for third party log integration.
- * 
- * | Name       | Description |
- * |------------|---------------------------------------------------------------|
- * | cloudwatchlog | Create a IAM with programmatic access. |
- * | logentries | Create a Logentries token at https://logentries.com/app#/add-log/manual  |
- * | loggly     | Create a Loggly token at https://your-company}.loggly.com/tokens |
- * | papertrail | Create a Papertrail endpoint https://papertrailapp.com/systems/setup |
- * | splunk     | Create a HTTP Event Collector token at `https://&lt;your-splunk&gt;.cloud.splunk.com/en-US/manager/search/http-eventcollector` |
- * | datadog       | Create a Datadog API key at app.datadoghq.com |
- * | stackdriver   | Create a service account and add &#39;monitor metrics writer&#39; role from your Google Cloud Account |
- * | scalyr        | Create a Log write token at https://app.scalyr.com/keys |
- * | coralogix     | Create Send-Your-Data API key https://coralogix.com/docs/send-your-data-api-key/ |
- * 
  * ## Integration Type reference
  * 
- * Valid arguments for third party log integrations.
+ * Valid arguments for third party log integrations. See more information at [docs.cloudamqp.com](https://docs.cloudamqp.com/cloudamqp_api.html#add-log-integration)
  * 
  * Required arguments for all integrations: name
  * 
- * | Name | Type | Required arguments |
+ * | Integration | name | Required arguments |
  * | ---- | ---- | ---- |
+ * | Azure monitor | azure_monitor | tenant_id, application_id, application_secret, dce_uri, table, dcr_id |
  * | CloudWatch | cloudwatchlog | access_key_id, secret_access_key, region |
+ * | Coralogix | coralogix | private_key, endpoint, application, subsystem |
+ * | Data Dog | datadog | region, api_keys, tags |
  * | Log Entries | logentries | token |
  * | Loggly | loggly | token |
  * | Papertrail | papertrail | url |
- * | Splunk | splunk | token, host_port, sourcetype |
- * | Data Dog | datadog | region, api_keys, tags |
- * | Stackdriver | stackdriver | credentials |
  * | Scalyr | scalyr | token, host |
- * | Coralogix | coralogix | private_key, endpoint, application, subsystem |
+ * | Splunk | splunk | token, host_port, sourcetype |
+ * | Stackdriver | stackdriver | credentials |
  * 
  * ***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments  : project_id, private_key, client_email
  * 
@@ -111,18 +87,46 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.apiKey);
     }
     /**
-     * The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+     * The application name for Coralogix.
      * 
      */
     @Export(name="application", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> application;
 
     /**
-     * @return The application name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
+     * @return The application name for Coralogix.
      * 
      */
     public Output<Optional<String>> application() {
         return Codegen.optional(this.application);
+    }
+    /**
+     * The application identifier for Azure monitor.
+     * 
+     */
+    @Export(name="applicationId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> applicationId;
+
+    /**
+     * @return The application identifier for Azure monitor.
+     * 
+     */
+    public Output<Optional<String>> applicationId() {
+        return Codegen.optional(this.applicationId);
+    }
+    /**
+     * The application secret for Azure monitor.
+     * 
+     */
+    @Export(name="applicationSecret", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> applicationSecret;
+
+    /**
+     * @return The application secret for Azure monitor.
+     * 
+     */
+    public Output<Optional<String>> applicationSecret() {
+        return Codegen.optional(this.applicationSecret);
     }
     /**
      * The client email registered for the integration service.
@@ -153,14 +157,46 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.credentials);
     }
     /**
-     * The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+     * The data collection endpoint for Azure monitor.
+     * 
+     */
+    @Export(name="dceUri", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> dceUri;
+
+    /**
+     * @return The data collection endpoint for Azure monitor.
+     * 
+     */
+    public Output<Optional<String>> dceUri() {
+        return Codegen.optional(this.dceUri);
+    }
+    /**
+     * ID of data collection rule that your DCE is linked to for Azure Monitor.
+     * 
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+     * 
+     */
+    @Export(name="dcrId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> dcrId;
+
+    /**
+     * @return ID of data collection rule that your DCE is linked to for Azure Monitor.
+     * 
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+     * 
+     */
+    public Output<Optional<String>> dcrId() {
+        return Codegen.optional(this.dcrId);
+    }
+    /**
+     * The syslog destination to send the logs to for Coralogix.
      * 
      */
     @Export(name="endpoint", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> endpoint;
 
     /**
-     * @return The syslog destination to send the logs to for Coralogix. See endpoint [documentations](https://coralogix.com/docs/coralogix-endpoints/).
+     * @return The syslog destination to send the logs to for Coralogix.
      * 
      */
     public Output<Optional<String>> endpoint() {
@@ -210,6 +246,7 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
     }
     /**
      * The name of the third party log integration. See
+     * Integration type reference
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
@@ -217,6 +254,7 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The name of the third party log integration. See
+     * Integration type reference
      * 
      */
     public Output<String> name() {
@@ -307,36 +345,60 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.sourcetype);
     }
     /**
-     * The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
-     * 
-     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+     * The subsystem name for Coralogix.
      * 
      */
     @Export(name="subsystem", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> subsystem;
 
     /**
-     * @return The subsystem name for Coralogix. See application [documentations](https://coralogix.com/docs/application-and-subsystem-names/)
-     * 
-     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+     * @return The subsystem name for Coralogix.
      * 
      */
     public Output<Optional<String>> subsystem() {
         return Codegen.optional(this.subsystem);
     }
     /**
-     * Tag the integration, e.g. env=prod, region=europe.
+     * The table name for Azure monitor.
+     * 
+     */
+    @Export(name="table", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> table;
+
+    /**
+     * @return The table name for Azure monitor.
+     * 
+     */
+    public Output<Optional<String>> table() {
+        return Codegen.optional(this.table);
+    }
+    /**
+     * Tag the integration, e.g. env=prod,region=europe.
      * 
      */
     @Export(name="tags", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tags;
 
     /**
-     * @return Tag the integration, e.g. env=prod, region=europe.
+     * @return Tag the integration, e.g. env=prod,region=europe.
      * 
      */
     public Output<Optional<String>> tags() {
         return Codegen.optional(this.tags);
+    }
+    /**
+     * The tenant identifier for Azure monitor.
+     * 
+     */
+    @Export(name="tenantId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> tenantId;
+
+    /**
+     * @return The tenant identifier for Azure monitor.
+     * 
+     */
+    public Output<Optional<String>> tenantId() {
+        return Codegen.optional(this.tenantId);
     }
     /**
      * Token used for authentication.
@@ -402,6 +464,7 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
             .additionalSecretOutputs(List.of(
                 "accessKeyId",
                 "apiKey",
+                "applicationSecret",
                 "credentials",
                 "privateKey",
                 "privateKeyId",
