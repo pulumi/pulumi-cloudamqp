@@ -17,7 +17,15 @@ public final class GetPluginsPlugin {
     private String description;
     private Boolean enabled;
     private String name;
+    /**
+     * @return Configurable sleep time in seconds between retries for plugins
+     * 
+     */
     private @Nullable Integer sleep;
+    /**
+     * @return Configurable timeout time in seconds for plugins
+     * 
+     */
     private @Nullable Integer timeout;
     private String version;
 
@@ -31,9 +39,17 @@ public final class GetPluginsPlugin {
     public String name() {
         return this.name;
     }
+    /**
+     * @return Configurable sleep time in seconds between retries for plugins
+     * 
+     */
     public Optional<Integer> sleep() {
         return Optional.ofNullable(this.sleep);
     }
+    /**
+     * @return Configurable timeout time in seconds for plugins
+     * 
+     */
     public Optional<Integer> timeout() {
         return Optional.ofNullable(this.timeout);
     }

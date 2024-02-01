@@ -12,9 +12,15 @@ namespace Pulumi.CloudAmqp.Inputs
 
     public sealed class ExtraDiskSizeNodeGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Additional added disk size
+        /// </summary>
         [Input("additionalDiskSize")]
         public Input<int>? AdditionalDiskSize { get; set; }
 
+        /// <summary>
+        /// Subscription plan disk size
+        /// </summary>
         [Input("diskSize")]
         public Input<int>? DiskSize { get; set; }
 
