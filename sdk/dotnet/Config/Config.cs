@@ -53,9 +53,6 @@ namespace Pulumi.CloudAmqp
         }
 
         private static readonly __Value<bool?> _enableFasterInstanceDestroy = new __Value<bool?>(() => __config.GetBoolean("enableFasterInstanceDestroy"));
-        /// <summary>
-        /// Skips destroying backend resources on 'terraform destroy'
-        /// </summary>
         public static bool? EnableFasterInstanceDestroy
         {
             get => _enableFasterInstanceDestroy.Get();

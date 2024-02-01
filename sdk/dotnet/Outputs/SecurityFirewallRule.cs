@@ -13,9 +13,21 @@ namespace Pulumi.CloudAmqp.Outputs
     [OutputType]
     public sealed class SecurityFirewallRule
     {
+        /// <summary>
+        /// Naming descripton e.g. 'Default'
+        /// </summary>
         public readonly string? Description;
+        /// <summary>
+        /// CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
+        /// </summary>
         public readonly string Ip;
+        /// <summary>
+        /// Custom ports between 0 - 65554
+        /// </summary>
         public readonly ImmutableArray<int> Ports;
+        /// <summary>
+        /// Pre-defined services 'AMQP', 'AMQPS', 'HTTPS', 'MQTT', 'MQTTS', 'STOMP', 'STOMPS', 'STREAM', 'STREAM_SSL'
+        /// </summary>
         public readonly ImmutableArray<string> Services;
 
         [OutputConstructor]

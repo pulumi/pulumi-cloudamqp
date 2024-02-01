@@ -14,9 +14,11 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type ExtraDiskSizeNode struct {
-	AdditionalDiskSize *int    `pulumi:"additionalDiskSize"`
-	DiskSize           *int    `pulumi:"diskSize"`
-	Name               *string `pulumi:"name"`
+	// Additional added disk size
+	AdditionalDiskSize *int `pulumi:"additionalDiskSize"`
+	// Subscription plan disk size
+	DiskSize *int    `pulumi:"diskSize"`
+	Name     *string `pulumi:"name"`
 }
 
 // ExtraDiskSizeNodeInput is an input type that accepts ExtraDiskSizeNodeArgs and ExtraDiskSizeNodeOutput values.
@@ -31,9 +33,11 @@ type ExtraDiskSizeNodeInput interface {
 }
 
 type ExtraDiskSizeNodeArgs struct {
-	AdditionalDiskSize pulumi.IntPtrInput    `pulumi:"additionalDiskSize"`
-	DiskSize           pulumi.IntPtrInput    `pulumi:"diskSize"`
-	Name               pulumi.StringPtrInput `pulumi:"name"`
+	// Additional added disk size
+	AdditionalDiskSize pulumi.IntPtrInput `pulumi:"additionalDiskSize"`
+	// Subscription plan disk size
+	DiskSize pulumi.IntPtrInput    `pulumi:"diskSize"`
+	Name     pulumi.StringPtrInput `pulumi:"name"`
 }
 
 func (ExtraDiskSizeNodeArgs) ElementType() reflect.Type {
@@ -87,10 +91,12 @@ func (o ExtraDiskSizeNodeOutput) ToExtraDiskSizeNodeOutputWithContext(ctx contex
 	return o
 }
 
+// Additional added disk size
 func (o ExtraDiskSizeNodeOutput) AdditionalDiskSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ExtraDiskSizeNode) *int { return v.AdditionalDiskSize }).(pulumi.IntPtrOutput)
 }
 
+// Subscription plan disk size
 func (o ExtraDiskSizeNodeOutput) DiskSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ExtraDiskSizeNode) *int { return v.DiskSize }).(pulumi.IntPtrOutput)
 }
@@ -232,10 +238,14 @@ func (o InstanceCopySettingArrayOutput) Index(i pulumi.IntInput) InstanceCopySet
 }
 
 type SecurityFirewallRule struct {
-	Description *string  `pulumi:"description"`
-	Ip          string   `pulumi:"ip"`
-	Ports       []int    `pulumi:"ports"`
-	Services    []string `pulumi:"services"`
+	// Naming descripton e.g. 'Default'
+	Description *string `pulumi:"description"`
+	// CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
+	Ip string `pulumi:"ip"`
+	// Custom ports between 0 - 65554
+	Ports []int `pulumi:"ports"`
+	// Pre-defined services 'AMQP', 'AMQPS', 'HTTPS', 'MQTT', 'MQTTS', 'STOMP', 'STOMPS', 'STREAM', 'STREAM_SSL'
+	Services []string `pulumi:"services"`
 }
 
 // SecurityFirewallRuleInput is an input type that accepts SecurityFirewallRuleArgs and SecurityFirewallRuleOutput values.
@@ -250,10 +260,14 @@ type SecurityFirewallRuleInput interface {
 }
 
 type SecurityFirewallRuleArgs struct {
-	Description pulumi.StringPtrInput   `pulumi:"description"`
-	Ip          pulumi.StringInput      `pulumi:"ip"`
-	Ports       pulumi.IntArrayInput    `pulumi:"ports"`
-	Services    pulumi.StringArrayInput `pulumi:"services"`
+	// Naming descripton e.g. 'Default'
+	Description pulumi.StringPtrInput `pulumi:"description"`
+	// CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
+	Ip pulumi.StringInput `pulumi:"ip"`
+	// Custom ports between 0 - 65554
+	Ports pulumi.IntArrayInput `pulumi:"ports"`
+	// Pre-defined services 'AMQP', 'AMQPS', 'HTTPS', 'MQTT', 'MQTTS', 'STOMP', 'STOMPS', 'STREAM', 'STREAM_SSL'
+	Services pulumi.StringArrayInput `pulumi:"services"`
 }
 
 func (SecurityFirewallRuleArgs) ElementType() reflect.Type {
@@ -307,18 +321,22 @@ func (o SecurityFirewallRuleOutput) ToSecurityFirewallRuleOutputWithContext(ctx 
 	return o
 }
 
+// Naming descripton e.g. 'Default'
 func (o SecurityFirewallRuleOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecurityFirewallRule) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
 func (o SecurityFirewallRuleOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v SecurityFirewallRule) string { return v.Ip }).(pulumi.StringOutput)
 }
 
+// Custom ports between 0 - 65554
 func (o SecurityFirewallRuleOutput) Ports() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v SecurityFirewallRule) []int { return v.Ports }).(pulumi.IntArrayOutput)
 }
 
+// Pre-defined services 'AMQP', 'AMQPS', 'HTTPS', 'MQTT', 'MQTTS', 'STOMP', 'STOMPS', 'STREAM', 'STREAM_SSL'
 func (o SecurityFirewallRuleOutput) Services() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecurityFirewallRule) []string { return v.Services }).(pulumi.StringArrayOutput)
 }
@@ -344,11 +362,16 @@ func (o SecurityFirewallRuleArrayOutput) Index(i pulumi.IntInput) SecurityFirewa
 }
 
 type GetAccountInstance struct {
-	Id     int      `pulumi:"id"`
-	Name   string   `pulumi:"name"`
-	Plan   string   `pulumi:"plan"`
-	Region string   `pulumi:"region"`
-	Tags   []string `pulumi:"tags"`
+	// The instance identifier
+	Id int `pulumi:"id"`
+	// The name of the instance
+	Name string `pulumi:"name"`
+	// The subscription plan used for the instance
+	Plan string `pulumi:"plan"`
+	// The region were the instanece is located in
+	Region string `pulumi:"region"`
+	// Tag for the instance
+	Tags []string `pulumi:"tags"`
 }
 
 // GetAccountInstanceInput is an input type that accepts GetAccountInstanceArgs and GetAccountInstanceOutput values.
@@ -363,11 +386,16 @@ type GetAccountInstanceInput interface {
 }
 
 type GetAccountInstanceArgs struct {
-	Id     pulumi.IntInput         `pulumi:"id"`
-	Name   pulumi.StringInput      `pulumi:"name"`
-	Plan   pulumi.StringInput      `pulumi:"plan"`
-	Region pulumi.StringInput      `pulumi:"region"`
-	Tags   pulumi.StringArrayInput `pulumi:"tags"`
+	// The instance identifier
+	Id pulumi.IntInput `pulumi:"id"`
+	// The name of the instance
+	Name pulumi.StringInput `pulumi:"name"`
+	// The subscription plan used for the instance
+	Plan pulumi.StringInput `pulumi:"plan"`
+	// The region were the instanece is located in
+	Region pulumi.StringInput `pulumi:"region"`
+	// Tag for the instance
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
 }
 
 func (GetAccountInstanceArgs) ElementType() reflect.Type {
@@ -421,22 +449,27 @@ func (o GetAccountInstanceOutput) ToGetAccountInstanceOutputWithContext(ctx cont
 	return o
 }
 
+// The instance identifier
 func (o GetAccountInstanceOutput) Id() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAccountInstance) int { return v.Id }).(pulumi.IntOutput)
 }
 
+// The name of the instance
 func (o GetAccountInstanceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccountInstance) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The subscription plan used for the instance
 func (o GetAccountInstanceOutput) Plan() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccountInstance) string { return v.Plan }).(pulumi.StringOutput)
 }
 
+// The region were the instanece is located in
 func (o GetAccountInstanceOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccountInstance) string { return v.Region }).(pulumi.StringOutput)
 }
 
+// Tag for the instance
 func (o GetAccountInstanceOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetAccountInstance) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
@@ -462,12 +495,18 @@ func (o GetAccountInstanceArrayOutput) Index(i pulumi.IntInput) GetAccountInstan
 }
 
 type GetAccountVpcsVpc struct {
-	Id      int      `pulumi:"id"`
-	Name    string   `pulumi:"name"`
-	Region  string   `pulumi:"region"`
-	Subnet  string   `pulumi:"subnet"`
-	Tags    []string `pulumi:"tags"`
-	VpcName string   `pulumi:"vpcName"`
+	// The instance identifier
+	Id int `pulumi:"id"`
+	// The name of the instance
+	Name string `pulumi:"name"`
+	// The region were the instanece is located in
+	Region string `pulumi:"region"`
+	// The VPC subnet
+	Subnet string `pulumi:"subnet"`
+	// Tag the VPC instance with optional tags
+	Tags []string `pulumi:"tags"`
+	// VPC name given when hosted at the cloud provider
+	VpcName string `pulumi:"vpcName"`
 }
 
 // GetAccountVpcsVpcInput is an input type that accepts GetAccountVpcsVpcArgs and GetAccountVpcsVpcOutput values.
@@ -482,12 +521,18 @@ type GetAccountVpcsVpcInput interface {
 }
 
 type GetAccountVpcsVpcArgs struct {
-	Id      pulumi.IntInput         `pulumi:"id"`
-	Name    pulumi.StringInput      `pulumi:"name"`
-	Region  pulumi.StringInput      `pulumi:"region"`
-	Subnet  pulumi.StringInput      `pulumi:"subnet"`
-	Tags    pulumi.StringArrayInput `pulumi:"tags"`
-	VpcName pulumi.StringInput      `pulumi:"vpcName"`
+	// The instance identifier
+	Id pulumi.IntInput `pulumi:"id"`
+	// The name of the instance
+	Name pulumi.StringInput `pulumi:"name"`
+	// The region were the instanece is located in
+	Region pulumi.StringInput `pulumi:"region"`
+	// The VPC subnet
+	Subnet pulumi.StringInput `pulumi:"subnet"`
+	// Tag the VPC instance with optional tags
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
+	// VPC name given when hosted at the cloud provider
+	VpcName pulumi.StringInput `pulumi:"vpcName"`
 }
 
 func (GetAccountVpcsVpcArgs) ElementType() reflect.Type {
@@ -541,26 +586,32 @@ func (o GetAccountVpcsVpcOutput) ToGetAccountVpcsVpcOutputWithContext(ctx contex
 	return o
 }
 
+// The instance identifier
 func (o GetAccountVpcsVpcOutput) Id() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAccountVpcsVpc) int { return v.Id }).(pulumi.IntOutput)
 }
 
+// The name of the instance
 func (o GetAccountVpcsVpcOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccountVpcsVpc) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The region were the instanece is located in
 func (o GetAccountVpcsVpcOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccountVpcsVpc) string { return v.Region }).(pulumi.StringOutput)
 }
 
+// The VPC subnet
 func (o GetAccountVpcsVpcOutput) Subnet() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccountVpcsVpc) string { return v.Subnet }).(pulumi.StringOutput)
 }
 
+// Tag the VPC instance with optional tags
 func (o GetAccountVpcsVpcOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetAccountVpcsVpc) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
+// VPC name given when hosted at the cloud provider
 func (o GetAccountVpcsVpcOutput) VpcName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccountVpcsVpc) string { return v.VpcName }).(pulumi.StringOutput)
 }
@@ -731,8 +782,10 @@ type GetPluginsCommunityPlugin struct {
 	Description string `pulumi:"description"`
 	Name        string `pulumi:"name"`
 	Require     string `pulumi:"require"`
-	Sleep       *int   `pulumi:"sleep"`
-	Timeout     *int   `pulumi:"timeout"`
+	// Configurable sleep time in seconds between retries for plugins
+	Sleep *int `pulumi:"sleep"`
+	// Configurable timeout time in seconds for plugins
+	Timeout *int `pulumi:"timeout"`
 }
 
 // GetPluginsCommunityPluginInput is an input type that accepts GetPluginsCommunityPluginArgs and GetPluginsCommunityPluginOutput values.
@@ -750,8 +803,10 @@ type GetPluginsCommunityPluginArgs struct {
 	Description pulumi.StringInput `pulumi:"description"`
 	Name        pulumi.StringInput `pulumi:"name"`
 	Require     pulumi.StringInput `pulumi:"require"`
-	Sleep       pulumi.IntPtrInput `pulumi:"sleep"`
-	Timeout     pulumi.IntPtrInput `pulumi:"timeout"`
+	// Configurable sleep time in seconds between retries for plugins
+	Sleep pulumi.IntPtrInput `pulumi:"sleep"`
+	// Configurable timeout time in seconds for plugins
+	Timeout pulumi.IntPtrInput `pulumi:"timeout"`
 }
 
 func (GetPluginsCommunityPluginArgs) ElementType() reflect.Type {
@@ -817,10 +872,12 @@ func (o GetPluginsCommunityPluginOutput) Require() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPluginsCommunityPlugin) string { return v.Require }).(pulumi.StringOutput)
 }
 
+// Configurable sleep time in seconds between retries for plugins
 func (o GetPluginsCommunityPluginOutput) Sleep() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetPluginsCommunityPlugin) *int { return v.Sleep }).(pulumi.IntPtrOutput)
 }
 
+// Configurable timeout time in seconds for plugins
 func (o GetPluginsCommunityPluginOutput) Timeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetPluginsCommunityPlugin) *int { return v.Timeout }).(pulumi.IntPtrOutput)
 }
@@ -849,9 +906,11 @@ type GetPluginsPlugin struct {
 	Description string `pulumi:"description"`
 	Enabled     bool   `pulumi:"enabled"`
 	Name        string `pulumi:"name"`
-	Sleep       *int   `pulumi:"sleep"`
-	Timeout     *int   `pulumi:"timeout"`
-	Version     string `pulumi:"version"`
+	// Configurable sleep time in seconds between retries for plugins
+	Sleep *int `pulumi:"sleep"`
+	// Configurable timeout time in seconds for plugins
+	Timeout *int   `pulumi:"timeout"`
+	Version string `pulumi:"version"`
 }
 
 // GetPluginsPluginInput is an input type that accepts GetPluginsPluginArgs and GetPluginsPluginOutput values.
@@ -869,9 +928,11 @@ type GetPluginsPluginArgs struct {
 	Description pulumi.StringInput `pulumi:"description"`
 	Enabled     pulumi.BoolInput   `pulumi:"enabled"`
 	Name        pulumi.StringInput `pulumi:"name"`
-	Sleep       pulumi.IntPtrInput `pulumi:"sleep"`
-	Timeout     pulumi.IntPtrInput `pulumi:"timeout"`
-	Version     pulumi.StringInput `pulumi:"version"`
+	// Configurable sleep time in seconds between retries for plugins
+	Sleep pulumi.IntPtrInput `pulumi:"sleep"`
+	// Configurable timeout time in seconds for plugins
+	Timeout pulumi.IntPtrInput `pulumi:"timeout"`
+	Version pulumi.StringInput `pulumi:"version"`
 }
 
 func (GetPluginsPluginArgs) ElementType() reflect.Type {
@@ -937,10 +998,12 @@ func (o GetPluginsPluginOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPluginsPlugin) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Configurable sleep time in seconds between retries for plugins
 func (o GetPluginsPluginOutput) Sleep() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetPluginsPlugin) *int { return v.Sleep }).(pulumi.IntPtrOutput)
 }
 
+// Configurable timeout time in seconds for plugins
 func (o GetPluginsPluginOutput) Timeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetPluginsPlugin) *int { return v.Timeout }).(pulumi.IntPtrOutput)
 }

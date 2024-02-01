@@ -45,6 +45,10 @@ class ExtraDiskSizeNode(dict):
                  additional_disk_size: Optional[int] = None,
                  disk_size: Optional[int] = None,
                  name: Optional[str] = None):
+        """
+        :param int additional_disk_size: Additional added disk size
+        :param int disk_size: Subscription plan disk size
+        """
         if additional_disk_size is not None:
             pulumi.set(__self__, "additional_disk_size", additional_disk_size)
         if disk_size is not None:
@@ -55,11 +59,17 @@ class ExtraDiskSizeNode(dict):
     @property
     @pulumi.getter(name="additionalDiskSize")
     def additional_disk_size(self) -> Optional[int]:
+        """
+        Additional added disk size
+        """
         return pulumi.get(self, "additional_disk_size")
 
     @property
     @pulumi.getter(name="diskSize")
     def disk_size(self) -> Optional[int]:
+        """
+        Subscription plan disk size
+        """
         return pulumi.get(self, "disk_size")
 
     @property
@@ -125,6 +135,12 @@ class SecurityFirewallRule(dict):
                  description: Optional[str] = None,
                  ports: Optional[Sequence[int]] = None,
                  services: Optional[Sequence[str]] = None):
+        """
+        :param str ip: CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
+        :param str description: Naming descripton e.g. 'Default'
+        :param Sequence[int] ports: Custom ports between 0 - 65554
+        :param Sequence[str] services: Pre-defined services 'AMQP', 'AMQPS', 'HTTPS', 'MQTT', 'MQTTS', 'STOMP', 'STOMPS', 'STREAM', 'STREAM_SSL'
+        """
         pulumi.set(__self__, "ip", ip)
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -136,21 +152,33 @@ class SecurityFirewallRule(dict):
     @property
     @pulumi.getter
     def ip(self) -> str:
+        """
+        CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
+        """
         return pulumi.get(self, "ip")
 
     @property
     @pulumi.getter
     def description(self) -> Optional[str]:
+        """
+        Naming descripton e.g. 'Default'
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def ports(self) -> Optional[Sequence[int]]:
+        """
+        Custom ports between 0 - 65554
+        """
         return pulumi.get(self, "ports")
 
     @property
     @pulumi.getter
     def services(self) -> Optional[Sequence[str]]:
+        """
+        Pre-defined services 'AMQP', 'AMQPS', 'HTTPS', 'MQTT', 'MQTTS', 'STOMP', 'STOMPS', 'STREAM', 'STREAM_SSL'
+        """
         return pulumi.get(self, "services")
 
 
@@ -162,6 +190,13 @@ class GetAccountInstanceResult(dict):
                  plan: str,
                  region: str,
                  tags: Optional[Sequence[str]] = None):
+        """
+        :param int id: The instance identifier
+        :param str name: The name of the instance
+        :param str plan: The subscription plan used for the instance
+        :param str region: The region were the instanece is located in
+        :param Sequence[str] tags: Tag for the instance
+        """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "plan", plan)
@@ -172,26 +207,41 @@ class GetAccountInstanceResult(dict):
     @property
     @pulumi.getter
     def id(self) -> int:
+        """
+        The instance identifier
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The name of the instance
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def plan(self) -> str:
+        """
+        The subscription plan used for the instance
+        """
         return pulumi.get(self, "plan")
 
     @property
     @pulumi.getter
     def region(self) -> str:
+        """
+        The region were the instanece is located in
+        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter
     def tags(self) -> Optional[Sequence[str]]:
+        """
+        Tag for the instance
+        """
         return pulumi.get(self, "tags")
 
 
@@ -204,6 +254,14 @@ class GetAccountVpcsVpcResult(dict):
                  subnet: str,
                  vpc_name: str,
                  tags: Optional[Sequence[str]] = None):
+        """
+        :param int id: The instance identifier
+        :param str name: The name of the instance
+        :param str region: The region were the instanece is located in
+        :param str subnet: The VPC subnet
+        :param str vpc_name: VPC name given when hosted at the cloud provider
+        :param Sequence[str] tags: Tag the VPC instance with optional tags
+        """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "region", region)
@@ -215,31 +273,49 @@ class GetAccountVpcsVpcResult(dict):
     @property
     @pulumi.getter
     def id(self) -> int:
+        """
+        The instance identifier
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The name of the instance
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def region(self) -> str:
+        """
+        The region were the instanece is located in
+        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter
     def subnet(self) -> str:
+        """
+        The VPC subnet
+        """
         return pulumi.get(self, "subnet")
 
     @property
     @pulumi.getter(name="vpcName")
     def vpc_name(self) -> str:
+        """
+        VPC name given when hosted at the cloud provider
+        """
         return pulumi.get(self, "vpc_name")
 
     @property
     @pulumi.getter
     def tags(self) -> Optional[Sequence[str]]:
+        """
+        Tag the VPC instance with optional tags
+        """
         return pulumi.get(self, "tags")
 
 
@@ -319,6 +395,10 @@ class GetPluginsCommunityPluginResult(dict):
                  require: str,
                  sleep: Optional[int] = None,
                  timeout: Optional[int] = None):
+        """
+        :param int sleep: Configurable sleep time in seconds between retries for plugins
+        :param int timeout: Configurable timeout time in seconds for plugins
+        """
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "require", require)
@@ -345,11 +425,17 @@ class GetPluginsCommunityPluginResult(dict):
     @property
     @pulumi.getter
     def sleep(self) -> Optional[int]:
+        """
+        Configurable sleep time in seconds between retries for plugins
+        """
         return pulumi.get(self, "sleep")
 
     @property
     @pulumi.getter
     def timeout(self) -> Optional[int]:
+        """
+        Configurable timeout time in seconds for plugins
+        """
         return pulumi.get(self, "timeout")
 
 
@@ -362,6 +448,10 @@ class GetPluginsPluginResult(dict):
                  version: str,
                  sleep: Optional[int] = None,
                  timeout: Optional[int] = None):
+        """
+        :param int sleep: Configurable sleep time in seconds between retries for plugins
+        :param int timeout: Configurable timeout time in seconds for plugins
+        """
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "name", name)
@@ -394,11 +484,17 @@ class GetPluginsPluginResult(dict):
     @property
     @pulumi.getter
     def sleep(self) -> Optional[int]:
+        """
+        Configurable sleep time in seconds between retries for plugins
+        """
         return pulumi.get(self, "sleep")
 
     @property
     @pulumi.getter
     def timeout(self) -> Optional[int]:
+        """
+        Configurable timeout time in seconds for plugins
+        """
         return pulumi.get(self, "timeout")
 
 

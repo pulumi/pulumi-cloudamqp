@@ -13,25 +13,65 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetAccountInstance {
+    /**
+     * @return The instance identifier
+     * 
+     */
     private Integer id;
+    /**
+     * @return The name of the instance
+     * 
+     */
     private String name;
+    /**
+     * @return The subscription plan used for the instance
+     * 
+     */
     private String plan;
+    /**
+     * @return The region were the instanece is located in
+     * 
+     */
     private String region;
+    /**
+     * @return Tag for the instance
+     * 
+     */
     private @Nullable List<String> tags;
 
     private GetAccountInstance() {}
+    /**
+     * @return The instance identifier
+     * 
+     */
     public Integer id() {
         return this.id;
     }
+    /**
+     * @return The name of the instance
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return The subscription plan used for the instance
+     * 
+     */
     public String plan() {
         return this.plan;
     }
+    /**
+     * @return The region were the instanece is located in
+     * 
+     */
     public String region() {
         return this.region;
     }
+    /**
+     * @return Tag for the instance
+     * 
+     */
     public List<String> tags() {
         return this.tags == null ? List.of() : this.tags;
     }

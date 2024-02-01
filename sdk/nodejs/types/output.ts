@@ -6,25 +6,64 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
 export interface ExtraDiskSizeNode {
+    /**
+     * Additional added disk size
+     */
     additionalDiskSize: number;
+    /**
+     * Subscription plan disk size
+     */
     diskSize: number;
     name: string;
 }
 
 export interface GetAccountInstance {
+    /**
+     * The instance identifier
+     */
     id: number;
+    /**
+     * The name of the instance
+     */
     name: string;
+    /**
+     * The subscription plan used for the instance
+     */
     plan: string;
+    /**
+     * The region were the instanece is located in
+     */
     region: string;
+    /**
+     * Tag for the instance
+     */
     tags?: string[];
 }
 
 export interface GetAccountVpcsVpc {
+    /**
+     * The instance identifier
+     */
     id: number;
+    /**
+     * The name of the instance
+     */
     name: string;
+    /**
+     * The region were the instanece is located in
+     */
     region: string;
+    /**
+     * The VPC subnet
+     */
     subnet: string;
+    /**
+     * Tag the VPC instance with optional tags
+     */
     tags?: string[];
+    /**
+     * VPC name given when hosted at the cloud provider
+     */
     vpcName: string;
 }
 
@@ -44,7 +83,13 @@ export interface GetPluginsCommunityPlugin {
     description: string;
     name: string;
     require: string;
+    /**
+     * Configurable sleep time in seconds between retries for plugins
+     */
     sleep?: number;
+    /**
+     * Configurable timeout time in seconds for plugins
+     */
     timeout?: number;
 }
 
@@ -52,7 +97,13 @@ export interface GetPluginsPlugin {
     description: string;
     enabled: boolean;
     name: string;
+    /**
+     * Configurable sleep time in seconds between retries for plugins
+     */
     sleep?: number;
+    /**
+     * Configurable timeout time in seconds for plugins
+     */
     timeout?: number;
     version: string;
 }
@@ -71,9 +122,21 @@ export interface InstanceCopySetting {
 }
 
 export interface SecurityFirewallRule {
+    /**
+     * Naming descripton e.g. 'Default'
+     */
     description?: string;
+    /**
+     * CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
+     */
     ip: string;
+    /**
+     * Custom ports between 0 - 65554
+     */
     ports?: number[];
+    /**
+     * Pre-defined services 'AMQP', 'AMQPS', 'HTTPS', 'MQTT', 'MQTTS', 'STOMP', 'STOMPS', 'STREAM', 'STREAM_SSL'
+     */
     services?: string[];
 }
 

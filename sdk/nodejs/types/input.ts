@@ -6,7 +6,13 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
 export interface ExtraDiskSizeNode {
+    /**
+     * Additional added disk size
+     */
     additionalDiskSize?: pulumi.Input<number>;
+    /**
+     * Subscription plan disk size
+     */
     diskSize?: pulumi.Input<number>;
     name?: pulumi.Input<string>;
 }
@@ -25,8 +31,20 @@ export interface InstanceCopySetting {
 }
 
 export interface SecurityFirewallRule {
+    /**
+     * Naming descripton e.g. 'Default'
+     */
     description?: pulumi.Input<string>;
+    /**
+     * CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
+     */
     ip: pulumi.Input<string>;
+    /**
+     * Custom ports between 0 - 65554
+     */
     ports?: pulumi.Input<pulumi.Input<number>[]>;
+    /**
+     * Pre-defined services 'AMQP', 'AMQPS', 'HTTPS', 'MQTT', 'MQTTS', 'STOMP', 'STOMPS', 'STREAM', 'STREAM_SSL'
+     */
     services?: pulumi.Input<pulumi.Input<string>[]>;
 }
