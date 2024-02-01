@@ -62,8 +62,7 @@
                 "description": "Base URL to CloudAMQP Customer website\n"
             },
             "enableFasterInstanceDestroy": {
-                "type": "boolean",
-                "description": "Skips destroying backend resources on 'terraform destroy'\n"
+                "type": "boolean"
             }
         },
         "defaults": [
@@ -74,10 +73,12 @@
         "cloudamqp:index/ExtraDiskSizeNode:ExtraDiskSizeNode": {
             "properties": {
                 "additionalDiskSize": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "Additional added disk size\n"
                 },
                 "diskSize": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "Subscription plan disk size\n"
                 },
                 "name": {
                     "type": "string"
@@ -117,22 +118,26 @@
         "cloudamqp:index/SecurityFirewallRule:SecurityFirewallRule": {
             "properties": {
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Naming descripton e.g. 'Default'\n"
                 },
                 "ip": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)\n"
                 },
                 "ports": {
                     "type": "array",
                     "items": {
                         "type": "integer"
-                    }
+                    },
+                    "description": "Custom ports between 0 - 65554\n"
                 },
                 "services": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Pre-defined services 'AMQP', 'AMQPS', 'HTTPS', 'MQTT', 'MQTTS', 'STOMP', 'STOMPS', 'STREAM', 'STREAM_SSL'\n"
                 }
             },
             "type": "object",
@@ -143,22 +148,27 @@
         "cloudamqp:index/getAccountInstance:getAccountInstance": {
             "properties": {
                 "id": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The instance identifier\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the instance\n"
                 },
                 "plan": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The subscription plan used for the instance\n"
                 },
                 "region": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The region were the instanece is located in\n"
                 },
                 "tags": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Tag for the instance\n"
                 }
             },
             "type": "object",
@@ -177,25 +187,31 @@
         "cloudamqp:index/getAccountVpcsVpc:getAccountVpcsVpc": {
             "properties": {
                 "id": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The instance identifier\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the instance\n"
                 },
                 "region": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The region were the instanece is located in\n"
                 },
                 "subnet": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The VPC subnet\n"
                 },
                 "tags": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Tag the VPC instance with optional tags\n"
                 },
                 "vpcName": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "VPC name given when hosted at the cloud provider\n"
                 }
             },
             "type": "object",
@@ -272,10 +288,12 @@
                     "type": "string"
                 },
                 "sleep": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "Configurable sleep time in seconds between retries for plugins\n"
                 },
                 "timeout": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "Configurable timeout time in seconds for plugins\n"
                 }
             },
             "type": "object",
@@ -302,10 +320,12 @@
                     "type": "string"
                 },
                 "sleep": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "Configurable sleep time in seconds between retries for plugins\n"
                 },
                 "timeout": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "Configurable timeout time in seconds for plugins\n"
                 },
                 "version": {
                     "type": "string"
