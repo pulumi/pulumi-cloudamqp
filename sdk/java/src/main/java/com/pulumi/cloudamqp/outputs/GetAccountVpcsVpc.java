@@ -13,29 +13,77 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetAccountVpcsVpc {
+    /**
+     * @return The instance identifier
+     * 
+     */
     private Integer id;
+    /**
+     * @return The name of the instance
+     * 
+     */
     private String name;
+    /**
+     * @return The region were the instanece is located in
+     * 
+     */
     private String region;
+    /**
+     * @return The VPC subnet
+     * 
+     */
     private String subnet;
+    /**
+     * @return Tag the VPC instance with optional tags
+     * 
+     */
     private @Nullable List<String> tags;
+    /**
+     * @return VPC name given when hosted at the cloud provider
+     * 
+     */
     private String vpcName;
 
     private GetAccountVpcsVpc() {}
+    /**
+     * @return The instance identifier
+     * 
+     */
     public Integer id() {
         return this.id;
     }
+    /**
+     * @return The name of the instance
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return The region were the instanece is located in
+     * 
+     */
     public String region() {
         return this.region;
     }
+    /**
+     * @return The VPC subnet
+     * 
+     */
     public String subnet() {
         return this.subnet;
     }
+    /**
+     * @return Tag the VPC instance with optional tags
+     * 
+     */
     public List<String> tags() {
         return this.tags == null ? List.of() : this.tags;
     }
+    /**
+     * @return VPC name given when hosted at the cloud provider
+     * 
+     */
     public String vpcName() {
         return this.vpcName;
     }

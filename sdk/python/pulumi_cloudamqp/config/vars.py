@@ -31,8 +31,5 @@ class _ExportableConfig(types.ModuleType):
 
     @property
     def enable_faster_instance_destroy(self) -> Optional[bool]:
-        """
-        Skips destroying backend resources on 'terraform destroy'
-        """
         return __config__.get_bool('enableFasterInstanceDestroy')
 

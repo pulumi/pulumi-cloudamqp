@@ -20,8 +20,6 @@ func GetApikey(ctx *pulumi.Context) string {
 func GetBaseurl(ctx *pulumi.Context) string {
 	return config.Get(ctx, "cloudamqp:baseurl")
 }
-
-// Skips destroying backend resources on 'terraform destroy'
 func GetEnableFasterInstanceDestroy(ctx *pulumi.Context) bool {
 	return config.GetBool(ctx, "cloudamqp:enableFasterInstanceDestroy")
 }

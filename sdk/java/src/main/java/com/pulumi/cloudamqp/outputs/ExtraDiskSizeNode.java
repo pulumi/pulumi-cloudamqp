@@ -12,14 +12,30 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ExtraDiskSizeNode {
+    /**
+     * @return Additional added disk size
+     * 
+     */
     private @Nullable Integer additionalDiskSize;
+    /**
+     * @return Subscription plan disk size
+     * 
+     */
     private @Nullable Integer diskSize;
     private @Nullable String name;
 
     private ExtraDiskSizeNode() {}
+    /**
+     * @return Additional added disk size
+     * 
+     */
     public Optional<Integer> additionalDiskSize() {
         return Optional.ofNullable(this.additionalDiskSize);
     }
+    /**
+     * @return Subscription plan disk size
+     * 
+     */
     public Optional<Integer> diskSize() {
         return Optional.ofNullable(this.diskSize);
     }
