@@ -16,7 +16,13 @@ namespace Pulumi.CloudAmqp.Outputs
         public readonly string Description;
         public readonly bool Enabled;
         public readonly string Name;
+        /// <summary>
+        /// Configurable sleep time in seconds between retries for plugins
+        /// </summary>
         public readonly int? Sleep;
+        /// <summary>
+        /// Configurable timeout time in seconds for plugins
+        /// </summary>
         public readonly int? Timeout;
         public readonly string Version;
 

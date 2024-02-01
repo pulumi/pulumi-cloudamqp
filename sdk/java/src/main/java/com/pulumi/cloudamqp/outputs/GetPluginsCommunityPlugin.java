@@ -16,7 +16,15 @@ public final class GetPluginsCommunityPlugin {
     private String description;
     private String name;
     private String require;
+    /**
+     * @return Configurable sleep time in seconds between retries for plugins
+     * 
+     */
     private @Nullable Integer sleep;
+    /**
+     * @return Configurable timeout time in seconds for plugins
+     * 
+     */
     private @Nullable Integer timeout;
 
     private GetPluginsCommunityPlugin() {}
@@ -29,9 +37,17 @@ public final class GetPluginsCommunityPlugin {
     public String require() {
         return this.require;
     }
+    /**
+     * @return Configurable sleep time in seconds between retries for plugins
+     * 
+     */
     public Optional<Integer> sleep() {
         return Optional.ofNullable(this.sleep);
     }
+    /**
+     * @return Configurable timeout time in seconds for plugins
+     * 
+     */
     public Optional<Integer> timeout() {
         return Optional.ofNullable(this.timeout);
     }

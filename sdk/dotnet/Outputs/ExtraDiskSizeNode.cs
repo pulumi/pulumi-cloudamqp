@@ -13,7 +13,13 @@ namespace Pulumi.CloudAmqp.Outputs
     [OutputType]
     public sealed class ExtraDiskSizeNode
     {
+        /// <summary>
+        /// Additional added disk size
+        /// </summary>
         public readonly int? AdditionalDiskSize;
+        /// <summary>
+        /// Subscription plan disk size
+        /// </summary>
         public readonly int? DiskSize;
         public readonly string? Name;
 

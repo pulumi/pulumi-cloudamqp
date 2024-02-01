@@ -16,16 +16,32 @@ public final class ExtraDiskSizeNodeArgs extends com.pulumi.resources.ResourceAr
 
     public static final ExtraDiskSizeNodeArgs Empty = new ExtraDiskSizeNodeArgs();
 
+    /**
+     * Additional added disk size
+     * 
+     */
     @Import(name="additionalDiskSize")
     private @Nullable Output<Integer> additionalDiskSize;
 
+    /**
+     * @return Additional added disk size
+     * 
+     */
     public Optional<Output<Integer>> additionalDiskSize() {
         return Optional.ofNullable(this.additionalDiskSize);
     }
 
+    /**
+     * Subscription plan disk size
+     * 
+     */
     @Import(name="diskSize")
     private @Nullable Output<Integer> diskSize;
 
+    /**
+     * @return Subscription plan disk size
+     * 
+     */
     public Optional<Output<Integer>> diskSize() {
         return Optional.ofNullable(this.diskSize);
     }
@@ -63,20 +79,44 @@ public final class ExtraDiskSizeNodeArgs extends com.pulumi.resources.ResourceAr
             $ = new ExtraDiskSizeNodeArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param additionalDiskSize Additional added disk size
+         * 
+         * @return builder
+         * 
+         */
         public Builder additionalDiskSize(@Nullable Output<Integer> additionalDiskSize) {
             $.additionalDiskSize = additionalDiskSize;
             return this;
         }
 
+        /**
+         * @param additionalDiskSize Additional added disk size
+         * 
+         * @return builder
+         * 
+         */
         public Builder additionalDiskSize(Integer additionalDiskSize) {
             return additionalDiskSize(Output.of(additionalDiskSize));
         }
 
+        /**
+         * @param diskSize Subscription plan disk size
+         * 
+         * @return builder
+         * 
+         */
         public Builder diskSize(@Nullable Output<Integer> diskSize) {
             $.diskSize = diskSize;
             return this;
         }
 
+        /**
+         * @param diskSize Subscription plan disk size
+         * 
+         * @return builder
+         * 
+         */
         public Builder diskSize(Integer diskSize) {
             return diskSize(Output.of(diskSize));
         }

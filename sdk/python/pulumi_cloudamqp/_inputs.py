@@ -21,6 +21,10 @@ class ExtraDiskSizeNodeArgs:
                  additional_disk_size: Optional[pulumi.Input[int]] = None,
                  disk_size: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] additional_disk_size: Additional added disk size
+        :param pulumi.Input[int] disk_size: Subscription plan disk size
+        """
         if additional_disk_size is not None:
             pulumi.set(__self__, "additional_disk_size", additional_disk_size)
         if disk_size is not None:
@@ -31,6 +35,9 @@ class ExtraDiskSizeNodeArgs:
     @property
     @pulumi.getter(name="additionalDiskSize")
     def additional_disk_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Additional added disk size
+        """
         return pulumi.get(self, "additional_disk_size")
 
     @additional_disk_size.setter
@@ -40,6 +47,9 @@ class ExtraDiskSizeNodeArgs:
     @property
     @pulumi.getter(name="diskSize")
     def disk_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Subscription plan disk size
+        """
         return pulumi.get(self, "disk_size")
 
     @disk_size.setter
@@ -104,6 +114,12 @@ class SecurityFirewallRuleArgs:
                  description: Optional[pulumi.Input[str]] = None,
                  ports: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] ip: CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
+        :param pulumi.Input[str] description: Naming descripton e.g. 'Default'
+        :param pulumi.Input[Sequence[pulumi.Input[int]]] ports: Custom ports between 0 - 65554
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] services: Pre-defined services 'AMQP', 'AMQPS', 'HTTPS', 'MQTT', 'MQTTS', 'STOMP', 'STOMPS', 'STREAM', 'STREAM_SSL'
+        """
         pulumi.set(__self__, "ip", ip)
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -115,6 +131,9 @@ class SecurityFirewallRuleArgs:
     @property
     @pulumi.getter
     def ip(self) -> pulumi.Input[str]:
+        """
+        CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
+        """
         return pulumi.get(self, "ip")
 
     @ip.setter
@@ -124,6 +143,9 @@ class SecurityFirewallRuleArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Naming descripton e.g. 'Default'
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -133,6 +155,9 @@ class SecurityFirewallRuleArgs:
     @property
     @pulumi.getter
     def ports(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[int]]]]:
+        """
+        Custom ports between 0 - 65554
+        """
         return pulumi.get(self, "ports")
 
     @ports.setter
@@ -142,6 +167,9 @@ class SecurityFirewallRuleArgs:
     @property
     @pulumi.getter
     def services(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Pre-defined services 'AMQP', 'AMQPS', 'HTTPS', 'MQTT', 'MQTTS', 'STOMP', 'STOMPS', 'STREAM', 'STREAM_SSL'
+        """
         return pulumi.get(self, "services")
 
     @services.setter

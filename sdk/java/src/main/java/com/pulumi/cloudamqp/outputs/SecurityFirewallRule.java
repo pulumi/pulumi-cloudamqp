@@ -14,21 +14,53 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class SecurityFirewallRule {
+    /**
+     * @return Naming descripton e.g. &#39;Default&#39;
+     * 
+     */
     private @Nullable String description;
+    /**
+     * @return CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
+     * 
+     */
     private String ip;
+    /**
+     * @return Custom ports between 0 - 65554
+     * 
+     */
     private @Nullable List<Integer> ports;
+    /**
+     * @return Pre-defined services &#39;AMQP&#39;, &#39;AMQPS&#39;, &#39;HTTPS&#39;, &#39;MQTT&#39;, &#39;MQTTS&#39;, &#39;STOMP&#39;, &#39;STOMPS&#39;, &#39;STREAM&#39;, &#39;STREAM_SSL&#39;
+     * 
+     */
     private @Nullable List<String> services;
 
     private SecurityFirewallRule() {}
+    /**
+     * @return Naming descripton e.g. &#39;Default&#39;
+     * 
+     */
     public Optional<String> description() {
         return Optional.ofNullable(this.description);
     }
+    /**
+     * @return CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
+     * 
+     */
     public String ip() {
         return this.ip;
     }
+    /**
+     * @return Custom ports between 0 - 65554
+     * 
+     */
     public List<Integer> ports() {
         return this.ports == null ? List.of() : this.ports;
     }
+    /**
+     * @return Pre-defined services &#39;AMQP&#39;, &#39;AMQPS&#39;, &#39;HTTPS&#39;, &#39;MQTT&#39;, &#39;MQTTS&#39;, &#39;STOMP&#39;, &#39;STOMPS&#39;, &#39;STREAM&#39;, &#39;STREAM_SSL&#39;
+     * 
+     */
     public List<String> services() {
         return this.services == null ? List.of() : this.services;
     }
