@@ -163,7 +163,7 @@ class SecurityFirewall(pulumi.CustomResource):
         `cloudamqp_security_firewall` can be imported using CloudAMQP instance identifier.
 
         ```sh
-         $ pulumi import cloudamqp:index/securityFirewall:SecurityFirewall firewall <instance_id>`
+        $ pulumi import cloudamqp:index/securityFirewall:SecurityFirewall firewall <instance_id>`
         ```
 
         :param str resource_name: The name of the resource.
@@ -184,7 +184,7 @@ class SecurityFirewall(pulumi.CustomResource):
         `cloudamqp_security_firewall` can be imported using CloudAMQP instance identifier.
 
         ```sh
-         $ pulumi import cloudamqp:index/securityFirewall:SecurityFirewall firewall <instance_id>`
+        $ pulumi import cloudamqp:index/securityFirewall:SecurityFirewall firewall <instance_id>`
         ```
 
         :param str resource_name: The name of the resource.

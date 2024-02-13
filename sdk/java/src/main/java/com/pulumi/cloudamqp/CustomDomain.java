@@ -64,10 +64,10 @@ import javax.annotation.Nullable;
  * `cloudamqp_custom_domain` can be imported using CloudAMQP instance identifier.
  * 
  * ```sh
- *  $ pulumi import cloudamqp:index/customDomain:CustomDomain settings &lt;instance_id&gt;`
+ * $ pulumi import cloudamqp:index/customDomain:CustomDomain settings &lt;instance_id&gt;`
  * ```
  * 
- *  [Let&#39;s Encrypt]https://letsencrypt.org/
+ * [Let&#39;s Encrypt]: https://letsencrypt.org/
  * 
  */
 @ResourceType(type="cloudamqp:index/customDomain:CustomDomain")

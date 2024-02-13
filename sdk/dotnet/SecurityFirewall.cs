@@ -15,7 +15,7 @@ namespace Pulumi.CloudAmqp
     /// `cloudamqp_security_firewall` can be imported using CloudAMQP instance identifier.
     /// 
     /// ```sh
-    ///  $ pulumi import cloudamqp:index/securityFirewall:SecurityFirewall firewall &lt;instance_id&gt;`
+    /// $ pulumi import cloudamqp:index/securityFirewall:SecurityFirewall firewall &lt;instance_id&gt;`
     /// ```
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/securityFirewall:SecurityFirewall")]

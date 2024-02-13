@@ -68,12 +68,12 @@ import (
 // `cloudamqp_vpc` can be imported using the CloudAMQP VPC identifier.
 //
 // ```sh
-//
-//	$ pulumi import cloudamqp:index/vpc:Vpc <resource_name> <vpc_id>`
-//
+// $ pulumi import cloudamqp:index/vpc:Vpc <resource_name> <vpc_id>`
 // ```
 //
-//	To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-vpcs). Or use the data source `cloudamqp_account_vpcs` to list all available standalone VPCs for an account.
+//	To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-vpcs).
+//
+//	Or use the data source `cloudamqp_account_vpcs` to list all available standalone VPCs for an account.
 type Vpc struct {
 	pulumi.CustomResourceState
 

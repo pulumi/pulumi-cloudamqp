@@ -566,7 +566,7 @@ class VpcConnect(pulumi.CustomResource):
         `cloudamqp_vpc_connect` can be imported using CloudAMQP internal identifier.
 
         ```sh
-         $ pulumi import cloudamqp:index/vpcConnect:VpcConnect vpc_connect <id>`
+        $ pulumi import cloudamqp:index/vpcConnect:VpcConnect vpc_connect <id>`
         ```
 
          The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
@@ -801,7 +801,7 @@ class VpcConnect(pulumi.CustomResource):
         `cloudamqp_vpc_connect` can be imported using CloudAMQP internal identifier.
 
         ```sh
-         $ pulumi import cloudamqp:index/vpcConnect:VpcConnect vpc_connect <id>`
+        $ pulumi import cloudamqp:index/vpcConnect:VpcConnect vpc_connect <id>`
         ```
 
          The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).

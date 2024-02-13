@@ -104,9 +104,7 @@ import (
 // `cloudamqp_alarm` can be imported using CloudAMQP internal identifier of the alarm together (CSV separated) with the instance identifier. To retrieve the alarm identifier, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-alarms)
 //
 // ```sh
-//
-//	$ pulumi import cloudamqp:index/alarm:Alarm alarm <id>,<instance_id>`
-//
+// $ pulumi import cloudamqp:index/alarm:Alarm alarm <id>,<instance_id>`
 // ```
 type Alarm struct {
 	pulumi.CustomResourceState

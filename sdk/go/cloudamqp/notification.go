@@ -291,9 +291,7 @@ import (
 // `cloudamqp_notification` can be imported using CloudAMQP internal identifier of a recipient together (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
 //
 // ```sh
-//
-//	$ pulumi import cloudamqp:index/notification:Notification recipient <id>,<instance_id>`
-//
+// $ pulumi import cloudamqp:index/notification:Notification recipient <id>,<instance_id>`
 // ```
 type Notification struct {
 	pulumi.CustomResourceState

@@ -345,7 +345,7 @@ namespace Pulumi.CloudAmqp
     /// `cloudamqp_instance`can be imported using CloudAMQP internal identifier.
     /// 
     /// ```sh
-    ///  $ pulumi import cloudamqp:index/instance:Instance instance &lt;id&gt;`
+    /// $ pulumi import cloudamqp:index/instance:Instance instance &lt;id&gt;`
     /// ```
     /// 
     ///  To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md) to list all available instances for an account.

@@ -15,7 +15,7 @@ namespace Pulumi.CloudAmqp
     /// `cloudamqp_rabbitmq_configuration` can be imported using the CloudAMQP instance identifier.
     /// 
     /// ```sh
-    ///  $ pulumi import cloudamqp:index/rabbitConfiguration:RabbitConfiguration config &lt;instance_id&gt;`
+    /// $ pulumi import cloudamqp:index/rabbitConfiguration:RabbitConfiguration config &lt;instance_id&gt;`
     /// ```
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/rabbitConfiguration:RabbitConfiguration")]

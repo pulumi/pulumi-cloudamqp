@@ -47,10 +47,10 @@ namespace Pulumi.CloudAmqp
     /// `cloudamqp_custom_domain` can be imported using CloudAMQP instance identifier.
     /// 
     /// ```sh
-    ///  $ pulumi import cloudamqp:index/customDomain:CustomDomain settings &lt;instance_id&gt;`
+    /// $ pulumi import cloudamqp:index/customDomain:CustomDomain settings &lt;instance_id&gt;`
     /// ```
     /// 
-    ///  [Let's Encrypt]https://letsencrypt.org/
+    /// [Let's Encrypt]: https://letsencrypt.org/
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/customDomain:CustomDomain")]
     public partial class CustomDomain : global::Pulumi.CustomResource

@@ -12,7 +12,7 @@ import * as utilities from "./utilities";
  * `cloudamqp_security_firewall` can be imported using CloudAMQP instance identifier.
  *
  * ```sh
- *  $ pulumi import cloudamqp:index/securityFirewall:SecurityFirewall firewall <instance_id>`
+ * $ pulumi import cloudamqp:index/securityFirewall:SecurityFirewall firewall <instance_id>`
  * ```
  */
 export class SecurityFirewall extends pulumi.CustomResource {

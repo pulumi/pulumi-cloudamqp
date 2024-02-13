@@ -79,10 +79,12 @@ import javax.annotation.Nullable;
  * `cloudamqp_vpc` can be imported using the CloudAMQP VPC identifier.
  * 
  * ```sh
- *  $ pulumi import cloudamqp:index/vpc:Vpc &lt;resource_name&gt; &lt;vpc_id&gt;`
+ * $ pulumi import cloudamqp:index/vpc:Vpc &lt;resource_name&gt; &lt;vpc_id&gt;`
  * ```
  * 
- *  To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-vpcs). Or use the data source `cloudamqp_account_vpcs` to list all available standalone VPCs for an account.
+ *  To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-vpcs).
+ * 
+ *  Or use the data source `cloudamqp_account_vpcs` to list all available standalone VPCs for an account.
  * 
  */
 @ResourceType(type="cloudamqp:index/vpc:Vpc")

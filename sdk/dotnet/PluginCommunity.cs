@@ -12,10 +12,12 @@ namespace Pulumi.CloudAmqp
     /// <summary>
     /// ## Import
     /// 
-    /// `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+    /// `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP
+    /// 
+    ///  instance identifier. The name and identifier are CSV separated, see example below.
     /// 
     /// ```sh
-    ///  $ pulumi import cloudamqp:index/pluginCommunity:PluginCommunity &lt;resource_name&gt; &lt;plugin_name&gt;,&lt;instance_id&gt;`
+    /// $ pulumi import cloudamqp:index/pluginCommunity:PluginCommunity &lt;resource_name&gt; &lt;plugin_name&gt;,&lt;instance_id&gt;`
     /// ```
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/pluginCommunity:PluginCommunity")]

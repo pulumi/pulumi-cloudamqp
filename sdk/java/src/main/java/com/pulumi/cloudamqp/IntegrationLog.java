@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  * `cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
  * 
  * ```sh
- *  $ pulumi import cloudamqp:index/integrationLog:IntegrationLog &lt;resource_name&gt; &lt;id&gt;,&lt;instance_id&gt;`
+ * $ pulumi import cloudamqp:index/integrationLog:IntegrationLog &lt;resource_name&gt; &lt;id&gt;,&lt;instance_id&gt;`
  * ```
  * 
  */

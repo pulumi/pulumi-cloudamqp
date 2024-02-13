@@ -127,10 +127,10 @@ class CustomDomain(pulumi.CustomResource):
         `cloudamqp_custom_domain` can be imported using CloudAMQP instance identifier.
 
         ```sh
-         $ pulumi import cloudamqp:index/customDomain:CustomDomain settings <instance_id>`
+        $ pulumi import cloudamqp:index/customDomain:CustomDomain settings <instance_id>`
         ```
 
-         [Let's Encrypt]https://letsencrypt.org/
+        [Let's Encrypt]: https://letsencrypt.org/
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -173,10 +173,10 @@ class CustomDomain(pulumi.CustomResource):
         `cloudamqp_custom_domain` can be imported using CloudAMQP instance identifier.
 
         ```sh
-         $ pulumi import cloudamqp:index/customDomain:CustomDomain settings <instance_id>`
+        $ pulumi import cloudamqp:index/customDomain:CustomDomain settings <instance_id>`
         ```
 
-         [Let's Encrypt]https://letsencrypt.org/
+        [Let's Encrypt]: https://letsencrypt.org/
 
         :param str resource_name: The name of the resource.
         :param CustomDomainArgs args: The arguments to use to populate this resource's properties.
