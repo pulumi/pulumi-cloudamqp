@@ -86,7 +86,7 @@ import javax.annotation.Nullable;
  * `cloudamqp_integration_aws_eventbridge` can be imported using CloudAMQP internal identifier of the AWS EventBridge together (CSV separated) with the instance identifier. To retrieve the AWS EventBridge identifier, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-eventbridges)
  * 
  * ```sh
- *  $ pulumi import cloudamqp:index/integrationAwsEventbridge:IntegrationAwsEventbridge aws_eventbridge &lt;id&gt;,&lt;instance_id&gt;`
+ * $ pulumi import cloudamqp:index/integrationAwsEventbridge:IntegrationAwsEventbridge aws_eventbridge &lt;id&gt;,&lt;instance_id&gt;`
  * ```
  * 
  */

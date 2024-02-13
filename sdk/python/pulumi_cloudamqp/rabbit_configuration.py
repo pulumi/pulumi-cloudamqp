@@ -442,7 +442,7 @@ class RabbitConfiguration(pulumi.CustomResource):
         `cloudamqp_rabbitmq_configuration` can be imported using the CloudAMQP instance identifier.
 
         ```sh
-         $ pulumi import cloudamqp:index/rabbitConfiguration:RabbitConfiguration config <instance_id>`
+        $ pulumi import cloudamqp:index/rabbitConfiguration:RabbitConfiguration config <instance_id>`
         ```
 
         :param str resource_name: The name of the resource.
@@ -474,7 +474,7 @@ class RabbitConfiguration(pulumi.CustomResource):
         `cloudamqp_rabbitmq_configuration` can be imported using the CloudAMQP instance identifier.
 
         ```sh
-         $ pulumi import cloudamqp:index/rabbitConfiguration:RabbitConfiguration config <instance_id>`
+        $ pulumi import cloudamqp:index/rabbitConfiguration:RabbitConfiguration config <instance_id>`
         ```
 
         :param str resource_name: The name of the resource.

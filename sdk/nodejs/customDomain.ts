@@ -35,10 +35,10 @@ import * as utilities from "./utilities";
  * `cloudamqp_custom_domain` can be imported using CloudAMQP instance identifier.
  *
  * ```sh
- *  $ pulumi import cloudamqp:index/customDomain:CustomDomain settings <instance_id>`
+ * $ pulumi import cloudamqp:index/customDomain:CustomDomain settings <instance_id>`
  * ```
  *
- *  [Let's Encrypt]https://letsencrypt.org/
+ * [Let's Encrypt]: https://letsencrypt.org/
  */
 export class CustomDomain extends pulumi.CustomResource {
     /**

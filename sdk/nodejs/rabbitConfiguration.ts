@@ -10,7 +10,7 @@ import * as utilities from "./utilities";
  * `cloudamqp_rabbitmq_configuration` can be imported using the CloudAMQP instance identifier.
  *
  * ```sh
- *  $ pulumi import cloudamqp:index/rabbitConfiguration:RabbitConfiguration config <instance_id>`
+ * $ pulumi import cloudamqp:index/rabbitConfiguration:RabbitConfiguration config <instance_id>`
  * ```
  */
 export class RabbitConfiguration extends pulumi.CustomResource {

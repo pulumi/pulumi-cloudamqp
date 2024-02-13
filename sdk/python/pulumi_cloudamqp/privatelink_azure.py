@@ -381,7 +381,7 @@ class PrivatelinkAzure(pulumi.CustomResource):
         `cloudamqp_privatelink_aws` can be imported using CloudAMQP internal identifier.
 
         ```sh
-         $ pulumi import cloudamqp:index/privatelinkAzure:PrivatelinkAzure privatelink <id>`
+        $ pulumi import cloudamqp:index/privatelinkAzure:PrivatelinkAzure privatelink <id>`
         ```
 
          The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
@@ -551,7 +551,7 @@ class PrivatelinkAzure(pulumi.CustomResource):
         `cloudamqp_privatelink_aws` can be imported using CloudAMQP internal identifier.
 
         ```sh
-         $ pulumi import cloudamqp:index/privatelinkAzure:PrivatelinkAzure privatelink <id>`
+        $ pulumi import cloudamqp:index/privatelinkAzure:PrivatelinkAzure privatelink <id>`
         ```
 
          The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
