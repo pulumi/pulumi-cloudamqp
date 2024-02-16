@@ -2,10 +2,14 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * This resource allows you to create and manage recipients to receive alarm notifications. There will always be a default recipient created upon instance creation. This recipient will use team email and receive notifications from default alarms.
+ * This resource allows you to create and manage recipients to receive alarm notifications. There will
+ * always be a default recipient created upon instance creation. This recipient will use team email and
+ * receive notifications from default alarms.
  *
  * Available for all subscription plans.
  *
@@ -31,7 +35,7 @@ import * as utilities from "./utilities";
  *
  * <details>
  *   <summary>
- *     <b>OpsGenie recipient</b>
+ *     <b>OpsGenie recipient with optional responders</b>
  *   </summary>
  *
  * ```typescript
@@ -42,6 +46,16 @@ import * as utilities from "./utilities";
  *     instanceId: cloudamqp_instance.instance.id,
  *     type: "opsgenie",
  *     value: "<api-key>",
+ *     responders: [
+ *         {
+ *             type: "team",
+ *             id: "<team-uuid>",
+ *         },
+ *         {
+ *             type: "user",
+ *             username: "<username>",
+ *         },
+ *     ],
  * });
  * ```
  *
@@ -49,7 +63,7 @@ import * as utilities from "./utilities";
  *
  * <details>
  *   <summary>
- *     <b>Pagerduty recipient</b>
+ *     <b>Pagerduty recipient with optional dedup key</b>
  *   </summary>
  *
  * ```typescript
@@ -106,7 +120,7 @@ import * as utilities from "./utilities";
  *
  * <details>
  *   <summary>
- *     <b>Victorops recipient</b>
+ *     <b>Victorops recipient with optional routing key (rk)</b>
  *   </summary>
  *
  * ```typescript
@@ -169,7 +183,11 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * `cloudamqp_notification` can be imported using CloudAMQP internal identifier of a recipient together (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
+ * `cloudamqp_notification` can be imported using CloudAMQP internal identifier of a recipient together
+ *
+ *  (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use
+ *
+ *  [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
  *
  * ```sh
  * $ pulumi import cloudamqp:index/notification:Notification recipient <id>,<instance_id>`
@@ -208,7 +226,7 @@ export class Notification extends pulumi.CustomResource {
      */
     public readonly instanceId!: pulumi.Output<number>;
     /**
-     * Display name of the recipient.
+     * Name of the responder
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -216,7 +234,16 @@ export class Notification extends pulumi.CustomResource {
      */
     public readonly options!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * Type of the notification. See valid options below.
+     * An array of reponders (only for OpsGenie). Each `responders` block
+     * consists of the field documented below.
+     *
+     * ___
+     *
+     * The `responders` block consists of:
+     */
+    public readonly responders!: pulumi.Output<outputs.NotificationResponder[] | undefined>;
+    /**
+     * Type of responder. [`team`, `user`, `escalation`, `schedule`]
      */
     public readonly type!: pulumi.Output<string>;
     /**
@@ -240,6 +267,7 @@ export class Notification extends pulumi.CustomResource {
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["options"] = state ? state.options : undefined;
+            resourceInputs["responders"] = state ? state.responders : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["value"] = state ? state.value : undefined;
         } else {
@@ -256,6 +284,7 @@ export class Notification extends pulumi.CustomResource {
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["options"] = args ? args.options : undefined;
+            resourceInputs["responders"] = args ? args.responders : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["value"] = args ? args.value : undefined;
         }
@@ -273,7 +302,7 @@ export interface NotificationState {
      */
     instanceId?: pulumi.Input<number>;
     /**
-     * Display name of the recipient.
+     * Name of the responder
      */
     name?: pulumi.Input<string>;
     /**
@@ -281,7 +310,16 @@ export interface NotificationState {
      */
     options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Type of the notification. See valid options below.
+     * An array of reponders (only for OpsGenie). Each `responders` block
+     * consists of the field documented below.
+     *
+     * ___
+     *
+     * The `responders` block consists of:
+     */
+    responders?: pulumi.Input<pulumi.Input<inputs.NotificationResponder>[]>;
+    /**
+     * Type of responder. [`team`, `user`, `escalation`, `schedule`]
      */
     type?: pulumi.Input<string>;
     /**
@@ -299,7 +337,7 @@ export interface NotificationArgs {
      */
     instanceId: pulumi.Input<number>;
     /**
-     * Display name of the recipient.
+     * Name of the responder
      */
     name?: pulumi.Input<string>;
     /**
@@ -307,7 +345,16 @@ export interface NotificationArgs {
      */
     options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Type of the notification. See valid options below.
+     * An array of reponders (only for OpsGenie). Each `responders` block
+     * consists of the field documented below.
+     *
+     * ___
+     *
+     * The `responders` block consists of:
+     */
+    responders?: pulumi.Input<pulumi.Input<inputs.NotificationResponder>[]>;
+    /**
+     * Type of responder. [`team`, `user`, `escalation`, `schedule`]
      */
     type: pulumi.Input<string>;
     /**

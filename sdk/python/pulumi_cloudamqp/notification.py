@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['NotificationArgs', 'Notification']
 
@@ -18,14 +20,21 @@ class NotificationArgs:
                  type: pulumi.Input[str],
                  value: pulumi.Input[str],
                  name: Optional[pulumi.Input[str]] = None,
-                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
+                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 responders: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationResponderArgs']]]] = None):
         """
         The set of arguments for constructing a Notification resource.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[str] type: Type of the notification. See valid options below.
+        :param pulumi.Input[str] type: Type of responder. [`team`, `user`, `escalation`, `schedule`]
         :param pulumi.Input[str] value: Integration/API key or endpoint to send the notification.
-        :param pulumi.Input[str] name: Display name of the recipient.
+        :param pulumi.Input[str] name: Name of the responder
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Options argument (e.g. `rk` used for VictorOps routing key).
+        :param pulumi.Input[Sequence[pulumi.Input['NotificationResponderArgs']]] responders: An array of reponders (only for OpsGenie). Each `responders` block
+               consists of the field documented below.
+               
+               ___
+               
+               The `responders` block consists of:
         """
         pulumi.set(__self__, "instance_id", instance_id)
         pulumi.set(__self__, "type", type)
@@ -34,6 +43,8 @@ class NotificationArgs:
             pulumi.set(__self__, "name", name)
         if options is not None:
             pulumi.set(__self__, "options", options)
+        if responders is not None:
+            pulumi.set(__self__, "responders", responders)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -51,7 +62,7 @@ class NotificationArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        Type of the notification. See valid options below.
+        Type of responder. [`team`, `user`, `escalation`, `schedule`]
         """
         return pulumi.get(self, "type")
 
@@ -75,7 +86,7 @@ class NotificationArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Display name of the recipient.
+        Name of the responder
         """
         return pulumi.get(self, "name")
 
@@ -95,6 +106,23 @@ class NotificationArgs:
     def options(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "options", value)
 
+    @property
+    @pulumi.getter
+    def responders(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NotificationResponderArgs']]]]:
+        """
+        An array of reponders (only for OpsGenie). Each `responders` block
+        consists of the field documented below.
+
+        ___
+
+        The `responders` block consists of:
+        """
+        return pulumi.get(self, "responders")
+
+    @responders.setter
+    def responders(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationResponderArgs']]]]):
+        pulumi.set(self, "responders", value)
+
 
 @pulumi.input_type
 class _NotificationState:
@@ -102,14 +130,21 @@ class _NotificationState:
                  instance_id: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 responders: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationResponderArgs']]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  value: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Notification resources.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[str] name: Display name of the recipient.
+        :param pulumi.Input[str] name: Name of the responder
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Options argument (e.g. `rk` used for VictorOps routing key).
-        :param pulumi.Input[str] type: Type of the notification. See valid options below.
+        :param pulumi.Input[Sequence[pulumi.Input['NotificationResponderArgs']]] responders: An array of reponders (only for OpsGenie). Each `responders` block
+               consists of the field documented below.
+               
+               ___
+               
+               The `responders` block consists of:
+        :param pulumi.Input[str] type: Type of responder. [`team`, `user`, `escalation`, `schedule`]
         :param pulumi.Input[str] value: Integration/API key or endpoint to send the notification.
         """
         if instance_id is not None:
@@ -118,6 +153,8 @@ class _NotificationState:
             pulumi.set(__self__, "name", name)
         if options is not None:
             pulumi.set(__self__, "options", options)
+        if responders is not None:
+            pulumi.set(__self__, "responders", responders)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if value is not None:
@@ -139,7 +176,7 @@ class _NotificationState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Display name of the recipient.
+        Name of the responder
         """
         return pulumi.get(self, "name")
 
@@ -161,9 +198,26 @@ class _NotificationState:
 
     @property
     @pulumi.getter
+    def responders(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NotificationResponderArgs']]]]:
+        """
+        An array of reponders (only for OpsGenie). Each `responders` block
+        consists of the field documented below.
+
+        ___
+
+        The `responders` block consists of:
+        """
+        return pulumi.get(self, "responders")
+
+    @responders.setter
+    def responders(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationResponderArgs']]]]):
+        pulumi.set(self, "responders", value)
+
+    @property
+    @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        Type of the notification. See valid options below.
+        Type of responder. [`team`, `user`, `escalation`, `schedule`]
         """
         return pulumi.get(self, "type")
 
@@ -192,11 +246,14 @@ class Notification(pulumi.CustomResource):
                  instance_id: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 responders: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationResponderArgs']]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  value: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        This resource allows you to create and manage recipients to receive alarm notifications. There will always be a default recipient created upon instance creation. This recipient will use team email and receive notifications from default alarms.
+        This resource allows you to create and manage recipients to receive alarm notifications. There will
+        always be a default recipient created upon instance creation. This recipient will use team email and
+        receive notifications from default alarms.
 
         Available for all subscription plans.
 
@@ -221,7 +278,7 @@ class Notification(pulumi.CustomResource):
 
         <details>
           <summary>
-            <b>OpsGenie recipient</b>
+            <b>OpsGenie recipient with optional responders</b>
           </summary>
 
         ```python
@@ -231,14 +288,24 @@ class Notification(pulumi.CustomResource):
         opsgenie_recipient = cloudamqp.Notification("opsgenieRecipient",
             instance_id=cloudamqp_instance["instance"]["id"],
             type="opsgenie",
-            value="<api-key>")
+            value="<api-key>",
+            responders=[
+                cloudamqp.NotificationResponderArgs(
+                    type="team",
+                    id="<team-uuid>",
+                ),
+                cloudamqp.NotificationResponderArgs(
+                    type="user",
+                    username="<username>",
+                ),
+            ])
         ```
 
         </details>
 
         <details>
           <summary>
-            <b>Pagerduty recipient</b>
+            <b>Pagerduty recipient with optional dedup key</b>
           </summary>
 
         ```python
@@ -292,7 +359,7 @@ class Notification(pulumi.CustomResource):
 
         <details>
           <summary>
-            <b>Victorops recipient</b>
+            <b>Victorops recipient with optional routing key (rk)</b>
           </summary>
 
         ```python
@@ -353,7 +420,11 @@ class Notification(pulumi.CustomResource):
 
         ## Import
 
-        `cloudamqp_notification` can be imported using CloudAMQP internal identifier of a recipient together (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
+        `cloudamqp_notification` can be imported using CloudAMQP internal identifier of a recipient together
+
+         (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use
+
+         [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
 
         ```sh
         $ pulumi import cloudamqp:index/notification:Notification recipient <id>,<instance_id>`
@@ -362,9 +433,15 @@ class Notification(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[str] name: Display name of the recipient.
+        :param pulumi.Input[str] name: Name of the responder
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Options argument (e.g. `rk` used for VictorOps routing key).
-        :param pulumi.Input[str] type: Type of the notification. See valid options below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationResponderArgs']]]] responders: An array of reponders (only for OpsGenie). Each `responders` block
+               consists of the field documented below.
+               
+               ___
+               
+               The `responders` block consists of:
+        :param pulumi.Input[str] type: Type of responder. [`team`, `user`, `escalation`, `schedule`]
         :param pulumi.Input[str] value: Integration/API key or endpoint to send the notification.
         """
         ...
@@ -374,7 +451,9 @@ class Notification(pulumi.CustomResource):
                  args: NotificationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        This resource allows you to create and manage recipients to receive alarm notifications. There will always be a default recipient created upon instance creation. This recipient will use team email and receive notifications from default alarms.
+        This resource allows you to create and manage recipients to receive alarm notifications. There will
+        always be a default recipient created upon instance creation. This recipient will use team email and
+        receive notifications from default alarms.
 
         Available for all subscription plans.
 
@@ -399,7 +478,7 @@ class Notification(pulumi.CustomResource):
 
         <details>
           <summary>
-            <b>OpsGenie recipient</b>
+            <b>OpsGenie recipient with optional responders</b>
           </summary>
 
         ```python
@@ -409,14 +488,24 @@ class Notification(pulumi.CustomResource):
         opsgenie_recipient = cloudamqp.Notification("opsgenieRecipient",
             instance_id=cloudamqp_instance["instance"]["id"],
             type="opsgenie",
-            value="<api-key>")
+            value="<api-key>",
+            responders=[
+                cloudamqp.NotificationResponderArgs(
+                    type="team",
+                    id="<team-uuid>",
+                ),
+                cloudamqp.NotificationResponderArgs(
+                    type="user",
+                    username="<username>",
+                ),
+            ])
         ```
 
         </details>
 
         <details>
           <summary>
-            <b>Pagerduty recipient</b>
+            <b>Pagerduty recipient with optional dedup key</b>
           </summary>
 
         ```python
@@ -470,7 +559,7 @@ class Notification(pulumi.CustomResource):
 
         <details>
           <summary>
-            <b>Victorops recipient</b>
+            <b>Victorops recipient with optional routing key (rk)</b>
           </summary>
 
         ```python
@@ -531,7 +620,11 @@ class Notification(pulumi.CustomResource):
 
         ## Import
 
-        `cloudamqp_notification` can be imported using CloudAMQP internal identifier of a recipient together (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
+        `cloudamqp_notification` can be imported using CloudAMQP internal identifier of a recipient together
+
+         (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use
+
+         [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
 
         ```sh
         $ pulumi import cloudamqp:index/notification:Notification recipient <id>,<instance_id>`
@@ -555,6 +648,7 @@ class Notification(pulumi.CustomResource):
                  instance_id: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 responders: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationResponderArgs']]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  value: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -571,6 +665,7 @@ class Notification(pulumi.CustomResource):
             __props__.__dict__["instance_id"] = instance_id
             __props__.__dict__["name"] = name
             __props__.__dict__["options"] = options
+            __props__.__dict__["responders"] = responders
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
@@ -590,6 +685,7 @@ class Notification(pulumi.CustomResource):
             instance_id: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            responders: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationResponderArgs']]]]] = None,
             type: Optional[pulumi.Input[str]] = None,
             value: Optional[pulumi.Input[str]] = None) -> 'Notification':
         """
@@ -600,9 +696,15 @@ class Notification(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[str] name: Display name of the recipient.
+        :param pulumi.Input[str] name: Name of the responder
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Options argument (e.g. `rk` used for VictorOps routing key).
-        :param pulumi.Input[str] type: Type of the notification. See valid options below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationResponderArgs']]]] responders: An array of reponders (only for OpsGenie). Each `responders` block
+               consists of the field documented below.
+               
+               ___
+               
+               The `responders` block consists of:
+        :param pulumi.Input[str] type: Type of responder. [`team`, `user`, `escalation`, `schedule`]
         :param pulumi.Input[str] value: Integration/API key or endpoint to send the notification.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -612,6 +714,7 @@ class Notification(pulumi.CustomResource):
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["name"] = name
         __props__.__dict__["options"] = options
+        __props__.__dict__["responders"] = responders
         __props__.__dict__["type"] = type
         __props__.__dict__["value"] = value
         return Notification(resource_name, opts=opts, __props__=__props__)
@@ -628,7 +731,7 @@ class Notification(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Display name of the recipient.
+        Name of the responder
         """
         return pulumi.get(self, "name")
 
@@ -642,9 +745,22 @@ class Notification(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def responders(self) -> pulumi.Output[Optional[Sequence['outputs.NotificationResponder']]]:
+        """
+        An array of reponders (only for OpsGenie). Each `responders` block
+        consists of the field documented below.
+
+        ___
+
+        The `responders` block consists of:
+        """
+        return pulumi.get(self, "responders")
+
+    @property
+    @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        Type of the notification. See valid options below.
+        Type of responder. [`team`, `user`, `escalation`, `schedule`]
         """
         return pulumi.get(self, "type")
 

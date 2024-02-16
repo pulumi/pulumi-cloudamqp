@@ -3,10 +3,12 @@
 
 package com.pulumi.cloudamqp.inputs;
 
+import com.pulumi.cloudamqp.inputs.NotificationResponderArgs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -33,14 +35,14 @@ public final class NotificationState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Display name of the recipient.
+     * Name of the responder
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return Display name of the recipient.
+     * @return Name of the responder
      * 
      */
     public Optional<Output<String>> name() {
@@ -63,14 +65,39 @@ public final class NotificationState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Type of the notification. See valid options below.
+     * An array of reponders (only for OpsGenie). Each `responders` block
+     * consists of the field documented below.
+     * 
+     * ***
+     * 
+     * The `responders` block consists of:
+     * 
+     */
+    @Import(name="responders")
+    private @Nullable Output<List<NotificationResponderArgs>> responders;
+
+    /**
+     * @return An array of reponders (only for OpsGenie). Each `responders` block
+     * consists of the field documented below.
+     * 
+     * ***
+     * 
+     * The `responders` block consists of:
+     * 
+     */
+    public Optional<Output<List<NotificationResponderArgs>>> responders() {
+        return Optional.ofNullable(this.responders);
+    }
+
+    /**
+     * Type of responder. [`team`, `user`, `escalation`, `schedule`]
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return Type of the notification. See valid options below.
+     * @return Type of responder. [`team`, `user`, `escalation`, `schedule`]
      * 
      */
     public Optional<Output<String>> type() {
@@ -98,6 +125,7 @@ public final class NotificationState extends com.pulumi.resources.ResourceArgs {
         this.instanceId = $.instanceId;
         this.name = $.name;
         this.options = $.options;
+        this.responders = $.responders;
         this.type = $.type;
         this.value = $.value;
     }
@@ -142,7 +170,7 @@ public final class NotificationState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name Display name of the recipient.
+         * @param name Name of the responder
          * 
          * @return builder
          * 
@@ -153,7 +181,7 @@ public final class NotificationState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name Display name of the recipient.
+         * @param name Name of the responder
          * 
          * @return builder
          * 
@@ -184,7 +212,53 @@ public final class NotificationState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param type Type of the notification. See valid options below.
+         * @param responders An array of reponders (only for OpsGenie). Each `responders` block
+         * consists of the field documented below.
+         * 
+         * ***
+         * 
+         * The `responders` block consists of:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder responders(@Nullable Output<List<NotificationResponderArgs>> responders) {
+            $.responders = responders;
+            return this;
+        }
+
+        /**
+         * @param responders An array of reponders (only for OpsGenie). Each `responders` block
+         * consists of the field documented below.
+         * 
+         * ***
+         * 
+         * The `responders` block consists of:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder responders(List<NotificationResponderArgs> responders) {
+            return responders(Output.of(responders));
+        }
+
+        /**
+         * @param responders An array of reponders (only for OpsGenie). Each `responders` block
+         * consists of the field documented below.
+         * 
+         * ***
+         * 
+         * The `responders` block consists of:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder responders(NotificationResponderArgs... responders) {
+            return responders(List.of(responders));
+        }
+
+        /**
+         * @param type Type of responder. [`team`, `user`, `escalation`, `schedule`]
          * 
          * @return builder
          * 
@@ -195,7 +269,7 @@ public final class NotificationState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param type Type of the notification. See valid options below.
+         * @param type Type of responder. [`team`, `user`, `escalation`, `schedule`]
          * 
          * @return builder
          * 
