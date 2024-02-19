@@ -12,6 +12,7 @@ from . import _utilities
 __all__ = [
     'ExtraDiskSizeNodeArgs',
     'InstanceCopySettingArgs',
+    'NotificationResponderArgs',
     'SecurityFirewallRuleArgs',
 ]
 
@@ -105,6 +106,82 @@ class InstanceCopySettingArgs:
     @subscription_id.setter
     def subscription_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "subscription_id", value)
+
+
+@pulumi.input_type
+class NotificationResponderArgs:
+    def __init__(__self__, *,
+                 type: pulumi.Input[str],
+                 id: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] type: Type of responder. [`team`, `user`, `escalation`, `schedule`]
+        :param pulumi.Input[str] id: Identifier in UUID format
+        :param pulumi.Input[str] name: Name of the responder
+        :param pulumi.Input[str] username: Username of the responder
+               
+               Responders of type `team`, `escalation` and `schedule` can use either id or name.
+               While `user` can use either id or username.
+        """
+        pulumi.set(__self__, "type", type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        """
+        Type of responder. [`team`, `user`, `escalation`, `schedule`]
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier in UUID format
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the responder
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        Username of the responder
+
+        Responders of type `team`, `escalation` and `schedule` can use either id or name.
+        While `user` can use either id or username.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
 
 
 @pulumi.input_type

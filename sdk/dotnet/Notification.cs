@@ -10,7 +10,9 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
-    /// This resource allows you to create and manage recipients to receive alarm notifications. There will always be a default recipient created upon instance creation. This recipient will use team email and receive notifications from default alarms.
+    /// This resource allows you to create and manage recipients to receive alarm notifications. There will
+    /// always be a default recipient created upon instance creation. This recipient will use team email and
+    /// receive notifications from default alarms.
     /// 
     /// Available for all subscription plans.
     /// 
@@ -43,7 +45,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// &lt;details&gt;
     ///   &lt;summary&gt;
-    ///     &lt;b&gt;OpsGenie recipient&lt;/b&gt;
+    ///     &lt;b&gt;OpsGenie recipient with optional responders&lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
     /// ```csharp
@@ -59,6 +61,19 @@ namespace Pulumi.CloudAmqp
     ///         InstanceId = cloudamqp_instance.Instance.Id,
     ///         Type = "opsgenie",
     ///         Value = "&lt;api-key&gt;",
+    ///         Responders = new[]
+    ///         {
+    ///             new CloudAmqp.Inputs.NotificationResponderArgs
+    ///             {
+    ///                 Type = "team",
+    ///                 Id = "&lt;team-uuid&gt;",
+    ///             },
+    ///             new CloudAmqp.Inputs.NotificationResponderArgs
+    ///             {
+    ///                 Type = "user",
+    ///                 Username = "&lt;username&gt;",
+    ///             },
+    ///         },
     ///     });
     /// 
     /// });
@@ -68,7 +83,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// &lt;details&gt;
     ///   &lt;summary&gt;
-    ///     &lt;b&gt;Pagerduty recipient&lt;/b&gt;
+    ///     &lt;b&gt;Pagerduty recipient with optional dedup key&lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
     /// ```csharp
@@ -147,7 +162,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// &lt;details&gt;
     ///   &lt;summary&gt;
-    ///     &lt;b&gt;Victorops recipient&lt;/b&gt;
+    ///     &lt;b&gt;Victorops recipient with optional routing key (rk)&lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
     /// ```csharp
@@ -225,7 +240,11 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ## Import
     /// 
-    /// `cloudamqp_notification` can be imported using CloudAMQP internal identifier of a recipient together (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
+    /// `cloudamqp_notification` can be imported using CloudAMQP internal identifier of a recipient together
+    /// 
+    ///  (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use
+    /// 
+    ///  [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
     /// 
     /// ```sh
     /// $ pulumi import cloudamqp:index/notification:Notification recipient &lt;id&gt;,&lt;instance_id&gt;`
@@ -241,7 +260,7 @@ namespace Pulumi.CloudAmqp
         public Output<int> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// Display name of the recipient.
+        /// Name of the responder
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -253,7 +272,18 @@ namespace Pulumi.CloudAmqp
         public Output<ImmutableDictionary<string, string>?> Options { get; private set; } = null!;
 
         /// <summary>
-        /// Type of the notification. See valid options below.
+        /// An array of reponders (only for OpsGenie). Each `responders` block
+        /// consists of the field documented below.
+        /// 
+        /// ___
+        /// 
+        /// The `responders` block consists of:
+        /// </summary>
+        [Output("responders")]
+        public Output<ImmutableArray<Outputs.NotificationResponder>> Responders { get; private set; } = null!;
+
+        /// <summary>
+        /// Type of responder. [`team`, `user`, `escalation`, `schedule`]
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -317,7 +347,7 @@ namespace Pulumi.CloudAmqp
         public Input<int> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// Display name of the recipient.
+        /// Name of the responder
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -334,8 +364,25 @@ namespace Pulumi.CloudAmqp
             set => _options = value;
         }
 
+        [Input("responders")]
+        private InputList<Inputs.NotificationResponderArgs>? _responders;
+
         /// <summary>
-        /// Type of the notification. See valid options below.
+        /// An array of reponders (only for OpsGenie). Each `responders` block
+        /// consists of the field documented below.
+        /// 
+        /// ___
+        /// 
+        /// The `responders` block consists of:
+        /// </summary>
+        public InputList<Inputs.NotificationResponderArgs> Responders
+        {
+            get => _responders ?? (_responders = new InputList<Inputs.NotificationResponderArgs>());
+            set => _responders = value;
+        }
+
+        /// <summary>
+        /// Type of responder. [`team`, `user`, `escalation`, `schedule`]
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -361,7 +408,7 @@ namespace Pulumi.CloudAmqp
         public Input<int>? InstanceId { get; set; }
 
         /// <summary>
-        /// Display name of the recipient.
+        /// Name of the responder
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -378,8 +425,25 @@ namespace Pulumi.CloudAmqp
             set => _options = value;
         }
 
+        [Input("responders")]
+        private InputList<Inputs.NotificationResponderGetArgs>? _responders;
+
         /// <summary>
-        /// Type of the notification. See valid options below.
+        /// An array of reponders (only for OpsGenie). Each `responders` block
+        /// consists of the field documented below.
+        /// 
+        /// ___
+        /// 
+        /// The `responders` block consists of:
+        /// </summary>
+        public InputList<Inputs.NotificationResponderGetArgs> Responders
+        {
+            get => _responders ?? (_responders = new InputList<Inputs.NotificationResponderGetArgs>());
+            set => _responders = value;
+        }
+
+        /// <summary>
+        /// Type of responder. [`team`, `user`, `escalation`, `schedule`]
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

@@ -121,6 +121,28 @@ export interface InstanceCopySetting {
     subscriptionId: string;
 }
 
+export interface NotificationResponder {
+    /**
+     * Identifier in UUID format
+     */
+    id?: string;
+    /**
+     * Name of the responder
+     */
+    name?: string;
+    /**
+     * Type of responder. [`team`, `user`, `escalation`, `schedule`]
+     */
+    type: string;
+    /**
+     * Username of the responder
+     *
+     * Responders of type `team`, `escalation` and `schedule` can use either id or name.
+     * While `user` can use either id or username.
+     */
+    username?: string;
+}
+
 export interface SecurityFirewallRule {
     /**
      * Naming descripton e.g. 'Default'

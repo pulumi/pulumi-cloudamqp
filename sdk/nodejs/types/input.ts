@@ -30,6 +30,28 @@ export interface InstanceCopySetting {
     subscriptionId: pulumi.Input<string>;
 }
 
+export interface NotificationResponder {
+    /**
+     * Identifier in UUID format
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Name of the responder
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * Type of responder. [`team`, `user`, `escalation`, `schedule`]
+     */
+    type: pulumi.Input<string>;
+    /**
+     * Username of the responder
+     *
+     * Responders of type `team`, `escalation` and `schedule` can use either id or name.
+     * While `user` can use either id or username.
+     */
+    username?: pulumi.Input<string>;
+}
+
 export interface SecurityFirewallRule {
     /**
      * Naming descripton e.g. 'Default'

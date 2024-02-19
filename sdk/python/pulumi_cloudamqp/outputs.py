@@ -12,6 +12,7 @@ from . import _utilities
 __all__ = [
     'ExtraDiskSizeNode',
     'InstanceCopySetting',
+    'NotificationResponder',
     'SecurityFirewallRule',
     'GetAccountInstanceResult',
     'GetAccountVpcsVpcResult',
@@ -126,6 +127,66 @@ class InstanceCopySetting(dict):
         Instance identifier of the CloudAMQP instance to copy the settings from.
         """
         return pulumi.get(self, "subscription_id")
+
+
+@pulumi.output_type
+class NotificationResponder(dict):
+    def __init__(__self__, *,
+                 type: str,
+                 id: Optional[str] = None,
+                 name: Optional[str] = None,
+                 username: Optional[str] = None):
+        """
+        :param str type: Type of responder. [`team`, `user`, `escalation`, `schedule`]
+        :param str id: Identifier in UUID format
+        :param str name: Name of the responder
+        :param str username: Username of the responder
+               
+               Responders of type `team`, `escalation` and `schedule` can use either id or name.
+               While `user` can use either id or username.
+        """
+        pulumi.set(__self__, "type", type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        Type of responder. [`team`, `user`, `escalation`, `schedule`]
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        Identifier in UUID format
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Name of the responder
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        """
+        Username of the responder
+
+        Responders of type `team`, `escalation` and `schedule` can use either id or name.
+        While `user` can use either id or username.
+        """
+        return pulumi.get(self, "username")
 
 
 @pulumi.output_type

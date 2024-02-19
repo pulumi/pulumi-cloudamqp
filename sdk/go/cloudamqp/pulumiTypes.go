@@ -237,6 +237,139 @@ func (o InstanceCopySettingArrayOutput) Index(i pulumi.IntInput) InstanceCopySet
 	}).(InstanceCopySettingOutput)
 }
 
+type NotificationResponder struct {
+	// Identifier in UUID format
+	Id *string `pulumi:"id"`
+	// Name of the responder
+	Name *string `pulumi:"name"`
+	// Type of responder. [`team`, `user`, `escalation`, `schedule`]
+	Type string `pulumi:"type"`
+	// Username of the responder
+	//
+	// Responders of type `team`, `escalation` and `schedule` can use either id or name.
+	// While `user` can use either id or username.
+	Username *string `pulumi:"username"`
+}
+
+// NotificationResponderInput is an input type that accepts NotificationResponderArgs and NotificationResponderOutput values.
+// You can construct a concrete instance of `NotificationResponderInput` via:
+//
+//	NotificationResponderArgs{...}
+type NotificationResponderInput interface {
+	pulumi.Input
+
+	ToNotificationResponderOutput() NotificationResponderOutput
+	ToNotificationResponderOutputWithContext(context.Context) NotificationResponderOutput
+}
+
+type NotificationResponderArgs struct {
+	// Identifier in UUID format
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Name of the responder
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Type of responder. [`team`, `user`, `escalation`, `schedule`]
+	Type pulumi.StringInput `pulumi:"type"`
+	// Username of the responder
+	//
+	// Responders of type `team`, `escalation` and `schedule` can use either id or name.
+	// While `user` can use either id or username.
+	Username pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (NotificationResponderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationResponder)(nil)).Elem()
+}
+
+func (i NotificationResponderArgs) ToNotificationResponderOutput() NotificationResponderOutput {
+	return i.ToNotificationResponderOutputWithContext(context.Background())
+}
+
+func (i NotificationResponderArgs) ToNotificationResponderOutputWithContext(ctx context.Context) NotificationResponderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationResponderOutput)
+}
+
+// NotificationResponderArrayInput is an input type that accepts NotificationResponderArray and NotificationResponderArrayOutput values.
+// You can construct a concrete instance of `NotificationResponderArrayInput` via:
+//
+//	NotificationResponderArray{ NotificationResponderArgs{...} }
+type NotificationResponderArrayInput interface {
+	pulumi.Input
+
+	ToNotificationResponderArrayOutput() NotificationResponderArrayOutput
+	ToNotificationResponderArrayOutputWithContext(context.Context) NotificationResponderArrayOutput
+}
+
+type NotificationResponderArray []NotificationResponderInput
+
+func (NotificationResponderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationResponder)(nil)).Elem()
+}
+
+func (i NotificationResponderArray) ToNotificationResponderArrayOutput() NotificationResponderArrayOutput {
+	return i.ToNotificationResponderArrayOutputWithContext(context.Background())
+}
+
+func (i NotificationResponderArray) ToNotificationResponderArrayOutputWithContext(ctx context.Context) NotificationResponderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationResponderArrayOutput)
+}
+
+type NotificationResponderOutput struct{ *pulumi.OutputState }
+
+func (NotificationResponderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationResponder)(nil)).Elem()
+}
+
+func (o NotificationResponderOutput) ToNotificationResponderOutput() NotificationResponderOutput {
+	return o
+}
+
+func (o NotificationResponderOutput) ToNotificationResponderOutputWithContext(ctx context.Context) NotificationResponderOutput {
+	return o
+}
+
+// Identifier in UUID format
+func (o NotificationResponderOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationResponder) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Name of the responder
+func (o NotificationResponderOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationResponder) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// Type of responder. [`team`, `user`, `escalation`, `schedule`]
+func (o NotificationResponderOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationResponder) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Username of the responder
+//
+// Responders of type `team`, `escalation` and `schedule` can use either id or name.
+// While `user` can use either id or username.
+func (o NotificationResponderOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationResponder) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type NotificationResponderArrayOutput struct{ *pulumi.OutputState }
+
+func (NotificationResponderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationResponder)(nil)).Elem()
+}
+
+func (o NotificationResponderArrayOutput) ToNotificationResponderArrayOutput() NotificationResponderArrayOutput {
+	return o
+}
+
+func (o NotificationResponderArrayOutput) ToNotificationResponderArrayOutputWithContext(ctx context.Context) NotificationResponderArrayOutput {
+	return o
+}
+
+func (o NotificationResponderArrayOutput) Index(i pulumi.IntInput) NotificationResponderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NotificationResponder {
+		return vs[0].([]NotificationResponder)[vs[1].(int)]
+	}).(NotificationResponderOutput)
+}
+
 type SecurityFirewallRule struct {
 	// Naming descripton e.g. 'Default'
 	Description *string `pulumi:"description"`
@@ -1037,6 +1170,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ExtraDiskSizeNodeArrayInput)(nil)).Elem(), ExtraDiskSizeNodeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceCopySettingInput)(nil)).Elem(), InstanceCopySettingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceCopySettingArrayInput)(nil)).Elem(), InstanceCopySettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationResponderInput)(nil)).Elem(), NotificationResponderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationResponderArrayInput)(nil)).Elem(), NotificationResponderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityFirewallRuleInput)(nil)).Elem(), SecurityFirewallRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityFirewallRuleArrayInput)(nil)).Elem(), SecurityFirewallRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountInstanceInput)(nil)).Elem(), GetAccountInstanceArgs{})
@@ -1053,6 +1188,8 @@ func init() {
 	pulumi.RegisterOutputType(ExtraDiskSizeNodeArrayOutput{})
 	pulumi.RegisterOutputType(InstanceCopySettingOutput{})
 	pulumi.RegisterOutputType(InstanceCopySettingArrayOutput{})
+	pulumi.RegisterOutputType(NotificationResponderOutput{})
+	pulumi.RegisterOutputType(NotificationResponderArrayOutput{})
 	pulumi.RegisterOutputType(SecurityFirewallRuleOutput{})
 	pulumi.RegisterOutputType(SecurityFirewallRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetAccountInstanceOutput{})

@@ -6,18 +6,22 @@ package com.pulumi.cloudamqp;
 import com.pulumi.cloudamqp.NotificationArgs;
 import com.pulumi.cloudamqp.Utilities;
 import com.pulumi.cloudamqp.inputs.NotificationState;
+import com.pulumi.cloudamqp.outputs.NotificationResponder;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Export;
 import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * This resource allows you to create and manage recipients to receive alarm notifications. There will always be a default recipient created upon instance creation. This recipient will use team email and receive notifications from default alarms.
+ * This resource allows you to create and manage recipients to receive alarm notifications. There will
+ * always be a default recipient created upon instance creation. This recipient will use team email and
+ * receive notifications from default alarms.
  * 
  * Available for all subscription plans.
  * 
@@ -62,7 +66,7 @@ import javax.annotation.Nullable;
  * 
  * &lt;details&gt;
  *   &lt;summary&gt;
- *     &lt;b&gt;OpsGenie recipient&lt;/b&gt;
+ *     &lt;b&gt;OpsGenie recipient with optional responders&lt;/b&gt;
  *   &lt;/summary&gt;
  * ```java
  * package generated_program;
@@ -72,6 +76,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.cloudamqp.Notification;
  * import com.pulumi.cloudamqp.NotificationArgs;
+ * import com.pulumi.cloudamqp.inputs.NotificationResponderArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -89,6 +94,15 @@ import javax.annotation.Nullable;
  *             .instanceId(cloudamqp_instance.instance().id())
  *             .type(&#34;opsgenie&#34;)
  *             .value(&#34;&lt;api-key&gt;&#34;)
+ *             .responders(            
+ *                 NotificationResponderArgs.builder()
+ *                     .type(&#34;team&#34;)
+ *                     .id(&#34;&lt;team-uuid&gt;&#34;)
+ *                     .build(),
+ *                 NotificationResponderArgs.builder()
+ *                     .type(&#34;user&#34;)
+ *                     .username(&#34;&lt;username&gt;&#34;)
+ *                     .build())
  *             .build());
  * 
  *     }
@@ -99,7 +113,7 @@ import javax.annotation.Nullable;
  * 
  * &lt;details&gt;
  *   &lt;summary&gt;
- *     &lt;b&gt;Pagerduty recipient&lt;/b&gt;
+ *     &lt;b&gt;Pagerduty recipient with optional dedup key&lt;/b&gt;
  *   &lt;/summary&gt;
  * ```java
  * package generated_program;
@@ -211,7 +225,7 @@ import javax.annotation.Nullable;
  * 
  * &lt;details&gt;
  *   &lt;summary&gt;
- *     &lt;b&gt;Victorops recipient&lt;/b&gt;
+ *     &lt;b&gt;Victorops recipient with optional routing key (rk)&lt;/b&gt;
  *   &lt;/summary&gt;
  * ```java
  * package generated_program;
@@ -310,7 +324,11 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * `cloudamqp_notification` can be imported using CloudAMQP internal identifier of a recipient together (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
+ * `cloudamqp_notification` can be imported using CloudAMQP internal identifier of a recipient together
+ * 
+ *  (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use
+ * 
+ *  [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
  * 
  * ```sh
  * $ pulumi import cloudamqp:index/notification:Notification recipient &lt;id&gt;,&lt;instance_id&gt;`
@@ -334,14 +352,14 @@ public class Notification extends com.pulumi.resources.CustomResource {
         return this.instanceId;
     }
     /**
-     * Display name of the recipient.
+     * Name of the responder
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return Display name of the recipient.
+     * @return Name of the responder
      * 
      */
     public Output<String> name() {
@@ -362,14 +380,38 @@ public class Notification extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.options);
     }
     /**
-     * Type of the notification. See valid options below.
+     * An array of reponders (only for OpsGenie). Each `responders` block
+     * consists of the field documented below.
+     * 
+     * ***
+     * 
+     * The `responders` block consists of:
+     * 
+     */
+    @Export(name="responders", refs={List.class,NotificationResponder.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<NotificationResponder>> responders;
+
+    /**
+     * @return An array of reponders (only for OpsGenie). Each `responders` block
+     * consists of the field documented below.
+     * 
+     * ***
+     * 
+     * The `responders` block consists of:
+     * 
+     */
+    public Output<Optional<List<NotificationResponder>>> responders() {
+        return Codegen.optional(this.responders);
+    }
+    /**
+     * Type of responder. [`team`, `user`, `escalation`, `schedule`]
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
-     * @return Type of the notification. See valid options below.
+     * @return Type of responder. [`team`, `user`, `escalation`, `schedule`]
      * 
      */
     public Output<String> type() {

@@ -12,7 +12,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource allows you to create and manage recipients to receive alarm notifications. There will always be a default recipient created upon instance creation. This recipient will use team email and receive notifications from default alarms.
+// This resource allows you to create and manage recipients to receive alarm notifications. There will
+// always be a default recipient created upon instance creation. This recipient will use team email and
+// receive notifications from default alarms.
 //
 // Available for all subscription plans.
 //
@@ -55,7 +57,7 @@ import (
 // <details>
 //
 //	<summary>
-//	  <b>OpsGenie recipient</b>
+//	  <b>OpsGenie recipient with optional responders</b>
 //	</summary>
 //
 // ```go
@@ -74,6 +76,16 @@ import (
 //				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
 //				Type:       pulumi.String("opsgenie"),
 //				Value:      pulumi.String("<api-key>"),
+//				Responders: cloudamqp.NotificationResponderArray{
+//					&cloudamqp.NotificationResponderArgs{
+//						Type: pulumi.String("team"),
+//						Id:   pulumi.String("<team-uuid>"),
+//					},
+//					&cloudamqp.NotificationResponderArgs{
+//						Type:     pulumi.String("user"),
+//						Username: pulumi.String("<username>"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -89,7 +101,7 @@ import (
 // <details>
 //
 //	<summary>
-//	  <b>Pagerduty recipient</b>
+//	  <b>Pagerduty recipient with optional dedup key</b>
 //	</summary>
 //
 // ```go
@@ -194,7 +206,7 @@ import (
 // <details>
 //
 //	<summary>
-//	  <b>Victorops recipient</b>
+//	  <b>Victorops recipient with optional routing key (rk)</b>
 //	</summary>
 //
 // ```go
@@ -288,7 +300,11 @@ import (
 //
 // ## Import
 //
-// `cloudamqp_notification` can be imported using CloudAMQP internal identifier of a recipient together (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
+// `cloudamqp_notification` can be imported using CloudAMQP internal identifier of a recipient together
+//
+//	(CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use
+//
+//	[CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
 //
 // ```sh
 // $ pulumi import cloudamqp:index/notification:Notification recipient <id>,<instance_id>`
@@ -298,11 +314,18 @@ type Notification struct {
 
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
-	// Display name of the recipient.
+	// Name of the responder
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Options argument (e.g. `rk` used for VictorOps routing key).
 	Options pulumi.StringMapOutput `pulumi:"options"`
-	// Type of the notification. See valid options below.
+	// An array of reponders (only for OpsGenie). Each `responders` block
+	// consists of the field documented below.
+	//
+	// ***
+	//
+	// The `responders` block consists of:
+	Responders NotificationResponderArrayOutput `pulumi:"responders"`
+	// Type of responder. [`team`, `user`, `escalation`, `schedule`]
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Integration/API key or endpoint to send the notification.
 	Value pulumi.StringOutput `pulumi:"value"`
@@ -349,11 +372,18 @@ func GetNotification(ctx *pulumi.Context,
 type notificationState struct {
 	// The CloudAMQP instance ID.
 	InstanceId *int `pulumi:"instanceId"`
-	// Display name of the recipient.
+	// Name of the responder
 	Name *string `pulumi:"name"`
 	// Options argument (e.g. `rk` used for VictorOps routing key).
 	Options map[string]string `pulumi:"options"`
-	// Type of the notification. See valid options below.
+	// An array of reponders (only for OpsGenie). Each `responders` block
+	// consists of the field documented below.
+	//
+	// ***
+	//
+	// The `responders` block consists of:
+	Responders []NotificationResponder `pulumi:"responders"`
+	// Type of responder. [`team`, `user`, `escalation`, `schedule`]
 	Type *string `pulumi:"type"`
 	// Integration/API key or endpoint to send the notification.
 	Value *string `pulumi:"value"`
@@ -362,11 +392,18 @@ type notificationState struct {
 type NotificationState struct {
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntPtrInput
-	// Display name of the recipient.
+	// Name of the responder
 	Name pulumi.StringPtrInput
 	// Options argument (e.g. `rk` used for VictorOps routing key).
 	Options pulumi.StringMapInput
-	// Type of the notification. See valid options below.
+	// An array of reponders (only for OpsGenie). Each `responders` block
+	// consists of the field documented below.
+	//
+	// ***
+	//
+	// The `responders` block consists of:
+	Responders NotificationResponderArrayInput
+	// Type of responder. [`team`, `user`, `escalation`, `schedule`]
 	Type pulumi.StringPtrInput
 	// Integration/API key or endpoint to send the notification.
 	Value pulumi.StringPtrInput
@@ -379,11 +416,18 @@ func (NotificationState) ElementType() reflect.Type {
 type notificationArgs struct {
 	// The CloudAMQP instance ID.
 	InstanceId int `pulumi:"instanceId"`
-	// Display name of the recipient.
+	// Name of the responder
 	Name *string `pulumi:"name"`
 	// Options argument (e.g. `rk` used for VictorOps routing key).
 	Options map[string]string `pulumi:"options"`
-	// Type of the notification. See valid options below.
+	// An array of reponders (only for OpsGenie). Each `responders` block
+	// consists of the field documented below.
+	//
+	// ***
+	//
+	// The `responders` block consists of:
+	Responders []NotificationResponder `pulumi:"responders"`
+	// Type of responder. [`team`, `user`, `escalation`, `schedule`]
 	Type string `pulumi:"type"`
 	// Integration/API key or endpoint to send the notification.
 	Value string `pulumi:"value"`
@@ -393,11 +437,18 @@ type notificationArgs struct {
 type NotificationArgs struct {
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntInput
-	// Display name of the recipient.
+	// Name of the responder
 	Name pulumi.StringPtrInput
 	// Options argument (e.g. `rk` used for VictorOps routing key).
 	Options pulumi.StringMapInput
-	// Type of the notification. See valid options below.
+	// An array of reponders (only for OpsGenie). Each `responders` block
+	// consists of the field documented below.
+	//
+	// ***
+	//
+	// The `responders` block consists of:
+	Responders NotificationResponderArrayInput
+	// Type of responder. [`team`, `user`, `escalation`, `schedule`]
 	Type pulumi.StringInput
 	// Integration/API key or endpoint to send the notification.
 	Value pulumi.StringInput
@@ -495,7 +546,7 @@ func (o NotificationOutput) InstanceId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Notification) pulumi.IntOutput { return v.InstanceId }).(pulumi.IntOutput)
 }
 
-// Display name of the recipient.
+// Name of the responder
 func (o NotificationOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Notification) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -505,7 +556,17 @@ func (o NotificationOutput) Options() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Notification) pulumi.StringMapOutput { return v.Options }).(pulumi.StringMapOutput)
 }
 
-// Type of the notification. See valid options below.
+// An array of reponders (only for OpsGenie). Each `responders` block
+// consists of the field documented below.
+//
+// ***
+//
+// The `responders` block consists of:
+func (o NotificationOutput) Responders() NotificationResponderArrayOutput {
+	return o.ApplyT(func(v *Notification) NotificationResponderArrayOutput { return v.Responders }).(NotificationResponderArrayOutput)
+}
+
+// Type of responder. [`team`, `user`, `escalation`, `schedule`]
 func (o NotificationOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Notification) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
