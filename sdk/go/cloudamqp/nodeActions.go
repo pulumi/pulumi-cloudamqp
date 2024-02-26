@@ -38,6 +38,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// New recipient to receieve notifications
 //			_, err := cloudamqp.NewNodeActions(ctx, "nodeAction", &cloudamqp.NodeActionsArgs{
 //				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
 //				NodeName:   pulumi.String("<node name>"),
