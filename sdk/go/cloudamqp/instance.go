@@ -40,6 +40,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Minimum free lemur instance running RabbitMQ
 //			_, err := cloudamqp.NewInstance(ctx, "lemurInstance", &cloudamqp.InstanceArgs{
 //				Plan:   pulumi.String("lemur"),
 //				Region: pulumi.String("amazon-web-services::us-west-1"),
@@ -50,6 +51,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Minimum free lemming instance running LavinMQ
 //			_, err = cloudamqp.NewInstance(ctx, "lemmingInstance", &cloudamqp.InstanceArgs{
 //				Plan:   pulumi.String("lemming"),
 //				Region: pulumi.String("amazon-web-services::us-west-1"),
@@ -60,6 +62,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// New dedicated bunny instance running RabbitMQ
 //			_, err = cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
 //				Plan:   pulumi.String("bunny-1"),
 //				Region: pulumi.String("amazon-web-services::us-west-1"),
@@ -135,6 +138,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Dedicated instance that also creates VPC
 //			_, err := cloudamqp.NewInstance(ctx, "instance01", &cloudamqp.InstanceArgs{
 //				Plan:   pulumi.String("bunny-1"),
 //				Region: pulumi.String("amazon-web-services::us-west-1"),
@@ -168,6 +172,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Imported managed VPC
 //			vpc, err := cloudamqp.NewVpc(ctx, "vpc", &cloudamqp.VpcArgs{
 //				Region: pulumi.String("amazon-web-services::us-east-1"),
 //				Subnet: pulumi.String("10.56.72.0/24"),
@@ -176,6 +181,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Add vpc_id and keep_associated_vpc attributes
 //			_, err = cloudamqp.NewInstance(ctx, "instance01", &cloudamqp.InstanceArgs{
 //				Plan:   pulumi.String("bunny-1"),
 //				Region: pulumi.String("amazon-web-services::us-west-1"),
@@ -215,6 +221,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Managed VPC
 //			vpc, err := cloudamqp.NewVpc(ctx, "vpc", &cloudamqp.VpcArgs{
 //				Region: pulumi.String("amazon-web-services::us-east-1"),
 //				Subnet: pulumi.String("10.56.72.0/24"),
@@ -223,6 +230,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// First instance added to managed VPC
 //			_, err = cloudamqp.NewInstance(ctx, "instance01", &cloudamqp.InstanceArgs{
 //				Plan:   pulumi.String("bunny-1"),
 //				Region: pulumi.String("amazon-web-services::us-west-1"),
@@ -235,6 +243,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Second instance added to managed VPC
 //			_, err = cloudamqp.NewInstance(ctx, "instance02", &cloudamqp.InstanceArgs{
 //				Plan:   pulumi.String("bunny-1"),
 //				Region: pulumi.String("amazon-web-services::us-west-1"),
@@ -279,6 +288,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Upgraded CloudAMQP instance configuration
 //			_, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
 //				Plan:   pulumi.String("bunny-1"),
 //				Region: pulumi.String("amazon-web-services::us-west-1"),
@@ -316,6 +326,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Downgraded CloudAMQP instance configuration
 //			_, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
 //				Plan:   pulumi.String("bunny-1"),
 //				Region: pulumi.String("amazon-web-services::us-west-1"),
