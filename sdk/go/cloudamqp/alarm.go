@@ -32,6 +32,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// New recipient
 //			recipient01, err := cloudamqp.NewNotification(ctx, "recipient01", &cloudamqp.NotificationArgs{
 //				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
 //				Type:       pulumi.String("email"),
@@ -40,6 +41,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// New cpu alarm
 //			_, err = cloudamqp.NewAlarm(ctx, "cpuAlarm", &cloudamqp.AlarmArgs{
 //				InstanceId:       pulumi.Any(cloudamqp_instance.Instance.Id),
 //				Type:             pulumi.String("cpu"),
@@ -54,6 +56,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// New memory alarm
 //			_, err = cloudamqp.NewAlarm(ctx, "memoryAlarm", &cloudamqp.AlarmArgs{
 //				InstanceId:       pulumi.Any(cloudamqp_instance.Instance.Id),
 //				Type:             pulumi.String("memory"),

@@ -57,6 +57,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Instance
 //			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
 //				Plan:   pulumi.String("bunny-1"),
 //				Region: pulumi.String("amazon-web-services::us-west-2"),
@@ -64,6 +65,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Resize disk with 25 extra GB
 //			_, err = cloudamqp.NewExtraDiskSize(ctx, "resizeDisk", &cloudamqp.ExtraDiskSizeArgs{
 //				InstanceId:    instance.ID(),
 //				ExtraDiskSize: pulumi.Int(25),
@@ -104,6 +106,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Instance
 //			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
 //				Plan:   pulumi.String("bunny-1"),
 //				Region: pulumi.String("amazon-web-services::us-west-2"),
@@ -111,6 +114,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Resize disk with 25 extra GB, without downtime
 //			_, err = cloudamqp.NewExtraDiskSize(ctx, "resizeDisk", &cloudamqp.ExtraDiskSizeArgs{
 //				InstanceId:    instance.ID(),
 //				ExtraDiskSize: pulumi.Int(25),
@@ -151,6 +155,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Instance
 //			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
 //				Plan:   pulumi.String("bunny-1"),
 //				Region: pulumi.String("google-compute-engine::us-central1"),
@@ -158,6 +163,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Resize disk with 25 extra GB, without downtime
 //			_, err = cloudamqp.NewExtraDiskSize(ctx, "resizeDisk", &cloudamqp.ExtraDiskSizeArgs{
 //				InstanceId:    instance.ID(),
 //				ExtraDiskSize: pulumi.Int(25),
@@ -198,6 +204,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Instance
 //			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
 //				Plan:   pulumi.String("bunny-1"),
 //				Region: pulumi.String("azure-arm::centralus"),
@@ -205,6 +212,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Resize disk with 25 extra GB, with downtime
 //			_, err = cloudamqp.NewExtraDiskSize(ctx, "resizeDisk", &cloudamqp.ExtraDiskSizeArgs{
 //				InstanceId:    instance.ID(),
 //				ExtraDiskSize: pulumi.Int(25),
