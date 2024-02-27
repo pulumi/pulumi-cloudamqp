@@ -34,6 +34,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Managed VPC resource
 //			vpc, err := cloudamqp.NewVpc(ctx, "vpc", &cloudamqp.VpcArgs{
 //				Region: pulumi.String("amazon-web-services::us-east-1"),
 //				Subnet: pulumi.String("10.56.72.0/24"),
@@ -42,6 +43,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// New instance, need to be created with a vpc
 //			_, err = cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
 //				Plan:              pulumi.String("bunny-1"),
 //				Region:            pulumi.String("amazon-web-services::us-east-1"),

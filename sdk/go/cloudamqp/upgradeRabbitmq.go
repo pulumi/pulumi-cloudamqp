@@ -43,6 +43,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
 //			_, err = cloudamqp.NewUpgradeRabbitmq(ctx, "upgrade", &cloudamqp.UpgradeRabbitmqArgs{
 //				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
 //			})
@@ -99,6 +100,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
 //			_, err = cloudamqp.NewUpgradeRabbitmq(ctx, "upgrade", &cloudamqp.UpgradeRabbitmqArgs{
 //				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
 //			})

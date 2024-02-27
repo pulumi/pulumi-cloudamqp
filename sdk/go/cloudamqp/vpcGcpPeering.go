@@ -68,6 +68,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// VPC peering configuration
 //			vpcPeeringRequest, err := cloudamqp.NewVpcGcpPeering(ctx, "vpcPeeringRequest", &cloudamqp.VpcGcpPeeringArgs{
 //				InstanceId:     pulumi.Any(cloudamqp_instance.Instance.Id),
 //				PeerNetworkUri: pulumi.Any(_var.Peer_network_uri),
@@ -75,6 +76,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Firewall rules
 //			_, err = cloudamqp.NewSecurityFirewall(ctx, "firewallSettings", &cloudamqp.SecurityFirewallArgs{
 //				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
 //				Rules: cloudamqp.SecurityFirewallRuleArray{
@@ -138,6 +140,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// VPC peering configuration
 //			vpcPeeringRequest, err := cloudamqp.NewVpcGcpPeering(ctx, "vpcPeeringRequest", &cloudamqp.VpcGcpPeeringArgs{
 //				VpcId:          pulumi.Any(cloudamqp_vpc.Vpc.Id),
 //				PeerNetworkUri: pulumi.Any(_var.Peer_network_uri),
@@ -145,6 +148,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Firewall rules
 //			_, err = cloudamqp.NewSecurityFirewall(ctx, "firewallSettings", &cloudamqp.SecurityFirewallArgs{
 //				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
 //				Rules: cloudamqp.SecurityFirewallRuleArray{
