@@ -300,9 +300,11 @@ class VpcGcpPeering(pulumi.CustomResource):
             <i>Default VPC peering firewall rule</i>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -311,6 +313,42 @@ class VpcGcpPeering(pulumi.CustomResource):
         Only available for dedicated subscription plans.
 
         ## Example Usage
+
+        <details>
+          <summary>
+            <b>
+              <i>VPC peering pre v1.16.0</i>
+            </b>
+          </summary>
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # CloudAMQP instance
+        instance = cloudamqp.Instance("instance",
+            plan="bunny-1",
+            region="google-compute-engine::europe-north1",
+            tags=["terraform"],
+            vpc_subnet="10.40.72.0/24")
+        vpc_info = instance.id.apply(lambda id: cloudamqp.get_vpc_gcp_info_output(instance_id=id))
+        # VPC peering configuration
+        vpc_peering_request = cloudamqp.VpcGcpPeering("vpcPeeringRequest",
+            instance_id=instance.id,
+            peer_network_uri="https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>")
+        ```
+        <!--End PulumiCodeChooser -->
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>VPC peering post v1.16.0 (Managed VPC)</i>
+            </b>
+          </summary>
+
         ### With Additional Firewall Rules
 
         <details>
@@ -320,6 +358,7 @@ class VpcGcpPeering(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -358,6 +397,7 @@ class VpcGcpPeering(pulumi.CustomResource):
             ],
             opts=pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -368,6 +408,7 @@ class VpcGcpPeering(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -400,8 +441,10 @@ class VpcGcpPeering(pulumi.CustomResource):
             ],
             opts=pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
+
         ## Depedency
 
         *Pre v1.16.0*
@@ -451,9 +494,11 @@ class VpcGcpPeering(pulumi.CustomResource):
             <i>Default VPC peering firewall rule</i>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -462,6 +507,42 @@ class VpcGcpPeering(pulumi.CustomResource):
         Only available for dedicated subscription plans.
 
         ## Example Usage
+
+        <details>
+          <summary>
+            <b>
+              <i>VPC peering pre v1.16.0</i>
+            </b>
+          </summary>
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # CloudAMQP instance
+        instance = cloudamqp.Instance("instance",
+            plan="bunny-1",
+            region="google-compute-engine::europe-north1",
+            tags=["terraform"],
+            vpc_subnet="10.40.72.0/24")
+        vpc_info = instance.id.apply(lambda id: cloudamqp.get_vpc_gcp_info_output(instance_id=id))
+        # VPC peering configuration
+        vpc_peering_request = cloudamqp.VpcGcpPeering("vpcPeeringRequest",
+            instance_id=instance.id,
+            peer_network_uri="https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>")
+        ```
+        <!--End PulumiCodeChooser -->
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>VPC peering post v1.16.0 (Managed VPC)</i>
+            </b>
+          </summary>
+
         ### With Additional Firewall Rules
 
         <details>
@@ -471,6 +552,7 @@ class VpcGcpPeering(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -509,6 +591,7 @@ class VpcGcpPeering(pulumi.CustomResource):
             ],
             opts=pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -519,6 +602,7 @@ class VpcGcpPeering(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -551,8 +635,10 @@ class VpcGcpPeering(pulumi.CustomResource):
             ],
             opts=pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
+
         ## Depedency
 
         *Pre v1.16.0*

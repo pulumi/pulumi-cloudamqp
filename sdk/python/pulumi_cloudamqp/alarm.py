@@ -417,6 +417,7 @@ class Alarm(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -445,6 +446,8 @@ class Alarm(pulumi.CustomResource):
             time_threshold=600,
             recipients=[recipient01.id])
         ```
+        <!--End PulumiCodeChooser -->
+
         ## Alarm Type reference
 
         Supported alarm types: `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
@@ -512,6 +515,7 @@ class Alarm(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -540,6 +544,8 @@ class Alarm(pulumi.CustomResource):
             time_threshold=600,
             recipients=[recipient01.id])
         ```
+        <!--End PulumiCodeChooser -->
+
         ## Alarm Type reference
 
         Supported alarm types: `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`

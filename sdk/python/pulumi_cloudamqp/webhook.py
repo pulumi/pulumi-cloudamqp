@@ -232,6 +232,7 @@ class Webhook(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -244,6 +245,8 @@ class Webhook(pulumi.CustomResource):
             retry_interval=5,
             concurrency=5)
         ```
+        <!--End PulumiCodeChooser -->
+
         ## Dependency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -278,6 +281,7 @@ class Webhook(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -290,6 +294,8 @@ class Webhook(pulumi.CustomResource):
             retry_interval=5,
             concurrency=5)
         ```
+        <!--End PulumiCodeChooser -->
+
         ## Dependency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.

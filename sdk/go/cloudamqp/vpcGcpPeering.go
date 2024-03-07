@@ -22,6 +22,7 @@ import (
 //	   <i>Default VPC peering firewall rule</i>
 //	 </summary>
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,6 +39,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -46,6 +48,70 @@ import (
 // Only available for dedicated subscription plans.
 //
 // ## Example Usage
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>VPC peering pre v1.16.0</i>
+//	  </b>
+//	</summary>
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// CloudAMQP instance
+//			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Plan:   pulumi.String("bunny-1"),
+//				Region: pulumi.String("google-compute-engine::europe-north1"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("terraform"),
+//				},
+//				VpcSubnet: pulumi.String("10.40.72.0/24"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = instance.ID().ApplyT(func(id string) (cloudamqp.GetVpcGcpInfoResult, error) {
+//				return cloudamqp.GetVpcGcpInfoOutput(ctx, cloudamqp.GetVpcGcpInfoOutputArgs{
+//					InstanceId: id,
+//				}, nil), nil
+//			}).(cloudamqp.GetVpcGcpInfoResultOutput)
+//			// VPC peering configuration
+//			_, err = cloudamqp.NewVpcGcpPeering(ctx, "vpcPeeringRequest", &cloudamqp.VpcGcpPeeringArgs{
+//				InstanceId:     instance.ID(),
+//				PeerNetworkUri: pulumi.String("https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>VPC peering post v1.16.0 (Managed VPC)</i>
+//	  </b>
+//	</summary>
+//
 // ### With Additional Firewall Rules
 //
 // <details>
@@ -56,6 +122,7 @@ import (
 //	  </b>
 //	</summary>
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -117,6 +184,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -128,6 +196,7 @@ import (
 //	  </b>
 //	</summary>
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -185,8 +254,10 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // </details>
+//
 // ## Depedency
 //
 // *Pre v1.16.0*

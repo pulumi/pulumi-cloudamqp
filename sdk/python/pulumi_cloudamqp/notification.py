@@ -264,6 +264,7 @@ class Notification(pulumi.CustomResource):
             <b>Email recipient</b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -273,6 +274,7 @@ class Notification(pulumi.CustomResource):
             type="email",
             value="alarm@example.com")
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -281,6 +283,7 @@ class Notification(pulumi.CustomResource):
             <b>OpsGenie recipient with optional responders</b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -300,6 +303,7 @@ class Notification(pulumi.CustomResource):
                 ),
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -308,6 +312,7 @@ class Notification(pulumi.CustomResource):
             <b>Pagerduty recipient with optional dedup key</b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -320,6 +325,7 @@ class Notification(pulumi.CustomResource):
                 "dedupkey": "DEDUPKEY",
             })
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -328,6 +334,7 @@ class Notification(pulumi.CustomResource):
             <b>Signl4 recipient</b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -337,6 +344,7 @@ class Notification(pulumi.CustomResource):
             type="signl4",
             value="<team-secret>")
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -345,6 +353,7 @@ class Notification(pulumi.CustomResource):
             <b>Teams recipient</b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -354,6 +363,7 @@ class Notification(pulumi.CustomResource):
             type="teams",
             value="<teams-webhook-url>")
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -362,6 +372,7 @@ class Notification(pulumi.CustomResource):
             <b>Victorops recipient with optional routing key (rk)</b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -374,6 +385,7 @@ class Notification(pulumi.CustomResource):
                 "rk": "ROUTINGKEY",
             })
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -382,6 +394,7 @@ class Notification(pulumi.CustomResource):
             <b>Webhook recipient</b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -391,8 +404,10 @@ class Notification(pulumi.CustomResource):
             type="webhook",
             value="<webhook-url>")
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
+
         ## Notification Type reference
 
         Valid options for notification type.
@@ -422,9 +437,9 @@ class Notification(pulumi.CustomResource):
 
         `cloudamqp_notification` can be imported using CloudAMQP internal identifier of a recipient together
 
-         (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use
+        (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use
 
-         [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
+        [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
 
         ```sh
         $ pulumi import cloudamqp:index/notification:Notification recipient <id>,<instance_id>`
@@ -464,6 +479,7 @@ class Notification(pulumi.CustomResource):
             <b>Email recipient</b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -473,6 +489,7 @@ class Notification(pulumi.CustomResource):
             type="email",
             value="alarm@example.com")
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -481,6 +498,7 @@ class Notification(pulumi.CustomResource):
             <b>OpsGenie recipient with optional responders</b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -500,6 +518,7 @@ class Notification(pulumi.CustomResource):
                 ),
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -508,6 +527,7 @@ class Notification(pulumi.CustomResource):
             <b>Pagerduty recipient with optional dedup key</b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -520,6 +540,7 @@ class Notification(pulumi.CustomResource):
                 "dedupkey": "DEDUPKEY",
             })
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -528,6 +549,7 @@ class Notification(pulumi.CustomResource):
             <b>Signl4 recipient</b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -537,6 +559,7 @@ class Notification(pulumi.CustomResource):
             type="signl4",
             value="<team-secret>")
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -545,6 +568,7 @@ class Notification(pulumi.CustomResource):
             <b>Teams recipient</b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -554,6 +578,7 @@ class Notification(pulumi.CustomResource):
             type="teams",
             value="<teams-webhook-url>")
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -562,6 +587,7 @@ class Notification(pulumi.CustomResource):
             <b>Victorops recipient with optional routing key (rk)</b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -574,6 +600,7 @@ class Notification(pulumi.CustomResource):
                 "rk": "ROUTINGKEY",
             })
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -582,6 +609,7 @@ class Notification(pulumi.CustomResource):
             <b>Webhook recipient</b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -591,8 +619,10 @@ class Notification(pulumi.CustomResource):
             type="webhook",
             value="<webhook-url>")
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
+
         ## Notification Type reference
 
         Valid options for notification type.
@@ -622,9 +652,9 @@ class Notification(pulumi.CustomResource):
 
         `cloudamqp_notification` can be imported using CloudAMQP internal identifier of a recipient together
 
-         (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use
+        (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use
 
-         [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
+        [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
 
         ```sh
         $ pulumi import cloudamqp:index/notification:Notification recipient <id>,<instance_id>`

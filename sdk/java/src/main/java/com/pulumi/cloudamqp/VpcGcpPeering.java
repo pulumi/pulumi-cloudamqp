@@ -25,6 +25,8 @@ import javax.annotation.Nullable;
  *  &lt;summary&gt;
  *     &lt;i&gt;Default VPC peering firewall rule&lt;/i&gt;
  *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -47,6 +49,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
  * 
@@ -55,6 +58,70 @@ import javax.annotation.Nullable;
  * Only available for dedicated subscription plans.
  * 
  * ## Example Usage
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;VPC peering pre v1.16.0&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import com.pulumi.cloudamqp.CloudamqpFunctions;
+ * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
+ * import com.pulumi.cloudamqp.VpcGcpPeering;
+ * import com.pulumi.cloudamqp.VpcGcpPeeringArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
+ *             .plan(&#34;bunny-1&#34;)
+ *             .region(&#34;google-compute-engine::europe-north1&#34;)
+ *             .tags(&#34;terraform&#34;)
+ *             .vpcSubnet(&#34;10.40.72.0/24&#34;)
+ *             .build());
+ * 
+ *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
+ *             .instanceId(instance.id())
+ *             .build());
+ * 
+ *         var vpcPeeringRequest = new VpcGcpPeering(&#34;vpcPeeringRequest&#34;, VpcGcpPeeringArgs.builder()        
+ *             .instanceId(instance.id())
+ *             .peerNetworkUri(&#34;https://www.googleapis.com/compute/v1/projects/&lt;PROJECT-NAME&gt;/global/networks/&lt;NETWORK-NAME&gt;&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
  * ### With Additional Firewall Rules
  * 
  * &lt;details&gt;
@@ -63,6 +130,8 @@ import javax.annotation.Nullable;
  *       &lt;i&gt;VPC peering pre v1.16.0&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -123,6 +192,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
  * 
@@ -132,6 +202,8 @@ import javax.annotation.Nullable;
  *       &lt;i&gt;VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -188,8 +260,10 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
+ * 
  * ## Depedency
  * 
  * *Pre v1.16.0*

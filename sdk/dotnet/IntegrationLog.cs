@@ -15,30 +15,305 @@ namespace Pulumi.CloudAmqp
     /// 
     /// Only available for dedicated subscription plans.
     /// 
-    /// ## Integration Type reference
+    /// ## Example Usage
     /// 
-    /// Valid arguments for third party log integrations. See more information at [docs.cloudamqp.com](https://docs.cloudamqp.com/cloudamqp_api.html#add-log-integration)
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Azure monitor log integration&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
     /// 
-    /// Required arguments for all integrations: name
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    /// | Integration | name | Required arguments |
-    /// | ---- | ---- | ---- |
-    /// | Azure monitor | azure_monitor | tenant_id, application_id, application_secret, dce_uri, table, dcr_id |
-    /// | CloudWatch | cloudwatchlog | access_key_id, secret_access_key, region |
-    /// | Coralogix | coralogix | private_key, endpoint, application, subsystem |
-    /// | Data Dog | datadog | region, api_keys, tags |
-    /// | Log Entries | logentries | token |
-    /// | Loggly | loggly | token |
-    /// | Papertrail | papertrail | url |
-    /// | Scalyr | scalyr | token, host |
-    /// | Splunk | splunk | token, host_port, sourcetype |
-    /// | Stackdriver | stackdriver | credentials |
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var azureMonitor = new CloudAmqp.IntegrationLog("azureMonitor", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         TenantId = @var.Azm_tentant_id,
+    ///         ApplicationId = @var.Azm_application_id,
+    ///         ApplicationSecret = @var.Azm_application_secret,
+    ///         DceUri = @var.Azm_dce_uri,
+    ///         Table = @var.Azm_table,
+    ///         DcrId = @var.Azm_dcr_id,
+    ///     });
     /// 
-    /// ***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments  : project_id, private_key, client_email
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// ## Dependency
+    /// &lt;/details&gt;
     /// 
-    /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Cloudwatch log integration&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var cloudwatch = new CloudAmqp.IntegrationLog("cloudwatch", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         AccessKeyId = @var.Aws_access_key_id,
+    ///         SecretAccessKey = @var.Aws_secret_access_key,
+    ///         Region = @var.Aws_region,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Coralogix log integration&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var coralogix = new CloudAmqp.IntegrationLog("coralogix", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         PrivateKey = @var.Coralogix_send_data_key,
+    ///         Endpoint = @var.Coralogix_endpoint,
+    ///         Application = @var.Coralogix_application,
+    ///         Subsystem = cloudamqp_instance.Instance.Host,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Datadog log integration&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var datadog = new CloudAmqp.IntegrationLog("datadog", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Region = @var.Datadog_region,
+    ///         ApiKey = @var.Datadog_api_key,
+    ///         Tags = @var.Datadog_tags,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Logentries log integration&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var logentries = new CloudAmqp.IntegrationLog("logentries", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Token = @var.Logentries_token,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Loggly log integration&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var loggly = new CloudAmqp.IntegrationLog("loggly", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Token = @var.Loggly_token,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Papertrail log integration&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var papertrail = new CloudAmqp.IntegrationLog("papertrail", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Url = @var.Papertrail_url,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Scalyr log integration&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var scalyr = new CloudAmqp.IntegrationLog("scalyr", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Token = @var.Scalyr_token,
+    ///         Host = @var.Scalyr_host,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Splunk log integration&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var splunk = new CloudAmqp.IntegrationLog("splunk", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Token = @var.Splunk_token,
+    ///         HostPort = @var.Splunk_host_port,
+    ///         SourceType = "generic_single_line",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Stackdriver log integration (v1.20.2 or older versions)&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// Use variable file populated with project_id, private_key and client_email
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var stackdriver = new CloudAmqp.IntegrationLog("stackdriver", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         ProjectId = @var.Stackdriver_project_id,
+    ///         PrivateKey = @var.Stackdriver_private_key,
+    ///         ClientEmail = @var.Stackdriver_client_email,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// or by using google_service_account_key resource from Google provider
     /// 
     /// ## Import
     /// 

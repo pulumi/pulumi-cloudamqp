@@ -251,6 +251,7 @@ class ExtraDiskSize(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -265,6 +266,7 @@ class ExtraDiskSize(pulumi.CustomResource):
             extra_disk_size=25)
         nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -275,6 +277,7 @@ class ExtraDiskSize(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -289,6 +292,7 @@ class ExtraDiskSize(pulumi.CustomResource):
             extra_disk_size=25)
         nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -299,6 +303,7 @@ class ExtraDiskSize(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -313,6 +318,7 @@ class ExtraDiskSize(pulumi.CustomResource):
             extra_disk_size=25)
         nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -323,6 +329,7 @@ class ExtraDiskSize(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -338,8 +345,10 @@ class ExtraDiskSize(pulumi.CustomResource):
             allow_downtime=True)
         nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
+
         ## Attributes reference
 
         All attributes reference are computed
@@ -414,6 +423,7 @@ class ExtraDiskSize(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -428,6 +438,7 @@ class ExtraDiskSize(pulumi.CustomResource):
             extra_disk_size=25)
         nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -438,6 +449,7 @@ class ExtraDiskSize(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -452,6 +464,7 @@ class ExtraDiskSize(pulumi.CustomResource):
             extra_disk_size=25)
         nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -462,6 +475,7 @@ class ExtraDiskSize(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -476,6 +490,7 @@ class ExtraDiskSize(pulumi.CustomResource):
             extra_disk_size=25)
         nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -486,6 +501,7 @@ class ExtraDiskSize(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -501,8 +517,10 @@ class ExtraDiskSize(pulumi.CustomResource):
             allow_downtime=True)
         nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
+
         ## Attributes reference
 
         All attributes reference are computed

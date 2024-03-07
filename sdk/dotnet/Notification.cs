@@ -23,6 +23,7 @@ namespace Pulumi.CloudAmqp
     ///     &lt;b&gt;Email recipient&lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -40,6 +41,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &lt;/details&gt;
     /// 
@@ -48,6 +50,7 @@ namespace Pulumi.CloudAmqp
     ///     &lt;b&gt;OpsGenie recipient with optional responders&lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -78,6 +81,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &lt;/details&gt;
     /// 
@@ -86,6 +90,7 @@ namespace Pulumi.CloudAmqp
     ///     &lt;b&gt;Pagerduty recipient with optional dedup key&lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -107,6 +112,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &lt;/details&gt;
     /// 
@@ -115,6 +121,7 @@ namespace Pulumi.CloudAmqp
     ///     &lt;b&gt;Signl4 recipient&lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -132,6 +139,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &lt;/details&gt;
     /// 
@@ -140,6 +148,7 @@ namespace Pulumi.CloudAmqp
     ///     &lt;b&gt;Teams recipient&lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -157,6 +166,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &lt;/details&gt;
     /// 
@@ -165,6 +175,7 @@ namespace Pulumi.CloudAmqp
     ///     &lt;b&gt;Victorops recipient with optional routing key (rk)&lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -186,6 +197,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &lt;/details&gt;
     /// 
@@ -194,6 +206,7 @@ namespace Pulumi.CloudAmqp
     ///     &lt;b&gt;Webhook recipient&lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -211,8 +224,10 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &lt;/details&gt;
+    /// 
     /// ## Notification Type reference
     /// 
     /// Valid options for notification type.
@@ -242,9 +257,9 @@ namespace Pulumi.CloudAmqp
     /// 
     /// `cloudamqp_notification` can be imported using CloudAMQP internal identifier of a recipient together
     /// 
-    ///  (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use
+    /// (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use
     /// 
-    ///  [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
+    /// [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
     /// 
     /// ```sh
     /// $ pulumi import cloudamqp:index/notification:Notification recipient &lt;id&gt;,&lt;instance_id&gt;`

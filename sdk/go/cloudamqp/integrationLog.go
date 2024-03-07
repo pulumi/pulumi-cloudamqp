@@ -17,30 +17,395 @@ import (
 //
 // Only available for dedicated subscription plans.
 //
-// ## Integration Type reference
+// ## Example Usage
 //
-// Valid arguments for third party log integrations. See more information at [docs.cloudamqp.com](https://docs.cloudamqp.com/cloudamqp_api.html#add-log-integration)
+// <details>
 //
-// Required arguments for all integrations: name
+//	<summary>
+//	  <b>
+//	    <i>Azure monitor log integration</i>
+//	  </b>
+//	</summary>
 //
-// | Integration | name | Required arguments |
-// | ---- | ---- | ---- |
-// | Azure monitor | azureMonitor | tenant_id, application_id, application_secret, dce_uri, table, dcrId |
-// | CloudWatch | cloudwatchlog | access_key_id, secret_access_key, region |
-// | Coralogix | coralogix | private_key, endpoint, application, subsystem |
-// | Data Dog | datadog | region, api_keys, tags |
-// | Log Entries | logentries | token |
-// | Loggly | loggly | token |
-// | Papertrail | papertrail | url |
-// | Scalyr | scalyr | token, host |
-// | Splunk | splunk | token, host_port, sourcetype |
-// | Stackdriver | stackdriver | credentials |
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
 //
-// ***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments  : project_id, private_key, clientEmail
+// import (
 //
-// ## Dependency
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
-// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewIntegrationLog(ctx, "azureMonitor", &cloudamqp.IntegrationLogArgs{
+//				InstanceId:        pulumi.Any(cloudamqp_instance.Instance.Id),
+//				TenantId:          pulumi.Any(_var.Azm_tentant_id),
+//				ApplicationId:     pulumi.Any(_var.Azm_application_id),
+//				ApplicationSecret: pulumi.Any(_var.Azm_application_secret),
+//				DceUri:            pulumi.Any(_var.Azm_dce_uri),
+//				Table:             pulumi.Any(_var.Azm_table),
+//				DcrId:             pulumi.Any(_var.Azm_dcr_id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Cloudwatch log integration</i>
+//	  </b>
+//	</summary>
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewIntegrationLog(ctx, "cloudwatch", &cloudamqp.IntegrationLogArgs{
+//				InstanceId:      pulumi.Any(cloudamqp_instance.Instance.Id),
+//				AccessKeyId:     pulumi.Any(_var.Aws_access_key_id),
+//				SecretAccessKey: pulumi.Any(_var.Aws_secret_access_key),
+//				Region:          pulumi.Any(_var.Aws_region),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Coralogix log integration</i>
+//	  </b>
+//	</summary>
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewIntegrationLog(ctx, "coralogix", &cloudamqp.IntegrationLogArgs{
+//				InstanceId:  pulumi.Any(cloudamqp_instance.Instance.Id),
+//				PrivateKey:  pulumi.Any(_var.Coralogix_send_data_key),
+//				Endpoint:    pulumi.Any(_var.Coralogix_endpoint),
+//				Application: pulumi.Any(_var.Coralogix_application),
+//				Subsystem:   pulumi.Any(cloudamqp_instance.Instance.Host),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Datadog log integration</i>
+//	  </b>
+//	</summary>
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewIntegrationLog(ctx, "datadog", &cloudamqp.IntegrationLogArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Region:     pulumi.Any(_var.Datadog_region),
+//				ApiKey:     pulumi.Any(_var.Datadog_api_key),
+//				Tags:       pulumi.Any(_var.Datadog_tags),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Logentries log integration</i>
+//	  </b>
+//	</summary>
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewIntegrationLog(ctx, "logentries", &cloudamqp.IntegrationLogArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Token:      pulumi.Any(_var.Logentries_token),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Loggly log integration</i>
+//	  </b>
+//	</summary>
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewIntegrationLog(ctx, "loggly", &cloudamqp.IntegrationLogArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Token:      pulumi.Any(_var.Loggly_token),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Papertrail log integration</i>
+//	  </b>
+//	</summary>
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewIntegrationLog(ctx, "papertrail", &cloudamqp.IntegrationLogArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Url:        pulumi.Any(_var.Papertrail_url),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Scalyr log integration</i>
+//	  </b>
+//	</summary>
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewIntegrationLog(ctx, "scalyr", &cloudamqp.IntegrationLogArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Token:      pulumi.Any(_var.Scalyr_token),
+//				Host:       pulumi.Any(_var.Scalyr_host),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Splunk log integration</i>
+//	  </b>
+//	</summary>
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewIntegrationLog(ctx, "splunk", &cloudamqp.IntegrationLogArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Token:      pulumi.Any(_var.Splunk_token),
+//				HostPort:   pulumi.Any(_var.Splunk_host_port),
+//				SourceType: pulumi.String("generic_single_line"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// </details>
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Stackdriver log integration (v1.20.2 or older versions)</i>
+//	  </b>
+//	</summary>
+//
+// Use variable file populated with project_id, privateKey and clientEmail
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewIntegrationLog(ctx, "stackdriver", &cloudamqp.IntegrationLogArgs{
+//				InstanceId:  pulumi.Any(cloudamqp_instance.Instance.Id),
+//				ProjectId:   pulumi.Any(_var.Stackdriver_project_id),
+//				PrivateKey:  pulumi.Any(_var.Stackdriver_private_key),
+//				ClientEmail: pulumi.Any(_var.Stackdriver_client_email),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// or by using googleServiceAccountKey resource from Google provider
 //
 // ## Import
 //

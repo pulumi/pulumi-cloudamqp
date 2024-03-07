@@ -50,6 +50,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -78,6 +80,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -109,6 +113,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -137,6 +143,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -168,6 +176,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -196,6 +206,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -227,6 +239,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -255,6 +269,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -286,6 +302,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -314,6 +332,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -345,6 +365,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -373,6 +395,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -402,6 +426,12 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
      * 
      * ## Example Usage
+     * 
+     * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -432,6 +462,12 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
      * 
      * ## Example Usage
+     * 
+     * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -462,6 +498,12 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
      * 
      * ## Example Usage
+     * 
+     * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -492,6 +534,12 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
      * 
      * ## Example Usage
+     * 
+     * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -522,6 +570,12 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
      * 
      * ## Example Usage
+     * 
+     * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -552,6 +606,12 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
      * 
      * ## Example Usage
+     * 
+     * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -582,6 +642,8 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve information about default or created alarms. Either use `alarm_id` or `type` to retrieve the alarm.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -611,6 +673,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -645,6 +709,8 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve information about default or created alarms. Either use `alarm_id` or `type` to retrieve the alarm.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -674,6 +740,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -708,6 +776,8 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve information about default or created alarms. Either use `alarm_id` or `type` to retrieve the alarm.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -737,6 +807,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -771,6 +843,8 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve information about default or created alarms. Either use `alarm_id` or `type` to retrieve the alarm.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -800,6 +874,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -834,6 +910,8 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve information about the credentials of the configured user in Rabbit MQ. Information is extracted from `cloudamqp_instance.instance.url`.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -862,6 +940,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed.
@@ -882,6 +962,8 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve information about the credentials of the configured user in Rabbit MQ. Information is extracted from `cloudamqp_instance.instance.url`.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -910,6 +992,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed.
@@ -930,6 +1014,8 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve information about the credentials of the configured user in Rabbit MQ. Information is extracted from `cloudamqp_instance.instance.url`.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -958,6 +1044,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed.
@@ -978,6 +1066,8 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve information about the credentials of the configured user in Rabbit MQ. Information is extracted from `cloudamqp_instance.instance.url`.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1006,6 +1096,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed.
@@ -1025,54 +1117,12 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.
      * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`          - The identifier for this resource.
-     * * `name`        - The name of the CloudAMQP instance.
-     * * `plan`        - The subscription plan for the CloudAMQP instance.
-     * * `region`      - The cloud platform and region that host the CloudAMQP instance, `{platform}::{region}`.
-     * * `vpc_id`      - ID of the VPC configured for the CloudAMQP instance.
-     * * `vpc_subnet`  - Dedicated VPC subnet configured for the CloudAMQP instance.
-     * * `nodes`       - Number of nodes in the cluster of the CloudAMQP instance.
-     * * `rmq_version` - The version of installed Rabbit MQ.
-     * * `url`         - (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC), used by clients to connect for pub/sub.
-     * * `apikey`      - (Sensitive) The API key to secondary API handing alarms, integration etc.
-     * * `tags`        - Tags the CloudAMQP instance with categories.
-     * * `host`        - The external hostname for the CloudAMQP instance.
-     * * `host_internal` - The internal hostname for the CloudAMQP instance.
-     * * `vhost`       - The virtual host configured in Rabbit MQ.
-     * * `dedicated`   - Information if the CloudAMQP instance is shared or dedicated.
-     * * `backend`     - Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
-     * 
      */
     public static Output<GetInstanceResult> getInstance(GetInstanceArgs args) {
         return getInstance(args, InvokeOptions.Empty);
     }
     /**
      * Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`          - The identifier for this resource.
-     * * `name`        - The name of the CloudAMQP instance.
-     * * `plan`        - The subscription plan for the CloudAMQP instance.
-     * * `region`      - The cloud platform and region that host the CloudAMQP instance, `{platform}::{region}`.
-     * * `vpc_id`      - ID of the VPC configured for the CloudAMQP instance.
-     * * `vpc_subnet`  - Dedicated VPC subnet configured for the CloudAMQP instance.
-     * * `nodes`       - Number of nodes in the cluster of the CloudAMQP instance.
-     * * `rmq_version` - The version of installed Rabbit MQ.
-     * * `url`         - (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC), used by clients to connect for pub/sub.
-     * * `apikey`      - (Sensitive) The API key to secondary API handing alarms, integration etc.
-     * * `tags`        - Tags the CloudAMQP instance with categories.
-     * * `host`        - The external hostname for the CloudAMQP instance.
-     * * `host_internal` - The internal hostname for the CloudAMQP instance.
-     * * `vhost`       - The virtual host configured in Rabbit MQ.
-     * * `dedicated`   - Information if the CloudAMQP instance is shared or dedicated.
-     * * `backend`     - Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
      * 
      */
     public static CompletableFuture<GetInstanceResult> getInstancePlain(GetInstancePlainArgs args) {
@@ -1081,54 +1131,12 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.
      * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`          - The identifier for this resource.
-     * * `name`        - The name of the CloudAMQP instance.
-     * * `plan`        - The subscription plan for the CloudAMQP instance.
-     * * `region`      - The cloud platform and region that host the CloudAMQP instance, `{platform}::{region}`.
-     * * `vpc_id`      - ID of the VPC configured for the CloudAMQP instance.
-     * * `vpc_subnet`  - Dedicated VPC subnet configured for the CloudAMQP instance.
-     * * `nodes`       - Number of nodes in the cluster of the CloudAMQP instance.
-     * * `rmq_version` - The version of installed Rabbit MQ.
-     * * `url`         - (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC), used by clients to connect for pub/sub.
-     * * `apikey`      - (Sensitive) The API key to secondary API handing alarms, integration etc.
-     * * `tags`        - Tags the CloudAMQP instance with categories.
-     * * `host`        - The external hostname for the CloudAMQP instance.
-     * * `host_internal` - The internal hostname for the CloudAMQP instance.
-     * * `vhost`       - The virtual host configured in Rabbit MQ.
-     * * `dedicated`   - Information if the CloudAMQP instance is shared or dedicated.
-     * * `backend`     - Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
-     * 
      */
     public static Output<GetInstanceResult> getInstance(GetInstanceArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("cloudamqp:index/getInstance:getInstance", TypeShape.of(GetInstanceResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`          - The identifier for this resource.
-     * * `name`        - The name of the CloudAMQP instance.
-     * * `plan`        - The subscription plan for the CloudAMQP instance.
-     * * `region`      - The cloud platform and region that host the CloudAMQP instance, `{platform}::{region}`.
-     * * `vpc_id`      - ID of the VPC configured for the CloudAMQP instance.
-     * * `vpc_subnet`  - Dedicated VPC subnet configured for the CloudAMQP instance.
-     * * `nodes`       - Number of nodes in the cluster of the CloudAMQP instance.
-     * * `rmq_version` - The version of installed Rabbit MQ.
-     * * `url`         - (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC), used by clients to connect for pub/sub.
-     * * `apikey`      - (Sensitive) The API key to secondary API handing alarms, integration etc.
-     * * `tags`        - Tags the CloudAMQP instance with categories.
-     * * `host`        - The external hostname for the CloudAMQP instance.
-     * * `host_internal` - The internal hostname for the CloudAMQP instance.
-     * * `vhost`       - The virtual host configured in Rabbit MQ.
-     * * `dedicated`   - Information if the CloudAMQP instance is shared or dedicated.
-     * * `backend`     - Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
      * 
      */
     public static CompletableFuture<GetInstanceResult> getInstancePlain(GetInstancePlainArgs args, InvokeOptions options) {
@@ -1138,6 +1146,8 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve information about the node(s) created by CloudAMQP instance.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1166,6 +1176,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -1201,6 +1213,8 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve information about the node(s) created by CloudAMQP instance.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1229,6 +1243,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -1264,6 +1280,8 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve information about the node(s) created by CloudAMQP instance.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1292,6 +1310,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -1327,6 +1347,8 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve information about the node(s) created by CloudAMQP instance.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1355,6 +1377,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -1390,6 +1414,8 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipient_id` or `name`.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1419,6 +1445,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -1440,6 +1468,8 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipient_id` or `name`.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1469,6 +1499,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -1490,6 +1522,8 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipient_id` or `name`.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1519,6 +1553,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -1540,6 +1576,8 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipient_id` or `name`.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1569,6 +1607,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -1590,6 +1630,8 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1618,6 +1660,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -1650,6 +1694,8 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1678,6 +1724,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -1710,6 +1758,8 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1738,6 +1788,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -1770,6 +1822,8 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1798,6 +1852,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -1830,6 +1886,8 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1858,6 +1916,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -1889,6 +1949,8 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1917,6 +1979,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -1948,6 +2012,8 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1976,6 +2042,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -2007,6 +2075,8 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2035,6 +2105,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -2066,6 +2138,8 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve information about possible upgradable versions for RabbitMQ and Erlang.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2094,6 +2168,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -2113,6 +2189,8 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve information about possible upgradable versions for RabbitMQ and Erlang.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2141,6 +2219,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -2160,6 +2240,8 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve information about possible upgradable versions for RabbitMQ and Erlang.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2188,6 +2270,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -2207,6 +2291,8 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve information about possible upgradable versions for RabbitMQ and Erlang.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2235,6 +2321,8 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -2261,6 +2349,8 @@ public final class CloudamqpFunctions {
      *       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
      *     &lt;/b&gt;
      *   &lt;/summary&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2289,6 +2379,7 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;/details&gt;
      * 
@@ -2298,6 +2389,8 @@ public final class CloudamqpFunctions {
      *       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
      *     &lt;/b&gt;
      *   &lt;/summary&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2326,8 +2419,10 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;/details&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -2360,6 +2455,8 @@ public final class CloudamqpFunctions {
      *       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
      *     &lt;/b&gt;
      *   &lt;/summary&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2388,6 +2485,7 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;/details&gt;
      * 
@@ -2397,6 +2495,8 @@ public final class CloudamqpFunctions {
      *       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
      *     &lt;/b&gt;
      *   &lt;/summary&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2425,8 +2525,10 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;/details&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -2459,6 +2561,8 @@ public final class CloudamqpFunctions {
      *       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
      *     &lt;/b&gt;
      *   &lt;/summary&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2487,6 +2591,7 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;/details&gt;
      * 
@@ -2496,6 +2601,8 @@ public final class CloudamqpFunctions {
      *       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
      *     &lt;/b&gt;
      *   &lt;/summary&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2524,8 +2631,10 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;/details&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -2558,6 +2667,8 @@ public final class CloudamqpFunctions {
      *       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
      *     &lt;/b&gt;
      *   &lt;/summary&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2586,6 +2697,7 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;/details&gt;
      * 
@@ -2595,6 +2707,8 @@ public final class CloudamqpFunctions {
      *       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
      *     &lt;/b&gt;
      *   &lt;/summary&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2623,8 +2737,10 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;/details&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -2657,6 +2773,8 @@ public final class CloudamqpFunctions {
      *       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
      *     &lt;/b&gt;
      *   &lt;/summary&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2685,6 +2803,7 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;/details&gt;
      * 
@@ -2694,6 +2813,8 @@ public final class CloudamqpFunctions {
      *       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
      *     &lt;/b&gt;
      *   &lt;/summary&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2722,8 +2843,10 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;/details&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -2756,6 +2879,8 @@ public final class CloudamqpFunctions {
      *       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
      *     &lt;/b&gt;
      *   &lt;/summary&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2784,6 +2909,7 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;/details&gt;
      * 
@@ -2793,6 +2919,8 @@ public final class CloudamqpFunctions {
      *       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
      *     &lt;/b&gt;
      *   &lt;/summary&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2821,8 +2949,10 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;/details&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -2857,6 +2987,8 @@ public final class CloudamqpFunctions {
      *       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
      *     &lt;/b&gt;
      *   &lt;/summary&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2885,6 +3017,7 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * &lt;/details&gt;
      * 
      * &lt;details&gt;
@@ -2893,6 +3026,8 @@ public final class CloudamqpFunctions {
      *       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
      *     &lt;/b&gt;
      *   &lt;/summary&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2921,7 +3056,9 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * &lt;/details&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -2957,6 +3094,8 @@ public final class CloudamqpFunctions {
      *       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
      *     &lt;/b&gt;
      *   &lt;/summary&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2985,6 +3124,7 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * &lt;/details&gt;
      * 
      * &lt;details&gt;
@@ -2993,6 +3133,8 @@ public final class CloudamqpFunctions {
      *       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
      *     &lt;/b&gt;
      *   &lt;/summary&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3021,7 +3163,9 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * &lt;/details&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -3057,6 +3201,8 @@ public final class CloudamqpFunctions {
      *       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
      *     &lt;/b&gt;
      *   &lt;/summary&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3085,6 +3231,7 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * &lt;/details&gt;
      * 
      * &lt;details&gt;
@@ -3093,6 +3240,8 @@ public final class CloudamqpFunctions {
      *       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
      *     &lt;/b&gt;
      *   &lt;/summary&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3121,7 +3270,9 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * &lt;/details&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -3157,6 +3308,8 @@ public final class CloudamqpFunctions {
      *       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
      *     &lt;/b&gt;
      *   &lt;/summary&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3185,6 +3338,7 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * &lt;/details&gt;
      * 
      * &lt;details&gt;
@@ -3193,6 +3347,8 @@ public final class CloudamqpFunctions {
      *       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
      *     &lt;/b&gt;
      *   &lt;/summary&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3221,7 +3377,9 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * &lt;/details&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -3257,6 +3415,8 @@ public final class CloudamqpFunctions {
      *       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
      *     &lt;/b&gt;
      *   &lt;/summary&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3285,6 +3445,7 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * &lt;/details&gt;
      * 
      * &lt;details&gt;
@@ -3293,6 +3454,8 @@ public final class CloudamqpFunctions {
      *       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
      *     &lt;/b&gt;
      *   &lt;/summary&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3321,7 +3484,9 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * &lt;/details&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed
@@ -3357,6 +3522,8 @@ public final class CloudamqpFunctions {
      *       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
      *     &lt;/b&gt;
      *   &lt;/summary&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3385,6 +3552,7 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * &lt;/details&gt;
      * 
      * &lt;details&gt;
@@ -3393,6 +3561,8 @@ public final class CloudamqpFunctions {
      *       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
      *     &lt;/b&gt;
      *   &lt;/summary&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3421,7 +3591,9 @@ public final class CloudamqpFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * &lt;/details&gt;
+     * 
      * ## Attributes reference
      * 
      * All attributes reference are computed

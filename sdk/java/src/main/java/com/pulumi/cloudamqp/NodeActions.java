@@ -28,6 +28,8 @@ import javax.annotation.Nullable;
  *       &lt;i&gt;Already know the node identifier (e.g. from state file)&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -58,6 +60,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * &lt;/details&gt;
  * 
  * Using data source `cloudamqp.getNodes` to restart RabbitMQ on all nodes.&lt;/br&gt;
@@ -69,6 +72,8 @@ import javax.annotation.Nullable;
  *       &lt;i&gt;Multi node RabbitMQ restart&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -124,6 +129,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * &lt;/details&gt;
  * 
  * &lt;details&gt;
@@ -132,6 +138,8 @@ import javax.annotation.Nullable;
  *       &lt;i&gt;Combine log level configuration change with multi node RabbitMQ restart&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -199,7 +207,9 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * &lt;/details&gt;
+ * 
  * ## Action reference
  * 
  * Valid options for action.

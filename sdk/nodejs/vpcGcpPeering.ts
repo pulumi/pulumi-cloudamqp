@@ -14,9 +14,11 @@ import * as utilities from "./utilities";
  *     <i>Default VPC peering firewall rule</i>
  *   </summary>
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -25,6 +27,46 @@ import * as utilities from "./utilities";
  * Only available for dedicated subscription plans.
  *
  * ## Example Usage
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>VPC peering pre v1.16.0</i>
+ *     </b>
+ *   </summary>
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * // CloudAMQP instance
+ * const instance = new cloudamqp.Instance("instance", {
+ *     plan: "bunny-1",
+ *     region: "google-compute-engine::europe-north1",
+ *     tags: ["terraform"],
+ *     vpcSubnet: "10.40.72.0/24",
+ * });
+ * const vpcInfo = instance.id.apply(id => cloudamqp.getVpcGcpInfoOutput({
+ *     instanceId: id,
+ * }));
+ * // VPC peering configuration
+ * const vpcPeeringRequest = new cloudamqp.VpcGcpPeering("vpcPeeringRequest", {
+ *     instanceId: instance.id,
+ *     peerNetworkUri: "https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>VPC peering post v1.16.0 (Managed VPC)</i>
+ *     </b>
+ *   </summary>
+ *
  * ### With Additional Firewall Rules
  *
  * <details>
@@ -34,6 +76,7 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -75,6 +118,7 @@ import * as utilities from "./utilities";
  *     dependsOn: [vpcPeeringRequest],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -85,6 +129,7 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -120,8 +165,10 @@ import * as utilities from "./utilities";
  *     dependsOn: [vpcPeeringRequest],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * </details>
+ *
  * ## Depedency
  *
  * *Pre v1.16.0*

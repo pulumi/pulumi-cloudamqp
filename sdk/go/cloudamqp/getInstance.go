@@ -12,27 +12,6 @@ import (
 )
 
 // Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.
-//
-// ## Attributes reference
-//
-// # All attributes reference are computed
-//
-// * `id`          - The identifier for this resource.
-// * `name`        - The name of the CloudAMQP instance.
-// * `plan`        - The subscription plan for the CloudAMQP instance.
-// * `region`      - The cloud platform and region that host the CloudAMQP instance, `{platform}::{region}`.
-// * `vpcId`      - ID of the VPC configured for the CloudAMQP instance.
-// * `vpcSubnet`  - Dedicated VPC subnet configured for the CloudAMQP instance.
-// * `nodes`       - Number of nodes in the cluster of the CloudAMQP instance.
-// * `rmqVersion` - The version of installed Rabbit MQ.
-// * `url`         - (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC), used by clients to connect for pub/sub.
-// * `apikey`      - (Sensitive) The API key to secondary API handing alarms, integration etc.
-// * `tags`        - Tags the CloudAMQP instance with categories.
-// * `host`        - The external hostname for the CloudAMQP instance.
-// * `hostInternal` - The internal hostname for the CloudAMQP instance.
-// * `vhost`       - The virtual host configured in Rabbit MQ.
-// * `dedicated`   - Information if the CloudAMQP instance is shared or dedicated.
-// * `backend`     - Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
 func LookupInstance(ctx *pulumi.Context, args *LookupInstanceArgs, opts ...pulumi.InvokeOption) (*LookupInstanceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupInstanceResult
