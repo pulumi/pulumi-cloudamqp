@@ -33,6 +33,8 @@ import javax.annotation.Nullable;
  *       &lt;i&gt;Default PrivateLink firewall rule [AWS, Azure]&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -55,6 +57,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
  * 
@@ -64,6 +67,8 @@ import javax.annotation.Nullable;
  *       &lt;i&gt;Default Private Service Connect firewall rule [GCP]&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -86,6 +91,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
  * 
@@ -99,6 +105,8 @@ import javax.annotation.Nullable;
  *       &lt;i&gt;Enable VPC Connect (PrivateLink) in AWS&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -147,6 +155,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
  * 
@@ -156,6 +165,8 @@ import javax.annotation.Nullable;
  *       &lt;i&gt;Enable VPC Connect (PrivateLink) in Azure&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -204,6 +215,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
  * 
@@ -213,6 +225,8 @@ import javax.annotation.Nullable;
  *       &lt;i&gt;Enable VPC Connect (Private Service Connect) in GCP&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -261,8 +275,10 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
+ * 
  * ### With Additional Firewall Rules
  * 
  * &lt;details&gt;
@@ -271,6 +287,8 @@ import javax.annotation.Nullable;
  *       &lt;i&gt;CloudAMQP instance in an existing VPC with managed firewall rules&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -346,8 +364,10 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
+ * 
  * ## Depedency
  * 
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -372,7 +392,7 @@ import javax.annotation.Nullable;
  * $ pulumi import cloudamqp:index/vpcConnect:VpcConnect vpc_connect &lt;id&gt;`
  * ```
  * 
- *  The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
+ * The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
  * 
  */
 @ResourceType(type="cloudamqp:index/vpcConnect:VpcConnect")

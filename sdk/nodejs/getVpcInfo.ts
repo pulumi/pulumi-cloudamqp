@@ -18,6 +18,7 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -26,6 +27,7 @@ import * as utilities from "./utilities";
  *     instanceId: cloudamqp_instance.instance.id,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  * </details>
  *
  * <details>
@@ -35,6 +37,7 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -43,7 +46,9 @@ import * as utilities from "./utilities";
  *     vpcId: cloudamqp_vpc.vpc.id,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  * </details>
+ *
  * ## Attributes reference
  *
  * All attributes reference are computed
@@ -119,6 +124,7 @@ export interface GetVpcInfoResult {
  *     </b>
  *   </summary>
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -127,6 +133,7 @@ export interface GetVpcInfoResult {
  *     instanceId: cloudamqp_instance.instance.id,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  * </details>
  *
  * <details>
@@ -136,6 +143,7 @@ export interface GetVpcInfoResult {
  *     </b>
  *   </summary>
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -144,7 +152,9 @@ export interface GetVpcInfoResult {
  *     vpcId: cloudamqp_vpc.vpc.id,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  * </details>
+ *
  * ## Attributes reference
  *
  * All attributes reference are computed

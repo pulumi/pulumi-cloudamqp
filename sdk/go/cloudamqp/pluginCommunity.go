@@ -16,7 +16,7 @@ import (
 //
 // `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP
 //
-//	instance identifier. The name and identifier are CSV separated, see example below.
+// instance identifier. The name and identifier are CSV separated, see example below.
 //
 // ```sh
 // $ pulumi import cloudamqp:index/pluginCommunity:PluginCommunity <resource_name> <plugin_name>,<instance_id>`

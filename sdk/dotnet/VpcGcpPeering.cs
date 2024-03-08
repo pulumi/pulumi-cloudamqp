@@ -19,6 +19,7 @@ namespace Pulumi.CloudAmqp
     ///     &lt;i&gt;Default VPC peering firewall rule&lt;/i&gt;
     ///   &lt;/summary&gt;
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -28,6 +29,7 @@ namespace Pulumi.CloudAmqp
     /// {
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &lt;/details&gt;
     /// 
@@ -36,6 +38,60 @@ namespace Pulumi.CloudAmqp
     /// Only available for dedicated subscription plans.
     /// 
     /// ## Example Usage
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;VPC peering pre v1.16.0&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // CloudAMQP instance
+    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     {
+    ///         Plan = "bunny-1",
+    ///         Region = "google-compute-engine::europe-north1",
+    ///         Tags = new[]
+    ///         {
+    ///             "terraform",
+    ///         },
+    ///         VpcSubnet = "10.40.72.0/24",
+    ///     });
+    /// 
+    ///     var vpcInfo = CloudAmqp.GetVpcGcpInfo.Invoke(new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///     });
+    /// 
+    ///     // VPC peering configuration
+    ///     var vpcPeeringRequest = new CloudAmqp.VpcGcpPeering("vpcPeeringRequest", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         PeerNetworkUri = "https://www.googleapis.com/compute/v1/projects/&lt;PROJECT-NAME&gt;/global/networks/&lt;NETWORK-NAME&gt;",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
     /// ### With Additional Firewall Rules
     /// 
     /// &lt;details&gt;
@@ -45,6 +101,7 @@ namespace Pulumi.CloudAmqp
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -108,6 +165,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &lt;/details&gt;
     /// 
@@ -118,6 +176,7 @@ namespace Pulumi.CloudAmqp
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -176,8 +235,10 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &lt;/details&gt;
+    /// 
     /// ## Depedency
     /// 
     /// *Pre v1.16.0*

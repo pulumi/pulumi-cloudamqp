@@ -908,30 +908,225 @@ class IntegrationLog(pulumi.CustomResource):
 
         Only available for dedicated subscription plans.
 
-        ## Integration Type reference
+        ## Example Usage
 
-        Valid arguments for third party log integrations. See more information at [docs.cloudamqp.com](https://docs.cloudamqp.com/cloudamqp_api.html#add-log-integration)
+        <details>
+          <summary>
+            <b>
+              <i>Azure monitor log integration</i>
+            </b>
+          </summary>
 
-        Required arguments for all integrations: name
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
 
-        | Integration | name | Required arguments |
-        | ---- | ---- | ---- |
-        | Azure monitor | azure_monitor | tenant_id, application_id, application_secret, dce_uri, table, dcr_id |
-        | CloudWatch | cloudwatchlog | access_key_id, secret_access_key, region |
-        | Coralogix | coralogix | private_key, endpoint, application, subsystem |
-        | Data Dog | datadog | region, api_keys, tags |
-        | Log Entries | logentries | token |
-        | Loggly | loggly | token |
-        | Papertrail | papertrail | url |
-        | Scalyr | scalyr | token, host |
-        | Splunk | splunk | token, host_port, sourcetype |
-        | Stackdriver | stackdriver | credentials |
+        azure_monitor = cloudamqp.IntegrationLog("azureMonitor",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            tenant_id=var["azm_tentant_id"],
+            application_id=var["azm_application_id"],
+            application_secret=var["azm_application_secret"],
+            dce_uri=var["azm_dce_uri"],
+            table=var["azm_table"],
+            dcr_id=var["azm_dcr_id"])
+        ```
+        <!--End PulumiCodeChooser -->
 
-        ***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments  : project_id, private_key, client_email
+        </details>
 
-        ## Dependency
+        <details>
+          <summary>
+            <b>
+              <i>Cloudwatch log integration</i>
+            </b>
+          </summary>
 
-        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        cloudwatch = cloudamqp.IntegrationLog("cloudwatch",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            access_key_id=var["aws_access_key_id"],
+            secret_access_key=var["aws_secret_access_key"],
+            region=var["aws_region"])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Coralogix log integration</i>
+            </b>
+          </summary>
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        coralogix = cloudamqp.IntegrationLog("coralogix",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            private_key=var["coralogix_send_data_key"],
+            endpoint=var["coralogix_endpoint"],
+            application=var["coralogix_application"],
+            subsystem=cloudamqp_instance["instance"]["host"])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Datadog log integration</i>
+            </b>
+          </summary>
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        datadog = cloudamqp.IntegrationLog("datadog",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            region=var["datadog_region"],
+            api_key=var["datadog_api_key"],
+            tags=var["datadog_tags"])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Logentries log integration</i>
+            </b>
+          </summary>
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        logentries = cloudamqp.IntegrationLog("logentries",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            token=var["logentries_token"])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Loggly log integration</i>
+            </b>
+          </summary>
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        loggly = cloudamqp.IntegrationLog("loggly",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            token=var["loggly_token"])
+        ```
+        <!--End PulumiCodeChooser -->
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Papertrail log integration</i>
+            </b>
+          </summary>
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        papertrail = cloudamqp.IntegrationLog("papertrail",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            url=var["papertrail_url"])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Scalyr log integration</i>
+            </b>
+          </summary>
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        scalyr = cloudamqp.IntegrationLog("scalyr",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            token=var["scalyr_token"],
+            host=var["scalyr_host"])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        <details>
+          <summary>
+            <b>
+              <i>Splunk log integration</i>
+            </b>
+          </summary>
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        splunk = cloudamqp.IntegrationLog("splunk",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            token=var["splunk_token"],
+            host_port=var["splunk_host_port"],
+            source_type="generic_single_line")
+        ```
+        <!--End PulumiCodeChooser -->
+
+        </details>
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Stackdriver log integration (v1.20.2 or older versions)</i>
+            </b>
+          </summary>
+
+        Use variable file populated with project_id, private_key and client_email
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        stackdriver = cloudamqp.IntegrationLog("stackdriver",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            project_id=var["stackdriver_project_id"],
+            private_key=var["stackdriver_private_key"],
+            client_email=var["stackdriver_client_email"])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        or by using google_service_account_key resource from Google provider
 
         ## Import
 
@@ -985,30 +1180,225 @@ class IntegrationLog(pulumi.CustomResource):
 
         Only available for dedicated subscription plans.
 
-        ## Integration Type reference
+        ## Example Usage
 
-        Valid arguments for third party log integrations. See more information at [docs.cloudamqp.com](https://docs.cloudamqp.com/cloudamqp_api.html#add-log-integration)
+        <details>
+          <summary>
+            <b>
+              <i>Azure monitor log integration</i>
+            </b>
+          </summary>
 
-        Required arguments for all integrations: name
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
 
-        | Integration | name | Required arguments |
-        | ---- | ---- | ---- |
-        | Azure monitor | azure_monitor | tenant_id, application_id, application_secret, dce_uri, table, dcr_id |
-        | CloudWatch | cloudwatchlog | access_key_id, secret_access_key, region |
-        | Coralogix | coralogix | private_key, endpoint, application, subsystem |
-        | Data Dog | datadog | region, api_keys, tags |
-        | Log Entries | logentries | token |
-        | Loggly | loggly | token |
-        | Papertrail | papertrail | url |
-        | Scalyr | scalyr | token, host |
-        | Splunk | splunk | token, host_port, sourcetype |
-        | Stackdriver | stackdriver | credentials |
+        azure_monitor = cloudamqp.IntegrationLog("azureMonitor",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            tenant_id=var["azm_tentant_id"],
+            application_id=var["azm_application_id"],
+            application_secret=var["azm_application_secret"],
+            dce_uri=var["azm_dce_uri"],
+            table=var["azm_table"],
+            dcr_id=var["azm_dcr_id"])
+        ```
+        <!--End PulumiCodeChooser -->
 
-        ***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments  : project_id, private_key, client_email
+        </details>
 
-        ## Dependency
+        <details>
+          <summary>
+            <b>
+              <i>Cloudwatch log integration</i>
+            </b>
+          </summary>
 
-        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        cloudwatch = cloudamqp.IntegrationLog("cloudwatch",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            access_key_id=var["aws_access_key_id"],
+            secret_access_key=var["aws_secret_access_key"],
+            region=var["aws_region"])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Coralogix log integration</i>
+            </b>
+          </summary>
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        coralogix = cloudamqp.IntegrationLog("coralogix",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            private_key=var["coralogix_send_data_key"],
+            endpoint=var["coralogix_endpoint"],
+            application=var["coralogix_application"],
+            subsystem=cloudamqp_instance["instance"]["host"])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Datadog log integration</i>
+            </b>
+          </summary>
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        datadog = cloudamqp.IntegrationLog("datadog",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            region=var["datadog_region"],
+            api_key=var["datadog_api_key"],
+            tags=var["datadog_tags"])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Logentries log integration</i>
+            </b>
+          </summary>
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        logentries = cloudamqp.IntegrationLog("logentries",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            token=var["logentries_token"])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Loggly log integration</i>
+            </b>
+          </summary>
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        loggly = cloudamqp.IntegrationLog("loggly",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            token=var["loggly_token"])
+        ```
+        <!--End PulumiCodeChooser -->
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Papertrail log integration</i>
+            </b>
+          </summary>
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        papertrail = cloudamqp.IntegrationLog("papertrail",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            url=var["papertrail_url"])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Scalyr log integration</i>
+            </b>
+          </summary>
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        scalyr = cloudamqp.IntegrationLog("scalyr",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            token=var["scalyr_token"],
+            host=var["scalyr_host"])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        <details>
+          <summary>
+            <b>
+              <i>Splunk log integration</i>
+            </b>
+          </summary>
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        splunk = cloudamqp.IntegrationLog("splunk",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            token=var["splunk_token"],
+            host_port=var["splunk_host_port"],
+            source_type="generic_single_line")
+        ```
+        <!--End PulumiCodeChooser -->
+
+        </details>
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Stackdriver log integration (v1.20.2 or older versions)</i>
+            </b>
+          </summary>
+
+        Use variable file populated with project_id, private_key and client_email
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        stackdriver = cloudamqp.IntegrationLog("stackdriver",
+            instance_id=cloudamqp_instance["instance"]["id"],
+            project_id=var["stackdriver_project_id"],
+            private_key=var["stackdriver_private_key"],
+            client_email=var["stackdriver_client_email"])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        or by using google_service_account_key resource from Google provider
 
         ## Import
 

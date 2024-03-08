@@ -33,6 +33,8 @@ import javax.annotation.Nullable;
  *       &lt;i&gt;Basic example of shared and dedicated instances&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -75,6 +77,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * &lt;/details&gt;
  * 
  * &lt;details&gt;
@@ -83,6 +86,8 @@ import javax.annotation.Nullable;
  *       &lt;i&gt;Dedicated instance using attribute vpc_subnet to create VPC, pre v1.16.0&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -114,6 +119,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * &lt;/details&gt;
  * 
  * &lt;details&gt;
@@ -122,6 +128,8 @@ import javax.annotation.Nullable;
  *       &lt;i&gt;Dedicated instance using attribute vpc_subnet to create VPC and then import managed VPC, post v1.16.0 (Managed VPC)&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -153,10 +161,13 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * Once the instance and the VPC are created, the VPC can be imported as managed VPC and added to the configuration file.
  * Set attribute `vpc_id` to the managed VPC identifier. To keep the managed VPC when deleting the instance, set attribute `keep_associated_vpc` to true.
  * For more information see guide Managed VPC.
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -197,6 +208,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * &lt;/details&gt;
  * 
  * &lt;details&gt;
@@ -205,6 +217,8 @@ import javax.annotation.Nullable;
  *       &lt;i&gt;Dedicated instances and managed VPC, post v1.16.0 (Managed VPC)&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -253,9 +267,11 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * Set attribute `keep_associated_vpc` to true, will keep managed VPC when deleting the instances.
  * &lt;/details&gt;
+ * 
  * ## Upgrade and downgrade
  * 
  * It&#39;s possible to upgrade or downgrade your subscription plan, this will either increase or decrease the underlying resource used for by the CloudAMQP instance. To do this, change the argument `plan` in the configuration and apply the changes. See available plans.
@@ -266,6 +282,8 @@ import javax.annotation.Nullable;
  *       &lt;i&gt;Upgrade the subscription plan&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -296,6 +314,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * &lt;/details&gt;
  * 
  * &lt;details&gt;
@@ -304,6 +323,8 @@ import javax.annotation.Nullable;
  *       &lt;i&gt;Downgrade number of nodes from 3 to 1&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -334,6 +355,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * &lt;/details&gt;
  * 
  * ## Copy settings to a new dedicated instance
@@ -350,6 +372,8 @@ import javax.annotation.Nullable;
  *       &lt;i&gt;Copy settings from a dedicated instance to a new dedicated instance&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -393,6 +417,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * &lt;/details&gt;
  * 
  * ## Import
@@ -403,7 +428,7 @@ import javax.annotation.Nullable;
  * $ pulumi import cloudamqp:index/instance:Instance instance &lt;id&gt;`
  * ```
  * 
- *  To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md) to list all available instances for an account.
+ * To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md) to list all available instances for an account.
  * 
  */
 @ResourceType(type="cloudamqp:index/instance:Instance")

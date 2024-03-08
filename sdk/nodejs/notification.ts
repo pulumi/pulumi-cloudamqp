@@ -20,6 +20,7 @@ import * as utilities from "./utilities";
  *     <b>Email recipient</b>
  *   </summary>
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -30,6 +31,7 @@ import * as utilities from "./utilities";
  *     value: "alarm@example.com",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -38,6 +40,7 @@ import * as utilities from "./utilities";
  *     <b>OpsGenie recipient with optional responders</b>
  *   </summary>
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -58,6 +61,7 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -66,6 +70,7 @@ import * as utilities from "./utilities";
  *     <b>Pagerduty recipient with optional dedup key</b>
  *   </summary>
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -79,6 +84,7 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -87,6 +93,7 @@ import * as utilities from "./utilities";
  *     <b>Signl4 recipient</b>
  *   </summary>
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -97,6 +104,7 @@ import * as utilities from "./utilities";
  *     value: "<team-secret>",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -105,6 +113,7 @@ import * as utilities from "./utilities";
  *     <b>Teams recipient</b>
  *   </summary>
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -115,6 +124,7 @@ import * as utilities from "./utilities";
  *     value: "<teams-webhook-url>",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -123,6 +133,7 @@ import * as utilities from "./utilities";
  *     <b>Victorops recipient with optional routing key (rk)</b>
  *   </summary>
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -136,6 +147,7 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -144,6 +156,7 @@ import * as utilities from "./utilities";
  *     <b>Webhook recipient</b>
  *   </summary>
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -154,8 +167,10 @@ import * as utilities from "./utilities";
  *     value: "<webhook-url>",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * </details>
+ *
  * ## Notification Type reference
  *
  * Valid options for notification type.
@@ -185,9 +200,9 @@ import * as utilities from "./utilities";
  *
  * `cloudamqp_notification` can be imported using CloudAMQP internal identifier of a recipient together
  *
- *  (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use
+ * (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use
  *
- *  [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
+ * [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
  *
  * ```sh
  * $ pulumi import cloudamqp:index/notification:Notification recipient <id>,<instance_id>`

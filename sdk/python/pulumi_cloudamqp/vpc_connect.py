@@ -384,9 +384,11 @@ class VpcConnect(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -397,9 +399,11 @@ class VpcConnect(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -414,6 +418,7 @@ class VpcConnect(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -433,6 +438,7 @@ class VpcConnect(pulumi.CustomResource):
             region=instance.region,
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -443,6 +449,7 @@ class VpcConnect(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -462,6 +469,7 @@ class VpcConnect(pulumi.CustomResource):
             region=instance.region,
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -472,6 +480,7 @@ class VpcConnect(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -491,8 +500,10 @@ class VpcConnect(pulumi.CustomResource):
             region=instance.region,
             allowed_projects=["some-project-123456"])
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
+
         ### With Additional Firewall Rules
 
         <details>
@@ -502,6 +513,7 @@ class VpcConnect(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -543,8 +555,10 @@ class VpcConnect(pulumi.CustomResource):
             ],
             opts=pulumi.ResourceOptions(depends_on=[vpc_connect]))
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
+
         ## Depedency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -569,7 +583,7 @@ class VpcConnect(pulumi.CustomResource):
         $ pulumi import cloudamqp:index/vpcConnect:VpcConnect vpc_connect <id>`
         ```
 
-         The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
+        The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -619,9 +633,11 @@ class VpcConnect(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -632,9 +648,11 @@ class VpcConnect(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -649,6 +667,7 @@ class VpcConnect(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -668,6 +687,7 @@ class VpcConnect(pulumi.CustomResource):
             region=instance.region,
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -678,6 +698,7 @@ class VpcConnect(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -697,6 +718,7 @@ class VpcConnect(pulumi.CustomResource):
             region=instance.region,
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -707,6 +729,7 @@ class VpcConnect(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -726,8 +749,10 @@ class VpcConnect(pulumi.CustomResource):
             region=instance.region,
             allowed_projects=["some-project-123456"])
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
+
         ### With Additional Firewall Rules
 
         <details>
@@ -737,6 +762,7 @@ class VpcConnect(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -778,8 +804,10 @@ class VpcConnect(pulumi.CustomResource):
             ],
             opts=pulumi.ResourceOptions(depends_on=[vpc_connect]))
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
+
         ## Depedency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -804,7 +832,7 @@ class VpcConnect(pulumi.CustomResource):
         $ pulumi import cloudamqp:index/vpcConnect:VpcConnect vpc_connect <id>`
         ```
 
-         The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
+        The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
 
         :param str resource_name: The name of the resource.
         :param VpcConnectArgs args: The arguments to use to populate this resource's properties.

@@ -10,30 +10,235 @@ import * as utilities from "./utilities";
  *
  * Only available for dedicated subscription plans.
  *
- * ## Integration Type reference
+ * ## Example Usage
  *
- * Valid arguments for third party log integrations. See more information at [docs.cloudamqp.com](https://docs.cloudamqp.com/cloudamqp_api.html#add-log-integration)
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Azure monitor log integration</i>
+ *     </b>
+ *   </summary>
  *
- * Required arguments for all integrations: name
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
  *
- * | Integration | name | Required arguments |
- * | ---- | ---- | ---- |
- * | Azure monitor | azureMonitor | tenant_id, application_id, application_secret, dce_uri, table, dcrId |
- * | CloudWatch | cloudwatchlog | access_key_id, secret_access_key, region |
- * | Coralogix | coralogix | private_key, endpoint, application, subsystem |
- * | Data Dog | datadog | region, api_keys, tags |
- * | Log Entries | logentries | token |
- * | Loggly | loggly | token |
- * | Papertrail | papertrail | url |
- * | Scalyr | scalyr | token, host |
- * | Splunk | splunk | token, host_port, sourcetype |
- * | Stackdriver | stackdriver | credentials |
+ * const azureMonitor = new cloudamqp.IntegrationLog("azureMonitor", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     tenantId: _var.azm_tentant_id,
+ *     applicationId: _var.azm_application_id,
+ *     applicationSecret: _var.azm_application_secret,
+ *     dceUri: _var.azm_dce_uri,
+ *     table: _var.azm_table,
+ *     dcrId: _var.azm_dcr_id,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
  *
- * ***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments  : project_id, private_key, clientEmail
+ * </details>
  *
- * ## Dependency
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Cloudwatch log integration</i>
+ *     </b>
+ *   </summary>
  *
- * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const cloudwatch = new cloudamqp.IntegrationLog("cloudwatch", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     accessKeyId: _var.aws_access_key_id,
+ *     secretAccessKey: _var.aws_secret_access_key,
+ *     region: _var.aws_region,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Coralogix log integration</i>
+ *     </b>
+ *   </summary>
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const coralogix = new cloudamqp.IntegrationLog("coralogix", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     privateKey: _var.coralogix_send_data_key,
+ *     endpoint: _var.coralogix_endpoint,
+ *     application: _var.coralogix_application,
+ *     subsystem: cloudamqp_instance.instance.host,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Datadog log integration</i>
+ *     </b>
+ *   </summary>
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const datadog = new cloudamqp.IntegrationLog("datadog", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     region: _var.datadog_region,
+ *     apiKey: _var.datadog_api_key,
+ *     tags: _var.datadog_tags,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Logentries log integration</i>
+ *     </b>
+ *   </summary>
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const logentries = new cloudamqp.IntegrationLog("logentries", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     token: _var.logentries_token,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Loggly log integration</i>
+ *     </b>
+ *   </summary>
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const loggly = new cloudamqp.IntegrationLog("loggly", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     token: _var.loggly_token,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Papertrail log integration</i>
+ *     </b>
+ *   </summary>
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const papertrail = new cloudamqp.IntegrationLog("papertrail", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     url: _var.papertrail_url,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Scalyr log integration</i>
+ *     </b>
+ *   </summary>
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const scalyr = new cloudamqp.IntegrationLog("scalyr", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     token: _var.scalyr_token,
+ *     host: _var.scalyr_host,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Splunk log integration</i>
+ *     </b>
+ *   </summary>
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const splunk = new cloudamqp.IntegrationLog("splunk", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     token: _var.splunk_token,
+ *     hostPort: _var.splunk_host_port,
+ *     sourceType: "generic_single_line",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * </details>
+ *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Stackdriver log integration (v1.20.2 or older versions)</i>
+ *     </b>
+ *   </summary>
+ *
+ * Use variable file populated with project_id, privateKey and clientEmail
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const stackdriver = new cloudamqp.IntegrationLog("stackdriver", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     projectId: _var.stackdriver_project_id,
+ *     privateKey: _var.stackdriver_private_key,
+ *     clientEmail: _var.stackdriver_client_email,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * or by using googleServiceAccountKey resource from Google provider
  *
  * ## Import
  *

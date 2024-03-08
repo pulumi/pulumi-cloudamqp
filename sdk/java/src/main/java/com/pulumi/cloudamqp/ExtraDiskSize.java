@@ -49,6 +49,8 @@ import javax.annotation.Nullable;
  *       &lt;i&gt;AWS extra disk size (pre v1.25.0)&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -91,6 +93,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
  * 
@@ -100,6 +103,8 @@ import javax.annotation.Nullable;
  *       &lt;i&gt;AWS extra disk size without downtime&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -142,6 +147,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
  * 
@@ -151,6 +157,8 @@ import javax.annotation.Nullable;
  *       &lt;i&gt;GCE extra disk size without downtime&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -193,6 +201,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
  * 
@@ -202,6 +211,8 @@ import javax.annotation.Nullable;
  *       &lt;i&gt;Azure extra disk size with downtime&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -245,8 +256,10 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
+ * 
  * ## Attributes reference
  * 
  * All attributes reference are computed

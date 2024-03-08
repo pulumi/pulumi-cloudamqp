@@ -596,6 +596,7 @@ class Instance(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -616,6 +617,7 @@ class Instance(pulumi.CustomResource):
             region="amazon-web-services::us-west-1",
             tags=["terraform"])
         ```
+        <!--End PulumiCodeChooser -->
         </details>
 
         <details>
@@ -625,6 +627,7 @@ class Instance(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -635,6 +638,7 @@ class Instance(pulumi.CustomResource):
             tags=["terraform"],
             vpc_subnet="10.56.72.0/24")
         ```
+        <!--End PulumiCodeChooser -->
         </details>
 
         <details>
@@ -644,6 +648,7 @@ class Instance(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -655,11 +660,13 @@ class Instance(pulumi.CustomResource):
             tags=["terraform"],
             vpc_subnet="10.56.72.0/24")
         ```
+        <!--End PulumiCodeChooser -->
 
         Once the instance and the VPC are created, the VPC can be imported as managed VPC and added to the configuration file.
         Set attribute `vpc_id` to the managed VPC identifier. To keep the managed VPC when deleting the instance, set attribute `keep_associated_vpc` to true.
         For more information see guide Managed VPC.
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -677,6 +684,7 @@ class Instance(pulumi.CustomResource):
             vpc_id=vpc.id,
             keep_associated_vpc=True)
         ```
+        <!--End PulumiCodeChooser -->
         </details>
 
         <details>
@@ -686,6 +694,7 @@ class Instance(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -710,9 +719,11 @@ class Instance(pulumi.CustomResource):
             vpc_id=vpc.id,
             keep_associated_vpc=True)
         ```
+        <!--End PulumiCodeChooser -->
 
         Set attribute `keep_associated_vpc` to true, will keep managed VPC when deleting the instances.
         </details>
+
         ## Upgrade and downgrade
 
         It's possible to upgrade or downgrade your subscription plan, this will either increase or decrease the underlying resource used for by the CloudAMQP instance. To do this, change the argument `plan` in the configuration and apply the changes. See available plans.
@@ -724,6 +735,7 @@ class Instance(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -734,6 +746,7 @@ class Instance(pulumi.CustomResource):
             region="amazon-web-services::us-west-1",
             tags=["terraform"])
         ```
+        <!--End PulumiCodeChooser -->
         </details>
 
         <details>
@@ -743,6 +756,7 @@ class Instance(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -753,6 +767,7 @@ class Instance(pulumi.CustomResource):
             region="amazon-web-services::us-west-1",
             tags=["terraform"])
         ```
+        <!--End PulumiCodeChooser -->
         </details>
 
         ## Copy settings to a new dedicated instance
@@ -770,6 +785,7 @@ class Instance(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -792,6 +808,7 @@ class Instance(pulumi.CustomResource):
                 ],
             )])
         ```
+        <!--End PulumiCodeChooser -->
         </details>
 
         ## Import
@@ -802,7 +819,7 @@ class Instance(pulumi.CustomResource):
         $ pulumi import cloudamqp:index/instance:Instance instance <id>`
         ```
 
-         To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md) to list all available instances for an account.
+        To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md) to list all available instances for an account.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -854,6 +871,7 @@ class Instance(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -874,6 +892,7 @@ class Instance(pulumi.CustomResource):
             region="amazon-web-services::us-west-1",
             tags=["terraform"])
         ```
+        <!--End PulumiCodeChooser -->
         </details>
 
         <details>
@@ -883,6 +902,7 @@ class Instance(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -893,6 +913,7 @@ class Instance(pulumi.CustomResource):
             tags=["terraform"],
             vpc_subnet="10.56.72.0/24")
         ```
+        <!--End PulumiCodeChooser -->
         </details>
 
         <details>
@@ -902,6 +923,7 @@ class Instance(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -913,11 +935,13 @@ class Instance(pulumi.CustomResource):
             tags=["terraform"],
             vpc_subnet="10.56.72.0/24")
         ```
+        <!--End PulumiCodeChooser -->
 
         Once the instance and the VPC are created, the VPC can be imported as managed VPC and added to the configuration file.
         Set attribute `vpc_id` to the managed VPC identifier. To keep the managed VPC when deleting the instance, set attribute `keep_associated_vpc` to true.
         For more information see guide Managed VPC.
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -935,6 +959,7 @@ class Instance(pulumi.CustomResource):
             vpc_id=vpc.id,
             keep_associated_vpc=True)
         ```
+        <!--End PulumiCodeChooser -->
         </details>
 
         <details>
@@ -944,6 +969,7 @@ class Instance(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -968,9 +994,11 @@ class Instance(pulumi.CustomResource):
             vpc_id=vpc.id,
             keep_associated_vpc=True)
         ```
+        <!--End PulumiCodeChooser -->
 
         Set attribute `keep_associated_vpc` to true, will keep managed VPC when deleting the instances.
         </details>
+
         ## Upgrade and downgrade
 
         It's possible to upgrade or downgrade your subscription plan, this will either increase or decrease the underlying resource used for by the CloudAMQP instance. To do this, change the argument `plan` in the configuration and apply the changes. See available plans.
@@ -982,6 +1010,7 @@ class Instance(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -992,6 +1021,7 @@ class Instance(pulumi.CustomResource):
             region="amazon-web-services::us-west-1",
             tags=["terraform"])
         ```
+        <!--End PulumiCodeChooser -->
         </details>
 
         <details>
@@ -1001,6 +1031,7 @@ class Instance(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -1011,6 +1042,7 @@ class Instance(pulumi.CustomResource):
             region="amazon-web-services::us-west-1",
             tags=["terraform"])
         ```
+        <!--End PulumiCodeChooser -->
         </details>
 
         ## Copy settings to a new dedicated instance
@@ -1028,6 +1060,7 @@ class Instance(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -1050,6 +1083,7 @@ class Instance(pulumi.CustomResource):
                 ],
             )])
         ```
+        <!--End PulumiCodeChooser -->
         </details>
 
         ## Import
@@ -1060,7 +1094,7 @@ class Instance(pulumi.CustomResource):
         $ pulumi import cloudamqp:index/instance:Instance instance <id>`
         ```
 
-         To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md) to list all available instances for an account.
+        To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md) to list all available instances for an account.
 
         :param str resource_name: The name of the resource.
         :param InstanceArgs args: The arguments to use to populate this resource's properties.

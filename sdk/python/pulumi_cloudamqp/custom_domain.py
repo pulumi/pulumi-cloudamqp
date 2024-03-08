@@ -110,6 +110,7 @@ class CustomDomain(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -118,6 +119,8 @@ class CustomDomain(pulumi.CustomResource):
             instance_id=cloudamqp_instance["instance"]["id"],
             hostname="myname.mydomain")
         ```
+        <!--End PulumiCodeChooser -->
+
         ## Depedency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -156,6 +159,7 @@ class CustomDomain(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -164,6 +168,8 @@ class CustomDomain(pulumi.CustomResource):
             instance_id=cloudamqp_instance["instance"]["id"],
             hostname="myname.mydomain")
         ```
+        <!--End PulumiCodeChooser -->
+
         ## Depedency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.

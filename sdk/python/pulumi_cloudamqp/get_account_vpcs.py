@@ -62,6 +62,7 @@ def get_account_vpcs(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGe
 
     Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_cloudamqp as cloudamqp
@@ -70,6 +71,8 @@ def get_account_vpcs(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGe
     vpc_list = cloudamqp.get_account_vpcs()
     pulumi.export("vpcId", [vpc for vpc in vpc_list.vpcs if vpc.name == my_vpc_name][0].id)
     ```
+    <!--End PulumiCodeChooser -->
+
     ## Attributes reference
 
     All attributes reference are computed
@@ -110,6 +113,7 @@ def get_account_vpcs_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulu
 
     Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_cloudamqp as cloudamqp
@@ -118,6 +122,8 @@ def get_account_vpcs_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulu
     vpc_list = cloudamqp.get_account_vpcs()
     pulumi.export("vpcId", [vpc for vpc in vpc_list.vpcs if vpc.name == my_vpc_name][0].id)
     ```
+    <!--End PulumiCodeChooser -->
+
     ## Attributes reference
 
     All attributes reference are computed
