@@ -17,6 +17,7 @@ import (
 //
 // Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,6 +39,8 @@ import (
 // })
 // }
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ## Attributes reference
 //
 // # All attributes reference are computed

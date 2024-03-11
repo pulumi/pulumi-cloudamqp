@@ -249,9 +249,11 @@ class PrivatelinkAws(pulumi.CustomResource):
             <i>Default PrivateLink firewall rule</i>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -273,6 +275,7 @@ class PrivatelinkAws(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -285,6 +288,7 @@ class PrivatelinkAws(pulumi.CustomResource):
             instance_id=instance.id,
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -295,6 +299,7 @@ class PrivatelinkAws(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -313,8 +318,10 @@ class PrivatelinkAws(pulumi.CustomResource):
             instance_id=instance.id,
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
+
         ### With Additional Firewall Rules
 
         <details>
@@ -324,6 +331,7 @@ class PrivatelinkAws(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -365,8 +373,10 @@ class PrivatelinkAws(pulumi.CustomResource):
             ],
             opts=pulumi.ResourceOptions(depends_on=[privatelink]))
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
+
         ## Depedency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -388,7 +398,7 @@ class PrivatelinkAws(pulumi.CustomResource):
         $ pulumi import cloudamqp:index/privatelinkAws:PrivatelinkAws privatelink <id>`
         ```
 
-         The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
+        The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -420,9 +430,11 @@ class PrivatelinkAws(pulumi.CustomResource):
             <i>Default PrivateLink firewall rule</i>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -444,6 +456,7 @@ class PrivatelinkAws(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -456,6 +469,7 @@ class PrivatelinkAws(pulumi.CustomResource):
             instance_id=instance.id,
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -466,6 +480,7 @@ class PrivatelinkAws(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -484,8 +499,10 @@ class PrivatelinkAws(pulumi.CustomResource):
             instance_id=instance.id,
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
+
         ### With Additional Firewall Rules
 
         <details>
@@ -495,6 +512,7 @@ class PrivatelinkAws(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -536,8 +554,10 @@ class PrivatelinkAws(pulumi.CustomResource):
             ],
             opts=pulumi.ResourceOptions(depends_on=[privatelink]))
         ```
+        <!--End PulumiCodeChooser -->
 
         </details>
+
         ## Depedency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -559,7 +579,7 @@ class PrivatelinkAws(pulumi.CustomResource):
         $ pulumi import cloudamqp:index/privatelinkAws:PrivatelinkAws privatelink <id>`
         ```
 
-         The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
+        The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
 
         :param str resource_name: The name of the resource.
         :param PrivatelinkAwsArgs args: The arguments to use to populate this resource's properties.

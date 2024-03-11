@@ -17,6 +17,7 @@ import (
 //
 // Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -40,6 +41,8 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ## Attributes reference
 //
 // # All attributes reference are computed

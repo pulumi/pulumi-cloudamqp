@@ -78,12 +78,15 @@ def get_upgradable_versions(instance_id: Optional[int] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
     versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
     ```
+    <!--End PulumiCodeChooser -->
+
     ## Attributes reference
 
     All attributes reference are computed
@@ -118,12 +121,15 @@ def get_upgradable_versions_output(instance_id: Optional[pulumi.Input[int]] = No
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
     versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
     ```
+    <!--End PulumiCodeChooser -->
+
     ## Attributes reference
 
     All attributes reference are computed

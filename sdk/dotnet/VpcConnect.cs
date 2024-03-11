@@ -27,6 +27,7 @@ namespace Pulumi.CloudAmqp
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -36,6 +37,7 @@ namespace Pulumi.CloudAmqp
     /// {
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &lt;/details&gt;
     /// 
@@ -46,6 +48,7 @@ namespace Pulumi.CloudAmqp
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -55,6 +58,7 @@ namespace Pulumi.CloudAmqp
     /// {
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &lt;/details&gt;
     /// 
@@ -69,6 +73,7 @@ namespace Pulumi.CloudAmqp
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -105,6 +110,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &lt;/details&gt;
     /// 
@@ -115,6 +121,7 @@ namespace Pulumi.CloudAmqp
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -151,6 +158,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &lt;/details&gt;
     /// 
@@ -161,6 +169,7 @@ namespace Pulumi.CloudAmqp
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -197,8 +206,10 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &lt;/details&gt;
+    /// 
     /// ### With Additional Firewall Rules
     /// 
     /// &lt;details&gt;
@@ -208,6 +219,7 @@ namespace Pulumi.CloudAmqp
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -281,8 +293,10 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &lt;/details&gt;
+    /// 
     /// ## Depedency
     /// 
     /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -307,7 +321,7 @@ namespace Pulumi.CloudAmqp
     /// $ pulumi import cloudamqp:index/vpcConnect:VpcConnect vpc_connect &lt;id&gt;`
     /// ```
     /// 
-    ///  The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
+    /// The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/vpcConnect:VpcConnect")]
     public partial class VpcConnect : global::Pulumi.CustomResource

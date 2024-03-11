@@ -15,6 +15,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -39,6 +40,7 @@ import * as utilities from "./utilities";
  *     vpcId: vpc.id,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -48,9 +50,9 @@ import * as utilities from "./utilities";
  * $ pulumi import cloudamqp:index/vpc:Vpc <resource_name> <vpc_id>`
  * ```
  *
- *  To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-vpcs).
+ * To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-vpcs).
  *
- *  Or use the data source `cloudamqp_account_vpcs` to list all available standalone VPCs for an account.
+ * Or use the data source `cloudamqp_account_vpcs` to list all available standalone VPCs for an account.
  */
 export class Vpc extends pulumi.CustomResource {
     /**

@@ -25,6 +25,8 @@ import javax.annotation.Nullable;
  * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -73,6 +75,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
@@ -82,9 +85,9 @@ import javax.annotation.Nullable;
  * $ pulumi import cloudamqp:index/vpc:Vpc &lt;resource_name&gt; &lt;vpc_id&gt;`
  * ```
  * 
- *  To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-vpcs).
+ * To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-vpcs).
  * 
- *  Or use the data source `cloudamqp_account_vpcs` to list all available standalone VPCs for an account.
+ * Or use the data source `cloudamqp_account_vpcs` to list all available standalone VPCs for an account.
  * 
  */
 @ResourceType(type="cloudamqp:index/vpc:Vpc")

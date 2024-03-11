@@ -62,6 +62,7 @@ def get_account(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAcco
 
     Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_cloudamqp as cloudamqp
@@ -70,6 +71,8 @@ def get_account(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAcco
     instance_list = cloudamqp.get_account()
     pulumi.export("instanceId", <nil>)
     ```
+    <!--End PulumiCodeChooser -->
+
     ## Attributes reference
 
     All attributes reference are computed
@@ -109,6 +112,7 @@ def get_account_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Ou
 
     Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_cloudamqp as cloudamqp
@@ -117,6 +121,8 @@ def get_account_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Ou
     instance_list = cloudamqp.get_account()
     pulumi.export("instanceId", <nil>)
     ```
+    <!--End PulumiCodeChooser -->
+
     ## Attributes reference
 
     All attributes reference are computed

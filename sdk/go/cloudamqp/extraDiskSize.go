@@ -45,6 +45,7 @@ import (
 //	  </b>
 //	</summary>
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -83,6 +84,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -94,6 +96,7 @@ import (
 //	  </b>
 //	</summary>
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -132,6 +135,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -143,6 +147,7 @@ import (
 //	  </b>
 //	</summary>
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -181,6 +186,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -192,6 +198,7 @@ import (
 //	  </b>
 //	</summary>
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -231,8 +238,10 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // </details>
+//
 // ## Attributes reference
 //
 // # All attributes reference are computed

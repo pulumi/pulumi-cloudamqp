@@ -190,6 +190,7 @@ class Vpc(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -210,6 +211,7 @@ class Vpc(pulumi.CustomResource):
             keep_associated_vpc=True)
         vpc_info = cloudamqp.get_vpc_info_output(vpc_id=vpc.id)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -219,9 +221,9 @@ class Vpc(pulumi.CustomResource):
         $ pulumi import cloudamqp:index/vpc:Vpc <resource_name> <vpc_id>`
         ```
 
-         To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-vpcs).
+        To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-vpcs).
 
-         Or use the data source `cloudamqp_account_vpcs` to list all available standalone VPCs for an account.
+        Or use the data source `cloudamqp_account_vpcs` to list all available standalone VPCs for an account.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -247,6 +249,7 @@ class Vpc(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -267,6 +270,7 @@ class Vpc(pulumi.CustomResource):
             keep_associated_vpc=True)
         vpc_info = cloudamqp.get_vpc_info_output(vpc_id=vpc.id)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -276,9 +280,9 @@ class Vpc(pulumi.CustomResource):
         $ pulumi import cloudamqp:index/vpc:Vpc <resource_name> <vpc_id>`
         ```
 
-         To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-vpcs).
+        To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-vpcs).
 
-         Or use the data source `cloudamqp_account_vpcs` to list all available standalone VPCs for an account.
+        Or use the data source `cloudamqp_account_vpcs` to list all available standalone VPCs for an account.
 
         :param str resource_name: The name of the resource.
         :param VpcArgs args: The arguments to use to populate this resource's properties.

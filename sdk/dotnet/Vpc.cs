@@ -20,6 +20,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -55,6 +56,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -64,9 +66,9 @@ namespace Pulumi.CloudAmqp
     /// $ pulumi import cloudamqp:index/vpc:Vpc &lt;resource_name&gt; &lt;vpc_id&gt;`
     /// ```
     /// 
-    ///  To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-vpcs).
+    /// To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-vpcs).
     /// 
-    ///  Or use the data source `cloudamqp_account_vpcs` to list all available standalone VPCs for an account.
+    /// Or use the data source `cloudamqp_account_vpcs` to list all available standalone VPCs for an account.
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/vpc:Vpc")]
     public partial class Vpc : global::Pulumi.CustomResource

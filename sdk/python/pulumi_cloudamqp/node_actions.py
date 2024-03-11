@@ -159,6 +159,7 @@ class NodeActions(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -169,6 +170,7 @@ class NodeActions(pulumi.CustomResource):
             node_name="<node name>",
             action="restart")
         ```
+        <!--End PulumiCodeChooser -->
         </details>
 
         Using data source `get_nodes` to restart RabbitMQ on all nodes.</br>
@@ -181,6 +183,7 @@ class NodeActions(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -204,6 +207,7 @@ class NodeActions(pulumi.CustomResource):
                     restart02,
                 ]))
         ```
+        <!--End PulumiCodeChooser -->
         </details>
 
         <details>
@@ -213,6 +217,7 @@ class NodeActions(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -244,7 +249,9 @@ class NodeActions(pulumi.CustomResource):
                     restart02,
                 ]))
         ```
+        <!--End PulumiCodeChooser -->
         </details>
+
         ## Action reference
 
         Valid options for action.
@@ -291,6 +298,7 @@ class NodeActions(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -301,6 +309,7 @@ class NodeActions(pulumi.CustomResource):
             node_name="<node name>",
             action="restart")
         ```
+        <!--End PulumiCodeChooser -->
         </details>
 
         Using data source `get_nodes` to restart RabbitMQ on all nodes.</br>
@@ -313,6 +322,7 @@ class NodeActions(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -336,6 +346,7 @@ class NodeActions(pulumi.CustomResource):
                     restart02,
                 ]))
         ```
+        <!--End PulumiCodeChooser -->
         </details>
 
         <details>
@@ -345,6 +356,7 @@ class NodeActions(pulumi.CustomResource):
             </b>
           </summary>
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -376,7 +388,9 @@ class NodeActions(pulumi.CustomResource):
                     restart02,
                 ]))
         ```
+        <!--End PulumiCodeChooser -->
         </details>
+
         ## Action reference
 
         Valid options for action.

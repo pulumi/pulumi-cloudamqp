@@ -14,10 +14,9 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -33,8 +32,8 @@ namespace Pulumi.CloudAmqp
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
+        /// 
         /// ## Attributes reference
         /// 
         /// All attributes reference are computed
@@ -65,10 +64,9 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -84,8 +82,8 @@ namespace Pulumi.CloudAmqp
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
+        /// 
         /// ## Attributes reference
         /// 
         /// All attributes reference are computed

@@ -252,6 +252,7 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -269,6 +270,8 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
             aws_region="us-west-1",
             with_headers=True)
         ```
+        <!--End PulumiCodeChooser -->
+
         ## Argument references
 
         The following arguments are supported:
@@ -317,6 +320,7 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -334,6 +338,8 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
             aws_region="us-west-1",
             with_headers=True)
         ```
+        <!--End PulumiCodeChooser -->
+
         ## Argument references
 
         The following arguments are supported:

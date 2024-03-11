@@ -13,6 +13,7 @@ import * as utilities from "./utilities";
  *
  * Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -21,6 +22,8 @@ import * as utilities from "./utilities";
  * const instanceList = cloudamqp.getAccount({});
  * export const instanceId = <nil>;
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ## Attributes reference
  *
  * All attributes reference are computed
@@ -66,6 +69,7 @@ export interface GetAccountResult {
  *
  * Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -74,6 +78,8 @@ export interface GetAccountResult {
  * const instanceList = cloudamqp.getAccount({});
  * export const instanceId = <nil>;
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ## Attributes reference
  *
  * All attributes reference are computed
