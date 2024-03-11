@@ -26,6 +26,7 @@ import (
 //	  <b>Email recipient</b>
 //	</summary>
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -51,6 +52,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -60,6 +62,7 @@ import (
 //	  <b>OpsGenie recipient with optional responders</b>
 //	</summary>
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -95,6 +98,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -104,6 +108,7 @@ import (
 //	  <b>Pagerduty recipient with optional dedup key</b>
 //	</summary>
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -132,6 +137,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -141,6 +147,7 @@ import (
 //	  <b>Signl4 recipient</b>
 //	</summary>
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -166,6 +173,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -175,6 +183,7 @@ import (
 //	  <b>Teams recipient</b>
 //	</summary>
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -200,6 +209,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -209,6 +219,7 @@ import (
 //	  <b>Victorops recipient with optional routing key (rk)</b>
 //	</summary>
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -237,6 +248,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -246,6 +258,7 @@ import (
 //	  <b>Webhook recipient</b>
 //	</summary>
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -271,8 +284,10 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // </details>
+//
 // ## Notification Type reference
 //
 // Valid options for notification type.
@@ -302,9 +317,9 @@ import (
 //
 // `cloudamqp_notification` can be imported using CloudAMQP internal identifier of a recipient together
 //
-//	(CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use
+// (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use
 //
-//	[CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
+// [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
 //
 // ```sh
 // $ pulumi import cloudamqp:index/notification:Notification recipient <id>,<instance_id>`

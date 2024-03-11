@@ -13,6 +13,7 @@ import * as utilities from "./utilities";
  *
  * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -21,6 +22,8 @@ import * as utilities from "./utilities";
  * const vpcList = cloudamqp.getAccountVpcs({});
  * export const vpcId = vpcList.then(vpcList => .filter(vpc => vpc.name == myVpcName).map(vpc => (vpc))[0].id);
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ## Attributes reference
  *
  * All attributes reference are computed
@@ -67,6 +70,7 @@ export interface GetAccountVpcsResult {
  *
  * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -75,6 +79,8 @@ export interface GetAccountVpcsResult {
  * const vpcList = cloudamqp.getAccountVpcs({});
  * export const vpcId = vpcList.then(vpcList => .filter(vpc => vpc.name == myVpcName).map(vpc => (vpc))[0].id);
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ## Attributes reference
  *
  * All attributes reference are computed

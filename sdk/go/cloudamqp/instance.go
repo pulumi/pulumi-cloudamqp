@@ -28,6 +28,7 @@ import (
 //	  </b>
 //	</summary>
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -78,6 +79,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 // </details>
 //
 // <details>
@@ -88,6 +90,7 @@ import (
 //	  </b>
 //	</summary>
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -116,6 +119,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 // </details>
 //
 // <details>
@@ -126,6 +130,7 @@ import (
 //	  </b>
 //	</summary>
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -155,11 +160,13 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // Once the instance and the VPC are created, the VPC can be imported as managed VPC and added to the configuration file.
 // Set attribute `vpcId` to the managed VPC identifier. To keep the managed VPC when deleting the instance, set attribute `keepAssociatedVpc` to true.
 // For more information see guide Managed VPC.
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -199,6 +206,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 // </details>
 //
 // <details>
@@ -209,6 +217,7 @@ import (
 //	  </b>
 //	</summary>
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -261,9 +270,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // Set attribute `keepAssociatedVpc` to true, will keep managed VPC when deleting the instances.
 // </details>
+//
 // ## Upgrade and downgrade
 //
 // It's possible to upgrade or downgrade your subscription plan, this will either increase or decrease the underlying resource used for by the CloudAMQP instance. To do this, change the argument `plan` in the configuration and apply the changes. See available plans.
@@ -276,6 +287,7 @@ import (
 //	  </b>
 //	</summary>
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -304,6 +316,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 // </details>
 //
 // <details>
@@ -314,6 +327,7 @@ import (
 //	  </b>
 //	</summary>
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -342,6 +356,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 // </details>
 //
 // ## Copy settings to a new dedicated instance
@@ -360,6 +375,7 @@ import (
 //	  </b>
 //	</summary>
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -402,6 +418,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 // </details>
 //
 // ## Import
@@ -412,7 +429,7 @@ import (
 // $ pulumi import cloudamqp:index/instance:Instance instance <id>`
 // ```
 //
-//	To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md) to list all available instances for an account.
+// To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md) to list all available instances for an account.
 type Instance struct {
 	pulumi.CustomResourceState
 

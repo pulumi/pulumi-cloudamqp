@@ -26,6 +26,8 @@ import javax.annotation.Nullable;
  *  &lt;summary&gt;
  *     &lt;i&gt;Default PrivateLink firewall rule&lt;/i&gt;
  *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -48,6 +50,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
  * 
@@ -68,6 +71,8 @@ import javax.annotation.Nullable;
  *       &lt;i&gt;CloudAMQP instance without existing VPC&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -105,6 +110,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * &lt;/details&gt;
  * 
  * &lt;details&gt;
@@ -113,6 +119,8 @@ import javax.annotation.Nullable;
  *       &lt;i&gt;CloudAMQP instance in an existing VPC&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -160,8 +168,10 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
+ * 
  * ### With Additional Firewall Rules
  * 
  * &lt;details&gt;
@@ -170,6 +180,8 @@ import javax.annotation.Nullable;
  *       &lt;i&gt;CloudAMQP instance in an existing VPC with managed firewall rules&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -245,8 +257,10 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
+ * 
  * ## Depedency
  * 
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -268,7 +282,7 @@ import javax.annotation.Nullable;
  * $ pulumi import cloudamqp:index/privatelinkAzure:PrivatelinkAzure privatelink &lt;id&gt;`
  * ```
  * 
- *  The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
+ * The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
  * 
  */
 @ResourceType(type="cloudamqp:index/privatelinkAzure:PrivatelinkAzure")

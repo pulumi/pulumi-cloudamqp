@@ -22,30 +22,435 @@ import javax.annotation.Nullable;
  * 
  * Only available for dedicated subscription plans.
  * 
- * ## Integration Type reference
+ * ## Example Usage
  * 
- * Valid arguments for third party log integrations. See more information at [docs.cloudamqp.com](https://docs.cloudamqp.com/cloudamqp_api.html#add-log-integration)
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Azure monitor log integration&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
  * 
- * Required arguments for all integrations: name
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
  * 
- * | Integration | name | Required arguments |
- * | ---- | ---- | ---- |
- * | Azure monitor | azure_monitor | tenant_id, application_id, application_secret, dce_uri, table, dcr_id |
- * | CloudWatch | cloudwatchlog | access_key_id, secret_access_key, region |
- * | Coralogix | coralogix | private_key, endpoint, application, subsystem |
- * | Data Dog | datadog | region, api_keys, tags |
- * | Log Entries | logentries | token |
- * | Loggly | loggly | token |
- * | Papertrail | papertrail | url |
- * | Scalyr | scalyr | token, host |
- * | Splunk | splunk | token, host_port, sourcetype |
- * | Stackdriver | stackdriver | credentials |
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.IntegrationLog;
+ * import com.pulumi.cloudamqp.IntegrationLogArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
  * 
- * ***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments  : project_id, private_key, client_email
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
  * 
- * ## Dependency
+ *     public static void stack(Context ctx) {
+ *         var azureMonitor = new IntegrationLog(&#34;azureMonitor&#34;, IntegrationLogArgs.builder()        
+ *             .instanceId(cloudamqp_instance.instance().id())
+ *             .tenantId(var_.azm_tentant_id())
+ *             .applicationId(var_.azm_application_id())
+ *             .applicationSecret(var_.azm_application_secret())
+ *             .dceUri(var_.azm_dce_uri())
+ *             .table(var_.azm_table())
+ *             .dcrId(var_.azm_dcr_id())
+ *             .build());
  * 
- * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Cloudwatch log integration&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.IntegrationLog;
+ * import com.pulumi.cloudamqp.IntegrationLogArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var cloudwatch = new IntegrationLog(&#34;cloudwatch&#34;, IntegrationLogArgs.builder()        
+ *             .instanceId(cloudamqp_instance.instance().id())
+ *             .accessKeyId(var_.aws_access_key_id())
+ *             .secretAccessKey(var_.aws_secret_access_key())
+ *             .region(var_.aws_region())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Coralogix log integration&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.IntegrationLog;
+ * import com.pulumi.cloudamqp.IntegrationLogArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var coralogix = new IntegrationLog(&#34;coralogix&#34;, IntegrationLogArgs.builder()        
+ *             .instanceId(cloudamqp_instance.instance().id())
+ *             .privateKey(var_.coralogix_send_data_key())
+ *             .endpoint(var_.coralogix_endpoint())
+ *             .application(var_.coralogix_application())
+ *             .subsystem(cloudamqp_instance.instance().host())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Datadog log integration&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.IntegrationLog;
+ * import com.pulumi.cloudamqp.IntegrationLogArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var datadog = new IntegrationLog(&#34;datadog&#34;, IntegrationLogArgs.builder()        
+ *             .instanceId(cloudamqp_instance.instance().id())
+ *             .region(var_.datadog_region())
+ *             .apiKey(var_.datadog_api_key())
+ *             .tags(var_.datadog_tags())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Logentries log integration&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.IntegrationLog;
+ * import com.pulumi.cloudamqp.IntegrationLogArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var logentries = new IntegrationLog(&#34;logentries&#34;, IntegrationLogArgs.builder()        
+ *             .instanceId(cloudamqp_instance.instance().id())
+ *             .token(var_.logentries_token())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Loggly log integration&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.IntegrationLog;
+ * import com.pulumi.cloudamqp.IntegrationLogArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var loggly = new IntegrationLog(&#34;loggly&#34;, IntegrationLogArgs.builder()        
+ *             .instanceId(cloudamqp_instance.instance().id())
+ *             .token(var_.loggly_token())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Papertrail log integration&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.IntegrationLog;
+ * import com.pulumi.cloudamqp.IntegrationLogArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var papertrail = new IntegrationLog(&#34;papertrail&#34;, IntegrationLogArgs.builder()        
+ *             .instanceId(cloudamqp_instance.instance().id())
+ *             .url(var_.papertrail_url())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Scalyr log integration&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.IntegrationLog;
+ * import com.pulumi.cloudamqp.IntegrationLogArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var scalyr = new IntegrationLog(&#34;scalyr&#34;, IntegrationLogArgs.builder()        
+ *             .instanceId(cloudamqp_instance.instance().id())
+ *             .token(var_.scalyr_token())
+ *             .host(var_.scalyr_host())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Splunk log integration&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.IntegrationLog;
+ * import com.pulumi.cloudamqp.IntegrationLogArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var splunk = new IntegrationLog(&#34;splunk&#34;, IntegrationLogArgs.builder()        
+ *             .instanceId(cloudamqp_instance.instance().id())
+ *             .token(var_.splunk_token())
+ *             .hostPort(var_.splunk_host_port())
+ *             .sourceType(&#34;generic_single_line&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Stackdriver log integration (v1.20.2 or older versions)&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * Use variable file populated with project_id, private_key and client_email
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.IntegrationLog;
+ * import com.pulumi.cloudamqp.IntegrationLogArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var stackdriver = new IntegrationLog(&#34;stackdriver&#34;, IntegrationLogArgs.builder()        
+ *             .instanceId(cloudamqp_instance.instance().id())
+ *             .projectId(var_.stackdriver_project_id())
+ *             .privateKey(var_.stackdriver_private_key())
+ *             .clientEmail(var_.stackdriver_client_email())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * or by using google_service_account_key resource from Google provider
  * 
  * ## Import
  * 

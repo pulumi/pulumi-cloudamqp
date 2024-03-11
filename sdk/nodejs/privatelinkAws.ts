@@ -14,9 +14,11 @@ import * as utilities from "./utilities";
  *     <i>Default PrivateLink firewall rule</i>
  *   </summary>
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -38,6 +40,7 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -52,6 +55,7 @@ import * as utilities from "./utilities";
  *     allowedPrincipals: ["arn:aws:iam::aws-account-id:user/user-name"],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -62,6 +66,7 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -83,8 +88,10 @@ import * as utilities from "./utilities";
  *     allowedPrincipals: ["arn:aws:iam::aws-account-id:user/user-name"],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * </details>
+ *
  * ### With Additional Firewall Rules
  *
  * <details>
@@ -94,6 +101,7 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -140,8 +148,10 @@ import * as utilities from "./utilities";
  *     dependsOn: [privatelink],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * </details>
+ *
  * ## Depedency
  *
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -163,7 +173,7 @@ import * as utilities from "./utilities";
  * $ pulumi import cloudamqp:index/privatelinkAws:PrivatelinkAws privatelink <id>`
  * ```
  *
- *  The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
+ * The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
  */
 export class PrivatelinkAws extends pulumi.CustomResource {
     /**

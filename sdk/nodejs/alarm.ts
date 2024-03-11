@@ -13,6 +13,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -44,6 +45,8 @@ import * as utilities from "./utilities";
  *     recipients: [recipient01.id],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ## Alarm Type reference
  *
  * Supported alarm types: `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`

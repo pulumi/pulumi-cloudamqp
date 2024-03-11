@@ -17,6 +17,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -26,6 +27,8 @@ import * as utilities from "./utilities";
  *     hostname: "myname.mydomain",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ## Depedency
  *
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
