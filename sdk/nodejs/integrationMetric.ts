@@ -91,7 +91,7 @@ export class IntegrationMetric extends pulumi.CustomResource {
     /**
      * **Deprecated**
      *
-     * @deprecated use queueAllowlist instead
+     * @deprecated use queue_allowlist instead
      */
     public readonly queueWhitelist!: pulumi.Output<string | undefined>;
     /**
@@ -113,7 +113,7 @@ export class IntegrationMetric extends pulumi.CustomResource {
     /**
      * **Deprecated**
      *
-     * @deprecated use vhostAllowlist instead
+     * @deprecated use vhost_allowlist instead
      */
     public readonly vhostWhitelist!: pulumi.Output<string | undefined>;
 
@@ -246,7 +246,7 @@ export interface IntegrationMetricState {
     /**
      * **Deprecated**
      *
-     * @deprecated use queueAllowlist instead
+     * @deprecated use queue_allowlist instead
      */
     queueWhitelist?: pulumi.Input<string>;
     /**
@@ -268,7 +268,7 @@ export interface IntegrationMetricState {
     /**
      * **Deprecated**
      *
-     * @deprecated use vhostAllowlist instead
+     * @deprecated use vhost_allowlist instead
      */
     vhostWhitelist?: pulumi.Input<string>;
 }
@@ -336,7 +336,7 @@ export interface IntegrationMetricArgs {
     /**
      * **Deprecated**
      *
-     * @deprecated use queueAllowlist instead
+     * @deprecated use queue_allowlist instead
      */
     queueWhitelist?: pulumi.Input<string>;
     /**
@@ -358,7 +358,7 @@ export interface IntegrationMetricArgs {
     /**
      * **Deprecated**
      *
-     * @deprecated use vhostAllowlist instead
+     * @deprecated use vhost_allowlist instead
      */
     vhostWhitelist?: pulumi.Input<string>;
 }

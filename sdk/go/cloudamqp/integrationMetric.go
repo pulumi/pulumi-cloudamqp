@@ -45,7 +45,7 @@ type IntegrationMetric struct {
 	QueueAllowlist pulumi.StringPtrOutput `pulumi:"queueAllowlist"`
 	// **Deprecated**
 	//
-	// Deprecated: use queueAllowlist instead
+	// Deprecated: use queue_allowlist instead
 	QueueWhitelist pulumi.StringPtrOutput `pulumi:"queueWhitelist"`
 	// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
 	Region pulumi.StringPtrOutput `pulumi:"region"`
@@ -57,7 +57,7 @@ type IntegrationMetric struct {
 	VhostAllowlist pulumi.StringPtrOutput `pulumi:"vhostAllowlist"`
 	// **Deprecated**
 	//
-	// Deprecated: use vhostAllowlist instead
+	// Deprecated: use vhost_allowlist instead
 	VhostWhitelist pulumi.StringPtrOutput `pulumi:"vhostWhitelist"`
 }
 
@@ -143,7 +143,7 @@ type integrationMetricState struct {
 	QueueAllowlist *string `pulumi:"queueAllowlist"`
 	// **Deprecated**
 	//
-	// Deprecated: use queueAllowlist instead
+	// Deprecated: use queue_allowlist instead
 	QueueWhitelist *string `pulumi:"queueWhitelist"`
 	// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
 	Region *string `pulumi:"region"`
@@ -155,7 +155,7 @@ type integrationMetricState struct {
 	VhostAllowlist *string `pulumi:"vhostAllowlist"`
 	// **Deprecated**
 	//
-	// Deprecated: use vhostAllowlist instead
+	// Deprecated: use vhost_allowlist instead
 	VhostWhitelist *string `pulumi:"vhostWhitelist"`
 }
 
@@ -190,7 +190,7 @@ type IntegrationMetricState struct {
 	QueueAllowlist pulumi.StringPtrInput
 	// **Deprecated**
 	//
-	// Deprecated: use queueAllowlist instead
+	// Deprecated: use queue_allowlist instead
 	QueueWhitelist pulumi.StringPtrInput
 	// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
 	Region pulumi.StringPtrInput
@@ -202,7 +202,7 @@ type IntegrationMetricState struct {
 	VhostAllowlist pulumi.StringPtrInput
 	// **Deprecated**
 	//
-	// Deprecated: use vhostAllowlist instead
+	// Deprecated: use vhost_allowlist instead
 	VhostWhitelist pulumi.StringPtrInput
 }
 
@@ -241,7 +241,7 @@ type integrationMetricArgs struct {
 	QueueAllowlist *string `pulumi:"queueAllowlist"`
 	// **Deprecated**
 	//
-	// Deprecated: use queueAllowlist instead
+	// Deprecated: use queue_allowlist instead
 	QueueWhitelist *string `pulumi:"queueWhitelist"`
 	// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
 	Region *string `pulumi:"region"`
@@ -253,7 +253,7 @@ type integrationMetricArgs struct {
 	VhostAllowlist *string `pulumi:"vhostAllowlist"`
 	// **Deprecated**
 	//
-	// Deprecated: use vhostAllowlist instead
+	// Deprecated: use vhost_allowlist instead
 	VhostWhitelist *string `pulumi:"vhostWhitelist"`
 }
 
@@ -289,7 +289,7 @@ type IntegrationMetricArgs struct {
 	QueueAllowlist pulumi.StringPtrInput
 	// **Deprecated**
 	//
-	// Deprecated: use queueAllowlist instead
+	// Deprecated: use queue_allowlist instead
 	QueueWhitelist pulumi.StringPtrInput
 	// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
 	Region pulumi.StringPtrInput
@@ -301,7 +301,7 @@ type IntegrationMetricArgs struct {
 	VhostAllowlist pulumi.StringPtrInput
 	// **Deprecated**
 	//
-	// Deprecated: use vhostAllowlist instead
+	// Deprecated: use vhost_allowlist instead
 	VhostWhitelist pulumi.StringPtrInput
 }
 
@@ -464,7 +464,7 @@ func (o IntegrationMetricOutput) QueueAllowlist() pulumi.StringPtrOutput {
 
 // **Deprecated**
 //
-// Deprecated: use queueAllowlist instead
+// Deprecated: use queue_allowlist instead
 func (o IntegrationMetricOutput) QueueWhitelist() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.QueueWhitelist }).(pulumi.StringPtrOutput)
 }
@@ -491,7 +491,7 @@ func (o IntegrationMetricOutput) VhostAllowlist() pulumi.StringPtrOutput {
 
 // **Deprecated**
 //
-// Deprecated: use vhostAllowlist instead
+// Deprecated: use vhost_allowlist instead
 func (o IntegrationMetricOutput) VhostWhitelist() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.VhostWhitelist }).(pulumi.StringPtrOutput)
 }
