@@ -204,9 +204,9 @@ namespace Pulumi.CloudAmqp
     ///         },
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
-    ///             privatelink,
+    ///             privatelink, 
     ///         },
     ///     });
     /// 

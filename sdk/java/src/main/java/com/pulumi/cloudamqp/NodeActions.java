@@ -51,6 +51,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // New recipient to receieve notifications
  *         var nodeAction = new NodeActions(&#34;nodeAction&#34;, NodeActionsArgs.builder()        
  *             .instanceId(cloudamqp_instance.instance().id())
  *             .nodeName(&#34;&lt;node name&gt;&#34;)

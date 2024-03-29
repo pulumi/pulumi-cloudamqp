@@ -56,18 +56,21 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // Minimum free lemur instance running RabbitMQ
  *         var lemurInstance = new Instance(&#34;lemurInstance&#34;, InstanceArgs.builder()        
  *             .plan(&#34;lemur&#34;)
  *             .region(&#34;amazon-web-services::us-west-1&#34;)
  *             .tags(&#34;rabbitmq&#34;)
  *             .build());
  * 
+ *         // Minimum free lemming instance running LavinMQ
  *         var lemmingInstance = new Instance(&#34;lemmingInstance&#34;, InstanceArgs.builder()        
  *             .plan(&#34;lemming&#34;)
  *             .region(&#34;amazon-web-services::us-west-1&#34;)
  *             .tags(&#34;lavinmq&#34;)
  *             .build());
  * 
+ *         // New dedicated bunny instance running RabbitMQ
  *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
  *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;amazon-web-services::us-west-1&#34;)
@@ -151,6 +154,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // Dedicated instance that also creates VPC
  *         var instance01 = new Instance(&#34;instance01&#34;, InstanceArgs.builder()        
  *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;amazon-web-services::us-west-1&#34;)
@@ -191,12 +195,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // Imported managed VPC
  *         var vpc = new Vpc(&#34;vpc&#34;, VpcArgs.builder()        
  *             .region(&#34;amazon-web-services::us-east-1&#34;)
  *             .subnet(&#34;10.56.72.0/24&#34;)
  *             .tags()
  *             .build());
  * 
+ *         // Add vpc_id and keep_associated_vpc attributes
  *         var instance01 = new Instance(&#34;instance01&#34;, InstanceArgs.builder()        
  *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;amazon-web-services::us-west-1&#34;)
@@ -242,12 +248,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // Managed VPC
  *         var vpc = new Vpc(&#34;vpc&#34;, VpcArgs.builder()        
  *             .region(&#34;amazon-web-services::us-east-1&#34;)
  *             .subnet(&#34;10.56.72.0/24&#34;)
  *             .tags()
  *             .build());
  * 
+ *         // First instance added to managed VPC
  *         var instance01 = new Instance(&#34;instance01&#34;, InstanceArgs.builder()        
  *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;amazon-web-services::us-west-1&#34;)
@@ -256,6 +264,7 @@ import javax.annotation.Nullable;
  *             .keepAssociatedVpc(true)
  *             .build());
  * 
+ *         // Second instance added to managed VPC
  *         var instance02 = new Instance(&#34;instance02&#34;, InstanceArgs.builder()        
  *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;amazon-web-services::us-west-1&#34;)
@@ -305,6 +314,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // Upgraded CloudAMQP instance configuration
  *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
  *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;amazon-web-services::us-west-1&#34;)
@@ -346,6 +356,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // Downgraded CloudAMQP instance configuration
  *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
  *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;amazon-web-services::us-west-1&#34;)
