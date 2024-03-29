@@ -83,9 +83,9 @@ namespace Pulumi.CloudAmqp
     ///         NodeName = listNodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[1]?.Name),
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
-    ///             restart01,
+    ///             restart01, 
     ///         },
     ///     });
     /// 
@@ -96,10 +96,10 @@ namespace Pulumi.CloudAmqp
     ///         NodeName = listNodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[2]?.Name),
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
-    ///             restart01,
-    ///             restart02,
+    ///             restart01, 
+    ///             restart02, 
     ///         },
     ///     });
     /// 
@@ -142,9 +142,9 @@ namespace Pulumi.CloudAmqp
     ///         NodeName = listNodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[0]?.Name),
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
-    ///             rabbitmqConfig,
+    ///             rabbitmqConfig, 
     ///         },
     ///     });
     /// 
@@ -155,10 +155,10 @@ namespace Pulumi.CloudAmqp
     ///         NodeName = listNodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[1]?.Name),
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
-    ///             rabbitmqConfig,
-    ///             restart01,
+    ///             rabbitmqConfig, 
+    ///             restart01, 
     ///         },
     ///     });
     /// 
@@ -169,11 +169,11 @@ namespace Pulumi.CloudAmqp
     ///         NodeName = listNodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[2]?.Name),
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
-    ///             rabbitmqConfig,
-    ///             restart01,
-    ///             restart02,
+    ///             rabbitmqConfig, 
+    ///             restart01, 
+    ///             restart02, 
     ///         },
     ///     });
     /// 

@@ -55,6 +55,7 @@ import javax.annotation.Nullable;
  *             .instanceId(cloudamqp_instance.instance().id())
  *             .build());
  * 
+ *         // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
  *         var upgrade = new UpgradeRabbitmq(&#34;upgrade&#34;, UpgradeRabbitmqArgs.builder()        
  *             .instanceId(cloudamqp_instance.instance().id())
  *             .build());
@@ -125,6 +126,7 @@ import javax.annotation.Nullable;
  *             .instanceId(cloudamqp_instance.instance().id())
  *             .build());
  * 
+ *         // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
  *         var upgrade = new UpgradeRabbitmq(&#34;upgrade&#34;, UpgradeRabbitmqArgs.builder()        
  *             .instanceId(cloudamqp_instance.instance().id())
  *             .build());

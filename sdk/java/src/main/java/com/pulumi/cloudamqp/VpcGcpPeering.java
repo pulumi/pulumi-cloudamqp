@@ -92,6 +92,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // CloudAMQP instance
  *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
  *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;google-compute-engine::europe-north1&#34;)
@@ -103,6 +104,7 @@ import javax.annotation.Nullable;
  *             .instanceId(instance.id())
  *             .build());
  * 
+ *         // VPC peering configuration
  *         var vpcPeeringRequest = new VpcGcpPeering(&#34;vpcPeeringRequest&#34;, VpcGcpPeeringArgs.builder()        
  *             .instanceId(instance.id())
  *             .peerNetworkUri(&#34;https://www.googleapis.com/compute/v1/projects/&lt;PROJECT-NAME&gt;/global/networks/&lt;NETWORK-NAME&gt;&#34;)
@@ -157,11 +159,13 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // VPC peering configuration
  *         var vpcPeeringRequest = new VpcGcpPeering(&#34;vpcPeeringRequest&#34;, VpcGcpPeeringArgs.builder()        
  *             .instanceId(cloudamqp_instance.instance().id())
  *             .peerNetworkUri(var_.peer_network_uri())
  *             .build());
  * 
+ *         // Firewall rules
  *         var firewallSettings = new SecurityFirewall(&#34;firewallSettings&#34;, SecurityFirewallArgs.builder()        
  *             .instanceId(cloudamqp_instance.instance().id())
  *             .rules(            
@@ -229,11 +233,13 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // VPC peering configuration
  *         var vpcPeeringRequest = new VpcGcpPeering(&#34;vpcPeeringRequest&#34;, VpcGcpPeeringArgs.builder()        
  *             .vpcId(cloudamqp_vpc.vpc().id())
  *             .peerNetworkUri(var_.peer_network_uri())
  *             .build());
  * 
+ *         // Firewall rules
  *         var firewallSettings = new SecurityFirewall(&#34;firewallSettings&#34;, SecurityFirewallArgs.builder()        
  *             .instanceId(cloudamqp_instance.instance().id())
  *             .rules(            
