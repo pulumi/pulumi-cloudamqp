@@ -430,6 +430,34 @@ public final class CloudamqpFunctions {
      * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myVpcName = &#34;&lt;your VPC name&gt;&#34;;
+     * 
+     *         final var vpcList = CloudamqpFunctions.getAccountVpcs();
+     * 
+     *         ctx.export(&#34;vpcId&#34;, &#34;TODO: ForExpression&#34;[0].id());
+     *     }
+     * }
+     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -466,6 +494,34 @@ public final class CloudamqpFunctions {
      * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myVpcName = &#34;&lt;your VPC name&gt;&#34;;
+     * 
+     *         final var vpcList = CloudamqpFunctions.getAccountVpcs();
+     * 
+     *         ctx.export(&#34;vpcId&#34;, &#34;TODO: ForExpression&#34;[0].id());
+     *     }
+     * }
+     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -502,6 +558,34 @@ public final class CloudamqpFunctions {
      * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myVpcName = &#34;&lt;your VPC name&gt;&#34;;
+     * 
+     *         final var vpcList = CloudamqpFunctions.getAccountVpcs();
+     * 
+     *         ctx.export(&#34;vpcId&#34;, &#34;TODO: ForExpression&#34;[0].id());
+     *     }
+     * }
+     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -538,6 +622,34 @@ public final class CloudamqpFunctions {
      * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myVpcName = &#34;&lt;your VPC name&gt;&#34;;
+     * 
+     *         final var vpcList = CloudamqpFunctions.getAccountVpcs();
+     * 
+     *         ctx.export(&#34;vpcId&#34;, &#34;TODO: ForExpression&#34;[0].id());
+     *     }
+     * }
+     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -574,6 +686,34 @@ public final class CloudamqpFunctions {
      * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myVpcName = &#34;&lt;your VPC name&gt;&#34;;
+     * 
+     *         final var vpcList = CloudamqpFunctions.getAccountVpcs();
+     * 
+     *         ctx.export(&#34;vpcId&#34;, &#34;TODO: ForExpression&#34;[0].id());
+     *     }
+     * }
+     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -610,6 +750,34 @@ public final class CloudamqpFunctions {
      * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myVpcName = &#34;&lt;your VPC name&gt;&#34;;
+     * 
+     *         final var vpcList = CloudamqpFunctions.getAccountVpcs();
+     * 
+     *         ctx.export(&#34;vpcId&#34;, &#34;TODO: ForExpression&#34;[0].id());
+     *     }
+     * }
+     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference

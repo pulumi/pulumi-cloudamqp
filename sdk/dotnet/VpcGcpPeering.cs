@@ -157,9 +157,9 @@ namespace Pulumi.CloudAmqp
     ///         },
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
-    ///             vpcPeeringRequest,
+    ///             vpcPeeringRequest, 
     ///         },
     ///     });
     /// 
@@ -227,9 +227,9 @@ namespace Pulumi.CloudAmqp
     ///         },
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
-    ///             vpcPeeringRequest,
+    ///             vpcPeeringRequest, 
     ///         },
     ///     });
     /// 

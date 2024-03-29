@@ -52,12 +52,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // Managed VPC resource
  *         var vpc = new Vpc(&#34;vpc&#34;, VpcArgs.builder()        
  *             .region(&#34;amazon-web-services::us-east-1&#34;)
  *             .subnet(&#34;10.56.72.0/24&#34;)
  *             .tags()
  *             .build());
  * 
+ *         //  New instance, need to be created with a vpc
  *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
  *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;amazon-web-services::us-east-1&#34;)
