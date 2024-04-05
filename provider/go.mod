@@ -5,7 +5,7 @@ go 1.21
 replace github.com/hashicorp/vault => github.com/hashicorp/vault v1.2.0
 
 require (
-	github.com/cloudamqp/terraform-provider-cloudamqp v1.29.4
+	github.com/cloudamqp/terraform-provider-cloudamqp v1.29.5
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.79.0
 	github.com/pulumi/pulumi/sdk/v3 v3.112.0
 )
@@ -32,7 +32,7 @@ require (
 	cloud.google.com/go/longrunning v0.5.4 // indirect
 	cloud.google.com/go/storage v1.36.0 // indirect
 	dario.cat/mergo v1.0.0 // indirect
-	github.com/84codes/go-api v1.15.1 // indirect
+	github.com/84codes/go-api v1.16.0 // indirect
 	github.com/Azure/azure-sdk-for-go/sdk/azcore v1.9.0 // indirect
 	github.com/Azure/azure-sdk-for-go/sdk/azidentity v1.4.0 // indirect
 	github.com/Azure/azure-sdk-for-go/sdk/internal v1.5.0 // indirect
@@ -82,7 +82,7 @@ require (
 	github.com/cyphar/filepath-securejoin v0.2.4 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/deckarep/golang-set/v2 v2.5.0 // indirect
-	github.com/dghubble/sling v1.4.1 // indirect
+	github.com/dghubble/sling v1.4.2 // indirect
 	github.com/djherbis/times v1.5.0 // indirect
 	github.com/edsrzf/mmap-go v1.1.0 // indirect
 	github.com/emirpasic/gods v1.18.1 // indirect
