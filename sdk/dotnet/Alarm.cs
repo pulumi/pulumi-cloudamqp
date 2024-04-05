@@ -18,6 +18,13 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Basic example of CPU and memory alarm&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
     /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
@@ -69,6 +76,52 @@ namespace Pulumi.CloudAmqp
     /// ```
     /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Manage notice alarm, available from v1.29.5&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// Only one notice alarm can exists and cannot be created, instead the alarm resource will be updated.
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // New recipient
+    ///     var recipient01 = new CloudAmqp.Notification("recipient01", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Type = "email",
+    ///         Value = "alarm@example.com",
+    ///     });
+    /// 
+    ///     // Update existing notice alarm
+    ///     var notice = new CloudAmqp.Alarm("notice", new()
+    ///     {
+    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         Type = "notice",
+    ///         Enabled = true,
+    ///         Recipients = new[]
+    ///         {
+    ///             recipient01.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// &lt;/details&gt;
+    /// 
     /// ## Alarm Type reference
     /// 
     /// Supported alarm types: `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
@@ -89,11 +142,21 @@ namespace Pulumi.CloudAmqp
     /// | Server unreachable | server_unreachable  | - | &amp;#10004;  | time_threshold |
     /// | Notice | notice | &amp;#10004; | &amp;#10004; | |
     /// 
-    /// &gt; Notice alarm is manadatory! Only one can exists and cannot be deleted. Setting `no_default_alarm` to true, will still create this alarm.
+    /// &gt; Notice alarm is manadatory! Only one can exists and cannot be deleted. Setting `no_default_alarm` to true, will still create this alarm. See updated changes to notice alarm below.
     /// 
     /// ## Dependency
     /// 
     /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+    /// 
+    /// ## Notice alarm
+    /// 
+    /// There is a limitation for notice alarm in the API backend. This alarm is mandatory, multiple
+    /// alarms cannot exists or be deleted.
+    /// 
+    /// From provider version v1.29.5
+    /// it's possible to manage the notice alarm and no longer needs to be imported. Just create the
+    /// alarm resource as usually and it will be updated with given recipients. If the alarm is deleted
+    /// it will only be removed from the state file, but will still be enabled in the backend.
     /// 
     /// ## Import
     /// 
