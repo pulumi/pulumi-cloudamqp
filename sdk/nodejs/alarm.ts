@@ -13,6 +13,13 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Basic example of CPU and memory alarm</i>
+ *     </b>
+ *   </summary>
+ *
  * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -47,6 +54,40 @@ import * as utilities from "./utilities";
  * ```
  * <!--End PulumiCodeChooser -->
  *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Manage notice alarm, available from v1.29.5</i>
+ *     </b>
+ *   </summary>
+ *
+ * Only one notice alarm can exists and cannot be created, instead the alarm resource will be updated.
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * // New recipient
+ * const recipient01 = new cloudamqp.Notification("recipient01", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     type: "email",
+ *     value: "alarm@example.com",
+ * });
+ * // Update existing notice alarm
+ * const notice = new cloudamqp.Alarm("notice", {
+ *     instanceId: cloudamqp_instance.instance.id,
+ *     type: "notice",
+ *     enabled: true,
+ *     recipients: [recipient01.id],
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * </details>
+ *
  * ## Alarm Type reference
  *
  * Supported alarm types: `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
@@ -67,11 +108,21 @@ import * as utilities from "./utilities";
  * | Server unreachable | serverUnreachable  | - | &#10004;  | timeThreshold |
  * | Notice | notice | &#10004; | &#10004; | |
  *
- * > Notice alarm is manadatory! Only one can exists and cannot be deleted. Setting `noDefaultAlarm` to true, will still create this alarm.
+ * > Notice alarm is manadatory! Only one can exists and cannot be deleted. Setting `noDefaultAlarm` to true, will still create this alarm. See updated changes to notice alarm below.
  *
  * ## Dependency
  *
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ *
+ * ## Notice alarm
+ *
+ * There is a limitation for notice alarm in the API backend. This alarm is mandatory, multiple
+ * alarms cannot exists or be deleted.
+ *
+ * From provider version v1.29.5
+ * it's possible to manage the notice alarm and no longer needs to be imported. Just create the
+ * alarm resource as usually and it will be updated with given recipients. If the alarm is deleted
+ * it will only be removed from the state file, but will still be enabled in the backend.
  *
  * ## Import
  *

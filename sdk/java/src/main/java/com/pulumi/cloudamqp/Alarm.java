@@ -26,6 +26,13 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Basic example of CPU and memory alarm&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
@@ -84,6 +91,63 @@ import javax.annotation.Nullable;
  * ```
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Manage notice alarm, available from v1.29.5&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * Only one notice alarm can exists and cannot be created, instead the alarm resource will be updated.
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Notification;
+ * import com.pulumi.cloudamqp.NotificationArgs;
+ * import com.pulumi.cloudamqp.Alarm;
+ * import com.pulumi.cloudamqp.AlarmArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // New recipient
+ *         var recipient01 = new Notification(&#34;recipient01&#34;, NotificationArgs.builder()        
+ *             .instanceId(cloudamqp_instance.instance().id())
+ *             .type(&#34;email&#34;)
+ *             .value(&#34;alarm@example.com&#34;)
+ *             .build());
+ * 
+ *         // Update existing notice alarm
+ *         var notice = new Alarm(&#34;notice&#34;, AlarmArgs.builder()        
+ *             .instanceId(cloudamqp_instance.instance().id())
+ *             .type(&#34;notice&#34;)
+ *             .enabled(true)
+ *             .recipients(recipient01.id())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * &lt;/details&gt;
+ * 
  * ## Alarm Type reference
  * 
  * Supported alarm types: `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
@@ -104,11 +168,21 @@ import javax.annotation.Nullable;
  * | Server unreachable | server_unreachable  | - | &amp;#10004;  | time_threshold |
  * | Notice | notice | &amp;#10004; | &amp;#10004; | |
  * 
- * &gt; Notice alarm is manadatory! Only one can exists and cannot be deleted. Setting `no_default_alarm` to true, will still create this alarm.
+ * &gt; Notice alarm is manadatory! Only one can exists and cannot be deleted. Setting `no_default_alarm` to true, will still create this alarm. See updated changes to notice alarm below.
  * 
  * ## Dependency
  * 
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ * 
+ * ## Notice alarm
+ * 
+ * There is a limitation for notice alarm in the API backend. This alarm is mandatory, multiple
+ * alarms cannot exists or be deleted.
+ * 
+ * From provider version v1.29.5
+ * it&#39;s possible to manage the notice alarm and no longer needs to be imported. Just create the
+ * alarm resource as usually and it will be updated with given recipients. If the alarm is deleted
+ * it will only be removed from the state file, but will still be enabled in the backend.
  * 
  * ## Import
  * 

@@ -20,6 +20,14 @@ import (
 //
 // ## Example Usage
 //
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Basic example of CPU and memory alarm</i>
+//	  </b>
+//	</summary>
+//
 // <!--Start PulumiCodeChooser -->
 // ```go
 // package main
@@ -79,6 +87,61 @@ import (
 // ```
 // <!--End PulumiCodeChooser -->
 //
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Manage notice alarm, available from v1.29.5</i>
+//	  </b>
+//	</summary>
+//
+// Only one notice alarm can exists and cannot be created, instead the alarm resource will be updated.
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// New recipient
+//			recipient01, err := cloudamqp.NewNotification(ctx, "recipient01", &cloudamqp.NotificationArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Type:       pulumi.String("email"),
+//				Value:      pulumi.String("alarm@example.com"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Update existing notice alarm
+//			_, err = cloudamqp.NewAlarm(ctx, "notice", &cloudamqp.AlarmArgs{
+//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				Type:       pulumi.String("notice"),
+//				Enabled:    pulumi.Bool(true),
+//				Recipients: pulumi.IntArray{
+//					recipient01.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// </details>
+//
 // ## Alarm Type reference
 //
 // Supported alarm types: `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
@@ -99,11 +162,21 @@ import (
 // | Server unreachable | serverUnreachable  | - | &#10004;  | timeThreshold |
 // | Notice | notice | &#10004; | &#10004; | |
 //
-// > Notice alarm is manadatory! Only one can exists and cannot be deleted. Setting `noDefaultAlarm` to true, will still create this alarm.
+// > Notice alarm is manadatory! Only one can exists and cannot be deleted. Setting `noDefaultAlarm` to true, will still create this alarm. See updated changes to notice alarm below.
 //
 // ## Dependency
 //
 // This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+//
+// ## Notice alarm
+//
+// There is a limitation for notice alarm in the API backend. This alarm is mandatory, multiple
+// alarms cannot exists or be deleted.
+//
+// From provider version v1.29.5
+// it's possible to manage the notice alarm and no longer needs to be imported. Just create the
+// alarm resource as usually and it will be updated with given recipients. If the alarm is deleted
+// it will only be removed from the state file, but will still be enabled in the backend.
 //
 // ## Import
 //
