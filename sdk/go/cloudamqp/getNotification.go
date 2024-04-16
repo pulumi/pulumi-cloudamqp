@@ -29,7 +29,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.LookupNotification(ctx, &cloudamqp.LookupNotificationArgs{
-//				InstanceId: cloudamqp_instance.Instance.Id,
+//				InstanceId: instance.Id,
 //				Name:       pulumi.StringRef("default"),
 //			}, nil)
 //			if err != nil {

@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const credentials = cloudamqp.getCredentials({
- *     instanceId: cloudamqp_instance.instance.id,
+ *     instanceId: instance.id,
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -73,7 +73,7 @@ export interface GetCredentialsResult {
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const credentials = cloudamqp.getCredentials({
- *     instanceId: cloudamqp_instance.instance.id,
+ *     instanceId: instance.id,
  * });
  * ```
  * <!--End PulumiCodeChooser -->

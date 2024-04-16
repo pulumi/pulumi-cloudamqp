@@ -58,6 +58,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Minimum free lemur instance running RabbitMQ
  *         var lemurInstance = new Instance(&#34;lemurInstance&#34;, InstanceArgs.builder()        
+ *             .name(&#34;cloudamqp-free-instance&#34;)
  *             .plan(&#34;lemur&#34;)
  *             .region(&#34;amazon-web-services::us-west-1&#34;)
  *             .tags(&#34;rabbitmq&#34;)
@@ -65,6 +66,7 @@ import javax.annotation.Nullable;
  * 
  *         // Minimum free lemming instance running LavinMQ
  *         var lemmingInstance = new Instance(&#34;lemmingInstance&#34;, InstanceArgs.builder()        
+ *             .name(&#34;cloudamqp-free-instance&#34;)
  *             .plan(&#34;lemming&#34;)
  *             .region(&#34;amazon-web-services::us-west-1&#34;)
  *             .tags(&#34;lavinmq&#34;)
@@ -72,6 +74,7 @@ import javax.annotation.Nullable;
  * 
  *         // New dedicated bunny instance running RabbitMQ
  *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
+ *             .name(&#34;terraform-cloudamqp-instance&#34;)
  *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;amazon-web-services::us-west-1&#34;)
  *             .tags(&#34;terraform&#34;)
@@ -113,6 +116,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
+ *             .name(&#34;terraform-cloudamqp-instance&#34;)
  *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;amazon-web-services::us-west-1&#34;)
  *             .tags(&#34;terraform&#34;)
@@ -156,6 +160,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Dedicated instance that also creates VPC
  *         var instance01 = new Instance(&#34;instance01&#34;, InstanceArgs.builder()        
+ *             .name(&#34;terraform-cloudamqp-instance-01&#34;)
  *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;amazon-web-services::us-west-1&#34;)
  *             .tags(&#34;terraform&#34;)
@@ -197,6 +202,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Imported managed VPC
  *         var vpc = new Vpc(&#34;vpc&#34;, VpcArgs.builder()        
+ *             .name(&#34;&lt;vpc-name&gt;&#34;)
  *             .region(&#34;amazon-web-services::us-east-1&#34;)
  *             .subnet(&#34;10.56.72.0/24&#34;)
  *             .tags()
@@ -204,6 +210,7 @@ import javax.annotation.Nullable;
  * 
  *         // Add vpc_id and keep_associated_vpc attributes
  *         var instance01 = new Instance(&#34;instance01&#34;, InstanceArgs.builder()        
+ *             .name(&#34;terraform-cloudamqp-instance-01&#34;)
  *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;amazon-web-services::us-west-1&#34;)
  *             .tags(&#34;terraform&#34;)
@@ -250,6 +257,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Managed VPC
  *         var vpc = new Vpc(&#34;vpc&#34;, VpcArgs.builder()        
+ *             .name(&#34;&lt;vpc-name&gt;&#34;)
  *             .region(&#34;amazon-web-services::us-east-1&#34;)
  *             .subnet(&#34;10.56.72.0/24&#34;)
  *             .tags()
@@ -257,6 +265,7 @@ import javax.annotation.Nullable;
  * 
  *         // First instance added to managed VPC
  *         var instance01 = new Instance(&#34;instance01&#34;, InstanceArgs.builder()        
+ *             .name(&#34;terraform-cloudamqp-instance-01&#34;)
  *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;amazon-web-services::us-west-1&#34;)
  *             .tags(&#34;terraform&#34;)
@@ -266,6 +275,7 @@ import javax.annotation.Nullable;
  * 
  *         // Second instance added to managed VPC
  *         var instance02 = new Instance(&#34;instance02&#34;, InstanceArgs.builder()        
+ *             .name(&#34;terraform-cloudamqp-instance-02&#34;)
  *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;amazon-web-services::us-west-1&#34;)
  *             .tags(&#34;terraform&#34;)
@@ -279,94 +289,6 @@ import javax.annotation.Nullable;
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * Set attribute `keep_associated_vpc` to true, will keep managed VPC when deleting the instances.
- * &lt;/details&gt;
- * 
- * ## Upgrade and downgrade
- * 
- * It&#39;s possible to upgrade or downgrade your subscription plan, this will either increase or decrease the underlying resource used for by the CloudAMQP instance. To do this, change the argument `plan` in the configuration and apply the changes. See available plans.
- * 
- * &lt;details&gt;
- *   &lt;summary&gt;
- *     &lt;b&gt;
- *       &lt;i&gt;Upgrade the subscription plan&lt;/i&gt;
- *     &lt;/b&gt;
- *   &lt;/summary&gt;
- * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.cloudamqp.Instance;
- * import com.pulumi.cloudamqp.InstanceArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         // Upgraded CloudAMQP instance configuration
- *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
- *             .plan(&#34;bunny-1&#34;)
- *             .region(&#34;amazon-web-services::us-west-1&#34;)
- *             .tags(&#34;terraform&#34;)
- *             .build());
- * 
- *     }
- * }
- * ```
- * &lt;!--End PulumiCodeChooser --&gt;
- * &lt;/details&gt;
- * 
- * &lt;details&gt;
- *   &lt;summary&gt;
- *     &lt;b&gt;
- *       &lt;i&gt;Downgrade number of nodes from 3 to 1&lt;/i&gt;
- *     &lt;/b&gt;
- *   &lt;/summary&gt;
- * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.cloudamqp.Instance;
- * import com.pulumi.cloudamqp.InstanceArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         // Downgraded CloudAMQP instance configuration
- *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
- *             .plan(&#34;bunny-1&#34;)
- *             .region(&#34;amazon-web-services::us-west-1&#34;)
- *             .tags(&#34;terraform&#34;)
- *             .build());
- * 
- *     }
- * }
- * ```
- * &lt;!--End PulumiCodeChooser --&gt;
  * &lt;/details&gt;
  * 
  * ## Copy settings to a new dedicated instance
@@ -408,12 +330,13 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var instance02 = new Instance(&#34;instance02&#34;, InstanceArgs.builder()        
+ *             .name(&#34;terraform-cloudamqp-instance-02&#34;)
  *             .plan(&#34;squirrel-1&#34;)
  *             .region(&#34;amazon-web-services::us-west-1&#34;)
  *             .rmqVersion(&#34;3.12.2&#34;)
  *             .tags(&#34;terraform&#34;)
  *             .copySettings(InstanceCopySettingArgs.builder()
- *                 .subscriptionId(var_.instance_id())
+ *                 .subscriptionId(instanceId)
  *                 .settings(                
  *                     &#34;alarms&#34;,
  *                     &#34;config&#34;,

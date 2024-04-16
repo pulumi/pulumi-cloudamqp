@@ -75,7 +75,7 @@ def get_nodes(instance_id: Optional[int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    nodes = cloudamqp.get_nodes(instance_id=cloudamqp_instance["instance"]["id"])
+    nodes = cloudamqp.get_nodes(instance_id=instance["id"])
     ```
     <!--End PulumiCodeChooser -->
 
@@ -133,7 +133,7 @@ def get_nodes_output(instance_id: Optional[pulumi.Input[int]] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    nodes = cloudamqp.get_nodes(instance_id=cloudamqp_instance["instance"]["id"])
+    nodes = cloudamqp.get_nodes(instance_id=instance["id"])
     ```
     <!--End PulumiCodeChooser -->
 

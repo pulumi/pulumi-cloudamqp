@@ -84,9 +84,10 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
+        # Retrieve latest possible upgradable versions for RabbitMQ and Erlang
+        versions = cloudamqp.get_upgradable_versions(instance_id=instance["id"])
         # Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
-        upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=cloudamqp_instance["instance"]["id"])
+        upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=instance["id"])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -95,7 +96,8 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
+        # Retrieve latest possible upgradable versions for RabbitMQ and Erlang
+        versions = cloudamqp.get_upgradable_versions(instance_id=instance["id"])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -106,9 +108,10 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
+        # Retrieve latest possible upgradable versions for RabbitMQ and Erlang
+        versions = cloudamqp.get_upgradable_versions(instance_id=instance["id"])
         # Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
-        upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=cloudamqp_instance["instance"]["id"])
+        upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=instance["id"])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -145,9 +148,10 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
+        # Retrieve latest possible upgradable versions for RabbitMQ and Erlang
+        versions = cloudamqp.get_upgradable_versions(instance_id=instance["id"])
         # Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
-        upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=cloudamqp_instance["instance"]["id"])
+        upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=instance["id"])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -156,7 +160,8 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
+        # Retrieve latest possible upgradable versions for RabbitMQ and Erlang
+        versions = cloudamqp.get_upgradable_versions(instance_id=instance["id"])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -167,9 +172,10 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        versions = cloudamqp.get_upgradable_versions(instance_id=cloudamqp_instance["instance"]["id"])
+        # Retrieve latest possible upgradable versions for RabbitMQ and Erlang
+        versions = cloudamqp.get_upgradable_versions(instance_id=instance["id"])
         # Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
-        upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=cloudamqp_instance["instance"]["id"])
+        upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=instance["id"])
         ```
         <!--End PulumiCodeChooser -->
 

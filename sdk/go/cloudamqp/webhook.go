@@ -31,8 +31,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.NewWebhook(ctx, "webhookQueue", &cloudamqp.WebhookArgs{
-//				InstanceId:    pulumi.Any(cloudamqp_instance.Instance.Id),
+//			_, err := cloudamqp.NewWebhook(ctx, "webhook_queue", &cloudamqp.WebhookArgs{
+//				InstanceId:    pulumi.Any(instance.Id),
 //				Vhost:         pulumi.String("myvhost"),
 //				Queue:         pulumi.String("webhook-queue"),
 //				WebhookUri:    pulumi.String("https://example.com/webhook?key=secret"),

@@ -40,8 +40,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// New recipient to receieve notifications
-//			_, err := cloudamqp.NewNodeActions(ctx, "nodeAction", &cloudamqp.NodeActionsArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//			_, err := cloudamqp.NewNodeActions(ctx, "node_action", &cloudamqp.NodeActionsArgs{
+//				InstanceId: pulumi.Any(instance.Id),
 //				NodeName:   pulumi.String("<node name>"),
 //				Action:     pulumi.String("restart"),
 //			})
@@ -81,21 +81,21 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			listNodes, err := cloudamqp.GetNodes(ctx, &cloudamqp.GetNodesArgs{
-//				InstanceId: cloudamqp_instance.Instance.Id,
+//				InstanceId: instance.Id,
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			restart01, err := cloudamqp.NewNodeActions(ctx, "restart01", &cloudamqp.NodeActionsArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//			restart01, err := cloudamqp.NewNodeActions(ctx, "restart_01", &cloudamqp.NodeActionsArgs{
+//				InstanceId: pulumi.Any(instance.Id),
 //				Action:     pulumi.String("restart"),
 //				NodeName:   pulumi.String(listNodes.Nodes[0].Name),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			restart02, err := cloudamqp.NewNodeActions(ctx, "restart02", &cloudamqp.NodeActionsArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//			restart02, err := cloudamqp.NewNodeActions(ctx, "restart_02", &cloudamqp.NodeActionsArgs{
+//				InstanceId: pulumi.Any(instance.Id),
 //				Action:     pulumi.String("restart"),
 //				NodeName:   pulumi.String(listNodes.Nodes[1].Name),
 //			}, pulumi.DependsOn([]pulumi.Resource{
@@ -104,8 +104,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = cloudamqp.NewNodeActions(ctx, "restart03", &cloudamqp.NodeActionsArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//			_, err = cloudamqp.NewNodeActions(ctx, "restart_03", &cloudamqp.NodeActionsArgs{
+//				InstanceId: pulumi.Any(instance.Id),
 //				Action:     pulumi.String("restart"),
 //				NodeName:   pulumi.String(listNodes.Nodes[2].Name),
 //			}, pulumi.DependsOn([]pulumi.Resource{
@@ -145,20 +145,20 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			listNodes, err := cloudamqp.GetNodes(ctx, &cloudamqp.GetNodesArgs{
-//				InstanceId: cloudamqp_instance.Instance.Id,
+//				InstanceId: instance.Id,
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			rabbitmqConfig, err := cloudamqp.NewRabbitConfiguration(ctx, "rabbitmqConfig", &cloudamqp.RabbitConfigurationArgs{
-//				InstanceId:       pulumi.Any(cloudamqp_instance.Instance.Id),
+//			rabbitmqConfig, err := cloudamqp.NewRabbitConfiguration(ctx, "rabbitmq_config", &cloudamqp.RabbitConfigurationArgs{
+//				InstanceId:       pulumi.Any(instance.Id),
 //				LogExchangeLevel: pulumi.String("info"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			restart01, err := cloudamqp.NewNodeActions(ctx, "restart01", &cloudamqp.NodeActionsArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//			restart01, err := cloudamqp.NewNodeActions(ctx, "restart_01", &cloudamqp.NodeActionsArgs{
+//				InstanceId: pulumi.Any(instance.Id),
 //				Action:     pulumi.String("restart"),
 //				NodeName:   pulumi.String(listNodes.Nodes[0].Name),
 //			}, pulumi.DependsOn([]pulumi.Resource{
@@ -167,8 +167,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			restart02, err := cloudamqp.NewNodeActions(ctx, "restart02", &cloudamqp.NodeActionsArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//			restart02, err := cloudamqp.NewNodeActions(ctx, "restart_02", &cloudamqp.NodeActionsArgs{
+//				InstanceId: pulumi.Any(instance.Id),
 //				Action:     pulumi.String("restart"),
 //				NodeName:   pulumi.String(listNodes.Nodes[1].Name),
 //			}, pulumi.DependsOn([]pulumi.Resource{
@@ -178,8 +178,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = cloudamqp.NewNodeActions(ctx, "restart03", &cloudamqp.NodeActionsArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//			_, err = cloudamqp.NewNodeActions(ctx, "restart_03", &cloudamqp.NodeActionsArgs{
+//				InstanceId: pulumi.Any(instance.Id),
 //				Action:     pulumi.String("restart"),
 //				NodeName:   pulumi.String(listNodes.Nodes[2].Name),
 //			}, pulumi.DependsOn([]pulumi.Resource{

@@ -246,23 +246,6 @@ class PrivatelinkAzure(pulumi.CustomResource):
             <i>Default PrivateLink firewall rule</i>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        ```
-        <!--End PulumiCodeChooser -->
-
-        </details>
-
-        Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html) where you can also
-        find more information about
-        [CloudAMQP PrivateLink](https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#azure-privatelink).
-
-        Only available for dedicated subscription plans.
-
-        > **Warning:** This resource considered deprecated and will be removed in next major version (v2.0).
-        Recommended to start using the new resource`VpcConnect`.
-
         ## Example Usage
 
         <details>
@@ -278,6 +261,7 @@ class PrivatelinkAzure(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         instance = cloudamqp.Instance("instance",
+            name="Instance 01",
             plan="bunny-1",
             region="azure-arm::westus",
             tags=[])
@@ -301,10 +285,12 @@ class PrivatelinkAzure(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         vpc = cloudamqp.Vpc("vpc",
+            name="Standalone VPC",
             region="azure-arm::westus",
             subnet="10.56.72.0/24",
             tags=[])
         instance = cloudamqp.Instance("instance",
+            name="Instance 01",
             plan="bunny-1",
             region="azure-arm::westus",
             tags=[],
@@ -333,10 +319,12 @@ class PrivatelinkAzure(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         vpc = cloudamqp.Vpc("vpc",
+            name="Standalone VPC",
             region="azure-arm::westus",
             subnet="10.56.72.0/24",
             tags=[])
         instance = cloudamqp.Instance("instance",
+            name="Instance 01",
             plan="bunny-1",
             region="azure-arm::westus",
             tags=[],
@@ -345,7 +333,7 @@ class PrivatelinkAzure(pulumi.CustomResource):
         privatelink = cloudamqp.PrivatelinkAzure("privatelink",
             instance_id=instance.id,
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
-        firewall_settings = cloudamqp.SecurityFirewall("firewallSettings",
+        firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
             instance_id=instance.id,
             rules=[
                 cloudamqp.SecurityFirewallRuleArgs(
@@ -426,23 +414,6 @@ class PrivatelinkAzure(pulumi.CustomResource):
             <i>Default PrivateLink firewall rule</i>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        ```
-        <!--End PulumiCodeChooser -->
-
-        </details>
-
-        Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html) where you can also
-        find more information about
-        [CloudAMQP PrivateLink](https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#azure-privatelink).
-
-        Only available for dedicated subscription plans.
-
-        > **Warning:** This resource considered deprecated and will be removed in next major version (v2.0).
-        Recommended to start using the new resource`VpcConnect`.
-
         ## Example Usage
 
         <details>
@@ -458,6 +429,7 @@ class PrivatelinkAzure(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         instance = cloudamqp.Instance("instance",
+            name="Instance 01",
             plan="bunny-1",
             region="azure-arm::westus",
             tags=[])
@@ -481,10 +453,12 @@ class PrivatelinkAzure(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         vpc = cloudamqp.Vpc("vpc",
+            name="Standalone VPC",
             region="azure-arm::westus",
             subnet="10.56.72.0/24",
             tags=[])
         instance = cloudamqp.Instance("instance",
+            name="Instance 01",
             plan="bunny-1",
             region="azure-arm::westus",
             tags=[],
@@ -513,10 +487,12 @@ class PrivatelinkAzure(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         vpc = cloudamqp.Vpc("vpc",
+            name="Standalone VPC",
             region="azure-arm::westus",
             subnet="10.56.72.0/24",
             tags=[])
         instance = cloudamqp.Instance("instance",
+            name="Instance 01",
             plan="bunny-1",
             region="azure-arm::westus",
             tags=[],
@@ -525,7 +501,7 @@ class PrivatelinkAzure(pulumi.CustomResource):
         privatelink = cloudamqp.PrivatelinkAzure("privatelink",
             instance_id=instance.id,
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
-        firewall_settings = cloudamqp.SecurityFirewall("firewallSettings",
+        firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
             instance_id=instance.id,
             rules=[
                 cloudamqp.SecurityFirewallRuleArgs(

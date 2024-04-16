@@ -24,7 +24,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const vpcInfo = cloudamqp.getVpcInfo({
- *     instanceId: cloudamqp_instance.instance.id,
+ *     instanceId: instance.id,
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -43,7 +43,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const vpcInfo = cloudamqp.getVpcInfo({
- *     vpcId: cloudamqp_vpc.vpc.id,
+ *     vpcId: vpc.id,
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -130,7 +130,7 @@ export interface GetVpcInfoResult {
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const vpcInfo = cloudamqp.getVpcInfo({
- *     instanceId: cloudamqp_instance.instance.id,
+ *     instanceId: instance.id,
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -149,7 +149,7 @@ export interface GetVpcInfoResult {
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const vpcInfo = cloudamqp.getVpcInfo({
- *     vpcId: cloudamqp_vpc.vpc.id,
+ *     vpcId: vpc.id,
  * });
  * ```
  * <!--End PulumiCodeChooser -->

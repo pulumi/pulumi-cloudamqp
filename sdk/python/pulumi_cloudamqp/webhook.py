@@ -237,8 +237,8 @@ class Webhook(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        webhook_queue = cloudamqp.Webhook("webhookQueue",
-            instance_id=cloudamqp_instance["instance"]["id"],
+        webhook_queue = cloudamqp.Webhook("webhook_queue",
+            instance_id=instance["id"],
             vhost="myvhost",
             queue="webhook-queue",
             webhook_uri="https://example.com/webhook?key=secret",
@@ -286,8 +286,8 @@ class Webhook(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        webhook_queue = cloudamqp.Webhook("webhookQueue",
-            instance_id=cloudamqp_instance["instance"]["id"],
+        webhook_queue = cloudamqp.Webhook("webhook_queue",
+            instance_id=instance["id"],
             vhost="myvhost",
             queue="webhook-queue",
             webhook_uri="https://example.com/webhook?key=secret",

@@ -24,14 +24,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
- * const azureMonitor = new cloudamqp.IntegrationLog("azureMonitor", {
- *     instanceId: cloudamqp_instance.instance.id,
- *     tenantId: _var.azm_tentant_id,
- *     applicationId: _var.azm_application_id,
- *     applicationSecret: _var.azm_application_secret,
- *     dceUri: _var.azm_dce_uri,
- *     table: _var.azm_table,
- *     dcrId: _var.azm_dcr_id,
+ * const azureMonitor = new cloudamqp.IntegrationLog("azure_monitor", {
+ *     instanceId: instance.id,
+ *     name: "azure_monitor",
+ *     tenantId: azmTentantId,
+ *     applicationId: azmApplicationId,
+ *     applicationSecret: azmApplicationSecret,
+ *     dceUri: azmDceUri,
+ *     table: azmTable,
+ *     dcrId: azmDcrId,
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -51,10 +52,11 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const cloudwatch = new cloudamqp.IntegrationLog("cloudwatch", {
- *     instanceId: cloudamqp_instance.instance.id,
- *     accessKeyId: _var.aws_access_key_id,
- *     secretAccessKey: _var.aws_secret_access_key,
- *     region: _var.aws_region,
+ *     instanceId: instance.id,
+ *     name: "cloudwatchlog",
+ *     accessKeyId: awsAccessKeyId,
+ *     secretAccessKey: awsSecretAccessKey,
+ *     region: awsRegion,
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -74,11 +76,12 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const coralogix = new cloudamqp.IntegrationLog("coralogix", {
- *     instanceId: cloudamqp_instance.instance.id,
- *     privateKey: _var.coralogix_send_data_key,
- *     endpoint: _var.coralogix_endpoint,
- *     application: _var.coralogix_application,
- *     subsystem: cloudamqp_instance.instance.host,
+ *     instanceId: instance.id,
+ *     name: "coralogix",
+ *     privateKey: coralogixSendDataKey,
+ *     endpoint: coralogixEndpoint,
+ *     application: coralogixApplication,
+ *     subsystem: instance.host,
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -98,10 +101,11 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const datadog = new cloudamqp.IntegrationLog("datadog", {
- *     instanceId: cloudamqp_instance.instance.id,
- *     region: _var.datadog_region,
- *     apiKey: _var.datadog_api_key,
- *     tags: _var.datadog_tags,
+ *     instanceId: instance.id,
+ *     name: "datadog",
+ *     region: datadogRegion,
+ *     apiKey: datadogApiKey,
+ *     tags: datadogTags,
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -121,8 +125,9 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const logentries = new cloudamqp.IntegrationLog("logentries", {
- *     instanceId: cloudamqp_instance.instance.id,
- *     token: _var.logentries_token,
+ *     instanceId: instance.id,
+ *     name: "logentries",
+ *     token: logentriesToken,
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -142,8 +147,9 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const loggly = new cloudamqp.IntegrationLog("loggly", {
- *     instanceId: cloudamqp_instance.instance.id,
- *     token: _var.loggly_token,
+ *     instanceId: instance.id,
+ *     name: "loggly",
+ *     token: logglyToken,
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -162,8 +168,9 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const papertrail = new cloudamqp.IntegrationLog("papertrail", {
- *     instanceId: cloudamqp_instance.instance.id,
- *     url: _var.papertrail_url,
+ *     instanceId: instance.id,
+ *     name: "papertrail",
+ *     url: papertrailUrl,
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -183,9 +190,10 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const scalyr = new cloudamqp.IntegrationLog("scalyr", {
- *     instanceId: cloudamqp_instance.instance.id,
- *     token: _var.scalyr_token,
- *     host: _var.scalyr_host,
+ *     instanceId: instance.id,
+ *     name: "scalyr",
+ *     token: scalyrToken,
+ *     host: scalyrHost,
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -203,9 +211,10 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const splunk = new cloudamqp.IntegrationLog("splunk", {
- *     instanceId: cloudamqp_instance.instance.id,
- *     token: _var.splunk_token,
- *     hostPort: _var.splunk_host_port,
+ *     instanceId: instance.id,
+ *     name: "splunk",
+ *     token: splunkToken,
+ *     hostPort: splunkHostPort,
  *     sourceType: "generic_single_line",
  * });
  * ```
@@ -230,10 +239,11 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const stackdriver = new cloudamqp.IntegrationLog("stackdriver", {
- *     instanceId: cloudamqp_instance.instance.id,
- *     projectId: _var.stackdriver_project_id,
- *     privateKey: _var.stackdriver_private_key,
- *     clientEmail: _var.stackdriver_client_email,
+ *     instanceId: instance.id,
+ *     name: "stackdriver",
+ *     projectId: stackdriverProjectId,
+ *     privateKey: stackdriverPrivateKey,
+ *     clientEmail: stackdriverClientEmail,
  * });
  * ```
  * <!--End PulumiCodeChooser -->

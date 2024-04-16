@@ -249,23 +249,6 @@ class PrivatelinkAws(pulumi.CustomResource):
             <i>Default PrivateLink firewall rule</i>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        ```
-        <!--End PulumiCodeChooser -->
-
-        </details>
-
-        Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html)
-        where you can also find more information about
-        [CloudAMQP PrivateLink](https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#aws-privatelink).
-
-        Only available for dedicated subscription plans.
-
-        > **Warning:** This resource considered deprecated and will be removed in next major version (v2.0).
-        Recommended to start using the new resource`VpcConnect`.
-
         ## Example Usage
 
         <details>
@@ -281,6 +264,7 @@ class PrivatelinkAws(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         instance = cloudamqp.Instance("instance",
+            name="Instance 01",
             plan="bunny-1",
             region="amazon-web-services::us-west-1",
             tags=[])
@@ -305,10 +289,12 @@ class PrivatelinkAws(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         vpc = cloudamqp.Vpc("vpc",
+            name="Standalone VPC",
             region="amazon-web-services::us-west-1",
             subnet="10.56.72.0/24",
             tags=[])
         instance = cloudamqp.Instance("instance",
+            name="Instance 01",
             plan="bunny-1",
             region="amazon-web-services::us-west-1",
             tags=[],
@@ -337,10 +323,12 @@ class PrivatelinkAws(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         vpc = cloudamqp.Vpc("vpc",
+            name="Standalone VPC",
             region="amazon-web-services::us-west-1",
             subnet="10.56.72.0/24",
             tags=[])
         instance = cloudamqp.Instance("instance",
+            name="Instance 01",
             plan="bunny-1",
             region="amazon-web-services::us-west-1",
             tags=[],
@@ -349,7 +337,7 @@ class PrivatelinkAws(pulumi.CustomResource):
         privatelink = cloudamqp.PrivatelinkAws("privatelink",
             instance_id=instance.id,
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
-        firewall_settings = cloudamqp.SecurityFirewall("firewallSettings",
+        firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
             instance_id=instance.id,
             rules=[
                 cloudamqp.SecurityFirewallRuleArgs(
@@ -430,23 +418,6 @@ class PrivatelinkAws(pulumi.CustomResource):
             <i>Default PrivateLink firewall rule</i>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        ```
-        <!--End PulumiCodeChooser -->
-
-        </details>
-
-        Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html)
-        where you can also find more information about
-        [CloudAMQP PrivateLink](https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#aws-privatelink).
-
-        Only available for dedicated subscription plans.
-
-        > **Warning:** This resource considered deprecated and will be removed in next major version (v2.0).
-        Recommended to start using the new resource`VpcConnect`.
-
         ## Example Usage
 
         <details>
@@ -462,6 +433,7 @@ class PrivatelinkAws(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         instance = cloudamqp.Instance("instance",
+            name="Instance 01",
             plan="bunny-1",
             region="amazon-web-services::us-west-1",
             tags=[])
@@ -486,10 +458,12 @@ class PrivatelinkAws(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         vpc = cloudamqp.Vpc("vpc",
+            name="Standalone VPC",
             region="amazon-web-services::us-west-1",
             subnet="10.56.72.0/24",
             tags=[])
         instance = cloudamqp.Instance("instance",
+            name="Instance 01",
             plan="bunny-1",
             region="amazon-web-services::us-west-1",
             tags=[],
@@ -518,10 +492,12 @@ class PrivatelinkAws(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         vpc = cloudamqp.Vpc("vpc",
+            name="Standalone VPC",
             region="amazon-web-services::us-west-1",
             subnet="10.56.72.0/24",
             tags=[])
         instance = cloudamqp.Instance("instance",
+            name="Instance 01",
             plan="bunny-1",
             region="amazon-web-services::us-west-1",
             tags=[],
@@ -530,7 +506,7 @@ class PrivatelinkAws(pulumi.CustomResource):
         privatelink = cloudamqp.PrivatelinkAws("privatelink",
             instance_id=instance.id,
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
-        firewall_settings = cloudamqp.SecurityFirewall("firewallSettings",
+        firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
             instance_id=instance.id,
             rules=[
                 cloudamqp.SecurityFirewallRuleArgs(

@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var settings = new CustomDomain(&#34;settings&#34;, CustomDomainArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .hostname(&#34;myname.mydomain&#34;)
  *             .build());
  * 

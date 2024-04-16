@@ -12,58 +12,6 @@ import (
 )
 
 // Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
-//
-// ## Example Usage
-//
-// Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			myVpcName := "<your VPC name>"
-//			vpcList, err := cloudamqp.GetAccountVpcs(ctx, nil, nil)
-//			if err != nil {
-//				return err
-//			}
-//			ctx.Export("vpcId", "TODO: For expression"[0].Id)
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ## Attributes reference
-//
-// # All attributes reference are computed
-//
-// * `id`      - The identifier for this data source. Set to `na` since there is no unique identifier.
-// * `vpcs`    - An array of VPCs. Each `vpcs` block consists of the fields documented below.
-//
-// ***
-//
-// # The `vpcs` block consist of
-//
-// * `id`          - The VPC identifier.
-// * `name`        - The VPC instance name.
-// * `region`      - The region the VPC is hosted in.
-// * `subnet`      - The VPC subnet.
-// * `tags`        - Optional tags set for the VPC.
-// * `vpcName`    - VPC name given when hosted at the cloud provider.
-//
-// ## Dependency
-//
-// This data source depends on apikey set in the provider configuration.
 func GetAccountVpcs(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetAccountVpcsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAccountVpcsResult

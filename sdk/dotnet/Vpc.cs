@@ -32,6 +32,7 @@ namespace Pulumi.CloudAmqp
     ///     // Managed VPC resource
     ///     var vpc = new CloudAmqp.Vpc("vpc", new()
     ///     {
+    ///         Name = "&lt;VPC name&gt;",
     ///         Region = "amazon-web-services::us-east-1",
     ///         Subnet = "10.56.72.0/24",
     ///         Tags = new[] {},
@@ -40,15 +41,17 @@ namespace Pulumi.CloudAmqp
     ///     //  New instance, need to be created with a vpc
     ///     var instance = new CloudAmqp.Instance("instance", new()
     ///     {
+    ///         Name = "&lt;Instance name&gt;",
     ///         Plan = "bunny-1",
     ///         Region = "amazon-web-services::us-east-1",
     ///         Nodes = 1,
     ///         Tags = new[] {},
     ///         RmqVersion = "3.9.13",
-    ///         VpcId = cloudamq_vpc.Vpc.Id,
+    ///         VpcId = vpcCloudamqVpc.Id,
     ///         KeepAssociatedVpc = true,
     ///     });
     /// 
+    ///     // Additional VPC information
     ///     var vpcInfo = CloudAmqp.GetVpcInfo.Invoke(new()
     ///     {
     ///         VpcId = vpc.Id,

@@ -54,6 +54,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Managed VPC resource
  *         var vpc = new Vpc(&#34;vpc&#34;, VpcArgs.builder()        
+ *             .name(&#34;&lt;VPC name&gt;&#34;)
  *             .region(&#34;amazon-web-services::us-east-1&#34;)
  *             .subnet(&#34;10.56.72.0/24&#34;)
  *             .tags()
@@ -61,15 +62,17 @@ import javax.annotation.Nullable;
  * 
  *         //  New instance, need to be created with a vpc
  *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
+ *             .name(&#34;&lt;Instance name&gt;&#34;)
  *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;amazon-web-services::us-east-1&#34;)
  *             .nodes(1)
  *             .tags()
  *             .rmqVersion(&#34;3.9.13&#34;)
- *             .vpcId(cloudamq_vpc.vpc().id())
+ *             .vpcId(vpcCloudamqVpc.id())
  *             .keepAssociatedVpc(true)
  *             .build());
  * 
+ *         // Additional VPC information
  *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
  *             .vpcId(vpc.id())
  *             .build());

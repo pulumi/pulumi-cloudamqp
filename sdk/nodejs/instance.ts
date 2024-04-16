@@ -28,19 +28,22 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * // Minimum free lemur instance running RabbitMQ
- * const lemurInstance = new cloudamqp.Instance("lemurInstance", {
+ * const lemurInstance = new cloudamqp.Instance("lemur_instance", {
+ *     name: "cloudamqp-free-instance",
  *     plan: "lemur",
  *     region: "amazon-web-services::us-west-1",
  *     tags: ["rabbitmq"],
  * });
  * // Minimum free lemming instance running LavinMQ
- * const lemmingInstance = new cloudamqp.Instance("lemmingInstance", {
+ * const lemmingInstance = new cloudamqp.Instance("lemming_instance", {
+ *     name: "cloudamqp-free-instance",
  *     plan: "lemming",
  *     region: "amazon-web-services::us-west-1",
  *     tags: ["lavinmq"],
  * });
  * // New dedicated bunny instance running RabbitMQ
  * const instance = new cloudamqp.Instance("instance", {
+ *     name: "terraform-cloudamqp-instance",
  *     plan: "bunny-1",
  *     region: "amazon-web-services::us-west-1",
  *     tags: ["terraform"],
@@ -62,6 +65,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const instance = new cloudamqp.Instance("instance", {
+ *     name: "terraform-cloudamqp-instance",
  *     plan: "bunny-1",
  *     region: "amazon-web-services::us-west-1",
  *     tags: ["terraform"],
@@ -84,7 +88,8 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * // Dedicated instance that also creates VPC
- * const instance01 = new cloudamqp.Instance("instance01", {
+ * const instance01 = new cloudamqp.Instance("instance_01", {
+ *     name: "terraform-cloudamqp-instance-01",
  *     plan: "bunny-1",
  *     region: "amazon-web-services::us-west-1",
  *     tags: ["terraform"],
@@ -104,12 +109,14 @@ import * as utilities from "./utilities";
  *
  * // Imported managed VPC
  * const vpc = new cloudamqp.Vpc("vpc", {
+ *     name: "<vpc-name>",
  *     region: "amazon-web-services::us-east-1",
  *     subnet: "10.56.72.0/24",
  *     tags: [],
  * });
  * // Add vpc_id and keep_associated_vpc attributes
- * const instance01 = new cloudamqp.Instance("instance01", {
+ * const instance01 = new cloudamqp.Instance("instance_01", {
+ *     name: "terraform-cloudamqp-instance-01",
  *     plan: "bunny-1",
  *     region: "amazon-web-services::us-west-1",
  *     tags: ["terraform"],
@@ -134,12 +141,14 @@ import * as utilities from "./utilities";
  *
  * // Managed VPC
  * const vpc = new cloudamqp.Vpc("vpc", {
+ *     name: "<vpc-name>",
  *     region: "amazon-web-services::us-east-1",
  *     subnet: "10.56.72.0/24",
  *     tags: [],
  * });
  * // First instance added to managed VPC
- * const instance01 = new cloudamqp.Instance("instance01", {
+ * const instance01 = new cloudamqp.Instance("instance_01", {
+ *     name: "terraform-cloudamqp-instance-01",
  *     plan: "bunny-1",
  *     region: "amazon-web-services::us-west-1",
  *     tags: ["terraform"],
@@ -147,7 +156,8 @@ import * as utilities from "./utilities";
  *     keepAssociatedVpc: true,
  * });
  * // Second instance added to managed VPC
- * const instance02 = new cloudamqp.Instance("instance02", {
+ * const instance02 = new cloudamqp.Instance("instance_02", {
+ *     name: "terraform-cloudamqp-instance-02",
  *     plan: "bunny-1",
  *     region: "amazon-web-services::us-west-1",
  *     tags: ["terraform"],
@@ -158,54 +168,6 @@ import * as utilities from "./utilities";
  * <!--End PulumiCodeChooser -->
  *
  * Set attribute `keepAssociatedVpc` to true, will keep managed VPC when deleting the instances.
- * </details>
- *
- * ## Upgrade and downgrade
- *
- * It's possible to upgrade or downgrade your subscription plan, this will either increase or decrease the underlying resource used for by the CloudAMQP instance. To do this, change the argument `plan` in the configuration and apply the changes. See available plans.
- *
- * <details>
- *   <summary>
- *     <b>
- *       <i>Upgrade the subscription plan</i>
- *     </b>
- *   </summary>
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * // Upgraded CloudAMQP instance configuration
- * const instance = new cloudamqp.Instance("instance", {
- *     plan: "bunny-1",
- *     region: "amazon-web-services::us-west-1",
- *     tags: ["terraform"],
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- * </details>
- *
- * <details>
- *   <summary>
- *     <b>
- *       <i>Downgrade number of nodes from 3 to 1</i>
- *     </b>
- *   </summary>
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * // Downgraded CloudAMQP instance configuration
- * const instance = new cloudamqp.Instance("instance", {
- *     plan: "bunny-1",
- *     region: "amazon-web-services::us-west-1",
- *     tags: ["terraform"],
- * });
- * ```
- * <!--End PulumiCodeChooser -->
  * </details>
  *
  * ## Copy settings to a new dedicated instance
@@ -228,13 +190,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
- * const instance02 = new cloudamqp.Instance("instance02", {
+ * const instance02 = new cloudamqp.Instance("instance_02", {
+ *     name: "terraform-cloudamqp-instance-02",
  *     plan: "squirrel-1",
  *     region: "amazon-web-services::us-west-1",
  *     rmqVersion: "3.12.2",
  *     tags: ["terraform"],
  *     copySettings: [{
- *         subscriptionId: _var.instance_id,
+ *         subscriptionId: instanceId,
  *         settings: [
  *             "alarms",
  *             "config",

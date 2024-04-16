@@ -14,18 +14,6 @@ import * as utilities from "./utilities";
  *     <i>Default VPC peering firewall rule</i>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * </details>
- *
- * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
- *
- * Only available for dedicated subscription plans.
- *
  * ## Example Usage
  *
  * <details>
@@ -42,16 +30,18 @@ import * as utilities from "./utilities";
  *
  * // CloudAMQP instance
  * const instance = new cloudamqp.Instance("instance", {
+ *     name: "terraform-vpc-peering",
  *     plan: "bunny-1",
  *     region: "google-compute-engine::europe-north1",
  *     tags: ["terraform"],
  *     vpcSubnet: "10.40.72.0/24",
  * });
+ * // VPC information
  * const vpcInfo = instance.id.apply(id => cloudamqp.getVpcGcpInfoOutput({
  *     instanceId: id,
  * }));
  * // VPC peering configuration
- * const vpcPeeringRequest = new cloudamqp.VpcGcpPeering("vpcPeeringRequest", {
+ * const vpcPeeringRequest = new cloudamqp.VpcGcpPeering("vpc_peering_request", {
  *     instanceId: instance.id,
  *     peerNetworkUri: "https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>",
  * });
@@ -66,6 +56,78 @@ import * as utilities from "./utilities";
  *       <i>VPC peering post v1.16.0 (Managed VPC)</i>
  *     </b>
  *   </summary>
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * // Managed VPC resource
+ * const vpc = new cloudamqp.Vpc("vpc", {
+ *     name: "<VPC name>",
+ *     region: "google-compute-engine::europe-north1",
+ *     subnet: "10.56.72.0/24",
+ *     tags: [],
+ * });
+ * // CloudAMQP instance
+ * const instance = new cloudamqp.Instance("instance", {
+ *     name: "terraform-vpc-peering",
+ *     plan: "bunny-1",
+ *     region: "google-compute-engine::europe-north1",
+ *     tags: ["terraform"],
+ *     vpcId: vpc.id,
+ * });
+ * // VPC information
+ * const vpcInfo = cloudamqp.getVpcGcpInfo({
+ *     vpcId: vpc.info,
+ * });
+ * // VPC peering configuration
+ * const vpcPeeringRequest = new cloudamqp.VpcGcpPeering("vpc_peering_request", {
+ *     vpcId: vpc.id,
+ *     peerNetworkUri: "https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>VPC peering post v1.28.0, waitOnPeeringStatus </i>
+ *     </b>
+ *   </summary>
+ *
+ * Default peering request, no need to set `waitOnPeeringStatus`. It's default set to false and will not wait on peering status.
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const vpcPeeringRequest = new cloudamqp.VpcGcpPeering("vpc_peering_request", {
+ *     vpcId: vpc.id,
+ *     peerNetworkUri: "https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * Peering request and waiting for peering status.
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const vpcPeeringRequest = new cloudamqp.VpcGcpPeering("vpc_peering_request", {
+ *     vpcId: vpc.id,
+ *     waitOnPeeringStatus: true,
+ *     peerNetworkUri: "https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * </details>
  *
  * ### With Additional Firewall Rules
  *
@@ -82,16 +144,16 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * // VPC peering configuration
- * const vpcPeeringRequest = new cloudamqp.VpcGcpPeering("vpcPeeringRequest", {
- *     instanceId: cloudamqp_instance.instance.id,
- *     peerNetworkUri: _var.peer_network_uri,
+ * const vpcPeeringRequest = new cloudamqp.VpcGcpPeering("vpc_peering_request", {
+ *     instanceId: instance.id,
+ *     peerNetworkUri: peerNetworkUri,
  * });
  * // Firewall rules
- * const firewallSettings = new cloudamqp.SecurityFirewall("firewallSettings", {
- *     instanceId: cloudamqp_instance.instance.id,
+ * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
+ *     instanceId: instance.id,
  *     rules: [
  *         {
- *             ip: _var.peer_subnet,
+ *             ip: peerSubnet,
  *             ports: [15672],
  *             services: [
  *                 "AMQP",
@@ -135,16 +197,16 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * // VPC peering configuration
- * const vpcPeeringRequest = new cloudamqp.VpcGcpPeering("vpcPeeringRequest", {
- *     vpcId: cloudamqp_vpc.vpc.id,
- *     peerNetworkUri: _var.peer_network_uri,
+ * const vpcPeeringRequest = new cloudamqp.VpcGcpPeering("vpc_peering_request", {
+ *     vpcId: vpc.id,
+ *     peerNetworkUri: peerNetworkUri,
  * });
  * // Firewall rules
- * const firewallSettings = new cloudamqp.SecurityFirewall("firewallSettings", {
- *     instanceId: cloudamqp_instance.instance.id,
+ * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
+ *     instanceId: instance.id,
  *     rules: [
  *         {
- *             ip: _var.peer_subnet,
+ *             ip: peerSubnet,
  *             ports: [15672],
  *             services: [
  *                 "AMQP",

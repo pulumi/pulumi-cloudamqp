@@ -37,6 +37,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Managed VPC resource
 //			vpc, err := cloudamqp.NewVpc(ctx, "vpc", &cloudamqp.VpcArgs{
+//				Name:   pulumi.String("<VPC name>"),
 //				Region: pulumi.String("amazon-web-services::us-east-1"),
 //				Subnet: pulumi.String("10.56.72.0/24"),
 //				Tags:   pulumi.StringArray{},
@@ -46,17 +47,19 @@ import (
 //			}
 //			// New instance, need to be created with a vpc
 //			_, err = cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:              pulumi.String("<Instance name>"),
 //				Plan:              pulumi.String("bunny-1"),
 //				Region:            pulumi.String("amazon-web-services::us-east-1"),
 //				Nodes:             pulumi.Int(1),
 //				Tags:              pulumi.StringArray{},
 //				RmqVersion:        pulumi.String("3.9.13"),
-//				VpcId:             pulumi.Any(cloudamq_vpc.Vpc.Id),
+//				VpcId:             pulumi.Any(vpcCloudamqVpc.Id),
 //				KeepAssociatedVpc: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
+//			// Additional VPC information
 //			_ = cloudamqp.GetVpcInfoOutput(ctx, cloudamqp.GetVpcInfoOutputArgs{
 //				VpcId: vpc.ID(),
 //			}, nil)

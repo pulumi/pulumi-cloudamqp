@@ -197,18 +197,21 @@ class Vpc(pulumi.CustomResource):
 
         # Managed VPC resource
         vpc = cloudamqp.Vpc("vpc",
+            name="<VPC name>",
             region="amazon-web-services::us-east-1",
             subnet="10.56.72.0/24",
             tags=[])
         #  New instance, need to be created with a vpc
         instance = cloudamqp.Instance("instance",
+            name="<Instance name>",
             plan="bunny-1",
             region="amazon-web-services::us-east-1",
             nodes=1,
             tags=[],
             rmq_version="3.9.13",
-            vpc_id=cloudamq_vpc["vpc"]["id"],
+            vpc_id=vpc_cloudamq_vpc["id"],
             keep_associated_vpc=True)
+        # Additional VPC information
         vpc_info = cloudamqp.get_vpc_info_output(vpc_id=vpc.id)
         ```
         <!--End PulumiCodeChooser -->
@@ -256,18 +259,21 @@ class Vpc(pulumi.CustomResource):
 
         # Managed VPC resource
         vpc = cloudamqp.Vpc("vpc",
+            name="<VPC name>",
             region="amazon-web-services::us-east-1",
             subnet="10.56.72.0/24",
             tags=[])
         #  New instance, need to be created with a vpc
         instance = cloudamqp.Instance("instance",
+            name="<Instance name>",
             plan="bunny-1",
             region="amazon-web-services::us-east-1",
             nodes=1,
             tags=[],
             rmq_version="3.9.13",
-            vpc_id=cloudamq_vpc["vpc"]["id"],
+            vpc_id=vpc_cloudamq_vpc["id"],
             keep_associated_vpc=True)
+        # Additional VPC information
         vpc_info = cloudamqp.get_vpc_info_output(vpc_id=vpc.id)
         ```
         <!--End PulumiCodeChooser -->

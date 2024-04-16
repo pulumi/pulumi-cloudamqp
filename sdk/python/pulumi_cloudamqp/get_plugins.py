@@ -75,7 +75,7 @@ def get_plugins(instance_id: Optional[int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    plugins = cloudamqp.get_plugins(instance_id=cloudamqp_instance["instance"]["id"])
+    plugins = cloudamqp.get_plugins(instance_id=instance["id"])
     ```
     <!--End PulumiCodeChooser -->
 
@@ -130,7 +130,7 @@ def get_plugins_output(instance_id: Optional[pulumi.Input[int]] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    plugins = cloudamqp.get_plugins(instance_id=cloudamqp_instance["instance"]["id"])
+    plugins = cloudamqp.get_plugins(instance_id=instance["id"])
     ```
     <!--End PulumiCodeChooser -->
 

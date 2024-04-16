@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const settings = new cloudamqp.CustomDomain("settings", {
- *     instanceId: cloudamqp_instance.instance.id,
+ *     instanceId: instance.id,
  *     hostname: "myname.mydomain",
  * });
  * ```

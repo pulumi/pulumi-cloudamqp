@@ -269,10 +269,11 @@ class Notification(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        email_recipient = cloudamqp.Notification("emailRecipient",
-            instance_id=cloudamqp_instance["instance"]["id"],
+        email_recipient = cloudamqp.Notification("email_recipient",
+            instance_id=instance["id"],
             type="email",
-            value="alarm@example.com")
+            value="alarm@example.com",
+            name="alarm")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -288,10 +289,11 @@ class Notification(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        opsgenie_recipient = cloudamqp.Notification("opsgenieRecipient",
-            instance_id=cloudamqp_instance["instance"]["id"],
+        opsgenie_recipient = cloudamqp.Notification("opsgenie_recipient",
+            instance_id=instance["id"],
             type="opsgenie",
             value="<api-key>",
+            name="OpsGenie",
             responders=[
                 cloudamqp.NotificationResponderArgs(
                     type="team",
@@ -317,10 +319,11 @@ class Notification(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        pagerduty_recipient = cloudamqp.Notification("pagerdutyRecipient",
-            instance_id=cloudamqp_instance["instance"]["id"],
+        pagerduty_recipient = cloudamqp.Notification("pagerduty_recipient",
+            instance_id=instance["id"],
             type="pagerduty",
             value="<integration-key>",
+            name="PagerDuty",
             options={
                 "dedupkey": "DEDUPKEY",
             })
@@ -339,10 +342,11 @@ class Notification(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        signl4_recipient = cloudamqp.Notification("signl4Recipient",
-            instance_id=cloudamqp_instance["instance"]["id"],
+        signl4_recipient = cloudamqp.Notification("signl4_recipient",
+            instance_id=instance["id"],
             type="signl4",
-            value="<team-secret>")
+            value="<team-secret>",
+            name="Signl4")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -358,10 +362,11 @@ class Notification(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        teams_recipient = cloudamqp.Notification("teamsRecipient",
-            instance_id=cloudamqp_instance["instance"]["id"],
+        teams_recipient = cloudamqp.Notification("teams_recipient",
+            instance_id=instance["id"],
             type="teams",
-            value="<teams-webhook-url>")
+            value="<teams-webhook-url>",
+            name="Teams")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -377,10 +382,11 @@ class Notification(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        victorops_recipient = cloudamqp.Notification("victoropsRecipient",
-            instance_id=cloudamqp_instance["instance"]["id"],
+        victorops_recipient = cloudamqp.Notification("victorops_recipient",
+            instance_id=instance["id"],
             type="victorops",
             value="<integration-key>",
+            name="Victorops",
             options={
                 "rk": "ROUTINGKEY",
             })
@@ -399,10 +405,11 @@ class Notification(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        webhook_recipient = cloudamqp.Notification("webhookRecipient",
-            instance_id=cloudamqp_instance["instance"]["id"],
+        webhook_recipient = cloudamqp.Notification("webhook_recipient",
+            instance_id=instance["id"],
             type="webhook",
-            value="<webhook-url>")
+            value="<webhook-url>",
+            name="Webhook")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -484,10 +491,11 @@ class Notification(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        email_recipient = cloudamqp.Notification("emailRecipient",
-            instance_id=cloudamqp_instance["instance"]["id"],
+        email_recipient = cloudamqp.Notification("email_recipient",
+            instance_id=instance["id"],
             type="email",
-            value="alarm@example.com")
+            value="alarm@example.com",
+            name="alarm")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -503,10 +511,11 @@ class Notification(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        opsgenie_recipient = cloudamqp.Notification("opsgenieRecipient",
-            instance_id=cloudamqp_instance["instance"]["id"],
+        opsgenie_recipient = cloudamqp.Notification("opsgenie_recipient",
+            instance_id=instance["id"],
             type="opsgenie",
             value="<api-key>",
+            name="OpsGenie",
             responders=[
                 cloudamqp.NotificationResponderArgs(
                     type="team",
@@ -532,10 +541,11 @@ class Notification(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        pagerduty_recipient = cloudamqp.Notification("pagerdutyRecipient",
-            instance_id=cloudamqp_instance["instance"]["id"],
+        pagerduty_recipient = cloudamqp.Notification("pagerduty_recipient",
+            instance_id=instance["id"],
             type="pagerduty",
             value="<integration-key>",
+            name="PagerDuty",
             options={
                 "dedupkey": "DEDUPKEY",
             })
@@ -554,10 +564,11 @@ class Notification(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        signl4_recipient = cloudamqp.Notification("signl4Recipient",
-            instance_id=cloudamqp_instance["instance"]["id"],
+        signl4_recipient = cloudamqp.Notification("signl4_recipient",
+            instance_id=instance["id"],
             type="signl4",
-            value="<team-secret>")
+            value="<team-secret>",
+            name="Signl4")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -573,10 +584,11 @@ class Notification(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        teams_recipient = cloudamqp.Notification("teamsRecipient",
-            instance_id=cloudamqp_instance["instance"]["id"],
+        teams_recipient = cloudamqp.Notification("teams_recipient",
+            instance_id=instance["id"],
             type="teams",
-            value="<teams-webhook-url>")
+            value="<teams-webhook-url>",
+            name="Teams")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -592,10 +604,11 @@ class Notification(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        victorops_recipient = cloudamqp.Notification("victoropsRecipient",
-            instance_id=cloudamqp_instance["instance"]["id"],
+        victorops_recipient = cloudamqp.Notification("victorops_recipient",
+            instance_id=instance["id"],
             type="victorops",
             value="<integration-key>",
+            name="Victorops",
             options={
                 "rk": "ROUTINGKEY",
             })
@@ -614,10 +627,11 @@ class Notification(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        webhook_recipient = cloudamqp.Notification("webhookRecipient",
-            instance_id=cloudamqp_instance["instance"]["id"],
+        webhook_recipient = cloudamqp.Notification("webhook_recipient",
+            instance_id=instance["id"],
             type="webhook",
-            value="<webhook-url>")
+            value="<webhook-url>",
+            name="Webhook")
         ```
         <!--End PulumiCodeChooser -->
 

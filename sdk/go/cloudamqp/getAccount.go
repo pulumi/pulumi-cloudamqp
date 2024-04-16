@@ -12,55 +12,6 @@ import (
 )
 
 // Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
-//
-// ## Example Usage
-//
-// Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-// func main() {
-// pulumi.Run(func(ctx *pulumi.Context) error {
-// _ := "<instance_name>";
-// _, err := cloudamqp.GetAccount(ctx, nil, nil);
-// if err != nil {
-// return err
-// }
-// ctx.Export("instanceId", <nil>)
-// return nil
-// })
-// }
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ## Attributes reference
-//
-// # All attributes reference are computed
-//
-// * `id`          - The identifier for this data source. Set to `na` since there is no unique identifier.
-// * `instances`   - An array of instances. Each `instances` block consists of the fields documented below.
-//
-// ***
-//
-// # The `instances` block consist of
-//
-// * `id`      - The instance identifier.
-// * `name`    - The name of the instance.
-// * `plan`    - The subscription plan used for the instance.
-// * `region`  - The region were the instanece is located in.
-// * `tags`    - Optional tags set for the instance.
-//
-// ## Dependency
-//
-// This data source depends on apikey set in the provider configuration.
 func GetAccount(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetAccountResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAccountResult

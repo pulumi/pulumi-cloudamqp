@@ -258,11 +258,12 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         instance = cloudamqp.Instance("instance",
+            name="Test instance",
             plan="squirrel-1",
             region="amazon-web-services::us-west-1",
             rmq_version="3.11.5",
             tags=["aws"])
-        aws_eventbridge = cloudamqp.IntegrationAwsEventbridge("awsEventbridge",
+        aws_eventbridge = cloudamqp.IntegrationAwsEventbridge("aws_eventbridge",
             instance_id=instance.id,
             vhost=instance.vhost,
             queue="<QUEUE-NAME>",
@@ -326,11 +327,12 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         instance = cloudamqp.Instance("instance",
+            name="Test instance",
             plan="squirrel-1",
             region="amazon-web-services::us-west-1",
             rmq_version="3.11.5",
             tags=["aws"])
-        aws_eventbridge = cloudamqp.IntegrationAwsEventbridge("awsEventbridge",
+        aws_eventbridge = cloudamqp.IntegrationAwsEventbridge("aws_eventbridge",
             instance_id=instance.id,
             vhost=instance.vhost,
             queue="<QUEUE-NAME>",

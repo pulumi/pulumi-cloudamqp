@@ -33,9 +33,9 @@ namespace Pulumi.CloudAmqp
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // New recipient to receieve notifications
-    ///     var nodeAction = new CloudAmqp.NodeActions("nodeAction", new()
+    ///     var nodeAction = new CloudAmqp.NodeActions("node_action", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         InstanceId = instance.Id,
     ///         NodeName = "&lt;node name&gt;",
     ///         Action = "restart",
     ///     });
@@ -66,19 +66,19 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var listNodes = CloudAmqp.GetNodes.Invoke(new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         InstanceId = instance.Id,
     ///     });
     /// 
-    ///     var restart01 = new CloudAmqp.NodeActions("restart01", new()
+    ///     var restart01 = new CloudAmqp.NodeActions("restart_01", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         InstanceId = instance.Id,
     ///         Action = "restart",
     ///         NodeName = listNodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[0]?.Name),
     ///     });
     /// 
-    ///     var restart02 = new CloudAmqp.NodeActions("restart02", new()
+    ///     var restart02 = new CloudAmqp.NodeActions("restart_02", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         InstanceId = instance.Id,
     ///         Action = "restart",
     ///         NodeName = listNodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[1]?.Name),
     ///     }, new CustomResourceOptions
@@ -89,9 +89,9 @@ namespace Pulumi.CloudAmqp
     ///         },
     ///     });
     /// 
-    ///     var restart03 = new CloudAmqp.NodeActions("restart03", new()
+    ///     var restart03 = new CloudAmqp.NodeActions("restart_03", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         InstanceId = instance.Id,
     ///         Action = "restart",
     ///         NodeName = listNodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[2]?.Name),
     ///     }, new CustomResourceOptions
@@ -126,18 +126,18 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var listNodes = CloudAmqp.GetNodes.Invoke(new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         InstanceId = instance.Id,
     ///     });
     /// 
-    ///     var rabbitmqConfig = new CloudAmqp.RabbitConfiguration("rabbitmqConfig", new()
+    ///     var rabbitmqConfig = new CloudAmqp.RabbitConfiguration("rabbitmq_config", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         InstanceId = instance.Id,
     ///         LogExchangeLevel = "info",
     ///     });
     /// 
-    ///     var restart01 = new CloudAmqp.NodeActions("restart01", new()
+    ///     var restart01 = new CloudAmqp.NodeActions("restart_01", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         InstanceId = instance.Id,
     ///         Action = "restart",
     ///         NodeName = listNodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[0]?.Name),
     ///     }, new CustomResourceOptions
@@ -148,9 +148,9 @@ namespace Pulumi.CloudAmqp
     ///         },
     ///     });
     /// 
-    ///     var restart02 = new CloudAmqp.NodeActions("restart02", new()
+    ///     var restart02 = new CloudAmqp.NodeActions("restart_02", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         InstanceId = instance.Id,
     ///         Action = "restart",
     ///         NodeName = listNodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[1]?.Name),
     ///     }, new CustomResourceOptions
@@ -162,9 +162,9 @@ namespace Pulumi.CloudAmqp
     ///         },
     ///     });
     /// 
-    ///     var restart03 = new CloudAmqp.NodeActions("restart03", new()
+    ///     var restart03 = new CloudAmqp.NodeActions("restart_03", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         InstanceId = instance.Id,
     ///         Action = "restart",
     ///         NodeName = listNodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[2]?.Name),
     ///     }, new CustomResourceOptions

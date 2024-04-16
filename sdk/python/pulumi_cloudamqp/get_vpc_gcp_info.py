@@ -129,7 +129,7 @@ def get_vpc_gcp_info(instance_id: Optional[int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    vpc_info = cloudamqp.get_vpc_gcp_info(instance_id=cloudamqp_instance["instance"]["id"])
+    vpc_info = cloudamqp.get_vpc_gcp_info(instance_id=instance["id"])
     ```
     <!--End PulumiCodeChooser -->
 
@@ -147,7 +147,7 @@ def get_vpc_gcp_info(instance_id: Optional[int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    vpc_info = cloudamqp.get_vpc_gcp_info(vpc_id=cloudamqp_vpc["vpc"]["id"])
+    vpc_info = cloudamqp.get_vpc_gcp_info(vpc_id=vpc["id"])
     ```
     <!--End PulumiCodeChooser -->
 
@@ -222,7 +222,7 @@ def get_vpc_gcp_info_output(instance_id: Optional[pulumi.Input[Optional[int]]] =
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    vpc_info = cloudamqp.get_vpc_gcp_info(instance_id=cloudamqp_instance["instance"]["id"])
+    vpc_info = cloudamqp.get_vpc_gcp_info(instance_id=instance["id"])
     ```
     <!--End PulumiCodeChooser -->
 
@@ -240,7 +240,7 @@ def get_vpc_gcp_info_output(instance_id: Optional[pulumi.Input[Optional[int]]] =
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    vpc_info = cloudamqp.get_vpc_gcp_info(vpc_id=cloudamqp_vpc["vpc"]["id"])
+    vpc_info = cloudamqp.get_vpc_gcp_info(vpc_id=vpc["id"])
     ```
     <!--End PulumiCodeChooser -->
 

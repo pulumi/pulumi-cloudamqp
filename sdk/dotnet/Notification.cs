@@ -32,11 +32,12 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var emailRecipient = new CloudAmqp.Notification("emailRecipient", new()
+    ///     var emailRecipient = new CloudAmqp.Notification("email_recipient", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         InstanceId = instance.Id,
     ///         Type = "email",
     ///         Value = "alarm@example.com",
+    ///         Name = "alarm",
     ///     });
     /// 
     /// });
@@ -59,11 +60,12 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var opsgenieRecipient = new CloudAmqp.Notification("opsgenieRecipient", new()
+    ///     var opsgenieRecipient = new CloudAmqp.Notification("opsgenie_recipient", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         InstanceId = instance.Id,
     ///         Type = "opsgenie",
     ///         Value = "&lt;api-key&gt;",
+    ///         Name = "OpsGenie",
     ///         Responders = new[]
     ///         {
     ///             new CloudAmqp.Inputs.NotificationResponderArgs
@@ -99,11 +101,12 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var pagerdutyRecipient = new CloudAmqp.Notification("pagerdutyRecipient", new()
+    ///     var pagerdutyRecipient = new CloudAmqp.Notification("pagerduty_recipient", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         InstanceId = instance.Id,
     ///         Type = "pagerduty",
     ///         Value = "&lt;integration-key&gt;",
+    ///         Name = "PagerDuty",
     ///         Options = 
     ///         {
     ///             { "dedupkey", "DEDUPKEY" },
@@ -130,11 +133,12 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var signl4Recipient = new CloudAmqp.Notification("signl4Recipient", new()
+    ///     var signl4Recipient = new CloudAmqp.Notification("signl4_recipient", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         InstanceId = instance.Id,
     ///         Type = "signl4",
     ///         Value = "&lt;team-secret&gt;",
+    ///         Name = "Signl4",
     ///     });
     /// 
     /// });
@@ -157,11 +161,12 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var teamsRecipient = new CloudAmqp.Notification("teamsRecipient", new()
+    ///     var teamsRecipient = new CloudAmqp.Notification("teams_recipient", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         InstanceId = instance.Id,
     ///         Type = "teams",
     ///         Value = "&lt;teams-webhook-url&gt;",
+    ///         Name = "Teams",
     ///     });
     /// 
     /// });
@@ -184,11 +189,12 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var victoropsRecipient = new CloudAmqp.Notification("victoropsRecipient", new()
+    ///     var victoropsRecipient = new CloudAmqp.Notification("victorops_recipient", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         InstanceId = instance.Id,
     ///         Type = "victorops",
     ///         Value = "&lt;integration-key&gt;",
+    ///         Name = "Victorops",
     ///         Options = 
     ///         {
     ///             { "rk", "ROUTINGKEY" },
@@ -215,11 +221,12 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var webhookRecipient = new CloudAmqp.Notification("webhookRecipient", new()
+    ///     var webhookRecipient = new CloudAmqp.Notification("webhook_recipient", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         InstanceId = instance.Id,
     ///         Type = "webhook",
     ///         Value = "&lt;webhook-url&gt;",
+    ///         Name = "Webhook",
     ///     });
     /// 
     /// });

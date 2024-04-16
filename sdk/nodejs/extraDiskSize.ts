@@ -46,14 +46,17 @@ import * as utilities from "./utilities";
  *
  * // Instance
  * const instance = new cloudamqp.Instance("instance", {
+ *     name: "Instance",
  *     plan: "bunny-1",
  *     region: "amazon-web-services::us-west-2",
  * });
  * // Resize disk with 25 extra GB
- * const resizeDisk = new cloudamqp.ExtraDiskSize("resizeDisk", {
+ * const resizeDisk = new cloudamqp.ExtraDiskSize("resize_disk", {
  *     instanceId: instance.id,
  *     extraDiskSize: 25,
  * });
+ * // Optional, refresh nodes info after disk resize by adding dependency
+ * // to cloudamqp_extra_disk_size.resize_disk resource
  * const nodes = instance.id.apply(id => cloudamqp.getNodesOutput({
  *     instanceId: id,
  * }));
@@ -76,14 +79,17 @@ import * as utilities from "./utilities";
  *
  * // Instance
  * const instance = new cloudamqp.Instance("instance", {
+ *     name: "Instance",
  *     plan: "bunny-1",
  *     region: "amazon-web-services::us-west-2",
  * });
  * // Resize disk with 25 extra GB, without downtime
- * const resizeDisk = new cloudamqp.ExtraDiskSize("resizeDisk", {
+ * const resizeDisk = new cloudamqp.ExtraDiskSize("resize_disk", {
  *     instanceId: instance.id,
  *     extraDiskSize: 25,
  * });
+ * // Optional, refresh nodes info after disk resize by adding dependency
+ * // to cloudamqp_extra_disk_size.resize_disk resource
  * const nodes = instance.id.apply(id => cloudamqp.getNodesOutput({
  *     instanceId: id,
  * }));
@@ -106,14 +112,17 @@ import * as utilities from "./utilities";
  *
  * // Instance
  * const instance = new cloudamqp.Instance("instance", {
+ *     name: "Instance",
  *     plan: "bunny-1",
  *     region: "google-compute-engine::us-central1",
  * });
  * // Resize disk with 25 extra GB, without downtime
- * const resizeDisk = new cloudamqp.ExtraDiskSize("resizeDisk", {
+ * const resizeDisk = new cloudamqp.ExtraDiskSize("resize_disk", {
  *     instanceId: instance.id,
  *     extraDiskSize: 25,
  * });
+ * // Optional, refresh nodes info after disk resize by adding dependency
+ * // to cloudamqp_extra_disk_size.resize_disk resource
  * const nodes = instance.id.apply(id => cloudamqp.getNodesOutput({
  *     instanceId: id,
  * }));
@@ -136,15 +145,18 @@ import * as utilities from "./utilities";
  *
  * // Instance
  * const instance = new cloudamqp.Instance("instance", {
+ *     name: "Instance",
  *     plan: "bunny-1",
  *     region: "azure-arm::centralus",
  * });
  * // Resize disk with 25 extra GB, with downtime
- * const resizeDisk = new cloudamqp.ExtraDiskSize("resizeDisk", {
+ * const resizeDisk = new cloudamqp.ExtraDiskSize("resize_disk", {
  *     instanceId: instance.id,
  *     extraDiskSize: 25,
  *     allowDowntime: true,
  * });
+ * // Optional, refresh nodes info after disk resize by adding dependency
+ * // to cloudamqp_extra_disk_size.resize_disk resource
  * const nodes = instance.id.apply(id => cloudamqp.getNodesOutput({
  *     instanceId: id,
  * }));

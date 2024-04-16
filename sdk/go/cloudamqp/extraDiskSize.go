@@ -60,6 +60,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Instance
 //			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:   pulumi.String("Instance"),
 //				Plan:   pulumi.String("bunny-1"),
 //				Region: pulumi.String("amazon-web-services::us-west-2"),
 //			})
@@ -67,13 +68,15 @@ import (
 //				return err
 //			}
 //			// Resize disk with 25 extra GB
-//			_, err = cloudamqp.NewExtraDiskSize(ctx, "resizeDisk", &cloudamqp.ExtraDiskSizeArgs{
+//			_, err = cloudamqp.NewExtraDiskSize(ctx, "resize_disk", &cloudamqp.ExtraDiskSizeArgs{
 //				InstanceId:    instance.ID(),
 //				ExtraDiskSize: pulumi.Int(25),
 //			})
 //			if err != nil {
 //				return err
 //			}
+//			// Optional, refresh nodes info after disk resize by adding dependency
+//			// to cloudamqp_extra_disk_size.resize_disk resource
 //			_ = instance.ID().ApplyT(func(id string) (cloudamqp.GetNodesResult, error) {
 //				return cloudamqp.GetNodesOutput(ctx, cloudamqp.GetNodesOutputArgs{
 //					InstanceId: id,
@@ -111,6 +114,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Instance
 //			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:   pulumi.String("Instance"),
 //				Plan:   pulumi.String("bunny-1"),
 //				Region: pulumi.String("amazon-web-services::us-west-2"),
 //			})
@@ -118,13 +122,15 @@ import (
 //				return err
 //			}
 //			// Resize disk with 25 extra GB, without downtime
-//			_, err = cloudamqp.NewExtraDiskSize(ctx, "resizeDisk", &cloudamqp.ExtraDiskSizeArgs{
+//			_, err = cloudamqp.NewExtraDiskSize(ctx, "resize_disk", &cloudamqp.ExtraDiskSizeArgs{
 //				InstanceId:    instance.ID(),
 //				ExtraDiskSize: pulumi.Int(25),
 //			})
 //			if err != nil {
 //				return err
 //			}
+//			// Optional, refresh nodes info after disk resize by adding dependency
+//			// to cloudamqp_extra_disk_size.resize_disk resource
 //			_ = instance.ID().ApplyT(func(id string) (cloudamqp.GetNodesResult, error) {
 //				return cloudamqp.GetNodesOutput(ctx, cloudamqp.GetNodesOutputArgs{
 //					InstanceId: id,
@@ -162,6 +168,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Instance
 //			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:   pulumi.String("Instance"),
 //				Plan:   pulumi.String("bunny-1"),
 //				Region: pulumi.String("google-compute-engine::us-central1"),
 //			})
@@ -169,13 +176,15 @@ import (
 //				return err
 //			}
 //			// Resize disk with 25 extra GB, without downtime
-//			_, err = cloudamqp.NewExtraDiskSize(ctx, "resizeDisk", &cloudamqp.ExtraDiskSizeArgs{
+//			_, err = cloudamqp.NewExtraDiskSize(ctx, "resize_disk", &cloudamqp.ExtraDiskSizeArgs{
 //				InstanceId:    instance.ID(),
 //				ExtraDiskSize: pulumi.Int(25),
 //			})
 //			if err != nil {
 //				return err
 //			}
+//			// Optional, refresh nodes info after disk resize by adding dependency
+//			// to cloudamqp_extra_disk_size.resize_disk resource
 //			_ = instance.ID().ApplyT(func(id string) (cloudamqp.GetNodesResult, error) {
 //				return cloudamqp.GetNodesOutput(ctx, cloudamqp.GetNodesOutputArgs{
 //					InstanceId: id,
@@ -213,6 +222,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Instance
 //			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:   pulumi.String("Instance"),
 //				Plan:   pulumi.String("bunny-1"),
 //				Region: pulumi.String("azure-arm::centralus"),
 //			})
@@ -220,7 +230,7 @@ import (
 //				return err
 //			}
 //			// Resize disk with 25 extra GB, with downtime
-//			_, err = cloudamqp.NewExtraDiskSize(ctx, "resizeDisk", &cloudamqp.ExtraDiskSizeArgs{
+//			_, err = cloudamqp.NewExtraDiskSize(ctx, "resize_disk", &cloudamqp.ExtraDiskSizeArgs{
 //				InstanceId:    instance.ID(),
 //				ExtraDiskSize: pulumi.Int(25),
 //				AllowDowntime: pulumi.Bool(true),
@@ -228,6 +238,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Optional, refresh nodes info after disk resize by adding dependency
+//			// to cloudamqp_extra_disk_size.resize_disk resource
 //			_ = instance.ID().ApplyT(func(id string) (cloudamqp.GetNodesResult, error) {
 //				return cloudamqp.GetNodesOutput(ctx, cloudamqp.GetNodesOutputArgs{
 //					InstanceId: id,

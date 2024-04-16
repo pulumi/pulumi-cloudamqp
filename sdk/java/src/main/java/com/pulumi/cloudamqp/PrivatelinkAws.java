@@ -26,42 +26,6 @@ import javax.annotation.Nullable;
  *     &lt;i&gt;Default PrivateLink firewall rule&lt;/i&gt;
  *   &lt;/summary&gt;
  * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *     }
- * }
- * ```
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
- * &lt;/details&gt;
- * 
- * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html)
- * where you can also find more information about
- * [CloudAMQP PrivateLink](https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#aws-privatelink).
- * 
- * Only available for dedicated subscription plans.
- * 
- * &gt; **Warning:** This resource considered deprecated and will be removed in next major version (v2.0).
- * Recommended to start using the new resource`cloudamqp.VpcConnect`.
- * 
  * ## Example Usage
  * 
  * &lt;details&gt;
@@ -96,6 +60,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
+ *             .name(&#34;Instance 01&#34;)
  *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;amazon-web-services::us-west-1&#34;)
  *             .tags()
@@ -147,12 +112,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var vpc = new Vpc(&#34;vpc&#34;, VpcArgs.builder()        
+ *             .name(&#34;Standalone VPC&#34;)
  *             .region(&#34;amazon-web-services::us-west-1&#34;)
  *             .subnet(&#34;10.56.72.0/24&#34;)
  *             .tags()
  *             .build());
  * 
  *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
+ *             .name(&#34;Instance 01&#34;)
  *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;amazon-web-services::us-west-1&#34;)
  *             .tags()
@@ -212,12 +179,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var vpc = new Vpc(&#34;vpc&#34;, VpcArgs.builder()        
+ *             .name(&#34;Standalone VPC&#34;)
  *             .region(&#34;amazon-web-services::us-west-1&#34;)
  *             .subnet(&#34;10.56.72.0/24&#34;)
  *             .tags()
  *             .build());
  * 
  *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
+ *             .name(&#34;Instance 01&#34;)
  *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;amazon-web-services::us-west-1&#34;)
  *             .tags()

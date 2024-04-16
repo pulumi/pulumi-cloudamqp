@@ -38,7 +38,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewCustomDomain(ctx, "settings", &cloudamqp.CustomDomainArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				InstanceId: pulumi.Any(instance.Id),
 //				Hostname:   pulumi.String("myname.mydomain"),
 //			})
 //			if err != nil {

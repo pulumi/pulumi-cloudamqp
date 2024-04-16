@@ -54,13 +54,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var azureMonitor = new IntegrationLog(&#34;azureMonitor&#34;, IntegrationLogArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
- *             .tenantId(var_.azm_tentant_id())
- *             .applicationId(var_.azm_application_id())
- *             .applicationSecret(var_.azm_application_secret())
- *             .dceUri(var_.azm_dce_uri())
- *             .table(var_.azm_table())
- *             .dcrId(var_.azm_dcr_id())
+ *             .instanceId(instance.id())
+ *             .name(&#34;azure_monitor&#34;)
+ *             .tenantId(azmTentantId)
+ *             .applicationId(azmApplicationId)
+ *             .applicationSecret(azmApplicationSecret)
+ *             .dceUri(azmDceUri)
+ *             .table(azmTable)
+ *             .dcrId(azmDcrId)
  *             .build());
  * 
  *     }
@@ -100,10 +101,11 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var cloudwatch = new IntegrationLog(&#34;cloudwatch&#34;, IntegrationLogArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
- *             .accessKeyId(var_.aws_access_key_id())
- *             .secretAccessKey(var_.aws_secret_access_key())
- *             .region(var_.aws_region())
+ *             .instanceId(instance.id())
+ *             .name(&#34;cloudwatchlog&#34;)
+ *             .accessKeyId(awsAccessKeyId)
+ *             .secretAccessKey(awsSecretAccessKey)
+ *             .region(awsRegion)
  *             .build());
  * 
  *     }
@@ -143,11 +145,12 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var coralogix = new IntegrationLog(&#34;coralogix&#34;, IntegrationLogArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
- *             .privateKey(var_.coralogix_send_data_key())
- *             .endpoint(var_.coralogix_endpoint())
- *             .application(var_.coralogix_application())
- *             .subsystem(cloudamqp_instance.instance().host())
+ *             .instanceId(instance.id())
+ *             .name(&#34;coralogix&#34;)
+ *             .privateKey(coralogixSendDataKey)
+ *             .endpoint(coralogixEndpoint)
+ *             .application(coralogixApplication)
+ *             .subsystem(instance.host())
  *             .build());
  * 
  *     }
@@ -187,10 +190,11 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var datadog = new IntegrationLog(&#34;datadog&#34;, IntegrationLogArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
- *             .region(var_.datadog_region())
- *             .apiKey(var_.datadog_api_key())
- *             .tags(var_.datadog_tags())
+ *             .instanceId(instance.id())
+ *             .name(&#34;datadog&#34;)
+ *             .region(datadogRegion)
+ *             .apiKey(datadogApiKey)
+ *             .tags(datadogTags)
  *             .build());
  * 
  *     }
@@ -230,8 +234,9 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var logentries = new IntegrationLog(&#34;logentries&#34;, IntegrationLogArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
- *             .token(var_.logentries_token())
+ *             .instanceId(instance.id())
+ *             .name(&#34;logentries&#34;)
+ *             .token(logentriesToken)
  *             .build());
  * 
  *     }
@@ -271,8 +276,9 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var loggly = new IntegrationLog(&#34;loggly&#34;, IntegrationLogArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
- *             .token(var_.loggly_token())
+ *             .instanceId(instance.id())
+ *             .name(&#34;loggly&#34;)
+ *             .token(logglyToken)
  *             .build());
  * 
  *     }
@@ -311,8 +317,9 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var papertrail = new IntegrationLog(&#34;papertrail&#34;, IntegrationLogArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
- *             .url(var_.papertrail_url())
+ *             .instanceId(instance.id())
+ *             .name(&#34;papertrail&#34;)
+ *             .url(papertrailUrl)
  *             .build());
  * 
  *     }
@@ -352,9 +359,10 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var scalyr = new IntegrationLog(&#34;scalyr&#34;, IntegrationLogArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
- *             .token(var_.scalyr_token())
- *             .host(var_.scalyr_host())
+ *             .instanceId(instance.id())
+ *             .name(&#34;scalyr&#34;)
+ *             .token(scalyrToken)
+ *             .host(scalyrHost)
  *             .build());
  * 
  *     }
@@ -392,9 +400,10 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var splunk = new IntegrationLog(&#34;splunk&#34;, IntegrationLogArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
- *             .token(var_.splunk_token())
- *             .hostPort(var_.splunk_host_port())
+ *             .instanceId(instance.id())
+ *             .name(&#34;splunk&#34;)
+ *             .token(splunkToken)
+ *             .hostPort(splunkHostPort)
  *             .sourceType(&#34;generic_single_line&#34;)
  *             .build());
  * 
@@ -439,10 +448,11 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var stackdriver = new IntegrationLog(&#34;stackdriver&#34;, IntegrationLogArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
- *             .projectId(var_.stackdriver_project_id())
- *             .privateKey(var_.stackdriver_private_key())
- *             .clientEmail(var_.stackdriver_client_email())
+ *             .instanceId(instance.id())
+ *             .name(&#34;stackdriver&#34;)
+ *             .projectId(stackdriverProjectId)
+ *             .privateKey(stackdriverPrivateKey)
+ *             .clientEmail(stackdriverClientEmail)
  *             .build());
  * 
  *     }

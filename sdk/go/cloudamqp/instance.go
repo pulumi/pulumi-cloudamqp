@@ -42,7 +42,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Minimum free lemur instance running RabbitMQ
-//			_, err := cloudamqp.NewInstance(ctx, "lemurInstance", &cloudamqp.InstanceArgs{
+//			_, err := cloudamqp.NewInstance(ctx, "lemur_instance", &cloudamqp.InstanceArgs{
+//				Name:   pulumi.String("cloudamqp-free-instance"),
 //				Plan:   pulumi.String("lemur"),
 //				Region: pulumi.String("amazon-web-services::us-west-1"),
 //				Tags: pulumi.StringArray{
@@ -53,7 +54,8 @@ import (
 //				return err
 //			}
 //			// Minimum free lemming instance running LavinMQ
-//			_, err = cloudamqp.NewInstance(ctx, "lemmingInstance", &cloudamqp.InstanceArgs{
+//			_, err = cloudamqp.NewInstance(ctx, "lemming_instance", &cloudamqp.InstanceArgs{
+//				Name:   pulumi.String("cloudamqp-free-instance"),
 //				Plan:   pulumi.String("lemming"),
 //				Region: pulumi.String("amazon-web-services::us-west-1"),
 //				Tags: pulumi.StringArray{
@@ -65,6 +67,7 @@ import (
 //			}
 //			// New dedicated bunny instance running RabbitMQ
 //			_, err = cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:   pulumi.String("terraform-cloudamqp-instance"),
 //				Plan:   pulumi.String("bunny-1"),
 //				Region: pulumi.String("amazon-web-services::us-west-1"),
 //				Tags: pulumi.StringArray{
@@ -104,6 +107,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:   pulumi.String("terraform-cloudamqp-instance"),
 //				Plan:   pulumi.String("bunny-1"),
 //				Region: pulumi.String("amazon-web-services::us-west-1"),
 //				Tags: pulumi.StringArray{
@@ -144,7 +148,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Dedicated instance that also creates VPC
-//			_, err := cloudamqp.NewInstance(ctx, "instance01", &cloudamqp.InstanceArgs{
+//			_, err := cloudamqp.NewInstance(ctx, "instance_01", &cloudamqp.InstanceArgs{
+//				Name:   pulumi.String("terraform-cloudamqp-instance-01"),
 //				Plan:   pulumi.String("bunny-1"),
 //				Region: pulumi.String("amazon-web-services::us-west-1"),
 //				Tags: pulumi.StringArray{
@@ -181,6 +186,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Imported managed VPC
 //			vpc, err := cloudamqp.NewVpc(ctx, "vpc", &cloudamqp.VpcArgs{
+//				Name:   pulumi.String("<vpc-name>"),
 //				Region: pulumi.String("amazon-web-services::us-east-1"),
 //				Subnet: pulumi.String("10.56.72.0/24"),
 //				Tags:   pulumi.StringArray{},
@@ -189,7 +195,8 @@ import (
 //				return err
 //			}
 //			// Add vpc_id and keep_associated_vpc attributes
-//			_, err = cloudamqp.NewInstance(ctx, "instance01", &cloudamqp.InstanceArgs{
+//			_, err = cloudamqp.NewInstance(ctx, "instance_01", &cloudamqp.InstanceArgs{
+//				Name:   pulumi.String("terraform-cloudamqp-instance-01"),
 //				Plan:   pulumi.String("bunny-1"),
 //				Region: pulumi.String("amazon-web-services::us-west-1"),
 //				Tags: pulumi.StringArray{
@@ -232,6 +239,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Managed VPC
 //			vpc, err := cloudamqp.NewVpc(ctx, "vpc", &cloudamqp.VpcArgs{
+//				Name:   pulumi.String("<vpc-name>"),
 //				Region: pulumi.String("amazon-web-services::us-east-1"),
 //				Subnet: pulumi.String("10.56.72.0/24"),
 //				Tags:   pulumi.StringArray{},
@@ -240,7 +248,8 @@ import (
 //				return err
 //			}
 //			// First instance added to managed VPC
-//			_, err = cloudamqp.NewInstance(ctx, "instance01", &cloudamqp.InstanceArgs{
+//			_, err = cloudamqp.NewInstance(ctx, "instance_01", &cloudamqp.InstanceArgs{
+//				Name:   pulumi.String("terraform-cloudamqp-instance-01"),
 //				Plan:   pulumi.String("bunny-1"),
 //				Region: pulumi.String("amazon-web-services::us-west-1"),
 //				Tags: pulumi.StringArray{
@@ -253,7 +262,8 @@ import (
 //				return err
 //			}
 //			// Second instance added to managed VPC
-//			_, err = cloudamqp.NewInstance(ctx, "instance02", &cloudamqp.InstanceArgs{
+//			_, err = cloudamqp.NewInstance(ctx, "instance_02", &cloudamqp.InstanceArgs{
+//				Name:   pulumi.String("terraform-cloudamqp-instance-02"),
 //				Plan:   pulumi.String("bunny-1"),
 //				Region: pulumi.String("amazon-web-services::us-west-1"),
 //				Tags: pulumi.StringArray{
@@ -273,90 +283,6 @@ import (
 // <!--End PulumiCodeChooser -->
 //
 // Set attribute `keepAssociatedVpc` to true, will keep managed VPC when deleting the instances.
-// </details>
-//
-// ## Upgrade and downgrade
-//
-// It's possible to upgrade or downgrade your subscription plan, this will either increase or decrease the underlying resource used for by the CloudAMQP instance. To do this, change the argument `plan` in the configuration and apply the changes. See available plans.
-//
-// <details>
-//
-//	<summary>
-//	  <b>
-//	    <i>Upgrade the subscription plan</i>
-//	  </b>
-//	</summary>
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// Upgraded CloudAMQP instance configuration
-//			_, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
-//				Plan:   pulumi.String("bunny-1"),
-//				Region: pulumi.String("amazon-web-services::us-west-1"),
-//				Tags: pulumi.StringArray{
-//					pulumi.String("terraform"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-// </details>
-//
-// <details>
-//
-//	<summary>
-//	  <b>
-//	    <i>Downgrade number of nodes from 3 to 1</i>
-//	  </b>
-//	</summary>
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// Downgraded CloudAMQP instance configuration
-//			_, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
-//				Plan:   pulumi.String("bunny-1"),
-//				Region: pulumi.String("amazon-web-services::us-west-1"),
-//				Tags: pulumi.StringArray{
-//					pulumi.String("terraform"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
 // </details>
 //
 // ## Copy settings to a new dedicated instance
@@ -388,7 +314,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.NewInstance(ctx, "instance02", &cloudamqp.InstanceArgs{
+//			_, err := cloudamqp.NewInstance(ctx, "instance_02", &cloudamqp.InstanceArgs{
+//				Name:       pulumi.String("terraform-cloudamqp-instance-02"),
 //				Plan:       pulumi.String("squirrel-1"),
 //				Region:     pulumi.String("amazon-web-services::us-west-1"),
 //				RmqVersion: pulumi.String("3.12.2"),
@@ -397,7 +324,7 @@ import (
 //				},
 //				CopySettings: cloudamqp.InstanceCopySettingArray{
 //					&cloudamqp.InstanceCopySettingArgs{
-//						SubscriptionId: pulumi.Any(_var.Instance_id),
+//						SubscriptionId: pulumi.Any(instanceId),
 //						Settings: pulumi.StringArray{
 //							pulumi.String("alarms"),
 //							pulumi.String("config"),

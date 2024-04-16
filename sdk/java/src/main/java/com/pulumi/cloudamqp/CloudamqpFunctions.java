@@ -47,124 +47,12 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
      * 
-     * ## Example Usage
-     * 
-     * Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var instanceName = &#34;&lt;instance_name&gt;&#34;;
-     * 
-     *         final var instanceList = CloudamqpFunctions.getAccount();
-     * 
-     *         ctx.export(&#34;instanceId&#34;, &lt;nil&gt;);
-     *     }
-     * }
-     * ```
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`          - The identifier for this data source. Set to `na` since there is no unique identifier.
-     * * `instances`   - An array of instances. Each `instances` block consists of the fields documented below.
-     * 
-     * ***
-     * 
-     * The `instances` block consist of
-     * 
-     * * `id`      - The instance identifier.
-     * * `name`    - The name of the instance.
-     * * `plan`    - The subscription plan used for the instance.
-     * * `region`  - The region were the instanece is located in.
-     * * `tags`    - Optional tags set for the instance.
-     * 
-     * ## Dependency
-     * 
-     * This data source depends on apikey set in the provider configuration.
-     * 
      */
     public static Output<GetAccountResult> getAccount() {
         return getAccount(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
      * Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
-     * 
-     * ## Example Usage
-     * 
-     * Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var instanceName = &#34;&lt;instance_name&gt;&#34;;
-     * 
-     *         final var instanceList = CloudamqpFunctions.getAccount();
-     * 
-     *         ctx.export(&#34;instanceId&#34;, &lt;nil&gt;);
-     *     }
-     * }
-     * ```
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`          - The identifier for this data source. Set to `na` since there is no unique identifier.
-     * * `instances`   - An array of instances. Each `instances` block consists of the fields documented below.
-     * 
-     * ***
-     * 
-     * The `instances` block consist of
-     * 
-     * * `id`      - The instance identifier.
-     * * `name`    - The name of the instance.
-     * * `plan`    - The subscription plan used for the instance.
-     * * `region`  - The region were the instanece is located in.
-     * * `tags`    - Optional tags set for the instance.
-     * 
-     * ## Dependency
-     * 
-     * This data source depends on apikey set in the provider configuration.
      * 
      */
     public static CompletableFuture<GetAccountResult> getAccountPlain() {
@@ -173,124 +61,12 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
      * 
-     * ## Example Usage
-     * 
-     * Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var instanceName = &#34;&lt;instance_name&gt;&#34;;
-     * 
-     *         final var instanceList = CloudamqpFunctions.getAccount();
-     * 
-     *         ctx.export(&#34;instanceId&#34;, &lt;nil&gt;);
-     *     }
-     * }
-     * ```
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`          - The identifier for this data source. Set to `na` since there is no unique identifier.
-     * * `instances`   - An array of instances. Each `instances` block consists of the fields documented below.
-     * 
-     * ***
-     * 
-     * The `instances` block consist of
-     * 
-     * * `id`      - The instance identifier.
-     * * `name`    - The name of the instance.
-     * * `plan`    - The subscription plan used for the instance.
-     * * `region`  - The region were the instanece is located in.
-     * * `tags`    - Optional tags set for the instance.
-     * 
-     * ## Dependency
-     * 
-     * This data source depends on apikey set in the provider configuration.
-     * 
      */
     public static Output<GetAccountResult> getAccount(InvokeArgs args) {
         return getAccount(args, InvokeOptions.Empty);
     }
     /**
      * Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
-     * 
-     * ## Example Usage
-     * 
-     * Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var instanceName = &#34;&lt;instance_name&gt;&#34;;
-     * 
-     *         final var instanceList = CloudamqpFunctions.getAccount();
-     * 
-     *         ctx.export(&#34;instanceId&#34;, &lt;nil&gt;);
-     *     }
-     * }
-     * ```
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`          - The identifier for this data source. Set to `na` since there is no unique identifier.
-     * * `instances`   - An array of instances. Each `instances` block consists of the fields documented below.
-     * 
-     * ***
-     * 
-     * The `instances` block consist of
-     * 
-     * * `id`      - The instance identifier.
-     * * `name`    - The name of the instance.
-     * * `plan`    - The subscription plan used for the instance.
-     * * `region`  - The region were the instanece is located in.
-     * * `tags`    - Optional tags set for the instance.
-     * 
-     * ## Dependency
-     * 
-     * This data source depends on apikey set in the provider configuration.
      * 
      */
     public static CompletableFuture<GetAccountResult> getAccountPlain(InvokeArgs args) {
@@ -299,124 +75,12 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
      * 
-     * ## Example Usage
-     * 
-     * Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var instanceName = &#34;&lt;instance_name&gt;&#34;;
-     * 
-     *         final var instanceList = CloudamqpFunctions.getAccount();
-     * 
-     *         ctx.export(&#34;instanceId&#34;, &lt;nil&gt;);
-     *     }
-     * }
-     * ```
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`          - The identifier for this data source. Set to `na` since there is no unique identifier.
-     * * `instances`   - An array of instances. Each `instances` block consists of the fields documented below.
-     * 
-     * ***
-     * 
-     * The `instances` block consist of
-     * 
-     * * `id`      - The instance identifier.
-     * * `name`    - The name of the instance.
-     * * `plan`    - The subscription plan used for the instance.
-     * * `region`  - The region were the instanece is located in.
-     * * `tags`    - Optional tags set for the instance.
-     * 
-     * ## Dependency
-     * 
-     * This data source depends on apikey set in the provider configuration.
-     * 
      */
     public static Output<GetAccountResult> getAccount(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("cloudamqp:index/getAccount:getAccount", TypeShape.of(GetAccountResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
-     * 
-     * ## Example Usage
-     * 
-     * Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var instanceName = &#34;&lt;instance_name&gt;&#34;;
-     * 
-     *         final var instanceList = CloudamqpFunctions.getAccount();
-     * 
-     *         ctx.export(&#34;instanceId&#34;, &lt;nil&gt;);
-     *     }
-     * }
-     * ```
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`          - The identifier for this data source. Set to `na` since there is no unique identifier.
-     * * `instances`   - An array of instances. Each `instances` block consists of the fields documented below.
-     * 
-     * ***
-     * 
-     * The `instances` block consist of
-     * 
-     * * `id`      - The instance identifier.
-     * * `name`    - The name of the instance.
-     * * `plan`    - The subscription plan used for the instance.
-     * * `region`  - The region were the instanece is located in.
-     * * `tags`    - Optional tags set for the instance.
-     * 
-     * ## Dependency
-     * 
-     * This data source depends on apikey set in the provider configuration.
      * 
      */
     public static CompletableFuture<GetAccountResult> getAccountPlain(InvokeArgs args, InvokeOptions options) {
@@ -430,34 +94,6 @@ public final class CloudamqpFunctions {
      * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var myVpcName = &#34;&lt;your VPC name&gt;&#34;;
-     * 
-     *         final var vpcList = CloudamqpFunctions.getAccountVpcs();
-     * 
-     *         ctx.export(&#34;vpcId&#34;, &#34;TODO: ForExpression&#34;[0].id());
-     *     }
-     * }
-     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -494,34 +130,6 @@ public final class CloudamqpFunctions {
      * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var myVpcName = &#34;&lt;your VPC name&gt;&#34;;
-     * 
-     *         final var vpcList = CloudamqpFunctions.getAccountVpcs();
-     * 
-     *         ctx.export(&#34;vpcId&#34;, &#34;TODO: ForExpression&#34;[0].id());
-     *     }
-     * }
-     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -558,34 +166,6 @@ public final class CloudamqpFunctions {
      * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var myVpcName = &#34;&lt;your VPC name&gt;&#34;;
-     * 
-     *         final var vpcList = CloudamqpFunctions.getAccountVpcs();
-     * 
-     *         ctx.export(&#34;vpcId&#34;, &#34;TODO: ForExpression&#34;[0].id());
-     *     }
-     * }
-     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -622,34 +202,6 @@ public final class CloudamqpFunctions {
      * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var myVpcName = &#34;&lt;your VPC name&gt;&#34;;
-     * 
-     *         final var vpcList = CloudamqpFunctions.getAccountVpcs();
-     * 
-     *         ctx.export(&#34;vpcId&#34;, &#34;TODO: ForExpression&#34;[0].id());
-     *     }
-     * }
-     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -686,34 +238,6 @@ public final class CloudamqpFunctions {
      * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var myVpcName = &#34;&lt;your VPC name&gt;&#34;;
-     * 
-     *         final var vpcList = CloudamqpFunctions.getAccountVpcs();
-     * 
-     *         ctx.export(&#34;vpcId&#34;, &#34;TODO: ForExpression&#34;[0].id());
-     *     }
-     * }
-     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -750,34 +274,6 @@ public final class CloudamqpFunctions {
      * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var myVpcName = &#34;&lt;your VPC name&gt;&#34;;
-     * 
-     *         final var vpcList = CloudamqpFunctions.getAccountVpcs();
-     * 
-     *         ctx.export(&#34;vpcId&#34;, &#34;TODO: ForExpression&#34;[0].id());
-     *     }
-     * }
-     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -834,7 +330,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var defaultCpuAlarm = CloudamqpFunctions.getAlarm(GetAlarmArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .type(&#34;cpu&#34;)
      *             .build());
      * 
@@ -901,7 +397,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var defaultCpuAlarm = CloudamqpFunctions.getAlarm(GetAlarmArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .type(&#34;cpu&#34;)
      *             .build());
      * 
@@ -968,7 +464,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var defaultCpuAlarm = CloudamqpFunctions.getAlarm(GetAlarmArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .type(&#34;cpu&#34;)
      *             .build());
      * 
@@ -1035,7 +531,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var defaultCpuAlarm = CloudamqpFunctions.getAlarm(GetAlarmArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .type(&#34;cpu&#34;)
      *             .build());
      * 
@@ -1102,7 +598,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var credentials = CloudamqpFunctions.getCredentials(GetCredentialsArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -1154,7 +650,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var credentials = CloudamqpFunctions.getCredentials(GetCredentialsArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -1206,7 +702,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var credentials = CloudamqpFunctions.getCredentials(GetCredentialsArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -1258,7 +754,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var credentials = CloudamqpFunctions.getCredentials(GetCredentialsArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -1338,7 +834,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -1405,7 +901,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -1472,7 +968,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -1539,7 +1035,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -1606,7 +1102,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var defaultRecipient = CloudamqpFunctions.getNotification(GetNotificationArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .name(&#34;default&#34;)
      *             .build());
      * 
@@ -1660,7 +1156,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var defaultRecipient = CloudamqpFunctions.getNotification(GetNotificationArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .name(&#34;default&#34;)
      *             .build());
      * 
@@ -1714,7 +1210,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var defaultRecipient = CloudamqpFunctions.getNotification(GetNotificationArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .name(&#34;default&#34;)
      *             .build());
      * 
@@ -1768,7 +1264,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var defaultRecipient = CloudamqpFunctions.getNotification(GetNotificationArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .name(&#34;default&#34;)
      *             .build());
      * 
@@ -1822,7 +1318,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var plugins = CloudamqpFunctions.getPlugins(GetPluginsArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -1886,7 +1382,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var plugins = CloudamqpFunctions.getPlugins(GetPluginsArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -1950,7 +1446,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var plugins = CloudamqpFunctions.getPlugins(GetPluginsArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -2014,7 +1510,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var plugins = CloudamqpFunctions.getPlugins(GetPluginsArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -2078,7 +1574,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var communitPlugins = CloudamqpFunctions.getPluginsCommunity(GetPluginsCommunityArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -2141,7 +1637,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var communitPlugins = CloudamqpFunctions.getPluginsCommunity(GetPluginsCommunityArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -2204,7 +1700,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var communitPlugins = CloudamqpFunctions.getPluginsCommunity(GetPluginsCommunityArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -2267,7 +1763,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var communitPlugins = CloudamqpFunctions.getPluginsCommunity(GetPluginsCommunityArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -2330,7 +1826,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var versions = CloudamqpFunctions.getUpgradableVersions(GetUpgradableVersionsArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -2381,7 +1877,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var versions = CloudamqpFunctions.getUpgradableVersions(GetUpgradableVersionsArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -2432,7 +1928,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var versions = CloudamqpFunctions.getUpgradableVersions(GetUpgradableVersionsArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -2483,7 +1979,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var versions = CloudamqpFunctions.getUpgradableVersions(GetUpgradableVersionsArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -2541,7 +2037,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -2581,7 +2077,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .vpcId(cloudamqp_vpc.vpc().id())
+     *             .vpcId(vpc.id())
      *             .build());
      * 
      *     }
@@ -2647,7 +2143,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -2687,7 +2183,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .vpcId(cloudamqp_vpc.vpc().id())
+     *             .vpcId(vpc.id())
      *             .build());
      * 
      *     }
@@ -2753,7 +2249,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -2793,7 +2289,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .vpcId(cloudamqp_vpc.vpc().id())
+     *             .vpcId(vpc.id())
      *             .build());
      * 
      *     }
@@ -2859,7 +2355,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -2899,7 +2395,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .vpcId(cloudamqp_vpc.vpc().id())
+     *             .vpcId(vpc.id())
      *             .build());
      * 
      *     }
@@ -2965,7 +2461,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -3005,7 +2501,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .vpcId(cloudamqp_vpc.vpc().id())
+     *             .vpcId(vpc.id())
      *             .build());
      * 
      *     }
@@ -3071,7 +2567,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -3111,7 +2607,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .vpcId(cloudamqp_vpc.vpc().id())
+     *             .vpcId(vpc.id())
      *             .build());
      * 
      *     }
@@ -3179,7 +2675,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -3218,7 +2714,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .vpcId(cloudamqp_vpc.vpc().id())
+     *             .vpcId(vpc.id())
      *             .build());
      * 
      *     }
@@ -3286,7 +2782,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -3325,7 +2821,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .vpcId(cloudamqp_vpc.vpc().id())
+     *             .vpcId(vpc.id())
      *             .build());
      * 
      *     }
@@ -3393,7 +2889,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -3432,7 +2928,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .vpcId(cloudamqp_vpc.vpc().id())
+     *             .vpcId(vpc.id())
      *             .build());
      * 
      *     }
@@ -3500,7 +2996,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -3539,7 +3035,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .vpcId(cloudamqp_vpc.vpc().id())
+     *             .vpcId(vpc.id())
      *             .build());
      * 
      *     }
@@ -3607,7 +3103,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -3646,7 +3142,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .vpcId(cloudamqp_vpc.vpc().id())
+     *             .vpcId(vpc.id())
      *             .build());
      * 
      *     }
@@ -3714,7 +3210,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .instanceId(cloudamqp_instance.instance().id())
+     *             .instanceId(instance.id())
      *             .build());
      * 
      *     }
@@ -3753,7 +3249,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .vpcId(cloudamqp_vpc.vpc().id())
+     *             .vpcId(vpc.id())
      *             .build());
      * 
      *     }

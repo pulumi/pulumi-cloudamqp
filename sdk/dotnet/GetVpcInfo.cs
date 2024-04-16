@@ -36,7 +36,7 @@ namespace Pulumi.CloudAmqp
         /// {
         ///     var vpcInfo = CloudAmqp.GetVpcInfo.Invoke(new()
         ///     {
-        ///         InstanceId = cloudamqp_instance.Instance.Id,
+        ///         InstanceId = instance.Id,
         ///     });
         /// 
         /// });
@@ -62,7 +62,7 @@ namespace Pulumi.CloudAmqp
         /// {
         ///     var vpcInfo = CloudAmqp.GetVpcInfo.Invoke(new()
         ///     {
-        ///         VpcId = cloudamqp_vpc.Vpc.Id,
+        ///         VpcId = vpc.Id,
         ///     });
         /// 
         /// });
@@ -117,7 +117,7 @@ namespace Pulumi.CloudAmqp
         /// {
         ///     var vpcInfo = CloudAmqp.GetVpcInfo.Invoke(new()
         ///     {
-        ///         InstanceId = cloudamqp_instance.Instance.Id,
+        ///         InstanceId = instance.Id,
         ///     });
         /// 
         /// });
@@ -143,7 +143,7 @@ namespace Pulumi.CloudAmqp
         /// {
         ///     var vpcInfo = CloudAmqp.GetVpcInfo.Invoke(new()
         ///     {
-        ///         VpcId = cloudamqp_vpc.Vpc.Id,
+        ///         VpcId = vpc.Id,
         ///     });
         /// 
         /// });

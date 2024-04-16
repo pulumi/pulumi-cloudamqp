@@ -29,7 +29,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.GetNodes(ctx, &cloudamqp.GetNodesArgs{
-//				InstanceId: cloudamqp_instance.Instance.Id,
+//				InstanceId: instance.Id,
 //			}, nil)
 //			if err != nil {
 //				return err

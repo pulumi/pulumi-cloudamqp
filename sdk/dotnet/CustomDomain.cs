@@ -33,7 +33,7 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var settings = new CloudAmqp.CustomDomain("settings", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         InstanceId = instance.Id,
     ///         Hostname = "myname.mydomain",
     ///     });
     /// 

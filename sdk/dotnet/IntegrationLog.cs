@@ -33,15 +33,16 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var azureMonitor = new CloudAmqp.IntegrationLog("azureMonitor", new()
+    ///     var azureMonitor = new CloudAmqp.IntegrationLog("azure_monitor", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         TenantId = @var.Azm_tentant_id,
-    ///         ApplicationId = @var.Azm_application_id,
-    ///         ApplicationSecret = @var.Azm_application_secret,
-    ///         DceUri = @var.Azm_dce_uri,
-    ///         Table = @var.Azm_table,
-    ///         DcrId = @var.Azm_dcr_id,
+    ///         InstanceId = instance.Id,
+    ///         Name = "azure_monitor",
+    ///         TenantId = azmTentantId,
+    ///         ApplicationId = azmApplicationId,
+    ///         ApplicationSecret = azmApplicationSecret,
+    ///         DceUri = azmDceUri,
+    ///         Table = azmTable,
+    ///         DcrId = azmDcrId,
     ///     });
     /// 
     /// });
@@ -68,10 +69,11 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var cloudwatch = new CloudAmqp.IntegrationLog("cloudwatch", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         AccessKeyId = @var.Aws_access_key_id,
-    ///         SecretAccessKey = @var.Aws_secret_access_key,
-    ///         Region = @var.Aws_region,
+    ///         InstanceId = instance.Id,
+    ///         Name = "cloudwatchlog",
+    ///         AccessKeyId = awsAccessKeyId,
+    ///         SecretAccessKey = awsSecretAccessKey,
+    ///         Region = awsRegion,
     ///     });
     /// 
     /// });
@@ -98,11 +100,12 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var coralogix = new CloudAmqp.IntegrationLog("coralogix", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         PrivateKey = @var.Coralogix_send_data_key,
-    ///         Endpoint = @var.Coralogix_endpoint,
-    ///         Application = @var.Coralogix_application,
-    ///         Subsystem = cloudamqp_instance.Instance.Host,
+    ///         InstanceId = instance.Id,
+    ///         Name = "coralogix",
+    ///         PrivateKey = coralogixSendDataKey,
+    ///         Endpoint = coralogixEndpoint,
+    ///         Application = coralogixApplication,
+    ///         Subsystem = instance.Host,
     ///     });
     /// 
     /// });
@@ -129,10 +132,11 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var datadog = new CloudAmqp.IntegrationLog("datadog", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         Region = @var.Datadog_region,
-    ///         ApiKey = @var.Datadog_api_key,
-    ///         Tags = @var.Datadog_tags,
+    ///         InstanceId = instance.Id,
+    ///         Name = "datadog",
+    ///         Region = datadogRegion,
+    ///         ApiKey = datadogApiKey,
+    ///         Tags = datadogTags,
     ///     });
     /// 
     /// });
@@ -159,8 +163,9 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var logentries = new CloudAmqp.IntegrationLog("logentries", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         Token = @var.Logentries_token,
+    ///         InstanceId = instance.Id,
+    ///         Name = "logentries",
+    ///         Token = logentriesToken,
     ///     });
     /// 
     /// });
@@ -187,8 +192,9 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var loggly = new CloudAmqp.IntegrationLog("loggly", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         Token = @var.Loggly_token,
+    ///         InstanceId = instance.Id,
+    ///         Name = "loggly",
+    ///         Token = logglyToken,
     ///     });
     /// 
     /// });
@@ -214,8 +220,9 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var papertrail = new CloudAmqp.IntegrationLog("papertrail", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         Url = @var.Papertrail_url,
+    ///         InstanceId = instance.Id,
+    ///         Name = "papertrail",
+    ///         Url = papertrailUrl,
     ///     });
     /// 
     /// });
@@ -242,9 +249,10 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var scalyr = new CloudAmqp.IntegrationLog("scalyr", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         Token = @var.Scalyr_token,
-    ///         Host = @var.Scalyr_host,
+    ///         InstanceId = instance.Id,
+    ///         Name = "scalyr",
+    ///         Token = scalyrToken,
+    ///         Host = scalyrHost,
     ///     });
     /// 
     /// });
@@ -269,9 +277,10 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var splunk = new CloudAmqp.IntegrationLog("splunk", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         Token = @var.Splunk_token,
-    ///         HostPort = @var.Splunk_host_port,
+    ///         InstanceId = instance.Id,
+    ///         Name = "splunk",
+    ///         Token = splunkToken,
+    ///         HostPort = splunkHostPort,
     ///         SourceType = "generic_single_line",
     ///     });
     /// 
@@ -303,10 +312,11 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var stackdriver = new CloudAmqp.IntegrationLog("stackdriver", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
-    ///         ProjectId = @var.Stackdriver_project_id,
-    ///         PrivateKey = @var.Stackdriver_private_key,
-    ///         ClientEmail = @var.Stackdriver_client_email,
+    ///         InstanceId = instance.Id,
+    ///         Name = "stackdriver",
+    ///         ProjectId = stackdriverProjectId,
+    ///         PrivateKey = stackdriverPrivateKey,
+    ///         ClientEmail = stackdriverClientEmail,
     ///     });
     /// 
     /// });

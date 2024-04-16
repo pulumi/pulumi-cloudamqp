@@ -22,20 +22,23 @@ import * as utilities from "./utilities";
  *
  * // Managed VPC resource
  * const vpc = new cloudamqp.Vpc("vpc", {
+ *     name: "<VPC name>",
  *     region: "amazon-web-services::us-east-1",
  *     subnet: "10.56.72.0/24",
  *     tags: [],
  * });
  * //  New instance, need to be created with a vpc
  * const instance = new cloudamqp.Instance("instance", {
+ *     name: "<Instance name>",
  *     plan: "bunny-1",
  *     region: "amazon-web-services::us-east-1",
  *     nodes: 1,
  *     tags: [],
  *     rmqVersion: "3.9.13",
- *     vpcId: cloudamq_vpc.vpc.id,
+ *     vpcId: vpcCloudamqVpc.id,
  *     keepAssociatedVpc: true,
  * });
+ * // Additional VPC information
  * const vpcInfo = cloudamqp.getVpcInfoOutput({
  *     vpcId: vpc.id,
  * });

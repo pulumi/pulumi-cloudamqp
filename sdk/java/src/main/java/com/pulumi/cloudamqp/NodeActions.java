@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // New recipient to receieve notifications
  *         var nodeAction = new NodeActions(&#34;nodeAction&#34;, NodeActionsArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .nodeName(&#34;&lt;node name&gt;&#34;)
  *             .action(&#34;restart&#34;)
  *             .build());
@@ -100,17 +100,17 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         final var listNodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .build());
  * 
  *         var restart01 = new NodeActions(&#34;restart01&#34;, NodeActionsArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .action(&#34;restart&#34;)
  *             .nodeName(listNodes.applyValue(getNodesResult -&gt; getNodesResult.nodes()[0].name()))
  *             .build());
  * 
  *         var restart02 = new NodeActions(&#34;restart02&#34;, NodeActionsArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .action(&#34;restart&#34;)
  *             .nodeName(listNodes.applyValue(getNodesResult -&gt; getNodesResult.nodes()[1].name()))
  *             .build(), CustomResourceOptions.builder()
@@ -118,7 +118,7 @@ import javax.annotation.Nullable;
  *                 .build());
  * 
  *         var restart03 = new NodeActions(&#34;restart03&#34;, NodeActionsArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .action(&#34;restart&#34;)
  *             .nodeName(listNodes.applyValue(getNodesResult -&gt; getNodesResult.nodes()[2].name()))
  *             .build(), CustomResourceOptions.builder()
@@ -168,16 +168,16 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         final var listNodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .build());
  * 
  *         var rabbitmqConfig = new RabbitConfiguration(&#34;rabbitmqConfig&#34;, RabbitConfigurationArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .logExchangeLevel(&#34;info&#34;)
  *             .build());
  * 
  *         var restart01 = new NodeActions(&#34;restart01&#34;, NodeActionsArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .action(&#34;restart&#34;)
  *             .nodeName(listNodes.applyValue(getNodesResult -&gt; getNodesResult.nodes()[0].name()))
  *             .build(), CustomResourceOptions.builder()
@@ -185,7 +185,7 @@ import javax.annotation.Nullable;
  *                 .build());
  * 
  *         var restart02 = new NodeActions(&#34;restart02&#34;, NodeActionsArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .action(&#34;restart&#34;)
  *             .nodeName(listNodes.applyValue(getNodesResult -&gt; getNodesResult.nodes()[1].name()))
  *             .build(), CustomResourceOptions.builder()
@@ -195,7 +195,7 @@ import javax.annotation.Nullable;
  *                 .build());
  * 
  *         var restart03 = new NodeActions(&#34;restart03&#34;, NodeActionsArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .action(&#34;restart&#34;)
  *             .nodeName(listNodes.applyValue(getNodesResult -&gt; getNodesResult.nodes()[2].name()))
  *             .build(), CustomResourceOptions.builder()

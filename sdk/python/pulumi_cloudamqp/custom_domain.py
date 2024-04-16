@@ -116,7 +116,7 @@ class CustomDomain(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         settings = cloudamqp.CustomDomain("settings",
-            instance_id=cloudamqp_instance["instance"]["id"],
+            instance_id=instance["id"],
             hostname="myname.mydomain")
         ```
         <!--End PulumiCodeChooser -->
@@ -165,7 +165,7 @@ class CustomDomain(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         settings = cloudamqp.CustomDomain("settings",
-            instance_id=cloudamqp_instance["instance"]["id"],
+            instance_id=instance["id"],
             hostname="myname.mydomain")
         ```
         <!--End PulumiCodeChooser -->

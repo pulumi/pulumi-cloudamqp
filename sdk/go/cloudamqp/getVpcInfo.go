@@ -39,7 +39,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.GetVpcInfo(ctx, &cloudamqp.GetVpcInfoArgs{
-//				InstanceId: pulumi.IntRef(cloudamqp_instance.Instance.Id),
+//				InstanceId: pulumi.IntRef(instance.Id),
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -74,7 +74,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.GetVpcInfo(ctx, &cloudamqp.GetVpcInfoArgs{
-//				VpcId: pulumi.StringRef(cloudamqp_vpc.Vpc.Id),
+//				VpcId: pulumi.StringRef(vpc.Id),
 //			}, nil)
 //			if err != nil {
 //				return err

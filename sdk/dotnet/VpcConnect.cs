@@ -27,43 +27,6 @@ namespace Pulumi.CloudAmqp
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// &lt;/details&gt;
-    /// 
-    /// &lt;details&gt;
-    ///  &lt;summary&gt;
-    ///     &lt;b&gt;
-    ///       &lt;i&gt;Default Private Service Connect firewall rule [GCP]&lt;/i&gt;
-    ///     &lt;/b&gt;
-    ///   &lt;/summary&gt;
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// &lt;/details&gt;
-    /// 
-    /// Only available for dedicated subscription plans.
-    /// 
     /// ## Example Usage
     /// 
     /// &lt;details&gt;
@@ -84,6 +47,7 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var vpc = new CloudAmqp.Vpc("vpc", new()
     ///     {
+    ///         Name = "Standalone VPC",
     ///         Region = "amazon-web-services::us-west-1",
     ///         Subnet = "10.56.72.0/24",
     ///         Tags = new[] {},
@@ -91,6 +55,7 @@ namespace Pulumi.CloudAmqp
     /// 
     ///     var instance = new CloudAmqp.Instance("instance", new()
     ///     {
+    ///         Name = "Instance 01",
     ///         Plan = "bunny-1",
     ///         Region = "amazon-web-services::us-west-1",
     ///         Tags = new[] {},
@@ -98,7 +63,7 @@ namespace Pulumi.CloudAmqp
     ///         KeepAssociatedVpc = true,
     ///     });
     /// 
-    ///     var vpcConnect = new CloudAmqp.VpcConnect("vpcConnect", new()
+    ///     var vpcConnect = new CloudAmqp.VpcConnect("vpc_connect", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Region = instance.Region,
@@ -132,6 +97,7 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var vpc = new CloudAmqp.Vpc("vpc", new()
     ///     {
+    ///         Name = "Standalone VPC",
     ///         Region = "azure-arm::westus",
     ///         Subnet = "10.56.72.0/24",
     ///         Tags = new[] {},
@@ -139,6 +105,7 @@ namespace Pulumi.CloudAmqp
     /// 
     ///     var instance = new CloudAmqp.Instance("instance", new()
     ///     {
+    ///         Name = "Instance 01",
     ///         Plan = "bunny-1",
     ///         Region = "azure-arm::westus",
     ///         Tags = new[] {},
@@ -146,7 +113,7 @@ namespace Pulumi.CloudAmqp
     ///         KeepAssociatedVpc = true,
     ///     });
     /// 
-    ///     var vpcConnect = new CloudAmqp.VpcConnect("vpcConnect", new()
+    ///     var vpcConnect = new CloudAmqp.VpcConnect("vpc_connect", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Region = instance.Region,
@@ -180,6 +147,7 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var vpc = new CloudAmqp.Vpc("vpc", new()
     ///     {
+    ///         Name = "Standalone VPC",
     ///         Region = "google-compute-engine::us-west1",
     ///         Subnet = "10.56.72.0/24",
     ///         Tags = new[] {},
@@ -187,6 +155,7 @@ namespace Pulumi.CloudAmqp
     /// 
     ///     var instance = new CloudAmqp.Instance("instance", new()
     ///     {
+    ///         Name = "Instance 01",
     ///         Plan = "bunny-1",
     ///         Region = "google-compute-engine::us-west1",
     ///         Tags = new[] {},
@@ -194,7 +163,7 @@ namespace Pulumi.CloudAmqp
     ///         KeepAssociatedVpc = true,
     ///     });
     /// 
-    ///     var vpcConnect = new CloudAmqp.VpcConnect("vpcConnect", new()
+    ///     var vpcConnect = new CloudAmqp.VpcConnect("vpc_connect", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Region = instance.Region,
@@ -230,6 +199,7 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var vpc = new CloudAmqp.Vpc("vpc", new()
     ///     {
+    ///         Name = "Standalone VPC",
     ///         Region = "amazon-web-services::us-west-1",
     ///         Subnet = "10.56.72.0/24",
     ///         Tags = new[] {},
@@ -237,6 +207,7 @@ namespace Pulumi.CloudAmqp
     /// 
     ///     var instance = new CloudAmqp.Instance("instance", new()
     ///     {
+    ///         Name = "Instance 01",
     ///         Plan = "bunny-1",
     ///         Region = "amazon-web-services::us-west-1",
     ///         Tags = new[] {},
@@ -244,7 +215,7 @@ namespace Pulumi.CloudAmqp
     ///         KeepAssociatedVpc = true,
     ///     });
     /// 
-    ///     var vpcConnect = new CloudAmqp.VpcConnect("vpcConnect", new()
+    ///     var vpcConnect = new CloudAmqp.VpcConnect("vpc_connect", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         AllowedPrincipals = new[]
@@ -253,7 +224,7 @@ namespace Pulumi.CloudAmqp
     ///         },
     ///     });
     /// 
-    ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewallSettings", new()
+    ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewall_settings", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Rules = new[]

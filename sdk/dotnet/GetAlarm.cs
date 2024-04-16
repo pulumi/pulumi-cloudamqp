@@ -27,7 +27,7 @@ namespace Pulumi.CloudAmqp
         /// {
         ///     var defaultCpuAlarm = CloudAmqp.GetAlarm.Invoke(new()
         ///     {
-        ///         InstanceId = cloudamqp_instance.Instance.Id,
+        ///         InstanceId = instance.Id,
         ///         Type = "cpu",
         ///     });
         /// 
@@ -80,7 +80,7 @@ namespace Pulumi.CloudAmqp
         /// {
         ///     var defaultCpuAlarm = CloudAmqp.GetAlarm.Invoke(new()
         ///     {
-        ///         InstanceId = cloudamqp_instance.Instance.Id,
+        ///         InstanceId = instance.Id,
         ///         Type = "cpu",
         ///     });
         /// 

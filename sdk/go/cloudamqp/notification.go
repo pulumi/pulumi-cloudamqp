@@ -39,10 +39,11 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.NewNotification(ctx, "emailRecipient", &cloudamqp.NotificationArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//			_, err := cloudamqp.NewNotification(ctx, "email_recipient", &cloudamqp.NotificationArgs{
+//				InstanceId: pulumi.Any(instance.Id),
 //				Type:       pulumi.String("email"),
 //				Value:      pulumi.String("alarm@example.com"),
+//				Name:       pulumi.String("alarm"),
 //			})
 //			if err != nil {
 //				return err
@@ -75,10 +76,11 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.NewNotification(ctx, "opsgenieRecipient", &cloudamqp.NotificationArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//			_, err := cloudamqp.NewNotification(ctx, "opsgenie_recipient", &cloudamqp.NotificationArgs{
+//				InstanceId: pulumi.Any(instance.Id),
 //				Type:       pulumi.String("opsgenie"),
 //				Value:      pulumi.String("<api-key>"),
+//				Name:       pulumi.String("OpsGenie"),
 //				Responders: cloudamqp.NotificationResponderArray{
 //					&cloudamqp.NotificationResponderArgs{
 //						Type: pulumi.String("team"),
@@ -121,10 +123,11 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.NewNotification(ctx, "pagerdutyRecipient", &cloudamqp.NotificationArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//			_, err := cloudamqp.NewNotification(ctx, "pagerduty_recipient", &cloudamqp.NotificationArgs{
+//				InstanceId: pulumi.Any(instance.Id),
 //				Type:       pulumi.String("pagerduty"),
 //				Value:      pulumi.String("<integration-key>"),
+//				Name:       pulumi.String("PagerDuty"),
 //				Options: pulumi.StringMap{
 //					"dedupkey": pulumi.String("DEDUPKEY"),
 //				},
@@ -160,10 +163,11 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.NewNotification(ctx, "signl4Recipient", &cloudamqp.NotificationArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//			_, err := cloudamqp.NewNotification(ctx, "signl4_recipient", &cloudamqp.NotificationArgs{
+//				InstanceId: pulumi.Any(instance.Id),
 //				Type:       pulumi.String("signl4"),
 //				Value:      pulumi.String("<team-secret>"),
+//				Name:       pulumi.String("Signl4"),
 //			})
 //			if err != nil {
 //				return err
@@ -196,10 +200,11 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.NewNotification(ctx, "teamsRecipient", &cloudamqp.NotificationArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//			_, err := cloudamqp.NewNotification(ctx, "teams_recipient", &cloudamqp.NotificationArgs{
+//				InstanceId: pulumi.Any(instance.Id),
 //				Type:       pulumi.String("teams"),
 //				Value:      pulumi.String("<teams-webhook-url>"),
+//				Name:       pulumi.String("Teams"),
 //			})
 //			if err != nil {
 //				return err
@@ -232,10 +237,11 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.NewNotification(ctx, "victoropsRecipient", &cloudamqp.NotificationArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//			_, err := cloudamqp.NewNotification(ctx, "victorops_recipient", &cloudamqp.NotificationArgs{
+//				InstanceId: pulumi.Any(instance.Id),
 //				Type:       pulumi.String("victorops"),
 //				Value:      pulumi.String("<integration-key>"),
+//				Name:       pulumi.String("Victorops"),
 //				Options: pulumi.StringMap{
 //					"rk": pulumi.String("ROUTINGKEY"),
 //				},
@@ -271,10 +277,11 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.NewNotification(ctx, "webhookRecipient", &cloudamqp.NotificationArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//			_, err := cloudamqp.NewNotification(ctx, "webhook_recipient", &cloudamqp.NotificationArgs{
+//				InstanceId: pulumi.Any(instance.Id),
 //				Type:       pulumi.String("webhook"),
 //				Value:      pulumi.String("<webhook-url>"),
+//				Name:       pulumi.String("Webhook"),
 //			})
 //			if err != nil {
 //				return err

@@ -59,14 +59,15 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // New recipient
  *         var recipient01 = new Notification(&#34;recipient01&#34;, NotificationArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .type(&#34;email&#34;)
  *             .value(&#34;alarm@example.com&#34;)
+ *             .name(&#34;alarm&#34;)
  *             .build());
  * 
  *         // New cpu alarm
  *         var cpuAlarm = new Alarm(&#34;cpuAlarm&#34;, AlarmArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .type(&#34;cpu&#34;)
  *             .enabled(true)
  *             .reminderInterval(600)
@@ -77,7 +78,7 @@ import javax.annotation.Nullable;
  * 
  *         // New memory alarm
  *         var memoryAlarm = new Alarm(&#34;memoryAlarm&#34;, AlarmArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .type(&#34;memory&#34;)
  *             .enabled(true)
  *             .reminderInterval(600)
@@ -128,14 +129,15 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // New recipient
  *         var recipient01 = new Notification(&#34;recipient01&#34;, NotificationArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .type(&#34;email&#34;)
  *             .value(&#34;alarm@example.com&#34;)
+ *             .name(&#34;alarm&#34;)
  *             .build());
  * 
  *         // Update existing notice alarm
  *         var notice = new Alarm(&#34;notice&#34;, AlarmArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .type(&#34;notice&#34;)
  *             .enabled(true)
  *             .recipients(recipient01.id())
