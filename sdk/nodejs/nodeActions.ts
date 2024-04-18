@@ -24,8 +24,8 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * // New recipient to receieve notifications
- * const nodeAction = new cloudamqp.NodeActions("nodeAction", {
- *     instanceId: cloudamqp_instance.instance.id,
+ * const nodeAction = new cloudamqp.NodeActions("node_action", {
+ *     instanceId: instance.id,
  *     nodeName: "<node name>",
  *     action: "restart",
  * });
@@ -49,22 +49,22 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const listNodes = cloudamqp.getNodes({
- *     instanceId: cloudamqp_instance.instance.id,
+ *     instanceId: instance.id,
  * });
- * const restart01 = new cloudamqp.NodeActions("restart01", {
- *     instanceId: cloudamqp_instance.instance.id,
+ * const restart01 = new cloudamqp.NodeActions("restart_01", {
+ *     instanceId: instance.id,
  *     action: "restart",
  *     nodeName: listNodes.then(listNodes => listNodes.nodes?.[0]?.name),
  * });
- * const restart02 = new cloudamqp.NodeActions("restart02", {
- *     instanceId: cloudamqp_instance.instance.id,
+ * const restart02 = new cloudamqp.NodeActions("restart_02", {
+ *     instanceId: instance.id,
  *     action: "restart",
  *     nodeName: listNodes.then(listNodes => listNodes.nodes?.[1]?.name),
  * }, {
  *     dependsOn: [restart01],
  * });
- * const restart03 = new cloudamqp.NodeActions("restart03", {
- *     instanceId: cloudamqp_instance.instance.id,
+ * const restart03 = new cloudamqp.NodeActions("restart_03", {
+ *     instanceId: instance.id,
  *     action: "restart",
  *     nodeName: listNodes.then(listNodes => listNodes.nodes?.[2]?.name),
  * }, {
@@ -90,21 +90,21 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const listNodes = cloudamqp.getNodes({
- *     instanceId: cloudamqp_instance.instance.id,
+ *     instanceId: instance.id,
  * });
- * const rabbitmqConfig = new cloudamqp.RabbitConfiguration("rabbitmqConfig", {
- *     instanceId: cloudamqp_instance.instance.id,
+ * const rabbitmqConfig = new cloudamqp.RabbitConfiguration("rabbitmq_config", {
+ *     instanceId: instance.id,
  *     logExchangeLevel: "info",
  * });
- * const restart01 = new cloudamqp.NodeActions("restart01", {
- *     instanceId: cloudamqp_instance.instance.id,
+ * const restart01 = new cloudamqp.NodeActions("restart_01", {
+ *     instanceId: instance.id,
  *     action: "restart",
  *     nodeName: listNodes.then(listNodes => listNodes.nodes?.[0]?.name),
  * }, {
  *     dependsOn: [rabbitmqConfig],
  * });
- * const restart02 = new cloudamqp.NodeActions("restart02", {
- *     instanceId: cloudamqp_instance.instance.id,
+ * const restart02 = new cloudamqp.NodeActions("restart_02", {
+ *     instanceId: instance.id,
  *     action: "restart",
  *     nodeName: listNodes.then(listNodes => listNodes.nodes?.[1]?.name),
  * }, {
@@ -113,8 +113,8 @@ import * as utilities from "./utilities";
  *         restart01,
  *     ],
  * });
- * const restart03 = new cloudamqp.NodeActions("restart03", {
- *     instanceId: cloudamqp_instance.instance.id,
+ * const restart03 = new cloudamqp.NodeActions("restart_03", {
+ *     instanceId: instance.id,
  *     action: "restart",
  *     nodeName: listNodes.then(listNodes => listNodes.nodes?.[2]?.name),
  * }, {

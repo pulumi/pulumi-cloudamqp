@@ -36,6 +36,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:       pulumi.String("Test instance"),
 //				Plan:       pulumi.String("squirrel-1"),
 //				Region:     pulumi.String("amazon-web-services::us-west-1"),
 //				RmqVersion: pulumi.String("3.11.5"),
@@ -46,7 +47,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = cloudamqp.NewIntegrationAwsEventbridge(ctx, "awsEventbridge", &cloudamqp.IntegrationAwsEventbridgeArgs{
+//			_, err = cloudamqp.NewIntegrationAwsEventbridge(ctx, "aws_eventbridge", &cloudamqp.IntegrationAwsEventbridgeArgs{
 //				InstanceId:   instance.ID(),
 //				Vhost:        instance.Vhost,
 //				Queue:        pulumi.String("<QUEUE-NAME>"),

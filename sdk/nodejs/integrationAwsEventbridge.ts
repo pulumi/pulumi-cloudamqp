@@ -21,12 +21,13 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const instance = new cloudamqp.Instance("instance", {
+ *     name: "Test instance",
  *     plan: "squirrel-1",
  *     region: "amazon-web-services::us-west-1",
  *     rmqVersion: "3.11.5",
  *     tags: ["aws"],
  * });
- * const awsEventbridge = new cloudamqp.IntegrationAwsEventbridge("awsEventbridge", {
+ * const awsEventbridge = new cloudamqp.IntegrationAwsEventbridge("aws_eventbridge", {
  *     instanceId: instance.id,
  *     vhost: instance.vhost,
  *     queue: "<QUEUE-NAME>",

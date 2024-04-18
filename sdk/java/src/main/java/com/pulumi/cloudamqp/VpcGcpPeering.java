@@ -26,37 +26,6 @@ import javax.annotation.Nullable;
  *     &lt;i&gt;Default VPC peering firewall rule&lt;/i&gt;
  *   &lt;/summary&gt;
  * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *     }
- * }
- * ```
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
- * &lt;/details&gt;
- * 
- * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
- * 
- * Only available for dedicated subscription plans.
- * 
  * ## Example Usage
  * 
  * &lt;details&gt;
@@ -94,12 +63,14 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // CloudAMQP instance
  *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
+ *             .name(&#34;terraform-vpc-peering&#34;)
  *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;google-compute-engine::europe-north1&#34;)
  *             .tags(&#34;terraform&#34;)
  *             .vpcSubnet(&#34;10.40.72.0/24&#34;)
  *             .build());
  * 
+ *         // VPC information
  *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
  *             .instanceId(instance.id())
  *             .build());
@@ -123,6 +94,147 @@ import javax.annotation.Nullable;
  *       &lt;i&gt;VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Vpc;
+ * import com.pulumi.cloudamqp.VpcArgs;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import com.pulumi.cloudamqp.CloudamqpFunctions;
+ * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
+ * import com.pulumi.cloudamqp.VpcGcpPeering;
+ * import com.pulumi.cloudamqp.VpcGcpPeeringArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // Managed VPC resource
+ *         var vpc = new Vpc(&#34;vpc&#34;, VpcArgs.builder()        
+ *             .name(&#34;&lt;VPC name&gt;&#34;)
+ *             .region(&#34;google-compute-engine::europe-north1&#34;)
+ *             .subnet(&#34;10.56.72.0/24&#34;)
+ *             .tags()
+ *             .build());
+ * 
+ *         // CloudAMQP instance
+ *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
+ *             .name(&#34;terraform-vpc-peering&#34;)
+ *             .plan(&#34;bunny-1&#34;)
+ *             .region(&#34;google-compute-engine::europe-north1&#34;)
+ *             .tags(&#34;terraform&#34;)
+ *             .vpcId(vpc.id())
+ *             .build());
+ * 
+ *         // VPC information
+ *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
+ *             .vpcId(vpc.info())
+ *             .build());
+ * 
+ *         // VPC peering configuration
+ *         var vpcPeeringRequest = new VpcGcpPeering(&#34;vpcPeeringRequest&#34;, VpcGcpPeeringArgs.builder()        
+ *             .vpcId(vpc.id())
+ *             .peerNetworkUri(&#34;https://www.googleapis.com/compute/v1/projects/&lt;PROJECT-NAME&gt;/global/networks/&lt;NETWORK-NAME&gt;&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;VPC peering post v1.28.0, wait_on_peering_status &lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * Default peering request, no need to set `wait_on_peering_status`. It&#39;s default set to false and will not wait on peering status.
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.VpcGcpPeering;
+ * import com.pulumi.cloudamqp.VpcGcpPeeringArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var vpcPeeringRequest = new VpcGcpPeering(&#34;vpcPeeringRequest&#34;, VpcGcpPeeringArgs.builder()        
+ *             .vpcId(vpc.id())
+ *             .peerNetworkUri(&#34;https://www.googleapis.com/compute/v1/projects/&lt;PROJECT-NAME&gt;/global/networks/&lt;NETWORK-NAME&gt;&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * Peering request and waiting for peering status.
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.VpcGcpPeering;
+ * import com.pulumi.cloudamqp.VpcGcpPeeringArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var vpcPeeringRequest = new VpcGcpPeering(&#34;vpcPeeringRequest&#34;, VpcGcpPeeringArgs.builder()        
+ *             .vpcId(vpc.id())
+ *             .waitOnPeeringStatus(true)
+ *             .peerNetworkUri(&#34;https://www.googleapis.com/compute/v1/projects/&lt;PROJECT-NAME&gt;/global/networks/&lt;NETWORK-NAME&gt;&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * &lt;/details&gt;
  * 
  * ### With Additional Firewall Rules
  * 
@@ -161,16 +273,16 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // VPC peering configuration
  *         var vpcPeeringRequest = new VpcGcpPeering(&#34;vpcPeeringRequest&#34;, VpcGcpPeeringArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
- *             .peerNetworkUri(var_.peer_network_uri())
+ *             .instanceId(instance.id())
+ *             .peerNetworkUri(peerNetworkUri)
  *             .build());
  * 
  *         // Firewall rules
  *         var firewallSettings = new SecurityFirewall(&#34;firewallSettings&#34;, SecurityFirewallArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .rules(            
  *                 SecurityFirewallRuleArgs.builder()
- *                     .ip(var_.peer_subnet())
+ *                     .ip(peerSubnet)
  *                     .ports(15672)
  *                     .services(                    
  *                         &#34;AMQP&#34;,
@@ -235,16 +347,16 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // VPC peering configuration
  *         var vpcPeeringRequest = new VpcGcpPeering(&#34;vpcPeeringRequest&#34;, VpcGcpPeeringArgs.builder()        
- *             .vpcId(cloudamqp_vpc.vpc().id())
- *             .peerNetworkUri(var_.peer_network_uri())
+ *             .vpcId(vpc.id())
+ *             .peerNetworkUri(peerNetworkUri)
  *             .build());
  * 
  *         // Firewall rules
  *         var firewallSettings = new SecurityFirewall(&#34;firewallSettings&#34;, SecurityFirewallArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .rules(            
  *                 SecurityFirewallRuleArgs.builder()
- *                     .ip(var_.peer_subnet())
+ *                     .ip(peerSubnet)
  *                     .ports(15672)
  *                     .services(                    
  *                         &#34;AMQP&#34;,

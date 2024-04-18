@@ -42,17 +42,18 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// New recipient
-//			recipient01, err := cloudamqp.NewNotification(ctx, "recipient01", &cloudamqp.NotificationArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//			recipient01, err := cloudamqp.NewNotification(ctx, "recipient_01", &cloudamqp.NotificationArgs{
+//				InstanceId: pulumi.Any(instance.Id),
 //				Type:       pulumi.String("email"),
 //				Value:      pulumi.String("alarm@example.com"),
+//				Name:       pulumi.String("alarm"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// New cpu alarm
-//			_, err = cloudamqp.NewAlarm(ctx, "cpuAlarm", &cloudamqp.AlarmArgs{
-//				InstanceId:       pulumi.Any(cloudamqp_instance.Instance.Id),
+//			_, err = cloudamqp.NewAlarm(ctx, "cpu_alarm", &cloudamqp.AlarmArgs{
+//				InstanceId:       pulumi.Any(instance.Id),
 //				Type:             pulumi.String("cpu"),
 //				Enabled:          pulumi.Bool(true),
 //				ReminderInterval: pulumi.Int(600),
@@ -66,8 +67,8 @@ import (
 //				return err
 //			}
 //			// New memory alarm
-//			_, err = cloudamqp.NewAlarm(ctx, "memoryAlarm", &cloudamqp.AlarmArgs{
-//				InstanceId:       pulumi.Any(cloudamqp_instance.Instance.Id),
+//			_, err = cloudamqp.NewAlarm(ctx, "memory_alarm", &cloudamqp.AlarmArgs{
+//				InstanceId:       pulumi.Any(instance.Id),
 //				Type:             pulumi.String("memory"),
 //				Enabled:          pulumi.Bool(true),
 //				ReminderInterval: pulumi.Int(600),
@@ -113,17 +114,18 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// New recipient
-//			recipient01, err := cloudamqp.NewNotification(ctx, "recipient01", &cloudamqp.NotificationArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//			recipient01, err := cloudamqp.NewNotification(ctx, "recipient_01", &cloudamqp.NotificationArgs{
+//				InstanceId: pulumi.Any(instance.Id),
 //				Type:       pulumi.String("email"),
 //				Value:      pulumi.String("alarm@example.com"),
+//				Name:       pulumi.String("alarm"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Update existing notice alarm
 //			_, err = cloudamqp.NewAlarm(ctx, "notice", &cloudamqp.AlarmArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//				InstanceId: pulumi.Any(instance.Id),
 //				Type:       pulumi.String("notice"),
 //				Enabled:    pulumi.Bool(true),
 //				Recipients: pulumi.IntArray{

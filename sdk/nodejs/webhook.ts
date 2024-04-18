@@ -16,8 +16,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
- * const webhookQueue = new cloudamqp.Webhook("webhookQueue", {
- *     instanceId: cloudamqp_instance.instance.id,
+ * const webhookQueue = new cloudamqp.Webhook("webhook_queue", {
+ *     instanceId: instance.id,
  *     vhost: "myvhost",
  *     queue: "webhook-queue",
  *     webhookUri: "https://example.com/webhook?key=secret",

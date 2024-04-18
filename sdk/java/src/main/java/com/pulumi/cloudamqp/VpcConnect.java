@@ -34,69 +34,6 @@ import javax.annotation.Nullable;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
  * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *     }
- * }
- * ```
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
- * &lt;/details&gt;
- * 
- * &lt;details&gt;
- *  &lt;summary&gt;
- *     &lt;b&gt;
- *       &lt;i&gt;Default Private Service Connect firewall rule [GCP]&lt;/i&gt;
- *     &lt;/b&gt;
- *   &lt;/summary&gt;
- * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *     }
- * }
- * ```
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
- * &lt;/details&gt;
- * 
- * Only available for dedicated subscription plans.
- * 
  * ## Example Usage
  * 
  * &lt;details&gt;
@@ -133,12 +70,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var vpc = new Vpc(&#34;vpc&#34;, VpcArgs.builder()        
+ *             .name(&#34;Standalone VPC&#34;)
  *             .region(&#34;amazon-web-services::us-west-1&#34;)
  *             .subnet(&#34;10.56.72.0/24&#34;)
  *             .tags()
  *             .build());
  * 
  *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
+ *             .name(&#34;Instance 01&#34;)
  *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;amazon-web-services::us-west-1&#34;)
  *             .tags()
@@ -193,12 +132,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var vpc = new Vpc(&#34;vpc&#34;, VpcArgs.builder()        
+ *             .name(&#34;Standalone VPC&#34;)
  *             .region(&#34;azure-arm::westus&#34;)
  *             .subnet(&#34;10.56.72.0/24&#34;)
  *             .tags()
  *             .build());
  * 
  *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
+ *             .name(&#34;Instance 01&#34;)
  *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;azure-arm::westus&#34;)
  *             .tags()
@@ -253,12 +194,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var vpc = new Vpc(&#34;vpc&#34;, VpcArgs.builder()        
+ *             .name(&#34;Standalone VPC&#34;)
  *             .region(&#34;google-compute-engine::us-west1&#34;)
  *             .subnet(&#34;10.56.72.0/24&#34;)
  *             .tags()
  *             .build());
  * 
  *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
+ *             .name(&#34;Instance 01&#34;)
  *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;google-compute-engine::us-west1&#34;)
  *             .tags()
@@ -319,12 +262,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var vpc = new Vpc(&#34;vpc&#34;, VpcArgs.builder()        
+ *             .name(&#34;Standalone VPC&#34;)
  *             .region(&#34;amazon-web-services::us-west-1&#34;)
  *             .subnet(&#34;10.56.72.0/24&#34;)
  *             .tags()
  *             .build());
  * 
  *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
+ *             .name(&#34;Instance 01&#34;)
  *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;amazon-web-services::us-west-1&#34;)
  *             .tags()

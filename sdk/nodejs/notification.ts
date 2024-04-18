@@ -25,10 +25,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
- * const emailRecipient = new cloudamqp.Notification("emailRecipient", {
- *     instanceId: cloudamqp_instance.instance.id,
+ * const emailRecipient = new cloudamqp.Notification("email_recipient", {
+ *     instanceId: instance.id,
  *     type: "email",
  *     value: "alarm@example.com",
+ *     name: "alarm",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -45,10 +46,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
- * const opsgenieRecipient = new cloudamqp.Notification("opsgenieRecipient", {
- *     instanceId: cloudamqp_instance.instance.id,
+ * const opsgenieRecipient = new cloudamqp.Notification("opsgenie_recipient", {
+ *     instanceId: instance.id,
  *     type: "opsgenie",
  *     value: "<api-key>",
+ *     name: "OpsGenie",
  *     responders: [
  *         {
  *             type: "team",
@@ -75,10 +77,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
- * const pagerdutyRecipient = new cloudamqp.Notification("pagerdutyRecipient", {
- *     instanceId: cloudamqp_instance.instance.id,
+ * const pagerdutyRecipient = new cloudamqp.Notification("pagerduty_recipient", {
+ *     instanceId: instance.id,
  *     type: "pagerduty",
  *     value: "<integration-key>",
+ *     name: "PagerDuty",
  *     options: {
  *         dedupkey: "DEDUPKEY",
  *     },
@@ -98,10 +101,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
- * const signl4Recipient = new cloudamqp.Notification("signl4Recipient", {
- *     instanceId: cloudamqp_instance.instance.id,
+ * const signl4Recipient = new cloudamqp.Notification("signl4_recipient", {
+ *     instanceId: instance.id,
  *     type: "signl4",
  *     value: "<team-secret>",
+ *     name: "Signl4",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -118,10 +122,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
- * const teamsRecipient = new cloudamqp.Notification("teamsRecipient", {
- *     instanceId: cloudamqp_instance.instance.id,
+ * const teamsRecipient = new cloudamqp.Notification("teams_recipient", {
+ *     instanceId: instance.id,
  *     type: "teams",
  *     value: "<teams-webhook-url>",
+ *     name: "Teams",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -138,10 +143,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
- * const victoropsRecipient = new cloudamqp.Notification("victoropsRecipient", {
- *     instanceId: cloudamqp_instance.instance.id,
+ * const victoropsRecipient = new cloudamqp.Notification("victorops_recipient", {
+ *     instanceId: instance.id,
  *     type: "victorops",
  *     value: "<integration-key>",
+ *     name: "Victorops",
  *     options: {
  *         rk: "ROUTINGKEY",
  *     },
@@ -161,10 +167,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
- * const webhookRecipient = new cloudamqp.Notification("webhookRecipient", {
- *     instanceId: cloudamqp_instance.instance.id,
+ * const webhookRecipient = new cloudamqp.Notification("webhook_recipient", {
+ *     instanceId: instance.id,
  *     type: "webhook",
  *     value: "<webhook-url>",
+ *     name: "Webhook",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

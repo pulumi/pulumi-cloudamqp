@@ -384,31 +384,6 @@ class VpcConnect(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        ```
-        <!--End PulumiCodeChooser -->
-
-        </details>
-
-        <details>
-         <summary>
-            <b>
-              <i>Default Private Service Connect firewall rule [GCP]</i>
-            </b>
-          </summary>
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        ```
-        <!--End PulumiCodeChooser -->
-
-        </details>
-
-        Only available for dedicated subscription plans.
-
         ## Example Usage
 
         <details>
@@ -424,16 +399,18 @@ class VpcConnect(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         vpc = cloudamqp.Vpc("vpc",
+            name="Standalone VPC",
             region="amazon-web-services::us-west-1",
             subnet="10.56.72.0/24",
             tags=[])
         instance = cloudamqp.Instance("instance",
+            name="Instance 01",
             plan="bunny-1",
             region="amazon-web-services::us-west-1",
             tags=[],
             vpc_id=vpc.id,
             keep_associated_vpc=True)
-        vpc_connect = cloudamqp.VpcConnect("vpcConnect",
+        vpc_connect = cloudamqp.VpcConnect("vpc_connect",
             instance_id=instance.id,
             region=instance.region,
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
@@ -455,16 +432,18 @@ class VpcConnect(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         vpc = cloudamqp.Vpc("vpc",
+            name="Standalone VPC",
             region="azure-arm::westus",
             subnet="10.56.72.0/24",
             tags=[])
         instance = cloudamqp.Instance("instance",
+            name="Instance 01",
             plan="bunny-1",
             region="azure-arm::westus",
             tags=[],
             vpc_id=vpc.id,
             keep_associated_vpc=True)
-        vpc_connect = cloudamqp.VpcConnect("vpcConnect",
+        vpc_connect = cloudamqp.VpcConnect("vpc_connect",
             instance_id=instance.id,
             region=instance.region,
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
@@ -486,16 +465,18 @@ class VpcConnect(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         vpc = cloudamqp.Vpc("vpc",
+            name="Standalone VPC",
             region="google-compute-engine::us-west1",
             subnet="10.56.72.0/24",
             tags=[])
         instance = cloudamqp.Instance("instance",
+            name="Instance 01",
             plan="bunny-1",
             region="google-compute-engine::us-west1",
             tags=[],
             vpc_id=vpc.id,
             keep_associated_vpc=True)
-        vpc_connect = cloudamqp.VpcConnect("vpcConnect",
+        vpc_connect = cloudamqp.VpcConnect("vpc_connect",
             instance_id=instance.id,
             region=instance.region,
             allowed_projects=["some-project-123456"])
@@ -519,19 +500,21 @@ class VpcConnect(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         vpc = cloudamqp.Vpc("vpc",
+            name="Standalone VPC",
             region="amazon-web-services::us-west-1",
             subnet="10.56.72.0/24",
             tags=[])
         instance = cloudamqp.Instance("instance",
+            name="Instance 01",
             plan="bunny-1",
             region="amazon-web-services::us-west-1",
             tags=[],
             vpc_id=vpc.id,
             keep_associated_vpc=True)
-        vpc_connect = cloudamqp.VpcConnect("vpcConnect",
+        vpc_connect = cloudamqp.VpcConnect("vpc_connect",
             instance_id=instance.id,
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
-        firewall_settings = cloudamqp.SecurityFirewall("firewallSettings",
+        firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
             instance_id=instance.id,
             rules=[
                 cloudamqp.SecurityFirewallRuleArgs(
@@ -633,31 +616,6 @@ class VpcConnect(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        ```
-        <!--End PulumiCodeChooser -->
-
-        </details>
-
-        <details>
-         <summary>
-            <b>
-              <i>Default Private Service Connect firewall rule [GCP]</i>
-            </b>
-          </summary>
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        ```
-        <!--End PulumiCodeChooser -->
-
-        </details>
-
-        Only available for dedicated subscription plans.
-
         ## Example Usage
 
         <details>
@@ -673,16 +631,18 @@ class VpcConnect(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         vpc = cloudamqp.Vpc("vpc",
+            name="Standalone VPC",
             region="amazon-web-services::us-west-1",
             subnet="10.56.72.0/24",
             tags=[])
         instance = cloudamqp.Instance("instance",
+            name="Instance 01",
             plan="bunny-1",
             region="amazon-web-services::us-west-1",
             tags=[],
             vpc_id=vpc.id,
             keep_associated_vpc=True)
-        vpc_connect = cloudamqp.VpcConnect("vpcConnect",
+        vpc_connect = cloudamqp.VpcConnect("vpc_connect",
             instance_id=instance.id,
             region=instance.region,
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
@@ -704,16 +664,18 @@ class VpcConnect(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         vpc = cloudamqp.Vpc("vpc",
+            name="Standalone VPC",
             region="azure-arm::westus",
             subnet="10.56.72.0/24",
             tags=[])
         instance = cloudamqp.Instance("instance",
+            name="Instance 01",
             plan="bunny-1",
             region="azure-arm::westus",
             tags=[],
             vpc_id=vpc.id,
             keep_associated_vpc=True)
-        vpc_connect = cloudamqp.VpcConnect("vpcConnect",
+        vpc_connect = cloudamqp.VpcConnect("vpc_connect",
             instance_id=instance.id,
             region=instance.region,
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
@@ -735,16 +697,18 @@ class VpcConnect(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         vpc = cloudamqp.Vpc("vpc",
+            name="Standalone VPC",
             region="google-compute-engine::us-west1",
             subnet="10.56.72.0/24",
             tags=[])
         instance = cloudamqp.Instance("instance",
+            name="Instance 01",
             plan="bunny-1",
             region="google-compute-engine::us-west1",
             tags=[],
             vpc_id=vpc.id,
             keep_associated_vpc=True)
-        vpc_connect = cloudamqp.VpcConnect("vpcConnect",
+        vpc_connect = cloudamqp.VpcConnect("vpc_connect",
             instance_id=instance.id,
             region=instance.region,
             allowed_projects=["some-project-123456"])
@@ -768,19 +732,21 @@ class VpcConnect(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         vpc = cloudamqp.Vpc("vpc",
+            name="Standalone VPC",
             region="amazon-web-services::us-west-1",
             subnet="10.56.72.0/24",
             tags=[])
         instance = cloudamqp.Instance("instance",
+            name="Instance 01",
             plan="bunny-1",
             region="amazon-web-services::us-west-1",
             tags=[],
             vpc_id=vpc.id,
             keep_associated_vpc=True)
-        vpc_connect = cloudamqp.VpcConnect("vpcConnect",
+        vpc_connect = cloudamqp.VpcConnect("vpc_connect",
             instance_id=instance.id,
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
-        firewall_settings = cloudamqp.SecurityFirewall("firewallSettings",
+        firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
             instance_id=instance.id,
             rules=[
                 cloudamqp.SecurityFirewallRuleArgs(

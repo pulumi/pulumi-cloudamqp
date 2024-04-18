@@ -258,12 +258,15 @@ class ExtraDiskSize(pulumi.CustomResource):
 
         # Instance
         instance = cloudamqp.Instance("instance",
+            name="Instance",
             plan="bunny-1",
             region="amazon-web-services::us-west-2")
         # Resize disk with 25 extra GB
-        resize_disk = cloudamqp.ExtraDiskSize("resizeDisk",
+        resize_disk = cloudamqp.ExtraDiskSize("resize_disk",
             instance_id=instance.id,
             extra_disk_size=25)
+        # Optional, refresh nodes info after disk resize by adding dependency
+        # to cloudamqp_extra_disk_size.resize_disk resource
         nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
         ```
         <!--End PulumiCodeChooser -->
@@ -284,12 +287,15 @@ class ExtraDiskSize(pulumi.CustomResource):
 
         # Instance
         instance = cloudamqp.Instance("instance",
+            name="Instance",
             plan="bunny-1",
             region="amazon-web-services::us-west-2")
         # Resize disk with 25 extra GB, without downtime
-        resize_disk = cloudamqp.ExtraDiskSize("resizeDisk",
+        resize_disk = cloudamqp.ExtraDiskSize("resize_disk",
             instance_id=instance.id,
             extra_disk_size=25)
+        # Optional, refresh nodes info after disk resize by adding dependency
+        # to cloudamqp_extra_disk_size.resize_disk resource
         nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
         ```
         <!--End PulumiCodeChooser -->
@@ -310,12 +316,15 @@ class ExtraDiskSize(pulumi.CustomResource):
 
         # Instance
         instance = cloudamqp.Instance("instance",
+            name="Instance",
             plan="bunny-1",
             region="google-compute-engine::us-central1")
         # Resize disk with 25 extra GB, without downtime
-        resize_disk = cloudamqp.ExtraDiskSize("resizeDisk",
+        resize_disk = cloudamqp.ExtraDiskSize("resize_disk",
             instance_id=instance.id,
             extra_disk_size=25)
+        # Optional, refresh nodes info after disk resize by adding dependency
+        # to cloudamqp_extra_disk_size.resize_disk resource
         nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
         ```
         <!--End PulumiCodeChooser -->
@@ -336,13 +345,16 @@ class ExtraDiskSize(pulumi.CustomResource):
 
         # Instance
         instance = cloudamqp.Instance("instance",
+            name="Instance",
             plan="bunny-1",
             region="azure-arm::centralus")
         # Resize disk with 25 extra GB, with downtime
-        resize_disk = cloudamqp.ExtraDiskSize("resizeDisk",
+        resize_disk = cloudamqp.ExtraDiskSize("resize_disk",
             instance_id=instance.id,
             extra_disk_size=25,
             allow_downtime=True)
+        # Optional, refresh nodes info after disk resize by adding dependency
+        # to cloudamqp_extra_disk_size.resize_disk resource
         nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
         ```
         <!--End PulumiCodeChooser -->
@@ -430,12 +442,15 @@ class ExtraDiskSize(pulumi.CustomResource):
 
         # Instance
         instance = cloudamqp.Instance("instance",
+            name="Instance",
             plan="bunny-1",
             region="amazon-web-services::us-west-2")
         # Resize disk with 25 extra GB
-        resize_disk = cloudamqp.ExtraDiskSize("resizeDisk",
+        resize_disk = cloudamqp.ExtraDiskSize("resize_disk",
             instance_id=instance.id,
             extra_disk_size=25)
+        # Optional, refresh nodes info after disk resize by adding dependency
+        # to cloudamqp_extra_disk_size.resize_disk resource
         nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
         ```
         <!--End PulumiCodeChooser -->
@@ -456,12 +471,15 @@ class ExtraDiskSize(pulumi.CustomResource):
 
         # Instance
         instance = cloudamqp.Instance("instance",
+            name="Instance",
             plan="bunny-1",
             region="amazon-web-services::us-west-2")
         # Resize disk with 25 extra GB, without downtime
-        resize_disk = cloudamqp.ExtraDiskSize("resizeDisk",
+        resize_disk = cloudamqp.ExtraDiskSize("resize_disk",
             instance_id=instance.id,
             extra_disk_size=25)
+        # Optional, refresh nodes info after disk resize by adding dependency
+        # to cloudamqp_extra_disk_size.resize_disk resource
         nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
         ```
         <!--End PulumiCodeChooser -->
@@ -482,12 +500,15 @@ class ExtraDiskSize(pulumi.CustomResource):
 
         # Instance
         instance = cloudamqp.Instance("instance",
+            name="Instance",
             plan="bunny-1",
             region="google-compute-engine::us-central1")
         # Resize disk with 25 extra GB, without downtime
-        resize_disk = cloudamqp.ExtraDiskSize("resizeDisk",
+        resize_disk = cloudamqp.ExtraDiskSize("resize_disk",
             instance_id=instance.id,
             extra_disk_size=25)
+        # Optional, refresh nodes info after disk resize by adding dependency
+        # to cloudamqp_extra_disk_size.resize_disk resource
         nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
         ```
         <!--End PulumiCodeChooser -->
@@ -508,13 +529,16 @@ class ExtraDiskSize(pulumi.CustomResource):
 
         # Instance
         instance = cloudamqp.Instance("instance",
+            name="Instance",
             plan="bunny-1",
             region="azure-arm::centralus")
         # Resize disk with 25 extra GB, with downtime
-        resize_disk = cloudamqp.ExtraDiskSize("resizeDisk",
+        resize_disk = cloudamqp.ExtraDiskSize("resize_disk",
             instance_id=instance.id,
             extra_disk_size=25,
             allow_downtime=True)
+        # Optional, refresh nodes info after disk resize by adding dependency
+        # to cloudamqp_extra_disk_size.resize_disk resource
         nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
         ```
         <!--End PulumiCodeChooser -->

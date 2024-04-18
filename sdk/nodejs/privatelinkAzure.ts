@@ -15,23 +15,6 @@ import * as utilities from "./utilities";
  *     <i>Default PrivateLink firewall rule</i>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * </details>
- *
- * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html) where you can also
- * find more information about
- * [CloudAMQP PrivateLink](https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#azure-privatelink).
- *
- * Only available for dedicated subscription plans.
- *
- * > **Warning:** This resource considered deprecated and will be removed in next major version (v2.0).
- * Recommended to start using the new resource`cloudamqp.VpcConnect`.
- *
  * ## Example Usage
  *
  * <details>
@@ -47,6 +30,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const instance = new cloudamqp.Instance("instance", {
+ *     name: "Instance 01",
  *     plan: "bunny-1",
  *     region: "azure-arm::westus",
  *     tags: [],
@@ -72,11 +56,13 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const vpc = new cloudamqp.Vpc("vpc", {
+ *     name: "Standalone VPC",
  *     region: "azure-arm::westus",
  *     subnet: "10.56.72.0/24",
  *     tags: [],
  * });
  * const instance = new cloudamqp.Instance("instance", {
+ *     name: "Instance 01",
  *     plan: "bunny-1",
  *     region: "azure-arm::westus",
  *     tags: [],
@@ -107,11 +93,13 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const vpc = new cloudamqp.Vpc("vpc", {
+ *     name: "Standalone VPC",
  *     region: "azure-arm::westus",
  *     subnet: "10.56.72.0/24",
  *     tags: [],
  * });
  * const instance = new cloudamqp.Instance("instance", {
+ *     name: "Instance 01",
  *     plan: "bunny-1",
  *     region: "azure-arm::westus",
  *     tags: [],
@@ -122,7 +110,7 @@ import * as utilities from "./utilities";
  *     instanceId: instance.id,
  *     approvedSubscriptions: ["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"],
  * });
- * const firewallSettings = new cloudamqp.SecurityFirewall("firewallSettings", {
+ * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
  *     instanceId: instance.id,
  *     rules: [
  *         {

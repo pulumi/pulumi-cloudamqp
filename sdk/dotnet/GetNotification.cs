@@ -27,7 +27,7 @@ namespace Pulumi.CloudAmqp
         /// {
         ///     var defaultRecipient = CloudAmqp.GetNotification.Invoke(new()
         ///     {
-        ///         InstanceId = cloudamqp_instance.Instance.Id,
+        ///         InstanceId = instance.Id,
         ///         Name = "default",
         ///     });
         /// 
@@ -67,7 +67,7 @@ namespace Pulumi.CloudAmqp
         /// {
         ///     var defaultRecipient = CloudAmqp.GetNotification.Invoke(new()
         ///     {
-        ///         InstanceId = cloudamqp_instance.Instance.Id,
+        ///         InstanceId = instance.Id,
         ///         Name = "default",
         ///     });
         /// 

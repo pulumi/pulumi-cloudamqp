@@ -51,13 +51,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // Retrieve latest possible upgradable versions for RabbitMQ and Erlang
  *         final var versions = CloudamqpFunctions.getUpgradableVersions(GetUpgradableVersionsArgs.builder()
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .build());
  * 
  *         // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
  *         var upgrade = new UpgradeRabbitmq(&#34;upgrade&#34;, UpgradeRabbitmqArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .build());
  * 
  *     }
@@ -87,8 +88,9 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // Retrieve latest possible upgradable versions for RabbitMQ and Erlang
  *         final var versions = CloudamqpFunctions.getUpgradableVersions(GetUpgradableVersionsArgs.builder()
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .build());
  * 
  *     }
@@ -122,13 +124,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // Retrieve latest possible upgradable versions for RabbitMQ and Erlang
  *         final var versions = CloudamqpFunctions.getUpgradableVersions(GetUpgradableVersionsArgs.builder()
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .build());
  * 
  *         // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
  *         var upgrade = new UpgradeRabbitmq(&#34;upgrade&#34;, UpgradeRabbitmqArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .build());
  * 
  *     }

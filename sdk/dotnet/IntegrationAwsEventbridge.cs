@@ -31,6 +31,7 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var instance = new CloudAmqp.Instance("instance", new()
     ///     {
+    ///         Name = "Test instance",
     ///         Plan = "squirrel-1",
     ///         Region = "amazon-web-services::us-west-1",
     ///         RmqVersion = "3.11.5",
@@ -40,7 +41,7 @@ namespace Pulumi.CloudAmqp
     ///         },
     ///     });
     /// 
-    ///     var awsEventbridge = new CloudAmqp.IntegrationAwsEventbridge("awsEventbridge", new()
+    ///     var awsEventbridge = new CloudAmqp.IntegrationAwsEventbridge("aws_eventbridge", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Vhost = instance.Vhost,

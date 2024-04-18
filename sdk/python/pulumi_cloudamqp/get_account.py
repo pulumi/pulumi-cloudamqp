@@ -57,42 +57,6 @@ class AwaitableGetAccountResult(GetAccountResult):
 def get_account(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccountResult:
     """
     Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
-
-    ## Example Usage
-
-    Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
-
-    <!--Start PulumiCodeChooser -->
-    ```python
-    import pulumi
-    import pulumi_cloudamqp as cloudamqp
-
-    instance_name = "<instance_name>"
-    instance_list = cloudamqp.get_account()
-    pulumi.export("instanceId", <nil>)
-    ```
-    <!--End PulumiCodeChooser -->
-
-    ## Attributes reference
-
-    All attributes reference are computed
-
-    * `id`          - The identifier for this data source. Set to `na` since there is no unique identifier.
-    * `instances`   - An array of instances. Each `instances` block consists of the fields documented below.
-
-    ***
-
-    The `instances` block consist of
-
-    * `id`      - The instance identifier.
-    * `name`    - The name of the instance.
-    * `plan`    - The subscription plan used for the instance.
-    * `region`  - The region were the instanece is located in.
-    * `tags`    - Optional tags set for the instance.
-
-    ## Dependency
-
-    This data source depends on apikey set in the provider configuration.
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -107,41 +71,5 @@ def get_account(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAcco
 def get_account_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccountResult]:
     """
     Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
-
-    ## Example Usage
-
-    Can be used in other resources/data sources when instance identifier is unknown, while other attributes are known. E.g. find correct instance from `instance name`. Then iterate over instances to find the matching one and extract the instance identifier.
-
-    <!--Start PulumiCodeChooser -->
-    ```python
-    import pulumi
-    import pulumi_cloudamqp as cloudamqp
-
-    instance_name = "<instance_name>"
-    instance_list = cloudamqp.get_account()
-    pulumi.export("instanceId", <nil>)
-    ```
-    <!--End PulumiCodeChooser -->
-
-    ## Attributes reference
-
-    All attributes reference are computed
-
-    * `id`          - The identifier for this data source. Set to `na` since there is no unique identifier.
-    * `instances`   - An array of instances. Each `instances` block consists of the fields documented below.
-
-    ***
-
-    The `instances` block consist of
-
-    * `id`      - The instance identifier.
-    * `name`    - The name of the instance.
-    * `plan`    - The subscription plan used for the instance.
-    * `region`  - The region were the instanece is located in.
-    * `tags`    - Optional tags set for the instance.
-
-    ## Dependency
-
-    This data source depends on apikey set in the provider configuration.
     """
     ...

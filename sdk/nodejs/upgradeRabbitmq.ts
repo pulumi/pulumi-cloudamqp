@@ -23,11 +23,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
+ * // Retrieve latest possible upgradable versions for RabbitMQ and Erlang
  * const versions = cloudamqp.getUpgradableVersions({
- *     instanceId: cloudamqp_instance.instance.id,
+ *     instanceId: instance.id,
  * });
  * // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
- * const upgrade = new cloudamqp.UpgradeRabbitmq("upgrade", {instanceId: cloudamqp_instance.instance.id});
+ * const upgrade = new cloudamqp.UpgradeRabbitmq("upgrade", {instanceId: instance.id});
  * ```
  * <!--End PulumiCodeChooser -->
  *
@@ -36,8 +37,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
+ * // Retrieve latest possible upgradable versions for RabbitMQ and Erlang
  * const versions = cloudamqp.getUpgradableVersions({
- *     instanceId: cloudamqp_instance.instance.id,
+ *     instanceId: instance.id,
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -49,11 +51,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
+ * // Retrieve latest possible upgradable versions for RabbitMQ and Erlang
  * const versions = cloudamqp.getUpgradableVersions({
- *     instanceId: cloudamqp_instance.instance.id,
+ *     instanceId: instance.id,
  * });
  * // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
- * const upgrade = new cloudamqp.UpgradeRabbitmq("upgrade", {instanceId: cloudamqp_instance.instance.id});
+ * const upgrade = new cloudamqp.UpgradeRabbitmq("upgrade", {instanceId: instance.id});
  * ```
  * <!--End PulumiCodeChooser -->
  *

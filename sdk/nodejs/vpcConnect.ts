@@ -22,31 +22,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * </details>
- *
- * <details>
- *  <summary>
- *     <b>
- *       <i>Default Private Service Connect firewall rule [GCP]</i>
- *     </b>
- *   </summary>
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * </details>
- *
- * Only available for dedicated subscription plans.
- *
  * ## Example Usage
  *
  * <details>
@@ -62,18 +37,20 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const vpc = new cloudamqp.Vpc("vpc", {
+ *     name: "Standalone VPC",
  *     region: "amazon-web-services::us-west-1",
  *     subnet: "10.56.72.0/24",
  *     tags: [],
  * });
  * const instance = new cloudamqp.Instance("instance", {
+ *     name: "Instance 01",
  *     plan: "bunny-1",
  *     region: "amazon-web-services::us-west-1",
  *     tags: [],
  *     vpcId: vpc.id,
  *     keepAssociatedVpc: true,
  * });
- * const vpcConnect = new cloudamqp.VpcConnect("vpcConnect", {
+ * const vpcConnect = new cloudamqp.VpcConnect("vpc_connect", {
  *     instanceId: instance.id,
  *     region: instance.region,
  *     allowedPrincipals: ["arn:aws:iam::aws-account-id:user/user-name"],
@@ -96,18 +73,20 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const vpc = new cloudamqp.Vpc("vpc", {
+ *     name: "Standalone VPC",
  *     region: "azure-arm::westus",
  *     subnet: "10.56.72.0/24",
  *     tags: [],
  * });
  * const instance = new cloudamqp.Instance("instance", {
+ *     name: "Instance 01",
  *     plan: "bunny-1",
  *     region: "azure-arm::westus",
  *     tags: [],
  *     vpcId: vpc.id,
  *     keepAssociatedVpc: true,
  * });
- * const vpcConnect = new cloudamqp.VpcConnect("vpcConnect", {
+ * const vpcConnect = new cloudamqp.VpcConnect("vpc_connect", {
  *     instanceId: instance.id,
  *     region: instance.region,
  *     approvedSubscriptions: ["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"],
@@ -130,18 +109,20 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const vpc = new cloudamqp.Vpc("vpc", {
+ *     name: "Standalone VPC",
  *     region: "google-compute-engine::us-west1",
  *     subnet: "10.56.72.0/24",
  *     tags: [],
  * });
  * const instance = new cloudamqp.Instance("instance", {
+ *     name: "Instance 01",
  *     plan: "bunny-1",
  *     region: "google-compute-engine::us-west1",
  *     tags: [],
  *     vpcId: vpc.id,
  *     keepAssociatedVpc: true,
  * });
- * const vpcConnect = new cloudamqp.VpcConnect("vpcConnect", {
+ * const vpcConnect = new cloudamqp.VpcConnect("vpc_connect", {
  *     instanceId: instance.id,
  *     region: instance.region,
  *     allowedProjects: ["some-project-123456"],
@@ -166,22 +147,24 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const vpc = new cloudamqp.Vpc("vpc", {
+ *     name: "Standalone VPC",
  *     region: "amazon-web-services::us-west-1",
  *     subnet: "10.56.72.0/24",
  *     tags: [],
  * });
  * const instance = new cloudamqp.Instance("instance", {
+ *     name: "Instance 01",
  *     plan: "bunny-1",
  *     region: "amazon-web-services::us-west-1",
  *     tags: [],
  *     vpcId: vpc.id,
  *     keepAssociatedVpc: true,
  * });
- * const vpcConnect = new cloudamqp.VpcConnect("vpcConnect", {
+ * const vpcConnect = new cloudamqp.VpcConnect("vpc_connect", {
  *     instanceId: instance.id,
  *     allowedPrincipals: ["arn:aws:iam::aws-account-id:user/user-name"],
  * });
- * const firewallSettings = new cloudamqp.SecurityFirewall("firewallSettings", {
+ * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
  *     instanceId: instance.id,
  *     rules: [
  *         {

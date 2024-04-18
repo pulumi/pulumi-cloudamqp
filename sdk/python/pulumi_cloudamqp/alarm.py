@@ -430,13 +430,14 @@ class Alarm(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         # New recipient
-        recipient01 = cloudamqp.Notification("recipient01",
-            instance_id=cloudamqp_instance["instance"]["id"],
+        recipient01 = cloudamqp.Notification("recipient_01",
+            instance_id=instance["id"],
             type="email",
-            value="alarm@example.com")
+            value="alarm@example.com",
+            name="alarm")
         # New cpu alarm
-        cpu_alarm = cloudamqp.Alarm("cpuAlarm",
-            instance_id=cloudamqp_instance["instance"]["id"],
+        cpu_alarm = cloudamqp.Alarm("cpu_alarm",
+            instance_id=instance["id"],
             type="cpu",
             enabled=True,
             reminder_interval=600,
@@ -444,8 +445,8 @@ class Alarm(pulumi.CustomResource):
             time_threshold=600,
             recipients=[recipient01.id])
         # New memory alarm
-        memory_alarm = cloudamqp.Alarm("memoryAlarm",
-            instance_id=cloudamqp_instance["instance"]["id"],
+        memory_alarm = cloudamqp.Alarm("memory_alarm",
+            instance_id=instance["id"],
             type="memory",
             enabled=True,
             reminder_interval=600,
@@ -472,13 +473,14 @@ class Alarm(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         # New recipient
-        recipient01 = cloudamqp.Notification("recipient01",
-            instance_id=cloudamqp_instance["instance"]["id"],
+        recipient01 = cloudamqp.Notification("recipient_01",
+            instance_id=instance["id"],
             type="email",
-            value="alarm@example.com")
+            value="alarm@example.com",
+            name="alarm")
         # Update existing notice alarm
         notice = cloudamqp.Alarm("notice",
-            instance_id=cloudamqp_instance["instance"]["id"],
+            instance_id=instance["id"],
             type="notice",
             enabled=True,
             recipients=[recipient01.id])
@@ -577,13 +579,14 @@ class Alarm(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         # New recipient
-        recipient01 = cloudamqp.Notification("recipient01",
-            instance_id=cloudamqp_instance["instance"]["id"],
+        recipient01 = cloudamqp.Notification("recipient_01",
+            instance_id=instance["id"],
             type="email",
-            value="alarm@example.com")
+            value="alarm@example.com",
+            name="alarm")
         # New cpu alarm
-        cpu_alarm = cloudamqp.Alarm("cpuAlarm",
-            instance_id=cloudamqp_instance["instance"]["id"],
+        cpu_alarm = cloudamqp.Alarm("cpu_alarm",
+            instance_id=instance["id"],
             type="cpu",
             enabled=True,
             reminder_interval=600,
@@ -591,8 +594,8 @@ class Alarm(pulumi.CustomResource):
             time_threshold=600,
             recipients=[recipient01.id])
         # New memory alarm
-        memory_alarm = cloudamqp.Alarm("memoryAlarm",
-            instance_id=cloudamqp_instance["instance"]["id"],
+        memory_alarm = cloudamqp.Alarm("memory_alarm",
+            instance_id=instance["id"],
             type="memory",
             enabled=True,
             reminder_interval=600,
@@ -619,13 +622,14 @@ class Alarm(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         # New recipient
-        recipient01 = cloudamqp.Notification("recipient01",
-            instance_id=cloudamqp_instance["instance"]["id"],
+        recipient01 = cloudamqp.Notification("recipient_01",
+            instance_id=instance["id"],
             type="email",
-            value="alarm@example.com")
+            value="alarm@example.com",
+            name="alarm")
         # Update existing notice alarm
         notice = cloudamqp.Alarm("notice",
-            instance_id=cloudamqp_instance["instance"]["id"],
+            instance_id=instance["id"],
             type="notice",
             enabled=True,
             recipients=[recipient01.id])

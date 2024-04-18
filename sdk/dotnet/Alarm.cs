@@ -35,17 +35,18 @@ namespace Pulumi.CloudAmqp
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // New recipient
-    ///     var recipient01 = new CloudAmqp.Notification("recipient01", new()
+    ///     var recipient01 = new CloudAmqp.Notification("recipient_01", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         InstanceId = instance.Id,
     ///         Type = "email",
     ///         Value = "alarm@example.com",
+    ///         Name = "alarm",
     ///     });
     /// 
     ///     // New cpu alarm
-    ///     var cpuAlarm = new CloudAmqp.Alarm("cpuAlarm", new()
+    ///     var cpuAlarm = new CloudAmqp.Alarm("cpu_alarm", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         InstanceId = instance.Id,
     ///         Type = "cpu",
     ///         Enabled = true,
     ///         ReminderInterval = 600,
@@ -58,9 +59,9 @@ namespace Pulumi.CloudAmqp
     ///     });
     /// 
     ///     // New memory alarm
-    ///     var memoryAlarm = new CloudAmqp.Alarm("memoryAlarm", new()
+    ///     var memoryAlarm = new CloudAmqp.Alarm("memory_alarm", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         InstanceId = instance.Id,
     ///         Type = "memory",
     ///         Enabled = true,
     ///         ReminderInterval = 600,
@@ -97,17 +98,18 @@ namespace Pulumi.CloudAmqp
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // New recipient
-    ///     var recipient01 = new CloudAmqp.Notification("recipient01", new()
+    ///     var recipient01 = new CloudAmqp.Notification("recipient_01", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         InstanceId = instance.Id,
     ///         Type = "email",
     ///         Value = "alarm@example.com",
+    ///         Name = "alarm",
     ///     });
     /// 
     ///     // Update existing notice alarm
     ///     var notice = new CloudAmqp.Alarm("notice", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         InstanceId = instance.Id,
     ///         Type = "notice",
     ///         Enabled = true,
     ///         Recipients = new[]

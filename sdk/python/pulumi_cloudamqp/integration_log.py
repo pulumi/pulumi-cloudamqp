@@ -922,14 +922,15 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        azure_monitor = cloudamqp.IntegrationLog("azureMonitor",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            tenant_id=var["azm_tentant_id"],
-            application_id=var["azm_application_id"],
-            application_secret=var["azm_application_secret"],
-            dce_uri=var["azm_dce_uri"],
-            table=var["azm_table"],
-            dcr_id=var["azm_dcr_id"])
+        azure_monitor = cloudamqp.IntegrationLog("azure_monitor",
+            instance_id=instance["id"],
+            name="azure_monitor",
+            tenant_id=azm_tentant_id,
+            application_id=azm_application_id,
+            application_secret=azm_application_secret,
+            dce_uri=azm_dce_uri,
+            table=azm_table,
+            dcr_id=azm_dcr_id)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -948,10 +949,11 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         cloudwatch = cloudamqp.IntegrationLog("cloudwatch",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            access_key_id=var["aws_access_key_id"],
-            secret_access_key=var["aws_secret_access_key"],
-            region=var["aws_region"])
+            instance_id=instance["id"],
+            name="cloudwatchlog",
+            access_key_id=aws_access_key_id,
+            secret_access_key=aws_secret_access_key,
+            region=aws_region)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -970,11 +972,12 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         coralogix = cloudamqp.IntegrationLog("coralogix",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            private_key=var["coralogix_send_data_key"],
-            endpoint=var["coralogix_endpoint"],
-            application=var["coralogix_application"],
-            subsystem=cloudamqp_instance["instance"]["host"])
+            instance_id=instance["id"],
+            name="coralogix",
+            private_key=coralogix_send_data_key,
+            endpoint=coralogix_endpoint,
+            application=coralogix_application,
+            subsystem=instance["host"])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -993,10 +996,11 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         datadog = cloudamqp.IntegrationLog("datadog",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            region=var["datadog_region"],
-            api_key=var["datadog_api_key"],
-            tags=var["datadog_tags"])
+            instance_id=instance["id"],
+            name="datadog",
+            region=datadog_region,
+            api_key=datadog_api_key,
+            tags=datadog_tags)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1015,8 +1019,9 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         logentries = cloudamqp.IntegrationLog("logentries",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            token=var["logentries_token"])
+            instance_id=instance["id"],
+            name="logentries",
+            token=logentries_token)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1035,8 +1040,9 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         loggly = cloudamqp.IntegrationLog("loggly",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            token=var["loggly_token"])
+            instance_id=instance["id"],
+            name="loggly",
+            token=loggly_token)
         ```
         <!--End PulumiCodeChooser -->
         </details>
@@ -1054,8 +1060,9 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         papertrail = cloudamqp.IntegrationLog("papertrail",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            url=var["papertrail_url"])
+            instance_id=instance["id"],
+            name="papertrail",
+            url=papertrail_url)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1074,9 +1081,10 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         scalyr = cloudamqp.IntegrationLog("scalyr",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            token=var["scalyr_token"],
-            host=var["scalyr_host"])
+            instance_id=instance["id"],
+            name="scalyr",
+            token=scalyr_token,
+            host=scalyr_host)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1093,9 +1101,10 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         splunk = cloudamqp.IntegrationLog("splunk",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            token=var["splunk_token"],
-            host_port=var["splunk_host_port"],
+            instance_id=instance["id"],
+            name="splunk",
+            token=splunk_token,
+            host_port=splunk_host_port,
             source_type="generic_single_line")
         ```
         <!--End PulumiCodeChooser -->
@@ -1119,10 +1128,11 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         stackdriver = cloudamqp.IntegrationLog("stackdriver",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            project_id=var["stackdriver_project_id"],
-            private_key=var["stackdriver_private_key"],
-            client_email=var["stackdriver_client_email"])
+            instance_id=instance["id"],
+            name="stackdriver",
+            project_id=stackdriver_project_id,
+            private_key=stackdriver_private_key,
+            client_email=stackdriver_client_email)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1194,14 +1204,15 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        azure_monitor = cloudamqp.IntegrationLog("azureMonitor",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            tenant_id=var["azm_tentant_id"],
-            application_id=var["azm_application_id"],
-            application_secret=var["azm_application_secret"],
-            dce_uri=var["azm_dce_uri"],
-            table=var["azm_table"],
-            dcr_id=var["azm_dcr_id"])
+        azure_monitor = cloudamqp.IntegrationLog("azure_monitor",
+            instance_id=instance["id"],
+            name="azure_monitor",
+            tenant_id=azm_tentant_id,
+            application_id=azm_application_id,
+            application_secret=azm_application_secret,
+            dce_uri=azm_dce_uri,
+            table=azm_table,
+            dcr_id=azm_dcr_id)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1220,10 +1231,11 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         cloudwatch = cloudamqp.IntegrationLog("cloudwatch",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            access_key_id=var["aws_access_key_id"],
-            secret_access_key=var["aws_secret_access_key"],
-            region=var["aws_region"])
+            instance_id=instance["id"],
+            name="cloudwatchlog",
+            access_key_id=aws_access_key_id,
+            secret_access_key=aws_secret_access_key,
+            region=aws_region)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1242,11 +1254,12 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         coralogix = cloudamqp.IntegrationLog("coralogix",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            private_key=var["coralogix_send_data_key"],
-            endpoint=var["coralogix_endpoint"],
-            application=var["coralogix_application"],
-            subsystem=cloudamqp_instance["instance"]["host"])
+            instance_id=instance["id"],
+            name="coralogix",
+            private_key=coralogix_send_data_key,
+            endpoint=coralogix_endpoint,
+            application=coralogix_application,
+            subsystem=instance["host"])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1265,10 +1278,11 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         datadog = cloudamqp.IntegrationLog("datadog",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            region=var["datadog_region"],
-            api_key=var["datadog_api_key"],
-            tags=var["datadog_tags"])
+            instance_id=instance["id"],
+            name="datadog",
+            region=datadog_region,
+            api_key=datadog_api_key,
+            tags=datadog_tags)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1287,8 +1301,9 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         logentries = cloudamqp.IntegrationLog("logentries",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            token=var["logentries_token"])
+            instance_id=instance["id"],
+            name="logentries",
+            token=logentries_token)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1307,8 +1322,9 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         loggly = cloudamqp.IntegrationLog("loggly",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            token=var["loggly_token"])
+            instance_id=instance["id"],
+            name="loggly",
+            token=loggly_token)
         ```
         <!--End PulumiCodeChooser -->
         </details>
@@ -1326,8 +1342,9 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         papertrail = cloudamqp.IntegrationLog("papertrail",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            url=var["papertrail_url"])
+            instance_id=instance["id"],
+            name="papertrail",
+            url=papertrail_url)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1346,9 +1363,10 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         scalyr = cloudamqp.IntegrationLog("scalyr",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            token=var["scalyr_token"],
-            host=var["scalyr_host"])
+            instance_id=instance["id"],
+            name="scalyr",
+            token=scalyr_token,
+            host=scalyr_host)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1365,9 +1383,10 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         splunk = cloudamqp.IntegrationLog("splunk",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            token=var["splunk_token"],
-            host_port=var["splunk_host_port"],
+            instance_id=instance["id"],
+            name="splunk",
+            token=splunk_token,
+            host_port=splunk_host_port,
             source_type="generic_single_line")
         ```
         <!--End PulumiCodeChooser -->
@@ -1391,10 +1410,11 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         stackdriver = cloudamqp.IntegrationLog("stackdriver",
-            instance_id=cloudamqp_instance["instance"]["id"],
-            project_id=var["stackdriver_project_id"],
-            private_key=var["stackdriver_private_key"],
-            client_email=var["stackdriver_client_email"])
+            instance_id=instance["id"],
+            name="stackdriver",
+            project_id=stackdriver_project_id,
+            private_key=stackdriver_private_key,
+            client_email=stackdriver_client_email)
         ```
         <!--End PulumiCodeChooser -->
 

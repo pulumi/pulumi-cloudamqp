@@ -22,31 +22,6 @@ import (
 //	   <i>Default VPC peering firewall rule</i>
 //	 </summary>
 //
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// </details>
-//
-// Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
-//
-// Only available for dedicated subscription plans.
-//
 // ## Example Usage
 //
 // <details>
@@ -72,6 +47,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// CloudAMQP instance
 //			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:   pulumi.String("terraform-vpc-peering"),
 //				Plan:   pulumi.String("bunny-1"),
 //				Region: pulumi.String("google-compute-engine::europe-north1"),
 //				Tags: pulumi.StringArray{
@@ -82,13 +58,14 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// VPC information
 //			_ = instance.ID().ApplyT(func(id string) (cloudamqp.GetVpcGcpInfoResult, error) {
 //				return cloudamqp.GetVpcGcpInfoOutput(ctx, cloudamqp.GetVpcGcpInfoOutputArgs{
 //					InstanceId: id,
 //				}, nil), nil
 //			}).(cloudamqp.GetVpcGcpInfoResultOutput)
 //			// VPC peering configuration
-//			_, err = cloudamqp.NewVpcGcpPeering(ctx, "vpcPeeringRequest", &cloudamqp.VpcGcpPeeringArgs{
+//			_, err = cloudamqp.NewVpcGcpPeering(ctx, "vpc_peering_request", &cloudamqp.VpcGcpPeeringArgs{
 //				InstanceId:     instance.ID(),
 //				PeerNetworkUri: pulumi.String("https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>"),
 //			})
@@ -111,6 +88,135 @@ import (
 //	    <i>VPC peering post v1.16.0 (Managed VPC)</i>
 //	  </b>
 //	</summary>
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Managed VPC resource
+//			vpc, err := cloudamqp.NewVpc(ctx, "vpc", &cloudamqp.VpcArgs{
+//				Name:   pulumi.String("<VPC name>"),
+//				Region: pulumi.String("google-compute-engine::europe-north1"),
+//				Subnet: pulumi.String("10.56.72.0/24"),
+//				Tags:   pulumi.StringArray{},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// CloudAMQP instance
+//			_, err = cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:   pulumi.String("terraform-vpc-peering"),
+//				Plan:   pulumi.String("bunny-1"),
+//				Region: pulumi.String("google-compute-engine::europe-north1"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("terraform"),
+//				},
+//				VpcId: vpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// VPC information
+//			_, err = cloudamqp.GetVpcGcpInfo(ctx, &cloudamqp.GetVpcGcpInfoArgs{
+//				VpcId: pulumi.StringRef(vpc.Info),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			// VPC peering configuration
+//			_, err = cloudamqp.NewVpcGcpPeering(ctx, "vpc_peering_request", &cloudamqp.VpcGcpPeeringArgs{
+//				VpcId:          vpc.ID(),
+//				PeerNetworkUri: pulumi.String("https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>VPC peering post v1.28.0, waitOnPeeringStatus </i>
+//	  </b>
+//	</summary>
+//
+// Default peering request, no need to set `waitOnPeeringStatus`. It's default set to false and will not wait on peering status.
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewVpcGcpPeering(ctx, "vpc_peering_request", &cloudamqp.VpcGcpPeeringArgs{
+//				VpcId:          pulumi.Any(vpc.Id),
+//				PeerNetworkUri: pulumi.String("https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// Peering request and waiting for peering status.
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewVpcGcpPeering(ctx, "vpc_peering_request", &cloudamqp.VpcGcpPeeringArgs{
+//				VpcId:               pulumi.Any(vpc.Id),
+//				WaitOnPeeringStatus: pulumi.Bool(true),
+//				PeerNetworkUri:      pulumi.String("https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// </details>
 //
 // ### With Additional Firewall Rules
 //
@@ -136,19 +242,19 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// VPC peering configuration
-//			vpcPeeringRequest, err := cloudamqp.NewVpcGcpPeering(ctx, "vpcPeeringRequest", &cloudamqp.VpcGcpPeeringArgs{
-//				InstanceId:     pulumi.Any(cloudamqp_instance.Instance.Id),
-//				PeerNetworkUri: pulumi.Any(_var.Peer_network_uri),
+//			vpcPeeringRequest, err := cloudamqp.NewVpcGcpPeering(ctx, "vpc_peering_request", &cloudamqp.VpcGcpPeeringArgs{
+//				InstanceId:     pulumi.Any(instance.Id),
+//				PeerNetworkUri: pulumi.Any(peerNetworkUri),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Firewall rules
-//			_, err = cloudamqp.NewSecurityFirewall(ctx, "firewallSettings", &cloudamqp.SecurityFirewallArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//			_, err = cloudamqp.NewSecurityFirewall(ctx, "firewall_settings", &cloudamqp.SecurityFirewallArgs{
+//				InstanceId: pulumi.Any(instance.Id),
 //				Rules: cloudamqp.SecurityFirewallRuleArray{
 //					&cloudamqp.SecurityFirewallRuleArgs{
-//						Ip: pulumi.Any(_var.Peer_subnet),
+//						Ip: pulumi.Any(peerSubnet),
 //						Ports: pulumi.IntArray{
 //							pulumi.Int(15672),
 //						},
@@ -210,19 +316,19 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// VPC peering configuration
-//			vpcPeeringRequest, err := cloudamqp.NewVpcGcpPeering(ctx, "vpcPeeringRequest", &cloudamqp.VpcGcpPeeringArgs{
-//				VpcId:          pulumi.Any(cloudamqp_vpc.Vpc.Id),
-//				PeerNetworkUri: pulumi.Any(_var.Peer_network_uri),
+//			vpcPeeringRequest, err := cloudamqp.NewVpcGcpPeering(ctx, "vpc_peering_request", &cloudamqp.VpcGcpPeeringArgs{
+//				VpcId:          pulumi.Any(vpc.Id),
+//				PeerNetworkUri: pulumi.Any(peerNetworkUri),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Firewall rules
-//			_, err = cloudamqp.NewSecurityFirewall(ctx, "firewallSettings", &cloudamqp.SecurityFirewallArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
+//			_, err = cloudamqp.NewSecurityFirewall(ctx, "firewall_settings", &cloudamqp.SecurityFirewallArgs{
+//				InstanceId: pulumi.Any(instance.Id),
 //				Rules: cloudamqp.SecurityFirewallRuleArray{
 //					&cloudamqp.SecurityFirewallRuleArgs{
-//						Ip: pulumi.Any(_var.Peer_subnet),
+//						Ip: pulumi.Any(peerSubnet),
 //						Ports: pulumi.IntArray{
 //							pulumi.Int(15672),
 //						},

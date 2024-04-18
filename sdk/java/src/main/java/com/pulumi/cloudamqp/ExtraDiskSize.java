@@ -78,6 +78,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Instance
  *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
+ *             .name(&#34;Instance&#34;)
  *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;amazon-web-services::us-west-2&#34;)
  *             .build());
@@ -88,6 +89,8 @@ import javax.annotation.Nullable;
  *             .extraDiskSize(25)
  *             .build());
  * 
+ *         // Optional, refresh nodes info after disk resize by adding dependency
+ *         // to cloudamqp_extra_disk_size.resize_disk resource
  *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
  *             .instanceId(instance.id())
  *             .build());
@@ -134,6 +137,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Instance
  *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
+ *             .name(&#34;Instance&#34;)
  *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;amazon-web-services::us-west-2&#34;)
  *             .build());
@@ -144,6 +148,8 @@ import javax.annotation.Nullable;
  *             .extraDiskSize(25)
  *             .build());
  * 
+ *         // Optional, refresh nodes info after disk resize by adding dependency
+ *         // to cloudamqp_extra_disk_size.resize_disk resource
  *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
  *             .instanceId(instance.id())
  *             .build());
@@ -190,6 +196,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Instance
  *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
+ *             .name(&#34;Instance&#34;)
  *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;google-compute-engine::us-central1&#34;)
  *             .build());
@@ -200,6 +207,8 @@ import javax.annotation.Nullable;
  *             .extraDiskSize(25)
  *             .build());
  * 
+ *         // Optional, refresh nodes info after disk resize by adding dependency
+ *         // to cloudamqp_extra_disk_size.resize_disk resource
  *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
  *             .instanceId(instance.id())
  *             .build());
@@ -246,6 +255,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Instance
  *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
+ *             .name(&#34;Instance&#34;)
  *             .plan(&#34;bunny-1&#34;)
  *             .region(&#34;azure-arm::centralus&#34;)
  *             .build());
@@ -257,6 +267,8 @@ import javax.annotation.Nullable;
  *             .allowDowntime(true)
  *             .build());
  * 
+ *         // Optional, refresh nodes info after disk resize by adding dependency
+ *         // to cloudamqp_extra_disk_size.resize_disk resource
  *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
  *             .instanceId(instance.id())
  *             .build());

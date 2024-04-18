@@ -20,29 +20,6 @@ namespace Pulumi.CloudAmqp
     ///     &lt;i&gt;Default PrivateLink firewall rule&lt;/i&gt;
     ///   &lt;/summary&gt;
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// &lt;/details&gt;
-    /// 
-    /// Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html) where you can also
-    /// find more information about
-    /// [CloudAMQP PrivateLink](https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#azure-privatelink).
-    /// 
-    /// Only available for dedicated subscription plans.
-    /// 
-    /// &gt; **Warning:** This resource considered deprecated and will be removed in next major version (v2.0).
-    /// Recommended to start using the new resource`cloudamqp.VpcConnect`.
-    /// 
     /// ## Example Usage
     /// 
     /// &lt;details&gt;
@@ -63,6 +40,7 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var instance = new CloudAmqp.Instance("instance", new()
     ///     {
+    ///         Name = "Instance 01",
     ///         Plan = "bunny-1",
     ///         Region = "azure-arm::westus",
     ///         Tags = new[] {},
@@ -100,6 +78,7 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var vpc = new CloudAmqp.Vpc("vpc", new()
     ///     {
+    ///         Name = "Standalone VPC",
     ///         Region = "azure-arm::westus",
     ///         Subnet = "10.56.72.0/24",
     ///         Tags = new[] {},
@@ -107,6 +86,7 @@ namespace Pulumi.CloudAmqp
     /// 
     ///     var instance = new CloudAmqp.Instance("instance", new()
     ///     {
+    ///         Name = "Instance 01",
     ///         Plan = "bunny-1",
     ///         Region = "azure-arm::westus",
     ///         Tags = new[] {},
@@ -149,6 +129,7 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var vpc = new CloudAmqp.Vpc("vpc", new()
     ///     {
+    ///         Name = "Standalone VPC",
     ///         Region = "azure-arm::westus",
     ///         Subnet = "10.56.72.0/24",
     ///         Tags = new[] {},
@@ -156,6 +137,7 @@ namespace Pulumi.CloudAmqp
     /// 
     ///     var instance = new CloudAmqp.Instance("instance", new()
     ///     {
+    ///         Name = "Instance 01",
     ///         Plan = "bunny-1",
     ///         Region = "azure-arm::westus",
     ///         Tags = new[] {},
@@ -172,7 +154,7 @@ namespace Pulumi.CloudAmqp
     ///         },
     ///     });
     /// 
-    ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewallSettings", new()
+    ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewall_settings", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Rules = new[]

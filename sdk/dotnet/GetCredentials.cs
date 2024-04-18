@@ -27,7 +27,7 @@ namespace Pulumi.CloudAmqp
         /// {
         ///     var credentials = CloudAmqp.GetCredentials.Invoke(new()
         ///     {
-        ///         InstanceId = cloudamqp_instance.Instance.Id,
+        ///         InstanceId = instance.Id,
         ///     });
         /// 
         /// });
@@ -65,7 +65,7 @@ namespace Pulumi.CloudAmqp
         /// {
         ///     var credentials = CloudAmqp.GetCredentials.Invoke(new()
         ///     {
-        ///         InstanceId = cloudamqp_instance.Instance.Id,
+        ///         InstanceId = instance.Id,
         ///     });
         /// 
         /// });

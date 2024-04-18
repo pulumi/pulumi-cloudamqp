@@ -40,14 +40,15 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.NewIntegrationLog(ctx, "azureMonitor", &cloudamqp.IntegrationLogArgs{
-//				InstanceId:        pulumi.Any(cloudamqp_instance.Instance.Id),
-//				TenantId:          pulumi.Any(_var.Azm_tentant_id),
-//				ApplicationId:     pulumi.Any(_var.Azm_application_id),
-//				ApplicationSecret: pulumi.Any(_var.Azm_application_secret),
-//				DceUri:            pulumi.Any(_var.Azm_dce_uri),
-//				Table:             pulumi.Any(_var.Azm_table),
-//				DcrId:             pulumi.Any(_var.Azm_dcr_id),
+//			_, err := cloudamqp.NewIntegrationLog(ctx, "azure_monitor", &cloudamqp.IntegrationLogArgs{
+//				InstanceId:        pulumi.Any(instance.Id),
+//				Name:              pulumi.String("azure_monitor"),
+//				TenantId:          pulumi.Any(azmTentantId),
+//				ApplicationId:     pulumi.Any(azmApplicationId),
+//				ApplicationSecret: pulumi.Any(azmApplicationSecret),
+//				DceUri:            pulumi.Any(azmDceUri),
+//				Table:             pulumi.Any(azmTable),
+//				DcrId:             pulumi.Any(azmDcrId),
 //			})
 //			if err != nil {
 //				return err
@@ -83,10 +84,11 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationLog(ctx, "cloudwatch", &cloudamqp.IntegrationLogArgs{
-//				InstanceId:      pulumi.Any(cloudamqp_instance.Instance.Id),
-//				AccessKeyId:     pulumi.Any(_var.Aws_access_key_id),
-//				SecretAccessKey: pulumi.Any(_var.Aws_secret_access_key),
-//				Region:          pulumi.Any(_var.Aws_region),
+//				InstanceId:      pulumi.Any(instance.Id),
+//				Name:            pulumi.String("cloudwatchlog"),
+//				AccessKeyId:     pulumi.Any(awsAccessKeyId),
+//				SecretAccessKey: pulumi.Any(awsSecretAccessKey),
+//				Region:          pulumi.Any(awsRegion),
 //			})
 //			if err != nil {
 //				return err
@@ -122,11 +124,12 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationLog(ctx, "coralogix", &cloudamqp.IntegrationLogArgs{
-//				InstanceId:  pulumi.Any(cloudamqp_instance.Instance.Id),
-//				PrivateKey:  pulumi.Any(_var.Coralogix_send_data_key),
-//				Endpoint:    pulumi.Any(_var.Coralogix_endpoint),
-//				Application: pulumi.Any(_var.Coralogix_application),
-//				Subsystem:   pulumi.Any(cloudamqp_instance.Instance.Host),
+//				InstanceId:  pulumi.Any(instance.Id),
+//				Name:        pulumi.String("coralogix"),
+//				PrivateKey:  pulumi.Any(coralogixSendDataKey),
+//				Endpoint:    pulumi.Any(coralogixEndpoint),
+//				Application: pulumi.Any(coralogixApplication),
+//				Subsystem:   pulumi.Any(instance.Host),
 //			})
 //			if err != nil {
 //				return err
@@ -162,10 +165,11 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationLog(ctx, "datadog", &cloudamqp.IntegrationLogArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
-//				Region:     pulumi.Any(_var.Datadog_region),
-//				ApiKey:     pulumi.Any(_var.Datadog_api_key),
-//				Tags:       pulumi.Any(_var.Datadog_tags),
+//				InstanceId: pulumi.Any(instance.Id),
+//				Name:       pulumi.String("datadog"),
+//				Region:     pulumi.Any(datadogRegion),
+//				ApiKey:     pulumi.Any(datadogApiKey),
+//				Tags:       pulumi.Any(datadogTags),
 //			})
 //			if err != nil {
 //				return err
@@ -201,8 +205,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationLog(ctx, "logentries", &cloudamqp.IntegrationLogArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
-//				Token:      pulumi.Any(_var.Logentries_token),
+//				InstanceId: pulumi.Any(instance.Id),
+//				Name:       pulumi.String("logentries"),
+//				Token:      pulumi.Any(logentriesToken),
 //			})
 //			if err != nil {
 //				return err
@@ -238,8 +243,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationLog(ctx, "loggly", &cloudamqp.IntegrationLogArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
-//				Token:      pulumi.Any(_var.Loggly_token),
+//				InstanceId: pulumi.Any(instance.Id),
+//				Name:       pulumi.String("loggly"),
+//				Token:      pulumi.Any(logglyToken),
 //			})
 //			if err != nil {
 //				return err
@@ -274,8 +280,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationLog(ctx, "papertrail", &cloudamqp.IntegrationLogArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
-//				Url:        pulumi.Any(_var.Papertrail_url),
+//				InstanceId: pulumi.Any(instance.Id),
+//				Name:       pulumi.String("papertrail"),
+//				Url:        pulumi.Any(papertrailUrl),
 //			})
 //			if err != nil {
 //				return err
@@ -311,9 +318,10 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationLog(ctx, "scalyr", &cloudamqp.IntegrationLogArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
-//				Token:      pulumi.Any(_var.Scalyr_token),
-//				Host:       pulumi.Any(_var.Scalyr_host),
+//				InstanceId: pulumi.Any(instance.Id),
+//				Name:       pulumi.String("scalyr"),
+//				Token:      pulumi.Any(scalyrToken),
+//				Host:       pulumi.Any(scalyrHost),
 //			})
 //			if err != nil {
 //				return err
@@ -347,9 +355,10 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationLog(ctx, "splunk", &cloudamqp.IntegrationLogArgs{
-//				InstanceId: pulumi.Any(cloudamqp_instance.Instance.Id),
-//				Token:      pulumi.Any(_var.Splunk_token),
-//				HostPort:   pulumi.Any(_var.Splunk_host_port),
+//				InstanceId: pulumi.Any(instance.Id),
+//				Name:       pulumi.String("splunk"),
+//				Token:      pulumi.Any(splunkToken),
+//				HostPort:   pulumi.Any(splunkHostPort),
 //				SourceType: pulumi.String("generic_single_line"),
 //			})
 //			if err != nil {
@@ -390,10 +399,11 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationLog(ctx, "stackdriver", &cloudamqp.IntegrationLogArgs{
-//				InstanceId:  pulumi.Any(cloudamqp_instance.Instance.Id),
-//				ProjectId:   pulumi.Any(_var.Stackdriver_project_id),
-//				PrivateKey:  pulumi.Any(_var.Stackdriver_private_key),
-//				ClientEmail: pulumi.Any(_var.Stackdriver_client_email),
+//				InstanceId:  pulumi.Any(instance.Id),
+//				Name:        pulumi.String("stackdriver"),
+//				ProjectId:   pulumi.Any(stackdriverProjectId),
+//				PrivateKey:  pulumi.Any(stackdriverPrivateKey),
+//				ClientEmail: pulumi.Any(stackdriverClientEmail),
 //			})
 //			if err != nil {
 //				return err

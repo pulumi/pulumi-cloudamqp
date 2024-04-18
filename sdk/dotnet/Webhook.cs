@@ -25,9 +25,9 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var webhookQueue = new CloudAmqp.Webhook("webhookQueue", new()
+    ///     var webhookQueue = new CloudAmqp.Webhook("webhook_queue", new()
     ///     {
-    ///         InstanceId = cloudamqp_instance.Instance.Id,
+    ///         InstanceId = instance.Id,
     ///         Vhost = "myvhost",
     ///         Queue = "webhook-queue",
     ///         WebhookUri = "https://example.com/webhook?key=secret",

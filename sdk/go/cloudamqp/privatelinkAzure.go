@@ -23,36 +23,6 @@ import (
 //	   <i>Default PrivateLink firewall rule</i>
 //	 </summary>
 //
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// </details>
-//
-// Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html) where you can also
-// find more information about
-// [CloudAMQP PrivateLink](https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#azure-privatelink).
-//
-// Only available for dedicated subscription plans.
-//
-// > **Warning:** This resource considered deprecated and will be removed in next major version (v2.0).
-// Recommended to start using the new resource`VpcConnect`.
-//
 // ## Example Usage
 //
 // <details>
@@ -77,6 +47,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:   pulumi.String("Instance 01"),
 //				Plan:   pulumi.String("bunny-1"),
 //				Region: pulumi.String("azure-arm::westus"),
 //				Tags:   pulumi.StringArray{},
@@ -123,6 +94,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			vpc, err := cloudamqp.NewVpc(ctx, "vpc", &cloudamqp.VpcArgs{
+//				Name:   pulumi.String("Standalone VPC"),
 //				Region: pulumi.String("azure-arm::westus"),
 //				Subnet: pulumi.String("10.56.72.0/24"),
 //				Tags:   pulumi.StringArray{},
@@ -131,6 +103,7 @@ import (
 //				return err
 //			}
 //			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:              pulumi.String("Instance 01"),
 //				Plan:              pulumi.String("bunny-1"),
 //				Region:            pulumi.String("azure-arm::westus"),
 //				Tags:              pulumi.StringArray{},
@@ -182,6 +155,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			vpc, err := cloudamqp.NewVpc(ctx, "vpc", &cloudamqp.VpcArgs{
+//				Name:   pulumi.String("Standalone VPC"),
 //				Region: pulumi.String("azure-arm::westus"),
 //				Subnet: pulumi.String("10.56.72.0/24"),
 //				Tags:   pulumi.StringArray{},
@@ -190,6 +164,7 @@ import (
 //				return err
 //			}
 //			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:              pulumi.String("Instance 01"),
 //				Plan:              pulumi.String("bunny-1"),
 //				Region:            pulumi.String("azure-arm::westus"),
 //				Tags:              pulumi.StringArray{},
@@ -208,7 +183,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = cloudamqp.NewSecurityFirewall(ctx, "firewallSettings", &cloudamqp.SecurityFirewallArgs{
+//			_, err = cloudamqp.NewSecurityFirewall(ctx, "firewall_settings", &cloudamqp.SecurityFirewallArgs{
 //				InstanceId: instance.ID(),
 //				Rules: cloudamqp.SecurityFirewallRuleArray{
 //					&cloudamqp.SecurityFirewallRuleArgs{

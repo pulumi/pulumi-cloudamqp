@@ -55,9 +55,10 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var emailRecipient = new Notification(&#34;emailRecipient&#34;, NotificationArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .type(&#34;email&#34;)
  *             .value(&#34;alarm@example.com&#34;)
+ *             .name(&#34;alarm&#34;)
  *             .build());
  * 
  *     }
@@ -96,9 +97,10 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var opsgenieRecipient = new Notification(&#34;opsgenieRecipient&#34;, NotificationArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .type(&#34;opsgenie&#34;)
  *             .value(&#34;&lt;api-key&gt;&#34;)
+ *             .name(&#34;OpsGenie&#34;)
  *             .responders(            
  *                 NotificationResponderArgs.builder()
  *                     .type(&#34;team&#34;)
@@ -145,9 +147,10 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var pagerdutyRecipient = new Notification(&#34;pagerdutyRecipient&#34;, NotificationArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .type(&#34;pagerduty&#34;)
  *             .value(&#34;&lt;integration-key&gt;&#34;)
+ *             .name(&#34;PagerDuty&#34;)
  *             .options(Map.of(&#34;dedupkey&#34;, &#34;DEDUPKEY&#34;))
  *             .build());
  * 
@@ -186,9 +189,10 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var signl4Recipient = new Notification(&#34;signl4Recipient&#34;, NotificationArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .type(&#34;signl4&#34;)
  *             .value(&#34;&lt;team-secret&gt;&#34;)
+ *             .name(&#34;Signl4&#34;)
  *             .build());
  * 
  *     }
@@ -226,9 +230,10 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var teamsRecipient = new Notification(&#34;teamsRecipient&#34;, NotificationArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .type(&#34;teams&#34;)
  *             .value(&#34;&lt;teams-webhook-url&gt;&#34;)
+ *             .name(&#34;Teams&#34;)
  *             .build());
  * 
  *     }
@@ -266,9 +271,10 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var victoropsRecipient = new Notification(&#34;victoropsRecipient&#34;, NotificationArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .type(&#34;victorops&#34;)
  *             .value(&#34;&lt;integration-key&gt;&#34;)
+ *             .name(&#34;Victorops&#34;)
  *             .options(Map.of(&#34;rk&#34;, &#34;ROUTINGKEY&#34;))
  *             .build());
  * 
@@ -307,9 +313,10 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var webhookRecipient = new Notification(&#34;webhookRecipient&#34;, NotificationArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .type(&#34;webhook&#34;)
  *             .value(&#34;&lt;webhook-url&gt;&#34;)
+ *             .name(&#34;Webhook&#34;)
  *             .build());
  * 
  *     }

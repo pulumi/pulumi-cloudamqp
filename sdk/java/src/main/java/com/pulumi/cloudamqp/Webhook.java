@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var webhookQueue = new Webhook(&#34;webhookQueue&#34;, WebhookArgs.builder()        
- *             .instanceId(cloudamqp_instance.instance().id())
+ *             .instanceId(instance.id())
  *             .vhost(&#34;myvhost&#34;)
  *             .queue(&#34;webhook-queue&#34;)
  *             .webhookUri(&#34;https://example.com/webhook?key=secret&#34;)

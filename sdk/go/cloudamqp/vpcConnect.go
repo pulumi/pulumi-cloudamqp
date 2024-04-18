@@ -30,58 +30,6 @@ import (
 //	   </b>
 //	 </summary>
 //
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// </details>
-//
-// <details>
-//
-//	<summary>
-//	   <b>
-//	     <i>Default Private Service Connect firewall rule [GCP]</i>
-//	   </b>
-//	 </summary>
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// </details>
-//
-// Only available for dedicated subscription plans.
-//
 // ## Example Usage
 //
 // <details>
@@ -106,6 +54,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			vpc, err := cloudamqp.NewVpc(ctx, "vpc", &cloudamqp.VpcArgs{
+//				Name:   pulumi.String("Standalone VPC"),
 //				Region: pulumi.String("amazon-web-services::us-west-1"),
 //				Subnet: pulumi.String("10.56.72.0/24"),
 //				Tags:   pulumi.StringArray{},
@@ -114,6 +63,7 @@ import (
 //				return err
 //			}
 //			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:              pulumi.String("Instance 01"),
 //				Plan:              pulumi.String("bunny-1"),
 //				Region:            pulumi.String("amazon-web-services::us-west-1"),
 //				Tags:              pulumi.StringArray{},
@@ -123,7 +73,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = cloudamqp.NewVpcConnect(ctx, "vpcConnect", &cloudamqp.VpcConnectArgs{
+//			_, err = cloudamqp.NewVpcConnect(ctx, "vpc_connect", &cloudamqp.VpcConnectArgs{
 //				InstanceId: instance.ID(),
 //				Region:     instance.Region,
 //				AllowedPrincipals: pulumi.StringArray{
@@ -164,6 +114,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			vpc, err := cloudamqp.NewVpc(ctx, "vpc", &cloudamqp.VpcArgs{
+//				Name:   pulumi.String("Standalone VPC"),
 //				Region: pulumi.String("azure-arm::westus"),
 //				Subnet: pulumi.String("10.56.72.0/24"),
 //				Tags:   pulumi.StringArray{},
@@ -172,6 +123,7 @@ import (
 //				return err
 //			}
 //			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:              pulumi.String("Instance 01"),
 //				Plan:              pulumi.String("bunny-1"),
 //				Region:            pulumi.String("azure-arm::westus"),
 //				Tags:              pulumi.StringArray{},
@@ -181,7 +133,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = cloudamqp.NewVpcConnect(ctx, "vpcConnect", &cloudamqp.VpcConnectArgs{
+//			_, err = cloudamqp.NewVpcConnect(ctx, "vpc_connect", &cloudamqp.VpcConnectArgs{
 //				InstanceId: instance.ID(),
 //				Region:     instance.Region,
 //				ApprovedSubscriptions: pulumi.StringArray{
@@ -222,6 +174,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			vpc, err := cloudamqp.NewVpc(ctx, "vpc", &cloudamqp.VpcArgs{
+//				Name:   pulumi.String("Standalone VPC"),
 //				Region: pulumi.String("google-compute-engine::us-west1"),
 //				Subnet: pulumi.String("10.56.72.0/24"),
 //				Tags:   pulumi.StringArray{},
@@ -230,6 +183,7 @@ import (
 //				return err
 //			}
 //			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:              pulumi.String("Instance 01"),
 //				Plan:              pulumi.String("bunny-1"),
 //				Region:            pulumi.String("google-compute-engine::us-west1"),
 //				Tags:              pulumi.StringArray{},
@@ -239,7 +193,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = cloudamqp.NewVpcConnect(ctx, "vpcConnect", &cloudamqp.VpcConnectArgs{
+//			_, err = cloudamqp.NewVpcConnect(ctx, "vpc_connect", &cloudamqp.VpcConnectArgs{
 //				InstanceId: instance.ID(),
 //				Region:     instance.Region,
 //				AllowedProjects: pulumi.StringArray{
@@ -282,6 +236,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			vpc, err := cloudamqp.NewVpc(ctx, "vpc", &cloudamqp.VpcArgs{
+//				Name:   pulumi.String("Standalone VPC"),
 //				Region: pulumi.String("amazon-web-services::us-west-1"),
 //				Subnet: pulumi.String("10.56.72.0/24"),
 //				Tags:   pulumi.StringArray{},
@@ -290,6 +245,7 @@ import (
 //				return err
 //			}
 //			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:              pulumi.String("Instance 01"),
 //				Plan:              pulumi.String("bunny-1"),
 //				Region:            pulumi.String("amazon-web-services::us-west-1"),
 //				Tags:              pulumi.StringArray{},
@@ -299,7 +255,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			vpcConnect, err := cloudamqp.NewVpcConnect(ctx, "vpcConnect", &cloudamqp.VpcConnectArgs{
+//			vpcConnect, err := cloudamqp.NewVpcConnect(ctx, "vpc_connect", &cloudamqp.VpcConnectArgs{
 //				InstanceId: instance.ID(),
 //				AllowedPrincipals: pulumi.StringArray{
 //					pulumi.String("arn:aws:iam::aws-account-id:user/user-name"),
@@ -308,7 +264,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = cloudamqp.NewSecurityFirewall(ctx, "firewallSettings", &cloudamqp.SecurityFirewallArgs{
+//			_, err = cloudamqp.NewSecurityFirewall(ctx, "firewall_settings", &cloudamqp.SecurityFirewallArgs{
 //				InstanceId: instance.ID(),
 //				Rules: cloudamqp.SecurityFirewallRuleArray{
 //					&cloudamqp.SecurityFirewallRuleArgs{

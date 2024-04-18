@@ -83,7 +83,7 @@ def get_credentials(instance_id: Optional[int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    credentials = cloudamqp.get_credentials(instance_id=cloudamqp_instance["instance"]["id"])
+    credentials = cloudamqp.get_credentials(instance_id=instance["id"])
     ```
     <!--End PulumiCodeChooser -->
 
@@ -127,7 +127,7 @@ def get_credentials_output(instance_id: Optional[pulumi.Input[int]] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    credentials = cloudamqp.get_credentials(instance_id=cloudamqp_instance["instance"]["id"])
+    credentials = cloudamqp.get_credentials(instance_id=instance["id"])
     ```
     <!--End PulumiCodeChooser -->
 
