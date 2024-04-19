@@ -245,7 +245,7 @@ namespace Pulumi.CloudAmqp
     ///     {
     ///         DependsOn =
     ///         {
-    ///             vpcPeeringRequest, 
+    ///             vpcPeeringRequest,
     ///         },
     ///     });
     /// 
@@ -315,7 +315,7 @@ namespace Pulumi.CloudAmqp
     ///     {
     ///         DependsOn =
     ///         {
-    ///             vpcPeeringRequest, 
+    ///             vpcPeeringRequest,
     ///         },
     ///     });
     /// 

@@ -258,7 +258,7 @@ namespace Pulumi.CloudAmqp
     ///     {
     ///         DependsOn =
     ///         {
-    ///             vpcConnect, 
+    ///             vpcConnect,
     ///         },
     ///     });
     /// 
