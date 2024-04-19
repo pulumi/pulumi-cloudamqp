@@ -255,7 +255,6 @@ class PrivatelinkAzure(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -269,7 +268,6 @@ class PrivatelinkAzure(pulumi.CustomResource):
             instance_id=instance.id,
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         ```
-        <!--End PulumiCodeChooser -->
         </details>
 
         <details>
@@ -279,7 +277,6 @@ class PrivatelinkAzure(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -300,7 +297,6 @@ class PrivatelinkAzure(pulumi.CustomResource):
             instance_id=instance.id,
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -313,7 +309,6 @@ class PrivatelinkAzure(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -357,7 +352,6 @@ class PrivatelinkAzure(pulumi.CustomResource):
             ],
             opts=pulumi.ResourceOptions(depends_on=[privatelink]))
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -423,7 +417,6 @@ class PrivatelinkAzure(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -437,7 +430,6 @@ class PrivatelinkAzure(pulumi.CustomResource):
             instance_id=instance.id,
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         ```
-        <!--End PulumiCodeChooser -->
         </details>
 
         <details>
@@ -447,7 +439,6 @@ class PrivatelinkAzure(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -468,7 +459,6 @@ class PrivatelinkAzure(pulumi.CustomResource):
             instance_id=instance.id,
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -481,7 +471,6 @@ class PrivatelinkAzure(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -525,7 +514,6 @@ class PrivatelinkAzure(pulumi.CustomResource):
             ],
             opts=pulumi.ResourceOptions(depends_on=[privatelink]))
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 

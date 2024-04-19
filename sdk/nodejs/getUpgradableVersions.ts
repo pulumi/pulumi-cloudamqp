@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -18,7 +17,6 @@ import * as utilities from "./utilities";
  *     instanceId: instance.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Attributes reference
  *
@@ -66,7 +64,6 @@ export interface GetUpgradableVersionsResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -75,7 +72,6 @@ export interface GetUpgradableVersionsResult {
  *     instanceId: instance.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Attributes reference
  *

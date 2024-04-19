@@ -309,7 +309,6 @@ class VpcGcpPeering(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -328,7 +327,6 @@ class VpcGcpPeering(pulumi.CustomResource):
             instance_id=instance.id,
             peer_network_uri="https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>")
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -339,7 +337,6 @@ class VpcGcpPeering(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -364,7 +361,6 @@ class VpcGcpPeering(pulumi.CustomResource):
             vpc_id=vpc.id,
             peer_network_uri="https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>")
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -377,7 +373,6 @@ class VpcGcpPeering(pulumi.CustomResource):
 
         Default peering request, no need to set `wait_on_peering_status`. It's default set to false and will not wait on peering status.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -386,11 +381,9 @@ class VpcGcpPeering(pulumi.CustomResource):
             vpc_id=vpc["id"],
             peer_network_uri="https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>")
         ```
-        <!--End PulumiCodeChooser -->
 
         Peering request and waiting for peering status.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -400,7 +393,6 @@ class VpcGcpPeering(pulumi.CustomResource):
             wait_on_peering_status=True,
             peer_network_uri="https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>")
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -413,7 +405,6 @@ class VpcGcpPeering(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -452,7 +443,6 @@ class VpcGcpPeering(pulumi.CustomResource):
             ],
             opts=pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -463,7 +453,6 @@ class VpcGcpPeering(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -496,7 +485,6 @@ class VpcGcpPeering(pulumi.CustomResource):
             ],
             opts=pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -558,7 +546,6 @@ class VpcGcpPeering(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -577,7 +564,6 @@ class VpcGcpPeering(pulumi.CustomResource):
             instance_id=instance.id,
             peer_network_uri="https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>")
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -588,7 +574,6 @@ class VpcGcpPeering(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -613,7 +598,6 @@ class VpcGcpPeering(pulumi.CustomResource):
             vpc_id=vpc.id,
             peer_network_uri="https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>")
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -626,7 +610,6 @@ class VpcGcpPeering(pulumi.CustomResource):
 
         Default peering request, no need to set `wait_on_peering_status`. It's default set to false and will not wait on peering status.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -635,11 +618,9 @@ class VpcGcpPeering(pulumi.CustomResource):
             vpc_id=vpc["id"],
             peer_network_uri="https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>")
         ```
-        <!--End PulumiCodeChooser -->
 
         Peering request and waiting for peering status.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -649,7 +630,6 @@ class VpcGcpPeering(pulumi.CustomResource):
             wait_on_peering_status=True,
             peer_network_uri="https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>")
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -662,7 +642,6 @@ class VpcGcpPeering(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -701,7 +680,6 @@ class VpcGcpPeering(pulumi.CustomResource):
             ],
             opts=pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -712,7 +690,6 @@ class VpcGcpPeering(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -745,7 +722,6 @@ class VpcGcpPeering(pulumi.CustomResource):
             ],
             opts=pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 

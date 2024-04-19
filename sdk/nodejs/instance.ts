@@ -22,7 +22,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -49,7 +48,6 @@ import * as utilities from "./utilities";
  *     tags: ["terraform"],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  * </details>
  *
  * <details>
@@ -59,7 +57,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -72,7 +69,6 @@ import * as utilities from "./utilities";
  *     vpcSubnet: "10.56.72.0/24",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  * </details>
  *
  * <details>
@@ -82,7 +78,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -96,13 +91,11 @@ import * as utilities from "./utilities";
  *     vpcSubnet: "10.56.72.0/24",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * Once the instance and the VPC are created, the VPC can be imported as managed VPC and added to the configuration file.
  * Set attribute `vpcId` to the managed VPC identifier. To keep the managed VPC when deleting the instance, set attribute `keepAssociatedVpc` to true.
  * For more information see guide Managed VPC.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -124,7 +117,6 @@ import * as utilities from "./utilities";
  *     keepAssociatedVpc: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  * </details>
  *
  * <details>
@@ -134,7 +126,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -165,7 +156,6 @@ import * as utilities from "./utilities";
  *     keepAssociatedVpc: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * Set attribute `keepAssociatedVpc` to true, will keep managed VPC when deleting the instances.
  * </details>
@@ -185,7 +175,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -210,7 +199,6 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  * </details>
  *
  * ## Import

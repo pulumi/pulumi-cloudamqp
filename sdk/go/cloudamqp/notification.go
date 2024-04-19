@@ -26,7 +26,6 @@ import (
 //	  <b>Email recipient</b>
 //	</summary>
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -53,7 +52,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -63,7 +61,6 @@ import (
 //	  <b>OpsGenie recipient with optional responders</b>
 //	</summary>
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -100,7 +97,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -110,7 +106,6 @@ import (
 //	  <b>Pagerduty recipient with optional dedup key</b>
 //	</summary>
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -140,7 +135,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -150,7 +144,6 @@ import (
 //	  <b>Signl4 recipient</b>
 //	</summary>
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -177,7 +170,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -187,7 +179,6 @@ import (
 //	  <b>Teams recipient</b>
 //	</summary>
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -214,7 +205,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -224,7 +214,6 @@ import (
 //	  <b>Victorops recipient with optional routing key (rk)</b>
 //	</summary>
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -254,7 +243,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -264,7 +252,6 @@ import (
 //	  <b>Webhook recipient</b>
 //	</summary>
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -291,7 +278,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // </details>
 //

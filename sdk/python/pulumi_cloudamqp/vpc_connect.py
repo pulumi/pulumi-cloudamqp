@@ -393,7 +393,6 @@ class VpcConnect(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -415,7 +414,6 @@ class VpcConnect(pulumi.CustomResource):
             region=instance.region,
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -426,7 +424,6 @@ class VpcConnect(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -448,7 +445,6 @@ class VpcConnect(pulumi.CustomResource):
             region=instance.region,
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -459,7 +455,6 @@ class VpcConnect(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -481,7 +476,6 @@ class VpcConnect(pulumi.CustomResource):
             region=instance.region,
             allowed_projects=["some-project-123456"])
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -494,7 +488,6 @@ class VpcConnect(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -538,7 +531,6 @@ class VpcConnect(pulumi.CustomResource):
             ],
             opts=pulumi.ResourceOptions(depends_on=[vpc_connect]))
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -625,7 +617,6 @@ class VpcConnect(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -647,7 +638,6 @@ class VpcConnect(pulumi.CustomResource):
             region=instance.region,
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -658,7 +648,6 @@ class VpcConnect(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -680,7 +669,6 @@ class VpcConnect(pulumi.CustomResource):
             region=instance.region,
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -691,7 +679,6 @@ class VpcConnect(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -713,7 +700,6 @@ class VpcConnect(pulumi.CustomResource):
             region=instance.region,
             allowed_projects=["some-project-123456"])
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -726,7 +712,6 @@ class VpcConnect(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -770,7 +755,6 @@ class VpcConnect(pulumi.CustomResource):
             ],
             opts=pulumi.ResourceOptions(depends_on=[vpc_connect]))
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 

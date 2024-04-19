@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -19,7 +18,6 @@ import * as utilities from "./utilities";
  *     type: "cpu",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Attributes reference
  *
@@ -103,7 +101,6 @@ export interface GetAlarmResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -113,7 +110,6 @@ export interface GetAlarmResult {
  *     type: "cpu",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Attributes reference
  *
