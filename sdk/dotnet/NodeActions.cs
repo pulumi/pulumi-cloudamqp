@@ -85,7 +85,7 @@ namespace Pulumi.CloudAmqp
     ///     {
     ///         DependsOn =
     ///         {
-    ///             restart01, 
+    ///             restart01,
     ///         },
     ///     });
     /// 
@@ -98,8 +98,8 @@ namespace Pulumi.CloudAmqp
     ///     {
     ///         DependsOn =
     ///         {
-    ///             restart01, 
-    ///             restart02, 
+    ///             restart01,
+    ///             restart02,
     ///         },
     ///     });
     /// 
@@ -144,7 +144,7 @@ namespace Pulumi.CloudAmqp
     ///     {
     ///         DependsOn =
     ///         {
-    ///             rabbitmqConfig, 
+    ///             rabbitmqConfig,
     ///         },
     ///     });
     /// 
@@ -157,8 +157,8 @@ namespace Pulumi.CloudAmqp
     ///     {
     ///         DependsOn =
     ///         {
-    ///             rabbitmqConfig, 
-    ///             restart01, 
+    ///             rabbitmqConfig,
+    ///             restart01,
     ///         },
     ///     });
     /// 
@@ -171,9 +171,9 @@ namespace Pulumi.CloudAmqp
     ///     {
     ///         DependsOn =
     ///         {
-    ///             rabbitmqConfig, 
-    ///             restart01, 
-    ///             restart02, 
+    ///             rabbitmqConfig,
+    ///             restart01,
+    ///             restart02,
     ///         },
     ///     });
     /// 

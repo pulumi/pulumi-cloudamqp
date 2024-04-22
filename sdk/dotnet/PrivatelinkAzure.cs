@@ -188,7 +188,7 @@ namespace Pulumi.CloudAmqp
     ///     {
     ///         DependsOn =
     ///         {
-    ///             privatelink, 
+    ///             privatelink,
     ///         },
     ///     });
     /// 
