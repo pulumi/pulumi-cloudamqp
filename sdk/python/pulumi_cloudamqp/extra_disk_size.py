@@ -251,7 +251,6 @@ class ExtraDiskSize(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -269,7 +268,6 @@ class ExtraDiskSize(pulumi.CustomResource):
         # to cloudamqp_extra_disk_size.resize_disk resource
         nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -280,7 +278,6 @@ class ExtraDiskSize(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -298,7 +295,6 @@ class ExtraDiskSize(pulumi.CustomResource):
         # to cloudamqp_extra_disk_size.resize_disk resource
         nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -309,7 +305,6 @@ class ExtraDiskSize(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -327,7 +322,6 @@ class ExtraDiskSize(pulumi.CustomResource):
         # to cloudamqp_extra_disk_size.resize_disk resource
         nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -338,7 +332,6 @@ class ExtraDiskSize(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -357,7 +350,6 @@ class ExtraDiskSize(pulumi.CustomResource):
         # to cloudamqp_extra_disk_size.resize_disk resource
         nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -435,7 +427,6 @@ class ExtraDiskSize(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -453,7 +444,6 @@ class ExtraDiskSize(pulumi.CustomResource):
         # to cloudamqp_extra_disk_size.resize_disk resource
         nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -464,7 +454,6 @@ class ExtraDiskSize(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -482,7 +471,6 @@ class ExtraDiskSize(pulumi.CustomResource):
         # to cloudamqp_extra_disk_size.resize_disk resource
         nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -493,7 +481,6 @@ class ExtraDiskSize(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -511,7 +498,6 @@ class ExtraDiskSize(pulumi.CustomResource):
         # to cloudamqp_extra_disk_size.resize_disk resource
         nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -522,7 +508,6 @@ class ExtraDiskSize(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -541,7 +526,6 @@ class ExtraDiskSize(pulumi.CustomResource):
         # to cloudamqp_extra_disk_size.resize_disk resource
         nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 

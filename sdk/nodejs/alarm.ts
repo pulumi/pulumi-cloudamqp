@@ -20,7 +20,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -53,7 +52,6 @@ import * as utilities from "./utilities";
  *     recipients: [recipient01.id],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -66,7 +64,6 @@ import * as utilities from "./utilities";
  *
  * Only one notice alarm can exists and cannot be created, instead the alarm resource will be updated.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -86,7 +83,6 @@ import * as utilities from "./utilities";
  *     recipients: [recipient01.id],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *

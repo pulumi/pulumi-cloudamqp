@@ -424,7 +424,6 @@ class Alarm(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -454,7 +453,6 @@ class Alarm(pulumi.CustomResource):
             time_threshold=600,
             recipients=[recipient01.id])
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -467,7 +465,6 @@ class Alarm(pulumi.CustomResource):
 
         Only one notice alarm can exists and cannot be created, instead the alarm resource will be updated.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -485,7 +482,6 @@ class Alarm(pulumi.CustomResource):
             enabled=True,
             recipients=[recipient01.id])
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -573,7 +569,6 @@ class Alarm(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -603,7 +598,6 @@ class Alarm(pulumi.CustomResource):
             time_threshold=600,
             recipients=[recipient01.id])
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -616,7 +610,6 @@ class Alarm(pulumi.CustomResource):
 
         Only one notice alarm can exists and cannot be created, instead the alarm resource will be updated.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -634,7 +627,6 @@ class Alarm(pulumi.CustomResource):
             enabled=True,
             recipients=[recipient01.id])
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 

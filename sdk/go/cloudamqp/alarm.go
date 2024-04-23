@@ -28,7 +28,6 @@ import (
 //	  </b>
 //	</summary>
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -86,7 +85,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -100,7 +98,6 @@ import (
 //
 // Only one notice alarm can exists and cannot be created, instead the alarm resource will be updated.
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -140,7 +137,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // </details>
 //

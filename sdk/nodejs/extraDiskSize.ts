@@ -39,7 +39,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -61,7 +60,6 @@ import * as utilities from "./utilities";
  *     instanceId: id,
  * }));
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -72,7 +70,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -94,7 +91,6 @@ import * as utilities from "./utilities";
  *     instanceId: id,
  * }));
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -105,7 +101,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -127,7 +122,6 @@ import * as utilities from "./utilities";
  *     instanceId: id,
  * }));
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -138,7 +132,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -161,7 +154,6 @@ import * as utilities from "./utilities";
  *     instanceId: id,
  * }));
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *

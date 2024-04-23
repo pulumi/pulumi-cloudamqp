@@ -25,7 +25,6 @@ namespace Pulumi.CloudAmqp
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -72,7 +71,6 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// &lt;/details&gt;
     /// 
     /// &lt;details&gt;
@@ -82,7 +80,6 @@ namespace Pulumi.CloudAmqp
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -105,7 +102,6 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// &lt;/details&gt;
     /// 
     /// &lt;details&gt;
@@ -115,7 +111,6 @@ namespace Pulumi.CloudAmqp
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -139,13 +134,11 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// Once the instance and the VPC are created, the VPC can be imported as managed VPC and added to the configuration file.
     /// Set attribute `vpc_id` to the managed VPC identifier. To keep the managed VPC when deleting the instance, set attribute `keep_associated_vpc` to true.
     /// For more information see guide Managed VPC.
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -179,7 +172,6 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// &lt;/details&gt;
     /// 
     /// &lt;details&gt;
@@ -189,7 +181,6 @@ namespace Pulumi.CloudAmqp
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -237,7 +228,6 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// Set attribute `keep_associated_vpc` to true, will keep managed VPC when deleting the instances.
     /// &lt;/details&gt;
@@ -257,7 +247,6 @@ namespace Pulumi.CloudAmqp
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -297,7 +286,6 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// &lt;/details&gt;
     /// 
     /// ## Import

@@ -19,7 +19,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -35,7 +34,6 @@ import * as utilities from "./utilities";
  *     dcrId: azmDcrId,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -46,7 +44,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -59,7 +56,6 @@ import * as utilities from "./utilities";
  *     region: awsRegion,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -70,7 +66,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -84,7 +79,6 @@ import * as utilities from "./utilities";
  *     subsystem: instance.host,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -95,7 +89,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -108,7 +101,6 @@ import * as utilities from "./utilities";
  *     tags: datadogTags,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -119,7 +111,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -130,7 +121,6 @@ import * as utilities from "./utilities";
  *     token: logentriesToken,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -141,7 +131,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -152,7 +141,6 @@ import * as utilities from "./utilities";
  *     token: logglyToken,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  * </details>
  *
  * <details>
@@ -162,7 +150,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -173,7 +160,6 @@ import * as utilities from "./utilities";
  *     url: papertrailUrl,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -184,7 +170,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -196,7 +181,6 @@ import * as utilities from "./utilities";
  *     host: scalyrHost,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * <details>
  *   <summary>
@@ -205,7 +189,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -218,7 +201,6 @@ import * as utilities from "./utilities";
  *     sourceType: "generic_single_line",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -233,7 +215,6 @@ import * as utilities from "./utilities";
  *
  * Use variable file populated with project_id, privateKey and clientEmail
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -246,7 +227,6 @@ import * as utilities from "./utilities";
  *     clientEmail: stackdriverClientEmail,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * or by using googleServiceAccountKey resource from Google provider
  *

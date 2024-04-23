@@ -258,7 +258,6 @@ class PrivatelinkAws(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -272,7 +271,6 @@ class PrivatelinkAws(pulumi.CustomResource):
             instance_id=instance.id,
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -283,7 +281,6 @@ class PrivatelinkAws(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -304,7 +301,6 @@ class PrivatelinkAws(pulumi.CustomResource):
             instance_id=instance.id,
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -317,7 +313,6 @@ class PrivatelinkAws(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -361,7 +356,6 @@ class PrivatelinkAws(pulumi.CustomResource):
             ],
             opts=pulumi.ResourceOptions(depends_on=[privatelink]))
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -427,7 +421,6 @@ class PrivatelinkAws(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -441,7 +434,6 @@ class PrivatelinkAws(pulumi.CustomResource):
             instance_id=instance.id,
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -452,7 +444,6 @@ class PrivatelinkAws(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -473,7 +464,6 @@ class PrivatelinkAws(pulumi.CustomResource):
             instance_id=instance.id,
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -486,7 +476,6 @@ class PrivatelinkAws(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -530,7 +519,6 @@ class PrivatelinkAws(pulumi.CustomResource):
             ],
             opts=pulumi.ResourceOptions(depends_on=[privatelink]))
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
