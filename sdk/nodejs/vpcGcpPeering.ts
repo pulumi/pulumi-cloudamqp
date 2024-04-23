@@ -23,7 +23,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -46,7 +45,6 @@ import * as utilities from "./utilities";
  *     peerNetworkUri: "https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -57,7 +55,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -87,7 +84,6 @@ import * as utilities from "./utilities";
  *     peerNetworkUri: "https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -100,7 +96,6 @@ import * as utilities from "./utilities";
  *
  * Default peering request, no need to set `waitOnPeeringStatus`. It's default set to false and will not wait on peering status.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -110,11 +105,9 @@ import * as utilities from "./utilities";
  *     peerNetworkUri: "https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * Peering request and waiting for peering status.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -125,7 +118,6 @@ import * as utilities from "./utilities";
  *     peerNetworkUri: "https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -138,7 +130,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -180,7 +171,6 @@ import * as utilities from "./utilities";
  *     dependsOn: [vpcPeeringRequest],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -191,7 +181,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -227,7 +216,6 @@ import * as utilities from "./utilities";
  *     dependsOn: [vpcPeeringRequest],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *

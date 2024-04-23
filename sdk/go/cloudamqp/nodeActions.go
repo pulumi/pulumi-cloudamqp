@@ -26,7 +26,6 @@ import (
 //	  </b>
 //	</summary>
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -53,7 +52,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 // </details>
 //
 // Using data source `getNodes` to restart RabbitMQ on all nodes.</br>
@@ -67,7 +65,6 @@ import (
 //	  </b>
 //	</summary>
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -120,7 +117,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 // </details>
 //
 // <details>
@@ -131,7 +127,6 @@ import (
 //	  </b>
 //	</summary>
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -195,7 +190,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 // </details>
 //
 // ## Action reference

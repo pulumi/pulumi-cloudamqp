@@ -16,7 +16,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -25,7 +24,6 @@ import * as utilities from "./utilities";
  *     instanceId: instance.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -36,7 +34,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -45,7 +42,6 @@ import * as utilities from "./utilities";
  *     vpcId: vpc.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -132,7 +128,6 @@ export interface GetVpcGcpInfoResult {
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -141,7 +136,6 @@ export interface GetVpcGcpInfoResult {
  *     instanceId: instance.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -152,7 +146,6 @@ export interface GetVpcGcpInfoResult {
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -161,7 +154,6 @@ export interface GetVpcGcpInfoResult {
  *     vpcId: vpc.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *

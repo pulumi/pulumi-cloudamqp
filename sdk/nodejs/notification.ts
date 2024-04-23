@@ -20,7 +20,6 @@ import * as utilities from "./utilities";
  *     <b>Email recipient</b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -32,7 +31,6 @@ import * as utilities from "./utilities";
  *     name: "alarm",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -41,7 +39,6 @@ import * as utilities from "./utilities";
  *     <b>OpsGenie recipient with optional responders</b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -63,7 +60,6 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -72,7 +68,6 @@ import * as utilities from "./utilities";
  *     <b>Pagerduty recipient with optional dedup key</b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -87,7 +82,6 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -96,7 +90,6 @@ import * as utilities from "./utilities";
  *     <b>Signl4 recipient</b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -108,7 +101,6 @@ import * as utilities from "./utilities";
  *     name: "Signl4",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -117,7 +109,6 @@ import * as utilities from "./utilities";
  *     <b>Teams recipient</b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -129,7 +120,6 @@ import * as utilities from "./utilities";
  *     name: "Teams",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -138,7 +128,6 @@ import * as utilities from "./utilities";
  *     <b>Victorops recipient with optional routing key (rk)</b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -153,7 +142,6 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -162,7 +150,6 @@ import * as utilities from "./utilities";
  *     <b>Webhook recipient</b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -174,7 +161,6 @@ import * as utilities from "./utilities";
  *     name: "Webhook",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *

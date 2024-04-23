@@ -42,7 +42,6 @@ namespace Pulumi.CloudAmqp
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -75,7 +74,6 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &lt;/details&gt;
     /// 
@@ -86,7 +84,6 @@ namespace Pulumi.CloudAmqp
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -119,7 +116,6 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &lt;/details&gt;
     /// 
@@ -130,7 +126,6 @@ namespace Pulumi.CloudAmqp
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -163,7 +158,6 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &lt;/details&gt;
     /// 
@@ -174,7 +168,6 @@ namespace Pulumi.CloudAmqp
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -208,7 +201,6 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &lt;/details&gt;
     /// 

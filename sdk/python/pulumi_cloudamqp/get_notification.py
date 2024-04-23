@@ -108,7 +108,6 @@ def get_notification(instance_id: Optional[int] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_cloudamqp as cloudamqp
@@ -116,7 +115,6 @@ def get_notification(instance_id: Optional[int] = None,
     default_recipient = cloudamqp.get_notification(instance_id=instance["id"],
         name="default")
     ```
-    <!--End PulumiCodeChooser -->
 
     ## Attributes reference
 
@@ -165,7 +163,6 @@ def get_notification_output(instance_id: Optional[pulumi.Input[int]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_cloudamqp as cloudamqp
@@ -173,7 +170,6 @@ def get_notification_output(instance_id: Optional[pulumi.Input[int]] = None,
     default_recipient = cloudamqp.get_notification(instance_id=instance["id"],
         name="default")
     ```
-    <!--End PulumiCodeChooser -->
 
     ## Attributes reference
 

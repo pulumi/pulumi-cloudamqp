@@ -15,7 +15,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -36,7 +35,6 @@ import * as utilities from "./utilities";
  *     withHeaders: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Argument references
  *

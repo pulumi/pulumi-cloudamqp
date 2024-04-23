@@ -32,7 +32,6 @@ import (
 //	  </b>
 //	</summary>
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -77,7 +76,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -89,7 +87,6 @@ import (
 //	  </b>
 //	</summary>
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -145,7 +142,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -159,7 +155,6 @@ import (
 //
 // Default peering request, no need to set `waitOnPeeringStatus`. It's default set to false and will not wait on peering status.
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -184,11 +179,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // Peering request and waiting for peering status.
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -214,7 +207,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -228,7 +220,6 @@ import (
 //	  </b>
 //	</summary>
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -290,7 +281,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -302,7 +292,6 @@ import (
 //	  </b>
 //	</summary>
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -360,7 +349,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // </details>
 //

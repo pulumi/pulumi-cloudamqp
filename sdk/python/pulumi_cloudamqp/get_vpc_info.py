@@ -115,14 +115,12 @@ def get_vpc_info(instance_id: Optional[int] = None,
         </b>
       </summary>
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
     vpc_info = cloudamqp.get_vpc_info(instance_id=instance["id"])
     ```
-    <!--End PulumiCodeChooser -->
     </details>
 
     <details>
@@ -132,14 +130,12 @@ def get_vpc_info(instance_id: Optional[int] = None,
         </b>
       </summary>
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
     vpc_info = cloudamqp.get_vpc_info(vpc_id=vpc["id"])
     ```
-    <!--End PulumiCodeChooser -->
     </details>
 
     ## Attributes reference
@@ -202,14 +198,12 @@ def get_vpc_info_output(instance_id: Optional[pulumi.Input[Optional[int]]] = Non
         </b>
       </summary>
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
     vpc_info = cloudamqp.get_vpc_info(instance_id=instance["id"])
     ```
-    <!--End PulumiCodeChooser -->
     </details>
 
     <details>
@@ -219,14 +213,12 @@ def get_vpc_info_output(instance_id: Optional[pulumi.Input[Optional[int]]] = Non
         </b>
       </summary>
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
     vpc_info = cloudamqp.get_vpc_info(vpc_id=vpc["id"])
     ```
-    <!--End PulumiCodeChooser -->
     </details>
 
     ## Attributes reference

@@ -31,7 +31,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -56,7 +55,6 @@ import * as utilities from "./utilities";
  *     allowedPrincipals: ["arn:aws:iam::aws-account-id:user/user-name"],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -67,7 +65,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -92,7 +89,6 @@ import * as utilities from "./utilities";
  *     approvedSubscriptions: ["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -103,7 +99,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -128,7 +123,6 @@ import * as utilities from "./utilities";
  *     allowedProjects: ["some-project-123456"],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *
@@ -141,7 +135,6 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -190,7 +183,6 @@ import * as utilities from "./utilities";
  *     dependsOn: [vpcConnect],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * </details>
  *

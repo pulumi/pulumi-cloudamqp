@@ -190,7 +190,6 @@ class Vpc(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -214,7 +213,6 @@ class Vpc(pulumi.CustomResource):
         # Additional VPC information
         vpc_info = cloudamqp.get_vpc_info_output(vpc_id=vpc.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -252,7 +250,6 @@ class Vpc(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -276,7 +273,6 @@ class Vpc(pulumi.CustomResource):
         # Additional VPC information
         vpc_info = cloudamqp.get_vpc_info_output(vpc_id=vpc.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

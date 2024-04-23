@@ -264,7 +264,6 @@ class Notification(pulumi.CustomResource):
             <b>Email recipient</b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -275,7 +274,6 @@ class Notification(pulumi.CustomResource):
             value="alarm@example.com",
             name="alarm")
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -284,7 +282,6 @@ class Notification(pulumi.CustomResource):
             <b>OpsGenie recipient with optional responders</b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -305,7 +302,6 @@ class Notification(pulumi.CustomResource):
                 ),
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -314,7 +310,6 @@ class Notification(pulumi.CustomResource):
             <b>Pagerduty recipient with optional dedup key</b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -328,7 +323,6 @@ class Notification(pulumi.CustomResource):
                 "dedupkey": "DEDUPKEY",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -337,7 +331,6 @@ class Notification(pulumi.CustomResource):
             <b>Signl4 recipient</b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -348,7 +341,6 @@ class Notification(pulumi.CustomResource):
             value="<team-secret>",
             name="Signl4")
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -357,7 +349,6 @@ class Notification(pulumi.CustomResource):
             <b>Teams recipient</b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -368,7 +359,6 @@ class Notification(pulumi.CustomResource):
             value="<teams-webhook-url>",
             name="Teams")
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -377,7 +367,6 @@ class Notification(pulumi.CustomResource):
             <b>Victorops recipient with optional routing key (rk)</b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -391,7 +380,6 @@ class Notification(pulumi.CustomResource):
                 "rk": "ROUTINGKEY",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -400,7 +388,6 @@ class Notification(pulumi.CustomResource):
             <b>Webhook recipient</b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -411,7 +398,6 @@ class Notification(pulumi.CustomResource):
             value="<webhook-url>",
             name="Webhook")
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -486,7 +472,6 @@ class Notification(pulumi.CustomResource):
             <b>Email recipient</b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -497,7 +482,6 @@ class Notification(pulumi.CustomResource):
             value="alarm@example.com",
             name="alarm")
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -506,7 +490,6 @@ class Notification(pulumi.CustomResource):
             <b>OpsGenie recipient with optional responders</b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -527,7 +510,6 @@ class Notification(pulumi.CustomResource):
                 ),
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -536,7 +518,6 @@ class Notification(pulumi.CustomResource):
             <b>Pagerduty recipient with optional dedup key</b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -550,7 +531,6 @@ class Notification(pulumi.CustomResource):
                 "dedupkey": "DEDUPKEY",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -559,7 +539,6 @@ class Notification(pulumi.CustomResource):
             <b>Signl4 recipient</b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -570,7 +549,6 @@ class Notification(pulumi.CustomResource):
             value="<team-secret>",
             name="Signl4")
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -579,7 +557,6 @@ class Notification(pulumi.CustomResource):
             <b>Teams recipient</b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -590,7 +567,6 @@ class Notification(pulumi.CustomResource):
             value="<teams-webhook-url>",
             name="Teams")
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -599,7 +575,6 @@ class Notification(pulumi.CustomResource):
             <b>Victorops recipient with optional routing key (rk)</b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -613,7 +588,6 @@ class Notification(pulumi.CustomResource):
                 "rk": "ROUTINGKEY",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -622,7 +596,6 @@ class Notification(pulumi.CustomResource):
             <b>Webhook recipient</b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -633,7 +606,6 @@ class Notification(pulumi.CustomResource):
             value="<webhook-url>",
             name="Webhook")
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 

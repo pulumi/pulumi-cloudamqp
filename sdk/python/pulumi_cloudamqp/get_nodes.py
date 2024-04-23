@@ -70,14 +70,12 @@ def get_nodes(instance_id: Optional[int] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
     nodes = cloudamqp.get_nodes(instance_id=instance["id"])
     ```
-    <!--End PulumiCodeChooser -->
 
     ## Attributes reference
 
@@ -128,14 +126,12 @@ def get_nodes_output(instance_id: Optional[pulumi.Input[int]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
     nodes = cloudamqp.get_nodes(instance_id=instance["id"])
     ```
-    <!--End PulumiCodeChooser -->
 
     ## Attributes reference
 

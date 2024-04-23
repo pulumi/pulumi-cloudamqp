@@ -18,7 +18,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -30,9 +29,7 @@ import * as utilities from "./utilities";
  * // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
  * const upgrade = new cloudamqp.UpgradeRabbitmq("upgrade", {instanceId: instance.id});
  * ```
- * <!--End PulumiCodeChooser -->
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -42,11 +39,9 @@ import * as utilities from "./utilities";
  *     instanceId: instance.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * If newer version is still available to be upgradable in the data source, re-run again.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -58,7 +53,6 @@ import * as utilities from "./utilities";
  * // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
  * const upgrade = new cloudamqp.UpgradeRabbitmq("upgrade", {instanceId: instance.id});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
