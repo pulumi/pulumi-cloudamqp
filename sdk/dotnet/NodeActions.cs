@@ -23,7 +23,6 @@ namespace Pulumi.CloudAmqp
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -42,7 +41,6 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// &lt;/details&gt;
     /// 
     /// Using data source `cloudamqp.getNodes` to restart RabbitMQ on all nodes.&lt;/br&gt;
@@ -55,7 +53,6 @@ namespace Pulumi.CloudAmqp
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -85,7 +82,7 @@ namespace Pulumi.CloudAmqp
     ///     {
     ///         DependsOn =
     ///         {
-    ///             restart01, 
+    ///             restart01,
     ///         },
     ///     });
     /// 
@@ -98,14 +95,13 @@ namespace Pulumi.CloudAmqp
     ///     {
     ///         DependsOn =
     ///         {
-    ///             restart01, 
-    ///             restart02, 
+    ///             restart01,
+    ///             restart02,
     ///         },
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// &lt;/details&gt;
     /// 
     /// &lt;details&gt;
@@ -115,7 +111,6 @@ namespace Pulumi.CloudAmqp
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -144,7 +139,7 @@ namespace Pulumi.CloudAmqp
     ///     {
     ///         DependsOn =
     ///         {
-    ///             rabbitmqConfig, 
+    ///             rabbitmqConfig,
     ///         },
     ///     });
     /// 
@@ -157,8 +152,8 @@ namespace Pulumi.CloudAmqp
     ///     {
     ///         DependsOn =
     ///         {
-    ///             rabbitmqConfig, 
-    ///             restart01, 
+    ///             rabbitmqConfig,
+    ///             restart01,
     ///         },
     ///     });
     /// 
@@ -171,15 +166,14 @@ namespace Pulumi.CloudAmqp
     ///     {
     ///         DependsOn =
     ///         {
-    ///             rabbitmqConfig, 
-    ///             restart01, 
-    ///             restart02, 
+    ///             rabbitmqConfig,
+    ///             restart01,
+    ///             restart02,
     ///         },
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// &lt;/details&gt;
     /// 
     /// ## Action reference

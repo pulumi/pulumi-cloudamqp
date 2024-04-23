@@ -917,7 +917,6 @@ class IntegrationLog(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -932,7 +931,6 @@ class IntegrationLog(pulumi.CustomResource):
             table=azm_table,
             dcr_id=azm_dcr_id)
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -943,7 +941,6 @@ class IntegrationLog(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -955,7 +952,6 @@ class IntegrationLog(pulumi.CustomResource):
             secret_access_key=aws_secret_access_key,
             region=aws_region)
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -966,7 +962,6 @@ class IntegrationLog(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -979,7 +974,6 @@ class IntegrationLog(pulumi.CustomResource):
             application=coralogix_application,
             subsystem=instance["host"])
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -990,7 +984,6 @@ class IntegrationLog(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -1002,7 +995,6 @@ class IntegrationLog(pulumi.CustomResource):
             api_key=datadog_api_key,
             tags=datadog_tags)
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -1013,7 +1005,6 @@ class IntegrationLog(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -1023,7 +1014,6 @@ class IntegrationLog(pulumi.CustomResource):
             name="logentries",
             token=logentries_token)
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -1034,7 +1024,6 @@ class IntegrationLog(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -1044,7 +1033,6 @@ class IntegrationLog(pulumi.CustomResource):
             name="loggly",
             token=loggly_token)
         ```
-        <!--End PulumiCodeChooser -->
         </details>
 
         <details>
@@ -1054,7 +1042,6 @@ class IntegrationLog(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -1064,7 +1051,6 @@ class IntegrationLog(pulumi.CustomResource):
             name="papertrail",
             url=papertrail_url)
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -1075,7 +1061,6 @@ class IntegrationLog(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -1086,7 +1071,6 @@ class IntegrationLog(pulumi.CustomResource):
             token=scalyr_token,
             host=scalyr_host)
         ```
-        <!--End PulumiCodeChooser -->
 
         <details>
           <summary>
@@ -1095,7 +1079,6 @@ class IntegrationLog(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -1107,7 +1090,6 @@ class IntegrationLog(pulumi.CustomResource):
             host_port=splunk_host_port,
             source_type="generic_single_line")
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -1122,7 +1104,6 @@ class IntegrationLog(pulumi.CustomResource):
 
         Use variable file populated with project_id, private_key and client_email
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -1134,7 +1115,6 @@ class IntegrationLog(pulumi.CustomResource):
             private_key=stackdriver_private_key,
             client_email=stackdriver_client_email)
         ```
-        <!--End PulumiCodeChooser -->
 
         or by using google_service_account_key resource from Google provider
 
@@ -1199,7 +1179,6 @@ class IntegrationLog(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -1214,7 +1193,6 @@ class IntegrationLog(pulumi.CustomResource):
             table=azm_table,
             dcr_id=azm_dcr_id)
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -1225,7 +1203,6 @@ class IntegrationLog(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -1237,7 +1214,6 @@ class IntegrationLog(pulumi.CustomResource):
             secret_access_key=aws_secret_access_key,
             region=aws_region)
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -1248,7 +1224,6 @@ class IntegrationLog(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -1261,7 +1236,6 @@ class IntegrationLog(pulumi.CustomResource):
             application=coralogix_application,
             subsystem=instance["host"])
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -1272,7 +1246,6 @@ class IntegrationLog(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -1284,7 +1257,6 @@ class IntegrationLog(pulumi.CustomResource):
             api_key=datadog_api_key,
             tags=datadog_tags)
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -1295,7 +1267,6 @@ class IntegrationLog(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -1305,7 +1276,6 @@ class IntegrationLog(pulumi.CustomResource):
             name="logentries",
             token=logentries_token)
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -1316,7 +1286,6 @@ class IntegrationLog(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -1326,7 +1295,6 @@ class IntegrationLog(pulumi.CustomResource):
             name="loggly",
             token=loggly_token)
         ```
-        <!--End PulumiCodeChooser -->
         </details>
 
         <details>
@@ -1336,7 +1304,6 @@ class IntegrationLog(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -1346,7 +1313,6 @@ class IntegrationLog(pulumi.CustomResource):
             name="papertrail",
             url=papertrail_url)
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -1357,7 +1323,6 @@ class IntegrationLog(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -1368,7 +1333,6 @@ class IntegrationLog(pulumi.CustomResource):
             token=scalyr_token,
             host=scalyr_host)
         ```
-        <!--End PulumiCodeChooser -->
 
         <details>
           <summary>
@@ -1377,7 +1341,6 @@ class IntegrationLog(pulumi.CustomResource):
             </b>
           </summary>
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -1389,7 +1352,6 @@ class IntegrationLog(pulumi.CustomResource):
             host_port=splunk_host_port,
             source_type="generic_single_line")
         ```
-        <!--End PulumiCodeChooser -->
 
         </details>
 
@@ -1404,7 +1366,6 @@ class IntegrationLog(pulumi.CustomResource):
 
         Use variable file populated with project_id, private_key and client_email
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -1416,7 +1377,6 @@ class IntegrationLog(pulumi.CustomResource):
             private_key=stackdriver_private_key,
             client_email=stackdriver_client_email)
         ```
-        <!--End PulumiCodeChooser -->
 
         or by using google_service_account_key resource from Google provider
 

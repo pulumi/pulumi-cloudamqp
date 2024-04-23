@@ -27,7 +27,6 @@ import (
 //	  </b>
 //	</summary>
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -58,7 +57,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -70,7 +68,6 @@ import (
 //	  </b>
 //	</summary>
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -98,7 +95,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -110,7 +106,6 @@ import (
 //	  </b>
 //	</summary>
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -139,7 +134,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -151,7 +145,6 @@ import (
 //	  </b>
 //	</summary>
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -179,7 +172,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -191,7 +183,6 @@ import (
 //	  </b>
 //	</summary>
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -217,7 +208,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -229,7 +219,6 @@ import (
 //	  </b>
 //	</summary>
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -255,7 +244,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 // </details>
 //
 // <details>
@@ -266,7 +254,6 @@ import (
 //	  </b>
 //	</summary>
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -292,7 +279,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -304,7 +290,6 @@ import (
 //	  </b>
 //	</summary>
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -331,7 +316,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // <details>
 //
@@ -341,7 +325,6 @@ import (
 //	  </b>
 //	</summary>
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -369,7 +352,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // </details>
 //
@@ -385,7 +367,6 @@ import (
 //
 // Use variable file populated with project_id, privateKey and clientEmail
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -413,7 +394,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // or by using googleServiceAccountKey resource from Google provider
 //

@@ -23,7 +23,6 @@ namespace Pulumi.CloudAmqp
     ///     &lt;b&gt;Email recipient&lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -42,7 +41,6 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &lt;/details&gt;
     /// 
@@ -51,7 +49,6 @@ namespace Pulumi.CloudAmqp
     ///     &lt;b&gt;OpsGenie recipient with optional responders&lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -83,7 +80,6 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &lt;/details&gt;
     /// 
@@ -92,7 +88,6 @@ namespace Pulumi.CloudAmqp
     ///     &lt;b&gt;Pagerduty recipient with optional dedup key&lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -115,7 +110,6 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &lt;/details&gt;
     /// 
@@ -124,7 +118,6 @@ namespace Pulumi.CloudAmqp
     ///     &lt;b&gt;Signl4 recipient&lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -143,7 +136,6 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &lt;/details&gt;
     /// 
@@ -152,7 +144,6 @@ namespace Pulumi.CloudAmqp
     ///     &lt;b&gt;Teams recipient&lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -171,7 +162,6 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &lt;/details&gt;
     /// 
@@ -180,7 +170,6 @@ namespace Pulumi.CloudAmqp
     ///     &lt;b&gt;Victorops recipient with optional routing key (rk)&lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -203,7 +192,6 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &lt;/details&gt;
     /// 
@@ -212,7 +200,6 @@ namespace Pulumi.CloudAmqp
     ///     &lt;b&gt;Webhook recipient&lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -231,7 +218,6 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &lt;/details&gt;
     /// 

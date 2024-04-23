@@ -70,14 +70,12 @@ def get_plugins_community(instance_id: Optional[int] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
     communit_plugins = cloudamqp.get_plugins_community(instance_id=instance["id"])
     ```
-    <!--End PulumiCodeChooser -->
 
     ## Attributes reference
 
@@ -124,14 +122,12 @@ def get_plugins_community_output(instance_id: Optional[pulumi.Input[int]] = None
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
     communit_plugins = cloudamqp.get_plugins_community(instance_id=instance["id"])
     ```
-    <!--End PulumiCodeChooser -->
 
     ## Attributes reference
 
