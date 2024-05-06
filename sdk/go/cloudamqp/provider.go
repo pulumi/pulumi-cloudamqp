@@ -48,9 +48,8 @@ type providerArgs struct {
 	// Key used to authentication to the CloudAMQP Customer API
 	Apikey string `pulumi:"apikey"`
 	// Base URL to CloudAMQP Customer website
-	Baseurl *string `pulumi:"baseurl"`
-	// Skips destroying backend resources on 'terraform destroy'
-	EnableFasterInstanceDestroy *bool `pulumi:"enableFasterInstanceDestroy"`
+	Baseurl                     *string `pulumi:"baseurl"`
+	EnableFasterInstanceDestroy *bool   `pulumi:"enableFasterInstanceDestroy"`
 }
 
 // The set of arguments for constructing a Provider resource.
@@ -58,8 +57,7 @@ type ProviderArgs struct {
 	// Key used to authentication to the CloudAMQP Customer API
 	Apikey pulumi.StringInput
 	// Base URL to CloudAMQP Customer website
-	Baseurl pulumi.StringPtrInput
-	// Skips destroying backend resources on 'terraform destroy'
+	Baseurl                     pulumi.StringPtrInput
 	EnableFasterInstanceDestroy pulumi.BoolPtrInput
 }
 
