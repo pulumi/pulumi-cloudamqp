@@ -381,8 +381,7 @@
                 "description": "Base URL to CloudAMQP Customer website\n"
             },
             "enableFasterInstanceDestroy": {
-                "type": "boolean",
-                "description": "Skips destroying backend resources on 'terraform destroy'\n"
+                "type": "boolean"
             }
         },
         "required": [
@@ -398,8 +397,7 @@
                 "description": "Base URL to CloudAMQP Customer website\n"
             },
             "enableFasterInstanceDestroy": {
-                "type": "boolean",
-                "description": "Skips destroying backend resources on 'terraform destroy'\n"
+                "type": "boolean"
             }
         },
         "requiredInputs": [
