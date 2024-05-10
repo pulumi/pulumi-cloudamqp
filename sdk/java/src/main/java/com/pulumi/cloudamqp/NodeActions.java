@@ -30,7 +30,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -52,15 +53,16 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // New recipient to receieve notifications
- *         var nodeAction = new NodeActions(&#34;nodeAction&#34;, NodeActionsArgs.builder()        
+ *         var nodeAction = new NodeActions("nodeAction", NodeActionsArgs.builder()        
  *             .instanceId(instance.id())
- *             .nodeName(&#34;&lt;node name&gt;&#34;)
- *             .action(&#34;restart&#34;)
+ *             .nodeName("<node name>")
+ *             .action("restart")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * &lt;/details&gt;
  * 
@@ -75,7 +77,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -103,24 +106,24 @@ import javax.annotation.Nullable;
  *             .instanceId(instance.id())
  *             .build());
  * 
- *         var restart01 = new NodeActions(&#34;restart01&#34;, NodeActionsArgs.builder()        
+ *         var restart01 = new NodeActions("restart01", NodeActionsArgs.builder()        
  *             .instanceId(instance.id())
- *             .action(&#34;restart&#34;)
- *             .nodeName(listNodes.applyValue(getNodesResult -&gt; getNodesResult.nodes()[0].name()))
+ *             .action("restart")
+ *             .nodeName(listNodes.applyValue(getNodesResult -> getNodesResult.nodes()[0].name()))
  *             .build());
  * 
- *         var restart02 = new NodeActions(&#34;restart02&#34;, NodeActionsArgs.builder()        
+ *         var restart02 = new NodeActions("restart02", NodeActionsArgs.builder()        
  *             .instanceId(instance.id())
- *             .action(&#34;restart&#34;)
- *             .nodeName(listNodes.applyValue(getNodesResult -&gt; getNodesResult.nodes()[1].name()))
+ *             .action("restart")
+ *             .nodeName(listNodes.applyValue(getNodesResult -> getNodesResult.nodes()[1].name()))
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(restart01)
  *                 .build());
  * 
- *         var restart03 = new NodeActions(&#34;restart03&#34;, NodeActionsArgs.builder()        
+ *         var restart03 = new NodeActions("restart03", NodeActionsArgs.builder()        
  *             .instanceId(instance.id())
- *             .action(&#34;restart&#34;)
- *             .nodeName(listNodes.applyValue(getNodesResult -&gt; getNodesResult.nodes()[2].name()))
+ *             .action("restart")
+ *             .nodeName(listNodes.applyValue(getNodesResult -> getNodesResult.nodes()[2].name()))
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(                
  *                     restart01,
@@ -129,7 +132,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * &lt;/details&gt;
  * 
@@ -141,7 +145,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -171,33 +176,33 @@ import javax.annotation.Nullable;
  *             .instanceId(instance.id())
  *             .build());
  * 
- *         var rabbitmqConfig = new RabbitConfiguration(&#34;rabbitmqConfig&#34;, RabbitConfigurationArgs.builder()        
+ *         var rabbitmqConfig = new RabbitConfiguration("rabbitmqConfig", RabbitConfigurationArgs.builder()        
  *             .instanceId(instance.id())
- *             .logExchangeLevel(&#34;info&#34;)
+ *             .logExchangeLevel("info")
  *             .build());
  * 
- *         var restart01 = new NodeActions(&#34;restart01&#34;, NodeActionsArgs.builder()        
+ *         var restart01 = new NodeActions("restart01", NodeActionsArgs.builder()        
  *             .instanceId(instance.id())
- *             .action(&#34;restart&#34;)
- *             .nodeName(listNodes.applyValue(getNodesResult -&gt; getNodesResult.nodes()[0].name()))
+ *             .action("restart")
+ *             .nodeName(listNodes.applyValue(getNodesResult -> getNodesResult.nodes()[0].name()))
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(rabbitmqConfig)
  *                 .build());
  * 
- *         var restart02 = new NodeActions(&#34;restart02&#34;, NodeActionsArgs.builder()        
+ *         var restart02 = new NodeActions("restart02", NodeActionsArgs.builder()        
  *             .instanceId(instance.id())
- *             .action(&#34;restart&#34;)
- *             .nodeName(listNodes.applyValue(getNodesResult -&gt; getNodesResult.nodes()[1].name()))
+ *             .action("restart")
+ *             .nodeName(listNodes.applyValue(getNodesResult -> getNodesResult.nodes()[1].name()))
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(                
  *                     rabbitmqConfig,
  *                     restart01)
  *                 .build());
  * 
- *         var restart03 = new NodeActions(&#34;restart03&#34;, NodeActionsArgs.builder()        
+ *         var restart03 = new NodeActions("restart03", NodeActionsArgs.builder()        
  *             .instanceId(instance.id())
- *             .action(&#34;restart&#34;)
- *             .nodeName(listNodes.applyValue(getNodesResult -&gt; getNodesResult.nodes()[2].name()))
+ *             .action("restart")
+ *             .nodeName(listNodes.applyValue(getNodesResult -> getNodesResult.nodes()[2].name()))
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(                
  *                     rabbitmqConfig,
@@ -207,7 +212,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * &lt;/details&gt;
  * 

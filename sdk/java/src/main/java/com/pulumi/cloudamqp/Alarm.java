@@ -34,7 +34,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -58,17 +59,17 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // New recipient
- *         var recipient01 = new Notification(&#34;recipient01&#34;, NotificationArgs.builder()        
+ *         var recipient01 = new Notification("recipient01", NotificationArgs.builder()        
  *             .instanceId(instance.id())
- *             .type(&#34;email&#34;)
- *             .value(&#34;alarm@example.com&#34;)
- *             .name(&#34;alarm&#34;)
+ *             .type("email")
+ *             .value("alarm{@literal @}example.com")
+ *             .name("alarm")
  *             .build());
  * 
  *         // New cpu alarm
- *         var cpuAlarm = new Alarm(&#34;cpuAlarm&#34;, AlarmArgs.builder()        
+ *         var cpuAlarm = new Alarm("cpuAlarm", AlarmArgs.builder()        
  *             .instanceId(instance.id())
- *             .type(&#34;cpu&#34;)
+ *             .type("cpu")
  *             .enabled(true)
  *             .reminderInterval(600)
  *             .valueThreshold(95)
@@ -77,9 +78,9 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // New memory alarm
- *         var memoryAlarm = new Alarm(&#34;memoryAlarm&#34;, AlarmArgs.builder()        
+ *         var memoryAlarm = new Alarm("memoryAlarm", AlarmArgs.builder()        
  *             .instanceId(instance.id())
- *             .type(&#34;memory&#34;)
+ *             .type("memory")
  *             .enabled(true)
  *             .reminderInterval(600)
  *             .valueThreshold(95)
@@ -89,7 +90,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
@@ -104,7 +106,8 @@ import javax.annotation.Nullable;
  * Only one notice alarm can exists and cannot be created, instead the alarm resource will be updated.
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -128,24 +131,25 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // New recipient
- *         var recipient01 = new Notification(&#34;recipient01&#34;, NotificationArgs.builder()        
+ *         var recipient01 = new Notification("recipient01", NotificationArgs.builder()        
  *             .instanceId(instance.id())
- *             .type(&#34;email&#34;)
- *             .value(&#34;alarm@example.com&#34;)
- *             .name(&#34;alarm&#34;)
+ *             .type("email")
+ *             .value("alarm{@literal @}example.com")
+ *             .name("alarm")
  *             .build());
  * 
  *         // Update existing notice alarm
- *         var notice = new Alarm(&#34;notice&#34;, AlarmArgs.builder()        
+ *         var notice = new Alarm("notice", AlarmArgs.builder()        
  *             .instanceId(instance.id())
- *             .type(&#34;notice&#34;)
+ *             .type("notice")
  *             .enabled(true)
  *             .recipients(recipient01.id())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;

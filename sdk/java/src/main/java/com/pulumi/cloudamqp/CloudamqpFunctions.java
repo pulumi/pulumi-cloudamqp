@@ -308,7 +308,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -331,12 +332,13 @@ public final class CloudamqpFunctions {
      *     public static void stack(Context ctx) {
      *         final var defaultCpuAlarm = CloudamqpFunctions.getAlarm(GetAlarmArgs.builder()
      *             .instanceId(instance.id())
-     *             .type(&#34;cpu&#34;)
+     *             .type("cpu")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -375,7 +377,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -398,12 +401,13 @@ public final class CloudamqpFunctions {
      *     public static void stack(Context ctx) {
      *         final var defaultCpuAlarm = CloudamqpFunctions.getAlarm(GetAlarmArgs.builder()
      *             .instanceId(instance.id())
-     *             .type(&#34;cpu&#34;)
+     *             .type("cpu")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -442,7 +446,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -465,12 +470,13 @@ public final class CloudamqpFunctions {
      *     public static void stack(Context ctx) {
      *         final var defaultCpuAlarm = CloudamqpFunctions.getAlarm(GetAlarmArgs.builder()
      *             .instanceId(instance.id())
-     *             .type(&#34;cpu&#34;)
+     *             .type("cpu")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -509,7 +515,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -532,12 +539,13 @@ public final class CloudamqpFunctions {
      *     public static void stack(Context ctx) {
      *         final var defaultCpuAlarm = CloudamqpFunctions.getAlarm(GetAlarmArgs.builder()
      *             .instanceId(instance.id())
-     *             .type(&#34;cpu&#34;)
+     *             .type("cpu")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -576,7 +584,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -603,7 +612,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -628,7 +638,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -655,7 +666,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -680,7 +692,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -707,7 +720,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -732,7 +746,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -759,7 +774,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -812,7 +828,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -839,7 +856,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -879,7 +897,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -906,7 +925,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -946,7 +966,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -973,7 +994,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -1013,7 +1035,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1040,7 +1063,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -1080,7 +1104,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1103,12 +1128,13 @@ public final class CloudamqpFunctions {
      *     public static void stack(Context ctx) {
      *         final var defaultRecipient = CloudamqpFunctions.getNotification(GetNotificationArgs.builder()
      *             .instanceId(instance.id())
-     *             .name(&#34;default&#34;)
+     *             .name("default")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -1134,7 +1160,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1157,12 +1184,13 @@ public final class CloudamqpFunctions {
      *     public static void stack(Context ctx) {
      *         final var defaultRecipient = CloudamqpFunctions.getNotification(GetNotificationArgs.builder()
      *             .instanceId(instance.id())
-     *             .name(&#34;default&#34;)
+     *             .name("default")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -1188,7 +1216,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1211,12 +1240,13 @@ public final class CloudamqpFunctions {
      *     public static void stack(Context ctx) {
      *         final var defaultRecipient = CloudamqpFunctions.getNotification(GetNotificationArgs.builder()
      *             .instanceId(instance.id())
-     *             .name(&#34;default&#34;)
+     *             .name("default")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -1242,7 +1272,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1265,12 +1296,13 @@ public final class CloudamqpFunctions {
      *     public static void stack(Context ctx) {
      *         final var defaultRecipient = CloudamqpFunctions.getNotification(GetNotificationArgs.builder()
      *             .instanceId(instance.id())
-     *             .name(&#34;default&#34;)
+     *             .name("default")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -1296,7 +1328,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1323,7 +1356,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -1360,7 +1394,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1387,7 +1422,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -1424,7 +1460,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1451,7 +1488,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -1488,7 +1526,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1515,7 +1554,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -1552,7 +1592,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1579,7 +1620,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -1615,7 +1657,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1642,7 +1685,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -1678,7 +1722,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1705,7 +1750,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -1741,7 +1787,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1768,7 +1815,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -1804,7 +1852,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1831,7 +1880,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -1855,7 +1905,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1882,7 +1933,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -1906,7 +1958,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1933,7 +1986,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -1957,7 +2011,8 @@ public final class CloudamqpFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1984,7 +2039,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Attributes reference
@@ -2015,7 +2071,8 @@ public final class CloudamqpFunctions {
      *   &lt;/summary&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2042,7 +2099,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;/details&gt;
@@ -2055,7 +2113,8 @@ public final class CloudamqpFunctions {
      *   &lt;/summary&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2082,7 +2141,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;/details&gt;
@@ -2121,7 +2181,8 @@ public final class CloudamqpFunctions {
      *   &lt;/summary&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2148,7 +2209,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;/details&gt;
@@ -2161,7 +2223,8 @@ public final class CloudamqpFunctions {
      *   &lt;/summary&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2188,7 +2251,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;/details&gt;
@@ -2227,7 +2291,8 @@ public final class CloudamqpFunctions {
      *   &lt;/summary&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2254,7 +2319,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;/details&gt;
@@ -2267,7 +2333,8 @@ public final class CloudamqpFunctions {
      *   &lt;/summary&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2294,7 +2361,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;/details&gt;
@@ -2333,7 +2401,8 @@ public final class CloudamqpFunctions {
      *   &lt;/summary&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2360,7 +2429,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;/details&gt;
@@ -2373,7 +2443,8 @@ public final class CloudamqpFunctions {
      *   &lt;/summary&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2400,7 +2471,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;/details&gt;
@@ -2439,7 +2511,8 @@ public final class CloudamqpFunctions {
      *   &lt;/summary&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2466,7 +2539,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;/details&gt;
@@ -2479,7 +2553,8 @@ public final class CloudamqpFunctions {
      *   &lt;/summary&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2506,7 +2581,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;/details&gt;
@@ -2545,7 +2621,8 @@ public final class CloudamqpFunctions {
      *   &lt;/summary&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2572,7 +2649,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;/details&gt;
@@ -2585,7 +2663,8 @@ public final class CloudamqpFunctions {
      *   &lt;/summary&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2612,7 +2691,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;/details&gt;
@@ -2653,7 +2733,8 @@ public final class CloudamqpFunctions {
      *   &lt;/summary&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2680,7 +2761,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * &lt;/details&gt;
      * 
@@ -2692,7 +2774,8 @@ public final class CloudamqpFunctions {
      *   &lt;/summary&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2719,7 +2802,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * &lt;/details&gt;
      * 
@@ -2760,7 +2844,8 @@ public final class CloudamqpFunctions {
      *   &lt;/summary&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2787,7 +2872,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * &lt;/details&gt;
      * 
@@ -2799,7 +2885,8 @@ public final class CloudamqpFunctions {
      *   &lt;/summary&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2826,7 +2913,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * &lt;/details&gt;
      * 
@@ -2867,7 +2955,8 @@ public final class CloudamqpFunctions {
      *   &lt;/summary&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2894,7 +2983,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * &lt;/details&gt;
      * 
@@ -2906,7 +2996,8 @@ public final class CloudamqpFunctions {
      *   &lt;/summary&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2933,7 +3024,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * &lt;/details&gt;
      * 
@@ -2974,7 +3066,8 @@ public final class CloudamqpFunctions {
      *   &lt;/summary&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3001,7 +3094,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * &lt;/details&gt;
      * 
@@ -3013,7 +3107,8 @@ public final class CloudamqpFunctions {
      *   &lt;/summary&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3040,7 +3135,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * &lt;/details&gt;
      * 
@@ -3081,7 +3177,8 @@ public final class CloudamqpFunctions {
      *   &lt;/summary&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3108,7 +3205,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * &lt;/details&gt;
      * 
@@ -3120,7 +3218,8 @@ public final class CloudamqpFunctions {
      *   &lt;/summary&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3147,7 +3246,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * &lt;/details&gt;
      * 
@@ -3188,7 +3288,8 @@ public final class CloudamqpFunctions {
      *   &lt;/summary&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3215,7 +3316,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * &lt;/details&gt;
      * 
@@ -3227,7 +3329,8 @@ public final class CloudamqpFunctions {
      *   &lt;/summary&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3254,7 +3357,8 @@ public final class CloudamqpFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * &lt;/details&gt;
      * 

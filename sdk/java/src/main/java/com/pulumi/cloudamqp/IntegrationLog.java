@@ -32,7 +32,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -53,9 +54,9 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var azureMonitor = new IntegrationLog(&#34;azureMonitor&#34;, IntegrationLogArgs.builder()        
+ *         var azureMonitor = new IntegrationLog("azureMonitor", IntegrationLogArgs.builder()        
  *             .instanceId(instance.id())
- *             .name(&#34;azure_monitor&#34;)
+ *             .name("azure_monitor")
  *             .tenantId(azmTentantId)
  *             .applicationId(azmApplicationId)
  *             .applicationSecret(azmApplicationSecret)
@@ -66,7 +67,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
@@ -79,7 +81,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -100,9 +103,9 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var cloudwatch = new IntegrationLog(&#34;cloudwatch&#34;, IntegrationLogArgs.builder()        
+ *         var cloudwatch = new IntegrationLog("cloudwatch", IntegrationLogArgs.builder()        
  *             .instanceId(instance.id())
- *             .name(&#34;cloudwatchlog&#34;)
+ *             .name("cloudwatchlog")
  *             .accessKeyId(awsAccessKeyId)
  *             .secretAccessKey(awsSecretAccessKey)
  *             .region(awsRegion)
@@ -110,7 +113,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
@@ -123,7 +127,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -144,9 +149,9 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var coralogix = new IntegrationLog(&#34;coralogix&#34;, IntegrationLogArgs.builder()        
+ *         var coralogix = new IntegrationLog("coralogix", IntegrationLogArgs.builder()        
  *             .instanceId(instance.id())
- *             .name(&#34;coralogix&#34;)
+ *             .name("coralogix")
  *             .privateKey(coralogixSendDataKey)
  *             .endpoint(coralogixEndpoint)
  *             .application(coralogixApplication)
@@ -155,7 +160,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
@@ -168,7 +174,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -189,9 +196,9 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var datadog = new IntegrationLog(&#34;datadog&#34;, IntegrationLogArgs.builder()        
+ *         var datadog = new IntegrationLog("datadog", IntegrationLogArgs.builder()        
  *             .instanceId(instance.id())
- *             .name(&#34;datadog&#34;)
+ *             .name("datadog")
  *             .region(datadogRegion)
  *             .apiKey(datadogApiKey)
  *             .tags(datadogTags)
@@ -199,7 +206,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
@@ -212,7 +220,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -233,15 +242,16 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var logentries = new IntegrationLog(&#34;logentries&#34;, IntegrationLogArgs.builder()        
+ *         var logentries = new IntegrationLog("logentries", IntegrationLogArgs.builder()        
  *             .instanceId(instance.id())
- *             .name(&#34;logentries&#34;)
+ *             .name("logentries")
  *             .token(logentriesToken)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
@@ -254,7 +264,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -275,15 +286,16 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var loggly = new IntegrationLog(&#34;loggly&#34;, IntegrationLogArgs.builder()        
+ *         var loggly = new IntegrationLog("loggly", IntegrationLogArgs.builder()        
  *             .instanceId(instance.id())
- *             .name(&#34;loggly&#34;)
+ *             .name("loggly")
  *             .token(logglyToken)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * &lt;/details&gt;
  * 
@@ -295,7 +307,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -316,15 +329,16 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var papertrail = new IntegrationLog(&#34;papertrail&#34;, IntegrationLogArgs.builder()        
+ *         var papertrail = new IntegrationLog("papertrail", IntegrationLogArgs.builder()        
  *             .instanceId(instance.id())
- *             .name(&#34;papertrail&#34;)
+ *             .name("papertrail")
  *             .url(papertrailUrl)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
@@ -337,7 +351,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -358,16 +373,17 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var scalyr = new IntegrationLog(&#34;scalyr&#34;, IntegrationLogArgs.builder()        
+ *         var scalyr = new IntegrationLog("scalyr", IntegrationLogArgs.builder()        
  *             .instanceId(instance.id())
- *             .name(&#34;scalyr&#34;)
+ *             .name("scalyr")
  *             .token(scalyrToken)
  *             .host(scalyrHost)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;details&gt;
@@ -378,7 +394,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -399,17 +416,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var splunk = new IntegrationLog(&#34;splunk&#34;, IntegrationLogArgs.builder()        
+ *         var splunk = new IntegrationLog("splunk", IntegrationLogArgs.builder()        
  *             .instanceId(instance.id())
- *             .name(&#34;splunk&#34;)
+ *             .name("splunk")
  *             .token(splunkToken)
  *             .hostPort(splunkHostPort)
- *             .sourceType(&#34;generic_single_line&#34;)
+ *             .sourceType("generic_single_line")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
@@ -426,7 +444,8 @@ import javax.annotation.Nullable;
  * Use variable file populated with project_id, private_key and client_email
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -447,9 +466,9 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var stackdriver = new IntegrationLog(&#34;stackdriver&#34;, IntegrationLogArgs.builder()        
+ *         var stackdriver = new IntegrationLog("stackdriver", IntegrationLogArgs.builder()        
  *             .instanceId(instance.id())
- *             .name(&#34;stackdriver&#34;)
+ *             .name("stackdriver")
  *             .projectId(stackdriverProjectId)
  *             .privateKey(stackdriverPrivateKey)
  *             .clientEmail(stackdriverClientEmail)
@@ -457,7 +476,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * or by using google_service_account_key resource from Google provider

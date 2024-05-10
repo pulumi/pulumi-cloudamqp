@@ -51,7 +51,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -77,14 +78,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Instance
- *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
- *             .name(&#34;Instance&#34;)
- *             .plan(&#34;bunny-1&#34;)
- *             .region(&#34;amazon-web-services::us-west-2&#34;)
+ *         var instance = new Instance("instance", InstanceArgs.builder()        
+ *             .name("Instance")
+ *             .plan("bunny-1")
+ *             .region("amazon-web-services::us-west-2")
  *             .build());
  * 
  *         // Resize disk with 25 extra GB
- *         var resizeDisk = new ExtraDiskSize(&#34;resizeDisk&#34;, ExtraDiskSizeArgs.builder()        
+ *         var resizeDisk = new ExtraDiskSize("resizeDisk", ExtraDiskSizeArgs.builder()        
  *             .instanceId(instance.id())
  *             .extraDiskSize(25)
  *             .build());
@@ -97,7 +98,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
@@ -110,7 +112,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -136,14 +139,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Instance
- *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
- *             .name(&#34;Instance&#34;)
- *             .plan(&#34;bunny-1&#34;)
- *             .region(&#34;amazon-web-services::us-west-2&#34;)
+ *         var instance = new Instance("instance", InstanceArgs.builder()        
+ *             .name("Instance")
+ *             .plan("bunny-1")
+ *             .region("amazon-web-services::us-west-2")
  *             .build());
  * 
  *         // Resize disk with 25 extra GB, without downtime
- *         var resizeDisk = new ExtraDiskSize(&#34;resizeDisk&#34;, ExtraDiskSizeArgs.builder()        
+ *         var resizeDisk = new ExtraDiskSize("resizeDisk", ExtraDiskSizeArgs.builder()        
  *             .instanceId(instance.id())
  *             .extraDiskSize(25)
  *             .build());
@@ -156,7 +159,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
@@ -169,7 +173,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -195,14 +200,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Instance
- *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
- *             .name(&#34;Instance&#34;)
- *             .plan(&#34;bunny-1&#34;)
- *             .region(&#34;google-compute-engine::us-central1&#34;)
+ *         var instance = new Instance("instance", InstanceArgs.builder()        
+ *             .name("Instance")
+ *             .plan("bunny-1")
+ *             .region("google-compute-engine::us-central1")
  *             .build());
  * 
  *         // Resize disk with 25 extra GB, without downtime
- *         var resizeDisk = new ExtraDiskSize(&#34;resizeDisk&#34;, ExtraDiskSizeArgs.builder()        
+ *         var resizeDisk = new ExtraDiskSize("resizeDisk", ExtraDiskSizeArgs.builder()        
  *             .instanceId(instance.id())
  *             .extraDiskSize(25)
  *             .build());
@@ -215,7 +220,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
@@ -228,7 +234,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -254,14 +261,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Instance
- *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
- *             .name(&#34;Instance&#34;)
- *             .plan(&#34;bunny-1&#34;)
- *             .region(&#34;azure-arm::centralus&#34;)
+ *         var instance = new Instance("instance", InstanceArgs.builder()        
+ *             .name("Instance")
+ *             .plan("bunny-1")
+ *             .region("azure-arm::centralus")
  *             .build());
  * 
  *         // Resize disk with 25 extra GB, with downtime
- *         var resizeDisk = new ExtraDiskSize(&#34;resizeDisk&#34;, ExtraDiskSizeArgs.builder()        
+ *         var resizeDisk = new ExtraDiskSize("resizeDisk", ExtraDiskSizeArgs.builder()        
  *             .instanceId(instance.id())
  *             .extraDiskSize(25)
  *             .allowDowntime(true)
@@ -275,7 +282,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;

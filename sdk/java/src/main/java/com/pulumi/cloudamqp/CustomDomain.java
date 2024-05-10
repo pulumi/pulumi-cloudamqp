@@ -28,7 +28,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -49,14 +50,15 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var settings = new CustomDomain(&#34;settings&#34;, CustomDomainArgs.builder()        
+ *         var settings = new CustomDomain("settings", CustomDomainArgs.builder()        
  *             .instanceId(instance.id())
- *             .hostname(&#34;myname.mydomain&#34;)
+ *             .hostname("myname.mydomain")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Depedency

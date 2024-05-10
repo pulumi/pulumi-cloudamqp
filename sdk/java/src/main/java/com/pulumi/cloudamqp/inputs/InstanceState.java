@@ -265,14 +265,14 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
+     * The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}{@literal @}{hostname}/{vhost}`
      * 
      */
     @Import(name="url")
     private @Nullable Output<String> url;
 
     /**
-     * @return The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
+     * @return The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}{@literal @}{hostname}/{vhost}`
      * 
      */
     public Optional<Output<String>> url() {
@@ -734,7 +734,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param url The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
+         * @param url The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}{@literal @}{hostname}/{vhost}`
          * 
          * @return builder
          * 
@@ -745,7 +745,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param url The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
+         * @param url The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}{@literal @}{hostname}/{vhost}`
          * 
          * @return builder
          * 

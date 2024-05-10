@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
  * &gt; - All single node upgrades will require some downtime since RabbitMQ needs a restart.
  * &gt; - From RabbitMQ version 3.9, rolling upgrades between minor versions (e.g. 3.9 to 3.10), in a multi-node cluster are possible without downtime. This means that one node is upgraded at a time while the other nodes are still running. For versions older than 3.9, patch version upgrades (e.g. 3.8.x to 3.8.y) are possible without downtime in a multi-node cluster, but minor version upgrades will require downtime.
  * &gt; - Auto delete queues (queues that are marked AD) will be deleted during the update.
- * &gt; - Any custom plugins support has installed on your behalf will be disabled and you need to contact support@cloudamqp.com and ask to have them re-installed.
+ * &gt; - Any custom plugins support has installed on your behalf will be disabled and you need to contact support{@literal @}cloudamqp.com and ask to have them re-installed.
  * &gt; - TLS 1.0 and 1.1 will not be supported after the update.
  * 
  * Only available for dedicated subscription plans running ***RabbitMQ***.
@@ -28,7 +28,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -57,17 +58,19 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
- *         var upgrade = new UpgradeRabbitmq(&#34;upgrade&#34;, UpgradeRabbitmqArgs.builder()        
+ *         var upgrade = new UpgradeRabbitmq("upgrade", UpgradeRabbitmqArgs.builder()        
  *             .instanceId(instance.id())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -95,13 +98,15 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * If newer version is still available to be upgradable in the data source, re-run again.
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -130,13 +135,14 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
- *         var upgrade = new UpgradeRabbitmq(&#34;upgrade&#34;, UpgradeRabbitmqArgs.builder()        
+ *         var upgrade = new UpgradeRabbitmq("upgrade", UpgradeRabbitmqArgs.builder()        
  *             .instanceId(instance.id())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

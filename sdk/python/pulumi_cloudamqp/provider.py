@@ -21,7 +21,6 @@ class ProviderArgs:
         The set of arguments for constructing a Provider resource.
         :param pulumi.Input[str] apikey: Key used to authentication to the CloudAMQP Customer API
         :param pulumi.Input[str] baseurl: Base URL to CloudAMQP Customer website
-        :param pulumi.Input[bool] enable_faster_instance_destroy: Skips destroying backend resources on 'terraform destroy'
         """
         pulumi.set(__self__, "apikey", apikey)
         if baseurl is not None:
@@ -56,9 +55,6 @@ class ProviderArgs:
     @property
     @pulumi.getter(name="enableFasterInstanceDestroy")
     def enable_faster_instance_destroy(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Skips destroying backend resources on 'terraform destroy'
-        """
         return pulumi.get(self, "enable_faster_instance_destroy")
 
     @enable_faster_instance_destroy.setter
@@ -85,7 +81,6 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] apikey: Key used to authentication to the CloudAMQP Customer API
         :param pulumi.Input[str] baseurl: Base URL to CloudAMQP Customer website
-        :param pulumi.Input[bool] enable_faster_instance_destroy: Skips destroying backend resources on 'terraform destroy'
         """
         ...
     @overload

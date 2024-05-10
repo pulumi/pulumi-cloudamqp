@@ -22,7 +22,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -43,18 +44,19 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var webhookQueue = new Webhook(&#34;webhookQueue&#34;, WebhookArgs.builder()        
+ *         var webhookQueue = new Webhook("webhookQueue", WebhookArgs.builder()        
  *             .instanceId(instance.id())
- *             .vhost(&#34;myvhost&#34;)
- *             .queue(&#34;webhook-queue&#34;)
- *             .webhookUri(&#34;https://example.com/webhook?key=secret&#34;)
+ *             .vhost("myvhost")
+ *             .queue("webhook-queue")
+ *             .webhookUri("https://example.com/webhook?key=secret")
  *             .retryInterval(5)
  *             .concurrency(5)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Dependency

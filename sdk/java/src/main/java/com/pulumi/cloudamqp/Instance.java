@@ -35,7 +35,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -57,32 +58,33 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Minimum free lemur instance running RabbitMQ
- *         var lemurInstance = new Instance(&#34;lemurInstance&#34;, InstanceArgs.builder()        
- *             .name(&#34;cloudamqp-free-instance&#34;)
- *             .plan(&#34;lemur&#34;)
- *             .region(&#34;amazon-web-services::us-west-1&#34;)
- *             .tags(&#34;rabbitmq&#34;)
+ *         var lemurInstance = new Instance("lemurInstance", InstanceArgs.builder()        
+ *             .name("cloudamqp-free-instance")
+ *             .plan("lemur")
+ *             .region("amazon-web-services::us-west-1")
+ *             .tags("rabbitmq")
  *             .build());
  * 
  *         // Minimum free lemming instance running LavinMQ
- *         var lemmingInstance = new Instance(&#34;lemmingInstance&#34;, InstanceArgs.builder()        
- *             .name(&#34;cloudamqp-free-instance&#34;)
- *             .plan(&#34;lemming&#34;)
- *             .region(&#34;amazon-web-services::us-west-1&#34;)
- *             .tags(&#34;lavinmq&#34;)
+ *         var lemmingInstance = new Instance("lemmingInstance", InstanceArgs.builder()        
+ *             .name("cloudamqp-free-instance")
+ *             .plan("lemming")
+ *             .region("amazon-web-services::us-west-1")
+ *             .tags("lavinmq")
  *             .build());
  * 
  *         // New dedicated bunny instance running RabbitMQ
- *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
- *             .name(&#34;terraform-cloudamqp-instance&#34;)
- *             .plan(&#34;bunny-1&#34;)
- *             .region(&#34;amazon-web-services::us-west-1&#34;)
- *             .tags(&#34;terraform&#34;)
+ *         var instance = new Instance("instance", InstanceArgs.builder()        
+ *             .name("terraform-cloudamqp-instance")
+ *             .plan("bunny-1")
+ *             .region("amazon-web-services::us-west-1")
+ *             .tags("terraform")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * &lt;/details&gt;
  * 
@@ -94,7 +96,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -115,17 +118,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
- *             .name(&#34;terraform-cloudamqp-instance&#34;)
- *             .plan(&#34;bunny-1&#34;)
- *             .region(&#34;amazon-web-services::us-west-1&#34;)
- *             .tags(&#34;terraform&#34;)
- *             .vpcSubnet(&#34;10.56.72.0/24&#34;)
+ *         var instance = new Instance("instance", InstanceArgs.builder()        
+ *             .name("terraform-cloudamqp-instance")
+ *             .plan("bunny-1")
+ *             .region("amazon-web-services::us-west-1")
+ *             .tags("terraform")
+ *             .vpcSubnet("10.56.72.0/24")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * &lt;/details&gt;
  * 
@@ -137,7 +141,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -159,17 +164,18 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Dedicated instance that also creates VPC
- *         var instance01 = new Instance(&#34;instance01&#34;, InstanceArgs.builder()        
- *             .name(&#34;terraform-cloudamqp-instance-01&#34;)
- *             .plan(&#34;bunny-1&#34;)
- *             .region(&#34;amazon-web-services::us-west-1&#34;)
- *             .tags(&#34;terraform&#34;)
- *             .vpcSubnet(&#34;10.56.72.0/24&#34;)
+ *         var instance01 = new Instance("instance01", InstanceArgs.builder()        
+ *             .name("terraform-cloudamqp-instance-01")
+ *             .plan("bunny-1")
+ *             .region("amazon-web-services::us-west-1")
+ *             .tags("terraform")
+ *             .vpcSubnet("10.56.72.0/24")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * Once the instance and the VPC are created, the VPC can be imported as managed VPC and added to the configuration file.
@@ -177,7 +183,8 @@ import javax.annotation.Nullable;
  * For more information see guide Managed VPC.
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -201,26 +208,27 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Imported managed VPC
- *         var vpc = new Vpc(&#34;vpc&#34;, VpcArgs.builder()        
- *             .name(&#34;&lt;vpc-name&gt;&#34;)
- *             .region(&#34;amazon-web-services::us-east-1&#34;)
- *             .subnet(&#34;10.56.72.0/24&#34;)
+ *         var vpc = new Vpc("vpc", VpcArgs.builder()        
+ *             .name("<vpc-name>")
+ *             .region("amazon-web-services::us-east-1")
+ *             .subnet("10.56.72.0/24")
  *             .tags()
  *             .build());
  * 
  *         // Add vpc_id and keep_associated_vpc attributes
- *         var instance01 = new Instance(&#34;instance01&#34;, InstanceArgs.builder()        
- *             .name(&#34;terraform-cloudamqp-instance-01&#34;)
- *             .plan(&#34;bunny-1&#34;)
- *             .region(&#34;amazon-web-services::us-west-1&#34;)
- *             .tags(&#34;terraform&#34;)
+ *         var instance01 = new Instance("instance01", InstanceArgs.builder()        
+ *             .name("terraform-cloudamqp-instance-01")
+ *             .plan("bunny-1")
+ *             .region("amazon-web-services::us-west-1")
+ *             .tags("terraform")
  *             .vpcId(vpc.id())
  *             .keepAssociatedVpc(true)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * &lt;/details&gt;
  * 
@@ -232,7 +240,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -256,36 +265,37 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Managed VPC
- *         var vpc = new Vpc(&#34;vpc&#34;, VpcArgs.builder()        
- *             .name(&#34;&lt;vpc-name&gt;&#34;)
- *             .region(&#34;amazon-web-services::us-east-1&#34;)
- *             .subnet(&#34;10.56.72.0/24&#34;)
+ *         var vpc = new Vpc("vpc", VpcArgs.builder()        
+ *             .name("<vpc-name>")
+ *             .region("amazon-web-services::us-east-1")
+ *             .subnet("10.56.72.0/24")
  *             .tags()
  *             .build());
  * 
  *         // First instance added to managed VPC
- *         var instance01 = new Instance(&#34;instance01&#34;, InstanceArgs.builder()        
- *             .name(&#34;terraform-cloudamqp-instance-01&#34;)
- *             .plan(&#34;bunny-1&#34;)
- *             .region(&#34;amazon-web-services::us-west-1&#34;)
- *             .tags(&#34;terraform&#34;)
+ *         var instance01 = new Instance("instance01", InstanceArgs.builder()        
+ *             .name("terraform-cloudamqp-instance-01")
+ *             .plan("bunny-1")
+ *             .region("amazon-web-services::us-west-1")
+ *             .tags("terraform")
  *             .vpcId(vpc.id())
  *             .keepAssociatedVpc(true)
  *             .build());
  * 
  *         // Second instance added to managed VPC
- *         var instance02 = new Instance(&#34;instance02&#34;, InstanceArgs.builder()        
- *             .name(&#34;terraform-cloudamqp-instance-02&#34;)
- *             .plan(&#34;bunny-1&#34;)
- *             .region(&#34;amazon-web-services::us-west-1&#34;)
- *             .tags(&#34;terraform&#34;)
+ *         var instance02 = new Instance("instance02", InstanceArgs.builder()        
+ *             .name("terraform-cloudamqp-instance-02")
+ *             .plan("bunny-1")
+ *             .region("amazon-web-services::us-west-1")
+ *             .tags("terraform")
  *             .vpcId(vpc.id())
  *             .keepAssociatedVpc(true)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * Set attribute `keep_associated_vpc` to true, will keep managed VPC when deleting the instances.
@@ -307,7 +317,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -329,28 +340,29 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var instance02 = new Instance(&#34;instance02&#34;, InstanceArgs.builder()        
- *             .name(&#34;terraform-cloudamqp-instance-02&#34;)
- *             .plan(&#34;squirrel-1&#34;)
- *             .region(&#34;amazon-web-services::us-west-1&#34;)
- *             .rmqVersion(&#34;3.12.2&#34;)
- *             .tags(&#34;terraform&#34;)
+ *         var instance02 = new Instance("instance02", InstanceArgs.builder()        
+ *             .name("terraform-cloudamqp-instance-02")
+ *             .plan("squirrel-1")
+ *             .region("amazon-web-services::us-west-1")
+ *             .rmqVersion("3.12.2")
+ *             .tags("terraform")
  *             .copySettings(InstanceCopySettingArgs.builder()
  *                 .subscriptionId(instanceId)
  *                 .settings(                
- *                     &#34;alarms&#34;,
- *                     &#34;config&#34;,
- *                     &#34;definitions&#34;,
- *                     &#34;firewall&#34;,
- *                     &#34;logs&#34;,
- *                     &#34;metrics&#34;,
- *                     &#34;plugins&#34;)
+ *                     "alarms",
+ *                     "config",
+ *                     "definitions",
+ *                     "firewall",
+ *                     "logs",
+ *                     "metrics",
+ *                     "plugins")
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * &lt;/details&gt;
  * 
@@ -598,14 +610,14 @@ public class Instance extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.tags);
     }
     /**
-     * The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
+     * The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}{@literal @}{hostname}/{vhost}`
      * 
      */
     @Export(name="url", refs={String.class}, tree="[0]")
     private Output<String> url;
 
     /**
-     * @return The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
+     * @return The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}{@literal @}{hostname}/{vhost}`
      * 
      */
     public Output<String> url() {
