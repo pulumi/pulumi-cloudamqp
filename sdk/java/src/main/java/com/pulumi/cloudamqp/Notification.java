@@ -33,7 +33,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -54,16 +55,17 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var emailRecipient = new Notification(&#34;emailRecipient&#34;, NotificationArgs.builder()        
+ *         var emailRecipient = new Notification("emailRecipient", NotificationArgs.builder()        
  *             .instanceId(instance.id())
- *             .type(&#34;email&#34;)
- *             .value(&#34;alarm@example.com&#34;)
- *             .name(&#34;alarm&#34;)
+ *             .type("email")
+ *             .value("alarm{@literal @}example.com")
+ *             .name("alarm")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
@@ -74,7 +76,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -96,25 +99,26 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var opsgenieRecipient = new Notification(&#34;opsgenieRecipient&#34;, NotificationArgs.builder()        
+ *         var opsgenieRecipient = new Notification("opsgenieRecipient", NotificationArgs.builder()        
  *             .instanceId(instance.id())
- *             .type(&#34;opsgenie&#34;)
- *             .value(&#34;&lt;api-key&gt;&#34;)
- *             .name(&#34;OpsGenie&#34;)
+ *             .type("opsgenie")
+ *             .value("<api-key>")
+ *             .name("OpsGenie")
  *             .responders(            
  *                 NotificationResponderArgs.builder()
- *                     .type(&#34;team&#34;)
- *                     .id(&#34;&lt;team-uuid&gt;&#34;)
+ *                     .type("team")
+ *                     .id("<team-uuid>")
  *                     .build(),
  *                 NotificationResponderArgs.builder()
- *                     .type(&#34;user&#34;)
- *                     .username(&#34;&lt;username&gt;&#34;)
+ *                     .type("user")
+ *                     .username("<username>")
  *                     .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
@@ -125,7 +129,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -146,17 +151,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var pagerdutyRecipient = new Notification(&#34;pagerdutyRecipient&#34;, NotificationArgs.builder()        
+ *         var pagerdutyRecipient = new Notification("pagerdutyRecipient", NotificationArgs.builder()        
  *             .instanceId(instance.id())
- *             .type(&#34;pagerduty&#34;)
- *             .value(&#34;&lt;integration-key&gt;&#34;)
- *             .name(&#34;PagerDuty&#34;)
- *             .options(Map.of(&#34;dedupkey&#34;, &#34;DEDUPKEY&#34;))
+ *             .type("pagerduty")
+ *             .value("<integration-key>")
+ *             .name("PagerDuty")
+ *             .options(Map.of("dedupkey", "DEDUPKEY"))
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
@@ -167,7 +173,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -188,16 +195,17 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var signl4Recipient = new Notification(&#34;signl4Recipient&#34;, NotificationArgs.builder()        
+ *         var signl4Recipient = new Notification("signl4Recipient", NotificationArgs.builder()        
  *             .instanceId(instance.id())
- *             .type(&#34;signl4&#34;)
- *             .value(&#34;&lt;team-secret&gt;&#34;)
- *             .name(&#34;Signl4&#34;)
+ *             .type("signl4")
+ *             .value("<team-secret>")
+ *             .name("Signl4")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
@@ -208,7 +216,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -229,16 +238,17 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var teamsRecipient = new Notification(&#34;teamsRecipient&#34;, NotificationArgs.builder()        
+ *         var teamsRecipient = new Notification("teamsRecipient", NotificationArgs.builder()        
  *             .instanceId(instance.id())
- *             .type(&#34;teams&#34;)
- *             .value(&#34;&lt;teams-webhook-url&gt;&#34;)
- *             .name(&#34;Teams&#34;)
+ *             .type("teams")
+ *             .value("<teams-webhook-url>")
+ *             .name("Teams")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
@@ -249,7 +259,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -270,17 +281,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var victoropsRecipient = new Notification(&#34;victoropsRecipient&#34;, NotificationArgs.builder()        
+ *         var victoropsRecipient = new Notification("victoropsRecipient", NotificationArgs.builder()        
  *             .instanceId(instance.id())
- *             .type(&#34;victorops&#34;)
- *             .value(&#34;&lt;integration-key&gt;&#34;)
- *             .name(&#34;Victorops&#34;)
- *             .options(Map.of(&#34;rk&#34;, &#34;ROUTINGKEY&#34;))
+ *             .type("victorops")
+ *             .value("<integration-key>")
+ *             .name("Victorops")
+ *             .options(Map.of("rk", "ROUTINGKEY"))
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
@@ -291,7 +303,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -312,16 +325,17 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var webhookRecipient = new Notification(&#34;webhookRecipient&#34;, NotificationArgs.builder()        
+ *         var webhookRecipient = new Notification("webhookRecipient", NotificationArgs.builder()        
  *             .instanceId(instance.id())
- *             .type(&#34;webhook&#34;)
- *             .value(&#34;&lt;webhook-url&gt;&#34;)
- *             .name(&#34;Webhook&#34;)
+ *             .type("webhook")
+ *             .value("<webhook-url>")
+ *             .name("Webhook")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;

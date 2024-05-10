@@ -69,8 +69,5 @@ export interface ProviderArgs {
      * Base URL to CloudAMQP Customer website
      */
     baseurl?: pulumi.Input<string>;
-    /**
-     * Skips destroying backend resources on 'terraform destroy'
-     */
     enableFasterInstanceDestroy?: pulumi.Input<boolean>;
 }

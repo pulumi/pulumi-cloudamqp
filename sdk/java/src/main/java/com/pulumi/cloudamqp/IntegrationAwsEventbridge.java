@@ -27,7 +27,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -50,26 +51,27 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
- *             .name(&#34;Test instance&#34;)
- *             .plan(&#34;squirrel-1&#34;)
- *             .region(&#34;amazon-web-services::us-west-1&#34;)
- *             .rmqVersion(&#34;3.11.5&#34;)
- *             .tags(&#34;aws&#34;)
+ *         var instance = new Instance("instance", InstanceArgs.builder()        
+ *             .name("Test instance")
+ *             .plan("squirrel-1")
+ *             .region("amazon-web-services::us-west-1")
+ *             .rmqVersion("3.11.5")
+ *             .tags("aws")
  *             .build());
  * 
- *         var awsEventbridge = new IntegrationAwsEventbridge(&#34;awsEventbridge&#34;, IntegrationAwsEventbridgeArgs.builder()        
+ *         var awsEventbridge = new IntegrationAwsEventbridge("awsEventbridge", IntegrationAwsEventbridgeArgs.builder()        
  *             .instanceId(instance.id())
  *             .vhost(instance.vhost())
- *             .queue(&#34;&lt;QUEUE-NAME&gt;&#34;)
- *             .awsAccountId(&#34;&lt;AWS-ACCOUNT-ID&gt;&#34;)
- *             .awsRegion(&#34;us-west-1&#34;)
+ *             .queue("<QUEUE-NAME>")
+ *             .awsAccountId("<AWS-ACCOUNT-ID>")
+ *             .awsRegion("us-west-1")
  *             .withHeaders(true)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Argument references

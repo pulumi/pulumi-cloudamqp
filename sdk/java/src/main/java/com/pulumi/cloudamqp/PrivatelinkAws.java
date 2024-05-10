@@ -36,7 +36,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -59,21 +60,22 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
- *             .name(&#34;Instance 01&#34;)
- *             .plan(&#34;bunny-1&#34;)
- *             .region(&#34;amazon-web-services::us-west-1&#34;)
+ *         var instance = new Instance("instance", InstanceArgs.builder()        
+ *             .name("Instance 01")
+ *             .plan("bunny-1")
+ *             .region("amazon-web-services::us-west-1")
  *             .tags()
  *             .build());
  * 
- *         var privatelink = new PrivatelinkAws(&#34;privatelink&#34;, PrivatelinkAwsArgs.builder()        
+ *         var privatelink = new PrivatelinkAws("privatelink", PrivatelinkAwsArgs.builder()        
  *             .instanceId(instance.id())
- *             .allowedPrincipals(&#34;arn:aws:iam::aws-account-id:user/user-name&#34;)
+ *             .allowedPrincipals("arn:aws:iam::aws-account-id:user/user-name")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
@@ -86,7 +88,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -111,30 +114,31 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var vpc = new Vpc(&#34;vpc&#34;, VpcArgs.builder()        
- *             .name(&#34;Standalone VPC&#34;)
- *             .region(&#34;amazon-web-services::us-west-1&#34;)
- *             .subnet(&#34;10.56.72.0/24&#34;)
+ *         var vpc = new Vpc("vpc", VpcArgs.builder()        
+ *             .name("Standalone VPC")
+ *             .region("amazon-web-services::us-west-1")
+ *             .subnet("10.56.72.0/24")
  *             .tags()
  *             .build());
  * 
- *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
- *             .name(&#34;Instance 01&#34;)
- *             .plan(&#34;bunny-1&#34;)
- *             .region(&#34;amazon-web-services::us-west-1&#34;)
+ *         var instance = new Instance("instance", InstanceArgs.builder()        
+ *             .name("Instance 01")
+ *             .plan("bunny-1")
+ *             .region("amazon-web-services::us-west-1")
  *             .tags()
  *             .vpcId(vpc.id())
  *             .keepAssociatedVpc(true)
  *             .build());
  * 
- *         var privatelink = new PrivatelinkAws(&#34;privatelink&#34;, PrivatelinkAwsArgs.builder()        
+ *         var privatelink = new PrivatelinkAws("privatelink", PrivatelinkAwsArgs.builder()        
  *             .instanceId(instance.id())
- *             .allowedPrincipals(&#34;arn:aws:iam::aws-account-id:user/user-name&#34;)
+ *             .allowedPrincipals("arn:aws:iam::aws-account-id:user/user-name")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
@@ -149,7 +153,8 @@ import javax.annotation.Nullable;
  *   &lt;/summary&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -178,46 +183,46 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var vpc = new Vpc(&#34;vpc&#34;, VpcArgs.builder()        
- *             .name(&#34;Standalone VPC&#34;)
- *             .region(&#34;amazon-web-services::us-west-1&#34;)
- *             .subnet(&#34;10.56.72.0/24&#34;)
+ *         var vpc = new Vpc("vpc", VpcArgs.builder()        
+ *             .name("Standalone VPC")
+ *             .region("amazon-web-services::us-west-1")
+ *             .subnet("10.56.72.0/24")
  *             .tags()
  *             .build());
  * 
- *         var instance = new Instance(&#34;instance&#34;, InstanceArgs.builder()        
- *             .name(&#34;Instance 01&#34;)
- *             .plan(&#34;bunny-1&#34;)
- *             .region(&#34;amazon-web-services::us-west-1&#34;)
+ *         var instance = new Instance("instance", InstanceArgs.builder()        
+ *             .name("Instance 01")
+ *             .plan("bunny-1")
+ *             .region("amazon-web-services::us-west-1")
  *             .tags()
  *             .vpcId(vpc.id())
  *             .keepAssociatedVpc(true)
  *             .build());
  * 
- *         var privatelink = new PrivatelinkAws(&#34;privatelink&#34;, PrivatelinkAwsArgs.builder()        
+ *         var privatelink = new PrivatelinkAws("privatelink", PrivatelinkAwsArgs.builder()        
  *             .instanceId(instance.id())
- *             .allowedPrincipals(&#34;arn:aws:iam::aws-account-id:user/user-name&#34;)
+ *             .allowedPrincipals("arn:aws:iam::aws-account-id:user/user-name")
  *             .build());
  * 
- *         var firewallSettings = new SecurityFirewall(&#34;firewallSettings&#34;, SecurityFirewallArgs.builder()        
+ *         var firewallSettings = new SecurityFirewall("firewallSettings", SecurityFirewallArgs.builder()        
  *             .instanceId(instance.id())
  *             .rules(            
  *                 SecurityFirewallRuleArgs.builder()
- *                     .description(&#34;Custom PrivateLink setup&#34;)
+ *                     .description("Custom PrivateLink setup")
  *                     .ip(vpc.subnet())
  *                     .ports()
  *                     .services(                    
- *                         &#34;AMQP&#34;,
- *                         &#34;AMQPS&#34;,
- *                         &#34;HTTPS&#34;,
- *                         &#34;STREAM&#34;,
- *                         &#34;STREAM_SSL&#34;)
+ *                         "AMQP",
+ *                         "AMQPS",
+ *                         "HTTPS",
+ *                         "STREAM",
+ *                         "STREAM_SSL")
  *                     .build(),
  *                 SecurityFirewallRuleArgs.builder()
- *                     .description(&#34;MGMT interface&#34;)
- *                     .ip(&#34;0.0.0.0/0&#34;)
+ *                     .description("MGMT interface")
+ *                     .ip("0.0.0.0/0")
  *                     .ports()
- *                     .services(&#34;HTTPS&#34;)
+ *                     .services("HTTPS")
  *                     .build())
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(privatelink)
@@ -225,7 +230,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;/details&gt;
