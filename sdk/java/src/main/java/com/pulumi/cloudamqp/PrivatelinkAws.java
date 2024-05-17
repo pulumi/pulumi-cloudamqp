@@ -60,14 +60,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var instance = new Instance("instance", InstanceArgs.builder()        
+ *         var instance = new Instance("instance", InstanceArgs.builder()
  *             .name("Instance 01")
  *             .plan("bunny-1")
  *             .region("amazon-web-services::us-west-1")
  *             .tags()
  *             .build());
  * 
- *         var privatelink = new PrivatelinkAws("privatelink", PrivatelinkAwsArgs.builder()        
+ *         var privatelink = new PrivatelinkAws("privatelink", PrivatelinkAwsArgs.builder()
  *             .instanceId(instance.id())
  *             .allowedPrincipals("arn:aws:iam::aws-account-id:user/user-name")
  *             .build());
@@ -114,14 +114,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var vpc = new Vpc("vpc", VpcArgs.builder()        
+ *         var vpc = new Vpc("vpc", VpcArgs.builder()
  *             .name("Standalone VPC")
  *             .region("amazon-web-services::us-west-1")
  *             .subnet("10.56.72.0/24")
  *             .tags()
  *             .build());
  * 
- *         var instance = new Instance("instance", InstanceArgs.builder()        
+ *         var instance = new Instance("instance", InstanceArgs.builder()
  *             .name("Instance 01")
  *             .plan("bunny-1")
  *             .region("amazon-web-services::us-west-1")
@@ -130,7 +130,7 @@ import javax.annotation.Nullable;
  *             .keepAssociatedVpc(true)
  *             .build());
  * 
- *         var privatelink = new PrivatelinkAws("privatelink", PrivatelinkAwsArgs.builder()        
+ *         var privatelink = new PrivatelinkAws("privatelink", PrivatelinkAwsArgs.builder()
  *             .instanceId(instance.id())
  *             .allowedPrincipals("arn:aws:iam::aws-account-id:user/user-name")
  *             .build());
@@ -183,14 +183,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var vpc = new Vpc("vpc", VpcArgs.builder()        
+ *         var vpc = new Vpc("vpc", VpcArgs.builder()
  *             .name("Standalone VPC")
  *             .region("amazon-web-services::us-west-1")
  *             .subnet("10.56.72.0/24")
  *             .tags()
  *             .build());
  * 
- *         var instance = new Instance("instance", InstanceArgs.builder()        
+ *         var instance = new Instance("instance", InstanceArgs.builder()
  *             .name("Instance 01")
  *             .plan("bunny-1")
  *             .region("amazon-web-services::us-west-1")
@@ -199,12 +199,12 @@ import javax.annotation.Nullable;
  *             .keepAssociatedVpc(true)
  *             .build());
  * 
- *         var privatelink = new PrivatelinkAws("privatelink", PrivatelinkAwsArgs.builder()        
+ *         var privatelink = new PrivatelinkAws("privatelink", PrivatelinkAwsArgs.builder()
  *             .instanceId(instance.id())
  *             .allowedPrincipals("arn:aws:iam::aws-account-id:user/user-name")
  *             .build());
  * 
- *         var firewallSettings = new SecurityFirewall("firewallSettings", SecurityFirewallArgs.builder()        
+ *         var firewallSettings = new SecurityFirewall("firewallSettings", SecurityFirewallArgs.builder()
  *             .instanceId(instance.id())
  *             .rules(            
  *                 SecurityFirewallRuleArgs.builder()

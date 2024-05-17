@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // New recipient
- *         var recipient01 = new Notification("recipient01", NotificationArgs.builder()        
+ *         var recipient01 = new Notification("recipient01", NotificationArgs.builder()
  *             .instanceId(instance.id())
  *             .type("email")
  *             .value("alarm{@literal @}example.com")
@@ -67,7 +67,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // New cpu alarm
- *         var cpuAlarm = new Alarm("cpuAlarm", AlarmArgs.builder()        
+ *         var cpuAlarm = new Alarm("cpuAlarm", AlarmArgs.builder()
  *             .instanceId(instance.id())
  *             .type("cpu")
  *             .enabled(true)
@@ -78,7 +78,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // New memory alarm
- *         var memoryAlarm = new Alarm("memoryAlarm", AlarmArgs.builder()        
+ *         var memoryAlarm = new Alarm("memoryAlarm", AlarmArgs.builder()
  *             .instanceId(instance.id())
  *             .type("memory")
  *             .enabled(true)
@@ -131,7 +131,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // New recipient
- *         var recipient01 = new Notification("recipient01", NotificationArgs.builder()        
+ *         var recipient01 = new Notification("recipient01", NotificationArgs.builder()
  *             .instanceId(instance.id())
  *             .type("email")
  *             .value("alarm{@literal @}example.com")
@@ -139,7 +139,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // Update existing notice alarm
- *         var notice = new Alarm("notice", AlarmArgs.builder()        
+ *         var notice = new Alarm("notice", AlarmArgs.builder()
  *             .instanceId(instance.id())
  *             .type("notice")
  *             .enabled(true)

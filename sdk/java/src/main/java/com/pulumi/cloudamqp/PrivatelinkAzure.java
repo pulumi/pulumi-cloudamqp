@@ -61,14 +61,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var instance = new Instance("instance", InstanceArgs.builder()        
+ *         var instance = new Instance("instance", InstanceArgs.builder()
  *             .name("Instance 01")
  *             .plan("bunny-1")
  *             .region("azure-arm::westus")
  *             .tags()
  *             .build());
  * 
- *         var privatelink = new PrivatelinkAzure("privatelink", PrivatelinkAzureArgs.builder()        
+ *         var privatelink = new PrivatelinkAzure("privatelink", PrivatelinkAzureArgs.builder()
  *             .instanceId(instance.id())
  *             .approvedSubscriptions("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX")
  *             .build());
@@ -114,14 +114,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var vpc = new Vpc("vpc", VpcArgs.builder()        
+ *         var vpc = new Vpc("vpc", VpcArgs.builder()
  *             .name("Standalone VPC")
  *             .region("azure-arm::westus")
  *             .subnet("10.56.72.0/24")
  *             .tags()
  *             .build());
  * 
- *         var instance = new Instance("instance", InstanceArgs.builder()        
+ *         var instance = new Instance("instance", InstanceArgs.builder()
  *             .name("Instance 01")
  *             .plan("bunny-1")
  *             .region("azure-arm::westus")
@@ -130,7 +130,7 @@ import javax.annotation.Nullable;
  *             .keepAssociatedVpc(true)
  *             .build());
  * 
- *         var privatelink = new PrivatelinkAzure("privatelink", PrivatelinkAzureArgs.builder()        
+ *         var privatelink = new PrivatelinkAzure("privatelink", PrivatelinkAzureArgs.builder()
  *             .instanceId(instance.id())
  *             .approvedSubscriptions("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX")
  *             .build());
@@ -183,14 +183,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var vpc = new Vpc("vpc", VpcArgs.builder()        
+ *         var vpc = new Vpc("vpc", VpcArgs.builder()
  *             .name("Standalone VPC")
  *             .region("azure-arm::westus")
  *             .subnet("10.56.72.0/24")
  *             .tags()
  *             .build());
  * 
- *         var instance = new Instance("instance", InstanceArgs.builder()        
+ *         var instance = new Instance("instance", InstanceArgs.builder()
  *             .name("Instance 01")
  *             .plan("bunny-1")
  *             .region("azure-arm::westus")
@@ -199,12 +199,12 @@ import javax.annotation.Nullable;
  *             .keepAssociatedVpc(true)
  *             .build());
  * 
- *         var privatelink = new PrivatelinkAzure("privatelink", PrivatelinkAzureArgs.builder()        
+ *         var privatelink = new PrivatelinkAzure("privatelink", PrivatelinkAzureArgs.builder()
  *             .instanceId(instance.id())
  *             .approvedSubscriptions("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX")
  *             .build());
  * 
- *         var firewallSettings = new SecurityFirewall("firewallSettings", SecurityFirewallArgs.builder()        
+ *         var firewallSettings = new SecurityFirewall("firewallSettings", SecurityFirewallArgs.builder()
  *             .instanceId(instance.id())
  *             .rules(            
  *                 SecurityFirewallRuleArgs.builder()
