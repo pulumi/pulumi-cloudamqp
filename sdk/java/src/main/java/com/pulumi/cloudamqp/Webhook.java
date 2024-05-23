@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var webhookQueue = new Webhook("webhookQueue", WebhookArgs.builder()        
+ *         var webhookQueue = new Webhook("webhookQueue", WebhookArgs.builder()
  *             .instanceId(instance.id())
  *             .vhost("myvhost")
  *             .queue("webhook-queue")

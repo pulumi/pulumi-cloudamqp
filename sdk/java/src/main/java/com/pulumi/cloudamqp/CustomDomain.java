@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var settings = new CustomDomain("settings", CustomDomainArgs.builder()        
+ *         var settings = new CustomDomain("settings", CustomDomainArgs.builder()
  *             .instanceId(instance.id())
  *             .hostname("myname.mydomain")
  *             .build());

@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Managed VPC resource
- *         var vpc = new Vpc("vpc", VpcArgs.builder()        
+ *         var vpc = new Vpc("vpc", VpcArgs.builder()
  *             .name("<VPC name>")
  *             .region("amazon-web-services::us-east-1")
  *             .subnet("10.56.72.0/24")
@@ -62,7 +62,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         //  New instance, need to be created with a vpc
- *         var instance = new Instance("instance", InstanceArgs.builder()        
+ *         var instance = new Instance("instance", InstanceArgs.builder()
  *             .name("<Instance name>")
  *             .plan("bunny-1")
  *             .region("amazon-web-services::us-east-1")
