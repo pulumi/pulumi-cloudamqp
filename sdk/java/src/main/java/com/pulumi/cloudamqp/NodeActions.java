@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // New recipient to receieve notifications
- *         var nodeAction = new NodeActions("nodeAction", NodeActionsArgs.builder()        
+ *         var nodeAction = new NodeActions("nodeAction", NodeActionsArgs.builder()
  *             .instanceId(instance.id())
  *             .nodeName("<node name>")
  *             .action("restart")
@@ -106,13 +106,13 @@ import javax.annotation.Nullable;
  *             .instanceId(instance.id())
  *             .build());
  * 
- *         var restart01 = new NodeActions("restart01", NodeActionsArgs.builder()        
+ *         var restart01 = new NodeActions("restart01", NodeActionsArgs.builder()
  *             .instanceId(instance.id())
  *             .action("restart")
  *             .nodeName(listNodes.applyValue(getNodesResult -> getNodesResult.nodes()[0].name()))
  *             .build());
  * 
- *         var restart02 = new NodeActions("restart02", NodeActionsArgs.builder()        
+ *         var restart02 = new NodeActions("restart02", NodeActionsArgs.builder()
  *             .instanceId(instance.id())
  *             .action("restart")
  *             .nodeName(listNodes.applyValue(getNodesResult -> getNodesResult.nodes()[1].name()))
@@ -120,7 +120,7 @@ import javax.annotation.Nullable;
  *                 .dependsOn(restart01)
  *                 .build());
  * 
- *         var restart03 = new NodeActions("restart03", NodeActionsArgs.builder()        
+ *         var restart03 = new NodeActions("restart03", NodeActionsArgs.builder()
  *             .instanceId(instance.id())
  *             .action("restart")
  *             .nodeName(listNodes.applyValue(getNodesResult -> getNodesResult.nodes()[2].name()))
@@ -176,12 +176,12 @@ import javax.annotation.Nullable;
  *             .instanceId(instance.id())
  *             .build());
  * 
- *         var rabbitmqConfig = new RabbitConfiguration("rabbitmqConfig", RabbitConfigurationArgs.builder()        
+ *         var rabbitmqConfig = new RabbitConfiguration("rabbitmqConfig", RabbitConfigurationArgs.builder()
  *             .instanceId(instance.id())
  *             .logExchangeLevel("info")
  *             .build());
  * 
- *         var restart01 = new NodeActions("restart01", NodeActionsArgs.builder()        
+ *         var restart01 = new NodeActions("restart01", NodeActionsArgs.builder()
  *             .instanceId(instance.id())
  *             .action("restart")
  *             .nodeName(listNodes.applyValue(getNodesResult -> getNodesResult.nodes()[0].name()))
@@ -189,7 +189,7 @@ import javax.annotation.Nullable;
  *                 .dependsOn(rabbitmqConfig)
  *                 .build());
  * 
- *         var restart02 = new NodeActions("restart02", NodeActionsArgs.builder()        
+ *         var restart02 = new NodeActions("restart02", NodeActionsArgs.builder()
  *             .instanceId(instance.id())
  *             .action("restart")
  *             .nodeName(listNodes.applyValue(getNodesResult -> getNodesResult.nodes()[1].name()))
@@ -199,7 +199,7 @@ import javax.annotation.Nullable;
  *                     restart01)
  *                 .build());
  * 
- *         var restart03 = new NodeActions("restart03", NodeActionsArgs.builder()        
+ *         var restart03 = new NodeActions("restart03", NodeActionsArgs.builder()
  *             .instanceId(instance.id())
  *             .action("restart")
  *             .nodeName(listNodes.applyValue(getNodesResult -> getNodesResult.nodes()[2].name()))
