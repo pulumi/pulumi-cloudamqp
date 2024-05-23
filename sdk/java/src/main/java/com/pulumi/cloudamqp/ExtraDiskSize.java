@@ -78,14 +78,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Instance
- *         var instance = new Instance("instance", InstanceArgs.builder()        
+ *         var instance = new Instance("instance", InstanceArgs.builder()
  *             .name("Instance")
  *             .plan("bunny-1")
  *             .region("amazon-web-services::us-west-2")
  *             .build());
  * 
  *         // Resize disk with 25 extra GB
- *         var resizeDisk = new ExtraDiskSize("resizeDisk", ExtraDiskSizeArgs.builder()        
+ *         var resizeDisk = new ExtraDiskSize("resizeDisk", ExtraDiskSizeArgs.builder()
  *             .instanceId(instance.id())
  *             .extraDiskSize(25)
  *             .build());
@@ -139,14 +139,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Instance
- *         var instance = new Instance("instance", InstanceArgs.builder()        
+ *         var instance = new Instance("instance", InstanceArgs.builder()
  *             .name("Instance")
  *             .plan("bunny-1")
  *             .region("amazon-web-services::us-west-2")
  *             .build());
  * 
  *         // Resize disk with 25 extra GB, without downtime
- *         var resizeDisk = new ExtraDiskSize("resizeDisk", ExtraDiskSizeArgs.builder()        
+ *         var resizeDisk = new ExtraDiskSize("resizeDisk", ExtraDiskSizeArgs.builder()
  *             .instanceId(instance.id())
  *             .extraDiskSize(25)
  *             .build());
@@ -200,14 +200,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Instance
- *         var instance = new Instance("instance", InstanceArgs.builder()        
+ *         var instance = new Instance("instance", InstanceArgs.builder()
  *             .name("Instance")
  *             .plan("bunny-1")
  *             .region("google-compute-engine::us-central1")
  *             .build());
  * 
  *         // Resize disk with 25 extra GB, without downtime
- *         var resizeDisk = new ExtraDiskSize("resizeDisk", ExtraDiskSizeArgs.builder()        
+ *         var resizeDisk = new ExtraDiskSize("resizeDisk", ExtraDiskSizeArgs.builder()
  *             .instanceId(instance.id())
  *             .extraDiskSize(25)
  *             .build());
@@ -261,14 +261,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Instance
- *         var instance = new Instance("instance", InstanceArgs.builder()        
+ *         var instance = new Instance("instance", InstanceArgs.builder()
  *             .name("Instance")
  *             .plan("bunny-1")
  *             .region("azure-arm::centralus")
  *             .build());
  * 
  *         // Resize disk with 25 extra GB, with downtime
- *         var resizeDisk = new ExtraDiskSize("resizeDisk", ExtraDiskSizeArgs.builder()        
+ *         var resizeDisk = new ExtraDiskSize("resizeDisk", ExtraDiskSizeArgs.builder()
  *             .instanceId(instance.id())
  *             .extraDiskSize(25)
  *             .allowDowntime(true)

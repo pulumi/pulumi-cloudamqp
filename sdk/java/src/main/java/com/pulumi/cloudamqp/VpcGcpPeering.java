@@ -63,7 +63,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // CloudAMQP instance
- *         var instance = new Instance("instance", InstanceArgs.builder()        
+ *         var instance = new Instance("instance", InstanceArgs.builder()
  *             .name("terraform-vpc-peering")
  *             .plan("bunny-1")
  *             .region("google-compute-engine::europe-north1")
@@ -77,7 +77,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // VPC peering configuration
- *         var vpcPeeringRequest = new VpcGcpPeering("vpcPeeringRequest", VpcGcpPeeringArgs.builder()        
+ *         var vpcPeeringRequest = new VpcGcpPeering("vpcPeeringRequest", VpcGcpPeeringArgs.builder()
  *             .instanceId(instance.id())
  *             .peerNetworkUri("https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>")
  *             .build());
@@ -127,7 +127,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Managed VPC resource
- *         var vpc = new Vpc("vpc", VpcArgs.builder()        
+ *         var vpc = new Vpc("vpc", VpcArgs.builder()
  *             .name("<VPC name>")
  *             .region("google-compute-engine::europe-north1")
  *             .subnet("10.56.72.0/24")
@@ -135,7 +135,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // CloudAMQP instance
- *         var instance = new Instance("instance", InstanceArgs.builder()        
+ *         var instance = new Instance("instance", InstanceArgs.builder()
  *             .name("terraform-vpc-peering")
  *             .plan("bunny-1")
  *             .region("google-compute-engine::europe-north1")
@@ -149,7 +149,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // VPC peering configuration
- *         var vpcPeeringRequest = new VpcGcpPeering("vpcPeeringRequest", VpcGcpPeeringArgs.builder()        
+ *         var vpcPeeringRequest = new VpcGcpPeering("vpcPeeringRequest", VpcGcpPeeringArgs.builder()
  *             .vpcId(vpc.id())
  *             .peerNetworkUri("https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>")
  *             .build());
@@ -194,7 +194,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var vpcPeeringRequest = new VpcGcpPeering("vpcPeeringRequest", VpcGcpPeeringArgs.builder()        
+ *         var vpcPeeringRequest = new VpcGcpPeering("vpcPeeringRequest", VpcGcpPeeringArgs.builder()
  *             .vpcId(vpc.id())
  *             .peerNetworkUri("https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>")
  *             .build());
@@ -230,7 +230,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var vpcPeeringRequest = new VpcGcpPeering("vpcPeeringRequest", VpcGcpPeeringArgs.builder()        
+ *         var vpcPeeringRequest = new VpcGcpPeering("vpcPeeringRequest", VpcGcpPeeringArgs.builder()
  *             .vpcId(vpc.id())
  *             .waitOnPeeringStatus(true)
  *             .peerNetworkUri("https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>")
@@ -281,13 +281,13 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // VPC peering configuration
- *         var vpcPeeringRequest = new VpcGcpPeering("vpcPeeringRequest", VpcGcpPeeringArgs.builder()        
+ *         var vpcPeeringRequest = new VpcGcpPeering("vpcPeeringRequest", VpcGcpPeeringArgs.builder()
  *             .instanceId(instance.id())
  *             .peerNetworkUri(peerNetworkUri)
  *             .build());
  * 
  *         // Firewall rules
- *         var firewallSettings = new SecurityFirewall("firewallSettings", SecurityFirewallArgs.builder()        
+ *         var firewallSettings = new SecurityFirewall("firewallSettings", SecurityFirewallArgs.builder()
  *             .instanceId(instance.id())
  *             .rules(            
  *                 SecurityFirewallRuleArgs.builder()
@@ -357,13 +357,13 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // VPC peering configuration
- *         var vpcPeeringRequest = new VpcGcpPeering("vpcPeeringRequest", VpcGcpPeeringArgs.builder()        
+ *         var vpcPeeringRequest = new VpcGcpPeering("vpcPeeringRequest", VpcGcpPeeringArgs.builder()
  *             .vpcId(vpc.id())
  *             .peerNetworkUri(peerNetworkUri)
  *             .build());
  * 
  *         // Firewall rules
- *         var firewallSettings = new SecurityFirewall("firewallSettings", SecurityFirewallArgs.builder()        
+ *         var firewallSettings = new SecurityFirewall("firewallSettings", SecurityFirewallArgs.builder()
  *             .instanceId(instance.id())
  *             .rules(            
  *                 SecurityFirewallRuleArgs.builder()
