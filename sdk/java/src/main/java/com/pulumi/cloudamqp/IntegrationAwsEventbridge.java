@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var instance = new Instance("instance", InstanceArgs.builder()        
+ *         var instance = new Instance("instance", InstanceArgs.builder()
  *             .name("Test instance")
  *             .plan("squirrel-1")
  *             .region("amazon-web-services::us-west-1")
@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
  *             .tags("aws")
  *             .build());
  * 
- *         var awsEventbridge = new IntegrationAwsEventbridge("awsEventbridge", IntegrationAwsEventbridgeArgs.builder()        
+ *         var awsEventbridge = new IntegrationAwsEventbridge("awsEventbridge", IntegrationAwsEventbridgeArgs.builder()
  *             .instanceId(instance.id())
  *             .vhost(instance.vhost())
  *             .queue("<QUEUE-NAME>")

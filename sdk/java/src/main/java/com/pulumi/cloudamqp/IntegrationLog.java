@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var azureMonitor = new IntegrationLog("azureMonitor", IntegrationLogArgs.builder()        
+ *         var azureMonitor = new IntegrationLog("azureMonitor", IntegrationLogArgs.builder()
  *             .instanceId(instance.id())
  *             .name("azure_monitor")
  *             .tenantId(azmTentantId)
@@ -103,7 +103,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var cloudwatch = new IntegrationLog("cloudwatch", IntegrationLogArgs.builder()        
+ *         var cloudwatch = new IntegrationLog("cloudwatch", IntegrationLogArgs.builder()
  *             .instanceId(instance.id())
  *             .name("cloudwatchlog")
  *             .accessKeyId(awsAccessKeyId)
@@ -149,7 +149,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var coralogix = new IntegrationLog("coralogix", IntegrationLogArgs.builder()        
+ *         var coralogix = new IntegrationLog("coralogix", IntegrationLogArgs.builder()
  *             .instanceId(instance.id())
  *             .name("coralogix")
  *             .privateKey(coralogixSendDataKey)
@@ -196,7 +196,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var datadog = new IntegrationLog("datadog", IntegrationLogArgs.builder()        
+ *         var datadog = new IntegrationLog("datadog", IntegrationLogArgs.builder()
  *             .instanceId(instance.id())
  *             .name("datadog")
  *             .region(datadogRegion)
@@ -242,7 +242,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var logentries = new IntegrationLog("logentries", IntegrationLogArgs.builder()        
+ *         var logentries = new IntegrationLog("logentries", IntegrationLogArgs.builder()
  *             .instanceId(instance.id())
  *             .name("logentries")
  *             .token(logentriesToken)
@@ -286,7 +286,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var loggly = new IntegrationLog("loggly", IntegrationLogArgs.builder()        
+ *         var loggly = new IntegrationLog("loggly", IntegrationLogArgs.builder()
  *             .instanceId(instance.id())
  *             .name("loggly")
  *             .token(logglyToken)
@@ -329,7 +329,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var papertrail = new IntegrationLog("papertrail", IntegrationLogArgs.builder()        
+ *         var papertrail = new IntegrationLog("papertrail", IntegrationLogArgs.builder()
  *             .instanceId(instance.id())
  *             .name("papertrail")
  *             .url(papertrailUrl)
@@ -373,7 +373,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var scalyr = new IntegrationLog("scalyr", IntegrationLogArgs.builder()        
+ *         var scalyr = new IntegrationLog("scalyr", IntegrationLogArgs.builder()
  *             .instanceId(instance.id())
  *             .name("scalyr")
  *             .token(scalyrToken)
@@ -416,7 +416,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var splunk = new IntegrationLog("splunk", IntegrationLogArgs.builder()        
+ *         var splunk = new IntegrationLog("splunk", IntegrationLogArgs.builder()
  *             .instanceId(instance.id())
  *             .name("splunk")
  *             .token(splunkToken)
@@ -466,7 +466,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var stackdriver = new IntegrationLog("stackdriver", IntegrationLogArgs.builder()        
+ *         var stackdriver = new IntegrationLog("stackdriver", IntegrationLogArgs.builder()
  *             .instanceId(instance.id())
  *             .name("stackdriver")
  *             .projectId(stackdriverProjectId)

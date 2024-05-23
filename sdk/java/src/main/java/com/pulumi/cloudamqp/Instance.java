@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Minimum free lemur instance running RabbitMQ
- *         var lemurInstance = new Instance("lemurInstance", InstanceArgs.builder()        
+ *         var lemurInstance = new Instance("lemurInstance", InstanceArgs.builder()
  *             .name("cloudamqp-free-instance")
  *             .plan("lemur")
  *             .region("amazon-web-services::us-west-1")
@@ -66,7 +66,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // Minimum free lemming instance running LavinMQ
- *         var lemmingInstance = new Instance("lemmingInstance", InstanceArgs.builder()        
+ *         var lemmingInstance = new Instance("lemmingInstance", InstanceArgs.builder()
  *             .name("cloudamqp-free-instance")
  *             .plan("lemming")
  *             .region("amazon-web-services::us-west-1")
@@ -74,7 +74,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // New dedicated bunny instance running RabbitMQ
- *         var instance = new Instance("instance", InstanceArgs.builder()        
+ *         var instance = new Instance("instance", InstanceArgs.builder()
  *             .name("terraform-cloudamqp-instance")
  *             .plan("bunny-1")
  *             .region("amazon-web-services::us-west-1")
@@ -118,7 +118,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var instance = new Instance("instance", InstanceArgs.builder()        
+ *         var instance = new Instance("instance", InstanceArgs.builder()
  *             .name("terraform-cloudamqp-instance")
  *             .plan("bunny-1")
  *             .region("amazon-web-services::us-west-1")
@@ -164,7 +164,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Dedicated instance that also creates VPC
- *         var instance01 = new Instance("instance01", InstanceArgs.builder()        
+ *         var instance01 = new Instance("instance01", InstanceArgs.builder()
  *             .name("terraform-cloudamqp-instance-01")
  *             .plan("bunny-1")
  *             .region("amazon-web-services::us-west-1")
@@ -208,7 +208,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Imported managed VPC
- *         var vpc = new Vpc("vpc", VpcArgs.builder()        
+ *         var vpc = new Vpc("vpc", VpcArgs.builder()
  *             .name("<vpc-name>")
  *             .region("amazon-web-services::us-east-1")
  *             .subnet("10.56.72.0/24")
@@ -216,7 +216,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // Add vpc_id and keep_associated_vpc attributes
- *         var instance01 = new Instance("instance01", InstanceArgs.builder()        
+ *         var instance01 = new Instance("instance01", InstanceArgs.builder()
  *             .name("terraform-cloudamqp-instance-01")
  *             .plan("bunny-1")
  *             .region("amazon-web-services::us-west-1")
@@ -265,7 +265,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Managed VPC
- *         var vpc = new Vpc("vpc", VpcArgs.builder()        
+ *         var vpc = new Vpc("vpc", VpcArgs.builder()
  *             .name("<vpc-name>")
  *             .region("amazon-web-services::us-east-1")
  *             .subnet("10.56.72.0/24")
@@ -273,7 +273,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // First instance added to managed VPC
- *         var instance01 = new Instance("instance01", InstanceArgs.builder()        
+ *         var instance01 = new Instance("instance01", InstanceArgs.builder()
  *             .name("terraform-cloudamqp-instance-01")
  *             .plan("bunny-1")
  *             .region("amazon-web-services::us-west-1")
@@ -283,7 +283,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // Second instance added to managed VPC
- *         var instance02 = new Instance("instance02", InstanceArgs.builder()        
+ *         var instance02 = new Instance("instance02", InstanceArgs.builder()
  *             .name("terraform-cloudamqp-instance-02")
  *             .plan("bunny-1")
  *             .region("amazon-web-services::us-west-1")
@@ -340,7 +340,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var instance02 = new Instance("instance02", InstanceArgs.builder()        
+ *         var instance02 = new Instance("instance02", InstanceArgs.builder()
  *             .name("terraform-cloudamqp-instance-02")
  *             .plan("squirrel-1")
  *             .region("amazon-web-services::us-west-1")

@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
- *         var upgrade = new UpgradeRabbitmq("upgrade", UpgradeRabbitmqArgs.builder()        
+ *         var upgrade = new UpgradeRabbitmq("upgrade", UpgradeRabbitmqArgs.builder()
  *             .instanceId(instance.id())
  *             .build());
  * 
@@ -135,7 +135,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
- *         var upgrade = new UpgradeRabbitmq("upgrade", UpgradeRabbitmqArgs.builder()        
+ *         var upgrade = new UpgradeRabbitmq("upgrade", UpgradeRabbitmqArgs.builder()
  *             .instanceId(instance.id())
  *             .build());
  * 
