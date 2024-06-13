@@ -41,6 +41,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
+    /// 
     /// &lt;/details&gt;
     /// 
     /// Using data source `cloudamqp.getNodes` to restart RabbitMQ on all nodes.&lt;/br&gt;
@@ -102,6 +103,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
+    /// 
     /// &lt;/details&gt;
     /// 
     /// &lt;details&gt;
@@ -174,6 +176,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
+    /// 
     /// &lt;/details&gt;
     /// 
     /// ## Action reference

@@ -52,6 +52,7 @@ import (
 //	}
 //
 // ```
+//
 // </details>
 //
 // Using data source `getNodes` to restart RabbitMQ on all nodes.</br>
@@ -117,6 +118,7 @@ import (
 //	}
 //
 // ```
+//
 // </details>
 //
 // <details>
@@ -190,6 +192,7 @@ import (
 //	}
 //
 // ```
+//
 // </details>
 //
 // ## Action reference

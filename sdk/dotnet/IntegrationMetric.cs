@@ -9,6 +9,220 @@ using Pulumi.Serialization;
 
 namespace Pulumi.CloudAmqp
 {
+    /// <summary>
+    /// This resource allows you to create and manage, forwarding metrics to third party integrations for a CloudAMQP instance. Once configured, the metrics produced will be forward to corresponding integration.
+    /// 
+    /// Only available for dedicated subscription plans.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Cloudwatch v1 and v2 metric integration&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ***Access key***
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var cloudwatch = new CloudAmqp.IntegrationMetric("cloudwatch", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Name = "cloudwatch",
+    ///         AccessKeyId = awsAccessKeyId,
+    ///         SecretAccessKey = varAwsSecretAcccessKey,
+    ///         Region = awsRegion,
+    ///     });
+    /// 
+    ///     var cloudwatchV2 = new CloudAmqp.IntegrationMetric("cloudwatch_v2", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Name = "cloudwatch_v2",
+    ///         AccessKeyId = awsAccessKeyId,
+    ///         SecretAccessKey = varAwsSecretAcccessKey,
+    ///         Region = awsRegion,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ***Assume role***
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var cloudwatch = new CloudAmqp.IntegrationMetric("cloudwatch", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Name = "cloudwatch",
+    ///         IamRole = awsIamRole,
+    ///         IamExternalId = externalId,
+    ///         Region = awsRegion,
+    ///     });
+    /// 
+    ///     var cloudwatchV2 = new CloudAmqp.IntegrationMetric("cloudwatch_v2", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Name = "cloudwatch_v2",
+    ///         IamRole = awsIamRole,
+    ///         IamExternalId = externalId,
+    ///         Region = awsRegion,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// * AWS IAM role: arn:aws:iam::ACCOUNT-ID:role/ROLE-NAME
+    /// * External id: Create own external identifier that match the role created. E.g. "cloudamqp-abc123".
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Datadog v1 and v2 metric integration&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var datadog = new CloudAmqp.IntegrationMetric("datadog", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Name = "datadog",
+    ///         ApiKey = datadogApiKey,
+    ///         Region = datadogRegion,
+    ///         Tags = "env=prod,region=us1,version=v1.0",
+    ///     });
+    /// 
+    ///     var datadogV2 = new CloudAmqp.IntegrationMetric("datadog_v2", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Name = "datadog_v2",
+    ///         ApiKey = datadogApiKey,
+    ///         Region = datadogRegion,
+    ///         Tags = "env=prod,region=us1,version=v1.0",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Librato metric integration&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var librato = new CloudAmqp.IntegrationMetric("librato", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Name = "librato",
+    ///         Email = libratoEmail,
+    ///         ApiKey = libratoApiKey,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;New relic v2 metric integration&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var newrelic = new CloudAmqp.IntegrationMetric("newrelic", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Name = "newrelic_v2",
+    ///         ApiKey = newrelicApiKey,
+    ///         Region = newrelicRegion,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Stackdriver metric integration (v1.20.2 or earlier versions)&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// Use variable file populated with project_id, private_key and client_email
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var stackdriver = new CloudAmqp.IntegrationMetric("stackdriver", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Name = "stackdriver",
+    ///         ProjectId = stackdriverProjectId,
+    ///         PrivateKey = stackdriverPrivateKey,
+    ///         ClientEmail = stackriverEmail,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// or by using google_service_account_key resource from Google provider
+    /// 
+    /// ## Import
+    /// 
+    /// `cloudamqp_integration_metric`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+    /// 
+    /// ```sh
+    /// $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric &lt;resource_name&gt; &lt;resource_id&gt;,&lt;instance_id&gt;`
+    /// ```
+    /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/integrationMetric:IntegrationMetric")]
     public partial class IntegrationMetric : global::Pulumi.CustomResource
     {
@@ -157,7 +371,9 @@ namespace Pulumi.CloudAmqp
                 Version = Utilities.Version,
                 AdditionalSecretOutputs =
                 {
+                    "apiKey",
                     "credentials",
+                    "licenseKey",
                     "privateKey",
                     "privateKeyId",
                     "secretAccessKey",
@@ -191,11 +407,21 @@ namespace Pulumi.CloudAmqp
         [Input("accessKeyId")]
         public Input<string>? AccessKeyId { get; set; }
 
+        [Input("apiKey")]
+        private Input<string>? _apiKey;
+
         /// <summary>
         /// The API key for the integration service. (Librato)
         /// </summary>
-        [Input("apiKey")]
-        public Input<string>? ApiKey { get; set; }
+        public Input<string>? ApiKey
+        {
+            get => _apiKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _apiKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The client email. (Stackdriver)
@@ -243,11 +469,21 @@ namespace Pulumi.CloudAmqp
         [Input("instanceId", required: true)]
         public Input<int> InstanceId { get; set; } = null!;
 
+        [Input("licenseKey")]
+        private Input<string>? _licenseKey;
+
         /// <summary>
         /// The license key registred for the integration service. (New Relic)
         /// </summary>
-        [Input("licenseKey")]
-        public Input<string>? LicenseKey { get; set; }
+        public Input<string>? LicenseKey
+        {
+            get => _licenseKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _licenseKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The name of metrics integration
@@ -359,11 +595,21 @@ namespace Pulumi.CloudAmqp
         [Input("accessKeyId")]
         public Input<string>? AccessKeyId { get; set; }
 
+        [Input("apiKey")]
+        private Input<string>? _apiKey;
+
         /// <summary>
         /// The API key for the integration service. (Librato)
         /// </summary>
-        [Input("apiKey")]
-        public Input<string>? ApiKey { get; set; }
+        public Input<string>? ApiKey
+        {
+            get => _apiKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _apiKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The client email. (Stackdriver)
@@ -411,11 +657,21 @@ namespace Pulumi.CloudAmqp
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
 
+        [Input("licenseKey")]
+        private Input<string>? _licenseKey;
+
         /// <summary>
         /// The license key registred for the integration service. (New Relic)
         /// </summary>
-        [Input("licenseKey")]
-        public Input<string>? LicenseKey { get; set; }
+        public Input<string>? LicenseKey
+        {
+            get => _licenseKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _licenseKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The name of metrics integration

@@ -29,6 +29,7 @@ import * as utilities from "./utilities";
  *     action: "restart",
  * });
  * ```
+ *
  * </details>
  *
  * Using data source `cloudamqp.getNodes` to restart RabbitMQ on all nodes.</br>
@@ -71,6 +72,7 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
+ *
  * </details>
  *
  * <details>
@@ -120,6 +122,7 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
+ *
  * </details>
  *
  * ## Action reference

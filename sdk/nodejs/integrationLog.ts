@@ -98,7 +98,7 @@ import * as utilities from "./utilities";
  *     name: "datadog",
  *     region: datadogRegion,
  *     apiKey: datadogApiKey,
- *     tags: datadogTags,
+ *     tags: "env=prod,region=us1,version=v1.0",
  * });
  * ```
  *
@@ -358,7 +358,9 @@ export class IntegrationLog extends pulumi.CustomResource {
      */
     public readonly table!: pulumi.Output<string | undefined>;
     /**
-     * Tag the integration, e.g. env=prod,region=europe.
+     * Tags. e.g. `env=prod,region=europe`.
+     *
+     * ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
      */
     public readonly tags!: pulumi.Output<string | undefined>;
     /**
@@ -548,7 +550,9 @@ export interface IntegrationLogState {
      */
     table?: pulumi.Input<string>;
     /**
-     * Tag the integration, e.g. env=prod,region=europe.
+     * Tags. e.g. `env=prod,region=europe`.
+     *
+     * ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
      */
     tags?: pulumi.Input<string>;
     /**
@@ -661,7 +665,9 @@ export interface IntegrationLogArgs {
      */
     table?: pulumi.Input<string>;
     /**
-     * Tag the integration, e.g. env=prod,region=europe.
+     * Tags. e.g. `env=prod,region=europe`.
+     *
+     * ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
      */
     tags?: pulumi.Input<string>;
     /**

@@ -67,7 +67,9 @@ class IntegrationLogArgs:
         :param pulumi.Input[str] sourcetype: Assign source type to the data exported, eg. generic_single_line. (Splunk)
         :param pulumi.Input[str] subsystem: The subsystem name for Coralogix.
         :param pulumi.Input[str] table: The table name for Azure monitor.
-        :param pulumi.Input[str] tags: Tag the integration, e.g. env=prod,region=europe.
+        :param pulumi.Input[str] tags: Tags. e.g. `env=prod,region=europe`.
+               
+               ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
         :param pulumi.Input[str] tenant_id: The tenant identifier for Azure monitor.
         :param pulumi.Input[str] token: Token used for authentication.
         :param pulumi.Input[str] url: Endpoint to log integration.
@@ -395,7 +397,9 @@ class IntegrationLogArgs:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[str]]:
         """
-        Tag the integration, e.g. env=prod,region=europe.
+        Tags. e.g. `env=prod,region=europe`.
+
+        ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
         """
         return pulumi.get(self, "tags")
 
@@ -496,7 +500,9 @@ class _IntegrationLogState:
         :param pulumi.Input[str] sourcetype: Assign source type to the data exported, eg. generic_single_line. (Splunk)
         :param pulumi.Input[str] subsystem: The subsystem name for Coralogix.
         :param pulumi.Input[str] table: The table name for Azure monitor.
-        :param pulumi.Input[str] tags: Tag the integration, e.g. env=prod,region=europe.
+        :param pulumi.Input[str] tags: Tags. e.g. `env=prod,region=europe`.
+               
+               ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
         :param pulumi.Input[str] tenant_id: The tenant identifier for Azure monitor.
         :param pulumi.Input[str] token: Token used for authentication.
         :param pulumi.Input[str] url: Endpoint to log integration.
@@ -825,7 +831,9 @@ class _IntegrationLogState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[str]]:
         """
-        Tag the integration, e.g. env=prod,region=europe.
+        Tags. e.g. `env=prod,region=europe`.
+
+        ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
         """
         return pulumi.get(self, "tags")
 
@@ -993,7 +1001,7 @@ class IntegrationLog(pulumi.CustomResource):
             name="datadog",
             region=datadog_region,
             api_key=datadog_api_key,
-            tags=datadog_tags)
+            tags="env=prod,region=us1,version=v1.0")
         ```
 
         </details>
@@ -1153,7 +1161,9 @@ class IntegrationLog(pulumi.CustomResource):
         :param pulumi.Input[str] sourcetype: Assign source type to the data exported, eg. generic_single_line. (Splunk)
         :param pulumi.Input[str] subsystem: The subsystem name for Coralogix.
         :param pulumi.Input[str] table: The table name for Azure monitor.
-        :param pulumi.Input[str] tags: Tag the integration, e.g. env=prod,region=europe.
+        :param pulumi.Input[str] tags: Tags. e.g. `env=prod,region=europe`.
+               
+               ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
         :param pulumi.Input[str] tenant_id: The tenant identifier for Azure monitor.
         :param pulumi.Input[str] token: Token used for authentication.
         :param pulumi.Input[str] url: Endpoint to log integration.
@@ -1255,7 +1265,7 @@ class IntegrationLog(pulumi.CustomResource):
             name="datadog",
             region=datadog_region,
             api_key=datadog_api_key,
-            tags=datadog_tags)
+            tags="env=prod,region=us1,version=v1.0")
         ```
 
         </details>
@@ -1536,7 +1546,9 @@ class IntegrationLog(pulumi.CustomResource):
         :param pulumi.Input[str] sourcetype: Assign source type to the data exported, eg. generic_single_line. (Splunk)
         :param pulumi.Input[str] subsystem: The subsystem name for Coralogix.
         :param pulumi.Input[str] table: The table name for Azure monitor.
-        :param pulumi.Input[str] tags: Tag the integration, e.g. env=prod,region=europe.
+        :param pulumi.Input[str] tags: Tags. e.g. `env=prod,region=europe`.
+               
+               ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
         :param pulumi.Input[str] tenant_id: The tenant identifier for Azure monitor.
         :param pulumi.Input[str] token: Token used for authentication.
         :param pulumi.Input[str] url: Endpoint to log integration.
@@ -1756,7 +1768,9 @@ class IntegrationLog(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[str]]:
         """
-        Tag the integration, e.g. env=prod,region=europe.
+        Tags. e.g. `env=prod,region=europe`.
+
+        ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
         """
         return pulumi.get(self, "tags")
 

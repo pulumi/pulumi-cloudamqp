@@ -16,6 +16,320 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * This resource allows you to create and manage, forwarding metrics to third party integrations for a CloudAMQP instance. Once configured, the metrics produced will be forward to corresponding integration.
+ * 
+ * Only available for dedicated subscription plans.
+ * 
+ * ## Example Usage
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Cloudwatch v1 and v2 metric integration&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * ***Access key***
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.IntegrationMetric;
+ * import com.pulumi.cloudamqp.IntegrationMetricArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var cloudwatch = new IntegrationMetric("cloudwatch", IntegrationMetricArgs.builder()
+ *             .instanceId(instance.id())
+ *             .name("cloudwatch")
+ *             .accessKeyId(awsAccessKeyId)
+ *             .secretAccessKey(varAwsSecretAcccessKey)
+ *             .region(awsRegion)
+ *             .build());
+ * 
+ *         var cloudwatchV2 = new IntegrationMetric("cloudwatchV2", IntegrationMetricArgs.builder()
+ *             .instanceId(instance.id())
+ *             .name("cloudwatch_v2")
+ *             .accessKeyId(awsAccessKeyId)
+ *             .secretAccessKey(varAwsSecretAcccessKey)
+ *             .region(awsRegion)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ***Assume role***
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.IntegrationMetric;
+ * import com.pulumi.cloudamqp.IntegrationMetricArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var cloudwatch = new IntegrationMetric("cloudwatch", IntegrationMetricArgs.builder()
+ *             .instanceId(instance.id())
+ *             .name("cloudwatch")
+ *             .iamRole(awsIamRole)
+ *             .iamExternalId(externalId)
+ *             .region(awsRegion)
+ *             .build());
+ * 
+ *         var cloudwatchV2 = new IntegrationMetric("cloudwatchV2", IntegrationMetricArgs.builder()
+ *             .instanceId(instance.id())
+ *             .name("cloudwatch_v2")
+ *             .iamRole(awsIamRole)
+ *             .iamExternalId(externalId)
+ *             .region(awsRegion)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * * AWS IAM role: arn:aws:iam::ACCOUNT-ID:role/ROLE-NAME
+ * * External id: Create own external identifier that match the role created. E.g. &#34;cloudamqp-abc123&#34;.
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Datadog v1 and v2 metric integration&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.IntegrationMetric;
+ * import com.pulumi.cloudamqp.IntegrationMetricArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var datadog = new IntegrationMetric("datadog", IntegrationMetricArgs.builder()
+ *             .instanceId(instance.id())
+ *             .name("datadog")
+ *             .apiKey(datadogApiKey)
+ *             .region(datadogRegion)
+ *             .tags("env=prod,region=us1,version=v1.0")
+ *             .build());
+ * 
+ *         var datadogV2 = new IntegrationMetric("datadogV2", IntegrationMetricArgs.builder()
+ *             .instanceId(instance.id())
+ *             .name("datadog_v2")
+ *             .apiKey(datadogApiKey)
+ *             .region(datadogRegion)
+ *             .tags("env=prod,region=us1,version=v1.0")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Librato metric integration&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.IntegrationMetric;
+ * import com.pulumi.cloudamqp.IntegrationMetricArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var librato = new IntegrationMetric("librato", IntegrationMetricArgs.builder()
+ *             .instanceId(instance.id())
+ *             .name("librato")
+ *             .email(libratoEmail)
+ *             .apiKey(libratoApiKey)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;New relic v2 metric integration&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.IntegrationMetric;
+ * import com.pulumi.cloudamqp.IntegrationMetricArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var newrelic = new IntegrationMetric("newrelic", IntegrationMetricArgs.builder()
+ *             .instanceId(instance.id())
+ *             .name("newrelic_v2")
+ *             .apiKey(newrelicApiKey)
+ *             .region(newrelicRegion)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Stackdriver metric integration (v1.20.2 or earlier versions)&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * Use variable file populated with project_id, private_key and client_email
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.IntegrationMetric;
+ * import com.pulumi.cloudamqp.IntegrationMetricArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var stackdriver = new IntegrationMetric("stackdriver", IntegrationMetricArgs.builder()
+ *             .instanceId(instance.id())
+ *             .name("stackdriver")
+ *             .projectId(stackdriverProjectId)
+ *             .privateKey(stackdriverPrivateKey)
+ *             .clientEmail(stackriverEmail)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * or by using google_service_account_key resource from Google provider
+ * 
+ * ## Import
+ * 
+ * `cloudamqp_integration_metric`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+ * 
+ * ```sh
+ * $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric &lt;resource_name&gt; &lt;resource_id&gt;,&lt;instance_id&gt;`
+ * ```
+ * 
+ */
 @ResourceType(type="cloudamqp:index/integrationMetric:IntegrationMetric")
 public class IntegrationMetric extends com.pulumi.resources.CustomResource {
     /**
@@ -340,7 +654,9 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
+                "apiKey",
                 "credentials",
+                "licenseKey",
                 "privateKey",
                 "privateKeyId",
                 "secretAccessKey"

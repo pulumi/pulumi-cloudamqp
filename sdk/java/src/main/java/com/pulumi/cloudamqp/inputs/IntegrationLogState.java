@@ -353,14 +353,18 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Tag the integration, e.g. env=prod,region=europe.
+     * Tags. e.g. `env=prod,region=europe`.
+     * 
+     * ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
      * 
      */
     @Import(name="tags")
     private @Nullable Output<String> tags;
 
     /**
-     * @return Tag the integration, e.g. env=prod,region=europe.
+     * @return Tags. e.g. `env=prod,region=europe`.
+     * 
+     * ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
      * 
      */
     public Optional<Output<String>> tags() {
@@ -930,7 +934,9 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param tags Tag the integration, e.g. env=prod,region=europe.
+         * @param tags Tags. e.g. `env=prod,region=europe`.
+         * 
+         * ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
          * 
          * @return builder
          * 
@@ -941,7 +947,9 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param tags Tag the integration, e.g. env=prod,region=europe.
+         * @param tags Tags. e.g. `env=prod,region=europe`.
+         * 
+         * ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
          * 
          * @return builder
          * 

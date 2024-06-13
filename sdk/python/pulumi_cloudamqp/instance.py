@@ -619,12 +619,13 @@ class Instance(pulumi.CustomResource):
             region="amazon-web-services::us-west-1",
             tags=["terraform"])
         ```
+
         </details>
 
         <details>
           <summary>
             <b>
-              <i>Dedicated instance using attribute vpc_subnet to create VPC, pre v1.16.0</i>
+              <i>Dedicated instance using attribute vpc_subnet to create VPC, before v1.16.0</i>
             </b>
           </summary>
 
@@ -639,12 +640,13 @@ class Instance(pulumi.CustomResource):
             tags=["terraform"],
             vpc_subnet="10.56.72.0/24")
         ```
+
         </details>
 
         <details>
           <summary>
             <b>
-              <i>Dedicated instance using attribute vpc_subnet to create VPC and then import managed VPC, post v1.16.0 (Managed VPC)</i>
+              <i>Dedicated instance using attribute vpc_subnet to create VPC and then import managed VPC, from v1.16.0 (Managed VPC)</i>
             </b>
           </summary>
 
@@ -684,12 +686,13 @@ class Instance(pulumi.CustomResource):
             vpc_id=vpc.id,
             keep_associated_vpc=True)
         ```
+
         </details>
 
         <details>
           <summary>
             <b>
-              <i>Dedicated instances and managed VPC, post v1.16.0 (Managed VPC)</i>
+              <i>Dedicated instances and managed VPC, from v1.16.0 (Managed VPC)</i>
             </b>
           </summary>
 
@@ -722,6 +725,7 @@ class Instance(pulumi.CustomResource):
         ```
 
         Set attribute `keep_associated_vpc` to true, will keep managed VPC when deleting the instances.
+
         </details>
 
         ## Copy settings to a new dedicated instance
@@ -762,6 +766,7 @@ class Instance(pulumi.CustomResource):
                 ],
             )])
         ```
+
         </details>
 
         ## Import
@@ -847,12 +852,13 @@ class Instance(pulumi.CustomResource):
             region="amazon-web-services::us-west-1",
             tags=["terraform"])
         ```
+
         </details>
 
         <details>
           <summary>
             <b>
-              <i>Dedicated instance using attribute vpc_subnet to create VPC, pre v1.16.0</i>
+              <i>Dedicated instance using attribute vpc_subnet to create VPC, before v1.16.0</i>
             </b>
           </summary>
 
@@ -867,12 +873,13 @@ class Instance(pulumi.CustomResource):
             tags=["terraform"],
             vpc_subnet="10.56.72.0/24")
         ```
+
         </details>
 
         <details>
           <summary>
             <b>
-              <i>Dedicated instance using attribute vpc_subnet to create VPC and then import managed VPC, post v1.16.0 (Managed VPC)</i>
+              <i>Dedicated instance using attribute vpc_subnet to create VPC and then import managed VPC, from v1.16.0 (Managed VPC)</i>
             </b>
           </summary>
 
@@ -912,12 +919,13 @@ class Instance(pulumi.CustomResource):
             vpc_id=vpc.id,
             keep_associated_vpc=True)
         ```
+
         </details>
 
         <details>
           <summary>
             <b>
-              <i>Dedicated instances and managed VPC, post v1.16.0 (Managed VPC)</i>
+              <i>Dedicated instances and managed VPC, from v1.16.0 (Managed VPC)</i>
             </b>
           </summary>
 
@@ -950,6 +958,7 @@ class Instance(pulumi.CustomResource):
         ```
 
         Set attribute `keep_associated_vpc` to true, will keep managed VPC when deleting the instances.
+
         </details>
 
         ## Copy settings to a new dedicated instance
@@ -990,6 +999,7 @@ class Instance(pulumi.CustomResource):
                 ],
             )])
         ```
+
         </details>
 
         ## Import

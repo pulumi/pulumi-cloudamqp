@@ -17,24 +17,29 @@ class WebhookArgs:
                  concurrency: pulumi.Input[int],
                  instance_id: pulumi.Input[int],
                  queue: pulumi.Input[str],
-                 retry_interval: pulumi.Input[int],
                  vhost: pulumi.Input[str],
-                 webhook_uri: pulumi.Input[str]):
+                 webhook_uri: pulumi.Input[str],
+                 sleep: Optional[pulumi.Input[int]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a Webhook resource.
         :param pulumi.Input[int] concurrency: Max simultaneous requests to the endpoint.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] queue: A (durable) queue on your RabbitMQ instance.
-        :param pulumi.Input[int] retry_interval: How often we retry if your endpoint fails (in seconds).
         :param pulumi.Input[str] vhost: The vhost the queue resides in.
         :param pulumi.Input[str] webhook_uri: A POST request will be made for each message in the queue to this endpoint.
+        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for webhook
+        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for webhook
         """
         pulumi.set(__self__, "concurrency", concurrency)
         pulumi.set(__self__, "instance_id", instance_id)
         pulumi.set(__self__, "queue", queue)
-        pulumi.set(__self__, "retry_interval", retry_interval)
         pulumi.set(__self__, "vhost", vhost)
         pulumi.set(__self__, "webhook_uri", webhook_uri)
+        if sleep is not None:
+            pulumi.set(__self__, "sleep", sleep)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
 
     @property
     @pulumi.getter
@@ -73,18 +78,6 @@ class WebhookArgs:
         pulumi.set(self, "queue", value)
 
     @property
-    @pulumi.getter(name="retryInterval")
-    def retry_interval(self) -> pulumi.Input[int]:
-        """
-        How often we retry if your endpoint fails (in seconds).
-        """
-        return pulumi.get(self, "retry_interval")
-
-    @retry_interval.setter
-    def retry_interval(self, value: pulumi.Input[int]):
-        pulumi.set(self, "retry_interval", value)
-
-    @property
     @pulumi.getter
     def vhost(self) -> pulumi.Input[str]:
         """
@@ -108,6 +101,30 @@ class WebhookArgs:
     def webhook_uri(self, value: pulumi.Input[str]):
         pulumi.set(self, "webhook_uri", value)
 
+    @property
+    @pulumi.getter
+    def sleep(self) -> Optional[pulumi.Input[int]]:
+        """
+        Configurable sleep time in seconds between retries for webhook
+        """
+        return pulumi.get(self, "sleep")
+
+    @sleep.setter
+    def sleep(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "sleep", value)
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Configurable timeout time in seconds for webhook
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "timeout", value)
+
 
 @pulumi.input_type
 class _WebhookState:
@@ -115,7 +132,8 @@ class _WebhookState:
                  concurrency: Optional[pulumi.Input[int]] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  queue: Optional[pulumi.Input[str]] = None,
-                 retry_interval: Optional[pulumi.Input[int]] = None,
+                 sleep: Optional[pulumi.Input[int]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
                  vhost: Optional[pulumi.Input[str]] = None,
                  webhook_uri: Optional[pulumi.Input[str]] = None):
         """
@@ -123,7 +141,8 @@ class _WebhookState:
         :param pulumi.Input[int] concurrency: Max simultaneous requests to the endpoint.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] queue: A (durable) queue on your RabbitMQ instance.
-        :param pulumi.Input[int] retry_interval: How often we retry if your endpoint fails (in seconds).
+        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for webhook
+        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for webhook
         :param pulumi.Input[str] vhost: The vhost the queue resides in.
         :param pulumi.Input[str] webhook_uri: A POST request will be made for each message in the queue to this endpoint.
         """
@@ -133,8 +152,10 @@ class _WebhookState:
             pulumi.set(__self__, "instance_id", instance_id)
         if queue is not None:
             pulumi.set(__self__, "queue", queue)
-        if retry_interval is not None:
-            pulumi.set(__self__, "retry_interval", retry_interval)
+        if sleep is not None:
+            pulumi.set(__self__, "sleep", sleep)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
         if vhost is not None:
             pulumi.set(__self__, "vhost", vhost)
         if webhook_uri is not None:
@@ -177,16 +198,28 @@ class _WebhookState:
         pulumi.set(self, "queue", value)
 
     @property
-    @pulumi.getter(name="retryInterval")
-    def retry_interval(self) -> Optional[pulumi.Input[int]]:
+    @pulumi.getter
+    def sleep(self) -> Optional[pulumi.Input[int]]:
         """
-        How often we retry if your endpoint fails (in seconds).
+        Configurable sleep time in seconds between retries for webhook
         """
-        return pulumi.get(self, "retry_interval")
+        return pulumi.get(self, "sleep")
 
-    @retry_interval.setter
-    def retry_interval(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "retry_interval", value)
+    @sleep.setter
+    def sleep(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "sleep", value)
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Configurable timeout time in seconds for webhook
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "timeout", value)
 
     @property
     @pulumi.getter
@@ -221,34 +254,12 @@ class Webhook(pulumi.CustomResource):
                  concurrency: Optional[pulumi.Input[int]] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  queue: Optional[pulumi.Input[str]] = None,
-                 retry_interval: Optional[pulumi.Input[int]] = None,
+                 sleep: Optional[pulumi.Input[int]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
                  vhost: Optional[pulumi.Input[str]] = None,
                  webhook_uri: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        This resource allows you to enable or disable webhooks for a specific vhost and queue.
-
-        Only available for dedicated subscription plans.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        webhook_queue = cloudamqp.Webhook("webhook_queue",
-            instance_id=instance["id"],
-            vhost="myvhost",
-            queue="webhook-queue",
-            webhook_uri="https://example.com/webhook?key=secret",
-            retry_interval=5,
-            concurrency=5)
-        ```
-
-        ## Dependency
-
-        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-
         ## Import
 
         `cloudamqp_webhook` can be imported using the resource identifier together with CloudAMQP instance identifier. The identifiers are CSV separated, see example below.
@@ -262,7 +273,8 @@ class Webhook(pulumi.CustomResource):
         :param pulumi.Input[int] concurrency: Max simultaneous requests to the endpoint.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] queue: A (durable) queue on your RabbitMQ instance.
-        :param pulumi.Input[int] retry_interval: How often we retry if your endpoint fails (in seconds).
+        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for webhook
+        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for webhook
         :param pulumi.Input[str] vhost: The vhost the queue resides in.
         :param pulumi.Input[str] webhook_uri: A POST request will be made for each message in the queue to this endpoint.
         """
@@ -273,29 +285,6 @@ class Webhook(pulumi.CustomResource):
                  args: WebhookArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        This resource allows you to enable or disable webhooks for a specific vhost and queue.
-
-        Only available for dedicated subscription plans.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        webhook_queue = cloudamqp.Webhook("webhook_queue",
-            instance_id=instance["id"],
-            vhost="myvhost",
-            queue="webhook-queue",
-            webhook_uri="https://example.com/webhook?key=secret",
-            retry_interval=5,
-            concurrency=5)
-        ```
-
-        ## Dependency
-
-        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-
         ## Import
 
         `cloudamqp_webhook` can be imported using the resource identifier together with CloudAMQP instance identifier. The identifiers are CSV separated, see example below.
@@ -322,7 +311,8 @@ class Webhook(pulumi.CustomResource):
                  concurrency: Optional[pulumi.Input[int]] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  queue: Optional[pulumi.Input[str]] = None,
-                 retry_interval: Optional[pulumi.Input[int]] = None,
+                 sleep: Optional[pulumi.Input[int]] = None,
+                 timeout: Optional[pulumi.Input[int]] = None,
                  vhost: Optional[pulumi.Input[str]] = None,
                  webhook_uri: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -343,9 +333,8 @@ class Webhook(pulumi.CustomResource):
             if queue is None and not opts.urn:
                 raise TypeError("Missing required property 'queue'")
             __props__.__dict__["queue"] = queue
-            if retry_interval is None and not opts.urn:
-                raise TypeError("Missing required property 'retry_interval'")
-            __props__.__dict__["retry_interval"] = retry_interval
+            __props__.__dict__["sleep"] = sleep
+            __props__.__dict__["timeout"] = timeout
             if vhost is None and not opts.urn:
                 raise TypeError("Missing required property 'vhost'")
             __props__.__dict__["vhost"] = vhost
@@ -365,7 +354,8 @@ class Webhook(pulumi.CustomResource):
             concurrency: Optional[pulumi.Input[int]] = None,
             instance_id: Optional[pulumi.Input[int]] = None,
             queue: Optional[pulumi.Input[str]] = None,
-            retry_interval: Optional[pulumi.Input[int]] = None,
+            sleep: Optional[pulumi.Input[int]] = None,
+            timeout: Optional[pulumi.Input[int]] = None,
             vhost: Optional[pulumi.Input[str]] = None,
             webhook_uri: Optional[pulumi.Input[str]] = None) -> 'Webhook':
         """
@@ -378,7 +368,8 @@ class Webhook(pulumi.CustomResource):
         :param pulumi.Input[int] concurrency: Max simultaneous requests to the endpoint.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] queue: A (durable) queue on your RabbitMQ instance.
-        :param pulumi.Input[int] retry_interval: How often we retry if your endpoint fails (in seconds).
+        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for webhook
+        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for webhook
         :param pulumi.Input[str] vhost: The vhost the queue resides in.
         :param pulumi.Input[str] webhook_uri: A POST request will be made for each message in the queue to this endpoint.
         """
@@ -389,7 +380,8 @@ class Webhook(pulumi.CustomResource):
         __props__.__dict__["concurrency"] = concurrency
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["queue"] = queue
-        __props__.__dict__["retry_interval"] = retry_interval
+        __props__.__dict__["sleep"] = sleep
+        __props__.__dict__["timeout"] = timeout
         __props__.__dict__["vhost"] = vhost
         __props__.__dict__["webhook_uri"] = webhook_uri
         return Webhook(resource_name, opts=opts, __props__=__props__)
@@ -419,12 +411,20 @@ class Webhook(pulumi.CustomResource):
         return pulumi.get(self, "queue")
 
     @property
-    @pulumi.getter(name="retryInterval")
-    def retry_interval(self) -> pulumi.Output[int]:
+    @pulumi.getter
+    def sleep(self) -> pulumi.Output[Optional[int]]:
         """
-        How often we retry if your endpoint fails (in seconds).
+        Configurable sleep time in seconds between retries for webhook
         """
-        return pulumi.get(self, "retry_interval")
+        return pulumi.get(self, "sleep")
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> pulumi.Output[Optional[int]]:
+        """
+        Configurable timeout time in seconds for webhook
+        """
+        return pulumi.get(self, "timeout")
 
     @property
     @pulumi.getter

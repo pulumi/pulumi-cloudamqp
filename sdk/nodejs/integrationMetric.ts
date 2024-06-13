@@ -4,6 +4,172 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * This resource allows you to create and manage, forwarding metrics to third party integrations for a CloudAMQP instance. Once configured, the metrics produced will be forward to corresponding integration.
+ *
+ * Only available for dedicated subscription plans.
+ *
+ * ## Example Usage
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Cloudwatch v1 and v2 metric integration</i>
+ *     </b>
+ *   </summary>
+ *
+ * ***Access key***
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const cloudwatch = new cloudamqp.IntegrationMetric("cloudwatch", {
+ *     instanceId: instance.id,
+ *     name: "cloudwatch",
+ *     accessKeyId: awsAccessKeyId,
+ *     secretAccessKey: varAwsSecretAcccessKey,
+ *     region: awsRegion,
+ * });
+ * const cloudwatchV2 = new cloudamqp.IntegrationMetric("cloudwatch_v2", {
+ *     instanceId: instance.id,
+ *     name: "cloudwatch_v2",
+ *     accessKeyId: awsAccessKeyId,
+ *     secretAccessKey: varAwsSecretAcccessKey,
+ *     region: awsRegion,
+ * });
+ * ```
+ *
+ * ***Assume role***
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const cloudwatch = new cloudamqp.IntegrationMetric("cloudwatch", {
+ *     instanceId: instance.id,
+ *     name: "cloudwatch",
+ *     iamRole: awsIamRole,
+ *     iamExternalId: externalId,
+ *     region: awsRegion,
+ * });
+ * const cloudwatchV2 = new cloudamqp.IntegrationMetric("cloudwatch_v2", {
+ *     instanceId: instance.id,
+ *     name: "cloudwatch_v2",
+ *     iamRole: awsIamRole,
+ *     iamExternalId: externalId,
+ *     region: awsRegion,
+ * });
+ * ```
+ *
+ * * AWS IAM role: arn:aws:iam::ACCOUNT-ID:role/ROLE-NAME
+ * * External id: Create own external identifier that match the role created. E.g. "cloudamqp-abc123".
+ *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Datadog v1 and v2 metric integration</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const datadog = new cloudamqp.IntegrationMetric("datadog", {
+ *     instanceId: instance.id,
+ *     name: "datadog",
+ *     apiKey: datadogApiKey,
+ *     region: datadogRegion,
+ *     tags: "env=prod,region=us1,version=v1.0",
+ * });
+ * const datadogV2 = new cloudamqp.IntegrationMetric("datadog_v2", {
+ *     instanceId: instance.id,
+ *     name: "datadog_v2",
+ *     apiKey: datadogApiKey,
+ *     region: datadogRegion,
+ *     tags: "env=prod,region=us1,version=v1.0",
+ * });
+ * ```
+ *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Librato metric integration</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const librato = new cloudamqp.IntegrationMetric("librato", {
+ *     instanceId: instance.id,
+ *     name: "librato",
+ *     email: libratoEmail,
+ *     apiKey: libratoApiKey,
+ * });
+ * ```
+ *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>New relic v2 metric integration</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const newrelic = new cloudamqp.IntegrationMetric("newrelic", {
+ *     instanceId: instance.id,
+ *     name: "newrelic_v2",
+ *     apiKey: newrelicApiKey,
+ *     region: newrelicRegion,
+ * });
+ * ```
+ *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Stackdriver metric integration (v1.20.2 or earlier versions)</i>
+ *     </b>
+ *   </summary>
+ *
+ * Use variable file populated with project_id, privateKey and clientEmail
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const stackdriver = new cloudamqp.IntegrationMetric("stackdriver", {
+ *     instanceId: instance.id,
+ *     name: "stackdriver",
+ *     projectId: stackdriverProjectId,
+ *     privateKey: stackdriverPrivateKey,
+ *     clientEmail: stackriverEmail,
+ * });
+ * ```
+ *
+ * or by using googleServiceAccountKey resource from Google provider
+ *
+ * ## Import
+ *
+ * `cloudamqp_integration_metric`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+ *
+ * ```sh
+ * $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric <resource_name> <resource_id>,<instance_id>`
+ * ```
+ */
 export class IntegrationMetric extends pulumi.CustomResource {
     /**
      * Get an existing IntegrationMetric resource's state with the given name, ID, and optional extra
@@ -156,14 +322,14 @@ export class IntegrationMetric extends pulumi.CustomResource {
                 throw new Error("Missing required property 'instanceId'");
             }
             resourceInputs["accessKeyId"] = args ? args.accessKeyId : undefined;
-            resourceInputs["apiKey"] = args ? args.apiKey : undefined;
+            resourceInputs["apiKey"] = args?.apiKey ? pulumi.secret(args.apiKey) : undefined;
             resourceInputs["clientEmail"] = args ? args.clientEmail : undefined;
             resourceInputs["credentials"] = args?.credentials ? pulumi.secret(args.credentials) : undefined;
             resourceInputs["email"] = args ? args.email : undefined;
             resourceInputs["iamExternalId"] = args ? args.iamExternalId : undefined;
             resourceInputs["iamRole"] = args ? args.iamRole : undefined;
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["licenseKey"] = args ? args.licenseKey : undefined;
+            resourceInputs["licenseKey"] = args?.licenseKey ? pulumi.secret(args.licenseKey) : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["privateKey"] = args?.privateKey ? pulumi.secret(args.privateKey) : undefined;
             resourceInputs["privateKeyId"] = args?.privateKeyId ? pulumi.secret(args.privateKeyId) : undefined;
@@ -177,7 +343,7 @@ export class IntegrationMetric extends pulumi.CustomResource {
             resourceInputs["vhostWhitelist"] = args ? args.vhostWhitelist : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["credentials", "privateKey", "privateKeyId", "secretAccessKey"] };
+        const secretOpts = { additionalSecretOutputs: ["apiKey", "credentials", "licenseKey", "privateKey", "privateKeyId", "secretAccessKey"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(IntegrationMetric.__pulumiType, name, resourceInputs, opts);
     }

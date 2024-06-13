@@ -71,12 +71,13 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
+    /// 
     /// &lt;/details&gt;
     /// 
     /// &lt;details&gt;
     ///   &lt;summary&gt;
     ///     &lt;b&gt;
-    ///       &lt;i&gt;Dedicated instance using attribute vpc_subnet to create VPC, pre v1.16.0&lt;/i&gt;
+    ///       &lt;i&gt;Dedicated instance using attribute vpc_subnet to create VPC, before v1.16.0&lt;/i&gt;
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
@@ -102,12 +103,13 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
+    /// 
     /// &lt;/details&gt;
     /// 
     /// &lt;details&gt;
     ///   &lt;summary&gt;
     ///     &lt;b&gt;
-    ///       &lt;i&gt;Dedicated instance using attribute vpc_subnet to create VPC and then import managed VPC, post v1.16.0 (Managed VPC)&lt;/i&gt;
+    ///       &lt;i&gt;Dedicated instance using attribute vpc_subnet to create VPC and then import managed VPC, from v1.16.0 (Managed VPC)&lt;/i&gt;
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
@@ -172,12 +174,13 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
+    /// 
     /// &lt;/details&gt;
     /// 
     /// &lt;details&gt;
     ///   &lt;summary&gt;
     ///     &lt;b&gt;
-    ///       &lt;i&gt;Dedicated instances and managed VPC, post v1.16.0 (Managed VPC)&lt;/i&gt;
+    ///       &lt;i&gt;Dedicated instances and managed VPC, from v1.16.0 (Managed VPC)&lt;/i&gt;
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
@@ -230,6 +233,7 @@ namespace Pulumi.CloudAmqp
     /// ```
     /// 
     /// Set attribute `keep_associated_vpc` to true, will keep managed VPC when deleting the instances.
+    /// 
     /// &lt;/details&gt;
     /// 
     /// ## Copy settings to a new dedicated instance
@@ -286,6 +290,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
+    /// 
     /// &lt;/details&gt;
     /// 
     /// ## Import

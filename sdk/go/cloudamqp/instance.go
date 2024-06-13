@@ -81,13 +81,14 @@ import (
 //	}
 //
 // ```
+//
 // </details>
 //
 // <details>
 //
 //	<summary>
 //	  <b>
-//	    <i>Dedicated instance using attribute vpcSubnet to create VPC, pre v1.16.0</i>
+//	    <i>Dedicated instance using attribute vpcSubnet to create VPC, before v1.16.0</i>
 //	  </b>
 //	</summary>
 //
@@ -120,13 +121,14 @@ import (
 //	}
 //
 // ```
+//
 // </details>
 //
 // <details>
 //
 //	<summary>
 //	  <b>
-//	    <i>Dedicated instance using attribute vpcSubnet to create VPC and then import managed VPC, post v1.16.0 (Managed VPC)</i>
+//	    <i>Dedicated instance using attribute vpcSubnet to create VPC and then import managed VPC, from v1.16.0 (Managed VPC)</i>
 //	  </b>
 //	</summary>
 //
@@ -206,13 +208,14 @@ import (
 //	}
 //
 // ```
+//
 // </details>
 //
 // <details>
 //
 //	<summary>
 //	  <b>
-//	    <i>Dedicated instances and managed VPC, post v1.16.0 (Managed VPC)</i>
+//	    <i>Dedicated instances and managed VPC, from v1.16.0 (Managed VPC)</i>
 //	  </b>
 //	</summary>
 //
@@ -273,6 +276,7 @@ import (
 // ```
 //
 // Set attribute `keepAssociatedVpc` to true, will keep managed VPC when deleting the instances.
+//
 // </details>
 //
 // ## Copy settings to a new dedicated instance
@@ -334,6 +338,7 @@ import (
 //	}
 //
 // ```
+//
 // </details>
 //
 // ## Import

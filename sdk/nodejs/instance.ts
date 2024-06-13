@@ -48,12 +48,13 @@ import * as utilities from "./utilities";
  *     tags: ["terraform"],
  * });
  * ```
+ *
  * </details>
  *
  * <details>
  *   <summary>
  *     <b>
- *       <i>Dedicated instance using attribute vpcSubnet to create VPC, pre v1.16.0</i>
+ *       <i>Dedicated instance using attribute vpcSubnet to create VPC, before v1.16.0</i>
  *     </b>
  *   </summary>
  *
@@ -69,12 +70,13 @@ import * as utilities from "./utilities";
  *     vpcSubnet: "10.56.72.0/24",
  * });
  * ```
+ *
  * </details>
  *
  * <details>
  *   <summary>
  *     <b>
- *       <i>Dedicated instance using attribute vpcSubnet to create VPC and then import managed VPC, post v1.16.0 (Managed VPC)</i>
+ *       <i>Dedicated instance using attribute vpcSubnet to create VPC and then import managed VPC, from v1.16.0 (Managed VPC)</i>
  *     </b>
  *   </summary>
  *
@@ -117,12 +119,13 @@ import * as utilities from "./utilities";
  *     keepAssociatedVpc: true,
  * });
  * ```
+ *
  * </details>
  *
  * <details>
  *   <summary>
  *     <b>
- *       <i>Dedicated instances and managed VPC, post v1.16.0 (Managed VPC)</i>
+ *       <i>Dedicated instances and managed VPC, from v1.16.0 (Managed VPC)</i>
  *     </b>
  *   </summary>
  *
@@ -158,6 +161,7 @@ import * as utilities from "./utilities";
  * ```
  *
  * Set attribute `keepAssociatedVpc` to true, will keep managed VPC when deleting the instances.
+ *
  * </details>
  *
  * ## Copy settings to a new dedicated instance
@@ -199,6 +203,7 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
+ *
  * </details>
  *
  * ## Import

@@ -169,6 +169,7 @@ class NodeActions(pulumi.CustomResource):
             node_name="<node name>",
             action="restart")
         ```
+
         </details>
 
         Using data source `get_nodes` to restart RabbitMQ on all nodes.</br>
@@ -204,6 +205,7 @@ class NodeActions(pulumi.CustomResource):
                     restart02,
                 ]))
         ```
+
         </details>
 
         <details>
@@ -244,6 +246,7 @@ class NodeActions(pulumi.CustomResource):
                     restart02,
                 ]))
         ```
+
         </details>
 
         ## Action reference
@@ -302,6 +305,7 @@ class NodeActions(pulumi.CustomResource):
             node_name="<node name>",
             action="restart")
         ```
+
         </details>
 
         Using data source `get_nodes` to restart RabbitMQ on all nodes.</br>
@@ -337,6 +341,7 @@ class NodeActions(pulumi.CustomResource):
                     restart02,
                 ]))
         ```
+
         </details>
 
         <details>
@@ -377,6 +382,7 @@ class NodeActions(pulumi.CustomResource):
                     restart02,
                 ]))
         ```
+
         </details>
 
         ## Action reference

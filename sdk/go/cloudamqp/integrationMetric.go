@@ -12,6 +12,274 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// This resource allows you to create and manage, forwarding metrics to third party integrations for a CloudAMQP instance. Once configured, the metrics produced will be forward to corresponding integration.
+//
+// Only available for dedicated subscription plans.
+//
+// ## Example Usage
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Cloudwatch v1 and v2 metric integration</i>
+//	  </b>
+//	</summary>
+//
+// ***Access key***
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewIntegrationMetric(ctx, "cloudwatch", &cloudamqp.IntegrationMetricArgs{
+//				InstanceId:      pulumi.Any(instance.Id),
+//				Name:            pulumi.String("cloudwatch"),
+//				AccessKeyId:     pulumi.Any(awsAccessKeyId),
+//				SecretAccessKey: pulumi.Any(varAwsSecretAcccessKey),
+//				Region:          pulumi.Any(awsRegion),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewIntegrationMetric(ctx, "cloudwatch_v2", &cloudamqp.IntegrationMetricArgs{
+//				InstanceId:      pulumi.Any(instance.Id),
+//				Name:            pulumi.String("cloudwatch_v2"),
+//				AccessKeyId:     pulumi.Any(awsAccessKeyId),
+//				SecretAccessKey: pulumi.Any(varAwsSecretAcccessKey),
+//				Region:          pulumi.Any(awsRegion),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ***Assume role***
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewIntegrationMetric(ctx, "cloudwatch", &cloudamqp.IntegrationMetricArgs{
+//				InstanceId:    pulumi.Any(instance.Id),
+//				Name:          pulumi.String("cloudwatch"),
+//				IamRole:       pulumi.Any(awsIamRole),
+//				IamExternalId: pulumi.Any(externalId),
+//				Region:        pulumi.Any(awsRegion),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewIntegrationMetric(ctx, "cloudwatch_v2", &cloudamqp.IntegrationMetricArgs{
+//				InstanceId:    pulumi.Any(instance.Id),
+//				Name:          pulumi.String("cloudwatch_v2"),
+//				IamRole:       pulumi.Any(awsIamRole),
+//				IamExternalId: pulumi.Any(externalId),
+//				Region:        pulumi.Any(awsRegion),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// * AWS IAM role: arn:aws:iam::ACCOUNT-ID:role/ROLE-NAME
+// * External id: Create own external identifier that match the role created. E.g. "cloudamqp-abc123".
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Datadog v1 and v2 metric integration</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewIntegrationMetric(ctx, "datadog", &cloudamqp.IntegrationMetricArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				Name:       pulumi.String("datadog"),
+//				ApiKey:     pulumi.Any(datadogApiKey),
+//				Region:     pulumi.Any(datadogRegion),
+//				Tags:       pulumi.String("env=prod,region=us1,version=v1.0"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewIntegrationMetric(ctx, "datadog_v2", &cloudamqp.IntegrationMetricArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				Name:       pulumi.String("datadog_v2"),
+//				ApiKey:     pulumi.Any(datadogApiKey),
+//				Region:     pulumi.Any(datadogRegion),
+//				Tags:       pulumi.String("env=prod,region=us1,version=v1.0"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Librato metric integration</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewIntegrationMetric(ctx, "librato", &cloudamqp.IntegrationMetricArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				Name:       pulumi.String("librato"),
+//				Email:      pulumi.Any(libratoEmail),
+//				ApiKey:     pulumi.Any(libratoApiKey),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>New relic v2 metric integration</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewIntegrationMetric(ctx, "newrelic", &cloudamqp.IntegrationMetricArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				Name:       pulumi.String("newrelic_v2"),
+//				ApiKey:     pulumi.Any(newrelicApiKey),
+//				Region:     pulumi.Any(newrelicRegion),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Stackdriver metric integration (v1.20.2 or earlier versions)</i>
+//	  </b>
+//	</summary>
+//
+// Use variable file populated with project_id, privateKey and clientEmail
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewIntegrationMetric(ctx, "stackdriver", &cloudamqp.IntegrationMetricArgs{
+//				InstanceId:  pulumi.Any(instance.Id),
+//				Name:        pulumi.String("stackdriver"),
+//				ProjectId:   pulumi.Any(stackdriverProjectId),
+//				PrivateKey:  pulumi.Any(stackdriverPrivateKey),
+//				ClientEmail: pulumi.Any(stackriverEmail),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// or by using googleServiceAccountKey resource from Google provider
+//
+// ## Import
+//
+// `cloudamqp_integration_metric`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+//
+// ```sh
+// $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric <resource_name> <resource_id>,<instance_id>`
+// ```
 type IntegrationMetric struct {
 	pulumi.CustomResourceState
 
@@ -71,8 +339,14 @@ func NewIntegrationMetric(ctx *pulumi.Context,
 	if args.InstanceId == nil {
 		return nil, errors.New("invalid value for required argument 'InstanceId'")
 	}
+	if args.ApiKey != nil {
+		args.ApiKey = pulumi.ToSecret(args.ApiKey).(pulumi.StringPtrInput)
+	}
 	if args.Credentials != nil {
 		args.Credentials = pulumi.ToSecret(args.Credentials).(pulumi.StringPtrInput)
+	}
+	if args.LicenseKey != nil {
+		args.LicenseKey = pulumi.ToSecret(args.LicenseKey).(pulumi.StringPtrInput)
 	}
 	if args.PrivateKey != nil {
 		args.PrivateKey = pulumi.ToSecret(args.PrivateKey).(pulumi.StringPtrInput)
@@ -84,7 +358,9 @@ func NewIntegrationMetric(ctx *pulumi.Context,
 		args.SecretAccessKey = pulumi.ToSecret(args.SecretAccessKey).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"apiKey",
 		"credentials",
+		"licenseKey",
 		"privateKey",
 		"privateKeyId",
 		"secretAccessKey",
