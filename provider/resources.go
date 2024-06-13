@@ -18,7 +18,6 @@ import (
 	"fmt"
 	"net/http"
 	"path"
-	"unicode"
 
 	"github.com/cloudamqp/terraform-provider-cloudamqp/cloudamqp"
 
@@ -38,24 +37,7 @@ const (
 	mainMod = "index" // the y module
 )
 
-func makeToken(mod, name string) string {
-	fulllMod := string(unicode.ToLower(rune(name[0]))) + name[1:]
-	return fmt.Sprintf("%s:%s/%s:%s", mainPkg, mod, fulllMod, name)
-}
-
-// makeDataSource manufactures a standard resource token given a module and resource name.  It
-// automatically uses the main package and names the file by simply lower casing the data source's
-// first character.
-func makeDataSource(mod string, dataSource string) tokens.ModuleMember {
-	return tokens.ModuleMember(makeToken(mod, dataSource))
-}
-
-// makeResource manufactures a standard resource token given a module and resource name.  It
-// automatically uses the main package and names the file by simply lower casing the resource's
-// first character.
-func makeResource(mod string, res string) tokens.Type {
-	return tokens.Type(makeToken(mod, res))
-}
+func makeResource(res string) tokens.Type { return tfbridge.MakeResource(mainPkg, mainMod, res) }
 
 func ref[T any](t T) *T { return &t }
 
@@ -73,47 +55,17 @@ func Provider() tfbridge.ProviderInfo {
 		Repository:        "https://github.com/pulumi/pulumi-cloudamqp",
 		Config:            map[string]*tfbridge.SchemaInfo{},
 		Resources: map[string]*tfbridge.ResourceInfo{
-			"cloudamqp_alarm":             {Tok: makeResource(mainMod, "Alarm")},
-			"cloudamqp_instance":          {Tok: makeResource(mainMod, "Instance")},
-			"cloudamqp_notification":      {Tok: makeResource(mainMod, "Notification")},
-			"cloudamqp_plugin":            {Tok: makeResource(mainMod, "Plugin")},
-			"cloudamqp_plugin_community":  {Tok: makeResource(mainMod, "PluginCommunity")},
-			"cloudamqp_security_firewall": {Tok: makeResource(mainMod, "SecurityFirewall")},
-			"cloudamqp_vpc_peering":       {Tok: makeResource(mainMod, "VpcPeering")},
-			"cloudamqp_integration_log":   {Tok: makeResource(mainMod, "IntegrationLog")},
+			"cloudamqp_rabbitmq_configuration": {Tok: makeResource("RabbitConfiguration")},
 			"cloudamqp_integration_metric": {
-				Tok:  makeResource(mainMod, "IntegrationMetric"),
 				Docs: &tfbridge.DocInfo{AllowMissing: true},
 			},
-			"cloudamqp_webhook":                {Tok: makeResource(mainMod, "Webhook")},
-			"cloudamqp_custom_domain":          {Tok: makeResource(mainMod, "CustomDomain")},
-			"cloudamqp_vpc_gcp_peering":        {Tok: makeResource(mainMod, "VpcGcpPeering")},
-			"cloudamqp_upgrade_rabbitmq":       {Tok: makeResource(mainMod, "UpgradeRabbitmq")},
-			"cloudamqp_vpc":                    {Tok: makeResource(mainMod, "Vpc")},
-			"cloudamqp_node_actions":           {Tok: makeResource(mainMod, "NodeActions")},
-			"cloudamqp_rabbitmq_configuration": {Tok: makeResource(mainMod, "RabbitConfiguration")},
 			"cloudamqp_extra_disk_size": {
-				Tok: makeResource(mainMod, "ExtraDiskSize"),
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"extra_disk_size": {
 						CSharpName: "ExtraDiskSizeGb",
 					},
 				},
 			},
-		},
-		DataSources: map[string]*tfbridge.DataSourceInfo{
-			"cloudamqp_credentials":         {Tok: makeDataSource(mainMod, "getCredentials")},
-			"cloudamqp_plugins":             {Tok: makeDataSource(mainMod, "getPlugins")},
-			"cloudamqp_plugins_community":   {Tok: makeDataSource(mainMod, "getPluginsCommunity")},
-			"cloudamqp_vpc_info":            {Tok: makeDataSource(mainMod, "getVpcInfo")},
-			"cloudamqp_instance":            {Tok: makeDataSource(mainMod, "getInstance")},
-			"cloudamqp_notification":        {Tok: makeDataSource(mainMod, "getNotification")},
-			"cloudamqp_alarm":               {Tok: makeDataSource(mainMod, "getAlarm")},
-			"cloudamqp_nodes":               {Tok: makeDataSource(mainMod, "getNodes")},
-			"cloudamqp_account":             {Tok: makeDataSource(mainMod, "getAccount")},
-			"cloudamqp_vpc_gcp_info":        {Tok: makeDataSource(mainMod, "getVpcGcpInfo")},
-			"cloudamqp_account_vpcs":        {Tok: makeDataSource(mainMod, "getAccountVpcs")},
-			"cloudamqp_upgradable_versions": {Tok: makeDataSource(mainMod, "getUpgradableVersions")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			Dependencies: map[string]string{
