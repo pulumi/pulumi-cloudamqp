@@ -717,7 +717,162 @@ class IntegrationMetric(pulumi.CustomResource):
                  vhost_whitelist: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a IntegrationMetric resource with the given unique name, props, and options.
+        This resource allows you to create and manage, forwarding metrics to third party integrations for a CloudAMQP instance. Once configured, the metrics produced will be forward to corresponding integration.
+
+        Only available for dedicated subscription plans.
+
+        ## Example Usage
+
+        <details>
+          <summary>
+            <b>
+              <i>Cloudwatch v1 and v2 metric integration</i>
+            </b>
+          </summary>
+
+        ***Access key***
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        cloudwatch = cloudamqp.IntegrationMetric("cloudwatch",
+            instance_id=instance["id"],
+            name="cloudwatch",
+            access_key_id=aws_access_key_id,
+            secret_access_key=var_aws_secret_acccess_key,
+            region=aws_region)
+        cloudwatch_v2 = cloudamqp.IntegrationMetric("cloudwatch_v2",
+            instance_id=instance["id"],
+            name="cloudwatch_v2",
+            access_key_id=aws_access_key_id,
+            secret_access_key=var_aws_secret_acccess_key,
+            region=aws_region)
+        ```
+
+        ***Assume role***
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        cloudwatch = cloudamqp.IntegrationMetric("cloudwatch",
+            instance_id=instance["id"],
+            name="cloudwatch",
+            iam_role=aws_iam_role,
+            iam_external_id=external_id,
+            region=aws_region)
+        cloudwatch_v2 = cloudamqp.IntegrationMetric("cloudwatch_v2",
+            instance_id=instance["id"],
+            name="cloudwatch_v2",
+            iam_role=aws_iam_role,
+            iam_external_id=external_id,
+            region=aws_region)
+        ```
+
+        * AWS IAM role: arn:aws:iam::ACCOUNT-ID:role/ROLE-NAME
+        * External id: Create own external identifier that match the role created. E.g. "cloudamqp-abc123".
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Datadog v1 and v2 metric integration</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        datadog = cloudamqp.IntegrationMetric("datadog",
+            instance_id=instance["id"],
+            name="datadog",
+            api_key=datadog_api_key,
+            region=datadog_region,
+            tags="env=prod,region=us1,version=v1.0")
+        datadog_v2 = cloudamqp.IntegrationMetric("datadog_v2",
+            instance_id=instance["id"],
+            name="datadog_v2",
+            api_key=datadog_api_key,
+            region=datadog_region,
+            tags="env=prod,region=us1,version=v1.0")
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Librato metric integration</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        librato = cloudamqp.IntegrationMetric("librato",
+            instance_id=instance["id"],
+            name="librato",
+            email=librato_email,
+            api_key=librato_api_key)
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>New relic v2 metric integration</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        newrelic = cloudamqp.IntegrationMetric("newrelic",
+            instance_id=instance["id"],
+            name="newrelic_v2",
+            api_key=newrelic_api_key,
+            region=newrelic_region)
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Stackdriver metric integration (v1.20.2 or earlier versions)</i>
+            </b>
+          </summary>
+
+        Use variable file populated with project_id, private_key and client_email
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        stackdriver = cloudamqp.IntegrationMetric("stackdriver",
+            instance_id=instance["id"],
+            name="stackdriver",
+            project_id=stackdriver_project_id,
+            private_key=stackdriver_private_key,
+            client_email=stackriver_email)
+        ```
+
+        or by using google_service_account_key resource from Google provider
+
+        ## Import
+
+        `cloudamqp_integration_metric`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+
+        ```sh
+        $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric <resource_name> <resource_id>,<instance_id>`
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key_id: AWS access key identifier. (Cloudwatch)
@@ -748,7 +903,162 @@ class IntegrationMetric(pulumi.CustomResource):
                  args: IntegrationMetricArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a IntegrationMetric resource with the given unique name, props, and options.
+        This resource allows you to create and manage, forwarding metrics to third party integrations for a CloudAMQP instance. Once configured, the metrics produced will be forward to corresponding integration.
+
+        Only available for dedicated subscription plans.
+
+        ## Example Usage
+
+        <details>
+          <summary>
+            <b>
+              <i>Cloudwatch v1 and v2 metric integration</i>
+            </b>
+          </summary>
+
+        ***Access key***
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        cloudwatch = cloudamqp.IntegrationMetric("cloudwatch",
+            instance_id=instance["id"],
+            name="cloudwatch",
+            access_key_id=aws_access_key_id,
+            secret_access_key=var_aws_secret_acccess_key,
+            region=aws_region)
+        cloudwatch_v2 = cloudamqp.IntegrationMetric("cloudwatch_v2",
+            instance_id=instance["id"],
+            name="cloudwatch_v2",
+            access_key_id=aws_access_key_id,
+            secret_access_key=var_aws_secret_acccess_key,
+            region=aws_region)
+        ```
+
+        ***Assume role***
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        cloudwatch = cloudamqp.IntegrationMetric("cloudwatch",
+            instance_id=instance["id"],
+            name="cloudwatch",
+            iam_role=aws_iam_role,
+            iam_external_id=external_id,
+            region=aws_region)
+        cloudwatch_v2 = cloudamqp.IntegrationMetric("cloudwatch_v2",
+            instance_id=instance["id"],
+            name="cloudwatch_v2",
+            iam_role=aws_iam_role,
+            iam_external_id=external_id,
+            region=aws_region)
+        ```
+
+        * AWS IAM role: arn:aws:iam::ACCOUNT-ID:role/ROLE-NAME
+        * External id: Create own external identifier that match the role created. E.g. "cloudamqp-abc123".
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Datadog v1 and v2 metric integration</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        datadog = cloudamqp.IntegrationMetric("datadog",
+            instance_id=instance["id"],
+            name="datadog",
+            api_key=datadog_api_key,
+            region=datadog_region,
+            tags="env=prod,region=us1,version=v1.0")
+        datadog_v2 = cloudamqp.IntegrationMetric("datadog_v2",
+            instance_id=instance["id"],
+            name="datadog_v2",
+            api_key=datadog_api_key,
+            region=datadog_region,
+            tags="env=prod,region=us1,version=v1.0")
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Librato metric integration</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        librato = cloudamqp.IntegrationMetric("librato",
+            instance_id=instance["id"],
+            name="librato",
+            email=librato_email,
+            api_key=librato_api_key)
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>New relic v2 metric integration</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        newrelic = cloudamqp.IntegrationMetric("newrelic",
+            instance_id=instance["id"],
+            name="newrelic_v2",
+            api_key=newrelic_api_key,
+            region=newrelic_region)
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Stackdriver metric integration (v1.20.2 or earlier versions)</i>
+            </b>
+          </summary>
+
+        Use variable file populated with project_id, private_key and client_email
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        stackdriver = cloudamqp.IntegrationMetric("stackdriver",
+            instance_id=instance["id"],
+            name="stackdriver",
+            project_id=stackdriver_project_id,
+            private_key=stackdriver_private_key,
+            client_email=stackriver_email)
+        ```
+
+        or by using google_service_account_key resource from Google provider
+
+        ## Import
+
+        `cloudamqp_integration_metric`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+
+        ```sh
+        $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric <resource_name> <resource_id>,<instance_id>`
+        ```
+
         :param str resource_name: The name of the resource.
         :param IntegrationMetricArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -794,7 +1104,7 @@ class IntegrationMetric(pulumi.CustomResource):
             __props__ = IntegrationMetricArgs.__new__(IntegrationMetricArgs)
 
             __props__.__dict__["access_key_id"] = access_key_id
-            __props__.__dict__["api_key"] = api_key
+            __props__.__dict__["api_key"] = None if api_key is None else pulumi.Output.secret(api_key)
             __props__.__dict__["client_email"] = client_email
             __props__.__dict__["credentials"] = None if credentials is None else pulumi.Output.secret(credentials)
             __props__.__dict__["email"] = email
@@ -803,7 +1113,7 @@ class IntegrationMetric(pulumi.CustomResource):
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
-            __props__.__dict__["license_key"] = license_key
+            __props__.__dict__["license_key"] = None if license_key is None else pulumi.Output.secret(license_key)
             __props__.__dict__["name"] = name
             __props__.__dict__["private_key"] = None if private_key is None else pulumi.Output.secret(private_key)
             __props__.__dict__["private_key_id"] = None if private_key_id is None else pulumi.Output.secret(private_key_id)
@@ -815,7 +1125,7 @@ class IntegrationMetric(pulumi.CustomResource):
             __props__.__dict__["tags"] = tags
             __props__.__dict__["vhost_allowlist"] = vhost_allowlist
             __props__.__dict__["vhost_whitelist"] = vhost_whitelist
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["credentials", "privateKey", "privateKeyId", "secretAccessKey"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["apiKey", "credentials", "licenseKey", "privateKey", "privateKeyId", "secretAccessKey"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(IntegrationMetric, __self__).__init__(
             'cloudamqp:index/integrationMetric:IntegrationMetric',

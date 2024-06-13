@@ -64,6 +64,7 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * &lt;/details&gt;
  * 
  * Using data source `cloudamqp.getNodes` to restart RabbitMQ on all nodes.&lt;/br&gt;
@@ -135,6 +136,7 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * &lt;/details&gt;
  * 
  * &lt;details&gt;
@@ -215,6 +217,7 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * &lt;/details&gt;
  * 
  * ## Action reference

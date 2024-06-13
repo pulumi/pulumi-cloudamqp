@@ -10,37 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
-    /// This resource allows you to enable or disable webhooks for a specific vhost and queue.
-    /// 
-    /// Only available for dedicated subscription plans.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using CloudAmqp = Pulumi.CloudAmqp;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var webhookQueue = new CloudAmqp.Webhook("webhook_queue", new()
-    ///     {
-    ///         InstanceId = instance.Id,
-    ///         Vhost = "myvhost",
-    ///         Queue = "webhook-queue",
-    ///         WebhookUri = "https://example.com/webhook?key=secret",
-    ///         RetryInterval = 5,
-    ///         Concurrency = 5,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ## Dependency
-    /// 
-    /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-    /// 
     /// ## Import
     /// 
     /// `cloudamqp_webhook` can be imported using the resource identifier together with CloudAMQP instance identifier. The identifiers are CSV separated, see example below.
@@ -71,10 +40,16 @@ namespace Pulumi.CloudAmqp
         public Output<string> Queue { get; private set; } = null!;
 
         /// <summary>
-        /// How often we retry if your endpoint fails (in seconds).
+        /// Configurable sleep time in seconds between retries for webhook
         /// </summary>
-        [Output("retryInterval")]
-        public Output<int> RetryInterval { get; private set; } = null!;
+        [Output("sleep")]
+        public Output<int?> Sleep { get; private set; } = null!;
+
+        /// <summary>
+        /// Configurable timeout time in seconds for webhook
+        /// </summary>
+        [Output("timeout")]
+        public Output<int?> Timeout { get; private set; } = null!;
 
         /// <summary>
         /// The vhost the queue resides in.
@@ -153,10 +128,16 @@ namespace Pulumi.CloudAmqp
         public Input<string> Queue { get; set; } = null!;
 
         /// <summary>
-        /// How often we retry if your endpoint fails (in seconds).
+        /// Configurable sleep time in seconds between retries for webhook
         /// </summary>
-        [Input("retryInterval", required: true)]
-        public Input<int> RetryInterval { get; set; } = null!;
+        [Input("sleep")]
+        public Input<int>? Sleep { get; set; }
+
+        /// <summary>
+        /// Configurable timeout time in seconds for webhook
+        /// </summary>
+        [Input("timeout")]
+        public Input<int>? Timeout { get; set; }
 
         /// <summary>
         /// The vhost the queue resides in.
@@ -197,10 +178,16 @@ namespace Pulumi.CloudAmqp
         public Input<string>? Queue { get; set; }
 
         /// <summary>
-        /// How often we retry if your endpoint fails (in seconds).
+        /// Configurable sleep time in seconds between retries for webhook
         /// </summary>
-        [Input("retryInterval")]
-        public Input<int>? RetryInterval { get; set; }
+        [Input("sleep")]
+        public Input<int>? Sleep { get; set; }
+
+        /// <summary>
+        /// Configurable timeout time in seconds for webhook
+        /// </summary>
+        [Input("timeout")]
+        public Input<int>? Timeout { get; set; }
 
         /// <summary>
         /// The vhost the queue resides in.

@@ -201,7 +201,7 @@ import javax.annotation.Nullable;
  *             .name("datadog")
  *             .region(datadogRegion)
  *             .apiKey(datadogApiKey)
- *             .tags(datadogTags)
+ *             .tags("env=prod,region=us1,version=v1.0")
  *             .build());
  * 
  *     }
@@ -808,14 +808,18 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.table);
     }
     /**
-     * Tag the integration, e.g. env=prod,region=europe.
+     * Tags. e.g. `env=prod,region=europe`.
+     * 
+     * ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
      * 
      */
     @Export(name="tags", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tags;
 
     /**
-     * @return Tag the integration, e.g. env=prod,region=europe.
+     * @return Tags. e.g. `env=prod,region=europe`.
+     * 
+     * ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
      * 
      */
     public Output<Optional<String>> tags() {

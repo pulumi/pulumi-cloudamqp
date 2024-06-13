@@ -129,7 +129,7 @@ namespace Pulumi.CloudAmqp
     ///         Name = "datadog",
     ///         Region = datadogRegion,
     ///         ApiKey = datadogApiKey,
-    ///         Tags = datadogTags,
+    ///         Tags = "env=prod,region=us1,version=v1.0",
     ///     });
     /// 
     /// });
@@ -452,7 +452,9 @@ namespace Pulumi.CloudAmqp
         public Output<string?> Table { get; private set; } = null!;
 
         /// <summary>
-        /// Tag the integration, e.g. env=prod,region=europe.
+        /// Tags. e.g. `env=prod,region=europe`.
+        /// 
+        /// ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
         /// </summary>
         [Output("tags")]
         public Output<string?> Tags { get; private set; } = null!;
@@ -738,7 +740,9 @@ namespace Pulumi.CloudAmqp
         public Input<string>? Table { get; set; }
 
         /// <summary>
-        /// Tag the integration, e.g. env=prod,region=europe.
+        /// Tags. e.g. `env=prod,region=europe`.
+        /// 
+        /// ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
         /// </summary>
         [Input("tags")]
         public Input<string>? Tags { get; set; }
@@ -985,7 +989,9 @@ namespace Pulumi.CloudAmqp
         public Input<string>? Table { get; set; }
 
         /// <summary>
-        /// Tag the integration, e.g. env=prod,region=europe.
+        /// Tags. e.g. `env=prod,region=europe`.
+        /// 
+        /// ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
         /// </summary>
         [Input("tags")]
         public Input<string>? Tags { get; set; }

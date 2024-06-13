@@ -5,30 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * This resource allows you to enable or disable webhooks for a specific vhost and queue.
- *
- * Only available for dedicated subscription plans.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const webhookQueue = new cloudamqp.Webhook("webhook_queue", {
- *     instanceId: instance.id,
- *     vhost: "myvhost",
- *     queue: "webhook-queue",
- *     webhookUri: "https://example.com/webhook?key=secret",
- *     retryInterval: 5,
- *     concurrency: 5,
- * });
- * ```
- *
- * ## Dependency
- *
- * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
- *
  * ## Import
  *
  * `cloudamqp_webhook` can be imported using the resource identifier together with CloudAMQP instance identifier. The identifiers are CSV separated, see example below.
@@ -78,9 +54,13 @@ export class Webhook extends pulumi.CustomResource {
      */
     public readonly queue!: pulumi.Output<string>;
     /**
-     * How often we retry if your endpoint fails (in seconds).
+     * Configurable sleep time in seconds between retries for webhook
      */
-    public readonly retryInterval!: pulumi.Output<number>;
+    public readonly sleep!: pulumi.Output<number | undefined>;
+    /**
+     * Configurable timeout time in seconds for webhook
+     */
+    public readonly timeout!: pulumi.Output<number | undefined>;
     /**
      * The vhost the queue resides in.
      */
@@ -106,7 +86,8 @@ export class Webhook extends pulumi.CustomResource {
             resourceInputs["concurrency"] = state ? state.concurrency : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["queue"] = state ? state.queue : undefined;
-            resourceInputs["retryInterval"] = state ? state.retryInterval : undefined;
+            resourceInputs["sleep"] = state ? state.sleep : undefined;
+            resourceInputs["timeout"] = state ? state.timeout : undefined;
             resourceInputs["vhost"] = state ? state.vhost : undefined;
             resourceInputs["webhookUri"] = state ? state.webhookUri : undefined;
         } else {
@@ -120,9 +101,6 @@ export class Webhook extends pulumi.CustomResource {
             if ((!args || args.queue === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'queue'");
             }
-            if ((!args || args.retryInterval === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'retryInterval'");
-            }
             if ((!args || args.vhost === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'vhost'");
             }
@@ -132,7 +110,8 @@ export class Webhook extends pulumi.CustomResource {
             resourceInputs["concurrency"] = args ? args.concurrency : undefined;
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["queue"] = args ? args.queue : undefined;
-            resourceInputs["retryInterval"] = args ? args.retryInterval : undefined;
+            resourceInputs["sleep"] = args ? args.sleep : undefined;
+            resourceInputs["timeout"] = args ? args.timeout : undefined;
             resourceInputs["vhost"] = args ? args.vhost : undefined;
             resourceInputs["webhookUri"] = args ? args.webhookUri : undefined;
         }
@@ -158,9 +137,13 @@ export interface WebhookState {
      */
     queue?: pulumi.Input<string>;
     /**
-     * How often we retry if your endpoint fails (in seconds).
+     * Configurable sleep time in seconds between retries for webhook
      */
-    retryInterval?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number>;
+    /**
+     * Configurable timeout time in seconds for webhook
+     */
+    timeout?: pulumi.Input<number>;
     /**
      * The vhost the queue resides in.
      */
@@ -188,9 +171,13 @@ export interface WebhookArgs {
      */
     queue: pulumi.Input<string>;
     /**
-     * How often we retry if your endpoint fails (in seconds).
+     * Configurable sleep time in seconds between retries for webhook
      */
-    retryInterval: pulumi.Input<number>;
+    sleep?: pulumi.Input<number>;
+    /**
+     * Configurable timeout time in seconds for webhook
+     */
+    timeout?: pulumi.Input<number>;
     /**
      * The vhost the queue resides in.
      */

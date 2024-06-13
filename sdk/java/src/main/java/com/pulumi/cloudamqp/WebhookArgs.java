@@ -9,6 +9,8 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class WebhookArgs extends com.pulumi.resources.ResourceArgs {
@@ -61,18 +63,33 @@ public final class WebhookArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * How often we retry if your endpoint fails (in seconds).
+     * Configurable sleep time in seconds between retries for webhook
      * 
      */
-    @Import(name="retryInterval", required=true)
-    private Output<Integer> retryInterval;
+    @Import(name="sleep")
+    private @Nullable Output<Integer> sleep;
 
     /**
-     * @return How often we retry if your endpoint fails (in seconds).
+     * @return Configurable sleep time in seconds between retries for webhook
      * 
      */
-    public Output<Integer> retryInterval() {
-        return this.retryInterval;
+    public Optional<Output<Integer>> sleep() {
+        return Optional.ofNullable(this.sleep);
+    }
+
+    /**
+     * Configurable timeout time in seconds for webhook
+     * 
+     */
+    @Import(name="timeout")
+    private @Nullable Output<Integer> timeout;
+
+    /**
+     * @return Configurable timeout time in seconds for webhook
+     * 
+     */
+    public Optional<Output<Integer>> timeout() {
+        return Optional.ofNullable(this.timeout);
     }
 
     /**
@@ -111,7 +128,8 @@ public final class WebhookArgs extends com.pulumi.resources.ResourceArgs {
         this.concurrency = $.concurrency;
         this.instanceId = $.instanceId;
         this.queue = $.queue;
-        this.retryInterval = $.retryInterval;
+        this.sleep = $.sleep;
+        this.timeout = $.timeout;
         this.vhost = $.vhost;
         this.webhookUri = $.webhookUri;
     }
@@ -198,24 +216,45 @@ public final class WebhookArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param retryInterval How often we retry if your endpoint fails (in seconds).
+         * @param sleep Configurable sleep time in seconds between retries for webhook
          * 
          * @return builder
          * 
          */
-        public Builder retryInterval(Output<Integer> retryInterval) {
-            $.retryInterval = retryInterval;
+        public Builder sleep(@Nullable Output<Integer> sleep) {
+            $.sleep = sleep;
             return this;
         }
 
         /**
-         * @param retryInterval How often we retry if your endpoint fails (in seconds).
+         * @param sleep Configurable sleep time in seconds between retries for webhook
          * 
          * @return builder
          * 
          */
-        public Builder retryInterval(Integer retryInterval) {
-            return retryInterval(Output.of(retryInterval));
+        public Builder sleep(Integer sleep) {
+            return sleep(Output.of(sleep));
+        }
+
+        /**
+         * @param timeout Configurable timeout time in seconds for webhook
+         * 
+         * @return builder
+         * 
+         */
+        public Builder timeout(@Nullable Output<Integer> timeout) {
+            $.timeout = timeout;
+            return this;
+        }
+
+        /**
+         * @param timeout Configurable timeout time in seconds for webhook
+         * 
+         * @return builder
+         * 
+         */
+        public Builder timeout(Integer timeout) {
+            return timeout(Output.of(timeout));
         }
 
         /**
@@ -269,9 +308,6 @@ public final class WebhookArgs extends com.pulumi.resources.ResourceArgs {
             }
             if ($.queue == null) {
                 throw new MissingRequiredPropertyException("WebhookArgs", "queue");
-            }
-            if ($.retryInterval == null) {
-                throw new MissingRequiredPropertyException("WebhookArgs", "retryInterval");
             }
             if ($.vhost == null) {
                 throw new MissingRequiredPropertyException("WebhookArgs", "vhost");

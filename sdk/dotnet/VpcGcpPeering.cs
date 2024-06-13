@@ -24,7 +24,7 @@ namespace Pulumi.CloudAmqp
     /// &lt;details&gt;
     ///   &lt;summary&gt;
     ///     &lt;b&gt;
-    ///       &lt;i&gt;VPC peering pre v1.16.0&lt;/i&gt;
+    ///       &lt;i&gt;VPC peering before v1.16.0&lt;/i&gt;
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
@@ -70,7 +70,7 @@ namespace Pulumi.CloudAmqp
     /// &lt;details&gt;
     ///   &lt;summary&gt;
     ///     &lt;b&gt;
-    ///       &lt;i&gt;VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
+    ///       &lt;i&gt;VPC peering from v1.16.0 (Managed VPC)&lt;/i&gt;
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
@@ -125,7 +125,7 @@ namespace Pulumi.CloudAmqp
     /// &lt;details&gt;
     ///   &lt;summary&gt;
     ///     &lt;b&gt;
-    ///       &lt;i&gt;VPC peering post v1.28.0, wait_on_peering_status &lt;/i&gt;
+    ///       &lt;i&gt;VPC peering from v1.28.0, wait_on_peering_status &lt;/i&gt;
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
@@ -175,7 +175,7 @@ namespace Pulumi.CloudAmqp
     /// &lt;details&gt;
     ///   &lt;summary&gt;
     ///     &lt;b&gt;
-    ///       &lt;i&gt;VPC peering pre v1.16.0&lt;/i&gt;
+    ///       &lt;i&gt;VPC peering before v1.16.0&lt;/i&gt;
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
@@ -248,7 +248,7 @@ namespace Pulumi.CloudAmqp
     /// &lt;details&gt;
     ///   &lt;summary&gt;
     ///     &lt;b&gt;
-    ///       &lt;i&gt;VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
+    ///       &lt;i&gt;VPC peering from v1.16.0 (Managed VPC)&lt;/i&gt;
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
@@ -315,10 +315,10 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ## Depedency
     /// 
-    /// *Pre v1.16.0*
+    /// *Before v1.16.0*
     /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
     /// 
-    /// *Post v1.16.0*
+    /// *From v1.16.0*
     /// This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
     /// 
     /// ## Create VPC Peering with additional firewall rules

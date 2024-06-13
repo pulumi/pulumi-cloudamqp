@@ -162,7 +162,7 @@ import (
 //				Name:       pulumi.String("datadog"),
 //				Region:     pulumi.Any(datadogRegion),
 //				ApiKey:     pulumi.Any(datadogApiKey),
-//				Tags:       pulumi.Any(datadogTags),
+//				Tags:       pulumi.String("env=prod,region=us1,version=v1.0"),
 //			})
 //			if err != nil {
 //				return err
@@ -454,7 +454,9 @@ type IntegrationLog struct {
 	Subsystem pulumi.StringPtrOutput `pulumi:"subsystem"`
 	// The table name for Azure monitor.
 	Table pulumi.StringPtrOutput `pulumi:"table"`
-	// Tag the integration, e.g. env=prod,region=europe.
+	// Tags. e.g. `env=prod,region=europe`.
+	//
+	// ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
 	Tags pulumi.StringPtrOutput `pulumi:"tags"`
 	// The tenant identifier for Azure monitor.
 	TenantId pulumi.StringPtrOutput `pulumi:"tenantId"`
@@ -579,7 +581,9 @@ type integrationLogState struct {
 	Subsystem *string `pulumi:"subsystem"`
 	// The table name for Azure monitor.
 	Table *string `pulumi:"table"`
-	// Tag the integration, e.g. env=prod,region=europe.
+	// Tags. e.g. `env=prod,region=europe`.
+	//
+	// ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
 	Tags *string `pulumi:"tags"`
 	// The tenant identifier for Azure monitor.
 	TenantId *string `pulumi:"tenantId"`
@@ -637,7 +641,9 @@ type IntegrationLogState struct {
 	Subsystem pulumi.StringPtrInput
 	// The table name for Azure monitor.
 	Table pulumi.StringPtrInput
-	// Tag the integration, e.g. env=prod,region=europe.
+	// Tags. e.g. `env=prod,region=europe`.
+	//
+	// ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
 	Tags pulumi.StringPtrInput
 	// The tenant identifier for Azure monitor.
 	TenantId pulumi.StringPtrInput
@@ -699,7 +705,9 @@ type integrationLogArgs struct {
 	Subsystem *string `pulumi:"subsystem"`
 	// The table name for Azure monitor.
 	Table *string `pulumi:"table"`
-	// Tag the integration, e.g. env=prod,region=europe.
+	// Tags. e.g. `env=prod,region=europe`.
+	//
+	// ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
 	Tags *string `pulumi:"tags"`
 	// The tenant identifier for Azure monitor.
 	TenantId *string `pulumi:"tenantId"`
@@ -758,7 +766,9 @@ type IntegrationLogArgs struct {
 	Subsystem pulumi.StringPtrInput
 	// The table name for Azure monitor.
 	Table pulumi.StringPtrInput
-	// Tag the integration, e.g. env=prod,region=europe.
+	// Tags. e.g. `env=prod,region=europe`.
+	//
+	// ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
 	Tags pulumi.StringPtrInput
 	// The tenant identifier for Azure monitor.
 	TenantId pulumi.StringPtrInput
@@ -968,7 +978,9 @@ func (o IntegrationLogOutput) Table() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.Table }).(pulumi.StringPtrOutput)
 }
 
-// Tag the integration, e.g. env=prod,region=europe.
+// Tags. e.g. `env=prod,region=europe`.
+//
+// ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
 func (o IntegrationLogOutput) Tags() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.Tags }).(pulumi.StringPtrOutput)
 }

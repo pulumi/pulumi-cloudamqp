@@ -12,9 +12,9 @@ namespace Pulumi.CloudAmqp
     /// <summary>
     /// This resource allows you to resize the disk with additional storage capacity.
     /// 
-    /// ***Pre v1.25.0***: Only available for Amazon Web Services (AWS) and it done without downtime
+    /// ***Before v1.25.0***: Only available for Amazon Web Services (AWS) without downtime.
     /// 
-    /// ***Post v1.25.0***: Now also available for Google Compute Engine (GCE) and Azure.
+    /// ***From v1.25.0***: Google Compute Engine (GCE) and Azure available.
     /// 
     /// Introducing a new optional argument called `allow_downtime`.  Leaving it out or set it to false will proceed to try and resize the disk without downtime, available for *AWS* and *GCE*.
     /// While *Azure* only support swapping the disk, and this argument needs to be set to *true*.
@@ -38,7 +38,7 @@ namespace Pulumi.CloudAmqp
     /// &lt;details&gt;
     ///   &lt;summary&gt;
     ///     &lt;b&gt;
-    ///       &lt;i&gt;AWS extra disk size (pre v1.25.0)&lt;/i&gt;
+    ///       &lt;i&gt;AWS extra disk size (before v1.25.0)&lt;/i&gt;
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 

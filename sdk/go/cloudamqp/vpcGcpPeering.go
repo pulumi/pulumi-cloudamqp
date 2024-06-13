@@ -28,7 +28,7 @@ import (
 //
 //	<summary>
 //	  <b>
-//	    <i>VPC peering pre v1.16.0</i>
+//	    <i>VPC peering before v1.16.0</i>
 //	  </b>
 //	</summary>
 //
@@ -83,7 +83,7 @@ import (
 //
 //	<summary>
 //	  <b>
-//	    <i>VPC peering post v1.16.0 (Managed VPC)</i>
+//	    <i>VPC peering from v1.16.0 (Managed VPC)</i>
 //	  </b>
 //	</summary>
 //
@@ -149,7 +149,7 @@ import (
 //
 //	<summary>
 //	  <b>
-//	    <i>VPC peering post v1.28.0, waitOnPeeringStatus </i>
+//	    <i>VPC peering from v1.28.0, waitOnPeeringStatus </i>
 //	  </b>
 //	</summary>
 //
@@ -216,7 +216,7 @@ import (
 //
 //	<summary>
 //	  <b>
-//	    <i>VPC peering pre v1.16.0</i>
+//	    <i>VPC peering before v1.16.0</i>
 //	  </b>
 //	</summary>
 //
@@ -288,7 +288,7 @@ import (
 //
 //	<summary>
 //	  <b>
-//	    <i>VPC peering post v1.16.0 (Managed VPC)</i>
+//	    <i>VPC peering from v1.16.0 (Managed VPC)</i>
 //	  </b>
 //	</summary>
 //
@@ -354,10 +354,10 @@ import (
 //
 // ## Depedency
 //
-// *Pre v1.16.0*
+// *Before v1.16.0*
 // This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 //
-// *Post v1.16.0*
+// *From v1.16.0*
 // This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
 //
 // ## Create VPC Peering with additional firewall rules

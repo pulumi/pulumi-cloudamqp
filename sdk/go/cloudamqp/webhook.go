@@ -12,45 +12,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource allows you to enable or disable webhooks for a specific vhost and queue.
-//
-// Only available for dedicated subscription plans.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.NewWebhook(ctx, "webhook_queue", &cloudamqp.WebhookArgs{
-//				InstanceId:    pulumi.Any(instance.Id),
-//				Vhost:         pulumi.String("myvhost"),
-//				Queue:         pulumi.String("webhook-queue"),
-//				WebhookUri:    pulumi.String("https://example.com/webhook?key=secret"),
-//				RetryInterval: pulumi.Int(5),
-//				Concurrency:   pulumi.Int(5),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ## Dependency
-//
-// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-//
 // ## Import
 //
 // `cloudamqp_webhook` can be imported using the resource identifier together with CloudAMQP instance identifier. The identifiers are CSV separated, see example below.
@@ -67,8 +28,10 @@ type Webhook struct {
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
 	// A (durable) queue on your RabbitMQ instance.
 	Queue pulumi.StringOutput `pulumi:"queue"`
-	// How often we retry if your endpoint fails (in seconds).
-	RetryInterval pulumi.IntOutput `pulumi:"retryInterval"`
+	// Configurable sleep time in seconds between retries for webhook
+	Sleep pulumi.IntPtrOutput `pulumi:"sleep"`
+	// Configurable timeout time in seconds for webhook
+	Timeout pulumi.IntPtrOutput `pulumi:"timeout"`
 	// The vhost the queue resides in.
 	Vhost pulumi.StringOutput `pulumi:"vhost"`
 	// A POST request will be made for each message in the queue to this endpoint.
@@ -90,9 +53,6 @@ func NewWebhook(ctx *pulumi.Context,
 	}
 	if args.Queue == nil {
 		return nil, errors.New("invalid value for required argument 'Queue'")
-	}
-	if args.RetryInterval == nil {
-		return nil, errors.New("invalid value for required argument 'RetryInterval'")
 	}
 	if args.Vhost == nil {
 		return nil, errors.New("invalid value for required argument 'Vhost'")
@@ -129,8 +89,10 @@ type webhookState struct {
 	InstanceId *int `pulumi:"instanceId"`
 	// A (durable) queue on your RabbitMQ instance.
 	Queue *string `pulumi:"queue"`
-	// How often we retry if your endpoint fails (in seconds).
-	RetryInterval *int `pulumi:"retryInterval"`
+	// Configurable sleep time in seconds between retries for webhook
+	Sleep *int `pulumi:"sleep"`
+	// Configurable timeout time in seconds for webhook
+	Timeout *int `pulumi:"timeout"`
 	// The vhost the queue resides in.
 	Vhost *string `pulumi:"vhost"`
 	// A POST request will be made for each message in the queue to this endpoint.
@@ -144,8 +106,10 @@ type WebhookState struct {
 	InstanceId pulumi.IntPtrInput
 	// A (durable) queue on your RabbitMQ instance.
 	Queue pulumi.StringPtrInput
-	// How often we retry if your endpoint fails (in seconds).
-	RetryInterval pulumi.IntPtrInput
+	// Configurable sleep time in seconds between retries for webhook
+	Sleep pulumi.IntPtrInput
+	// Configurable timeout time in seconds for webhook
+	Timeout pulumi.IntPtrInput
 	// The vhost the queue resides in.
 	Vhost pulumi.StringPtrInput
 	// A POST request will be made for each message in the queue to this endpoint.
@@ -163,8 +127,10 @@ type webhookArgs struct {
 	InstanceId int `pulumi:"instanceId"`
 	// A (durable) queue on your RabbitMQ instance.
 	Queue string `pulumi:"queue"`
-	// How often we retry if your endpoint fails (in seconds).
-	RetryInterval int `pulumi:"retryInterval"`
+	// Configurable sleep time in seconds between retries for webhook
+	Sleep *int `pulumi:"sleep"`
+	// Configurable timeout time in seconds for webhook
+	Timeout *int `pulumi:"timeout"`
 	// The vhost the queue resides in.
 	Vhost string `pulumi:"vhost"`
 	// A POST request will be made for each message in the queue to this endpoint.
@@ -179,8 +145,10 @@ type WebhookArgs struct {
 	InstanceId pulumi.IntInput
 	// A (durable) queue on your RabbitMQ instance.
 	Queue pulumi.StringInput
-	// How often we retry if your endpoint fails (in seconds).
-	RetryInterval pulumi.IntInput
+	// Configurable sleep time in seconds between retries for webhook
+	Sleep pulumi.IntPtrInput
+	// Configurable timeout time in seconds for webhook
+	Timeout pulumi.IntPtrInput
 	// The vhost the queue resides in.
 	Vhost pulumi.StringInput
 	// A POST request will be made for each message in the queue to this endpoint.
@@ -289,9 +257,14 @@ func (o WebhookOutput) Queue() pulumi.StringOutput {
 	return o.ApplyT(func(v *Webhook) pulumi.StringOutput { return v.Queue }).(pulumi.StringOutput)
 }
 
-// How often we retry if your endpoint fails (in seconds).
-func (o WebhookOutput) RetryInterval() pulumi.IntOutput {
-	return o.ApplyT(func(v *Webhook) pulumi.IntOutput { return v.RetryInterval }).(pulumi.IntOutput)
+// Configurable sleep time in seconds between retries for webhook
+func (o WebhookOutput) Sleep() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Webhook) pulumi.IntPtrOutput { return v.Sleep }).(pulumi.IntPtrOutput)
+}
+
+// Configurable timeout time in seconds for webhook
+func (o WebhookOutput) Timeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Webhook) pulumi.IntPtrOutput { return v.Timeout }).(pulumi.IntPtrOutput)
 }
 
 // The vhost the queue resides in.
