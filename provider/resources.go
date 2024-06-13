@@ -16,14 +16,15 @@ package cloudamqp
 
 import (
 	"fmt"
-	"path/filepath"
+	"net/http"
+	"path"
 	"unicode"
 
 	"github.com/cloudamqp/terraform-provider-cloudamqp/cloudamqp"
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tfbridgetokens "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
-	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v1"
+	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 
 	"github.com/pulumi/pulumi-cloudamqp/provider/v3/pkg/version"
@@ -56,12 +57,10 @@ func makeResource(mod string, res string) tokens.Type {
 	return tokens.Type(makeToken(mod, res))
 }
 
-func refProviderLicense(license tfbridge.TFProviderLicense) *tfbridge.TFProviderLicense {
-	return &license
-}
+func ref[T any](t T) *T { return &t }
 
 func Provider() tfbridge.ProviderInfo {
-	p := shimv1.NewProvider(cloudamqp.Provider(""))
+	p := shimv2.NewProvider(cloudamqp.Provider("", http.DefaultClient))
 	prov := tfbridge.ProviderInfo{
 		P:                 p,
 		Name:              "cloudamqp",
@@ -69,7 +68,7 @@ func Provider() tfbridge.ProviderInfo {
 		Description:       "A Pulumi package for creating and managing CloudAMQP resources.",
 		Keywords:          []string{"pulumi", "cloudamqp"},
 		License:           "Apache-2.0",
-		TFProviderLicense: refProviderLicense(tfbridge.MITLicenseType),
+		TFProviderLicense: ref(tfbridge.MITLicenseType),
 		Homepage:          "https://pulumi.io",
 		Repository:        "https://github.com/pulumi/pulumi-cloudamqp",
 		Config:            map[string]*tfbridge.SchemaInfo{},
@@ -83,10 +82,8 @@ func Provider() tfbridge.ProviderInfo {
 			"cloudamqp_vpc_peering":       {Tok: makeResource(mainMod, "VpcPeering")},
 			"cloudamqp_integration_log":   {Tok: makeResource(mainMod, "IntegrationLog")},
 			"cloudamqp_integration_metric": {
-				Tok: makeResource(mainMod, "IntegrationMetric"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte(" "),
-				},
+				Tok:  makeResource(mainMod, "IntegrationMetric"),
+				Docs: &tfbridge.DocInfo{AllowMissing: true},
 			},
 			"cloudamqp_webhook":                {Tok: makeResource(mainMod, "Webhook")},
 			"cloudamqp_custom_domain":          {Tok: makeResource(mainMod, "CustomDomain")},
@@ -128,19 +125,16 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			RespectSchemaVersion: true,
 		},
-		Python: (func() *tfbridge.PythonInfo {
-			i := &tfbridge.PythonInfo{
-				RespectSchemaVersion: true,
-				Requires: map[string]string{
-					"pulumi": ">=3.0.0,<4.0.0",
-				},
-			}
-			i.PyProject.Enabled = true
-			return i
-		})(),
+		Python: &tfbridge.PythonInfo{
+			RespectSchemaVersion: true,
+			Requires: map[string]string{
+				"pulumi": ">=3.0.0,<4.0.0",
+			},
+			PyProject: struct{ Enabled bool }{true},
+		},
 
 		Golang: &tfbridge.GolangInfo{
-			ImportBasePath: filepath.Join(
+			ImportBasePath: path.Join(
 				fmt.Sprintf("github.com/pulumi/pulumi-%[1]s/sdk/", mainPkg),
 				tfbridge.GetModuleMajorVersion(version.Version),
 				"go",
