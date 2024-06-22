@@ -529,7 +529,7 @@ class VpcConnect(pulumi.CustomResource):
                     services=["HTTPS"],
                 ),
             ],
-            opts=pulumi.ResourceOptions(depends_on=[vpc_connect]))
+            opts = pulumi.ResourceOptions(depends_on=[vpc_connect]))
         ```
 
         </details>
@@ -753,7 +753,7 @@ class VpcConnect(pulumi.CustomResource):
                     services=["HTTPS"],
                 ),
             ],
-            opts=pulumi.ResourceOptions(depends_on=[vpc_connect]))
+            opts = pulumi.ResourceOptions(depends_on=[vpc_connect]))
         ```
 
         </details>

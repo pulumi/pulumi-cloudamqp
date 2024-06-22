@@ -273,13 +273,11 @@ class IntegrationMetricArgs:
 
     @property
     @pulumi.getter(name="queueWhitelist")
+    @_utilities.deprecated("""use queue_allowlist instead""")
     def queue_whitelist(self) -> Optional[pulumi.Input[str]]:
         """
         **Deprecated**
         """
-        warnings.warn("""use queue_allowlist instead""", DeprecationWarning)
-        pulumi.log.warn("""queue_whitelist is deprecated: use queue_allowlist instead""")
-
         return pulumi.get(self, "queue_whitelist")
 
     @queue_whitelist.setter
@@ -336,13 +334,11 @@ class IntegrationMetricArgs:
 
     @property
     @pulumi.getter(name="vhostWhitelist")
+    @_utilities.deprecated("""use vhost_allowlist instead""")
     def vhost_whitelist(self) -> Optional[pulumi.Input[str]]:
         """
         **Deprecated**
         """
-        warnings.warn("""use vhost_allowlist instead""", DeprecationWarning)
-        pulumi.log.warn("""vhost_whitelist is deprecated: use vhost_allowlist instead""")
-
         return pulumi.get(self, "vhost_whitelist")
 
     @vhost_whitelist.setter
@@ -613,13 +609,11 @@ class _IntegrationMetricState:
 
     @property
     @pulumi.getter(name="queueWhitelist")
+    @_utilities.deprecated("""use queue_allowlist instead""")
     def queue_whitelist(self) -> Optional[pulumi.Input[str]]:
         """
         **Deprecated**
         """
-        warnings.warn("""use queue_allowlist instead""", DeprecationWarning)
-        pulumi.log.warn("""queue_whitelist is deprecated: use queue_allowlist instead""")
-
         return pulumi.get(self, "queue_whitelist")
 
     @queue_whitelist.setter
@@ -676,13 +670,11 @@ class _IntegrationMetricState:
 
     @property
     @pulumi.getter(name="vhostWhitelist")
+    @_utilities.deprecated("""use vhost_allowlist instead""")
     def vhost_whitelist(self) -> Optional[pulumi.Input[str]]:
         """
         **Deprecated**
         """
-        warnings.warn("""use vhost_allowlist instead""", DeprecationWarning)
-        pulumi.log.warn("""vhost_whitelist is deprecated: use vhost_allowlist instead""")
-
         return pulumi.get(self, "vhost_whitelist")
 
     @vhost_whitelist.setter
@@ -1325,13 +1317,11 @@ class IntegrationMetric(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="queueWhitelist")
+    @_utilities.deprecated("""use queue_allowlist instead""")
     def queue_whitelist(self) -> pulumi.Output[Optional[str]]:
         """
         **Deprecated**
         """
-        warnings.warn("""use queue_allowlist instead""", DeprecationWarning)
-        pulumi.log.warn("""queue_whitelist is deprecated: use queue_allowlist instead""")
-
         return pulumi.get(self, "queue_whitelist")
 
     @property
@@ -1368,12 +1358,10 @@ class IntegrationMetric(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="vhostWhitelist")
+    @_utilities.deprecated("""use vhost_allowlist instead""")
     def vhost_whitelist(self) -> pulumi.Output[Optional[str]]:
         """
         **Deprecated**
         """
-        warnings.warn("""use vhost_allowlist instead""", DeprecationWarning)
-        pulumi.log.warn("""vhost_whitelist is deprecated: use vhost_allowlist instead""")
-
         return pulumi.get(self, "vhost_whitelist")
 

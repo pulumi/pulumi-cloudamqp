@@ -441,7 +441,7 @@ class VpcGcpPeering(pulumi.CustomResource):
                     ],
                 ),
             ],
-            opts=pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
+            opts = pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
         ```
 
         </details>
@@ -483,7 +483,7 @@ class VpcGcpPeering(pulumi.CustomResource):
                     description="MGMT interface",
                 ),
             ],
-            opts=pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
+            opts = pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
         ```
 
         </details>
@@ -678,7 +678,7 @@ class VpcGcpPeering(pulumi.CustomResource):
                     ],
                 ),
             ],
-            opts=pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
+            opts = pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
         ```
 
         </details>
@@ -720,7 +720,7 @@ class VpcGcpPeering(pulumi.CustomResource):
                     description="MGMT interface",
                 ),
             ],
-            opts=pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
+            opts = pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
         ```
 
         </details>
