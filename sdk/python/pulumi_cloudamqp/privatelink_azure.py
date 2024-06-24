@@ -350,7 +350,7 @@ class PrivatelinkAzure(pulumi.CustomResource):
                     services=["HTTPS"],
                 ),
             ],
-            opts=pulumi.ResourceOptions(depends_on=[privatelink]))
+            opts = pulumi.ResourceOptions(depends_on=[privatelink]))
         ```
 
         </details>
@@ -512,7 +512,7 @@ class PrivatelinkAzure(pulumi.CustomResource):
                     services=["HTTPS"],
                 ),
             ],
-            opts=pulumi.ResourceOptions(depends_on=[privatelink]))
+            opts = pulumi.ResourceOptions(depends_on=[privatelink]))
         ```
 
         </details>
