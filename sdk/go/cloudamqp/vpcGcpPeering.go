@@ -59,9 +59,9 @@ import (
 //			}
 //			// VPC information
 //			_ = instance.ID().ApplyT(func(id string) (cloudamqp.GetVpcGcpInfoResult, error) {
-//				return cloudamqp.GetVpcGcpInfoOutput(ctx, cloudamqp.GetVpcGcpInfoOutputArgs{
+//				return cloudamqp.GetVpcGcpInfoResult(interface{}(cloudamqp.GetVpcGcpInfoOutput(ctx, cloudamqp.GetVpcGcpInfoOutputArgs{
 //					InstanceId: id,
-//				}, nil), nil
+//				}, nil))), nil
 //			}).(cloudamqp.GetVpcGcpInfoResultOutput)
 //			// VPC peering configuration
 //			_, err = cloudamqp.NewVpcGcpPeering(ctx, "vpc_peering_request", &cloudamqp.VpcGcpPeeringArgs{
