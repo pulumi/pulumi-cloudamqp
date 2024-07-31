@@ -89,6 +89,7 @@ def get_nodes(instance_id: Optional[int] = None,
     The `nodes` block consist of
 
     * `hostname`              - External hostname assigned to the node.
+    * `hostname_internal`     - Internal hostname assigned to the node.
     * `name`                  - Name of the node.
     * `running`               - Is the node running?
     * `rabbitmq_version`      - Currently configured Rabbit MQ version on the node.
@@ -97,6 +98,7 @@ def get_nodes(instance_id: Optional[int] = None,
     * `configured`            - Is the node configured?
     * `disk_size`             - Subscription plan disk size
     * `additional_disk_size`  - Additional added disk size
+    * `availability_zone`     - Availability zone the node is hosted in.
 
     ***Note:*** *Total disk size = disk_size + additional_disk_size*
 
@@ -145,6 +147,7 @@ def get_nodes_output(instance_id: Optional[pulumi.Input[int]] = None,
     The `nodes` block consist of
 
     * `hostname`              - External hostname assigned to the node.
+    * `hostname_internal`     - Internal hostname assigned to the node.
     * `name`                  - Name of the node.
     * `running`               - Is the node running?
     * `rabbitmq_version`      - Currently configured Rabbit MQ version on the node.
@@ -153,6 +156,7 @@ def get_nodes_output(instance_id: Optional[pulumi.Input[int]] = None,
     * `configured`            - Is the node configured?
     * `disk_size`             - Subscription plan disk size
     * `additional_disk_size`  - Additional added disk size
+    * `availability_zone`     - Availability zone the node is hosted in.
 
     ***Note:*** *Total disk size = disk_size + additional_disk_size*
 

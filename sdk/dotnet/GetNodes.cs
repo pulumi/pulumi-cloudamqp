@@ -44,6 +44,7 @@ namespace Pulumi.CloudAmqp
         /// The `nodes` block consist of
         /// 
         /// * `hostname`              - External hostname assigned to the node.
+        /// * `hostname_internal`     - Internal hostname assigned to the node.
         /// * `name`                  - Name of the node.
         /// * `running`               - Is the node running?
         /// * `rabbitmq_version`      - Currently configured Rabbit MQ version on the node.
@@ -52,6 +53,7 @@ namespace Pulumi.CloudAmqp
         /// * `configured`            - Is the node configured?
         /// * `disk_size`             - Subscription plan disk size
         /// * `additional_disk_size`  - Additional added disk size
+        /// * `availability_zone`     - Availability zone the node is hosted in.
         /// 
         /// ***Note:*** *Total disk size = disk_size + additional_disk_size*
         /// 
@@ -95,6 +97,7 @@ namespace Pulumi.CloudAmqp
         /// The `nodes` block consist of
         /// 
         /// * `hostname`              - External hostname assigned to the node.
+        /// * `hostname_internal`     - Internal hostname assigned to the node.
         /// * `name`                  - Name of the node.
         /// * `running`               - Is the node running?
         /// * `rabbitmq_version`      - Currently configured Rabbit MQ version on the node.
@@ -103,6 +106,7 @@ namespace Pulumi.CloudAmqp
         /// * `configured`            - Is the node configured?
         /// * `disk_size`             - Subscription plan disk size
         /// * `additional_disk_size`  - Additional added disk size
+        /// * `availability_zone`     - Availability zone the node is hosted in.
         /// 
         /// ***Note:*** *Total disk size = disk_size + additional_disk_size*
         /// 

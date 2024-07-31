@@ -397,11 +397,18 @@ public class PrivatelinkAws extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public PrivatelinkAws(String name, PrivatelinkAwsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("cloudamqp:index/privatelinkAws:PrivatelinkAws", name, args == null ? PrivatelinkAwsArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("cloudamqp:index/privatelinkAws:PrivatelinkAws", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private PrivatelinkAws(String name, Output<String> id, @Nullable PrivatelinkAwsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("cloudamqp:index/privatelinkAws:PrivatelinkAws", name, state, makeResourceOptions(options, id));
+    }
+
+    private static PrivatelinkAwsArgs makeArgs(PrivatelinkAwsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? PrivatelinkAwsArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

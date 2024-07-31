@@ -197,6 +197,32 @@ namespace Pulumi.CloudAmqp
     /// 
     /// &lt;details&gt;
     ///   &lt;summary&gt;
+    ///     &lt;b&gt;Slack recipient&lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var slackRecipient = new CloudAmqp.Notification("slack_recipient", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Type = "slack",
+    ///         Value = "&lt;slack-webhook-url&gt;",
+    ///         Name = "Slack webhook recipient",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
     ///     &lt;b&gt;Webhook recipient&lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
@@ -252,7 +278,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use
     /// 
-    /// [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
+    /// [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-recipients).
     /// 
     /// ```sh
     /// $ pulumi import cloudamqp:index/notification:Notification recipient &lt;id&gt;,&lt;instance_id&gt;`

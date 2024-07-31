@@ -384,20 +384,24 @@ class GetAccountVpcsVpcResult(dict):
 class GetNodesNodeResult(dict):
     def __init__(__self__, *,
                  additional_disk_size: int,
+                 availability_zone: str,
                  configured: bool,
                  disk_size: int,
                  erlang_version: str,
                  hipe: bool,
                  hostname: str,
+                 hostname_internal: str,
                  name: str,
                  rabbitmq_version: str,
                  running: bool):
         pulumi.set(__self__, "additional_disk_size", additional_disk_size)
+        pulumi.set(__self__, "availability_zone", availability_zone)
         pulumi.set(__self__, "configured", configured)
         pulumi.set(__self__, "disk_size", disk_size)
         pulumi.set(__self__, "erlang_version", erlang_version)
         pulumi.set(__self__, "hipe", hipe)
         pulumi.set(__self__, "hostname", hostname)
+        pulumi.set(__self__, "hostname_internal", hostname_internal)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "rabbitmq_version", rabbitmq_version)
         pulumi.set(__self__, "running", running)
@@ -406,6 +410,11 @@ class GetNodesNodeResult(dict):
     @pulumi.getter(name="additionalDiskSize")
     def additional_disk_size(self) -> int:
         return pulumi.get(self, "additional_disk_size")
+
+    @property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> str:
+        return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter
@@ -431,6 +440,11 @@ class GetNodesNodeResult(dict):
     @pulumi.getter
     def hostname(self) -> str:
         return pulumi.get(self, "hostname")
+
+    @property
+    @pulumi.getter(name="hostnameInternal")
+    def hostname_internal(self) -> str:
+        return pulumi.get(self, "hostname_internal")
 
     @property
     @pulumi.getter

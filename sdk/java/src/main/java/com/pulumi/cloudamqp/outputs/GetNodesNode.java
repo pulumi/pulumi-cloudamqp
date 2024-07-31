@@ -13,11 +13,13 @@ import java.util.Objects;
 @CustomType
 public final class GetNodesNode {
     private Integer additionalDiskSize;
+    private String availabilityZone;
     private Boolean configured;
     private Integer diskSize;
     private String erlangVersion;
     private Boolean hipe;
     private String hostname;
+    private String hostnameInternal;
     private String name;
     private String rabbitmqVersion;
     private Boolean running;
@@ -25,6 +27,9 @@ public final class GetNodesNode {
     private GetNodesNode() {}
     public Integer additionalDiskSize() {
         return this.additionalDiskSize;
+    }
+    public String availabilityZone() {
+        return this.availabilityZone;
     }
     public Boolean configured() {
         return this.configured;
@@ -40,6 +45,9 @@ public final class GetNodesNode {
     }
     public String hostname() {
         return this.hostname;
+    }
+    public String hostnameInternal() {
+        return this.hostnameInternal;
     }
     public String name() {
         return this.name;
@@ -61,11 +69,13 @@ public final class GetNodesNode {
     @CustomType.Builder
     public static final class Builder {
         private Integer additionalDiskSize;
+        private String availabilityZone;
         private Boolean configured;
         private Integer diskSize;
         private String erlangVersion;
         private Boolean hipe;
         private String hostname;
+        private String hostnameInternal;
         private String name;
         private String rabbitmqVersion;
         private Boolean running;
@@ -73,11 +83,13 @@ public final class GetNodesNode {
         public Builder(GetNodesNode defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.additionalDiskSize = defaults.additionalDiskSize;
+    	      this.availabilityZone = defaults.availabilityZone;
     	      this.configured = defaults.configured;
     	      this.diskSize = defaults.diskSize;
     	      this.erlangVersion = defaults.erlangVersion;
     	      this.hipe = defaults.hipe;
     	      this.hostname = defaults.hostname;
+    	      this.hostnameInternal = defaults.hostnameInternal;
     	      this.name = defaults.name;
     	      this.rabbitmqVersion = defaults.rabbitmqVersion;
     	      this.running = defaults.running;
@@ -89,6 +101,14 @@ public final class GetNodesNode {
               throw new MissingRequiredPropertyException("GetNodesNode", "additionalDiskSize");
             }
             this.additionalDiskSize = additionalDiskSize;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder availabilityZone(String availabilityZone) {
+            if (availabilityZone == null) {
+              throw new MissingRequiredPropertyException("GetNodesNode", "availabilityZone");
+            }
+            this.availabilityZone = availabilityZone;
             return this;
         }
         @CustomType.Setter
@@ -132,6 +152,14 @@ public final class GetNodesNode {
             return this;
         }
         @CustomType.Setter
+        public Builder hostnameInternal(String hostnameInternal) {
+            if (hostnameInternal == null) {
+              throw new MissingRequiredPropertyException("GetNodesNode", "hostnameInternal");
+            }
+            this.hostnameInternal = hostnameInternal;
+            return this;
+        }
+        @CustomType.Setter
         public Builder name(String name) {
             if (name == null) {
               throw new MissingRequiredPropertyException("GetNodesNode", "name");
@@ -158,11 +186,13 @@ public final class GetNodesNode {
         public GetNodesNode build() {
             final var _resultValue = new GetNodesNode();
             _resultValue.additionalDiskSize = additionalDiskSize;
+            _resultValue.availabilityZone = availabilityZone;
             _resultValue.configured = configured;
             _resultValue.diskSize = diskSize;
             _resultValue.erlangVersion = erlangVersion;
             _resultValue.hipe = hipe;
             _resultValue.hostname = hostname;
+            _resultValue.hostnameInternal = hostnameInternal;
             _resultValue.name = name;
             _resultValue.rabbitmqVersion = rabbitmqVersion;
             _resultValue.running = running;

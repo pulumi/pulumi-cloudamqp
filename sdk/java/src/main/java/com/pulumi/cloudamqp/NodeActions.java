@@ -322,11 +322,18 @@ public class NodeActions extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public NodeActions(String name, NodeActionsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("cloudamqp:index/nodeActions:NodeActions", name, args == null ? NodeActionsArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("cloudamqp:index/nodeActions:NodeActions", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private NodeActions(String name, Output<String> id, @Nullable NodeActionsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("cloudamqp:index/nodeActions:NodeActions", name, state, makeResourceOptions(options, id));
+    }
+
+    private static NodeActionsArgs makeArgs(NodeActionsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? NodeActionsArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
