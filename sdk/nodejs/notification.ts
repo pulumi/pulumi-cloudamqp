@@ -147,6 +147,25 @@ import * as utilities from "./utilities";
  *
  * <details>
  *   <summary>
+ *     <b>Slack recipient</b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const slackRecipient = new cloudamqp.Notification("slack_recipient", {
+ *     instanceId: instance.id,
+ *     type: "slack",
+ *     value: "<slack-webhook-url>",
+ *     name: "Slack webhook recipient",
+ * });
+ * ```
+ *
+ * </details>
+ *
+ * <details>
+ *   <summary>
  *     <b>Webhook recipient</b>
  *   </summary>
  *
@@ -195,7 +214,7 @@ import * as utilities from "./utilities";
  *
  * (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use
  *
- * [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
+ * [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-recipients).
  *
  * ```sh
  * $ pulumi import cloudamqp:index/notification:Notification recipient <id>,<instance_id>`

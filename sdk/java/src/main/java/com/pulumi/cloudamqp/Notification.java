@@ -299,6 +299,49 @@ import javax.annotation.Nullable;
  * 
  * &lt;details&gt;
  *   &lt;summary&gt;
+ *     &lt;b&gt;Slack recipient&lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Notification;
+ * import com.pulumi.cloudamqp.NotificationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var slackRecipient = new Notification("slackRecipient", NotificationArgs.builder()
+ *             .instanceId(instance.id())
+ *             .type("slack")
+ *             .value("<slack-webhook-url>")
+ *             .name("Slack webhook recipient")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
  *     &lt;b&gt;Webhook recipient&lt;/b&gt;
  *   &lt;/summary&gt;
  * 
@@ -371,7 +414,7 @@ import javax.annotation.Nullable;
  * 
  * (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use
  * 
- * [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
+ * [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-recipients).
  * 
  * ```sh
  * $ pulumi import cloudamqp:index/notification:Notification recipient &lt;id&gt;,&lt;instance_id&gt;`
@@ -497,11 +540,18 @@ public class Notification extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public Notification(String name, NotificationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("cloudamqp:index/notification:Notification", name, args == null ? NotificationArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("cloudamqp:index/notification:Notification", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private Notification(String name, Output<String> id, @Nullable NotificationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("cloudamqp:index/notification:Notification", name, state, makeResourceOptions(options, id));
+    }
+
+    private static NotificationArgs makeArgs(NotificationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? NotificationArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

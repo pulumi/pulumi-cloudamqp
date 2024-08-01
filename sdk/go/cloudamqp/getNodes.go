@@ -51,6 +51,7 @@ import (
 // # The `nodes` block consist of
 //
 // * `hostname`              - External hostname assigned to the node.
+// * `hostnameInternal`     - Internal hostname assigned to the node.
 // * `name`                  - Name of the node.
 // * `running`               - Is the node running?
 // * `rabbitmqVersion`      - Currently configured Rabbit MQ version on the node.
@@ -59,6 +60,7 @@ import (
 // * `configured`            - Is the node configured?
 // * `diskSize`             - Subscription plan disk size
 // * `additionalDiskSize`  - Additional added disk size
+// * `availabilityZone`     - Availability zone the node is hosted in.
 //
 // ***Note:*** *Total disk size = diskSize + additional_disk_size*
 //

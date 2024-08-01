@@ -541,11 +541,18 @@ public class VpcConnect extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public VpcConnect(String name, VpcConnectArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("cloudamqp:index/vpcConnect:VpcConnect", name, args == null ? VpcConnectArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("cloudamqp:index/vpcConnect:VpcConnect", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private VpcConnect(String name, Output<String> id, @Nullable VpcConnectState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("cloudamqp:index/vpcConnect:VpcConnect", name, state, makeResourceOptions(options, id));
+    }
+
+    private static VpcConnectArgs makeArgs(VpcConnectArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? VpcConnectArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

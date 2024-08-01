@@ -73,11 +73,18 @@ public class AccountAction extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public AccountAction(String name, AccountActionArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("cloudamqp:index/accountAction:AccountAction", name, args == null ? AccountActionArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("cloudamqp:index/accountAction:AccountAction", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private AccountAction(String name, Output<String> id, @Nullable AccountActionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("cloudamqp:index/accountAction:AccountAction", name, state, makeResourceOptions(options, id));
+    }
+
+    private static AccountActionArgs makeArgs(AccountActionArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? AccountActionArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

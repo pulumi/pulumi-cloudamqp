@@ -151,11 +151,18 @@ public class PluginCommunity extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public PluginCommunity(String name, PluginCommunityArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("cloudamqp:index/pluginCommunity:PluginCommunity", name, args == null ? PluginCommunityArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("cloudamqp:index/pluginCommunity:PluginCommunity", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private PluginCommunity(String name, Output<String> id, @Nullable PluginCommunityState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("cloudamqp:index/pluginCommunity:PluginCommunity", name, state, makeResourceOptions(options, id));
+    }
+
+    private static PluginCommunityArgs makeArgs(PluginCommunityArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? PluginCommunityArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

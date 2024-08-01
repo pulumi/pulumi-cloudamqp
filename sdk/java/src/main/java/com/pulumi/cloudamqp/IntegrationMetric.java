@@ -643,11 +643,18 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public IntegrationMetric(String name, IntegrationMetricArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("cloudamqp:index/integrationMetric:IntegrationMetric", name, args == null ? IntegrationMetricArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("cloudamqp:index/integrationMetric:IntegrationMetric", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private IntegrationMetric(String name, Output<String> id, @Nullable IntegrationMetricState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("cloudamqp:index/integrationMetric:IntegrationMetric", name, state, makeResourceOptions(options, id));
+    }
+
+    private static IntegrationMetricArgs makeArgs(IntegrationMetricArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? IntegrationMetricArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

@@ -249,6 +249,41 @@ import (
 // <details>
 //
 //	<summary>
+//	  <b>Slack recipient</b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewNotification(ctx, "slack_recipient", &cloudamqp.NotificationArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				Type:       pulumi.String("slack"),
+//				Value:      pulumi.String("<slack-webhook-url>"),
+//				Name:       pulumi.String("Slack webhook recipient"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
 //	  <b>Webhook recipient</b>
 //	</summary>
 //
@@ -312,7 +347,7 @@ import (
 //
 // (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use
 //
-// [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
+// [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-recipients).
 //
 // ```sh
 // $ pulumi import cloudamqp:index/notification:Notification recipient <id>,<instance_id>`

@@ -385,6 +385,24 @@ class Notification(pulumi.CustomResource):
 
         <details>
           <summary>
+            <b>Slack recipient</b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        slack_recipient = cloudamqp.Notification("slack_recipient",
+            instance_id=instance["id"],
+            type="slack",
+            value="<slack-webhook-url>",
+            name="Slack webhook recipient")
+        ```
+
+        </details>
+
+        <details>
+          <summary>
             <b>Webhook recipient</b>
           </summary>
 
@@ -432,7 +450,7 @@ class Notification(pulumi.CustomResource):
 
         (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use
 
-        [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
+        [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-recipients).
 
         ```sh
         $ pulumi import cloudamqp:index/notification:Notification recipient <id>,<instance_id>`
@@ -593,6 +611,24 @@ class Notification(pulumi.CustomResource):
 
         <details>
           <summary>
+            <b>Slack recipient</b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        slack_recipient = cloudamqp.Notification("slack_recipient",
+            instance_id=instance["id"],
+            type="slack",
+            value="<slack-webhook-url>",
+            name="Slack webhook recipient")
+        ```
+
+        </details>
+
+        <details>
+          <summary>
             <b>Webhook recipient</b>
           </summary>
 
@@ -640,7 +676,7 @@ class Notification(pulumi.CustomResource):
 
         (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use
 
-        [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-notification-recipients)
+        [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-recipients).
 
         ```sh
         $ pulumi import cloudamqp:index/notification:Notification recipient <id>,<instance_id>`

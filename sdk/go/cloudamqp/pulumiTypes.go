@@ -771,11 +771,13 @@ func (o GetAccountVpcsVpcArrayOutput) Index(i pulumi.IntInput) GetAccountVpcsVpc
 
 type GetNodesNode struct {
 	AdditionalDiskSize int    `pulumi:"additionalDiskSize"`
+	AvailabilityZone   string `pulumi:"availabilityZone"`
 	Configured         bool   `pulumi:"configured"`
 	DiskSize           int    `pulumi:"diskSize"`
 	ErlangVersion      string `pulumi:"erlangVersion"`
 	Hipe               bool   `pulumi:"hipe"`
 	Hostname           string `pulumi:"hostname"`
+	HostnameInternal   string `pulumi:"hostnameInternal"`
 	Name               string `pulumi:"name"`
 	RabbitmqVersion    string `pulumi:"rabbitmqVersion"`
 	Running            bool   `pulumi:"running"`
@@ -794,11 +796,13 @@ type GetNodesNodeInput interface {
 
 type GetNodesNodeArgs struct {
 	AdditionalDiskSize pulumi.IntInput    `pulumi:"additionalDiskSize"`
+	AvailabilityZone   pulumi.StringInput `pulumi:"availabilityZone"`
 	Configured         pulumi.BoolInput   `pulumi:"configured"`
 	DiskSize           pulumi.IntInput    `pulumi:"diskSize"`
 	ErlangVersion      pulumi.StringInput `pulumi:"erlangVersion"`
 	Hipe               pulumi.BoolInput   `pulumi:"hipe"`
 	Hostname           pulumi.StringInput `pulumi:"hostname"`
+	HostnameInternal   pulumi.StringInput `pulumi:"hostnameInternal"`
 	Name               pulumi.StringInput `pulumi:"name"`
 	RabbitmqVersion    pulumi.StringInput `pulumi:"rabbitmqVersion"`
 	Running            pulumi.BoolInput   `pulumi:"running"`
@@ -859,6 +863,10 @@ func (o GetNodesNodeOutput) AdditionalDiskSize() pulumi.IntOutput {
 	return o.ApplyT(func(v GetNodesNode) int { return v.AdditionalDiskSize }).(pulumi.IntOutput)
 }
 
+func (o GetNodesNodeOutput) AvailabilityZone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.AvailabilityZone }).(pulumi.StringOutput)
+}
+
 func (o GetNodesNodeOutput) Configured() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetNodesNode) bool { return v.Configured }).(pulumi.BoolOutput)
 }
@@ -877,6 +885,10 @@ func (o GetNodesNodeOutput) Hipe() pulumi.BoolOutput {
 
 func (o GetNodesNodeOutput) Hostname() pulumi.StringOutput {
 	return o.ApplyT(func(v GetNodesNode) string { return v.Hostname }).(pulumi.StringOutput)
+}
+
+func (o GetNodesNodeOutput) HostnameInternal() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.HostnameInternal }).(pulumi.StringOutput)
 }
 
 func (o GetNodesNodeOutput) Name() pulumi.StringOutput {

@@ -69,11 +69,13 @@ export interface GetAccountVpcsVpc {
 
 export interface GetNodesNode {
     additionalDiskSize: number;
+    availabilityZone: string;
     configured: boolean;
     diskSize: number;
     erlangVersion: string;
     hipe: boolean;
     hostname: string;
+    hostnameInternal: string;
     name: string;
     rabbitmqVersion: string;
     running: boolean;
