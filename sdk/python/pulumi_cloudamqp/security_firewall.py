@@ -153,7 +153,7 @@ class SecurityFirewall(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
-                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecurityFirewallRuleArgs']]]]] = None,
+                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecurityFirewallRuleArgs', 'SecurityFirewallRuleArgsDict']]]]] = None,
                  sleep: Optional[pulumi.Input[int]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
                  __props__=None):
@@ -203,7 +203,7 @@ class SecurityFirewall(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
-                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecurityFirewallRuleArgs']]]]] = None,
+                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecurityFirewallRuleArgs', 'SecurityFirewallRuleArgsDict']]]]] = None,
                  sleep: Optional[pulumi.Input[int]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
                  __props__=None):
@@ -234,7 +234,7 @@ class SecurityFirewall(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             instance_id: Optional[pulumi.Input[int]] = None,
-            rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecurityFirewallRuleArgs']]]]] = None,
+            rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecurityFirewallRuleArgs', 'SecurityFirewallRuleArgsDict']]]]] = None,
             sleep: Optional[pulumi.Input[int]] = None,
             timeout: Optional[pulumi.Input[int]] = None) -> 'SecurityFirewall':
         """
