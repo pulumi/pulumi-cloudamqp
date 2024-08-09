@@ -377,7 +377,7 @@ public class PrivatelinkAzure extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public PrivatelinkAzure(String name) {
+    public PrivatelinkAzure(java.lang.String name) {
         this(name, PrivatelinkAzureArgs.Empty);
     }
     /**
@@ -385,7 +385,7 @@ public class PrivatelinkAzure extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public PrivatelinkAzure(String name, PrivatelinkAzureArgs args) {
+    public PrivatelinkAzure(java.lang.String name, PrivatelinkAzureArgs args) {
         this(name, args, null);
     }
     /**
@@ -394,12 +394,12 @@ public class PrivatelinkAzure extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public PrivatelinkAzure(String name, PrivatelinkAzureArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("cloudamqp:index/privatelinkAzure:PrivatelinkAzure", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public PrivatelinkAzure(java.lang.String name, PrivatelinkAzureArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("cloudamqp:index/privatelinkAzure:PrivatelinkAzure", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private PrivatelinkAzure(String name, Output<String> id, @Nullable PrivatelinkAzureState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("cloudamqp:index/privatelinkAzure:PrivatelinkAzure", name, state, makeResourceOptions(options, id));
+    private PrivatelinkAzure(java.lang.String name, Output<java.lang.String> id, @Nullable PrivatelinkAzureState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("cloudamqp:index/privatelinkAzure:PrivatelinkAzure", name, state, makeResourceOptions(options, id), false);
     }
 
     private static PrivatelinkAzureArgs makeArgs(PrivatelinkAzureArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -409,7 +409,7 @@ public class PrivatelinkAzure extends com.pulumi.resources.CustomResource {
         return args == null ? PrivatelinkAzureArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -425,7 +425,7 @@ public class PrivatelinkAzure extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static PrivatelinkAzure get(String name, Output<String> id, @Nullable PrivatelinkAzureState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static PrivatelinkAzure get(java.lang.String name, Output<java.lang.String> id, @Nullable PrivatelinkAzureState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new PrivatelinkAzure(name, id, state, options);
     }
 }

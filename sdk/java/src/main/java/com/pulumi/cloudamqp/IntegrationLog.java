@@ -872,7 +872,7 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public IntegrationLog(String name) {
+    public IntegrationLog(java.lang.String name) {
         this(name, IntegrationLogArgs.Empty);
     }
     /**
@@ -880,7 +880,7 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public IntegrationLog(String name, IntegrationLogArgs args) {
+    public IntegrationLog(java.lang.String name, IntegrationLogArgs args) {
         this(name, args, null);
     }
     /**
@@ -889,12 +889,12 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public IntegrationLog(String name, IntegrationLogArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("cloudamqp:index/integrationLog:IntegrationLog", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public IntegrationLog(java.lang.String name, IntegrationLogArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("cloudamqp:index/integrationLog:IntegrationLog", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private IntegrationLog(String name, Output<String> id, @Nullable IntegrationLogState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("cloudamqp:index/integrationLog:IntegrationLog", name, state, makeResourceOptions(options, id));
+    private IntegrationLog(java.lang.String name, Output<java.lang.String> id, @Nullable IntegrationLogState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("cloudamqp:index/integrationLog:IntegrationLog", name, state, makeResourceOptions(options, id), false);
     }
 
     private static IntegrationLogArgs makeArgs(IntegrationLogArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -904,7 +904,7 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
         return args == null ? IntegrationLogArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -930,7 +930,7 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static IntegrationLog get(String name, Output<String> id, @Nullable IntegrationLogState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static IntegrationLog get(java.lang.String name, Output<java.lang.String> id, @Nullable IntegrationLogState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new IntegrationLog(name, id, state, options);
     }
 }

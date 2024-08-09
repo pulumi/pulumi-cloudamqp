@@ -304,7 +304,7 @@ public class NodeActions extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public NodeActions(String name) {
+    public NodeActions(java.lang.String name) {
         this(name, NodeActionsArgs.Empty);
     }
     /**
@@ -312,7 +312,7 @@ public class NodeActions extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public NodeActions(String name, NodeActionsArgs args) {
+    public NodeActions(java.lang.String name, NodeActionsArgs args) {
         this(name, args, null);
     }
     /**
@@ -321,12 +321,12 @@ public class NodeActions extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public NodeActions(String name, NodeActionsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("cloudamqp:index/nodeActions:NodeActions", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public NodeActions(java.lang.String name, NodeActionsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("cloudamqp:index/nodeActions:NodeActions", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private NodeActions(String name, Output<String> id, @Nullable NodeActionsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("cloudamqp:index/nodeActions:NodeActions", name, state, makeResourceOptions(options, id));
+    private NodeActions(java.lang.String name, Output<java.lang.String> id, @Nullable NodeActionsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("cloudamqp:index/nodeActions:NodeActions", name, state, makeResourceOptions(options, id), false);
     }
 
     private static NodeActionsArgs makeArgs(NodeActionsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -336,7 +336,7 @@ public class NodeActions extends com.pulumi.resources.CustomResource {
         return args == null ? NodeActionsArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -352,7 +352,7 @@ public class NodeActions extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static NodeActions get(String name, Output<String> id, @Nullable NodeActionsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static NodeActions get(java.lang.String name, Output<java.lang.String> id, @Nullable NodeActionsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new NodeActions(name, id, state, options);
     }
 }

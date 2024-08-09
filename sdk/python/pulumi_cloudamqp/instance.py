@@ -568,7 +568,7 @@ class Instance(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceCopySettingArgs']]]]] = None,
+                 copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceCopySettingArgs', 'InstanceCopySettingArgsDict']]]]] = None,
                  keep_associated_vpc: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  no_default_alarms: Optional[pulumi.Input[bool]] = None,
@@ -753,9 +753,9 @@ class Instance(pulumi.CustomResource):
             region="amazon-web-services::us-west-1",
             rmq_version="3.12.2",
             tags=["terraform"],
-            copy_settings=[cloudamqp.InstanceCopySettingArgs(
-                subscription_id=instance_id,
-                settings=[
+            copy_settings=[{
+                "subscription_id": instance_id,
+                "settings": [
                     "alarms",
                     "config",
                     "definitions",
@@ -764,7 +764,7 @@ class Instance(pulumi.CustomResource):
                     "metrics",
                     "plugins",
                 ],
-            )])
+            }])
         ```
 
         </details>
@@ -781,7 +781,7 @@ class Instance(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceCopySettingArgs']]]] copy_settings: Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceCopySettingArgs', 'InstanceCopySettingArgsDict']]]] copy_settings: Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
                
                ___
                
@@ -986,9 +986,9 @@ class Instance(pulumi.CustomResource):
             region="amazon-web-services::us-west-1",
             rmq_version="3.12.2",
             tags=["terraform"],
-            copy_settings=[cloudamqp.InstanceCopySettingArgs(
-                subscription_id=instance_id,
-                settings=[
+            copy_settings=[{
+                "subscription_id": instance_id,
+                "settings": [
                     "alarms",
                     "config",
                     "definitions",
@@ -997,7 +997,7 @@ class Instance(pulumi.CustomResource):
                     "metrics",
                     "plugins",
                 ],
-            )])
+            }])
         ```
 
         </details>
@@ -1027,7 +1027,7 @@ class Instance(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceCopySettingArgs']]]]] = None,
+                 copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceCopySettingArgs', 'InstanceCopySettingArgsDict']]]]] = None,
                  keep_associated_vpc: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  no_default_alarms: Optional[pulumi.Input[bool]] = None,
@@ -1084,7 +1084,7 @@ class Instance(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             apikey: Optional[pulumi.Input[str]] = None,
             backend: Optional[pulumi.Input[str]] = None,
-            copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceCopySettingArgs']]]]] = None,
+            copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceCopySettingArgs', 'InstanceCopySettingArgsDict']]]]] = None,
             dedicated: Optional[pulumi.Input[bool]] = None,
             host: Optional[pulumi.Input[str]] = None,
             host_internal: Optional[pulumi.Input[str]] = None,
@@ -1110,7 +1110,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] apikey: API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
         :param pulumi.Input[str] backend: Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceCopySettingArgs']]]] copy_settings: Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceCopySettingArgs', 'InstanceCopySettingArgsDict']]]] copy_settings: Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
                
                ___
                

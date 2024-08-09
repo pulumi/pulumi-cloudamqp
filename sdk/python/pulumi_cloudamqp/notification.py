@@ -246,7 +246,7 @@ class Notification(pulumi.CustomResource):
                  instance_id: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 responders: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationResponderArgs']]]]] = None,
+                 responders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NotificationResponderArgs', 'NotificationResponderArgsDict']]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  value: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -292,14 +292,14 @@ class Notification(pulumi.CustomResource):
             value="<api-key>",
             name="OpsGenie",
             responders=[
-                cloudamqp.NotificationResponderArgs(
-                    type="team",
-                    id="<team-uuid>",
-                ),
-                cloudamqp.NotificationResponderArgs(
-                    type="user",
-                    username="<username>",
-                ),
+                {
+                    "type": "team",
+                    "id": "<team-uuid>",
+                },
+                {
+                    "type": "user",
+                    "username": "<username>",
+                },
             ])
         ```
 
@@ -461,7 +461,7 @@ class Notification(pulumi.CustomResource):
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] name: Name of the responder
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Options argument (e.g. `rk` used for VictorOps routing key).
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationResponderArgs']]]] responders: An array of reponders (only for OpsGenie). Each `responders` block
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NotificationResponderArgs', 'NotificationResponderArgsDict']]]] responders: An array of reponders (only for OpsGenie). Each `responders` block
                consists of the field documented below.
                
                ___
@@ -518,14 +518,14 @@ class Notification(pulumi.CustomResource):
             value="<api-key>",
             name="OpsGenie",
             responders=[
-                cloudamqp.NotificationResponderArgs(
-                    type="team",
-                    id="<team-uuid>",
-                ),
-                cloudamqp.NotificationResponderArgs(
-                    type="user",
-                    username="<username>",
-                ),
+                {
+                    "type": "team",
+                    "id": "<team-uuid>",
+                },
+                {
+                    "type": "user",
+                    "username": "<username>",
+                },
             ])
         ```
 
@@ -700,7 +700,7 @@ class Notification(pulumi.CustomResource):
                  instance_id: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 responders: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationResponderArgs']]]]] = None,
+                 responders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NotificationResponderArgs', 'NotificationResponderArgsDict']]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  value: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -737,7 +737,7 @@ class Notification(pulumi.CustomResource):
             instance_id: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-            responders: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationResponderArgs']]]]] = None,
+            responders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NotificationResponderArgs', 'NotificationResponderArgsDict']]]]] = None,
             type: Optional[pulumi.Input[str]] = None,
             value: Optional[pulumi.Input[str]] = None) -> 'Notification':
         """
@@ -750,7 +750,7 @@ class Notification(pulumi.CustomResource):
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] name: Name of the responder
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Options argument (e.g. `rk` used for VictorOps routing key).
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationResponderArgs']]]] responders: An array of reponders (only for OpsGenie). Each `responders` block
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NotificationResponderArgs', 'NotificationResponderArgsDict']]]] responders: An array of reponders (only for OpsGenie). Each `responders` block
                consists of the field documented below.
                
                ___
