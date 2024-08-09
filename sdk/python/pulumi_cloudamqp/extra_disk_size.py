@@ -606,7 +606,7 @@ class ExtraDiskSize(pulumi.CustomResource):
             allow_downtime: Optional[pulumi.Input[bool]] = None,
             extra_disk_size: Optional[pulumi.Input[int]] = None,
             instance_id: Optional[pulumi.Input[int]] = None,
-            nodes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ExtraDiskSizeNodeArgs']]]]] = None,
+            nodes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ExtraDiskSizeNodeArgs', 'ExtraDiskSizeNodeArgsDict']]]]] = None,
             sleep: Optional[pulumi.Input[int]] = None,
             timeout: Optional[pulumi.Input[int]] = None) -> 'ExtraDiskSize':
         """

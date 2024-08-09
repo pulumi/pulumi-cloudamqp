@@ -417,29 +417,29 @@ class VpcGcpPeering(pulumi.CustomResource):
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
             instance_id=instance["id"],
             rules=[
-                cloudamqp.SecurityFirewallRuleArgs(
-                    ip=peer_subnet,
-                    ports=[15672],
-                    services=[
+                {
+                    "ip": peer_subnet,
+                    "ports": [15672],
+                    "services": [
                         "AMQP",
                         "AMQPS",
                         "STREAM",
                         "STREAM_SSL",
                     ],
-                    description="VPC peering for <NETWORK>",
-                ),
-                cloudamqp.SecurityFirewallRuleArgs(
-                    ip="192.168.0.0/24",
-                    ports=[
+                    "description": "VPC peering for <NETWORK>",
+                },
+                {
+                    "ip": "192.168.0.0/24",
+                    "ports": [
                         4567,
                         4568,
                     ],
-                    services=[
+                    "services": [
                         "AMQP",
                         "AMQPS",
                         "HTTPS",
                     ],
-                ),
+                },
             ],
             opts = pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
         ```
@@ -465,23 +465,23 @@ class VpcGcpPeering(pulumi.CustomResource):
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
             instance_id=instance["id"],
             rules=[
-                cloudamqp.SecurityFirewallRuleArgs(
-                    ip=peer_subnet,
-                    ports=[15672],
-                    services=[
+                {
+                    "ip": peer_subnet,
+                    "ports": [15672],
+                    "services": [
                         "AMQP",
                         "AMQPS",
                         "STREAM",
                         "STREAM_SSL",
                     ],
-                    description="VPC peering for <NETWORK>",
-                ),
-                cloudamqp.SecurityFirewallRuleArgs(
-                    ip="0.0.0.0/0",
-                    ports=[],
-                    services=["HTTPS"],
-                    description="MGMT interface",
-                ),
+                    "description": "VPC peering for <NETWORK>",
+                },
+                {
+                    "ip": "0.0.0.0/0",
+                    "ports": [],
+                    "services": ["HTTPS"],
+                    "description": "MGMT interface",
+                },
             ],
             opts = pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
         ```
@@ -654,29 +654,29 @@ class VpcGcpPeering(pulumi.CustomResource):
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
             instance_id=instance["id"],
             rules=[
-                cloudamqp.SecurityFirewallRuleArgs(
-                    ip=peer_subnet,
-                    ports=[15672],
-                    services=[
+                {
+                    "ip": peer_subnet,
+                    "ports": [15672],
+                    "services": [
                         "AMQP",
                         "AMQPS",
                         "STREAM",
                         "STREAM_SSL",
                     ],
-                    description="VPC peering for <NETWORK>",
-                ),
-                cloudamqp.SecurityFirewallRuleArgs(
-                    ip="192.168.0.0/24",
-                    ports=[
+                    "description": "VPC peering for <NETWORK>",
+                },
+                {
+                    "ip": "192.168.0.0/24",
+                    "ports": [
                         4567,
                         4568,
                     ],
-                    services=[
+                    "services": [
                         "AMQP",
                         "AMQPS",
                         "HTTPS",
                     ],
-                ),
+                },
             ],
             opts = pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
         ```
@@ -702,23 +702,23 @@ class VpcGcpPeering(pulumi.CustomResource):
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
             instance_id=instance["id"],
             rules=[
-                cloudamqp.SecurityFirewallRuleArgs(
-                    ip=peer_subnet,
-                    ports=[15672],
-                    services=[
+                {
+                    "ip": peer_subnet,
+                    "ports": [15672],
+                    "services": [
                         "AMQP",
                         "AMQPS",
                         "STREAM",
                         "STREAM_SSL",
                     ],
-                    description="VPC peering for <NETWORK>",
-                ),
-                cloudamqp.SecurityFirewallRuleArgs(
-                    ip="0.0.0.0/0",
-                    ports=[],
-                    services=["HTTPS"],
-                    description="MGMT interface",
-                ),
+                    "description": "VPC peering for <NETWORK>",
+                },
+                {
+                    "ip": "0.0.0.0/0",
+                    "ports": [],
+                    "services": ["HTTPS"],
+                    "description": "MGMT interface",
+                },
             ],
             opts = pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
         ```
