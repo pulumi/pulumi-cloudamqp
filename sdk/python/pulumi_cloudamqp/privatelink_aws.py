@@ -335,24 +335,24 @@ class PrivatelinkAws(pulumi.CustomResource):
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
             instance_id=instance.id,
             rules=[
-                cloudamqp.SecurityFirewallRuleArgs(
-                    description="Custom PrivateLink setup",
-                    ip=vpc.subnet,
-                    ports=[],
-                    services=[
+                {
+                    "description": "Custom PrivateLink setup",
+                    "ip": vpc.subnet,
+                    "ports": [],
+                    "services": [
                         "AMQP",
                         "AMQPS",
                         "HTTPS",
                         "STREAM",
                         "STREAM_SSL",
                     ],
-                ),
-                cloudamqp.SecurityFirewallRuleArgs(
-                    description="MGMT interface",
-                    ip="0.0.0.0/0",
-                    ports=[],
-                    services=["HTTPS"],
-                ),
+                },
+                {
+                    "description": "MGMT interface",
+                    "ip": "0.0.0.0/0",
+                    "ports": [],
+                    "services": ["HTTPS"],
+                },
             ],
             opts = pulumi.ResourceOptions(depends_on=[privatelink]))
         ```
@@ -498,24 +498,24 @@ class PrivatelinkAws(pulumi.CustomResource):
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
             instance_id=instance.id,
             rules=[
-                cloudamqp.SecurityFirewallRuleArgs(
-                    description="Custom PrivateLink setup",
-                    ip=vpc.subnet,
-                    ports=[],
-                    services=[
+                {
+                    "description": "Custom PrivateLink setup",
+                    "ip": vpc.subnet,
+                    "ports": [],
+                    "services": [
                         "AMQP",
                         "AMQPS",
                         "HTTPS",
                         "STREAM",
                         "STREAM_SSL",
                     ],
-                ),
-                cloudamqp.SecurityFirewallRuleArgs(
-                    description="MGMT interface",
-                    ip="0.0.0.0/0",
-                    ports=[],
-                    services=["HTTPS"],
-                ),
+                },
+                {
+                    "description": "MGMT interface",
+                    "ip": "0.0.0.0/0",
+                    "ports": [],
+                    "services": ["HTTPS"],
+                },
             ],
             opts = pulumi.ResourceOptions(depends_on=[privatelink]))
         ```

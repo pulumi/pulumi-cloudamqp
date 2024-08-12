@@ -202,7 +202,7 @@ public class IntegrationAwsEventbridge extends com.pulumi.resources.CustomResour
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public IntegrationAwsEventbridge(String name) {
+    public IntegrationAwsEventbridge(java.lang.String name) {
         this(name, IntegrationAwsEventbridgeArgs.Empty);
     }
     /**
@@ -210,7 +210,7 @@ public class IntegrationAwsEventbridge extends com.pulumi.resources.CustomResour
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public IntegrationAwsEventbridge(String name, IntegrationAwsEventbridgeArgs args) {
+    public IntegrationAwsEventbridge(java.lang.String name, IntegrationAwsEventbridgeArgs args) {
         this(name, args, null);
     }
     /**
@@ -219,12 +219,12 @@ public class IntegrationAwsEventbridge extends com.pulumi.resources.CustomResour
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public IntegrationAwsEventbridge(String name, IntegrationAwsEventbridgeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("cloudamqp:index/integrationAwsEventbridge:IntegrationAwsEventbridge", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public IntegrationAwsEventbridge(java.lang.String name, IntegrationAwsEventbridgeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("cloudamqp:index/integrationAwsEventbridge:IntegrationAwsEventbridge", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private IntegrationAwsEventbridge(String name, Output<String> id, @Nullable IntegrationAwsEventbridgeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("cloudamqp:index/integrationAwsEventbridge:IntegrationAwsEventbridge", name, state, makeResourceOptions(options, id));
+    private IntegrationAwsEventbridge(java.lang.String name, Output<java.lang.String> id, @Nullable IntegrationAwsEventbridgeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("cloudamqp:index/integrationAwsEventbridge:IntegrationAwsEventbridge", name, state, makeResourceOptions(options, id), false);
     }
 
     private static IntegrationAwsEventbridgeArgs makeArgs(IntegrationAwsEventbridgeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -234,7 +234,7 @@ public class IntegrationAwsEventbridge extends com.pulumi.resources.CustomResour
         return args == null ? IntegrationAwsEventbridgeArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -250,7 +250,7 @@ public class IntegrationAwsEventbridge extends com.pulumi.resources.CustomResour
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static IntegrationAwsEventbridge get(String name, Output<String> id, @Nullable IntegrationAwsEventbridgeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static IntegrationAwsEventbridge get(java.lang.String name, Output<java.lang.String> id, @Nullable IntegrationAwsEventbridgeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new IntegrationAwsEventbridge(name, id, state, options);
     }
 }
