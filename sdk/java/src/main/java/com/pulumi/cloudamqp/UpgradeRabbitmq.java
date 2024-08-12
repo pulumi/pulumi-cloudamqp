@@ -171,7 +171,7 @@ public class UpgradeRabbitmq extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public UpgradeRabbitmq(String name) {
+    public UpgradeRabbitmq(java.lang.String name) {
         this(name, UpgradeRabbitmqArgs.Empty);
     }
     /**
@@ -179,7 +179,7 @@ public class UpgradeRabbitmq extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public UpgradeRabbitmq(String name, UpgradeRabbitmqArgs args) {
+    public UpgradeRabbitmq(java.lang.String name, UpgradeRabbitmqArgs args) {
         this(name, args, null);
     }
     /**
@@ -188,12 +188,12 @@ public class UpgradeRabbitmq extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public UpgradeRabbitmq(String name, UpgradeRabbitmqArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("cloudamqp:index/upgradeRabbitmq:UpgradeRabbitmq", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public UpgradeRabbitmq(java.lang.String name, UpgradeRabbitmqArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("cloudamqp:index/upgradeRabbitmq:UpgradeRabbitmq", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private UpgradeRabbitmq(String name, Output<String> id, @Nullable UpgradeRabbitmqState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("cloudamqp:index/upgradeRabbitmq:UpgradeRabbitmq", name, state, makeResourceOptions(options, id));
+    private UpgradeRabbitmq(java.lang.String name, Output<java.lang.String> id, @Nullable UpgradeRabbitmqState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("cloudamqp:index/upgradeRabbitmq:UpgradeRabbitmq", name, state, makeResourceOptions(options, id), false);
     }
 
     private static UpgradeRabbitmqArgs makeArgs(UpgradeRabbitmqArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -203,7 +203,7 @@ public class UpgradeRabbitmq extends com.pulumi.resources.CustomResource {
         return args == null ? UpgradeRabbitmqArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -219,7 +219,7 @@ public class UpgradeRabbitmq extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static UpgradeRabbitmq get(String name, Output<String> id, @Nullable UpgradeRabbitmqState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static UpgradeRabbitmq get(java.lang.String name, Output<java.lang.String> id, @Nullable UpgradeRabbitmqState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new UpgradeRabbitmq(name, id, state, options);
     }
 }

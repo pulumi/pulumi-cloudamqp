@@ -625,7 +625,7 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public IntegrationMetric(String name) {
+    public IntegrationMetric(java.lang.String name) {
         this(name, IntegrationMetricArgs.Empty);
     }
     /**
@@ -633,7 +633,7 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public IntegrationMetric(String name, IntegrationMetricArgs args) {
+    public IntegrationMetric(java.lang.String name, IntegrationMetricArgs args) {
         this(name, args, null);
     }
     /**
@@ -642,12 +642,12 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public IntegrationMetric(String name, IntegrationMetricArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("cloudamqp:index/integrationMetric:IntegrationMetric", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public IntegrationMetric(java.lang.String name, IntegrationMetricArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("cloudamqp:index/integrationMetric:IntegrationMetric", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private IntegrationMetric(String name, Output<String> id, @Nullable IntegrationMetricState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("cloudamqp:index/integrationMetric:IntegrationMetric", name, state, makeResourceOptions(options, id));
+    private IntegrationMetric(java.lang.String name, Output<java.lang.String> id, @Nullable IntegrationMetricState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("cloudamqp:index/integrationMetric:IntegrationMetric", name, state, makeResourceOptions(options, id), false);
     }
 
     private static IntegrationMetricArgs makeArgs(IntegrationMetricArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -657,7 +657,7 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
         return args == null ? IntegrationMetricArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -681,7 +681,7 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static IntegrationMetric get(String name, Output<String> id, @Nullable IntegrationMetricState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static IntegrationMetric get(java.lang.String name, Output<java.lang.String> id, @Nullable IntegrationMetricState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new IntegrationMetric(name, id, state, options);
     }
 }
