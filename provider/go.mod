@@ -5,7 +5,7 @@ go 1.21.12
 replace github.com/hashicorp/vault => github.com/hashicorp/vault v1.2.0
 
 require (
-	github.com/cloudamqp/terraform-provider-cloudamqp v1.30.1
+	github.com/cloudamqp/terraform-provider-cloudamqp v1.31.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.89.1
 	github.com/pulumi/pulumi/sdk/v3 v3.129.0
 )
