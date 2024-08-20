@@ -14,12 +14,20 @@ __all__ = ['UpgradeRabbitmqArgs', 'UpgradeRabbitmq']
 @pulumi.input_type
 class UpgradeRabbitmqArgs:
     def __init__(__self__, *,
-                 instance_id: pulumi.Input[int]):
+                 instance_id: pulumi.Input[int],
+                 current_version: Optional[pulumi.Input[str]] = None,
+                 new_version: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a UpgradeRabbitmq resource.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier
+        :param pulumi.Input[str] current_version: Helper argument to change upgrade behaviour to latest possible version
+        :param pulumi.Input[str] new_version: The new version to upgrade to
         """
         pulumi.set(__self__, "instance_id", instance_id)
+        if current_version is not None:
+            pulumi.set(__self__, "current_version", current_version)
+        if new_version is not None:
+            pulumi.set(__self__, "new_version", new_version)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -33,17 +41,61 @@ class UpgradeRabbitmqArgs:
     def instance_id(self, value: pulumi.Input[int]):
         pulumi.set(self, "instance_id", value)
 
+    @property
+    @pulumi.getter(name="currentVersion")
+    def current_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Helper argument to change upgrade behaviour to latest possible version
+        """
+        return pulumi.get(self, "current_version")
+
+    @current_version.setter
+    def current_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "current_version", value)
+
+    @property
+    @pulumi.getter(name="newVersion")
+    def new_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        The new version to upgrade to
+        """
+        return pulumi.get(self, "new_version")
+
+    @new_version.setter
+    def new_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "new_version", value)
+
 
 @pulumi.input_type
 class _UpgradeRabbitmqState:
     def __init__(__self__, *,
-                 instance_id: Optional[pulumi.Input[int]] = None):
+                 current_version: Optional[pulumi.Input[str]] = None,
+                 instance_id: Optional[pulumi.Input[int]] = None,
+                 new_version: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering UpgradeRabbitmq resources.
+        :param pulumi.Input[str] current_version: Helper argument to change upgrade behaviour to latest possible version
         :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier
+        :param pulumi.Input[str] new_version: The new version to upgrade to
         """
+        if current_version is not None:
+            pulumi.set(__self__, "current_version", current_version)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
+        if new_version is not None:
+            pulumi.set(__self__, "new_version", new_version)
+
+    @property
+    @pulumi.getter(name="currentVersion")
+    def current_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Helper argument to change upgrade behaviour to latest possible version
+        """
+        return pulumi.get(self, "current_version")
+
+    @current_version.setter
+    def current_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "current_version", value)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -57,27 +109,103 @@ class _UpgradeRabbitmqState:
     def instance_id(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "instance_id", value)
 
+    @property
+    @pulumi.getter(name="newVersion")
+    def new_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        The new version to upgrade to
+        """
+        return pulumi.get(self, "new_version")
+
+    @new_version.setter
+    def new_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "new_version", value)
+
 
 class UpgradeRabbitmq(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 current_version: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
+                 new_version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        This resource allows you to automatically upgrade to the latest possible upgradable versions for RabbitMQ and Erlang. Depending on initial versions of RabbitMQ and Erlang of the CloudAMQP instance, multiple runs may be needed to get to the latest versions. After completed upgrade, check data source `get_upgradable_versions` to see if newer versions is available. Then delete `UpgradeRabbitmq` and create it again to invoke the upgrade.
+        This resource allows you to upgrade RabbitMQ version. Depending on initial versions of RabbitMQ and Erlang of the CloudAMQP instance, multiple runs may be needed to get to the latest or wanted version. Reason for this is certain supported RabbitMQ version will also automatically upgrade Erlang version.
 
-        > **Important Upgrade Information**
-        > - All single node upgrades will require some downtime since RabbitMQ needs a restart.
-        > - From RabbitMQ version 3.9, rolling upgrades between minor versions (e.g. 3.9 to 3.10), in a multi-node cluster are possible without downtime. This means that one node is upgraded at a time while the other nodes are still running. For versions older than 3.9, patch version upgrades (e.g. 3.8.x to 3.8.y) are possible without downtime in a multi-node cluster, but minor version upgrades will require downtime.
-        > - Auto delete queues (queues that are marked AD) will be deleted during the update.
-        > - Any custom plugins support has installed on your behalf will be disabled and you need to contact support@cloudamqp.com and ask to have them re-installed.
-        > - TLS 1.0 and 1.1 will not be supported after the update.
+        There is three different ways to trigger the version upgrade
+
+        > - Specify RabbitMQ version to upgrade to
+        > - Upgrade to latest RabbitMQ version
+        > - Old behaviour to upgrade to latest RabbitMQ version
+
+        See, below example usage for the difference.
 
         Only available for dedicated subscription plans running ***RabbitMQ***.
 
         ## Example Usage
+
+        <details>
+          <summary>
+            <b>
+              <i>Specify version upgrade, from v1.40.0</i>
+            </b>
+          </summary>
+
+        Specify the version to upgrade to. List available upgradable versions, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#get-available-versions).
+        After the upgrade finished, there can still be newer versions available.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        instance = cloudamqp.Instance("instance",
+            name="rabbitmq-version-upgrade-test",
+            plan="bunny-1",
+            region="amazon-web-services::us-west-1")
+        upgrade = cloudamqp.UpgradeRabbitmq("upgrade",
+            instance_id=instance.id,
+            new_version="3.13.2")
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Upgrade to latest possible version, from v1.40.0</i>
+            </b>
+          </summary>
+
+        This will upgrade RabbitMQ to the latest possible version detected by the data source `get_upgradable_versions`.
+        Multiple runs can be needed to upgrade the version even further.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        instance = cloudamqp.Instance("instance",
+            name="rabbitmq-version-upgrade-test",
+            plan="bunny-1",
+            region="amazon-web-services::us-west-1")
+        upgradable_versions = instance.id.apply(lambda id: cloudamqp.get_upgradable_versions_output(instance_id=id))
+        upgrade = cloudamqp.UpgradeRabbitmq("upgrade",
+            instance_id=instance.id,
+            current_version=instance.rmq_version,
+            new_version=upgradable_versions.new_rabbitmq_version)
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Upgrade to latest possible version, before v1.40.0</i>
+            </b>
+          </summary>
+
+        Old behaviour of the upgrading the RabbitMQ version. No longer recommended.
 
         ```python
         import pulumi
@@ -109,13 +237,37 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=instance["id"])
         ```
 
+        </details>
+
+        ## Important Upgrade Information
+
+        > - All single node upgrades will require some downtime since RabbitMQ needs a restart.
+        > - From RabbitMQ version 3.9, rolling upgrades between minor versions (e.g. 3.9 to 3.10), in a multi-node cluster are possible without downtime. This means that one node is upgraded at a time while the other nodes are still running. For versions older than 3.9, patch version upgrades (e.g. 3.8.x to 3.8.y) are possible without downtime in a multi-node cluster, but minor version upgrades will require downtime.
+        > - Auto delete queues (queues that are marked AD) will be deleted during the update.
+        > - Any custom plugins support has installed on your behalf will be disabled and you need to contact support@cloudamqp.com and ask to have them re-installed.
+        > - TLS 1.0 and 1.1 will not be supported after the update.
+
+        ## Multiple runs
+
+        Depending on initial versions of RabbitMQ and Erlang of the CloudAMQP instance, multiple runs may be needed to get to the latest or wanted version.
+
+        Example steps needed when starting at RabbitMQ version 3.12.2
+
+        |  Version         | Supported upgrading versions              | Min version to upgrade Erlang |
+        |------------------|-------------------------------------------|-------------------------------|
+        | 3.12.2           | 3.12.4, 3.12.6, 3.12.10, 3.12.12, 3.12.13 | 3.12.13                       |
+        | 3.12.13          | 3.13.2                                    | 3.13.2                        |
+        | 3.13.2           | -                                         | -                             |
+
         ## Import
 
         Not possible to import this resource.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] current_version: Helper argument to change upgrade behaviour to latest possible version
         :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier
+        :param pulumi.Input[str] new_version: The new version to upgrade to
         """
         ...
     @overload
@@ -124,18 +276,80 @@ class UpgradeRabbitmq(pulumi.CustomResource):
                  args: UpgradeRabbitmqArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        This resource allows you to automatically upgrade to the latest possible upgradable versions for RabbitMQ and Erlang. Depending on initial versions of RabbitMQ and Erlang of the CloudAMQP instance, multiple runs may be needed to get to the latest versions. After completed upgrade, check data source `get_upgradable_versions` to see if newer versions is available. Then delete `UpgradeRabbitmq` and create it again to invoke the upgrade.
+        This resource allows you to upgrade RabbitMQ version. Depending on initial versions of RabbitMQ and Erlang of the CloudAMQP instance, multiple runs may be needed to get to the latest or wanted version. Reason for this is certain supported RabbitMQ version will also automatically upgrade Erlang version.
 
-        > **Important Upgrade Information**
-        > - All single node upgrades will require some downtime since RabbitMQ needs a restart.
-        > - From RabbitMQ version 3.9, rolling upgrades between minor versions (e.g. 3.9 to 3.10), in a multi-node cluster are possible without downtime. This means that one node is upgraded at a time while the other nodes are still running. For versions older than 3.9, patch version upgrades (e.g. 3.8.x to 3.8.y) are possible without downtime in a multi-node cluster, but minor version upgrades will require downtime.
-        > - Auto delete queues (queues that are marked AD) will be deleted during the update.
-        > - Any custom plugins support has installed on your behalf will be disabled and you need to contact support@cloudamqp.com and ask to have them re-installed.
-        > - TLS 1.0 and 1.1 will not be supported after the update.
+        There is three different ways to trigger the version upgrade
+
+        > - Specify RabbitMQ version to upgrade to
+        > - Upgrade to latest RabbitMQ version
+        > - Old behaviour to upgrade to latest RabbitMQ version
+
+        See, below example usage for the difference.
 
         Only available for dedicated subscription plans running ***RabbitMQ***.
 
         ## Example Usage
+
+        <details>
+          <summary>
+            <b>
+              <i>Specify version upgrade, from v1.40.0</i>
+            </b>
+          </summary>
+
+        Specify the version to upgrade to. List available upgradable versions, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#get-available-versions).
+        After the upgrade finished, there can still be newer versions available.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        instance = cloudamqp.Instance("instance",
+            name="rabbitmq-version-upgrade-test",
+            plan="bunny-1",
+            region="amazon-web-services::us-west-1")
+        upgrade = cloudamqp.UpgradeRabbitmq("upgrade",
+            instance_id=instance.id,
+            new_version="3.13.2")
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Upgrade to latest possible version, from v1.40.0</i>
+            </b>
+          </summary>
+
+        This will upgrade RabbitMQ to the latest possible version detected by the data source `get_upgradable_versions`.
+        Multiple runs can be needed to upgrade the version even further.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        instance = cloudamqp.Instance("instance",
+            name="rabbitmq-version-upgrade-test",
+            plan="bunny-1",
+            region="amazon-web-services::us-west-1")
+        upgradable_versions = instance.id.apply(lambda id: cloudamqp.get_upgradable_versions_output(instance_id=id))
+        upgrade = cloudamqp.UpgradeRabbitmq("upgrade",
+            instance_id=instance.id,
+            current_version=instance.rmq_version,
+            new_version=upgradable_versions.new_rabbitmq_version)
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Upgrade to latest possible version, before v1.40.0</i>
+            </b>
+          </summary>
+
+        Old behaviour of the upgrading the RabbitMQ version. No longer recommended.
 
         ```python
         import pulumi
@@ -166,6 +380,28 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         # Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
         upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=instance["id"])
         ```
+
+        </details>
+
+        ## Important Upgrade Information
+
+        > - All single node upgrades will require some downtime since RabbitMQ needs a restart.
+        > - From RabbitMQ version 3.9, rolling upgrades between minor versions (e.g. 3.9 to 3.10), in a multi-node cluster are possible without downtime. This means that one node is upgraded at a time while the other nodes are still running. For versions older than 3.9, patch version upgrades (e.g. 3.8.x to 3.8.y) are possible without downtime in a multi-node cluster, but minor version upgrades will require downtime.
+        > - Auto delete queues (queues that are marked AD) will be deleted during the update.
+        > - Any custom plugins support has installed on your behalf will be disabled and you need to contact support@cloudamqp.com and ask to have them re-installed.
+        > - TLS 1.0 and 1.1 will not be supported after the update.
+
+        ## Multiple runs
+
+        Depending on initial versions of RabbitMQ and Erlang of the CloudAMQP instance, multiple runs may be needed to get to the latest or wanted version.
+
+        Example steps needed when starting at RabbitMQ version 3.12.2
+
+        |  Version         | Supported upgrading versions              | Min version to upgrade Erlang |
+        |------------------|-------------------------------------------|-------------------------------|
+        | 3.12.2           | 3.12.4, 3.12.6, 3.12.10, 3.12.12, 3.12.13 | 3.12.13                       |
+        | 3.12.13          | 3.13.2                                    | 3.13.2                        |
+        | 3.13.2           | -                                         | -                             |
 
         ## Import
 
@@ -186,7 +422,9 @@ class UpgradeRabbitmq(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 current_version: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
+                 new_version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -196,9 +434,11 @@ class UpgradeRabbitmq(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = UpgradeRabbitmqArgs.__new__(UpgradeRabbitmqArgs)
 
+            __props__.__dict__["current_version"] = current_version
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
+            __props__.__dict__["new_version"] = new_version
         super(UpgradeRabbitmq, __self__).__init__(
             'cloudamqp:index/upgradeRabbitmq:UpgradeRabbitmq',
             resource_name,
@@ -209,7 +449,9 @@ class UpgradeRabbitmq(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            instance_id: Optional[pulumi.Input[int]] = None) -> 'UpgradeRabbitmq':
+            current_version: Optional[pulumi.Input[str]] = None,
+            instance_id: Optional[pulumi.Input[int]] = None,
+            new_version: Optional[pulumi.Input[str]] = None) -> 'UpgradeRabbitmq':
         """
         Get an existing UpgradeRabbitmq resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -217,14 +459,26 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] current_version: Helper argument to change upgrade behaviour to latest possible version
         :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier
+        :param pulumi.Input[str] new_version: The new version to upgrade to
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _UpgradeRabbitmqState.__new__(_UpgradeRabbitmqState)
 
+        __props__.__dict__["current_version"] = current_version
         __props__.__dict__["instance_id"] = instance_id
+        __props__.__dict__["new_version"] = new_version
         return UpgradeRabbitmq(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="currentVersion")
+    def current_version(self) -> pulumi.Output[Optional[str]]:
+        """
+        Helper argument to change upgrade behaviour to latest possible version
+        """
+        return pulumi.get(self, "current_version")
 
     @property
     @pulumi.getter(name="instanceId")
@@ -233,4 +487,12 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         The CloudAMQP instance identifier
         """
         return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="newVersion")
+    def new_version(self) -> pulumi.Output[Optional[str]]:
+        """
+        The new version to upgrade to
+        """
+        return pulumi.get(self, "new_version")
 

@@ -6,6 +6,7 @@ package com.pulumi.cloudamqp.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Integer;
+import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -14,6 +15,21 @@ import javax.annotation.Nullable;
 public final class UpgradeRabbitmqState extends com.pulumi.resources.ResourceArgs {
 
     public static final UpgradeRabbitmqState Empty = new UpgradeRabbitmqState();
+
+    /**
+     * Helper argument to change upgrade behaviour to latest possible version
+     * 
+     */
+    @Import(name="currentVersion")
+    private @Nullable Output<String> currentVersion;
+
+    /**
+     * @return Helper argument to change upgrade behaviour to latest possible version
+     * 
+     */
+    public Optional<Output<String>> currentVersion() {
+        return Optional.ofNullable(this.currentVersion);
+    }
 
     /**
      * The CloudAMQP instance identifier
@@ -30,10 +46,27 @@ public final class UpgradeRabbitmqState extends com.pulumi.resources.ResourceArg
         return Optional.ofNullable(this.instanceId);
     }
 
+    /**
+     * The new version to upgrade to
+     * 
+     */
+    @Import(name="newVersion")
+    private @Nullable Output<String> newVersion;
+
+    /**
+     * @return The new version to upgrade to
+     * 
+     */
+    public Optional<Output<String>> newVersion() {
+        return Optional.ofNullable(this.newVersion);
+    }
+
     private UpgradeRabbitmqState() {}
 
     private UpgradeRabbitmqState(UpgradeRabbitmqState $) {
+        this.currentVersion = $.currentVersion;
         this.instanceId = $.instanceId;
+        this.newVersion = $.newVersion;
     }
 
     public static Builder builder() {
@@ -55,6 +88,27 @@ public final class UpgradeRabbitmqState extends com.pulumi.resources.ResourceArg
         }
 
         /**
+         * @param currentVersion Helper argument to change upgrade behaviour to latest possible version
+         * 
+         * @return builder
+         * 
+         */
+        public Builder currentVersion(@Nullable Output<String> currentVersion) {
+            $.currentVersion = currentVersion;
+            return this;
+        }
+
+        /**
+         * @param currentVersion Helper argument to change upgrade behaviour to latest possible version
+         * 
+         * @return builder
+         * 
+         */
+        public Builder currentVersion(String currentVersion) {
+            return currentVersion(Output.of(currentVersion));
+        }
+
+        /**
          * @param instanceId The CloudAMQP instance identifier
          * 
          * @return builder
@@ -73,6 +127,27 @@ public final class UpgradeRabbitmqState extends com.pulumi.resources.ResourceArg
          */
         public Builder instanceId(Integer instanceId) {
             return instanceId(Output.of(instanceId));
+        }
+
+        /**
+         * @param newVersion The new version to upgrade to
+         * 
+         * @return builder
+         * 
+         */
+        public Builder newVersion(@Nullable Output<String> newVersion) {
+            $.newVersion = newVersion;
+            return this;
+        }
+
+        /**
+         * @param newVersion The new version to upgrade to
+         * 
+         * @return builder
+         * 
+         */
+        public Builder newVersion(String newVersion) {
+            return newVersion(Output.of(newVersion));
         }
 
         public UpgradeRabbitmqState build() {
