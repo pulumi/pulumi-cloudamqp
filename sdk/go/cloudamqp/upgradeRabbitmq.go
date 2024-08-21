@@ -12,18 +12,129 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource allows you to automatically upgrade to the latest possible upgradable versions for RabbitMQ and Erlang. Depending on initial versions of RabbitMQ and Erlang of the CloudAMQP instance, multiple runs may be needed to get to the latest versions. After completed upgrade, check data source `getUpgradableVersions` to see if newer versions is available. Then delete `UpgradeRabbitmq` and create it again to invoke the upgrade.
+// This resource allows you to upgrade RabbitMQ version. Depending on initial versions of RabbitMQ and Erlang of the CloudAMQP instance, multiple runs may be needed to get to the latest or wanted version. Reason for this is certain supported RabbitMQ version will also automatically upgrade Erlang version.
 //
-// > **Important Upgrade Information**
-// > - All single node upgrades will require some downtime since RabbitMQ needs a restart.
-// > - From RabbitMQ version 3.9, rolling upgrades between minor versions (e.g. 3.9 to 3.10), in a multi-node cluster are possible without downtime. This means that one node is upgraded at a time while the other nodes are still running. For versions older than 3.9, patch version upgrades (e.g. 3.8.x to 3.8.y) are possible without downtime in a multi-node cluster, but minor version upgrades will require downtime.
-// > - Auto delete queues (queues that are marked AD) will be deleted during the update.
-// > - Any custom plugins support has installed on your behalf will be disabled and you need to contact support@cloudamqp.com and ask to have them re-installed.
-// > - TLS 1.0 and 1.1 will not be supported after the update.
+// # There is three different ways to trigger the version upgrade
+//
+// > - Specify RabbitMQ version to upgrade to
+// > - Upgrade to latest RabbitMQ version
+// > - Old behaviour to upgrade to latest RabbitMQ version
+//
+// See, below example usage for the difference.
 //
 // Only available for dedicated subscription plans running ***RabbitMQ***.
 //
 // ## Example Usage
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Specify version upgrade, from v1.40.0</i>
+//	  </b>
+//	</summary>
+//
+// Specify the version to upgrade to. List available upgradable versions, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#get-available-versions).
+// After the upgrade finished, there can still be newer versions available.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:   pulumi.String("rabbitmq-version-upgrade-test"),
+//				Plan:   pulumi.String("bunny-1"),
+//				Region: pulumi.String("amazon-web-services::us-west-1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewUpgradeRabbitmq(ctx, "upgrade", &cloudamqp.UpgradeRabbitmqArgs{
+//				InstanceId: instance.ID(),
+//				NewVersion: pulumi.String("3.13.2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Upgrade to latest possible version, from v1.40.0</i>
+//	  </b>
+//	</summary>
+//
+// This will upgrade RabbitMQ to the latest possible version detected by the data source `getUpgradableVersions`.
+// Multiple runs can be needed to upgrade the version even further.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:   pulumi.String("rabbitmq-version-upgrade-test"),
+//				Plan:   pulumi.String("bunny-1"),
+//				Region: pulumi.String("amazon-web-services::us-west-1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			upgradableVersions := instance.ID().ApplyT(func(id string) (cloudamqp.GetUpgradableVersionsResult, error) {
+//				return cloudamqp.GetUpgradableVersionsResult(interface{}(cloudamqp.GetUpgradableVersionsOutput(ctx, cloudamqp.GetUpgradableVersionsOutputArgs{
+//					InstanceId: id,
+//				}, nil))), nil
+//			}).(cloudamqp.GetUpgradableVersionsResultOutput)
+//			_, err = cloudamqp.NewUpgradeRabbitmq(ctx, "upgrade", &cloudamqp.UpgradeRabbitmqArgs{
+//				InstanceId:     instance.ID(),
+//				CurrentVersion: instance.RmqVersion,
+//				NewVersion: pulumi.String(upgradableVersions.ApplyT(func(upgradableVersions cloudamqp.GetUpgradableVersionsResult) (*string, error) {
+//					return &upgradableVersions.NewRabbitmqVersion, nil
+//				}).(pulumi.StringPtrOutput)),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Upgrade to latest possible version, before v1.40.0</i>
+//	  </b>
+//	</summary>
+//
+// Old behaviour of the upgrading the RabbitMQ version. No longer recommended.
 //
 // ```go
 // package main
@@ -116,14 +227,40 @@ import (
 //
 // ```
 //
+// </details>
+//
+// ## Important Upgrade Information
+//
+// > - All single node upgrades will require some downtime since RabbitMQ needs a restart.
+// > - From RabbitMQ version 3.9, rolling upgrades between minor versions (e.g. 3.9 to 3.10), in a multi-node cluster are possible without downtime. This means that one node is upgraded at a time while the other nodes are still running. For versions older than 3.9, patch version upgrades (e.g. 3.8.x to 3.8.y) are possible without downtime in a multi-node cluster, but minor version upgrades will require downtime.
+// > - Auto delete queues (queues that are marked AD) will be deleted during the update.
+// > - Any custom plugins support has installed on your behalf will be disabled and you need to contact support@cloudamqp.com and ask to have them re-installed.
+// > - TLS 1.0 and 1.1 will not be supported after the update.
+//
+// ## Multiple runs
+//
+// Depending on initial versions of RabbitMQ and Erlang of the CloudAMQP instance, multiple runs may be needed to get to the latest or wanted version.
+//
+// # Example steps needed when starting at RabbitMQ version 3.12.2
+//
+// |  Version         | Supported upgrading versions              | Min version to upgrade Erlang |
+// |------------------|-------------------------------------------|-------------------------------|
+// | 3.12.2           | 3.12.4, 3.12.6, 3.12.10, 3.12.12, 3.12.13 | 3.12.13                       |
+// | 3.12.13          | 3.13.2                                    | 3.13.2                        |
+// | 3.13.2           | -                                         | -                             |
+//
 // ## Import
 //
 // Not possible to import this resource.
 type UpgradeRabbitmq struct {
 	pulumi.CustomResourceState
 
+	// Helper argument to change upgrade behaviour to latest possible version
+	CurrentVersion pulumi.StringPtrOutput `pulumi:"currentVersion"`
 	// The CloudAMQP instance identifier
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
+	// The new version to upgrade to
+	NewVersion pulumi.StringPtrOutput `pulumi:"newVersion"`
 }
 
 // NewUpgradeRabbitmq registers a new resource with the given unique name, arguments, and options.
@@ -159,13 +296,21 @@ func GetUpgradeRabbitmq(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UpgradeRabbitmq resources.
 type upgradeRabbitmqState struct {
+	// Helper argument to change upgrade behaviour to latest possible version
+	CurrentVersion *string `pulumi:"currentVersion"`
 	// The CloudAMQP instance identifier
 	InstanceId *int `pulumi:"instanceId"`
+	// The new version to upgrade to
+	NewVersion *string `pulumi:"newVersion"`
 }
 
 type UpgradeRabbitmqState struct {
+	// Helper argument to change upgrade behaviour to latest possible version
+	CurrentVersion pulumi.StringPtrInput
 	// The CloudAMQP instance identifier
 	InstanceId pulumi.IntPtrInput
+	// The new version to upgrade to
+	NewVersion pulumi.StringPtrInput
 }
 
 func (UpgradeRabbitmqState) ElementType() reflect.Type {
@@ -173,14 +318,22 @@ func (UpgradeRabbitmqState) ElementType() reflect.Type {
 }
 
 type upgradeRabbitmqArgs struct {
+	// Helper argument to change upgrade behaviour to latest possible version
+	CurrentVersion *string `pulumi:"currentVersion"`
 	// The CloudAMQP instance identifier
 	InstanceId int `pulumi:"instanceId"`
+	// The new version to upgrade to
+	NewVersion *string `pulumi:"newVersion"`
 }
 
 // The set of arguments for constructing a UpgradeRabbitmq resource.
 type UpgradeRabbitmqArgs struct {
+	// Helper argument to change upgrade behaviour to latest possible version
+	CurrentVersion pulumi.StringPtrInput
 	// The CloudAMQP instance identifier
 	InstanceId pulumi.IntInput
+	// The new version to upgrade to
+	NewVersion pulumi.StringPtrInput
 }
 
 func (UpgradeRabbitmqArgs) ElementType() reflect.Type {
@@ -270,9 +423,19 @@ func (o UpgradeRabbitmqOutput) ToUpgradeRabbitmqOutputWithContext(ctx context.Co
 	return o
 }
 
+// Helper argument to change upgrade behaviour to latest possible version
+func (o UpgradeRabbitmqOutput) CurrentVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UpgradeRabbitmq) pulumi.StringPtrOutput { return v.CurrentVersion }).(pulumi.StringPtrOutput)
+}
+
 // The CloudAMQP instance identifier
 func (o UpgradeRabbitmqOutput) InstanceId() pulumi.IntOutput {
 	return o.ApplyT(func(v *UpgradeRabbitmq) pulumi.IntOutput { return v.InstanceId }).(pulumi.IntOutput)
+}
+
+// The new version to upgrade to
+func (o UpgradeRabbitmqOutput) NewVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UpgradeRabbitmq) pulumi.StringPtrOutput { return v.NewVersion }).(pulumi.StringPtrOutput)
 }
 
 type UpgradeRabbitmqArrayOutput struct{ *pulumi.OutputState }
