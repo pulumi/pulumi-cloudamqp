@@ -17,9 +17,10 @@ package cloudamqp
 import (
 	"bytes"
 	"fmt"
-	"github.com/cloudamqp/terraform-provider-cloudamqp/cloudamqp"
 	"net/http"
 	"path"
+
+	"github.com/cloudamqp/terraform-provider-cloudamqp/cloudamqp"
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tfbridgetokens "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
