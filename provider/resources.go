@@ -15,6 +15,7 @@
 package cloudamqp
 
 import (
+	"bytes"
 	"fmt"
 	"net/http"
 	"path"
@@ -54,6 +55,7 @@ func Provider() tfbridge.ProviderInfo {
 		Homepage:          "https://pulumi.io",
 		Repository:        "https://github.com/pulumi/pulumi-cloudamqp",
 		Config:            map[string]*tfbridge.SchemaInfo{},
+		DocRules:          &tfbridge.DocRuleInfo{EditRules: docEditRules},
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"cloudamqp_rabbitmq_configuration": {Tok: makeResource("RabbitConfiguration")},
 			"cloudamqp_integration_metric": {
@@ -112,4 +114,20 @@ func Provider() tfbridge.ProviderInfo {
 	prov.SetAutonaming(255, "-")
 
 	return prov
+}
+
+func docEditRules(defaults []tfbridge.DocsEdit) []tfbridge.DocsEdit {
+	return append(
+		defaults,
+		removeBlockReference,
+	)
+}
+
+// Removes a block reference
+var removeBlockReference = tfbridge.DocsEdit{
+	Path: "index.md",
+	Edit: func(_ string, content []byte) ([]byte, error) {
+		content = bytes.ReplaceAll(content, []byte(" in the `provider` block"), nil)
+		return content, nil
+	},
 }
