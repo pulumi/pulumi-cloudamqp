@@ -244,7 +244,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         > - All single node upgrades will require some downtime since RabbitMQ needs a restart.
         > - From RabbitMQ version 3.9, rolling upgrades between minor versions (e.g. 3.9 to 3.10), in a multi-node cluster are possible without downtime. This means that one node is upgraded at a time while the other nodes are still running. For versions older than 3.9, patch version upgrades (e.g. 3.8.x to 3.8.y) are possible without downtime in a multi-node cluster, but minor version upgrades will require downtime.
         > - Auto delete queues (queues that are marked AD) will be deleted during the update.
-        > - Any custom plugins support has installed on your behalf will be disabled and you need to contact support@cloudamqp.com and ask to have them re-installed.
+        > - Any custom plugins support has installed on your behalf will be disabled and you need to contact <support@cloudamqp.com> and ask to have them re-installed.
         > - TLS 1.0 and 1.1 will not be supported after the update.
 
         ## Multiple runs
@@ -252,12 +252,32 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         Depending on initial versions of RabbitMQ and Erlang of the CloudAMQP instance, multiple runs may be needed to get to the latest or wanted version.
 
         Example steps needed when starting at RabbitMQ version 3.12.2
-
-        |  Version         | Supported upgrading versions              | Min version to upgrade Erlang |
-        |------------------|-------------------------------------------|-------------------------------|
-        | 3.12.2           | 3.12.4, 3.12.6, 3.12.10, 3.12.12, 3.12.13 | 3.12.13                       |
-        | 3.12.13          | 3.13.2                                    | 3.13.2                        |
-        | 3.13.2           | -                                         | -                             |
+        <table>
+        <thead>
+        <tr>
+        <th>Version</th>
+        <th>Supported upgrading versions</th>
+        <th>Min version to upgrade Erlang</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td>3.12.2</td>
+        <td>3.12.4, 3.12.6, 3.12.10, 3.12.12, 3.12.13</td>
+        <td>3.12.13</td>
+        </tr>
+        <tr>
+        <td>3.12.13</td>
+        <td>3.13.2</td>
+        <td>3.13.2</td>
+        </tr>
+        <tr>
+        <td>3.13.2</td>
+        <td>-</td>
+        <td>-</td>
+        </tr>
+        </tbody>
+        </table>
 
         ## Import
 
@@ -388,7 +408,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         > - All single node upgrades will require some downtime since RabbitMQ needs a restart.
         > - From RabbitMQ version 3.9, rolling upgrades between minor versions (e.g. 3.9 to 3.10), in a multi-node cluster are possible without downtime. This means that one node is upgraded at a time while the other nodes are still running. For versions older than 3.9, patch version upgrades (e.g. 3.8.x to 3.8.y) are possible without downtime in a multi-node cluster, but minor version upgrades will require downtime.
         > - Auto delete queues (queues that are marked AD) will be deleted during the update.
-        > - Any custom plugins support has installed on your behalf will be disabled and you need to contact support@cloudamqp.com and ask to have them re-installed.
+        > - Any custom plugins support has installed on your behalf will be disabled and you need to contact <support@cloudamqp.com> and ask to have them re-installed.
         > - TLS 1.0 and 1.1 will not be supported after the update.
 
         ## Multiple runs
@@ -396,12 +416,32 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         Depending on initial versions of RabbitMQ and Erlang of the CloudAMQP instance, multiple runs may be needed to get to the latest or wanted version.
 
         Example steps needed when starting at RabbitMQ version 3.12.2
-
-        |  Version         | Supported upgrading versions              | Min version to upgrade Erlang |
-        |------------------|-------------------------------------------|-------------------------------|
-        | 3.12.2           | 3.12.4, 3.12.6, 3.12.10, 3.12.12, 3.12.13 | 3.12.13                       |
-        | 3.12.13          | 3.13.2                                    | 3.13.2                        |
-        | 3.13.2           | -                                         | -                             |
+        <table>
+        <thead>
+        <tr>
+        <th>Version</th>
+        <th>Supported upgrading versions</th>
+        <th>Min version to upgrade Erlang</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td>3.12.2</td>
+        <td>3.12.4, 3.12.6, 3.12.10, 3.12.12, 3.12.13</td>
+        <td>3.12.13</td>
+        </tr>
+        <tr>
+        <td>3.12.13</td>
+        <td>3.13.2</td>
+        <td>3.13.2</td>
+        </tr>
+        <tr>
+        <td>3.13.2</td>
+        <td>-</td>
+        <td>-</td>
+        </tr>
+        </tbody>
+        </table>
 
         ## Import
 

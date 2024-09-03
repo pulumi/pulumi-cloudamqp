@@ -250,7 +250,7 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
 
         Only available for dedicated subscription plans.
 
-        ## Example Usage
+        ## Example usage
 
         ```python
         import pulumi
@@ -317,7 +317,7 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
 
         Only available for dedicated subscription plans.
 
-        ## Example Usage
+        ## Example usage
 
         ```python
         import pulumi

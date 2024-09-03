@@ -182,14 +182,36 @@ namespace Pulumi.CloudAmqp
     /// ## Action reference
     /// 
     /// Valid options for action.
-    /// 
-    /// | Action       | Info                               |
-    /// |--------------|------------------------------------|
-    /// | start        | Start RabbitMQ                     |
-    /// | stop         | Stop RabbitMQ                      |
-    /// | restart      | Restart RabbitMQ                   |
-    /// | reboot       | Reboot the node                    |
-    /// | mgmt.restart | Restart the RabbitMQ mgmt interace |
+    /// &lt;table&gt;
+    /// &lt;thead&gt;
+    /// &lt;tr&gt;
+    /// &lt;th&gt;Action&lt;/th&gt;
+    /// &lt;th&gt;Info&lt;/th&gt;
+    /// &lt;/tr&gt;
+    /// &lt;/thead&gt;
+    /// &lt;tbody&gt;
+    /// &lt;tr&gt;
+    /// &lt;td&gt;start&lt;/td&gt;
+    /// &lt;td&gt;Start RabbitMQ&lt;/td&gt;
+    /// &lt;/tr&gt;
+    /// &lt;tr&gt;
+    /// &lt;td&gt;stop&lt;/td&gt;
+    /// &lt;td&gt;Stop RabbitMQ&lt;/td&gt;
+    /// &lt;/tr&gt;
+    /// &lt;tr&gt;
+    /// &lt;td&gt;restart&lt;/td&gt;
+    /// &lt;td&gt;Restart RabbitMQ&lt;/td&gt;
+    /// &lt;/tr&gt;
+    /// &lt;tr&gt;
+    /// &lt;td&gt;reboot&lt;/td&gt;
+    /// &lt;td&gt;Reboot the node&lt;/td&gt;
+    /// &lt;/tr&gt;
+    /// &lt;tr&gt;
+    /// &lt;td&gt;mgmt.restart&lt;/td&gt;
+    /// &lt;td&gt;Restart the RabbitMQ mgmt interace&lt;/td&gt;
+    /// &lt;/tr&gt;
+    /// &lt;/tbody&gt;
+    /// &lt;/table&gt;
     /// 
     /// ## Dependency
     /// 

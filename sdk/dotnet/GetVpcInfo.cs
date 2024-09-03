@@ -66,7 +66,6 @@ namespace Pulumi.CloudAmqp
         /// ```
         /// &lt;/details&gt;
         /// 
-        /// 
         /// ## Attributes reference
         /// 
         /// All attributes reference are computed
@@ -142,7 +141,6 @@ namespace Pulumi.CloudAmqp
         /// });
         /// ```
         /// &lt;/details&gt;
-        /// 
         /// 
         /// ## Attributes reference
         /// 

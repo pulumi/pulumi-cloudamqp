@@ -43,70 +43,74 @@ public class Plugin extends com.pulumi.resources.CustomResource {
         return this.description;
     }
     /**
-     * If the plugin is enabled
+     * Enable or disable the plugins.
      * 
      */
     @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> enabled;
 
     /**
-     * @return If the plugin is enabled
+     * @return Enable or disable the plugins.
      * 
      */
     public Output<Boolean> enabled() {
         return this.enabled;
     }
     /**
-     * Instance identifier
+     * The CloudAMQP instance ID.
      * 
      */
     @Export(name="instanceId", refs={Integer.class}, tree="[0]")
     private Output<Integer> instanceId;
 
     /**
-     * @return Instance identifier
+     * @return The CloudAMQP instance ID.
      * 
      */
     public Output<Integer> instanceId() {
         return this.instanceId;
     }
     /**
-     * The name of the plugin
+     * The name of the Rabbit MQ plugin.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return The name of the plugin
+     * @return The name of the Rabbit MQ plugin.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * Configurable sleep time in seconds between retries for plugins
+     * Configurable sleep time (seconds) for retries when requesting information
+     * about plugins. Default set to 10 seconds. *Available from v1.29.0*
      * 
      */
     @Export(name="sleep", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> sleep;
 
     /**
-     * @return Configurable sleep time in seconds between retries for plugins
+     * @return Configurable sleep time (seconds) for retries when requesting information
+     * about plugins. Default set to 10 seconds. *Available from v1.29.0*
      * 
      */
     public Output<Optional<Integer>> sleep() {
         return Codegen.optional(this.sleep);
     }
     /**
-     * Configurable timeout time in seconds for plugins
+     * Configurable timeout time (seconds) for retries when requesting
+     * information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
      * 
      */
     @Export(name="timeout", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> timeout;
 
     /**
-     * @return Configurable timeout time in seconds for plugins
+     * @return Configurable timeout time (seconds) for retries when requesting
+     * information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
      * 
      */
     public Output<Optional<Integer>> timeout() {

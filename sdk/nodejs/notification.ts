@@ -199,10 +199,30 @@ import * as utilities from "./utilities";
  *
  * ## Options parameter
  *
- * | Type      | Options  | Description | Note |
- * |---|---|---|---|
- * | Victorops | rk       | Routing key to route alarm notification | - |
- * | PagerDuty | dedupkey | Default the dedup key for PagerDuty is generated depending on what alarm has triggered, but here you can set what `dedup` key to use so even if the same alarm is triggered for different resources you only get one notification. Leave blank to use the generated dedup key. | If multiple alarms are triggered using this recipient, since they all share `dedup` key only the first alarm will be shown in PagerDuty |
+ * <table>
+ * <thead>
+ * <tr>
+ * <th>Type</th>
+ * <th>Options</th>
+ * <th>Description</th>
+ * <th>Note</th>
+ * </tr>
+ * </thead>
+ * <tbody>
+ * <tr>
+ * <td>Victorops</td>
+ * <td>rk</td>
+ * <td>Routing key to route alarm notification</td>
+ * <td>-</td>
+ * </tr>
+ * <tr>
+ * <td>PagerDuty</td>
+ * <td>dedupkey</td>
+ * <td>Default the dedup key for PagerDuty is generated depending on what alarm has triggered, but here you can set what `dedup` key to use so even if the same alarm is triggered for different resources you only get one notification. Leave blank to use the generated dedup key.</td>
+ * <td>If multiple alarms are triggered using this recipient, since they all share `dedup` key only the first alarm will be shown in PagerDuty</td>
+ * </tr>
+ * </tbody>
+ * </table>
  *
  * ## Dependency
  *
@@ -263,10 +283,6 @@ export class Notification extends pulumi.CustomResource {
     /**
      * An array of reponders (only for OpsGenie). Each `responders` block
      * consists of the field documented below.
-     *
-     * ___
-     *
-     * The `responders` block consists of:
      */
     public readonly responders!: pulumi.Output<outputs.NotificationResponder[] | undefined>;
     /**
@@ -339,10 +355,6 @@ export interface NotificationState {
     /**
      * An array of reponders (only for OpsGenie). Each `responders` block
      * consists of the field documented below.
-     *
-     * ___
-     *
-     * The `responders` block consists of:
      */
     responders?: pulumi.Input<pulumi.Input<inputs.NotificationResponder>[]>;
     /**
@@ -374,10 +386,6 @@ export interface NotificationArgs {
     /**
      * An array of reponders (only for OpsGenie). Each `responders` block
      * consists of the field documented below.
-     *
-     * ___
-     *
-     * The `responders` block consists of:
      */
     responders?: pulumi.Input<pulumi.Input<inputs.NotificationResponder>[]>;
     /**

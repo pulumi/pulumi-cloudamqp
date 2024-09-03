@@ -17,12 +17,32 @@ import * as utilities from "./utilities";
  * While *Azure* only support swapping the disk, and this argument needs to be set to *true*.
  *
  * `allowDowntime` also makes it possible to circumvent the time rate limit or shrinking the disk.
- *
- * | Cloud Platform        | allow_downtime=false | allow_downtime=true           |
- * |-----------------------|----------------------|-------------------------------|
- * | amazon-web-services   | Expand current disk* | Try to expand, otherwise swap |
- * | google-compute-engine | Expand current disk* | Try to expand, otherwise swap |
- * | azure-arm             | Not supported        | Swap disk to new size         |
+ * <table>
+ * <thead>
+ * <tr>
+ * <th>Cloud Platform</th>
+ * <th>allow_downtime=false</th>
+ * <th>allow_downtime=true</th>
+ * </tr>
+ * </thead>
+ * <tbody>
+ * <tr>
+ * <td>amazon-web-services</td>
+ * <td>Expand current disk*</td>
+ * <td>Try to expand, otherwise swap</td>
+ * </tr>
+ * <tr>
+ * <td>google-compute-engine</td>
+ * <td>Expand current disk*</td>
+ * <td>Try to expand, otherwise swap</td>
+ * </tr>
+ * <tr>
+ * <td>azure-arm</td>
+ * <td>Not supported</td>
+ * <td>Swap disk to new size</td>
+ * </tr>
+ * </tbody>
+ * </table>
  *
  * *Preferable method to use.
  *

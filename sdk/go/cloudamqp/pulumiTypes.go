@@ -371,13 +371,85 @@ func (o NotificationResponderArrayOutput) Index(i pulumi.IntInput) NotificationR
 }
 
 type SecurityFirewallRule struct {
-	// Naming descripton e.g. 'Default'
+	// Description name of the rule. e.g. Default.
+	//
+	// Pre-defined services for RabbitMQ:
+	// <table>
+	// <thead>
+	// <tr>
+	// <th>Service name</th>
+	// <th>Port</th>
+	// </tr>
+	// </thead>
+	// <tbody>
+	// <tr>
+	// <td>AMQP</td>
+	// <td>5672</td>
+	// </tr>
+	// <tr>
+	// <td>AMQPS</td>
+	// <td>5671</td>
+	// </tr>
+	// <tr>
+	// <td>HTTPS</td>
+	// <td>443</td>
+	// </tr>
+	// <tr>
+	// <td>MQTT</td>
+	// <td>1883</td>
+	// </tr>
+	// <tr>
+	// <td>MQTTS</td>
+	// <td>8883</td>
+	// </tr>
+	// <tr>
+	// <td>STOMP</td>
+	// <td>61613</td>
+	// </tr>
+	// <tr>
+	// <td>STOMPS</td>
+	// <td>61614</td>
+	// </tr>
+	// <tr>
+	// <td>STREAM</td>
+	// <td>5552</td>
+	// </tr>
+	// <tr>
+	// <td>STREAM_SSL</td>
+	// <td>5551</td>
+	// </tr>
+	// </tbody>
+	// </table>
+	//
+	// Pre-defined services for LavinMQ:
+	// <table>
+	// <thead>
+	// <tr>
+	// <th>Service name</th>
+	// <th>Port</th>
+	// </tr>
+	// </thead>
+	// <tbody>
+	// <tr>
+	// <td>AMQP</td>
+	// <td>5672</td>
+	// </tr>
+	// <tr>
+	// <td>AMQPS</td>
+	// <td>5671</td>
+	// </tr>
+	// <tr>
+	// <td>HTTPS</td>
+	// <td>443</td>
+	// </tr>
+	// </tbody>
+	// </table>
 	Description *string `pulumi:"description"`
 	// CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
 	Ip string `pulumi:"ip"`
-	// Custom ports between 0 - 65554
+	// Custom ports to be opened
 	Ports []int `pulumi:"ports"`
-	// Pre-defined services 'AMQP', 'AMQPS', 'HTTPS', 'MQTT', 'MQTTS', 'STOMP', 'STOMPS', 'STREAM', 'STREAM_SSL'
+	// Pre-defined service ports, see table below
 	Services []string `pulumi:"services"`
 }
 
@@ -393,13 +465,85 @@ type SecurityFirewallRuleInput interface {
 }
 
 type SecurityFirewallRuleArgs struct {
-	// Naming descripton e.g. 'Default'
+	// Description name of the rule. e.g. Default.
+	//
+	// Pre-defined services for RabbitMQ:
+	// <table>
+	// <thead>
+	// <tr>
+	// <th>Service name</th>
+	// <th>Port</th>
+	// </tr>
+	// </thead>
+	// <tbody>
+	// <tr>
+	// <td>AMQP</td>
+	// <td>5672</td>
+	// </tr>
+	// <tr>
+	// <td>AMQPS</td>
+	// <td>5671</td>
+	// </tr>
+	// <tr>
+	// <td>HTTPS</td>
+	// <td>443</td>
+	// </tr>
+	// <tr>
+	// <td>MQTT</td>
+	// <td>1883</td>
+	// </tr>
+	// <tr>
+	// <td>MQTTS</td>
+	// <td>8883</td>
+	// </tr>
+	// <tr>
+	// <td>STOMP</td>
+	// <td>61613</td>
+	// </tr>
+	// <tr>
+	// <td>STOMPS</td>
+	// <td>61614</td>
+	// </tr>
+	// <tr>
+	// <td>STREAM</td>
+	// <td>5552</td>
+	// </tr>
+	// <tr>
+	// <td>STREAM_SSL</td>
+	// <td>5551</td>
+	// </tr>
+	// </tbody>
+	// </table>
+	//
+	// Pre-defined services for LavinMQ:
+	// <table>
+	// <thead>
+	// <tr>
+	// <th>Service name</th>
+	// <th>Port</th>
+	// </tr>
+	// </thead>
+	// <tbody>
+	// <tr>
+	// <td>AMQP</td>
+	// <td>5672</td>
+	// </tr>
+	// <tr>
+	// <td>AMQPS</td>
+	// <td>5671</td>
+	// </tr>
+	// <tr>
+	// <td>HTTPS</td>
+	// <td>443</td>
+	// </tr>
+	// </tbody>
+	// </table>
 	Description pulumi.StringPtrInput `pulumi:"description"`
 	// CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
 	Ip pulumi.StringInput `pulumi:"ip"`
-	// Custom ports between 0 - 65554
+	// Custom ports to be opened
 	Ports pulumi.IntArrayInput `pulumi:"ports"`
-	// Pre-defined services 'AMQP', 'AMQPS', 'HTTPS', 'MQTT', 'MQTTS', 'STOMP', 'STOMPS', 'STREAM', 'STREAM_SSL'
+	// Pre-defined service ports, see table below
 	Services pulumi.StringArrayInput `pulumi:"services"`
 }
 
@@ -454,7 +598,79 @@ func (o SecurityFirewallRuleOutput) ToSecurityFirewallRuleOutputWithContext(ctx 
 	return o
 }
 
-// Naming descripton e.g. 'Default'
+// Description name of the rule. e.g. Default.
+//
+// Pre-defined services for RabbitMQ:
+// <table>
+// <thead>
+// <tr>
+// <th>Service name</th>
+// <th>Port</th>
+// </tr>
+// </thead>
+// <tbody>
+// <tr>
+// <td>AMQP</td>
+// <td>5672</td>
+// </tr>
+// <tr>
+// <td>AMQPS</td>
+// <td>5671</td>
+// </tr>
+// <tr>
+// <td>HTTPS</td>
+// <td>443</td>
+// </tr>
+// <tr>
+// <td>MQTT</td>
+// <td>1883</td>
+// </tr>
+// <tr>
+// <td>MQTTS</td>
+// <td>8883</td>
+// </tr>
+// <tr>
+// <td>STOMP</td>
+// <td>61613</td>
+// </tr>
+// <tr>
+// <td>STOMPS</td>
+// <td>61614</td>
+// </tr>
+// <tr>
+// <td>STREAM</td>
+// <td>5552</td>
+// </tr>
+// <tr>
+// <td>STREAM_SSL</td>
+// <td>5551</td>
+// </tr>
+// </tbody>
+// </table>
+//
+// Pre-defined services for LavinMQ:
+// <table>
+// <thead>
+// <tr>
+// <th>Service name</th>
+// <th>Port</th>
+// </tr>
+// </thead>
+// <tbody>
+// <tr>
+// <td>AMQP</td>
+// <td>5672</td>
+// </tr>
+// <tr>
+// <td>AMQPS</td>
+// <td>5671</td>
+// </tr>
+// <tr>
+// <td>HTTPS</td>
+// <td>443</td>
+// </tr>
+// </tbody>
+// </table>
 func (o SecurityFirewallRuleOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecurityFirewallRule) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
@@ -464,12 +680,12 @@ func (o SecurityFirewallRuleOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v SecurityFirewallRule) string { return v.Ip }).(pulumi.StringOutput)
 }
 
-// Custom ports between 0 - 65554
+// Custom ports to be opened
 func (o SecurityFirewallRuleOutput) Ports() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v SecurityFirewallRule) []int { return v.Ports }).(pulumi.IntArrayOutput)
 }
 
-// Pre-defined services 'AMQP', 'AMQPS', 'HTTPS', 'MQTT', 'MQTTS', 'STOMP', 'STOMPS', 'STREAM', 'STREAM_SSL'
+// Pre-defined service ports, see table below
 func (o SecurityFirewallRuleOutput) Services() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecurityFirewallRule) []string { return v.Services }).(pulumi.StringArrayOutput)
 }

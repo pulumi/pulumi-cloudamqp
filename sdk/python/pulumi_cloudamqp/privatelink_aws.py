@@ -304,7 +304,7 @@ class PrivatelinkAws(pulumi.CustomResource):
 
         </details>
 
-        ### With Additional Firewall Rules
+        ### with additional firewall rules
 
         <details>
           <summary>
@@ -467,7 +467,7 @@ class PrivatelinkAws(pulumi.CustomResource):
 
         </details>
 
-        ### With Additional Firewall Rules
+        ### with additional firewall rules
 
         <details>
           <summary>

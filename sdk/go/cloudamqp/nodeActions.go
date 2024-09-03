@@ -198,14 +198,36 @@ import (
 // ## Action reference
 //
 // Valid options for action.
-//
-// | Action       | Info                               |
-// |--------------|------------------------------------|
-// | start        | Start RabbitMQ                     |
-// | stop         | Stop RabbitMQ                      |
-// | restart      | Restart RabbitMQ                   |
-// | reboot       | Reboot the node                    |
-// | mgmt.restart | Restart the RabbitMQ mgmt interace |
+// <table>
+// <thead>
+// <tr>
+// <th>Action</th>
+// <th>Info</th>
+// </tr>
+// </thead>
+// <tbody>
+// <tr>
+// <td>start</td>
+// <td>Start RabbitMQ</td>
+// </tr>
+// <tr>
+// <td>stop</td>
+// <td>Stop RabbitMQ</td>
+// </tr>
+// <tr>
+// <td>restart</td>
+// <td>Restart RabbitMQ</td>
+// </tr>
+// <tr>
+// <td>reboot</td>
+// <td>Reboot the node</td>
+// </tr>
+// <tr>
+// <td>mgmt.restart</td>
+// <td>Restart the RabbitMQ mgmt interace</td>
+// </tr>
+// </tbody>
+// </table>
 //
 // ## Dependency
 //

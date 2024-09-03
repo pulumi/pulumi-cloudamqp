@@ -263,10 +263,30 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ## Options parameter
     /// 
-    /// | Type      | Options  | Description | Note |
-    /// |---|---|---|---|
-    /// | Victorops | rk       | Routing key to route alarm notification | - |
-    /// | PagerDuty | dedupkey | Default the dedup key for PagerDuty is generated depending on what alarm has triggered, but here you can set what `dedup` key to use so even if the same alarm is triggered for different resources you only get one notification. Leave blank to use the generated dedup key. | If multiple alarms are triggered using this recipient, since they all share `dedup` key only the first alarm will be shown in PagerDuty |
+    /// &lt;table&gt;
+    /// &lt;thead&gt;
+    /// &lt;tr&gt;
+    /// &lt;th&gt;Type&lt;/th&gt;
+    /// &lt;th&gt;Options&lt;/th&gt;
+    /// &lt;th&gt;Description&lt;/th&gt;
+    /// &lt;th&gt;Note&lt;/th&gt;
+    /// &lt;/tr&gt;
+    /// &lt;/thead&gt;
+    /// &lt;tbody&gt;
+    /// &lt;tr&gt;
+    /// &lt;td&gt;Victorops&lt;/td&gt;
+    /// &lt;td&gt;rk&lt;/td&gt;
+    /// &lt;td&gt;Routing key to route alarm notification&lt;/td&gt;
+    /// &lt;td&gt;-&lt;/td&gt;
+    /// &lt;/tr&gt;
+    /// &lt;tr&gt;
+    /// &lt;td&gt;PagerDuty&lt;/td&gt;
+    /// &lt;td&gt;dedupkey&lt;/td&gt;
+    /// &lt;td&gt;Default the dedup key for PagerDuty is generated depending on what alarm has triggered, but here you can set what `dedup` key to use so even if the same alarm is triggered for different resources you only get one notification. Leave blank to use the generated dedup key.&lt;/td&gt;
+    /// &lt;td&gt;If multiple alarms are triggered using this recipient, since they all share `dedup` key only the first alarm will be shown in PagerDuty&lt;/td&gt;
+    /// &lt;/tr&gt;
+    /// &lt;/tbody&gt;
+    /// &lt;/table&gt;
     /// 
     /// ## Dependency
     /// 
@@ -308,10 +328,6 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// An array of reponders (only for OpsGenie). Each `responders` block
         /// consists of the field documented below.
-        /// 
-        /// ___
-        /// 
-        /// The `responders` block consists of:
         /// </summary>
         [Output("responders")]
         public Output<ImmutableArray<Outputs.NotificationResponder>> Responders { get; private set; } = null!;
@@ -404,10 +420,6 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// An array of reponders (only for OpsGenie). Each `responders` block
         /// consists of the field documented below.
-        /// 
-        /// ___
-        /// 
-        /// The `responders` block consists of:
         /// </summary>
         public InputList<Inputs.NotificationResponderArgs> Responders
         {
@@ -465,10 +477,6 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// An array of reponders (only for OpsGenie). Each `responders` block
         /// consists of the field documented below.
-        /// 
-        /// ___
-        /// 
-        /// The `responders` block consists of:
         /// </summary>
         public InputList<Inputs.NotificationResponderGetArgs> Responders
         {

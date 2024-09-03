@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
  * 
  * Only available for dedicated subscription plans.
  * 
- * ## Example Usage
+ * ## Example usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>

@@ -713,7 +713,7 @@ class IntegrationMetric(pulumi.CustomResource):
 
         Only available for dedicated subscription plans.
 
-        ## Example Usage
+        ## Example usage
 
         <details>
           <summary>
@@ -899,7 +899,7 @@ class IntegrationMetric(pulumi.CustomResource):
 
         Only available for dedicated subscription plans.
 
-        ## Example Usage
+        ## Example usage
 
         <details>
           <summary>

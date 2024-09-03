@@ -34,10 +34,6 @@ class InstanceArgs:
                
                ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
         :param pulumi.Input[Sequence[pulumi.Input['InstanceCopySettingArgs']]] copy_settings: Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
-               
-               ___
-               
-               The `copy_settings` block consists of:
         :param pulumi.Input[bool] keep_associated_vpc: Keep associated VPC when deleting instance, default set to false.
         :param pulumi.Input[str] name: Name of the CloudAMQP instance.
         :param pulumi.Input[bool] no_default_alarms: Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
@@ -107,10 +103,6 @@ class InstanceArgs:
     def copy_settings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceCopySettingArgs']]]]:
         """
         Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
-
-        ___
-
-        The `copy_settings` block consists of:
         """
         return pulumi.get(self, "copy_settings")
 
@@ -250,10 +242,6 @@ class _InstanceState:
         :param pulumi.Input[str] apikey: API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
         :param pulumi.Input[str] backend: Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceCopySettingArgs']]] copy_settings: Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
-               
-               ___
-               
-               The `copy_settings` block consists of:
         :param pulumi.Input[bool] dedicated: Information if the CloudAMQP instance is shared or dedicated.
         :param pulumi.Input[str] host: The external hostname for the CloudAMQP instance.
         :param pulumi.Input[str] host_internal: The internal hostname for the CloudAMQP instance.
@@ -349,10 +337,6 @@ class _InstanceState:
     def copy_settings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceCopySettingArgs']]]]:
         """
         Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
-
-        ___
-
-        The `copy_settings` block consists of:
         """
         return pulumi.get(self, "copy_settings")
 
@@ -782,10 +766,6 @@ class Instance(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceCopySettingArgs', 'InstanceCopySettingArgsDict']]]] copy_settings: Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
-               
-               ___
-               
-               The `copy_settings` block consists of:
         :param pulumi.Input[bool] keep_associated_vpc: Keep associated VPC when deleting instance, default set to false.
         :param pulumi.Input[str] name: Name of the CloudAMQP instance.
         :param pulumi.Input[bool] no_default_alarms: Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
@@ -1111,10 +1091,6 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] apikey: API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
         :param pulumi.Input[str] backend: Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceCopySettingArgs', 'InstanceCopySettingArgsDict']]]] copy_settings: Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
-               
-               ___
-               
-               The `copy_settings` block consists of:
         :param pulumi.Input[bool] dedicated: Information if the CloudAMQP instance is shared or dedicated.
         :param pulumi.Input[str] host: The external hostname for the CloudAMQP instance.
         :param pulumi.Input[str] host_internal: The internal hostname for the CloudAMQP instance.
@@ -1188,10 +1164,6 @@ class Instance(pulumi.CustomResource):
     def copy_settings(self) -> pulumi.Output[Optional[Sequence['outputs.InstanceCopySetting']]]:
         """
         Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
-
-        ___
-
-        The `copy_settings` block consists of:
         """
         return pulumi.get(self, "copy_settings")
 

@@ -13,7 +13,79 @@ namespace Pulumi.CloudAmqp.Inputs
     public sealed class SecurityFirewallRuleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Naming descripton e.g. 'Default'
+        /// Description name of the rule. e.g. Default.
+        /// 
+        /// Pre-defined services for RabbitMQ:
+        /// &lt;table&gt;
+        /// &lt;thead&gt;
+        /// &lt;tr&gt;
+        /// &lt;th&gt;Service name&lt;/th&gt;
+        /// &lt;th&gt;Port&lt;/th&gt;
+        /// &lt;/tr&gt;
+        /// &lt;/thead&gt;
+        /// &lt;tbody&gt;
+        /// &lt;tr&gt;
+        /// &lt;td&gt;AMQP&lt;/td&gt;
+        /// &lt;td&gt;5672&lt;/td&gt;
+        /// &lt;/tr&gt;
+        /// &lt;tr&gt;
+        /// &lt;td&gt;AMQPS&lt;/td&gt;
+        /// &lt;td&gt;5671&lt;/td&gt;
+        /// &lt;/tr&gt;
+        /// &lt;tr&gt;
+        /// &lt;td&gt;HTTPS&lt;/td&gt;
+        /// &lt;td&gt;443&lt;/td&gt;
+        /// &lt;/tr&gt;
+        /// &lt;tr&gt;
+        /// &lt;td&gt;MQTT&lt;/td&gt;
+        /// &lt;td&gt;1883&lt;/td&gt;
+        /// &lt;/tr&gt;
+        /// &lt;tr&gt;
+        /// &lt;td&gt;MQTTS&lt;/td&gt;
+        /// &lt;td&gt;8883&lt;/td&gt;
+        /// &lt;/tr&gt;
+        /// &lt;tr&gt;
+        /// &lt;td&gt;STOMP&lt;/td&gt;
+        /// &lt;td&gt;61613&lt;/td&gt;
+        /// &lt;/tr&gt;
+        /// &lt;tr&gt;
+        /// &lt;td&gt;STOMPS&lt;/td&gt;
+        /// &lt;td&gt;61614&lt;/td&gt;
+        /// &lt;/tr&gt;
+        /// &lt;tr&gt;
+        /// &lt;td&gt;STREAM&lt;/td&gt;
+        /// &lt;td&gt;5552&lt;/td&gt;
+        /// &lt;/tr&gt;
+        /// &lt;tr&gt;
+        /// &lt;td&gt;STREAM_SSL&lt;/td&gt;
+        /// &lt;td&gt;5551&lt;/td&gt;
+        /// &lt;/tr&gt;
+        /// &lt;/tbody&gt;
+        /// &lt;/table&gt;
+        /// 
+        /// Pre-defined services for LavinMQ:
+        /// &lt;table&gt;
+        /// &lt;thead&gt;
+        /// &lt;tr&gt;
+        /// &lt;th&gt;Service name&lt;/th&gt;
+        /// &lt;th&gt;Port&lt;/th&gt;
+        /// &lt;/tr&gt;
+        /// &lt;/thead&gt;
+        /// &lt;tbody&gt;
+        /// &lt;tr&gt;
+        /// &lt;td&gt;AMQP&lt;/td&gt;
+        /// &lt;td&gt;5672&lt;/td&gt;
+        /// &lt;/tr&gt;
+        /// &lt;tr&gt;
+        /// &lt;td&gt;AMQPS&lt;/td&gt;
+        /// &lt;td&gt;5671&lt;/td&gt;
+        /// &lt;/tr&gt;
+        /// &lt;tr&gt;
+        /// &lt;td&gt;HTTPS&lt;/td&gt;
+        /// &lt;td&gt;443&lt;/td&gt;
+        /// &lt;/tr&gt;
+        /// &lt;/tbody&gt;
+        /// &lt;/table&gt;
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -28,7 +100,7 @@ namespace Pulumi.CloudAmqp.Inputs
         private InputList<int>? _ports;
 
         /// <summary>
-        /// Custom ports between 0 - 65554
+        /// Custom ports to be opened
         /// </summary>
         public InputList<int> Ports
         {
@@ -40,7 +112,7 @@ namespace Pulumi.CloudAmqp.Inputs
         private InputList<string>? _services;
 
         /// <summary>
-        /// Pre-defined services 'AMQP', 'AMQPS', 'HTTPS', 'MQTT', 'MQTTS', 'STOMP', 'STOMPS', 'STREAM', 'STREAM_SSL'
+        /// Pre-defined service ports, see table below
         /// </summary>
         public InputList<string> Services
         {

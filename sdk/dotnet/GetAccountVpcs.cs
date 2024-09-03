@@ -47,7 +47,7 @@ namespace Pulumi.CloudAmqp
         /// * `id`      - The identifier for this data source. Set to `na` since there is no unique identifier.
         /// * `vpcs`    - An array of VPCs. Each `vpcs` block consists of the fields documented below.
         /// 
-        /// ___
+        /// ---
         /// 
         /// The `vpcs` block consist of
         /// 
@@ -101,7 +101,7 @@ namespace Pulumi.CloudAmqp
         /// * `id`      - The identifier for this data source. Set to `na` since there is no unique identifier.
         /// * `vpcs`    - An array of VPCs. Each `vpcs` block consists of the fields documented below.
         /// 
-        /// ___
+        /// ---
         /// 
         /// The `vpcs` block consist of
         /// 

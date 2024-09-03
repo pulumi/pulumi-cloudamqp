@@ -20,12 +20,32 @@ namespace Pulumi.CloudAmqp
     /// While *Azure* only support swapping the disk, and this argument needs to be set to *true*.
     /// 
     /// `allow_downtime` also makes it possible to circumvent the time rate limit or shrinking the disk.
-    /// 
-    /// | Cloud Platform        | allow_downtime=false | allow_downtime=true           |
-    /// |-----------------------|----------------------|-------------------------------|
-    /// | amazon-web-services   | Expand current disk* | Try to expand, otherwise swap |
-    /// | google-compute-engine | Expand current disk* | Try to expand, otherwise swap |
-    /// | azure-arm             | Not supported        | Swap disk to new size         |
+    /// &lt;table&gt;
+    /// &lt;thead&gt;
+    /// &lt;tr&gt;
+    /// &lt;th&gt;Cloud Platform&lt;/th&gt;
+    /// &lt;th&gt;allow_downtime=false&lt;/th&gt;
+    /// &lt;th&gt;allow_downtime=true&lt;/th&gt;
+    /// &lt;/tr&gt;
+    /// &lt;/thead&gt;
+    /// &lt;tbody&gt;
+    /// &lt;tr&gt;
+    /// &lt;td&gt;amazon-web-services&lt;/td&gt;
+    /// &lt;td&gt;Expand current disk*&lt;/td&gt;
+    /// &lt;td&gt;Try to expand, otherwise swap&lt;/td&gt;
+    /// &lt;/tr&gt;
+    /// &lt;tr&gt;
+    /// &lt;td&gt;google-compute-engine&lt;/td&gt;
+    /// &lt;td&gt;Expand current disk*&lt;/td&gt;
+    /// &lt;td&gt;Try to expand, otherwise swap&lt;/td&gt;
+    /// &lt;/tr&gt;
+    /// &lt;tr&gt;
+    /// &lt;td&gt;azure-arm&lt;/td&gt;
+    /// &lt;td&gt;Not supported&lt;/td&gt;
+    /// &lt;td&gt;Swap disk to new size&lt;/td&gt;
+    /// &lt;/tr&gt;
+    /// &lt;/tbody&gt;
+    /// &lt;/table&gt;
     /// 
     /// *Preferable method to use.
     /// 

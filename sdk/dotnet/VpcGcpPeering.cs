@@ -170,7 +170,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// &lt;/details&gt;
     /// 
-    /// ### With Additional Firewall Rules
+    /// ### with additional firewall rules
     /// 
     /// &lt;details&gt;
     ///   &lt;summary&gt;

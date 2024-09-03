@@ -32,18 +32,6 @@ class VpcConnectArgs:
                Default set to 10 seconds.
         :param pulumi.Input[int] timeout: Configurable timeout time (seconds) when enable Private Service Connect.
                Default set to 1800 seconds.
-               
-               ___
-               
-               The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
-               
-               | Platform | Description         | Format                                                                                                                             |
-               |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-               | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root<br /> arn:aws:iam::aws-account-id:user/user-name<br /> arn:aws:iam::aws-account-id:role/role-name |
-               | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-               | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-               
-               *https://cloud.google.com/resource-manager/reference/rest/v1/projects
         """
         pulumi.set(__self__, "instance_id", instance_id)
         pulumi.set(__self__, "region", region)
@@ -137,18 +125,6 @@ class VpcConnectArgs:
         """
         Configurable timeout time (seconds) when enable Private Service Connect.
         Default set to 1800 seconds.
-
-        ___
-
-        The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
-
-        | Platform | Description         | Format                                                                                                                             |
-        |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-        | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root<br /> arn:aws:iam::aws-account-id:user/user-name<br /> arn:aws:iam::aws-account-id:role/role-name |
-        | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-        | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-
-        *https://cloud.google.com/resource-manager/reference/rest/v1/projects
         """
         return pulumi.get(self, "timeout")
 
@@ -184,18 +160,6 @@ class _VpcConnectState:
         :param pulumi.Input[str] status: Private Service Connect status [enable, pending, disable]
         :param pulumi.Input[int] timeout: Configurable timeout time (seconds) when enable Private Service Connect.
                Default set to 1800 seconds.
-               
-               ___
-               
-               The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
-               
-               | Platform | Description         | Format                                                                                                                             |
-               |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-               | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root<br /> arn:aws:iam::aws-account-id:user/user-name<br /> arn:aws:iam::aws-account-id:role/role-name |
-               | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-               | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-               
-               *https://cloud.google.com/resource-manager/reference/rest/v1/projects
         """
         if active_zones is not None:
             pulumi.set(__self__, "active_zones", active_zones)
@@ -333,18 +297,6 @@ class _VpcConnectState:
         """
         Configurable timeout time (seconds) when enable Private Service Connect.
         Default set to 1800 seconds.
-
-        ___
-
-        The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
-
-        | Platform | Description         | Format                                                                                                                             |
-        |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-        | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root<br /> arn:aws:iam::aws-account-id:user/user-name<br /> arn:aws:iam::aws-account-id:role/role-name |
-        | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-        | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-
-        *https://cloud.google.com/resource-manager/reference/rest/v1/projects
         """
         return pulumi.get(self, "timeout")
 
@@ -479,7 +431,7 @@ class VpcConnect(pulumi.CustomResource):
 
         </details>
 
-        ### With Additional Firewall Rules
+        ### with additional firewall rules
 
         <details>
           <summary>
@@ -571,18 +523,6 @@ class VpcConnect(pulumi.CustomResource):
                Default set to 10 seconds.
         :param pulumi.Input[int] timeout: Configurable timeout time (seconds) when enable Private Service Connect.
                Default set to 1800 seconds.
-               
-               ___
-               
-               The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
-               
-               | Platform | Description         | Format                                                                                                                             |
-               |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-               | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root<br /> arn:aws:iam::aws-account-id:user/user-name<br /> arn:aws:iam::aws-account-id:role/role-name |
-               | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-               | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-               
-               *https://cloud.google.com/resource-manager/reference/rest/v1/projects
         """
         ...
     @overload
@@ -703,7 +643,7 @@ class VpcConnect(pulumi.CustomResource):
 
         </details>
 
-        ### With Additional Firewall Rules
+        ### with additional firewall rules
 
         <details>
           <summary>
@@ -868,18 +808,6 @@ class VpcConnect(pulumi.CustomResource):
         :param pulumi.Input[str] status: Private Service Connect status [enable, pending, disable]
         :param pulumi.Input[int] timeout: Configurable timeout time (seconds) when enable Private Service Connect.
                Default set to 1800 seconds.
-               
-               ___
-               
-               The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
-               
-               | Platform | Description         | Format                                                                                                                             |
-               |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-               | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root<br /> arn:aws:iam::aws-account-id:user/user-name<br /> arn:aws:iam::aws-account-id:role/role-name |
-               | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-               | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-               
-               *https://cloud.google.com/resource-manager/reference/rest/v1/projects
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -976,18 +904,6 @@ class VpcConnect(pulumi.CustomResource):
         """
         Configurable timeout time (seconds) when enable Private Service Connect.
         Default set to 1800 seconds.
-
-        ___
-
-        The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
-
-        | Platform | Description         | Format                                                                                                                             |
-        |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-        | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root<br /> arn:aws:iam::aws-account-id:user/user-name<br /> arn:aws:iam::aws-account-id:role/role-name |
-        | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-        | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-
-        *https://cloud.google.com/resource-manager/reference/rest/v1/projects
         """
         return pulumi.get(self, "timeout")
 
