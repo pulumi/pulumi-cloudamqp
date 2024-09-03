@@ -14,7 +14,29 @@ namespace Pulumi.CloudAmqp.Outputs
     public sealed class SecurityFirewallRule
     {
         /// <summary>
-        /// Naming descripton e.g. 'Default'
+        /// Description name of the rule. e.g. Default.
+        /// 
+        /// Pre-defined services for RabbitMQ:
+        /// 
+        /// | Service name | Port  |
+        /// |--------------|-------|
+        /// | AMQP         | 5672  |
+        /// | AMQPS        | 5671  |
+        /// | HTTPS        | 443   |
+        /// | MQTT         | 1883  |
+        /// | MQTTS        | 8883  |
+        /// | STOMP        | 61613 |
+        /// | STOMPS       | 61614 |
+        /// | STREAM       | 5552  |
+        /// | STREAM_SSL   | 5551  |
+        /// 
+        /// Pre-defined services for LavinMQ:
+        /// 
+        /// | Service name | Port  |
+        /// |--------------|-------|
+        /// | AMQP         | 5672  |
+        /// | AMQPS        | 5671  |
+        /// | HTTPS        | 443   |
         /// </summary>
         public readonly string? Description;
         /// <summary>
@@ -22,11 +44,11 @@ namespace Pulumi.CloudAmqp.Outputs
         /// </summary>
         public readonly string Ip;
         /// <summary>
-        /// Custom ports between 0 - 65554
+        /// Custom ports to be opened
         /// </summary>
         public readonly ImmutableArray<int> Ports;
         /// <summary>
-        /// Pre-defined services 'AMQP', 'AMQPS', 'HTTPS', 'MQTT', 'MQTTS', 'STOMP', 'STOMPS', 'STREAM', 'STREAM_SSL'
+        /// Pre-defined service ports, see table below
         /// </summary>
         public readonly ImmutableArray<string> Services;
 

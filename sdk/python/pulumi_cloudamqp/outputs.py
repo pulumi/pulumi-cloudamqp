@@ -198,9 +198,31 @@ class SecurityFirewallRule(dict):
                  services: Optional[Sequence[str]] = None):
         """
         :param str ip: CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
-        :param str description: Naming descripton e.g. 'Default'
-        :param Sequence[int] ports: Custom ports between 0 - 65554
-        :param Sequence[str] services: Pre-defined services 'AMQP', 'AMQPS', 'HTTPS', 'MQTT', 'MQTTS', 'STOMP', 'STOMPS', 'STREAM', 'STREAM_SSL'
+        :param str description: Description name of the rule. e.g. Default.
+               
+               Pre-defined services for RabbitMQ:
+               
+               | Service name | Port  |
+               |--------------|-------|
+               | AMQP         | 5672  |
+               | AMQPS        | 5671  |
+               | HTTPS        | 443   |
+               | MQTT         | 1883  |
+               | MQTTS        | 8883  |
+               | STOMP        | 61613 |
+               | STOMPS       | 61614 |
+               | STREAM       | 5552  |
+               | STREAM_SSL   | 5551  |
+               
+               Pre-defined services for LavinMQ:
+               
+               | Service name | Port  |
+               |--------------|-------|
+               | AMQP         | 5672  |
+               | AMQPS        | 5671  |
+               | HTTPS        | 443   |
+        :param Sequence[int] ports: Custom ports to be opened
+        :param Sequence[str] services: Pre-defined service ports, see table below
         """
         pulumi.set(__self__, "ip", ip)
         if description is not None:
@@ -222,7 +244,29 @@ class SecurityFirewallRule(dict):
     @pulumi.getter
     def description(self) -> Optional[str]:
         """
-        Naming descripton e.g. 'Default'
+        Description name of the rule. e.g. Default.
+
+        Pre-defined services for RabbitMQ:
+
+        | Service name | Port  |
+        |--------------|-------|
+        | AMQP         | 5672  |
+        | AMQPS        | 5671  |
+        | HTTPS        | 443   |
+        | MQTT         | 1883  |
+        | MQTTS        | 8883  |
+        | STOMP        | 61613 |
+        | STOMPS       | 61614 |
+        | STREAM       | 5552  |
+        | STREAM_SSL   | 5551  |
+
+        Pre-defined services for LavinMQ:
+
+        | Service name | Port  |
+        |--------------|-------|
+        | AMQP         | 5672  |
+        | AMQPS        | 5671  |
+        | HTTPS        | 443   |
         """
         return pulumi.get(self, "description")
 
@@ -230,7 +274,7 @@ class SecurityFirewallRule(dict):
     @pulumi.getter
     def ports(self) -> Optional[Sequence[int]]:
         """
-        Custom ports between 0 - 65554
+        Custom ports to be opened
         """
         return pulumi.get(self, "ports")
 
@@ -238,7 +282,7 @@ class SecurityFirewallRule(dict):
     @pulumi.getter
     def services(self) -> Optional[Sequence[str]]:
         """
-        Pre-defined services 'AMQP', 'AMQPS', 'HTTPS', 'MQTT', 'MQTTS', 'STOMP', 'STOMPS', 'STREAM', 'STREAM_SSL'
+        Pre-defined service ports, see table below
         """
         return pulumi.get(self, "services")
 
