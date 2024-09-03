@@ -713,7 +713,7 @@ class IntegrationMetric(pulumi.CustomResource):
 
         Only available for dedicated subscription plans.
 
-        ## Example Usage
+        ## Example usage
 
         <details>
           <summary>
@@ -856,14 +856,6 @@ class IntegrationMetric(pulumi.CustomResource):
         ```
 
         or by using google_service_account_key resource from Google provider
-
-        ## Import
-
-        `cloudamqp_integration_metric`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
-
-        ```sh
-        $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric <resource_name> <resource_id>,<instance_id>`
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -899,7 +891,7 @@ class IntegrationMetric(pulumi.CustomResource):
 
         Only available for dedicated subscription plans.
 
-        ## Example Usage
+        ## Example usage
 
         <details>
           <summary>
@@ -1042,14 +1034,6 @@ class IntegrationMetric(pulumi.CustomResource):
         ```
 
         or by using google_service_account_key resource from Google provider
-
-        ## Import
-
-        `cloudamqp_integration_metric`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
-
-        ```sh
-        $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric <resource_name> <resource_id>,<instance_id>`
-        ```
 
         :param str resource_name: The name of the resource.
         :param IntegrationMetricArgs args: The arguments to use to populate this resource's properties.

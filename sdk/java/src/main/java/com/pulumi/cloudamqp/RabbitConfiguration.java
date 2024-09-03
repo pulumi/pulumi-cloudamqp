@@ -17,13 +17,92 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## Import
+ * This resource allows you update RabbitMQ config.
  * 
- * `cloudamqp_rabbitmq_configuration` can be imported using the CloudAMQP instance identifier.
+ * Only available for dedicated subscription plans running ***RabbitMQ***.
  * 
- * ```sh
- * $ pulumi import cloudamqp:index/rabbitConfiguration:RabbitConfiguration config &lt;instance_id&gt;`
- * ```
+ * ## Example Usage
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;RabbitMQ configuration with default values&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Change log level and combine `cloudamqp.NodeActions` for RabbitMQ restart&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Only change log level for exchange. All other values will be read from the RabbitMQ configuration.&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.RabbitConfiguration;
+ * import com.pulumi.cloudamqp.RabbitConfigurationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var rabbitConfig = new RabbitConfiguration("rabbitConfig", RabbitConfigurationArgs.builder()
+ *             .instanceId(instance.id())
+ *             .logExchangeLevel("info")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * &lt;/details&gt;
+ * 
+ * ## Argument threshold values
+ * 
+ * |  Argument   |  Type  |  Default  |  Min  |    Max    |     Unit     |                              Affect                               |                               Note                                |
+ * |-------------|--------|-----------|-------|-----------|--------------|-------------------------------------------------------------------|-------------------------------------------------------------------|
+ * | heartbeat   | int    |       120 |     0 | -         |              | Only effects new                                                  |                                                                   |
+ * | connection_ | int    |        -1 |     1 | -         |              | RabbitMQ restart                                                  | -1 in the provider corresponds to INFINITY in the RabbitMQ        |
+ * | channel_    | int    |       128 |     0 | -         |              | Only effects new                                                  |                                                                   |
+ * | consumer_   | int    |   7200000 | 10000 |  86400000 | milliseconds | Only effects new                                                  | -1 in the provider corresponds to false (disable) in the RabbitMQ |
+ * | vm_         | float  |      0.81 |   0.4 |       0.9 |              | Applied                                                           |                                                                   |
+ * | queue_      | int    |      4096 |     0 |  10485760 | bytes        | Applied immediately for new queues, requires restart for existing |                                                                   |
+ * | max_        | int    | 134217728 |     1 | 536870912 | bytes        | Only effects new                                                  |                                                                   |
+ * | log_        | string | error     | -     | -         |              | RabbitMQ restart                                                  | debug, info, warning, error,                                      |
+ * | cluster_    | string | see       | -     | -         |              | Applied                                                           | autoheal, pause_                                                  |
  * 
  */
 @ResourceType(type="cloudamqp:index/rabbitConfiguration:RabbitConfiguration")

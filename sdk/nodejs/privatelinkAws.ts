@@ -74,7 +74,7 @@ import * as utilities from "./utilities";
  *
  * </details>
  *
- * ### With Additional Firewall Rules
+ * ### with additional firewall rules
  *
  * <details>
  *   <summary>

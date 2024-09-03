@@ -5,13 +5,108 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## Import
+ * This resource allows you update RabbitMQ config.
  *
- * `cloudamqp_rabbitmq_configuration` can be imported using the CloudAMQP instance identifier.
+ * Only available for dedicated subscription plans running ***RabbitMQ***.
  *
- * ```sh
- * $ pulumi import cloudamqp:index/rabbitConfiguration:RabbitConfiguration config <instance_id>`
+ * ## Example Usage
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>RabbitMQ configuration with default values</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const rabbitmqConfig = new cloudamqp.RabbitConfiguration("rabbitmq_config", {
+ *     instanceId: instance.id,
+ *     channelMax: 0,
+ *     connectionMax: -1,
+ *     consumerTimeout: 7200000,
+ *     heartbeat: 120,
+ *     logExchangeLevel: "error",
+ *     maxMessageSize: 134217728,
+ *     queueIndexEmbedMsgsBelow: 4096,
+ *     vmMemoryHighWatermark: 0.81,
+ *     clusterPartitionHandling: "autoheal",
+ * });
  * ```
+ *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Change log level and combine `cloudamqp.NodeActions` for RabbitMQ restart</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const rabbitmqConfig = new cloudamqp.RabbitConfiguration("rabbitmq_config", {
+ *     instanceId: instance.id,
+ *     channelMax: 0,
+ *     connectionMax: -1,
+ *     consumerTimeout: 7200000,
+ *     heartbeat: 120,
+ *     logExchangeLevel: "info",
+ *     maxMessageSize: 134217728,
+ *     queueIndexEmbedMsgsBelow: 4096,
+ *     vmMemoryHighWatermark: 0.81,
+ *     clusterPartitionHandling: "autoheal",
+ * });
+ * const listNodes = cloudamqp.getNodes({
+ *     instanceId: instance.id,
+ * });
+ * const nodeAction = new cloudamqp.NodeActions("node_action", {
+ *     instanceId: instance.id,
+ *     nodeName: listNodes.then(listNodes => listNodes.nodes?.[0]?.name),
+ *     action: "restart",
+ * }, {
+ *     dependsOn: [rabbitmqConfig],
+ * });
+ * ```
+ *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Only change log level for exchange. All other values will be read from the RabbitMQ configuration.</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const rabbitConfig = new cloudamqp.RabbitConfiguration("rabbit_config", {
+ *     instanceId: instance.id,
+ *     logExchangeLevel: "info",
+ * });
+ * ```
+ *
+ * </details>
+ *
+ * ## Argument threshold values
+ *
+ * |  Argument   |  Type  |  Default  |  Min  |    Max    |     Unit     |                              Affect                               |                               Note                                |
+ * |-------------|--------|-----------|-------|-----------|--------------|-------------------------------------------------------------------|-------------------------------------------------------------------|
+ * | heartbeat   | int    |       120 |     0 | -         |              | Only effects new                                                  |                                                                   |
+ * | connection_ | int    |        -1 |     1 | -         |              | RabbitMQ restart                                                  | -1 in the provider corresponds to INFINITY in the RabbitMQ        |
+ * | channel_    | int    |       128 |     0 | -         |              | Only effects new                                                  |                                                                   |
+ * | consumer_   | int    |   7200000 | 10000 |  86400000 | milliseconds | Only effects new                                                  | -1 in the provider corresponds to false (disable) in the RabbitMQ |
+ * | vm_         | float  |      0.81 |   0.4 |       0.9 |              | Applied                                                           |                                                                   |
+ * | queue_      | int    |      4096 |     0 |  10485760 | bytes        | Applied immediately for new queues, requires restart for existing |                                                                   |
+ * | max_        | int    | 134217728 |     1 | 536870912 | bytes        | Only effects new                                                  |                                                                   |
+ * | log_        | string | error     | -     | -         |              | RabbitMQ restart                                                  | debug, info, warning, error,                                      |
+ * | cluster_    | string | see       | -     | -         |              | Applied                                                           | autoheal, pause_                                                  |
  */
 export class RabbitConfiguration extends pulumi.CustomResource {
     /**

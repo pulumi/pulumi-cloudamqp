@@ -10,13 +10,137 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
-    /// ## Import
+    /// This resource allows you update RabbitMQ config.
     /// 
-    /// `cloudamqp_rabbitmq_configuration` can be imported using the CloudAMQP instance identifier.
+    /// Only available for dedicated subscription plans running ***RabbitMQ***.
     /// 
-    /// ```sh
-    /// $ pulumi import cloudamqp:index/rabbitConfiguration:RabbitConfiguration config &lt;instance_id&gt;`
+    /// ## Example Usage
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;RabbitMQ configuration with default values&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var rabbitmqConfig = new CloudAmqp.RabbitConfiguration("rabbitmq_config", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         ChannelMax = 0,
+    ///         ConnectionMax = -1,
+    ///         ConsumerTimeout = 7200000,
+    ///         Heartbeat = 120,
+    ///         LogExchangeLevel = "error",
+    ///         MaxMessageSize = 134217728,
+    ///         QueueIndexEmbedMsgsBelow = 4096,
+    ///         VmMemoryHighWatermark = 0.81,
+    ///         ClusterPartitionHandling = "autoheal",
+    ///     });
+    /// 
+    /// });
     /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Change log level and combine `cloudamqp.NodeActions` for RabbitMQ restart&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var rabbitmqConfig = new CloudAmqp.RabbitConfiguration("rabbitmq_config", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         ChannelMax = 0,
+    ///         ConnectionMax = -1,
+    ///         ConsumerTimeout = 7200000,
+    ///         Heartbeat = 120,
+    ///         LogExchangeLevel = "info",
+    ///         MaxMessageSize = 134217728,
+    ///         QueueIndexEmbedMsgsBelow = 4096,
+    ///         VmMemoryHighWatermark = 0.81,
+    ///         ClusterPartitionHandling = "autoheal",
+    ///     });
+    /// 
+    ///     var listNodes = CloudAmqp.GetNodes.Invoke(new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///     });
+    /// 
+    ///     var nodeAction = new CloudAmqp.NodeActions("node_action", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         NodeName = listNodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[0]?.Name),
+    ///         Action = "restart",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             rabbitmqConfig,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Only change log level for exchange. All other values will be read from the RabbitMQ configuration.&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var rabbitConfig = new CloudAmqp.RabbitConfiguration("rabbit_config", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         LogExchangeLevel = "info",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// ## Argument threshold values
+    /// 
+    /// |  Argument   |  Type  |  Default  |  Min  |    Max    |     Unit     |                              Affect                               |                               Note                                |
+    /// |-------------|--------|-----------|-------|-----------|--------------|-------------------------------------------------------------------|-------------------------------------------------------------------|
+    /// | heartbeat   | int    |       120 |     0 | -         |              | Only effects new                                                  |                                                                   |
+    /// | connection_ | int    |        -1 |     1 | -         |              | RabbitMQ restart                                                  | -1 in the provider corresponds to INFINITY in the RabbitMQ        |
+    /// | channel_    | int    |       128 |     0 | -         |              | Only effects new                                                  |                                                                   |
+    /// | consumer_   | int    |   7200000 | 10000 |  86400000 | milliseconds | Only effects new                                                  | -1 in the provider corresponds to false (disable) in the RabbitMQ |
+    /// | vm_         | float  |      0.81 |   0.4 |       0.9 |              | Applied                                                           |                                                                   |
+    /// | queue_      | int    |      4096 |     0 |  10485760 | bytes        | Applied immediately for new queues, requires restart for existing |                                                                   |
+    /// | max_        | int    | 134217728 |     1 | 536870912 | bytes        | Only effects new                                                  |                                                                   |
+    /// | log_        | string | error     | -     | -         |              | RabbitMQ restart                                                  | debug, info, warning, error,                                      |
+    /// | cluster_    | string | see       | -     | -         |              | Applied                                                           | autoheal, pause_                                                  |
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/rabbitConfiguration:RabbitConfiguration")]
     public partial class RabbitConfiguration : global::Pulumi.CustomResource

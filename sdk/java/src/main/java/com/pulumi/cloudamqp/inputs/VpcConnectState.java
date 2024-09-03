@@ -18,14 +18,14 @@ public final class VpcConnectState extends com.pulumi.resources.ResourceArgs {
     public static final VpcConnectState Empty = new VpcConnectState();
 
     /**
-     * Covering availability zones used when creating an endpoint from other VPC. (AWS)
+     * Covering availability zones used when creating an endpoint from other VPC. [AWS]
      * 
      */
     @Import(name="activeZones")
     private @Nullable Output<List<String>> activeZones;
 
     /**
-     * @return Covering availability zones used when creating an endpoint from other VPC. (AWS)
+     * @return Covering availability zones used when creating an endpoint from other VPC. [AWS]
      * 
      */
     public Optional<Output<List<String>>> activeZones() {
@@ -140,14 +140,14 @@ public final class VpcConnectState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Private Service Connect status [enable, pending, disable]
+     * Status of the Private Service Connect [enabled, pending, disabled]
      * 
      */
     @Import(name="status")
     private @Nullable Output<String> status;
 
     /**
-     * @return Private Service Connect status [enable, pending, disable]
+     * @return Status of the Private Service Connect [enabled, pending, disabled]
      * 
      */
     public Optional<Output<String>> status() {
@@ -158,18 +158,6 @@ public final class VpcConnectState extends com.pulumi.resources.ResourceArgs {
      * Configurable timeout time (seconds) when enable Private Service Connect.
      * Default set to 1800 seconds.
      * 
-     * ***
-     * 
-     * The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
-     * 
-     * | Platform | Description         | Format                                                                                                                             |
-     * |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-     * | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root&lt;br /&gt; arn:aws:iam::aws-account-id:user/user-name&lt;br /&gt; arn:aws:iam::aws-account-id:role/role-name |
-     * | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-     * | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-     * 
-     * *https://cloud.google.com/resource-manager/reference/rest/v1/projects
-     * 
      */
     @Import(name="timeout")
     private @Nullable Output<Integer> timeout;
@@ -177,18 +165,6 @@ public final class VpcConnectState extends com.pulumi.resources.ResourceArgs {
     /**
      * @return Configurable timeout time (seconds) when enable Private Service Connect.
      * Default set to 1800 seconds.
-     * 
-     * ***
-     * 
-     * The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
-     * 
-     * | Platform | Description         | Format                                                                                                                             |
-     * |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-     * | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root&lt;br /&gt; arn:aws:iam::aws-account-id:user/user-name&lt;br /&gt; arn:aws:iam::aws-account-id:role/role-name |
-     * | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-     * | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-     * 
-     * *https://cloud.google.com/resource-manager/reference/rest/v1/projects
      * 
      */
     public Optional<Output<Integer>> timeout() {
@@ -229,7 +205,7 @@ public final class VpcConnectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param activeZones Covering availability zones used when creating an endpoint from other VPC. (AWS)
+         * @param activeZones Covering availability zones used when creating an endpoint from other VPC. [AWS]
          * 
          * @return builder
          * 
@@ -240,7 +216,7 @@ public final class VpcConnectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param activeZones Covering availability zones used when creating an endpoint from other VPC. (AWS)
+         * @param activeZones Covering availability zones used when creating an endpoint from other VPC. [AWS]
          * 
          * @return builder
          * 
@@ -250,7 +226,7 @@ public final class VpcConnectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param activeZones Covering availability zones used when creating an endpoint from other VPC. (AWS)
+         * @param activeZones Covering availability zones used when creating an endpoint from other VPC. [AWS]
          * 
          * @return builder
          * 
@@ -439,7 +415,7 @@ public final class VpcConnectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param status Private Service Connect status [enable, pending, disable]
+         * @param status Status of the Private Service Connect [enabled, pending, disabled]
          * 
          * @return builder
          * 
@@ -450,7 +426,7 @@ public final class VpcConnectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param status Private Service Connect status [enable, pending, disable]
+         * @param status Status of the Private Service Connect [enabled, pending, disabled]
          * 
          * @return builder
          * 
@@ -463,18 +439,6 @@ public final class VpcConnectState extends com.pulumi.resources.ResourceArgs {
          * @param timeout Configurable timeout time (seconds) when enable Private Service Connect.
          * Default set to 1800 seconds.
          * 
-         * ***
-         * 
-         * The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
-         * 
-         * | Platform | Description         | Format                                                                                                                             |
-         * |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-         * | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root&lt;br /&gt; arn:aws:iam::aws-account-id:user/user-name&lt;br /&gt; arn:aws:iam::aws-account-id:role/role-name |
-         * | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-         * | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-         * 
-         * *https://cloud.google.com/resource-manager/reference/rest/v1/projects
-         * 
          * @return builder
          * 
          */
@@ -486,18 +450,6 @@ public final class VpcConnectState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param timeout Configurable timeout time (seconds) when enable Private Service Connect.
          * Default set to 1800 seconds.
-         * 
-         * ***
-         * 
-         * The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
-         * 
-         * | Platform | Description         | Format                                                                                                                             |
-         * |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-         * | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root&lt;br /&gt; arn:aws:iam::aws-account-id:user/user-name&lt;br /&gt; arn:aws:iam::aws-account-id:role/role-name |
-         * | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-         * | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-         * 
-         * *https://cloud.google.com/resource-manager/reference/rest/v1/projects
          * 
          * @return builder
          * 

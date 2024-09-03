@@ -31,10 +31,6 @@ class NotificationArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Options argument (e.g. `rk` used for VictorOps routing key).
         :param pulumi.Input[Sequence[pulumi.Input['NotificationResponderArgs']]] responders: An array of reponders (only for OpsGenie). Each `responders` block
                consists of the field documented below.
-               
-               ___
-               
-               The `responders` block consists of:
         """
         pulumi.set(__self__, "instance_id", instance_id)
         pulumi.set(__self__, "type", type)
@@ -112,10 +108,6 @@ class NotificationArgs:
         """
         An array of reponders (only for OpsGenie). Each `responders` block
         consists of the field documented below.
-
-        ___
-
-        The `responders` block consists of:
         """
         return pulumi.get(self, "responders")
 
@@ -140,10 +132,6 @@ class _NotificationState:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Options argument (e.g. `rk` used for VictorOps routing key).
         :param pulumi.Input[Sequence[pulumi.Input['NotificationResponderArgs']]] responders: An array of reponders (only for OpsGenie). Each `responders` block
                consists of the field documented below.
-               
-               ___
-               
-               The `responders` block consists of:
         :param pulumi.Input[str] type: Type of responder. [`team`, `user`, `escalation`, `schedule`]
         :param pulumi.Input[str] value: Integration/API key or endpoint to send the notification.
         """
@@ -202,10 +190,6 @@ class _NotificationState:
         """
         An array of reponders (only for OpsGenie). Each `responders` block
         consists of the field documented below.
-
-        ___
-
-        The `responders` block consists of:
         """
         return pulumi.get(self, "responders")
 
@@ -435,26 +419,10 @@ class Notification(pulumi.CustomResource):
 
         ## Options parameter
 
-        | Type      | Options  | Description | Note |
-        |---|---|---|---|
-        | Victorops | rk       | Routing key to route alarm notification | - |
-        | PagerDuty | dedupkey | Default the dedup key for PagerDuty is generated depending on what alarm has triggered, but here you can set what `dedup` key to use so even if the same alarm is triggered for different resources you only get one notification. Leave blank to use the generated dedup key. | If multiple alarms are triggered using this recipient, since they all share `dedup` key only the first alarm will be shown in PagerDuty |
-
-        ## Dependency
-
-        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-
-        ## Import
-
-        `cloudamqp_notification` can be imported using CloudAMQP internal identifier of a recipient together
-
-        (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use
-
-        [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-recipients).
-
-        ```sh
-        $ pulumi import cloudamqp:index/notification:Notification recipient <id>,<instance_id>`
-        ```
+        |   Type    | Options  |                                                    Description                                                    |                                    Note                                     |
+        |-----------|----------|-------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+        | Victorops | rk       | Routing key to route alarm                                                                                        | -                                                                           |
+        | PagerDuty | dedupkey | Default the dedup key for PagerDuty is generated depending on what alarm has triggered, but here you can set what | If multiple alarms are triggered using this recipient, since they all share |
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -463,10 +431,6 @@ class Notification(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Options argument (e.g. `rk` used for VictorOps routing key).
         :param pulumi.Input[Sequence[pulumi.Input[Union['NotificationResponderArgs', 'NotificationResponderArgsDict']]]] responders: An array of reponders (only for OpsGenie). Each `responders` block
                consists of the field documented below.
-               
-               ___
-               
-               The `responders` block consists of:
         :param pulumi.Input[str] type: Type of responder. [`team`, `user`, `escalation`, `schedule`]
         :param pulumi.Input[str] value: Integration/API key or endpoint to send the notification.
         """
@@ -661,26 +625,10 @@ class Notification(pulumi.CustomResource):
 
         ## Options parameter
 
-        | Type      | Options  | Description | Note |
-        |---|---|---|---|
-        | Victorops | rk       | Routing key to route alarm notification | - |
-        | PagerDuty | dedupkey | Default the dedup key for PagerDuty is generated depending on what alarm has triggered, but here you can set what `dedup` key to use so even if the same alarm is triggered for different resources you only get one notification. Leave blank to use the generated dedup key. | If multiple alarms are triggered using this recipient, since they all share `dedup` key only the first alarm will be shown in PagerDuty |
-
-        ## Dependency
-
-        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-
-        ## Import
-
-        `cloudamqp_notification` can be imported using CloudAMQP internal identifier of a recipient together
-
-        (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use
-
-        [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-recipients).
-
-        ```sh
-        $ pulumi import cloudamqp:index/notification:Notification recipient <id>,<instance_id>`
-        ```
+        |   Type    | Options  |                                                    Description                                                    |                                    Note                                     |
+        |-----------|----------|-------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+        | Victorops | rk       | Routing key to route alarm                                                                                        | -                                                                           |
+        | PagerDuty | dedupkey | Default the dedup key for PagerDuty is generated depending on what alarm has triggered, but here you can set what | If multiple alarms are triggered using this recipient, since they all share |
 
         :param str resource_name: The name of the resource.
         :param NotificationArgs args: The arguments to use to populate this resource's properties.
@@ -752,10 +700,6 @@ class Notification(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Options argument (e.g. `rk` used for VictorOps routing key).
         :param pulumi.Input[Sequence[pulumi.Input[Union['NotificationResponderArgs', 'NotificationResponderArgsDict']]]] responders: An array of reponders (only for OpsGenie). Each `responders` block
                consists of the field documented below.
-               
-               ___
-               
-               The `responders` block consists of:
         :param pulumi.Input[str] type: Type of responder. [`team`, `user`, `escalation`, `schedule`]
         :param pulumi.Input[str] value: Integration/API key or endpoint to send the notification.
         """
@@ -801,10 +745,6 @@ class Notification(pulumi.CustomResource):
         """
         An array of reponders (only for OpsGenie). Each `responders` block
         consists of the field documented below.
-
-        ___
-
-        The `responders` block consists of:
         """
         return pulumi.get(self, "responders")
 

@@ -32,18 +32,6 @@ class VpcConnectArgs:
                Default set to 10 seconds.
         :param pulumi.Input[int] timeout: Configurable timeout time (seconds) when enable Private Service Connect.
                Default set to 1800 seconds.
-               
-               ___
-               
-               The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
-               
-               | Platform | Description         | Format                                                                                                                             |
-               |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-               | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root<br /> arn:aws:iam::aws-account-id:user/user-name<br /> arn:aws:iam::aws-account-id:role/role-name |
-               | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-               | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-               
-               *https://cloud.google.com/resource-manager/reference/rest/v1/projects
         """
         pulumi.set(__self__, "instance_id", instance_id)
         pulumi.set(__self__, "region", region)
@@ -137,18 +125,6 @@ class VpcConnectArgs:
         """
         Configurable timeout time (seconds) when enable Private Service Connect.
         Default set to 1800 seconds.
-
-        ___
-
-        The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
-
-        | Platform | Description         | Format                                                                                                                             |
-        |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-        | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root<br /> arn:aws:iam::aws-account-id:user/user-name<br /> arn:aws:iam::aws-account-id:role/role-name |
-        | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-        | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-
-        *https://cloud.google.com/resource-manager/reference/rest/v1/projects
         """
         return pulumi.get(self, "timeout")
 
@@ -172,7 +148,7 @@ class _VpcConnectState:
                  timeout: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering VpcConnect resources.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] active_zones: Covering availability zones used when creating an endpoint from other VPC. (AWS)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] active_zones: Covering availability zones used when creating an endpoint from other VPC. [AWS]
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_principals: List of allowed prinicpals used by AWS, see below table.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_projects: List of allowed projects used by GCP, see below table.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] approved_subscriptions: List of approved subscriptions used by Azure, see below table.
@@ -181,21 +157,9 @@ class _VpcConnectState:
         :param pulumi.Input[str] service_name: Service name (alias for Azure) of the PrivateLink.
         :param pulumi.Input[int] sleep: Configurable sleep time (seconds) when enable Private Service Connect.
                Default set to 10 seconds.
-        :param pulumi.Input[str] status: Private Service Connect status [enable, pending, disable]
+        :param pulumi.Input[str] status: Status of the Private Service Connect [enabled, pending, disabled]
         :param pulumi.Input[int] timeout: Configurable timeout time (seconds) when enable Private Service Connect.
                Default set to 1800 seconds.
-               
-               ___
-               
-               The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
-               
-               | Platform | Description         | Format                                                                                                                             |
-               |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-               | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root<br /> arn:aws:iam::aws-account-id:user/user-name<br /> arn:aws:iam::aws-account-id:role/role-name |
-               | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-               | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-               
-               *https://cloud.google.com/resource-manager/reference/rest/v1/projects
         """
         if active_zones is not None:
             pulumi.set(__self__, "active_zones", active_zones)
@@ -222,7 +186,7 @@ class _VpcConnectState:
     @pulumi.getter(name="activeZones")
     def active_zones(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Covering availability zones used when creating an endpoint from other VPC. (AWS)
+        Covering availability zones used when creating an endpoint from other VPC. [AWS]
         """
         return pulumi.get(self, "active_zones")
 
@@ -319,7 +283,7 @@ class _VpcConnectState:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
-        Private Service Connect status [enable, pending, disable]
+        Status of the Private Service Connect [enabled, pending, disabled]
         """
         return pulumi.get(self, "status")
 
@@ -333,18 +297,6 @@ class _VpcConnectState:
         """
         Configurable timeout time (seconds) when enable Private Service Connect.
         Default set to 1800 seconds.
-
-        ___
-
-        The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
-
-        | Platform | Description         | Format                                                                                                                             |
-        |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-        | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root<br /> arn:aws:iam::aws-account-id:user/user-name<br /> arn:aws:iam::aws-account-id:role/role-name |
-        | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-        | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-
-        *https://cloud.google.com/resource-manager/reference/rest/v1/projects
         """
         return pulumi.get(self, "timeout")
 
@@ -479,7 +431,7 @@ class VpcConnect(pulumi.CustomResource):
 
         </details>
 
-        ### With Additional Firewall Rules
+        ### with additional firewall rules
 
         <details>
           <summary>
@@ -534,32 +486,6 @@ class VpcConnect(pulumi.CustomResource):
 
         </details>
 
-        ## Depedency
-
-        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-
-        Since `region` also is required, suggest to reuse the argument from CloudAMQP instance,
-        `cloudamqp_instance.instance.region`.
-
-        ## Create VPC Connect with additional firewall rules
-
-        To create a PrivateLink/Private Service Connect configuration with additional firewall rules, it's required to chain the SecurityFirewall
-        resource to avoid parallel conflicting resource calls. You can do this by making the firewall
-        resource depend on the VPC Connect resource, `cloudamqp_vpc_connect.vpc_connect`.
-
-        Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
-        the VPC Connect also needs to be added.
-
-        ## Import
-
-        `cloudamqp_vpc_connect` can be imported using CloudAMQP internal identifier.
-
-        ```sh
-        $ pulumi import cloudamqp:index/vpcConnect:VpcConnect vpc_connect <id>`
-        ```
-
-        The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_principals: List of allowed prinicpals used by AWS, see below table.
@@ -571,18 +497,6 @@ class VpcConnect(pulumi.CustomResource):
                Default set to 10 seconds.
         :param pulumi.Input[int] timeout: Configurable timeout time (seconds) when enable Private Service Connect.
                Default set to 1800 seconds.
-               
-               ___
-               
-               The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
-               
-               | Platform | Description         | Format                                                                                                                             |
-               |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-               | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root<br /> arn:aws:iam::aws-account-id:user/user-name<br /> arn:aws:iam::aws-account-id:role/role-name |
-               | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-               | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-               
-               *https://cloud.google.com/resource-manager/reference/rest/v1/projects
         """
         ...
     @overload
@@ -703,7 +617,7 @@ class VpcConnect(pulumi.CustomResource):
 
         </details>
 
-        ### With Additional Firewall Rules
+        ### with additional firewall rules
 
         <details>
           <summary>
@@ -757,32 +671,6 @@ class VpcConnect(pulumi.CustomResource):
         ```
 
         </details>
-
-        ## Depedency
-
-        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-
-        Since `region` also is required, suggest to reuse the argument from CloudAMQP instance,
-        `cloudamqp_instance.instance.region`.
-
-        ## Create VPC Connect with additional firewall rules
-
-        To create a PrivateLink/Private Service Connect configuration with additional firewall rules, it's required to chain the SecurityFirewall
-        resource to avoid parallel conflicting resource calls. You can do this by making the firewall
-        resource depend on the VPC Connect resource, `cloudamqp_vpc_connect.vpc_connect`.
-
-        Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
-        the VPC Connect also needs to be added.
-
-        ## Import
-
-        `cloudamqp_vpc_connect` can be imported using CloudAMQP internal identifier.
-
-        ```sh
-        $ pulumi import cloudamqp:index/vpcConnect:VpcConnect vpc_connect <id>`
-        ```
-
-        The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
 
         :param str resource_name: The name of the resource.
         :param VpcConnectArgs args: The arguments to use to populate this resource's properties.
@@ -856,7 +744,7 @@ class VpcConnect(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] active_zones: Covering availability zones used when creating an endpoint from other VPC. (AWS)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] active_zones: Covering availability zones used when creating an endpoint from other VPC. [AWS]
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_principals: List of allowed prinicpals used by AWS, see below table.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_projects: List of allowed projects used by GCP, see below table.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] approved_subscriptions: List of approved subscriptions used by Azure, see below table.
@@ -865,21 +753,9 @@ class VpcConnect(pulumi.CustomResource):
         :param pulumi.Input[str] service_name: Service name (alias for Azure) of the PrivateLink.
         :param pulumi.Input[int] sleep: Configurable sleep time (seconds) when enable Private Service Connect.
                Default set to 10 seconds.
-        :param pulumi.Input[str] status: Private Service Connect status [enable, pending, disable]
+        :param pulumi.Input[str] status: Status of the Private Service Connect [enabled, pending, disabled]
         :param pulumi.Input[int] timeout: Configurable timeout time (seconds) when enable Private Service Connect.
                Default set to 1800 seconds.
-               
-               ___
-               
-               The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
-               
-               | Platform | Description         | Format                                                                                                                             |
-               |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-               | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root<br /> arn:aws:iam::aws-account-id:user/user-name<br /> arn:aws:iam::aws-account-id:role/role-name |
-               | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-               | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-               
-               *https://cloud.google.com/resource-manager/reference/rest/v1/projects
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -901,7 +777,7 @@ class VpcConnect(pulumi.CustomResource):
     @pulumi.getter(name="activeZones")
     def active_zones(self) -> pulumi.Output[Sequence[str]]:
         """
-        Covering availability zones used when creating an endpoint from other VPC. (AWS)
+        Covering availability zones used when creating an endpoint from other VPC. [AWS]
         """
         return pulumi.get(self, "active_zones")
 
@@ -966,7 +842,7 @@ class VpcConnect(pulumi.CustomResource):
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
         """
-        Private Service Connect status [enable, pending, disable]
+        Status of the Private Service Connect [enabled, pending, disabled]
         """
         return pulumi.get(self, "status")
 
@@ -976,18 +852,6 @@ class VpcConnect(pulumi.CustomResource):
         """
         Configurable timeout time (seconds) when enable Private Service Connect.
         Default set to 1800 seconds.
-
-        ___
-
-        The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
-
-        | Platform | Description         | Format                                                                                                                             |
-        |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-        | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root<br /> arn:aws:iam::aws-account-id:user/user-name<br /> arn:aws:iam::aws-account-id:role/role-name |
-        | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-        | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-
-        *https://cloud.google.com/resource-manager/reference/rest/v1/projects
         """
         return pulumi.get(self, "timeout")
 

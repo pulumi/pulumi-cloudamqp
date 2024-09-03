@@ -68,10 +68,6 @@ public final class NotificationState extends com.pulumi.resources.ResourceArgs {
      * An array of reponders (only for OpsGenie). Each `responders` block
      * consists of the field documented below.
      * 
-     * ***
-     * 
-     * The `responders` block consists of:
-     * 
      */
     @Import(name="responders")
     private @Nullable Output<List<NotificationResponderArgs>> responders;
@@ -79,10 +75,6 @@ public final class NotificationState extends com.pulumi.resources.ResourceArgs {
     /**
      * @return An array of reponders (only for OpsGenie). Each `responders` block
      * consists of the field documented below.
-     * 
-     * ***
-     * 
-     * The `responders` block consists of:
      * 
      */
     public Optional<Output<List<NotificationResponderArgs>>> responders() {
@@ -215,10 +207,6 @@ public final class NotificationState extends com.pulumi.resources.ResourceArgs {
          * @param responders An array of reponders (only for OpsGenie). Each `responders` block
          * consists of the field documented below.
          * 
-         * ***
-         * 
-         * The `responders` block consists of:
-         * 
          * @return builder
          * 
          */
@@ -231,10 +219,6 @@ public final class NotificationState extends com.pulumi.resources.ResourceArgs {
          * @param responders An array of reponders (only for OpsGenie). Each `responders` block
          * consists of the field documented below.
          * 
-         * ***
-         * 
-         * The `responders` block consists of:
-         * 
          * @return builder
          * 
          */
@@ -245,10 +229,6 @@ public final class NotificationState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param responders An array of reponders (only for OpsGenie). Each `responders` block
          * consists of the field documented below.
-         * 
-         * ***
-         * 
-         * The `responders` block consists of:
          * 
          * @return builder
          * 

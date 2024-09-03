@@ -183,7 +183,7 @@ namespace Pulumi.CloudAmqp
     /// &gt; - All single node upgrades will require some downtime since RabbitMQ needs a restart.
     /// &gt; - From RabbitMQ version 3.9, rolling upgrades between minor versions (e.g. 3.9 to 3.10), in a multi-node cluster are possible without downtime. This means that one node is upgraded at a time while the other nodes are still running. For versions older than 3.9, patch version upgrades (e.g. 3.8.x to 3.8.y) are possible without downtime in a multi-node cluster, but minor version upgrades will require downtime.
     /// &gt; - Auto delete queues (queues that are marked AD) will be deleted during the update.
-    /// &gt; - Any custom plugins support has installed on your behalf will be disabled and you need to contact support@cloudamqp.com and ask to have them re-installed.
+    /// &gt; - Any custom plugins support has installed on your behalf will be disabled and you need to contact &lt;support@cloudamqp.com&gt; and ask to have them re-installed.
     /// &gt; - TLS 1.0 and 1.1 will not be supported after the update.
     /// 
     /// ## Multiple runs
@@ -192,11 +192,11 @@ namespace Pulumi.CloudAmqp
     /// 
     /// Example steps needed when starting at RabbitMQ version 3.12.2
     /// 
-    /// |  Version         | Supported upgrading versions              | Min version to upgrade Erlang |
-    /// |------------------|-------------------------------------------|-------------------------------|
-    /// | 3.12.2           | 3.12.4, 3.12.6, 3.12.10, 3.12.12, 3.12.13 | 3.12.13                       |
-    /// | 3.12.13          | 3.13.2                                    | 3.13.2                        |
-    /// | 3.13.2           | -                                         | -                             |
+    /// | Version |        Supported upgrading        | Min version to upgrade |
+    /// |---------|-----------------------------------|------------------------|
+    /// | 3.12.2  | 3.12.4, 3.12.6, 3.12.10, 3.12.12, | 3.12.13                |
+    /// | 3.12.13 | 3.13.2                            | 3.13.2                 |
+    /// | 3.13.2  | -                                 | -                      |
     /// 
     /// ## Import
     /// 

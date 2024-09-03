@@ -300,7 +300,7 @@ class PrivatelinkAzure(pulumi.CustomResource):
 
         </details>
 
-        ### With Additional Firewall Rules
+        ### with additional firewall rules
 
         <details>
           <summary>
@@ -462,7 +462,7 @@ class PrivatelinkAzure(pulumi.CustomResource):
 
         </details>
 
-        ### With Additional Firewall Rules
+        ### with additional firewall rules
 
         <details>
           <summary>

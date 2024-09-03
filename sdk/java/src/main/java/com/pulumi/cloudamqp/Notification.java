@@ -399,26 +399,10 @@ import javax.annotation.Nullable;
  * 
  * ## Options parameter
  * 
- * | Type      | Options  | Description | Note |
- * |---|---|---|---|
- * | Victorops | rk       | Routing key to route alarm notification | - |
- * | PagerDuty | dedupkey | Default the dedup key for PagerDuty is generated depending on what alarm has triggered, but here you can set what `dedup` key to use so even if the same alarm is triggered for different resources you only get one notification. Leave blank to use the generated dedup key. | If multiple alarms are triggered using this recipient, since they all share `dedup` key only the first alarm will be shown in PagerDuty |
- * 
- * ## Dependency
- * 
- * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
- * 
- * ## Import
- * 
- * `cloudamqp_notification` can be imported using CloudAMQP internal identifier of a recipient together
- * 
- * (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use
- * 
- * [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-recipients).
- * 
- * ```sh
- * $ pulumi import cloudamqp:index/notification:Notification recipient &lt;id&gt;,&lt;instance_id&gt;`
- * ```
+ * |   Type    | Options  |                                                    Description                                                    |                                    Note                                     |
+ * |-----------|----------|-------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+ * | Victorops | rk       | Routing key to route alarm                                                                                        | -                                                                           |
+ * | PagerDuty | dedupkey | Default the dedup key for PagerDuty is generated depending on what alarm has triggered, but here you can set what | If multiple alarms are triggered using this recipient, since they all share |
  * 
  */
 @ResourceType(type="cloudamqp:index/notification:Notification")
@@ -469,10 +453,6 @@ public class Notification extends com.pulumi.resources.CustomResource {
      * An array of reponders (only for OpsGenie). Each `responders` block
      * consists of the field documented below.
      * 
-     * ***
-     * 
-     * The `responders` block consists of:
-     * 
      */
     @Export(name="responders", refs={List.class,NotificationResponder.class}, tree="[0,1]")
     private Output</* @Nullable */ List<NotificationResponder>> responders;
@@ -480,10 +460,6 @@ public class Notification extends com.pulumi.resources.CustomResource {
     /**
      * @return An array of reponders (only for OpsGenie). Each `responders` block
      * consists of the field documented below.
-     * 
-     * ***
-     * 
-     * The `responders` block consists of:
      * 
      */
     public Output<Optional<List<NotificationResponder>>> responders() {

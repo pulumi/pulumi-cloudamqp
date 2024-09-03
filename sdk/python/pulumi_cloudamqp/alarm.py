@@ -409,14 +409,7 @@ class Alarm(pulumi.CustomResource):
                  vhost_regex: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## Import
-
-        `cloudamqp_alarm` can be imported using CloudAMQP internal identifier of the alarm together (CSV separated) with the instance identifier. To retrieve the alarm identifier, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-alarms)
-
-        ```sh
-        $ pulumi import cloudamqp:index/alarm:Alarm alarm <id>,<instance_id>`
-        ```
-
+        Create a Alarm resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] enabled: Enable or disable the alarm to trigger.
@@ -442,14 +435,7 @@ class Alarm(pulumi.CustomResource):
                  args: AlarmArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Import
-
-        `cloudamqp_alarm` can be imported using CloudAMQP internal identifier of the alarm together (CSV separated) with the instance identifier. To retrieve the alarm identifier, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-alarms)
-
-        ```sh
-        $ pulumi import cloudamqp:index/alarm:Alarm alarm <id>,<instance_id>`
-        ```
-
+        Create a Alarm resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param AlarmArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

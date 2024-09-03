@@ -18,7 +18,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// Only available for dedicated subscription plans.
     /// 
-    /// ## Example Usage
+    /// ## Example usage
     /// 
     /// ```csharp
     /// using System.Collections.Generic;

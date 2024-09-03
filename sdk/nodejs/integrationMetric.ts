@@ -9,7 +9,7 @@ import * as utilities from "./utilities";
  *
  * Only available for dedicated subscription plans.
  *
- * ## Example Usage
+ * ## Example usage
  *
  * <details>
  *   <summary>
@@ -161,14 +161,6 @@ import * as utilities from "./utilities";
  * ```
  *
  * or by using googleServiceAccountKey resource from Google provider
- *
- * ## Import
- *
- * `cloudamqp_integration_metric`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
- *
- * ```sh
- * $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric <resource_name> <resource_id>,<instance_id>`
- * ```
  */
 export class IntegrationMetric extends pulumi.CustomResource {
     /**

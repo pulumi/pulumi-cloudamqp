@@ -199,21 +199,13 @@ import (
 //
 // Valid options for action.
 //
-// | Action       | Info                               |
-// |--------------|------------------------------------|
-// | start        | Start RabbitMQ                     |
-// | stop         | Stop RabbitMQ                      |
-// | restart      | Restart RabbitMQ                   |
-// | reboot       | Reboot the node                    |
-// | mgmt.restart | Restart the RabbitMQ mgmt interace |
-//
-// ## Dependency
-//
-// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id` and node name.
-//
-// ## Import
-//
-// This resource cannot be imported.
+// |    Action    |           Info            |
+// |--------------|---------------------------|
+// | start        | Start                     |
+// | stop         | Stop                      |
+// | restart      | Restart                   |
+// | reboot       | Reboot the                |
+// | mgmt.restart | Restart the RabbitMQ mgmt |
 type NodeActions struct {
 	pulumi.CustomResourceState
 

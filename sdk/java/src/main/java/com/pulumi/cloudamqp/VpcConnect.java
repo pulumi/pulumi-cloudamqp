@@ -228,7 +228,7 @@ import javax.annotation.Nullable;
  * 
  * &lt;/details&gt;
  * 
- * ### With Additional Firewall Rules
+ * ### with additional firewall rules
  * 
  * &lt;details&gt;
  *   &lt;summary&gt;
@@ -321,44 +321,18 @@ import javax.annotation.Nullable;
  * 
  * &lt;/details&gt;
  * 
- * ## Depedency
- * 
- * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
- * 
- * Since `region` also is required, suggest to reuse the argument from CloudAMQP instance,
- * `cloudamqp_instance.instance.region`.
- * 
- * ## Create VPC Connect with additional firewall rules
- * 
- * To create a PrivateLink/Private Service Connect configuration with additional firewall rules, it&#39;s required to chain the cloudamqp.SecurityFirewall
- * resource to avoid parallel conflicting resource calls. You can do this by making the firewall
- * resource depend on the VPC Connect resource, `cloudamqp_vpc_connect.vpc_connect`.
- * 
- * Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
- * the VPC Connect also needs to be added.
- * 
- * ## Import
- * 
- * `cloudamqp_vpc_connect` can be imported using CloudAMQP internal identifier.
- * 
- * ```sh
- * $ pulumi import cloudamqp:index/vpcConnect:VpcConnect vpc_connect &lt;id&gt;`
- * ```
- * 
- * The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
- * 
  */
 @ResourceType(type="cloudamqp:index/vpcConnect:VpcConnect")
 public class VpcConnect extends com.pulumi.resources.CustomResource {
     /**
-     * Covering availability zones used when creating an endpoint from other VPC. (AWS)
+     * Covering availability zones used when creating an endpoint from other VPC. [AWS]
      * 
      */
     @Export(name="activeZones", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> activeZones;
 
     /**
-     * @return Covering availability zones used when creating an endpoint from other VPC. (AWS)
+     * @return Covering availability zones used when creating an endpoint from other VPC. [AWS]
      * 
      */
     public Output<List<String>> activeZones() {
@@ -465,14 +439,14 @@ public class VpcConnect extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.sleep);
     }
     /**
-     * Private Service Connect status [enable, pending, disable]
+     * Status of the Private Service Connect [enabled, pending, disabled]
      * 
      */
     @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
-     * @return Private Service Connect status [enable, pending, disable]
+     * @return Status of the Private Service Connect [enabled, pending, disabled]
      * 
      */
     public Output<String> status() {
@@ -482,18 +456,6 @@ public class VpcConnect extends com.pulumi.resources.CustomResource {
      * Configurable timeout time (seconds) when enable Private Service Connect.
      * Default set to 1800 seconds.
      * 
-     * ***
-     * 
-     * The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
-     * 
-     * | Platform | Description         | Format                                                                                                                             |
-     * |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-     * | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root&lt;br /&gt; arn:aws:iam::aws-account-id:user/user-name&lt;br /&gt; arn:aws:iam::aws-account-id:role/role-name |
-     * | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-     * | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-     * 
-     * *https://cloud.google.com/resource-manager/reference/rest/v1/projects
-     * 
      */
     @Export(name="timeout", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> timeout;
@@ -501,18 +463,6 @@ public class VpcConnect extends com.pulumi.resources.CustomResource {
     /**
      * @return Configurable timeout time (seconds) when enable Private Service Connect.
      * Default set to 1800 seconds.
-     * 
-     * ***
-     * 
-     * The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
-     * 
-     * | Platform | Description         | Format                                                                                                                             |
-     * |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-     * | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root&lt;br /&gt; arn:aws:iam::aws-account-id:user/user-name&lt;br /&gt; arn:aws:iam::aws-account-id:role/role-name |
-     * | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-     * | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-     * 
-     * *https://cloud.google.com/resource-manager/reference/rest/v1/projects
      * 
      */
     public Output<Optional<Integer>> timeout() {

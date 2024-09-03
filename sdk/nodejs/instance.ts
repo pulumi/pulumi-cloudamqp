@@ -254,10 +254,6 @@ export class Instance extends pulumi.CustomResource {
     public /*out*/ readonly backend!: pulumi.Output<string>;
     /**
      * Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
-     *
-     * ___
-     *
-     * The `copySettings` block consists of:
      */
     public readonly copySettings!: pulumi.Output<outputs.InstanceCopySetting[] | undefined>;
     /**
@@ -416,10 +412,6 @@ export interface InstanceState {
     backend?: pulumi.Input<string>;
     /**
      * Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
-     *
-     * ___
-     *
-     * The `copySettings` block consists of:
      */
     copySettings?: pulumi.Input<pulumi.Input<inputs.InstanceCopySetting>[]>;
     /**
@@ -504,10 +496,6 @@ export interface InstanceState {
 export interface InstanceArgs {
     /**
      * Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
-     *
-     * ___
-     *
-     * The `copySettings` block consists of:
      */
     copySettings?: pulumi.Input<pulumi.Input<inputs.InstanceCopySetting>[]>;
     /**

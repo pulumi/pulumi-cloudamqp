@@ -173,7 +173,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// &lt;/details&gt;
     /// 
-    /// ### With Additional Firewall Rules
+    /// ### with additional firewall rules
     /// 
     /// &lt;details&gt;
     ///   &lt;summary&gt;
@@ -259,38 +259,12 @@ namespace Pulumi.CloudAmqp
     /// ```
     /// 
     /// &lt;/details&gt;
-    /// 
-    /// ## Depedency
-    /// 
-    /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-    /// 
-    /// Since `region` also is required, suggest to reuse the argument from CloudAMQP instance,
-    /// `cloudamqp_instance.instance.region`.
-    /// 
-    /// ## Create VPC Connect with additional firewall rules
-    /// 
-    /// To create a PrivateLink/Private Service Connect configuration with additional firewall rules, it's required to chain the cloudamqp.SecurityFirewall
-    /// resource to avoid parallel conflicting resource calls. You can do this by making the firewall
-    /// resource depend on the VPC Connect resource, `cloudamqp_vpc_connect.vpc_connect`.
-    /// 
-    /// Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
-    /// the VPC Connect also needs to be added.
-    /// 
-    /// ## Import
-    /// 
-    /// `cloudamqp_vpc_connect` can be imported using CloudAMQP internal identifier.
-    /// 
-    /// ```sh
-    /// $ pulumi import cloudamqp:index/vpcConnect:VpcConnect vpc_connect &lt;id&gt;`
-    /// ```
-    /// 
-    /// The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/vpcConnect:VpcConnect")]
     public partial class VpcConnect : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Covering availability zones used when creating an endpoint from other VPC. (AWS)
+        /// Covering availability zones used when creating an endpoint from other VPC. [AWS]
         /// </summary>
         [Output("activeZones")]
         public Output<ImmutableArray<string>> ActiveZones { get; private set; } = null!;
@@ -339,7 +313,7 @@ namespace Pulumi.CloudAmqp
         public Output<int?> Sleep { get; private set; } = null!;
 
         /// <summary>
-        /// Private Service Connect status [enable, pending, disable]
+        /// Status of the Private Service Connect [enabled, pending, disabled]
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
@@ -347,18 +321,6 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Configurable timeout time (seconds) when enable Private Service Connect.
         /// Default set to 1800 seconds.
-        /// 
-        /// ___
-        /// 
-        /// The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
-        /// 
-        /// | Platform | Description         | Format                                                                                                                             |
-        /// |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-        /// | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root&lt;br /&gt; arn:aws:iam::aws-account-id:user/user-name&lt;br /&gt; arn:aws:iam::aws-account-id:role/role-name |
-        /// | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-        /// | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-        /// 
-        /// *https://cloud.google.com/resource-manager/reference/rest/v1/projects
         /// </summary>
         [Output("timeout")]
         public Output<int?> Timeout { get; private set; } = null!;
@@ -467,18 +429,6 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Configurable timeout time (seconds) when enable Private Service Connect.
         /// Default set to 1800 seconds.
-        /// 
-        /// ___
-        /// 
-        /// The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
-        /// 
-        /// | Platform | Description         | Format                                                                                                                             |
-        /// |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-        /// | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root&lt;br /&gt; arn:aws:iam::aws-account-id:user/user-name&lt;br /&gt; arn:aws:iam::aws-account-id:role/role-name |
-        /// | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-        /// | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-        /// 
-        /// *https://cloud.google.com/resource-manager/reference/rest/v1/projects
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
@@ -495,7 +445,7 @@ namespace Pulumi.CloudAmqp
         private InputList<string>? _activeZones;
 
         /// <summary>
-        /// Covering availability zones used when creating an endpoint from other VPC. (AWS)
+        /// Covering availability zones used when creating an endpoint from other VPC. [AWS]
         /// </summary>
         public InputList<string> ActiveZones
         {
@@ -565,7 +515,7 @@ namespace Pulumi.CloudAmqp
         public Input<int>? Sleep { get; set; }
 
         /// <summary>
-        /// Private Service Connect status [enable, pending, disable]
+        /// Status of the Private Service Connect [enabled, pending, disabled]
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
@@ -573,18 +523,6 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Configurable timeout time (seconds) when enable Private Service Connect.
         /// Default set to 1800 seconds.
-        /// 
-        /// ___
-        /// 
-        /// The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
-        /// 
-        /// | Platform | Description         | Format                                                                                                                             |
-        /// |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-        /// | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root&lt;br /&gt; arn:aws:iam::aws-account-id:user/user-name&lt;br /&gt; arn:aws:iam::aws-account-id:role/role-name |
-        /// | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-        /// | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-        /// 
-        /// *https://cloud.google.com/resource-manager/reference/rest/v1/projects
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }

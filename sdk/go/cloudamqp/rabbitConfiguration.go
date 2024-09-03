@@ -12,13 +12,162 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Import
+// This resource allows you update RabbitMQ config.
 //
-// `cloudamqp_rabbitmq_configuration` can be imported using the CloudAMQP instance identifier.
+// Only available for dedicated subscription plans running ***RabbitMQ***.
 //
-// ```sh
-// $ pulumi import cloudamqp:index/rabbitConfiguration:RabbitConfiguration config <instance_id>`
+// ## Example Usage
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>RabbitMQ configuration with default values</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewRabbitConfiguration(ctx, "rabbitmq_config", &cloudamqp.RabbitConfigurationArgs{
+//				InstanceId:               pulumi.Any(instance.Id),
+//				ChannelMax:               pulumi.Int(0),
+//				ConnectionMax:            int(-1),
+//				ConsumerTimeout:          pulumi.Int(7200000),
+//				Heartbeat:                pulumi.Int(120),
+//				LogExchangeLevel:         pulumi.String("error"),
+//				MaxMessageSize:           pulumi.Int(134217728),
+//				QueueIndexEmbedMsgsBelow: pulumi.Int(4096),
+//				VmMemoryHighWatermark:    pulumi.Float64(0.81),
+//				ClusterPartitionHandling: pulumi.String("autoheal"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Change log level and combine `NodeActions` for RabbitMQ restart</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			rabbitmqConfig, err := cloudamqp.NewRabbitConfiguration(ctx, "rabbitmq_config", &cloudamqp.RabbitConfigurationArgs{
+//				InstanceId:               pulumi.Any(instance.Id),
+//				ChannelMax:               pulumi.Int(0),
+//				ConnectionMax:            int(-1),
+//				ConsumerTimeout:          pulumi.Int(7200000),
+//				Heartbeat:                pulumi.Int(120),
+//				LogExchangeLevel:         pulumi.String("info"),
+//				MaxMessageSize:           pulumi.Int(134217728),
+//				QueueIndexEmbedMsgsBelow: pulumi.Int(4096),
+//				VmMemoryHighWatermark:    pulumi.Float64(0.81),
+//				ClusterPartitionHandling: pulumi.String("autoheal"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			listNodes, err := cloudamqp.GetNodes(ctx, &cloudamqp.GetNodesArgs{
+//				InstanceId: instance.Id,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewNodeActions(ctx, "node_action", &cloudamqp.NodeActionsArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				NodeName:   pulumi.String(listNodes.Nodes[0].Name),
+//				Action:     pulumi.String("restart"),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				rabbitmqConfig,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Only change log level for exchange. All other values will be read from the RabbitMQ configuration.</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewRabbitConfiguration(ctx, "rabbit_config", &cloudamqp.RabbitConfigurationArgs{
+//				InstanceId:       pulumi.Any(instance.Id),
+//				LogExchangeLevel: pulumi.String("info"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// ## Argument threshold values
+//
+// |  Argument   |  Type  |  Default  |  Min  |    Max    |     Unit     |                              Affect                               |                               Note                                |
+// |-------------|--------|-----------|-------|-----------|--------------|-------------------------------------------------------------------|-------------------------------------------------------------------|
+// | heartbeat   | int    |       120 |     0 | -         |              | Only effects new                                                  |                                                                   |
+// | connection_ | int    |        -1 |     1 | -         |              | RabbitMQ restart                                                  | -1 in the provider corresponds to INFINITY in the RabbitMQ        |
+// | channel_    | int    |       128 |     0 | -         |              | Only effects new                                                  |                                                                   |
+// | consumer_   | int    |   7200000 | 10000 |  86400000 | milliseconds | Only effects new                                                  | -1 in the provider corresponds to false (disable) in the RabbitMQ |
+// | vm_         | float  |      0.81 |   0.4 |       0.9 |              | Applied                                                           |                                                                   |
+// | queue_      | int    |      4096 |     0 |  10485760 | bytes        | Applied immediately for new queues, requires restart for existing |                                                                   |
+// | max_        | int    | 134217728 |     1 | 536870912 | bytes        | Only effects new                                                  |                                                                   |
+// | log_        | string | error     | -     | -         |              | RabbitMQ restart                                                  | debug, info, warning, error,                                      |
+// | cluster_    | string | see       | -     | -         |              | Applied                                                           | autoheal, pause_                                                  |
 type RabbitConfiguration struct {
 	pulumi.CustomResourceState
 

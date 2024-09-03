@@ -39,7 +39,7 @@ namespace Pulumi.CloudAmqp
         /// * `id`    - The identifier for this resource.
         /// * `nodes` - An array of node information. Each `nodes` block consists of the fields documented below.
         /// 
-        /// ___
+        /// ---
         /// 
         /// The `nodes` block consist of
         /// 
@@ -92,7 +92,7 @@ namespace Pulumi.CloudAmqp
         /// * `id`    - The identifier for this resource.
         /// * `nodes` - An array of node information. Each `nodes` block consists of the fields documented below.
         /// 
-        /// ___
+        /// ---
         /// 
         /// The `nodes` block consist of
         /// 

@@ -253,21 +253,13 @@ class NodeActions(pulumi.CustomResource):
 
         Valid options for action.
 
-        | Action       | Info                               |
-        |--------------|------------------------------------|
-        | start        | Start RabbitMQ                     |
-        | stop         | Stop RabbitMQ                      |
-        | restart      | Restart RabbitMQ                   |
-        | reboot       | Reboot the node                    |
-        | mgmt.restart | Restart the RabbitMQ mgmt interace |
-
-        ## Dependency
-
-        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id` and node name.
-
-        ## Import
-
-        This resource cannot be imported.
+        |    Action    |           Info            |
+        |--------------|---------------------------|
+        | start        | Start                     |
+        | stop         | Stop                      |
+        | restart      | Restart                   |
+        | reboot       | Reboot the                |
+        | mgmt.restart | Restart the RabbitMQ mgmt |
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -389,21 +381,13 @@ class NodeActions(pulumi.CustomResource):
 
         Valid options for action.
 
-        | Action       | Info                               |
-        |--------------|------------------------------------|
-        | start        | Start RabbitMQ                     |
-        | stop         | Stop RabbitMQ                      |
-        | restart      | Restart RabbitMQ                   |
-        | reboot       | Reboot the node                    |
-        | mgmt.restart | Restart the RabbitMQ mgmt interace |
-
-        ## Dependency
-
-        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id` and node name.
-
-        ## Import
-
-        This resource cannot be imported.
+        |    Action    |           Info            |
+        |--------------|---------------------------|
+        | start        | Start                     |
+        | stop         | Stop                      |
+        | restart      | Restart                   |
+        | reboot       | Reboot the                |
+        | mgmt.restart | Restart the RabbitMQ mgmt |
 
         :param str resource_name: The name of the resource.
         :param NodeActionsArgs args: The arguments to use to populate this resource's properties.

@@ -24,15 +24,17 @@ type Plugin struct {
 
 	// The description of the plugin.
 	Description pulumi.StringOutput `pulumi:"description"`
-	// If the plugin is enabled
+	// Enable or disable the plugins.
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
-	// Instance identifier
+	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
-	// The name of the plugin
+	// The name of the Rabbit MQ plugin.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Configurable sleep time in seconds between retries for plugins
+	// Configurable sleep time (seconds) for retries when requesting information
+	// about plugins. Default set to 10 seconds. *Available from v1.29.0*
 	Sleep pulumi.IntPtrOutput `pulumi:"sleep"`
-	// Configurable timeout time in seconds for plugins
+	// Configurable timeout time (seconds) for retries when requesting
+	// information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
 	Timeout pulumi.IntPtrOutput `pulumi:"timeout"`
 	// The version of the plugin.
 	Version pulumi.StringOutput `pulumi:"version"`
@@ -76,15 +78,17 @@ func GetPlugin(ctx *pulumi.Context,
 type pluginState struct {
 	// The description of the plugin.
 	Description *string `pulumi:"description"`
-	// If the plugin is enabled
+	// Enable or disable the plugins.
 	Enabled *bool `pulumi:"enabled"`
-	// Instance identifier
+	// The CloudAMQP instance ID.
 	InstanceId *int `pulumi:"instanceId"`
-	// The name of the plugin
+	// The name of the Rabbit MQ plugin.
 	Name *string `pulumi:"name"`
-	// Configurable sleep time in seconds between retries for plugins
+	// Configurable sleep time (seconds) for retries when requesting information
+	// about plugins. Default set to 10 seconds. *Available from v1.29.0*
 	Sleep *int `pulumi:"sleep"`
-	// Configurable timeout time in seconds for plugins
+	// Configurable timeout time (seconds) for retries when requesting
+	// information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
 	Timeout *int `pulumi:"timeout"`
 	// The version of the plugin.
 	Version *string `pulumi:"version"`
@@ -93,15 +97,17 @@ type pluginState struct {
 type PluginState struct {
 	// The description of the plugin.
 	Description pulumi.StringPtrInput
-	// If the plugin is enabled
+	// Enable or disable the plugins.
 	Enabled pulumi.BoolPtrInput
-	// Instance identifier
+	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntPtrInput
-	// The name of the plugin
+	// The name of the Rabbit MQ plugin.
 	Name pulumi.StringPtrInput
-	// Configurable sleep time in seconds between retries for plugins
+	// Configurable sleep time (seconds) for retries when requesting information
+	// about plugins. Default set to 10 seconds. *Available from v1.29.0*
 	Sleep pulumi.IntPtrInput
-	// Configurable timeout time in seconds for plugins
+	// Configurable timeout time (seconds) for retries when requesting
+	// information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
 	Timeout pulumi.IntPtrInput
 	// The version of the plugin.
 	Version pulumi.StringPtrInput
@@ -112,29 +118,33 @@ func (PluginState) ElementType() reflect.Type {
 }
 
 type pluginArgs struct {
-	// If the plugin is enabled
+	// Enable or disable the plugins.
 	Enabled bool `pulumi:"enabled"`
-	// Instance identifier
+	// The CloudAMQP instance ID.
 	InstanceId int `pulumi:"instanceId"`
-	// The name of the plugin
+	// The name of the Rabbit MQ plugin.
 	Name *string `pulumi:"name"`
-	// Configurable sleep time in seconds between retries for plugins
+	// Configurable sleep time (seconds) for retries when requesting information
+	// about plugins. Default set to 10 seconds. *Available from v1.29.0*
 	Sleep *int `pulumi:"sleep"`
-	// Configurable timeout time in seconds for plugins
+	// Configurable timeout time (seconds) for retries when requesting
+	// information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
 	Timeout *int `pulumi:"timeout"`
 }
 
 // The set of arguments for constructing a Plugin resource.
 type PluginArgs struct {
-	// If the plugin is enabled
+	// Enable or disable the plugins.
 	Enabled pulumi.BoolInput
-	// Instance identifier
+	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntInput
-	// The name of the plugin
+	// The name of the Rabbit MQ plugin.
 	Name pulumi.StringPtrInput
-	// Configurable sleep time in seconds between retries for plugins
+	// Configurable sleep time (seconds) for retries when requesting information
+	// about plugins. Default set to 10 seconds. *Available from v1.29.0*
 	Sleep pulumi.IntPtrInput
-	// Configurable timeout time in seconds for plugins
+	// Configurable timeout time (seconds) for retries when requesting
+	// information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
 	Timeout pulumi.IntPtrInput
 }
 
@@ -230,27 +240,29 @@ func (o PluginOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *Plugin) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
-// If the plugin is enabled
+// Enable or disable the plugins.
 func (o PluginOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Plugin) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// Instance identifier
+// The CloudAMQP instance ID.
 func (o PluginOutput) InstanceId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Plugin) pulumi.IntOutput { return v.InstanceId }).(pulumi.IntOutput)
 }
 
-// The name of the plugin
+// The name of the Rabbit MQ plugin.
 func (o PluginOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Plugin) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Configurable sleep time in seconds between retries for plugins
+// Configurable sleep time (seconds) for retries when requesting information
+// about plugins. Default set to 10 seconds. *Available from v1.29.0*
 func (o PluginOutput) Sleep() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Plugin) pulumi.IntPtrOutput { return v.Sleep }).(pulumi.IntPtrOutput)
 }
 
-// Configurable timeout time in seconds for plugins
+// Configurable timeout time (seconds) for retries when requesting
+// information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
 func (o PluginOutput) Timeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Plugin) pulumi.IntPtrOutput { return v.Timeout }).(pulumi.IntPtrOutput)
 }

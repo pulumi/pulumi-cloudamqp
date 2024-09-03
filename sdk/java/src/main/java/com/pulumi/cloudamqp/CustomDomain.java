@@ -17,7 +17,7 @@ import javax.annotation.Nullable;
 /**
  * This resource allows you to configure and manage your custom domain for the CloudAMQP instance.
  * 
- * Adding a custom domain to your instance will generate a TLS certificate from [Let&#39;s Encrypt], for the given hostname, and install it on all servers in your cluster. The certificate will be automatically renewed going forward.
+ * Adding a custom domain to your instance will generate a TLS certificate from [Let&#39;s Encrypt](https://letsencrypt.org/), for the given hostname, and install it on all servers in your cluster. The certificate will be automatically renewed going forward.
  * 
  * &gt; **WARNING:** Please note that when creating, changing or deleting the custom domain, the listeners on your servers will be restarted in order to apply the changes. This will close your current connections.
  * 
@@ -72,8 +72,6 @@ import javax.annotation.Nullable;
  * ```sh
  * $ pulumi import cloudamqp:index/customDomain:CustomDomain settings &lt;instance_id&gt;`
  * ```
- * 
- * [Let&#39;s Encrypt]: https://letsencrypt.org/
  * 
  */
 @ResourceType(type="cloudamqp:index/customDomain:CustomDomain")

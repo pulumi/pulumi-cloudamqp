@@ -29,330 +29,52 @@ import javax.annotation.Nullable;
  * 
  * `allow_downtime` also makes it possible to circumvent the time rate limit or shrinking the disk.
  * 
- * | Cloud Platform        | allow_downtime=false | allow_downtime=true           |
- * |-----------------------|----------------------|-------------------------------|
- * | amazon-web-services   | Expand current disk* | Try to expand, otherwise swap |
- * | google-compute-engine | Expand current disk* | Try to expand, otherwise swap |
- * | azure-arm             | Not supported        | Swap disk to new size         |
- * 
- * *Preferable method to use.
- * 
- * &gt; **WARNING:** Due to restrictions from cloud providers, it&#39;s only possible to resize the disk every 8 hours. Unless the `allow_downtime=true` is set, then the disk will be swapped for a new.
- * 
- * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/) and only available for dedicated subscription plans.
- * 
- * ## Example Usage
- * 
- * &lt;details&gt;
- *   &lt;summary&gt;
- *     &lt;b&gt;
- *       &lt;i&gt;AWS extra disk size (before v1.25.0)&lt;/i&gt;
- *     &lt;/b&gt;
- *   &lt;/summary&gt;
- * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.cloudamqp.Instance;
- * import com.pulumi.cloudamqp.InstanceArgs;
- * import com.pulumi.cloudamqp.ExtraDiskSize;
- * import com.pulumi.cloudamqp.ExtraDiskSizeArgs;
- * import com.pulumi.cloudamqp.CloudamqpFunctions;
- * import com.pulumi.cloudamqp.inputs.GetNodesArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         // Instance
- *         var instance = new Instance("instance", InstanceArgs.builder()
- *             .name("Instance")
- *             .plan("bunny-1")
- *             .region("amazon-web-services::us-west-2")
- *             .build());
- * 
- *         // Resize disk with 25 extra GB
- *         var resizeDisk = new ExtraDiskSize("resizeDisk", ExtraDiskSizeArgs.builder()
- *             .instanceId(instance.id())
- *             .extraDiskSize(25)
- *             .build());
- * 
- *         // Optional, refresh nodes info after disk resize by adding dependency
- *         // to cloudamqp_extra_disk_size.resize_disk resource
- *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
- *             .instanceId(instance.id())
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
- * &lt;/details&gt;
- * 
- * &lt;details&gt;
- *   &lt;summary&gt;
- *     &lt;b&gt;
- *       &lt;i&gt;AWS extra disk size without downtime&lt;/i&gt;
- *     &lt;/b&gt;
- *   &lt;/summary&gt;
- * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.cloudamqp.Instance;
- * import com.pulumi.cloudamqp.InstanceArgs;
- * import com.pulumi.cloudamqp.ExtraDiskSize;
- * import com.pulumi.cloudamqp.ExtraDiskSizeArgs;
- * import com.pulumi.cloudamqp.CloudamqpFunctions;
- * import com.pulumi.cloudamqp.inputs.GetNodesArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         // Instance
- *         var instance = new Instance("instance", InstanceArgs.builder()
- *             .name("Instance")
- *             .plan("bunny-1")
- *             .region("amazon-web-services::us-west-2")
- *             .build());
- * 
- *         // Resize disk with 25 extra GB, without downtime
- *         var resizeDisk = new ExtraDiskSize("resizeDisk", ExtraDiskSizeArgs.builder()
- *             .instanceId(instance.id())
- *             .extraDiskSize(25)
- *             .build());
- * 
- *         // Optional, refresh nodes info after disk resize by adding dependency
- *         // to cloudamqp_extra_disk_size.resize_disk resource
- *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
- *             .instanceId(instance.id())
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
- * &lt;/details&gt;
- * 
- * &lt;details&gt;
- *   &lt;summary&gt;
- *     &lt;b&gt;
- *       &lt;i&gt;GCE extra disk size without downtime&lt;/i&gt;
- *     &lt;/b&gt;
- *   &lt;/summary&gt;
- * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.cloudamqp.Instance;
- * import com.pulumi.cloudamqp.InstanceArgs;
- * import com.pulumi.cloudamqp.ExtraDiskSize;
- * import com.pulumi.cloudamqp.ExtraDiskSizeArgs;
- * import com.pulumi.cloudamqp.CloudamqpFunctions;
- * import com.pulumi.cloudamqp.inputs.GetNodesArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         // Instance
- *         var instance = new Instance("instance", InstanceArgs.builder()
- *             .name("Instance")
- *             .plan("bunny-1")
- *             .region("google-compute-engine::us-central1")
- *             .build());
- * 
- *         // Resize disk with 25 extra GB, without downtime
- *         var resizeDisk = new ExtraDiskSize("resizeDisk", ExtraDiskSizeArgs.builder()
- *             .instanceId(instance.id())
- *             .extraDiskSize(25)
- *             .build());
- * 
- *         // Optional, refresh nodes info after disk resize by adding dependency
- *         // to cloudamqp_extra_disk_size.resize_disk resource
- *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
- *             .instanceId(instance.id())
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
- * &lt;/details&gt;
- * 
- * &lt;details&gt;
- *   &lt;summary&gt;
- *     &lt;b&gt;
- *       &lt;i&gt;Azure extra disk size with downtime&lt;/i&gt;
- *     &lt;/b&gt;
- *   &lt;/summary&gt;
- * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.cloudamqp.Instance;
- * import com.pulumi.cloudamqp.InstanceArgs;
- * import com.pulumi.cloudamqp.ExtraDiskSize;
- * import com.pulumi.cloudamqp.ExtraDiskSizeArgs;
- * import com.pulumi.cloudamqp.CloudamqpFunctions;
- * import com.pulumi.cloudamqp.inputs.GetNodesArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         // Instance
- *         var instance = new Instance("instance", InstanceArgs.builder()
- *             .name("Instance")
- *             .plan("bunny-1")
- *             .region("azure-arm::centralus")
- *             .build());
- * 
- *         // Resize disk with 25 extra GB, with downtime
- *         var resizeDisk = new ExtraDiskSize("resizeDisk", ExtraDiskSizeArgs.builder()
- *             .instanceId(instance.id())
- *             .extraDiskSize(25)
- *             .allowDowntime(true)
- *             .build());
- * 
- *         // Optional, refresh nodes info after disk resize by adding dependency
- *         // to cloudamqp_extra_disk_size.resize_disk resource
- *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
- *             .instanceId(instance.id())
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
- * &lt;/details&gt;
- * 
- * ## Attributes reference
- * 
- * All attributes reference are computed
- * 
- * * `id`    - The identifier for this resource.
- * * `nodes` - An array of node information. Each `nodes` block consists of the fields documented below.
- * 
- * ***
- * 
- * The `nodes` block consist of
- * 
- * * `name`                  - Name of the node.
- * * `disk_size`             - Subscription plan disk size
- * * `additional_disk_size`  - Additional added disk size
- * 
- * ***Note:*** *Total disk size = disk_size + additional_disk_size*
- * 
- * ## Dependency
- * 
- * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
- * 
- * ## Import
- * 
- * Not possible to import this resource.
+ * |         Cloud         |        allow_        |          allow_          |
+ * |-----------------------|----------------------|--------------------------|
+ * | amazon-web-services   | Expand current disk* | Try to expand, otherwise |
+ * | google-compute-engine | Expand current disk* | Try to expand, otherwise |
+ * | azure-arm             | Not                  | Swap disk to new         |
  * 
  */
 @ResourceType(type="cloudamqp:index/extraDiskSize:ExtraDiskSize")
 public class ExtraDiskSize extends com.pulumi.resources.CustomResource {
     /**
-     * When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
+     * When resizing disk, allow cluster downtime to do so
      * 
      */
     @Export(name="allowDowntime", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> allowDowntime;
 
     /**
-     * @return When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
+     * @return When resizing disk, allow cluster downtime to do so
      * 
      */
     public Output<Optional<Boolean>> allowDowntime() {
         return Codegen.optional(this.allowDowntime);
     }
     /**
-     * Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+     * Extra disk size in GB
      * 
      */
     @Export(name="extraDiskSize", refs={Integer.class}, tree="[0]")
     private Output<Integer> extraDiskSize;
 
     /**
-     * @return Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+     * @return Extra disk size in GB
      * 
      */
     public Output<Integer> extraDiskSize() {
         return this.extraDiskSize;
     }
     /**
-     * The CloudAMQP instance ID.
+     * Instance identifier
      * 
      */
     @Export(name="instanceId", refs={Integer.class}, tree="[0]")
     private Output<Integer> instanceId;
 
     /**
-     * @return The CloudAMQP instance ID.
+     * @return Instance identifier
      * 
      */
     public Output<Integer> instanceId() {
@@ -365,32 +87,28 @@ public class ExtraDiskSize extends com.pulumi.resources.CustomResource {
         return this.nodes;
     }
     /**
-     * Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
+     * Configurable sleep time in seconds between retries for resizing the disk
      * 
      */
     @Export(name="sleep", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> sleep;
 
     /**
-     * @return Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
+     * @return Configurable sleep time in seconds between retries for resizing the disk
      * 
      */
     public Output<Optional<Integer>> sleep() {
         return Codegen.optional(this.sleep);
     }
     /**
-     * Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
-     * 
-     * ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
+     * Configurable timeout time in seconds for resizing the disk
      * 
      */
     @Export(name="timeout", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> timeout;
 
     /**
-     * @return Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
-     * 
-     * ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
+     * @return Configurable timeout time in seconds for resizing the disk
      * 
      */
     public Output<Optional<Integer>> timeout() {

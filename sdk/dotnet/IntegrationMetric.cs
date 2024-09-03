@@ -14,7 +14,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// Only available for dedicated subscription plans.
     /// 
-    /// ## Example Usage
+    /// ## Example usage
     /// 
     /// &lt;details&gt;
     ///   &lt;summary&gt;
@@ -214,14 +214,6 @@ namespace Pulumi.CloudAmqp
     /// ```
     /// 
     /// or by using google_service_account_key resource from Google provider
-    /// 
-    /// ## Import
-    /// 
-    /// `cloudamqp_integration_metric`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
-    /// 
-    /// ```sh
-    /// $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric &lt;resource_name&gt; &lt;resource_id&gt;,&lt;instance_id&gt;`
-    /// ```
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/integrationMetric:IntegrationMetric")]
     public partial class IntegrationMetric : global::Pulumi.CustomResource

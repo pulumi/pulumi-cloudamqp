@@ -332,26 +332,10 @@ import (
 //
 // ## Options parameter
 //
-// | Type      | Options  | Description | Note |
-// |---|---|---|---|
-// | Victorops | rk       | Routing key to route alarm notification | - |
-// | PagerDuty | dedupkey | Default the dedup key for PagerDuty is generated depending on what alarm has triggered, but here you can set what `dedup` key to use so even if the same alarm is triggered for different resources you only get one notification. Leave blank to use the generated dedup key. | If multiple alarms are triggered using this recipient, since they all share `dedup` key only the first alarm will be shown in PagerDuty |
-//
-// ## Dependency
-//
-// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-//
-// ## Import
-//
-// `cloudamqp_notification` can be imported using CloudAMQP internal identifier of a recipient together
-//
-// (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use
-//
-// [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-recipients).
-//
-// ```sh
-// $ pulumi import cloudamqp:index/notification:Notification recipient <id>,<instance_id>`
-// ```
+// |   Type    | Options  |                                                    Description                                                    |                                    Note                                     |
+// |-----------|----------|-------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+// | Victorops | rk       | Routing key to route alarm                                                                                        | -                                                                           |
+// | PagerDuty | dedupkey | Default the dedup key for PagerDuty is generated depending on what alarm has triggered, but here you can set what | If multiple alarms are triggered using this recipient, since they all share |
 type Notification struct {
 	pulumi.CustomResourceState
 
@@ -363,10 +347,6 @@ type Notification struct {
 	Options pulumi.StringMapOutput `pulumi:"options"`
 	// An array of reponders (only for OpsGenie). Each `responders` block
 	// consists of the field documented below.
-	//
-	// ***
-	//
-	// The `responders` block consists of:
 	Responders NotificationResponderArrayOutput `pulumi:"responders"`
 	// Type of responder. [`team`, `user`, `escalation`, `schedule`]
 	Type pulumi.StringOutput `pulumi:"type"`
@@ -421,10 +401,6 @@ type notificationState struct {
 	Options map[string]string `pulumi:"options"`
 	// An array of reponders (only for OpsGenie). Each `responders` block
 	// consists of the field documented below.
-	//
-	// ***
-	//
-	// The `responders` block consists of:
 	Responders []NotificationResponder `pulumi:"responders"`
 	// Type of responder. [`team`, `user`, `escalation`, `schedule`]
 	Type *string `pulumi:"type"`
@@ -441,10 +417,6 @@ type NotificationState struct {
 	Options pulumi.StringMapInput
 	// An array of reponders (only for OpsGenie). Each `responders` block
 	// consists of the field documented below.
-	//
-	// ***
-	//
-	// The `responders` block consists of:
 	Responders NotificationResponderArrayInput
 	// Type of responder. [`team`, `user`, `escalation`, `schedule`]
 	Type pulumi.StringPtrInput
@@ -465,10 +437,6 @@ type notificationArgs struct {
 	Options map[string]string `pulumi:"options"`
 	// An array of reponders (only for OpsGenie). Each `responders` block
 	// consists of the field documented below.
-	//
-	// ***
-	//
-	// The `responders` block consists of:
 	Responders []NotificationResponder `pulumi:"responders"`
 	// Type of responder. [`team`, `user`, `escalation`, `schedule`]
 	Type string `pulumi:"type"`
@@ -486,10 +454,6 @@ type NotificationArgs struct {
 	Options pulumi.StringMapInput
 	// An array of reponders (only for OpsGenie). Each `responders` block
 	// consists of the field documented below.
-	//
-	// ***
-	//
-	// The `responders` block consists of:
 	Responders NotificationResponderArrayInput
 	// Type of responder. [`team`, `user`, `escalation`, `schedule`]
 	Type pulumi.StringInput
@@ -601,10 +565,6 @@ func (o NotificationOutput) Options() pulumi.StringMapOutput {
 
 // An array of reponders (only for OpsGenie). Each `responders` block
 // consists of the field documented below.
-//
-// ***
-//
-// The `responders` block consists of:
 func (o NotificationOutput) Responders() NotificationResponderArrayOutput {
 	return o.ApplyT(func(v *Notification) NotificationResponderArrayOutput { return v.Responders }).(NotificationResponderArrayOutput)
 }

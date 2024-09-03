@@ -1126,14 +1126,6 @@ class IntegrationLog(pulumi.CustomResource):
 
         or by using google_service_account_key resource from Google provider
 
-        ## Import
-
-        `cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
-
-        ```sh
-        $ pulumi import cloudamqp:index/integrationLog:IntegrationLog <resource_name> <id>,<instance_id>`
-        ```
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key_id: AWS access key identifier.
@@ -1389,14 +1381,6 @@ class IntegrationLog(pulumi.CustomResource):
         ```
 
         or by using google_service_account_key resource from Google provider
-
-        ## Import
-
-        `cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
-
-        ```sh
-        $ pulumi import cloudamqp:index/integrationLog:IntegrationLog <resource_name> <id>,<instance_id>`
-        ```
 
         :param str resource_name: The name of the resource.
         :param IntegrationLogArgs args: The arguments to use to populate this resource's properties.

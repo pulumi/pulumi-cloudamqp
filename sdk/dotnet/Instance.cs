@@ -320,10 +320,6 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
-        /// 
-        /// ___
-        /// 
-        /// The `copy_settings` block consists of:
         /// </summary>
         [Output("copySettings")]
         public Output<ImmutableArray<Outputs.InstanceCopySetting>> CopySettings { get; private set; } = null!;
@@ -490,10 +486,6 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
-        /// 
-        /// ___
-        /// 
-        /// The `copy_settings` block consists of:
         /// </summary>
         public InputList<Inputs.InstanceCopySettingArgs> CopySettings
         {
@@ -612,10 +604,6 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
-        /// 
-        /// ___
-        /// 
-        /// The `copy_settings` block consists of:
         /// </summary>
         public InputList<Inputs.InstanceCopySettingGetArgs> CopySettings
         {

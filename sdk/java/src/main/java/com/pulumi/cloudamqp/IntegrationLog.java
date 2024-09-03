@@ -482,14 +482,6 @@ import javax.annotation.Nullable;
  * 
  * or by using google_service_account_key resource from Google provider
  * 
- * ## Import
- * 
- * `cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
- * 
- * ```sh
- * $ pulumi import cloudamqp:index/integrationLog:IntegrationLog &lt;resource_name&gt; &lt;id&gt;,&lt;instance_id&gt;`
- * ```
- * 
  */
 @ResourceType(type="cloudamqp:index/integrationLog:IntegrationLog")
 public class IntegrationLog extends com.pulumi.resources.CustomResource {

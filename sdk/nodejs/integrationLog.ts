@@ -229,14 +229,6 @@ import * as utilities from "./utilities";
  * ```
  *
  * or by using googleServiceAccountKey resource from Google provider
- *
- * ## Import
- *
- * `cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
- *
- * ```sh
- * $ pulumi import cloudamqp:index/integrationLog:IntegrationLog <resource_name> <id>,<instance_id>`
- * ```
  */
 export class IntegrationLog extends pulumi.CustomResource {
     /**

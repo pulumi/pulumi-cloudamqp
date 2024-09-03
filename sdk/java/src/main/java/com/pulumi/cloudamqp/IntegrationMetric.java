@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
  * 
  * Only available for dedicated subscription plans.
  * 
- * ## Example Usage
+ * ## Example usage
  * 
  * &lt;details&gt;
  *   &lt;summary&gt;
@@ -320,14 +320,6 @@ import javax.annotation.Nullable;
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * or by using google_service_account_key resource from Google provider
- * 
- * ## Import
- * 
- * `cloudamqp_integration_metric`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
- * 
- * ```sh
- * $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric &lt;resource_name&gt; &lt;resource_id&gt;,&lt;instance_id&gt;`
- * ```
  * 
  */
 @ResourceType(type="cloudamqp:index/integrationMetric:IntegrationMetric")
