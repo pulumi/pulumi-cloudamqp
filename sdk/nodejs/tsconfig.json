@@ -48,6 +48,7 @@
         "types/index.ts",
         "types/input.ts",
         "types/output.ts",
+        "upgradeLavinmq.ts",
         "upgradeRabbitmq.ts",
         "utilities.ts",
         "vpc.ts",

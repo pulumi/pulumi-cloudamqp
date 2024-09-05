@@ -27,7 +27,7 @@ namespace Pulumi.CloudAmqp
     /// &lt;details&gt;
     ///   &lt;summary&gt;
     ///     &lt;b&gt;
-    ///       &lt;i&gt;Specify version upgrade, from v1.40.0&lt;/i&gt;
+    ///       &lt;i&gt;Specify version upgrade, from v1.31.0&lt;/i&gt;
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
@@ -63,7 +63,7 @@ namespace Pulumi.CloudAmqp
     /// &lt;details&gt;
     ///   &lt;summary&gt;
     ///     &lt;b&gt;
-    ///       &lt;i&gt;Upgrade to latest possible version, from v1.40.0&lt;/i&gt;
+    ///       &lt;i&gt;Upgrade to latest possible version, from v1.31.0&lt;/i&gt;
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
@@ -105,7 +105,7 @@ namespace Pulumi.CloudAmqp
     /// &lt;details&gt;
     ///   &lt;summary&gt;
     ///     &lt;b&gt;
-    ///       &lt;i&gt;Upgrade to latest possible version, before v1.40.0&lt;/i&gt;
+    ///       &lt;i&gt;Upgrade to latest possible version, before v1.31.0&lt;/i&gt;
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 

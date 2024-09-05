@@ -30,7 +30,7 @@ import (
 //
 //	<summary>
 //	  <b>
-//	    <i>Specify version upgrade, from v1.40.0</i>
+//	    <i>Specify version upgrade, from v1.31.0</i>
 //	  </b>
 //	</summary>
 //
@@ -76,7 +76,7 @@ import (
 //
 //	<summary>
 //	  <b>
-//	    <i>Upgrade to latest possible version, from v1.40.0</i>
+//	    <i>Upgrade to latest possible version, from v1.31.0</i>
 //	  </b>
 //	</summary>
 //
@@ -130,7 +130,7 @@ import (
 //
 //	<summary>
 //	  <b>
-//	    <i>Upgrade to latest possible version, before v1.40.0</i>
+//	    <i>Upgrade to latest possible version, before v1.31.0</i>
 //	  </b>
 //	</summary>
 //
