@@ -150,6 +150,11 @@ export type SecurityFirewall = import("./securityFirewall").SecurityFirewall;
 export const SecurityFirewall: typeof import("./securityFirewall").SecurityFirewall = null as any;
 utilities.lazyLoad(exports, ["SecurityFirewall"], () => require("./securityFirewall"));
 
+export { UpgradeLavinmqArgs, UpgradeLavinmqState } from "./upgradeLavinmq";
+export type UpgradeLavinmq = import("./upgradeLavinmq").UpgradeLavinmq;
+export const UpgradeLavinmq: typeof import("./upgradeLavinmq").UpgradeLavinmq = null as any;
+utilities.lazyLoad(exports, ["UpgradeLavinmq"], () => require("./upgradeLavinmq"));
+
 export { UpgradeRabbitmqArgs, UpgradeRabbitmqState } from "./upgradeRabbitmq";
 export type UpgradeRabbitmq = import("./upgradeRabbitmq").UpgradeRabbitmq;
 export const UpgradeRabbitmq: typeof import("./upgradeRabbitmq").UpgradeRabbitmq = null as any;
@@ -226,6 +231,8 @@ const _module = {
                 return new RabbitConfiguration(name, <any>undefined, { urn })
             case "cloudamqp:index/securityFirewall:SecurityFirewall":
                 return new SecurityFirewall(name, <any>undefined, { urn })
+            case "cloudamqp:index/upgradeLavinmq:UpgradeLavinmq":
+                return new UpgradeLavinmq(name, <any>undefined, { urn })
             case "cloudamqp:index/upgradeRabbitmq:UpgradeRabbitmq":
                 return new UpgradeRabbitmq(name, <any>undefined, { urn })
             case "cloudamqp:index/vpc:Vpc":
@@ -259,6 +266,7 @@ pulumi.runtime.registerResourceModule("cloudamqp", "index/privatelinkAws", _modu
 pulumi.runtime.registerResourceModule("cloudamqp", "index/privatelinkAzure", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/rabbitConfiguration", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/securityFirewall", _module)
+pulumi.runtime.registerResourceModule("cloudamqp", "index/upgradeLavinmq", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/upgradeRabbitmq", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/vpc", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/vpcConnect", _module)

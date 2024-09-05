@@ -34,6 +34,7 @@ from .privatelink_azure import *
 from .provider import *
 from .rabbit_configuration import *
 from .security_firewall import *
+from .upgrade_lavinmq import *
 from .upgrade_rabbitmq import *
 from .vpc import *
 from .vpc_connect import *
@@ -179,6 +180,14 @@ _utilities.register(
   "fqn": "pulumi_cloudamqp",
   "classes": {
    "cloudamqp:index/securityFirewall:SecurityFirewall": "SecurityFirewall"
+  }
+ },
+ {
+  "pkg": "cloudamqp",
+  "mod": "index/upgradeLavinmq",
+  "fqn": "pulumi_cloudamqp",
+  "classes": {
+   "cloudamqp:index/upgradeLavinmq:UpgradeLavinmq": "UpgradeLavinmq"
   }
  },
  {
