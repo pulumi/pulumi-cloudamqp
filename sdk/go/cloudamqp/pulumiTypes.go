@@ -371,13 +371,35 @@ func (o NotificationResponderArrayOutput) Index(i pulumi.IntInput) NotificationR
 }
 
 type SecurityFirewallRule struct {
-	// Naming descripton e.g. 'Default'
+	// Description name of the rule. e.g. Default.
+	//
+	// Pre-defined services for RabbitMQ:
+	//
+	// | Service name | Port  |
+	// |--------------|-------|
+	// | AMQP         | 5672  |
+	// | AMQPS        | 5671  |
+	// | HTTPS        | 443   |
+	// | MQTT         | 1883  |
+	// | MQTTS        | 8883  |
+	// | STOMP        | 61613 |
+	// | STOMPS       | 61614 |
+	// | STREAM       | 5552  |
+	// | STREAM_SSL   | 5551  |
+	//
+	// Pre-defined services for LavinMQ:
+	//
+	// | Service name | Port  |
+	// |--------------|-------|
+	// | AMQP         | 5672  |
+	// | AMQPS        | 5671  |
+	// | HTTPS        | 443   |
 	Description *string `pulumi:"description"`
 	// CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
 	Ip string `pulumi:"ip"`
-	// Custom ports between 0 - 65554
+	// Custom ports to be opened
 	Ports []int `pulumi:"ports"`
-	// Pre-defined services 'AMQP', 'AMQPS', 'HTTPS', 'MQTT', 'MQTTS', 'STOMP', 'STOMPS', 'STREAM', 'STREAM_SSL'
+	// Pre-defined service ports, see table below
 	Services []string `pulumi:"services"`
 }
 
@@ -393,13 +415,35 @@ type SecurityFirewallRuleInput interface {
 }
 
 type SecurityFirewallRuleArgs struct {
-	// Naming descripton e.g. 'Default'
+	// Description name of the rule. e.g. Default.
+	//
+	// Pre-defined services for RabbitMQ:
+	//
+	// | Service name | Port  |
+	// |--------------|-------|
+	// | AMQP         | 5672  |
+	// | AMQPS        | 5671  |
+	// | HTTPS        | 443   |
+	// | MQTT         | 1883  |
+	// | MQTTS        | 8883  |
+	// | STOMP        | 61613 |
+	// | STOMPS       | 61614 |
+	// | STREAM       | 5552  |
+	// | STREAM_SSL   | 5551  |
+	//
+	// Pre-defined services for LavinMQ:
+	//
+	// | Service name | Port  |
+	// |--------------|-------|
+	// | AMQP         | 5672  |
+	// | AMQPS        | 5671  |
+	// | HTTPS        | 443   |
 	Description pulumi.StringPtrInput `pulumi:"description"`
 	// CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
 	Ip pulumi.StringInput `pulumi:"ip"`
-	// Custom ports between 0 - 65554
+	// Custom ports to be opened
 	Ports pulumi.IntArrayInput `pulumi:"ports"`
-	// Pre-defined services 'AMQP', 'AMQPS', 'HTTPS', 'MQTT', 'MQTTS', 'STOMP', 'STOMPS', 'STREAM', 'STREAM_SSL'
+	// Pre-defined service ports, see table below
 	Services pulumi.StringArrayInput `pulumi:"services"`
 }
 
@@ -454,7 +498,29 @@ func (o SecurityFirewallRuleOutput) ToSecurityFirewallRuleOutputWithContext(ctx 
 	return o
 }
 
-// Naming descripton e.g. 'Default'
+// Description name of the rule. e.g. Default.
+//
+// Pre-defined services for RabbitMQ:
+//
+// | Service name | Port  |
+// |--------------|-------|
+// | AMQP         | 5672  |
+// | AMQPS        | 5671  |
+// | HTTPS        | 443   |
+// | MQTT         | 1883  |
+// | MQTTS        | 8883  |
+// | STOMP        | 61613 |
+// | STOMPS       | 61614 |
+// | STREAM       | 5552  |
+// | STREAM_SSL   | 5551  |
+//
+// Pre-defined services for LavinMQ:
+//
+// | Service name | Port  |
+// |--------------|-------|
+// | AMQP         | 5672  |
+// | AMQPS        | 5671  |
+// | HTTPS        | 443   |
 func (o SecurityFirewallRuleOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecurityFirewallRule) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
@@ -464,12 +530,12 @@ func (o SecurityFirewallRuleOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v SecurityFirewallRule) string { return v.Ip }).(pulumi.StringOutput)
 }
 
-// Custom ports between 0 - 65554
+// Custom ports to be opened
 func (o SecurityFirewallRuleOutput) Ports() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v SecurityFirewallRule) []int { return v.Ports }).(pulumi.IntArrayOutput)
 }
 
-// Pre-defined services 'AMQP', 'AMQPS', 'HTTPS', 'MQTT', 'MQTTS', 'STOMP', 'STOMPS', 'STREAM', 'STREAM_SSL'
+// Pre-defined service ports, see table below
 func (o SecurityFirewallRuleOutput) Services() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecurityFirewallRule) []string { return v.Services }).(pulumi.StringArrayOutput)
 }
