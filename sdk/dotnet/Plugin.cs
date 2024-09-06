@@ -28,31 +28,33 @@ namespace Pulumi.CloudAmqp
         public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
-        /// If the plugin is enabled
+        /// Enable or disable the plugins.
         /// </summary>
         [Output("enabled")]
         public Output<bool> Enabled { get; private set; } = null!;
 
         /// <summary>
-        /// Instance identifier
+        /// The CloudAMQP instance ID.
         /// </summary>
         [Output("instanceId")]
         public Output<int> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the plugin
+        /// The name of the Rabbit MQ plugin.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Configurable sleep time in seconds between retries for plugins
+        /// Configurable sleep time (seconds) for retries when requesting information
+        /// about plugins. Default set to 10 seconds. *Available from v1.29.0*
         /// </summary>
         [Output("sleep")]
         public Output<int?> Sleep { get; private set; } = null!;
 
         /// <summary>
-        /// Configurable timeout time in seconds for plugins
+        /// Configurable timeout time (seconds) for retries when requesting
+        /// information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
         /// </summary>
         [Output("timeout")]
         public Output<int?> Timeout { get; private set; } = null!;
@@ -110,31 +112,33 @@ namespace Pulumi.CloudAmqp
     public sealed class PluginArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// If the plugin is enabled
+        /// Enable or disable the plugins.
         /// </summary>
         [Input("enabled", required: true)]
         public Input<bool> Enabled { get; set; } = null!;
 
         /// <summary>
-        /// Instance identifier
+        /// The CloudAMQP instance ID.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<int> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// The name of the plugin
+        /// The name of the Rabbit MQ plugin.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Configurable sleep time in seconds between retries for plugins
+        /// Configurable sleep time (seconds) for retries when requesting information
+        /// about plugins. Default set to 10 seconds. *Available from v1.29.0*
         /// </summary>
         [Input("sleep")]
         public Input<int>? Sleep { get; set; }
 
         /// <summary>
-        /// Configurable timeout time in seconds for plugins
+        /// Configurable timeout time (seconds) for retries when requesting
+        /// information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
@@ -154,31 +158,33 @@ namespace Pulumi.CloudAmqp
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// If the plugin is enabled
+        /// Enable or disable the plugins.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// Instance identifier
+        /// The CloudAMQP instance ID.
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
 
         /// <summary>
-        /// The name of the plugin
+        /// The name of the Rabbit MQ plugin.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Configurable sleep time in seconds between retries for plugins
+        /// Configurable sleep time (seconds) for retries when requesting information
+        /// about plugins. Default set to 10 seconds. *Available from v1.29.0*
         /// </summary>
         [Input("sleep")]
         public Input<int>? Sleep { get; set; }
 
         /// <summary>
-        /// Configurable timeout time in seconds for plugins
+        /// Configurable timeout time (seconds) for retries when requesting
+        /// information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }

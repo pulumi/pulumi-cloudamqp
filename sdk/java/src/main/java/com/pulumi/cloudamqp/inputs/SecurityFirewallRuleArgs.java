@@ -19,14 +19,58 @@ public final class SecurityFirewallRuleArgs extends com.pulumi.resources.Resourc
     public static final SecurityFirewallRuleArgs Empty = new SecurityFirewallRuleArgs();
 
     /**
-     * Naming descripton e.g. &#39;Default&#39;
+     * Description name of the rule. e.g. Default.
+     * 
+     * Pre-defined services for RabbitMQ:
+     * 
+     * | Service name | Port  |
+     * |--------------|-------|
+     * | AMQP         | 5672  |
+     * | AMQPS        | 5671  |
+     * | HTTPS        | 443   |
+     * | MQTT         | 1883  |
+     * | MQTTS        | 8883  |
+     * | STOMP        | 61613 |
+     * | STOMPS       | 61614 |
+     * | STREAM       | 5552  |
+     * | STREAM_SSL   | 5551  |
+     * 
+     * Pre-defined services for LavinMQ:
+     * 
+     * | Service name | Port  |
+     * |--------------|-------|
+     * | AMQP         | 5672  |
+     * | AMQPS        | 5671  |
+     * | HTTPS        | 443   |
      * 
      */
     @Import(name="description")
     private @Nullable Output<String> description;
 
     /**
-     * @return Naming descripton e.g. &#39;Default&#39;
+     * @return Description name of the rule. e.g. Default.
+     * 
+     * Pre-defined services for RabbitMQ:
+     * 
+     * | Service name | Port  |
+     * |--------------|-------|
+     * | AMQP         | 5672  |
+     * | AMQPS        | 5671  |
+     * | HTTPS        | 443   |
+     * | MQTT         | 1883  |
+     * | MQTTS        | 8883  |
+     * | STOMP        | 61613 |
+     * | STOMPS       | 61614 |
+     * | STREAM       | 5552  |
+     * | STREAM_SSL   | 5551  |
+     * 
+     * Pre-defined services for LavinMQ:
+     * 
+     * | Service name | Port  |
+     * |--------------|-------|
+     * | AMQP         | 5672  |
+     * | AMQPS        | 5671  |
+     * | HTTPS        | 443   |
      * 
      */
     public Optional<Output<String>> description() {
@@ -49,14 +93,14 @@ public final class SecurityFirewallRuleArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Custom ports between 0 - 65554
+     * Custom ports to be opened
      * 
      */
     @Import(name="ports")
     private @Nullable Output<List<Integer>> ports;
 
     /**
-     * @return Custom ports between 0 - 65554
+     * @return Custom ports to be opened
      * 
      */
     public Optional<Output<List<Integer>>> ports() {
@@ -64,14 +108,14 @@ public final class SecurityFirewallRuleArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Pre-defined services &#39;AMQP&#39;, &#39;AMQPS&#39;, &#39;HTTPS&#39;, &#39;MQTT&#39;, &#39;MQTTS&#39;, &#39;STOMP&#39;, &#39;STOMPS&#39;, &#39;STREAM&#39;, &#39;STREAM_SSL&#39;
+     * Pre-defined service ports, see table below
      * 
      */
     @Import(name="services")
     private @Nullable Output<List<String>> services;
 
     /**
-     * @return Pre-defined services &#39;AMQP&#39;, &#39;AMQPS&#39;, &#39;HTTPS&#39;, &#39;MQTT&#39;, &#39;MQTTS&#39;, &#39;STOMP&#39;, &#39;STOMPS&#39;, &#39;STREAM&#39;, &#39;STREAM_SSL&#39;
+     * @return Pre-defined service ports, see table below
      * 
      */
     public Optional<Output<List<String>>> services() {
@@ -106,7 +150,29 @@ public final class SecurityFirewallRuleArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param description Naming descripton e.g. &#39;Default&#39;
+         * @param description Description name of the rule. e.g. Default.
+         * 
+         * Pre-defined services for RabbitMQ:
+         * 
+         * | Service name | Port  |
+         * |--------------|-------|
+         * | AMQP         | 5672  |
+         * | AMQPS        | 5671  |
+         * | HTTPS        | 443   |
+         * | MQTT         | 1883  |
+         * | MQTTS        | 8883  |
+         * | STOMP        | 61613 |
+         * | STOMPS       | 61614 |
+         * | STREAM       | 5552  |
+         * | STREAM_SSL   | 5551  |
+         * 
+         * Pre-defined services for LavinMQ:
+         * 
+         * | Service name | Port  |
+         * |--------------|-------|
+         * | AMQP         | 5672  |
+         * | AMQPS        | 5671  |
+         * | HTTPS        | 443   |
          * 
          * @return builder
          * 
@@ -117,7 +183,29 @@ public final class SecurityFirewallRuleArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param description Naming descripton e.g. &#39;Default&#39;
+         * @param description Description name of the rule. e.g. Default.
+         * 
+         * Pre-defined services for RabbitMQ:
+         * 
+         * | Service name | Port  |
+         * |--------------|-------|
+         * | AMQP         | 5672  |
+         * | AMQPS        | 5671  |
+         * | HTTPS        | 443   |
+         * | MQTT         | 1883  |
+         * | MQTTS        | 8883  |
+         * | STOMP        | 61613 |
+         * | STOMPS       | 61614 |
+         * | STREAM       | 5552  |
+         * | STREAM_SSL   | 5551  |
+         * 
+         * Pre-defined services for LavinMQ:
+         * 
+         * | Service name | Port  |
+         * |--------------|-------|
+         * | AMQP         | 5672  |
+         * | AMQPS        | 5671  |
+         * | HTTPS        | 443   |
          * 
          * @return builder
          * 
@@ -148,7 +236,7 @@ public final class SecurityFirewallRuleArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param ports Custom ports between 0 - 65554
+         * @param ports Custom ports to be opened
          * 
          * @return builder
          * 
@@ -159,7 +247,7 @@ public final class SecurityFirewallRuleArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param ports Custom ports between 0 - 65554
+         * @param ports Custom ports to be opened
          * 
          * @return builder
          * 
@@ -169,7 +257,7 @@ public final class SecurityFirewallRuleArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param ports Custom ports between 0 - 65554
+         * @param ports Custom ports to be opened
          * 
          * @return builder
          * 
@@ -179,7 +267,7 @@ public final class SecurityFirewallRuleArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param services Pre-defined services &#39;AMQP&#39;, &#39;AMQPS&#39;, &#39;HTTPS&#39;, &#39;MQTT&#39;, &#39;MQTTS&#39;, &#39;STOMP&#39;, &#39;STOMPS&#39;, &#39;STREAM&#39;, &#39;STREAM_SSL&#39;
+         * @param services Pre-defined service ports, see table below
          * 
          * @return builder
          * 
@@ -190,7 +278,7 @@ public final class SecurityFirewallRuleArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param services Pre-defined services &#39;AMQP&#39;, &#39;AMQPS&#39;, &#39;HTTPS&#39;, &#39;MQTT&#39;, &#39;MQTTS&#39;, &#39;STOMP&#39;, &#39;STOMPS&#39;, &#39;STREAM&#39;, &#39;STREAM_SSL&#39;
+         * @param services Pre-defined service ports, see table below
          * 
          * @return builder
          * 
@@ -200,7 +288,7 @@ public final class SecurityFirewallRuleArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param services Pre-defined services &#39;AMQP&#39;, &#39;AMQPS&#39;, &#39;HTTPS&#39;, &#39;MQTT&#39;, &#39;MQTTS&#39;, &#39;STOMP&#39;, &#39;STOMPS&#39;, &#39;STREAM&#39;, &#39;STREAM_SSL&#39;
+         * @param services Pre-defined service ports, see table below
          * 
          * @return builder
          * 

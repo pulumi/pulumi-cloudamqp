@@ -29,48 +29,64 @@ import javax.annotation.Nullable;
 @ResourceType(type="cloudamqp:index/securityFirewall:SecurityFirewall")
 public class SecurityFirewall extends com.pulumi.resources.CustomResource {
     /**
-     * Instance identifier
+     * The CloudAMQP instance ID.
      * 
      */
     @Export(name="instanceId", refs={Integer.class}, tree="[0]")
     private Output<Integer> instanceId;
 
     /**
-     * @return Instance identifier
+     * @return The CloudAMQP instance ID.
      * 
      */
     public Output<Integer> instanceId() {
         return this.instanceId;
     }
+    /**
+     * An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+     * 
+     */
     @Export(name="rules", refs={List.class,SecurityFirewallRule.class}, tree="[0,1]")
     private Output<List<SecurityFirewallRule>> rules;
 
+    /**
+     * @return An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+     * 
+     */
     public Output<List<SecurityFirewallRule>> rules() {
         return this.rules;
     }
     /**
-     * Configurable sleep time in seconds between retries for firewall configuration
+     * Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
      * 
      */
     @Export(name="sleep", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> sleep;
 
     /**
-     * @return Configurable sleep time in seconds between retries for firewall configuration
+     * @return Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
      * 
      */
     public Output<Optional<Integer>> sleep() {
         return Codegen.optional(this.sleep);
     }
     /**
-     * Configurable timeout time in seconds for firewall configuration
+     * Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+     * 
+     * ***
+     * 
+     * The `rules` block consists of:
      * 
      */
     @Export(name="timeout", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> timeout;
 
     /**
-     * @return Configurable timeout time in seconds for firewall configuration
+     * @return Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+     * 
+     * ***
+     * 
+     * The `rules` block consists of:
      * 
      */
     public Output<Optional<Integer>> timeout() {

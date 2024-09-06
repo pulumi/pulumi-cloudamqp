@@ -44,16 +44,23 @@ export class SecurityFirewall extends pulumi.CustomResource {
     }
 
     /**
-     * Instance identifier
+     * The CloudAMQP instance ID.
      */
     public readonly instanceId!: pulumi.Output<number>;
+    /**
+     * An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+     */
     public readonly rules!: pulumi.Output<outputs.SecurityFirewallRule[]>;
     /**
-     * Configurable sleep time in seconds between retries for firewall configuration
+     * Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
      */
     public readonly sleep!: pulumi.Output<number | undefined>;
     /**
-     * Configurable timeout time in seconds for firewall configuration
+     * Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+     *
+     * ___
+     *
+     * The `rules` block consists of:
      */
     public readonly timeout!: pulumi.Output<number | undefined>;
 
@@ -97,16 +104,23 @@ export class SecurityFirewall extends pulumi.CustomResource {
  */
 export interface SecurityFirewallState {
     /**
-     * Instance identifier
+     * The CloudAMQP instance ID.
      */
     instanceId?: pulumi.Input<number>;
+    /**
+     * An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+     */
     rules?: pulumi.Input<pulumi.Input<inputs.SecurityFirewallRule>[]>;
     /**
-     * Configurable sleep time in seconds between retries for firewall configuration
+     * Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
      */
     sleep?: pulumi.Input<number>;
     /**
-     * Configurable timeout time in seconds for firewall configuration
+     * Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+     *
+     * ___
+     *
+     * The `rules` block consists of:
      */
     timeout?: pulumi.Input<number>;
 }
@@ -116,16 +130,23 @@ export interface SecurityFirewallState {
  */
 export interface SecurityFirewallArgs {
     /**
-     * Instance identifier
+     * The CloudAMQP instance ID.
      */
     instanceId: pulumi.Input<number>;
+    /**
+     * An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+     */
     rules: pulumi.Input<pulumi.Input<inputs.SecurityFirewallRule>[]>;
     /**
-     * Configurable sleep time in seconds between retries for firewall configuration
+     * Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
      */
     sleep?: pulumi.Input<number>;
     /**
-     * Configurable timeout time in seconds for firewall configuration
+     * Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+     *
+     * ___
+     *
+     * The `rules` block consists of:
      */
     timeout?: pulumi.Input<number>;
 }

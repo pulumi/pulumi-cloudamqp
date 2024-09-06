@@ -19,36 +19,44 @@ public final class SecurityFirewallArgs extends com.pulumi.resources.ResourceArg
     public static final SecurityFirewallArgs Empty = new SecurityFirewallArgs();
 
     /**
-     * Instance identifier
+     * The CloudAMQP instance ID.
      * 
      */
     @Import(name="instanceId", required=true)
     private Output<Integer> instanceId;
 
     /**
-     * @return Instance identifier
+     * @return The CloudAMQP instance ID.
      * 
      */
     public Output<Integer> instanceId() {
         return this.instanceId;
     }
 
+    /**
+     * An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+     * 
+     */
     @Import(name="rules", required=true)
     private Output<List<SecurityFirewallRuleArgs>> rules;
 
+    /**
+     * @return An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+     * 
+     */
     public Output<List<SecurityFirewallRuleArgs>> rules() {
         return this.rules;
     }
 
     /**
-     * Configurable sleep time in seconds between retries for firewall configuration
+     * Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
      * 
      */
     @Import(name="sleep")
     private @Nullable Output<Integer> sleep;
 
     /**
-     * @return Configurable sleep time in seconds between retries for firewall configuration
+     * @return Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
      * 
      */
     public Optional<Output<Integer>> sleep() {
@@ -56,14 +64,22 @@ public final class SecurityFirewallArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Configurable timeout time in seconds for firewall configuration
+     * Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+     * 
+     * ***
+     * 
+     * The `rules` block consists of:
      * 
      */
     @Import(name="timeout")
     private @Nullable Output<Integer> timeout;
 
     /**
-     * @return Configurable timeout time in seconds for firewall configuration
+     * @return Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+     * 
+     * ***
+     * 
+     * The `rules` block consists of:
      * 
      */
     public Optional<Output<Integer>> timeout() {
@@ -98,7 +114,7 @@ public final class SecurityFirewallArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param instanceId Instance identifier
+         * @param instanceId The CloudAMQP instance ID.
          * 
          * @return builder
          * 
@@ -109,7 +125,7 @@ public final class SecurityFirewallArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param instanceId Instance identifier
+         * @param instanceId The CloudAMQP instance ID.
          * 
          * @return builder
          * 
@@ -118,21 +134,39 @@ public final class SecurityFirewallArgs extends com.pulumi.resources.ResourceArg
             return instanceId(Output.of(instanceId));
         }
 
+        /**
+         * @param rules An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+         * 
+         * @return builder
+         * 
+         */
         public Builder rules(Output<List<SecurityFirewallRuleArgs>> rules) {
             $.rules = rules;
             return this;
         }
 
+        /**
+         * @param rules An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+         * 
+         * @return builder
+         * 
+         */
         public Builder rules(List<SecurityFirewallRuleArgs> rules) {
             return rules(Output.of(rules));
         }
 
+        /**
+         * @param rules An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+         * 
+         * @return builder
+         * 
+         */
         public Builder rules(SecurityFirewallRuleArgs... rules) {
             return rules(List.of(rules));
         }
 
         /**
-         * @param sleep Configurable sleep time in seconds between retries for firewall configuration
+         * @param sleep Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
          * 
          * @return builder
          * 
@@ -143,7 +177,7 @@ public final class SecurityFirewallArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param sleep Configurable sleep time in seconds between retries for firewall configuration
+         * @param sleep Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
          * 
          * @return builder
          * 
@@ -153,7 +187,11 @@ public final class SecurityFirewallArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param timeout Configurable timeout time in seconds for firewall configuration
+         * @param timeout Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+         * 
+         * ***
+         * 
+         * The `rules` block consists of:
          * 
          * @return builder
          * 
@@ -164,7 +202,11 @@ public final class SecurityFirewallArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param timeout Configurable timeout time in seconds for firewall configuration
+         * @param timeout Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+         * 
+         * ***
+         * 
+         * The `rules` block consists of:
          * 
          * @return builder
          * 
