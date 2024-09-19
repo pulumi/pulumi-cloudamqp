@@ -87,14 +87,20 @@ type GetPluginsCommunityResult struct {
 
 func GetPluginsCommunityOutput(ctx *pulumi.Context, args GetPluginsCommunityOutputArgs, opts ...pulumi.InvokeOption) GetPluginsCommunityResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetPluginsCommunityResult, error) {
+		ApplyT(func(v interface{}) (GetPluginsCommunityResultOutput, error) {
 			args := v.(GetPluginsCommunityArgs)
-			r, err := GetPluginsCommunity(ctx, &args, opts...)
-			var s GetPluginsCommunityResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetPluginsCommunityResult
+			secret, err := ctx.InvokePackageRaw("cloudamqp:index/getPluginsCommunity:getPluginsCommunity", args, &rv, "", opts...)
+			if err != nil {
+				return GetPluginsCommunityResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetPluginsCommunityResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetPluginsCommunityResultOutput), nil
+			}
+			return output, nil
 		}).(GetPluginsCommunityResultOutput)
 }
 

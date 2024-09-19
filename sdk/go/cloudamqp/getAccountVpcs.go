@@ -30,13 +30,19 @@ type GetAccountVpcsResult struct {
 }
 
 func GetAccountVpcsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetAccountVpcsResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetAccountVpcsResult, error) {
-		r, err := GetAccountVpcs(ctx, opts...)
-		var s GetAccountVpcsResult
-		if r != nil {
-			s = *r
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetAccountVpcsResultOutput, error) {
+		opts = internal.PkgInvokeDefaultOpts(opts)
+		var rv GetAccountVpcsResult
+		secret, err := ctx.InvokePackageRaw("cloudamqp:index/getAccountVpcs:getAccountVpcs", nil, &rv, "", opts...)
+		if err != nil {
+			return GetAccountVpcsResultOutput{}, err
 		}
-		return s, err
+
+		output := pulumi.ToOutput(rv).(GetAccountVpcsResultOutput)
+		if secret {
+			return pulumi.ToSecret(output).(GetAccountVpcsResultOutput), nil
+		}
+		return output, nil
 	}).(GetAccountVpcsResultOutput)
 }
 

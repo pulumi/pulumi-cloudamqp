@@ -46,7 +46,6 @@ import * as utilities from "./utilities";
  * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
  */
 export function getAlarm(args: GetAlarmArgs, opts?: pulumi.InvokeOptions): Promise<GetAlarmResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("cloudamqp:index/getAlarm:getAlarm", {
         "alarmId": args.alarmId,
@@ -138,7 +137,13 @@ export interface GetAlarmResult {
  * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
  */
 export function getAlarmOutput(args: GetAlarmOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAlarmResult> {
-    return pulumi.output(args).apply((a: any) => getAlarm(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("cloudamqp:index/getAlarm:getAlarm", {
+        "alarmId": args.alarmId,
+        "instanceId": args.instanceId,
+        "type": args.type,
+        "valueCalculation": args.valueCalculation,
+    }, opts);
 }
 
 /**

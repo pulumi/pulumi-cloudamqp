@@ -140,14 +140,20 @@ type GetVpcGcpInfoResult struct {
 
 func GetVpcGcpInfoOutput(ctx *pulumi.Context, args GetVpcGcpInfoOutputArgs, opts ...pulumi.InvokeOption) GetVpcGcpInfoResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetVpcGcpInfoResult, error) {
+		ApplyT(func(v interface{}) (GetVpcGcpInfoResultOutput, error) {
 			args := v.(GetVpcGcpInfoArgs)
-			r, err := GetVpcGcpInfo(ctx, &args, opts...)
-			var s GetVpcGcpInfoResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetVpcGcpInfoResult
+			secret, err := ctx.InvokePackageRaw("cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo", args, &rv, "", opts...)
+			if err != nil {
+				return GetVpcGcpInfoResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetVpcGcpInfoResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetVpcGcpInfoResultOutput), nil
+			}
+			return output, nil
 		}).(GetVpcGcpInfoResultOutput)
 }
 

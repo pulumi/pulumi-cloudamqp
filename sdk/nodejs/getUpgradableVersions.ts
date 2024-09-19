@@ -30,7 +30,6 @@ import * as utilities from "./utilities";
  * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
  */
 export function getUpgradableVersions(args: GetUpgradableVersionsArgs, opts?: pulumi.InvokeOptions): Promise<GetUpgradableVersionsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("cloudamqp:index/getUpgradableVersions:getUpgradableVersions", {
         "instanceId": args.instanceId,
@@ -85,7 +84,10 @@ export interface GetUpgradableVersionsResult {
  * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
  */
 export function getUpgradableVersionsOutput(args: GetUpgradableVersionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetUpgradableVersionsResult> {
-    return pulumi.output(args).apply((a: any) => getUpgradableVersions(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("cloudamqp:index/getUpgradableVersions:getUpgradableVersions", {
+        "instanceId": args.instanceId,
+    }, opts);
 }
 
 /**

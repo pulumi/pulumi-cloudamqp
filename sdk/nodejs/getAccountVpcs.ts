@@ -45,7 +45,6 @@ import * as utilities from "./utilities";
  * This data source depends on apikey set in the provider configuration.
  */
 export function getAccountVpcs(opts?: pulumi.InvokeOptions): Promise<GetAccountVpcsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("cloudamqp:index/getAccountVpcs:getAccountVpcs", {
     }, opts);
@@ -100,5 +99,7 @@ export interface GetAccountVpcsResult {
  * This data source depends on apikey set in the provider configuration.
  */
 export function getAccountVpcsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetAccountVpcsResult> {
-    return pulumi.output(getAccountVpcs(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("cloudamqp:index/getAccountVpcs:getAccountVpcs", {
+    }, opts);
 }
