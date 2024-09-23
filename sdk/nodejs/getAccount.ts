@@ -10,7 +10,6 @@ import * as utilities from "./utilities";
  * Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
  */
 export function getAccount(opts?: pulumi.InvokeOptions): Promise<GetAccountResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("cloudamqp:index/getAccount:getAccount", {
     }, opts);
@@ -30,5 +29,7 @@ export interface GetAccountResult {
  * Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
  */
 export function getAccountOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetAccountResult> {
-    return pulumi.output(getAccount(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("cloudamqp:index/getAccount:getAccount", {
+    }, opts);
 }
