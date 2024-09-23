@@ -44,7 +44,6 @@ import * as utilities from "./utilities";
  * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
  */
 export function getPluginsCommunity(args: GetPluginsCommunityArgs, opts?: pulumi.InvokeOptions): Promise<GetPluginsCommunityResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("cloudamqp:index/getPluginsCommunity:getPluginsCommunity", {
         "instanceId": args.instanceId,
@@ -110,7 +109,10 @@ export interface GetPluginsCommunityResult {
  * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
  */
 export function getPluginsCommunityOutput(args: GetPluginsCommunityOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPluginsCommunityResult> {
-    return pulumi.output(args).apply((a: any) => getPluginsCommunity(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("cloudamqp:index/getPluginsCommunity:getPluginsCommunity", {
+        "instanceId": args.instanceId,
+    }, opts);
 }
 
 /**

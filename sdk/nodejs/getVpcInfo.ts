@@ -65,7 +65,6 @@ import * as utilities from "./utilities";
  */
 export function getVpcInfo(args?: GetVpcInfoArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcInfoResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("cloudamqp:index/getVpcInfo:getVpcInfo", {
         "instanceId": args.instanceId,
@@ -166,7 +165,12 @@ export interface GetVpcInfoResult {
  * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
  */
 export function getVpcInfoOutput(args?: GetVpcInfoOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcInfoResult> {
-    return pulumi.output(args).apply((a: any) => getVpcInfo(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("cloudamqp:index/getVpcInfo:getVpcInfo", {
+        "instanceId": args.instanceId,
+        "vpcId": args.vpcId,
+    }, opts);
 }
 
 /**

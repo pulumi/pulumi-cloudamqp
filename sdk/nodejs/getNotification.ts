@@ -33,7 +33,6 @@ import * as utilities from "./utilities";
  * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
  */
 export function getNotification(args: GetNotificationArgs, opts?: pulumi.InvokeOptions): Promise<GetNotificationResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("cloudamqp:index/getNotification:getNotification", {
         "instanceId": args.instanceId,
@@ -106,7 +105,13 @@ export interface GetNotificationResult {
  * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
  */
 export function getNotificationOutput(args: GetNotificationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNotificationResult> {
-    return pulumi.output(args).apply((a: any) => getNotification(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("cloudamqp:index/getNotification:getNotification", {
+        "instanceId": args.instanceId,
+        "name": args.name,
+        "options": args.options,
+        "recipientId": args.recipientId,
+    }, opts);
 }
 
 /**
