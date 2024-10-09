@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -239,9 +244,6 @@ def get_instance(instance_id: Optional[int] = None,
         vhost=pulumi.get(__ret__, 'vhost'),
         vpc_id=pulumi.get(__ret__, 'vpc_id'),
         vpc_subnet=pulumi.get(__ret__, 'vpc_subnet'))
-
-
-@_utilities.lift_output_func(get_instance)
 def get_instance_output(instance_id: Optional[pulumi.Input[int]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceResult]:
     """
@@ -250,4 +252,27 @@ def get_instance_output(instance_id: Optional[pulumi.Input[int]] = None,
 
     :param int instance_id: The CloudAMQP instance identifier.
     """
-    ...
+    __args__ = dict()
+    __args__['instanceId'] = instance_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('cloudamqp:index/getInstance:getInstance', __args__, opts=opts, typ=GetInstanceResult)
+    return __ret__.apply(lambda __response__: GetInstanceResult(
+        apikey=pulumi.get(__response__, 'apikey'),
+        backend=pulumi.get(__response__, 'backend'),
+        dedicated=pulumi.get(__response__, 'dedicated'),
+        host=pulumi.get(__response__, 'host'),
+        host_internal=pulumi.get(__response__, 'host_internal'),
+        id=pulumi.get(__response__, 'id'),
+        instance_id=pulumi.get(__response__, 'instance_id'),
+        name=pulumi.get(__response__, 'name'),
+        no_default_alarms=pulumi.get(__response__, 'no_default_alarms'),
+        nodes=pulumi.get(__response__, 'nodes'),
+        plan=pulumi.get(__response__, 'plan'),
+        ready=pulumi.get(__response__, 'ready'),
+        region=pulumi.get(__response__, 'region'),
+        rmq_version=pulumi.get(__response__, 'rmq_version'),
+        tags=pulumi.get(__response__, 'tags'),
+        url=pulumi.get(__response__, 'url'),
+        vhost=pulumi.get(__response__, 'vhost'),
+        vpc_id=pulumi.get(__response__, 'vpc_id'),
+        vpc_subnet=pulumi.get(__response__, 'vpc_subnet')))

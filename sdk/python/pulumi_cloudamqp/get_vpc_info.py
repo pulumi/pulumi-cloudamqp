@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -178,9 +183,6 @@ def get_vpc_info(instance_id: Optional[int] = None,
         security_group_id=pulumi.get(__ret__, 'security_group_id'),
         vpc_id=pulumi.get(__ret__, 'vpc_id'),
         vpc_subnet=pulumi.get(__ret__, 'vpc_subnet'))
-
-
-@_utilities.lift_output_func(get_vpc_info)
 def get_vpc_info_output(instance_id: Optional[pulumi.Input[Optional[int]]] = None,
                         vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcInfoResult]:
@@ -247,4 +249,16 @@ def get_vpc_info_output(instance_id: Optional[pulumi.Input[Optional[int]]] = Non
            
            ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
     """
-    ...
+    __args__ = dict()
+    __args__['instanceId'] = instance_id
+    __args__['vpcId'] = vpc_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('cloudamqp:index/getVpcInfo:getVpcInfo', __args__, opts=opts, typ=GetVpcInfoResult)
+    return __ret__.apply(lambda __response__: GetVpcInfoResult(
+        id=pulumi.get(__response__, 'id'),
+        instance_id=pulumi.get(__response__, 'instance_id'),
+        name=pulumi.get(__response__, 'name'),
+        owner_id=pulumi.get(__response__, 'owner_id'),
+        security_group_id=pulumi.get(__response__, 'security_group_id'),
+        vpc_id=pulumi.get(__response__, 'vpc_id'),
+        vpc_subnet=pulumi.get(__response__, 'vpc_subnet')))
