@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -193,9 +198,6 @@ def get_vpc_gcp_info(instance_id: Optional[int] = None,
         timeout=pulumi.get(__ret__, 'timeout'),
         vpc_id=pulumi.get(__ret__, 'vpc_id'),
         vpc_subnet=pulumi.get(__ret__, 'vpc_subnet'))
-
-
-@_utilities.lift_output_func(get_vpc_gcp_info)
 def get_vpc_gcp_info_output(instance_id: Optional[pulumi.Input[Optional[int]]] = None,
                             sleep: Optional[pulumi.Input[Optional[int]]] = None,
                             timeout: Optional[pulumi.Input[Optional[int]]] = None,
@@ -265,4 +267,19 @@ def get_vpc_gcp_info_output(instance_id: Optional[pulumi.Input[Optional[int]]] =
            
            ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
     """
-    ...
+    __args__ = dict()
+    __args__['instanceId'] = instance_id
+    __args__['sleep'] = sleep
+    __args__['timeout'] = timeout
+    __args__['vpcId'] = vpc_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo', __args__, opts=opts, typ=GetVpcGcpInfoResult)
+    return __ret__.apply(lambda __response__: GetVpcGcpInfoResult(
+        id=pulumi.get(__response__, 'id'),
+        instance_id=pulumi.get(__response__, 'instance_id'),
+        name=pulumi.get(__response__, 'name'),
+        network=pulumi.get(__response__, 'network'),
+        sleep=pulumi.get(__response__, 'sleep'),
+        timeout=pulumi.get(__response__, 'timeout'),
+        vpc_id=pulumi.get(__response__, 'vpc_id'),
+        vpc_subnet=pulumi.get(__response__, 'vpc_subnet')))

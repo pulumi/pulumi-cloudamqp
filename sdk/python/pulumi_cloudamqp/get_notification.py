@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -150,9 +155,6 @@ def get_notification(instance_id: Optional[int] = None,
         recipient_id=pulumi.get(__ret__, 'recipient_id'),
         type=pulumi.get(__ret__, 'type'),
         value=pulumi.get(__ret__, 'value'))
-
-
-@_utilities.lift_output_func(get_notification)
 def get_notification_output(instance_id: Optional[pulumi.Input[int]] = None,
                             name: Optional[pulumi.Input[Optional[str]]] = None,
                             options: Optional[pulumi.Input[Optional[Mapping[str, str]]]] = None,
@@ -189,4 +191,18 @@ def get_notification_output(instance_id: Optional[pulumi.Input[int]] = None,
     :param str name: The name set for the recipient.
     :param int recipient_id: The recipient identifier.
     """
-    ...
+    __args__ = dict()
+    __args__['instanceId'] = instance_id
+    __args__['name'] = name
+    __args__['options'] = options
+    __args__['recipientId'] = recipient_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('cloudamqp:index/getNotification:getNotification', __args__, opts=opts, typ=GetNotificationResult)
+    return __ret__.apply(lambda __response__: GetNotificationResult(
+        id=pulumi.get(__response__, 'id'),
+        instance_id=pulumi.get(__response__, 'instance_id'),
+        name=pulumi.get(__response__, 'name'),
+        options=pulumi.get(__response__, 'options'),
+        recipient_id=pulumi.get(__response__, 'recipient_id'),
+        type=pulumi.get(__response__, 'type'),
+        value=pulumi.get(__response__, 'value')))

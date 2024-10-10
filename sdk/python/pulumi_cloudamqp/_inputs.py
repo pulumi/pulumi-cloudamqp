@@ -4,17 +4,42 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
     'ExtraDiskSizeNodeArgs',
+    'ExtraDiskSizeNodeArgsDict',
     'InstanceCopySettingArgs',
+    'InstanceCopySettingArgsDict',
     'NotificationResponderArgs',
+    'NotificationResponderArgsDict',
     'SecurityFirewallRuleArgs',
+    'SecurityFirewallRuleArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class ExtraDiskSizeNodeArgsDict(TypedDict):
+        additional_disk_size: NotRequired[pulumi.Input[int]]
+        """
+        Additional added disk size
+        """
+        disk_size: NotRequired[pulumi.Input[int]]
+        """
+        Subscription plan disk size
+        """
+        name: NotRequired[pulumi.Input[str]]
+elif False:
+    ExtraDiskSizeNodeArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ExtraDiskSizeNodeArgs:
@@ -67,6 +92,21 @@ class ExtraDiskSizeNodeArgs:
         pulumi.set(self, "name", value)
 
 
+if not MYPY:
+    class InstanceCopySettingArgsDict(TypedDict):
+        settings: pulumi.Input[Sequence[pulumi.Input[str]]]
+        """
+        Array of one or more settings to be copied. Allowed values: [alarms, config, definitions, firewall, logs, metrics, plugins]
+
+        See more below, copy settings
+        """
+        subscription_id: pulumi.Input[str]
+        """
+        Instance identifier of the CloudAMQP instance to copy the settings from.
+        """
+elif False:
+    InstanceCopySettingArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class InstanceCopySettingArgs:
     def __init__(__self__, *,
@@ -107,6 +147,30 @@ class InstanceCopySettingArgs:
     def subscription_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "subscription_id", value)
 
+
+if not MYPY:
+    class NotificationResponderArgsDict(TypedDict):
+        type: pulumi.Input[str]
+        """
+        Type of responder. [`team`, `user`, `escalation`, `schedule`]
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        Identifier in UUID format
+        """
+        name: NotRequired[pulumi.Input[str]]
+        """
+        Name of the responder
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        Username of the responder
+
+        Responders of type `team`, `escalation` and `schedule` can use either id or name.
+        While `user` can use either id or username.
+        """
+elif False:
+    NotificationResponderArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class NotificationResponderArgs:
@@ -183,6 +247,49 @@ class NotificationResponderArgs:
     def username(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "username", value)
 
+
+if not MYPY:
+    class SecurityFirewallRuleArgsDict(TypedDict):
+        ip: pulumi.Input[str]
+        """
+        CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
+        """
+        description: NotRequired[pulumi.Input[str]]
+        """
+        Description name of the rule. e.g. Default.
+
+        Pre-defined services for RabbitMQ:
+
+        | Service name | Port  |
+        |--------------|-------|
+        | AMQP         | 5672  |
+        | AMQPS        | 5671  |
+        | HTTPS        | 443   |
+        | MQTT         | 1883  |
+        | MQTTS        | 8883  |
+        | STOMP        | 61613 |
+        | STOMPS       | 61614 |
+        | STREAM       | 5552  |
+        | STREAM_SSL   | 5551  |
+
+        Pre-defined services for LavinMQ:
+
+        | Service name | Port  |
+        |--------------|-------|
+        | AMQP         | 5672  |
+        | AMQPS        | 5671  |
+        | HTTPS        | 443   |
+        """
+        ports: NotRequired[pulumi.Input[Sequence[pulumi.Input[int]]]]
+        """
+        Custom ports to be opened
+        """
+        services: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Pre-defined service ports, see table below
+        """
+elif False:
+    SecurityFirewallRuleArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SecurityFirewallRuleArgs:

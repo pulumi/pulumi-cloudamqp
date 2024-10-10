@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -100,9 +105,6 @@ def get_account_vpcs(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGe
     return AwaitableGetAccountVpcsResult(
         id=pulumi.get(__ret__, 'id'),
         vpcs=pulumi.get(__ret__, 'vpcs'))
-
-
-@_utilities.lift_output_func(get_account_vpcs)
 def get_account_vpcs_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccountVpcsResult]:
     """
     Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
@@ -142,4 +144,9 @@ def get_account_vpcs_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulu
 
     This data source depends on apikey set in the provider configuration.
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('cloudamqp:index/getAccountVpcs:getAccountVpcs', __args__, opts=opts, typ=GetAccountVpcsResult)
+    return __ret__.apply(lambda __response__: GetAccountVpcsResult(
+        id=pulumi.get(__response__, 'id'),
+        vpcs=pulumi.get(__response__, 'vpcs')))
