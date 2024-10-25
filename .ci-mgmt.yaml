@@ -5,6 +5,7 @@ team: ecosystem
 env:
   CLOUDAMQP_APIKEY: ${{ secrets.CLOUDAMQP_APIKEY }}
 pulumiConvert: 1
+registryDocs: true
 plugins:
   - name: terraform
     version: "1.0.16"
