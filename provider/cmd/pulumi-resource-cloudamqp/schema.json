@@ -316,14 +316,6 @@
                 },
                 "require": {
                     "type": "string"
-                },
-                "sleep": {
-                    "type": "integer",
-                    "description": "Configurable sleep time in seconds between retries for plugins\n"
-                },
-                "timeout": {
-                    "type": "integer",
-                    "description": "Configurable timeout time in seconds for plugins\n"
                 }
             },
             "type": "object",
@@ -348,14 +340,6 @@
                 },
                 "name": {
                     "type": "string"
-                },
-                "sleep": {
-                    "type": "integer",
-                    "description": "Configurable sleep time in seconds between retries for plugins\n"
-                },
-                "timeout": {
-                    "type": "integer",
-                    "description": "Configurable timeout time in seconds for plugins\n"
                 },
                 "version": {
                     "type": "string"
@@ -3761,6 +3745,12 @@
                     "instanceId": {
                         "type": "integer",
                         "description": "The CloudAMQP instance identifier.\n"
+                    },
+                    "sleep": {
+                        "type": "integer"
+                    },
+                    "timeout": {
+                        "type": "integer"
                     }
                 },
                 "type": "object",
@@ -3783,6 +3773,12 @@
                             "$ref": "#/types/cloudamqp:index/getPluginsPlugin:getPluginsPlugin"
                         },
                         "type": "array"
+                    },
+                    "sleep": {
+                        "type": "integer"
+                    },
+                    "timeout": {
+                        "type": "integer"
                     }
                 },
                 "required": [
@@ -3801,6 +3797,12 @@
                     "instanceId": {
                         "type": "integer",
                         "description": "The CloudAMQP instance identifier.\n"
+                    },
+                    "sleep": {
+                        "type": "integer"
+                    },
+                    "timeout": {
+                        "type": "integer"
                     }
                 },
                 "type": "object",
@@ -3823,6 +3825,12 @@
                             "$ref": "#/types/cloudamqp:index/getPluginsCommunityPlugin:getPluginsCommunityPlugin"
                         },
                         "type": "array"
+                    },
+                    "sleep": {
+                        "type": "integer"
+                    },
+                    "timeout": {
+                        "type": "integer"
                     }
                 },
                 "required": [
