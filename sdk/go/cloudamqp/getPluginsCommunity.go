@@ -74,7 +74,9 @@ func GetPluginsCommunity(ctx *pulumi.Context, args *GetPluginsCommunityArgs, opt
 // A collection of arguments for invoking getPluginsCommunity.
 type GetPluginsCommunityArgs struct {
 	// The CloudAMQP instance identifier.
-	InstanceId int `pulumi:"instanceId"`
+	InstanceId int  `pulumi:"instanceId"`
+	Sleep      *int `pulumi:"sleep"`
+	Timeout    *int `pulumi:"timeout"`
 }
 
 // A collection of values returned by getPluginsCommunity.
@@ -83,6 +85,8 @@ type GetPluginsCommunityResult struct {
 	Id         string                      `pulumi:"id"`
 	InstanceId int                         `pulumi:"instanceId"`
 	Plugins    []GetPluginsCommunityPlugin `pulumi:"plugins"`
+	Sleep      *int                        `pulumi:"sleep"`
+	Timeout    *int                        `pulumi:"timeout"`
 }
 
 func GetPluginsCommunityOutput(ctx *pulumi.Context, args GetPluginsCommunityOutputArgs, opts ...pulumi.InvokeOption) GetPluginsCommunityResultOutput {
@@ -107,7 +111,9 @@ func GetPluginsCommunityOutput(ctx *pulumi.Context, args GetPluginsCommunityOutp
 // A collection of arguments for invoking getPluginsCommunity.
 type GetPluginsCommunityOutputArgs struct {
 	// The CloudAMQP instance identifier.
-	InstanceId pulumi.IntInput `pulumi:"instanceId"`
+	InstanceId pulumi.IntInput    `pulumi:"instanceId"`
+	Sleep      pulumi.IntPtrInput `pulumi:"sleep"`
+	Timeout    pulumi.IntPtrInput `pulumi:"timeout"`
 }
 
 func (GetPluginsCommunityOutputArgs) ElementType() reflect.Type {
@@ -140,6 +146,14 @@ func (o GetPluginsCommunityResultOutput) InstanceId() pulumi.IntOutput {
 
 func (o GetPluginsCommunityResultOutput) Plugins() GetPluginsCommunityPluginArrayOutput {
 	return o.ApplyT(func(v GetPluginsCommunityResult) []GetPluginsCommunityPlugin { return v.Plugins }).(GetPluginsCommunityPluginArrayOutput)
+}
+
+func (o GetPluginsCommunityResultOutput) Sleep() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetPluginsCommunityResult) *int { return v.Sleep }).(pulumi.IntPtrOutput)
+}
+
+func (o GetPluginsCommunityResultOutput) Timeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetPluginsCommunityResult) *int { return v.Timeout }).(pulumi.IntPtrOutput)
 }
 
 func init() {

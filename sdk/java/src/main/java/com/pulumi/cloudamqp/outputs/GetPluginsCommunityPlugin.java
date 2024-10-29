@@ -5,27 +5,14 @@ package com.pulumi.cloudamqp.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 @CustomType
 public final class GetPluginsCommunityPlugin {
     private String description;
     private String name;
     private String require;
-    /**
-     * @return Configurable sleep time in seconds between retries for plugins
-     * 
-     */
-    private @Nullable Integer sleep;
-    /**
-     * @return Configurable timeout time in seconds for plugins
-     * 
-     */
-    private @Nullable Integer timeout;
 
     private GetPluginsCommunityPlugin() {}
     public String description() {
@@ -36,20 +23,6 @@ public final class GetPluginsCommunityPlugin {
     }
     public String require() {
         return this.require;
-    }
-    /**
-     * @return Configurable sleep time in seconds between retries for plugins
-     * 
-     */
-    public Optional<Integer> sleep() {
-        return Optional.ofNullable(this.sleep);
-    }
-    /**
-     * @return Configurable timeout time in seconds for plugins
-     * 
-     */
-    public Optional<Integer> timeout() {
-        return Optional.ofNullable(this.timeout);
     }
 
     public static Builder builder() {
@@ -64,16 +37,12 @@ public final class GetPluginsCommunityPlugin {
         private String description;
         private String name;
         private String require;
-        private @Nullable Integer sleep;
-        private @Nullable Integer timeout;
         public Builder() {}
         public Builder(GetPluginsCommunityPlugin defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.description = defaults.description;
     	      this.name = defaults.name;
     	      this.require = defaults.require;
-    	      this.sleep = defaults.sleep;
-    	      this.timeout = defaults.timeout;
         }
 
         @CustomType.Setter
@@ -100,25 +69,11 @@ public final class GetPluginsCommunityPlugin {
             this.require = require;
             return this;
         }
-        @CustomType.Setter
-        public Builder sleep(@Nullable Integer sleep) {
-
-            this.sleep = sleep;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder timeout(@Nullable Integer timeout) {
-
-            this.timeout = timeout;
-            return this;
-        }
         public GetPluginsCommunityPlugin build() {
             final var _resultValue = new GetPluginsCommunityPlugin();
             _resultValue.description = description;
             _resultValue.name = name;
             _resultValue.require = require;
-            _resultValue.sleep = sleep;
-            _resultValue.timeout = timeout;
             return _resultValue;
         }
     }

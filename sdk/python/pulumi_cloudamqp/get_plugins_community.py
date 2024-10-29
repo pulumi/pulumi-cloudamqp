@@ -27,7 +27,7 @@ class GetPluginsCommunityResult:
     """
     A collection of values returned by getPluginsCommunity.
     """
-    def __init__(__self__, id=None, instance_id=None, plugins=None):
+    def __init__(__self__, id=None, instance_id=None, plugins=None, sleep=None, timeout=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -37,6 +37,12 @@ class GetPluginsCommunityResult:
         if plugins and not isinstance(plugins, list):
             raise TypeError("Expected argument 'plugins' to be a list")
         pulumi.set(__self__, "plugins", plugins)
+        if sleep and not isinstance(sleep, int):
+            raise TypeError("Expected argument 'sleep' to be a int")
+        pulumi.set(__self__, "sleep", sleep)
+        if timeout and not isinstance(timeout, int):
+            raise TypeError("Expected argument 'timeout' to be a int")
+        pulumi.set(__self__, "timeout", timeout)
 
     @property
     @pulumi.getter
@@ -56,6 +62,16 @@ class GetPluginsCommunityResult:
     def plugins(self) -> Sequence['outputs.GetPluginsCommunityPluginResult']:
         return pulumi.get(self, "plugins")
 
+    @property
+    @pulumi.getter
+    def sleep(self) -> Optional[int]:
+        return pulumi.get(self, "sleep")
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> Optional[int]:
+        return pulumi.get(self, "timeout")
+
 
 class AwaitableGetPluginsCommunityResult(GetPluginsCommunityResult):
     # pylint: disable=using-constant-test
@@ -65,10 +81,14 @@ class AwaitableGetPluginsCommunityResult(GetPluginsCommunityResult):
         return GetPluginsCommunityResult(
             id=self.id,
             instance_id=self.instance_id,
-            plugins=self.plugins)
+            plugins=self.plugins,
+            sleep=self.sleep,
+            timeout=self.timeout)
 
 
 def get_plugins_community(instance_id: Optional[int] = None,
+                          sleep: Optional[int] = None,
+                          timeout: Optional[int] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPluginsCommunityResult:
     """
     Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
@@ -110,14 +130,20 @@ def get_plugins_community(instance_id: Optional[int] = None,
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
+    __args__['sleep'] = sleep
+    __args__['timeout'] = timeout
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('cloudamqp:index/getPluginsCommunity:getPluginsCommunity', __args__, opts=opts, typ=GetPluginsCommunityResult).value
 
     return AwaitableGetPluginsCommunityResult(
         id=pulumi.get(__ret__, 'id'),
         instance_id=pulumi.get(__ret__, 'instance_id'),
-        plugins=pulumi.get(__ret__, 'plugins'))
+        plugins=pulumi.get(__ret__, 'plugins'),
+        sleep=pulumi.get(__ret__, 'sleep'),
+        timeout=pulumi.get(__ret__, 'timeout'))
 def get_plugins_community_output(instance_id: Optional[pulumi.Input[int]] = None,
+                                 sleep: Optional[pulumi.Input[Optional[int]]] = None,
+                                 timeout: Optional[pulumi.Input[Optional[int]]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPluginsCommunityResult]:
     """
     Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
@@ -159,9 +185,13 @@ def get_plugins_community_output(instance_id: Optional[pulumi.Input[int]] = None
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
+    __args__['sleep'] = sleep
+    __args__['timeout'] = timeout
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('cloudamqp:index/getPluginsCommunity:getPluginsCommunity', __args__, opts=opts, typ=GetPluginsCommunityResult)
     return __ret__.apply(lambda __response__: GetPluginsCommunityResult(
         id=pulumi.get(__response__, 'id'),
         instance_id=pulumi.get(__response__, 'instance_id'),
-        plugins=pulumi.get(__response__, 'plugins')))
+        plugins=pulumi.get(__response__, 'plugins'),
+        sleep=pulumi.get(__response__, 'sleep'),
+        timeout=pulumi.get(__response__, 'timeout')))

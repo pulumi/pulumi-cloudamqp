@@ -516,20 +516,10 @@ class GetPluginsCommunityPluginResult(dict):
     def __init__(__self__, *,
                  description: str,
                  name: str,
-                 require: str,
-                 sleep: Optional[int] = None,
-                 timeout: Optional[int] = None):
-        """
-        :param int sleep: Configurable sleep time in seconds between retries for plugins
-        :param int timeout: Configurable timeout time in seconds for plugins
-        """
+                 require: str):
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "require", require)
-        if sleep is not None:
-            pulumi.set(__self__, "sleep", sleep)
-        if timeout is not None:
-            pulumi.set(__self__, "timeout", timeout)
 
     @property
     @pulumi.getter
@@ -546,22 +536,6 @@ class GetPluginsCommunityPluginResult(dict):
     def require(self) -> str:
         return pulumi.get(self, "require")
 
-    @property
-    @pulumi.getter
-    def sleep(self) -> Optional[int]:
-        """
-        Configurable sleep time in seconds between retries for plugins
-        """
-        return pulumi.get(self, "sleep")
-
-    @property
-    @pulumi.getter
-    def timeout(self) -> Optional[int]:
-        """
-        Configurable timeout time in seconds for plugins
-        """
-        return pulumi.get(self, "timeout")
-
 
 @pulumi.output_type
 class GetPluginsPluginResult(dict):
@@ -569,21 +543,11 @@ class GetPluginsPluginResult(dict):
                  description: str,
                  enabled: bool,
                  name: str,
-                 version: str,
-                 sleep: Optional[int] = None,
-                 timeout: Optional[int] = None):
-        """
-        :param int sleep: Configurable sleep time in seconds between retries for plugins
-        :param int timeout: Configurable timeout time in seconds for plugins
-        """
+                 version: str):
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "version", version)
-        if sleep is not None:
-            pulumi.set(__self__, "sleep", sleep)
-        if timeout is not None:
-            pulumi.set(__self__, "timeout", timeout)
 
     @property
     @pulumi.getter
@@ -604,21 +568,5 @@ class GetPluginsPluginResult(dict):
     @pulumi.getter
     def version(self) -> str:
         return pulumi.get(self, "version")
-
-    @property
-    @pulumi.getter
-    def sleep(self) -> Optional[int]:
-        """
-        Configurable sleep time in seconds between retries for plugins
-        """
-        return pulumi.get(self, "sleep")
-
-    @property
-    @pulumi.getter
-    def timeout(self) -> Optional[int]:
-        """
-        Configurable timeout time in seconds for plugins
-        """
-        return pulumi.get(self, "timeout")
 
 
