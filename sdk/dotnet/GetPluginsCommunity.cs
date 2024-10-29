@@ -115,6 +115,12 @@ namespace Pulumi.CloudAmqp
         [Input("instanceId", required: true)]
         public int InstanceId { get; set; }
 
+        [Input("sleep")]
+        public int? Sleep { get; set; }
+
+        [Input("timeout")]
+        public int? Timeout { get; set; }
+
         public GetPluginsCommunityArgs()
         {
         }
@@ -128,6 +134,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<int> InstanceId { get; set; } = null!;
+
+        [Input("sleep")]
+        public Input<int>? Sleep { get; set; }
+
+        [Input("timeout")]
+        public Input<int>? Timeout { get; set; }
 
         public GetPluginsCommunityInvokeArgs()
         {
@@ -145,6 +157,8 @@ namespace Pulumi.CloudAmqp
         public readonly string Id;
         public readonly int InstanceId;
         public readonly ImmutableArray<Outputs.GetPluginsCommunityPluginResult> Plugins;
+        public readonly int? Sleep;
+        public readonly int? Timeout;
 
         [OutputConstructor]
         private GetPluginsCommunityResult(
@@ -152,11 +166,17 @@ namespace Pulumi.CloudAmqp
 
             int instanceId,
 
-            ImmutableArray<Outputs.GetPluginsCommunityPluginResult> plugins)
+            ImmutableArray<Outputs.GetPluginsCommunityPluginResult> plugins,
+
+            int? sleep,
+
+            int? timeout)
         {
             Id = id;
             InstanceId = instanceId;
             Plugins = plugins;
+            Sleep = sleep;
+            Timeout = timeout;
         }
     }
 }

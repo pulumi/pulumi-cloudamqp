@@ -16,14 +16,6 @@ namespace Pulumi.CloudAmqp.Outputs
         public readonly string Description;
         public readonly string Name;
         public readonly string Require;
-        /// <summary>
-        /// Configurable sleep time in seconds between retries for plugins
-        /// </summary>
-        public readonly int? Sleep;
-        /// <summary>
-        /// Configurable timeout time in seconds for plugins
-        /// </summary>
-        public readonly int? Timeout;
 
         [OutputConstructor]
         private GetPluginsCommunityPluginResult(
@@ -31,17 +23,11 @@ namespace Pulumi.CloudAmqp.Outputs
 
             string name,
 
-            string require,
-
-            int? sleep,
-
-            int? timeout)
+            string require)
         {
             Description = description;
             Name = name;
             Require = require;
-            Sleep = sleep;
-            Timeout = timeout;
         }
     }
 }

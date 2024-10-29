@@ -75,7 +75,9 @@ func GetPlugins(ctx *pulumi.Context, args *GetPluginsArgs, opts ...pulumi.Invoke
 // A collection of arguments for invoking getPlugins.
 type GetPluginsArgs struct {
 	// The CloudAMQP instance identifier.
-	InstanceId int `pulumi:"instanceId"`
+	InstanceId int  `pulumi:"instanceId"`
+	Sleep      *int `pulumi:"sleep"`
+	Timeout    *int `pulumi:"timeout"`
 }
 
 // A collection of values returned by getPlugins.
@@ -84,6 +86,8 @@ type GetPluginsResult struct {
 	Id         string             `pulumi:"id"`
 	InstanceId int                `pulumi:"instanceId"`
 	Plugins    []GetPluginsPlugin `pulumi:"plugins"`
+	Sleep      *int               `pulumi:"sleep"`
+	Timeout    *int               `pulumi:"timeout"`
 }
 
 func GetPluginsOutput(ctx *pulumi.Context, args GetPluginsOutputArgs, opts ...pulumi.InvokeOption) GetPluginsResultOutput {
@@ -108,7 +112,9 @@ func GetPluginsOutput(ctx *pulumi.Context, args GetPluginsOutputArgs, opts ...pu
 // A collection of arguments for invoking getPlugins.
 type GetPluginsOutputArgs struct {
 	// The CloudAMQP instance identifier.
-	InstanceId pulumi.IntInput `pulumi:"instanceId"`
+	InstanceId pulumi.IntInput    `pulumi:"instanceId"`
+	Sleep      pulumi.IntPtrInput `pulumi:"sleep"`
+	Timeout    pulumi.IntPtrInput `pulumi:"timeout"`
 }
 
 func (GetPluginsOutputArgs) ElementType() reflect.Type {
@@ -141,6 +147,14 @@ func (o GetPluginsResultOutput) InstanceId() pulumi.IntOutput {
 
 func (o GetPluginsResultOutput) Plugins() GetPluginsPluginArrayOutput {
 	return o.ApplyT(func(v GetPluginsResult) []GetPluginsPlugin { return v.Plugins }).(GetPluginsPluginArrayOutput)
+}
+
+func (o GetPluginsResultOutput) Sleep() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetPluginsResult) *int { return v.Sleep }).(pulumi.IntPtrOutput)
+}
+
+func (o GetPluginsResultOutput) Timeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetPluginsResult) *int { return v.Timeout }).(pulumi.IntPtrOutput)
 }
 
 func init() {

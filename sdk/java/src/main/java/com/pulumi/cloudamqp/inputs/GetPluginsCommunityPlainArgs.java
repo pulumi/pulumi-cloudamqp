@@ -7,6 +7,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetPluginsCommunityPlainArgs extends com.pulumi.resources.InvokeArgs {
@@ -28,10 +30,26 @@ public final class GetPluginsCommunityPlainArgs extends com.pulumi.resources.Inv
         return this.instanceId;
     }
 
+    @Import(name="sleep")
+    private @Nullable Integer sleep;
+
+    public Optional<Integer> sleep() {
+        return Optional.ofNullable(this.sleep);
+    }
+
+    @Import(name="timeout")
+    private @Nullable Integer timeout;
+
+    public Optional<Integer> timeout() {
+        return Optional.ofNullable(this.timeout);
+    }
+
     private GetPluginsCommunityPlainArgs() {}
 
     private GetPluginsCommunityPlainArgs(GetPluginsCommunityPlainArgs $) {
         this.instanceId = $.instanceId;
+        this.sleep = $.sleep;
+        this.timeout = $.timeout;
     }
 
     public static Builder builder() {
@@ -60,6 +78,16 @@ public final class GetPluginsCommunityPlainArgs extends com.pulumi.resources.Inv
          */
         public Builder instanceId(Integer instanceId) {
             $.instanceId = instanceId;
+            return this;
+        }
+
+        public Builder sleep(@Nullable Integer sleep) {
+            $.sleep = sleep;
+            return this;
+        }
+
+        public Builder timeout(@Nullable Integer timeout) {
+            $.timeout = timeout;
             return this;
         }
 

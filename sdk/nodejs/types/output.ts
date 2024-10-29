@@ -85,28 +85,12 @@ export interface GetPluginsCommunityPlugin {
     description: string;
     name: string;
     require: string;
-    /**
-     * Configurable sleep time in seconds between retries for plugins
-     */
-    sleep?: number;
-    /**
-     * Configurable timeout time in seconds for plugins
-     */
-    timeout?: number;
 }
 
 export interface GetPluginsPlugin {
     description: string;
     enabled: boolean;
     name: string;
-    /**
-     * Configurable sleep time in seconds between retries for plugins
-     */
-    sleep?: number;
-    /**
-     * Configurable timeout time in seconds for plugins
-     */
-    timeout?: number;
     version: string;
 }
 

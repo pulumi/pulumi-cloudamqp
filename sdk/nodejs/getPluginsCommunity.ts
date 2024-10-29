@@ -47,6 +47,8 @@ export function getPluginsCommunity(args: GetPluginsCommunityArgs, opts?: pulumi
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("cloudamqp:index/getPluginsCommunity:getPluginsCommunity", {
         "instanceId": args.instanceId,
+        "sleep": args.sleep,
+        "timeout": args.timeout,
     }, opts);
 }
 
@@ -58,6 +60,8 @@ export interface GetPluginsCommunityArgs {
      * The CloudAMQP instance identifier.
      */
     instanceId: number;
+    sleep?: number;
+    timeout?: number;
 }
 
 /**
@@ -70,6 +74,8 @@ export interface GetPluginsCommunityResult {
     readonly id: string;
     readonly instanceId: number;
     readonly plugins: outputs.GetPluginsCommunityPlugin[];
+    readonly sleep?: number;
+    readonly timeout?: number;
 }
 /**
  * Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
@@ -112,6 +118,8 @@ export function getPluginsCommunityOutput(args: GetPluginsCommunityOutputArgs, o
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("cloudamqp:index/getPluginsCommunity:getPluginsCommunity", {
         "instanceId": args.instanceId,
+        "sleep": args.sleep,
+        "timeout": args.timeout,
     }, opts);
 }
 
@@ -123,4 +131,6 @@ export interface GetPluginsCommunityOutputArgs {
      * The CloudAMQP instance identifier.
      */
     instanceId: pulumi.Input<number>;
+    sleep?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number>;
 }

@@ -27,7 +27,7 @@ class GetPluginsResult:
     """
     A collection of values returned by getPlugins.
     """
-    def __init__(__self__, id=None, instance_id=None, plugins=None):
+    def __init__(__self__, id=None, instance_id=None, plugins=None, sleep=None, timeout=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -37,6 +37,12 @@ class GetPluginsResult:
         if plugins and not isinstance(plugins, list):
             raise TypeError("Expected argument 'plugins' to be a list")
         pulumi.set(__self__, "plugins", plugins)
+        if sleep and not isinstance(sleep, int):
+            raise TypeError("Expected argument 'sleep' to be a int")
+        pulumi.set(__self__, "sleep", sleep)
+        if timeout and not isinstance(timeout, int):
+            raise TypeError("Expected argument 'timeout' to be a int")
+        pulumi.set(__self__, "timeout", timeout)
 
     @property
     @pulumi.getter
@@ -56,6 +62,16 @@ class GetPluginsResult:
     def plugins(self) -> Sequence['outputs.GetPluginsPluginResult']:
         return pulumi.get(self, "plugins")
 
+    @property
+    @pulumi.getter
+    def sleep(self) -> Optional[int]:
+        return pulumi.get(self, "sleep")
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> Optional[int]:
+        return pulumi.get(self, "timeout")
+
 
 class AwaitableGetPluginsResult(GetPluginsResult):
     # pylint: disable=using-constant-test
@@ -65,10 +81,14 @@ class AwaitableGetPluginsResult(GetPluginsResult):
         return GetPluginsResult(
             id=self.id,
             instance_id=self.instance_id,
-            plugins=self.plugins)
+            plugins=self.plugins,
+            sleep=self.sleep,
+            timeout=self.timeout)
 
 
 def get_plugins(instance_id: Optional[int] = None,
+                sleep: Optional[int] = None,
+                timeout: Optional[int] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPluginsResult:
     """
     Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
@@ -111,14 +131,20 @@ def get_plugins(instance_id: Optional[int] = None,
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
+    __args__['sleep'] = sleep
+    __args__['timeout'] = timeout
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('cloudamqp:index/getPlugins:getPlugins', __args__, opts=opts, typ=GetPluginsResult).value
 
     return AwaitableGetPluginsResult(
         id=pulumi.get(__ret__, 'id'),
         instance_id=pulumi.get(__ret__, 'instance_id'),
-        plugins=pulumi.get(__ret__, 'plugins'))
+        plugins=pulumi.get(__ret__, 'plugins'),
+        sleep=pulumi.get(__ret__, 'sleep'),
+        timeout=pulumi.get(__ret__, 'timeout'))
 def get_plugins_output(instance_id: Optional[pulumi.Input[int]] = None,
+                       sleep: Optional[pulumi.Input[Optional[int]]] = None,
+                       timeout: Optional[pulumi.Input[Optional[int]]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPluginsResult]:
     """
     Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
@@ -161,9 +187,13 @@ def get_plugins_output(instance_id: Optional[pulumi.Input[int]] = None,
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
+    __args__['sleep'] = sleep
+    __args__['timeout'] = timeout
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('cloudamqp:index/getPlugins:getPlugins', __args__, opts=opts, typ=GetPluginsResult)
     return __ret__.apply(lambda __response__: GetPluginsResult(
         id=pulumi.get(__response__, 'id'),
         instance_id=pulumi.get(__response__, 'instance_id'),
-        plugins=pulumi.get(__response__, 'plugins')))
+        plugins=pulumi.get(__response__, 'plugins'),
+        sleep=pulumi.get(__response__, 'sleep'),
+        timeout=pulumi.get(__response__, 'timeout')))

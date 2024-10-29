@@ -10,6 +10,8 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetPluginsResult {
@@ -20,6 +22,8 @@ public final class GetPluginsResult {
     private String id;
     private Integer instanceId;
     private List<GetPluginsPlugin> plugins;
+    private @Nullable Integer sleep;
+    private @Nullable Integer timeout;
 
     private GetPluginsResult() {}
     /**
@@ -35,6 +39,12 @@ public final class GetPluginsResult {
     public List<GetPluginsPlugin> plugins() {
         return this.plugins;
     }
+    public Optional<Integer> sleep() {
+        return Optional.ofNullable(this.sleep);
+    }
+    public Optional<Integer> timeout() {
+        return Optional.ofNullable(this.timeout);
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -48,12 +58,16 @@ public final class GetPluginsResult {
         private String id;
         private Integer instanceId;
         private List<GetPluginsPlugin> plugins;
+        private @Nullable Integer sleep;
+        private @Nullable Integer timeout;
         public Builder() {}
         public Builder(GetPluginsResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.id = defaults.id;
     	      this.instanceId = defaults.instanceId;
     	      this.plugins = defaults.plugins;
+    	      this.sleep = defaults.sleep;
+    	      this.timeout = defaults.timeout;
         }
 
         @CustomType.Setter
@@ -83,11 +97,25 @@ public final class GetPluginsResult {
         public Builder plugins(GetPluginsPlugin... plugins) {
             return plugins(List.of(plugins));
         }
+        @CustomType.Setter
+        public Builder sleep(@Nullable Integer sleep) {
+
+            this.sleep = sleep;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder timeout(@Nullable Integer timeout) {
+
+            this.timeout = timeout;
+            return this;
+        }
         public GetPluginsResult build() {
             final var _resultValue = new GetPluginsResult();
             _resultValue.id = id;
             _resultValue.instanceId = instanceId;
             _resultValue.plugins = plugins;
+            _resultValue.sleep = sleep;
+            _resultValue.timeout = timeout;
             return _resultValue;
         }
     }

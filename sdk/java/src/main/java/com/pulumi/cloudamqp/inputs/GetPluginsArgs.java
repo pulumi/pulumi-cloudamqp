@@ -8,6 +8,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetPluginsArgs extends com.pulumi.resources.InvokeArgs {
@@ -29,10 +31,26 @@ public final class GetPluginsArgs extends com.pulumi.resources.InvokeArgs {
         return this.instanceId;
     }
 
+    @Import(name="sleep")
+    private @Nullable Output<Integer> sleep;
+
+    public Optional<Output<Integer>> sleep() {
+        return Optional.ofNullable(this.sleep);
+    }
+
+    @Import(name="timeout")
+    private @Nullable Output<Integer> timeout;
+
+    public Optional<Output<Integer>> timeout() {
+        return Optional.ofNullable(this.timeout);
+    }
+
     private GetPluginsArgs() {}
 
     private GetPluginsArgs(GetPluginsArgs $) {
         this.instanceId = $.instanceId;
+        this.sleep = $.sleep;
+        this.timeout = $.timeout;
     }
 
     public static Builder builder() {
@@ -72,6 +90,24 @@ public final class GetPluginsArgs extends com.pulumi.resources.InvokeArgs {
          */
         public Builder instanceId(Integer instanceId) {
             return instanceId(Output.of(instanceId));
+        }
+
+        public Builder sleep(@Nullable Output<Integer> sleep) {
+            $.sleep = sleep;
+            return this;
+        }
+
+        public Builder sleep(Integer sleep) {
+            return sleep(Output.of(sleep));
+        }
+
+        public Builder timeout(@Nullable Output<Integer> timeout) {
+            $.timeout = timeout;
+            return this;
+        }
+
+        public Builder timeout(Integer timeout) {
+            return timeout(Output.of(timeout));
         }
 
         public GetPluginsArgs build() {

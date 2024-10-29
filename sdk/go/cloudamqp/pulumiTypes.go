@@ -993,10 +993,6 @@ type GetPluginsCommunityPlugin struct {
 	Description string `pulumi:"description"`
 	Name        string `pulumi:"name"`
 	Require     string `pulumi:"require"`
-	// Configurable sleep time in seconds between retries for plugins
-	Sleep *int `pulumi:"sleep"`
-	// Configurable timeout time in seconds for plugins
-	Timeout *int `pulumi:"timeout"`
 }
 
 // GetPluginsCommunityPluginInput is an input type that accepts GetPluginsCommunityPluginArgs and GetPluginsCommunityPluginOutput values.
@@ -1014,10 +1010,6 @@ type GetPluginsCommunityPluginArgs struct {
 	Description pulumi.StringInput `pulumi:"description"`
 	Name        pulumi.StringInput `pulumi:"name"`
 	Require     pulumi.StringInput `pulumi:"require"`
-	// Configurable sleep time in seconds between retries for plugins
-	Sleep pulumi.IntPtrInput `pulumi:"sleep"`
-	// Configurable timeout time in seconds for plugins
-	Timeout pulumi.IntPtrInput `pulumi:"timeout"`
 }
 
 func (GetPluginsCommunityPluginArgs) ElementType() reflect.Type {
@@ -1083,16 +1075,6 @@ func (o GetPluginsCommunityPluginOutput) Require() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPluginsCommunityPlugin) string { return v.Require }).(pulumi.StringOutput)
 }
 
-// Configurable sleep time in seconds between retries for plugins
-func (o GetPluginsCommunityPluginOutput) Sleep() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v GetPluginsCommunityPlugin) *int { return v.Sleep }).(pulumi.IntPtrOutput)
-}
-
-// Configurable timeout time in seconds for plugins
-func (o GetPluginsCommunityPluginOutput) Timeout() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v GetPluginsCommunityPlugin) *int { return v.Timeout }).(pulumi.IntPtrOutput)
-}
-
 type GetPluginsCommunityPluginArrayOutput struct{ *pulumi.OutputState }
 
 func (GetPluginsCommunityPluginArrayOutput) ElementType() reflect.Type {
@@ -1117,11 +1099,7 @@ type GetPluginsPlugin struct {
 	Description string `pulumi:"description"`
 	Enabled     bool   `pulumi:"enabled"`
 	Name        string `pulumi:"name"`
-	// Configurable sleep time in seconds between retries for plugins
-	Sleep *int `pulumi:"sleep"`
-	// Configurable timeout time in seconds for plugins
-	Timeout *int   `pulumi:"timeout"`
-	Version string `pulumi:"version"`
+	Version     string `pulumi:"version"`
 }
 
 // GetPluginsPluginInput is an input type that accepts GetPluginsPluginArgs and GetPluginsPluginOutput values.
@@ -1139,11 +1117,7 @@ type GetPluginsPluginArgs struct {
 	Description pulumi.StringInput `pulumi:"description"`
 	Enabled     pulumi.BoolInput   `pulumi:"enabled"`
 	Name        pulumi.StringInput `pulumi:"name"`
-	// Configurable sleep time in seconds between retries for plugins
-	Sleep pulumi.IntPtrInput `pulumi:"sleep"`
-	// Configurable timeout time in seconds for plugins
-	Timeout pulumi.IntPtrInput `pulumi:"timeout"`
-	Version pulumi.StringInput `pulumi:"version"`
+	Version     pulumi.StringInput `pulumi:"version"`
 }
 
 func (GetPluginsPluginArgs) ElementType() reflect.Type {
@@ -1207,16 +1181,6 @@ func (o GetPluginsPluginOutput) Enabled() pulumi.BoolOutput {
 
 func (o GetPluginsPluginOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPluginsPlugin) string { return v.Name }).(pulumi.StringOutput)
-}
-
-// Configurable sleep time in seconds between retries for plugins
-func (o GetPluginsPluginOutput) Sleep() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v GetPluginsPlugin) *int { return v.Sleep }).(pulumi.IntPtrOutput)
-}
-
-// Configurable timeout time in seconds for plugins
-func (o GetPluginsPluginOutput) Timeout() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v GetPluginsPlugin) *int { return v.Timeout }).(pulumi.IntPtrOutput)
 }
 
 func (o GetPluginsPluginOutput) Version() pulumi.StringOutput {
