@@ -6,7 +6,7 @@ layout: package
 ---
 ## Installation
 
-The cloudamqp provider is available as a package in all Pulumi languages:
+The Cloudamqp provider is available as a package in all Pulumi languages:
 
 * JavaScript/TypeScript: [`@pulumi/cloudamqp`](https://www.npmjs.com/package/@pulumi/cloudamqp)
 * Python: [`pulumi-cloudamqp`](https://pypi.org/project/pulumi-cloudamqp/)
