@@ -105,7 +105,7 @@ def get_account_vpcs(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGe
     return AwaitableGetAccountVpcsResult(
         id=pulumi.get(__ret__, 'id'),
         vpcs=pulumi.get(__ret__, 'vpcs'))
-def get_account_vpcs_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccountVpcsResult]:
+def get_account_vpcs_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAccountVpcsResult]:
     """
     Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
 
@@ -145,7 +145,7 @@ def get_account_vpcs_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulu
     This data source depends on apikey set in the provider configuration.
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('cloudamqp:index/getAccountVpcs:getAccountVpcs', __args__, opts=opts, typ=GetAccountVpcsResult)
     return __ret__.apply(lambda __response__: GetAccountVpcsResult(
         id=pulumi.get(__response__, 'id'),

@@ -245,7 +245,7 @@ def get_instance(instance_id: Optional[int] = None,
         vpc_id=pulumi.get(__ret__, 'vpc_id'),
         vpc_subnet=pulumi.get(__ret__, 'vpc_subnet'))
 def get_instance_output(instance_id: Optional[pulumi.Input[int]] = None,
-                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceResult]:
+                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetInstanceResult]:
     """
     Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.
 
@@ -254,7 +254,7 @@ def get_instance_output(instance_id: Optional[pulumi.Input[int]] = None,
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('cloudamqp:index/getInstance:getInstance', __args__, opts=opts, typ=GetInstanceResult)
     return __ret__.apply(lambda __response__: GetInstanceResult(
         apikey=pulumi.get(__response__, 'apikey'),

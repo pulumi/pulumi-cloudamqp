@@ -202,7 +202,7 @@ def get_vpc_gcp_info_output(instance_id: Optional[pulumi.Input[Optional[int]]] =
                             sleep: Optional[pulumi.Input[Optional[int]]] = None,
                             timeout: Optional[pulumi.Input[Optional[int]]] = None,
                             vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
-                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcGcpInfoResult]:
+                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVpcGcpInfoResult]:
     """
     Use this data source to retrieve information about VPC for a CloudAMQP instance hosted in GCP.
 
@@ -272,7 +272,7 @@ def get_vpc_gcp_info_output(instance_id: Optional[pulumi.Input[Optional[int]]] =
     __args__['sleep'] = sleep
     __args__['timeout'] = timeout
     __args__['vpcId'] = vpc_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo', __args__, opts=opts, typ=GetVpcGcpInfoResult)
     return __ret__.apply(lambda __response__: GetVpcGcpInfoResult(
         id=pulumi.get(__response__, 'id'),
