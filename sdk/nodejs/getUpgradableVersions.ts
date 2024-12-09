@@ -83,7 +83,7 @@ export interface GetUpgradableVersionsResult {
  *
  * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
  */
-export function getUpgradableVersionsOutput(args: GetUpgradableVersionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetUpgradableVersionsResult> {
+export function getUpgradableVersionsOutput(args: GetUpgradableVersionsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetUpgradableVersionsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("cloudamqp:index/getUpgradableVersions:getUpgradableVersions", {
         "instanceId": args.instanceId,

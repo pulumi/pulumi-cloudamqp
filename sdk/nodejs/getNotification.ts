@@ -104,7 +104,7 @@ export interface GetNotificationResult {
  *
  * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
  */
-export function getNotificationOutput(args: GetNotificationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNotificationResult> {
+export function getNotificationOutput(args: GetNotificationOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNotificationResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("cloudamqp:index/getNotification:getNotification", {
         "instanceId": args.instanceId,

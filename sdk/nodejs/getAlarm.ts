@@ -136,7 +136,7 @@ export interface GetAlarmResult {
  *
  * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
  */
-export function getAlarmOutput(args: GetAlarmOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAlarmResult> {
+export function getAlarmOutput(args: GetAlarmOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAlarmResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("cloudamqp:index/getAlarm:getAlarm", {
         "alarmId": args.alarmId,

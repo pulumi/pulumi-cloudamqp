@@ -185,7 +185,7 @@ def get_vpc_info(instance_id: Optional[int] = None,
         vpc_subnet=pulumi.get(__ret__, 'vpc_subnet'))
 def get_vpc_info_output(instance_id: Optional[pulumi.Input[Optional[int]]] = None,
                         vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
-                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcInfoResult]:
+                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVpcInfoResult]:
     """
     Use this data source to retrieve information about VPC for a CloudAMQP instance.
 
@@ -252,7 +252,7 @@ def get_vpc_info_output(instance_id: Optional[pulumi.Input[Optional[int]]] = Non
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['vpcId'] = vpc_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('cloudamqp:index/getVpcInfo:getVpcInfo', __args__, opts=opts, typ=GetVpcInfoResult)
     return __ret__.apply(lambda __response__: GetVpcInfoResult(
         id=pulumi.get(__response__, 'id'),
