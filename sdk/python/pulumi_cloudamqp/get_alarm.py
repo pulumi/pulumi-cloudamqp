@@ -232,7 +232,7 @@ def get_alarm_output(alarm_id: Optional[pulumi.Input[Optional[int]]] = None,
                      instance_id: Optional[pulumi.Input[int]] = None,
                      type: Optional[pulumi.Input[Optional[str]]] = None,
                      value_calculation: Optional[pulumi.Input[Optional[str]]] = None,
-                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAlarmResult]:
+                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAlarmResult]:
     """
     Use this data source to retrieve information about default or created alarms. Either use `alarm_id` or `type` to retrieve the alarm.
 
@@ -282,7 +282,7 @@ def get_alarm_output(alarm_id: Optional[pulumi.Input[Optional[int]]] = None,
     __args__['instanceId'] = instance_id
     __args__['type'] = type
     __args__['valueCalculation'] = value_calculation
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('cloudamqp:index/getAlarm:getAlarm', __args__, opts=opts, typ=GetAlarmResult)
     return __ret__.apply(lambda __response__: GetAlarmResult(
         alarm_id=pulumi.get(__response__, 'alarm_id'),

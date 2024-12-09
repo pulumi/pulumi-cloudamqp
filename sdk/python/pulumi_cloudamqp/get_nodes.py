@@ -124,7 +124,7 @@ def get_nodes(instance_id: Optional[int] = None,
         instance_id=pulumi.get(__ret__, 'instance_id'),
         nodes=pulumi.get(__ret__, 'nodes'))
 def get_nodes_output(instance_id: Optional[pulumi.Input[int]] = None,
-                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNodesResult]:
+                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNodesResult]:
     """
     Use this data source to retrieve information about the node(s) created by CloudAMQP instance.
 
@@ -171,7 +171,7 @@ def get_nodes_output(instance_id: Optional[pulumi.Input[int]] = None,
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('cloudamqp:index/getNodes:getNodes', __args__, opts=opts, typ=GetNodesResult)
     return __ret__.apply(lambda __response__: GetNodesResult(
         id=pulumi.get(__response__, 'id'),

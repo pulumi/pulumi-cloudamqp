@@ -114,7 +114,7 @@ export interface GetPluginsCommunityResult {
  *
  * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
  */
-export function getPluginsCommunityOutput(args: GetPluginsCommunityOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPluginsCommunityResult> {
+export function getPluginsCommunityOutput(args: GetPluginsCommunityOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPluginsCommunityResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("cloudamqp:index/getPluginsCommunity:getPluginsCommunity", {
         "instanceId": args.instanceId,
