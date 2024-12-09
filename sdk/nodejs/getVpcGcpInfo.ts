@@ -173,7 +173,7 @@ export interface GetVpcGcpInfoResult {
  * *Post v1.16.0*
  * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
  */
-export function getVpcGcpInfoOutput(args?: GetVpcGcpInfoOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcGcpInfoResult> {
+export function getVpcGcpInfoOutput(args?: GetVpcGcpInfoOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetVpcGcpInfoResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo", {

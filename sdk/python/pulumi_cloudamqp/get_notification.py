@@ -159,7 +159,7 @@ def get_notification_output(instance_id: Optional[pulumi.Input[int]] = None,
                             name: Optional[pulumi.Input[Optional[str]]] = None,
                             options: Optional[pulumi.Input[Optional[Mapping[str, str]]]] = None,
                             recipient_id: Optional[pulumi.Input[Optional[int]]] = None,
-                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNotificationResult]:
+                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNotificationResult]:
     """
     Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipient_id` or `name`.
 
@@ -196,7 +196,7 @@ def get_notification_output(instance_id: Optional[pulumi.Input[int]] = None,
     __args__['name'] = name
     __args__['options'] = options
     __args__['recipientId'] = recipient_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('cloudamqp:index/getNotification:getNotification', __args__, opts=opts, typ=GetNotificationResult)
     return __ret__.apply(lambda __response__: GetNotificationResult(
         id=pulumi.get(__response__, 'id'),

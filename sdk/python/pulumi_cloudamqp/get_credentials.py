@@ -116,7 +116,7 @@ def get_credentials(instance_id: Optional[int] = None,
         password=pulumi.get(__ret__, 'password'),
         username=pulumi.get(__ret__, 'username'))
 def get_credentials_output(instance_id: Optional[pulumi.Input[int]] = None,
-                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCredentialsResult]:
+                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCredentialsResult]:
     """
     Use this data source to retrieve information about the credentials of the configured user in Rabbit MQ. Information is extracted from `cloudamqp_instance.instance.url`.
 
@@ -146,7 +146,7 @@ def get_credentials_output(instance_id: Optional[pulumi.Input[int]] = None,
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('cloudamqp:index/getCredentials:getCredentials', __args__, opts=opts, typ=GetCredentialsResult)
     return __ret__.apply(lambda __response__: GetCredentialsResult(
         id=pulumi.get(__response__, 'id'),
