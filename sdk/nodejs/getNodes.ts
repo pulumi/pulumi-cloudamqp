@@ -120,7 +120,7 @@ export interface GetNodesResult {
  *
  * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
  */
-export function getNodesOutput(args: GetNodesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNodesResult> {
+export function getNodesOutput(args: GetNodesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNodesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("cloudamqp:index/getNodes:getNodes", {
         "instanceId": args.instanceId,
