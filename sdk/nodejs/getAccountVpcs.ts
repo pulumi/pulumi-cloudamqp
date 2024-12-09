@@ -98,7 +98,7 @@ export interface GetAccountVpcsResult {
  *
  * This data source depends on apikey set in the provider configuration.
  */
-export function getAccountVpcsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetAccountVpcsResult> {
+export function getAccountVpcsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAccountVpcsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("cloudamqp:index/getAccountVpcs:getAccountVpcs", {
     }, opts);

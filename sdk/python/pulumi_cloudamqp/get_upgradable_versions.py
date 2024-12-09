@@ -115,7 +115,7 @@ def get_upgradable_versions(instance_id: Optional[int] = None,
         new_erlang_version=pulumi.get(__ret__, 'new_erlang_version'),
         new_rabbitmq_version=pulumi.get(__ret__, 'new_rabbitmq_version'))
 def get_upgradable_versions_output(instance_id: Optional[pulumi.Input[int]] = None,
-                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetUpgradableVersionsResult]:
+                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUpgradableVersionsResult]:
     """
     Use this data source to retrieve information about possible upgradable versions for RabbitMQ and Erlang.
 
@@ -144,7 +144,7 @@ def get_upgradable_versions_output(instance_id: Optional[pulumi.Input[int]] = No
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('cloudamqp:index/getUpgradableVersions:getUpgradableVersions', __args__, opts=opts, typ=GetUpgradableVersionsResult)
     return __ret__.apply(lambda __response__: GetUpgradableVersionsResult(
         id=pulumi.get(__response__, 'id'),

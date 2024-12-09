@@ -145,7 +145,7 @@ def get_plugins(instance_id: Optional[int] = None,
 def get_plugins_output(instance_id: Optional[pulumi.Input[int]] = None,
                        sleep: Optional[pulumi.Input[Optional[int]]] = None,
                        timeout: Optional[pulumi.Input[Optional[int]]] = None,
-                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPluginsResult]:
+                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPluginsResult]:
     """
     Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
 
@@ -189,7 +189,7 @@ def get_plugins_output(instance_id: Optional[pulumi.Input[int]] = None,
     __args__['instanceId'] = instance_id
     __args__['sleep'] = sleep
     __args__['timeout'] = timeout
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('cloudamqp:index/getPlugins:getPlugins', __args__, opts=opts, typ=GetPluginsResult)
     return __ret__.apply(lambda __response__: GetPluginsResult(
         id=pulumi.get(__response__, 'id'),
