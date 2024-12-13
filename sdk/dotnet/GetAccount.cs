@@ -22,6 +22,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         public static Output<GetAccountResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAccountResult>("cloudamqp:index/getAccount:getAccount", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
+        /// </summary>
+        public static Output<GetAccountResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetAccountResult>("cloudamqp:index/getAccount:getAccount", InvokeArgs.Empty, options.WithDefaults());
     }
 
 
