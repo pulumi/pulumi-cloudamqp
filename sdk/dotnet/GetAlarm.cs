@@ -112,6 +112,57 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         public static Output<GetAlarmResult> Invoke(GetAlarmInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAlarmResult>("cloudamqp:index/getAlarm:getAlarm", args ?? new GetAlarmInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to retrieve information about default or created alarms. Either use `alarm_id` or `type` to retrieve the alarm.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using CloudAmqp = Pulumi.CloudAmqp;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var defaultCpuAlarm = CloudAmqp.GetAlarm.Invoke(new()
+        ///     {
+        ///         InstanceId = instance.Id,
+        ///         Type = "cpu",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Attributes reference
+        /// 
+        /// All attributes reference are computed
+        /// 
+        /// * `id`                  - The identifier for this resource.
+        /// * `enabled`             - Enable/disable status of the alarm.
+        /// * `value_threshold`     - The value threshold that triggers the alarm.
+        /// * `reminder_interval`   - The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders.
+        /// * `time_threshold`      - The time interval (in seconds) the `value_threshold` should be active before trigger an alarm.
+        /// * `queue_regex`         - Regular expression for which queue to check.
+        /// * `vhost_regex`         - Regular expression for which vhost to check
+        /// * `recipients`          - Identifier for recipient to be notified.
+        /// * `message_type`        - Message type `(total, unacked, ready)` used by queue alarm type.
+        /// 
+        /// Specific attribute for `disk` alarm
+        /// 
+        /// * `value_calculation`   - Disk value threshold calculation, `(fixed, percentage)` of disk space remaining.
+        /// 
+        /// ## Dependency
+        /// 
+        /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+        /// 
+        /// ## Alarm types
+        /// 
+        /// `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+        /// </summary>
+        public static Output<GetAlarmResult> Invoke(GetAlarmInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetAlarmResult>("cloudamqp:index/getAlarm:getAlarm", args ?? new GetAlarmInvokeArgs(), options.WithDefaults());
     }
 
 

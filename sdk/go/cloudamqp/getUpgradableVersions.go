@@ -75,21 +75,11 @@ type GetUpgradableVersionsResult struct {
 }
 
 func GetUpgradableVersionsOutput(ctx *pulumi.Context, args GetUpgradableVersionsOutputArgs, opts ...pulumi.InvokeOption) GetUpgradableVersionsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetUpgradableVersionsResultOutput, error) {
 			args := v.(GetUpgradableVersionsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetUpgradableVersionsResult
-			secret, err := ctx.InvokePackageRaw("cloudamqp:index/getUpgradableVersions:getUpgradableVersions", args, &rv, "", opts...)
-			if err != nil {
-				return GetUpgradableVersionsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetUpgradableVersionsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetUpgradableVersionsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("cloudamqp:index/getUpgradableVersions:getUpgradableVersions", args, GetUpgradableVersionsResultOutput{}, options).(GetUpgradableVersionsResultOutput), nil
 		}).(GetUpgradableVersionsResultOutput)
 }
 

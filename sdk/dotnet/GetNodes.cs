@@ -116,6 +116,59 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         public static Output<GetNodesResult> Invoke(GetNodesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNodesResult>("cloudamqp:index/getNodes:getNodes", args ?? new GetNodesInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to retrieve information about the node(s) created by CloudAMQP instance.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using CloudAmqp = Pulumi.CloudAmqp;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var nodes = CloudAmqp.GetNodes.Invoke(new()
+        ///     {
+        ///         InstanceId = instance.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Attributes reference
+        /// 
+        /// All attributes reference are computed
+        /// 
+        /// * `id`    - The identifier for this resource.
+        /// * `nodes` - An array of node information. Each `nodes` block consists of the fields documented below.
+        /// 
+        /// ___
+        /// 
+        /// The `nodes` block consist of
+        /// 
+        /// * `hostname`              - External hostname assigned to the node.
+        /// * `hostname_internal`     - Internal hostname assigned to the node.
+        /// * `name`                  - Name of the node.
+        /// * `running`               - Is the node running?
+        /// * `rabbitmq_version`      - Currently configured Rabbit MQ version on the node.
+        /// * `erlang_version`        - Currently used Erlang version on the node.
+        /// * `hipe`                  - Enable or disable High-performance Erlang.
+        /// * `configured`            - Is the node configured?
+        /// * `disk_size`             - Subscription plan disk size
+        /// * `additional_disk_size`  - Additional added disk size
+        /// * `availability_zone`     - Availability zone the node is hosted in.
+        /// 
+        /// ***Note:*** *Total disk size = disk_size + additional_disk_size*
+        /// 
+        /// ## Dependency
+        /// 
+        /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+        /// </summary>
+        public static Output<GetNodesResult> Invoke(GetNodesInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetNodesResult>("cloudamqp:index/getNodes:getNodes", args ?? new GetNodesInvokeArgs(), options.WithDefaults());
     }
 
 
