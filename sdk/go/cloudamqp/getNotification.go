@@ -86,21 +86,11 @@ type LookupNotificationResult struct {
 }
 
 func LookupNotificationOutput(ctx *pulumi.Context, args LookupNotificationOutputArgs, opts ...pulumi.InvokeOption) LookupNotificationResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupNotificationResultOutput, error) {
 			args := v.(LookupNotificationArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupNotificationResult
-			secret, err := ctx.InvokePackageRaw("cloudamqp:index/getNotification:getNotification", args, &rv, "", opts...)
-			if err != nil {
-				return LookupNotificationResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupNotificationResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupNotificationResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("cloudamqp:index/getNotification:getNotification", args, LookupNotificationResultOutput{}, options).(LookupNotificationResultOutput), nil
 		}).(LookupNotificationResultOutput)
 }
 

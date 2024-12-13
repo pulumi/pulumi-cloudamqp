@@ -104,6 +104,53 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         public static Output<GetPluginsCommunityResult> Invoke(GetPluginsCommunityInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPluginsCommunityResult>("cloudamqp:index/getPluginsCommunity:getPluginsCommunity", args ?? new GetPluginsCommunityInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using CloudAmqp = Pulumi.CloudAmqp;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var communitPlugins = CloudAmqp.GetPluginsCommunity.Invoke(new()
+        ///     {
+        ///         InstanceId = instance.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Attributes reference
+        /// 
+        /// All attributes reference are computed
+        /// 
+        /// * `id`      - The identifier for this resource.
+        /// * `plugins` - An array of community plugins. Each `plugins` block consists of the fields documented below.
+        /// * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
+        /// about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+        /// * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
+        /// information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+        /// 
+        /// ___
+        /// 
+        /// The `plugins` block consists of
+        /// 
+        /// * `name`        - The type of the recipient.
+        /// * `require`     - Min. required Rabbit MQ version to be used.
+        /// * `description` - Description of what the plugin does.
+        /// 
+        /// ## Dependency
+        /// 
+        /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+        /// </summary>
+        public static Output<GetPluginsCommunityResult> Invoke(GetPluginsCommunityInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetPluginsCommunityResult>("cloudamqp:index/getPluginsCommunity:getPluginsCommunity", args ?? new GetPluginsCommunityInvokeArgs(), options.WithDefaults());
     }
 
 

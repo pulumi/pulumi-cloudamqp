@@ -86,6 +86,44 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         public static Output<GetNotificationResult> Invoke(GetNotificationInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNotificationResult>("cloudamqp:index/getNotification:getNotification", args ?? new GetNotificationInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipient_id` or `name`.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using CloudAmqp = Pulumi.CloudAmqp;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var defaultRecipient = CloudAmqp.GetNotification.Invoke(new()
+        ///     {
+        ///         InstanceId = instance.Id,
+        ///         Name = "default",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Attributes reference
+        /// 
+        /// All attributes reference are computed
+        /// 
+        /// * `id`    - The identifier for this resource.
+        /// * `type`  - The type of the recipient.
+        /// * `value` - The notification endpoint, where to send the notification.
+        /// * `options`- Options argument (e.g. `rk` used for VictorOps routing key).
+        /// 
+        /// ## Dependency
+        /// 
+        /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+        /// </summary>
+        public static Output<GetNotificationResult> Invoke(GetNotificationInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetNotificationResult>("cloudamqp:index/getNotification:getNotification", args ?? new GetNotificationInvokeArgs(), options.WithDefaults());
     }
 
 

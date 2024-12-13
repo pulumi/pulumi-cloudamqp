@@ -80,6 +80,41 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         public static Output<GetUpgradableVersionsResult> Invoke(GetUpgradableVersionsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetUpgradableVersionsResult>("cloudamqp:index/getUpgradableVersions:getUpgradableVersions", args ?? new GetUpgradableVersionsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to retrieve information about possible upgradable versions for RabbitMQ and Erlang.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using CloudAmqp = Pulumi.CloudAmqp;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var versions = CloudAmqp.GetUpgradableVersions.Invoke(new()
+        ///     {
+        ///         InstanceId = instance.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Attributes reference
+        /// 
+        /// All attributes reference are computed
+        /// 
+        /// * `new_rabbitmq_version`  - Possible upgradable version for RabbitMQ.
+        /// * `new_erlang_version`    - Possible upgradable version for Erlang.
+        /// 
+        /// ## Dependency
+        /// 
+        /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+        /// </summary>
+        public static Output<GetUpgradableVersionsResult> Invoke(GetUpgradableVersionsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetUpgradableVersionsResult>("cloudamqp:index/getUpgradableVersions:getUpgradableVersions", args ?? new GetUpgradableVersionsInvokeArgs(), options.WithDefaults());
     }
 
 
