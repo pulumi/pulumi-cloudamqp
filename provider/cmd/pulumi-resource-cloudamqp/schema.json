@@ -1,5 +1,6 @@
 {
     "name": "cloudamqp",
+    "displayName": "CloudAMQP",
     "description": "A Pulumi package for creating and managing CloudAMQP resources.",
     "keywords": [
         "pulumi",

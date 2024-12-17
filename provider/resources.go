@@ -43,10 +43,10 @@ func makeResource(res string) tokens.Type { return tfbridge.MakeResource(mainPkg
 func ref[T any](t T) *T { return &t }
 
 func Provider() tfbridge.ProviderInfo {
-	p := shimv2.NewProvider(cloudamqp.Provider("", http.DefaultClient))
 	prov := tfbridge.ProviderInfo{
-		P:                 p,
+		P:                 shimv2.NewProvider(cloudamqp.Provider("", http.DefaultClient)),
 		Name:              "cloudamqp",
+		DisplayName:       "CloudAMQP",
 		GitHubOrg:         "cloudamqp",
 		Description:       "A Pulumi package for creating and managing CloudAMQP resources.",
 		Keywords:          []string{"pulumi", "cloudamqp"},
