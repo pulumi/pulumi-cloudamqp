@@ -12,7 +12,13 @@ namespace Pulumi.CloudAmqp
     /// <summary>
     /// ## Import
     /// 
-    /// Not possible to import this resource.
+    /// ### Peering Identifier
+    /// 
+    /// This can be found as *peering connection id* in your AWS VPC dashboard/Peering connections, for the correct VPC peering.
+    /// 
+    /// Also available as the identifier for *aws_vpc_peering_connection* resource or
+    /// 
+    /// data source.
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/vpcPeering:VpcPeering")]
     public partial class VpcPeering : global::Pulumi.CustomResource

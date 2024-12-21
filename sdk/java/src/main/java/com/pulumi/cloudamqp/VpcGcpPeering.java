@@ -17,7 +17,10 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * This resouce creates a VPC peering configuration for the CloudAMQP instance. The configuration will connect to another VPC network hosted on Google Cloud Platform (GCP). See the [GCP documentation](https://cloud.google.com/vpc/docs/using-vpc-peering) for more information on how to create the VPC peering configuration.
+ * This resouce creates a VPC peering configuration for the CloudAMQP instance. The configuration will
+ * connect to another VPC network hosted on Google Cloud Platform (GCP). See the
+ * [GCP documentation](https://cloud.google.com/vpc/docs/using-vpc-peering) for more information on how
+ * to create the VPC peering configuration.
  * 
  * &gt; **Note:** Creating a VPC peering will automatically add firewall rules for the peered subnet.
  * 
@@ -79,7 +82,7 @@ import javax.annotation.Nullable;
  *         // VPC peering configuration
  *         var vpcPeeringRequest = new VpcGcpPeering("vpcPeeringRequest", VpcGcpPeeringArgs.builder()
  *             .instanceId(instance.id())
- *             .peerNetworkUri("https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>")
+ *             .peerNetworkUri("https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<VPC-NETWORK-NAME>")
  *             .build());
  * 
  *     }
@@ -151,7 +154,7 @@ import javax.annotation.Nullable;
  *         // VPC peering configuration
  *         var vpcPeeringRequest = new VpcGcpPeering("vpcPeeringRequest", VpcGcpPeeringArgs.builder()
  *             .vpcId(vpc.id())
- *             .peerNetworkUri("https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>")
+ *             .peerNetworkUri("https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<VPC-NETWORK-NAME>")
  *             .build());
  * 
  *     }
@@ -169,7 +172,8 @@ import javax.annotation.Nullable;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
  * 
- * Default peering request, no need to set `wait_on_peering_status`. It&#39;s default set to false and will not wait on peering status.
+ * Default peering request, no need to set `wait_on_peering_status`. It&#39;s default set to false and will
+ * not wait on peering status. Create resource will be considered completed, regardless of the status of the state.
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -196,7 +200,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var vpcPeeringRequest = new VpcGcpPeering("vpcPeeringRequest", VpcGcpPeeringArgs.builder()
  *             .vpcId(vpc.id())
- *             .peerNetworkUri("https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>")
+ *             .peerNetworkUri("https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<VPC-NETWORK-NAME>")
  *             .build());
  * 
  *     }
@@ -205,7 +209,8 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * Peering request and waiting for peering status.
+ * Peering request and waiting for peering status of the state to change to ACTIVE before the create resource is consider complete.
+ * This is done once both side have done the peering.
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -233,7 +238,7 @@ import javax.annotation.Nullable;
  *         var vpcPeeringRequest = new VpcGcpPeering("vpcPeeringRequest", VpcGcpPeeringArgs.builder()
  *             .vpcId(vpc.id())
  *             .waitOnPeeringStatus(true)
- *             .peerNetworkUri("https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>")
+ *             .peerNetworkUri("https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<VPC-NETWORK-NAME>")
  *             .build());
  * 
  *     }
@@ -400,20 +405,30 @@ import javax.annotation.Nullable;
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
  * 
  * *From v1.16.0*
- * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
+ * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
+ * identifier, `cloudamqp_instance.instance.id`.
  * 
  * ## Create VPC Peering with additional firewall rules
  * 
- * To create a VPC peering configuration with additional firewall rules, it&#39;s required to chain the cloudamqp.SecurityFirewall
- * resource to avoid parallel conflicting resource calls. This is done by adding dependency from the firewall resource to the VPC peering resource.
+ * To create a VPC peering configuration with additional firewall rules, it&#39;s required to chain the
+ * cloudamqp.SecurityFirewall
+ * resource to avoid parallel conflicting resource calls. This is done by adding dependency from the
+ * firewall resource to the VPC peering resource.
  * 
- * Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for the VPC peering also needs to be added.
+ * Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
+ * the VPC peering also needs to be added.
  * 
  * See example below.
  * 
  * ## Import
  * 
- * Not possible to import this resource.
+ * ### Peering network URI
+ * 
+ * This is required to be able to import the correct peering. Following the same format as the argument reference.
+ * 
+ * hcl
+ * 
+ * https://www.googleapis.com/compute/v1/projects/&lt;PROJECT-NAME&gt;/global/networks/&lt;VPC-NETWORK-NAME&gt;
  * 
  */
 @ResourceType(type="cloudamqp:index/vpcGcpPeering:VpcGcpPeering")
@@ -447,14 +462,14 @@ public class VpcGcpPeering extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.instanceId);
     }
     /**
-     * Network uri of the VPC network to which you will peer with.
+     * Network URI of the VPC network to which you will peer with. See examples above for the format.
      * 
      */
     @Export(name="peerNetworkUri", refs={String.class}, tree="[0]")
     private Output<String> peerNetworkUri;
 
     /**
-     * @return Network uri of the VPC network to which you will peer with.
+     * @return Network URI of the VPC network to which you will peer with. See examples above for the format.
      * 
      */
     public Output<String> peerNetworkUri() {
