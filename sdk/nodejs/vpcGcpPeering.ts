@@ -5,7 +5,10 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * This resouce creates a VPC peering configuration for the CloudAMQP instance. The configuration will connect to another VPC network hosted on Google Cloud Platform (GCP). See the [GCP documentation](https://cloud.google.com/vpc/docs/using-vpc-peering) for more information on how to create the VPC peering configuration.
+ * This resouce creates a VPC peering configuration for the CloudAMQP instance. The configuration will
+ * connect to another VPC network hosted on Google Cloud Platform (GCP). See the
+ * [GCP documentation](https://cloud.google.com/vpc/docs/using-vpc-peering) for more information on how
+ * to create the VPC peering configuration.
  *
  * > **Note:** Creating a VPC peering will automatically add firewall rules for the peered subnet.
  *
@@ -42,7 +45,7 @@ import * as utilities from "./utilities";
  * // VPC peering configuration
  * const vpcPeeringRequest = new cloudamqp.VpcGcpPeering("vpc_peering_request", {
  *     instanceId: instance.id,
- *     peerNetworkUri: "https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>",
+ *     peerNetworkUri: "https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<VPC-NETWORK-NAME>",
  * });
  * ```
  *
@@ -81,7 +84,7 @@ import * as utilities from "./utilities";
  * // VPC peering configuration
  * const vpcPeeringRequest = new cloudamqp.VpcGcpPeering("vpc_peering_request", {
  *     vpcId: vpc.id,
- *     peerNetworkUri: "https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>",
+ *     peerNetworkUri: "https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<VPC-NETWORK-NAME>",
  * });
  * ```
  *
@@ -94,7 +97,8 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
- * Default peering request, no need to set `waitOnPeeringStatus`. It's default set to false and will not wait on peering status.
+ * Default peering request, no need to set `waitOnPeeringStatus`. It's default set to false and will
+ * not wait on peering status. Create resource will be considered completed, regardless of the status of the state.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -102,11 +106,12 @@ import * as utilities from "./utilities";
  *
  * const vpcPeeringRequest = new cloudamqp.VpcGcpPeering("vpc_peering_request", {
  *     vpcId: vpc.id,
- *     peerNetworkUri: "https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>",
+ *     peerNetworkUri: "https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<VPC-NETWORK-NAME>",
  * });
  * ```
  *
- * Peering request and waiting for peering status.
+ * Peering request and waiting for peering status of the state to change to ACTIVE before the create resource is consider complete.
+ * This is done once both side have done the peering.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -115,7 +120,7 @@ import * as utilities from "./utilities";
  * const vpcPeeringRequest = new cloudamqp.VpcGcpPeering("vpc_peering_request", {
  *     vpcId: vpc.id,
  *     waitOnPeeringStatus: true,
- *     peerNetworkUri: "https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<NETWORK-NAME>",
+ *     peerNetworkUri: "https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<VPC-NETWORK-NAME>",
  * });
  * ```
  *
@@ -225,20 +230,30 @@ import * as utilities from "./utilities";
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
  *
  * *From v1.16.0*
- * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
+ * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
+ * identifier, `cloudamqp_instance.instance.id`.
  *
  * ## Create VPC Peering with additional firewall rules
  *
- * To create a VPC peering configuration with additional firewall rules, it's required to chain the cloudamqp.SecurityFirewall
- * resource to avoid parallel conflicting resource calls. This is done by adding dependency from the firewall resource to the VPC peering resource.
+ * To create a VPC peering configuration with additional firewall rules, it's required to chain the
+ * cloudamqp.SecurityFirewall
+ * resource to avoid parallel conflicting resource calls. This is done by adding dependency from the
+ * firewall resource to the VPC peering resource.
  *
- * Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for the VPC peering also needs to be added.
+ * Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
+ * the VPC peering also needs to be added.
  *
  * See example below.
  *
  * ## Import
  *
- * Not possible to import this resource.
+ * ### Peering network URI
+ *
+ * This is required to be able to import the correct peering. Following the same format as the argument reference.
+ *
+ * hcl
+ *
+ * https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<VPC-NETWORK-NAME>
  */
 export class VpcGcpPeering extends pulumi.CustomResource {
     /**
@@ -277,7 +292,7 @@ export class VpcGcpPeering extends pulumi.CustomResource {
      */
     public readonly instanceId!: pulumi.Output<number | undefined>;
     /**
-     * Network uri of the VPC network to which you will peer with.
+     * Network URI of the VPC network to which you will peer with. See examples above for the format.
      */
     public readonly peerNetworkUri!: pulumi.Output<string>;
     /**
@@ -363,7 +378,7 @@ export interface VpcGcpPeeringState {
      */
     instanceId?: pulumi.Input<number>;
     /**
-     * Network uri of the VPC network to which you will peer with.
+     * Network URI of the VPC network to which you will peer with. See examples above for the format.
      */
     peerNetworkUri?: pulumi.Input<string>;
     /**
@@ -404,7 +419,7 @@ export interface VpcGcpPeeringArgs {
      */
     instanceId?: pulumi.Input<number>;
     /**
-     * Network uri of the VPC network to which you will peer with.
+     * Network URI of the VPC network to which you will peer with. See examples above for the format.
      */
     peerNetworkUri: pulumi.Input<string>;
     /**

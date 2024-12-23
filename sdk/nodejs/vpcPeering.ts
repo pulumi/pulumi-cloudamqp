@@ -7,7 +7,13 @@ import * as utilities from "./utilities";
 /**
  * ## Import
  *
- * Not possible to import this resource.
+ * ### Peering Identifier
+ *
+ * This can be found as *peering connection id* in your AWS VPC dashboard/Peering connections, for the correct VPC peering.
+ *
+ * Also available as the identifier for *aws_vpc_peering_connection* resource or
+ *
+ * data source.
  */
 export class VpcPeering extends pulumi.CustomResource {
     /**

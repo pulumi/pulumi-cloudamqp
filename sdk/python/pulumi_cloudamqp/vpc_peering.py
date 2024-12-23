@@ -237,7 +237,13 @@ class VpcPeering(pulumi.CustomResource):
         """
         ## Import
 
-        Not possible to import this resource.
+        ### Peering Identifier
+
+        This can be found as *peering connection id* in your AWS VPC dashboard/Peering connections, for the correct VPC peering.
+
+        Also available as the identifier for *aws_vpc_peering_connection* resource or
+
+        data source.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -260,7 +266,13 @@ class VpcPeering(pulumi.CustomResource):
         """
         ## Import
 
-        Not possible to import this resource.
+        ### Peering Identifier
+
+        This can be found as *peering connection id* in your AWS VPC dashboard/Peering connections, for the correct VPC peering.
+
+        Also available as the identifier for *aws_vpc_peering_connection* resource or
+
+        data source.
 
         :param str resource_name: The name of the resource.
         :param VpcPeeringArgs args: The arguments to use to populate this resource's properties.

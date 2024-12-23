@@ -48,14 +48,14 @@ public final class VpcGcpPeeringState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Network uri of the VPC network to which you will peer with.
+     * Network URI of the VPC network to which you will peer with. See examples above for the format.
      * 
      */
     @Import(name="peerNetworkUri")
     private @Nullable Output<String> peerNetworkUri;
 
     /**
-     * @return Network uri of the VPC network to which you will peer with.
+     * @return Network URI of the VPC network to which you will peer with. See examples above for the format.
      * 
      */
     public Optional<Output<String>> peerNetworkUri() {
@@ -233,7 +233,7 @@ public final class VpcGcpPeeringState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param peerNetworkUri Network uri of the VPC network to which you will peer with.
+         * @param peerNetworkUri Network URI of the VPC network to which you will peer with. See examples above for the format.
          * 
          * @return builder
          * 
@@ -244,7 +244,7 @@ public final class VpcGcpPeeringState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param peerNetworkUri Network uri of the VPC network to which you will peer with.
+         * @param peerNetworkUri Network URI of the VPC network to which you will peer with. See examples above for the format.
          * 
          * @return builder
          * 
