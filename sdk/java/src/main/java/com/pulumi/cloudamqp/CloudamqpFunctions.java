@@ -2552,7 +2552,9 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getUpgradableVersions:getUpgradableVersions", TypeShape.of(GetUpgradableVersionsResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about VPC for a CloudAMQP instance hosted in GCP.
+     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
+     * 
+     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
      * 
      * ## Example Usage
      * 
@@ -2662,7 +2664,9 @@ public final class CloudamqpFunctions {
         return getVpcGcpInfo(GetVpcGcpInfoArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve information about VPC for a CloudAMQP instance hosted in GCP.
+     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
+     * 
+     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
      * 
      * ## Example Usage
      * 
@@ -2772,7 +2776,9 @@ public final class CloudamqpFunctions {
         return getVpcGcpInfoPlain(GetVpcGcpInfoPlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve information about VPC for a CloudAMQP instance hosted in GCP.
+     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
+     * 
+     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
      * 
      * ## Example Usage
      * 
@@ -2882,7 +2888,9 @@ public final class CloudamqpFunctions {
         return getVpcGcpInfo(args, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve information about VPC for a CloudAMQP instance hosted in GCP.
+     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
+     * 
+     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
      * 
      * ## Example Usage
      * 
@@ -2992,7 +3000,9 @@ public final class CloudamqpFunctions {
         return getVpcGcpInfoPlain(args, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve information about VPC for a CloudAMQP instance hosted in GCP.
+     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
+     * 
+     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
      * 
      * ## Example Usage
      * 
@@ -3102,7 +3112,9 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo", TypeShape.of(GetVpcGcpInfoResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about VPC for a CloudAMQP instance hosted in GCP.
+     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
+     * 
+     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
      * 
      * ## Example Usage
      * 
@@ -3212,7 +3224,9 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo", TypeShape.of(GetVpcGcpInfoResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about VPC for a CloudAMQP instance hosted in GCP.
+     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
+     * 
+     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
      * 
      * ## Example Usage
      * 
@@ -3324,7 +3338,7 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve information about VPC for a CloudAMQP instance.
      * 
-     * Only available for CloudAMQP instances hosted in AWS.
+     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
      * 
      * ## Example Usage
      * 
@@ -3435,7 +3449,7 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve information about VPC for a CloudAMQP instance.
      * 
-     * Only available for CloudAMQP instances hosted in AWS.
+     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
      * 
      * ## Example Usage
      * 
@@ -3546,7 +3560,7 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve information about VPC for a CloudAMQP instance.
      * 
-     * Only available for CloudAMQP instances hosted in AWS.
+     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
      * 
      * ## Example Usage
      * 
@@ -3657,7 +3671,7 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve information about VPC for a CloudAMQP instance.
      * 
-     * Only available for CloudAMQP instances hosted in AWS.
+     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
      * 
      * ## Example Usage
      * 
@@ -3768,7 +3782,7 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve information about VPC for a CloudAMQP instance.
      * 
-     * Only available for CloudAMQP instances hosted in AWS.
+     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
      * 
      * ## Example Usage
      * 
@@ -3879,7 +3893,7 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve information about VPC for a CloudAMQP instance.
      * 
-     * Only available for CloudAMQP instances hosted in AWS.
+     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
      * 
      * ## Example Usage
      * 
@@ -3990,7 +4004,7 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve information about VPC for a CloudAMQP instance.
      * 
-     * Only available for CloudAMQP instances hosted in AWS.
+     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
      * 
      * ## Example Usage
      * 

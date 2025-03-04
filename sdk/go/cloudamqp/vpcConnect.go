@@ -146,6 +146,49 @@ import (
 //
 // ```
 //
+// The attribute `serviceName` found in resource `VpcConnect` corresponds to the alias in
+// the resource `azurermPrivateEndpoint` of the Azure provider. This can be used when creating the
+// private endpoint.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-azurerm/sdk/go/azurerm"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := azurerm.NewPrivateEndpoint(ctx, "example", &azurerm.PrivateEndpointArgs{
+//				Name:              "example-endpoint",
+//				Location:          exampleAzurermResourceGroup.Location,
+//				ResourceGroupName: exampleAzurermResourceGroup.Name,
+//				SubnetId:          subnet.Id,
+//				PrivateServiceConnection: []map[string]interface{}{
+//					map[string]interface{}{
+//						"name":                           "example-privateserviceconnection",
+//						"privateConnectionResourceAlias": vpcConnect.ServiceName,
+//						"isManualConnection":             true,
+//						"requestMessage":                 "PL",
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// More information about the resource and argument can be found here:
+// private_connection_resource_alias. Or check their example "Using a Private Link
+// Service Alias with existing resources:".
+//
 // </details>
 //
 // <details>
@@ -335,7 +378,7 @@ type VpcConnect struct {
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
 	// The region where the CloudAMQP instance is hosted.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// Service name (alias for Azure) of the PrivateLink.
+	// Service name (alias for Azure, see example above) of the PrivateLink.
 	ServiceName pulumi.StringOutput `pulumi:"serviceName"`
 	// Configurable sleep time (seconds) when enable Private Service Connect.
 	// Default set to 10 seconds.
@@ -407,7 +450,7 @@ type vpcConnectState struct {
 	InstanceId *int `pulumi:"instanceId"`
 	// The region where the CloudAMQP instance is hosted.
 	Region *string `pulumi:"region"`
-	// Service name (alias for Azure) of the PrivateLink.
+	// Service name (alias for Azure, see example above) of the PrivateLink.
 	ServiceName *string `pulumi:"serviceName"`
 	// Configurable sleep time (seconds) when enable Private Service Connect.
 	// Default set to 10 seconds.
@@ -444,7 +487,7 @@ type VpcConnectState struct {
 	InstanceId pulumi.IntPtrInput
 	// The region where the CloudAMQP instance is hosted.
 	Region pulumi.StringPtrInput
-	// Service name (alias for Azure) of the PrivateLink.
+	// Service name (alias for Azure, see example above) of the PrivateLink.
 	ServiceName pulumi.StringPtrInput
 	// Configurable sleep time (seconds) when enable Private Service Connect.
 	// Default set to 10 seconds.
@@ -652,7 +695,7 @@ func (o VpcConnectOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcConnect) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// Service name (alias for Azure) of the PrivateLink.
+// Service name (alias for Azure, see example above) of the PrivateLink.
 func (o VpcConnectOutput) ServiceName() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcConnect) pulumi.StringOutput { return v.ServiceName }).(pulumi.StringOutput)
 }

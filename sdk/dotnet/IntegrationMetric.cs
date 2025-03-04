@@ -10,7 +10,9 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
-    /// This resource allows you to create and manage, forwarding metrics to third party integrations for a CloudAMQP instance. Once configured, the metrics produced will be forward to corresponding integration.
+    /// This resource allows you to create and manage, forwarding metrics to third party integrations for a
+    /// CloudAMQP instance. Once configured, the metrics produced will be forward to corresponding
+    /// integration.
     /// 
     /// Only available for dedicated subscription plans.
     /// 
@@ -217,7 +219,9 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ## Import
     /// 
-    /// `cloudamqp_integration_metric`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+    /// `cloudamqp_integration_metric`can be imported using the resource identifier together with CloudAMQP
+    /// 
+    /// instance identifier. The name and identifier are CSV separated, see example below.
     /// 
     /// ```sh
     /// $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric &lt;resource_name&gt; &lt;resource_id&gt;,&lt;instance_id&gt;`
@@ -267,6 +271,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Output("iamRole")]
         public Output<string?> IamRole { get; private set; } = null!;
+
+        /// <summary>
+        /// (optional) Include Auto-Delete queues
+        /// </summary>
+        [Output("includeAdQueues")]
+        public Output<bool?> IncludeAdQueues { get; private set; } = null!;
 
         /// <summary>
         /// Instance identifier
@@ -464,6 +474,12 @@ namespace Pulumi.CloudAmqp
         public Input<string>? IamRole { get; set; }
 
         /// <summary>
+        /// (optional) Include Auto-Delete queues
+        /// </summary>
+        [Input("includeAdQueues")]
+        public Input<bool>? IncludeAdQueues { get; set; }
+
+        /// <summary>
         /// Instance identifier
         /// </summary>
         [Input("instanceId", required: true)]
@@ -650,6 +666,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Input("iamRole")]
         public Input<string>? IamRole { get; set; }
+
+        /// <summary>
+        /// (optional) Include Auto-Delete queues
+        /// </summary>
+        [Input("includeAdQueues")]
+        public Input<bool>? IncludeAdQueues { get; set; }
 
         /// <summary>
         /// Instance identifier

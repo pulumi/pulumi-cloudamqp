@@ -11,7 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to retrieve information about VPC for a CloudAMQP instance hosted in GCP.
+// Use this data source to retrieve information about VPC for a CloudAMQP instance.
+//
+// > **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
 //
 // ## Example Usage
 //

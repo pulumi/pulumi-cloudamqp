@@ -12,7 +12,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource allows you to create and manage, forwarding metrics to third party integrations for a CloudAMQP instance. Once configured, the metrics produced will be forward to corresponding integration.
+// This resource allows you to create and manage, forwarding metrics to third party integrations for a
+// CloudAMQP instance. Once configured, the metrics produced will be forward to corresponding
+// integration.
 //
 // Only available for dedicated subscription plans.
 //
@@ -275,7 +277,9 @@ import (
 //
 // ## Import
 //
-// `cloudamqp_integration_metric`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+// `cloudamqp_integration_metric`can be imported using the resource identifier together with CloudAMQP
+//
+// instance identifier. The name and identifier are CSV separated, see example below.
 //
 // ```sh
 // $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric <resource_name> <resource_id>,<instance_id>`
@@ -297,6 +301,8 @@ type IntegrationMetric struct {
 	IamExternalId pulumi.StringPtrOutput `pulumi:"iamExternalId"`
 	// The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
 	IamRole pulumi.StringPtrOutput `pulumi:"iamRole"`
+	// (optional) Include Auto-Delete queues
+	IncludeAdQueues pulumi.BoolPtrOutput `pulumi:"includeAdQueues"`
 	// Instance identifier
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
 	// The license key registred for the integration service. (New Relic)
@@ -403,6 +409,8 @@ type integrationMetricState struct {
 	IamExternalId *string `pulumi:"iamExternalId"`
 	// The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
 	IamRole *string `pulumi:"iamRole"`
+	// (optional) Include Auto-Delete queues
+	IncludeAdQueues *bool `pulumi:"includeAdQueues"`
 	// Instance identifier
 	InstanceId *int `pulumi:"instanceId"`
 	// The license key registred for the integration service. (New Relic)
@@ -450,6 +458,8 @@ type IntegrationMetricState struct {
 	IamExternalId pulumi.StringPtrInput
 	// The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
 	IamRole pulumi.StringPtrInput
+	// (optional) Include Auto-Delete queues
+	IncludeAdQueues pulumi.BoolPtrInput
 	// Instance identifier
 	InstanceId pulumi.IntPtrInput
 	// The license key registred for the integration service. (New Relic)
@@ -501,6 +511,8 @@ type integrationMetricArgs struct {
 	IamExternalId *string `pulumi:"iamExternalId"`
 	// The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
 	IamRole *string `pulumi:"iamRole"`
+	// (optional) Include Auto-Delete queues
+	IncludeAdQueues *bool `pulumi:"includeAdQueues"`
 	// Instance identifier
 	InstanceId int `pulumi:"instanceId"`
 	// The license key registred for the integration service. (New Relic)
@@ -549,6 +561,8 @@ type IntegrationMetricArgs struct {
 	IamExternalId pulumi.StringPtrInput
 	// The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
 	IamRole pulumi.StringPtrInput
+	// (optional) Include Auto-Delete queues
+	IncludeAdQueues pulumi.BoolPtrInput
 	// Instance identifier
 	InstanceId pulumi.IntInput
 	// The license key registred for the integration service. (New Relic)
@@ -701,6 +715,11 @@ func (o IntegrationMetricOutput) IamExternalId() pulumi.StringPtrOutput {
 // The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
 func (o IntegrationMetricOutput) IamRole() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.IamRole }).(pulumi.StringPtrOutput)
+}
+
+// (optional) Include Auto-Delete queues
+func (o IntegrationMetricOutput) IncludeAdQueues() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetric) pulumi.BoolPtrOutput { return v.IncludeAdQueues }).(pulumi.BoolPtrOutput)
 }
 
 // Instance identifier

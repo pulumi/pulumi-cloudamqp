@@ -12,7 +12,9 @@ namespace Pulumi.CloudAmqp
     public static class GetVpcGcpInfo
     {
         /// <summary>
-        /// Use this data source to retrieve information about VPC for a CloudAMQP instance hosted in GCP.
+        /// Use this data source to retrieve information about VPC for a CloudAMQP instance.
+        /// 
+        /// &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
         /// 
         /// ## Example Usage
         /// 
@@ -87,7 +89,9 @@ namespace Pulumi.CloudAmqp
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetVpcGcpInfoResult>("cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo", args ?? new GetVpcGcpInfoArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to retrieve information about VPC for a CloudAMQP instance hosted in GCP.
+        /// Use this data source to retrieve information about VPC for a CloudAMQP instance.
+        /// 
+        /// &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
         /// 
         /// ## Example Usage
         /// 
@@ -162,7 +166,9 @@ namespace Pulumi.CloudAmqp
             => global::Pulumi.Deployment.Instance.Invoke<GetVpcGcpInfoResult>("cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo", args ?? new GetVpcGcpInfoInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to retrieve information about VPC for a CloudAMQP instance hosted in GCP.
+        /// Use this data source to retrieve information about VPC for a CloudAMQP instance.
+        /// 
+        /// &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
         /// 
         /// ## Example Usage
         /// 

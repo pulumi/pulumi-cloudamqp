@@ -108,14 +108,14 @@ public final class VpcConnectState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Service name (alias for Azure) of the PrivateLink.
+     * Service name (alias for Azure, see example above) of the PrivateLink.
      * 
      */
     @Import(name="serviceName")
     private @Nullable Output<String> serviceName;
 
     /**
-     * @return Service name (alias for Azure) of the PrivateLink.
+     * @return Service name (alias for Azure, see example above) of the PrivateLink.
      * 
      */
     public Optional<Output<String>> serviceName() {
@@ -395,7 +395,7 @@ public final class VpcConnectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param serviceName Service name (alias for Azure) of the PrivateLink.
+         * @param serviceName Service name (alias for Azure, see example above) of the PrivateLink.
          * 
          * @return builder
          * 
@@ -406,7 +406,7 @@ public final class VpcConnectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param serviceName Service name (alias for Azure) of the PrivateLink.
+         * @param serviceName Service name (alias for Azure, see example above) of the PrivateLink.
          * 
          * @return builder
          * 

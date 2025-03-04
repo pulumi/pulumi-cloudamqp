@@ -14,7 +14,7 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Use this data source to retrieve information about VPC for a CloudAMQP instance.
         /// 
-        /// Only available for CloudAMQP instances hosted in AWS.
+        /// &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
         /// 
         /// ## Example Usage
         /// 
@@ -91,7 +91,7 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Use this data source to retrieve information about VPC for a CloudAMQP instance.
         /// 
-        /// Only available for CloudAMQP instances hosted in AWS.
+        /// &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
         /// 
         /// ## Example Usage
         /// 
@@ -168,7 +168,7 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Use this data source to retrieve information about VPC for a CloudAMQP instance.
         /// 
-        /// Only available for CloudAMQP instances hosted in AWS.
+        /// &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
         /// 
         /// ## Example Usage
         /// 
