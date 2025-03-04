@@ -90,6 +90,32 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * The attribute `serviceName` found in resource `cloudamqp.VpcConnect` corresponds to the alias in
+ * the resource `azurermPrivateEndpoint` of the Azure provider. This can be used when creating the
+ * private endpoint.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as azurerm from "@pulumi/azurerm";
+ *
+ * const example = new azurerm.index.PrivateEndpoint("example", {
+ *     name: "example-endpoint",
+ *     location: exampleAzurermResourceGroup.location,
+ *     resourceGroupName: exampleAzurermResourceGroup.name,
+ *     subnetId: subnet.id,
+ *     privateServiceConnection: [{
+ *         name: "example-privateserviceconnection",
+ *         privateConnectionResourceAlias: vpcConnect.serviceName,
+ *         isManualConnection: true,
+ *         requestMessage: "PL",
+ *     }],
+ * });
+ * ```
+ *
+ * More information about the resource and argument can be found here:
+ * private_connection_resource_alias. Or check their example "Using a Private Link
+ * Service Alias with existing resources:".
+ *
  * </details>
  *
  * <details>
@@ -265,7 +291,7 @@ export class VpcConnect extends pulumi.CustomResource {
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * Service name (alias for Azure) of the PrivateLink.
+     * Service name (alias for Azure, see example above) of the PrivateLink.
      */
     public /*out*/ readonly serviceName!: pulumi.Output<string>;
     /**
@@ -371,7 +397,7 @@ export interface VpcConnectState {
      */
     region?: pulumi.Input<string>;
     /**
-     * Service name (alias for Azure) of the PrivateLink.
+     * Service name (alias for Azure, see example above) of the PrivateLink.
      */
     serviceName?: pulumi.Input<string>;
     /**

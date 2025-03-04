@@ -5,7 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Use this data source to retrieve information about VPC for a CloudAMQP instance hosted in GCP.
+ * Use this data source to retrieve information about VPC for a CloudAMQP instance.
+ *
+ * > **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
  *
  * ## Example Usage
  *
@@ -116,7 +118,9 @@ export interface GetVpcGcpInfoResult {
     readonly vpcSubnet: string;
 }
 /**
- * Use this data source to retrieve information about VPC for a CloudAMQP instance hosted in GCP.
+ * Use this data source to retrieve information about VPC for a CloudAMQP instance.
+ *
+ * > **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
  *
  * ## Example Usage
  *

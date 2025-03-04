@@ -162,6 +162,51 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
+ * The attribute `service_name` found in resource `cloudamqp.VpcConnect` corresponds to the alias in
+ * the resource `azurerm_private_endpoint` of the Azure provider. This can be used when creating the
+ * private endpoint.
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.azurerm.privateEndpoint;
+ * import com.pulumi.azurerm.PrivateEndpointArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new PrivateEndpoint("example", PrivateEndpointArgs.builder()
+ *             .name("example-endpoint")
+ *             .location(exampleAzurermResourceGroup.location())
+ *             .resourceGroupName(exampleAzurermResourceGroup.name())
+ *             .subnetId(subnet.id())
+ *             .privateServiceConnection(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * More information about the resource and argument can be found here:
+ * private_connection_resource_alias. Or check their example &#34;Using a Private Link
+ * Service Alias with existing resources:&#34;.
+ * 
  * &lt;/details&gt;
  * 
  * &lt;details&gt;
@@ -435,14 +480,14 @@ public class VpcConnect extends com.pulumi.resources.CustomResource {
         return this.region;
     }
     /**
-     * Service name (alias for Azure) of the PrivateLink.
+     * Service name (alias for Azure, see example above) of the PrivateLink.
      * 
      */
     @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
-     * @return Service name (alias for Azure) of the PrivateLink.
+     * @return Service name (alias for Azure, see example above) of the PrivateLink.
      * 
      */
     public Output<String> serviceName() {

@@ -123,6 +123,43 @@ namespace Pulumi.CloudAmqp
     /// });
     /// ```
     /// 
+    /// The attribute `service_name` found in resource `cloudamqp.VpcConnect` corresponds to the alias in
+    /// the resource `azurerm_private_endpoint` of the Azure provider. This can be used when creating the
+    /// private endpoint.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Azurerm = Pulumi.Azurerm;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Azurerm.Index.PrivateEndpoint("example", new()
+    ///     {
+    ///         Name = "example-endpoint",
+    ///         Location = exampleAzurermResourceGroup.Location,
+    ///         ResourceGroupName = exampleAzurermResourceGroup.Name,
+    ///         SubnetId = subnet.Id,
+    ///         PrivateServiceConnection = new[]
+    ///         {
+    ///             
+    ///             {
+    ///                 { "name", "example-privateserviceconnection" },
+    ///                 { "privateConnectionResourceAlias", vpcConnect.ServiceName },
+    ///                 { "isManualConnection", true },
+    ///                 { "requestMessage", "PL" },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// More information about the resource and argument can be found here:
+    /// private_connection_resource_alias. Or check their example "Using a Private Link
+    /// Service Alias with existing resources:".
+    /// 
     /// &lt;/details&gt;
     /// 
     /// &lt;details&gt;
@@ -326,7 +363,7 @@ namespace Pulumi.CloudAmqp
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// Service name (alias for Azure) of the PrivateLink.
+        /// Service name (alias for Azure, see example above) of the PrivateLink.
         /// </summary>
         [Output("serviceName")]
         public Output<string> ServiceName { get; private set; } = null!;
@@ -552,7 +589,7 @@ namespace Pulumi.CloudAmqp
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Service name (alias for Azure) of the PrivateLink.
+        /// Service name (alias for Azure, see example above) of the PrivateLink.
         /// </summary>
         [Input("serviceName")]
         public Input<string>? ServiceName { get; set; }

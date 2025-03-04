@@ -183,7 +183,7 @@ class _VpcConnectState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] approved_subscriptions: List of approved subscriptions used by Azure, see below table.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
         :param pulumi.Input[str] region: The region where the CloudAMQP instance is hosted.
-        :param pulumi.Input[str] service_name: Service name (alias for Azure) of the PrivateLink.
+        :param pulumi.Input[str] service_name: Service name (alias for Azure, see example above) of the PrivateLink.
         :param pulumi.Input[int] sleep: Configurable sleep time (seconds) when enable Private Service Connect.
                Default set to 10 seconds.
         :param pulumi.Input[str] status: Private Service Connect status [enable, pending, disable]
@@ -299,7 +299,7 @@ class _VpcConnectState:
     @pulumi.getter(name="serviceName")
     def service_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Service name (alias for Azure) of the PrivateLink.
+        Service name (alias for Azure, see example above) of the PrivateLink.
         """
         return pulumi.get(self, "service_name")
 
@@ -450,6 +450,31 @@ class VpcConnect(pulumi.CustomResource):
             region=instance.region,
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         ```
+
+        The attribute `service_name` found in resource `VpcConnect` corresponds to the alias in
+        the resource `azurerm_private_endpoint` of the Azure provider. This can be used when creating the
+        private endpoint.
+
+        ```python
+        import pulumi
+        import pulumi_azurerm as azurerm
+
+        example = azurerm.index.PrivateEndpoint("example",
+            name=example-endpoint,
+            location=example_azurerm_resource_group.location,
+            resource_group_name=example_azurerm_resource_group.name,
+            subnet_id=subnet.id,
+            private_service_connection=[{
+                name: example-privateserviceconnection,
+                privateConnectionResourceAlias: vpc_connect.service_name,
+                isManualConnection: True,
+                requestMessage: PL,
+            }])
+        ```
+
+        More information about the resource and argument can be found here:
+        private_connection_resource_alias. Or check their example "Using a Private Link
+        Service Alias with existing resources:".
 
         </details>
 
@@ -675,6 +700,31 @@ class VpcConnect(pulumi.CustomResource):
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         ```
 
+        The attribute `service_name` found in resource `VpcConnect` corresponds to the alias in
+        the resource `azurerm_private_endpoint` of the Azure provider. This can be used when creating the
+        private endpoint.
+
+        ```python
+        import pulumi
+        import pulumi_azurerm as azurerm
+
+        example = azurerm.index.PrivateEndpoint("example",
+            name=example-endpoint,
+            location=example_azurerm_resource_group.location,
+            resource_group_name=example_azurerm_resource_group.name,
+            subnet_id=subnet.id,
+            private_service_connection=[{
+                name: example-privateserviceconnection,
+                privateConnectionResourceAlias: vpc_connect.service_name,
+                isManualConnection: True,
+                requestMessage: PL,
+            }])
+        ```
+
+        More information about the resource and argument can be found here:
+        private_connection_resource_alias. Or check their example "Using a Private Link
+        Service Alias with existing resources:".
+
         </details>
 
         <details>
@@ -867,7 +917,7 @@ class VpcConnect(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] approved_subscriptions: List of approved subscriptions used by Azure, see below table.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
         :param pulumi.Input[str] region: The region where the CloudAMQP instance is hosted.
-        :param pulumi.Input[str] service_name: Service name (alias for Azure) of the PrivateLink.
+        :param pulumi.Input[str] service_name: Service name (alias for Azure, see example above) of the PrivateLink.
         :param pulumi.Input[int] sleep: Configurable sleep time (seconds) when enable Private Service Connect.
                Default set to 10 seconds.
         :param pulumi.Input[str] status: Private Service Connect status [enable, pending, disable]
@@ -954,7 +1004,7 @@ class VpcConnect(pulumi.CustomResource):
     @pulumi.getter(name="serviceName")
     def service_name(self) -> pulumi.Output[str]:
         """
-        Service name (alias for Azure) of the PrivateLink.
+        Service name (alias for Azure, see example above) of the PrivateLink.
         """
         return pulumi.get(self, "service_name")
 

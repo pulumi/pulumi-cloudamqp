@@ -5,7 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * This resource allows you to create and manage, forwarding metrics to third party integrations for a CloudAMQP instance. Once configured, the metrics produced will be forward to corresponding integration.
+ * This resource allows you to create and manage, forwarding metrics to third party integrations for a
+ * CloudAMQP instance. Once configured, the metrics produced will be forward to corresponding
+ * integration.
  *
  * Only available for dedicated subscription plans.
  *
@@ -164,7 +166,9 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * `cloudamqp_integration_metric`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+ * `cloudamqp_integration_metric`can be imported using the resource identifier together with CloudAMQP
+ *
+ * instance identifier. The name and identifier are CSV separated, see example below.
  *
  * ```sh
  * $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric <resource_name> <resource_id>,<instance_id>`
@@ -226,6 +230,10 @@ export class IntegrationMetric extends pulumi.CustomResource {
      * The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
      */
     public readonly iamRole!: pulumi.Output<string | undefined>;
+    /**
+     * (optional) Include Auto-Delete queues
+     */
+    public readonly includeAdQueues!: pulumi.Output<boolean | undefined>;
     /**
      * Instance identifier
      */
@@ -303,6 +311,7 @@ export class IntegrationMetric extends pulumi.CustomResource {
             resourceInputs["email"] = state ? state.email : undefined;
             resourceInputs["iamExternalId"] = state ? state.iamExternalId : undefined;
             resourceInputs["iamRole"] = state ? state.iamRole : undefined;
+            resourceInputs["includeAdQueues"] = state ? state.includeAdQueues : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["licenseKey"] = state ? state.licenseKey : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -328,6 +337,7 @@ export class IntegrationMetric extends pulumi.CustomResource {
             resourceInputs["email"] = args ? args.email : undefined;
             resourceInputs["iamExternalId"] = args ? args.iamExternalId : undefined;
             resourceInputs["iamRole"] = args ? args.iamRole : undefined;
+            resourceInputs["includeAdQueues"] = args ? args.includeAdQueues : undefined;
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["licenseKey"] = args?.licenseKey ? pulumi.secret(args.licenseKey) : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -381,6 +391,10 @@ export interface IntegrationMetricState {
      * The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
      */
     iamRole?: pulumi.Input<string>;
+    /**
+     * (optional) Include Auto-Delete queues
+     */
+    includeAdQueues?: pulumi.Input<boolean>;
     /**
      * Instance identifier
      */
@@ -471,6 +485,10 @@ export interface IntegrationMetricArgs {
      * The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
      */
     iamRole?: pulumi.Input<string>;
+    /**
+     * (optional) Include Auto-Delete queues
+     */
+    includeAdQueues?: pulumi.Input<boolean>;
     /**
      * Instance identifier
      */

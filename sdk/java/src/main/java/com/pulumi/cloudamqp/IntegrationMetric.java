@@ -10,6 +10,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Export;
 import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -17,7 +18,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * This resource allows you to create and manage, forwarding metrics to third party integrations for a CloudAMQP instance. Once configured, the metrics produced will be forward to corresponding integration.
+ * This resource allows you to create and manage, forwarding metrics to third party integrations for a
+ * CloudAMQP instance. Once configured, the metrics produced will be forward to corresponding
+ * integration.
  * 
  * Only available for dedicated subscription plans.
  * 
@@ -323,7 +326,9 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * `cloudamqp_integration_metric`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+ * `cloudamqp_integration_metric`can be imported using the resource identifier together with CloudAMQP
+ * 
+ * instance identifier. The name and identifier are CSV separated, see example below.
  * 
  * ```sh
  * $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric &lt;resource_name&gt; &lt;resource_id&gt;,&lt;instance_id&gt;`
@@ -429,6 +434,20 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> iamRole() {
         return Codegen.optional(this.iamRole);
+    }
+    /**
+     * (optional) Include Auto-Delete queues
+     * 
+     */
+    @Export(name="includeAdQueues", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> includeAdQueues;
+
+    /**
+     * @return (optional) Include Auto-Delete queues
+     * 
+     */
+    public Output<Optional<Boolean>> includeAdQueues() {
+        return Codegen.optional(this.includeAdQueues);
     }
     /**
      * Instance identifier

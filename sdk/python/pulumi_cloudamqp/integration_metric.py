@@ -27,6 +27,7 @@ class IntegrationMetricArgs:
                  email: Optional[pulumi.Input[str]] = None,
                  iam_external_id: Optional[pulumi.Input[str]] = None,
                  iam_role: Optional[pulumi.Input[str]] = None,
+                 include_ad_queues: Optional[pulumi.Input[bool]] = None,
                  license_key: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
@@ -49,6 +50,7 @@ class IntegrationMetricArgs:
         :param pulumi.Input[str] email: The email address registred for the integration service. (Librato)
         :param pulumi.Input[str] iam_external_id: External identifier that match the role you created. (Cloudwatch)
         :param pulumi.Input[str] iam_role: The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+        :param pulumi.Input[bool] include_ad_queues: (optional) Include Auto-Delete queues
         :param pulumi.Input[str] license_key: The license key registred for the integration service. (New Relic)
         :param pulumi.Input[str] name: The name of metrics integration
         :param pulumi.Input[str] private_key: The private key. (Stackdriver)
@@ -77,6 +79,8 @@ class IntegrationMetricArgs:
             pulumi.set(__self__, "iam_external_id", iam_external_id)
         if iam_role is not None:
             pulumi.set(__self__, "iam_role", iam_role)
+        if include_ad_queues is not None:
+            pulumi.set(__self__, "include_ad_queues", include_ad_queues)
         if license_key is not None:
             pulumi.set(__self__, "license_key", license_key)
         if name is not None:
@@ -203,6 +207,18 @@ class IntegrationMetricArgs:
     @iam_role.setter
     def iam_role(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "iam_role", value)
+
+    @property
+    @pulumi.getter(name="includeAdQueues")
+    def include_ad_queues(self) -> Optional[pulumi.Input[bool]]:
+        """
+        (optional) Include Auto-Delete queues
+        """
+        return pulumi.get(self, "include_ad_queues")
+
+    @include_ad_queues.setter
+    def include_ad_queues(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "include_ad_queues", value)
 
     @property
     @pulumi.getter(name="licenseKey")
@@ -361,6 +377,7 @@ class _IntegrationMetricState:
                  email: Optional[pulumi.Input[str]] = None,
                  iam_external_id: Optional[pulumi.Input[str]] = None,
                  iam_role: Optional[pulumi.Input[str]] = None,
+                 include_ad_queues: Optional[pulumi.Input[bool]] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  license_key: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -383,6 +400,7 @@ class _IntegrationMetricState:
         :param pulumi.Input[str] email: The email address registred for the integration service. (Librato)
         :param pulumi.Input[str] iam_external_id: External identifier that match the role you created. (Cloudwatch)
         :param pulumi.Input[str] iam_role: The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+        :param pulumi.Input[bool] include_ad_queues: (optional) Include Auto-Delete queues
         :param pulumi.Input[int] instance_id: Instance identifier
         :param pulumi.Input[str] license_key: The license key registred for the integration service. (New Relic)
         :param pulumi.Input[str] name: The name of metrics integration
@@ -411,6 +429,8 @@ class _IntegrationMetricState:
             pulumi.set(__self__, "iam_external_id", iam_external_id)
         if iam_role is not None:
             pulumi.set(__self__, "iam_role", iam_role)
+        if include_ad_queues is not None:
+            pulumi.set(__self__, "include_ad_queues", include_ad_queues)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
         if license_key is not None:
@@ -527,6 +547,18 @@ class _IntegrationMetricState:
     @iam_role.setter
     def iam_role(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "iam_role", value)
+
+    @property
+    @pulumi.getter(name="includeAdQueues")
+    def include_ad_queues(self) -> Optional[pulumi.Input[bool]]:
+        """
+        (optional) Include Auto-Delete queues
+        """
+        return pulumi.get(self, "include_ad_queues")
+
+    @include_ad_queues.setter
+    def include_ad_queues(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "include_ad_queues", value)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -699,6 +731,7 @@ class IntegrationMetric(pulumi.CustomResource):
                  email: Optional[pulumi.Input[str]] = None,
                  iam_external_id: Optional[pulumi.Input[str]] = None,
                  iam_role: Optional[pulumi.Input[str]] = None,
+                 include_ad_queues: Optional[pulumi.Input[bool]] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  license_key: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -714,7 +747,9 @@ class IntegrationMetric(pulumi.CustomResource):
                  vhost_whitelist: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        This resource allows you to create and manage, forwarding metrics to third party integrations for a CloudAMQP instance. Once configured, the metrics produced will be forward to corresponding integration.
+        This resource allows you to create and manage, forwarding metrics to third party integrations for a
+        CloudAMQP instance. Once configured, the metrics produced will be forward to corresponding
+        integration.
 
         Only available for dedicated subscription plans.
 
@@ -864,7 +899,9 @@ class IntegrationMetric(pulumi.CustomResource):
 
         ## Import
 
-        `cloudamqp_integration_metric`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+        `cloudamqp_integration_metric`can be imported using the resource identifier together with CloudAMQP
+
+        instance identifier. The name and identifier are CSV separated, see example below.
 
         ```sh
         $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric <resource_name> <resource_id>,<instance_id>`
@@ -879,6 +916,7 @@ class IntegrationMetric(pulumi.CustomResource):
         :param pulumi.Input[str] email: The email address registred for the integration service. (Librato)
         :param pulumi.Input[str] iam_external_id: External identifier that match the role you created. (Cloudwatch)
         :param pulumi.Input[str] iam_role: The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+        :param pulumi.Input[bool] include_ad_queues: (optional) Include Auto-Delete queues
         :param pulumi.Input[int] instance_id: Instance identifier
         :param pulumi.Input[str] license_key: The license key registred for the integration service. (New Relic)
         :param pulumi.Input[str] name: The name of metrics integration
@@ -900,7 +938,9 @@ class IntegrationMetric(pulumi.CustomResource):
                  args: IntegrationMetricArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        This resource allows you to create and manage, forwarding metrics to third party integrations for a CloudAMQP instance. Once configured, the metrics produced will be forward to corresponding integration.
+        This resource allows you to create and manage, forwarding metrics to third party integrations for a
+        CloudAMQP instance. Once configured, the metrics produced will be forward to corresponding
+        integration.
 
         Only available for dedicated subscription plans.
 
@@ -1050,7 +1090,9 @@ class IntegrationMetric(pulumi.CustomResource):
 
         ## Import
 
-        `cloudamqp_integration_metric`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+        `cloudamqp_integration_metric`can be imported using the resource identifier together with CloudAMQP
+
+        instance identifier. The name and identifier are CSV separated, see example below.
 
         ```sh
         $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric <resource_name> <resource_id>,<instance_id>`
@@ -1078,6 +1120,7 @@ class IntegrationMetric(pulumi.CustomResource):
                  email: Optional[pulumi.Input[str]] = None,
                  iam_external_id: Optional[pulumi.Input[str]] = None,
                  iam_role: Optional[pulumi.Input[str]] = None,
+                 include_ad_queues: Optional[pulumi.Input[bool]] = None,
                  instance_id: Optional[pulumi.Input[int]] = None,
                  license_key: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -1107,6 +1150,7 @@ class IntegrationMetric(pulumi.CustomResource):
             __props__.__dict__["email"] = email
             __props__.__dict__["iam_external_id"] = iam_external_id
             __props__.__dict__["iam_role"] = iam_role
+            __props__.__dict__["include_ad_queues"] = include_ad_queues
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
@@ -1141,6 +1185,7 @@ class IntegrationMetric(pulumi.CustomResource):
             email: Optional[pulumi.Input[str]] = None,
             iam_external_id: Optional[pulumi.Input[str]] = None,
             iam_role: Optional[pulumi.Input[str]] = None,
+            include_ad_queues: Optional[pulumi.Input[bool]] = None,
             instance_id: Optional[pulumi.Input[int]] = None,
             license_key: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -1168,6 +1213,7 @@ class IntegrationMetric(pulumi.CustomResource):
         :param pulumi.Input[str] email: The email address registred for the integration service. (Librato)
         :param pulumi.Input[str] iam_external_id: External identifier that match the role you created. (Cloudwatch)
         :param pulumi.Input[str] iam_role: The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+        :param pulumi.Input[bool] include_ad_queues: (optional) Include Auto-Delete queues
         :param pulumi.Input[int] instance_id: Instance identifier
         :param pulumi.Input[str] license_key: The license key registred for the integration service. (New Relic)
         :param pulumi.Input[str] name: The name of metrics integration
@@ -1193,6 +1239,7 @@ class IntegrationMetric(pulumi.CustomResource):
         __props__.__dict__["email"] = email
         __props__.__dict__["iam_external_id"] = iam_external_id
         __props__.__dict__["iam_role"] = iam_role
+        __props__.__dict__["include_ad_queues"] = include_ad_queues
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["license_key"] = license_key
         __props__.__dict__["name"] = name
@@ -1263,6 +1310,14 @@ class IntegrationMetric(pulumi.CustomResource):
         The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
         """
         return pulumi.get(self, "iam_role")
+
+    @property
+    @pulumi.getter(name="includeAdQueues")
+    def include_ad_queues(self) -> pulumi.Output[Optional[bool]]:
+        """
+        (optional) Include Auto-Delete queues
+        """
+        return pulumi.get(self, "include_ad_queues")
 
     @property
     @pulumi.getter(name="instanceId")

@@ -5,6 +5,7 @@ package com.pulumi.cloudamqp.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -119,6 +120,21 @@ public final class IntegrationMetricState extends com.pulumi.resources.ResourceA
      */
     public Optional<Output<String>> iamRole() {
         return Optional.ofNullable(this.iamRole);
+    }
+
+    /**
+     * (optional) Include Auto-Delete queues
+     * 
+     */
+    @Import(name="includeAdQueues")
+    private @Nullable Output<Boolean> includeAdQueues;
+
+    /**
+     * @return (optional) Include Auto-Delete queues
+     * 
+     */
+    public Optional<Output<Boolean>> includeAdQueues() {
+        return Optional.ofNullable(this.includeAdQueues);
     }
 
     /**
@@ -342,6 +358,7 @@ public final class IntegrationMetricState extends com.pulumi.resources.ResourceA
         this.email = $.email;
         this.iamExternalId = $.iamExternalId;
         this.iamRole = $.iamRole;
+        this.includeAdQueues = $.includeAdQueues;
         this.instanceId = $.instanceId;
         this.licenseKey = $.licenseKey;
         this.name = $.name;
@@ -520,6 +537,27 @@ public final class IntegrationMetricState extends com.pulumi.resources.ResourceA
          */
         public Builder iamRole(String iamRole) {
             return iamRole(Output.of(iamRole));
+        }
+
+        /**
+         * @param includeAdQueues (optional) Include Auto-Delete queues
+         * 
+         * @return builder
+         * 
+         */
+        public Builder includeAdQueues(@Nullable Output<Boolean> includeAdQueues) {
+            $.includeAdQueues = includeAdQueues;
+            return this;
+        }
+
+        /**
+         * @param includeAdQueues (optional) Include Auto-Delete queues
+         * 
+         * @return builder
+         * 
+         */
+        public Builder includeAdQueues(Boolean includeAdQueues) {
+            return includeAdQueues(Output.of(includeAdQueues));
         }
 
         /**
