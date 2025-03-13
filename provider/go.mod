@@ -8,7 +8,7 @@ replace github.com/hashicorp/vault => github.com/hashicorp/vault v1.2.0
 
 require (
 	github.com/cloudamqp/terraform-provider-cloudamqp v1.32.3
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.104.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.104.1-0.20250313133841-de5510662e1c
 	github.com/pulumi/pulumi/sdk/v3 v3.153.1
 )
 
