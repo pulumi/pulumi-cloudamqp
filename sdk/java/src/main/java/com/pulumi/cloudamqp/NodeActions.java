@@ -111,13 +111,13 @@ import javax.annotation.Nullable;
  *         var restart01 = new NodeActions("restart01", NodeActionsArgs.builder()
  *             .instanceId(instance.id())
  *             .action("restart")
- *             .nodeName(listNodes.applyValue(getNodesResult -> getNodesResult.nodes()[0].name()))
+ *             .nodeName(listNodes.nodes()[0].name())
  *             .build());
  * 
  *         var restart02 = new NodeActions("restart02", NodeActionsArgs.builder()
  *             .instanceId(instance.id())
  *             .action("restart")
- *             .nodeName(listNodes.applyValue(getNodesResult -> getNodesResult.nodes()[1].name()))
+ *             .nodeName(listNodes.nodes()[1].name())
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(restart01)
  *                 .build());
@@ -125,7 +125,7 @@ import javax.annotation.Nullable;
  *         var restart03 = new NodeActions("restart03", NodeActionsArgs.builder()
  *             .instanceId(instance.id())
  *             .action("restart")
- *             .nodeName(listNodes.applyValue(getNodesResult -> getNodesResult.nodes()[2].name()))
+ *             .nodeName(listNodes.nodes()[2].name())
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(                
  *                     restart01,
@@ -187,7 +187,7 @@ import javax.annotation.Nullable;
  *         var restart01 = new NodeActions("restart01", NodeActionsArgs.builder()
  *             .instanceId(instance.id())
  *             .action("restart")
- *             .nodeName(listNodes.applyValue(getNodesResult -> getNodesResult.nodes()[0].name()))
+ *             .nodeName(listNodes.nodes()[0].name())
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(rabbitmqConfig)
  *                 .build());
@@ -195,7 +195,7 @@ import javax.annotation.Nullable;
  *         var restart02 = new NodeActions("restart02", NodeActionsArgs.builder()
  *             .instanceId(instance.id())
  *             .action("restart")
- *             .nodeName(listNodes.applyValue(getNodesResult -> getNodesResult.nodes()[1].name()))
+ *             .nodeName(listNodes.nodes()[1].name())
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(                
  *                     rabbitmqConfig,
@@ -205,7 +205,7 @@ import javax.annotation.Nullable;
  *         var restart03 = new NodeActions("restart03", NodeActionsArgs.builder()
  *             .instanceId(instance.id())
  *             .action("restart")
- *             .nodeName(listNodes.applyValue(getNodesResult -> getNodesResult.nodes()[2].name()))
+ *             .nodeName(listNodes.nodes()[2].name())
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(                
  *                     rabbitmqConfig,
