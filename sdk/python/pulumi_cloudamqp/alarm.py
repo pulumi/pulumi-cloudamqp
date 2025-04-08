@@ -34,15 +34,19 @@ class AlarmArgs:
         The set of arguments for constructing a Alarm resource.
         :param pulumi.Input[bool] enabled: Enable or disable the alarm to trigger.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[Sequence[pulumi.Input[int]]] recipients: Identifier for recipient to be notified. Leave empty to notify all recipients.
+        :param pulumi.Input[Sequence[pulumi.Input[int]]] recipients: Identifier for recipient to be notified. Leave empty to notify
+               all recipients.
         :param pulumi.Input[str] type: The alarm type, see valid options below.
         :param pulumi.Input[str] message_type: Message type `(total, unacked, ready)` used by queue alarm type.
                
                Specific argument for `disk` alarm
         :param pulumi.Input[str] queue_regex: Regex for which queue to check.
-        :param pulumi.Input[int] reminder_interval: The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
-        :param pulumi.Input[int] time_threshold: The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
-        :param pulumi.Input[str] value_calculation: Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+        :param pulumi.Input[int] reminder_interval: The reminder interval (in seconds) to resend the alarm if not
+               resolved. Set to 0 for no reminders. The Default is 0.
+        :param pulumi.Input[int] time_threshold: The time interval (in seconds) the `value_threshold` should be
+               active before triggering an alarm.
+        :param pulumi.Input[str] value_calculation: Disk value threshold calculation, `fixed, percentage` of disk
+               space remaining.
                
                Based on alarm type, different arguments are flagged as required or optional.
         :param pulumi.Input[int] value_threshold: The value to trigger the alarm for.
@@ -95,7 +99,8 @@ class AlarmArgs:
     @pulumi.getter
     def recipients(self) -> pulumi.Input[Sequence[pulumi.Input[int]]]:
         """
-        Identifier for recipient to be notified. Leave empty to notify all recipients.
+        Identifier for recipient to be notified. Leave empty to notify
+        all recipients.
         """
         return pulumi.get(self, "recipients")
 
@@ -145,7 +150,8 @@ class AlarmArgs:
     @pulumi.getter(name="reminderInterval")
     def reminder_interval(self) -> Optional[pulumi.Input[int]]:
         """
-        The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+        The reminder interval (in seconds) to resend the alarm if not
+        resolved. Set to 0 for no reminders. The Default is 0.
         """
         return pulumi.get(self, "reminder_interval")
 
@@ -157,7 +163,8 @@ class AlarmArgs:
     @pulumi.getter(name="timeThreshold")
     def time_threshold(self) -> Optional[pulumi.Input[int]]:
         """
-        The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
+        The time interval (in seconds) the `value_threshold` should be
+        active before triggering an alarm.
         """
         return pulumi.get(self, "time_threshold")
 
@@ -169,7 +176,8 @@ class AlarmArgs:
     @pulumi.getter(name="valueCalculation")
     def value_calculation(self) -> Optional[pulumi.Input[str]]:
         """
-        Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+        Disk value threshold calculation, `fixed, percentage` of disk
+        space remaining.
 
         Based on alarm type, different arguments are flagged as required or optional.
         """
@@ -226,11 +234,15 @@ class _AlarmState:
                
                Specific argument for `disk` alarm
         :param pulumi.Input[str] queue_regex: Regex for which queue to check.
-        :param pulumi.Input[Sequence[pulumi.Input[int]]] recipients: Identifier for recipient to be notified. Leave empty to notify all recipients.
-        :param pulumi.Input[int] reminder_interval: The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
-        :param pulumi.Input[int] time_threshold: The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
+        :param pulumi.Input[Sequence[pulumi.Input[int]]] recipients: Identifier for recipient to be notified. Leave empty to notify
+               all recipients.
+        :param pulumi.Input[int] reminder_interval: The reminder interval (in seconds) to resend the alarm if not
+               resolved. Set to 0 for no reminders. The Default is 0.
+        :param pulumi.Input[int] time_threshold: The time interval (in seconds) the `value_threshold` should be
+               active before triggering an alarm.
         :param pulumi.Input[str] type: The alarm type, see valid options below.
-        :param pulumi.Input[str] value_calculation: Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+        :param pulumi.Input[str] value_calculation: Disk value threshold calculation, `fixed, percentage` of disk
+               space remaining.
                
                Based on alarm type, different arguments are flagged as required or optional.
         :param pulumi.Input[int] value_threshold: The value to trigger the alarm for.
@@ -313,7 +325,8 @@ class _AlarmState:
     @pulumi.getter
     def recipients(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[int]]]]:
         """
-        Identifier for recipient to be notified. Leave empty to notify all recipients.
+        Identifier for recipient to be notified. Leave empty to notify
+        all recipients.
         """
         return pulumi.get(self, "recipients")
 
@@ -325,7 +338,8 @@ class _AlarmState:
     @pulumi.getter(name="reminderInterval")
     def reminder_interval(self) -> Optional[pulumi.Input[int]]:
         """
-        The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+        The reminder interval (in seconds) to resend the alarm if not
+        resolved. Set to 0 for no reminders. The Default is 0.
         """
         return pulumi.get(self, "reminder_interval")
 
@@ -337,7 +351,8 @@ class _AlarmState:
     @pulumi.getter(name="timeThreshold")
     def time_threshold(self) -> Optional[pulumi.Input[int]]:
         """
-        The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
+        The time interval (in seconds) the `value_threshold` should be
+        active before triggering an alarm.
         """
         return pulumi.get(self, "time_threshold")
 
@@ -361,7 +376,8 @@ class _AlarmState:
     @pulumi.getter(name="valueCalculation")
     def value_calculation(self) -> Optional[pulumi.Input[str]]:
         """
-        Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+        Disk value threshold calculation, `fixed, percentage` of disk
+        space remaining.
 
         Based on alarm type, different arguments are flagged as required or optional.
         """
@@ -416,7 +432,23 @@ class Alarm(pulumi.CustomResource):
         """
         ## Import
 
-        `cloudamqp_alarm` can be imported using CloudAMQP internal identifier of the alarm together (CSV separated) with the instance identifier. To retrieve the alarm identifier, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-alarms)
+        `cloudamqp_alarm` can be imported using the resource identifier together with the CloudAMQP instance
+
+        identifier (CSV separated). To retrieve the resource identifier, use [CloudAMQP API list alarms].
+
+        From Terraform v1.5.0, the `import` block can be used to import this resource:
+
+        hcl
+
+        import {
+
+          to = cloudamqp_alarm.alarm
+
+          id = format("<id>,%s", cloudamqp_instance.instance.id)
+
+        }
+
+        Or use Terraform CLI:
 
         ```sh
         $ pulumi import cloudamqp:index/alarm:Alarm alarm <id>,<instance_id>`
@@ -430,11 +462,15 @@ class Alarm(pulumi.CustomResource):
                
                Specific argument for `disk` alarm
         :param pulumi.Input[str] queue_regex: Regex for which queue to check.
-        :param pulumi.Input[Sequence[pulumi.Input[int]]] recipients: Identifier for recipient to be notified. Leave empty to notify all recipients.
-        :param pulumi.Input[int] reminder_interval: The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
-        :param pulumi.Input[int] time_threshold: The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
+        :param pulumi.Input[Sequence[pulumi.Input[int]]] recipients: Identifier for recipient to be notified. Leave empty to notify
+               all recipients.
+        :param pulumi.Input[int] reminder_interval: The reminder interval (in seconds) to resend the alarm if not
+               resolved. Set to 0 for no reminders. The Default is 0.
+        :param pulumi.Input[int] time_threshold: The time interval (in seconds) the `value_threshold` should be
+               active before triggering an alarm.
         :param pulumi.Input[str] type: The alarm type, see valid options below.
-        :param pulumi.Input[str] value_calculation: Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+        :param pulumi.Input[str] value_calculation: Disk value threshold calculation, `fixed, percentage` of disk
+               space remaining.
                
                Based on alarm type, different arguments are flagged as required or optional.
         :param pulumi.Input[int] value_threshold: The value to trigger the alarm for.
@@ -449,7 +485,23 @@ class Alarm(pulumi.CustomResource):
         """
         ## Import
 
-        `cloudamqp_alarm` can be imported using CloudAMQP internal identifier of the alarm together (CSV separated) with the instance identifier. To retrieve the alarm identifier, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-alarms)
+        `cloudamqp_alarm` can be imported using the resource identifier together with the CloudAMQP instance
+
+        identifier (CSV separated). To retrieve the resource identifier, use [CloudAMQP API list alarms].
+
+        From Terraform v1.5.0, the `import` block can be used to import this resource:
+
+        hcl
+
+        import {
+
+          to = cloudamqp_alarm.alarm
+
+          id = format("<id>,%s", cloudamqp_instance.instance.id)
+
+        }
+
+        Or use Terraform CLI:
 
         ```sh
         $ pulumi import cloudamqp:index/alarm:Alarm alarm <id>,<instance_id>`
@@ -543,11 +595,15 @@ class Alarm(pulumi.CustomResource):
                
                Specific argument for `disk` alarm
         :param pulumi.Input[str] queue_regex: Regex for which queue to check.
-        :param pulumi.Input[Sequence[pulumi.Input[int]]] recipients: Identifier for recipient to be notified. Leave empty to notify all recipients.
-        :param pulumi.Input[int] reminder_interval: The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
-        :param pulumi.Input[int] time_threshold: The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
+        :param pulumi.Input[Sequence[pulumi.Input[int]]] recipients: Identifier for recipient to be notified. Leave empty to notify
+               all recipients.
+        :param pulumi.Input[int] reminder_interval: The reminder interval (in seconds) to resend the alarm if not
+               resolved. Set to 0 for no reminders. The Default is 0.
+        :param pulumi.Input[int] time_threshold: The time interval (in seconds) the `value_threshold` should be
+               active before triggering an alarm.
         :param pulumi.Input[str] type: The alarm type, see valid options below.
-        :param pulumi.Input[str] value_calculation: Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+        :param pulumi.Input[str] value_calculation: Disk value threshold calculation, `fixed, percentage` of disk
+               space remaining.
                
                Based on alarm type, different arguments are flagged as required or optional.
         :param pulumi.Input[int] value_threshold: The value to trigger the alarm for.
@@ -608,7 +664,8 @@ class Alarm(pulumi.CustomResource):
     @pulumi.getter
     def recipients(self) -> pulumi.Output[Sequence[int]]:
         """
-        Identifier for recipient to be notified. Leave empty to notify all recipients.
+        Identifier for recipient to be notified. Leave empty to notify
+        all recipients.
         """
         return pulumi.get(self, "recipients")
 
@@ -616,7 +673,8 @@ class Alarm(pulumi.CustomResource):
     @pulumi.getter(name="reminderInterval")
     def reminder_interval(self) -> pulumi.Output[Optional[int]]:
         """
-        The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+        The reminder interval (in seconds) to resend the alarm if not
+        resolved. Set to 0 for no reminders. The Default is 0.
         """
         return pulumi.get(self, "reminder_interval")
 
@@ -624,7 +682,8 @@ class Alarm(pulumi.CustomResource):
     @pulumi.getter(name="timeThreshold")
     def time_threshold(self) -> pulumi.Output[Optional[int]]:
         """
-        The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
+        The time interval (in seconds) the `value_threshold` should be
+        active before triggering an alarm.
         """
         return pulumi.get(self, "time_threshold")
 
@@ -640,7 +699,8 @@ class Alarm(pulumi.CustomResource):
     @pulumi.getter(name="valueCalculation")
     def value_calculation(self) -> pulumi.Output[Optional[str]]:
         """
-        Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+        Disk value threshold calculation, `fixed, percentage` of disk
+        space remaining.
 
         Based on alarm type, different arguments are flagged as required or optional.
         """

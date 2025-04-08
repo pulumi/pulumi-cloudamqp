@@ -104,43 +104,6 @@ class UpgradeLavinmq(pulumi.CustomResource):
                  new_version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        This resource allows you to upgrade LavinMQ version.
-
-        See below example usage.
-
-        Only available for dedicated subscription plans running ***LavinMQ***.
-
-        ## Example Usage
-
-        <details>
-          <summary>
-            <b>
-              <i>Upgrade LavinMQ, specify which version to upgrade to, from v1.32.0</i>
-            </b>
-          </summary>
-
-        Specify the version to upgrade to. List available upgradable versions, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#get-available-versions).
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        instance = cloudamqp.Instance("instance",
-            name="lavinmq-version-upgrade-test",
-            plan="lynx-1",
-            region="amazon-web-services::us-west-1")
-        upgrade = cloudamqp.UpgradeLavinmq("upgrade",
-            instance_id=instance.id,
-            new_version="1.3.1")
-        ```
-
-        </details>
-
-        ## Important Upgrade Information
-
-        > - All single node upgrades will require some downtime since LavinMQ needs a restart.
-        > - Auto delete queues (queues that are marked AD) will be deleted during the update.
-
         ## Import
 
         Not possible to import this resource.
@@ -157,43 +120,6 @@ class UpgradeLavinmq(pulumi.CustomResource):
                  args: UpgradeLavinmqArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        This resource allows you to upgrade LavinMQ version.
-
-        See below example usage.
-
-        Only available for dedicated subscription plans running ***LavinMQ***.
-
-        ## Example Usage
-
-        <details>
-          <summary>
-            <b>
-              <i>Upgrade LavinMQ, specify which version to upgrade to, from v1.32.0</i>
-            </b>
-          </summary>
-
-        Specify the version to upgrade to. List available upgradable versions, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#get-available-versions).
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        instance = cloudamqp.Instance("instance",
-            name="lavinmq-version-upgrade-test",
-            plan="lynx-1",
-            region="amazon-web-services::us-west-1")
-        upgrade = cloudamqp.UpgradeLavinmq("upgrade",
-            instance_id=instance.id,
-            new_version="1.3.1")
-        ```
-
-        </details>
-
-        ## Important Upgrade Information
-
-        > - All single node upgrades will require some downtime since LavinMQ needs a restart.
-        > - Auto delete queues (queues that are marked AD) will be deleted during the update.
-
         ## Import
 
         Not possible to import this resource.

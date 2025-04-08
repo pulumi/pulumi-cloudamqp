@@ -10,210 +10,31 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
-    /// Enable PrivateLink for a CloudAMQP instance hosted in Azure. If no existing VPC available when
-    /// enable PrivateLink, a new VPC will be created with subnet `10.52.72.0/24`.
-    /// 
-    /// &gt; **Note:** Enabling PrivateLink will automatically add firewall rules for the peered subnet.
-    /// 
-    /// &lt;details&gt;
-    ///  &lt;summary&gt;
-    ///     &lt;i&gt;Default PrivateLink firewall rule&lt;/i&gt;
-    ///   &lt;/summary&gt;
-    /// 
-    /// ## Example Usage
-    /// 
-    /// &lt;details&gt;
-    ///   &lt;summary&gt;
-    ///     &lt;b&gt;
-    ///       &lt;i&gt;CloudAMQP instance without existing VPC&lt;/i&gt;
-    ///     &lt;/b&gt;
-    ///   &lt;/summary&gt;
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using CloudAmqp = Pulumi.CloudAmqp;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var instance = new CloudAmqp.Instance("instance", new()
-    ///     {
-    ///         Name = "Instance 01",
-    ///         Plan = "bunny-1",
-    ///         Region = "azure-arm::westus",
-    ///         Tags = new[] {},
-    ///     });
-    /// 
-    ///     var privatelink = new CloudAmqp.PrivatelinkAzure("privatelink", new()
-    ///     {
-    ///         InstanceId = instance.Id,
-    ///         ApprovedSubscriptions = new[]
-    ///         {
-    ///             "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;/details&gt;
-    /// 
-    /// &lt;details&gt;
-    ///   &lt;summary&gt;
-    ///     &lt;b&gt;
-    ///       &lt;i&gt;CloudAMQP instance in an existing VPC&lt;/i&gt;
-    ///     &lt;/b&gt;
-    ///   &lt;/summary&gt;
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using CloudAmqp = Pulumi.CloudAmqp;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var vpc = new CloudAmqp.Vpc("vpc", new()
-    ///     {
-    ///         Name = "Standalone VPC",
-    ///         Region = "azure-arm::westus",
-    ///         Subnet = "10.56.72.0/24",
-    ///         Tags = new[] {},
-    ///     });
-    /// 
-    ///     var instance = new CloudAmqp.Instance("instance", new()
-    ///     {
-    ///         Name = "Instance 01",
-    ///         Plan = "bunny-1",
-    ///         Region = "azure-arm::westus",
-    ///         Tags = new[] {},
-    ///         VpcId = vpc.Id,
-    ///         KeepAssociatedVpc = true,
-    ///     });
-    /// 
-    ///     var privatelink = new CloudAmqp.PrivatelinkAzure("privatelink", new()
-    ///     {
-    ///         InstanceId = instance.Id,
-    ///         ApprovedSubscriptions = new[]
-    ///         {
-    ///             "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// &lt;/details&gt;
-    /// 
-    /// ### With Additional Firewall Rules
-    /// 
-    /// &lt;details&gt;
-    ///   &lt;summary&gt;
-    ///     &lt;b&gt;
-    ///       &lt;i&gt;CloudAMQP instance in an existing VPC with managed firewall rules&lt;/i&gt;
-    ///     &lt;/b&gt;
-    ///   &lt;/summary&gt;
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using CloudAmqp = Pulumi.CloudAmqp;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var vpc = new CloudAmqp.Vpc("vpc", new()
-    ///     {
-    ///         Name = "Standalone VPC",
-    ///         Region = "azure-arm::westus",
-    ///         Subnet = "10.56.72.0/24",
-    ///         Tags = new[] {},
-    ///     });
-    /// 
-    ///     var instance = new CloudAmqp.Instance("instance", new()
-    ///     {
-    ///         Name = "Instance 01",
-    ///         Plan = "bunny-1",
-    ///         Region = "azure-arm::westus",
-    ///         Tags = new[] {},
-    ///         VpcId = vpc.Id,
-    ///         KeepAssociatedVpc = true,
-    ///     });
-    /// 
-    ///     var privatelink = new CloudAmqp.PrivatelinkAzure("privatelink", new()
-    ///     {
-    ///         InstanceId = instance.Id,
-    ///         ApprovedSubscriptions = new[]
-    ///         {
-    ///             "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
-    ///         },
-    ///     });
-    /// 
-    ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewall_settings", new()
-    ///     {
-    ///         InstanceId = instance.Id,
-    ///         Rules = new[]
-    ///         {
-    ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
-    ///             {
-    ///                 Description = "Custom PrivateLink setup",
-    ///                 Ip = vpc.Subnet,
-    ///                 Ports = new() { },
-    ///                 Services = new[]
-    ///                 {
-    ///                     "AMQP",
-    ///                     "AMQPS",
-    ///                     "HTTPS",
-    ///                     "STREAM",
-    ///                     "STREAM_SSL",
-    ///                 },
-    ///             },
-    ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
-    ///             {
-    ///                 Description = "MGMT interface",
-    ///                 Ip = "0.0.0.0/0",
-    ///                 Ports = new() { },
-    ///                 Services = new[]
-    ///                 {
-    ///                     "HTTPS",
-    ///                 },
-    ///             },
-    ///         },
-    ///     }, new CustomResourceOptions
-    ///     {
-    ///         DependsOn =
-    ///         {
-    ///             privatelink,
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// &lt;/details&gt;
-    /// 
-    /// ## Depedency
-    /// 
-    /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-    /// 
-    /// ## Create PrivateLink with additional firewall rules
-    /// 
-    /// To create a PrivateLink configuration with additional firewall rules, it's required to chain the cloudamqp.SecurityFirewall
-    /// resource to avoid parallel conflicting resource calls. You can do this by making the firewall
-    /// resource depend on the PrivateLink resource, `cloudamqp_privatelink_azure.privatelink`.
-    /// 
-    /// Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
-    /// the PrivateLink also needs to be added.
-    /// 
     /// ## Import
     /// 
-    /// `cloudamqp_privatelink_aws` can be imported using CloudAMQP internal identifier.
+    /// `cloudamqp_privatelink_azure` can be imported using CloudAMQP instance identifier. To retrieve the
+    /// 
+    /// identifier, use [CloudAMQP API list intances].
+    /// 
+    /// From Terraform v1.5.0, the `import` block can be used to import this resource:
+    /// 
+    /// hcl
+    /// 
+    /// import {
+    /// 
+    ///   to = cloudamqp_privatelink_azure.privatelink
+    /// 
+    ///   id = cloudamqp_instance.instance.id
+    /// 
+    /// }
+    /// 
+    /// Or use Terraform CLI:
     /// 
     /// ```sh
     /// $ pulumi import cloudamqp:index/privatelinkAzure:PrivatelinkAzure privatelink &lt;id&gt;`
     /// ```
     /// 
-    /// The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
+    /// `cloudamqp_privatelink_aws` can be imported using CloudAMQP instance identifier.
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/privatelinkAzure:PrivatelinkAzure")]
     public partial class PrivatelinkAzure : global::Pulumi.CustomResource
@@ -245,7 +66,9 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Configurable sleep time (seconds) when enable PrivateLink.
-        /// Default set to 10 seconds. *Available from v1.29.0*
+        /// Default set to 10 seconds.
+        /// 
+        /// ***Note:*** Available from [v1.29.0]
         /// </summary>
         [Output("sleep")]
         public Output<int?> Sleep { get; private set; } = null!;
@@ -258,7 +81,9 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Configurable timeout time (seconds) when enable PrivateLink.
-        /// Default set to 1800 seconds. *Available from v1.29.0*
+        /// Default set to 1800 seconds.
+        /// 
+        /// ***Note:*** Available from [v1.29.0]
         /// 
         /// Approved subscriptions format (GUID): &lt;br&gt;
         /// `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
@@ -333,14 +158,18 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Configurable sleep time (seconds) when enable PrivateLink.
-        /// Default set to 10 seconds. *Available from v1.29.0*
+        /// Default set to 10 seconds.
+        /// 
+        /// ***Note:*** Available from [v1.29.0]
         /// </summary>
         [Input("sleep")]
         public Input<int>? Sleep { get; set; }
 
         /// <summary>
         /// Configurable timeout time (seconds) when enable PrivateLink.
-        /// Default set to 1800 seconds. *Available from v1.29.0*
+        /// Default set to 1800 seconds.
+        /// 
+        /// ***Note:*** Available from [v1.29.0]
         /// 
         /// Approved subscriptions format (GUID): &lt;br&gt;
         /// `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
@@ -389,7 +218,9 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Configurable sleep time (seconds) when enable PrivateLink.
-        /// Default set to 10 seconds. *Available from v1.29.0*
+        /// Default set to 10 seconds.
+        /// 
+        /// ***Note:*** Available from [v1.29.0]
         /// </summary>
         [Input("sleep")]
         public Input<int>? Sleep { get; set; }
@@ -402,7 +233,9 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Configurable timeout time (seconds) when enable PrivateLink.
-        /// Default set to 1800 seconds. *Available from v1.29.0*
+        /// Default set to 1800 seconds.
+        /// 
+        /// ***Note:*** Available from [v1.29.0]
         /// 
         /// Approved subscriptions format (GUID): &lt;br&gt;
         /// `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`

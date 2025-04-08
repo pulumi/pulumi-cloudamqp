@@ -5,7 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipientId` or `name`.
+ * Use this data source to retrieve information about default or created recipients. The recipient will
+ * receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use
+ * `recipientId` or `name`.
  *
  * ## Example Usage
  *
@@ -18,15 +20,6 @@ import * as utilities from "./utilities";
  *     name: "default",
  * });
  * ```
- *
- * ## Attributes reference
- *
- * All attributes reference are computed
- *
- * * `id`    - The identifier for this resource.
- * * `type`  - The type of the recipient.
- * * `value` - The notification endpoint, where to send the notification.
- * * `options`- Options argument (e.g. `rk` used for VictorOps routing key).
  *
  * ## Dependency
  *
@@ -54,6 +47,9 @@ export interface GetNotificationArgs {
      * The name set for the recipient.
      */
     name?: string;
+    /**
+     * Options argument (e.g. `rk` used for VictorOps routing key).
+     */
     options?: {[key: string]: string};
     /**
      * The recipient identifier.
@@ -71,13 +67,24 @@ export interface GetNotificationResult {
     readonly id: string;
     readonly instanceId: number;
     readonly name?: string;
+    /**
+     * Options argument (e.g. `rk` used for VictorOps routing key).
+     */
     readonly options?: {[key: string]: string};
     readonly recipientId?: number;
+    /**
+     * The type of the recipient.
+     */
     readonly type: string;
+    /**
+     * The notification endpoint, where to send the notification.
+     */
     readonly value: string;
 }
 /**
- * Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipientId` or `name`.
+ * Use this data source to retrieve information about default or created recipients. The recipient will
+ * receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use
+ * `recipientId` or `name`.
  *
  * ## Example Usage
  *
@@ -90,15 +97,6 @@ export interface GetNotificationResult {
  *     name: "default",
  * });
  * ```
- *
- * ## Attributes reference
- *
- * All attributes reference are computed
- *
- * * `id`    - The identifier for this resource.
- * * `type`  - The type of the recipient.
- * * `value` - The notification endpoint, where to send the notification.
- * * `options`- Options argument (e.g. `rk` used for VictorOps routing key).
  *
  * ## Dependency
  *
@@ -126,6 +124,9 @@ export interface GetNotificationOutputArgs {
      * The name set for the recipient.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Options argument (e.g. `rk` used for VictorOps routing key).
+     */
     options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The recipient identifier.

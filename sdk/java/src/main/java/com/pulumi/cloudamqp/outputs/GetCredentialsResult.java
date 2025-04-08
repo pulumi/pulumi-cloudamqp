@@ -17,7 +17,15 @@ public final class GetCredentialsResult {
      */
     private String id;
     private Integer instanceId;
+    /**
+     * @return (Sensitive) The password used by the `username`.
+     * 
+     */
     private String password;
+    /**
+     * @return (Sensitive) The username for the configured user in Rabbit MQ.
+     * 
+     */
     private String username;
 
     private GetCredentialsResult() {}
@@ -31,9 +39,17 @@ public final class GetCredentialsResult {
     public Integer instanceId() {
         return this.instanceId;
     }
+    /**
+     * @return (Sensitive) The password used by the `username`.
+     * 
+     */
     public String password() {
         return this.password;
     }
+    /**
+     * @return (Sensitive) The username for the configured user in Rabbit MQ.
+     * 
+     */
     public String username() {
         return this.username;
     }

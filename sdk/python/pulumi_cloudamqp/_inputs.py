@@ -38,6 +38,9 @@ if not MYPY:
         Subscription plan disk size
         """
         name: NotRequired[pulumi.Input[str]]
+        """
+        Name of the node.
+        """
 elif False:
     ExtraDiskSizeNodeArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -50,6 +53,7 @@ class ExtraDiskSizeNodeArgs:
         """
         :param pulumi.Input[int] additional_disk_size: Additional added disk size
         :param pulumi.Input[int] disk_size: Subscription plan disk size
+        :param pulumi.Input[str] name: Name of the node.
         """
         if additional_disk_size is not None:
             pulumi.set(__self__, "additional_disk_size", additional_disk_size)
@@ -85,6 +89,9 @@ class ExtraDiskSizeNodeArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the node.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -96,13 +103,15 @@ if not MYPY:
     class InstanceCopySettingArgsDict(TypedDict):
         settings: pulumi.Input[Sequence[pulumi.Input[str]]]
         """
-        Array of one or more settings to be copied. Allowed values: [alarms, config, definitions, firewall, logs, metrics, plugins]
+        Array of one or more settings to be copied. Allowed values:
+        [alarms, config, definitions, firewall, logs, metrics, plugins]
 
-        See more below, copy settings
+        See more below, [copy settings].
         """
         subscription_id: pulumi.Input[str]
         """
-        Instance identifier of the CloudAMQP instance to copy the settings from.
+        Instance identifier of the CloudAMQP instance to copy the settings
+        from.
         """
 elif False:
     InstanceCopySettingArgsDict: TypeAlias = Mapping[str, Any]
@@ -113,10 +122,12 @@ class InstanceCopySettingArgs:
                  settings: pulumi.Input[Sequence[pulumi.Input[str]]],
                  subscription_id: pulumi.Input[str]):
         """
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] settings: Array of one or more settings to be copied. Allowed values: [alarms, config, definitions, firewall, logs, metrics, plugins]
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] settings: Array of one or more settings to be copied. Allowed values:
+               [alarms, config, definitions, firewall, logs, metrics, plugins]
                
-               See more below, copy settings
-        :param pulumi.Input[str] subscription_id: Instance identifier of the CloudAMQP instance to copy the settings from.
+               See more below, [copy settings].
+        :param pulumi.Input[str] subscription_id: Instance identifier of the CloudAMQP instance to copy the settings
+               from.
         """
         pulumi.set(__self__, "settings", settings)
         pulumi.set(__self__, "subscription_id", subscription_id)
@@ -125,9 +136,10 @@ class InstanceCopySettingArgs:
     @pulumi.getter
     def settings(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        Array of one or more settings to be copied. Allowed values: [alarms, config, definitions, firewall, logs, metrics, plugins]
+        Array of one or more settings to be copied. Allowed values:
+        [alarms, config, definitions, firewall, logs, metrics, plugins]
 
-        See more below, copy settings
+        See more below, [copy settings].
         """
         return pulumi.get(self, "settings")
 
@@ -139,7 +151,8 @@ class InstanceCopySettingArgs:
     @pulumi.getter(name="subscriptionId")
     def subscription_id(self) -> pulumi.Input[str]:
         """
-        Instance identifier of the CloudAMQP instance to copy the settings from.
+        Instance identifier of the CloudAMQP instance to copy the settings
+        from.
         """
         return pulumi.get(self, "subscription_id")
 
@@ -279,6 +292,8 @@ if not MYPY:
         | AMQP         | 5672  |
         | AMQPS        | 5671  |
         | HTTPS        | 443   |
+        | MQTT         | 1883  |
+        | MQTTS        | 8883  |
         """
         ports: NotRequired[pulumi.Input[Sequence[pulumi.Input[int]]]]
         """
@@ -323,6 +338,8 @@ class SecurityFirewallRuleArgs:
                | AMQP         | 5672  |
                | AMQPS        | 5671  |
                | HTTPS        | 443   |
+               | MQTT         | 1883  |
+               | MQTTS        | 8883  |
         :param pulumi.Input[Sequence[pulumi.Input[int]]] ports: Custom ports to be opened
         :param pulumi.Input[Sequence[pulumi.Input[str]]] services: Pre-defined service ports, see table below
         """
@@ -373,6 +390,8 @@ class SecurityFirewallRuleArgs:
         | AMQP         | 5672  |
         | AMQPS        | 5671  |
         | HTTPS        | 443   |
+        | MQTT         | 1883  |
+        | MQTTS        | 8883  |
         """
         return pulumi.get(self, "description")
 

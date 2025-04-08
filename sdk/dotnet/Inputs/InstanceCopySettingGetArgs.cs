@@ -16,9 +16,10 @@ namespace Pulumi.CloudAmqp.Inputs
         private InputList<string>? _settings;
 
         /// <summary>
-        /// Array of one or more settings to be copied. Allowed values: [alarms, config, definitions, firewall, logs, metrics, plugins]
+        /// Array of one or more settings to be copied. Allowed values:
+        /// [alarms, config, definitions, firewall, logs, metrics, plugins]
         /// 
-        /// See more below, copy settings
+        /// See more below, [copy settings].
         /// </summary>
         public InputList<string> Settings
         {
@@ -27,7 +28,8 @@ namespace Pulumi.CloudAmqp.Inputs
         }
 
         /// <summary>
-        /// Instance identifier of the CloudAMQP instance to copy the settings from.
+        /// Instance identifier of the CloudAMQP instance to copy the settings
+        /// from.
         /// </summary>
         [Input("subscriptionId", required: true)]
         public Input<string> SubscriptionId { get; set; } = null!;

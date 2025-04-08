@@ -13,9 +13,21 @@ namespace Pulumi.CloudAmqp.Outputs
     [OutputType]
     public sealed class GetPluginsPluginResult
     {
+        /// <summary>
+        /// Description of what the plugin does.
+        /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// Enable or disable information for the plugin.
+        /// </summary>
         public readonly bool Enabled;
+        /// <summary>
+        /// The type of the recipient.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Rabbit MQ version that the plugins are shipped with.
+        /// </summary>
         public readonly string Version;
 
         [OutputConstructor]

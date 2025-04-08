@@ -137,18 +137,22 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * ID of data collection rule that your DCE is linked to for Azure Monitor.
+     * ID of data collection rule that your DCE is linked to for Azure
+     * Monitor.
      * 
-     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of
+     * integration used. See [integration type reference] table below for more information.
      * 
      */
     @Import(name="dcrId")
     private @Nullable Output<String> dcrId;
 
     /**
-     * @return ID of data collection rule that your DCE is linked to for Azure Monitor.
+     * @return ID of data collection rule that your DCE is linked to for Azure
+     * Monitor.
      * 
-     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of
+     * integration used. See [integration type reference] table below for more information.
      * 
      */
     public Optional<Output<String>> dcrId() {
@@ -171,14 +175,16 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+     * The host for Scalyr integration. (app.scalyr.com,
+     * app.eu.scalyr.com)
      * 
      */
     @Import(name="host")
     private @Nullable Output<String> host;
 
     /**
-     * @return The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+     * @return The host for Scalyr integration. (app.scalyr.com,
+     * app.eu.scalyr.com)
      * 
      */
     public Optional<Output<String>> host() {
@@ -217,7 +223,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
 
     /**
      * The name of the third party log integration. See
-     * Integration type reference
+     * [integration type reference]
      * 
      */
     @Import(name="name")
@@ -225,7 +231,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
 
     /**
      * @return The name of the third party log integration. See
-     * Integration type reference
+     * [integration type reference]
      * 
      */
     public Optional<Output<String>> name() {
@@ -308,14 +314,16 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Assign source type to the data exported, eg. generic_single_line. (Splunk)
+     * Assign source type to the data exported, eg. generic_single_line.
+     * (Splunk)
      * 
      */
     @Import(name="sourcetype")
     private @Nullable Output<String> sourcetype;
 
     /**
-     * @return Assign source type to the data exported, eg. generic_single_line. (Splunk)
+     * @return Assign source type to the data exported, eg. generic_single_line.
+     * (Splunk)
      * 
      */
     public Optional<Output<String>> sourcetype() {
@@ -355,7 +363,8 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     /**
      * Tags. e.g. `env=prod,region=europe`.
      * 
-     * ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
+     * ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+     * letter, read more about tags format in the [Datadog documentation].
      * 
      */
     @Import(name="tags")
@@ -364,7 +373,8 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     /**
      * @return Tags. e.g. `env=prod,region=europe`.
      * 
-     * ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
+     * ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+     * letter, read more about tags format in the [Datadog documentation].
      * 
      */
     public Optional<Output<String>> tags() {
@@ -634,9 +644,11 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param dcrId ID of data collection rule that your DCE is linked to for Azure Monitor.
+         * @param dcrId ID of data collection rule that your DCE is linked to for Azure
+         * Monitor.
          * 
-         * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+         * This is the full list of all arguments. Only a subset of arguments are used based on which type of
+         * integration used. See [integration type reference] table below for more information.
          * 
          * @return builder
          * 
@@ -647,9 +659,11 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param dcrId ID of data collection rule that your DCE is linked to for Azure Monitor.
+         * @param dcrId ID of data collection rule that your DCE is linked to for Azure
+         * Monitor.
          * 
-         * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+         * This is the full list of all arguments. Only a subset of arguments are used based on which type of
+         * integration used. See [integration type reference] table below for more information.
          * 
          * @return builder
          * 
@@ -680,7 +694,8 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param host The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+         * @param host The host for Scalyr integration. (app.scalyr.com,
+         * app.eu.scalyr.com)
          * 
          * @return builder
          * 
@@ -691,7 +706,8 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param host The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+         * @param host The host for Scalyr integration. (app.scalyr.com,
+         * app.eu.scalyr.com)
          * 
          * @return builder
          * 
@@ -744,7 +760,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
 
         /**
          * @param name The name of the third party log integration. See
-         * Integration type reference
+         * [integration type reference]
          * 
          * @return builder
          * 
@@ -756,7 +772,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
 
         /**
          * @param name The name of the third party log integration. See
-         * Integration type reference
+         * [integration type reference]
          * 
          * @return builder
          * 
@@ -871,7 +887,8 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param sourcetype Assign source type to the data exported, eg. generic_single_line. (Splunk)
+         * @param sourcetype Assign source type to the data exported, eg. generic_single_line.
+         * (Splunk)
          * 
          * @return builder
          * 
@@ -882,7 +899,8 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param sourcetype Assign source type to the data exported, eg. generic_single_line. (Splunk)
+         * @param sourcetype Assign source type to the data exported, eg. generic_single_line.
+         * (Splunk)
          * 
          * @return builder
          * 
@@ -936,7 +954,8 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         /**
          * @param tags Tags. e.g. `env=prod,region=europe`.
          * 
-         * ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
+         * ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+         * letter, read more about tags format in the [Datadog documentation].
          * 
          * @return builder
          * 
@@ -949,7 +968,8 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         /**
          * @param tags Tags. e.g. `env=prod,region=europe`.
          * 
-         * ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
+         * ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+         * letter, read more about tags format in the [Datadog documentation].
          * 
          * @return builder
          * 

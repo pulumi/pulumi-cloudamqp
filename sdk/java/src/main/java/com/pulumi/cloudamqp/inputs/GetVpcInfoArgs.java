@@ -19,7 +19,7 @@ public final class GetVpcInfoArgs extends com.pulumi.resources.InvokeArgs {
     /**
      * The CloudAMQP instance identifier.
      * 
-     * ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
+     * ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
      * 
      */
     @Import(name="instanceId")
@@ -28,7 +28,7 @@ public final class GetVpcInfoArgs extends com.pulumi.resources.InvokeArgs {
     /**
      * @return The CloudAMQP instance identifier.
      * 
-     * ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
+     * ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
      * 
      */
     public Optional<Output<Integer>> instanceId() {
@@ -38,7 +38,7 @@ public final class GetVpcInfoArgs extends com.pulumi.resources.InvokeArgs {
     /**
      * The managed VPC identifier.
      * 
-     * ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
+     * ***Note:*** Available from [v1.16.0], will be removed in next major version (v2.0)
      * 
      */
     @Import(name="vpcId")
@@ -47,7 +47,7 @@ public final class GetVpcInfoArgs extends com.pulumi.resources.InvokeArgs {
     /**
      * @return The managed VPC identifier.
      * 
-     * ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
+     * ***Note:*** Available from [v1.16.0], will be removed in next major version (v2.0)
      * 
      */
     public Optional<Output<String>> vpcId() {
@@ -82,7 +82,7 @@ public final class GetVpcInfoArgs extends com.pulumi.resources.InvokeArgs {
         /**
          * @param instanceId The CloudAMQP instance identifier.
          * 
-         * ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
+         * ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
          * 
          * @return builder
          * 
@@ -95,7 +95,7 @@ public final class GetVpcInfoArgs extends com.pulumi.resources.InvokeArgs {
         /**
          * @param instanceId The CloudAMQP instance identifier.
          * 
-         * ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
+         * ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
          * 
          * @return builder
          * 
@@ -107,7 +107,7 @@ public final class GetVpcInfoArgs extends com.pulumi.resources.InvokeArgs {
         /**
          * @param vpcId The managed VPC identifier.
          * 
-         * ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
+         * ***Note:*** Available from [v1.16.0], will be removed in next major version (v2.0)
          * 
          * @return builder
          * 
@@ -120,7 +120,7 @@ public final class GetVpcInfoArgs extends com.pulumi.resources.InvokeArgs {
         /**
          * @param vpcId The managed VPC identifier.
          * 
-         * ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
+         * ***Note:*** Available from [v1.16.0], will be removed in next major version (v2.0)
          * 
          * @return builder
          * 

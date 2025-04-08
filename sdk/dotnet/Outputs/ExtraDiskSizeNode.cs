@@ -21,6 +21,9 @@ namespace Pulumi.CloudAmqp.Outputs
         /// Subscription plan disk size
         /// </summary>
         public readonly int? DiskSize;
+        /// <summary>
+        /// Name of the node.
+        /// </summary>
         public readonly string? Name;
 
         [OutputConstructor]

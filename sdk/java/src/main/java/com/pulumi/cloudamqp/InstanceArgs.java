@@ -21,7 +21,8 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
     public static final InstanceArgs Empty = new InstanceArgs();
 
     /**
-     * Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+     * Copy settings from one CloudAMQP instance to a new. Consists of
+     * the block documented below.
      * 
      * ***
      * 
@@ -32,7 +33,8 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<List<InstanceCopySettingArgs>> copySettings;
 
     /**
-     * @return Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+     * @return Copy settings from one CloudAMQP instance to a new. Consists of
+     * the block documented below.
      * 
      * ***
      * 
@@ -44,14 +46,16 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Keep associated VPC when deleting instance, default set to false.
+     * Keep associated VPC when deleting instance. Default set to
+     * false.
      * 
      */
     @Import(name="keepAssociatedVpc")
     private @Nullable Output<Boolean> keepAssociatedVpc;
 
     /**
-     * @return Keep associated VPC when deleting instance, default set to false.
+     * @return Keep associated VPC when deleting instance. Default set to
+     * false.
      * 
      */
     public Optional<Output<Boolean>> keepAssociatedVpc() {
@@ -74,14 +78,14 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
+     * Set to true to not create default alarms
      * 
      */
     @Import(name="noDefaultAlarms")
     private @Nullable Output<Boolean> noDefaultAlarms;
 
     /**
-     * @return Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
+     * @return Set to true to not create default alarms
      * 
      */
     public Optional<Output<Boolean>> noDefaultAlarms() {
@@ -89,18 +93,24 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Number of nodes, 1, 3 or 5 depending on plan used. Only needed for legacy plans, will otherwise be computed.
+     * Number of nodes, 1, 3 or 5 depending on plan used. Only needed for
+     * legacy plans, will otherwise be computed.
      * 
-     * ***Deprecated: Legacy subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.***
+     * ***Deprecated:*** Legacy subscriptions plan can still change this to scale up or down the instance.
+     * New subscriptions plans use the plan to determine number of nodes. In order to
+     * change number of nodes the `plan` needs to be updated.
      * 
      */
     @Import(name="nodes")
     private @Nullable Output<Integer> nodes;
 
     /**
-     * @return Number of nodes, 1, 3 or 5 depending on plan used. Only needed for legacy plans, will otherwise be computed.
+     * @return Number of nodes, 1, 3 or 5 depending on plan used. Only needed for
+     * legacy plans, will otherwise be computed.
      * 
-     * ***Deprecated: Legacy subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.***
+     * ***Deprecated:*** Legacy subscriptions plan can still change this to scale up or down the instance.
+     * New subscriptions plans use the plan to determine number of nodes. In order to
+     * change number of nodes the `plan` needs to be updated.
      * 
      */
     public Optional<Output<Integer>> nodes() {
@@ -108,14 +118,14 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The subscription plan. See available plans
+     * The subscription plan. See available [plans].
      * 
      */
     @Import(name="plan", required=true)
     private Output<String> plan;
 
     /**
-     * @return The subscription plan. See available plans
+     * @return The subscription plan. See available [plans].
      * 
      */
     public Output<String> plan() {
@@ -123,18 +133,20 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The region to host the instance in. See instance regions
+     * The region to host the instance in. See available [regions].
      * 
-     * ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
+     * ***Note:*** Changing region will force the instance to be destroyed and a new created in the new
+     * region. All data will be lost and a new name assigned.
      * 
      */
     @Import(name="region", required=true)
     private Output<String> region;
 
     /**
-     * @return The region to host the instance in. See instance regions
+     * @return The region to host the instance in. See available [regions].
      * 
-     * ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
+     * ***Note:*** Changing region will force the instance to be destroyed and a new created in the new
+     * region. All data will be lost and a new name assigned.
      * 
      */
     public Output<String> region() {
@@ -142,18 +154,22 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.
+     * The Rabbit MQ version. Can be left out, will then be set to
+     * default value used by CloudAMQP API.
      * 
-     * ***Note: There is not yet any support in the provider to change the RMQ version. Once it&#39;s set in the initial creation, it will remain.***
+     * ***Note:*** There is not yet any support in the provider to change the RMQ version. Once it&#39;s set
+     * in the initial creation, it will remain.
      * 
      */
     @Import(name="rmqVersion")
     private @Nullable Output<String> rmqVersion;
 
     /**
-     * @return The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.
+     * @return The Rabbit MQ version. Can be left out, will then be set to
+     * default value used by CloudAMQP API.
      * 
-     * ***Note: There is not yet any support in the provider to change the RMQ version. Once it&#39;s set in the initial creation, it will remain.***
+     * ***Note:*** There is not yet any support in the provider to change the RMQ version. Once it&#39;s set
+     * in the initial creation, it will remain.
      * 
      */
     public Optional<Output<String>> rmqVersion() {
@@ -161,14 +177,16 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
+     * One or more tags for the CloudAMQP instance, makes it possible to
+     * categories multiple instances in console view. Default there is no tags assigned.
      * 
      */
     @Import(name="tags")
     private @Nullable Output<List<String>> tags;
 
     /**
-     * @return One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
+     * @return One or more tags for the CloudAMQP instance, makes it possible to
+     * categories multiple instances in console view. Default there is no tags assigned.
      * 
      */
     public Optional<Output<List<String>>> tags() {
@@ -176,14 +194,16 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The VPC ID. Use this to create your instance in an existing VPC. See available example.
+     * The VPC ID. Use this to create your instance in an existing
+     * VPC. See available [example].
      * 
      */
     @Import(name="vpcId")
     private @Nullable Output<Integer> vpcId;
 
     /**
-     * @return The VPC ID. Use this to create your instance in an existing VPC. See available example.
+     * @return The VPC ID. Use this to create your instance in an existing
+     * VPC. See available [example].
      * 
      */
     public Optional<Output<Integer>> vpcId() {
@@ -191,22 +211,24 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Creates a dedicated VPC subnet, shouldn&#39;t overlap with other VPC subnet, default subnet used 10.56.72.0/24.
+     * Creates a dedicated VPC subnet, shouldn&#39;t overlap with other
+     * VPC subnet, default subnet used 10.56.72.0/24.
      * 
-     * ***Deprecated: Will be removed in next major version (v2.0)***
+     * ***Deprecated:*** Will be removed in next major version (v2.0)
      * 
-     * ***Note: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.***
+     * ***Note:*** Extra fee will be charged when using VPC, see [CloudAMQP] for more information.
      * 
      */
     @Import(name="vpcSubnet")
     private @Nullable Output<String> vpcSubnet;
 
     /**
-     * @return Creates a dedicated VPC subnet, shouldn&#39;t overlap with other VPC subnet, default subnet used 10.56.72.0/24.
+     * @return Creates a dedicated VPC subnet, shouldn&#39;t overlap with other
+     * VPC subnet, default subnet used 10.56.72.0/24.
      * 
-     * ***Deprecated: Will be removed in next major version (v2.0)***
+     * ***Deprecated:*** Will be removed in next major version (v2.0)
      * 
-     * ***Note: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.***
+     * ***Note:*** Extra fee will be charged when using VPC, see [CloudAMQP] for more information.
      * 
      */
     public Optional<Output<String>> vpcSubnet() {
@@ -248,7 +270,8 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param copySettings Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+         * @param copySettings Copy settings from one CloudAMQP instance to a new. Consists of
+         * the block documented below.
          * 
          * ***
          * 
@@ -263,7 +286,8 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param copySettings Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+         * @param copySettings Copy settings from one CloudAMQP instance to a new. Consists of
+         * the block documented below.
          * 
          * ***
          * 
@@ -277,7 +301,8 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param copySettings Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+         * @param copySettings Copy settings from one CloudAMQP instance to a new. Consists of
+         * the block documented below.
          * 
          * ***
          * 
@@ -291,7 +316,8 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keepAssociatedVpc Keep associated VPC when deleting instance, default set to false.
+         * @param keepAssociatedVpc Keep associated VPC when deleting instance. Default set to
+         * false.
          * 
          * @return builder
          * 
@@ -302,7 +328,8 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keepAssociatedVpc Keep associated VPC when deleting instance, default set to false.
+         * @param keepAssociatedVpc Keep associated VPC when deleting instance. Default set to
+         * false.
          * 
          * @return builder
          * 
@@ -333,7 +360,7 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param noDefaultAlarms Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
+         * @param noDefaultAlarms Set to true to not create default alarms
          * 
          * @return builder
          * 
@@ -344,7 +371,7 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param noDefaultAlarms Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
+         * @param noDefaultAlarms Set to true to not create default alarms
          * 
          * @return builder
          * 
@@ -354,9 +381,12 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param nodes Number of nodes, 1, 3 or 5 depending on plan used. Only needed for legacy plans, will otherwise be computed.
+         * @param nodes Number of nodes, 1, 3 or 5 depending on plan used. Only needed for
+         * legacy plans, will otherwise be computed.
          * 
-         * ***Deprecated: Legacy subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.***
+         * ***Deprecated:*** Legacy subscriptions plan can still change this to scale up or down the instance.
+         * New subscriptions plans use the plan to determine number of nodes. In order to
+         * change number of nodes the `plan` needs to be updated.
          * 
          * @return builder
          * 
@@ -367,9 +397,12 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param nodes Number of nodes, 1, 3 or 5 depending on plan used. Only needed for legacy plans, will otherwise be computed.
+         * @param nodes Number of nodes, 1, 3 or 5 depending on plan used. Only needed for
+         * legacy plans, will otherwise be computed.
          * 
-         * ***Deprecated: Legacy subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.***
+         * ***Deprecated:*** Legacy subscriptions plan can still change this to scale up or down the instance.
+         * New subscriptions plans use the plan to determine number of nodes. In order to
+         * change number of nodes the `plan` needs to be updated.
          * 
          * @return builder
          * 
@@ -379,7 +412,7 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param plan The subscription plan. See available plans
+         * @param plan The subscription plan. See available [plans].
          * 
          * @return builder
          * 
@@ -390,7 +423,7 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param plan The subscription plan. See available plans
+         * @param plan The subscription plan. See available [plans].
          * 
          * @return builder
          * 
@@ -400,9 +433,10 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param region The region to host the instance in. See instance regions
+         * @param region The region to host the instance in. See available [regions].
          * 
-         * ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
+         * ***Note:*** Changing region will force the instance to be destroyed and a new created in the new
+         * region. All data will be lost and a new name assigned.
          * 
          * @return builder
          * 
@@ -413,9 +447,10 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param region The region to host the instance in. See instance regions
+         * @param region The region to host the instance in. See available [regions].
          * 
-         * ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
+         * ***Note:*** Changing region will force the instance to be destroyed and a new created in the new
+         * region. All data will be lost and a new name assigned.
          * 
          * @return builder
          * 
@@ -425,9 +460,11 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param rmqVersion The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.
+         * @param rmqVersion The Rabbit MQ version. Can be left out, will then be set to
+         * default value used by CloudAMQP API.
          * 
-         * ***Note: There is not yet any support in the provider to change the RMQ version. Once it&#39;s set in the initial creation, it will remain.***
+         * ***Note:*** There is not yet any support in the provider to change the RMQ version. Once it&#39;s set
+         * in the initial creation, it will remain.
          * 
          * @return builder
          * 
@@ -438,9 +475,11 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param rmqVersion The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.
+         * @param rmqVersion The Rabbit MQ version. Can be left out, will then be set to
+         * default value used by CloudAMQP API.
          * 
-         * ***Note: There is not yet any support in the provider to change the RMQ version. Once it&#39;s set in the initial creation, it will remain.***
+         * ***Note:*** There is not yet any support in the provider to change the RMQ version. Once it&#39;s set
+         * in the initial creation, it will remain.
          * 
          * @return builder
          * 
@@ -450,7 +489,8 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tags One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
+         * @param tags One or more tags for the CloudAMQP instance, makes it possible to
+         * categories multiple instances in console view. Default there is no tags assigned.
          * 
          * @return builder
          * 
@@ -461,7 +501,8 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tags One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
+         * @param tags One or more tags for the CloudAMQP instance, makes it possible to
+         * categories multiple instances in console view. Default there is no tags assigned.
          * 
          * @return builder
          * 
@@ -471,7 +512,8 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tags One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
+         * @param tags One or more tags for the CloudAMQP instance, makes it possible to
+         * categories multiple instances in console view. Default there is no tags assigned.
          * 
          * @return builder
          * 
@@ -481,7 +523,8 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param vpcId The VPC ID. Use this to create your instance in an existing VPC. See available example.
+         * @param vpcId The VPC ID. Use this to create your instance in an existing
+         * VPC. See available [example].
          * 
          * @return builder
          * 
@@ -492,7 +535,8 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param vpcId The VPC ID. Use this to create your instance in an existing VPC. See available example.
+         * @param vpcId The VPC ID. Use this to create your instance in an existing
+         * VPC. See available [example].
          * 
          * @return builder
          * 
@@ -502,11 +546,12 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param vpcSubnet Creates a dedicated VPC subnet, shouldn&#39;t overlap with other VPC subnet, default subnet used 10.56.72.0/24.
+         * @param vpcSubnet Creates a dedicated VPC subnet, shouldn&#39;t overlap with other
+         * VPC subnet, default subnet used 10.56.72.0/24.
          * 
-         * ***Deprecated: Will be removed in next major version (v2.0)***
+         * ***Deprecated:*** Will be removed in next major version (v2.0)
          * 
-         * ***Note: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.***
+         * ***Note:*** Extra fee will be charged when using VPC, see [CloudAMQP] for more information.
          * 
          * @return builder
          * 
@@ -517,11 +562,12 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param vpcSubnet Creates a dedicated VPC subnet, shouldn&#39;t overlap with other VPC subnet, default subnet used 10.56.72.0/24.
+         * @param vpcSubnet Creates a dedicated VPC subnet, shouldn&#39;t overlap with other
+         * VPC subnet, default subnet used 10.56.72.0/24.
          * 
-         * ***Deprecated: Will be removed in next major version (v2.0)***
+         * ***Deprecated:*** Will be removed in next major version (v2.0)
          * 
-         * ***Note: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.***
+         * ***Note:*** Extra fee will be charged when using VPC, see [CloudAMQP] for more information.
          * 
          * @return builder
          * 

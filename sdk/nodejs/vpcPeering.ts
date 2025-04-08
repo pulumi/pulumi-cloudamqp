@@ -7,13 +7,13 @@ import * as utilities from "./utilities";
 /**
  * ## Import
  *
- * ### Peering Identifier
+ * ### Peering identifier
  *
- * This can be found as *peering connection id* in your AWS VPC dashboard/Peering connections, for the correct VPC peering.
+ * This can be found as *peering connection id* in your AWS VPC dashboard/Peering connections, for the
  *
- * Also available as the identifier for *aws_vpc_peering_connection* resource or
+ * correct VPC peering.
  *
- * data source.
+ * Also available as the identifier for `aws_vpc_peering_connection` [resource] or [data source].
  */
 export class VpcPeering extends pulumi.CustomResource {
     /**
@@ -46,7 +46,7 @@ export class VpcPeering extends pulumi.CustomResource {
     /**
      * The CloudAMQP instance identifier.
      *
-     * ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+     * ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
      */
     public readonly instanceId!: pulumi.Output<number | undefined>;
     /**
@@ -54,7 +54,8 @@ export class VpcPeering extends pulumi.CustomResource {
      */
     public readonly peeringId!: pulumi.Output<string>;
     /**
-     * Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+     * Configurable sleep time (seconds) between retries for accepting or
+     * removing peering. Default set to 60 seconds.
      */
     public readonly sleep!: pulumi.Output<number | undefined>;
     /**
@@ -62,13 +63,14 @@ export class VpcPeering extends pulumi.CustomResource {
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
-     * Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+     * Configurable timeout time (seconds) for accepting or removing
+     * peering. Default set to 3600 seconds.
      */
     public readonly timeout!: pulumi.Output<number | undefined>;
     /**
      * The managed VPC identifier.
      *
-     * ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
+     * ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
      */
     public readonly vpcId!: pulumi.Output<string | undefined>;
 
@@ -115,7 +117,7 @@ export interface VpcPeeringState {
     /**
      * The CloudAMQP instance identifier.
      *
-     * ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+     * ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
      */
     instanceId?: pulumi.Input<number>;
     /**
@@ -123,7 +125,8 @@ export interface VpcPeeringState {
      */
     peeringId?: pulumi.Input<string>;
     /**
-     * Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+     * Configurable sleep time (seconds) between retries for accepting or
+     * removing peering. Default set to 60 seconds.
      */
     sleep?: pulumi.Input<number>;
     /**
@@ -131,13 +134,14 @@ export interface VpcPeeringState {
      */
     status?: pulumi.Input<string>;
     /**
-     * Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+     * Configurable timeout time (seconds) for accepting or removing
+     * peering. Default set to 3600 seconds.
      */
     timeout?: pulumi.Input<number>;
     /**
      * The managed VPC identifier.
      *
-     * ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
+     * ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
      */
     vpcId?: pulumi.Input<string>;
 }
@@ -149,7 +153,7 @@ export interface VpcPeeringArgs {
     /**
      * The CloudAMQP instance identifier.
      *
-     * ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+     * ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
      */
     instanceId?: pulumi.Input<number>;
     /**
@@ -157,17 +161,19 @@ export interface VpcPeeringArgs {
      */
     peeringId: pulumi.Input<string>;
     /**
-     * Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+     * Configurable sleep time (seconds) between retries for accepting or
+     * removing peering. Default set to 60 seconds.
      */
     sleep?: pulumi.Input<number>;
     /**
-     * Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+     * Configurable timeout time (seconds) for accepting or removing
+     * peering. Default set to 3600 seconds.
      */
     timeout?: pulumi.Input<number>;
     /**
      * The managed VPC identifier.
      *
-     * ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
+     * ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
      */
     vpcId?: pulumi.Input<string>;
 }

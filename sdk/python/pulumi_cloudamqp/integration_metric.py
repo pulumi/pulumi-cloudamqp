@@ -901,11 +901,35 @@ class IntegrationMetric(pulumi.CustomResource):
 
         `cloudamqp_integration_metric`can be imported using the resource identifier together with CloudAMQP
 
-        instance identifier. The name and identifier are CSV separated, see example below.
+        instance identifier (CSV separated). To retrieve the resource identifier, use
+
+        [CloudAMQP API list integrations].
+
+        From Terraform v1.5.0, the `import` block can be used to import this resource:
+
+        hcl
+
+        import {
+
+          to = cloudamqp_alarm.alarm
+
+          id = format("<id>,%s", cloudamqp_instance.instance.id)
+
+        }
+
+        Or use Terraform CLI:
 
         ```sh
         $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric <resource_name> <resource_id>,<instance_id>`
         ```
+
+        [CloudAMQP API add integrations]: https://docs.cloudamqp.com/cloudamqp_api.html#add-metrics-integration
+
+        [CloudAMQP API list integrations]: https://docs.cloudamqp.com/cloudamqp_api.html#list-metrics-integrations
+
+        [Datadog documentation]: https://docs.datadoghq.com/getting_started/tagging/#define-tags
+
+        [integration type reference]: #integration-type-reference
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1092,11 +1116,35 @@ class IntegrationMetric(pulumi.CustomResource):
 
         `cloudamqp_integration_metric`can be imported using the resource identifier together with CloudAMQP
 
-        instance identifier. The name and identifier are CSV separated, see example below.
+        instance identifier (CSV separated). To retrieve the resource identifier, use
+
+        [CloudAMQP API list integrations].
+
+        From Terraform v1.5.0, the `import` block can be used to import this resource:
+
+        hcl
+
+        import {
+
+          to = cloudamqp_alarm.alarm
+
+          id = format("<id>,%s", cloudamqp_instance.instance.id)
+
+        }
+
+        Or use Terraform CLI:
 
         ```sh
         $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric <resource_name> <resource_id>,<instance_id>`
         ```
+
+        [CloudAMQP API add integrations]: https://docs.cloudamqp.com/cloudamqp_api.html#add-metrics-integration
+
+        [CloudAMQP API list integrations]: https://docs.cloudamqp.com/cloudamqp_api.html#list-metrics-integrations
+
+        [Datadog documentation]: https://docs.datadoghq.com/getting_started/tagging/#define-tags
+
+        [integration type reference]: #integration-type-reference
 
         :param str resource_name: The name of the resource.
         :param IntegrationMetricArgs args: The arguments to use to populate this resource's properties.

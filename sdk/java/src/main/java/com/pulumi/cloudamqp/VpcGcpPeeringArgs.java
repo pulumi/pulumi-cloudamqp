@@ -19,14 +19,18 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
     public static final VpcGcpPeeringArgs Empty = new VpcGcpPeeringArgs();
 
     /**
-     * The CloudAMQP instance identifier. *Deprecated from v1.16.0*
+     * The CloudAMQP instance identifier.
+     * 
+     * ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
      * 
      */
     @Import(name="instanceId")
     private @Nullable Output<Integer> instanceId;
 
     /**
-     * @return The CloudAMQP instance identifier. *Deprecated from v1.16.0*
+     * @return The CloudAMQP instance identifier.
+     * 
+     * ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
      * 
      */
     public Optional<Output<Integer>> instanceId() {
@@ -34,14 +38,16 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Network URI of the VPC network to which you will peer with. See examples above for the format.
+     * Network URI of the VPC network to which you will peer with.
+     * See examples above for the format.
      * 
      */
     @Import(name="peerNetworkUri", required=true)
     private Output<String> peerNetworkUri;
 
     /**
-     * @return Network URI of the VPC network to which you will peer with. See examples above for the format.
+     * @return Network URI of the VPC network to which you will peer with.
+     * See examples above for the format.
      * 
      */
     public Output<String> peerNetworkUri() {
@@ -49,16 +55,20 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Configurable sleep time (seconds) between retries when requesting or reading
-     * peering. Default set to 10 seconds. *Available from v1.29.0*
+     * Configurable sleep time (seconds) between retries when
+     * requesting or reading peering. Default set to 10 seconds.
+     * 
+     * ***Note:*** Available from [v1.29.0]
      * 
      */
     @Import(name="sleep")
     private @Nullable Output<Integer> sleep;
 
     /**
-     * @return Configurable sleep time (seconds) between retries when requesting or reading
-     * peering. Default set to 10 seconds. *Available from v1.29.0*
+     * @return Configurable sleep time (seconds) between retries when
+     * requesting or reading peering. Default set to 10 seconds.
+     * 
+     * ***Note:*** Available from [v1.29.0]
      * 
      */
     public Optional<Output<Integer>> sleep() {
@@ -66,16 +76,20 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Configurable timeout time (seconds) before retries times out. Default set
-     * to 1800 seconds. *Available from v1.29.0*
+     * Configurable timeout time (seconds) before retries times
+     * out. Default set to 1800 seconds.
+     * 
+     * ***Note:*** Available from [v1.29.0]
      * 
      */
     @Import(name="timeout")
     private @Nullable Output<Integer> timeout;
 
     /**
-     * @return Configurable timeout time (seconds) before retries times out. Default set
-     * to 1800 seconds. *Available from v1.29.0*
+     * @return Configurable timeout time (seconds) before retries times
+     * out. Default set to 1800 seconds.
+     * 
+     * ***Note:*** Available from [v1.29.0]
      * 
      */
     public Optional<Output<Integer>> timeout() {
@@ -83,14 +97,18 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The managed VPC identifier. *Available from v1.16.0*
+     * The managed VPC identifier.
+     * 
+     * ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
      * 
      */
     @Import(name="vpcId")
     private @Nullable Output<String> vpcId;
 
     /**
-     * @return The managed VPC identifier. *Available from v1.16.0*
+     * @return The managed VPC identifier.
+     * 
+     * ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
      * 
      */
     public Optional<Output<String>> vpcId() {
@@ -99,7 +117,9 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * Makes the resource wait until the peering is connected.
-     * Default set to false. *Available from v1.28.0*
+     * Default set to false.
+     * 
+     * ***Note:*** Available from [v1.28.0]
      * 
      */
     @Import(name="waitOnPeeringStatus")
@@ -107,7 +127,9 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return Makes the resource wait until the peering is connected.
-     * Default set to false. *Available from v1.28.0*
+     * Default set to false.
+     * 
+     * ***Note:*** Available from [v1.28.0]
      * 
      */
     public Optional<Output<Boolean>> waitOnPeeringStatus() {
@@ -144,7 +166,9 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param instanceId The CloudAMQP instance identifier. *Deprecated from v1.16.0*
+         * @param instanceId The CloudAMQP instance identifier.
+         * 
+         * ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
          * 
          * @return builder
          * 
@@ -155,7 +179,9 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param instanceId The CloudAMQP instance identifier. *Deprecated from v1.16.0*
+         * @param instanceId The CloudAMQP instance identifier.
+         * 
+         * ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
          * 
          * @return builder
          * 
@@ -165,7 +191,8 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param peerNetworkUri Network URI of the VPC network to which you will peer with. See examples above for the format.
+         * @param peerNetworkUri Network URI of the VPC network to which you will peer with.
+         * See examples above for the format.
          * 
          * @return builder
          * 
@@ -176,7 +203,8 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param peerNetworkUri Network URI of the VPC network to which you will peer with. See examples above for the format.
+         * @param peerNetworkUri Network URI of the VPC network to which you will peer with.
+         * See examples above for the format.
          * 
          * @return builder
          * 
@@ -186,8 +214,10 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sleep Configurable sleep time (seconds) between retries when requesting or reading
-         * peering. Default set to 10 seconds. *Available from v1.29.0*
+         * @param sleep Configurable sleep time (seconds) between retries when
+         * requesting or reading peering. Default set to 10 seconds.
+         * 
+         * ***Note:*** Available from [v1.29.0]
          * 
          * @return builder
          * 
@@ -198,8 +228,10 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sleep Configurable sleep time (seconds) between retries when requesting or reading
-         * peering. Default set to 10 seconds. *Available from v1.29.0*
+         * @param sleep Configurable sleep time (seconds) between retries when
+         * requesting or reading peering. Default set to 10 seconds.
+         * 
+         * ***Note:*** Available from [v1.29.0]
          * 
          * @return builder
          * 
@@ -209,8 +241,10 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param timeout Configurable timeout time (seconds) before retries times out. Default set
-         * to 1800 seconds. *Available from v1.29.0*
+         * @param timeout Configurable timeout time (seconds) before retries times
+         * out. Default set to 1800 seconds.
+         * 
+         * ***Note:*** Available from [v1.29.0]
          * 
          * @return builder
          * 
@@ -221,8 +255,10 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param timeout Configurable timeout time (seconds) before retries times out. Default set
-         * to 1800 seconds. *Available from v1.29.0*
+         * @param timeout Configurable timeout time (seconds) before retries times
+         * out. Default set to 1800 seconds.
+         * 
+         * ***Note:*** Available from [v1.29.0]
          * 
          * @return builder
          * 
@@ -232,7 +268,9 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param vpcId The managed VPC identifier. *Available from v1.16.0*
+         * @param vpcId The managed VPC identifier.
+         * 
+         * ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
          * 
          * @return builder
          * 
@@ -243,7 +281,9 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param vpcId The managed VPC identifier. *Available from v1.16.0*
+         * @param vpcId The managed VPC identifier.
+         * 
+         * ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
          * 
          * @return builder
          * 
@@ -254,7 +294,9 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param waitOnPeeringStatus Makes the resource wait until the peering is connected.
-         * Default set to false. *Available from v1.28.0*
+         * Default set to false.
+         * 
+         * ***Note:*** Available from [v1.28.0]
          * 
          * @return builder
          * 
@@ -266,7 +308,9 @@ public final class VpcGcpPeeringArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param waitOnPeeringStatus Makes the resource wait until the peering is connected.
-         * Default set to false. *Available from v1.28.0*
+         * Default set to false.
+         * 
+         * ***Note:*** Available from [v1.28.0]
          * 
          * @return builder
          * 

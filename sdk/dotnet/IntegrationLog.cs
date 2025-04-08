@@ -188,6 +188,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
+    /// 
     /// &lt;/details&gt;
     /// 
     /// &lt;details&gt;
@@ -243,6 +244,8 @@ namespace Pulumi.CloudAmqp
     /// });
     /// ```
     /// 
+    /// &lt;/details&gt;
+    /// 
     /// &lt;details&gt;
     ///   &lt;summary&gt;
     ///     &lt;b&gt;
@@ -269,8 +272,6 @@ namespace Pulumi.CloudAmqp
     /// 
     /// });
     /// ```
-    /// 
-    /// &lt;/details&gt;
     /// 
     /// &lt;/details&gt;
     /// 
@@ -307,11 +308,35 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ## Import
     /// 
-    /// `cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+    /// `cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP
+    /// 
+    /// instance identifier. The identifiers are CSV separated, see example below. To retrieve the resource,
+    /// 
+    /// use [CloudAMQP API list integration].
+    /// 
+    /// From Terraform v1.5.0, the `import` block can be used to import this resource:
+    /// 
+    /// hcl
+    /// 
+    /// import {
+    /// 
+    ///   to = cloudamqp_integration_log.this
+    /// 
+    ///   id = format("&lt;id&gt;,%s", cloudamqp_instance.instance.id)
+    /// 
+    /// }
     /// 
     /// ```sh
-    /// $ pulumi import cloudamqp:index/integrationLog:IntegrationLog &lt;resource_name&gt; &lt;id&gt;,&lt;instance_id&gt;`
+    /// $ pulumi import cloudamqp:index/integrationLog:IntegrationLog this &lt;id&gt;,&lt;instance_id&gt;`
     /// ```
+    /// 
+    /// [CloudAMQP API add integration]: https://docs.cloudamqp.com/cloudamqp_api.html#add-log-integration
+    /// 
+    /// [CloudAMQP API list integration]: https://docs.cloudamqp.com/cloudamqp_api.html#list-log-integrations
+    /// 
+    /// [Datadog documentation]: https://docs.datadoghq.com/getting_started/tagging/#define-tags
+    /// 
+    /// [integration type reference]: #integration-type-reference
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/integrationLog:IntegrationLog")]
     public partial class IntegrationLog : global::Pulumi.CustomResource
@@ -365,9 +390,11 @@ namespace Pulumi.CloudAmqp
         public Output<string?> DceUri { get; private set; } = null!;
 
         /// <summary>
-        /// ID of data collection rule that your DCE is linked to for Azure Monitor.
+        /// ID of data collection rule that your DCE is linked to for Azure
+        /// Monitor.
         /// 
-        /// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+        /// This is the full list of all arguments. Only a subset of arguments are used based on which type of
+        /// integration used. See [integration type reference] table below for more information.
         /// </summary>
         [Output("dcrId")]
         public Output<string?> DcrId { get; private set; } = null!;
@@ -379,7 +406,8 @@ namespace Pulumi.CloudAmqp
         public Output<string?> Endpoint { get; private set; } = null!;
 
         /// <summary>
-        /// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+        /// The host for Scalyr integration. (app.scalyr.com,
+        /// app.eu.scalyr.com)
         /// </summary>
         [Output("host")]
         public Output<string?> Host { get; private set; } = null!;
@@ -398,7 +426,7 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// The name of the third party log integration. See
-        /// Integration type reference
+        /// [integration type reference]
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -434,7 +462,8 @@ namespace Pulumi.CloudAmqp
         public Output<string?> SecretAccessKey { get; private set; } = null!;
 
         /// <summary>
-        /// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+        /// Assign source type to the data exported, eg. generic_single_line.
+        /// (Splunk)
         /// </summary>
         [Output("sourcetype")]
         public Output<string?> Sourcetype { get; private set; } = null!;
@@ -454,7 +483,8 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Tags. e.g. `env=prod,region=europe`.
         /// 
-        /// ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
+        /// ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+        /// letter, read more about tags format in the [Datadog documentation].
         /// </summary>
         [Output("tags")]
         public Output<string?> Tags { get; private set; } = null!;
@@ -623,9 +653,11 @@ namespace Pulumi.CloudAmqp
         public Input<string>? DceUri { get; set; }
 
         /// <summary>
-        /// ID of data collection rule that your DCE is linked to for Azure Monitor.
+        /// ID of data collection rule that your DCE is linked to for Azure
+        /// Monitor.
         /// 
-        /// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+        /// This is the full list of all arguments. Only a subset of arguments are used based on which type of
+        /// integration used. See [integration type reference] table below for more information.
         /// </summary>
         [Input("dcrId")]
         public Input<string>? DcrId { get; set; }
@@ -637,7 +669,8 @@ namespace Pulumi.CloudAmqp
         public Input<string>? Endpoint { get; set; }
 
         /// <summary>
-        /// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+        /// The host for Scalyr integration. (app.scalyr.com,
+        /// app.eu.scalyr.com)
         /// </summary>
         [Input("host")]
         public Input<string>? Host { get; set; }
@@ -656,7 +689,7 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// The name of the third party log integration. See
-        /// Integration type reference
+        /// [integration type reference]
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -722,7 +755,8 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
-        /// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+        /// Assign source type to the data exported, eg. generic_single_line.
+        /// (Splunk)
         /// </summary>
         [Input("sourcetype")]
         public Input<string>? Sourcetype { get; set; }
@@ -742,7 +776,8 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Tags. e.g. `env=prod,region=europe`.
         /// 
-        /// ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
+        /// ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+        /// letter, read more about tags format in the [Datadog documentation].
         /// </summary>
         [Input("tags")]
         public Input<string>? Tags { get; set; }
@@ -872,9 +907,11 @@ namespace Pulumi.CloudAmqp
         public Input<string>? DceUri { get; set; }
 
         /// <summary>
-        /// ID of data collection rule that your DCE is linked to for Azure Monitor.
+        /// ID of data collection rule that your DCE is linked to for Azure
+        /// Monitor.
         /// 
-        /// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+        /// This is the full list of all arguments. Only a subset of arguments are used based on which type of
+        /// integration used. See [integration type reference] table below for more information.
         /// </summary>
         [Input("dcrId")]
         public Input<string>? DcrId { get; set; }
@@ -886,7 +923,8 @@ namespace Pulumi.CloudAmqp
         public Input<string>? Endpoint { get; set; }
 
         /// <summary>
-        /// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+        /// The host for Scalyr integration. (app.scalyr.com,
+        /// app.eu.scalyr.com)
         /// </summary>
         [Input("host")]
         public Input<string>? Host { get; set; }
@@ -905,7 +943,7 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// The name of the third party log integration. See
-        /// Integration type reference
+        /// [integration type reference]
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -971,7 +1009,8 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
-        /// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+        /// Assign source type to the data exported, eg. generic_single_line.
+        /// (Splunk)
         /// </summary>
         [Input("sourcetype")]
         public Input<string>? Sourcetype { get; set; }
@@ -991,7 +1030,8 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Tags. e.g. `env=prod,region=europe`.
         /// 
-        /// ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
+        /// ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+        /// letter, read more about tags format in the [Datadog documentation].
         /// </summary>
         [Input("tags")]
         public Input<string>? Tags { get; set; }

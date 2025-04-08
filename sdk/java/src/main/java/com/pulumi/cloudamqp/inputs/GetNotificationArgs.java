@@ -48,9 +48,17 @@ public final class GetNotificationArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * Options argument (e.g. `rk` used for VictorOps routing key).
+     * 
+     */
     @Import(name="options")
     private @Nullable Output<Map<String,String>> options;
 
+    /**
+     * @return Options argument (e.g. `rk` used for VictorOps routing key).
+     * 
+     */
     public Optional<Output<Map<String,String>>> options() {
         return Optional.ofNullable(this.options);
     }
@@ -139,11 +147,23 @@ public final class GetNotificationArgs extends com.pulumi.resources.InvokeArgs {
             return name(Output.of(name));
         }
 
+        /**
+         * @param options Options argument (e.g. `rk` used for VictorOps routing key).
+         * 
+         * @return builder
+         * 
+         */
         public Builder options(@Nullable Output<Map<String,String>> options) {
             $.options = options;
             return this;
         }
 
+        /**
+         * @param options Options argument (e.g. `rk` used for VictorOps routing key).
+         * 
+         * @return builder
+         * 
+         */
         public Builder options(Map<String,String> options) {
             return options(Output.of(options));
         }

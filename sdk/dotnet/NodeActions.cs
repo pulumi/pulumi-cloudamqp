@@ -44,15 +44,16 @@ namespace Pulumi.CloudAmqp
     /// 
     /// &lt;/details&gt;
     /// 
-    /// Using data source `cloudamqp.getNodes` to restart RabbitMQ on all nodes.&lt;/br&gt;
-    /// ***Note: RabbitMQ restart on multiple nodes need to be chained, so one node restart at the time.***
-    /// 
     /// &lt;details&gt;
     ///   &lt;summary&gt;
     ///     &lt;b&gt;
     ///       &lt;i&gt;Multi node RabbitMQ restart&lt;/i&gt;
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
+    /// 
+    /// Using data source `cloudamqp.getNodes` to restart RabbitMQ on all nodes.
+    /// 
+    /// &gt; **Note:** RabbitMQ restart on multiple nodes need to be chained, let one node restart at the time.
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -181,7 +182,16 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ## Action reference
     /// 
-    /// Valid options for action.
+    /// Valid actions for ***LavinMQ***.
+    /// 
+    /// | Action       | Info                               |
+    /// |--------------|------------------------------------|
+    /// | start        | Start LavinMQ                      |
+    /// | stop         | Stop LavinMQ                       |
+    /// | restart      | Restart LavinMQ                    |
+    /// | reboot       | Reboot the node                    |
+    /// 
+    /// Valid actions for ***RabbitMQ***.
     /// 
     /// | Action       | Info                               |
     /// |--------------|------------------------------------|
@@ -193,7 +203,8 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ## Dependency
     /// 
-    /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id` and node name.
+    /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id` and node
+    /// name.
     /// 
     /// ## Import
     /// 

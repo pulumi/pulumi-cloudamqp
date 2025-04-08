@@ -68,11 +68,17 @@ class GetVpcGcpInfoResult:
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The name of the VPC.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def network(self) -> str:
+        """
+        VPC network uri.
+        """
         return pulumi.get(self, "network")
 
     @property
@@ -93,6 +99,9 @@ class GetVpcGcpInfoResult:
     @property
     @pulumi.getter(name="vpcSubnet")
     def vpc_subnet(self) -> str:
+        """
+        Dedicated VPC subnet.
+        """
         return pulumi.get(self, "vpc_subnet")
 
 
@@ -118,70 +127,18 @@ def get_vpc_gcp_info(instance_id: Optional[int] = None,
                      vpc_id: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcGcpInfoResult:
     """
-    Use this data source to retrieve information about VPC for a CloudAMQP instance.
-
-    > **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
-
-    ## Example Usage
-
-    <details>
-      <summary>
-        <b>
-          <i>AWS VPC peering pre v1.16.0</i>
-        </b>
-      </summary>
-
-    ```python
-    import pulumi
-    import pulumi_cloudamqp as cloudamqp
-
-    vpc_info = cloudamqp.get_vpc_gcp_info(instance_id=instance["id"])
-    ```
-
-    </details>
-
-    <details>
-      <summary>
-        <b>
-          <i>AWS VPC peering post v1.16.0 (Managed VPC)</i>
-        </b>
-      </summary>
-
-    ```python
-    import pulumi
-    import pulumi_cloudamqp as cloudamqp
-
-    vpc_info = cloudamqp.get_vpc_gcp_info(vpc_id=vpc["id"])
-    ```
-
-    </details>
-
-    ## Attributes reference
-
-    All attributes reference are computed
-
-    * `id`                  - The identifier for this resource.
-    * `name`                - The name of the VPC.
-    * `vpc_subnet`          - Dedicated VPC subnet.
-    * `network`             - VPC network uri.
-
-    ## Dependency
-
-    *Pre v1.16.0*
-    This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-
-    *Post v1.16.0*
-    This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
-
+    Use this data source to access information about an existing resource.
 
     :param int instance_id: The CloudAMQP instance identifier.
            
-           ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
-    :param int sleep: Configurable sleep time (seconds) between retries when reading peering. Default set to 10 seconds.
-    :param int timeout: Configurable timeout time (seconds) before retries times out. Default set to 1800 seconds.
+           ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
+    :param int sleep: Configurable sleep time (seconds) between retries when reading peering.
+           Default set to 10 seconds.
+    :param int timeout: Configurable timeout time (seconds) before retries times out. Default
+           set to 1800 seconds.
     :param str vpc_id: The managed VPC identifier.
            
-           ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
+           ***Note:*** Available from [v1.16.0], will be removed in next major version (v2.0)
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
@@ -206,70 +163,18 @@ def get_vpc_gcp_info_output(instance_id: Optional[pulumi.Input[Optional[int]]] =
                             vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVpcGcpInfoResult]:
     """
-    Use this data source to retrieve information about VPC for a CloudAMQP instance.
-
-    > **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
-
-    ## Example Usage
-
-    <details>
-      <summary>
-        <b>
-          <i>AWS VPC peering pre v1.16.0</i>
-        </b>
-      </summary>
-
-    ```python
-    import pulumi
-    import pulumi_cloudamqp as cloudamqp
-
-    vpc_info = cloudamqp.get_vpc_gcp_info(instance_id=instance["id"])
-    ```
-
-    </details>
-
-    <details>
-      <summary>
-        <b>
-          <i>AWS VPC peering post v1.16.0 (Managed VPC)</i>
-        </b>
-      </summary>
-
-    ```python
-    import pulumi
-    import pulumi_cloudamqp as cloudamqp
-
-    vpc_info = cloudamqp.get_vpc_gcp_info(vpc_id=vpc["id"])
-    ```
-
-    </details>
-
-    ## Attributes reference
-
-    All attributes reference are computed
-
-    * `id`                  - The identifier for this resource.
-    * `name`                - The name of the VPC.
-    * `vpc_subnet`          - Dedicated VPC subnet.
-    * `network`             - VPC network uri.
-
-    ## Dependency
-
-    *Pre v1.16.0*
-    This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-
-    *Post v1.16.0*
-    This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
-
+    Use this data source to access information about an existing resource.
 
     :param int instance_id: The CloudAMQP instance identifier.
            
-           ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
-    :param int sleep: Configurable sleep time (seconds) between retries when reading peering. Default set to 10 seconds.
-    :param int timeout: Configurable timeout time (seconds) before retries times out. Default set to 1800 seconds.
+           ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
+    :param int sleep: Configurable sleep time (seconds) between retries when reading peering.
+           Default set to 10 seconds.
+    :param int timeout: Configurable timeout time (seconds) before retries times out. Default
+           set to 1800 seconds.
     :param str vpc_id: The managed VPC identifier.
            
-           ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
+           ***Note:*** Available from [v1.16.0], will be removed in next major version (v2.0)
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id

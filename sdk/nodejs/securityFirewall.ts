@@ -9,7 +9,23 @@ import * as utilities from "./utilities";
 /**
  * ## Import
  *
- * `cloudamqp_security_firewall` can be imported using CloudAMQP instance identifier.
+ * `cloudamqp_security_firewall` can be imported using CloudAMQP instance identifier. To
+ *
+ * retrieve the identifier, use [CloudAMQP API list intances].
+ *
+ * From Terraform v1.5.0, the `import` block can be used to import this resource:
+ *
+ * hcl
+ *
+ * import {
+ *
+ *   to = cloudamqp_security_firewall.firewall
+ *
+ *   id = cloudamqp_instance.instance.id
+ *
+ * }
+ *
+ * Or use Terraform CLI:
  *
  * ```sh
  * $ pulumi import cloudamqp:index/securityFirewall:SecurityFirewall firewall <instance_id>`
@@ -48,15 +64,18 @@ export class SecurityFirewall extends pulumi.CustomResource {
      */
     public readonly instanceId!: pulumi.Output<number>;
     /**
-     * An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+     * An array of rules, minimum of 1 needs to be configured. Each `rules`
+     * block consists of the field documented below.
      */
     public readonly rules!: pulumi.Output<outputs.SecurityFirewallRule[]>;
     /**
-     * Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+     * Configurable sleep time in seconds between retries for firewall
+     * configuration. Default set to 30 seconds.
      */
     public readonly sleep!: pulumi.Output<number | undefined>;
     /**
-     * Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+     * Configurable timeout time in seconds for firewall configuration.
+     * Default set to 1800 seconds.
      *
      * ___
      *
@@ -108,15 +127,18 @@ export interface SecurityFirewallState {
      */
     instanceId?: pulumi.Input<number>;
     /**
-     * An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+     * An array of rules, minimum of 1 needs to be configured. Each `rules`
+     * block consists of the field documented below.
      */
     rules?: pulumi.Input<pulumi.Input<inputs.SecurityFirewallRule>[]>;
     /**
-     * Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+     * Configurable sleep time in seconds between retries for firewall
+     * configuration. Default set to 30 seconds.
      */
     sleep?: pulumi.Input<number>;
     /**
-     * Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+     * Configurable timeout time in seconds for firewall configuration.
+     * Default set to 1800 seconds.
      *
      * ___
      *
@@ -134,15 +156,18 @@ export interface SecurityFirewallArgs {
      */
     instanceId: pulumi.Input<number>;
     /**
-     * An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+     * An array of rules, minimum of 1 needs to be configured. Each `rules`
+     * block consists of the field documented below.
      */
     rules: pulumi.Input<pulumi.Input<inputs.SecurityFirewallRule>[]>;
     /**
-     * Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+     * Configurable sleep time in seconds between retries for firewall
+     * configuration. Default set to 30 seconds.
      */
     sleep?: pulumi.Input<number>;
     /**
-     * Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+     * Configurable timeout time in seconds for firewall configuration.
+     * Default set to 1800 seconds.
      *
      * ___
      *

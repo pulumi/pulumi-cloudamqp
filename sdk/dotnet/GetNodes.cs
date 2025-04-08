@@ -32,31 +32,6 @@ namespace Pulumi.CloudAmqp
         /// });
         /// ```
         /// 
-        /// ## Attributes reference
-        /// 
-        /// All attributes reference are computed
-        /// 
-        /// * `id`    - The identifier for this resource.
-        /// * `nodes` - An array of node information. Each `nodes` block consists of the fields documented below.
-        /// 
-        /// ___
-        /// 
-        /// The `nodes` block consist of
-        /// 
-        /// * `hostname`              - External hostname assigned to the node.
-        /// * `hostname_internal`     - Internal hostname assigned to the node.
-        /// * `name`                  - Name of the node.
-        /// * `running`               - Is the node running?
-        /// * `rabbitmq_version`      - Currently configured Rabbit MQ version on the node.
-        /// * `erlang_version`        - Currently used Erlang version on the node.
-        /// * `hipe`                  - Enable or disable High-performance Erlang.
-        /// * `configured`            - Is the node configured?
-        /// * `disk_size`             - Subscription plan disk size
-        /// * `additional_disk_size`  - Additional added disk size
-        /// * `availability_zone`     - Availability zone the node is hosted in.
-        /// 
-        /// ***Note:*** *Total disk size = disk_size + additional_disk_size*
-        /// 
         /// ## Dependency
         /// 
         /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -85,31 +60,6 @@ namespace Pulumi.CloudAmqp
         /// });
         /// ```
         /// 
-        /// ## Attributes reference
-        /// 
-        /// All attributes reference are computed
-        /// 
-        /// * `id`    - The identifier for this resource.
-        /// * `nodes` - An array of node information. Each `nodes` block consists of the fields documented below.
-        /// 
-        /// ___
-        /// 
-        /// The `nodes` block consist of
-        /// 
-        /// * `hostname`              - External hostname assigned to the node.
-        /// * `hostname_internal`     - Internal hostname assigned to the node.
-        /// * `name`                  - Name of the node.
-        /// * `running`               - Is the node running?
-        /// * `rabbitmq_version`      - Currently configured Rabbit MQ version on the node.
-        /// * `erlang_version`        - Currently used Erlang version on the node.
-        /// * `hipe`                  - Enable or disable High-performance Erlang.
-        /// * `configured`            - Is the node configured?
-        /// * `disk_size`             - Subscription plan disk size
-        /// * `additional_disk_size`  - Additional added disk size
-        /// * `availability_zone`     - Availability zone the node is hosted in.
-        /// 
-        /// ***Note:*** *Total disk size = disk_size + additional_disk_size*
-        /// 
         /// ## Dependency
         /// 
         /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -137,31 +87,6 @@ namespace Pulumi.CloudAmqp
         /// 
         /// });
         /// ```
-        /// 
-        /// ## Attributes reference
-        /// 
-        /// All attributes reference are computed
-        /// 
-        /// * `id`    - The identifier for this resource.
-        /// * `nodes` - An array of node information. Each `nodes` block consists of the fields documented below.
-        /// 
-        /// ___
-        /// 
-        /// The `nodes` block consist of
-        /// 
-        /// * `hostname`              - External hostname assigned to the node.
-        /// * `hostname_internal`     - Internal hostname assigned to the node.
-        /// * `name`                  - Name of the node.
-        /// * `running`               - Is the node running?
-        /// * `rabbitmq_version`      - Currently configured Rabbit MQ version on the node.
-        /// * `erlang_version`        - Currently used Erlang version on the node.
-        /// * `hipe`                  - Enable or disable High-performance Erlang.
-        /// * `configured`            - Is the node configured?
-        /// * `disk_size`             - Subscription plan disk size
-        /// * `additional_disk_size`  - Additional added disk size
-        /// * `availability_zone`     - Availability zone the node is hosted in.
-        /// 
-        /// ***Note:*** *Total disk size = disk_size + additional_disk_size*
         /// 
         /// ## Dependency
         /// 
@@ -209,6 +134,9 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         public readonly string Id;
         public readonly int InstanceId;
+        /// <summary>
+        /// An array of node information. Each `nodes` block consists of the fields documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetNodesNodeResult> Nodes;
 
         [OutputConstructor]

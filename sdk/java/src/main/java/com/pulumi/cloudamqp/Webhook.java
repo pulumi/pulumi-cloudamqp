@@ -18,7 +18,23 @@ import javax.annotation.Nullable;
 /**
  * ## Import
  * 
- * `cloudamqp_webhook` can be imported using the resource identifier together with CloudAMQP instance identifier. The identifiers are CSV separated, see example below.
+ * `cloudamqp_webhook` can be imported using the resource identifier together with CloudAMQP instance
+ * 
+ * identifier (CSV separated). To retrieve the resource identifier, use [CloudAMQP API list webhooks].
+ * 
+ * From Terraform v1.5.0, the `import` block can be used to import this resource:
+ * 
+ * hcl
+ * 
+ * import {
+ * 
+ *   to = cloudamqp_webhook.webhook_queue
+ * 
+ *   id = format(&#34;&lt;id&gt;,%s&#34;, cloudamqp_instance.instance.id)
+ * 
+ * }
+ * 
+ * Or use Terraform CLI:
  * 
  * ```sh
  * $ pulumi import cloudamqp:index/webhook:Webhook webhook_queue &lt;id&gt;,&lt;instance_id&gt;`
@@ -112,14 +128,16 @@ public class Webhook extends com.pulumi.resources.CustomResource {
         return this.vhost;
     }
     /**
-     * A POST request will be made for each message in the queue to this endpoint.
+     * A POST request will be made for each message in the queue to this
+     * endpoint.
      * 
      */
     @Export(name="webhookUri", refs={String.class}, tree="[0]")
     private Output<String> webhookUri;
 
     /**
-     * @return A POST request will be made for each message in the queue to this endpoint.
+     * @return A POST request will be made for each message in the queue to this
+     * endpoint.
      * 
      */
     public Output<String> webhookUri() {

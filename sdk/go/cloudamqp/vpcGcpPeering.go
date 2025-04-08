@@ -12,404 +12,51 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resouce creates a VPC peering configuration for the CloudAMQP instance. The configuration will
-// connect to another VPC network hosted on Google Cloud Platform (GCP). See the
-// [GCP documentation](https://cloud.google.com/vpc/docs/using-vpc-peering) for more information on how
-// to create the VPC peering configuration.
-//
-// > **Note:** Creating a VPC peering will automatically add firewall rules for the peered subnet.
-//
-// <details>
-//
-//	<summary>
-//	   <i>Default VPC peering firewall rule</i>
-//	 </summary>
-//
-// ## Example Usage
-//
-// <details>
-//
-//	<summary>
-//	  <b>
-//	    <i>VPC peering before v1.16.0</i>
-//	  </b>
-//	</summary>
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// CloudAMQP instance
-//			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
-//				Name:   pulumi.String("terraform-vpc-peering"),
-//				Plan:   pulumi.String("bunny-1"),
-//				Region: pulumi.String("google-compute-engine::europe-north1"),
-//				Tags: pulumi.StringArray{
-//					pulumi.String("terraform"),
-//				},
-//				VpcSubnet: pulumi.String("10.40.72.0/24"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			// VPC information
-//			_ = instance.ID().ApplyT(func(id string) (cloudamqp.GetVpcGcpInfoResult, error) {
-//				return cloudamqp.GetVpcGcpInfoResult(interface{}(cloudamqp.GetVpcGcpInfoOutput(ctx, cloudamqp.GetVpcGcpInfoOutputArgs{
-//					InstanceId: id,
-//				}, nil))), nil
-//			}).(cloudamqp.GetVpcGcpInfoResultOutput)
-//			// VPC peering configuration
-//			_, err = cloudamqp.NewVpcGcpPeering(ctx, "vpc_peering_request", &cloudamqp.VpcGcpPeeringArgs{
-//				InstanceId:     instance.ID(),
-//				PeerNetworkUri: pulumi.String("https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<VPC-NETWORK-NAME>"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// </details>
-//
-// <details>
-//
-//	<summary>
-//	  <b>
-//	    <i>VPC peering from v1.16.0 (Managed VPC)</i>
-//	  </b>
-//	</summary>
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// Managed VPC resource
-//			vpc, err := cloudamqp.NewVpc(ctx, "vpc", &cloudamqp.VpcArgs{
-//				Name:   pulumi.String("<VPC name>"),
-//				Region: pulumi.String("google-compute-engine::europe-north1"),
-//				Subnet: pulumi.String("10.56.72.0/24"),
-//				Tags:   pulumi.StringArray{},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			// CloudAMQP instance
-//			_, err = cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
-//				Name:   pulumi.String("terraform-vpc-peering"),
-//				Plan:   pulumi.String("bunny-1"),
-//				Region: pulumi.String("google-compute-engine::europe-north1"),
-//				Tags: pulumi.StringArray{
-//					pulumi.String("terraform"),
-//				},
-//				VpcId: vpc.ID(),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			// VPC information
-//			_, err = cloudamqp.GetVpcGcpInfo(ctx, &cloudamqp.GetVpcGcpInfoArgs{
-//				VpcId: pulumi.StringRef(vpc.Info),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			// VPC peering configuration
-//			_, err = cloudamqp.NewVpcGcpPeering(ctx, "vpc_peering_request", &cloudamqp.VpcGcpPeeringArgs{
-//				VpcId:          vpc.ID(),
-//				PeerNetworkUri: pulumi.String("https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<VPC-NETWORK-NAME>"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// </details>
-//
-// <details>
-//
-//	<summary>
-//	  <b>
-//	    <i>VPC peering from v1.28.0, waitOnPeeringStatus </i>
-//	  </b>
-//	</summary>
-//
-// Default peering request, no need to set `waitOnPeeringStatus`. It's default set to false and will
-// not wait on peering status. Create resource will be considered completed, regardless of the status of the state.
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.NewVpcGcpPeering(ctx, "vpc_peering_request", &cloudamqp.VpcGcpPeeringArgs{
-//				VpcId:          pulumi.Any(vpc.Id),
-//				PeerNetworkUri: pulumi.String("https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<VPC-NETWORK-NAME>"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// Peering request and waiting for peering status of the state to change to ACTIVE before the create resource is consider complete.
-// This is done once both side have done the peering.
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.NewVpcGcpPeering(ctx, "vpc_peering_request", &cloudamqp.VpcGcpPeeringArgs{
-//				VpcId:               pulumi.Any(vpc.Id),
-//				WaitOnPeeringStatus: pulumi.Bool(true),
-//				PeerNetworkUri:      pulumi.String("https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<VPC-NETWORK-NAME>"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// </details>
-//
-// ### With Additional Firewall Rules
-//
-// <details>
-//
-//	<summary>
-//	  <b>
-//	    <i>VPC peering before v1.16.0</i>
-//	  </b>
-//	</summary>
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// VPC peering configuration
-//			vpcPeeringRequest, err := cloudamqp.NewVpcGcpPeering(ctx, "vpc_peering_request", &cloudamqp.VpcGcpPeeringArgs{
-//				InstanceId:     pulumi.Any(instance.Id),
-//				PeerNetworkUri: pulumi.Any(peerNetworkUri),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			// Firewall rules
-//			_, err = cloudamqp.NewSecurityFirewall(ctx, "firewall_settings", &cloudamqp.SecurityFirewallArgs{
-//				InstanceId: pulumi.Any(instance.Id),
-//				Rules: cloudamqp.SecurityFirewallRuleArray{
-//					&cloudamqp.SecurityFirewallRuleArgs{
-//						Ip: pulumi.Any(peerSubnet),
-//						Ports: pulumi.IntArray{
-//							pulumi.Int(15672),
-//						},
-//						Services: pulumi.StringArray{
-//							pulumi.String("AMQP"),
-//							pulumi.String("AMQPS"),
-//							pulumi.String("STREAM"),
-//							pulumi.String("STREAM_SSL"),
-//						},
-//						Description: pulumi.String("VPC peering for <NETWORK>"),
-//					},
-//					&cloudamqp.SecurityFirewallRuleArgs{
-//						Ip: pulumi.String("192.168.0.0/24"),
-//						Ports: pulumi.IntArray{
-//							pulumi.Int(4567),
-//							pulumi.Int(4568),
-//						},
-//						Services: pulumi.StringArray{
-//							pulumi.String("AMQP"),
-//							pulumi.String("AMQPS"),
-//							pulumi.String("HTTPS"),
-//						},
-//					},
-//				},
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				vpcPeeringRequest,
-//			}))
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// </details>
-//
-// <details>
-//
-//	<summary>
-//	  <b>
-//	    <i>VPC peering from v1.16.0 (Managed VPC)</i>
-//	  </b>
-//	</summary>
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// VPC peering configuration
-//			vpcPeeringRequest, err := cloudamqp.NewVpcGcpPeering(ctx, "vpc_peering_request", &cloudamqp.VpcGcpPeeringArgs{
-//				VpcId:          pulumi.Any(vpc.Id),
-//				PeerNetworkUri: pulumi.Any(peerNetworkUri),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			// Firewall rules
-//			_, err = cloudamqp.NewSecurityFirewall(ctx, "firewall_settings", &cloudamqp.SecurityFirewallArgs{
-//				InstanceId: pulumi.Any(instance.Id),
-//				Rules: cloudamqp.SecurityFirewallRuleArray{
-//					&cloudamqp.SecurityFirewallRuleArgs{
-//						Ip: pulumi.Any(peerSubnet),
-//						Ports: pulumi.IntArray{
-//							pulumi.Int(15672),
-//						},
-//						Services: pulumi.StringArray{
-//							pulumi.String("AMQP"),
-//							pulumi.String("AMQPS"),
-//							pulumi.String("STREAM"),
-//							pulumi.String("STREAM_SSL"),
-//						},
-//						Description: pulumi.String("VPC peering for <NETWORK>"),
-//					},
-//					&cloudamqp.SecurityFirewallRuleArgs{
-//						Ip:    pulumi.String("0.0.0.0/0"),
-//						Ports: pulumi.IntArray{},
-//						Services: pulumi.StringArray{
-//							pulumi.String("HTTPS"),
-//						},
-//						Description: pulumi.String("MGMT interface"),
-//					},
-//				},
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				vpcPeeringRequest,
-//			}))
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// </details>
-//
-// ## Depedency
-//
-// *Before v1.16.0*
-// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-//
-// *From v1.16.0*
-// This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
-// identifier, `cloudamqp_instance.instance.id`.
-//
-// ## Create VPC Peering with additional firewall rules
-//
-// To create a VPC peering configuration with additional firewall rules, it's required to chain the
-// SecurityFirewall
-// resource to avoid parallel conflicting resource calls. This is done by adding dependency from the
-// firewall resource to the VPC peering resource.
-//
-// Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
-// the VPC peering also needs to be added.
-//
-// See example below.
-//
 // ## Import
 //
 // ### Peering network URI
 //
-// This is required to be able to import the correct peering. Following the same format as the argument reference.
+// This is required to be able to import the correct peering. Following the same format as the argument
+//
+// reference.
 //
 // hcl
 //
-// https://www.googleapis.com/compute/v1/projects/<PROJECT-NAME>/global/networks/<VPC-NETWORK-NAME>
+// https://www.googleapis.com/compute/v1/projects/PROJECT-NAME/global/networks/VPC-NETWORK-NAME
 type VpcGcpPeering struct {
 	pulumi.CustomResourceState
 
 	// VPC peering auto created routes
 	AutoCreateRoutes pulumi.BoolOutput `pulumi:"autoCreateRoutes"`
-	// The CloudAMQP instance identifier. *Deprecated from v1.16.0*
+	// The CloudAMQP instance identifier.
+	//
+	// ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
 	InstanceId pulumi.IntPtrOutput `pulumi:"instanceId"`
-	// Network URI of the VPC network to which you will peer with. See examples above for the format.
+	// Network URI of the VPC network to which you will peer with.
+	// See examples above for the format.
 	PeerNetworkUri pulumi.StringOutput `pulumi:"peerNetworkUri"`
-	// Configurable sleep time (seconds) between retries when requesting or reading
-	// peering. Default set to 10 seconds. *Available from v1.29.0*
+	// Configurable sleep time (seconds) between retries when
+	// requesting or reading peering. Default set to 10 seconds.
+	//
+	// ***Note:*** Available from [v1.29.0]
 	Sleep pulumi.IntPtrOutput `pulumi:"sleep"`
 	// VPC peering state
 	State pulumi.StringOutput `pulumi:"state"`
 	// VPC peering state details
 	StateDetails pulumi.StringOutput `pulumi:"stateDetails"`
-	// Configurable timeout time (seconds) before retries times out. Default set
-	// to 1800 seconds. *Available from v1.29.0*
+	// Configurable timeout time (seconds) before retries times
+	// out. Default set to 1800 seconds.
+	//
+	// ***Note:*** Available from [v1.29.0]
 	Timeout pulumi.IntPtrOutput `pulumi:"timeout"`
-	// The managed VPC identifier. *Available from v1.16.0*
+	// The managed VPC identifier.
+	//
+	// ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
 	VpcId pulumi.StringPtrOutput `pulumi:"vpcId"`
 	// Makes the resource wait until the peering is connected.
-	// Default set to false. *Available from v1.28.0*
+	// Default set to false.
+	//
+	// ***Note:*** Available from [v1.28.0]
 	WaitOnPeeringStatus pulumi.BoolPtrOutput `pulumi:"waitOnPeeringStatus"`
 }
 
@@ -448,48 +95,70 @@ func GetVpcGcpPeering(ctx *pulumi.Context,
 type vpcGcpPeeringState struct {
 	// VPC peering auto created routes
 	AutoCreateRoutes *bool `pulumi:"autoCreateRoutes"`
-	// The CloudAMQP instance identifier. *Deprecated from v1.16.0*
+	// The CloudAMQP instance identifier.
+	//
+	// ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
 	InstanceId *int `pulumi:"instanceId"`
-	// Network URI of the VPC network to which you will peer with. See examples above for the format.
+	// Network URI of the VPC network to which you will peer with.
+	// See examples above for the format.
 	PeerNetworkUri *string `pulumi:"peerNetworkUri"`
-	// Configurable sleep time (seconds) between retries when requesting or reading
-	// peering. Default set to 10 seconds. *Available from v1.29.0*
+	// Configurable sleep time (seconds) between retries when
+	// requesting or reading peering. Default set to 10 seconds.
+	//
+	// ***Note:*** Available from [v1.29.0]
 	Sleep *int `pulumi:"sleep"`
 	// VPC peering state
 	State *string `pulumi:"state"`
 	// VPC peering state details
 	StateDetails *string `pulumi:"stateDetails"`
-	// Configurable timeout time (seconds) before retries times out. Default set
-	// to 1800 seconds. *Available from v1.29.0*
+	// Configurable timeout time (seconds) before retries times
+	// out. Default set to 1800 seconds.
+	//
+	// ***Note:*** Available from [v1.29.0]
 	Timeout *int `pulumi:"timeout"`
-	// The managed VPC identifier. *Available from v1.16.0*
+	// The managed VPC identifier.
+	//
+	// ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
 	VpcId *string `pulumi:"vpcId"`
 	// Makes the resource wait until the peering is connected.
-	// Default set to false. *Available from v1.28.0*
+	// Default set to false.
+	//
+	// ***Note:*** Available from [v1.28.0]
 	WaitOnPeeringStatus *bool `pulumi:"waitOnPeeringStatus"`
 }
 
 type VpcGcpPeeringState struct {
 	// VPC peering auto created routes
 	AutoCreateRoutes pulumi.BoolPtrInput
-	// The CloudAMQP instance identifier. *Deprecated from v1.16.0*
+	// The CloudAMQP instance identifier.
+	//
+	// ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
 	InstanceId pulumi.IntPtrInput
-	// Network URI of the VPC network to which you will peer with. See examples above for the format.
+	// Network URI of the VPC network to which you will peer with.
+	// See examples above for the format.
 	PeerNetworkUri pulumi.StringPtrInput
-	// Configurable sleep time (seconds) between retries when requesting or reading
-	// peering. Default set to 10 seconds. *Available from v1.29.0*
+	// Configurable sleep time (seconds) between retries when
+	// requesting or reading peering. Default set to 10 seconds.
+	//
+	// ***Note:*** Available from [v1.29.0]
 	Sleep pulumi.IntPtrInput
 	// VPC peering state
 	State pulumi.StringPtrInput
 	// VPC peering state details
 	StateDetails pulumi.StringPtrInput
-	// Configurable timeout time (seconds) before retries times out. Default set
-	// to 1800 seconds. *Available from v1.29.0*
+	// Configurable timeout time (seconds) before retries times
+	// out. Default set to 1800 seconds.
+	//
+	// ***Note:*** Available from [v1.29.0]
 	Timeout pulumi.IntPtrInput
-	// The managed VPC identifier. *Available from v1.16.0*
+	// The managed VPC identifier.
+	//
+	// ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
 	VpcId pulumi.StringPtrInput
 	// Makes the resource wait until the peering is connected.
-	// Default set to false. *Available from v1.28.0*
+	// Default set to false.
+	//
+	// ***Note:*** Available from [v1.28.0]
 	WaitOnPeeringStatus pulumi.BoolPtrInput
 }
 
@@ -498,39 +167,61 @@ func (VpcGcpPeeringState) ElementType() reflect.Type {
 }
 
 type vpcGcpPeeringArgs struct {
-	// The CloudAMQP instance identifier. *Deprecated from v1.16.0*
+	// The CloudAMQP instance identifier.
+	//
+	// ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
 	InstanceId *int `pulumi:"instanceId"`
-	// Network URI of the VPC network to which you will peer with. See examples above for the format.
+	// Network URI of the VPC network to which you will peer with.
+	// See examples above for the format.
 	PeerNetworkUri string `pulumi:"peerNetworkUri"`
-	// Configurable sleep time (seconds) between retries when requesting or reading
-	// peering. Default set to 10 seconds. *Available from v1.29.0*
+	// Configurable sleep time (seconds) between retries when
+	// requesting or reading peering. Default set to 10 seconds.
+	//
+	// ***Note:*** Available from [v1.29.0]
 	Sleep *int `pulumi:"sleep"`
-	// Configurable timeout time (seconds) before retries times out. Default set
-	// to 1800 seconds. *Available from v1.29.0*
+	// Configurable timeout time (seconds) before retries times
+	// out. Default set to 1800 seconds.
+	//
+	// ***Note:*** Available from [v1.29.0]
 	Timeout *int `pulumi:"timeout"`
-	// The managed VPC identifier. *Available from v1.16.0*
+	// The managed VPC identifier.
+	//
+	// ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
 	VpcId *string `pulumi:"vpcId"`
 	// Makes the resource wait until the peering is connected.
-	// Default set to false. *Available from v1.28.0*
+	// Default set to false.
+	//
+	// ***Note:*** Available from [v1.28.0]
 	WaitOnPeeringStatus *bool `pulumi:"waitOnPeeringStatus"`
 }
 
 // The set of arguments for constructing a VpcGcpPeering resource.
 type VpcGcpPeeringArgs struct {
-	// The CloudAMQP instance identifier. *Deprecated from v1.16.0*
+	// The CloudAMQP instance identifier.
+	//
+	// ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
 	InstanceId pulumi.IntPtrInput
-	// Network URI of the VPC network to which you will peer with. See examples above for the format.
+	// Network URI of the VPC network to which you will peer with.
+	// See examples above for the format.
 	PeerNetworkUri pulumi.StringInput
-	// Configurable sleep time (seconds) between retries when requesting or reading
-	// peering. Default set to 10 seconds. *Available from v1.29.0*
+	// Configurable sleep time (seconds) between retries when
+	// requesting or reading peering. Default set to 10 seconds.
+	//
+	// ***Note:*** Available from [v1.29.0]
 	Sleep pulumi.IntPtrInput
-	// Configurable timeout time (seconds) before retries times out. Default set
-	// to 1800 seconds. *Available from v1.29.0*
+	// Configurable timeout time (seconds) before retries times
+	// out. Default set to 1800 seconds.
+	//
+	// ***Note:*** Available from [v1.29.0]
 	Timeout pulumi.IntPtrInput
-	// The managed VPC identifier. *Available from v1.16.0*
+	// The managed VPC identifier.
+	//
+	// ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
 	VpcId pulumi.StringPtrInput
 	// Makes the resource wait until the peering is connected.
-	// Default set to false. *Available from v1.28.0*
+	// Default set to false.
+	//
+	// ***Note:*** Available from [v1.28.0]
 	WaitOnPeeringStatus pulumi.BoolPtrInput
 }
 
@@ -626,18 +317,23 @@ func (o VpcGcpPeeringOutput) AutoCreateRoutes() pulumi.BoolOutput {
 	return o.ApplyT(func(v *VpcGcpPeering) pulumi.BoolOutput { return v.AutoCreateRoutes }).(pulumi.BoolOutput)
 }
 
-// The CloudAMQP instance identifier. *Deprecated from v1.16.0*
+// The CloudAMQP instance identifier.
+//
+// ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
 func (o VpcGcpPeeringOutput) InstanceId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *VpcGcpPeering) pulumi.IntPtrOutput { return v.InstanceId }).(pulumi.IntPtrOutput)
 }
 
-// Network URI of the VPC network to which you will peer with. See examples above for the format.
+// Network URI of the VPC network to which you will peer with.
+// See examples above for the format.
 func (o VpcGcpPeeringOutput) PeerNetworkUri() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcGcpPeering) pulumi.StringOutput { return v.PeerNetworkUri }).(pulumi.StringOutput)
 }
 
-// Configurable sleep time (seconds) between retries when requesting or reading
-// peering. Default set to 10 seconds. *Available from v1.29.0*
+// Configurable sleep time (seconds) between retries when
+// requesting or reading peering. Default set to 10 seconds.
+//
+// ***Note:*** Available from [v1.29.0]
 func (o VpcGcpPeeringOutput) Sleep() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *VpcGcpPeering) pulumi.IntPtrOutput { return v.Sleep }).(pulumi.IntPtrOutput)
 }
@@ -652,19 +348,25 @@ func (o VpcGcpPeeringOutput) StateDetails() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcGcpPeering) pulumi.StringOutput { return v.StateDetails }).(pulumi.StringOutput)
 }
 
-// Configurable timeout time (seconds) before retries times out. Default set
-// to 1800 seconds. *Available from v1.29.0*
+// Configurable timeout time (seconds) before retries times
+// out. Default set to 1800 seconds.
+//
+// ***Note:*** Available from [v1.29.0]
 func (o VpcGcpPeeringOutput) Timeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *VpcGcpPeering) pulumi.IntPtrOutput { return v.Timeout }).(pulumi.IntPtrOutput)
 }
 
-// The managed VPC identifier. *Available from v1.16.0*
+// The managed VPC identifier.
+//
+// ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
 func (o VpcGcpPeeringOutput) VpcId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpcGcpPeering) pulumi.StringPtrOutput { return v.VpcId }).(pulumi.StringPtrOutput)
 }
 
 // Makes the resource wait until the peering is connected.
-// Default set to false. *Available from v1.28.0*
+// Default set to false.
+//
+// ***Note:*** Available from [v1.28.0]
 func (o VpcGcpPeeringOutput) WaitOnPeeringStatus() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *VpcGcpPeering) pulumi.BoolPtrOutput { return v.WaitOnPeeringStatus }).(pulumi.BoolPtrOutput)
 }

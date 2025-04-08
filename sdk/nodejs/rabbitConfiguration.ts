@@ -7,7 +7,23 @@ import * as utilities from "./utilities";
 /**
  * ## Import
  *
- * `cloudamqp_rabbitmq_configuration` can be imported using the CloudAMQP instance identifier.
+ * `cloudamqp_rabbitmq_configuration` can be imported using the CloudAMQP instance identifier.  To
+ *
+ * retrieve the identifier, use [CloudAMQP API list intances].
+ *
+ * From Terraform v1.5.0, the `import` block can be used to import this resource:
+ *
+ * hcl
+ *
+ * import {
+ *
+ *   to = cloudamqp_rabbitmq_configuration.config
+ *
+ *   id = cloudamqp_instance.instance.id
+ *
+ * }
+ *
+ * Or use Terraform CLI:
  *
  * ```sh
  * $ pulumi import cloudamqp:index/rabbitConfiguration:RabbitConfiguration config <instance_id>`
@@ -42,23 +58,29 @@ export class RabbitConfiguration extends pulumi.CustomResource {
     }
 
     /**
-     * Set the maximum permissible number of channels per connection.
+     * Set the maximum permissible number of
+     * channels per connection.
      */
     public readonly channelMax!: pulumi.Output<number>;
     /**
-     * Set how the cluster should handle network partition.
+     * Set how the cluster should handle network
+     * partition.
      */
     public readonly clusterPartitionHandling!: pulumi.Output<string>;
     /**
-     * Set the maximum permissible number of connection.
+     * Set the maximum permissible number of
+     * connection.
      */
     public readonly connectionMax!: pulumi.Output<number>;
     /**
-     * A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
+     * A consumer that has recevied a message and
+     * does not acknowledge that message within the timeout in
+     * milliseconds
      */
     public readonly consumerTimeout!: pulumi.Output<number>;
     /**
-     * Set the server AMQP 0-9-1 heartbeat timeout in seconds.
+     * Set the server AMQP 0-9-1 heartbeat timeout
+     * in seconds.
      */
     public readonly heartbeat!: pulumi.Output<number>;
     /**
@@ -66,29 +88,36 @@ export class RabbitConfiguration extends pulumi.CustomResource {
      */
     public readonly instanceId!: pulumi.Output<number>;
     /**
-     * Log level for the logger used for log integrations and the CloudAMQP Console log view.
+     * Log level for the logger used for log
+     * integrations and the CloudAMQP Console log view.
      *
-     * *Note: Requires a restart of RabbitMQ to be applied.*
+     * ***Note:*** Requires a restart of RabbitMQ to be applied.
      */
     public readonly logExchangeLevel!: pulumi.Output<string>;
     /**
-     * The largest allowed message payload size in bytes.
+     * The largest allowed message payload size in
+     * bytes.
      */
     public readonly maxMessageSize!: pulumi.Output<number>;
     /**
-     * Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
+     * Size in bytes below which to embed messages
+     * in the queue index. 0 will turn off payload embedding in the
+     * queue index.
      */
     public readonly queueIndexEmbedMsgsBelow!: pulumi.Output<number>;
     /**
-     * Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+     * Configurable sleep time in seconds between retries
+     * for RabbitMQ configuration. Default set to 60 seconds.
      */
     public readonly sleep!: pulumi.Output<number | undefined>;
     /**
-     * Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+     * Configurable timeout time in seconds for RabbitMQ
+     * configuration. Default set to 3600 seconds.
      */
     public readonly timeout!: pulumi.Output<number | undefined>;
     /**
-     * When the server will enter memory based flow-control as relative to the maximum available memory.
+     * When the server will enter memory based
+     * flow-control as relative to the maximum available memory.
      */
     public readonly vmMemoryHighWatermark!: pulumi.Output<number>;
 
@@ -145,23 +174,29 @@ export class RabbitConfiguration extends pulumi.CustomResource {
  */
 export interface RabbitConfigurationState {
     /**
-     * Set the maximum permissible number of channels per connection.
+     * Set the maximum permissible number of
+     * channels per connection.
      */
     channelMax?: pulumi.Input<number>;
     /**
-     * Set how the cluster should handle network partition.
+     * Set how the cluster should handle network
+     * partition.
      */
     clusterPartitionHandling?: pulumi.Input<string>;
     /**
-     * Set the maximum permissible number of connection.
+     * Set the maximum permissible number of
+     * connection.
      */
     connectionMax?: pulumi.Input<number>;
     /**
-     * A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
+     * A consumer that has recevied a message and
+     * does not acknowledge that message within the timeout in
+     * milliseconds
      */
     consumerTimeout?: pulumi.Input<number>;
     /**
-     * Set the server AMQP 0-9-1 heartbeat timeout in seconds.
+     * Set the server AMQP 0-9-1 heartbeat timeout
+     * in seconds.
      */
     heartbeat?: pulumi.Input<number>;
     /**
@@ -169,29 +204,36 @@ export interface RabbitConfigurationState {
      */
     instanceId?: pulumi.Input<number>;
     /**
-     * Log level for the logger used for log integrations and the CloudAMQP Console log view.
+     * Log level for the logger used for log
+     * integrations and the CloudAMQP Console log view.
      *
-     * *Note: Requires a restart of RabbitMQ to be applied.*
+     * ***Note:*** Requires a restart of RabbitMQ to be applied.
      */
     logExchangeLevel?: pulumi.Input<string>;
     /**
-     * The largest allowed message payload size in bytes.
+     * The largest allowed message payload size in
+     * bytes.
      */
     maxMessageSize?: pulumi.Input<number>;
     /**
-     * Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
+     * Size in bytes below which to embed messages
+     * in the queue index. 0 will turn off payload embedding in the
+     * queue index.
      */
     queueIndexEmbedMsgsBelow?: pulumi.Input<number>;
     /**
-     * Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+     * Configurable sleep time in seconds between retries
+     * for RabbitMQ configuration. Default set to 60 seconds.
      */
     sleep?: pulumi.Input<number>;
     /**
-     * Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+     * Configurable timeout time in seconds for RabbitMQ
+     * configuration. Default set to 3600 seconds.
      */
     timeout?: pulumi.Input<number>;
     /**
-     * When the server will enter memory based flow-control as relative to the maximum available memory.
+     * When the server will enter memory based
+     * flow-control as relative to the maximum available memory.
      */
     vmMemoryHighWatermark?: pulumi.Input<number>;
 }
@@ -201,23 +243,29 @@ export interface RabbitConfigurationState {
  */
 export interface RabbitConfigurationArgs {
     /**
-     * Set the maximum permissible number of channels per connection.
+     * Set the maximum permissible number of
+     * channels per connection.
      */
     channelMax?: pulumi.Input<number>;
     /**
-     * Set how the cluster should handle network partition.
+     * Set how the cluster should handle network
+     * partition.
      */
     clusterPartitionHandling?: pulumi.Input<string>;
     /**
-     * Set the maximum permissible number of connection.
+     * Set the maximum permissible number of
+     * connection.
      */
     connectionMax?: pulumi.Input<number>;
     /**
-     * A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
+     * A consumer that has recevied a message and
+     * does not acknowledge that message within the timeout in
+     * milliseconds
      */
     consumerTimeout?: pulumi.Input<number>;
     /**
-     * Set the server AMQP 0-9-1 heartbeat timeout in seconds.
+     * Set the server AMQP 0-9-1 heartbeat timeout
+     * in seconds.
      */
     heartbeat?: pulumi.Input<number>;
     /**
@@ -225,29 +273,36 @@ export interface RabbitConfigurationArgs {
      */
     instanceId: pulumi.Input<number>;
     /**
-     * Log level for the logger used for log integrations and the CloudAMQP Console log view.
+     * Log level for the logger used for log
+     * integrations and the CloudAMQP Console log view.
      *
-     * *Note: Requires a restart of RabbitMQ to be applied.*
+     * ***Note:*** Requires a restart of RabbitMQ to be applied.
      */
     logExchangeLevel?: pulumi.Input<string>;
     /**
-     * The largest allowed message payload size in bytes.
+     * The largest allowed message payload size in
+     * bytes.
      */
     maxMessageSize?: pulumi.Input<number>;
     /**
-     * Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
+     * Size in bytes below which to embed messages
+     * in the queue index. 0 will turn off payload embedding in the
+     * queue index.
      */
     queueIndexEmbedMsgsBelow?: pulumi.Input<number>;
     /**
-     * Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+     * Configurable sleep time in seconds between retries
+     * for RabbitMQ configuration. Default set to 60 seconds.
      */
     sleep?: pulumi.Input<number>;
     /**
-     * Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+     * Configurable timeout time in seconds for RabbitMQ
+     * configuration. Default set to 3600 seconds.
      */
     timeout?: pulumi.Input<number>;
     /**
-     * When the server will enter memory based flow-control as relative to the maximum available memory.
+     * When the server will enter memory based
+     * flow-control as relative to the maximum available memory.
      */
     vmMemoryHighWatermark?: pulumi.Input<number>;
 }

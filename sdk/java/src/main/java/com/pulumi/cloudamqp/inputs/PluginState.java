@@ -78,16 +78,20 @@ public final class PluginState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Configurable sleep time (seconds) for retries when requesting information
-     * about plugins. Default set to 10 seconds. *Available from v1.29.0*
+     * Configurable sleep time (seconds) for retries when requesting
+     * information about plugins. Default set to 10 seconds.
+     * 
+     * ***Note:*** Available from [v1.29.0]
      * 
      */
     @Import(name="sleep")
     private @Nullable Output<Integer> sleep;
 
     /**
-     * @return Configurable sleep time (seconds) for retries when requesting information
-     * about plugins. Default set to 10 seconds. *Available from v1.29.0*
+     * @return Configurable sleep time (seconds) for retries when requesting
+     * information about plugins. Default set to 10 seconds.
+     * 
+     * ***Note:*** Available from [v1.29.0]
      * 
      */
     public Optional<Output<Integer>> sleep() {
@@ -96,7 +100,9 @@ public final class PluginState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * Configurable timeout time (seconds) for retries when requesting
-     * information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+     * information about plugins. Default set to 1800 seconds.
+     * 
+     * ***Note:*** Available from [v1.29.0]
      * 
      */
     @Import(name="timeout")
@@ -104,7 +110,9 @@ public final class PluginState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return Configurable timeout time (seconds) for retries when requesting
-     * information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+     * information about plugins. Default set to 1800 seconds.
+     * 
+     * ***Note:*** Available from [v1.29.0]
      * 
      */
     public Optional<Output<Integer>> timeout() {
@@ -241,8 +249,10 @@ public final class PluginState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sleep Configurable sleep time (seconds) for retries when requesting information
-         * about plugins. Default set to 10 seconds. *Available from v1.29.0*
+         * @param sleep Configurable sleep time (seconds) for retries when requesting
+         * information about plugins. Default set to 10 seconds.
+         * 
+         * ***Note:*** Available from [v1.29.0]
          * 
          * @return builder
          * 
@@ -253,8 +263,10 @@ public final class PluginState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sleep Configurable sleep time (seconds) for retries when requesting information
-         * about plugins. Default set to 10 seconds. *Available from v1.29.0*
+         * @param sleep Configurable sleep time (seconds) for retries when requesting
+         * information about plugins. Default set to 10 seconds.
+         * 
+         * ***Note:*** Available from [v1.29.0]
          * 
          * @return builder
          * 
@@ -265,7 +277,9 @@ public final class PluginState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param timeout Configurable timeout time (seconds) for retries when requesting
-         * information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+         * information about plugins. Default set to 1800 seconds.
+         * 
+         * ***Note:*** Available from [v1.29.0]
          * 
          * @return builder
          * 
@@ -277,7 +291,9 @@ public final class PluginState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param timeout Configurable timeout time (seconds) for retries when requesting
-         * information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+         * information about plugins. Default set to 1800 seconds.
+         * 
+         * ***Note:*** Available from [v1.29.0]
          * 
          * @return builder
          * 

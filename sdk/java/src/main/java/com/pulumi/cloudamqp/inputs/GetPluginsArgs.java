@@ -31,16 +31,36 @@ public final class GetPluginsArgs extends com.pulumi.resources.InvokeArgs {
         return this.instanceId;
     }
 
+    /**
+     * Configurable sleep time (seconds) for retries when requesting
+     * information about plugins. Default set to 10 seconds.
+     * 
+     */
     @Import(name="sleep")
     private @Nullable Output<Integer> sleep;
 
+    /**
+     * @return Configurable sleep time (seconds) for retries when requesting
+     * information about plugins. Default set to 10 seconds.
+     * 
+     */
     public Optional<Output<Integer>> sleep() {
         return Optional.ofNullable(this.sleep);
     }
 
+    /**
+     * Configurable timeout time (seconds) for retries when requesting
+     * information about plugins. Default set to 1800 seconds.
+     * 
+     */
     @Import(name="timeout")
     private @Nullable Output<Integer> timeout;
 
+    /**
+     * @return Configurable timeout time (seconds) for retries when requesting
+     * information about plugins. Default set to 1800 seconds.
+     * 
+     */
     public Optional<Output<Integer>> timeout() {
         return Optional.ofNullable(this.timeout);
     }
@@ -92,20 +112,48 @@ public final class GetPluginsArgs extends com.pulumi.resources.InvokeArgs {
             return instanceId(Output.of(instanceId));
         }
 
+        /**
+         * @param sleep Configurable sleep time (seconds) for retries when requesting
+         * information about plugins. Default set to 10 seconds.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sleep(@Nullable Output<Integer> sleep) {
             $.sleep = sleep;
             return this;
         }
 
+        /**
+         * @param sleep Configurable sleep time (seconds) for retries when requesting
+         * information about plugins. Default set to 10 seconds.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sleep(Integer sleep) {
             return sleep(Output.of(sleep));
         }
 
+        /**
+         * @param timeout Configurable timeout time (seconds) for retries when requesting
+         * information about plugins. Default set to 1800 seconds.
+         * 
+         * @return builder
+         * 
+         */
         public Builder timeout(@Nullable Output<Integer> timeout) {
             $.timeout = timeout;
             return this;
         }
 
+        /**
+         * @param timeout Configurable timeout time (seconds) for retries when requesting
+         * information about plugins. Default set to 1800 seconds.
+         * 
+         * @return builder
+         * 
+         */
         public Builder timeout(Integer timeout) {
             return timeout(Output.of(timeout));
         }

@@ -14,23 +14,23 @@ namespace Pulumi.CloudAmqp.Outputs
     public sealed class GetAccountInstanceResult
     {
         /// <summary>
-        /// The instance identifier
+        /// The instance identifier.
         /// </summary>
         public readonly int Id;
         /// <summary>
-        /// The name of the instance
+        /// The name of the instance.
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The subscription plan used for the instance
+        /// The subscription plan used for the instance.
         /// </summary>
         public readonly string Plan;
         /// <summary>
-        /// The region were the instanece is located in
+        /// The region were the instanece is located in.
         /// </summary>
         public readonly string Region;
         /// <summary>
-        /// Tag for the instance
+        /// Optional tags set for the instance.
         /// </summary>
         public readonly ImmutableArray<string> Tags;
 

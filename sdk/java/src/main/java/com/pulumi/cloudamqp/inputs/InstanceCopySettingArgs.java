@@ -16,18 +16,20 @@ public final class InstanceCopySettingArgs extends com.pulumi.resources.Resource
     public static final InstanceCopySettingArgs Empty = new InstanceCopySettingArgs();
 
     /**
-     * Array of one or more settings to be copied. Allowed values: [alarms, config, definitions, firewall, logs, metrics, plugins]
+     * Array of one or more settings to be copied. Allowed values:
+     * [alarms, config, definitions, firewall, logs, metrics, plugins]
      * 
-     * See more below, copy settings
+     * See more below, [copy settings].
      * 
      */
     @Import(name="settings", required=true)
     private Output<List<String>> settings;
 
     /**
-     * @return Array of one or more settings to be copied. Allowed values: [alarms, config, definitions, firewall, logs, metrics, plugins]
+     * @return Array of one or more settings to be copied. Allowed values:
+     * [alarms, config, definitions, firewall, logs, metrics, plugins]
      * 
-     * See more below, copy settings
+     * See more below, [copy settings].
      * 
      */
     public Output<List<String>> settings() {
@@ -35,14 +37,16 @@ public final class InstanceCopySettingArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Instance identifier of the CloudAMQP instance to copy the settings from.
+     * Instance identifier of the CloudAMQP instance to copy the settings
+     * from.
      * 
      */
     @Import(name="subscriptionId", required=true)
     private Output<String> subscriptionId;
 
     /**
-     * @return Instance identifier of the CloudAMQP instance to copy the settings from.
+     * @return Instance identifier of the CloudAMQP instance to copy the settings
+     * from.
      * 
      */
     public Output<String> subscriptionId() {
@@ -75,9 +79,10 @@ public final class InstanceCopySettingArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param settings Array of one or more settings to be copied. Allowed values: [alarms, config, definitions, firewall, logs, metrics, plugins]
+         * @param settings Array of one or more settings to be copied. Allowed values:
+         * [alarms, config, definitions, firewall, logs, metrics, plugins]
          * 
-         * See more below, copy settings
+         * See more below, [copy settings].
          * 
          * @return builder
          * 
@@ -88,9 +93,10 @@ public final class InstanceCopySettingArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param settings Array of one or more settings to be copied. Allowed values: [alarms, config, definitions, firewall, logs, metrics, plugins]
+         * @param settings Array of one or more settings to be copied. Allowed values:
+         * [alarms, config, definitions, firewall, logs, metrics, plugins]
          * 
-         * See more below, copy settings
+         * See more below, [copy settings].
          * 
          * @return builder
          * 
@@ -100,9 +106,10 @@ public final class InstanceCopySettingArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param settings Array of one or more settings to be copied. Allowed values: [alarms, config, definitions, firewall, logs, metrics, plugins]
+         * @param settings Array of one or more settings to be copied. Allowed values:
+         * [alarms, config, definitions, firewall, logs, metrics, plugins]
          * 
-         * See more below, copy settings
+         * See more below, [copy settings].
          * 
          * @return builder
          * 
@@ -112,7 +119,8 @@ public final class InstanceCopySettingArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param subscriptionId Instance identifier of the CloudAMQP instance to copy the settings from.
+         * @param subscriptionId Instance identifier of the CloudAMQP instance to copy the settings
+         * from.
          * 
          * @return builder
          * 
@@ -123,7 +131,8 @@ public final class InstanceCopySettingArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param subscriptionId Instance identifier of the CloudAMQP instance to copy the settings from.
+         * @param subscriptionId Instance identifier of the CloudAMQP instance to copy the settings
+         * from.
          * 
          * @return builder
          * 

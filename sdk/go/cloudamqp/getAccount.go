@@ -11,7 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
+// Use this data source to retrieve basic information about all instances available for an account.
+// Uses the included apikey in provider configuration, to determine which account to read from.
 func GetAccount(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetAccountResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAccountResult
@@ -25,7 +26,9 @@ func GetAccount(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetAccountRe
 // A collection of values returned by getAccount.
 type GetAccountResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id        string               `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// An array of instances. Each `instances` block consists of the fields documented
+	// below.
 	Instances []GetAccountInstance `pulumi:"instances"`
 }
 
@@ -56,6 +59,8 @@ func (o GetAccountResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccountResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// An array of instances. Each `instances` block consists of the fields documented
+// below.
 func (o GetAccountResultOutput) Instances() GetAccountInstanceArrayOutput {
 	return o.ApplyT(func(v GetAccountResult) []GetAccountInstance { return v.Instances }).(GetAccountInstanceArrayOutput)
 }

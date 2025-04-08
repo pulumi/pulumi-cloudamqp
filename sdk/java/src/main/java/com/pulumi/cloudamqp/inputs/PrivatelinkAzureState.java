@@ -81,7 +81,9 @@ public final class PrivatelinkAzureState extends com.pulumi.resources.ResourceAr
 
     /**
      * Configurable sleep time (seconds) when enable PrivateLink.
-     * Default set to 10 seconds. *Available from v1.29.0*
+     * Default set to 10 seconds.
+     * 
+     * ***Note:*** Available from [v1.29.0]
      * 
      */
     @Import(name="sleep")
@@ -89,7 +91,9 @@ public final class PrivatelinkAzureState extends com.pulumi.resources.ResourceAr
 
     /**
      * @return Configurable sleep time (seconds) when enable PrivateLink.
-     * Default set to 10 seconds. *Available from v1.29.0*
+     * Default set to 10 seconds.
+     * 
+     * ***Note:*** Available from [v1.29.0]
      * 
      */
     public Optional<Output<Integer>> sleep() {
@@ -113,7 +117,9 @@ public final class PrivatelinkAzureState extends com.pulumi.resources.ResourceAr
 
     /**
      * Configurable timeout time (seconds) when enable PrivateLink.
-     * Default set to 1800 seconds. *Available from v1.29.0*
+     * Default set to 1800 seconds.
+     * 
+     * ***Note:*** Available from [v1.29.0]
      * 
      * Approved subscriptions format (GUID): &lt;br&gt;
      * `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
@@ -124,7 +130,9 @@ public final class PrivatelinkAzureState extends com.pulumi.resources.ResourceAr
 
     /**
      * @return Configurable timeout time (seconds) when enable PrivateLink.
-     * Default set to 1800 seconds. *Available from v1.29.0*
+     * Default set to 1800 seconds.
+     * 
+     * ***Note:*** Available from [v1.29.0]
      * 
      * Approved subscriptions format (GUID): &lt;br&gt;
      * `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
@@ -263,7 +271,9 @@ public final class PrivatelinkAzureState extends com.pulumi.resources.ResourceAr
 
         /**
          * @param sleep Configurable sleep time (seconds) when enable PrivateLink.
-         * Default set to 10 seconds. *Available from v1.29.0*
+         * Default set to 10 seconds.
+         * 
+         * ***Note:*** Available from [v1.29.0]
          * 
          * @return builder
          * 
@@ -275,7 +285,9 @@ public final class PrivatelinkAzureState extends com.pulumi.resources.ResourceAr
 
         /**
          * @param sleep Configurable sleep time (seconds) when enable PrivateLink.
-         * Default set to 10 seconds. *Available from v1.29.0*
+         * Default set to 10 seconds.
+         * 
+         * ***Note:*** Available from [v1.29.0]
          * 
          * @return builder
          * 
@@ -307,7 +319,9 @@ public final class PrivatelinkAzureState extends com.pulumi.resources.ResourceAr
 
         /**
          * @param timeout Configurable timeout time (seconds) when enable PrivateLink.
-         * Default set to 1800 seconds. *Available from v1.29.0*
+         * Default set to 1800 seconds.
+         * 
+         * ***Note:*** Available from [v1.29.0]
          * 
          * Approved subscriptions format (GUID): &lt;br&gt;
          * `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
@@ -322,7 +336,9 @@ public final class PrivatelinkAzureState extends com.pulumi.resources.ResourceAr
 
         /**
          * @param timeout Configurable timeout time (seconds) when enable PrivateLink.
-         * Default set to 1800 seconds. *Available from v1.29.0*
+         * Default set to 1800 seconds.
+         * 
+         * ***Note:*** Available from [v1.29.0]
          * 
          * Approved subscriptions format (GUID): &lt;br&gt;
          * `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`

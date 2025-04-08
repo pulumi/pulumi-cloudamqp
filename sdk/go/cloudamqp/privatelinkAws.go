@@ -12,232 +12,29 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Enable PrivateLink for a CloudAMQP instance hosted in AWS. If no existing VPC available when enable
-// PrivateLink, a new VPC will be created with subnet `10.52.72.0/24`.
-//
-// > **Note:** Enabling PrivateLink will automatically add firewall rules for the peered subnet.
-// <details>
-//
-//	<summary>
-//	   <i>Default PrivateLink firewall rule</i>
-//	 </summary>
-//
-// ## Example Usage
-//
-// <details>
-//
-//	<summary>
-//	  <b>
-//	    <i>CloudAMQP instance without existing VPC</i>
-//	  </b>
-//	</summary>
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
-//				Name:   pulumi.String("Instance 01"),
-//				Plan:   pulumi.String("bunny-1"),
-//				Region: pulumi.String("amazon-web-services::us-west-1"),
-//				Tags:   pulumi.StringArray{},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = cloudamqp.NewPrivatelinkAws(ctx, "privatelink", &cloudamqp.PrivatelinkAwsArgs{
-//				InstanceId: instance.ID(),
-//				AllowedPrincipals: pulumi.StringArray{
-//					pulumi.String("arn:aws:iam::aws-account-id:user/user-name"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// </details>
-//
-// <details>
-//
-//	<summary>
-//	  <b>
-//	    <i>CloudAMQP instance in an existing VPC</i>
-//	  </b>
-//	</summary>
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			vpc, err := cloudamqp.NewVpc(ctx, "vpc", &cloudamqp.VpcArgs{
-//				Name:   pulumi.String("Standalone VPC"),
-//				Region: pulumi.String("amazon-web-services::us-west-1"),
-//				Subnet: pulumi.String("10.56.72.0/24"),
-//				Tags:   pulumi.StringArray{},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
-//				Name:              pulumi.String("Instance 01"),
-//				Plan:              pulumi.String("bunny-1"),
-//				Region:            pulumi.String("amazon-web-services::us-west-1"),
-//				Tags:              pulumi.StringArray{},
-//				VpcId:             vpc.ID(),
-//				KeepAssociatedVpc: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = cloudamqp.NewPrivatelinkAws(ctx, "privatelink", &cloudamqp.PrivatelinkAwsArgs{
-//				InstanceId: instance.ID(),
-//				AllowedPrincipals: pulumi.StringArray{
-//					pulumi.String("arn:aws:iam::aws-account-id:user/user-name"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// </details>
-//
-// ### With Additional Firewall Rules
-//
-// <details>
-//
-//	<summary>
-//	  <b>
-//	    <i>CloudAMQP instance in an existing VPC with managed firewall rules</i>
-//	  </b>
-//	</summary>
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			vpc, err := cloudamqp.NewVpc(ctx, "vpc", &cloudamqp.VpcArgs{
-//				Name:   pulumi.String("Standalone VPC"),
-//				Region: pulumi.String("amazon-web-services::us-west-1"),
-//				Subnet: pulumi.String("10.56.72.0/24"),
-//				Tags:   pulumi.StringArray{},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
-//				Name:              pulumi.String("Instance 01"),
-//				Plan:              pulumi.String("bunny-1"),
-//				Region:            pulumi.String("amazon-web-services::us-west-1"),
-//				Tags:              pulumi.StringArray{},
-//				VpcId:             vpc.ID(),
-//				KeepAssociatedVpc: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			privatelink, err := cloudamqp.NewPrivatelinkAws(ctx, "privatelink", &cloudamqp.PrivatelinkAwsArgs{
-//				InstanceId: instance.ID(),
-//				AllowedPrincipals: pulumi.StringArray{
-//					pulumi.String("arn:aws:iam::aws-account-id:user/user-name"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = cloudamqp.NewSecurityFirewall(ctx, "firewall_settings", &cloudamqp.SecurityFirewallArgs{
-//				InstanceId: instance.ID(),
-//				Rules: cloudamqp.SecurityFirewallRuleArray{
-//					&cloudamqp.SecurityFirewallRuleArgs{
-//						Description: pulumi.String("Custom PrivateLink setup"),
-//						Ip:          vpc.Subnet,
-//						Ports:       pulumi.IntArray{},
-//						Services: pulumi.StringArray{
-//							pulumi.String("AMQP"),
-//							pulumi.String("AMQPS"),
-//							pulumi.String("HTTPS"),
-//							pulumi.String("STREAM"),
-//							pulumi.String("STREAM_SSL"),
-//						},
-//					},
-//					&cloudamqp.SecurityFirewallRuleArgs{
-//						Description: pulumi.String("MGMT interface"),
-//						Ip:          pulumi.String("0.0.0.0/0"),
-//						Ports:       pulumi.IntArray{},
-//						Services: pulumi.StringArray{
-//							pulumi.String("HTTPS"),
-//						},
-//					},
-//				},
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				privatelink,
-//			}))
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// </details>
-//
-// ## Depedency
-//
-// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-//
-// ## Create PrivateLink with additional firewall rules
-//
-// To create a PrivateLink configuration with additional firewall rules, it's required to chain the SecurityFirewall
-// resource to avoid parallel conflicting resource calls. You can do this by making the firewall
-// resource depend on the PrivateLink resource, `cloudamqp_privatelink_aws.privatelink`.
-//
-// Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
-// the PrivateLink also needs to be added.
-//
 // ## Import
 //
-// `cloudamqp_privatelink_aws` can be imported using CloudAMQP internal identifier.
+// `cloudamqp_privatelink_aws` can be imported using CloudAMQP instance identifier. To retrieve the
+//
+// identifier, use [CloudAMQP API list intances].
+//
+// From Terraform v1.5.0, the `import` block can be used to import this resource:
+//
+// hcl
+//
+// import {
+//
+//	to = cloudamqp_privatelink_aws.privatelink
+//
+//	id = cloudamqp_instance.instance.id
+//
+// }
+//
+// Or use Terraform CLI:
 //
 // ```sh
 // $ pulumi import cloudamqp:index/privatelinkAws:PrivatelinkAws privatelink <id>`
 // ```
-//
-// The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
 type PrivatelinkAws struct {
 	pulumi.CustomResourceState
 
@@ -250,12 +47,16 @@ type PrivatelinkAws struct {
 	// Service name of the PrivateLink used when creating the endpoint from other VPC.
 	ServiceName pulumi.StringOutput `pulumi:"serviceName"`
 	// Configurable sleep time (seconds) when enable PrivateLink.
-	// Default set to 10 seconds. *Available from v1.29.0*
+	// Default set to 10 seconds.
+	//
+	// ***Note:*** Available from [v1.29.0]
 	Sleep pulumi.IntPtrOutput `pulumi:"sleep"`
 	// PrivateLink status [enable, pending, disable]
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Configurable timeout time (seconds) when enable PrivateLink.
-	// Default set to 1800 seconds. *Available from v1.29.0*
+	// Default set to 1800 seconds.
+	//
+	// ***Note:*** Available from [v1.29.0]
 	//
 	// Allowed principals format: <br>
 	// `arn:aws:iam::aws-account-id:root` <br>
@@ -309,12 +110,16 @@ type privatelinkAwsState struct {
 	// Service name of the PrivateLink used when creating the endpoint from other VPC.
 	ServiceName *string `pulumi:"serviceName"`
 	// Configurable sleep time (seconds) when enable PrivateLink.
-	// Default set to 10 seconds. *Available from v1.29.0*
+	// Default set to 10 seconds.
+	//
+	// ***Note:*** Available from [v1.29.0]
 	Sleep *int `pulumi:"sleep"`
 	// PrivateLink status [enable, pending, disable]
 	Status *string `pulumi:"status"`
 	// Configurable timeout time (seconds) when enable PrivateLink.
-	// Default set to 1800 seconds. *Available from v1.29.0*
+	// Default set to 1800 seconds.
+	//
+	// ***Note:*** Available from [v1.29.0]
 	//
 	// Allowed principals format: <br>
 	// `arn:aws:iam::aws-account-id:root` <br>
@@ -333,12 +138,16 @@ type PrivatelinkAwsState struct {
 	// Service name of the PrivateLink used when creating the endpoint from other VPC.
 	ServiceName pulumi.StringPtrInput
 	// Configurable sleep time (seconds) when enable PrivateLink.
-	// Default set to 10 seconds. *Available from v1.29.0*
+	// Default set to 10 seconds.
+	//
+	// ***Note:*** Available from [v1.29.0]
 	Sleep pulumi.IntPtrInput
 	// PrivateLink status [enable, pending, disable]
 	Status pulumi.StringPtrInput
 	// Configurable timeout time (seconds) when enable PrivateLink.
-	// Default set to 1800 seconds. *Available from v1.29.0*
+	// Default set to 1800 seconds.
+	//
+	// ***Note:*** Available from [v1.29.0]
 	//
 	// Allowed principals format: <br>
 	// `arn:aws:iam::aws-account-id:root` <br>
@@ -357,10 +166,14 @@ type privatelinkAwsArgs struct {
 	// The CloudAMQP instance identifier.
 	InstanceId int `pulumi:"instanceId"`
 	// Configurable sleep time (seconds) when enable PrivateLink.
-	// Default set to 10 seconds. *Available from v1.29.0*
+	// Default set to 10 seconds.
+	//
+	// ***Note:*** Available from [v1.29.0]
 	Sleep *int `pulumi:"sleep"`
 	// Configurable timeout time (seconds) when enable PrivateLink.
-	// Default set to 1800 seconds. *Available from v1.29.0*
+	// Default set to 1800 seconds.
+	//
+	// ***Note:*** Available from [v1.29.0]
 	//
 	// Allowed principals format: <br>
 	// `arn:aws:iam::aws-account-id:root` <br>
@@ -376,10 +189,14 @@ type PrivatelinkAwsArgs struct {
 	// The CloudAMQP instance identifier.
 	InstanceId pulumi.IntInput
 	// Configurable sleep time (seconds) when enable PrivateLink.
-	// Default set to 10 seconds. *Available from v1.29.0*
+	// Default set to 10 seconds.
+	//
+	// ***Note:*** Available from [v1.29.0]
 	Sleep pulumi.IntPtrInput
 	// Configurable timeout time (seconds) when enable PrivateLink.
-	// Default set to 1800 seconds. *Available from v1.29.0*
+	// Default set to 1800 seconds.
+	//
+	// ***Note:*** Available from [v1.29.0]
 	//
 	// Allowed principals format: <br>
 	// `arn:aws:iam::aws-account-id:root` <br>
@@ -496,7 +313,9 @@ func (o PrivatelinkAwsOutput) ServiceName() pulumi.StringOutput {
 }
 
 // Configurable sleep time (seconds) when enable PrivateLink.
-// Default set to 10 seconds. *Available from v1.29.0*
+// Default set to 10 seconds.
+//
+// ***Note:*** Available from [v1.29.0]
 func (o PrivatelinkAwsOutput) Sleep() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *PrivatelinkAws) pulumi.IntPtrOutput { return v.Sleep }).(pulumi.IntPtrOutput)
 }
@@ -507,7 +326,9 @@ func (o PrivatelinkAwsOutput) Status() pulumi.StringOutput {
 }
 
 // Configurable timeout time (seconds) when enable PrivateLink.
-// Default set to 1800 seconds. *Available from v1.29.0*
+// Default set to 1800 seconds.
+//
+// ***Note:*** Available from [v1.29.0]
 //
 // Allowed principals format: <br>
 // `arn:aws:iam::aws-account-id:root` <br>

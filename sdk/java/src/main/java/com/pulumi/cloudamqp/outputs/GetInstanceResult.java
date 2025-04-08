@@ -13,10 +13,30 @@ import java.util.Objects;
 
 @CustomType
 public final class GetInstanceResult {
+    /**
+     * @return (Sensitive) The API key to secondary API handing alarms, integration etc.
+     * 
+     */
     private String apikey;
+    /**
+     * @return Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
+     * 
+     */
     private String backend;
+    /**
+     * @return Information if the CloudAMQP instance is shared or dedicated.
+     * 
+     */
     private Boolean dedicated;
+    /**
+     * @return The external hostname for the CloudAMQP instance.
+     * 
+     */
     private String host;
+    /**
+     * @return The internal hostname for the CloudAMQP instance.
+     * 
+     */
     private String hostInternal;
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -24,32 +44,94 @@ public final class GetInstanceResult {
      */
     private String id;
     private Integer instanceId;
+    /**
+     * @return The name of the CloudAMQP instance.
+     * 
+     */
     private String name;
     private Boolean noDefaultAlarms;
+    /**
+     * @return Number of nodes in the cluster of the CloudAMQP instance.
+     * 
+     */
     private Integer nodes;
+    /**
+     * @return The subscription plan for the CloudAMQP instance.
+     * 
+     */
     private String plan;
     private Boolean ready;
+    /**
+     * @return The cloud platform and region that host the CloudAMQP instance,
+     * `{platform}::{region}`.
+     * 
+     */
     private String region;
+    /**
+     * @return The version of installed Rabbit MQ.
+     * 
+     */
     private String rmqVersion;
+    /**
+     * @return Tags the CloudAMQP instance with categories.
+     * 
+     */
     private List<String> tags;
+    /**
+     * @return (Sensitive) The AMQP URL (uses the internal hostname if the instance was created
+     * with VPC), used by clients to connect for pub/sub.
+     * 
+     */
     private String url;
+    /**
+     * @return The virtual host configured in Rabbit MQ.
+     * 
+     */
     private String vhost;
+    /**
+     * @return ID of the VPC configured for the CloudAMQP instance.
+     * 
+     */
     private Integer vpcId;
+    /**
+     * @return Dedicated VPC subnet configured for the CloudAMQP instance.
+     * 
+     */
     private String vpcSubnet;
 
     private GetInstanceResult() {}
+    /**
+     * @return (Sensitive) The API key to secondary API handing alarms, integration etc.
+     * 
+     */
     public String apikey() {
         return this.apikey;
     }
+    /**
+     * @return Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
+     * 
+     */
     public String backend() {
         return this.backend;
     }
+    /**
+     * @return Information if the CloudAMQP instance is shared or dedicated.
+     * 
+     */
     public Boolean dedicated() {
         return this.dedicated;
     }
+    /**
+     * @return The external hostname for the CloudAMQP instance.
+     * 
+     */
     public String host() {
         return this.host;
     }
+    /**
+     * @return The internal hostname for the CloudAMQP instance.
+     * 
+     */
     public String hostInternal() {
         return this.hostInternal;
     }
@@ -63,39 +145,81 @@ public final class GetInstanceResult {
     public Integer instanceId() {
         return this.instanceId;
     }
+    /**
+     * @return The name of the CloudAMQP instance.
+     * 
+     */
     public String name() {
         return this.name;
     }
     public Boolean noDefaultAlarms() {
         return this.noDefaultAlarms;
     }
+    /**
+     * @return Number of nodes in the cluster of the CloudAMQP instance.
+     * 
+     */
     public Integer nodes() {
         return this.nodes;
     }
+    /**
+     * @return The subscription plan for the CloudAMQP instance.
+     * 
+     */
     public String plan() {
         return this.plan;
     }
     public Boolean ready() {
         return this.ready;
     }
+    /**
+     * @return The cloud platform and region that host the CloudAMQP instance,
+     * `{platform}::{region}`.
+     * 
+     */
     public String region() {
         return this.region;
     }
+    /**
+     * @return The version of installed Rabbit MQ.
+     * 
+     */
     public String rmqVersion() {
         return this.rmqVersion;
     }
+    /**
+     * @return Tags the CloudAMQP instance with categories.
+     * 
+     */
     public List<String> tags() {
         return this.tags;
     }
+    /**
+     * @return (Sensitive) The AMQP URL (uses the internal hostname if the instance was created
+     * with VPC), used by clients to connect for pub/sub.
+     * 
+     */
     public String url() {
         return this.url;
     }
+    /**
+     * @return The virtual host configured in Rabbit MQ.
+     * 
+     */
     public String vhost() {
         return this.vhost;
     }
+    /**
+     * @return ID of the VPC configured for the CloudAMQP instance.
+     * 
+     */
     public Integer vpcId() {
         return this.vpcId;
     }
+    /**
+     * @return Dedicated VPC subnet configured for the CloudAMQP instance.
+     * 
+     */
     public String vpcSubnet() {
         return this.vpcSubnet;
     }

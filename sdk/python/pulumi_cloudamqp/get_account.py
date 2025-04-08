@@ -46,6 +46,10 @@ class GetAccountResult:
     @property
     @pulumi.getter
     def instances(self) -> Sequence['outputs.GetAccountInstanceResult']:
+        """
+        An array of instances. Each `instances` block consists of the fields documented
+        below.
+        """
         return pulumi.get(self, "instances")
 
 
@@ -61,7 +65,8 @@ class AwaitableGetAccountResult(GetAccountResult):
 
 def get_account(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccountResult:
     """
-    Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
+    Use this data source to retrieve basic information about all instances available for an account.
+    Uses the included apikey in provider configuration, to determine which account to read from.
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -72,7 +77,8 @@ def get_account(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAcco
         instances=pulumi.get(__ret__, 'instances'))
 def get_account_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAccountResult]:
     """
-    Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
+    Use this data source to retrieve basic information about all instances available for an account.
+    Uses the included apikey in provider configuration, to determine which account to read from.
     """
     __args__ = dict()
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)

@@ -7,11 +7,14 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
+ * Use this data source to retrieve basic information about all standalone VPCs available for an
+ * account. Uses the included apikey in provider configuration to determine which account to read from.
  *
  * ## Example Usage
  *
- * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
+ * Can be used in other resources/data sources when the VPC identifier is unknown, while other
+ * attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over
+ * VPCs to find the matching one and extract the VPC identifier.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -21,24 +24,6 @@ import * as utilities from "./utilities";
  * const vpcList = cloudamqp.getAccountVpcs({});
  * export const vpcId = vpcList.then(vpcList => .filter(vpc => vpc.name == myVpcName).map(vpc => (vpc))[0].id);
  * ```
- *
- * ## Attributes reference
- *
- * All attributes reference are computed
- *
- * * `id`      - The identifier for this data source. Set to `na` since there is no unique identifier.
- * * `vpcs`    - An array of VPCs. Each `vpcs` block consists of the fields documented below.
- *
- * ***
- *
- * The `vpcs` block consist of
- *
- * * `id`          - The VPC identifier.
- * * `name`        - The VPC instance name.
- * * `region`      - The region the VPC is hosted in.
- * * `subnet`      - The VPC subnet.
- * * `tags`        - Optional tags set for the VPC.
- * * `vpcName`    - VPC name given when hosted at the cloud provider.
  *
  * ## Dependency
  *
@@ -58,14 +43,20 @@ export interface GetAccountVpcsResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * An array of VPCs. Each `vpcs` block consists of the fields documented below.
+     */
     readonly vpcs: outputs.GetAccountVpcsVpc[];
 }
 /**
- * Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
+ * Use this data source to retrieve basic information about all standalone VPCs available for an
+ * account. Uses the included apikey in provider configuration to determine which account to read from.
  *
  * ## Example Usage
  *
- * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
+ * Can be used in other resources/data sources when the VPC identifier is unknown, while other
+ * attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over
+ * VPCs to find the matching one and extract the VPC identifier.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -75,24 +66,6 @@ export interface GetAccountVpcsResult {
  * const vpcList = cloudamqp.getAccountVpcs({});
  * export const vpcId = vpcList.then(vpcList => .filter(vpc => vpc.name == myVpcName).map(vpc => (vpc))[0].id);
  * ```
- *
- * ## Attributes reference
- *
- * All attributes reference are computed
- *
- * * `id`      - The identifier for this data source. Set to `na` since there is no unique identifier.
- * * `vpcs`    - An array of VPCs. Each `vpcs` block consists of the fields documented below.
- *
- * ***
- *
- * The `vpcs` block consist of
- *
- * * `id`          - The VPC identifier.
- * * `name`        - The VPC instance name.
- * * `region`      - The region the VPC is hosted in.
- * * `subnet`      - The VPC subnet.
- * * `tags`        - Optional tags set for the VPC.
- * * `vpcName`    - VPC name given when hosted at the cloud provider.
  *
  * ## Dependency
  *

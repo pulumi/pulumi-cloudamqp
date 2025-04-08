@@ -12,7 +12,8 @@ namespace Pulumi.CloudAmqp
     public static class GetUpgradableVersions
     {
         /// <summary>
-        /// Use this data source to retrieve information about possible upgradable versions for RabbitMQ and Erlang.
+        /// Use this data source to retrieve information about possible upgradable versions for RabbitMQ and
+        /// Erlang.
         /// 
         /// ## Example Usage
         /// 
@@ -31,13 +32,6 @@ namespace Pulumi.CloudAmqp
         /// 
         /// });
         /// ```
-        /// 
-        /// ## Attributes reference
-        /// 
-        /// All attributes reference are computed
-        /// 
-        /// * `new_rabbitmq_version`  - Possible upgradable version for RabbitMQ.
-        /// * `new_erlang_version`    - Possible upgradable version for Erlang.
         /// 
         /// ## Dependency
         /// 
@@ -47,7 +41,8 @@ namespace Pulumi.CloudAmqp
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetUpgradableVersionsResult>("cloudamqp:index/getUpgradableVersions:getUpgradableVersions", args ?? new GetUpgradableVersionsArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to retrieve information about possible upgradable versions for RabbitMQ and Erlang.
+        /// Use this data source to retrieve information about possible upgradable versions for RabbitMQ and
+        /// Erlang.
         /// 
         /// ## Example Usage
         /// 
@@ -66,13 +61,6 @@ namespace Pulumi.CloudAmqp
         /// 
         /// });
         /// ```
-        /// 
-        /// ## Attributes reference
-        /// 
-        /// All attributes reference are computed
-        /// 
-        /// * `new_rabbitmq_version`  - Possible upgradable version for RabbitMQ.
-        /// * `new_erlang_version`    - Possible upgradable version for Erlang.
         /// 
         /// ## Dependency
         /// 
@@ -82,7 +70,8 @@ namespace Pulumi.CloudAmqp
             => global::Pulumi.Deployment.Instance.Invoke<GetUpgradableVersionsResult>("cloudamqp:index/getUpgradableVersions:getUpgradableVersions", args ?? new GetUpgradableVersionsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to retrieve information about possible upgradable versions for RabbitMQ and Erlang.
+        /// Use this data source to retrieve information about possible upgradable versions for RabbitMQ and
+        /// Erlang.
         /// 
         /// ## Example Usage
         /// 
@@ -101,13 +90,6 @@ namespace Pulumi.CloudAmqp
         /// 
         /// });
         /// ```
-        /// 
-        /// ## Attributes reference
-        /// 
-        /// All attributes reference are computed
-        /// 
-        /// * `new_rabbitmq_version`  - Possible upgradable version for RabbitMQ.
-        /// * `new_erlang_version`    - Possible upgradable version for Erlang.
         /// 
         /// ## Dependency
         /// 
@@ -155,7 +137,13 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         public readonly string Id;
         public readonly int InstanceId;
+        /// <summary>
+        /// Possible upgradable version for Erlang.
+        /// </summary>
         public readonly string NewErlangVersion;
+        /// <summary>
+        /// Possible upgradable version for RabbitMQ.
+        /// </summary>
         public readonly string NewRabbitmqVersion;
 
         [OutputConstructor]

@@ -11,7 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
+// Use this data source to retrieve basic information about all standalone VPCs available for an
+// account. Uses the included apikey in provider configuration to determine which account to read from.
 func GetAccountVpcs(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetAccountVpcsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAccountVpcsResult
@@ -25,7 +26,8 @@ func GetAccountVpcs(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetAccou
 // A collection of values returned by getAccountVpcs.
 type GetAccountVpcsResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id   string              `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// An array of VPCs. Each `vpcs` block consists of the fields documented below.
 	Vpcs []GetAccountVpcsVpc `pulumi:"vpcs"`
 }
 
@@ -56,6 +58,7 @@ func (o GetAccountVpcsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccountVpcsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// An array of VPCs. Each `vpcs` block consists of the fields documented below.
 func (o GetAccountVpcsResultOutput) Vpcs() GetAccountVpcsVpcArrayOutput {
 	return o.ApplyT(func(v GetAccountVpcsResult) []GetAccountVpcsVpc { return v.Vpcs }).(GetAccountVpcsVpcArrayOutput)
 }

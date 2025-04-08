@@ -279,11 +279,34 @@ import (
 //
 // `cloudamqp_integration_metric`can be imported using the resource identifier together with CloudAMQP
 //
-// instance identifier. The name and identifier are CSV separated, see example below.
+// instance identifier (CSV separated). To retrieve the resource identifier, use
+//
+// [CloudAMQP API list integrations].
+//
+// From Terraform v1.5.0, the `import` block can be used to import this resource:
+//
+// hcl
+//
+// import {
+//
+//	to = cloudamqp_alarm.alarm
+//
+//	id = format("<id>,%s", cloudamqp_instance.instance.id)
+//
+// }
+//
+// Or use Terraform CLI:
 //
 // ```sh
 // $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric <resource_name> <resource_id>,<instance_id>`
 // ```
+//
+// [integration type reference]: #integration-type-reference
+//
+// [CloudAMQP API list integrations]: https://docs.cloudamqp.com/cloudamqp_api.html#list-metrics-integrations
+//
+// [CloudAMQP API add integrations]: https://docs.cloudamqp.com/cloudamqp_api.html#add-metrics-integration
+// [Datadog documentation]: https://docs.datadoghq.com/getting_started/tagging/#define-tags
 type IntegrationMetric struct {
 	pulumi.CustomResourceState
 

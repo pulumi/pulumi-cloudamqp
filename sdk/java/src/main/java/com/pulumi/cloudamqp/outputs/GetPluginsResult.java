@@ -21,6 +21,10 @@ public final class GetPluginsResult {
      */
     private String id;
     private Integer instanceId;
+    /**
+     * @return An array of plugins. Each `plugins` block consists of the fields documented below.
+     * 
+     */
     private List<GetPluginsPlugin> plugins;
     private @Nullable Integer sleep;
     private @Nullable Integer timeout;
@@ -36,6 +40,10 @@ public final class GetPluginsResult {
     public Integer instanceId() {
         return this.instanceId;
     }
+    /**
+     * @return An array of plugins. Each `plugins` block consists of the fields documented below.
+     * 
+     */
     public List<GetPluginsPlugin> plugins() {
         return this.plugins;
     }

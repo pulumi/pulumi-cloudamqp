@@ -56,11 +56,17 @@ class GetUpgradableVersionsResult:
     @property
     @pulumi.getter(name="newErlangVersion")
     def new_erlang_version(self) -> str:
+        """
+        Possible upgradable version for Erlang.
+        """
         return pulumi.get(self, "new_erlang_version")
 
     @property
     @pulumi.getter(name="newRabbitmqVersion")
     def new_rabbitmq_version(self) -> str:
+        """
+        Possible upgradable version for RabbitMQ.
+        """
         return pulumi.get(self, "new_rabbitmq_version")
 
 
@@ -79,7 +85,8 @@ class AwaitableGetUpgradableVersionsResult(GetUpgradableVersionsResult):
 def get_upgradable_versions(instance_id: Optional[int] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUpgradableVersionsResult:
     """
-    Use this data source to retrieve information about possible upgradable versions for RabbitMQ and Erlang.
+    Use this data source to retrieve information about possible upgradable versions for RabbitMQ and
+    Erlang.
 
     ## Example Usage
 
@@ -89,13 +96,6 @@ def get_upgradable_versions(instance_id: Optional[int] = None,
 
     versions = cloudamqp.get_upgradable_versions(instance_id=instance["id"])
     ```
-
-    ## Attributes reference
-
-    All attributes reference are computed
-
-    * `new_rabbitmq_version`  - Possible upgradable version for RabbitMQ.
-    * `new_erlang_version`    - Possible upgradable version for Erlang.
 
     ## Dependency
 
@@ -117,7 +117,8 @@ def get_upgradable_versions(instance_id: Optional[int] = None,
 def get_upgradable_versions_output(instance_id: Optional[pulumi.Input[int]] = None,
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUpgradableVersionsResult]:
     """
-    Use this data source to retrieve information about possible upgradable versions for RabbitMQ and Erlang.
+    Use this data source to retrieve information about possible upgradable versions for RabbitMQ and
+    Erlang.
 
     ## Example Usage
 
@@ -127,13 +128,6 @@ def get_upgradable_versions_output(instance_id: Optional[pulumi.Input[int]] = No
 
     versions = cloudamqp.get_upgradable_versions(instance_id=instance["id"])
     ```
-
-    ## Attributes reference
-
-    All attributes reference are computed
-
-    * `new_rabbitmq_version`  - Possible upgradable version for RabbitMQ.
-    * `new_erlang_version`    - Possible upgradable version for Erlang.
 
     ## Dependency
 

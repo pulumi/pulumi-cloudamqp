@@ -12,11 +12,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource allows you to create and manage, an [AWS EventBridge](https://aws.amazon.com/eventbridge/) for a CloudAMQP instance. Once created, continue to map the EventBridge in the [AWS Eventbridge console](https://console.aws.amazon.com/events/home).
+// This resource allows you to create and manage, an [AWS EventBridge] for a CloudAMQP instance. Once
+// created, continue to map the EventBridge in the [AWS Eventbridge console].
 //
-// >  Our consumer needs to have exclusive usage to the configured queue and the maximum body size allowed on msgs by AWS is 256kb. The message body has to be valid JSON for AWS Eventbridge to accept it. If messages are too large or are not valid JSON, they will be rejected (tip: setup a dead-letter queue to catch them).
+// >  Our consumer needs to have exclusive usage to the configured queue and the maximum body size
+// allowed on msgs by AWS is 256kb. The message body has to be valid JSON for AWS Eventbridge to accept
+// it. If messages are too large or are not valid JSON, they will be rejected (tip: setup a dead-letter
+// queue to catch them).
 //
-// Not possible to update this resource. Any changes made to the argument will destroy and recreate the resource. Hence why all arguments use ForceNew.
+// Not possible to update this resource. Any changes made to the argument will destroy and recreate the
+// resource. Hence why all arguments use ForceNew.
 //
 // Only available for dedicated subscription plans.
 //
@@ -36,7 +41,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
 //				Name:       pulumi.String("Test instance"),
-//				Plan:       pulumi.String("squirrel-1"),
+//				Plan:       pulumi.String("penguin-1"),
 //				Region:     pulumi.String("amazon-web-services::us-west-1"),
 //				RmqVersion: pulumi.String("3.11.5"),
 //				Tags: pulumi.StringArray{
@@ -46,7 +51,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = cloudamqp.NewIntegrationAwsEventbridge(ctx, "aws_eventbridge", &cloudamqp.IntegrationAwsEventbridgeArgs{
+//			_, err = cloudamqp.NewIntegrationAwsEventbridge(ctx, "this", &cloudamqp.IntegrationAwsEventbridgeArgs{
 //				InstanceId:   instance.ID(),
 //				Vhost:        instance.Vhost,
 //				Queue:        pulumi.String("<QUEUE-NAME>"),
@@ -63,15 +68,18 @@ import (
 //
 // ```
 //
-// ## Argument references
+// ## Argument References
 //
 // The following arguments are supported:
 //
-// * `awsAccountId` - (ForceNew/Required) The 12 digit AWS Account ID where you want the events to be sent to.
-// * `awsRegion`- (ForceNew/Required) The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
-// * `vhost`- (ForceNew/Required) The VHost the queue resides in.
-// * `queue` - (ForceNew/Required) A (durable) queue on your RabbitMQ instance.
-// * `withHeaders` - (ForceNew/Required) Include message headers in the event data. `({ "headers": { }, "body": { "your": "message" } })`
+//   - `awsAccountId`  - (ForceNew/Required) The 12 digit AWS Account ID where you want the events to
+//     be sent to.
+//   - `awsRegion`      - (ForceNew/Required) The AWS region where you the events to be sent to.
+//     (e.g. us-west-1, us-west-2, ..., etc.)
+//   - `vhost`           - (ForceNew/Required) The VHost the queue resides in.
+//   - `queue`           - (ForceNew/Required) A (durable) queue on your RabbitMQ instance.
+//   - `withHeaders`    - (ForceNew/Required) Include message headers in the event data.
+//     `({ "headers": { }, "body": { "your": "message" } })`
 //
 // ## Dependency
 //
@@ -79,11 +87,33 @@ import (
 //
 // ## Import
 //
-// `cloudamqp_integration_aws_eventbridge` can be imported using CloudAMQP internal identifier of the AWS EventBridge together (CSV separated) with the instance identifier. To retrieve the AWS EventBridge identifier, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-eventbridges)
+// `cloudamqp_integration_aws_eventbridge` can be imported using the resource identifier together with
+//
+// CloudAMQP instance identifier (CSV separated). To retrieve the resource identifier, use
+//
+// [CloudAMQP API list eventbridges].
+//
+// From Terraform v1.5.0, the `import` block can be used to import this resource:
+//
+// hcl
+//
+// import {
+//
+//	to = cloudamqp_integration_aws_eventbridge.this
+//
+//	id = format("<id>,%s", cloudamqp_instance.instance.id)
+//
+// }
+//
+// Or with Terraform CLI:
 //
 // ```sh
-// $ pulumi import cloudamqp:index/integrationAwsEventbridge:IntegrationAwsEventbridge aws_eventbridge <id>,<instance_id>`
+// $ pulumi import cloudamqp:index/integrationAwsEventbridge:IntegrationAwsEventbridge this <id>,<instance_id>`
 // ```
+//
+// [AWS EventBridge]: https://aws.amazon.com/eventbridge
+// [AWS Eventbridge console]: https://console.aws.amazon.com/events/home
+// [CloudAMQP API list eventbridges]: https://docs.cloudamqp.com/cloudamqp_api.html#list-eventbridges
 type IntegrationAwsEventbridge struct {
 	pulumi.CustomResourceState
 

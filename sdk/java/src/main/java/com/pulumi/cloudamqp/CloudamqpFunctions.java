@@ -46,81 +46,73 @@ import java.util.concurrent.CompletableFuture;
 
 public final class CloudamqpFunctions {
     /**
-     * Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
+     * Use this data source to retrieve basic information about all instances available for an account.
+     * Uses the included apikey in provider configuration, to determine which account to read from.
      * 
      */
     public static Output<GetAccountResult> getAccount() {
         return getAccount(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
+     * Use this data source to retrieve basic information about all instances available for an account.
+     * Uses the included apikey in provider configuration, to determine which account to read from.
      * 
      */
     public static CompletableFuture<GetAccountResult> getAccountPlain() {
         return getAccountPlain(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
+     * Use this data source to retrieve basic information about all instances available for an account.
+     * Uses the included apikey in provider configuration, to determine which account to read from.
      * 
      */
     public static Output<GetAccountResult> getAccount(InvokeArgs args) {
         return getAccount(args, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
+     * Use this data source to retrieve basic information about all instances available for an account.
+     * Uses the included apikey in provider configuration, to determine which account to read from.
      * 
      */
     public static CompletableFuture<GetAccountResult> getAccountPlain(InvokeArgs args) {
         return getAccountPlain(args, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
+     * Use this data source to retrieve basic information about all instances available for an account.
+     * Uses the included apikey in provider configuration, to determine which account to read from.
      * 
      */
     public static Output<GetAccountResult> getAccount(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("cloudamqp:index/getAccount:getAccount", TypeShape.of(GetAccountResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
+     * Use this data source to retrieve basic information about all instances available for an account.
+     * Uses the included apikey in provider configuration, to determine which account to read from.
      * 
      */
     public static Output<GetAccountResult> getAccount(InvokeArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("cloudamqp:index/getAccount:getAccount", TypeShape.of(GetAccountResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
+     * Use this data source to retrieve basic information about all instances available for an account.
+     * Uses the included apikey in provider configuration, to determine which account to read from.
      * 
      */
     public static CompletableFuture<GetAccountResult> getAccountPlain(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getAccount:getAccount", TypeShape.of(GetAccountResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
+     * Use this data source to retrieve basic information about all standalone VPCs available for an
+     * account. Uses the included apikey in provider configuration to determine which account to read from.
      * 
      * ## Example Usage
      * 
-     * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
+     * Can be used in other resources/data sources when the VPC identifier is unknown, while other
+     * attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over
+     * VPCs to find the matching one and extract the VPC identifier.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`      - The identifier for this data source. Set to `na` since there is no unique identifier.
-     * * `vpcs`    - An array of VPCs. Each `vpcs` block consists of the fields documented below.
-     * 
-     * ***
-     * 
-     * The `vpcs` block consist of
-     * 
-     * * `id`          - The VPC identifier.
-     * * `name`        - The VPC instance name.
-     * * `region`      - The region the VPC is hosted in.
-     * * `subnet`      - The VPC subnet.
-     * * `tags`        - Optional tags set for the VPC.
-     * * `vpc_name`    - VPC name given when hosted at the cloud provider.
      * 
      * ## Dependency
      * 
@@ -131,32 +123,17 @@ public final class CloudamqpFunctions {
         return getAccountVpcs(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
+     * Use this data source to retrieve basic information about all standalone VPCs available for an
+     * account. Uses the included apikey in provider configuration to determine which account to read from.
      * 
      * ## Example Usage
      * 
-     * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
+     * Can be used in other resources/data sources when the VPC identifier is unknown, while other
+     * attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over
+     * VPCs to find the matching one and extract the VPC identifier.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`      - The identifier for this data source. Set to `na` since there is no unique identifier.
-     * * `vpcs`    - An array of VPCs. Each `vpcs` block consists of the fields documented below.
-     * 
-     * ***
-     * 
-     * The `vpcs` block consist of
-     * 
-     * * `id`          - The VPC identifier.
-     * * `name`        - The VPC instance name.
-     * * `region`      - The region the VPC is hosted in.
-     * * `subnet`      - The VPC subnet.
-     * * `tags`        - Optional tags set for the VPC.
-     * * `vpc_name`    - VPC name given when hosted at the cloud provider.
      * 
      * ## Dependency
      * 
@@ -167,32 +144,17 @@ public final class CloudamqpFunctions {
         return getAccountVpcsPlain(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
+     * Use this data source to retrieve basic information about all standalone VPCs available for an
+     * account. Uses the included apikey in provider configuration to determine which account to read from.
      * 
      * ## Example Usage
      * 
-     * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
+     * Can be used in other resources/data sources when the VPC identifier is unknown, while other
+     * attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over
+     * VPCs to find the matching one and extract the VPC identifier.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`      - The identifier for this data source. Set to `na` since there is no unique identifier.
-     * * `vpcs`    - An array of VPCs. Each `vpcs` block consists of the fields documented below.
-     * 
-     * ***
-     * 
-     * The `vpcs` block consist of
-     * 
-     * * `id`          - The VPC identifier.
-     * * `name`        - The VPC instance name.
-     * * `region`      - The region the VPC is hosted in.
-     * * `subnet`      - The VPC subnet.
-     * * `tags`        - Optional tags set for the VPC.
-     * * `vpc_name`    - VPC name given when hosted at the cloud provider.
      * 
      * ## Dependency
      * 
@@ -203,32 +165,17 @@ public final class CloudamqpFunctions {
         return getAccountVpcs(args, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
+     * Use this data source to retrieve basic information about all standalone VPCs available for an
+     * account. Uses the included apikey in provider configuration to determine which account to read from.
      * 
      * ## Example Usage
      * 
-     * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
+     * Can be used in other resources/data sources when the VPC identifier is unknown, while other
+     * attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over
+     * VPCs to find the matching one and extract the VPC identifier.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`      - The identifier for this data source. Set to `na` since there is no unique identifier.
-     * * `vpcs`    - An array of VPCs. Each `vpcs` block consists of the fields documented below.
-     * 
-     * ***
-     * 
-     * The `vpcs` block consist of
-     * 
-     * * `id`          - The VPC identifier.
-     * * `name`        - The VPC instance name.
-     * * `region`      - The region the VPC is hosted in.
-     * * `subnet`      - The VPC subnet.
-     * * `tags`        - Optional tags set for the VPC.
-     * * `vpc_name`    - VPC name given when hosted at the cloud provider.
      * 
      * ## Dependency
      * 
@@ -239,32 +186,17 @@ public final class CloudamqpFunctions {
         return getAccountVpcsPlain(args, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
+     * Use this data source to retrieve basic information about all standalone VPCs available for an
+     * account. Uses the included apikey in provider configuration to determine which account to read from.
      * 
      * ## Example Usage
      * 
-     * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
+     * Can be used in other resources/data sources when the VPC identifier is unknown, while other
+     * attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over
+     * VPCs to find the matching one and extract the VPC identifier.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`      - The identifier for this data source. Set to `na` since there is no unique identifier.
-     * * `vpcs`    - An array of VPCs. Each `vpcs` block consists of the fields documented below.
-     * 
-     * ***
-     * 
-     * The `vpcs` block consist of
-     * 
-     * * `id`          - The VPC identifier.
-     * * `name`        - The VPC instance name.
-     * * `region`      - The region the VPC is hosted in.
-     * * `subnet`      - The VPC subnet.
-     * * `tags`        - Optional tags set for the VPC.
-     * * `vpc_name`    - VPC name given when hosted at the cloud provider.
      * 
      * ## Dependency
      * 
@@ -275,32 +207,17 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getAccountVpcs:getAccountVpcs", TypeShape.of(GetAccountVpcsResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
+     * Use this data source to retrieve basic information about all standalone VPCs available for an
+     * account. Uses the included apikey in provider configuration to determine which account to read from.
      * 
      * ## Example Usage
      * 
-     * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
+     * Can be used in other resources/data sources when the VPC identifier is unknown, while other
+     * attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over
+     * VPCs to find the matching one and extract the VPC identifier.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`      - The identifier for this data source. Set to `na` since there is no unique identifier.
-     * * `vpcs`    - An array of VPCs. Each `vpcs` block consists of the fields documented below.
-     * 
-     * ***
-     * 
-     * The `vpcs` block consist of
-     * 
-     * * `id`          - The VPC identifier.
-     * * `name`        - The VPC instance name.
-     * * `region`      - The region the VPC is hosted in.
-     * * `subnet`      - The VPC subnet.
-     * * `tags`        - Optional tags set for the VPC.
-     * * `vpc_name`    - VPC name given when hosted at the cloud provider.
      * 
      * ## Dependency
      * 
@@ -311,32 +228,17 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getAccountVpcs:getAccountVpcs", TypeShape.of(GetAccountVpcsResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
+     * Use this data source to retrieve basic information about all standalone VPCs available for an
+     * account. Uses the included apikey in provider configuration to determine which account to read from.
      * 
      * ## Example Usage
      * 
-     * Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
+     * Can be used in other resources/data sources when the VPC identifier is unknown, while other
+     * attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over
+     * VPCs to find the matching one and extract the VPC identifier.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`      - The identifier for this data source. Set to `na` since there is no unique identifier.
-     * * `vpcs`    - An array of VPCs. Each `vpcs` block consists of the fields documented below.
-     * 
-     * ***
-     * 
-     * The `vpcs` block consist of
-     * 
-     * * `id`          - The VPC identifier.
-     * * `name`        - The VPC instance name.
-     * * `region`      - The region the VPC is hosted in.
-     * * `subnet`      - The VPC subnet.
-     * * `tags`        - Optional tags set for the VPC.
-     * * `vpc_name`    - VPC name given when hosted at the cloud provider.
      * 
      * ## Dependency
      * 
@@ -347,7 +249,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getAccountVpcs:getAccountVpcs", TypeShape.of(GetAccountVpcsResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about default or created alarms. Either use `alarm_id` or `type` to retrieve the alarm.
+     * Use this data source to retrieve information about default or created alarms. Either use `alarm_id`
+     * or `type` to retrieve the alarm.
      * 
      * ## Example Usage
      * 
@@ -385,29 +288,11 @@ public final class CloudamqpFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`                  - The identifier for this resource.
-     * * `enabled`             - Enable/disable status of the alarm.
-     * * `value_threshold`     - The value threshold that triggers the alarm.
-     * * `reminder_interval`   - The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders.
-     * * `time_threshold`      - The time interval (in seconds) the `value_threshold` should be active before trigger an alarm.
-     * * `queue_regex`         - Regular expression for which queue to check.
-     * * `vhost_regex`         - Regular expression for which vhost to check
-     * * `recipients`          - Identifier for recipient to be notified.
-     * * `message_type`        - Message type `(total, unacked, ready)` used by queue alarm type.
-     * 
-     * Specific attribute for `disk` alarm
-     * 
-     * * `value_calculation`   - Disk value threshold calculation, `(fixed, percentage)` of disk space remaining.
-     * 
      * ## Dependency
      * 
      * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
      * 
-     * ## Alarm types
+     * ## Alarm Types
      * 
      * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
      * 
@@ -416,7 +301,8 @@ public final class CloudamqpFunctions {
         return getAlarm(args, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve information about default or created alarms. Either use `alarm_id` or `type` to retrieve the alarm.
+     * Use this data source to retrieve information about default or created alarms. Either use `alarm_id`
+     * or `type` to retrieve the alarm.
      * 
      * ## Example Usage
      * 
@@ -454,29 +340,11 @@ public final class CloudamqpFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`                  - The identifier for this resource.
-     * * `enabled`             - Enable/disable status of the alarm.
-     * * `value_threshold`     - The value threshold that triggers the alarm.
-     * * `reminder_interval`   - The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders.
-     * * `time_threshold`      - The time interval (in seconds) the `value_threshold` should be active before trigger an alarm.
-     * * `queue_regex`         - Regular expression for which queue to check.
-     * * `vhost_regex`         - Regular expression for which vhost to check
-     * * `recipients`          - Identifier for recipient to be notified.
-     * * `message_type`        - Message type `(total, unacked, ready)` used by queue alarm type.
-     * 
-     * Specific attribute for `disk` alarm
-     * 
-     * * `value_calculation`   - Disk value threshold calculation, `(fixed, percentage)` of disk space remaining.
-     * 
      * ## Dependency
      * 
      * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
      * 
-     * ## Alarm types
+     * ## Alarm Types
      * 
      * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
      * 
@@ -485,7 +353,8 @@ public final class CloudamqpFunctions {
         return getAlarmPlain(args, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve information about default or created alarms. Either use `alarm_id` or `type` to retrieve the alarm.
+     * Use this data source to retrieve information about default or created alarms. Either use `alarm_id`
+     * or `type` to retrieve the alarm.
      * 
      * ## Example Usage
      * 
@@ -523,29 +392,11 @@ public final class CloudamqpFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`                  - The identifier for this resource.
-     * * `enabled`             - Enable/disable status of the alarm.
-     * * `value_threshold`     - The value threshold that triggers the alarm.
-     * * `reminder_interval`   - The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders.
-     * * `time_threshold`      - The time interval (in seconds) the `value_threshold` should be active before trigger an alarm.
-     * * `queue_regex`         - Regular expression for which queue to check.
-     * * `vhost_regex`         - Regular expression for which vhost to check
-     * * `recipients`          - Identifier for recipient to be notified.
-     * * `message_type`        - Message type `(total, unacked, ready)` used by queue alarm type.
-     * 
-     * Specific attribute for `disk` alarm
-     * 
-     * * `value_calculation`   - Disk value threshold calculation, `(fixed, percentage)` of disk space remaining.
-     * 
      * ## Dependency
      * 
      * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
      * 
-     * ## Alarm types
+     * ## Alarm Types
      * 
      * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
      * 
@@ -554,7 +405,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getAlarm:getAlarm", TypeShape.of(GetAlarmResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about default or created alarms. Either use `alarm_id` or `type` to retrieve the alarm.
+     * Use this data source to retrieve information about default or created alarms. Either use `alarm_id`
+     * or `type` to retrieve the alarm.
      * 
      * ## Example Usage
      * 
@@ -592,29 +444,11 @@ public final class CloudamqpFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`                  - The identifier for this resource.
-     * * `enabled`             - Enable/disable status of the alarm.
-     * * `value_threshold`     - The value threshold that triggers the alarm.
-     * * `reminder_interval`   - The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders.
-     * * `time_threshold`      - The time interval (in seconds) the `value_threshold` should be active before trigger an alarm.
-     * * `queue_regex`         - Regular expression for which queue to check.
-     * * `vhost_regex`         - Regular expression for which vhost to check
-     * * `recipients`          - Identifier for recipient to be notified.
-     * * `message_type`        - Message type `(total, unacked, ready)` used by queue alarm type.
-     * 
-     * Specific attribute for `disk` alarm
-     * 
-     * * `value_calculation`   - Disk value threshold calculation, `(fixed, percentage)` of disk space remaining.
-     * 
      * ## Dependency
      * 
      * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
      * 
-     * ## Alarm types
+     * ## Alarm Types
      * 
      * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
      * 
@@ -623,7 +457,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getAlarm:getAlarm", TypeShape.of(GetAlarmResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about default or created alarms. Either use `alarm_id` or `type` to retrieve the alarm.
+     * Use this data source to retrieve information about default or created alarms. Either use `alarm_id`
+     * or `type` to retrieve the alarm.
      * 
      * ## Example Usage
      * 
@@ -661,29 +496,11 @@ public final class CloudamqpFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`                  - The identifier for this resource.
-     * * `enabled`             - Enable/disable status of the alarm.
-     * * `value_threshold`     - The value threshold that triggers the alarm.
-     * * `reminder_interval`   - The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders.
-     * * `time_threshold`      - The time interval (in seconds) the `value_threshold` should be active before trigger an alarm.
-     * * `queue_regex`         - Regular expression for which queue to check.
-     * * `vhost_regex`         - Regular expression for which vhost to check
-     * * `recipients`          - Identifier for recipient to be notified.
-     * * `message_type`        - Message type `(total, unacked, ready)` used by queue alarm type.
-     * 
-     * Specific attribute for `disk` alarm
-     * 
-     * * `value_calculation`   - Disk value threshold calculation, `(fixed, percentage)` of disk space remaining.
-     * 
      * ## Dependency
      * 
      * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
      * 
-     * ## Alarm types
+     * ## Alarm Types
      * 
      * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
      * 
@@ -692,7 +509,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getAlarm:getAlarm", TypeShape.of(GetAlarmResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about the credentials of the configured user in Rabbit MQ. Information is extracted from `cloudamqp_instance.instance.url`.
+     * Use this data source to retrieve information about the credentials of the configured user in
+     * RabbitMQ. Information is extracted from `cloudamqp_instance.instance.url`.
      * 
      * ## Example Usage
      * 
@@ -728,14 +546,6 @@ public final class CloudamqpFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed.
-     * 
-     * * `id`          - The identifier for this data source.
-     * * `username`    - (Sensitive) The username for the configured user in Rabbit MQ.
-     * * `password`    - (Sensitive) The password used by the `username`.
      * 
      * ## Dependency
      * 
@@ -746,7 +556,8 @@ public final class CloudamqpFunctions {
         return getCredentials(args, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve information about the credentials of the configured user in Rabbit MQ. Information is extracted from `cloudamqp_instance.instance.url`.
+     * Use this data source to retrieve information about the credentials of the configured user in
+     * RabbitMQ. Information is extracted from `cloudamqp_instance.instance.url`.
      * 
      * ## Example Usage
      * 
@@ -782,14 +593,6 @@ public final class CloudamqpFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed.
-     * 
-     * * `id`          - The identifier for this data source.
-     * * `username`    - (Sensitive) The username for the configured user in Rabbit MQ.
-     * * `password`    - (Sensitive) The password used by the `username`.
      * 
      * ## Dependency
      * 
@@ -800,7 +603,8 @@ public final class CloudamqpFunctions {
         return getCredentialsPlain(args, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve information about the credentials of the configured user in Rabbit MQ. Information is extracted from `cloudamqp_instance.instance.url`.
+     * Use this data source to retrieve information about the credentials of the configured user in
+     * RabbitMQ. Information is extracted from `cloudamqp_instance.instance.url`.
      * 
      * ## Example Usage
      * 
@@ -836,14 +640,6 @@ public final class CloudamqpFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed.
-     * 
-     * * `id`          - The identifier for this data source.
-     * * `username`    - (Sensitive) The username for the configured user in Rabbit MQ.
-     * * `password`    - (Sensitive) The password used by the `username`.
      * 
      * ## Dependency
      * 
@@ -854,7 +650,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getCredentials:getCredentials", TypeShape.of(GetCredentialsResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about the credentials of the configured user in Rabbit MQ. Information is extracted from `cloudamqp_instance.instance.url`.
+     * Use this data source to retrieve information about the credentials of the configured user in
+     * RabbitMQ. Information is extracted from `cloudamqp_instance.instance.url`.
      * 
      * ## Example Usage
      * 
@@ -890,14 +687,6 @@ public final class CloudamqpFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed.
-     * 
-     * * `id`          - The identifier for this data source.
-     * * `username`    - (Sensitive) The username for the configured user in Rabbit MQ.
-     * * `password`    - (Sensitive) The password used by the `username`.
      * 
      * ## Dependency
      * 
@@ -908,7 +697,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getCredentials:getCredentials", TypeShape.of(GetCredentialsResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about the credentials of the configured user in Rabbit MQ. Information is extracted from `cloudamqp_instance.instance.url`.
+     * Use this data source to retrieve information about the credentials of the configured user in
+     * RabbitMQ. Information is extracted from `cloudamqp_instance.instance.url`.
      * 
      * ## Example Usage
      * 
@@ -945,14 +735,6 @@ public final class CloudamqpFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed.
-     * 
-     * * `id`          - The identifier for this data source.
-     * * `username`    - (Sensitive) The username for the configured user in Rabbit MQ.
-     * * `password`    - (Sensitive) The password used by the `username`.
-     * 
      * ## Dependency
      * 
      * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -962,35 +744,40 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getCredentials:getCredentials", TypeShape.of(GetCredentialsResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.
+     * Use this data source to retrieve information about an already created CloudAMQP instance. In order
+     * to retrieve the correct information, the CoudAMQP instance identifier is needed.
      * 
      */
     public static Output<GetInstanceResult> getInstance(GetInstanceArgs args) {
         return getInstance(args, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.
+     * Use this data source to retrieve information about an already created CloudAMQP instance. In order
+     * to retrieve the correct information, the CoudAMQP instance identifier is needed.
      * 
      */
     public static CompletableFuture<GetInstanceResult> getInstancePlain(GetInstancePlainArgs args) {
         return getInstancePlain(args, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.
+     * Use this data source to retrieve information about an already created CloudAMQP instance. In order
+     * to retrieve the correct information, the CoudAMQP instance identifier is needed.
      * 
      */
     public static Output<GetInstanceResult> getInstance(GetInstanceArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("cloudamqp:index/getInstance:getInstance", TypeShape.of(GetInstanceResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.
+     * Use this data source to retrieve information about an already created CloudAMQP instance. In order
+     * to retrieve the correct information, the CoudAMQP instance identifier is needed.
      * 
      */
     public static Output<GetInstanceResult> getInstance(GetInstanceArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("cloudamqp:index/getInstance:getInstance", TypeShape.of(GetInstanceResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.
+     * Use this data source to retrieve information about an already created CloudAMQP instance. In order
+     * to retrieve the correct information, the CoudAMQP instance identifier is needed.
      * 
      */
     public static CompletableFuture<GetInstanceResult> getInstancePlain(GetInstancePlainArgs args, InvokeOptions options) {
@@ -1033,31 +820,6 @@ public final class CloudamqpFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`    - The identifier for this resource.
-     * * `nodes` - An array of node information. Each `nodes` block consists of the fields documented below.
-     * 
-     * ***
-     * 
-     * The `nodes` block consist of
-     * 
-     * * `hostname`              - External hostname assigned to the node.
-     * * `hostname_internal`     - Internal hostname assigned to the node.
-     * * `name`                  - Name of the node.
-     * * `running`               - Is the node running?
-     * * `rabbitmq_version`      - Currently configured Rabbit MQ version on the node.
-     * * `erlang_version`        - Currently used Erlang version on the node.
-     * * `hipe`                  - Enable or disable High-performance Erlang.
-     * * `configured`            - Is the node configured?
-     * * `disk_size`             - Subscription plan disk size
-     * * `additional_disk_size`  - Additional added disk size
-     * * `availability_zone`     - Availability zone the node is hosted in.
-     * 
-     * ***Note:*** *Total disk size = disk_size + additional_disk_size*
      * 
      * ## Dependency
      * 
@@ -1105,31 +867,6 @@ public final class CloudamqpFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`    - The identifier for this resource.
-     * * `nodes` - An array of node information. Each `nodes` block consists of the fields documented below.
-     * 
-     * ***
-     * 
-     * The `nodes` block consist of
-     * 
-     * * `hostname`              - External hostname assigned to the node.
-     * * `hostname_internal`     - Internal hostname assigned to the node.
-     * * `name`                  - Name of the node.
-     * * `running`               - Is the node running?
-     * * `rabbitmq_version`      - Currently configured Rabbit MQ version on the node.
-     * * `erlang_version`        - Currently used Erlang version on the node.
-     * * `hipe`                  - Enable or disable High-performance Erlang.
-     * * `configured`            - Is the node configured?
-     * * `disk_size`             - Subscription plan disk size
-     * * `additional_disk_size`  - Additional added disk size
-     * * `availability_zone`     - Availability zone the node is hosted in.
-     * 
-     * ***Note:*** *Total disk size = disk_size + additional_disk_size*
-     * 
      * ## Dependency
      * 
      * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -1175,31 +912,6 @@ public final class CloudamqpFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`    - The identifier for this resource.
-     * * `nodes` - An array of node information. Each `nodes` block consists of the fields documented below.
-     * 
-     * ***
-     * 
-     * The `nodes` block consist of
-     * 
-     * * `hostname`              - External hostname assigned to the node.
-     * * `hostname_internal`     - Internal hostname assigned to the node.
-     * * `name`                  - Name of the node.
-     * * `running`               - Is the node running?
-     * * `rabbitmq_version`      - Currently configured Rabbit MQ version on the node.
-     * * `erlang_version`        - Currently used Erlang version on the node.
-     * * `hipe`                  - Enable or disable High-performance Erlang.
-     * * `configured`            - Is the node configured?
-     * * `disk_size`             - Subscription plan disk size
-     * * `additional_disk_size`  - Additional added disk size
-     * * `availability_zone`     - Availability zone the node is hosted in.
-     * 
-     * ***Note:*** *Total disk size = disk_size + additional_disk_size*
      * 
      * ## Dependency
      * 
@@ -1247,31 +959,6 @@ public final class CloudamqpFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`    - The identifier for this resource.
-     * * `nodes` - An array of node information. Each `nodes` block consists of the fields documented below.
-     * 
-     * ***
-     * 
-     * The `nodes` block consist of
-     * 
-     * * `hostname`              - External hostname assigned to the node.
-     * * `hostname_internal`     - Internal hostname assigned to the node.
-     * * `name`                  - Name of the node.
-     * * `running`               - Is the node running?
-     * * `rabbitmq_version`      - Currently configured Rabbit MQ version on the node.
-     * * `erlang_version`        - Currently used Erlang version on the node.
-     * * `hipe`                  - Enable or disable High-performance Erlang.
-     * * `configured`            - Is the node configured?
-     * * `disk_size`             - Subscription plan disk size
-     * * `additional_disk_size`  - Additional added disk size
-     * * `availability_zone`     - Availability zone the node is hosted in.
-     * 
-     * ***Note:*** *Total disk size = disk_size + additional_disk_size*
-     * 
      * ## Dependency
      * 
      * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -1318,31 +1005,6 @@ public final class CloudamqpFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`    - The identifier for this resource.
-     * * `nodes` - An array of node information. Each `nodes` block consists of the fields documented below.
-     * 
-     * ***
-     * 
-     * The `nodes` block consist of
-     * 
-     * * `hostname`              - External hostname assigned to the node.
-     * * `hostname_internal`     - Internal hostname assigned to the node.
-     * * `name`                  - Name of the node.
-     * * `running`               - Is the node running?
-     * * `rabbitmq_version`      - Currently configured Rabbit MQ version on the node.
-     * * `erlang_version`        - Currently used Erlang version on the node.
-     * * `hipe`                  - Enable or disable High-performance Erlang.
-     * * `configured`            - Is the node configured?
-     * * `disk_size`             - Subscription plan disk size
-     * * `additional_disk_size`  - Additional added disk size
-     * * `availability_zone`     - Availability zone the node is hosted in.
-     * 
-     * ***Note:*** *Total disk size = disk_size + additional_disk_size*
-     * 
      * ## Dependency
      * 
      * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -1352,7 +1014,9 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getNodes:getNodes", TypeShape.of(GetNodesResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipient_id` or `name`.
+     * Use this data source to retrieve information about default or created recipients. The recipient will
+     * receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use
+     * `recipient_id` or `name`.
      * 
      * ## Example Usage
      * 
@@ -1389,15 +1053,6 @@ public final class CloudamqpFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`    - The identifier for this resource.
-     * * `type`  - The type of the recipient.
-     * * `value` - The notification endpoint, where to send the notification.
-     * * `options`- Options argument (e.g. `rk` used for VictorOps routing key).
      * 
      * ## Dependency
      * 
@@ -1408,7 +1063,9 @@ public final class CloudamqpFunctions {
         return getNotification(args, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipient_id` or `name`.
+     * Use this data source to retrieve information about default or created recipients. The recipient will
+     * receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use
+     * `recipient_id` or `name`.
      * 
      * ## Example Usage
      * 
@@ -1445,15 +1102,6 @@ public final class CloudamqpFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`    - The identifier for this resource.
-     * * `type`  - The type of the recipient.
-     * * `value` - The notification endpoint, where to send the notification.
-     * * `options`- Options argument (e.g. `rk` used for VictorOps routing key).
      * 
      * ## Dependency
      * 
@@ -1464,7 +1112,9 @@ public final class CloudamqpFunctions {
         return getNotificationPlain(args, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipient_id` or `name`.
+     * Use this data source to retrieve information about default or created recipients. The recipient will
+     * receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use
+     * `recipient_id` or `name`.
      * 
      * ## Example Usage
      * 
@@ -1501,15 +1151,6 @@ public final class CloudamqpFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`    - The identifier for this resource.
-     * * `type`  - The type of the recipient.
-     * * `value` - The notification endpoint, where to send the notification.
-     * * `options`- Options argument (e.g. `rk` used for VictorOps routing key).
      * 
      * ## Dependency
      * 
@@ -1520,7 +1161,9 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getNotification:getNotification", TypeShape.of(GetNotificationResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipient_id` or `name`.
+     * Use this data source to retrieve information about default or created recipients. The recipient will
+     * receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use
+     * `recipient_id` or `name`.
      * 
      * ## Example Usage
      * 
@@ -1557,15 +1200,6 @@ public final class CloudamqpFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`    - The identifier for this resource.
-     * * `type`  - The type of the recipient.
-     * * `value` - The notification endpoint, where to send the notification.
-     * * `options`- Options argument (e.g. `rk` used for VictorOps routing key).
      * 
      * ## Dependency
      * 
@@ -1576,7 +1210,9 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getNotification:getNotification", TypeShape.of(GetNotificationResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipient_id` or `name`.
+     * Use this data source to retrieve information about default or created recipients. The recipient will
+     * receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use
+     * `recipient_id` or `name`.
      * 
      * ## Example Usage
      * 
@@ -1614,15 +1250,6 @@ public final class CloudamqpFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`    - The identifier for this resource.
-     * * `type`  - The type of the recipient.
-     * * `value` - The notification endpoint, where to send the notification.
-     * * `options`- Options argument (e.g. `rk` used for VictorOps routing key).
-     * 
      * ## Dependency
      * 
      * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -1632,7 +1259,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getNotification:getNotification", TypeShape.of(GetNotificationResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
+     * Use this data source to retrieve information about installed and available plugins for the CloudAMQP
+     * instance.
      * 
      * ## Example Usage
      * 
@@ -1668,26 +1296,6 @@ public final class CloudamqpFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`      - The identifier for this resource.
-     * * `plugins` - An array of plugins. Each `plugins` block consists of the fields documented below.
-     * * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
-     *   about plugins. Default set to 10 seconds. *Available from v1.29.0*
-     * * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
-     *   information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
-     * 
-     * ***
-     * 
-     * The `plugins` block consist of
-     * 
-     * * `name`        - The type of the recipient.
-     * * `version`     - Rabbit MQ version that the plugins are shipped with.
-     * * `description` - Description of what the plugin does.
-     * * `enabled`     - Enable or disable information for the plugin.
      * 
      * ## Dependency
      * 
@@ -1698,7 +1306,8 @@ public final class CloudamqpFunctions {
         return getPlugins(args, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
+     * Use this data source to retrieve information about installed and available plugins for the CloudAMQP
+     * instance.
      * 
      * ## Example Usage
      * 
@@ -1734,26 +1343,6 @@ public final class CloudamqpFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`      - The identifier for this resource.
-     * * `plugins` - An array of plugins. Each `plugins` block consists of the fields documented below.
-     * * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
-     *   about plugins. Default set to 10 seconds. *Available from v1.29.0*
-     * * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
-     *   information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
-     * 
-     * ***
-     * 
-     * The `plugins` block consist of
-     * 
-     * * `name`        - The type of the recipient.
-     * * `version`     - Rabbit MQ version that the plugins are shipped with.
-     * * `description` - Description of what the plugin does.
-     * * `enabled`     - Enable or disable information for the plugin.
      * 
      * ## Dependency
      * 
@@ -1764,7 +1353,8 @@ public final class CloudamqpFunctions {
         return getPluginsPlain(args, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
+     * Use this data source to retrieve information about installed and available plugins for the CloudAMQP
+     * instance.
      * 
      * ## Example Usage
      * 
@@ -1800,26 +1390,6 @@ public final class CloudamqpFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`      - The identifier for this resource.
-     * * `plugins` - An array of plugins. Each `plugins` block consists of the fields documented below.
-     * * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
-     *   about plugins. Default set to 10 seconds. *Available from v1.29.0*
-     * * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
-     *   information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
-     * 
-     * ***
-     * 
-     * The `plugins` block consist of
-     * 
-     * * `name`        - The type of the recipient.
-     * * `version`     - Rabbit MQ version that the plugins are shipped with.
-     * * `description` - Description of what the plugin does.
-     * * `enabled`     - Enable or disable information for the plugin.
      * 
      * ## Dependency
      * 
@@ -1830,7 +1400,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getPlugins:getPlugins", TypeShape.of(GetPluginsResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
+     * Use this data source to retrieve information about installed and available plugins for the CloudAMQP
+     * instance.
      * 
      * ## Example Usage
      * 
@@ -1866,26 +1437,6 @@ public final class CloudamqpFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`      - The identifier for this resource.
-     * * `plugins` - An array of plugins. Each `plugins` block consists of the fields documented below.
-     * * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
-     *   about plugins. Default set to 10 seconds. *Available from v1.29.0*
-     * * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
-     *   information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
-     * 
-     * ***
-     * 
-     * The `plugins` block consist of
-     * 
-     * * `name`        - The type of the recipient.
-     * * `version`     - Rabbit MQ version that the plugins are shipped with.
-     * * `description` - Description of what the plugin does.
-     * * `enabled`     - Enable or disable information for the plugin.
      * 
      * ## Dependency
      * 
@@ -1896,7 +1447,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getPlugins:getPlugins", TypeShape.of(GetPluginsResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
+     * Use this data source to retrieve information about installed and available plugins for the CloudAMQP
+     * instance.
      * 
      * ## Example Usage
      * 
@@ -1933,26 +1485,6 @@ public final class CloudamqpFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`      - The identifier for this resource.
-     * * `plugins` - An array of plugins. Each `plugins` block consists of the fields documented below.
-     * * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
-     *   about plugins. Default set to 10 seconds. *Available from v1.29.0*
-     * * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
-     *   information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
-     * 
-     * ***
-     * 
-     * The `plugins` block consist of
-     * 
-     * * `name`        - The type of the recipient.
-     * * `version`     - Rabbit MQ version that the plugins are shipped with.
-     * * `description` - Description of what the plugin does.
-     * * `enabled`     - Enable or disable information for the plugin.
-     * 
      * ## Dependency
      * 
      * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -1962,7 +1494,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getPlugins:getPlugins", TypeShape.of(GetPluginsResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
+     * Use this data source to retrieve information about available community plugins for the CloudAMQP
+     * instance.
      * 
      * ## Example Usage
      * 
@@ -1998,25 +1531,6 @@ public final class CloudamqpFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`      - The identifier for this resource.
-     * * `plugins` - An array of community plugins. Each `plugins` block consists of the fields documented below.
-     * * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
-     *   about community plugins. Default set to 10 seconds. *Available from v1.29.0*
-     * * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
-     *   information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
-     * 
-     * ***
-     * 
-     * The `plugins` block consists of
-     * 
-     * * `name`        - The type of the recipient.
-     * * `require`     - Min. required Rabbit MQ version to be used.
-     * * `description` - Description of what the plugin does.
      * 
      * ## Dependency
      * 
@@ -2027,7 +1541,8 @@ public final class CloudamqpFunctions {
         return getPluginsCommunity(args, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
+     * Use this data source to retrieve information about available community plugins for the CloudAMQP
+     * instance.
      * 
      * ## Example Usage
      * 
@@ -2063,25 +1578,6 @@ public final class CloudamqpFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`      - The identifier for this resource.
-     * * `plugins` - An array of community plugins. Each `plugins` block consists of the fields documented below.
-     * * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
-     *   about community plugins. Default set to 10 seconds. *Available from v1.29.0*
-     * * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
-     *   information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
-     * 
-     * ***
-     * 
-     * The `plugins` block consists of
-     * 
-     * * `name`        - The type of the recipient.
-     * * `require`     - Min. required Rabbit MQ version to be used.
-     * * `description` - Description of what the plugin does.
      * 
      * ## Dependency
      * 
@@ -2092,7 +1588,8 @@ public final class CloudamqpFunctions {
         return getPluginsCommunityPlain(args, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
+     * Use this data source to retrieve information about available community plugins for the CloudAMQP
+     * instance.
      * 
      * ## Example Usage
      * 
@@ -2128,25 +1625,6 @@ public final class CloudamqpFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`      - The identifier for this resource.
-     * * `plugins` - An array of community plugins. Each `plugins` block consists of the fields documented below.
-     * * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
-     *   about community plugins. Default set to 10 seconds. *Available from v1.29.0*
-     * * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
-     *   information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
-     * 
-     * ***
-     * 
-     * The `plugins` block consists of
-     * 
-     * * `name`        - The type of the recipient.
-     * * `require`     - Min. required Rabbit MQ version to be used.
-     * * `description` - Description of what the plugin does.
      * 
      * ## Dependency
      * 
@@ -2157,7 +1635,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getPluginsCommunity:getPluginsCommunity", TypeShape.of(GetPluginsCommunityResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
+     * Use this data source to retrieve information about available community plugins for the CloudAMQP
+     * instance.
      * 
      * ## Example Usage
      * 
@@ -2193,25 +1672,6 @@ public final class CloudamqpFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`      - The identifier for this resource.
-     * * `plugins` - An array of community plugins. Each `plugins` block consists of the fields documented below.
-     * * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
-     *   about community plugins. Default set to 10 seconds. *Available from v1.29.0*
-     * * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
-     *   information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
-     * 
-     * ***
-     * 
-     * The `plugins` block consists of
-     * 
-     * * `name`        - The type of the recipient.
-     * * `require`     - Min. required Rabbit MQ version to be used.
-     * * `description` - Description of what the plugin does.
      * 
      * ## Dependency
      * 
@@ -2222,7 +1682,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getPluginsCommunity:getPluginsCommunity", TypeShape.of(GetPluginsCommunityResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
+     * Use this data source to retrieve information about available community plugins for the CloudAMQP
+     * instance.
      * 
      * ## Example Usage
      * 
@@ -2259,25 +1720,6 @@ public final class CloudamqpFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`      - The identifier for this resource.
-     * * `plugins` - An array of community plugins. Each `plugins` block consists of the fields documented below.
-     * * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
-     *   about community plugins. Default set to 10 seconds. *Available from v1.29.0*
-     * * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
-     *   information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
-     * 
-     * ***
-     * 
-     * The `plugins` block consists of
-     * 
-     * * `name`        - The type of the recipient.
-     * * `require`     - Min. required Rabbit MQ version to be used.
-     * * `description` - Description of what the plugin does.
-     * 
      * ## Dependency
      * 
      * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -2287,7 +1729,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getPluginsCommunity:getPluginsCommunity", TypeShape.of(GetPluginsCommunityResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about possible upgradable versions for RabbitMQ and Erlang.
+     * Use this data source to retrieve information about possible upgradable versions for RabbitMQ and
+     * Erlang.
      * 
      * ## Example Usage
      * 
@@ -2323,13 +1766,6 @@ public final class CloudamqpFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `new_rabbitmq_version`  - Possible upgradable version for RabbitMQ.
-     * * `new_erlang_version`    - Possible upgradable version for Erlang.
      * 
      * ## Dependency
      * 
@@ -2340,7 +1776,8 @@ public final class CloudamqpFunctions {
         return getUpgradableVersions(args, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve information about possible upgradable versions for RabbitMQ and Erlang.
+     * Use this data source to retrieve information about possible upgradable versions for RabbitMQ and
+     * Erlang.
      * 
      * ## Example Usage
      * 
@@ -2376,13 +1813,6 @@ public final class CloudamqpFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `new_rabbitmq_version`  - Possible upgradable version for RabbitMQ.
-     * * `new_erlang_version`    - Possible upgradable version for Erlang.
      * 
      * ## Dependency
      * 
@@ -2393,7 +1823,8 @@ public final class CloudamqpFunctions {
         return getUpgradableVersionsPlain(args, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve information about possible upgradable versions for RabbitMQ and Erlang.
+     * Use this data source to retrieve information about possible upgradable versions for RabbitMQ and
+     * Erlang.
      * 
      * ## Example Usage
      * 
@@ -2429,13 +1860,6 @@ public final class CloudamqpFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `new_rabbitmq_version`  - Possible upgradable version for RabbitMQ.
-     * * `new_erlang_version`    - Possible upgradable version for Erlang.
      * 
      * ## Dependency
      * 
@@ -2446,7 +1870,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getUpgradableVersions:getUpgradableVersions", TypeShape.of(GetUpgradableVersionsResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about possible upgradable versions for RabbitMQ and Erlang.
+     * Use this data source to retrieve information about possible upgradable versions for RabbitMQ and
+     * Erlang.
      * 
      * ## Example Usage
      * 
@@ -2482,13 +1907,6 @@ public final class CloudamqpFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `new_rabbitmq_version`  - Possible upgradable version for RabbitMQ.
-     * * `new_erlang_version`    - Possible upgradable version for Erlang.
      * 
      * ## Dependency
      * 
@@ -2499,7 +1917,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getUpgradableVersions:getUpgradableVersions", TypeShape.of(GetUpgradableVersionsResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about possible upgradable versions for RabbitMQ and Erlang.
+     * Use this data source to retrieve information about possible upgradable versions for RabbitMQ and
+     * Erlang.
      * 
      * ## Example Usage
      * 
@@ -2536,13 +1955,6 @@ public final class CloudamqpFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `new_rabbitmq_version`  - Possible upgradable version for RabbitMQ.
-     * * `new_erlang_version`    - Possible upgradable version for Erlang.
-     * 
      * ## Dependency
      * 
      * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -2551,1564 +1963,45 @@ public final class CloudamqpFunctions {
     public static CompletableFuture<GetUpgradableVersionsResult> getUpgradableVersionsPlain(GetUpgradableVersionsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getUpgradableVersions:getUpgradableVersions", TypeShape.of(GetUpgradableVersionsResult.class), args, Utilities.withVersion(options));
     }
-    /**
-     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
-     * 
-     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
-     * 
-     * ## Example Usage
-     * 
-     * &lt;details&gt;
-     *   &lt;summary&gt;
-     *     &lt;b&gt;
-     *       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
-     *     &lt;/b&gt;
-     *   &lt;/summary&gt;
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .instanceId(instance.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * &lt;/details&gt;
-     * 
-     * &lt;details&gt;
-     *   &lt;summary&gt;
-     *     &lt;b&gt;
-     *       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
-     *     &lt;/b&gt;
-     *   &lt;/summary&gt;
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .vpcId(vpc.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * &lt;/details&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`                  - The identifier for this resource.
-     * * `name`                - The name of the VPC.
-     * * `vpc_subnet`          - Dedicated VPC subnet.
-     * * `network`             - VPC network uri.
-     * 
-     * ## Dependency
-     * 
-     * *Pre v1.16.0*
-     * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-     * 
-     * *Post v1.16.0*
-     * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
-     * 
-     */
     public static Output<GetVpcGcpInfoResult> getVpcGcpInfo() {
         return getVpcGcpInfo(GetVpcGcpInfoArgs.Empty, InvokeOptions.Empty);
     }
-    /**
-     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
-     * 
-     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
-     * 
-     * ## Example Usage
-     * 
-     * &lt;details&gt;
-     *   &lt;summary&gt;
-     *     &lt;b&gt;
-     *       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
-     *     &lt;/b&gt;
-     *   &lt;/summary&gt;
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .instanceId(instance.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * &lt;/details&gt;
-     * 
-     * &lt;details&gt;
-     *   &lt;summary&gt;
-     *     &lt;b&gt;
-     *       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
-     *     &lt;/b&gt;
-     *   &lt;/summary&gt;
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .vpcId(vpc.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * &lt;/details&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`                  - The identifier for this resource.
-     * * `name`                - The name of the VPC.
-     * * `vpc_subnet`          - Dedicated VPC subnet.
-     * * `network`             - VPC network uri.
-     * 
-     * ## Dependency
-     * 
-     * *Pre v1.16.0*
-     * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-     * 
-     * *Post v1.16.0*
-     * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
-     * 
-     */
     public static CompletableFuture<GetVpcGcpInfoResult> getVpcGcpInfoPlain() {
         return getVpcGcpInfoPlain(GetVpcGcpInfoPlainArgs.Empty, InvokeOptions.Empty);
     }
-    /**
-     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
-     * 
-     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
-     * 
-     * ## Example Usage
-     * 
-     * &lt;details&gt;
-     *   &lt;summary&gt;
-     *     &lt;b&gt;
-     *       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
-     *     &lt;/b&gt;
-     *   &lt;/summary&gt;
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .instanceId(instance.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * &lt;/details&gt;
-     * 
-     * &lt;details&gt;
-     *   &lt;summary&gt;
-     *     &lt;b&gt;
-     *       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
-     *     &lt;/b&gt;
-     *   &lt;/summary&gt;
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .vpcId(vpc.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * &lt;/details&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`                  - The identifier for this resource.
-     * * `name`                - The name of the VPC.
-     * * `vpc_subnet`          - Dedicated VPC subnet.
-     * * `network`             - VPC network uri.
-     * 
-     * ## Dependency
-     * 
-     * *Pre v1.16.0*
-     * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-     * 
-     * *Post v1.16.0*
-     * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
-     * 
-     */
     public static Output<GetVpcGcpInfoResult> getVpcGcpInfo(GetVpcGcpInfoArgs args) {
         return getVpcGcpInfo(args, InvokeOptions.Empty);
     }
-    /**
-     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
-     * 
-     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
-     * 
-     * ## Example Usage
-     * 
-     * &lt;details&gt;
-     *   &lt;summary&gt;
-     *     &lt;b&gt;
-     *       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
-     *     &lt;/b&gt;
-     *   &lt;/summary&gt;
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .instanceId(instance.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * &lt;/details&gt;
-     * 
-     * &lt;details&gt;
-     *   &lt;summary&gt;
-     *     &lt;b&gt;
-     *       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
-     *     &lt;/b&gt;
-     *   &lt;/summary&gt;
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .vpcId(vpc.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * &lt;/details&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`                  - The identifier for this resource.
-     * * `name`                - The name of the VPC.
-     * * `vpc_subnet`          - Dedicated VPC subnet.
-     * * `network`             - VPC network uri.
-     * 
-     * ## Dependency
-     * 
-     * *Pre v1.16.0*
-     * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-     * 
-     * *Post v1.16.0*
-     * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
-     * 
-     */
     public static CompletableFuture<GetVpcGcpInfoResult> getVpcGcpInfoPlain(GetVpcGcpInfoPlainArgs args) {
         return getVpcGcpInfoPlain(args, InvokeOptions.Empty);
     }
-    /**
-     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
-     * 
-     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
-     * 
-     * ## Example Usage
-     * 
-     * &lt;details&gt;
-     *   &lt;summary&gt;
-     *     &lt;b&gt;
-     *       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
-     *     &lt;/b&gt;
-     *   &lt;/summary&gt;
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .instanceId(instance.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * &lt;/details&gt;
-     * 
-     * &lt;details&gt;
-     *   &lt;summary&gt;
-     *     &lt;b&gt;
-     *       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
-     *     &lt;/b&gt;
-     *   &lt;/summary&gt;
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .vpcId(vpc.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * &lt;/details&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`                  - The identifier for this resource.
-     * * `name`                - The name of the VPC.
-     * * `vpc_subnet`          - Dedicated VPC subnet.
-     * * `network`             - VPC network uri.
-     * 
-     * ## Dependency
-     * 
-     * *Pre v1.16.0*
-     * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-     * 
-     * *Post v1.16.0*
-     * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
-     * 
-     */
     public static Output<GetVpcGcpInfoResult> getVpcGcpInfo(GetVpcGcpInfoArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo", TypeShape.of(GetVpcGcpInfoResult.class), args, Utilities.withVersion(options));
     }
-    /**
-     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
-     * 
-     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
-     * 
-     * ## Example Usage
-     * 
-     * &lt;details&gt;
-     *   &lt;summary&gt;
-     *     &lt;b&gt;
-     *       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
-     *     &lt;/b&gt;
-     *   &lt;/summary&gt;
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .instanceId(instance.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * &lt;/details&gt;
-     * 
-     * &lt;details&gt;
-     *   &lt;summary&gt;
-     *     &lt;b&gt;
-     *       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
-     *     &lt;/b&gt;
-     *   &lt;/summary&gt;
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .vpcId(vpc.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * &lt;/details&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`                  - The identifier for this resource.
-     * * `name`                - The name of the VPC.
-     * * `vpc_subnet`          - Dedicated VPC subnet.
-     * * `network`             - VPC network uri.
-     * 
-     * ## Dependency
-     * 
-     * *Pre v1.16.0*
-     * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-     * 
-     * *Post v1.16.0*
-     * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
-     * 
-     */
     public static Output<GetVpcGcpInfoResult> getVpcGcpInfo(GetVpcGcpInfoArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo", TypeShape.of(GetVpcGcpInfoResult.class), args, Utilities.withVersion(options));
     }
-    /**
-     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
-     * 
-     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
-     * 
-     * ## Example Usage
-     * 
-     * &lt;details&gt;
-     *   &lt;summary&gt;
-     *     &lt;b&gt;
-     *       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
-     *     &lt;/b&gt;
-     *   &lt;/summary&gt;
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .instanceId(instance.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * &lt;/details&gt;
-     * 
-     * &lt;details&gt;
-     *   &lt;summary&gt;
-     *     &lt;b&gt;
-     *       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
-     *     &lt;/b&gt;
-     *   &lt;/summary&gt;
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .vpcId(vpc.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * &lt;/details&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`                  - The identifier for this resource.
-     * * `name`                - The name of the VPC.
-     * * `vpc_subnet`          - Dedicated VPC subnet.
-     * * `network`             - VPC network uri.
-     * 
-     * ## Dependency
-     * 
-     * *Pre v1.16.0*
-     * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-     * 
-     * *Post v1.16.0*
-     * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
-     * 
-     */
     public static CompletableFuture<GetVpcGcpInfoResult> getVpcGcpInfoPlain(GetVpcGcpInfoPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo", TypeShape.of(GetVpcGcpInfoResult.class), args, Utilities.withVersion(options));
     }
-    /**
-     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
-     * 
-     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;details&gt;
-     *   &lt;summary&gt;
-     *     &lt;b&gt;
-     *       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
-     *     &lt;/b&gt;
-     *   &lt;/summary&gt;
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .instanceId(instance.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * &lt;/details&gt;
-     * 
-     * &lt;details&gt;
-     *   &lt;summary&gt;
-     *     &lt;b&gt;
-     *       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
-     *     &lt;/b&gt;
-     *   &lt;/summary&gt;
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .vpcId(vpc.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * &lt;/details&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`                  - The identifier for this resource.
-     * * `name`                - The name of the CloudAMQP instance.
-     * * `vpc_subnet`          - Dedicated VPC subnet.
-     * * `owner_id`            - AWS account identifier.
-     * * `security_group_id`   - AWS security group identifier.
-     * 
-     * ## Dependency
-     * 
-     * *Pre v1.16.0*
-     * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-     * 
-     * *Post v1.16.0*
-     * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
-     * 
-     */
     public static Output<GetVpcInfoResult> getVpcInfo() {
         return getVpcInfo(GetVpcInfoArgs.Empty, InvokeOptions.Empty);
     }
-    /**
-     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
-     * 
-     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;details&gt;
-     *   &lt;summary&gt;
-     *     &lt;b&gt;
-     *       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
-     *     &lt;/b&gt;
-     *   &lt;/summary&gt;
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .instanceId(instance.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * &lt;/details&gt;
-     * 
-     * &lt;details&gt;
-     *   &lt;summary&gt;
-     *     &lt;b&gt;
-     *       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
-     *     &lt;/b&gt;
-     *   &lt;/summary&gt;
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .vpcId(vpc.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * &lt;/details&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`                  - The identifier for this resource.
-     * * `name`                - The name of the CloudAMQP instance.
-     * * `vpc_subnet`          - Dedicated VPC subnet.
-     * * `owner_id`            - AWS account identifier.
-     * * `security_group_id`   - AWS security group identifier.
-     * 
-     * ## Dependency
-     * 
-     * *Pre v1.16.0*
-     * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-     * 
-     * *Post v1.16.0*
-     * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
-     * 
-     */
     public static CompletableFuture<GetVpcInfoResult> getVpcInfoPlain() {
         return getVpcInfoPlain(GetVpcInfoPlainArgs.Empty, InvokeOptions.Empty);
     }
-    /**
-     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
-     * 
-     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;details&gt;
-     *   &lt;summary&gt;
-     *     &lt;b&gt;
-     *       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
-     *     &lt;/b&gt;
-     *   &lt;/summary&gt;
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .instanceId(instance.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * &lt;/details&gt;
-     * 
-     * &lt;details&gt;
-     *   &lt;summary&gt;
-     *     &lt;b&gt;
-     *       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
-     *     &lt;/b&gt;
-     *   &lt;/summary&gt;
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .vpcId(vpc.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * &lt;/details&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`                  - The identifier for this resource.
-     * * `name`                - The name of the CloudAMQP instance.
-     * * `vpc_subnet`          - Dedicated VPC subnet.
-     * * `owner_id`            - AWS account identifier.
-     * * `security_group_id`   - AWS security group identifier.
-     * 
-     * ## Dependency
-     * 
-     * *Pre v1.16.0*
-     * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-     * 
-     * *Post v1.16.0*
-     * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
-     * 
-     */
     public static Output<GetVpcInfoResult> getVpcInfo(GetVpcInfoArgs args) {
         return getVpcInfo(args, InvokeOptions.Empty);
     }
-    /**
-     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
-     * 
-     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;details&gt;
-     *   &lt;summary&gt;
-     *     &lt;b&gt;
-     *       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
-     *     &lt;/b&gt;
-     *   &lt;/summary&gt;
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .instanceId(instance.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * &lt;/details&gt;
-     * 
-     * &lt;details&gt;
-     *   &lt;summary&gt;
-     *     &lt;b&gt;
-     *       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
-     *     &lt;/b&gt;
-     *   &lt;/summary&gt;
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .vpcId(vpc.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * &lt;/details&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`                  - The identifier for this resource.
-     * * `name`                - The name of the CloudAMQP instance.
-     * * `vpc_subnet`          - Dedicated VPC subnet.
-     * * `owner_id`            - AWS account identifier.
-     * * `security_group_id`   - AWS security group identifier.
-     * 
-     * ## Dependency
-     * 
-     * *Pre v1.16.0*
-     * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-     * 
-     * *Post v1.16.0*
-     * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
-     * 
-     */
     public static CompletableFuture<GetVpcInfoResult> getVpcInfoPlain(GetVpcInfoPlainArgs args) {
         return getVpcInfoPlain(args, InvokeOptions.Empty);
     }
-    /**
-     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
-     * 
-     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;details&gt;
-     *   &lt;summary&gt;
-     *     &lt;b&gt;
-     *       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
-     *     &lt;/b&gt;
-     *   &lt;/summary&gt;
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .instanceId(instance.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * &lt;/details&gt;
-     * 
-     * &lt;details&gt;
-     *   &lt;summary&gt;
-     *     &lt;b&gt;
-     *       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
-     *     &lt;/b&gt;
-     *   &lt;/summary&gt;
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .vpcId(vpc.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * &lt;/details&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`                  - The identifier for this resource.
-     * * `name`                - The name of the CloudAMQP instance.
-     * * `vpc_subnet`          - Dedicated VPC subnet.
-     * * `owner_id`            - AWS account identifier.
-     * * `security_group_id`   - AWS security group identifier.
-     * 
-     * ## Dependency
-     * 
-     * *Pre v1.16.0*
-     * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-     * 
-     * *Post v1.16.0*
-     * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
-     * 
-     */
     public static Output<GetVpcInfoResult> getVpcInfo(GetVpcInfoArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("cloudamqp:index/getVpcInfo:getVpcInfo", TypeShape.of(GetVpcInfoResult.class), args, Utilities.withVersion(options));
     }
-    /**
-     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
-     * 
-     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;details&gt;
-     *   &lt;summary&gt;
-     *     &lt;b&gt;
-     *       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
-     *     &lt;/b&gt;
-     *   &lt;/summary&gt;
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .instanceId(instance.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * &lt;/details&gt;
-     * 
-     * &lt;details&gt;
-     *   &lt;summary&gt;
-     *     &lt;b&gt;
-     *       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
-     *     &lt;/b&gt;
-     *   &lt;/summary&gt;
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .vpcId(vpc.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * &lt;/details&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`                  - The identifier for this resource.
-     * * `name`                - The name of the CloudAMQP instance.
-     * * `vpc_subnet`          - Dedicated VPC subnet.
-     * * `owner_id`            - AWS account identifier.
-     * * `security_group_id`   - AWS security group identifier.
-     * 
-     * ## Dependency
-     * 
-     * *Pre v1.16.0*
-     * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-     * 
-     * *Post v1.16.0*
-     * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
-     * 
-     */
     public static Output<GetVpcInfoResult> getVpcInfo(GetVpcInfoArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("cloudamqp:index/getVpcInfo:getVpcInfo", TypeShape.of(GetVpcInfoResult.class), args, Utilities.withVersion(options));
     }
-    /**
-     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
-     * 
-     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;details&gt;
-     *   &lt;summary&gt;
-     *     &lt;b&gt;
-     *       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
-     *     &lt;/b&gt;
-     *   &lt;/summary&gt;
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .instanceId(instance.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * &lt;/details&gt;
-     * 
-     * &lt;details&gt;
-     *   &lt;summary&gt;
-     *     &lt;b&gt;
-     *       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
-     *     &lt;/b&gt;
-     *   &lt;/summary&gt;
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.cloudamqp.CloudamqpFunctions;
-     * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .vpcId(vpc.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * &lt;/details&gt;
-     * 
-     * ## Attributes reference
-     * 
-     * All attributes reference are computed
-     * 
-     * * `id`                  - The identifier for this resource.
-     * * `name`                - The name of the CloudAMQP instance.
-     * * `vpc_subnet`          - Dedicated VPC subnet.
-     * * `owner_id`            - AWS account identifier.
-     * * `security_group_id`   - AWS security group identifier.
-     * 
-     * ## Dependency
-     * 
-     * *Pre v1.16.0*
-     * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-     * 
-     * *Post v1.16.0*
-     * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
-     * 
-     */
     public static CompletableFuture<GetVpcInfoResult> getVpcInfoPlain(GetVpcInfoPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getVpcInfo:getVpcInfo", TypeShape.of(GetVpcInfoResult.class), args, Utilities.withVersion(options));
     }

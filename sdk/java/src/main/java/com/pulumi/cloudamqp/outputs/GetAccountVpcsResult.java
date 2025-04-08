@@ -17,6 +17,10 @@ public final class GetAccountVpcsResult {
      * 
      */
     private String id;
+    /**
+     * @return An array of VPCs. Each `vpcs` block consists of the fields documented below.
+     * 
+     */
     private List<GetAccountVpcsVpc> vpcs;
 
     private GetAccountVpcsResult() {}
@@ -27,6 +31,10 @@ public final class GetAccountVpcsResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return An array of VPCs. Each `vpcs` block consists of the fields documented below.
+     * 
+     */
     public List<GetAccountVpcsVpc> vpcs() {
         return this.vpcs;
     }

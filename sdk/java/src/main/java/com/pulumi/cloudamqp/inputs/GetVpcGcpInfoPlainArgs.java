@@ -18,7 +18,7 @@ public final class GetVpcGcpInfoPlainArgs extends com.pulumi.resources.InvokeArg
     /**
      * The CloudAMQP instance identifier.
      * 
-     * ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
+     * ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
      * 
      */
     @Import(name="instanceId")
@@ -27,7 +27,7 @@ public final class GetVpcGcpInfoPlainArgs extends com.pulumi.resources.InvokeArg
     /**
      * @return The CloudAMQP instance identifier.
      * 
-     * ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
+     * ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
      * 
      */
     public Optional<Integer> instanceId() {
@@ -35,14 +35,16 @@ public final class GetVpcGcpInfoPlainArgs extends com.pulumi.resources.InvokeArg
     }
 
     /**
-     * Configurable sleep time (seconds) between retries when reading peering. Default set to 10 seconds.
+     * Configurable sleep time (seconds) between retries when reading peering.
+     * Default set to 10 seconds.
      * 
      */
     @Import(name="sleep")
     private @Nullable Integer sleep;
 
     /**
-     * @return Configurable sleep time (seconds) between retries when reading peering. Default set to 10 seconds.
+     * @return Configurable sleep time (seconds) between retries when reading peering.
+     * Default set to 10 seconds.
      * 
      */
     public Optional<Integer> sleep() {
@@ -50,14 +52,16 @@ public final class GetVpcGcpInfoPlainArgs extends com.pulumi.resources.InvokeArg
     }
 
     /**
-     * Configurable timeout time (seconds) before retries times out. Default set to 1800 seconds.
+     * Configurable timeout time (seconds) before retries times out. Default
+     * set to 1800 seconds.
      * 
      */
     @Import(name="timeout")
     private @Nullable Integer timeout;
 
     /**
-     * @return Configurable timeout time (seconds) before retries times out. Default set to 1800 seconds.
+     * @return Configurable timeout time (seconds) before retries times out. Default
+     * set to 1800 seconds.
      * 
      */
     public Optional<Integer> timeout() {
@@ -67,7 +71,7 @@ public final class GetVpcGcpInfoPlainArgs extends com.pulumi.resources.InvokeArg
     /**
      * The managed VPC identifier.
      * 
-     * ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
+     * ***Note:*** Available from [v1.16.0], will be removed in next major version (v2.0)
      * 
      */
     @Import(name="vpcId")
@@ -76,7 +80,7 @@ public final class GetVpcGcpInfoPlainArgs extends com.pulumi.resources.InvokeArg
     /**
      * @return The managed VPC identifier.
      * 
-     * ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
+     * ***Note:*** Available from [v1.16.0], will be removed in next major version (v2.0)
      * 
      */
     public Optional<String> vpcId() {
@@ -113,7 +117,7 @@ public final class GetVpcGcpInfoPlainArgs extends com.pulumi.resources.InvokeArg
         /**
          * @param instanceId The CloudAMQP instance identifier.
          * 
-         * ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
+         * ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
          * 
          * @return builder
          * 
@@ -124,7 +128,8 @@ public final class GetVpcGcpInfoPlainArgs extends com.pulumi.resources.InvokeArg
         }
 
         /**
-         * @param sleep Configurable sleep time (seconds) between retries when reading peering. Default set to 10 seconds.
+         * @param sleep Configurable sleep time (seconds) between retries when reading peering.
+         * Default set to 10 seconds.
          * 
          * @return builder
          * 
@@ -135,7 +140,8 @@ public final class GetVpcGcpInfoPlainArgs extends com.pulumi.resources.InvokeArg
         }
 
         /**
-         * @param timeout Configurable timeout time (seconds) before retries times out. Default set to 1800 seconds.
+         * @param timeout Configurable timeout time (seconds) before retries times out. Default
+         * set to 1800 seconds.
          * 
          * @return builder
          * 
@@ -148,7 +154,7 @@ public final class GetVpcGcpInfoPlainArgs extends com.pulumi.resources.InvokeArg
         /**
          * @param vpcId The managed VPC identifier.
          * 
-         * ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
+         * ***Note:*** Available from [v1.16.0], will be removed in next major version (v2.0)
          * 
          * @return builder
          * 

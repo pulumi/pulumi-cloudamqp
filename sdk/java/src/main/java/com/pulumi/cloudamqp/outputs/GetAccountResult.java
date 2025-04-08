@@ -17,6 +17,11 @@ public final class GetAccountResult {
      * 
      */
     private String id;
+    /**
+     * @return An array of instances. Each `instances` block consists of the fields documented
+     * below.
+     * 
+     */
     private List<GetAccountInstance> instances;
 
     private GetAccountResult() {}
@@ -27,6 +32,11 @@ public final class GetAccountResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return An array of instances. Each `instances` block consists of the fields documented
+     * below.
+     * 
+     */
     public List<GetAccountInstance> instances() {
         return this.instances;
     }

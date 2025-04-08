@@ -29,10 +29,14 @@ class PluginCommunityArgs:
         :param pulumi.Input[bool] enabled: Enable or disable the plugins.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] name: The name of the Rabbit MQ community plugin.
-        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) for retries when requesting information
-               about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) for retries when requesting
+               information about community plugins. Default set to 10 seconds.
+               
+               ***Note:*** Available from [v1.29.0]
         :param pulumi.Input[int] timeout: Configurable timeout time (seconds) for retries when requesting
-               information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+               information about community plugins. Default set to 1800 seconds.
+               
+               ***Note:*** Available from [v1.29.0]
         """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "instance_id", instance_id)
@@ -83,8 +87,10 @@ class PluginCommunityArgs:
     @pulumi.getter
     def sleep(self) -> Optional[pulumi.Input[int]]:
         """
-        Configurable sleep time (seconds) for retries when requesting information
-        about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+        Configurable sleep time (seconds) for retries when requesting
+        information about community plugins. Default set to 10 seconds.
+
+        ***Note:*** Available from [v1.29.0]
         """
         return pulumi.get(self, "sleep")
 
@@ -97,7 +103,9 @@ class PluginCommunityArgs:
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
         Configurable timeout time (seconds) for retries when requesting
-        information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+        information about community plugins. Default set to 1800 seconds.
+
+        ***Note:*** Available from [v1.29.0]
         """
         return pulumi.get(self, "timeout")
 
@@ -123,10 +131,14 @@ class _PluginCommunityState:
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] name: The name of the Rabbit MQ community plugin.
         :param pulumi.Input[str] require: Required version of RabbitMQ.
-        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) for retries when requesting information
-               about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) for retries when requesting
+               information about community plugins. Default set to 10 seconds.
+               
+               ***Note:*** Available from [v1.29.0]
         :param pulumi.Input[int] timeout: Configurable timeout time (seconds) for retries when requesting
-               information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+               information about community plugins. Default set to 1800 seconds.
+               
+               ***Note:*** Available from [v1.29.0]
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -207,8 +219,10 @@ class _PluginCommunityState:
     @pulumi.getter
     def sleep(self) -> Optional[pulumi.Input[int]]:
         """
-        Configurable sleep time (seconds) for retries when requesting information
-        about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+        Configurable sleep time (seconds) for retries when requesting
+        information about community plugins. Default set to 10 seconds.
+
+        ***Note:*** Available from [v1.29.0]
         """
         return pulumi.get(self, "sleep")
 
@@ -221,7 +235,9 @@ class _PluginCommunityState:
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
         Configurable timeout time (seconds) for retries when requesting
-        information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+        information about community plugins. Default set to 1800 seconds.
+
+        ***Note:*** Available from [v1.29.0]
         """
         return pulumi.get(self, "timeout")
 
@@ -244,12 +260,28 @@ class PluginCommunity(pulumi.CustomResource):
         """
         ## Import
 
-        `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP
+        `cloudamqp_plugin_community` can be imported if it's has already been installed by using the name
 
-        instance identifier. The name and identifier are CSV separated, see example below.
+        argument of the resource together with CloudAMQP instance identifier (CSV separated). To retrieve
+
+        list of available community plugins, use [CloudAMQP API list community plugins].
+
+        From Terraform v1.5.0, the `import` block can be used to import this resource:
+
+        hcl
+
+        import {
+
+          to = cloudamqp_plugin_community.rabbitmq_delayed_message_exchange
+
+          id = format("rabbitmq_delayed_message_exchange,%s", cloudamqp_instance.instance.id)
+
+        }
+
+        Or use Terraform CLI:
 
         ```sh
-        $ pulumi import cloudamqp:index/pluginCommunity:PluginCommunity <resource_name> <plugin_name>,<instance_id>`
+        $ pulumi import cloudamqp:index/pluginCommunity:PluginCommunity rabbitmq_delayed_message_exchange <plugin_name>,<instance_id>`
         ```
 
         :param str resource_name: The name of the resource.
@@ -257,10 +289,14 @@ class PluginCommunity(pulumi.CustomResource):
         :param pulumi.Input[bool] enabled: Enable or disable the plugins.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] name: The name of the Rabbit MQ community plugin.
-        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) for retries when requesting information
-               about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) for retries when requesting
+               information about community plugins. Default set to 10 seconds.
+               
+               ***Note:*** Available from [v1.29.0]
         :param pulumi.Input[int] timeout: Configurable timeout time (seconds) for retries when requesting
-               information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+               information about community plugins. Default set to 1800 seconds.
+               
+               ***Note:*** Available from [v1.29.0]
         """
         ...
     @overload
@@ -271,12 +307,28 @@ class PluginCommunity(pulumi.CustomResource):
         """
         ## Import
 
-        `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP
+        `cloudamqp_plugin_community` can be imported if it's has already been installed by using the name
 
-        instance identifier. The name and identifier are CSV separated, see example below.
+        argument of the resource together with CloudAMQP instance identifier (CSV separated). To retrieve
+
+        list of available community plugins, use [CloudAMQP API list community plugins].
+
+        From Terraform v1.5.0, the `import` block can be used to import this resource:
+
+        hcl
+
+        import {
+
+          to = cloudamqp_plugin_community.rabbitmq_delayed_message_exchange
+
+          id = format("rabbitmq_delayed_message_exchange,%s", cloudamqp_instance.instance.id)
+
+        }
+
+        Or use Terraform CLI:
 
         ```sh
-        $ pulumi import cloudamqp:index/pluginCommunity:PluginCommunity <resource_name> <plugin_name>,<instance_id>`
+        $ pulumi import cloudamqp:index/pluginCommunity:PluginCommunity rabbitmq_delayed_message_exchange <plugin_name>,<instance_id>`
         ```
 
         :param str resource_name: The name of the resource.
@@ -348,10 +400,14 @@ class PluginCommunity(pulumi.CustomResource):
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] name: The name of the Rabbit MQ community plugin.
         :param pulumi.Input[str] require: Required version of RabbitMQ.
-        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) for retries when requesting information
-               about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) for retries when requesting
+               information about community plugins. Default set to 10 seconds.
+               
+               ***Note:*** Available from [v1.29.0]
         :param pulumi.Input[int] timeout: Configurable timeout time (seconds) for retries when requesting
-               information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+               information about community plugins. Default set to 1800 seconds.
+               
+               ***Note:*** Available from [v1.29.0]
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -410,8 +466,10 @@ class PluginCommunity(pulumi.CustomResource):
     @pulumi.getter
     def sleep(self) -> pulumi.Output[Optional[int]]:
         """
-        Configurable sleep time (seconds) for retries when requesting information
-        about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+        Configurable sleep time (seconds) for retries when requesting
+        information about community plugins. Default set to 10 seconds.
+
+        ***Note:*** Available from [v1.29.0]
         """
         return pulumi.get(self, "sleep")
 
@@ -420,7 +478,9 @@ class PluginCommunity(pulumi.CustomResource):
     def timeout(self) -> pulumi.Output[Optional[int]]:
         """
         Configurable timeout time (seconds) for retries when requesting
-        information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+        information about community plugins. Default set to 1800 seconds.
+
+        ***Note:*** Available from [v1.29.0]
         """
         return pulumi.get(self, "timeout")
 

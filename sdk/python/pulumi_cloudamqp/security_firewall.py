@@ -28,9 +28,12 @@ class SecurityFirewallArgs:
         """
         The set of arguments for constructing a SecurityFirewall resource.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
-        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
-        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+        :param pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules`
+               block consists of the field documented below.
+        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for firewall
+               configuration. Default set to 30 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for firewall configuration.
+               Default set to 1800 seconds.
                
                ___
                
@@ -59,7 +62,8 @@ class SecurityFirewallArgs:
     @pulumi.getter
     def rules(self) -> pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]]:
         """
-        An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+        An array of rules, minimum of 1 needs to be configured. Each `rules`
+        block consists of the field documented below.
         """
         return pulumi.get(self, "rules")
 
@@ -71,7 +75,8 @@ class SecurityFirewallArgs:
     @pulumi.getter
     def sleep(self) -> Optional[pulumi.Input[int]]:
         """
-        Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+        Configurable sleep time in seconds between retries for firewall
+        configuration. Default set to 30 seconds.
         """
         return pulumi.get(self, "sleep")
 
@@ -83,7 +88,8 @@ class SecurityFirewallArgs:
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+        Configurable timeout time in seconds for firewall configuration.
+        Default set to 1800 seconds.
 
         ___
 
@@ -106,9 +112,12 @@ class _SecurityFirewallState:
         """
         Input properties used for looking up and filtering SecurityFirewall resources.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
-        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
-        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+        :param pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules`
+               block consists of the field documented below.
+        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for firewall
+               configuration. Default set to 30 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for firewall configuration.
+               Default set to 1800 seconds.
                
                ___
                
@@ -139,7 +148,8 @@ class _SecurityFirewallState:
     @pulumi.getter
     def rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]]]:
         """
-        An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+        An array of rules, minimum of 1 needs to be configured. Each `rules`
+        block consists of the field documented below.
         """
         return pulumi.get(self, "rules")
 
@@ -151,7 +161,8 @@ class _SecurityFirewallState:
     @pulumi.getter
     def sleep(self) -> Optional[pulumi.Input[int]]:
         """
-        Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+        Configurable sleep time in seconds between retries for firewall
+        configuration. Default set to 30 seconds.
         """
         return pulumi.get(self, "sleep")
 
@@ -163,7 +174,8 @@ class _SecurityFirewallState:
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+        Configurable timeout time in seconds for firewall configuration.
+        Default set to 1800 seconds.
 
         ___
 
@@ -189,7 +201,23 @@ class SecurityFirewall(pulumi.CustomResource):
         """
         ## Import
 
-        `cloudamqp_security_firewall` can be imported using CloudAMQP instance identifier.
+        `cloudamqp_security_firewall` can be imported using CloudAMQP instance identifier. To
+
+        retrieve the identifier, use [CloudAMQP API list intances].
+
+        From Terraform v1.5.0, the `import` block can be used to import this resource:
+
+        hcl
+
+        import {
+
+          to = cloudamqp_security_firewall.firewall
+
+          id = cloudamqp_instance.instance.id
+
+        }
+
+        Or use Terraform CLI:
 
         ```sh
         $ pulumi import cloudamqp:index/securityFirewall:SecurityFirewall firewall <instance_id>`
@@ -198,9 +226,12 @@ class SecurityFirewall(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecurityFirewallRuleArgs', 'SecurityFirewallRuleArgsDict']]]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
-        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
-        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecurityFirewallRuleArgs', 'SecurityFirewallRuleArgsDict']]]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules`
+               block consists of the field documented below.
+        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for firewall
+               configuration. Default set to 30 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for firewall configuration.
+               Default set to 1800 seconds.
                
                ___
                
@@ -215,7 +246,23 @@ class SecurityFirewall(pulumi.CustomResource):
         """
         ## Import
 
-        `cloudamqp_security_firewall` can be imported using CloudAMQP instance identifier.
+        `cloudamqp_security_firewall` can be imported using CloudAMQP instance identifier. To
+
+        retrieve the identifier, use [CloudAMQP API list intances].
+
+        From Terraform v1.5.0, the `import` block can be used to import this resource:
+
+        hcl
+
+        import {
+
+          to = cloudamqp_security_firewall.firewall
+
+          id = cloudamqp_instance.instance.id
+
+        }
+
+        Or use Terraform CLI:
 
         ```sh
         $ pulumi import cloudamqp:index/securityFirewall:SecurityFirewall firewall <instance_id>`
@@ -279,9 +326,12 @@ class SecurityFirewall(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecurityFirewallRuleArgs', 'SecurityFirewallRuleArgsDict']]]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
-        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
-        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecurityFirewallRuleArgs', 'SecurityFirewallRuleArgsDict']]]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules`
+               block consists of the field documented below.
+        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for firewall
+               configuration. Default set to 30 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for firewall configuration.
+               Default set to 1800 seconds.
                
                ___
                
@@ -309,7 +359,8 @@ class SecurityFirewall(pulumi.CustomResource):
     @pulumi.getter
     def rules(self) -> pulumi.Output[Sequence['outputs.SecurityFirewallRule']]:
         """
-        An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+        An array of rules, minimum of 1 needs to be configured. Each `rules`
+        block consists of the field documented below.
         """
         return pulumi.get(self, "rules")
 
@@ -317,7 +368,8 @@ class SecurityFirewall(pulumi.CustomResource):
     @pulumi.getter
     def sleep(self) -> pulumi.Output[Optional[int]]:
         """
-        Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+        Configurable sleep time in seconds between retries for firewall
+        configuration. Default set to 30 seconds.
         """
         return pulumi.get(self, "sleep")
 
@@ -325,7 +377,8 @@ class SecurityFirewall(pulumi.CustomResource):
     @pulumi.getter
     def timeout(self) -> pulumi.Output[Optional[int]]:
         """
-        Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+        Configurable timeout time in seconds for firewall configuration.
+        Default set to 1800 seconds.
 
         ___
 

@@ -14,95 +14,154 @@ export interface ExtraDiskSizeNode {
      * Subscription plan disk size
      */
     diskSize: number;
+    /**
+     * Name of the node.
+     */
     name: string;
 }
 
 export interface GetAccountInstance {
     /**
-     * The instance identifier
+     * The instance identifier.
      */
     id: number;
     /**
-     * The name of the instance
+     * The name of the instance.
      */
     name: string;
     /**
-     * The subscription plan used for the instance
+     * The subscription plan used for the instance.
      */
     plan: string;
     /**
-     * The region were the instanece is located in
+     * The region were the instanece is located in.
      */
     region: string;
     /**
-     * Tag for the instance
+     * Optional tags set for the instance.
      */
     tags?: string[];
 }
 
 export interface GetAccountVpcsVpc {
     /**
-     * The instance identifier
+     * The VPC identifier.
      */
     id: number;
     /**
-     * The name of the instance
+     * The VPC instance name.
      */
     name: string;
     /**
-     * The region were the instanece is located in
+     * The region the VPC is hosted in.
      */
     region: string;
     /**
-     * The VPC subnet
+     * The VPC subnet.
      */
     subnet: string;
     /**
-     * Tag the VPC instance with optional tags
+     * Optional tags set for the VPC.
      */
     tags?: string[];
     /**
-     * VPC name given when hosted at the cloud provider
+     * VPC name given when hosted at the cloud provider.
      */
     vpcName: string;
 }
 
 export interface GetNodesNode {
+    /**
+     * Additional added disk size
+     */
     additionalDiskSize: number;
+    /**
+     * Availability zone the node is hosted in.
+     */
     availabilityZone: string;
+    /**
+     * Is the node configured?
+     */
     configured: boolean;
+    /**
+     * Subscription plan disk size
+     */
     diskSize: number;
+    /**
+     * Currently used Erlang version on the node.
+     */
     erlangVersion: string;
+    /**
+     * Enable or disable High-performance Erlang.
+     */
     hipe: boolean;
+    /**
+     * External hostname assigned to the node.
+     */
     hostname: string;
+    /**
+     * Internal hostname assigned to the node.
+     */
     hostnameInternal: string;
+    /**
+     * Name of the node.
+     */
     name: string;
+    /**
+     * Currently configured Rabbit MQ version on the node.
+     */
     rabbitmqVersion: string;
+    /**
+     * Is the node running?
+     */
     running: boolean;
 }
 
 export interface GetPluginsCommunityPlugin {
+    /**
+     * Description of what the plugin does.
+     */
     description: string;
+    /**
+     * The type of the recipient.
+     */
     name: string;
+    /**
+     * Min. required Rabbit MQ version to be used.
+     */
     require: string;
 }
 
 export interface GetPluginsPlugin {
+    /**
+     * Description of what the plugin does.
+     */
     description: string;
+    /**
+     * Enable or disable information for the plugin.
+     */
     enabled: boolean;
+    /**
+     * The type of the recipient.
+     */
     name: string;
+    /**
+     * Rabbit MQ version that the plugins are shipped with.
+     */
     version: string;
 }
 
 export interface InstanceCopySetting {
     /**
-     * Array of one or more settings to be copied. Allowed values: [alarms, config, definitions, firewall, logs, metrics, plugins]
+     * Array of one or more settings to be copied. Allowed values:
+     * [alarms, config, definitions, firewall, logs, metrics, plugins]
      *
-     * See more below, copy settings
+     * See more below, [copy settings].
      */
     settings: string[];
     /**
-     * Instance identifier of the CloudAMQP instance to copy the settings from.
+     * Instance identifier of the CloudAMQP instance to copy the settings
+     * from.
      */
     subscriptionId: string;
 }
@@ -154,6 +213,8 @@ export interface SecurityFirewallRule {
      * | AMQP         | 5672  |
      * | AMQPS        | 5671  |
      * | HTTPS        | 443   |
+     * | MQTT         | 1883  |
+     * | MQTTS        | 8883  |
      */
     description?: string;
     /**

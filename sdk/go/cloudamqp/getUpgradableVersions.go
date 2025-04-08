@@ -11,7 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to retrieve information about possible upgradable versions for RabbitMQ and Erlang.
+// Use this data source to retrieve information about possible upgradable versions for RabbitMQ and
+// Erlang.
 //
 // ## Example Usage
 //
@@ -39,13 +40,6 @@ import (
 //
 // ```
 //
-// ## Attributes reference
-//
-// # All attributes reference are computed
-//
-// * `newRabbitmqVersion`  - Possible upgradable version for RabbitMQ.
-// * `newErlangVersion`    - Possible upgradable version for Erlang.
-//
 // ## Dependency
 //
 // This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -68,9 +62,11 @@ type GetUpgradableVersionsArgs struct {
 // A collection of values returned by getUpgradableVersions.
 type GetUpgradableVersionsResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id                 string `pulumi:"id"`
-	InstanceId         int    `pulumi:"instanceId"`
-	NewErlangVersion   string `pulumi:"newErlangVersion"`
+	Id         string `pulumi:"id"`
+	InstanceId int    `pulumi:"instanceId"`
+	// Possible upgradable version for Erlang.
+	NewErlangVersion string `pulumi:"newErlangVersion"`
+	// Possible upgradable version for RabbitMQ.
 	NewRabbitmqVersion string `pulumi:"newRabbitmqVersion"`
 }
 
@@ -117,10 +113,12 @@ func (o GetUpgradableVersionsResultOutput) InstanceId() pulumi.IntOutput {
 	return o.ApplyT(func(v GetUpgradableVersionsResult) int { return v.InstanceId }).(pulumi.IntOutput)
 }
 
+// Possible upgradable version for Erlang.
 func (o GetUpgradableVersionsResultOutput) NewErlangVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetUpgradableVersionsResult) string { return v.NewErlangVersion }).(pulumi.StringOutput)
 }
 
+// Possible upgradable version for RabbitMQ.
 func (o GetUpgradableVersionsResultOutput) NewRabbitmqVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetUpgradableVersionsResult) string { return v.NewRabbitmqVersion }).(pulumi.StringOutput)
 }

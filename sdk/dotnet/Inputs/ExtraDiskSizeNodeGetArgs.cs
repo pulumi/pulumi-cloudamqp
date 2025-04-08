@@ -24,6 +24,9 @@ namespace Pulumi.CloudAmqp.Inputs
         [Input("diskSize")]
         public Input<int>? DiskSize { get; set; }
 
+        /// <summary>
+        /// Name of the node.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 

@@ -11,7 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to retrieve information about the credentials of the configured user in Rabbit MQ. Information is extracted from `cloudamqp_instance.instance.url`.
+// Use this data source to retrieve information about the credentials of the configured user in
+// RabbitMQ. Information is extracted from `cloudamqp_instance.instance.url`.
 //
 // ## Example Usage
 //
@@ -39,14 +40,6 @@ import (
 //
 // ```
 //
-// ## Attributes reference
-//
-// All attributes reference are computed.
-//
-// * `id`          - The identifier for this data source.
-// * `username`    - (Sensitive) The username for the configured user in Rabbit MQ.
-// * `password`    - (Sensitive) The password used by the `username`.
-//
 // ## Dependency
 //
 // This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -71,8 +64,10 @@ type GetCredentialsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id         string `pulumi:"id"`
 	InstanceId int    `pulumi:"instanceId"`
-	Password   string `pulumi:"password"`
-	Username   string `pulumi:"username"`
+	// (Sensitive) The password used by the `username`.
+	Password string `pulumi:"password"`
+	// (Sensitive) The username for the configured user in Rabbit MQ.
+	Username string `pulumi:"username"`
 }
 
 func GetCredentialsOutput(ctx *pulumi.Context, args GetCredentialsOutputArgs, opts ...pulumi.InvokeOption) GetCredentialsResultOutput {
@@ -118,10 +113,12 @@ func (o GetCredentialsResultOutput) InstanceId() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCredentialsResult) int { return v.InstanceId }).(pulumi.IntOutput)
 }
 
+// (Sensitive) The password used by the `username`.
 func (o GetCredentialsResultOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCredentialsResult) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// (Sensitive) The username for the configured user in Rabbit MQ.
 func (o GetCredentialsResultOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCredentialsResult) string { return v.Username }).(pulumi.StringOutput)
 }

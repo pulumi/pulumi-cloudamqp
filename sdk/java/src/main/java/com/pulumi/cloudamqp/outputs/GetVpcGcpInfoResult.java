@@ -19,11 +19,23 @@ public final class GetVpcGcpInfoResult {
      */
     private String id;
     private @Nullable Integer instanceId;
+    /**
+     * @return The name of the VPC.
+     * 
+     */
     private String name;
+    /**
+     * @return VPC network uri.
+     * 
+     */
     private String network;
     private @Nullable Integer sleep;
     private @Nullable Integer timeout;
     private @Nullable String vpcId;
+    /**
+     * @return Dedicated VPC subnet.
+     * 
+     */
     private String vpcSubnet;
 
     private GetVpcGcpInfoResult() {}
@@ -37,9 +49,17 @@ public final class GetVpcGcpInfoResult {
     public Optional<Integer> instanceId() {
         return Optional.ofNullable(this.instanceId);
     }
+    /**
+     * @return The name of the VPC.
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return VPC network uri.
+     * 
+     */
     public String network() {
         return this.network;
     }
@@ -52,6 +72,10 @@ public final class GetVpcGcpInfoResult {
     public Optional<String> vpcId() {
         return Optional.ofNullable(this.vpcId);
     }
+    /**
+     * @return Dedicated VPC subnet.
+     * 
+     */
     public String vpcSubnet() {
         return this.vpcSubnet;
     }

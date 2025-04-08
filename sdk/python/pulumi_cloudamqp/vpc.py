@@ -187,11 +187,12 @@ class Vpc(pulumi.CustomResource):
         """
         This resource allows you to manage standalone VPC.
 
-        New Cloudamqp instances can be added to the managed VPC. Set the instance *vpc_id* attribute to the managed vpc identifier , see example below, when creating the instance.
+        New Cloudamqp instances can be added to the managed VPC. Set the instance *vpc_id* attribute to the
+        managed vpc identifier, see example below, when creating the instance.
 
         Only available for dedicated subscription plans.
 
-        Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
+        Pricing is available at [CloudAMQP plans].
 
         ## Example Usage
 
@@ -208,11 +209,10 @@ class Vpc(pulumi.CustomResource):
         #  New instance, need to be created with a vpc
         instance = cloudamqp.Instance("instance",
             name="<Instance name>",
-            plan="bunny-1",
+            plan="penguin-1",
             region="amazon-web-services::us-east-1",
             nodes=1,
             tags=[],
-            rmq_version="3.9.13",
             vpc_id=vpc_cloudamq_vpc["id"],
             keep_associated_vpc=True)
         # Additional VPC information
@@ -221,15 +221,31 @@ class Vpc(pulumi.CustomResource):
 
         ## Import
 
-        `cloudamqp_vpc` can be imported using the CloudAMQP VPC identifier.
+        `cloudamqp_vpc` can be imported using the CloudAMQP VPC identifier. To retrieve the identifier of an
+
+        instance, use [CloudAMQP API list vpcs].
+
+        From Terraform v1.5.0, the `import` block can be used to import this resource:
+
+        hcl
+
+        import {
+
+          to = cloudamqp_vpc.vpc
+
+          id = <vpc_id>
+
+        }
+
+        Or with Terraform CLI:
 
         ```sh
-        $ pulumi import cloudamqp:index/vpc:Vpc <resource_name> <vpc_id>`
+        $ pulumi import cloudamqp:index/vpc:Vpc vpc <vpc_id>`
         ```
 
-        To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-vpcs).
+        [CloudAMQP API list vpcs]: https://docs.cloudamqp.com/#list-vpcs
 
-        Or use the data source `cloudamqp_account_vpcs` to list all available standalone VPCs for an account.
+        [CloudAMQP plans]: https://www.cloudamqp.com/plans.html
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -247,11 +263,12 @@ class Vpc(pulumi.CustomResource):
         """
         This resource allows you to manage standalone VPC.
 
-        New Cloudamqp instances can be added to the managed VPC. Set the instance *vpc_id* attribute to the managed vpc identifier , see example below, when creating the instance.
+        New Cloudamqp instances can be added to the managed VPC. Set the instance *vpc_id* attribute to the
+        managed vpc identifier, see example below, when creating the instance.
 
         Only available for dedicated subscription plans.
 
-        Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
+        Pricing is available at [CloudAMQP plans].
 
         ## Example Usage
 
@@ -268,11 +285,10 @@ class Vpc(pulumi.CustomResource):
         #  New instance, need to be created with a vpc
         instance = cloudamqp.Instance("instance",
             name="<Instance name>",
-            plan="bunny-1",
+            plan="penguin-1",
             region="amazon-web-services::us-east-1",
             nodes=1,
             tags=[],
-            rmq_version="3.9.13",
             vpc_id=vpc_cloudamq_vpc["id"],
             keep_associated_vpc=True)
         # Additional VPC information
@@ -281,15 +297,31 @@ class Vpc(pulumi.CustomResource):
 
         ## Import
 
-        `cloudamqp_vpc` can be imported using the CloudAMQP VPC identifier.
+        `cloudamqp_vpc` can be imported using the CloudAMQP VPC identifier. To retrieve the identifier of an
+
+        instance, use [CloudAMQP API list vpcs].
+
+        From Terraform v1.5.0, the `import` block can be used to import this resource:
+
+        hcl
+
+        import {
+
+          to = cloudamqp_vpc.vpc
+
+          id = <vpc_id>
+
+        }
+
+        Or with Terraform CLI:
 
         ```sh
-        $ pulumi import cloudamqp:index/vpc:Vpc <resource_name> <vpc_id>`
+        $ pulumi import cloudamqp:index/vpc:Vpc vpc <vpc_id>`
         ```
 
-        To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-vpcs).
+        [CloudAMQP API list vpcs]: https://docs.cloudamqp.com/#list-vpcs
 
-        Or use the data source `cloudamqp_account_vpcs` to list all available standalone VPCs for an account.
+        [CloudAMQP plans]: https://www.cloudamqp.com/plans.html
 
         :param str resource_name: The name of the resource.
         :param VpcArgs args: The arguments to use to populate this resource's properties.

@@ -14,7 +14,23 @@ import (
 
 // ## Import
 //
-// `cloudamqp_webhook` can be imported using the resource identifier together with CloudAMQP instance identifier. The identifiers are CSV separated, see example below.
+// `cloudamqp_webhook` can be imported using the resource identifier together with CloudAMQP instance
+//
+// identifier (CSV separated). To retrieve the resource identifier, use [CloudAMQP API list webhooks].
+//
+// From Terraform v1.5.0, the `import` block can be used to import this resource:
+//
+// hcl
+//
+// import {
+//
+//	to = cloudamqp_webhook.webhook_queue
+//
+//	id = format("<id>,%s", cloudamqp_instance.instance.id)
+//
+// }
+//
+// Or use Terraform CLI:
 //
 // ```sh
 // $ pulumi import cloudamqp:index/webhook:Webhook webhook_queue <id>,<instance_id>`
@@ -34,7 +50,8 @@ type Webhook struct {
 	Timeout pulumi.IntPtrOutput `pulumi:"timeout"`
 	// The vhost the queue resides in.
 	Vhost pulumi.StringOutput `pulumi:"vhost"`
-	// A POST request will be made for each message in the queue to this endpoint.
+	// A POST request will be made for each message in the queue to this
+	// endpoint.
 	WebhookUri pulumi.StringOutput `pulumi:"webhookUri"`
 }
 
@@ -95,7 +112,8 @@ type webhookState struct {
 	Timeout *int `pulumi:"timeout"`
 	// The vhost the queue resides in.
 	Vhost *string `pulumi:"vhost"`
-	// A POST request will be made for each message in the queue to this endpoint.
+	// A POST request will be made for each message in the queue to this
+	// endpoint.
 	WebhookUri *string `pulumi:"webhookUri"`
 }
 
@@ -112,7 +130,8 @@ type WebhookState struct {
 	Timeout pulumi.IntPtrInput
 	// The vhost the queue resides in.
 	Vhost pulumi.StringPtrInput
-	// A POST request will be made for each message in the queue to this endpoint.
+	// A POST request will be made for each message in the queue to this
+	// endpoint.
 	WebhookUri pulumi.StringPtrInput
 }
 
@@ -133,7 +152,8 @@ type webhookArgs struct {
 	Timeout *int `pulumi:"timeout"`
 	// The vhost the queue resides in.
 	Vhost string `pulumi:"vhost"`
-	// A POST request will be made for each message in the queue to this endpoint.
+	// A POST request will be made for each message in the queue to this
+	// endpoint.
 	WebhookUri string `pulumi:"webhookUri"`
 }
 
@@ -151,7 +171,8 @@ type WebhookArgs struct {
 	Timeout pulumi.IntPtrInput
 	// The vhost the queue resides in.
 	Vhost pulumi.StringInput
-	// A POST request will be made for each message in the queue to this endpoint.
+	// A POST request will be made for each message in the queue to this
+	// endpoint.
 	WebhookUri pulumi.StringInput
 }
 
@@ -272,7 +293,8 @@ func (o WebhookOutput) Vhost() pulumi.StringOutput {
 	return o.ApplyT(func(v *Webhook) pulumi.StringOutput { return v.Vhost }).(pulumi.StringOutput)
 }
 
-// A POST request will be made for each message in the queue to this endpoint.
+// A POST request will be made for each message in the queue to this
+// endpoint.
 func (o WebhookOutput) WebhookUri() pulumi.StringOutput {
 	return o.ApplyT(func(v *Webhook) pulumi.StringOutput { return v.WebhookUri }).(pulumi.StringOutput)
 }

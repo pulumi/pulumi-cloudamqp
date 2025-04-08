@@ -12,30 +12,34 @@ import java.util.Objects;
 @CustomType
 public final class InstanceCopySetting {
     /**
-     * @return Array of one or more settings to be copied. Allowed values: [alarms, config, definitions, firewall, logs, metrics, plugins]
+     * @return Array of one or more settings to be copied. Allowed values:
+     * [alarms, config, definitions, firewall, logs, metrics, plugins]
      * 
-     * See more below, copy settings
+     * See more below, [copy settings].
      * 
      */
     private List<String> settings;
     /**
-     * @return Instance identifier of the CloudAMQP instance to copy the settings from.
+     * @return Instance identifier of the CloudAMQP instance to copy the settings
+     * from.
      * 
      */
     private String subscriptionId;
 
     private InstanceCopySetting() {}
     /**
-     * @return Array of one or more settings to be copied. Allowed values: [alarms, config, definitions, firewall, logs, metrics, plugins]
+     * @return Array of one or more settings to be copied. Allowed values:
+     * [alarms, config, definitions, firewall, logs, metrics, plugins]
      * 
-     * See more below, copy settings
+     * See more below, [copy settings].
      * 
      */
     public List<String> settings() {
         return this.settings;
     }
     /**
-     * @return Instance identifier of the CloudAMQP instance to copy the settings from.
+     * @return Instance identifier of the CloudAMQP instance to copy the settings
+     * from.
      * 
      */
     public String subscriptionId() {

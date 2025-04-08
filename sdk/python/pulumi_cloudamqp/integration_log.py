@@ -56,25 +56,30 @@ class IntegrationLogArgs:
         :param pulumi.Input[str] client_email: The client email registered for the integration service.
         :param pulumi.Input[str] credentials: Google Service Account private key credentials.
         :param pulumi.Input[str] dce_uri: The data collection endpoint for Azure monitor.
-        :param pulumi.Input[str] dcr_id: ID of data collection rule that your DCE is linked to for Azure Monitor.
+        :param pulumi.Input[str] dcr_id: ID of data collection rule that your DCE is linked to for Azure
+               Monitor.
                
-               This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+               This is the full list of all arguments. Only a subset of arguments are used based on which type of
+               integration used. See [integration type reference] table below for more information.
         :param pulumi.Input[str] endpoint: The syslog destination to send the logs to for Coralogix.
-        :param pulumi.Input[str] host: The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+        :param pulumi.Input[str] host: The host for Scalyr integration. (app.scalyr.com,
+               app.eu.scalyr.com)
         :param pulumi.Input[str] host_port: Destination to send the logs.
         :param pulumi.Input[str] name: The name of the third party log integration. See
-               Integration type reference
+               [integration type reference]
         :param pulumi.Input[str] private_key: The private access key.
         :param pulumi.Input[str] private_key_id: Private key identifier. (Stackdriver)
         :param pulumi.Input[str] project_id: The project identifier.
         :param pulumi.Input[str] region: Region hosting the integration service.
         :param pulumi.Input[str] secret_access_key: AWS secret access key.
-        :param pulumi.Input[str] sourcetype: Assign source type to the data exported, eg. generic_single_line. (Splunk)
+        :param pulumi.Input[str] sourcetype: Assign source type to the data exported, eg. generic_single_line.
+               (Splunk)
         :param pulumi.Input[str] subsystem: The subsystem name for Coralogix.
         :param pulumi.Input[str] table: The table name for Azure monitor.
         :param pulumi.Input[str] tags: Tags. e.g. `env=prod,region=europe`.
                
-               ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
+               ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+               letter, read more about tags format in the [Datadog documentation].
         :param pulumi.Input[str] tenant_id: The tenant identifier for Azure monitor.
         :param pulumi.Input[str] token: Token used for authentication.
         :param pulumi.Input[str] url: Endpoint to log integration.
@@ -243,9 +248,11 @@ class IntegrationLogArgs:
     @pulumi.getter(name="dcrId")
     def dcr_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of data collection rule that your DCE is linked to for Azure Monitor.
+        ID of data collection rule that your DCE is linked to for Azure
+        Monitor.
 
-        This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+        This is the full list of all arguments. Only a subset of arguments are used based on which type of
+        integration used. See [integration type reference] table below for more information.
         """
         return pulumi.get(self, "dcr_id")
 
@@ -269,7 +276,8 @@ class IntegrationLogArgs:
     @pulumi.getter
     def host(self) -> Optional[pulumi.Input[str]]:
         """
-        The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+        The host for Scalyr integration. (app.scalyr.com,
+        app.eu.scalyr.com)
         """
         return pulumi.get(self, "host")
 
@@ -294,7 +302,7 @@ class IntegrationLogArgs:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         The name of the third party log integration. See
-        Integration type reference
+        [integration type reference]
         """
         return pulumi.get(self, "name")
 
@@ -366,7 +374,8 @@ class IntegrationLogArgs:
     @pulumi.getter
     def sourcetype(self) -> Optional[pulumi.Input[str]]:
         """
-        Assign source type to the data exported, eg. generic_single_line. (Splunk)
+        Assign source type to the data exported, eg. generic_single_line.
+        (Splunk)
         """
         return pulumi.get(self, "sourcetype")
 
@@ -404,7 +413,8 @@ class IntegrationLogArgs:
         """
         Tags. e.g. `env=prod,region=europe`.
 
-        ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
+        ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+        letter, read more about tags format in the [Datadog documentation].
         """
         return pulumi.get(self, "tags")
 
@@ -488,26 +498,31 @@ class _IntegrationLogState:
         :param pulumi.Input[str] client_email: The client email registered for the integration service.
         :param pulumi.Input[str] credentials: Google Service Account private key credentials.
         :param pulumi.Input[str] dce_uri: The data collection endpoint for Azure monitor.
-        :param pulumi.Input[str] dcr_id: ID of data collection rule that your DCE is linked to for Azure Monitor.
+        :param pulumi.Input[str] dcr_id: ID of data collection rule that your DCE is linked to for Azure
+               Monitor.
                
-               This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+               This is the full list of all arguments. Only a subset of arguments are used based on which type of
+               integration used. See [integration type reference] table below for more information.
         :param pulumi.Input[str] endpoint: The syslog destination to send the logs to for Coralogix.
-        :param pulumi.Input[str] host: The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+        :param pulumi.Input[str] host: The host for Scalyr integration. (app.scalyr.com,
+               app.eu.scalyr.com)
         :param pulumi.Input[str] host_port: Destination to send the logs.
         :param pulumi.Input[int] instance_id: Instance identifier used to make proxy calls
         :param pulumi.Input[str] name: The name of the third party log integration. See
-               Integration type reference
+               [integration type reference]
         :param pulumi.Input[str] private_key: The private access key.
         :param pulumi.Input[str] private_key_id: Private key identifier. (Stackdriver)
         :param pulumi.Input[str] project_id: The project identifier.
         :param pulumi.Input[str] region: Region hosting the integration service.
         :param pulumi.Input[str] secret_access_key: AWS secret access key.
-        :param pulumi.Input[str] sourcetype: Assign source type to the data exported, eg. generic_single_line. (Splunk)
+        :param pulumi.Input[str] sourcetype: Assign source type to the data exported, eg. generic_single_line.
+               (Splunk)
         :param pulumi.Input[str] subsystem: The subsystem name for Coralogix.
         :param pulumi.Input[str] table: The table name for Azure monitor.
         :param pulumi.Input[str] tags: Tags. e.g. `env=prod,region=europe`.
                
-               ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
+               ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+               letter, read more about tags format in the [Datadog documentation].
         :param pulumi.Input[str] tenant_id: The tenant identifier for Azure monitor.
         :param pulumi.Input[str] token: Token used for authentication.
         :param pulumi.Input[str] url: Endpoint to log integration.
@@ -665,9 +680,11 @@ class _IntegrationLogState:
     @pulumi.getter(name="dcrId")
     def dcr_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of data collection rule that your DCE is linked to for Azure Monitor.
+        ID of data collection rule that your DCE is linked to for Azure
+        Monitor.
 
-        This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+        This is the full list of all arguments. Only a subset of arguments are used based on which type of
+        integration used. See [integration type reference] table below for more information.
         """
         return pulumi.get(self, "dcr_id")
 
@@ -691,7 +708,8 @@ class _IntegrationLogState:
     @pulumi.getter
     def host(self) -> Optional[pulumi.Input[str]]:
         """
-        The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+        The host for Scalyr integration. (app.scalyr.com,
+        app.eu.scalyr.com)
         """
         return pulumi.get(self, "host")
 
@@ -728,7 +746,7 @@ class _IntegrationLogState:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         The name of the third party log integration. See
-        Integration type reference
+        [integration type reference]
         """
         return pulumi.get(self, "name")
 
@@ -800,7 +818,8 @@ class _IntegrationLogState:
     @pulumi.getter
     def sourcetype(self) -> Optional[pulumi.Input[str]]:
         """
-        Assign source type to the data exported, eg. generic_single_line. (Splunk)
+        Assign source type to the data exported, eg. generic_single_line.
+        (Splunk)
         """
         return pulumi.get(self, "sourcetype")
 
@@ -838,7 +857,8 @@ class _IntegrationLogState:
         """
         Tags. e.g. `env=prod,region=europe`.
 
-        ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
+        ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+        letter, read more about tags format in the [Datadog documentation].
         """
         return pulumi.get(self, "tags")
 
@@ -1046,6 +1066,7 @@ class IntegrationLog(pulumi.CustomResource):
             name="loggly",
             token=loggly_token)
         ```
+
         </details>
 
         <details>
@@ -1085,6 +1106,8 @@ class IntegrationLog(pulumi.CustomResource):
             host=scalyr_host)
         ```
 
+        </details>
+
         <details>
           <summary>
             <b>
@@ -1103,8 +1126,6 @@ class IntegrationLog(pulumi.CustomResource):
             host_port=splunk_host_port,
             source_type="generic_single_line")
         ```
-
-        </details>
 
         </details>
 
@@ -1133,11 +1154,35 @@ class IntegrationLog(pulumi.CustomResource):
 
         ## Import
 
-        `cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+        `cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP
+
+        instance identifier. The identifiers are CSV separated, see example below. To retrieve the resource,
+
+        use [CloudAMQP API list integration].
+
+        From Terraform v1.5.0, the `import` block can be used to import this resource:
+
+        hcl
+
+        import {
+
+          to = cloudamqp_integration_log.this
+
+          id = format("<id>,%s", cloudamqp_instance.instance.id)
+
+        }
 
         ```sh
-        $ pulumi import cloudamqp:index/integrationLog:IntegrationLog <resource_name> <id>,<instance_id>`
+        $ pulumi import cloudamqp:index/integrationLog:IntegrationLog this <id>,<instance_id>`
         ```
+
+        [CloudAMQP API add integration]: https://docs.cloudamqp.com/cloudamqp_api.html#add-log-integration
+
+        [CloudAMQP API list integration]: https://docs.cloudamqp.com/cloudamqp_api.html#list-log-integrations
+
+        [Datadog documentation]: https://docs.datadoghq.com/getting_started/tagging/#define-tags
+
+        [integration type reference]: #integration-type-reference
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1149,26 +1194,31 @@ class IntegrationLog(pulumi.CustomResource):
         :param pulumi.Input[str] client_email: The client email registered for the integration service.
         :param pulumi.Input[str] credentials: Google Service Account private key credentials.
         :param pulumi.Input[str] dce_uri: The data collection endpoint for Azure monitor.
-        :param pulumi.Input[str] dcr_id: ID of data collection rule that your DCE is linked to for Azure Monitor.
+        :param pulumi.Input[str] dcr_id: ID of data collection rule that your DCE is linked to for Azure
+               Monitor.
                
-               This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+               This is the full list of all arguments. Only a subset of arguments are used based on which type of
+               integration used. See [integration type reference] table below for more information.
         :param pulumi.Input[str] endpoint: The syslog destination to send the logs to for Coralogix.
-        :param pulumi.Input[str] host: The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+        :param pulumi.Input[str] host: The host for Scalyr integration. (app.scalyr.com,
+               app.eu.scalyr.com)
         :param pulumi.Input[str] host_port: Destination to send the logs.
         :param pulumi.Input[int] instance_id: Instance identifier used to make proxy calls
         :param pulumi.Input[str] name: The name of the third party log integration. See
-               Integration type reference
+               [integration type reference]
         :param pulumi.Input[str] private_key: The private access key.
         :param pulumi.Input[str] private_key_id: Private key identifier. (Stackdriver)
         :param pulumi.Input[str] project_id: The project identifier.
         :param pulumi.Input[str] region: Region hosting the integration service.
         :param pulumi.Input[str] secret_access_key: AWS secret access key.
-        :param pulumi.Input[str] sourcetype: Assign source type to the data exported, eg. generic_single_line. (Splunk)
+        :param pulumi.Input[str] sourcetype: Assign source type to the data exported, eg. generic_single_line.
+               (Splunk)
         :param pulumi.Input[str] subsystem: The subsystem name for Coralogix.
         :param pulumi.Input[str] table: The table name for Azure monitor.
         :param pulumi.Input[str] tags: Tags. e.g. `env=prod,region=europe`.
                
-               ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
+               ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+               letter, read more about tags format in the [Datadog documentation].
         :param pulumi.Input[str] tenant_id: The tenant identifier for Azure monitor.
         :param pulumi.Input[str] token: Token used for authentication.
         :param pulumi.Input[str] url: Endpoint to log integration.
@@ -1310,6 +1360,7 @@ class IntegrationLog(pulumi.CustomResource):
             name="loggly",
             token=loggly_token)
         ```
+
         </details>
 
         <details>
@@ -1349,6 +1400,8 @@ class IntegrationLog(pulumi.CustomResource):
             host=scalyr_host)
         ```
 
+        </details>
+
         <details>
           <summary>
             <b>
@@ -1367,8 +1420,6 @@ class IntegrationLog(pulumi.CustomResource):
             host_port=splunk_host_port,
             source_type="generic_single_line")
         ```
-
-        </details>
 
         </details>
 
@@ -1397,11 +1448,35 @@ class IntegrationLog(pulumi.CustomResource):
 
         ## Import
 
-        `cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+        `cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP
+
+        instance identifier. The identifiers are CSV separated, see example below. To retrieve the resource,
+
+        use [CloudAMQP API list integration].
+
+        From Terraform v1.5.0, the `import` block can be used to import this resource:
+
+        hcl
+
+        import {
+
+          to = cloudamqp_integration_log.this
+
+          id = format("<id>,%s", cloudamqp_instance.instance.id)
+
+        }
 
         ```sh
-        $ pulumi import cloudamqp:index/integrationLog:IntegrationLog <resource_name> <id>,<instance_id>`
+        $ pulumi import cloudamqp:index/integrationLog:IntegrationLog this <id>,<instance_id>`
         ```
+
+        [CloudAMQP API add integration]: https://docs.cloudamqp.com/cloudamqp_api.html#add-log-integration
+
+        [CloudAMQP API list integration]: https://docs.cloudamqp.com/cloudamqp_api.html#list-log-integrations
+
+        [Datadog documentation]: https://docs.datadoghq.com/getting_started/tagging/#define-tags
+
+        [integration type reference]: #integration-type-reference
 
         :param str resource_name: The name of the resource.
         :param IntegrationLogArgs args: The arguments to use to populate this resource's properties.
@@ -1534,26 +1609,31 @@ class IntegrationLog(pulumi.CustomResource):
         :param pulumi.Input[str] client_email: The client email registered for the integration service.
         :param pulumi.Input[str] credentials: Google Service Account private key credentials.
         :param pulumi.Input[str] dce_uri: The data collection endpoint for Azure monitor.
-        :param pulumi.Input[str] dcr_id: ID of data collection rule that your DCE is linked to for Azure Monitor.
+        :param pulumi.Input[str] dcr_id: ID of data collection rule that your DCE is linked to for Azure
+               Monitor.
                
-               This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+               This is the full list of all arguments. Only a subset of arguments are used based on which type of
+               integration used. See [integration type reference] table below for more information.
         :param pulumi.Input[str] endpoint: The syslog destination to send the logs to for Coralogix.
-        :param pulumi.Input[str] host: The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+        :param pulumi.Input[str] host: The host for Scalyr integration. (app.scalyr.com,
+               app.eu.scalyr.com)
         :param pulumi.Input[str] host_port: Destination to send the logs.
         :param pulumi.Input[int] instance_id: Instance identifier used to make proxy calls
         :param pulumi.Input[str] name: The name of the third party log integration. See
-               Integration type reference
+               [integration type reference]
         :param pulumi.Input[str] private_key: The private access key.
         :param pulumi.Input[str] private_key_id: Private key identifier. (Stackdriver)
         :param pulumi.Input[str] project_id: The project identifier.
         :param pulumi.Input[str] region: Region hosting the integration service.
         :param pulumi.Input[str] secret_access_key: AWS secret access key.
-        :param pulumi.Input[str] sourcetype: Assign source type to the data exported, eg. generic_single_line. (Splunk)
+        :param pulumi.Input[str] sourcetype: Assign source type to the data exported, eg. generic_single_line.
+               (Splunk)
         :param pulumi.Input[str] subsystem: The subsystem name for Coralogix.
         :param pulumi.Input[str] table: The table name for Azure monitor.
         :param pulumi.Input[str] tags: Tags. e.g. `env=prod,region=europe`.
                
-               ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
+               ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+               letter, read more about tags format in the [Datadog documentation].
         :param pulumi.Input[str] tenant_id: The tenant identifier for Azure monitor.
         :param pulumi.Input[str] token: Token used for authentication.
         :param pulumi.Input[str] url: Endpoint to log integration.
@@ -1658,9 +1738,11 @@ class IntegrationLog(pulumi.CustomResource):
     @pulumi.getter(name="dcrId")
     def dcr_id(self) -> pulumi.Output[Optional[str]]:
         """
-        ID of data collection rule that your DCE is linked to for Azure Monitor.
+        ID of data collection rule that your DCE is linked to for Azure
+        Monitor.
 
-        This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+        This is the full list of all arguments. Only a subset of arguments are used based on which type of
+        integration used. See [integration type reference] table below for more information.
         """
         return pulumi.get(self, "dcr_id")
 
@@ -1676,7 +1758,8 @@ class IntegrationLog(pulumi.CustomResource):
     @pulumi.getter
     def host(self) -> pulumi.Output[Optional[str]]:
         """
-        The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+        The host for Scalyr integration. (app.scalyr.com,
+        app.eu.scalyr.com)
         """
         return pulumi.get(self, "host")
 
@@ -1701,7 +1784,7 @@ class IntegrationLog(pulumi.CustomResource):
     def name(self) -> pulumi.Output[str]:
         """
         The name of the third party log integration. See
-        Integration type reference
+        [integration type reference]
         """
         return pulumi.get(self, "name")
 
@@ -1749,7 +1832,8 @@ class IntegrationLog(pulumi.CustomResource):
     @pulumi.getter
     def sourcetype(self) -> pulumi.Output[Optional[str]]:
         """
-        Assign source type to the data exported, eg. generic_single_line. (Splunk)
+        Assign source type to the data exported, eg. generic_single_line.
+        (Splunk)
         """
         return pulumi.get(self, "sourcetype")
 
@@ -1775,7 +1859,8 @@ class IntegrationLog(pulumi.CustomResource):
         """
         Tags. e.g. `env=prod,region=europe`.
 
-        ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
+        ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+        letter, read more about tags format in the [Datadog documentation].
         """
         return pulumi.get(self, "tags")
 

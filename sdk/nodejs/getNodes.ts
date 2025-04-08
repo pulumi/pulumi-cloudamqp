@@ -20,31 +20,6 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ## Attributes reference
- *
- * All attributes reference are computed
- *
- * * `id`    - The identifier for this resource.
- * * `nodes` - An array of node information. Each `nodes` block consists of the fields documented below.
- *
- * ***
- *
- * The `nodes` block consist of
- *
- * * `hostname`              - External hostname assigned to the node.
- * * `hostnameInternal`     - Internal hostname assigned to the node.
- * * `name`                  - Name of the node.
- * * `running`               - Is the node running?
- * * `rabbitmqVersion`      - Currently configured Rabbit MQ version on the node.
- * * `erlangVersion`        - Currently used Erlang version on the node.
- * * `hipe`                  - Enable or disable High-performance Erlang.
- * * `configured`            - Is the node configured?
- * * `diskSize`             - Subscription plan disk size
- * * `additionalDiskSize`  - Additional added disk size
- * * `availabilityZone`     - Availability zone the node is hosted in.
- *
- * ***Note:*** *Total disk size = diskSize + additional_disk_size*
- *
  * ## Dependency
  *
  * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -75,6 +50,9 @@ export interface GetNodesResult {
      */
     readonly id: string;
     readonly instanceId: number;
+    /**
+     * An array of node information. Each `nodes` block consists of the fields documented below.
+     */
     readonly nodes: outputs.GetNodesNode[];
 }
 /**
@@ -90,31 +68,6 @@ export interface GetNodesResult {
  *     instanceId: instance.id,
  * });
  * ```
- *
- * ## Attributes reference
- *
- * All attributes reference are computed
- *
- * * `id`    - The identifier for this resource.
- * * `nodes` - An array of node information. Each `nodes` block consists of the fields documented below.
- *
- * ***
- *
- * The `nodes` block consist of
- *
- * * `hostname`              - External hostname assigned to the node.
- * * `hostnameInternal`     - Internal hostname assigned to the node.
- * * `name`                  - Name of the node.
- * * `running`               - Is the node running?
- * * `rabbitmqVersion`      - Currently configured Rabbit MQ version on the node.
- * * `erlangVersion`        - Currently used Erlang version on the node.
- * * `hipe`                  - Enable or disable High-performance Erlang.
- * * `configured`            - Is the node configured?
- * * `diskSize`             - Subscription plan disk size
- * * `additionalDiskSize`  - Additional added disk size
- * * `availabilityZone`     - Availability zone the node is hosted in.
- *
- * ***Note:*** *Total disk size = diskSize + additional_disk_size*
  *
  * ## Dependency
  *

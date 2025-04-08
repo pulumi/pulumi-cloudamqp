@@ -18,7 +18,8 @@ namespace Pulumi.CloudAmqp
     public partial class AccountAction : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The action to be invoked. Allowed actions `rotate-password`, `rotate-apikey`.
+        /// The action to be invoked. Allowed actions
+        /// `rotate-password`, `rotate-apikey`.
         /// </summary>
         [Output("action")]
         public Output<string> Action { get; private set; } = null!;
@@ -76,7 +77,8 @@ namespace Pulumi.CloudAmqp
     public sealed class AccountActionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The action to be invoked. Allowed actions `rotate-password`, `rotate-apikey`.
+        /// The action to be invoked. Allowed actions
+        /// `rotate-password`, `rotate-apikey`.
         /// </summary>
         [Input("action", required: true)]
         public Input<string> Action { get; set; } = null!;
@@ -96,7 +98,8 @@ namespace Pulumi.CloudAmqp
     public sealed class AccountActionState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The action to be invoked. Allowed actions `rotate-password`, `rotate-apikey`.
+        /// The action to be invoked. Allowed actions
+        /// `rotate-password`, `rotate-apikey`.
         /// </summary>
         [Input("action")]
         public Input<string>? Action { get; set; }

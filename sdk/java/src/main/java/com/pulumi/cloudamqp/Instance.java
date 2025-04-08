@@ -19,18 +19,21 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * This resource allows you to create and manage a CloudAMQP instance running either [**RabbitMQ**](https://www.rabbitmq.com/) or [**LavinMQ**](https://lavinmq.com/) and can be deployed to multiple cloud platforms provider and regions, see instance regions for more information.
+ * This resource allows you to create and manage a CloudAMQP instance running either [**RabbitMQ**] or
+ * [**LavinMQ**] and can be deployed to multiple cloud platforms provider and regions, see
+ * [instance regions] for more information.
  * 
- * Once the instance is created it will be assigned a unique identifier. All other resources and data sources created for this instance needs to reference this unique instance identifier.
+ * Once the instance is created it will be assigned a unique identifier. All other resources and data
+ * sources created for this instance needs to reference this unique instance identifier.
  * 
- * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
+ * Pricing is available at [CloudAMQP plans].
  * 
  * ## Example Usage
  * 
  * &lt;details&gt;
  *   &lt;summary&gt;
  *     &lt;b&gt;
- *       &lt;i&gt;Basic example of shared and dedicated instances&lt;/i&gt;
+ *       &lt;i&gt;Shared and dedicated instances running LavinMQ&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
  * 
@@ -57,28 +60,36 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         // Minimum free lemur instance running RabbitMQ
- *         var lemurInstance = new Instance("lemurInstance", InstanceArgs.builder()
- *             .name("cloudamqp-free-instance")
- *             .plan("lemur")
- *             .region("amazon-web-services::us-west-1")
- *             .tags("rabbitmq")
- *             .build());
- * 
  *         // Minimum free lemming instance running LavinMQ
- *         var lemmingInstance = new Instance("lemmingInstance", InstanceArgs.builder()
- *             .name("cloudamqp-free-instance")
+ *         var lemurInstance = new Instance("lemurInstance", InstanceArgs.builder()
+ *             .name("cloudamqp-free-instance-01")
  *             .plan("lemming")
  *             .region("amazon-web-services::us-west-1")
  *             .tags("lavinmq")
  *             .build());
  * 
- *         // New dedicated bunny instance running RabbitMQ
- *         var instance = new Instance("instance", InstanceArgs.builder()
- *             .name("terraform-cloudamqp-instance")
+ *         // Minimum free lemur instance running RabbitMQ
+ *         var lemmingInstance = new Instance("lemmingInstance", InstanceArgs.builder()
+ *             .name("cloudamqp-free-instance-02")
+ *             .plan("lemur")
+ *             .region("amazon-web-services::us-west-1")
+ *             .tags("rabbitmq")
+ *             .build());
+ * 
+ *         // Dedicated penguin instance running LavinMQ
+ *         var penguinInstance = new Instance("penguinInstance", InstanceArgs.builder()
+ *             .name("terraform-cloudamqp-instance-01")
+ *             .plan("penguin-1")
+ *             .region("amazon-web-services::us-west-1")
+ *             .tags("lavinmq")
+ *             .build());
+ * 
+ *         // Dedicated bunny instance running RabbitMQ
+ *         var bunnyInstance = new Instance("bunnyInstance", InstanceArgs.builder()
+ *             .name("terraform-cloudamqp-instance-02")
  *             .plan("bunny-1")
  *             .region("amazon-web-services::us-west-1")
- *             .tags("terraform")
+ *             .tags("rabbitmq")
  *             .build());
  * 
  *     }
@@ -121,7 +132,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var instance = new Instance("instance", InstanceArgs.builder()
  *             .name("terraform-cloudamqp-instance")
- *             .plan("bunny-1")
+ *             .plan("penguin-1")
  *             .region("amazon-web-services::us-west-1")
  *             .tags("terraform")
  *             .vpcSubnet("10.56.72.0/24")
@@ -138,7 +149,10 @@ import javax.annotation.Nullable;
  * &lt;details&gt;
  *   &lt;summary&gt;
  *     &lt;b&gt;
- *       &lt;i&gt;Dedicated instance using attribute vpc_subnet to create VPC and then import managed VPC, from v1.16.0 (Managed VPC)&lt;/i&gt;
+ *       &lt;i&gt;
+ *         Dedicated instance using attribute vpc_subnet to create VPC and then import managed VPC,
+ *         from v1.16.0 (Managed VPC)
+ *       &lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
  * 
@@ -168,7 +182,7 @@ import javax.annotation.Nullable;
  *         // Dedicated instance that also creates VPC
  *         var instance01 = new Instance("instance01", InstanceArgs.builder()
  *             .name("terraform-cloudamqp-instance-01")
- *             .plan("bunny-1")
+ *             .plan("penguin-1")
  *             .region("amazon-web-services::us-west-1")
  *             .tags("terraform")
  *             .vpcSubnet("10.56.72.0/24")
@@ -180,9 +194,10 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * Once the instance and the VPC are created, the VPC can be imported as managed VPC and added to the configuration file.
- * Set attribute `vpc_id` to the managed VPC identifier. To keep the managed VPC when deleting the instance, set attribute `keep_associated_vpc` to true.
- * For more information see guide Managed VPC.
+ * Once the instance and the VPC are created, the VPC can be imported as managed VPC and added to the
+ * configuration file. Set attribute `vpc_id` to the managed VPC identifier. To keep the managed VPC
+ * when deleting the instance, set attribute `keep_associated_vpc` to true. For more information see
+ * guide [Managed VPC].
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -220,7 +235,7 @@ import javax.annotation.Nullable;
  *         // Add vpc_id and keep_associated_vpc attributes
  *         var instance01 = new Instance("instance01", InstanceArgs.builder()
  *             .name("terraform-cloudamqp-instance-01")
- *             .plan("bunny-1")
+ *             .plan("penguin-1")
  *             .region("amazon-web-services::us-west-1")
  *             .tags("terraform")
  *             .vpcId(vpc.id())
@@ -278,7 +293,7 @@ import javax.annotation.Nullable;
  *         // First instance added to managed VPC
  *         var instance01 = new Instance("instance01", InstanceArgs.builder()
  *             .name("terraform-cloudamqp-instance-01")
- *             .plan("bunny-1")
+ *             .plan("penguin-1")
  *             .region("amazon-web-services::us-west-1")
  *             .tags("terraform")
  *             .vpcId(vpc.id())
@@ -288,7 +303,7 @@ import javax.annotation.Nullable;
  *         // Second instance added to managed VPC
  *         var instance02 = new Instance("instance02", InstanceArgs.builder()
  *             .name("terraform-cloudamqp-instance-02")
- *             .plan("bunny-1")
+ *             .plan("penguin-1")
  *             .region("amazon-web-services::us-west-1")
  *             .tags("terraform")
  *             .vpcId(vpc.id())
@@ -305,13 +320,9 @@ import javax.annotation.Nullable;
  * 
  * &lt;/details&gt;
  * 
- * ## Copy settings to a new dedicated instance
+ * ### Settings supported by LavinMQ
  * 
- * With copy settings it&#39;s possible to create a new dedicated instance with settings such as alarms, config, etc. from another dedicated instance. This can be done by adding the `copy_settings` block to this resource and populate `subscription_id` with a CloudAMQP instance identifier from another already existing instance.
- * 
- * Then add the settings to be copied over to the new dedicated instance. Settings that can be copied [alarms, config, definitions, firewall, logs, metrics, plugins]
- * 
- * &gt; `rmq_version` argument is required when doing this action. Must match the RabbitMQ version of the dedicated instance to be copied from.
+ * ***Allowed values:*** alarms, definitions, firewall, metrics
  * 
  * &lt;details&gt;
  *   &lt;summary&gt;
@@ -344,9 +355,68 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var instance02 = new Instance("instance02", InstanceArgs.builder()
+ *         var penguinInstance = new Instance("penguinInstance", InstanceArgs.builder()
+ *             .name("terraform-cloudamqp-instance-01")
+ *             .plan("penguin-1")
+ *             .region("amazon-web-services::us-west-1")
+ *             .rmqVersion("2.2.0")
+ *             .tags("terraform")
+ *             .copySettings(InstanceCopySettingArgs.builder()
+ *                 .subscriptionId(instanceId)
+ *                 .settings(                
+ *                     "alarms",
+ *                     "definitions",
+ *                     "firewall",
+ *                     "metrics")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * &lt;/details&gt;
+ * 
+ * ### Settings supported by RabbitMQ
+ * 
+ * ***Allowed values:*** alarms, config, definitions, firewall, logs, metrics, plugins
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Copy settings from a dedicated instance to a new dedicated instance&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import com.pulumi.cloudamqp.inputs.InstanceCopySettingArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var bunnyInstance = new Instance("bunnyInstance", InstanceArgs.builder()
  *             .name("terraform-cloudamqp-instance-02")
- *             .plan("squirrel-1")
+ *             .plan("bunny-1")
  *             .region("amazon-web-services::us-west-1")
  *             .rmqVersion("3.12.2")
  *             .tags("terraform")
@@ -371,28 +441,56 @@ import javax.annotation.Nullable;
  * 
  * &lt;/details&gt;
  * 
+ * [CloudAMQP]: https://cloudamqp.com
+ * [CloudAMQP API]: https://docs.cloudamqp.com/cloudamqp_api.html
+ * [CloudAMQP API list instances]: https://docs.cloudamqp.com/#list-instances
+ * [CloudAMQP plans]: https://www.cloudamqp.com/plans.html
+ * [copy settings]: #copy-settings-to-a-new-dedicated-instance
+ * [example]: ../guides/info_vpc_existing.md
+ * [regions]: ../guides/info_region.md
+ * [**LavinMQ**]: https://lavinmq.com
+ * [Managed VPC]: ../guides/info_managed_vpc#dedicated-instance-and-vpc_subnet
+ * [plans]: ../guides/info_plan.md
+ * [**RabbitMQ**]: https://www.rabbitmq.com
+ * 
  * ## Import
  * 
- * `cloudamqp_instance`can be imported using CloudAMQP internal identifier.
+ * `cloudamqp_instance`can be imported using resource identifier. To retrieve the resource identifier,
+ * 
+ * use [CloudAMQP API list instances]
+ * 
+ * From Terraform v1.5.0, the `import` block can be used to import this resource:
+ * 
+ * hcl
+ * 
+ * import {
+ * 
+ *   to = cloudamqp_instance.instance
+ * 
+ *   id = &lt;id&gt;
+ * 
+ * }
+ * 
+ * Or use Terraform CLI:
  * 
  * ```sh
  * $ pulumi import cloudamqp:index/instance:Instance instance &lt;id&gt;`
  * ```
  * 
- * To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md) to list all available instances for an account.
- * 
  */
 @ResourceType(type="cloudamqp:index/instance:Instance")
 public class Instance extends com.pulumi.resources.CustomResource {
     /**
-     * API key needed to communicate to CloudAMQP&#39;s second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
+     * API key needed to communicate to CloudAMQP&#39;s second API. The second API is used
+     * to manage alarms, integration and more, full description [CloudAMQP API].
      * 
      */
     @Export(name="apikey", refs={String.class}, tree="[0]")
     private Output<String> apikey;
 
     /**
-     * @return API key needed to communicate to CloudAMQP&#39;s second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
+     * @return API key needed to communicate to CloudAMQP&#39;s second API. The second API is used
+     * to manage alarms, integration and more, full description [CloudAMQP API].
      * 
      */
     public Output<String> apikey() {
@@ -413,7 +511,8 @@ public class Instance extends com.pulumi.resources.CustomResource {
         return this.backend;
     }
     /**
-     * Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+     * Copy settings from one CloudAMQP instance to a new. Consists of
+     * the block documented below.
      * 
      * ***
      * 
@@ -424,7 +523,8 @@ public class Instance extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ List<InstanceCopySetting>> copySettings;
 
     /**
-     * @return Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+     * @return Copy settings from one CloudAMQP instance to a new. Consists of
+     * the block documented below.
      * 
      * ***
      * 
@@ -477,14 +577,16 @@ public class Instance extends com.pulumi.resources.CustomResource {
         return this.hostInternal;
     }
     /**
-     * Keep associated VPC when deleting instance, default set to false.
+     * Keep associated VPC when deleting instance. Default set to
+     * false.
      * 
      */
     @Export(name="keepAssociatedVpc", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> keepAssociatedVpc;
 
     /**
-     * @return Keep associated VPC when deleting instance, default set to false.
+     * @return Keep associated VPC when deleting instance. Default set to
+     * false.
      * 
      */
     public Output<Optional<Boolean>> keepAssociatedVpc() {
@@ -505,46 +607,52 @@ public class Instance extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
+     * Set to true to not create default alarms
      * 
      */
     @Export(name="noDefaultAlarms", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> noDefaultAlarms;
 
     /**
-     * @return Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
+     * @return Set to true to not create default alarms
      * 
      */
     public Output<Boolean> noDefaultAlarms() {
         return this.noDefaultAlarms;
     }
     /**
-     * Number of nodes, 1, 3 or 5 depending on plan used. Only needed for legacy plans, will otherwise be computed.
+     * Number of nodes, 1, 3 or 5 depending on plan used. Only needed for
+     * legacy plans, will otherwise be computed.
      * 
-     * ***Deprecated: Legacy subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.***
+     * ***Deprecated:*** Legacy subscriptions plan can still change this to scale up or down the instance.
+     * New subscriptions plans use the plan to determine number of nodes. In order to
+     * change number of nodes the `plan` needs to be updated.
      * 
      */
     @Export(name="nodes", refs={Integer.class}, tree="[0]")
     private Output<Integer> nodes;
 
     /**
-     * @return Number of nodes, 1, 3 or 5 depending on plan used. Only needed for legacy plans, will otherwise be computed.
+     * @return Number of nodes, 1, 3 or 5 depending on plan used. Only needed for
+     * legacy plans, will otherwise be computed.
      * 
-     * ***Deprecated: Legacy subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.***
+     * ***Deprecated:*** Legacy subscriptions plan can still change this to scale up or down the instance.
+     * New subscriptions plans use the plan to determine number of nodes. In order to
+     * change number of nodes the `plan` needs to be updated.
      * 
      */
     public Output<Integer> nodes() {
         return this.nodes;
     }
     /**
-     * The subscription plan. See available plans
+     * The subscription plan. See available [plans].
      * 
      */
     @Export(name="plan", refs={String.class}, tree="[0]")
     private Output<String> plan;
 
     /**
-     * @return The subscription plan. See available plans
+     * @return The subscription plan. See available [plans].
      * 
      */
     public Output<String> plan() {
@@ -565,64 +673,74 @@ public class Instance extends com.pulumi.resources.CustomResource {
         return this.ready;
     }
     /**
-     * The region to host the instance in. See instance regions
+     * The region to host the instance in. See available [regions].
      * 
-     * ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
+     * ***Note:*** Changing region will force the instance to be destroyed and a new created in the new
+     * region. All data will be lost and a new name assigned.
      * 
      */
     @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
-     * @return The region to host the instance in. See instance regions
+     * @return The region to host the instance in. See available [regions].
      * 
-     * ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
+     * ***Note:*** Changing region will force the instance to be destroyed and a new created in the new
+     * region. All data will be lost and a new name assigned.
      * 
      */
     public Output<String> region() {
         return this.region;
     }
     /**
-     * The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.
+     * The Rabbit MQ version. Can be left out, will then be set to
+     * default value used by CloudAMQP API.
      * 
-     * ***Note: There is not yet any support in the provider to change the RMQ version. Once it&#39;s set in the initial creation, it will remain.***
+     * ***Note:*** There is not yet any support in the provider to change the RMQ version. Once it&#39;s set
+     * in the initial creation, it will remain.
      * 
      */
     @Export(name="rmqVersion", refs={String.class}, tree="[0]")
     private Output<String> rmqVersion;
 
     /**
-     * @return The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.
+     * @return The Rabbit MQ version. Can be left out, will then be set to
+     * default value used by CloudAMQP API.
      * 
-     * ***Note: There is not yet any support in the provider to change the RMQ version. Once it&#39;s set in the initial creation, it will remain.***
+     * ***Note:*** There is not yet any support in the provider to change the RMQ version. Once it&#39;s set
+     * in the initial creation, it will remain.
      * 
      */
     public Output<String> rmqVersion() {
         return this.rmqVersion;
     }
     /**
-     * One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
+     * One or more tags for the CloudAMQP instance, makes it possible to
+     * categories multiple instances in console view. Default there is no tags assigned.
      * 
      */
     @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tags;
 
     /**
-     * @return One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
+     * @return One or more tags for the CloudAMQP instance, makes it possible to
+     * categories multiple instances in console view. Default there is no tags assigned.
      * 
      */
     public Output<Optional<List<String>>> tags() {
         return Codegen.optional(this.tags);
     }
     /**
-     * The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}{@literal @}{hostname}/{vhost}`
+     * The AMQP URL (uses the internal hostname if the instance was created with VPC).
+     * Has the format: `amqps://{username}:{password}{@literal @}{hostname}/{vhost}`
      * 
      */
     @Export(name="url", refs={String.class}, tree="[0]")
     private Output<String> url;
 
     /**
-     * @return The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}{@literal @}{hostname}/{vhost}`
+     * @return The AMQP URL (uses the internal hostname if the instance was created with VPC).
+     * Has the format: `amqps://{username}:{password}{@literal @}{hostname}/{vhost}`
      * 
      */
     public Output<String> url() {
@@ -643,36 +761,40 @@ public class Instance extends com.pulumi.resources.CustomResource {
         return this.vhost;
     }
     /**
-     * The VPC ID. Use this to create your instance in an existing VPC. See available example.
+     * The VPC ID. Use this to create your instance in an existing
+     * VPC. See available [example].
      * 
      */
     @Export(name="vpcId", refs={Integer.class}, tree="[0]")
     private Output<Integer> vpcId;
 
     /**
-     * @return The VPC ID. Use this to create your instance in an existing VPC. See available example.
+     * @return The VPC ID. Use this to create your instance in an existing
+     * VPC. See available [example].
      * 
      */
     public Output<Integer> vpcId() {
         return this.vpcId;
     }
     /**
-     * Creates a dedicated VPC subnet, shouldn&#39;t overlap with other VPC subnet, default subnet used 10.56.72.0/24.
+     * Creates a dedicated VPC subnet, shouldn&#39;t overlap with other
+     * VPC subnet, default subnet used 10.56.72.0/24.
      * 
-     * ***Deprecated: Will be removed in next major version (v2.0)***
+     * ***Deprecated:*** Will be removed in next major version (v2.0)
      * 
-     * ***Note: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.***
+     * ***Note:*** Extra fee will be charged when using VPC, see [CloudAMQP] for more information.
      * 
      */
     @Export(name="vpcSubnet", refs={String.class}, tree="[0]")
     private Output<String> vpcSubnet;
 
     /**
-     * @return Creates a dedicated VPC subnet, shouldn&#39;t overlap with other VPC subnet, default subnet used 10.56.72.0/24.
+     * @return Creates a dedicated VPC subnet, shouldn&#39;t overlap with other
+     * VPC subnet, default subnet used 10.56.72.0/24.
      * 
-     * ***Deprecated: Will be removed in next major version (v2.0)***
+     * ***Deprecated:*** Will be removed in next major version (v2.0)
      * 
-     * ***Note: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.***
+     * ***Note:*** Extra fee will be charged when using VPC, see [CloudAMQP] for more information.
      * 
      */
     public Output<String> vpcSubnet() {

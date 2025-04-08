@@ -17,380 +17,29 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * This resource is a generic way to handle PrivateLink (AWS and Azure) and Private Service Connect (GCP).
- * Communication between resources can be done just as they were living inside a VPC. CloudAMQP creates an Endpoint
- * Service to connect the VPC and creating a new network interface to handle the communicate.
- * 
- * If no existing VPC available when enable VPC connect, a new VPC will be created with subnet `10.52.72.0/24`.
- * 
- * More information can be found at: [CloudAMQP VPC Connect](https://www.cloudamqp.com/docs/cloudamqp-vpc-connect.html)
- * 
- * &gt; **Note:** Enabling VPC Connect will automatically add a firewall rule.
- * 
- * &lt;details&gt;
- *  &lt;summary&gt;
- *     &lt;b&gt;
- *       &lt;i&gt;Default PrivateLink firewall rule [AWS, Azure]&lt;/i&gt;
- *     &lt;/b&gt;
- *   &lt;/summary&gt;
- * 
- * ## Example Usage
- * 
- * &lt;details&gt;
- *   &lt;summary&gt;
- *     &lt;b&gt;
- *       &lt;i&gt;Enable VPC Connect (PrivateLink) in AWS&lt;/i&gt;
- *     &lt;/b&gt;
- *   &lt;/summary&gt;
- * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.cloudamqp.Vpc;
- * import com.pulumi.cloudamqp.VpcArgs;
- * import com.pulumi.cloudamqp.Instance;
- * import com.pulumi.cloudamqp.InstanceArgs;
- * import com.pulumi.cloudamqp.VpcConnect;
- * import com.pulumi.cloudamqp.VpcConnectArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var vpc = new Vpc("vpc", VpcArgs.builder()
- *             .name("Standalone VPC")
- *             .region("amazon-web-services::us-west-1")
- *             .subnet("10.56.72.0/24")
- *             .tags()
- *             .build());
- * 
- *         var instance = new Instance("instance", InstanceArgs.builder()
- *             .name("Instance 01")
- *             .plan("bunny-1")
- *             .region("amazon-web-services::us-west-1")
- *             .tags()
- *             .vpcId(vpc.id())
- *             .keepAssociatedVpc(true)
- *             .build());
- * 
- *         var vpcConnect = new VpcConnect("vpcConnect", VpcConnectArgs.builder()
- *             .instanceId(instance.id())
- *             .region(instance.region())
- *             .allowedPrincipals("arn:aws:iam::aws-account-id:user/user-name")
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
- * &lt;/details&gt;
- * 
- * &lt;details&gt;
- *   &lt;summary&gt;
- *     &lt;b&gt;
- *       &lt;i&gt;Enable VPC Connect (PrivateLink) in Azure&lt;/i&gt;
- *     &lt;/b&gt;
- *   &lt;/summary&gt;
- * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.cloudamqp.Vpc;
- * import com.pulumi.cloudamqp.VpcArgs;
- * import com.pulumi.cloudamqp.Instance;
- * import com.pulumi.cloudamqp.InstanceArgs;
- * import com.pulumi.cloudamqp.VpcConnect;
- * import com.pulumi.cloudamqp.VpcConnectArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var vpc = new Vpc("vpc", VpcArgs.builder()
- *             .name("Standalone VPC")
- *             .region("azure-arm::westus")
- *             .subnet("10.56.72.0/24")
- *             .tags()
- *             .build());
- * 
- *         var instance = new Instance("instance", InstanceArgs.builder()
- *             .name("Instance 01")
- *             .plan("bunny-1")
- *             .region("azure-arm::westus")
- *             .tags()
- *             .vpcId(vpc.id())
- *             .keepAssociatedVpc(true)
- *             .build());
- * 
- *         var vpcConnect = new VpcConnect("vpcConnect", VpcConnectArgs.builder()
- *             .instanceId(instance.id())
- *             .region(instance.region())
- *             .approvedSubscriptions("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX")
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
- * The attribute `service_name` found in resource `cloudamqp.VpcConnect` corresponds to the alias in
- * the resource `azurerm_private_endpoint` of the Azure provider. This can be used when creating the
- * private endpoint.
- * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.azurerm.privateEndpoint;
- * import com.pulumi.azurerm.PrivateEndpointArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var example = new PrivateEndpoint("example", PrivateEndpointArgs.builder()
- *             .name("example-endpoint")
- *             .location(exampleAzurermResourceGroup.location())
- *             .resourceGroupName(exampleAzurermResourceGroup.name())
- *             .subnetId(subnet.id())
- *             .privateServiceConnection(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
- * More information about the resource and argument can be found here:
- * private_connection_resource_alias. Or check their example &#34;Using a Private Link
- * Service Alias with existing resources:&#34;.
- * 
- * &lt;/details&gt;
- * 
- * &lt;details&gt;
- *   &lt;summary&gt;
- *     &lt;b&gt;
- *       &lt;i&gt;Enable VPC Connect (Private Service Connect) in GCP&lt;/i&gt;
- *     &lt;/b&gt;
- *   &lt;/summary&gt;
- * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.cloudamqp.Vpc;
- * import com.pulumi.cloudamqp.VpcArgs;
- * import com.pulumi.cloudamqp.Instance;
- * import com.pulumi.cloudamqp.InstanceArgs;
- * import com.pulumi.cloudamqp.VpcConnect;
- * import com.pulumi.cloudamqp.VpcConnectArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var vpc = new Vpc("vpc", VpcArgs.builder()
- *             .name("Standalone VPC")
- *             .region("google-compute-engine::us-west1")
- *             .subnet("10.56.72.0/24")
- *             .tags()
- *             .build());
- * 
- *         var instance = new Instance("instance", InstanceArgs.builder()
- *             .name("Instance 01")
- *             .plan("bunny-1")
- *             .region("google-compute-engine::us-west1")
- *             .tags()
- *             .vpcId(vpc.id())
- *             .keepAssociatedVpc(true)
- *             .build());
- * 
- *         var vpcConnect = new VpcConnect("vpcConnect", VpcConnectArgs.builder()
- *             .instanceId(instance.id())
- *             .region(instance.region())
- *             .allowedProjects("some-project-123456")
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
- * &lt;/details&gt;
- * 
- * ### With Additional Firewall Rules
- * 
- * &lt;details&gt;
- *   &lt;summary&gt;
- *     &lt;b&gt;
- *       &lt;i&gt;CloudAMQP instance in an existing VPC with managed firewall rules&lt;/i&gt;
- *     &lt;/b&gt;
- *   &lt;/summary&gt;
- * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.cloudamqp.Vpc;
- * import com.pulumi.cloudamqp.VpcArgs;
- * import com.pulumi.cloudamqp.Instance;
- * import com.pulumi.cloudamqp.InstanceArgs;
- * import com.pulumi.cloudamqp.VpcConnect;
- * import com.pulumi.cloudamqp.VpcConnectArgs;
- * import com.pulumi.cloudamqp.SecurityFirewall;
- * import com.pulumi.cloudamqp.SecurityFirewallArgs;
- * import com.pulumi.cloudamqp.inputs.SecurityFirewallRuleArgs;
- * import com.pulumi.resources.CustomResourceOptions;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var vpc = new Vpc("vpc", VpcArgs.builder()
- *             .name("Standalone VPC")
- *             .region("amazon-web-services::us-west-1")
- *             .subnet("10.56.72.0/24")
- *             .tags()
- *             .build());
- * 
- *         var instance = new Instance("instance", InstanceArgs.builder()
- *             .name("Instance 01")
- *             .plan("bunny-1")
- *             .region("amazon-web-services::us-west-1")
- *             .tags()
- *             .vpcId(vpc.id())
- *             .keepAssociatedVpc(true)
- *             .build());
- * 
- *         var vpcConnect = new VpcConnect("vpcConnect", VpcConnectArgs.builder()
- *             .instanceId(instance.id())
- *             .allowedPrincipals("arn:aws:iam::aws-account-id:user/user-name")
- *             .build());
- * 
- *         var firewallSettings = new SecurityFirewall("firewallSettings", SecurityFirewallArgs.builder()
- *             .instanceId(instance.id())
- *             .rules(            
- *                 SecurityFirewallRuleArgs.builder()
- *                     .description("Custom PrivateLink setup")
- *                     .ip(vpc.subnet())
- *                     .ports()
- *                     .services(                    
- *                         "AMQP",
- *                         "AMQPS",
- *                         "HTTPS",
- *                         "STREAM",
- *                         "STREAM_SSL")
- *                     .build(),
- *                 SecurityFirewallRuleArgs.builder()
- *                     .description("MGMT interface")
- *                     .ip("0.0.0.0/0")
- *                     .ports()
- *                     .services("HTTPS")
- *                     .build())
- *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(vpcConnect)
- *                 .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
- * &lt;/details&gt;
- * 
- * ## Depedency
- * 
- * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
- * 
- * Since `region` also is required, suggest to reuse the argument from CloudAMQP instance,
- * `cloudamqp_instance.instance.region`.
- * 
- * ## Create VPC Connect with additional firewall rules
- * 
- * To create a PrivateLink/Private Service Connect configuration with additional firewall rules, it&#39;s required to chain the cloudamqp.SecurityFirewall
- * resource to avoid parallel conflicting resource calls. You can do this by making the firewall
- * resource depend on the VPC Connect resource, `cloudamqp_vpc_connect.vpc_connect`.
- * 
- * Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
- * the VPC Connect also needs to be added.
- * 
  * ## Import
  * 
- * `cloudamqp_vpc_connect` can be imported using CloudAMQP internal identifier.
+ * `cloudamqp_vpc_connect` can be imported using CloudAMQP instance identifier. To
+ * 
+ * retrieve the identifier, use [CloudAMQP API list intances].
+ * 
+ * From Terraform v1.5.0, the `import` block can be used to import this resource:
+ * 
+ * hcl
+ * 
+ * import {
+ * 
+ *   to = cloudamqp_vpc_connect.this
+ * 
+ *   id = cloudamqp_instance.instance.id
+ * 
+ * }
+ * 
+ * Or use Terraform CLI:
  * 
  * ```sh
  * $ pulumi import cloudamqp:index/vpcConnect:VpcConnect vpc_connect &lt;id&gt;`
  * ```
- * 
- * The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
  * 
  */
 @ResourceType(type="cloudamqp:index/vpcConnect:VpcConnect")
@@ -438,14 +87,16 @@ public class VpcConnect extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.allowedProjects);
     }
     /**
-     * List of approved subscriptions used by Azure, see below table.
+     * List of approved subscriptions used by Azure, see below
+     * table.
      * 
      */
     @Export(name="approvedSubscriptions", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> approvedSubscriptions;
 
     /**
-     * @return List of approved subscriptions used by Azure, see below table.
+     * @return List of approved subscriptions used by Azure, see below
+     * table.
      * 
      */
     public Output<Optional<List<String>>> approvedSubscriptions() {
@@ -494,16 +145,16 @@ public class VpcConnect extends com.pulumi.resources.CustomResource {
         return this.serviceName;
     }
     /**
-     * Configurable sleep time (seconds) when enable Private Service Connect.
-     * Default set to 10 seconds.
+     * Configurable sleep time (seconds) when enable Private
+     * Service Connect. Default set to 10 seconds.
      * 
      */
     @Export(name="sleep", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> sleep;
 
     /**
-     * @return Configurable sleep time (seconds) when enable Private Service Connect.
-     * Default set to 10 seconds.
+     * @return Configurable sleep time (seconds) when enable Private
+     * Service Connect. Default set to 10 seconds.
      * 
      */
     public Output<Optional<Integer>> sleep() {
@@ -524,40 +175,38 @@ public class VpcConnect extends com.pulumi.resources.CustomResource {
         return this.status;
     }
     /**
-     * Configurable timeout time (seconds) when enable Private Service Connect.
-     * Default set to 1800 seconds.
+     * Configurable timeout time (seconds) when enable Private
+     * Service Connect. Default set to 1800 seconds.
      * 
      * ***
      * 
-     * The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
+     * The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the
+     * provider platform:
      * 
-     * | Platform | Description         | Format                                                                                                                             |
-     * |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-     * | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root&lt;br /&gt; arn:aws:iam::aws-account-id:user/user-name&lt;br /&gt; arn:aws:iam::aws-account-id:role/role-name |
-     * | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-     * | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-     * 
-     * *https://cloud.google.com/resource-manager/reference/rest/v1/projects
+     * | Platform | Description | Format |
+     * |---|---|---|
+     * | AWS | IAM ARN principals | arn:aws:iam::aws-account-id:root&lt;br&gt;arn:aws:iam::aws-account-id:user/user-name&lt;br&gt; arn:aws:iam::aws-account-id:role/role-name |
+     * | Azure | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX |
+     * | GCP | Project IDs [Google docs] | 6 to 30 lowercase letters, digits, or hyphens |
      * 
      */
     @Export(name="timeout", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> timeout;
 
     /**
-     * @return Configurable timeout time (seconds) when enable Private Service Connect.
-     * Default set to 1800 seconds.
+     * @return Configurable timeout time (seconds) when enable Private
+     * Service Connect. Default set to 1800 seconds.
      * 
      * ***
      * 
-     * The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
+     * The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the
+     * provider platform:
      * 
-     * | Platform | Description         | Format                                                                                                                             |
-     * |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-     * | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root&lt;br /&gt; arn:aws:iam::aws-account-id:user/user-name&lt;br /&gt; arn:aws:iam::aws-account-id:role/role-name |
-     * | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-     * | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-     * 
-     * *https://cloud.google.com/resource-manager/reference/rest/v1/projects
+     * | Platform | Description | Format |
+     * |---|---|---|
+     * | AWS | IAM ARN principals | arn:aws:iam::aws-account-id:root&lt;br&gt;arn:aws:iam::aws-account-id:user/user-name&lt;br&gt; arn:aws:iam::aws-account-id:role/role-name |
+     * | Azure | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX |
+     * | GCP | Project IDs [Google docs] | 6 to 30 lowercase letters, digits, or hyphens |
      * 
      */
     public Output<Optional<Integer>> timeout() {

@@ -12,7 +12,23 @@ namespace Pulumi.CloudAmqp
     /// <summary>
     /// ## Import
     /// 
-    /// `cloudamqp_rabbitmq_configuration` can be imported using the CloudAMQP instance identifier.
+    /// `cloudamqp_rabbitmq_configuration` can be imported using the CloudAMQP instance identifier.  To
+    /// 
+    /// retrieve the identifier, use [CloudAMQP API list intances].
+    /// 
+    /// From Terraform v1.5.0, the `import` block can be used to import this resource:
+    /// 
+    /// hcl
+    /// 
+    /// import {
+    /// 
+    ///   to = cloudamqp_rabbitmq_configuration.config
+    /// 
+    ///   id = cloudamqp_instance.instance.id
+    /// 
+    /// }
+    /// 
+    /// Or use Terraform CLI:
     /// 
     /// ```sh
     /// $ pulumi import cloudamqp:index/rabbitConfiguration:RabbitConfiguration config &lt;instance_id&gt;`
@@ -22,31 +38,37 @@ namespace Pulumi.CloudAmqp
     public partial class RabbitConfiguration : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Set the maximum permissible number of channels per connection.
+        /// Set the maximum permissible number of
+        /// channels per connection.
         /// </summary>
         [Output("channelMax")]
         public Output<int> ChannelMax { get; private set; } = null!;
 
         /// <summary>
-        /// Set how the cluster should handle network partition.
+        /// Set how the cluster should handle network
+        /// partition.
         /// </summary>
         [Output("clusterPartitionHandling")]
         public Output<string> ClusterPartitionHandling { get; private set; } = null!;
 
         /// <summary>
-        /// Set the maximum permissible number of connection.
+        /// Set the maximum permissible number of
+        /// connection.
         /// </summary>
         [Output("connectionMax")]
         public Output<int> ConnectionMax { get; private set; } = null!;
 
         /// <summary>
-        /// A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
+        /// A consumer that has recevied a message and
+        /// does not acknowledge that message within the timeout in
+        /// milliseconds
         /// </summary>
         [Output("consumerTimeout")]
         public Output<int> ConsumerTimeout { get; private set; } = null!;
 
         /// <summary>
-        /// Set the server AMQP 0-9-1 heartbeat timeout in seconds.
+        /// Set the server AMQP 0-9-1 heartbeat timeout
+        /// in seconds.
         /// </summary>
         [Output("heartbeat")]
         public Output<int> Heartbeat { get; private set; } = null!;
@@ -58,39 +80,46 @@ namespace Pulumi.CloudAmqp
         public Output<int> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// Log level for the logger used for log integrations and the CloudAMQP Console log view.
+        /// Log level for the logger used for log
+        /// integrations and the CloudAMQP Console log view.
         /// 
-        /// *Note: Requires a restart of RabbitMQ to be applied.*
+        /// ***Note:*** Requires a restart of RabbitMQ to be applied.
         /// </summary>
         [Output("logExchangeLevel")]
         public Output<string> LogExchangeLevel { get; private set; } = null!;
 
         /// <summary>
-        /// The largest allowed message payload size in bytes.
+        /// The largest allowed message payload size in
+        /// bytes.
         /// </summary>
         [Output("maxMessageSize")]
         public Output<int> MaxMessageSize { get; private set; } = null!;
 
         /// <summary>
-        /// Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
+        /// Size in bytes below which to embed messages
+        /// in the queue index. 0 will turn off payload embedding in the
+        /// queue index.
         /// </summary>
         [Output("queueIndexEmbedMsgsBelow")]
         public Output<int> QueueIndexEmbedMsgsBelow { get; private set; } = null!;
 
         /// <summary>
-        /// Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+        /// Configurable sleep time in seconds between retries
+        /// for RabbitMQ configuration. Default set to 60 seconds.
         /// </summary>
         [Output("sleep")]
         public Output<int?> Sleep { get; private set; } = null!;
 
         /// <summary>
-        /// Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+        /// Configurable timeout time in seconds for RabbitMQ
+        /// configuration. Default set to 3600 seconds.
         /// </summary>
         [Output("timeout")]
         public Output<int?> Timeout { get; private set; } = null!;
 
         /// <summary>
-        /// When the server will enter memory based flow-control as relative to the maximum available memory.
+        /// When the server will enter memory based
+        /// flow-control as relative to the maximum available memory.
         /// </summary>
         [Output("vmMemoryHighWatermark")]
         public Output<double> VmMemoryHighWatermark { get; private set; } = null!;
@@ -142,31 +171,37 @@ namespace Pulumi.CloudAmqp
     public sealed class RabbitConfigurationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Set the maximum permissible number of channels per connection.
+        /// Set the maximum permissible number of
+        /// channels per connection.
         /// </summary>
         [Input("channelMax")]
         public Input<int>? ChannelMax { get; set; }
 
         /// <summary>
-        /// Set how the cluster should handle network partition.
+        /// Set how the cluster should handle network
+        /// partition.
         /// </summary>
         [Input("clusterPartitionHandling")]
         public Input<string>? ClusterPartitionHandling { get; set; }
 
         /// <summary>
-        /// Set the maximum permissible number of connection.
+        /// Set the maximum permissible number of
+        /// connection.
         /// </summary>
         [Input("connectionMax")]
         public Input<int>? ConnectionMax { get; set; }
 
         /// <summary>
-        /// A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
+        /// A consumer that has recevied a message and
+        /// does not acknowledge that message within the timeout in
+        /// milliseconds
         /// </summary>
         [Input("consumerTimeout")]
         public Input<int>? ConsumerTimeout { get; set; }
 
         /// <summary>
-        /// Set the server AMQP 0-9-1 heartbeat timeout in seconds.
+        /// Set the server AMQP 0-9-1 heartbeat timeout
+        /// in seconds.
         /// </summary>
         [Input("heartbeat")]
         public Input<int>? Heartbeat { get; set; }
@@ -178,39 +213,46 @@ namespace Pulumi.CloudAmqp
         public Input<int> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// Log level for the logger used for log integrations and the CloudAMQP Console log view.
+        /// Log level for the logger used for log
+        /// integrations and the CloudAMQP Console log view.
         /// 
-        /// *Note: Requires a restart of RabbitMQ to be applied.*
+        /// ***Note:*** Requires a restart of RabbitMQ to be applied.
         /// </summary>
         [Input("logExchangeLevel")]
         public Input<string>? LogExchangeLevel { get; set; }
 
         /// <summary>
-        /// The largest allowed message payload size in bytes.
+        /// The largest allowed message payload size in
+        /// bytes.
         /// </summary>
         [Input("maxMessageSize")]
         public Input<int>? MaxMessageSize { get; set; }
 
         /// <summary>
-        /// Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
+        /// Size in bytes below which to embed messages
+        /// in the queue index. 0 will turn off payload embedding in the
+        /// queue index.
         /// </summary>
         [Input("queueIndexEmbedMsgsBelow")]
         public Input<int>? QueueIndexEmbedMsgsBelow { get; set; }
 
         /// <summary>
-        /// Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+        /// Configurable sleep time in seconds between retries
+        /// for RabbitMQ configuration. Default set to 60 seconds.
         /// </summary>
         [Input("sleep")]
         public Input<int>? Sleep { get; set; }
 
         /// <summary>
-        /// Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+        /// Configurable timeout time in seconds for RabbitMQ
+        /// configuration. Default set to 3600 seconds.
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
 
         /// <summary>
-        /// When the server will enter memory based flow-control as relative to the maximum available memory.
+        /// When the server will enter memory based
+        /// flow-control as relative to the maximum available memory.
         /// </summary>
         [Input("vmMemoryHighWatermark")]
         public Input<double>? VmMemoryHighWatermark { get; set; }
@@ -224,31 +266,37 @@ namespace Pulumi.CloudAmqp
     public sealed class RabbitConfigurationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Set the maximum permissible number of channels per connection.
+        /// Set the maximum permissible number of
+        /// channels per connection.
         /// </summary>
         [Input("channelMax")]
         public Input<int>? ChannelMax { get; set; }
 
         /// <summary>
-        /// Set how the cluster should handle network partition.
+        /// Set how the cluster should handle network
+        /// partition.
         /// </summary>
         [Input("clusterPartitionHandling")]
         public Input<string>? ClusterPartitionHandling { get; set; }
 
         /// <summary>
-        /// Set the maximum permissible number of connection.
+        /// Set the maximum permissible number of
+        /// connection.
         /// </summary>
         [Input("connectionMax")]
         public Input<int>? ConnectionMax { get; set; }
 
         /// <summary>
-        /// A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
+        /// A consumer that has recevied a message and
+        /// does not acknowledge that message within the timeout in
+        /// milliseconds
         /// </summary>
         [Input("consumerTimeout")]
         public Input<int>? ConsumerTimeout { get; set; }
 
         /// <summary>
-        /// Set the server AMQP 0-9-1 heartbeat timeout in seconds.
+        /// Set the server AMQP 0-9-1 heartbeat timeout
+        /// in seconds.
         /// </summary>
         [Input("heartbeat")]
         public Input<int>? Heartbeat { get; set; }
@@ -260,39 +308,46 @@ namespace Pulumi.CloudAmqp
         public Input<int>? InstanceId { get; set; }
 
         /// <summary>
-        /// Log level for the logger used for log integrations and the CloudAMQP Console log view.
+        /// Log level for the logger used for log
+        /// integrations and the CloudAMQP Console log view.
         /// 
-        /// *Note: Requires a restart of RabbitMQ to be applied.*
+        /// ***Note:*** Requires a restart of RabbitMQ to be applied.
         /// </summary>
         [Input("logExchangeLevel")]
         public Input<string>? LogExchangeLevel { get; set; }
 
         /// <summary>
-        /// The largest allowed message payload size in bytes.
+        /// The largest allowed message payload size in
+        /// bytes.
         /// </summary>
         [Input("maxMessageSize")]
         public Input<int>? MaxMessageSize { get; set; }
 
         /// <summary>
-        /// Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
+        /// Size in bytes below which to embed messages
+        /// in the queue index. 0 will turn off payload embedding in the
+        /// queue index.
         /// </summary>
         [Input("queueIndexEmbedMsgsBelow")]
         public Input<int>? QueueIndexEmbedMsgsBelow { get; set; }
 
         /// <summary>
-        /// Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+        /// Configurable sleep time in seconds between retries
+        /// for RabbitMQ configuration. Default set to 60 seconds.
         /// </summary>
         [Input("sleep")]
         public Input<int>? Sleep { get; set; }
 
         /// <summary>
-        /// Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+        /// Configurable timeout time in seconds for RabbitMQ
+        /// configuration. Default set to 3600 seconds.
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
 
         /// <summary>
-        /// When the server will enter memory based flow-control as relative to the maximum available memory.
+        /// When the server will enter memory based
+        /// flow-control as relative to the maximum available memory.
         /// </summary>
         [Input("vmMemoryHighWatermark")]
         public Input<double>? VmMemoryHighWatermark { get; set; }

@@ -183,7 +183,7 @@ import * as utilities from "./utilities";
  *
  * </details>
  *
- * ## Notification Type reference
+ * ## Notification type reference
  *
  * Valid options for notification type.
  *
@@ -197,28 +197,37 @@ import * as utilities from "./utilities";
  * * victorops
  * * webhook
  *
- * ## Options parameter
- *
- * | Type      | Options  | Description | Note |
- * |---|---|---|---|
- * | Victorops | rk       | Routing key to route alarm notification | - |
- * | PagerDuty | dedupkey | Default the dedup key for PagerDuty is generated depending on what alarm has triggered, but here you can set what `dedup` key to use so even if the same alarm is triggered for different resources you only get one notification. Leave blank to use the generated dedup key. | If multiple alarms are triggered using this recipient, since they all share `dedup` key only the first alarm will be shown in PagerDuty |
- *
  * ## Dependency
  *
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
  *
  * ## Import
  *
- * `cloudamqp_notification` can be imported using CloudAMQP internal identifier of a recipient together
+ * `cloudamqp_notification` can be imported using the resource identifier together with CloudAMQP
  *
- * (CSV separated) with the instance identifier. To retrieve the identifier of a recipient, use
+ * instance identifier (CSV separated). To retrieve the resource identifier, use
  *
- * [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-recipients).
+ * [CloudAMQP API list recipients].
+ *
+ * From Terraform v1.5.0, the `import` block can be used to import this resource:
+ *
+ * hcl
+ *
+ * import {
+ *
+ *   to = cloudamqp_notification.recipient
+ *
+ *   id = format("<id>,%s", cloudamqp_instance.instance.id)
+ *
+ * }
+ *
+ * Or use Terraform CLI:
  *
  * ```sh
  * $ pulumi import cloudamqp:index/notification:Notification recipient <id>,<instance_id>`
  * ```
+ *
+ * [CloudAMQP API list recipients]: https://docs.cloudamqp.com/cloudamqp_api.html#list-recipients
  */
 export class Notification extends pulumi.CustomResource {
     /**
@@ -263,6 +272,15 @@ export class Notification extends pulumi.CustomResource {
     /**
      * An array of reponders (only for OpsGenie). Each `responders` block
      * consists of the field documented below.
+     *
+     * ___
+     *
+     * The options parameter:
+     *
+     * * rk        - (Optional) Routing key to route alarm notification (can be used with Victorops).
+     * * dedupkey  - (Optional) If multiple alarms are triggered using a recipient with this key, only the
+     * the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
+     * to use the generated dedup key.
      *
      * ___
      *
@@ -342,6 +360,15 @@ export interface NotificationState {
      *
      * ___
      *
+     * The options parameter:
+     *
+     * * rk        - (Optional) Routing key to route alarm notification (can be used with Victorops).
+     * * dedupkey  - (Optional) If multiple alarms are triggered using a recipient with this key, only the
+     * the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
+     * to use the generated dedup key.
+     *
+     * ___
+     *
      * The `responders` block consists of:
      */
     responders?: pulumi.Input<pulumi.Input<inputs.NotificationResponder>[]>;
@@ -374,6 +401,15 @@ export interface NotificationArgs {
     /**
      * An array of reponders (only for OpsGenie). Each `responders` block
      * consists of the field documented below.
+     *
+     * ___
+     *
+     * The options parameter:
+     *
+     * * rk        - (Optional) Routing key to route alarm notification (can be used with Victorops).
+     * * dedupkey  - (Optional) If multiple alarms are triggered using a recipient with this key, only the
+     * the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
+     * to use the generated dedup key.
      *
      * ___
      *

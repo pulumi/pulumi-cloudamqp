@@ -29,12 +29,14 @@ class VpcPeeringArgs:
         :param pulumi.Input[str] peering_id: Peering identifier created by AW peering request.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
                
-               ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
-        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
-        :param pulumi.Input[int] timeout: Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+               ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
+        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) between retries for accepting or
+               removing peering. Default set to 60 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time (seconds) for accepting or removing
+               peering. Default set to 3600 seconds.
         :param pulumi.Input[str] vpc_id: The managed VPC identifier.
                
-               ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
+               ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
         """
         pulumi.set(__self__, "peering_id", peering_id)
         if instance_id is not None:
@@ -64,7 +66,7 @@ class VpcPeeringArgs:
         """
         The CloudAMQP instance identifier.
 
-        ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+        ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
         """
         return pulumi.get(self, "instance_id")
 
@@ -76,7 +78,8 @@ class VpcPeeringArgs:
     @pulumi.getter
     def sleep(self) -> Optional[pulumi.Input[int]]:
         """
-        Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+        Configurable sleep time (seconds) between retries for accepting or
+        removing peering. Default set to 60 seconds.
         """
         return pulumi.get(self, "sleep")
 
@@ -88,7 +91,8 @@ class VpcPeeringArgs:
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        Configurable timeout time (seconds) for accepting or removing
+        peering. Default set to 3600 seconds.
         """
         return pulumi.get(self, "timeout")
 
@@ -102,7 +106,7 @@ class VpcPeeringArgs:
         """
         The managed VPC identifier.
 
-        ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
+        ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
         """
         return pulumi.get(self, "vpc_id")
 
@@ -124,14 +128,16 @@ class _VpcPeeringState:
         Input properties used for looking up and filtering VpcPeering resources.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
                
-               ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+               ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
         :param pulumi.Input[str] peering_id: Peering identifier created by AW peering request.
-        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) between retries for accepting or
+               removing peering. Default set to 60 seconds.
         :param pulumi.Input[str] status: VPC peering status
-        :param pulumi.Input[int] timeout: Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time (seconds) for accepting or removing
+               peering. Default set to 3600 seconds.
         :param pulumi.Input[str] vpc_id: The managed VPC identifier.
                
-               ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
+               ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
         """
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
@@ -152,7 +158,7 @@ class _VpcPeeringState:
         """
         The CloudAMQP instance identifier.
 
-        ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+        ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
         """
         return pulumi.get(self, "instance_id")
 
@@ -176,7 +182,8 @@ class _VpcPeeringState:
     @pulumi.getter
     def sleep(self) -> Optional[pulumi.Input[int]]:
         """
-        Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+        Configurable sleep time (seconds) between retries for accepting or
+        removing peering. Default set to 60 seconds.
         """
         return pulumi.get(self, "sleep")
 
@@ -200,7 +207,8 @@ class _VpcPeeringState:
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        Configurable timeout time (seconds) for accepting or removing
+        peering. Default set to 3600 seconds.
         """
         return pulumi.get(self, "timeout")
 
@@ -214,7 +222,7 @@ class _VpcPeeringState:
         """
         The managed VPC identifier.
 
-        ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
+        ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
         """
         return pulumi.get(self, "vpc_id")
 
@@ -237,25 +245,27 @@ class VpcPeering(pulumi.CustomResource):
         """
         ## Import
 
-        ### Peering Identifier
+        ### Peering identifier
 
-        This can be found as *peering connection id* in your AWS VPC dashboard/Peering connections, for the correct VPC peering.
+        This can be found as *peering connection id* in your AWS VPC dashboard/Peering connections, for the
 
-        Also available as the identifier for *aws_vpc_peering_connection* resource or
+        correct VPC peering.
 
-        data source.
+        Also available as the identifier for `aws_vpc_peering_connection` [resource] or [data source].
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
                
-               ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+               ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
         :param pulumi.Input[str] peering_id: Peering identifier created by AW peering request.
-        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
-        :param pulumi.Input[int] timeout: Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) between retries for accepting or
+               removing peering. Default set to 60 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time (seconds) for accepting or removing
+               peering. Default set to 3600 seconds.
         :param pulumi.Input[str] vpc_id: The managed VPC identifier.
                
-               ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
+               ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
         """
         ...
     @overload
@@ -266,13 +276,13 @@ class VpcPeering(pulumi.CustomResource):
         """
         ## Import
 
-        ### Peering Identifier
+        ### Peering identifier
 
-        This can be found as *peering connection id* in your AWS VPC dashboard/Peering connections, for the correct VPC peering.
+        This can be found as *peering connection id* in your AWS VPC dashboard/Peering connections, for the
 
-        Also available as the identifier for *aws_vpc_peering_connection* resource or
+        correct VPC peering.
 
-        data source.
+        Also available as the identifier for `aws_vpc_peering_connection` [resource] or [data source].
 
         :param str resource_name: The name of the resource.
         :param VpcPeeringArgs args: The arguments to use to populate this resource's properties.
@@ -336,14 +346,16 @@ class VpcPeering(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance identifier.
                
-               ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+               ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
         :param pulumi.Input[str] peering_id: Peering identifier created by AW peering request.
-        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+        :param pulumi.Input[int] sleep: Configurable sleep time (seconds) between retries for accepting or
+               removing peering. Default set to 60 seconds.
         :param pulumi.Input[str] status: VPC peering status
-        :param pulumi.Input[int] timeout: Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time (seconds) for accepting or removing
+               peering. Default set to 3600 seconds.
         :param pulumi.Input[str] vpc_id: The managed VPC identifier.
                
-               ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
+               ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -363,7 +375,7 @@ class VpcPeering(pulumi.CustomResource):
         """
         The CloudAMQP instance identifier.
 
-        ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+        ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
         """
         return pulumi.get(self, "instance_id")
 
@@ -379,7 +391,8 @@ class VpcPeering(pulumi.CustomResource):
     @pulumi.getter
     def sleep(self) -> pulumi.Output[Optional[int]]:
         """
-        Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+        Configurable sleep time (seconds) between retries for accepting or
+        removing peering. Default set to 60 seconds.
         """
         return pulumi.get(self, "sleep")
 
@@ -395,7 +408,8 @@ class VpcPeering(pulumi.CustomResource):
     @pulumi.getter
     def timeout(self) -> pulumi.Output[Optional[int]]:
         """
-        Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        Configurable timeout time (seconds) for accepting or removing
+        peering. Default set to 3600 seconds.
         """
         return pulumi.get(self, "timeout")
 
@@ -405,7 +419,7 @@ class VpcPeering(pulumi.CustomResource):
         """
         The managed VPC identifier.
 
-        ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
+        ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
         """
         return pulumi.get(self, "vpc_id")
 

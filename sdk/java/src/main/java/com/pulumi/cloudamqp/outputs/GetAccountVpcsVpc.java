@@ -14,74 +14,74 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetAccountVpcsVpc {
     /**
-     * @return The instance identifier
+     * @return The VPC identifier.
      * 
      */
     private Integer id;
     /**
-     * @return The name of the instance
+     * @return The VPC instance name.
      * 
      */
     private String name;
     /**
-     * @return The region were the instanece is located in
+     * @return The region the VPC is hosted in.
      * 
      */
     private String region;
     /**
-     * @return The VPC subnet
+     * @return The VPC subnet.
      * 
      */
     private String subnet;
     /**
-     * @return Tag the VPC instance with optional tags
+     * @return Optional tags set for the VPC.
      * 
      */
     private @Nullable List<String> tags;
     /**
-     * @return VPC name given when hosted at the cloud provider
+     * @return VPC name given when hosted at the cloud provider.
      * 
      */
     private String vpcName;
 
     private GetAccountVpcsVpc() {}
     /**
-     * @return The instance identifier
+     * @return The VPC identifier.
      * 
      */
     public Integer id() {
         return this.id;
     }
     /**
-     * @return The name of the instance
+     * @return The VPC instance name.
      * 
      */
     public String name() {
         return this.name;
     }
     /**
-     * @return The region were the instanece is located in
+     * @return The region the VPC is hosted in.
      * 
      */
     public String region() {
         return this.region;
     }
     /**
-     * @return The VPC subnet
+     * @return The VPC subnet.
      * 
      */
     public String subnet() {
         return this.subnet;
     }
     /**
-     * @return Tag the VPC instance with optional tags
+     * @return Optional tags set for the VPC.
      * 
      */
     public List<String> tags() {
         return this.tags == null ? List.of() : this.tags;
     }
     /**
-     * @return VPC name given when hosted at the cloud provider
+     * @return VPC name given when hosted at the cloud provider.
      * 
      */
     public String vpcName() {

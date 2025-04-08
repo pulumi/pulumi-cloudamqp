@@ -19,7 +19,23 @@ import javax.annotation.Nullable;
 /**
  * ## Import
  * 
- * `cloudamqp_security_firewall` can be imported using CloudAMQP instance identifier.
+ * `cloudamqp_security_firewall` can be imported using CloudAMQP instance identifier. To
+ * 
+ * retrieve the identifier, use [CloudAMQP API list intances].
+ * 
+ * From Terraform v1.5.0, the `import` block can be used to import this resource:
+ * 
+ * hcl
+ * 
+ * import {
+ * 
+ *   to = cloudamqp_security_firewall.firewall
+ * 
+ *   id = cloudamqp_instance.instance.id
+ * 
+ * }
+ * 
+ * Or use Terraform CLI:
  * 
  * ```sh
  * $ pulumi import cloudamqp:index/securityFirewall:SecurityFirewall firewall &lt;instance_id&gt;`
@@ -43,35 +59,40 @@ public class SecurityFirewall extends com.pulumi.resources.CustomResource {
         return this.instanceId;
     }
     /**
-     * An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+     * An array of rules, minimum of 1 needs to be configured. Each `rules`
+     * block consists of the field documented below.
      * 
      */
     @Export(name="rules", refs={List.class,SecurityFirewallRule.class}, tree="[0,1]")
     private Output<List<SecurityFirewallRule>> rules;
 
     /**
-     * @return An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+     * @return An array of rules, minimum of 1 needs to be configured. Each `rules`
+     * block consists of the field documented below.
      * 
      */
     public Output<List<SecurityFirewallRule>> rules() {
         return this.rules;
     }
     /**
-     * Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+     * Configurable sleep time in seconds between retries for firewall
+     * configuration. Default set to 30 seconds.
      * 
      */
     @Export(name="sleep", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> sleep;
 
     /**
-     * @return Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+     * @return Configurable sleep time in seconds between retries for firewall
+     * configuration. Default set to 30 seconds.
      * 
      */
     public Output<Optional<Integer>> sleep() {
         return Codegen.optional(this.sleep);
     }
     /**
-     * Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+     * Configurable timeout time in seconds for firewall configuration.
+     * Default set to 1800 seconds.
      * 
      * ***
      * 
@@ -82,7 +103,8 @@ public class SecurityFirewall extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ Integer> timeout;
 
     /**
-     * @return Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+     * @return Configurable timeout time in seconds for firewall configuration.
+     * Default set to 1800 seconds.
      * 
      * ***
      * 

@@ -5,238 +5,29 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * This resource is a generic way to handle PrivateLink (AWS and Azure) and Private Service Connect (GCP).
- * Communication between resources can be done just as they were living inside a VPC. CloudAMQP creates an Endpoint
- * Service to connect the VPC and creating a new network interface to handle the communicate.
- *
- * If no existing VPC available when enable VPC connect, a new VPC will be created with subnet `10.52.72.0/24`.
- *
- * More information can be found at: [CloudAMQP VPC Connect](https://www.cloudamqp.com/docs/cloudamqp-vpc-connect.html)
- *
- * > **Note:** Enabling VPC Connect will automatically add a firewall rule.
- *
- * <details>
- *  <summary>
- *     <b>
- *       <i>Default PrivateLink firewall rule [AWS, Azure]</i>
- *     </b>
- *   </summary>
- *
- * ## Example Usage
- *
- * <details>
- *   <summary>
- *     <b>
- *       <i>Enable VPC Connect (PrivateLink) in AWS</i>
- *     </b>
- *   </summary>
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const vpc = new cloudamqp.Vpc("vpc", {
- *     name: "Standalone VPC",
- *     region: "amazon-web-services::us-west-1",
- *     subnet: "10.56.72.0/24",
- *     tags: [],
- * });
- * const instance = new cloudamqp.Instance("instance", {
- *     name: "Instance 01",
- *     plan: "bunny-1",
- *     region: "amazon-web-services::us-west-1",
- *     tags: [],
- *     vpcId: vpc.id,
- *     keepAssociatedVpc: true,
- * });
- * const vpcConnect = new cloudamqp.VpcConnect("vpc_connect", {
- *     instanceId: instance.id,
- *     region: instance.region,
- *     allowedPrincipals: ["arn:aws:iam::aws-account-id:user/user-name"],
- * });
- * ```
- *
- * </details>
- *
- * <details>
- *   <summary>
- *     <b>
- *       <i>Enable VPC Connect (PrivateLink) in Azure</i>
- *     </b>
- *   </summary>
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const vpc = new cloudamqp.Vpc("vpc", {
- *     name: "Standalone VPC",
- *     region: "azure-arm::westus",
- *     subnet: "10.56.72.0/24",
- *     tags: [],
- * });
- * const instance = new cloudamqp.Instance("instance", {
- *     name: "Instance 01",
- *     plan: "bunny-1",
- *     region: "azure-arm::westus",
- *     tags: [],
- *     vpcId: vpc.id,
- *     keepAssociatedVpc: true,
- * });
- * const vpcConnect = new cloudamqp.VpcConnect("vpc_connect", {
- *     instanceId: instance.id,
- *     region: instance.region,
- *     approvedSubscriptions: ["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"],
- * });
- * ```
- *
- * The attribute `serviceName` found in resource `cloudamqp.VpcConnect` corresponds to the alias in
- * the resource `azurermPrivateEndpoint` of the Azure provider. This can be used when creating the
- * private endpoint.
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as azurerm from "@pulumi/azurerm";
- *
- * const example = new azurerm.index.PrivateEndpoint("example", {
- *     name: "example-endpoint",
- *     location: exampleAzurermResourceGroup.location,
- *     resourceGroupName: exampleAzurermResourceGroup.name,
- *     subnetId: subnet.id,
- *     privateServiceConnection: [{
- *         name: "example-privateserviceconnection",
- *         privateConnectionResourceAlias: vpcConnect.serviceName,
- *         isManualConnection: true,
- *         requestMessage: "PL",
- *     }],
- * });
- * ```
- *
- * More information about the resource and argument can be found here:
- * private_connection_resource_alias. Or check their example "Using a Private Link
- * Service Alias with existing resources:".
- *
- * </details>
- *
- * <details>
- *   <summary>
- *     <b>
- *       <i>Enable VPC Connect (Private Service Connect) in GCP</i>
- *     </b>
- *   </summary>
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const vpc = new cloudamqp.Vpc("vpc", {
- *     name: "Standalone VPC",
- *     region: "google-compute-engine::us-west1",
- *     subnet: "10.56.72.0/24",
- *     tags: [],
- * });
- * const instance = new cloudamqp.Instance("instance", {
- *     name: "Instance 01",
- *     plan: "bunny-1",
- *     region: "google-compute-engine::us-west1",
- *     tags: [],
- *     vpcId: vpc.id,
- *     keepAssociatedVpc: true,
- * });
- * const vpcConnect = new cloudamqp.VpcConnect("vpc_connect", {
- *     instanceId: instance.id,
- *     region: instance.region,
- *     allowedProjects: ["some-project-123456"],
- * });
- * ```
- *
- * </details>
- *
- * ### With Additional Firewall Rules
- *
- * <details>
- *   <summary>
- *     <b>
- *       <i>CloudAMQP instance in an existing VPC with managed firewall rules</i>
- *     </b>
- *   </summary>
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const vpc = new cloudamqp.Vpc("vpc", {
- *     name: "Standalone VPC",
- *     region: "amazon-web-services::us-west-1",
- *     subnet: "10.56.72.0/24",
- *     tags: [],
- * });
- * const instance = new cloudamqp.Instance("instance", {
- *     name: "Instance 01",
- *     plan: "bunny-1",
- *     region: "amazon-web-services::us-west-1",
- *     tags: [],
- *     vpcId: vpc.id,
- *     keepAssociatedVpc: true,
- * });
- * const vpcConnect = new cloudamqp.VpcConnect("vpc_connect", {
- *     instanceId: instance.id,
- *     allowedPrincipals: ["arn:aws:iam::aws-account-id:user/user-name"],
- * });
- * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
- *     instanceId: instance.id,
- *     rules: [
- *         {
- *             description: "Custom PrivateLink setup",
- *             ip: vpc.subnet,
- *             ports: [],
- *             services: [
- *                 "AMQP",
- *                 "AMQPS",
- *                 "HTTPS",
- *                 "STREAM",
- *                 "STREAM_SSL",
- *             ],
- *         },
- *         {
- *             description: "MGMT interface",
- *             ip: "0.0.0.0/0",
- *             ports: [],
- *             services: ["HTTPS"],
- *         },
- *     ],
- * }, {
- *     dependsOn: [vpcConnect],
- * });
- * ```
- *
- * </details>
- *
- * ## Depedency
- *
- * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
- *
- * Since `region` also is required, suggest to reuse the argument from CloudAMQP instance,
- * `cloudamqp_instance.instance.region`.
- *
- * ## Create VPC Connect with additional firewall rules
- *
- * To create a PrivateLink/Private Service Connect configuration with additional firewall rules, it's required to chain the cloudamqp.SecurityFirewall
- * resource to avoid parallel conflicting resource calls. You can do this by making the firewall
- * resource depend on the VPC Connect resource, `cloudamqp_vpc_connect.vpc_connect`.
- *
- * Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
- * the VPC Connect also needs to be added.
- *
  * ## Import
  *
- * `cloudamqp_vpc_connect` can be imported using CloudAMQP internal identifier.
+ * `cloudamqp_vpc_connect` can be imported using CloudAMQP instance identifier. To
+ *
+ * retrieve the identifier, use [CloudAMQP API list intances].
+ *
+ * From Terraform v1.5.0, the `import` block can be used to import this resource:
+ *
+ * hcl
+ *
+ * import {
+ *
+ *   to = cloudamqp_vpc_connect.this
+ *
+ *   id = cloudamqp_instance.instance.id
+ *
+ * }
+ *
+ * Or use Terraform CLI:
  *
  * ```sh
  * $ pulumi import cloudamqp:index/vpcConnect:VpcConnect vpc_connect <id>`
  * ```
- *
- * The resource uses the same identifier as the CloudAMQP instance. To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md).
  */
 export class VpcConnect extends pulumi.CustomResource {
     /**
@@ -279,7 +70,8 @@ export class VpcConnect extends pulumi.CustomResource {
      */
     public readonly allowedProjects!: pulumi.Output<string[] | undefined>;
     /**
-     * List of approved subscriptions used by Azure, see below table.
+     * List of approved subscriptions used by Azure, see below
+     * table.
      */
     public readonly approvedSubscriptions!: pulumi.Output<string[] | undefined>;
     /**
@@ -295,8 +87,8 @@ export class VpcConnect extends pulumi.CustomResource {
      */
     public /*out*/ readonly serviceName!: pulumi.Output<string>;
     /**
-     * Configurable sleep time (seconds) when enable Private Service Connect.
-     * Default set to 10 seconds.
+     * Configurable sleep time (seconds) when enable Private
+     * Service Connect. Default set to 10 seconds.
      */
     public readonly sleep!: pulumi.Output<number | undefined>;
     /**
@@ -304,20 +96,19 @@ export class VpcConnect extends pulumi.CustomResource {
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
-     * Configurable timeout time (seconds) when enable Private Service Connect.
-     * Default set to 1800 seconds.
+     * Configurable timeout time (seconds) when enable Private
+     * Service Connect. Default set to 1800 seconds.
      *
      * ___
      *
-     * The `allowedPrincipals`, `approvedSubscriptions` or `allowedProjects` data depends on the provider platform:
+     * The `allowedPrincipals`, `approvedSubscriptions` or `allowedProjects` data depends on the
+     * provider platform:
      *
-     * | Platform | Description         | Format                                                                                                                             |
-     * |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-     * | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root<br /> arn:aws:iam::aws-account-id:user/user-name<br /> arn:aws:iam::aws-account-id:role/role-name |
-     * | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-     * | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-     *
-     * *https://cloud.google.com/resource-manager/reference/rest/v1/projects
+     * | Platform | Description | Format |
+     * |---|---|---|
+     * | AWS | IAM ARN principals | arn:aws:iam::aws-account-id:root<br>arn:aws:iam::aws-account-id:user/user-name<br> arn:aws:iam::aws-account-id:role/role-name |
+     * | Azure | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX |
+     * | GCP | Project IDs [Google docs] | 6 to 30 lowercase letters, digits, or hyphens |
      */
     public readonly timeout!: pulumi.Output<number | undefined>;
 
@@ -385,7 +176,8 @@ export interface VpcConnectState {
      */
     allowedProjects?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * List of approved subscriptions used by Azure, see below table.
+     * List of approved subscriptions used by Azure, see below
+     * table.
      */
     approvedSubscriptions?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -401,8 +193,8 @@ export interface VpcConnectState {
      */
     serviceName?: pulumi.Input<string>;
     /**
-     * Configurable sleep time (seconds) when enable Private Service Connect.
-     * Default set to 10 seconds.
+     * Configurable sleep time (seconds) when enable Private
+     * Service Connect. Default set to 10 seconds.
      */
     sleep?: pulumi.Input<number>;
     /**
@@ -410,20 +202,19 @@ export interface VpcConnectState {
      */
     status?: pulumi.Input<string>;
     /**
-     * Configurable timeout time (seconds) when enable Private Service Connect.
-     * Default set to 1800 seconds.
+     * Configurable timeout time (seconds) when enable Private
+     * Service Connect. Default set to 1800 seconds.
      *
      * ___
      *
-     * The `allowedPrincipals`, `approvedSubscriptions` or `allowedProjects` data depends on the provider platform:
+     * The `allowedPrincipals`, `approvedSubscriptions` or `allowedProjects` data depends on the
+     * provider platform:
      *
-     * | Platform | Description         | Format                                                                                                                             |
-     * |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-     * | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root<br /> arn:aws:iam::aws-account-id:user/user-name<br /> arn:aws:iam::aws-account-id:role/role-name |
-     * | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-     * | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-     *
-     * *https://cloud.google.com/resource-manager/reference/rest/v1/projects
+     * | Platform | Description | Format |
+     * |---|---|---|
+     * | AWS | IAM ARN principals | arn:aws:iam::aws-account-id:root<br>arn:aws:iam::aws-account-id:user/user-name<br> arn:aws:iam::aws-account-id:role/role-name |
+     * | Azure | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX |
+     * | GCP | Project IDs [Google docs] | 6 to 30 lowercase letters, digits, or hyphens |
      */
     timeout?: pulumi.Input<number>;
 }
@@ -441,7 +232,8 @@ export interface VpcConnectArgs {
      */
     allowedProjects?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * List of approved subscriptions used by Azure, see below table.
+     * List of approved subscriptions used by Azure, see below
+     * table.
      */
     approvedSubscriptions?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -453,25 +245,24 @@ export interface VpcConnectArgs {
      */
     region: pulumi.Input<string>;
     /**
-     * Configurable sleep time (seconds) when enable Private Service Connect.
-     * Default set to 10 seconds.
+     * Configurable sleep time (seconds) when enable Private
+     * Service Connect. Default set to 10 seconds.
      */
     sleep?: pulumi.Input<number>;
     /**
-     * Configurable timeout time (seconds) when enable Private Service Connect.
-     * Default set to 1800 seconds.
+     * Configurable timeout time (seconds) when enable Private
+     * Service Connect. Default set to 1800 seconds.
      *
      * ___
      *
-     * The `allowedPrincipals`, `approvedSubscriptions` or `allowedProjects` data depends on the provider platform:
+     * The `allowedPrincipals`, `approvedSubscriptions` or `allowedProjects` data depends on the
+     * provider platform:
      *
-     * | Platform | Description         | Format                                                                                                                             |
-     * |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-     * | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root<br /> arn:aws:iam::aws-account-id:user/user-name<br /> arn:aws:iam::aws-account-id:role/role-name |
-     * | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-     * | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-     *
-     * *https://cloud.google.com/resource-manager/reference/rest/v1/projects
+     * | Platform | Description | Format |
+     * |---|---|---|
+     * | AWS | IAM ARN principals | arn:aws:iam::aws-account-id:root<br>arn:aws:iam::aws-account-id:user/user-name<br> arn:aws:iam::aws-account-id:role/role-name |
+     * | Azure | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX |
+     * | GCP | Project IDs [Google docs] | 6 to 30 lowercase letters, digits, or hyphens |
      */
     timeout?: pulumi.Input<number>;
 }

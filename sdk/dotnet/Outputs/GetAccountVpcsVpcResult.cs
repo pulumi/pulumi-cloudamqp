@@ -14,27 +14,27 @@ namespace Pulumi.CloudAmqp.Outputs
     public sealed class GetAccountVpcsVpcResult
     {
         /// <summary>
-        /// The instance identifier
+        /// The VPC identifier.
         /// </summary>
         public readonly int Id;
         /// <summary>
-        /// The name of the instance
+        /// The VPC instance name.
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The region were the instanece is located in
+        /// The region the VPC is hosted in.
         /// </summary>
         public readonly string Region;
         /// <summary>
-        /// The VPC subnet
+        /// The VPC subnet.
         /// </summary>
         public readonly string Subnet;
         /// <summary>
-        /// Tag the VPC instance with optional tags
+        /// Optional tags set for the VPC.
         /// </summary>
         public readonly ImmutableArray<string> Tags;
         /// <summary>
-        /// VPC name given when hosted at the cloud provider
+        /// VPC name given when hosted at the cloud provider.
         /// </summary>
         public readonly string VpcName;
 

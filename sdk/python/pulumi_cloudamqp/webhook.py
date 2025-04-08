@@ -32,7 +32,8 @@ class WebhookArgs:
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[str] queue: A (durable) queue on your RabbitMQ instance.
         :param pulumi.Input[str] vhost: The vhost the queue resides in.
-        :param pulumi.Input[str] webhook_uri: A POST request will be made for each message in the queue to this endpoint.
+        :param pulumi.Input[str] webhook_uri: A POST request will be made for each message in the queue to this
+               endpoint.
         :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for webhook
         :param pulumi.Input[int] timeout: Configurable timeout time in seconds for webhook
         """
@@ -98,7 +99,8 @@ class WebhookArgs:
     @pulumi.getter(name="webhookUri")
     def webhook_uri(self) -> pulumi.Input[str]:
         """
-        A POST request will be made for each message in the queue to this endpoint.
+        A POST request will be made for each message in the queue to this
+        endpoint.
         """
         return pulumi.get(self, "webhook_uri")
 
@@ -149,7 +151,8 @@ class _WebhookState:
         :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for webhook
         :param pulumi.Input[int] timeout: Configurable timeout time in seconds for webhook
         :param pulumi.Input[str] vhost: The vhost the queue resides in.
-        :param pulumi.Input[str] webhook_uri: A POST request will be made for each message in the queue to this endpoint.
+        :param pulumi.Input[str] webhook_uri: A POST request will be made for each message in the queue to this
+               endpoint.
         """
         if concurrency is not None:
             pulumi.set(__self__, "concurrency", concurrency)
@@ -242,7 +245,8 @@ class _WebhookState:
     @pulumi.getter(name="webhookUri")
     def webhook_uri(self) -> Optional[pulumi.Input[str]]:
         """
-        A POST request will be made for each message in the queue to this endpoint.
+        A POST request will be made for each message in the queue to this
+        endpoint.
         """
         return pulumi.get(self, "webhook_uri")
 
@@ -267,7 +271,23 @@ class Webhook(pulumi.CustomResource):
         """
         ## Import
 
-        `cloudamqp_webhook` can be imported using the resource identifier together with CloudAMQP instance identifier. The identifiers are CSV separated, see example below.
+        `cloudamqp_webhook` can be imported using the resource identifier together with CloudAMQP instance
+
+        identifier (CSV separated). To retrieve the resource identifier, use [CloudAMQP API list webhooks].
+
+        From Terraform v1.5.0, the `import` block can be used to import this resource:
+
+        hcl
+
+        import {
+
+          to = cloudamqp_webhook.webhook_queue
+
+          id = format("<id>,%s", cloudamqp_instance.instance.id)
+
+        }
+
+        Or use Terraform CLI:
 
         ```sh
         $ pulumi import cloudamqp:index/webhook:Webhook webhook_queue <id>,<instance_id>`
@@ -281,7 +301,8 @@ class Webhook(pulumi.CustomResource):
         :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for webhook
         :param pulumi.Input[int] timeout: Configurable timeout time in seconds for webhook
         :param pulumi.Input[str] vhost: The vhost the queue resides in.
-        :param pulumi.Input[str] webhook_uri: A POST request will be made for each message in the queue to this endpoint.
+        :param pulumi.Input[str] webhook_uri: A POST request will be made for each message in the queue to this
+               endpoint.
         """
         ...
     @overload
@@ -292,7 +313,23 @@ class Webhook(pulumi.CustomResource):
         """
         ## Import
 
-        `cloudamqp_webhook` can be imported using the resource identifier together with CloudAMQP instance identifier. The identifiers are CSV separated, see example below.
+        `cloudamqp_webhook` can be imported using the resource identifier together with CloudAMQP instance
+
+        identifier (CSV separated). To retrieve the resource identifier, use [CloudAMQP API list webhooks].
+
+        From Terraform v1.5.0, the `import` block can be used to import this resource:
+
+        hcl
+
+        import {
+
+          to = cloudamqp_webhook.webhook_queue
+
+          id = format("<id>,%s", cloudamqp_instance.instance.id)
+
+        }
+
+        Or use Terraform CLI:
 
         ```sh
         $ pulumi import cloudamqp:index/webhook:Webhook webhook_queue <id>,<instance_id>`
@@ -376,7 +413,8 @@ class Webhook(pulumi.CustomResource):
         :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for webhook
         :param pulumi.Input[int] timeout: Configurable timeout time in seconds for webhook
         :param pulumi.Input[str] vhost: The vhost the queue resides in.
-        :param pulumi.Input[str] webhook_uri: A POST request will be made for each message in the queue to this endpoint.
+        :param pulumi.Input[str] webhook_uri: A POST request will be made for each message in the queue to this
+               endpoint.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -443,7 +481,8 @@ class Webhook(pulumi.CustomResource):
     @pulumi.getter(name="webhookUri")
     def webhook_uri(self) -> pulumi.Output[str]:
         """
-        A POST request will be made for each message in the queue to this endpoint.
+        A POST request will be made for each message in the queue to this
+        endpoint.
         """
         return pulumi.get(self, "webhook_uri")
 

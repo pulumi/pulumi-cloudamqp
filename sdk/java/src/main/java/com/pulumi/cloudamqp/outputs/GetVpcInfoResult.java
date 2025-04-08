@@ -19,10 +19,26 @@ public final class GetVpcInfoResult {
      */
     private String id;
     private @Nullable Integer instanceId;
+    /**
+     * @return The name of the CloudAMQP instance.
+     * 
+     */
     private String name;
+    /**
+     * @return AWS account identifier.
+     * 
+     */
     private String ownerId;
+    /**
+     * @return AWS security group identifier.
+     * 
+     */
     private String securityGroupId;
     private @Nullable String vpcId;
+    /**
+     * @return Dedicated VPC subnet.
+     * 
+     */
     private String vpcSubnet;
 
     private GetVpcInfoResult() {}
@@ -36,18 +52,34 @@ public final class GetVpcInfoResult {
     public Optional<Integer> instanceId() {
         return Optional.ofNullable(this.instanceId);
     }
+    /**
+     * @return The name of the CloudAMQP instance.
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return AWS account identifier.
+     * 
+     */
     public String ownerId() {
         return this.ownerId;
     }
+    /**
+     * @return AWS security group identifier.
+     * 
+     */
     public String securityGroupId() {
         return this.securityGroupId;
     }
     public Optional<String> vpcId() {
         return Optional.ofNullable(this.vpcId);
     }
+    /**
+     * @return Dedicated VPC subnet.
+     * 
+     */
     public String vpcSubnet() {
         return this.vpcSubnet;
     }

@@ -42,6 +42,8 @@ public final class SecurityFirewallRuleArgs extends com.pulumi.resources.Resourc
      * | AMQP         | 5672  |
      * | AMQPS        | 5671  |
      * | HTTPS        | 443   |
+     * | MQTT         | 1883  |
+     * | MQTTS        | 8883  |
      * 
      */
     @Import(name="description")
@@ -71,6 +73,8 @@ public final class SecurityFirewallRuleArgs extends com.pulumi.resources.Resourc
      * | AMQP         | 5672  |
      * | AMQPS        | 5671  |
      * | HTTPS        | 443   |
+     * | MQTT         | 1883  |
+     * | MQTTS        | 8883  |
      * 
      */
     public Optional<Output<String>> description() {
@@ -173,6 +177,8 @@ public final class SecurityFirewallRuleArgs extends com.pulumi.resources.Resourc
          * | AMQP         | 5672  |
          * | AMQPS        | 5671  |
          * | HTTPS        | 443   |
+         * | MQTT         | 1883  |
+         * | MQTTS        | 8883  |
          * 
          * @return builder
          * 
@@ -206,6 +212,8 @@ public final class SecurityFirewallRuleArgs extends com.pulumi.resources.Resourc
          * | AMQP         | 5672  |
          * | AMQPS        | 5671  |
          * | HTTPS        | 443   |
+         * | MQTT         | 1883  |
+         * | MQTTS        | 8883  |
          * 
          * @return builder
          * 

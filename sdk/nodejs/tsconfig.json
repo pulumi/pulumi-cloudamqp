@@ -36,6 +36,7 @@
         "integrationAwsEventbridge.ts",
         "integrationLog.ts",
         "integrationMetric.ts",
+        "maintenanceWindow.ts",
         "nodeActions.ts",
         "notification.ts",
         "plugin.ts",

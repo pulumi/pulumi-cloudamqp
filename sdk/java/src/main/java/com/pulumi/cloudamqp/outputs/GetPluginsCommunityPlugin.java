@@ -10,17 +10,41 @@ import java.util.Objects;
 
 @CustomType
 public final class GetPluginsCommunityPlugin {
+    /**
+     * @return Description of what the plugin does.
+     * 
+     */
     private String description;
+    /**
+     * @return The type of the recipient.
+     * 
+     */
     private String name;
+    /**
+     * @return Min. required Rabbit MQ version to be used.
+     * 
+     */
     private String require;
 
     private GetPluginsCommunityPlugin() {}
+    /**
+     * @return Description of what the plugin does.
+     * 
+     */
     public String description() {
         return this.description;
     }
+    /**
+     * @return The type of the recipient.
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return Min. required Rabbit MQ version to be used.
+     * 
+     */
     public String require() {
         return this.require;
     }

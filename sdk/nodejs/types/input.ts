@@ -14,18 +14,23 @@ export interface ExtraDiskSizeNode {
      * Subscription plan disk size
      */
     diskSize?: pulumi.Input<number>;
+    /**
+     * Name of the node.
+     */
     name?: pulumi.Input<string>;
 }
 
 export interface InstanceCopySetting {
     /**
-     * Array of one or more settings to be copied. Allowed values: [alarms, config, definitions, firewall, logs, metrics, plugins]
+     * Array of one or more settings to be copied. Allowed values:
+     * [alarms, config, definitions, firewall, logs, metrics, plugins]
      *
-     * See more below, copy settings
+     * See more below, [copy settings].
      */
     settings: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Instance identifier of the CloudAMQP instance to copy the settings from.
+     * Instance identifier of the CloudAMQP instance to copy the settings
+     * from.
      */
     subscriptionId: pulumi.Input<string>;
 }
@@ -77,6 +82,8 @@ export interface SecurityFirewallRule {
      * | AMQP         | 5672  |
      * | AMQPS        | 5671  |
      * | HTTPS        | 443   |
+     * | MQTT         | 1883  |
+     * | MQTTS        | 8883  |
      */
     description?: pulumi.Input<string>;
     /**

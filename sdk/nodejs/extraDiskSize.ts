@@ -13,22 +13,26 @@ import * as utilities from "./utilities";
  *
  * ***From v1.25.0***: Google Compute Engine (GCE) and Azure available.
  *
- * Introducing a new optional argument called `allowDowntime`.  Leaving it out or set it to false will proceed to try and resize the disk without downtime, available for *AWS* and *GCE*.
- * While *Azure* only support swapping the disk, and this argument needs to be set to *true*.
+ * Introducing a new optional argument called `allowDowntime`. Leaving it out or set it to false will
+ * proceed to try and resize the disk without downtime, available for *AWS*, *GCE* and *Azure*.
  *
  * `allowDowntime` also makes it possible to circumvent the time rate limit or shrinking the disk.
  *
- * | Cloud Platform        | allow_downtime=false | allow_downtime=true           |
- * |-----------------------|----------------------|-------------------------------|
- * | amazon-web-services   | Expand current disk* | Try to expand, otherwise swap |
- * | google-compute-engine | Expand current disk* | Try to expand, otherwise swap |
- * | azure-arm             | Not supported        | Swap disk to new size         |
+ * | Cloud Platform        | allow_downtime=false | allow_downtime=true           | Possible to resize |
+ * |-----------------------|----------------------|-------------------------------|--------------------|
+ * | amazon-web-services   | Expand current disk* | Try to expand, otherwise swap | Every 6 hour       |
+ * | google-compute-engine | Expand current disk* | Try to expand, otherwise swap | Every 4 hour       |
+ * | azure-arm             | Expand current disk* | Expand current disk           | No time rate limit |
  *
  * *Preferable method to use.
  *
- * > **WARNING:** Due to restrictions from cloud providers, it's only possible to resize the disk every 8 hours. Unless the `allow_downtime=true` is set, then the disk will be swapped for a new.
+ * > **Note:** Due to restrictions from cloud providers, it's only possible to resize the disk after
+ * the rate time limit. See `Possible to resize` column above for the different cloud platforms.
  *
- * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/) and only available for dedicated subscription plans.
+ * > **Note:** Shrinking the disk will always need to swap the old disk to a new one and require
+ * `allowDowntime` set to *true*.
+ *
+ * Pricing is available at [CloudAMQP] and only available for dedicated subscription plans.
  *
  * ## Example Usage
  *
@@ -46,7 +50,7 @@ import * as utilities from "./utilities";
  * // Instance
  * const instance = new cloudamqp.Instance("instance", {
  *     name: "Instance",
- *     plan: "bunny-1",
+ *     plan: "penguin-1",
  *     region: "amazon-web-services::us-west-2",
  * });
  * // Resize disk with 25 extra GB
@@ -77,7 +81,7 @@ import * as utilities from "./utilities";
  * // Instance
  * const instance = new cloudamqp.Instance("instance", {
  *     name: "Instance",
- *     plan: "bunny-1",
+ *     plan: "penguin-1",
  *     region: "amazon-web-services::us-west-2",
  * });
  * // Resize disk with 25 extra GB, without downtime
@@ -108,7 +112,7 @@ import * as utilities from "./utilities";
  * // Instance
  * const instance = new cloudamqp.Instance("instance", {
  *     name: "Instance",
- *     plan: "bunny-1",
+ *     plan: "penguin-1",
  *     region: "google-compute-engine::us-central1",
  * });
  * // Resize disk with 25 extra GB, without downtime
@@ -128,7 +132,7 @@ import * as utilities from "./utilities";
  * <details>
  *   <summary>
  *     <b>
- *       <i>Azure extra disk size with downtime</i>
+ *       <i>Azure extra disk size without downtime</i>
  *     </b>
  *   </summary>
  *
@@ -139,14 +143,13 @@ import * as utilities from "./utilities";
  * // Instance
  * const instance = new cloudamqp.Instance("instance", {
  *     name: "Instance",
- *     plan: "bunny-1",
+ *     plan: "penguin-1",
  *     region: "azure-arm::centralus",
  * });
  * // Resize disk with 25 extra GB, with downtime
  * const resizeDisk = new cloudamqp.ExtraDiskSize("resize_disk", {
  *     instanceId: instance.id,
  *     extraDiskSize: 25,
- *     allowDowntime: true,
  * });
  * // Optional, refresh nodes info after disk resize by adding dependency
  * // to cloudamqp_extra_disk_size.resize_disk resource
@@ -157,23 +160,6 @@ import * as utilities from "./utilities";
  *
  * </details>
  *
- * ## Attributes reference
- *
- * All attributes reference are computed
- *
- * * `id`    - The identifier for this resource.
- * * `nodes` - An array of node information. Each `nodes` block consists of the fields documented below.
- *
- * ***
- *
- * The `nodes` block consist of
- *
- * * `name`                  - Name of the node.
- * * `diskSize`             - Subscription plan disk size
- * * `additionalDiskSize`  - Additional added disk size
- *
- * ***Note:*** *Total disk size = diskSize + additional_disk_size*
- *
  * ## Dependency
  *
  * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -181,6 +167,10 @@ import * as utilities from "./utilities";
  * ## Import
  *
  * Not possible to import this resource.
+ *
+ * [CloudAMQP]: https://www.cloudamqp.com/
+ *
+ * [v1.25.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.25.0
  */
 export class ExtraDiskSize extends pulumi.CustomResource {
     /**
@@ -211,26 +201,33 @@ export class ExtraDiskSize extends pulumi.CustomResource {
     }
 
     /**
-     * When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
+     * When resizing the disk, allow cluster downtime if necessary.
+     * Default set to false.
      */
     public readonly allowDowntime!: pulumi.Output<boolean | undefined>;
     /**
-     * Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+     * Extra disk size in GB. Supported values: 0, 25, 50, 100,
+     * 250, 500, 1000, 2000
      */
     public readonly extraDiskSize!: pulumi.Output<number>;
     /**
      * The CloudAMQP instance ID.
      */
     public readonly instanceId!: pulumi.Output<number>;
+    /**
+     * An array of node information. Each `nodes` block consists of the fields documented below.
+     */
     public /*out*/ readonly nodes!: pulumi.Output<outputs.ExtraDiskSizeNode[]>;
     /**
-     * Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
+     * Configurable sleep time in seconds between retries for resizing the
+     * disk. Default set to 30 seconds.
      */
     public readonly sleep!: pulumi.Output<number | undefined>;
     /**
-     * Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+     * Configurable timeout time in seconds for resizing the disk. Default
+     * set to 1800 seconds.
      *
-     * ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from v1.25.0.
+     * ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from [v1.25.0].
      */
     public readonly timeout!: pulumi.Output<number | undefined>;
 
@@ -278,26 +275,33 @@ export class ExtraDiskSize extends pulumi.CustomResource {
  */
 export interface ExtraDiskSizeState {
     /**
-     * When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
+     * When resizing the disk, allow cluster downtime if necessary.
+     * Default set to false.
      */
     allowDowntime?: pulumi.Input<boolean>;
     /**
-     * Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+     * Extra disk size in GB. Supported values: 0, 25, 50, 100,
+     * 250, 500, 1000, 2000
      */
     extraDiskSize?: pulumi.Input<number>;
     /**
      * The CloudAMQP instance ID.
      */
     instanceId?: pulumi.Input<number>;
+    /**
+     * An array of node information. Each `nodes` block consists of the fields documented below.
+     */
     nodes?: pulumi.Input<pulumi.Input<inputs.ExtraDiskSizeNode>[]>;
     /**
-     * Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
+     * Configurable sleep time in seconds between retries for resizing the
+     * disk. Default set to 30 seconds.
      */
     sleep?: pulumi.Input<number>;
     /**
-     * Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+     * Configurable timeout time in seconds for resizing the disk. Default
+     * set to 1800 seconds.
      *
-     * ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from v1.25.0.
+     * ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from [v1.25.0].
      */
     timeout?: pulumi.Input<number>;
 }
@@ -307,11 +311,13 @@ export interface ExtraDiskSizeState {
  */
 export interface ExtraDiskSizeArgs {
     /**
-     * When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
+     * When resizing the disk, allow cluster downtime if necessary.
+     * Default set to false.
      */
     allowDowntime?: pulumi.Input<boolean>;
     /**
-     * Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+     * Extra disk size in GB. Supported values: 0, 25, 50, 100,
+     * 250, 500, 1000, 2000
      */
     extraDiskSize: pulumi.Input<number>;
     /**
@@ -319,13 +325,15 @@ export interface ExtraDiskSizeArgs {
      */
     instanceId: pulumi.Input<number>;
     /**
-     * Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
+     * Configurable sleep time in seconds between retries for resizing the
+     * disk. Default set to 30 seconds.
      */
     sleep?: pulumi.Input<number>;
     /**
-     * Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+     * Configurable timeout time in seconds for resizing the disk. Default
+     * set to 1800 seconds.
      *
-     * ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from v1.25.0.
+     * ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from [v1.25.0].
      */
     timeout?: pulumi.Input<number>;
 }

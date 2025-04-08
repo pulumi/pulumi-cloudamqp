@@ -11,96 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to retrieve information about VPC for a CloudAMQP instance.
-//
-// > **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
-//
-// ## Example Usage
-//
-// <details>
-//
-//	<summary>
-//	  <b>
-//	    <i>AWS VPC peering pre v1.16.0</i>
-//	  </b>
-//	</summary>
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.GetVpcGcpInfo(ctx, &cloudamqp.GetVpcGcpInfoArgs{
-//				InstanceId: pulumi.IntRef(instance.Id),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// </details>
-//
-// <details>
-//
-//	<summary>
-//	  <b>
-//	    <i>AWS VPC peering post v1.16.0 (Managed VPC)</i>
-//	  </b>
-//	</summary>
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.GetVpcGcpInfo(ctx, &cloudamqp.GetVpcGcpInfoArgs{
-//				VpcId: pulumi.StringRef(vpc.Id),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// </details>
-//
-// ## Attributes reference
-//
-// # All attributes reference are computed
-//
-// * `id`                  - The identifier for this resource.
-// * `name`                - The name of the VPC.
-// * `vpcSubnet`          - Dedicated VPC subnet.
-// * `network`             - VPC network uri.
-//
-// ## Dependency
-//
-// *Pre v1.16.0*
-// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-//
-// *Post v1.16.0*
-// This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
 func GetVpcGcpInfo(ctx *pulumi.Context, args *GetVpcGcpInfoArgs, opts ...pulumi.InvokeOption) (*GetVpcGcpInfoResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetVpcGcpInfoResult
@@ -115,29 +25,34 @@ func GetVpcGcpInfo(ctx *pulumi.Context, args *GetVpcGcpInfoArgs, opts ...pulumi.
 type GetVpcGcpInfoArgs struct {
 	// The CloudAMQP instance identifier.
 	//
-	// ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
+	// ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
 	InstanceId *int `pulumi:"instanceId"`
-	// Configurable sleep time (seconds) between retries when reading peering. Default set to 10 seconds.
+	// Configurable sleep time (seconds) between retries when reading peering.
+	// Default set to 10 seconds.
 	Sleep *int `pulumi:"sleep"`
-	// Configurable timeout time (seconds) before retries times out. Default set to 1800 seconds.
+	// Configurable timeout time (seconds) before retries times out. Default
+	// set to 1800 seconds.
 	Timeout *int `pulumi:"timeout"`
 	// The managed VPC identifier.
 	//
-	// ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
+	// ***Note:*** Available from [v1.16.0], will be removed in next major version (v2.0)
 	VpcId *string `pulumi:"vpcId"`
 }
 
 // A collection of values returned by getVpcGcpInfo.
 type GetVpcGcpInfoResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id         string  `pulumi:"id"`
-	InstanceId *int    `pulumi:"instanceId"`
-	Name       string  `pulumi:"name"`
-	Network    string  `pulumi:"network"`
-	Sleep      *int    `pulumi:"sleep"`
-	Timeout    *int    `pulumi:"timeout"`
-	VpcId      *string `pulumi:"vpcId"`
-	VpcSubnet  string  `pulumi:"vpcSubnet"`
+	Id         string `pulumi:"id"`
+	InstanceId *int   `pulumi:"instanceId"`
+	// The name of the VPC.
+	Name string `pulumi:"name"`
+	// VPC network uri.
+	Network string  `pulumi:"network"`
+	Sleep   *int    `pulumi:"sleep"`
+	Timeout *int    `pulumi:"timeout"`
+	VpcId   *string `pulumi:"vpcId"`
+	// Dedicated VPC subnet.
+	VpcSubnet string `pulumi:"vpcSubnet"`
 }
 
 func GetVpcGcpInfoOutput(ctx *pulumi.Context, args GetVpcGcpInfoOutputArgs, opts ...pulumi.InvokeOption) GetVpcGcpInfoResultOutput {
@@ -153,15 +68,17 @@ func GetVpcGcpInfoOutput(ctx *pulumi.Context, args GetVpcGcpInfoOutputArgs, opts
 type GetVpcGcpInfoOutputArgs struct {
 	// The CloudAMQP instance identifier.
 	//
-	// ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
+	// ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
 	InstanceId pulumi.IntPtrInput `pulumi:"instanceId"`
-	// Configurable sleep time (seconds) between retries when reading peering. Default set to 10 seconds.
+	// Configurable sleep time (seconds) between retries when reading peering.
+	// Default set to 10 seconds.
 	Sleep pulumi.IntPtrInput `pulumi:"sleep"`
-	// Configurable timeout time (seconds) before retries times out. Default set to 1800 seconds.
+	// Configurable timeout time (seconds) before retries times out. Default
+	// set to 1800 seconds.
 	Timeout pulumi.IntPtrInput `pulumi:"timeout"`
 	// The managed VPC identifier.
 	//
-	// ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
+	// ***Note:*** Available from [v1.16.0], will be removed in next major version (v2.0)
 	VpcId pulumi.StringPtrInput `pulumi:"vpcId"`
 }
 
@@ -193,10 +110,12 @@ func (o GetVpcGcpInfoResultOutput) InstanceId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetVpcGcpInfoResult) *int { return v.InstanceId }).(pulumi.IntPtrOutput)
 }
 
+// The name of the VPC.
 func (o GetVpcGcpInfoResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcGcpInfoResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// VPC network uri.
 func (o GetVpcGcpInfoResultOutput) Network() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcGcpInfoResult) string { return v.Network }).(pulumi.StringOutput)
 }
@@ -213,6 +132,7 @@ func (o GetVpcGcpInfoResultOutput) VpcId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetVpcGcpInfoResult) *string { return v.VpcId }).(pulumi.StringPtrOutput)
 }
 
+// Dedicated VPC subnet.
 func (o GetVpcGcpInfoResultOutput) VpcSubnet() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcGcpInfoResult) string { return v.VpcSubnet }).(pulumi.StringOutput)
 }

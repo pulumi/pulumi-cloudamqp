@@ -32,15 +32,16 @@ import * as utilities from "./utilities";
  *
  * </details>
  *
- * Using data source `cloudamqp.getNodes` to restart RabbitMQ on all nodes.</br>
- * ***Note: RabbitMQ restart on multiple nodes need to be chained, so one node restart at the time.***
- *
  * <details>
  *   <summary>
  *     <b>
  *       <i>Multi node RabbitMQ restart</i>
  *     </b>
  *   </summary>
+ *
+ * Using data source `cloudamqp.getNodes` to restart RabbitMQ on all nodes.
+ *
+ * > **Note:** RabbitMQ restart on multiple nodes need to be chained, let one node restart at the time.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -127,7 +128,16 @@ import * as utilities from "./utilities";
  *
  * ## Action reference
  *
- * Valid options for action.
+ * Valid actions for ***LavinMQ***.
+ *
+ * | Action       | Info                               |
+ * |--------------|------------------------------------|
+ * | start        | Start LavinMQ                      |
+ * | stop         | Stop LavinMQ                       |
+ * | restart      | Restart LavinMQ                    |
+ * | reboot       | Reboot the node                    |
+ *
+ * Valid actions for ***RabbitMQ***.
  *
  * | Action       | Info                               |
  * |--------------|------------------------------------|
@@ -139,7 +149,8 @@ import * as utilities from "./utilities";
  *
  * ## Dependency
  *
- * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id` and node name.
+ * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id` and node
+ * name.
  *
  * ## Import
  *

@@ -7,7 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
+ * Use this data source to retrieve information about installed and available plugins for the CloudAMQP
+ * instance.
  *
  * ## Example Usage
  *
@@ -19,26 +20,6 @@ import * as utilities from "./utilities";
  *     instanceId: instance.id,
  * });
  * ```
- *
- * ## Attributes reference
- *
- * All attributes reference are computed
- *
- * * `id`      - The identifier for this resource.
- * * `plugins` - An array of plugins. Each `plugins` block consists of the fields documented below.
- * * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
- *   about plugins. Default set to 10 seconds. *Available from v1.29.0*
- * * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
- *   information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
- *
- * ***
- *
- * The `plugins` block consist of
- *
- * * `name`        - The type of the recipient.
- * * `version`     - Rabbit MQ version that the plugins are shipped with.
- * * `description` - Description of what the plugin does.
- * * `enabled`     - Enable or disable information for the plugin.
  *
  * ## Dependency
  *
@@ -61,7 +42,15 @@ export interface GetPluginsArgs {
      * The CloudAMQP instance identifier.
      */
     instanceId: number;
+    /**
+     * Configurable sleep time (seconds) for retries when requesting
+     * information about plugins. Default set to 10 seconds.
+     */
     sleep?: number;
+    /**
+     * Configurable timeout time (seconds) for retries when requesting
+     * information about plugins. Default set to 1800 seconds.
+     */
     timeout?: number;
 }
 
@@ -74,12 +63,16 @@ export interface GetPluginsResult {
      */
     readonly id: string;
     readonly instanceId: number;
+    /**
+     * An array of plugins. Each `plugins` block consists of the fields documented below.
+     */
     readonly plugins: outputs.GetPluginsPlugin[];
     readonly sleep?: number;
     readonly timeout?: number;
 }
 /**
- * Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
+ * Use this data source to retrieve information about installed and available plugins for the CloudAMQP
+ * instance.
  *
  * ## Example Usage
  *
@@ -91,26 +84,6 @@ export interface GetPluginsResult {
  *     instanceId: instance.id,
  * });
  * ```
- *
- * ## Attributes reference
- *
- * All attributes reference are computed
- *
- * * `id`      - The identifier for this resource.
- * * `plugins` - An array of plugins. Each `plugins` block consists of the fields documented below.
- * * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
- *   about plugins. Default set to 10 seconds. *Available from v1.29.0*
- * * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
- *   information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
- *
- * ***
- *
- * The `plugins` block consist of
- *
- * * `name`        - The type of the recipient.
- * * `version`     - Rabbit MQ version that the plugins are shipped with.
- * * `description` - Description of what the plugin does.
- * * `enabled`     - Enable or disable information for the plugin.
  *
  * ## Dependency
  *
@@ -133,6 +106,14 @@ export interface GetPluginsOutputArgs {
      * The CloudAMQP instance identifier.
      */
     instanceId: pulumi.Input<number>;
+    /**
+     * Configurable sleep time (seconds) for retries when requesting
+     * information about plugins. Default set to 10 seconds.
+     */
     sleep?: pulumi.Input<number>;
+    /**
+     * Configurable timeout time (seconds) for retries when requesting
+     * information about plugins. Default set to 1800 seconds.
+     */
     timeout?: pulumi.Input<number>;
 }

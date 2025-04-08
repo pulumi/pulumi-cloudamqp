@@ -75,6 +75,9 @@ class GetAlarmResult:
     @property
     @pulumi.getter
     def enabled(self) -> bool:
+        """
+        Enable/disable status of the alarm.
+        """
         return pulumi.get(self, "enabled")
 
     @property
@@ -93,26 +96,43 @@ class GetAlarmResult:
     @property
     @pulumi.getter(name="messageType")
     def message_type(self) -> str:
+        """
+        Message type `(total, unacked, ready)` used by queue alarm type.
+        """
         return pulumi.get(self, "message_type")
 
     @property
     @pulumi.getter(name="queueRegex")
     def queue_regex(self) -> str:
+        """
+        Regular expression for which queue to check.
+        """
         return pulumi.get(self, "queue_regex")
 
     @property
     @pulumi.getter
     def recipients(self) -> Sequence[int]:
+        """
+        Identifier for recipient to be notified.
+        """
         return pulumi.get(self, "recipients")
 
     @property
     @pulumi.getter(name="reminderInterval")
     def reminder_interval(self) -> int:
+        """
+        The reminder interval (in seconds) to resend the alarm if not resolved.
+        Set to 0 for no reminders.
+        """
         return pulumi.get(self, "reminder_interval")
 
     @property
     @pulumi.getter(name="timeThreshold")
     def time_threshold(self) -> int:
+        """
+        The time interval (in seconds) the `value_threshold` should be active
+        before trigger an alarm.
+        """
         return pulumi.get(self, "time_threshold")
 
     @property
@@ -123,16 +143,26 @@ class GetAlarmResult:
     @property
     @pulumi.getter(name="valueCalculation")
     def value_calculation(self) -> Optional[str]:
+        """
+        Disk value threshold calculation, `(fixed, percentage)` of disk space
+        remaining.
+        """
         return pulumi.get(self, "value_calculation")
 
     @property
     @pulumi.getter(name="valueThreshold")
     def value_threshold(self) -> int:
+        """
+        The value threshold that triggers the alarm.
+        """
         return pulumi.get(self, "value_threshold")
 
     @property
     @pulumi.getter(name="vhostRegex")
     def vhost_regex(self) -> str:
+        """
+        Regular expression for which vhost to check
+        """
         return pulumi.get(self, "vhost_regex")
 
 
@@ -163,7 +193,8 @@ def get_alarm(alarm_id: Optional[int] = None,
               value_calculation: Optional[str] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAlarmResult:
     """
-    Use this data source to retrieve information about default or created alarms. Either use `alarm_id` or `type` to retrieve the alarm.
+    Use this data source to retrieve information about default or created alarms. Either use `alarm_id`
+    or `type` to retrieve the alarm.
 
     ## Example Usage
 
@@ -175,36 +206,23 @@ def get_alarm(alarm_id: Optional[int] = None,
         type="cpu")
     ```
 
-    ## Attributes reference
-
-    All attributes reference are computed
-
-    * `id`                  - The identifier for this resource.
-    * `enabled`             - Enable/disable status of the alarm.
-    * `value_threshold`     - The value threshold that triggers the alarm.
-    * `reminder_interval`   - The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders.
-    * `time_threshold`      - The time interval (in seconds) the `value_threshold` should be active before trigger an alarm.
-    * `queue_regex`         - Regular expression for which queue to check.
-    * `vhost_regex`         - Regular expression for which vhost to check
-    * `recipients`          - Identifier for recipient to be notified.
-    * `message_type`        - Message type `(total, unacked, ready)` used by queue alarm type.
-
-    Specific attribute for `disk` alarm
-
-    * `value_calculation`   - Disk value threshold calculation, `(fixed, percentage)` of disk space remaining.
-
     ## Dependency
 
     This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 
-    ## Alarm types
+    ## Alarm Types
 
     `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
 
 
-    :param int alarm_id: The alarm identifier. Either use this or `type` to give `Alarm` necessary information to retrieve the alarm.
+    :param int alarm_id: The alarm identifier. Either use this or `type` to give
+           `Alarm` necessary information to retrieve the alarm.
     :param int instance_id: The CloudAMQP instance identifier.
-    :param str type: The alarm type. Either use this or `alarm_id` to give `Alarm` necessary information when retrieve the alarm. Supported alarm types
+    :param str type: The alarm type. Either use this or `alarm_id` to give `Alarm`
+           necessary information when retrieve the alarm. Supported
+           alarm types.
+    :param str value_calculation: Disk value threshold calculation, `(fixed, percentage)` of disk space
+           remaining.
     """
     __args__ = dict()
     __args__['alarmId'] = alarm_id
@@ -234,7 +252,8 @@ def get_alarm_output(alarm_id: Optional[pulumi.Input[Optional[int]]] = None,
                      value_calculation: Optional[pulumi.Input[Optional[str]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAlarmResult]:
     """
-    Use this data source to retrieve information about default or created alarms. Either use `alarm_id` or `type` to retrieve the alarm.
+    Use this data source to retrieve information about default or created alarms. Either use `alarm_id`
+    or `type` to retrieve the alarm.
 
     ## Example Usage
 
@@ -246,36 +265,23 @@ def get_alarm_output(alarm_id: Optional[pulumi.Input[Optional[int]]] = None,
         type="cpu")
     ```
 
-    ## Attributes reference
-
-    All attributes reference are computed
-
-    * `id`                  - The identifier for this resource.
-    * `enabled`             - Enable/disable status of the alarm.
-    * `value_threshold`     - The value threshold that triggers the alarm.
-    * `reminder_interval`   - The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders.
-    * `time_threshold`      - The time interval (in seconds) the `value_threshold` should be active before trigger an alarm.
-    * `queue_regex`         - Regular expression for which queue to check.
-    * `vhost_regex`         - Regular expression for which vhost to check
-    * `recipients`          - Identifier for recipient to be notified.
-    * `message_type`        - Message type `(total, unacked, ready)` used by queue alarm type.
-
-    Specific attribute for `disk` alarm
-
-    * `value_calculation`   - Disk value threshold calculation, `(fixed, percentage)` of disk space remaining.
-
     ## Dependency
 
     This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 
-    ## Alarm types
+    ## Alarm Types
 
     `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
 
 
-    :param int alarm_id: The alarm identifier. Either use this or `type` to give `Alarm` necessary information to retrieve the alarm.
+    :param int alarm_id: The alarm identifier. Either use this or `type` to give
+           `Alarm` necessary information to retrieve the alarm.
     :param int instance_id: The CloudAMQP instance identifier.
-    :param str type: The alarm type. Either use this or `alarm_id` to give `Alarm` necessary information when retrieve the alarm. Supported alarm types
+    :param str type: The alarm type. Either use this or `alarm_id` to give `Alarm`
+           necessary information when retrieve the alarm. Supported
+           alarm types.
+    :param str value_calculation: Disk value threshold calculation, `(fixed, percentage)` of disk space
+           remaining.
     """
     __args__ = dict()
     __args__['alarmId'] = alarm_id

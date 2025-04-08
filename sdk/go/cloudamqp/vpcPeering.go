@@ -14,31 +14,33 @@ import (
 
 // ## Import
 //
-// ### Peering Identifier
+// ### Peering identifier
 //
-// This can be found as *peering connection id* in your AWS VPC dashboard/Peering connections, for the correct VPC peering.
+// This can be found as *peering connection id* in your AWS VPC dashboard/Peering connections, for the
 //
-// Also available as the identifier for *aws_vpc_peering_connection* resource or
+// correct VPC peering.
 //
-// data source.
+// Also available as the identifier for `aws_vpc_peering_connection` [resource] or [data source].
 type VpcPeering struct {
 	pulumi.CustomResourceState
 
 	// The CloudAMQP instance identifier.
 	//
-	// ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+	// ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
 	InstanceId pulumi.IntPtrOutput `pulumi:"instanceId"`
 	// Peering identifier created by AW peering request.
 	PeeringId pulumi.StringOutput `pulumi:"peeringId"`
-	// Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+	// Configurable sleep time (seconds) between retries for accepting or
+	// removing peering. Default set to 60 seconds.
 	Sleep pulumi.IntPtrOutput `pulumi:"sleep"`
 	// VPC peering status
 	Status pulumi.StringOutput `pulumi:"status"`
-	// Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+	// Configurable timeout time (seconds) for accepting or removing
+	// peering. Default set to 3600 seconds.
 	Timeout pulumi.IntPtrOutput `pulumi:"timeout"`
 	// The managed VPC identifier.
 	//
-	// ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
+	// ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
 	VpcId pulumi.StringPtrOutput `pulumi:"vpcId"`
 }
 
@@ -77,38 +79,42 @@ func GetVpcPeering(ctx *pulumi.Context,
 type vpcPeeringState struct {
 	// The CloudAMQP instance identifier.
 	//
-	// ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+	// ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
 	InstanceId *int `pulumi:"instanceId"`
 	// Peering identifier created by AW peering request.
 	PeeringId *string `pulumi:"peeringId"`
-	// Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+	// Configurable sleep time (seconds) between retries for accepting or
+	// removing peering. Default set to 60 seconds.
 	Sleep *int `pulumi:"sleep"`
 	// VPC peering status
 	Status *string `pulumi:"status"`
-	// Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+	// Configurable timeout time (seconds) for accepting or removing
+	// peering. Default set to 3600 seconds.
 	Timeout *int `pulumi:"timeout"`
 	// The managed VPC identifier.
 	//
-	// ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
+	// ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
 	VpcId *string `pulumi:"vpcId"`
 }
 
 type VpcPeeringState struct {
 	// The CloudAMQP instance identifier.
 	//
-	// ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+	// ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
 	InstanceId pulumi.IntPtrInput
 	// Peering identifier created by AW peering request.
 	PeeringId pulumi.StringPtrInput
-	// Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+	// Configurable sleep time (seconds) between retries for accepting or
+	// removing peering. Default set to 60 seconds.
 	Sleep pulumi.IntPtrInput
 	// VPC peering status
 	Status pulumi.StringPtrInput
-	// Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+	// Configurable timeout time (seconds) for accepting or removing
+	// peering. Default set to 3600 seconds.
 	Timeout pulumi.IntPtrInput
 	// The managed VPC identifier.
 	//
-	// ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
+	// ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
 	VpcId pulumi.StringPtrInput
 }
 
@@ -119,17 +125,19 @@ func (VpcPeeringState) ElementType() reflect.Type {
 type vpcPeeringArgs struct {
 	// The CloudAMQP instance identifier.
 	//
-	// ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+	// ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
 	InstanceId *int `pulumi:"instanceId"`
 	// Peering identifier created by AW peering request.
 	PeeringId string `pulumi:"peeringId"`
-	// Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+	// Configurable sleep time (seconds) between retries for accepting or
+	// removing peering. Default set to 60 seconds.
 	Sleep *int `pulumi:"sleep"`
-	// Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+	// Configurable timeout time (seconds) for accepting or removing
+	// peering. Default set to 3600 seconds.
 	Timeout *int `pulumi:"timeout"`
 	// The managed VPC identifier.
 	//
-	// ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
+	// ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
 	VpcId *string `pulumi:"vpcId"`
 }
 
@@ -137,17 +145,19 @@ type vpcPeeringArgs struct {
 type VpcPeeringArgs struct {
 	// The CloudAMQP instance identifier.
 	//
-	// ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+	// ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
 	InstanceId pulumi.IntPtrInput
 	// Peering identifier created by AW peering request.
 	PeeringId pulumi.StringInput
-	// Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+	// Configurable sleep time (seconds) between retries for accepting or
+	// removing peering. Default set to 60 seconds.
 	Sleep pulumi.IntPtrInput
-	// Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+	// Configurable timeout time (seconds) for accepting or removing
+	// peering. Default set to 3600 seconds.
 	Timeout pulumi.IntPtrInput
 	// The managed VPC identifier.
 	//
-	// ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
+	// ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
 	VpcId pulumi.StringPtrInput
 }
 
@@ -240,7 +250,7 @@ func (o VpcPeeringOutput) ToVpcPeeringOutputWithContext(ctx context.Context) Vpc
 
 // The CloudAMQP instance identifier.
 //
-// ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+// ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
 func (o VpcPeeringOutput) InstanceId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *VpcPeering) pulumi.IntPtrOutput { return v.InstanceId }).(pulumi.IntPtrOutput)
 }
@@ -250,7 +260,8 @@ func (o VpcPeeringOutput) PeeringId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPeering) pulumi.StringOutput { return v.PeeringId }).(pulumi.StringOutput)
 }
 
-// Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+// Configurable sleep time (seconds) between retries for accepting or
+// removing peering. Default set to 60 seconds.
 func (o VpcPeeringOutput) Sleep() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *VpcPeering) pulumi.IntPtrOutput { return v.Sleep }).(pulumi.IntPtrOutput)
 }
@@ -260,14 +271,15 @@ func (o VpcPeeringOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPeering) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
-// Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+// Configurable timeout time (seconds) for accepting or removing
+// peering. Default set to 3600 seconds.
 func (o VpcPeeringOutput) Timeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *VpcPeering) pulumi.IntPtrOutput { return v.Timeout }).(pulumi.IntPtrOutput)
 }
 
 // The managed VPC identifier.
 //
-// ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
+// ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
 func (o VpcPeeringOutput) VpcId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpcPeering) pulumi.StringPtrOutput { return v.VpcId }).(pulumi.StringPtrOutput)
 }

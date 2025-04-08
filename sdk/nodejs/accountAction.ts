@@ -38,7 +38,8 @@ export class AccountAction extends pulumi.CustomResource {
     }
 
     /**
-     * The action to be invoked. Allowed actions `rotate-password`, `rotate-apikey`.
+     * The action to be invoked. Allowed actions
+     * `rotate-password`, `rotate-apikey`.
      */
     public readonly action!: pulumi.Output<string>;
     /**
@@ -82,7 +83,8 @@ export class AccountAction extends pulumi.CustomResource {
  */
 export interface AccountActionState {
     /**
-     * The action to be invoked. Allowed actions `rotate-password`, `rotate-apikey`.
+     * The action to be invoked. Allowed actions
+     * `rotate-password`, `rotate-apikey`.
      */
     action?: pulumi.Input<string>;
     /**
@@ -96,7 +98,8 @@ export interface AccountActionState {
  */
 export interface AccountActionArgs {
     /**
-     * The action to be invoked. Allowed actions `rotate-password`, `rotate-apikey`.
+     * The action to be invoked. Allowed actions
+     * `rotate-password`, `rotate-apikey`.
      */
     action: pulumi.Input<string>;
     /**

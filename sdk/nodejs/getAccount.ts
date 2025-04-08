@@ -7,7 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
+ * Use this data source to retrieve basic information about all instances available for an account.
+ * Uses the included apikey in provider configuration, to determine which account to read from.
  */
 export function getAccount(opts?: pulumi.InvokeOptions): Promise<GetAccountResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -23,10 +24,15 @@ export interface GetAccountResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * An array of instances. Each `instances` block consists of the fields documented
+     * below.
+     */
     readonly instances: outputs.GetAccountInstance[];
 }
 /**
- * Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
+ * Use this data source to retrieve basic information about all instances available for an account.
+ * Uses the included apikey in provider configuration, to determine which account to read from.
  */
 export function getAccountOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAccountResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

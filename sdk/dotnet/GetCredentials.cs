@@ -12,7 +12,8 @@ namespace Pulumi.CloudAmqp
     public static class GetCredentials
     {
         /// <summary>
-        /// Use this data source to retrieve information about the credentials of the configured user in Rabbit MQ. Information is extracted from `cloudamqp_instance.instance.url`.
+        /// Use this data source to retrieve information about the credentials of the configured user in
+        /// RabbitMQ. Information is extracted from `cloudamqp_instance.instance.url`.
         /// 
         /// ## Example Usage
         /// 
@@ -31,14 +32,6 @@ namespace Pulumi.CloudAmqp
         /// 
         /// });
         /// ```
-        /// 
-        /// ## Attributes reference
-        /// 
-        /// All attributes reference are computed.
-        /// 
-        /// * `id`          - The identifier for this data source.
-        /// * `username`    - (Sensitive) The username for the configured user in Rabbit MQ.
-        /// * `password`    - (Sensitive) The password used by the `username`.
         /// 
         /// ## Dependency
         /// 
@@ -48,7 +41,8 @@ namespace Pulumi.CloudAmqp
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCredentialsResult>("cloudamqp:index/getCredentials:getCredentials", args ?? new GetCredentialsArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to retrieve information about the credentials of the configured user in Rabbit MQ. Information is extracted from `cloudamqp_instance.instance.url`.
+        /// Use this data source to retrieve information about the credentials of the configured user in
+        /// RabbitMQ. Information is extracted from `cloudamqp_instance.instance.url`.
         /// 
         /// ## Example Usage
         /// 
@@ -67,14 +61,6 @@ namespace Pulumi.CloudAmqp
         /// 
         /// });
         /// ```
-        /// 
-        /// ## Attributes reference
-        /// 
-        /// All attributes reference are computed.
-        /// 
-        /// * `id`          - The identifier for this data source.
-        /// * `username`    - (Sensitive) The username for the configured user in Rabbit MQ.
-        /// * `password`    - (Sensitive) The password used by the `username`.
         /// 
         /// ## Dependency
         /// 
@@ -84,7 +70,8 @@ namespace Pulumi.CloudAmqp
             => global::Pulumi.Deployment.Instance.Invoke<GetCredentialsResult>("cloudamqp:index/getCredentials:getCredentials", args ?? new GetCredentialsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to retrieve information about the credentials of the configured user in Rabbit MQ. Information is extracted from `cloudamqp_instance.instance.url`.
+        /// Use this data source to retrieve information about the credentials of the configured user in
+        /// RabbitMQ. Information is extracted from `cloudamqp_instance.instance.url`.
         /// 
         /// ## Example Usage
         /// 
@@ -103,14 +90,6 @@ namespace Pulumi.CloudAmqp
         /// 
         /// });
         /// ```
-        /// 
-        /// ## Attributes reference
-        /// 
-        /// All attributes reference are computed.
-        /// 
-        /// * `id`          - The identifier for this data source.
-        /// * `username`    - (Sensitive) The username for the configured user in Rabbit MQ.
-        /// * `password`    - (Sensitive) The password used by the `username`.
         /// 
         /// ## Dependency
         /// 
@@ -158,7 +137,13 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         public readonly string Id;
         public readonly int InstanceId;
+        /// <summary>
+        /// (Sensitive) The password used by the `username`.
+        /// </summary>
         public readonly string Password;
+        /// <summary>
+        /// (Sensitive) The username for the configured user in Rabbit MQ.
+        /// </summary>
         public readonly string Username;
 
         [OutputConstructor]

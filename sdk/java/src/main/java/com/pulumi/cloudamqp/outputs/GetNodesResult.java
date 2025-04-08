@@ -19,6 +19,10 @@ public final class GetNodesResult {
      */
     private String id;
     private Integer instanceId;
+    /**
+     * @return An array of node information. Each `nodes` block consists of the fields documented below.
+     * 
+     */
     private List<GetNodesNode> nodes;
 
     private GetNodesResult() {}
@@ -32,6 +36,10 @@ public final class GetNodesResult {
     public Integer instanceId() {
         return this.instanceId;
     }
+    /**
+     * @return An array of node information. Each `nodes` block consists of the fields documented below.
+     * 
+     */
     public List<GetNodesNode> nodes() {
         return this.nodes;
     }

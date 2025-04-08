@@ -24,22 +24,26 @@ import javax.annotation.Nullable;
  * 
  * ***From v1.25.0***: Google Compute Engine (GCE) and Azure available.
  * 
- * Introducing a new optional argument called `allow_downtime`.  Leaving it out or set it to false will proceed to try and resize the disk without downtime, available for *AWS* and *GCE*.
- * While *Azure* only support swapping the disk, and this argument needs to be set to *true*.
+ * Introducing a new optional argument called `allow_downtime`. Leaving it out or set it to false will
+ * proceed to try and resize the disk without downtime, available for *AWS*, *GCE* and *Azure*.
  * 
  * `allow_downtime` also makes it possible to circumvent the time rate limit or shrinking the disk.
  * 
- * | Cloud Platform        | allow_downtime=false | allow_downtime=true           |
- * |-----------------------|----------------------|-------------------------------|
- * | amazon-web-services   | Expand current disk* | Try to expand, otherwise swap |
- * | google-compute-engine | Expand current disk* | Try to expand, otherwise swap |
- * | azure-arm             | Not supported        | Swap disk to new size         |
+ * | Cloud Platform        | allow_downtime=false | allow_downtime=true           | Possible to resize |
+ * |-----------------------|----------------------|-------------------------------|--------------------|
+ * | amazon-web-services   | Expand current disk* | Try to expand, otherwise swap | Every 6 hour       |
+ * | google-compute-engine | Expand current disk* | Try to expand, otherwise swap | Every 4 hour       |
+ * | azure-arm             | Expand current disk* | Expand current disk           | No time rate limit |
  * 
  * *Preferable method to use.
  * 
- * &gt; **WARNING:** Due to restrictions from cloud providers, it&#39;s only possible to resize the disk every 8 hours. Unless the `allow_downtime=true` is set, then the disk will be swapped for a new.
+ * &gt; **Note:** Due to restrictions from cloud providers, it&#39;s only possible to resize the disk after
+ * the rate time limit. See `Possible to resize` column above for the different cloud platforms.
  * 
- * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/) and only available for dedicated subscription plans.
+ * &gt; **Note:** Shrinking the disk will always need to swap the old disk to a new one and require
+ * `allow_downtime` set to *true*.
+ * 
+ * Pricing is available at [CloudAMQP] and only available for dedicated subscription plans.
  * 
  * ## Example Usage
  * 
@@ -80,7 +84,7 @@ import javax.annotation.Nullable;
  *         // Instance
  *         var instance = new Instance("instance", InstanceArgs.builder()
  *             .name("Instance")
- *             .plan("bunny-1")
+ *             .plan("penguin-1")
  *             .region("amazon-web-services::us-west-2")
  *             .build());
  * 
@@ -141,7 +145,7 @@ import javax.annotation.Nullable;
  *         // Instance
  *         var instance = new Instance("instance", InstanceArgs.builder()
  *             .name("Instance")
- *             .plan("bunny-1")
+ *             .plan("penguin-1")
  *             .region("amazon-web-services::us-west-2")
  *             .build());
  * 
@@ -202,7 +206,7 @@ import javax.annotation.Nullable;
  *         // Instance
  *         var instance = new Instance("instance", InstanceArgs.builder()
  *             .name("Instance")
- *             .plan("bunny-1")
+ *             .plan("penguin-1")
  *             .region("google-compute-engine::us-central1")
  *             .build());
  * 
@@ -229,7 +233,7 @@ import javax.annotation.Nullable;
  * &lt;details&gt;
  *   &lt;summary&gt;
  *     &lt;b&gt;
- *       &lt;i&gt;Azure extra disk size with downtime&lt;/i&gt;
+ *       &lt;i&gt;Azure extra disk size without downtime&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
  * 
@@ -263,7 +267,7 @@ import javax.annotation.Nullable;
  *         // Instance
  *         var instance = new Instance("instance", InstanceArgs.builder()
  *             .name("Instance")
- *             .plan("bunny-1")
+ *             .plan("penguin-1")
  *             .region("azure-arm::centralus")
  *             .build());
  * 
@@ -271,7 +275,6 @@ import javax.annotation.Nullable;
  *         var resizeDisk = new ExtraDiskSize("resizeDisk", ExtraDiskSizeArgs.builder()
  *             .instanceId(instance.id())
  *             .extraDiskSize(25)
- *             .allowDowntime(true)
  *             .build());
  * 
  *         // Optional, refresh nodes info after disk resize by adding dependency
@@ -288,23 +291,6 @@ import javax.annotation.Nullable;
  * 
  * &lt;/details&gt;
  * 
- * ## Attributes reference
- * 
- * All attributes reference are computed
- * 
- * * `id`    - The identifier for this resource.
- * * `nodes` - An array of node information. Each `nodes` block consists of the fields documented below.
- * 
- * ***
- * 
- * The `nodes` block consist of
- * 
- * * `name`                  - Name of the node.
- * * `disk_size`             - Subscription plan disk size
- * * `additional_disk_size`  - Additional added disk size
- * 
- * ***Note:*** *Total disk size = disk_size + additional_disk_size*
- * 
  * ## Dependency
  * 
  * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -313,32 +299,40 @@ import javax.annotation.Nullable;
  * 
  * Not possible to import this resource.
  * 
+ * [CloudAMQP]: https://www.cloudamqp.com/
+ * 
+ * [v1.25.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.25.0
+ * 
  */
 @ResourceType(type="cloudamqp:index/extraDiskSize:ExtraDiskSize")
 public class ExtraDiskSize extends com.pulumi.resources.CustomResource {
     /**
-     * When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
+     * When resizing the disk, allow cluster downtime if necessary.
+     * Default set to false.
      * 
      */
     @Export(name="allowDowntime", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> allowDowntime;
 
     /**
-     * @return When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
+     * @return When resizing the disk, allow cluster downtime if necessary.
+     * Default set to false.
      * 
      */
     public Output<Optional<Boolean>> allowDowntime() {
         return Codegen.optional(this.allowDowntime);
     }
     /**
-     * Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+     * Extra disk size in GB. Supported values: 0, 25, 50, 100,
+     * 250, 500, 1000, 2000
      * 
      */
     @Export(name="extraDiskSize", refs={Integer.class}, tree="[0]")
     private Output<Integer> extraDiskSize;
 
     /**
-     * @return Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+     * @return Extra disk size in GB. Supported values: 0, 25, 50, 100,
+     * 250, 500, 1000, 2000
      * 
      */
     public Output<Integer> extraDiskSize() {
@@ -358,39 +352,51 @@ public class ExtraDiskSize extends com.pulumi.resources.CustomResource {
     public Output<Integer> instanceId() {
         return this.instanceId;
     }
+    /**
+     * An array of node information. Each `nodes` block consists of the fields documented below.
+     * 
+     */
     @Export(name="nodes", refs={List.class,ExtraDiskSizeNode.class}, tree="[0,1]")
     private Output<List<ExtraDiskSizeNode>> nodes;
 
+    /**
+     * @return An array of node information. Each `nodes` block consists of the fields documented below.
+     * 
+     */
     public Output<List<ExtraDiskSizeNode>> nodes() {
         return this.nodes;
     }
     /**
-     * Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
+     * Configurable sleep time in seconds between retries for resizing the
+     * disk. Default set to 30 seconds.
      * 
      */
     @Export(name="sleep", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> sleep;
 
     /**
-     * @return Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
+     * @return Configurable sleep time in seconds between retries for resizing the
+     * disk. Default set to 30 seconds.
      * 
      */
     public Output<Optional<Integer>> sleep() {
         return Codegen.optional(this.sleep);
     }
     /**
-     * Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+     * Configurable timeout time in seconds for resizing the disk. Default
+     * set to 1800 seconds.
      * 
-     * ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
+     * ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
      * 
      */
     @Export(name="timeout", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> timeout;
 
     /**
-     * @return Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+     * @return Configurable timeout time in seconds for resizing the disk. Default
+     * set to 1800 seconds.
      * 
-     * ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
+     * ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
      * 
      */
     public Output<Optional<Integer>> timeout() {

@@ -63,14 +63,16 @@ public final class VpcConnectState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * List of approved subscriptions used by Azure, see below table.
+     * List of approved subscriptions used by Azure, see below
+     * table.
      * 
      */
     @Import(name="approvedSubscriptions")
     private @Nullable Output<List<String>> approvedSubscriptions;
 
     /**
-     * @return List of approved subscriptions used by Azure, see below table.
+     * @return List of approved subscriptions used by Azure, see below
+     * table.
      * 
      */
     public Optional<Output<List<String>>> approvedSubscriptions() {
@@ -123,16 +125,16 @@ public final class VpcConnectState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Configurable sleep time (seconds) when enable Private Service Connect.
-     * Default set to 10 seconds.
+     * Configurable sleep time (seconds) when enable Private
+     * Service Connect. Default set to 10 seconds.
      * 
      */
     @Import(name="sleep")
     private @Nullable Output<Integer> sleep;
 
     /**
-     * @return Configurable sleep time (seconds) when enable Private Service Connect.
-     * Default set to 10 seconds.
+     * @return Configurable sleep time (seconds) when enable Private
+     * Service Connect. Default set to 10 seconds.
      * 
      */
     public Optional<Output<Integer>> sleep() {
@@ -155,40 +157,38 @@ public final class VpcConnectState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Configurable timeout time (seconds) when enable Private Service Connect.
-     * Default set to 1800 seconds.
+     * Configurable timeout time (seconds) when enable Private
+     * Service Connect. Default set to 1800 seconds.
      * 
      * ***
      * 
-     * The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
+     * The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the
+     * provider platform:
      * 
-     * | Platform | Description         | Format                                                                                                                             |
-     * |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-     * | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root&lt;br /&gt; arn:aws:iam::aws-account-id:user/user-name&lt;br /&gt; arn:aws:iam::aws-account-id:role/role-name |
-     * | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-     * | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-     * 
-     * *https://cloud.google.com/resource-manager/reference/rest/v1/projects
+     * | Platform | Description | Format |
+     * |---|---|---|
+     * | AWS | IAM ARN principals | arn:aws:iam::aws-account-id:root&lt;br&gt;arn:aws:iam::aws-account-id:user/user-name&lt;br&gt; arn:aws:iam::aws-account-id:role/role-name |
+     * | Azure | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX |
+     * | GCP | Project IDs [Google docs] | 6 to 30 lowercase letters, digits, or hyphens |
      * 
      */
     @Import(name="timeout")
     private @Nullable Output<Integer> timeout;
 
     /**
-     * @return Configurable timeout time (seconds) when enable Private Service Connect.
-     * Default set to 1800 seconds.
+     * @return Configurable timeout time (seconds) when enable Private
+     * Service Connect. Default set to 1800 seconds.
      * 
      * ***
      * 
-     * The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
+     * The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the
+     * provider platform:
      * 
-     * | Platform | Description         | Format                                                                                                                             |
-     * |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-     * | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root&lt;br /&gt; arn:aws:iam::aws-account-id:user/user-name&lt;br /&gt; arn:aws:iam::aws-account-id:role/role-name |
-     * | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-     * | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-     * 
-     * *https://cloud.google.com/resource-manager/reference/rest/v1/projects
+     * | Platform | Description | Format |
+     * |---|---|---|
+     * | AWS | IAM ARN principals | arn:aws:iam::aws-account-id:root&lt;br&gt;arn:aws:iam::aws-account-id:user/user-name&lt;br&gt; arn:aws:iam::aws-account-id:role/role-name |
+     * | Azure | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX |
+     * | GCP | Project IDs [Google docs] | 6 to 30 lowercase letters, digits, or hyphens |
      * 
      */
     public Optional<Output<Integer>> timeout() {
@@ -322,7 +322,8 @@ public final class VpcConnectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param approvedSubscriptions List of approved subscriptions used by Azure, see below table.
+         * @param approvedSubscriptions List of approved subscriptions used by Azure, see below
+         * table.
          * 
          * @return builder
          * 
@@ -333,7 +334,8 @@ public final class VpcConnectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param approvedSubscriptions List of approved subscriptions used by Azure, see below table.
+         * @param approvedSubscriptions List of approved subscriptions used by Azure, see below
+         * table.
          * 
          * @return builder
          * 
@@ -343,7 +345,8 @@ public final class VpcConnectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param approvedSubscriptions List of approved subscriptions used by Azure, see below table.
+         * @param approvedSubscriptions List of approved subscriptions used by Azure, see below
+         * table.
          * 
          * @return builder
          * 
@@ -416,8 +419,8 @@ public final class VpcConnectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sleep Configurable sleep time (seconds) when enable Private Service Connect.
-         * Default set to 10 seconds.
+         * @param sleep Configurable sleep time (seconds) when enable Private
+         * Service Connect. Default set to 10 seconds.
          * 
          * @return builder
          * 
@@ -428,8 +431,8 @@ public final class VpcConnectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sleep Configurable sleep time (seconds) when enable Private Service Connect.
-         * Default set to 10 seconds.
+         * @param sleep Configurable sleep time (seconds) when enable Private
+         * Service Connect. Default set to 10 seconds.
          * 
          * @return builder
          * 
@@ -460,20 +463,19 @@ public final class VpcConnectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param timeout Configurable timeout time (seconds) when enable Private Service Connect.
-         * Default set to 1800 seconds.
+         * @param timeout Configurable timeout time (seconds) when enable Private
+         * Service Connect. Default set to 1800 seconds.
          * 
          * ***
          * 
-         * The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
+         * The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the
+         * provider platform:
          * 
-         * | Platform | Description         | Format                                                                                                                             |
-         * |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-         * | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root&lt;br /&gt; arn:aws:iam::aws-account-id:user/user-name&lt;br /&gt; arn:aws:iam::aws-account-id:role/role-name |
-         * | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-         * | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-         * 
-         * *https://cloud.google.com/resource-manager/reference/rest/v1/projects
+         * | Platform | Description | Format |
+         * |---|---|---|
+         * | AWS | IAM ARN principals | arn:aws:iam::aws-account-id:root&lt;br&gt;arn:aws:iam::aws-account-id:user/user-name&lt;br&gt; arn:aws:iam::aws-account-id:role/role-name |
+         * | Azure | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX |
+         * | GCP | Project IDs [Google docs] | 6 to 30 lowercase letters, digits, or hyphens |
          * 
          * @return builder
          * 
@@ -484,20 +486,19 @@ public final class VpcConnectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param timeout Configurable timeout time (seconds) when enable Private Service Connect.
-         * Default set to 1800 seconds.
+         * @param timeout Configurable timeout time (seconds) when enable Private
+         * Service Connect. Default set to 1800 seconds.
          * 
          * ***
          * 
-         * The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the provider platform:
+         * The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the
+         * provider platform:
          * 
-         * | Platform | Description         | Format                                                                                                                             |
-         * |----------|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
-         * | AWS      | IAM ARN principals  | arn:aws:iam::aws-account-id:root&lt;br /&gt; arn:aws:iam::aws-account-id:user/user-name&lt;br /&gt; arn:aws:iam::aws-account-id:role/role-name |
-         * | Azure    | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX                                                                                               |
-         * | GCP      | Project IDs*        | 6 to 30 lowercase letters, digits, or hyphens                                                                                      |
-         * 
-         * *https://cloud.google.com/resource-manager/reference/rest/v1/projects
+         * | Platform | Description | Format |
+         * |---|---|---|
+         * | AWS | IAM ARN principals | arn:aws:iam::aws-account-id:root&lt;br&gt;arn:aws:iam::aws-account-id:user/user-name&lt;br&gt; arn:aws:iam::aws-account-id:role/role-name |
+         * | Azure | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX |
+         * | GCP | Project IDs [Google docs] | 6 to 30 lowercase letters, digits, or hyphens |
          * 
          * @return builder
          * 

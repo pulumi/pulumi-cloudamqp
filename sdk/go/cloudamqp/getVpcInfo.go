@@ -11,95 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to retrieve information about VPC for a CloudAMQP instance.
-//
-// > **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
-//
-// ## Example Usage
-//
-// <details>
-//
-//	<summary>
-//	  <b>
-//	    <i>AWS VPC peering pre v1.16.0</i>
-//	  </b>
-//	</summary>
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.GetVpcInfo(ctx, &cloudamqp.GetVpcInfoArgs{
-//				InstanceId: pulumi.IntRef(instance.Id),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// </details>
-//
-// <details>
-//
-//	<summary>
-//	  <b>
-//	    <i>AWS VPC peering post v1.16.0 (Managed VPC)</i>
-//	  </b>
-//	</summary>
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cloudamqp.GetVpcInfo(ctx, &cloudamqp.GetVpcInfoArgs{
-//				VpcId: pulumi.StringRef(vpc.Id),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// </details>
-//
-// ## Attributes reference
-//
-// # All attributes reference are computed
-//
-// * `id`                  - The identifier for this resource.
-// * `name`                - The name of the CloudAMQP instance.
-// * `vpcSubnet`          - Dedicated VPC subnet.
-// * `ownerId`            - AWS account identifier.
-// * `securityGroupId`   - AWS security group identifier.
-//
-// ## Dependency
-//
-// *Pre v1.16.0*
-// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-//
-// *Post v1.16.0*
-// This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
 func GetVpcInfo(ctx *pulumi.Context, args *GetVpcInfoArgs, opts ...pulumi.InvokeOption) (*GetVpcInfoResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetVpcInfoResult
@@ -114,24 +25,28 @@ func GetVpcInfo(ctx *pulumi.Context, args *GetVpcInfoArgs, opts ...pulumi.Invoke
 type GetVpcInfoArgs struct {
 	// The CloudAMQP instance identifier.
 	//
-	// ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
+	// ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
 	InstanceId *int `pulumi:"instanceId"`
 	// The managed VPC identifier.
 	//
-	// ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
+	// ***Note:*** Available from [v1.16.0], will be removed in next major version (v2.0)
 	VpcId *string `pulumi:"vpcId"`
 }
 
 // A collection of values returned by getVpcInfo.
 type GetVpcInfoResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id              string  `pulumi:"id"`
-	InstanceId      *int    `pulumi:"instanceId"`
-	Name            string  `pulumi:"name"`
-	OwnerId         string  `pulumi:"ownerId"`
+	Id         string `pulumi:"id"`
+	InstanceId *int   `pulumi:"instanceId"`
+	// The name of the CloudAMQP instance.
+	Name string `pulumi:"name"`
+	// AWS account identifier.
+	OwnerId string `pulumi:"ownerId"`
+	// AWS security group identifier.
 	SecurityGroupId string  `pulumi:"securityGroupId"`
 	VpcId           *string `pulumi:"vpcId"`
-	VpcSubnet       string  `pulumi:"vpcSubnet"`
+	// Dedicated VPC subnet.
+	VpcSubnet string `pulumi:"vpcSubnet"`
 }
 
 func GetVpcInfoOutput(ctx *pulumi.Context, args GetVpcInfoOutputArgs, opts ...pulumi.InvokeOption) GetVpcInfoResultOutput {
@@ -147,11 +62,11 @@ func GetVpcInfoOutput(ctx *pulumi.Context, args GetVpcInfoOutputArgs, opts ...pu
 type GetVpcInfoOutputArgs struct {
 	// The CloudAMQP instance identifier.
 	//
-	// ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
+	// ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
 	InstanceId pulumi.IntPtrInput `pulumi:"instanceId"`
 	// The managed VPC identifier.
 	//
-	// ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
+	// ***Note:*** Available from [v1.16.0], will be removed in next major version (v2.0)
 	VpcId pulumi.StringPtrInput `pulumi:"vpcId"`
 }
 
@@ -183,14 +98,17 @@ func (o GetVpcInfoResultOutput) InstanceId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetVpcInfoResult) *int { return v.InstanceId }).(pulumi.IntPtrOutput)
 }
 
+// The name of the CloudAMQP instance.
 func (o GetVpcInfoResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcInfoResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// AWS account identifier.
 func (o GetVpcInfoResultOutput) OwnerId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcInfoResult) string { return v.OwnerId }).(pulumi.StringOutput)
 }
 
+// AWS security group identifier.
 func (o GetVpcInfoResultOutput) SecurityGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcInfoResult) string { return v.SecurityGroupId }).(pulumi.StringOutput)
 }
@@ -199,6 +117,7 @@ func (o GetVpcInfoResultOutput) VpcId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetVpcInfoResult) *string { return v.VpcId }).(pulumi.StringPtrOutput)
 }
 
+// Dedicated VPC subnet.
 func (o GetVpcInfoResultOutput) VpcSubnet() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcInfoResult) string { return v.VpcSubnet }).(pulumi.StringOutput)
 }
