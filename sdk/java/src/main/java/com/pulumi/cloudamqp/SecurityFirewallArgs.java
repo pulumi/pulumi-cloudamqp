@@ -34,14 +34,16 @@ public final class SecurityFirewallArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+     * An array of rules, minimum of 1 needs to be configured. Each `rules`
+     * block consists of the field documented below.
      * 
      */
     @Import(name="rules", required=true)
     private Output<List<SecurityFirewallRuleArgs>> rules;
 
     /**
-     * @return An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+     * @return An array of rules, minimum of 1 needs to be configured. Each `rules`
+     * block consists of the field documented below.
      * 
      */
     public Output<List<SecurityFirewallRuleArgs>> rules() {
@@ -49,14 +51,16 @@ public final class SecurityFirewallArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+     * Configurable sleep time in seconds between retries for firewall
+     * configuration. Default set to 30 seconds.
      * 
      */
     @Import(name="sleep")
     private @Nullable Output<Integer> sleep;
 
     /**
-     * @return Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+     * @return Configurable sleep time in seconds between retries for firewall
+     * configuration. Default set to 30 seconds.
      * 
      */
     public Optional<Output<Integer>> sleep() {
@@ -64,7 +68,8 @@ public final class SecurityFirewallArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+     * Configurable timeout time in seconds for firewall configuration.
+     * Default set to 1800 seconds.
      * 
      * ***
      * 
@@ -75,7 +80,8 @@ public final class SecurityFirewallArgs extends com.pulumi.resources.ResourceArg
     private @Nullable Output<Integer> timeout;
 
     /**
-     * @return Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+     * @return Configurable timeout time in seconds for firewall configuration.
+     * Default set to 1800 seconds.
      * 
      * ***
      * 
@@ -135,7 +141,8 @@ public final class SecurityFirewallArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param rules An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+         * @param rules An array of rules, minimum of 1 needs to be configured. Each `rules`
+         * block consists of the field documented below.
          * 
          * @return builder
          * 
@@ -146,7 +153,8 @@ public final class SecurityFirewallArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param rules An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+         * @param rules An array of rules, minimum of 1 needs to be configured. Each `rules`
+         * block consists of the field documented below.
          * 
          * @return builder
          * 
@@ -156,7 +164,8 @@ public final class SecurityFirewallArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param rules An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+         * @param rules An array of rules, minimum of 1 needs to be configured. Each `rules`
+         * block consists of the field documented below.
          * 
          * @return builder
          * 
@@ -166,7 +175,8 @@ public final class SecurityFirewallArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param sleep Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+         * @param sleep Configurable sleep time in seconds between retries for firewall
+         * configuration. Default set to 30 seconds.
          * 
          * @return builder
          * 
@@ -177,7 +187,8 @@ public final class SecurityFirewallArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param sleep Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+         * @param sleep Configurable sleep time in seconds between retries for firewall
+         * configuration. Default set to 30 seconds.
          * 
          * @return builder
          * 
@@ -187,7 +198,8 @@ public final class SecurityFirewallArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param timeout Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+         * @param timeout Configurable timeout time in seconds for firewall configuration.
+         * Default set to 1800 seconds.
          * 
          * ***
          * 
@@ -202,7 +214,8 @@ public final class SecurityFirewallArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param timeout Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+         * @param timeout Configurable timeout time in seconds for firewall configuration.
+         * Default set to 1800 seconds.
          * 
          * ***
          * 

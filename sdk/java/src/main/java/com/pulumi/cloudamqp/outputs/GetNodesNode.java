@@ -12,49 +12,137 @@ import java.util.Objects;
 
 @CustomType
 public final class GetNodesNode {
+    /**
+     * @return Additional added disk size
+     * 
+     */
     private Integer additionalDiskSize;
+    /**
+     * @return Availability zone the node is hosted in.
+     * 
+     */
     private String availabilityZone;
+    /**
+     * @return Is the node configured?
+     * 
+     */
     private Boolean configured;
+    /**
+     * @return Subscription plan disk size
+     * 
+     */
     private Integer diskSize;
+    /**
+     * @return Currently used Erlang version on the node.
+     * 
+     */
     private String erlangVersion;
+    /**
+     * @return Enable or disable High-performance Erlang.
+     * 
+     */
     private Boolean hipe;
+    /**
+     * @return External hostname assigned to the node.
+     * 
+     */
     private String hostname;
+    /**
+     * @return Internal hostname assigned to the node.
+     * 
+     */
     private String hostnameInternal;
+    /**
+     * @return Name of the node.
+     * 
+     */
     private String name;
+    /**
+     * @return Currently configured Rabbit MQ version on the node.
+     * 
+     */
     private String rabbitmqVersion;
+    /**
+     * @return Is the node running?
+     * 
+     */
     private Boolean running;
 
     private GetNodesNode() {}
+    /**
+     * @return Additional added disk size
+     * 
+     */
     public Integer additionalDiskSize() {
         return this.additionalDiskSize;
     }
+    /**
+     * @return Availability zone the node is hosted in.
+     * 
+     */
     public String availabilityZone() {
         return this.availabilityZone;
     }
+    /**
+     * @return Is the node configured?
+     * 
+     */
     public Boolean configured() {
         return this.configured;
     }
+    /**
+     * @return Subscription plan disk size
+     * 
+     */
     public Integer diskSize() {
         return this.diskSize;
     }
+    /**
+     * @return Currently used Erlang version on the node.
+     * 
+     */
     public String erlangVersion() {
         return this.erlangVersion;
     }
+    /**
+     * @return Enable or disable High-performance Erlang.
+     * 
+     */
     public Boolean hipe() {
         return this.hipe;
     }
+    /**
+     * @return External hostname assigned to the node.
+     * 
+     */
     public String hostname() {
         return this.hostname;
     }
+    /**
+     * @return Internal hostname assigned to the node.
+     * 
+     */
     public String hostnameInternal() {
         return this.hostnameInternal;
     }
+    /**
+     * @return Name of the node.
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return Currently configured Rabbit MQ version on the node.
+     * 
+     */
     public String rabbitmqVersion() {
         return this.rabbitmqVersion;
     }
+    /**
+     * @return Is the node running?
+     * 
+     */
     public Boolean running() {
         return this.running;
     }

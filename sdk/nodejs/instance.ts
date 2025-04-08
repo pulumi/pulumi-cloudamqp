@@ -7,18 +7,21 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * This resource allows you to create and manage a CloudAMQP instance running either [**RabbitMQ**](https://www.rabbitmq.com/) or [**LavinMQ**](https://lavinmq.com/) and can be deployed to multiple cloud platforms provider and regions, see instance regions for more information.
+ * This resource allows you to create and manage a CloudAMQP instance running either [**RabbitMQ**] or
+ * [**LavinMQ**] and can be deployed to multiple cloud platforms provider and regions, see
+ * [instance regions] for more information.
  *
- * Once the instance is created it will be assigned a unique identifier. All other resources and data sources created for this instance needs to reference this unique instance identifier.
+ * Once the instance is created it will be assigned a unique identifier. All other resources and data
+ * sources created for this instance needs to reference this unique instance identifier.
  *
- * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
+ * Pricing is available at [CloudAMQP plans].
  *
  * ## Example Usage
  *
  * <details>
  *   <summary>
  *     <b>
- *       <i>Basic example of shared and dedicated instances</i>
+ *       <i>Shared and dedicated instances running LavinMQ</i>
  *     </b>
  *   </summary>
  *
@@ -26,26 +29,33 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
- * // Minimum free lemur instance running RabbitMQ
- * const lemurInstance = new cloudamqp.Instance("lemur_instance", {
- *     name: "cloudamqp-free-instance",
- *     plan: "lemur",
- *     region: "amazon-web-services::us-west-1",
- *     tags: ["rabbitmq"],
- * });
  * // Minimum free lemming instance running LavinMQ
- * const lemmingInstance = new cloudamqp.Instance("lemming_instance", {
- *     name: "cloudamqp-free-instance",
+ * const lemurInstance = new cloudamqp.Instance("lemur_instance", {
+ *     name: "cloudamqp-free-instance-01",
  *     plan: "lemming",
  *     region: "amazon-web-services::us-west-1",
  *     tags: ["lavinmq"],
  * });
- * // New dedicated bunny instance running RabbitMQ
- * const instance = new cloudamqp.Instance("instance", {
- *     name: "terraform-cloudamqp-instance",
+ * // Minimum free lemur instance running RabbitMQ
+ * const lemmingInstance = new cloudamqp.Instance("lemming_instance", {
+ *     name: "cloudamqp-free-instance-02",
+ *     plan: "lemur",
+ *     region: "amazon-web-services::us-west-1",
+ *     tags: ["rabbitmq"],
+ * });
+ * // Dedicated penguin instance running LavinMQ
+ * const penguinInstance = new cloudamqp.Instance("penguin_instance", {
+ *     name: "terraform-cloudamqp-instance-01",
+ *     plan: "penguin-1",
+ *     region: "amazon-web-services::us-west-1",
+ *     tags: ["lavinmq"],
+ * });
+ * // Dedicated bunny instance running RabbitMQ
+ * const bunnyInstance = new cloudamqp.Instance("bunny_instance", {
+ *     name: "terraform-cloudamqp-instance-02",
  *     plan: "bunny-1",
  *     region: "amazon-web-services::us-west-1",
- *     tags: ["terraform"],
+ *     tags: ["rabbitmq"],
  * });
  * ```
  *
@@ -64,7 +74,7 @@ import * as utilities from "./utilities";
  *
  * const instance = new cloudamqp.Instance("instance", {
  *     name: "terraform-cloudamqp-instance",
- *     plan: "bunny-1",
+ *     plan: "penguin-1",
  *     region: "amazon-web-services::us-west-1",
  *     tags: ["terraform"],
  *     vpcSubnet: "10.56.72.0/24",
@@ -76,7 +86,10 @@ import * as utilities from "./utilities";
  * <details>
  *   <summary>
  *     <b>
- *       <i>Dedicated instance using attribute vpcSubnet to create VPC and then import managed VPC, from v1.16.0 (Managed VPC)</i>
+ *       <i>
+ *         Dedicated instance using attribute vpcSubnet to create VPC and then import managed VPC,
+ *         from v1.16.0 (Managed VPC)
+ *       </i>
  *     </b>
  *   </summary>
  *
@@ -87,16 +100,17 @@ import * as utilities from "./utilities";
  * // Dedicated instance that also creates VPC
  * const instance01 = new cloudamqp.Instance("instance_01", {
  *     name: "terraform-cloudamqp-instance-01",
- *     plan: "bunny-1",
+ *     plan: "penguin-1",
  *     region: "amazon-web-services::us-west-1",
  *     tags: ["terraform"],
  *     vpcSubnet: "10.56.72.0/24",
  * });
  * ```
  *
- * Once the instance and the VPC are created, the VPC can be imported as managed VPC and added to the configuration file.
- * Set attribute `vpcId` to the managed VPC identifier. To keep the managed VPC when deleting the instance, set attribute `keepAssociatedVpc` to true.
- * For more information see guide Managed VPC.
+ * Once the instance and the VPC are created, the VPC can be imported as managed VPC and added to the
+ * configuration file. Set attribute `vpcId` to the managed VPC identifier. To keep the managed VPC
+ * when deleting the instance, set attribute `keepAssociatedVpc` to true. For more information see
+ * guide [Managed VPC].
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -112,7 +126,7 @@ import * as utilities from "./utilities";
  * // Add vpc_id and keep_associated_vpc attributes
  * const instance01 = new cloudamqp.Instance("instance_01", {
  *     name: "terraform-cloudamqp-instance-01",
- *     plan: "bunny-1",
+ *     plan: "penguin-1",
  *     region: "amazon-web-services::us-west-1",
  *     tags: ["terraform"],
  *     vpcId: vpc.id,
@@ -143,7 +157,7 @@ import * as utilities from "./utilities";
  * // First instance added to managed VPC
  * const instance01 = new cloudamqp.Instance("instance_01", {
  *     name: "terraform-cloudamqp-instance-01",
- *     plan: "bunny-1",
+ *     plan: "penguin-1",
  *     region: "amazon-web-services::us-west-1",
  *     tags: ["terraform"],
  *     vpcId: vpc.id,
@@ -152,7 +166,7 @@ import * as utilities from "./utilities";
  * // Second instance added to managed VPC
  * const instance02 = new cloudamqp.Instance("instance_02", {
  *     name: "terraform-cloudamqp-instance-02",
- *     plan: "bunny-1",
+ *     plan: "penguin-1",
  *     region: "amazon-web-services::us-west-1",
  *     tags: ["terraform"],
  *     vpcId: vpc.id,
@@ -164,13 +178,9 @@ import * as utilities from "./utilities";
  *
  * </details>
  *
- * ## Copy settings to a new dedicated instance
+ * ### Settings supported by LavinMQ
  *
- * With copy settings it's possible to create a new dedicated instance with settings such as alarms, config, etc. from another dedicated instance. This can be done by adding the `copySettings` block to this resource and populate `subscriptionId` with a CloudAMQP instance identifier from another already existing instance.
- *
- * Then add the settings to be copied over to the new dedicated instance. Settings that can be copied [alarms, config, definitions, firewall, logs, metrics, plugins]
- *
- * > `rmqVersion` argument is required when doing this action. Must match the RabbitMQ version of the dedicated instance to be copied from.
+ * ***Allowed values:*** alarms, definitions, firewall, metrics
  *
  * <details>
  *   <summary>
@@ -183,9 +193,44 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
- * const instance02 = new cloudamqp.Instance("instance_02", {
+ * const penguinInstance = new cloudamqp.Instance("penguin_instance", {
+ *     name: "terraform-cloudamqp-instance-01",
+ *     plan: "penguin-1",
+ *     region: "amazon-web-services::us-west-1",
+ *     rmqVersion: "2.2.0",
+ *     tags: ["terraform"],
+ *     copySettings: [{
+ *         subscriptionId: instanceId,
+ *         settings: [
+ *             "alarms",
+ *             "definitions",
+ *             "firewall",
+ *             "metrics",
+ *         ],
+ *     }],
+ * });
+ * ```
+ *
+ * </details>
+ *
+ * ### Settings supported by RabbitMQ
+ *
+ * ***Allowed values:*** alarms, config, definitions, firewall, logs, metrics, plugins
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Copy settings from a dedicated instance to a new dedicated instance</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const bunnyInstance = new cloudamqp.Instance("bunny_instance", {
  *     name: "terraform-cloudamqp-instance-02",
- *     plan: "squirrel-1",
+ *     plan: "bunny-1",
  *     region: "amazon-web-services::us-west-1",
  *     rmqVersion: "3.12.2",
  *     tags: ["terraform"],
@@ -206,15 +251,41 @@ import * as utilities from "./utilities";
  *
  * </details>
  *
+ * [CloudAMQP]: https://cloudamqp.com
+ * [CloudAMQP API]: https://docs.cloudamqp.com/cloudamqp_api.html
+ * [CloudAMQP API list instances]: https://docs.cloudamqp.com/#list-instances
+ * [CloudAMQP plans]: https://www.cloudamqp.com/plans.html
+ * [copy settings]: #copy-settings-to-a-new-dedicated-instance
+ * [example]: ../guides/info_vpc_existing.md
+ * [regions]: ../guides/info_region.md
+ * [**LavinMQ**]: https://lavinmq.com
+ * [Managed VPC]: ../guides/info_managed_vpc#dedicated-instance-and-vpc_subnet
+ * [plans]: ../guides/info_plan.md
+ * [**RabbitMQ**]: https://www.rabbitmq.com
+ *
  * ## Import
  *
- * `cloudamqp_instance`can be imported using CloudAMQP internal identifier.
+ * `cloudamqp_instance`can be imported using resource identifier. To retrieve the resource identifier,
+ *
+ * use [CloudAMQP API list instances]
+ *
+ * From Terraform v1.5.0, the `import` block can be used to import this resource:
+ *
+ * hcl
+ *
+ * import {
+ *
+ *   to = cloudamqp_instance.instance
+ *
+ *   id = <id>
+ *
+ * }
+ *
+ * Or use Terraform CLI:
  *
  * ```sh
  * $ pulumi import cloudamqp:index/instance:Instance instance <id>`
  * ```
- *
- * To retrieve the identifier for an instance, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-instances) or use the data source [`cloudamqp_account`](./data-sources/account.md) to list all available instances for an account.
  */
 export class Instance extends pulumi.CustomResource {
     /**
@@ -245,7 +316,8 @@ export class Instance extends pulumi.CustomResource {
     }
 
     /**
-     * API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
+     * API key needed to communicate to CloudAMQP's second API. The second API is used
+     * to manage alarms, integration and more, full description [CloudAMQP API].
      */
     public /*out*/ readonly apikey!: pulumi.Output<string>;
     /**
@@ -253,7 +325,8 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly backend!: pulumi.Output<string>;
     /**
-     * Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+     * Copy settings from one CloudAMQP instance to a new. Consists of
+     * the block documented below.
      *
      * ___
      *
@@ -273,7 +346,8 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly hostInternal!: pulumi.Output<string>;
     /**
-     * Keep associated VPC when deleting instance, default set to false.
+     * Keep associated VPC when deleting instance. Default set to
+     * false.
      */
     public readonly keepAssociatedVpc!: pulumi.Output<boolean | undefined>;
     /**
@@ -281,17 +355,20 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
+     * Set to true to not create default alarms
      */
     public readonly noDefaultAlarms!: pulumi.Output<boolean>;
     /**
-     * Number of nodes, 1, 3 or 5 depending on plan used. Only needed for legacy plans, will otherwise be computed.
+     * Number of nodes, 1, 3 or 5 depending on plan used. Only needed for
+     * legacy plans, will otherwise be computed.
      *
-     * ***Deprecated: Legacy subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.***
+     * ***Deprecated:*** Legacy subscriptions plan can still change this to scale up or down the instance.
+     * New subscriptions plans use the plan to determine number of nodes. In order to
+     * change number of nodes the `plan` needs to be updated.
      */
     public readonly nodes!: pulumi.Output<number>;
     /**
-     * The subscription plan. See available plans
+     * The subscription plan. See available [plans].
      */
     public readonly plan!: pulumi.Output<string>;
     /**
@@ -299,23 +376,28 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly ready!: pulumi.Output<boolean>;
     /**
-     * The region to host the instance in. See instance regions
+     * The region to host the instance in. See available [regions].
      *
-     * ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
+     * ***Note:*** Changing region will force the instance to be destroyed and a new created in the new
+     * region. All data will be lost and a new name assigned.
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.
+     * The Rabbit MQ version. Can be left out, will then be set to
+     * default value used by CloudAMQP API.
      *
-     * ***Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.***
+     * ***Note:*** There is not yet any support in the provider to change the RMQ version. Once it's set
+     * in the initial creation, it will remain.
      */
     public readonly rmqVersion!: pulumi.Output<string>;
     /**
-     * One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
+     * One or more tags for the CloudAMQP instance, makes it possible to
+     * categories multiple instances in console view. Default there is no tags assigned.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
+     * The AMQP URL (uses the internal hostname if the instance was created with VPC).
+     * Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
      */
     public /*out*/ readonly url!: pulumi.Output<string>;
     /**
@@ -323,15 +405,17 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly vhost!: pulumi.Output<string>;
     /**
-     * The VPC ID. Use this to create your instance in an existing VPC. See available example.
+     * The VPC ID. Use this to create your instance in an existing
+     * VPC. See available [example].
      */
     public readonly vpcId!: pulumi.Output<number>;
     /**
-     * Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24.
+     * Creates a dedicated VPC subnet, shouldn't overlap with other
+     * VPC subnet, default subnet used 10.56.72.0/24.
      *
-     * ***Deprecated: Will be removed in next major version (v2.0)***
+     * ***Deprecated:*** Will be removed in next major version (v2.0)
      *
-     * ***Note: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.***
+     * ***Note:*** Extra fee will be charged when using VPC, see [CloudAMQP] for more information.
      */
     public readonly vpcSubnet!: pulumi.Output<string>;
 
@@ -407,7 +491,8 @@ export class Instance extends pulumi.CustomResource {
  */
 export interface InstanceState {
     /**
-     * API key needed to communicate to CloudAMQP's second API. The second API is used to manage alarms, integration and more, full description [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html).
+     * API key needed to communicate to CloudAMQP's second API. The second API is used
+     * to manage alarms, integration and more, full description [CloudAMQP API].
      */
     apikey?: pulumi.Input<string>;
     /**
@@ -415,7 +500,8 @@ export interface InstanceState {
      */
     backend?: pulumi.Input<string>;
     /**
-     * Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+     * Copy settings from one CloudAMQP instance to a new. Consists of
+     * the block documented below.
      *
      * ___
      *
@@ -435,7 +521,8 @@ export interface InstanceState {
      */
     hostInternal?: pulumi.Input<string>;
     /**
-     * Keep associated VPC when deleting instance, default set to false.
+     * Keep associated VPC when deleting instance. Default set to
+     * false.
      */
     keepAssociatedVpc?: pulumi.Input<boolean>;
     /**
@@ -443,17 +530,20 @@ export interface InstanceState {
      */
     name?: pulumi.Input<string>;
     /**
-     * Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
+     * Set to true to not create default alarms
      */
     noDefaultAlarms?: pulumi.Input<boolean>;
     /**
-     * Number of nodes, 1, 3 or 5 depending on plan used. Only needed for legacy plans, will otherwise be computed.
+     * Number of nodes, 1, 3 or 5 depending on plan used. Only needed for
+     * legacy plans, will otherwise be computed.
      *
-     * ***Deprecated: Legacy subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.***
+     * ***Deprecated:*** Legacy subscriptions plan can still change this to scale up or down the instance.
+     * New subscriptions plans use the plan to determine number of nodes. In order to
+     * change number of nodes the `plan` needs to be updated.
      */
     nodes?: pulumi.Input<number>;
     /**
-     * The subscription plan. See available plans
+     * The subscription plan. See available [plans].
      */
     plan?: pulumi.Input<string>;
     /**
@@ -461,23 +551,28 @@ export interface InstanceState {
      */
     ready?: pulumi.Input<boolean>;
     /**
-     * The region to host the instance in. See instance regions
+     * The region to host the instance in. See available [regions].
      *
-     * ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
+     * ***Note:*** Changing region will force the instance to be destroyed and a new created in the new
+     * region. All data will be lost and a new name assigned.
      */
     region?: pulumi.Input<string>;
     /**
-     * The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.
+     * The Rabbit MQ version. Can be left out, will then be set to
+     * default value used by CloudAMQP API.
      *
-     * ***Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.***
+     * ***Note:*** There is not yet any support in the provider to change the RMQ version. Once it's set
+     * in the initial creation, it will remain.
      */
     rmqVersion?: pulumi.Input<string>;
     /**
-     * One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
+     * One or more tags for the CloudAMQP instance, makes it possible to
+     * categories multiple instances in console view. Default there is no tags assigned.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The AMQP URL (uses the internal hostname if the instance was created with VPC). Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
+     * The AMQP URL (uses the internal hostname if the instance was created with VPC).
+     * Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
      */
     url?: pulumi.Input<string>;
     /**
@@ -485,15 +580,17 @@ export interface InstanceState {
      */
     vhost?: pulumi.Input<string>;
     /**
-     * The VPC ID. Use this to create your instance in an existing VPC. See available example.
+     * The VPC ID. Use this to create your instance in an existing
+     * VPC. See available [example].
      */
     vpcId?: pulumi.Input<number>;
     /**
-     * Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24.
+     * Creates a dedicated VPC subnet, shouldn't overlap with other
+     * VPC subnet, default subnet used 10.56.72.0/24.
      *
-     * ***Deprecated: Will be removed in next major version (v2.0)***
+     * ***Deprecated:*** Will be removed in next major version (v2.0)
      *
-     * ***Note: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.***
+     * ***Note:*** Extra fee will be charged when using VPC, see [CloudAMQP] for more information.
      */
     vpcSubnet?: pulumi.Input<string>;
 }
@@ -503,7 +600,8 @@ export interface InstanceState {
  */
 export interface InstanceArgs {
     /**
-     * Copy settings from one CloudAMQP instance to a new. Consists of the block documented below.
+     * Copy settings from one CloudAMQP instance to a new. Consists of
+     * the block documented below.
      *
      * ___
      *
@@ -511,7 +609,8 @@ export interface InstanceArgs {
      */
     copySettings?: pulumi.Input<pulumi.Input<inputs.InstanceCopySetting>[]>;
     /**
-     * Keep associated VPC when deleting instance, default set to false.
+     * Keep associated VPC when deleting instance. Default set to
+     * false.
      */
     keepAssociatedVpc?: pulumi.Input<boolean>;
     /**
@@ -519,45 +618,54 @@ export interface InstanceArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Set to true to discard creating default alarms when the instance is created. Can be left out, will then use default value = false.
+     * Set to true to not create default alarms
      */
     noDefaultAlarms?: pulumi.Input<boolean>;
     /**
-     * Number of nodes, 1, 3 or 5 depending on plan used. Only needed for legacy plans, will otherwise be computed.
+     * Number of nodes, 1, 3 or 5 depending on plan used. Only needed for
+     * legacy plans, will otherwise be computed.
      *
-     * ***Deprecated: Legacy subscriptions plan can still change this to scale up or down the instance. New subscriptions plans use the plan to determine number of nodes. In order to change number of nodes the `plan` needs to be updated.***
+     * ***Deprecated:*** Legacy subscriptions plan can still change this to scale up or down the instance.
+     * New subscriptions plans use the plan to determine number of nodes. In order to
+     * change number of nodes the `plan` needs to be updated.
      */
     nodes?: pulumi.Input<number>;
     /**
-     * The subscription plan. See available plans
+     * The subscription plan. See available [plans].
      */
     plan: pulumi.Input<string>;
     /**
-     * The region to host the instance in. See instance regions
+     * The region to host the instance in. See available [regions].
      *
-     * ***Note: Changing region will force the instance to be destroyed and a new created in the new region. All data will be lost and a new name assigned.***
+     * ***Note:*** Changing region will force the instance to be destroyed and a new created in the new
+     * region. All data will be lost and a new name assigned.
      */
     region: pulumi.Input<string>;
     /**
-     * The Rabbit MQ version. Can be left out, will then be set to default value used by CloudAMQP API.
+     * The Rabbit MQ version. Can be left out, will then be set to
+     * default value used by CloudAMQP API.
      *
-     * ***Note: There is not yet any support in the provider to change the RMQ version. Once it's set in the initial creation, it will remain.***
+     * ***Note:*** There is not yet any support in the provider to change the RMQ version. Once it's set
+     * in the initial creation, it will remain.
      */
     rmqVersion?: pulumi.Input<string>;
     /**
-     * One or more tags for the CloudAMQP instance, makes it possible to categories multiple instances in console view. Default there is no tags assigned.
+     * One or more tags for the CloudAMQP instance, makes it possible to
+     * categories multiple instances in console view. Default there is no tags assigned.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The VPC ID. Use this to create your instance in an existing VPC. See available example.
+     * The VPC ID. Use this to create your instance in an existing
+     * VPC. See available [example].
      */
     vpcId?: pulumi.Input<number>;
     /**
-     * Creates a dedicated VPC subnet, shouldn't overlap with other VPC subnet, default subnet used 10.56.72.0/24.
+     * Creates a dedicated VPC subnet, shouldn't overlap with other
+     * VPC subnet, default subnet used 10.56.72.0/24.
      *
-     * ***Deprecated: Will be removed in next major version (v2.0)***
+     * ***Deprecated:*** Will be removed in next major version (v2.0)
      *
-     * ***Note: extra fee will be charged when using VPC, see [CloudAMQP](https://cloudamqp.com) for more information.***
+     * ***Note:*** Extra fee will be charged when using VPC, see [CloudAMQP] for more information.
      */
     vpcSubnet?: pulumi.Input<string>;
 }

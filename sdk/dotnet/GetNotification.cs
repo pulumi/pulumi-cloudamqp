@@ -12,7 +12,9 @@ namespace Pulumi.CloudAmqp
     public static class GetNotification
     {
         /// <summary>
-        /// Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipient_id` or `name`.
+        /// Use this data source to retrieve information about default or created recipients. The recipient will
+        /// receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use
+        /// `recipient_id` or `name`.
         /// 
         /// ## Example Usage
         /// 
@@ -32,15 +34,6 @@ namespace Pulumi.CloudAmqp
         /// 
         /// });
         /// ```
-        /// 
-        /// ## Attributes reference
-        /// 
-        /// All attributes reference are computed
-        /// 
-        /// * `id`    - The identifier for this resource.
-        /// * `type`  - The type of the recipient.
-        /// * `value` - The notification endpoint, where to send the notification.
-        /// * `options`- Options argument (e.g. `rk` used for VictorOps routing key).
         /// 
         /// ## Dependency
         /// 
@@ -50,7 +43,9 @@ namespace Pulumi.CloudAmqp
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetNotificationResult>("cloudamqp:index/getNotification:getNotification", args ?? new GetNotificationArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipient_id` or `name`.
+        /// Use this data source to retrieve information about default or created recipients. The recipient will
+        /// receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use
+        /// `recipient_id` or `name`.
         /// 
         /// ## Example Usage
         /// 
@@ -70,15 +65,6 @@ namespace Pulumi.CloudAmqp
         /// 
         /// });
         /// ```
-        /// 
-        /// ## Attributes reference
-        /// 
-        /// All attributes reference are computed
-        /// 
-        /// * `id`    - The identifier for this resource.
-        /// * `type`  - The type of the recipient.
-        /// * `value` - The notification endpoint, where to send the notification.
-        /// * `options`- Options argument (e.g. `rk` used for VictorOps routing key).
         /// 
         /// ## Dependency
         /// 
@@ -88,7 +74,9 @@ namespace Pulumi.CloudAmqp
             => global::Pulumi.Deployment.Instance.Invoke<GetNotificationResult>("cloudamqp:index/getNotification:getNotification", args ?? new GetNotificationInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipient_id` or `name`.
+        /// Use this data source to retrieve information about default or created recipients. The recipient will
+        /// receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use
+        /// `recipient_id` or `name`.
         /// 
         /// ## Example Usage
         /// 
@@ -108,15 +96,6 @@ namespace Pulumi.CloudAmqp
         /// 
         /// });
         /// ```
-        /// 
-        /// ## Attributes reference
-        /// 
-        /// All attributes reference are computed
-        /// 
-        /// * `id`    - The identifier for this resource.
-        /// * `type`  - The type of the recipient.
-        /// * `value` - The notification endpoint, where to send the notification.
-        /// * `options`- Options argument (e.g. `rk` used for VictorOps routing key).
         /// 
         /// ## Dependency
         /// 
@@ -143,6 +122,10 @@ namespace Pulumi.CloudAmqp
 
         [Input("options")]
         private Dictionary<string, string>? _options;
+
+        /// <summary>
+        /// Options argument (e.g. `rk` used for VictorOps routing key).
+        /// </summary>
         public Dictionary<string, string> Options
         {
             get => _options ?? (_options = new Dictionary<string, string>());
@@ -177,6 +160,10 @@ namespace Pulumi.CloudAmqp
 
         [Input("options")]
         private InputMap<string>? _options;
+
+        /// <summary>
+        /// Options argument (e.g. `rk` used for VictorOps routing key).
+        /// </summary>
         public InputMap<string> Options
         {
             get => _options ?? (_options = new InputMap<string>());
@@ -205,9 +192,18 @@ namespace Pulumi.CloudAmqp
         public readonly string Id;
         public readonly int InstanceId;
         public readonly string? Name;
+        /// <summary>
+        /// Options argument (e.g. `rk` used for VictorOps routing key).
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Options;
         public readonly int? RecipientId;
+        /// <summary>
+        /// The type of the recipient.
+        /// </summary>
         public readonly string Type;
+        /// <summary>
+        /// The notification endpoint, where to send the notification.
+        /// </summary>
         public readonly string Value;
 
         [OutputConstructor]

@@ -56,11 +56,17 @@ class GetCredentialsResult:
     @property
     @pulumi.getter
     def password(self) -> str:
+        """
+        (Sensitive) The password used by the `username`.
+        """
         return pulumi.get(self, "password")
 
     @property
     @pulumi.getter
     def username(self) -> str:
+        """
+        (Sensitive) The username for the configured user in Rabbit MQ.
+        """
         return pulumi.get(self, "username")
 
 
@@ -79,7 +85,8 @@ class AwaitableGetCredentialsResult(GetCredentialsResult):
 def get_credentials(instance_id: Optional[int] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCredentialsResult:
     """
-    Use this data source to retrieve information about the credentials of the configured user in Rabbit MQ. Information is extracted from `cloudamqp_instance.instance.url`.
+    Use this data source to retrieve information about the credentials of the configured user in
+    RabbitMQ. Information is extracted from `cloudamqp_instance.instance.url`.
 
     ## Example Usage
 
@@ -89,14 +96,6 @@ def get_credentials(instance_id: Optional[int] = None,
 
     credentials = cloudamqp.get_credentials(instance_id=instance["id"])
     ```
-
-    ## Attributes reference
-
-    All attributes reference are computed.
-
-    * `id`          - The identifier for this data source.
-    * `username`    - (Sensitive) The username for the configured user in Rabbit MQ.
-    * `password`    - (Sensitive) The password used by the `username`.
 
     ## Dependency
 
@@ -118,7 +117,8 @@ def get_credentials(instance_id: Optional[int] = None,
 def get_credentials_output(instance_id: Optional[pulumi.Input[int]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCredentialsResult]:
     """
-    Use this data source to retrieve information about the credentials of the configured user in Rabbit MQ. Information is extracted from `cloudamqp_instance.instance.url`.
+    Use this data source to retrieve information about the credentials of the configured user in
+    RabbitMQ. Information is extracted from `cloudamqp_instance.instance.url`.
 
     ## Example Usage
 
@@ -128,14 +128,6 @@ def get_credentials_output(instance_id: Optional[pulumi.Input[int]] = None,
 
     credentials = cloudamqp.get_credentials(instance_id=instance["id"])
     ```
-
-    ## Attributes reference
-
-    All attributes reference are computed.
-
-    * `id`          - The identifier for this data source.
-    * `username`    - (Sensitive) The username for the configured user in Rabbit MQ.
-    * `password`    - (Sensitive) The password used by the `username`.
 
     ## Dependency
 

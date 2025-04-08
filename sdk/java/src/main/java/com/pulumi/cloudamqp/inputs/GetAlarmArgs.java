@@ -18,14 +18,16 @@ public final class GetAlarmArgs extends com.pulumi.resources.InvokeArgs {
     public static final GetAlarmArgs Empty = new GetAlarmArgs();
 
     /**
-     * The alarm identifier. Either use this or `type` to give `cloudamqp.Alarm` necessary information to retrieve the alarm.
+     * The alarm identifier. Either use this or `type` to give
+     * `cloudamqp.Alarm` necessary information to retrieve the alarm.
      * 
      */
     @Import(name="alarmId")
     private @Nullable Output<Integer> alarmId;
 
     /**
-     * @return The alarm identifier. Either use this or `type` to give `cloudamqp.Alarm` necessary information to retrieve the alarm.
+     * @return The alarm identifier. Either use this or `type` to give
+     * `cloudamqp.Alarm` necessary information to retrieve the alarm.
      * 
      */
     public Optional<Output<Integer>> alarmId() {
@@ -48,23 +50,37 @@ public final class GetAlarmArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * The alarm type. Either use this or `alarm_id` to give `cloudamqp.Alarm` necessary information when retrieve the alarm. Supported alarm types
+     * The alarm type. Either use this or `alarm_id` to give `cloudamqp.Alarm`
+     * necessary information when retrieve the alarm. Supported
+     * alarm types.
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return The alarm type. Either use this or `alarm_id` to give `cloudamqp.Alarm` necessary information when retrieve the alarm. Supported alarm types
+     * @return The alarm type. Either use this or `alarm_id` to give `cloudamqp.Alarm`
+     * necessary information when retrieve the alarm. Supported
+     * alarm types.
      * 
      */
     public Optional<Output<String>> type() {
         return Optional.ofNullable(this.type);
     }
 
+    /**
+     * Disk value threshold calculation, `(fixed, percentage)` of disk space
+     * remaining.
+     * 
+     */
     @Import(name="valueCalculation")
     private @Nullable Output<String> valueCalculation;
 
+    /**
+     * @return Disk value threshold calculation, `(fixed, percentage)` of disk space
+     * remaining.
+     * 
+     */
     public Optional<Output<String>> valueCalculation() {
         return Optional.ofNullable(this.valueCalculation);
     }
@@ -97,7 +113,8 @@ public final class GetAlarmArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param alarmId The alarm identifier. Either use this or `type` to give `cloudamqp.Alarm` necessary information to retrieve the alarm.
+         * @param alarmId The alarm identifier. Either use this or `type` to give
+         * `cloudamqp.Alarm` necessary information to retrieve the alarm.
          * 
          * @return builder
          * 
@@ -108,7 +125,8 @@ public final class GetAlarmArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param alarmId The alarm identifier. Either use this or `type` to give `cloudamqp.Alarm` necessary information to retrieve the alarm.
+         * @param alarmId The alarm identifier. Either use this or `type` to give
+         * `cloudamqp.Alarm` necessary information to retrieve the alarm.
          * 
          * @return builder
          * 
@@ -139,7 +157,9 @@ public final class GetAlarmArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param type The alarm type. Either use this or `alarm_id` to give `cloudamqp.Alarm` necessary information when retrieve the alarm. Supported alarm types
+         * @param type The alarm type. Either use this or `alarm_id` to give `cloudamqp.Alarm`
+         * necessary information when retrieve the alarm. Supported
+         * alarm types.
          * 
          * @return builder
          * 
@@ -150,7 +170,9 @@ public final class GetAlarmArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param type The alarm type. Either use this or `alarm_id` to give `cloudamqp.Alarm` necessary information when retrieve the alarm. Supported alarm types
+         * @param type The alarm type. Either use this or `alarm_id` to give `cloudamqp.Alarm`
+         * necessary information when retrieve the alarm. Supported
+         * alarm types.
          * 
          * @return builder
          * 
@@ -159,11 +181,25 @@ public final class GetAlarmArgs extends com.pulumi.resources.InvokeArgs {
             return type(Output.of(type));
         }
 
+        /**
+         * @param valueCalculation Disk value threshold calculation, `(fixed, percentage)` of disk space
+         * remaining.
+         * 
+         * @return builder
+         * 
+         */
         public Builder valueCalculation(@Nullable Output<String> valueCalculation) {
             $.valueCalculation = valueCalculation;
             return this;
         }
 
+        /**
+         * @param valueCalculation Disk value threshold calculation, `(fixed, percentage)` of disk space
+         * remaining.
+         * 
+         * @return builder
+         * 
+         */
         public Builder valueCalculation(String valueCalculation) {
             return valueCalculation(Output.of(valueCalculation));
         }

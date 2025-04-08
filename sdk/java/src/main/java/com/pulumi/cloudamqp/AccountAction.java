@@ -23,14 +23,16 @@ import javax.annotation.Nullable;
 @ResourceType(type="cloudamqp:index/accountAction:AccountAction")
 public class AccountAction extends com.pulumi.resources.CustomResource {
     /**
-     * The action to be invoked. Allowed actions `rotate-password`, `rotate-apikey`.
+     * The action to be invoked. Allowed actions
+     * `rotate-password`, `rotate-apikey`.
      * 
      */
     @Export(name="action", refs={String.class}, tree="[0]")
     private Output<String> action;
 
     /**
-     * @return The action to be invoked. Allowed actions `rotate-password`, `rotate-apikey`.
+     * @return The action to be invoked. Allowed actions
+     * `rotate-password`, `rotate-apikey`.
      * 
      */
     public Output<String> action() {

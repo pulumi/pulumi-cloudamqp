@@ -11,234 +11,12 @@ namespace Pulumi.CloudAmqp
 {
     public static class GetVpcGcpInfo
     {
-        /// <summary>
-        /// Use this data source to retrieve information about VPC for a CloudAMQP instance.
-        /// 
-        /// &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
-        /// 
-        /// ## Example Usage
-        /// 
-        /// &lt;details&gt;
-        ///   &lt;summary&gt;
-        ///     &lt;b&gt;
-        ///       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
-        ///     &lt;/b&gt;
-        ///   &lt;/summary&gt;
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using CloudAmqp = Pulumi.CloudAmqp;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var vpcInfo = CloudAmqp.GetVpcGcpInfo.Invoke(new()
-        ///     {
-        ///         InstanceId = instance.Id,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// 
-        /// &lt;/details&gt;
-        /// 
-        /// &lt;details&gt;
-        ///   &lt;summary&gt;
-        ///     &lt;b&gt;
-        ///       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
-        ///     &lt;/b&gt;
-        ///   &lt;/summary&gt;
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using CloudAmqp = Pulumi.CloudAmqp;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var vpcInfo = CloudAmqp.GetVpcGcpInfo.Invoke(new()
-        ///     {
-        ///         VpcId = vpc.Id,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// 
-        /// &lt;/details&gt;
-        /// 
-        /// ## Attributes reference
-        /// 
-        /// All attributes reference are computed
-        /// 
-        /// * `id`                  - The identifier for this resource.
-        /// * `name`                - The name of the VPC.
-        /// * `vpc_subnet`          - Dedicated VPC subnet.
-        /// * `network`             - VPC network uri.
-        /// 
-        /// ## Dependency
-        /// 
-        /// *Pre v1.16.0*
-        /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-        /// 
-        /// *Post v1.16.0*
-        /// This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
-        /// </summary>
         public static Task<GetVpcGcpInfoResult> InvokeAsync(GetVpcGcpInfoArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetVpcGcpInfoResult>("cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo", args ?? new GetVpcGcpInfoArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// Use this data source to retrieve information about VPC for a CloudAMQP instance.
-        /// 
-        /// &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
-        /// 
-        /// ## Example Usage
-        /// 
-        /// &lt;details&gt;
-        ///   &lt;summary&gt;
-        ///     &lt;b&gt;
-        ///       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
-        ///     &lt;/b&gt;
-        ///   &lt;/summary&gt;
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using CloudAmqp = Pulumi.CloudAmqp;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var vpcInfo = CloudAmqp.GetVpcGcpInfo.Invoke(new()
-        ///     {
-        ///         InstanceId = instance.Id,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// 
-        /// &lt;/details&gt;
-        /// 
-        /// &lt;details&gt;
-        ///   &lt;summary&gt;
-        ///     &lt;b&gt;
-        ///       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
-        ///     &lt;/b&gt;
-        ///   &lt;/summary&gt;
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using CloudAmqp = Pulumi.CloudAmqp;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var vpcInfo = CloudAmqp.GetVpcGcpInfo.Invoke(new()
-        ///     {
-        ///         VpcId = vpc.Id,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// 
-        /// &lt;/details&gt;
-        /// 
-        /// ## Attributes reference
-        /// 
-        /// All attributes reference are computed
-        /// 
-        /// * `id`                  - The identifier for this resource.
-        /// * `name`                - The name of the VPC.
-        /// * `vpc_subnet`          - Dedicated VPC subnet.
-        /// * `network`             - VPC network uri.
-        /// 
-        /// ## Dependency
-        /// 
-        /// *Pre v1.16.0*
-        /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-        /// 
-        /// *Post v1.16.0*
-        /// This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
-        /// </summary>
         public static Output<GetVpcGcpInfoResult> Invoke(GetVpcGcpInfoInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVpcGcpInfoResult>("cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo", args ?? new GetVpcGcpInfoInvokeArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// Use this data source to retrieve information about VPC for a CloudAMQP instance.
-        /// 
-        /// &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
-        /// 
-        /// ## Example Usage
-        /// 
-        /// &lt;details&gt;
-        ///   &lt;summary&gt;
-        ///     &lt;b&gt;
-        ///       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
-        ///     &lt;/b&gt;
-        ///   &lt;/summary&gt;
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using CloudAmqp = Pulumi.CloudAmqp;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var vpcInfo = CloudAmqp.GetVpcGcpInfo.Invoke(new()
-        ///     {
-        ///         InstanceId = instance.Id,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// 
-        /// &lt;/details&gt;
-        /// 
-        /// &lt;details&gt;
-        ///   &lt;summary&gt;
-        ///     &lt;b&gt;
-        ///       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
-        ///     &lt;/b&gt;
-        ///   &lt;/summary&gt;
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using CloudAmqp = Pulumi.CloudAmqp;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var vpcInfo = CloudAmqp.GetVpcGcpInfo.Invoke(new()
-        ///     {
-        ///         VpcId = vpc.Id,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// 
-        /// &lt;/details&gt;
-        /// 
-        /// ## Attributes reference
-        /// 
-        /// All attributes reference are computed
-        /// 
-        /// * `id`                  - The identifier for this resource.
-        /// * `name`                - The name of the VPC.
-        /// * `vpc_subnet`          - Dedicated VPC subnet.
-        /// * `network`             - VPC network uri.
-        /// 
-        /// ## Dependency
-        /// 
-        /// *Pre v1.16.0*
-        /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-        /// 
-        /// *Post v1.16.0*
-        /// This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
-        /// </summary>
         public static Output<GetVpcGcpInfoResult> Invoke(GetVpcGcpInfoInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetVpcGcpInfoResult>("cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo", args ?? new GetVpcGcpInfoInvokeArgs(), options.WithDefaults());
     }
@@ -249,19 +27,21 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// The CloudAMQP instance identifier.
         /// 
-        /// ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
+        /// ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
         /// </summary>
         [Input("instanceId")]
         public int? InstanceId { get; set; }
 
         /// <summary>
-        /// Configurable sleep time (seconds) between retries when reading peering. Default set to 10 seconds.
+        /// Configurable sleep time (seconds) between retries when reading peering.
+        /// Default set to 10 seconds.
         /// </summary>
         [Input("sleep")]
         public int? Sleep { get; set; }
 
         /// <summary>
-        /// Configurable timeout time (seconds) before retries times out. Default set to 1800 seconds.
+        /// Configurable timeout time (seconds) before retries times out. Default
+        /// set to 1800 seconds.
         /// </summary>
         [Input("timeout")]
         public int? Timeout { get; set; }
@@ -269,7 +49,7 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// The managed VPC identifier.
         /// 
-        /// ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
+        /// ***Note:*** Available from [v1.16.0], will be removed in next major version (v2.0)
         /// </summary>
         [Input("vpcId")]
         public string? VpcId { get; set; }
@@ -285,19 +65,21 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// The CloudAMQP instance identifier.
         /// 
-        /// ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
+        /// ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
 
         /// <summary>
-        /// Configurable sleep time (seconds) between retries when reading peering. Default set to 10 seconds.
+        /// Configurable sleep time (seconds) between retries when reading peering.
+        /// Default set to 10 seconds.
         /// </summary>
         [Input("sleep")]
         public Input<int>? Sleep { get; set; }
 
         /// <summary>
-        /// Configurable timeout time (seconds) before retries times out. Default set to 1800 seconds.
+        /// Configurable timeout time (seconds) before retries times out. Default
+        /// set to 1800 seconds.
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
@@ -305,7 +87,7 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// The managed VPC identifier.
         /// 
-        /// ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
+        /// ***Note:*** Available from [v1.16.0], will be removed in next major version (v2.0)
         /// </summary>
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }
@@ -325,11 +107,20 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         public readonly string Id;
         public readonly int? InstanceId;
+        /// <summary>
+        /// The name of the VPC.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// VPC network uri.
+        /// </summary>
         public readonly string Network;
         public readonly int? Sleep;
         public readonly int? Timeout;
         public readonly string? VpcId;
+        /// <summary>
+        /// Dedicated VPC subnet.
+        /// </summary>
         public readonly string VpcSubnet;
 
         [OutputConstructor]

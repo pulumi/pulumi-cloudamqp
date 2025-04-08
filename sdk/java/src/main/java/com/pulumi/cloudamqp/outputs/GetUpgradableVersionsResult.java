@@ -17,7 +17,15 @@ public final class GetUpgradableVersionsResult {
      */
     private String id;
     private Integer instanceId;
+    /**
+     * @return Possible upgradable version for Erlang.
+     * 
+     */
     private String newErlangVersion;
+    /**
+     * @return Possible upgradable version for RabbitMQ.
+     * 
+     */
     private String newRabbitmqVersion;
 
     private GetUpgradableVersionsResult() {}
@@ -31,9 +39,17 @@ public final class GetUpgradableVersionsResult {
     public Integer instanceId() {
         return this.instanceId;
     }
+    /**
+     * @return Possible upgradable version for Erlang.
+     * 
+     */
     public String newErlangVersion() {
         return this.newErlangVersion;
     }
+    /**
+     * @return Possible upgradable version for RabbitMQ.
+     * 
+     */
     public String newRabbitmqVersion() {
         return this.newRabbitmqVersion;
     }

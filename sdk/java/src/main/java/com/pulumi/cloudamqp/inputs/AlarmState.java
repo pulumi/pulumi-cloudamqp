@@ -83,14 +83,16 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Identifier for recipient to be notified. Leave empty to notify all recipients.
+     * Identifier for recipient to be notified. Leave empty to notify
+     * all recipients.
      * 
      */
     @Import(name="recipients")
     private @Nullable Output<List<Integer>> recipients;
 
     /**
-     * @return Identifier for recipient to be notified. Leave empty to notify all recipients.
+     * @return Identifier for recipient to be notified. Leave empty to notify
+     * all recipients.
      * 
      */
     public Optional<Output<List<Integer>>> recipients() {
@@ -98,14 +100,16 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+     * The reminder interval (in seconds) to resend the alarm if not
+     * resolved. Set to 0 for no reminders. The Default is 0.
      * 
      */
     @Import(name="reminderInterval")
     private @Nullable Output<Integer> reminderInterval;
 
     /**
-     * @return The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+     * @return The reminder interval (in seconds) to resend the alarm if not
+     * resolved. Set to 0 for no reminders. The Default is 0.
      * 
      */
     public Optional<Output<Integer>> reminderInterval() {
@@ -113,14 +117,16 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
+     * The time interval (in seconds) the `value_threshold` should be
+     * active before triggering an alarm.
      * 
      */
     @Import(name="timeThreshold")
     private @Nullable Output<Integer> timeThreshold;
 
     /**
-     * @return The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
+     * @return The time interval (in seconds) the `value_threshold` should be
+     * active before triggering an alarm.
      * 
      */
     public Optional<Output<Integer>> timeThreshold() {
@@ -143,7 +149,8 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+     * Disk value threshold calculation, `fixed, percentage` of disk
+     * space remaining.
      * 
      * Based on alarm type, different arguments are flagged as required or optional.
      * 
@@ -152,7 +159,8 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<String> valueCalculation;
 
     /**
-     * @return Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+     * @return Disk value threshold calculation, `fixed, percentage` of disk
+     * space remaining.
      * 
      * Based on alarm type, different arguments are flagged as required or optional.
      * 
@@ -314,7 +322,8 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param recipients Identifier for recipient to be notified. Leave empty to notify all recipients.
+         * @param recipients Identifier for recipient to be notified. Leave empty to notify
+         * all recipients.
          * 
          * @return builder
          * 
@@ -325,7 +334,8 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param recipients Identifier for recipient to be notified. Leave empty to notify all recipients.
+         * @param recipients Identifier for recipient to be notified. Leave empty to notify
+         * all recipients.
          * 
          * @return builder
          * 
@@ -335,7 +345,8 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param recipients Identifier for recipient to be notified. Leave empty to notify all recipients.
+         * @param recipients Identifier for recipient to be notified. Leave empty to notify
+         * all recipients.
          * 
          * @return builder
          * 
@@ -345,7 +356,8 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param reminderInterval The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+         * @param reminderInterval The reminder interval (in seconds) to resend the alarm if not
+         * resolved. Set to 0 for no reminders. The Default is 0.
          * 
          * @return builder
          * 
@@ -356,7 +368,8 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param reminderInterval The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+         * @param reminderInterval The reminder interval (in seconds) to resend the alarm if not
+         * resolved. Set to 0 for no reminders. The Default is 0.
          * 
          * @return builder
          * 
@@ -366,7 +379,8 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param timeThreshold The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
+         * @param timeThreshold The time interval (in seconds) the `value_threshold` should be
+         * active before triggering an alarm.
          * 
          * @return builder
          * 
@@ -377,7 +391,8 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param timeThreshold The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
+         * @param timeThreshold The time interval (in seconds) the `value_threshold` should be
+         * active before triggering an alarm.
          * 
          * @return builder
          * 
@@ -408,7 +423,8 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param valueCalculation Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+         * @param valueCalculation Disk value threshold calculation, `fixed, percentage` of disk
+         * space remaining.
          * 
          * Based on alarm type, different arguments are flagged as required or optional.
          * 
@@ -421,7 +437,8 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param valueCalculation Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+         * @param valueCalculation Disk value threshold calculation, `fixed, percentage` of disk
+         * space remaining.
          * 
          * Based on alarm type, different arguments are flagged as required or optional.
          * 

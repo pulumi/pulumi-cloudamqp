@@ -17,14 +17,16 @@ public final class UpgradeRabbitmqState extends com.pulumi.resources.ResourceArg
     public static final UpgradeRabbitmqState Empty = new UpgradeRabbitmqState();
 
     /**
-     * Helper argument to change upgrade behaviour to latest possible version
+     * Helper argument to change upgrade behaviour to latest possible
+     * version
      * 
      */
     @Import(name="currentVersion")
     private @Nullable Output<String> currentVersion;
 
     /**
-     * @return Helper argument to change upgrade behaviour to latest possible version
+     * @return Helper argument to change upgrade behaviour to latest possible
+     * version
      * 
      */
     public Optional<Output<String>> currentVersion() {
@@ -88,7 +90,8 @@ public final class UpgradeRabbitmqState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param currentVersion Helper argument to change upgrade behaviour to latest possible version
+         * @param currentVersion Helper argument to change upgrade behaviour to latest possible
+         * version
          * 
          * @return builder
          * 
@@ -99,7 +102,8 @@ public final class UpgradeRabbitmqState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param currentVersion Helper argument to change upgrade behaviour to latest possible version
+         * @param currentVersion Helper argument to change upgrade behaviour to latest possible
+         * version
          * 
          * @return builder
          * 

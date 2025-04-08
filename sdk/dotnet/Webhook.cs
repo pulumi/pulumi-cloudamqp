@@ -12,7 +12,23 @@ namespace Pulumi.CloudAmqp
     /// <summary>
     /// ## Import
     /// 
-    /// `cloudamqp_webhook` can be imported using the resource identifier together with CloudAMQP instance identifier. The identifiers are CSV separated, see example below.
+    /// `cloudamqp_webhook` can be imported using the resource identifier together with CloudAMQP instance
+    /// 
+    /// identifier (CSV separated). To retrieve the resource identifier, use [CloudAMQP API list webhooks].
+    /// 
+    /// From Terraform v1.5.0, the `import` block can be used to import this resource:
+    /// 
+    /// hcl
+    /// 
+    /// import {
+    /// 
+    ///   to = cloudamqp_webhook.webhook_queue
+    /// 
+    ///   id = format("&lt;id&gt;,%s", cloudamqp_instance.instance.id)
+    /// 
+    /// }
+    /// 
+    /// Or use Terraform CLI:
     /// 
     /// ```sh
     /// $ pulumi import cloudamqp:index/webhook:Webhook webhook_queue &lt;id&gt;,&lt;instance_id&gt;`
@@ -58,7 +74,8 @@ namespace Pulumi.CloudAmqp
         public Output<string> Vhost { get; private set; } = null!;
 
         /// <summary>
-        /// A POST request will be made for each message in the queue to this endpoint.
+        /// A POST request will be made for each message in the queue to this
+        /// endpoint.
         /// </summary>
         [Output("webhookUri")]
         public Output<string> WebhookUri { get; private set; } = null!;
@@ -146,7 +163,8 @@ namespace Pulumi.CloudAmqp
         public Input<string> Vhost { get; set; } = null!;
 
         /// <summary>
-        /// A POST request will be made for each message in the queue to this endpoint.
+        /// A POST request will be made for each message in the queue to this
+        /// endpoint.
         /// </summary>
         [Input("webhookUri", required: true)]
         public Input<string> WebhookUri { get; set; } = null!;
@@ -196,7 +214,8 @@ namespace Pulumi.CloudAmqp
         public Input<string>? Vhost { get; set; }
 
         /// <summary>
-        /// A POST request will be made for each message in the queue to this endpoint.
+        /// A POST request will be made for each message in the queue to this
+        /// endpoint.
         /// </summary>
         [Input("webhookUri")]
         public Input<string>? WebhookUri { get; set; }

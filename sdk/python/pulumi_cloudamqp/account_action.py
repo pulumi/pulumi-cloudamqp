@@ -23,7 +23,8 @@ class AccountActionArgs:
                  instance_id: pulumi.Input[int]):
         """
         The set of arguments for constructing a AccountAction resource.
-        :param pulumi.Input[str] action: The action to be invoked. Allowed actions `rotate-password`, `rotate-apikey`.
+        :param pulumi.Input[str] action: The action to be invoked. Allowed actions
+               `rotate-password`, `rotate-apikey`.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         """
         pulumi.set(__self__, "action", action)
@@ -33,7 +34,8 @@ class AccountActionArgs:
     @pulumi.getter
     def action(self) -> pulumi.Input[str]:
         """
-        The action to be invoked. Allowed actions `rotate-password`, `rotate-apikey`.
+        The action to be invoked. Allowed actions
+        `rotate-password`, `rotate-apikey`.
         """
         return pulumi.get(self, "action")
 
@@ -61,7 +63,8 @@ class _AccountActionState:
                  instance_id: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering AccountAction resources.
-        :param pulumi.Input[str] action: The action to be invoked. Allowed actions `rotate-password`, `rotate-apikey`.
+        :param pulumi.Input[str] action: The action to be invoked. Allowed actions
+               `rotate-password`, `rotate-apikey`.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         """
         if action is not None:
@@ -73,7 +76,8 @@ class _AccountActionState:
     @pulumi.getter
     def action(self) -> Optional[pulumi.Input[str]]:
         """
-        The action to be invoked. Allowed actions `rotate-password`, `rotate-apikey`.
+        The action to be invoked. Allowed actions
+        `rotate-password`, `rotate-apikey`.
         """
         return pulumi.get(self, "action")
 
@@ -109,7 +113,8 @@ class AccountAction(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] action: The action to be invoked. Allowed actions `rotate-password`, `rotate-apikey`.
+        :param pulumi.Input[str] action: The action to be invoked. Allowed actions
+               `rotate-password`, `rotate-apikey`.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         """
         ...
@@ -174,7 +179,8 @@ class AccountAction(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] action: The action to be invoked. Allowed actions `rotate-password`, `rotate-apikey`.
+        :param pulumi.Input[str] action: The action to be invoked. Allowed actions
+               `rotate-password`, `rotate-apikey`.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -189,7 +195,8 @@ class AccountAction(pulumi.CustomResource):
     @pulumi.getter
     def action(self) -> pulumi.Output[str]:
         """
-        The action to be invoked. Allowed actions `rotate-password`, `rotate-apikey`.
+        The action to be invoked. Allowed actions
+        `rotate-password`, `rotate-apikey`.
         """
         return pulumi.get(self, "action")
 

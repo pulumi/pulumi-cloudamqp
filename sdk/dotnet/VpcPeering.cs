@@ -12,13 +12,13 @@ namespace Pulumi.CloudAmqp
     /// <summary>
     /// ## Import
     /// 
-    /// ### Peering Identifier
+    /// ### Peering identifier
     /// 
-    /// This can be found as *peering connection id* in your AWS VPC dashboard/Peering connections, for the correct VPC peering.
+    /// This can be found as *peering connection id* in your AWS VPC dashboard/Peering connections, for the
     /// 
-    /// Also available as the identifier for *aws_vpc_peering_connection* resource or
+    /// correct VPC peering.
     /// 
-    /// data source.
+    /// Also available as the identifier for `aws_vpc_peering_connection` [resource] or [data source].
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/vpcPeering:VpcPeering")]
     public partial class VpcPeering : global::Pulumi.CustomResource
@@ -26,7 +26,7 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// The CloudAMQP instance identifier.
         /// 
-        /// ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+        /// ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
         /// </summary>
         [Output("instanceId")]
         public Output<int?> InstanceId { get; private set; } = null!;
@@ -38,7 +38,8 @@ namespace Pulumi.CloudAmqp
         public Output<string> PeeringId { get; private set; } = null!;
 
         /// <summary>
-        /// Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+        /// Configurable sleep time (seconds) between retries for accepting or
+        /// removing peering. Default set to 60 seconds.
         /// </summary>
         [Output("sleep")]
         public Output<int?> Sleep { get; private set; } = null!;
@@ -50,7 +51,8 @@ namespace Pulumi.CloudAmqp
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
-        /// Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        /// Configurable timeout time (seconds) for accepting or removing
+        /// peering. Default set to 3600 seconds.
         /// </summary>
         [Output("timeout")]
         public Output<int?> Timeout { get; private set; } = null!;
@@ -58,7 +60,7 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// The managed VPC identifier.
         /// 
-        /// ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
+        /// ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
         /// </summary>
         [Output("vpcId")]
         public Output<string?> VpcId { get; private set; } = null!;
@@ -112,7 +114,7 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// The CloudAMQP instance identifier.
         /// 
-        /// ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+        /// ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
@@ -124,13 +126,15 @@ namespace Pulumi.CloudAmqp
         public Input<string> PeeringId { get; set; } = null!;
 
         /// <summary>
-        /// Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+        /// Configurable sleep time (seconds) between retries for accepting or
+        /// removing peering. Default set to 60 seconds.
         /// </summary>
         [Input("sleep")]
         public Input<int>? Sleep { get; set; }
 
         /// <summary>
-        /// Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        /// Configurable timeout time (seconds) for accepting or removing
+        /// peering. Default set to 3600 seconds.
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
@@ -138,7 +142,7 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// The managed VPC identifier.
         /// 
-        /// ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
+        /// ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
         /// </summary>
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }
@@ -154,7 +158,7 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// The CloudAMQP instance identifier.
         /// 
-        /// ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+        /// ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
@@ -166,7 +170,8 @@ namespace Pulumi.CloudAmqp
         public Input<string>? PeeringId { get; set; }
 
         /// <summary>
-        /// Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+        /// Configurable sleep time (seconds) between retries for accepting or
+        /// removing peering. Default set to 60 seconds.
         /// </summary>
         [Input("sleep")]
         public Input<int>? Sleep { get; set; }
@@ -178,7 +183,8 @@ namespace Pulumi.CloudAmqp
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+        /// Configurable timeout time (seconds) for accepting or removing
+        /// peering. Default set to 3600 seconds.
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
@@ -186,7 +192,7 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// The managed VPC identifier.
         /// 
-        /// ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
+        /// ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
         /// </summary>
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }

@@ -18,7 +18,8 @@ import (
 type AccountAction struct {
 	pulumi.CustomResourceState
 
-	// The action to be invoked. Allowed actions `rotate-password`, `rotate-apikey`.
+	// The action to be invoked. Allowed actions
+	// `rotate-password`, `rotate-apikey`.
 	Action pulumi.StringOutput `pulumi:"action"`
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
@@ -60,14 +61,16 @@ func GetAccountAction(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AccountAction resources.
 type accountActionState struct {
-	// The action to be invoked. Allowed actions `rotate-password`, `rotate-apikey`.
+	// The action to be invoked. Allowed actions
+	// `rotate-password`, `rotate-apikey`.
 	Action *string `pulumi:"action"`
 	// The CloudAMQP instance ID.
 	InstanceId *int `pulumi:"instanceId"`
 }
 
 type AccountActionState struct {
-	// The action to be invoked. Allowed actions `rotate-password`, `rotate-apikey`.
+	// The action to be invoked. Allowed actions
+	// `rotate-password`, `rotate-apikey`.
 	Action pulumi.StringPtrInput
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntPtrInput
@@ -78,7 +81,8 @@ func (AccountActionState) ElementType() reflect.Type {
 }
 
 type accountActionArgs struct {
-	// The action to be invoked. Allowed actions `rotate-password`, `rotate-apikey`.
+	// The action to be invoked. Allowed actions
+	// `rotate-password`, `rotate-apikey`.
 	Action string `pulumi:"action"`
 	// The CloudAMQP instance ID.
 	InstanceId int `pulumi:"instanceId"`
@@ -86,7 +90,8 @@ type accountActionArgs struct {
 
 // The set of arguments for constructing a AccountAction resource.
 type AccountActionArgs struct {
-	// The action to be invoked. Allowed actions `rotate-password`, `rotate-apikey`.
+	// The action to be invoked. Allowed actions
+	// `rotate-password`, `rotate-apikey`.
 	Action pulumi.StringInput
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntInput
@@ -179,7 +184,8 @@ func (o AccountActionOutput) ToAccountActionOutputWithContext(ctx context.Contex
 	return o
 }
 
-// The action to be invoked. Allowed actions `rotate-password`, `rotate-apikey`.
+// The action to be invoked. Allowed actions
+// `rotate-password`, `rotate-apikey`.
 func (o AccountActionOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v *AccountAction) pulumi.StringOutput { return v.Action }).(pulumi.StringOutput)
 }

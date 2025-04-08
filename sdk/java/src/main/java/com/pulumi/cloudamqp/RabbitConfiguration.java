@@ -19,7 +19,23 @@ import javax.annotation.Nullable;
 /**
  * ## Import
  * 
- * `cloudamqp_rabbitmq_configuration` can be imported using the CloudAMQP instance identifier.
+ * `cloudamqp_rabbitmq_configuration` can be imported using the CloudAMQP instance identifier.  To
+ * 
+ * retrieve the identifier, use [CloudAMQP API list intances].
+ * 
+ * From Terraform v1.5.0, the `import` block can be used to import this resource:
+ * 
+ * hcl
+ * 
+ * import {
+ * 
+ *   to = cloudamqp_rabbitmq_configuration.config
+ * 
+ *   id = cloudamqp_instance.instance.id
+ * 
+ * }
+ * 
+ * Or use Terraform CLI:
  * 
  * ```sh
  * $ pulumi import cloudamqp:index/rabbitConfiguration:RabbitConfiguration config &lt;instance_id&gt;`
@@ -29,70 +45,82 @@ import javax.annotation.Nullable;
 @ResourceType(type="cloudamqp:index/rabbitConfiguration:RabbitConfiguration")
 public class RabbitConfiguration extends com.pulumi.resources.CustomResource {
     /**
-     * Set the maximum permissible number of channels per connection.
+     * Set the maximum permissible number of
+     * channels per connection.
      * 
      */
     @Export(name="channelMax", refs={Integer.class}, tree="[0]")
     private Output<Integer> channelMax;
 
     /**
-     * @return Set the maximum permissible number of channels per connection.
+     * @return Set the maximum permissible number of
+     * channels per connection.
      * 
      */
     public Output<Integer> channelMax() {
         return this.channelMax;
     }
     /**
-     * Set how the cluster should handle network partition.
+     * Set how the cluster should handle network
+     * partition.
      * 
      */
     @Export(name="clusterPartitionHandling", refs={String.class}, tree="[0]")
     private Output<String> clusterPartitionHandling;
 
     /**
-     * @return Set how the cluster should handle network partition.
+     * @return Set how the cluster should handle network
+     * partition.
      * 
      */
     public Output<String> clusterPartitionHandling() {
         return this.clusterPartitionHandling;
     }
     /**
-     * Set the maximum permissible number of connection.
+     * Set the maximum permissible number of
+     * connection.
      * 
      */
     @Export(name="connectionMax", refs={Integer.class}, tree="[0]")
     private Output<Integer> connectionMax;
 
     /**
-     * @return Set the maximum permissible number of connection.
+     * @return Set the maximum permissible number of
+     * connection.
      * 
      */
     public Output<Integer> connectionMax() {
         return this.connectionMax;
     }
     /**
-     * A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
+     * A consumer that has recevied a message and
+     * does not acknowledge that message within the timeout in
+     * milliseconds
      * 
      */
     @Export(name="consumerTimeout", refs={Integer.class}, tree="[0]")
     private Output<Integer> consumerTimeout;
 
     /**
-     * @return A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
+     * @return A consumer that has recevied a message and
+     * does not acknowledge that message within the timeout in
+     * milliseconds
      * 
      */
     public Output<Integer> consumerTimeout() {
         return this.consumerTimeout;
     }
     /**
-     * Set the server AMQP 0-9-1 heartbeat timeout in seconds.
+     * Set the server AMQP 0-9-1 heartbeat timeout
+     * in seconds.
      * 
      */
     @Export(name="heartbeat", refs={Integer.class}, tree="[0]")
     private Output<Integer> heartbeat;
 
     /**
-     * @return Set the server AMQP 0-9-1 heartbeat timeout in seconds.
+     * @return Set the server AMQP 0-9-1 heartbeat timeout
+     * in seconds.
      * 
      */
     public Output<Integer> heartbeat() {
@@ -113,88 +141,102 @@ public class RabbitConfiguration extends com.pulumi.resources.CustomResource {
         return this.instanceId;
     }
     /**
-     * Log level for the logger used for log integrations and the CloudAMQP Console log view.
+     * Log level for the logger used for log
+     * integrations and the CloudAMQP Console log view.
      * 
-     * *Note: Requires a restart of RabbitMQ to be applied.*
+     * ***Note:*** Requires a restart of RabbitMQ to be applied.
      * 
      */
     @Export(name="logExchangeLevel", refs={String.class}, tree="[0]")
     private Output<String> logExchangeLevel;
 
     /**
-     * @return Log level for the logger used for log integrations and the CloudAMQP Console log view.
+     * @return Log level for the logger used for log
+     * integrations and the CloudAMQP Console log view.
      * 
-     * *Note: Requires a restart of RabbitMQ to be applied.*
+     * ***Note:*** Requires a restart of RabbitMQ to be applied.
      * 
      */
     public Output<String> logExchangeLevel() {
         return this.logExchangeLevel;
     }
     /**
-     * The largest allowed message payload size in bytes.
+     * The largest allowed message payload size in
+     * bytes.
      * 
      */
     @Export(name="maxMessageSize", refs={Integer.class}, tree="[0]")
     private Output<Integer> maxMessageSize;
 
     /**
-     * @return The largest allowed message payload size in bytes.
+     * @return The largest allowed message payload size in
+     * bytes.
      * 
      */
     public Output<Integer> maxMessageSize() {
         return this.maxMessageSize;
     }
     /**
-     * Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
+     * Size in bytes below which to embed messages
+     * in the queue index. 0 will turn off payload embedding in the
+     * queue index.
      * 
      */
     @Export(name="queueIndexEmbedMsgsBelow", refs={Integer.class}, tree="[0]")
     private Output<Integer> queueIndexEmbedMsgsBelow;
 
     /**
-     * @return Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
+     * @return Size in bytes below which to embed messages
+     * in the queue index. 0 will turn off payload embedding in the
+     * queue index.
      * 
      */
     public Output<Integer> queueIndexEmbedMsgsBelow() {
         return this.queueIndexEmbedMsgsBelow;
     }
     /**
-     * Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+     * Configurable sleep time in seconds between retries
+     * for RabbitMQ configuration. Default set to 60 seconds.
      * 
      */
     @Export(name="sleep", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> sleep;
 
     /**
-     * @return Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+     * @return Configurable sleep time in seconds between retries
+     * for RabbitMQ configuration. Default set to 60 seconds.
      * 
      */
     public Output<Optional<Integer>> sleep() {
         return Codegen.optional(this.sleep);
     }
     /**
-     * Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+     * Configurable timeout time in seconds for RabbitMQ
+     * configuration. Default set to 3600 seconds.
      * 
      */
     @Export(name="timeout", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> timeout;
 
     /**
-     * @return Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+     * @return Configurable timeout time in seconds for RabbitMQ
+     * configuration. Default set to 3600 seconds.
      * 
      */
     public Output<Optional<Integer>> timeout() {
         return Codegen.optional(this.timeout);
     }
     /**
-     * When the server will enter memory based flow-control as relative to the maximum available memory.
+     * When the server will enter memory based
+     * flow-control as relative to the maximum available memory.
      * 
      */
     @Export(name="vmMemoryHighWatermark", refs={Double.class}, tree="[0]")
     private Output<Double> vmMemoryHighWatermark;
 
     /**
-     * @return When the server will enter memory based flow-control as relative to the maximum available memory.
+     * @return When the server will enter memory based
+     * flow-control as relative to the maximum available memory.
      * 
      */
     public Output<Double> vmMemoryHighWatermark() {

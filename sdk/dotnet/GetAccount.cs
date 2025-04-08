@@ -12,19 +12,22 @@ namespace Pulumi.CloudAmqp
     public static class GetAccount
     {
         /// <summary>
-        /// Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
+        /// Use this data source to retrieve basic information about all instances available for an account.
+        /// Uses the included apikey in provider configuration, to determine which account to read from.
         /// </summary>
         public static Task<GetAccountResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAccountResult>("cloudamqp:index/getAccount:getAccount", InvokeArgs.Empty, options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
+        /// Use this data source to retrieve basic information about all instances available for an account.
+        /// Uses the included apikey in provider configuration, to determine which account to read from.
         /// </summary>
         public static Output<GetAccountResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAccountResult>("cloudamqp:index/getAccount:getAccount", InvokeArgs.Empty, options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to retrieve basic information about all instances available for an account. Uses the included apikey in provider configuration, to determine which account to read from.
+        /// Use this data source to retrieve basic information about all instances available for an account.
+        /// Uses the included apikey in provider configuration, to determine which account to read from.
         /// </summary>
         public static Output<GetAccountResult> Invoke(InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetAccountResult>("cloudamqp:index/getAccount:getAccount", InvokeArgs.Empty, options.WithDefaults());
@@ -38,6 +41,10 @@ namespace Pulumi.CloudAmqp
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// An array of instances. Each `instances` block consists of the fields documented
+        /// below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetAccountInstanceResult> Instances;
 
         [OutputConstructor]

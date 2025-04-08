@@ -141,6 +141,7 @@ import * as utilities from "./utilities";
  *     token: logglyToken,
  * });
  * ```
+ *
  * </details>
  *
  * <details>
@@ -182,6 +183,8 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * </details>
+ *
  * <details>
  *   <summary>
  *     <b>
@@ -201,8 +204,6 @@ import * as utilities from "./utilities";
  *     sourceType: "generic_single_line",
  * });
  * ```
- *
- * </details>
  *
  * </details>
  *
@@ -232,11 +233,35 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * `cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+ * `cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP
+ *
+ * instance identifier. The identifiers are CSV separated, see example below. To retrieve the resource,
+ *
+ * use [CloudAMQP API list integration].
+ *
+ * From Terraform v1.5.0, the `import` block can be used to import this resource:
+ *
+ * hcl
+ *
+ * import {
+ *
+ *   to = cloudamqp_integration_log.this
+ *
+ *   id = format("<id>,%s", cloudamqp_instance.instance.id)
+ *
+ * }
  *
  * ```sh
- * $ pulumi import cloudamqp:index/integrationLog:IntegrationLog <resource_name> <id>,<instance_id>`
+ * $ pulumi import cloudamqp:index/integrationLog:IntegrationLog this <id>,<instance_id>`
  * ```
+ *
+ * [CloudAMQP API add integration]: https://docs.cloudamqp.com/cloudamqp_api.html#add-log-integration
+ *
+ * [CloudAMQP API list integration]: https://docs.cloudamqp.com/cloudamqp_api.html#list-log-integrations
+ *
+ * [Datadog documentation]: https://docs.datadoghq.com/getting_started/tagging/#define-tags
+ *
+ * [integration type reference]: #integration-type-reference
  */
 export class IntegrationLog extends pulumi.CustomResource {
     /**
@@ -299,9 +324,11 @@ export class IntegrationLog extends pulumi.CustomResource {
      */
     public readonly dceUri!: pulumi.Output<string | undefined>;
     /**
-     * ID of data collection rule that your DCE is linked to for Azure Monitor.
+     * ID of data collection rule that your DCE is linked to for Azure
+     * Monitor.
      *
-     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of
+     * integration used. See [integration type reference] table below for more information.
      */
     public readonly dcrId!: pulumi.Output<string | undefined>;
     /**
@@ -309,7 +336,8 @@ export class IntegrationLog extends pulumi.CustomResource {
      */
     public readonly endpoint!: pulumi.Output<string | undefined>;
     /**
-     * The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+     * The host for Scalyr integration. (app.scalyr.com,
+     * app.eu.scalyr.com)
      */
     public readonly host!: pulumi.Output<string | undefined>;
     /**
@@ -322,7 +350,7 @@ export class IntegrationLog extends pulumi.CustomResource {
     public readonly instanceId!: pulumi.Output<number>;
     /**
      * The name of the third party log integration. See
-     * Integration type reference
+     * [integration type reference]
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -346,7 +374,8 @@ export class IntegrationLog extends pulumi.CustomResource {
      */
     public readonly secretAccessKey!: pulumi.Output<string | undefined>;
     /**
-     * Assign source type to the data exported, eg. generic_single_line. (Splunk)
+     * Assign source type to the data exported, eg. generic_single_line.
+     * (Splunk)
      */
     public readonly sourcetype!: pulumi.Output<string | undefined>;
     /**
@@ -360,7 +389,8 @@ export class IntegrationLog extends pulumi.CustomResource {
     /**
      * Tags. e.g. `env=prod,region=europe`.
      *
-     * ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
+     * ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+     * letter, read more about tags format in the [Datadog documentation].
      */
     public readonly tags!: pulumi.Output<string | undefined>;
     /**
@@ -491,9 +521,11 @@ export interface IntegrationLogState {
      */
     dceUri?: pulumi.Input<string>;
     /**
-     * ID of data collection rule that your DCE is linked to for Azure Monitor.
+     * ID of data collection rule that your DCE is linked to for Azure
+     * Monitor.
      *
-     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of
+     * integration used. See [integration type reference] table below for more information.
      */
     dcrId?: pulumi.Input<string>;
     /**
@@ -501,7 +533,8 @@ export interface IntegrationLogState {
      */
     endpoint?: pulumi.Input<string>;
     /**
-     * The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+     * The host for Scalyr integration. (app.scalyr.com,
+     * app.eu.scalyr.com)
      */
     host?: pulumi.Input<string>;
     /**
@@ -514,7 +547,7 @@ export interface IntegrationLogState {
     instanceId?: pulumi.Input<number>;
     /**
      * The name of the third party log integration. See
-     * Integration type reference
+     * [integration type reference]
      */
     name?: pulumi.Input<string>;
     /**
@@ -538,7 +571,8 @@ export interface IntegrationLogState {
      */
     secretAccessKey?: pulumi.Input<string>;
     /**
-     * Assign source type to the data exported, eg. generic_single_line. (Splunk)
+     * Assign source type to the data exported, eg. generic_single_line.
+     * (Splunk)
      */
     sourcetype?: pulumi.Input<string>;
     /**
@@ -552,7 +586,8 @@ export interface IntegrationLogState {
     /**
      * Tags. e.g. `env=prod,region=europe`.
      *
-     * ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
+     * ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+     * letter, read more about tags format in the [Datadog documentation].
      */
     tags?: pulumi.Input<string>;
     /**
@@ -606,9 +641,11 @@ export interface IntegrationLogArgs {
      */
     dceUri?: pulumi.Input<string>;
     /**
-     * ID of data collection rule that your DCE is linked to for Azure Monitor.
+     * ID of data collection rule that your DCE is linked to for Azure
+     * Monitor.
      *
-     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of
+     * integration used. See [integration type reference] table below for more information.
      */
     dcrId?: pulumi.Input<string>;
     /**
@@ -616,7 +653,8 @@ export interface IntegrationLogArgs {
      */
     endpoint?: pulumi.Input<string>;
     /**
-     * The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+     * The host for Scalyr integration. (app.scalyr.com,
+     * app.eu.scalyr.com)
      */
     host?: pulumi.Input<string>;
     /**
@@ -629,7 +667,7 @@ export interface IntegrationLogArgs {
     instanceId: pulumi.Input<number>;
     /**
      * The name of the third party log integration. See
-     * Integration type reference
+     * [integration type reference]
      */
     name?: pulumi.Input<string>;
     /**
@@ -653,7 +691,8 @@ export interface IntegrationLogArgs {
      */
     secretAccessKey?: pulumi.Input<string>;
     /**
-     * Assign source type to the data exported, eg. generic_single_line. (Splunk)
+     * Assign source type to the data exported, eg. generic_single_line.
+     * (Splunk)
      */
     sourcetype?: pulumi.Input<string>;
     /**
@@ -667,7 +706,8 @@ export interface IntegrationLogArgs {
     /**
      * Tags. e.g. `env=prod,region=europe`.
      *
-     * ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
+     * ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+     * letter, read more about tags format in the [Datadog documentation].
      */
     tags?: pulumi.Input<string>;
     /**

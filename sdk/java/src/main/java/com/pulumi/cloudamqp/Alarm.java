@@ -20,7 +20,23 @@ import javax.annotation.Nullable;
 /**
  * ## Import
  * 
- * `cloudamqp_alarm` can be imported using CloudAMQP internal identifier of the alarm together (CSV separated) with the instance identifier. To retrieve the alarm identifier, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-alarms)
+ * `cloudamqp_alarm` can be imported using the resource identifier together with the CloudAMQP instance
+ * 
+ * identifier (CSV separated). To retrieve the resource identifier, use [CloudAMQP API list alarms].
+ * 
+ * From Terraform v1.5.0, the `import` block can be used to import this resource:
+ * 
+ * hcl
+ * 
+ * import {
+ * 
+ *   to = cloudamqp_alarm.alarm
+ * 
+ *   id = format(&#34;&lt;id&gt;,%s&#34;, cloudamqp_instance.instance.id)
+ * 
+ * }
+ * 
+ * Or use Terraform CLI:
  * 
  * ```sh
  * $ pulumi import cloudamqp:index/alarm:Alarm alarm &lt;id&gt;,&lt;instance_id&gt;`
@@ -90,42 +106,48 @@ public class Alarm extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.queueRegex);
     }
     /**
-     * Identifier for recipient to be notified. Leave empty to notify all recipients.
+     * Identifier for recipient to be notified. Leave empty to notify
+     * all recipients.
      * 
      */
     @Export(name="recipients", refs={List.class,Integer.class}, tree="[0,1]")
     private Output<List<Integer>> recipients;
 
     /**
-     * @return Identifier for recipient to be notified. Leave empty to notify all recipients.
+     * @return Identifier for recipient to be notified. Leave empty to notify
+     * all recipients.
      * 
      */
     public Output<List<Integer>> recipients() {
         return this.recipients;
     }
     /**
-     * The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+     * The reminder interval (in seconds) to resend the alarm if not
+     * resolved. Set to 0 for no reminders. The Default is 0.
      * 
      */
     @Export(name="reminderInterval", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> reminderInterval;
 
     /**
-     * @return The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+     * @return The reminder interval (in seconds) to resend the alarm if not
+     * resolved. Set to 0 for no reminders. The Default is 0.
      * 
      */
     public Output<Optional<Integer>> reminderInterval() {
         return Codegen.optional(this.reminderInterval);
     }
     /**
-     * The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
+     * The time interval (in seconds) the `value_threshold` should be
+     * active before triggering an alarm.
      * 
      */
     @Export(name="timeThreshold", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> timeThreshold;
 
     /**
-     * @return The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
+     * @return The time interval (in seconds) the `value_threshold` should be
+     * active before triggering an alarm.
      * 
      */
     public Output<Optional<Integer>> timeThreshold() {
@@ -146,7 +168,8 @@ public class Alarm extends com.pulumi.resources.CustomResource {
         return this.type;
     }
     /**
-     * Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+     * Disk value threshold calculation, `fixed, percentage` of disk
+     * space remaining.
      * 
      * Based on alarm type, different arguments are flagged as required or optional.
      * 
@@ -155,7 +178,8 @@ public class Alarm extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ String> valueCalculation;
 
     /**
-     * @return Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+     * @return Disk value threshold calculation, `fixed, percentage` of disk
+     * space remaining.
      * 
      * Based on alarm type, different arguments are flagged as required or optional.
      * 

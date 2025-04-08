@@ -18,11 +18,12 @@ import javax.annotation.Nullable;
 /**
  * This resource allows you to manage standalone VPC.
  * 
- * New Cloudamqp instances can be added to the managed VPC. Set the instance *vpc_id* attribute to the managed vpc identifier , see example below, when creating the instance.
+ * New Cloudamqp instances can be added to the managed VPC. Set the instance *vpc_id* attribute to the
+ * managed vpc identifier, see example below, when creating the instance.
  * 
  * Only available for dedicated subscription plans.
  * 
- * Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/plans.html).
+ * Pricing is available at [CloudAMQP plans].
  * 
  * ## Example Usage
  * 
@@ -64,11 +65,10 @@ import javax.annotation.Nullable;
  *         //  New instance, need to be created with a vpc
  *         var instance = new Instance("instance", InstanceArgs.builder()
  *             .name("<Instance name>")
- *             .plan("bunny-1")
+ *             .plan("penguin-1")
  *             .region("amazon-web-services::us-east-1")
  *             .nodes(1)
  *             .tags()
- *             .rmqVersion("3.9.13")
  *             .vpcId(vpcCloudamqVpc.id())
  *             .keepAssociatedVpc(true)
  *             .build());
@@ -86,15 +86,31 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * `cloudamqp_vpc` can be imported using the CloudAMQP VPC identifier.
+ * `cloudamqp_vpc` can be imported using the CloudAMQP VPC identifier. To retrieve the identifier of an
+ * 
+ * instance, use [CloudAMQP API list vpcs].
+ * 
+ * From Terraform v1.5.0, the `import` block can be used to import this resource:
+ * 
+ * hcl
+ * 
+ * import {
+ * 
+ *   to = cloudamqp_vpc.vpc
+ * 
+ *   id = &lt;vpc_id&gt;
+ * 
+ * }
+ * 
+ * Or with Terraform CLI:
  * 
  * ```sh
- * $ pulumi import cloudamqp:index/vpc:Vpc &lt;resource_name&gt; &lt;vpc_id&gt;`
+ * $ pulumi import cloudamqp:index/vpc:Vpc vpc &lt;vpc_id&gt;`
  * ```
  * 
- * To retrieve the identifier for a VPC, either use [CloudAMQP customer API](https://docs.cloudamqp.com/#list-vpcs).
+ * [CloudAMQP API list vpcs]: https://docs.cloudamqp.com/#list-vpcs
  * 
- * Or use the data source `cloudamqp_account_vpcs` to list all available standalone VPCs for an account.
+ * [CloudAMQP plans]: https://www.cloudamqp.com/plans.html
  * 
  */
 @ResourceType(type="cloudamqp:index/vpc:Vpc")

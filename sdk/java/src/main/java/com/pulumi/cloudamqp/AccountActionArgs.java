@@ -16,14 +16,16 @@ public final class AccountActionArgs extends com.pulumi.resources.ResourceArgs {
     public static final AccountActionArgs Empty = new AccountActionArgs();
 
     /**
-     * The action to be invoked. Allowed actions `rotate-password`, `rotate-apikey`.
+     * The action to be invoked. Allowed actions
+     * `rotate-password`, `rotate-apikey`.
      * 
      */
     @Import(name="action", required=true)
     private Output<String> action;
 
     /**
-     * @return The action to be invoked. Allowed actions `rotate-password`, `rotate-apikey`.
+     * @return The action to be invoked. Allowed actions
+     * `rotate-password`, `rotate-apikey`.
      * 
      */
     public Output<String> action() {
@@ -71,7 +73,8 @@ public final class AccountActionArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param action The action to be invoked. Allowed actions `rotate-password`, `rotate-apikey`.
+         * @param action The action to be invoked. Allowed actions
+         * `rotate-password`, `rotate-apikey`.
          * 
          * @return builder
          * 
@@ -82,7 +85,8 @@ public final class AccountActionArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param action The action to be invoked. Allowed actions `rotate-password`, `rotate-apikey`.
+         * @param action The action to be invoked. Allowed actions
+         * `rotate-password`, `rotate-apikey`.
          * 
          * @return builder
          * 

@@ -54,6 +54,7 @@ class ExtraDiskSizeNode(dict):
         """
         :param int additional_disk_size: Additional added disk size
         :param int disk_size: Subscription plan disk size
+        :param str name: Name of the node.
         """
         if additional_disk_size is not None:
             pulumi.set(__self__, "additional_disk_size", additional_disk_size)
@@ -81,6 +82,9 @@ class ExtraDiskSizeNode(dict):
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Name of the node.
+        """
         return pulumi.get(self, "name")
 
 
@@ -107,10 +111,12 @@ class InstanceCopySetting(dict):
                  settings: Sequence[str],
                  subscription_id: str):
         """
-        :param Sequence[str] settings: Array of one or more settings to be copied. Allowed values: [alarms, config, definitions, firewall, logs, metrics, plugins]
+        :param Sequence[str] settings: Array of one or more settings to be copied. Allowed values:
+               [alarms, config, definitions, firewall, logs, metrics, plugins]
                
-               See more below, copy settings
-        :param str subscription_id: Instance identifier of the CloudAMQP instance to copy the settings from.
+               See more below, [copy settings].
+        :param str subscription_id: Instance identifier of the CloudAMQP instance to copy the settings
+               from.
         """
         pulumi.set(__self__, "settings", settings)
         pulumi.set(__self__, "subscription_id", subscription_id)
@@ -119,9 +125,10 @@ class InstanceCopySetting(dict):
     @pulumi.getter
     def settings(self) -> Sequence[str]:
         """
-        Array of one or more settings to be copied. Allowed values: [alarms, config, definitions, firewall, logs, metrics, plugins]
+        Array of one or more settings to be copied. Allowed values:
+        [alarms, config, definitions, firewall, logs, metrics, plugins]
 
-        See more below, copy settings
+        See more below, [copy settings].
         """
         return pulumi.get(self, "settings")
 
@@ -129,7 +136,8 @@ class InstanceCopySetting(dict):
     @pulumi.getter(name="subscriptionId")
     def subscription_id(self) -> str:
         """
-        Instance identifier of the CloudAMQP instance to copy the settings from.
+        Instance identifier of the CloudAMQP instance to copy the settings
+        from.
         """
         return pulumi.get(self, "subscription_id")
 
@@ -226,6 +234,8 @@ class SecurityFirewallRule(dict):
                | AMQP         | 5672  |
                | AMQPS        | 5671  |
                | HTTPS        | 443   |
+               | MQTT         | 1883  |
+               | MQTTS        | 8883  |
         :param Sequence[int] ports: Custom ports to be opened
         :param Sequence[str] services: Pre-defined service ports, see table below
         """
@@ -272,6 +282,8 @@ class SecurityFirewallRule(dict):
         | AMQP         | 5672  |
         | AMQPS        | 5671  |
         | HTTPS        | 443   |
+        | MQTT         | 1883  |
+        | MQTTS        | 8883  |
         """
         return pulumi.get(self, "description")
 
@@ -301,11 +313,11 @@ class GetAccountInstanceResult(dict):
                  region: str,
                  tags: Optional[Sequence[str]] = None):
         """
-        :param int id: The instance identifier
-        :param str name: The name of the instance
-        :param str plan: The subscription plan used for the instance
-        :param str region: The region were the instanece is located in
-        :param Sequence[str] tags: Tag for the instance
+        :param int id: The instance identifier.
+        :param str name: The name of the instance.
+        :param str plan: The subscription plan used for the instance.
+        :param str region: The region were the instanece is located in.
+        :param Sequence[str] tags: Optional tags set for the instance.
         """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
@@ -318,7 +330,7 @@ class GetAccountInstanceResult(dict):
     @pulumi.getter
     def id(self) -> int:
         """
-        The instance identifier
+        The instance identifier.
         """
         return pulumi.get(self, "id")
 
@@ -326,7 +338,7 @@ class GetAccountInstanceResult(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The name of the instance
+        The name of the instance.
         """
         return pulumi.get(self, "name")
 
@@ -334,7 +346,7 @@ class GetAccountInstanceResult(dict):
     @pulumi.getter
     def plan(self) -> str:
         """
-        The subscription plan used for the instance
+        The subscription plan used for the instance.
         """
         return pulumi.get(self, "plan")
 
@@ -342,7 +354,7 @@ class GetAccountInstanceResult(dict):
     @pulumi.getter
     def region(self) -> str:
         """
-        The region were the instanece is located in
+        The region were the instanece is located in.
         """
         return pulumi.get(self, "region")
 
@@ -350,7 +362,7 @@ class GetAccountInstanceResult(dict):
     @pulumi.getter
     def tags(self) -> Optional[Sequence[str]]:
         """
-        Tag for the instance
+        Optional tags set for the instance.
         """
         return pulumi.get(self, "tags")
 
@@ -365,12 +377,12 @@ class GetAccountVpcsVpcResult(dict):
                  vpc_name: str,
                  tags: Optional[Sequence[str]] = None):
         """
-        :param int id: The instance identifier
-        :param str name: The name of the instance
-        :param str region: The region were the instanece is located in
-        :param str subnet: The VPC subnet
-        :param str vpc_name: VPC name given when hosted at the cloud provider
-        :param Sequence[str] tags: Tag the VPC instance with optional tags
+        :param int id: The VPC identifier.
+        :param str name: The VPC instance name.
+        :param str region: The region the VPC is hosted in.
+        :param str subnet: The VPC subnet.
+        :param str vpc_name: VPC name given when hosted at the cloud provider.
+        :param Sequence[str] tags: Optional tags set for the VPC.
         """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
@@ -384,7 +396,7 @@ class GetAccountVpcsVpcResult(dict):
     @pulumi.getter
     def id(self) -> int:
         """
-        The instance identifier
+        The VPC identifier.
         """
         return pulumi.get(self, "id")
 
@@ -392,7 +404,7 @@ class GetAccountVpcsVpcResult(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The name of the instance
+        The VPC instance name.
         """
         return pulumi.get(self, "name")
 
@@ -400,7 +412,7 @@ class GetAccountVpcsVpcResult(dict):
     @pulumi.getter
     def region(self) -> str:
         """
-        The region were the instanece is located in
+        The region the VPC is hosted in.
         """
         return pulumi.get(self, "region")
 
@@ -408,7 +420,7 @@ class GetAccountVpcsVpcResult(dict):
     @pulumi.getter
     def subnet(self) -> str:
         """
-        The VPC subnet
+        The VPC subnet.
         """
         return pulumi.get(self, "subnet")
 
@@ -416,7 +428,7 @@ class GetAccountVpcsVpcResult(dict):
     @pulumi.getter(name="vpcName")
     def vpc_name(self) -> str:
         """
-        VPC name given when hosted at the cloud provider
+        VPC name given when hosted at the cloud provider.
         """
         return pulumi.get(self, "vpc_name")
 
@@ -424,7 +436,7 @@ class GetAccountVpcsVpcResult(dict):
     @pulumi.getter
     def tags(self) -> Optional[Sequence[str]]:
         """
-        Tag the VPC instance with optional tags
+        Optional tags set for the VPC.
         """
         return pulumi.get(self, "tags")
 
@@ -443,6 +455,19 @@ class GetNodesNodeResult(dict):
                  name: str,
                  rabbitmq_version: str,
                  running: bool):
+        """
+        :param int additional_disk_size: Additional added disk size
+        :param str availability_zone: Availability zone the node is hosted in.
+        :param bool configured: Is the node configured?
+        :param int disk_size: Subscription plan disk size
+        :param str erlang_version: Currently used Erlang version on the node.
+        :param bool hipe: Enable or disable High-performance Erlang.
+        :param str hostname: External hostname assigned to the node.
+        :param str hostname_internal: Internal hostname assigned to the node.
+        :param str name: Name of the node.
+        :param str rabbitmq_version: Currently configured Rabbit MQ version on the node.
+        :param bool running: Is the node running?
+        """
         pulumi.set(__self__, "additional_disk_size", additional_disk_size)
         pulumi.set(__self__, "availability_zone", availability_zone)
         pulumi.set(__self__, "configured", configured)
@@ -458,56 +483,89 @@ class GetNodesNodeResult(dict):
     @property
     @pulumi.getter(name="additionalDiskSize")
     def additional_disk_size(self) -> int:
+        """
+        Additional added disk size
+        """
         return pulumi.get(self, "additional_disk_size")
 
     @property
     @pulumi.getter(name="availabilityZone")
     def availability_zone(self) -> str:
+        """
+        Availability zone the node is hosted in.
+        """
         return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter
     def configured(self) -> bool:
+        """
+        Is the node configured?
+        """
         return pulumi.get(self, "configured")
 
     @property
     @pulumi.getter(name="diskSize")
     def disk_size(self) -> int:
+        """
+        Subscription plan disk size
+        """
         return pulumi.get(self, "disk_size")
 
     @property
     @pulumi.getter(name="erlangVersion")
     def erlang_version(self) -> str:
+        """
+        Currently used Erlang version on the node.
+        """
         return pulumi.get(self, "erlang_version")
 
     @property
     @pulumi.getter
     def hipe(self) -> bool:
+        """
+        Enable or disable High-performance Erlang.
+        """
         return pulumi.get(self, "hipe")
 
     @property
     @pulumi.getter
     def hostname(self) -> str:
+        """
+        External hostname assigned to the node.
+        """
         return pulumi.get(self, "hostname")
 
     @property
     @pulumi.getter(name="hostnameInternal")
     def hostname_internal(self) -> str:
+        """
+        Internal hostname assigned to the node.
+        """
         return pulumi.get(self, "hostname_internal")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Name of the node.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="rabbitmqVersion")
     def rabbitmq_version(self) -> str:
+        """
+        Currently configured Rabbit MQ version on the node.
+        """
         return pulumi.get(self, "rabbitmq_version")
 
     @property
     @pulumi.getter
     def running(self) -> bool:
+        """
+        Is the node running?
+        """
         return pulumi.get(self, "running")
 
 
@@ -517,6 +575,11 @@ class GetPluginsCommunityPluginResult(dict):
                  description: str,
                  name: str,
                  require: str):
+        """
+        :param str description: Description of what the plugin does.
+        :param str name: The type of the recipient.
+        :param str require: Min. required Rabbit MQ version to be used.
+        """
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "require", require)
@@ -524,16 +587,25 @@ class GetPluginsCommunityPluginResult(dict):
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Description of what the plugin does.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The type of the recipient.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def require(self) -> str:
+        """
+        Min. required Rabbit MQ version to be used.
+        """
         return pulumi.get(self, "require")
 
 
@@ -544,6 +616,12 @@ class GetPluginsPluginResult(dict):
                  enabled: bool,
                  name: str,
                  version: str):
+        """
+        :param str description: Description of what the plugin does.
+        :param bool enabled: Enable or disable information for the plugin.
+        :param str name: The type of the recipient.
+        :param str version: Rabbit MQ version that the plugins are shipped with.
+        """
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "name", name)
@@ -552,21 +630,33 @@ class GetPluginsPluginResult(dict):
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Description of what the plugin does.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def enabled(self) -> bool:
+        """
+        Enable or disable information for the plugin.
+        """
         return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The type of the recipient.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def version(self) -> str:
+        """
+        Rabbit MQ version that the plugins are shipped with.
+        """
         return pulumi.get(self, "version")
 
 

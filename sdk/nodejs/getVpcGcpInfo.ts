@@ -4,66 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to retrieve information about VPC for a CloudAMQP instance.
- *
- * > **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
- *
- * ## Example Usage
- *
- * <details>
- *   <summary>
- *     <b>
- *       <i>AWS VPC peering pre v1.16.0</i>
- *     </b>
- *   </summary>
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const vpcInfo = cloudamqp.getVpcGcpInfo({
- *     instanceId: instance.id,
- * });
- * ```
- *
- * </details>
- *
- * <details>
- *   <summary>
- *     <b>
- *       <i>AWS VPC peering post v1.16.0 (Managed VPC)</i>
- *     </b>
- *   </summary>
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const vpcInfo = cloudamqp.getVpcGcpInfo({
- *     vpcId: vpc.id,
- * });
- * ```
- *
- * </details>
- *
- * ## Attributes reference
- *
- * All attributes reference are computed
- *
- * * `id`                  - The identifier for this resource.
- * * `name`                - The name of the VPC.
- * * `vpcSubnet`          - Dedicated VPC subnet.
- * * `network`             - VPC network uri.
- *
- * ## Dependency
- *
- * *Pre v1.16.0*
- * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
- *
- * *Post v1.16.0*
- * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
- */
 export function getVpcGcpInfo(args?: GetVpcGcpInfoArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcGcpInfoResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -82,21 +22,23 @@ export interface GetVpcGcpInfoArgs {
     /**
      * The CloudAMQP instance identifier.
      *
-     * ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
+     * ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
      */
     instanceId?: number;
     /**
-     * Configurable sleep time (seconds) between retries when reading peering. Default set to 10 seconds.
+     * Configurable sleep time (seconds) between retries when reading peering.
+     * Default set to 10 seconds.
      */
     sleep?: number;
     /**
-     * Configurable timeout time (seconds) before retries times out. Default set to 1800 seconds.
+     * Configurable timeout time (seconds) before retries times out. Default
+     * set to 1800 seconds.
      */
     timeout?: number;
     /**
      * The managed VPC identifier.
      *
-     * ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
+     * ***Note:*** Available from [v1.16.0], will be removed in next major version (v2.0)
      */
     vpcId?: string;
 }
@@ -110,73 +52,22 @@ export interface GetVpcGcpInfoResult {
      */
     readonly id: string;
     readonly instanceId?: number;
+    /**
+     * The name of the VPC.
+     */
     readonly name: string;
+    /**
+     * VPC network uri.
+     */
     readonly network: string;
     readonly sleep?: number;
     readonly timeout?: number;
     readonly vpcId?: string;
+    /**
+     * Dedicated VPC subnet.
+     */
     readonly vpcSubnet: string;
 }
-/**
- * Use this data source to retrieve information about VPC for a CloudAMQP instance.
- *
- * > **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
- *
- * ## Example Usage
- *
- * <details>
- *   <summary>
- *     <b>
- *       <i>AWS VPC peering pre v1.16.0</i>
- *     </b>
- *   </summary>
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const vpcInfo = cloudamqp.getVpcGcpInfo({
- *     instanceId: instance.id,
- * });
- * ```
- *
- * </details>
- *
- * <details>
- *   <summary>
- *     <b>
- *       <i>AWS VPC peering post v1.16.0 (Managed VPC)</i>
- *     </b>
- *   </summary>
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const vpcInfo = cloudamqp.getVpcGcpInfo({
- *     vpcId: vpc.id,
- * });
- * ```
- *
- * </details>
- *
- * ## Attributes reference
- *
- * All attributes reference are computed
- *
- * * `id`                  - The identifier for this resource.
- * * `name`                - The name of the VPC.
- * * `vpcSubnet`          - Dedicated VPC subnet.
- * * `network`             - VPC network uri.
- *
- * ## Dependency
- *
- * *Pre v1.16.0*
- * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
- *
- * *Post v1.16.0*
- * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
- */
 export function getVpcGcpInfoOutput(args?: GetVpcGcpInfoOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetVpcGcpInfoResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -195,21 +86,23 @@ export interface GetVpcGcpInfoOutputArgs {
     /**
      * The CloudAMQP instance identifier.
      *
-     * ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
+     * ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
      */
     instanceId?: pulumi.Input<number>;
     /**
-     * Configurable sleep time (seconds) between retries when reading peering. Default set to 10 seconds.
+     * Configurable sleep time (seconds) between retries when reading peering.
+     * Default set to 10 seconds.
      */
     sleep?: pulumi.Input<number>;
     /**
-     * Configurable timeout time (seconds) before retries times out. Default set to 1800 seconds.
+     * Configurable timeout time (seconds) before retries times out. Default
+     * set to 1800 seconds.
      */
     timeout?: pulumi.Input<number>;
     /**
      * The managed VPC identifier.
      *
-     * ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
+     * ***Note:*** Available from [v1.16.0], will be removed in next major version (v2.0)
      */
     vpcId?: pulumi.Input<string>;
 }

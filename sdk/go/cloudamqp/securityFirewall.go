@@ -14,7 +14,23 @@ import (
 
 // ## Import
 //
-// `cloudamqp_security_firewall` can be imported using CloudAMQP instance identifier.
+// `cloudamqp_security_firewall` can be imported using CloudAMQP instance identifier. To
+//
+// retrieve the identifier, use [CloudAMQP API list intances].
+//
+// From Terraform v1.5.0, the `import` block can be used to import this resource:
+//
+// hcl
+//
+// import {
+//
+//	to = cloudamqp_security_firewall.firewall
+//
+//	id = cloudamqp_instance.instance.id
+//
+// }
+//
+// Or use Terraform CLI:
 //
 // ```sh
 // $ pulumi import cloudamqp:index/securityFirewall:SecurityFirewall firewall <instance_id>`
@@ -24,11 +40,14 @@ type SecurityFirewall struct {
 
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
-	// An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+	// An array of rules, minimum of 1 needs to be configured. Each `rules`
+	// block consists of the field documented below.
 	Rules SecurityFirewallRuleArrayOutput `pulumi:"rules"`
-	// Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+	// Configurable sleep time in seconds between retries for firewall
+	// configuration. Default set to 30 seconds.
 	Sleep pulumi.IntPtrOutput `pulumi:"sleep"`
-	// Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+	// Configurable timeout time in seconds for firewall configuration.
+	// Default set to 1800 seconds.
 	//
 	// ***
 	//
@@ -74,11 +93,14 @@ func GetSecurityFirewall(ctx *pulumi.Context,
 type securityFirewallState struct {
 	// The CloudAMQP instance ID.
 	InstanceId *int `pulumi:"instanceId"`
-	// An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+	// An array of rules, minimum of 1 needs to be configured. Each `rules`
+	// block consists of the field documented below.
 	Rules []SecurityFirewallRule `pulumi:"rules"`
-	// Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+	// Configurable sleep time in seconds between retries for firewall
+	// configuration. Default set to 30 seconds.
 	Sleep *int `pulumi:"sleep"`
-	// Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+	// Configurable timeout time in seconds for firewall configuration.
+	// Default set to 1800 seconds.
 	//
 	// ***
 	//
@@ -89,11 +111,14 @@ type securityFirewallState struct {
 type SecurityFirewallState struct {
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntPtrInput
-	// An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+	// An array of rules, minimum of 1 needs to be configured. Each `rules`
+	// block consists of the field documented below.
 	Rules SecurityFirewallRuleArrayInput
-	// Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+	// Configurable sleep time in seconds between retries for firewall
+	// configuration. Default set to 30 seconds.
 	Sleep pulumi.IntPtrInput
-	// Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+	// Configurable timeout time in seconds for firewall configuration.
+	// Default set to 1800 seconds.
 	//
 	// ***
 	//
@@ -108,11 +133,14 @@ func (SecurityFirewallState) ElementType() reflect.Type {
 type securityFirewallArgs struct {
 	// The CloudAMQP instance ID.
 	InstanceId int `pulumi:"instanceId"`
-	// An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+	// An array of rules, minimum of 1 needs to be configured. Each `rules`
+	// block consists of the field documented below.
 	Rules []SecurityFirewallRule `pulumi:"rules"`
-	// Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+	// Configurable sleep time in seconds between retries for firewall
+	// configuration. Default set to 30 seconds.
 	Sleep *int `pulumi:"sleep"`
-	// Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+	// Configurable timeout time in seconds for firewall configuration.
+	// Default set to 1800 seconds.
 	//
 	// ***
 	//
@@ -124,11 +152,14 @@ type securityFirewallArgs struct {
 type SecurityFirewallArgs struct {
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntInput
-	// An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+	// An array of rules, minimum of 1 needs to be configured. Each `rules`
+	// block consists of the field documented below.
 	Rules SecurityFirewallRuleArrayInput
-	// Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+	// Configurable sleep time in seconds between retries for firewall
+	// configuration. Default set to 30 seconds.
 	Sleep pulumi.IntPtrInput
-	// Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+	// Configurable timeout time in seconds for firewall configuration.
+	// Default set to 1800 seconds.
 	//
 	// ***
 	//
@@ -228,17 +259,20 @@ func (o SecurityFirewallOutput) InstanceId() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecurityFirewall) pulumi.IntOutput { return v.InstanceId }).(pulumi.IntOutput)
 }
 
-// An array of rules, minimum of 1 needs to be configured. Each `rules` block consists of the field documented below.
+// An array of rules, minimum of 1 needs to be configured. Each `rules`
+// block consists of the field documented below.
 func (o SecurityFirewallOutput) Rules() SecurityFirewallRuleArrayOutput {
 	return o.ApplyT(func(v *SecurityFirewall) SecurityFirewallRuleArrayOutput { return v.Rules }).(SecurityFirewallRuleArrayOutput)
 }
 
-// Configurable sleep time in seconds between retries for firewall configuration. Default set to 30 seconds.
+// Configurable sleep time in seconds between retries for firewall
+// configuration. Default set to 30 seconds.
 func (o SecurityFirewallOutput) Sleep() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecurityFirewall) pulumi.IntPtrOutput { return v.Sleep }).(pulumi.IntPtrOutput)
 }
 
-// Configurable timeout time in seconds for firewall configuration. Default set to 1800 seconds.
+// Configurable timeout time in seconds for firewall configuration.
+// Default set to 1800 seconds.
 //
 // ***
 //

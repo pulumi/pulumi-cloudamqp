@@ -55,9 +55,6 @@ import (
 //
 // </details>
 //
-// Using data source `getNodes` to restart RabbitMQ on all nodes.</br>
-// ***Note: RabbitMQ restart on multiple nodes need to be chained, so one node restart at the time.***
-//
 // <details>
 //
 //	<summary>
@@ -65,6 +62,10 @@ import (
 //	    <i>Multi node RabbitMQ restart</i>
 //	  </b>
 //	</summary>
+//
+// Using data source `getNodes` to restart RabbitMQ on all nodes.
+//
+// > **Note:** RabbitMQ restart on multiple nodes need to be chained, let one node restart at the time.
 //
 // ```go
 // package main
@@ -197,7 +198,16 @@ import (
 //
 // ## Action reference
 //
-// Valid options for action.
+// Valid actions for ***LavinMQ***.
+//
+// | Action       | Info                               |
+// |--------------|------------------------------------|
+// | start        | Start LavinMQ                      |
+// | stop         | Stop LavinMQ                       |
+// | restart      | Restart LavinMQ                    |
+// | reboot       | Reboot the node                    |
+//
+// Valid actions for ***RabbitMQ***.
 //
 // | Action       | Info                               |
 // |--------------|------------------------------------|
@@ -209,7 +219,8 @@ import (
 //
 // ## Dependency
 //
-// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id` and node name.
+// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id` and node
+// name.
 //
 // ## Import
 //

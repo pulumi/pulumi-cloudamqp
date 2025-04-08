@@ -71,6 +71,15 @@ public final class NotificationArgs extends com.pulumi.resources.ResourceArgs {
      * 
      * ***
      * 
+     * The options parameter:
+     * 
+     * * rk        - (Optional) Routing key to route alarm notification (can be used with Victorops).
+     * * dedupkey  - (Optional) If multiple alarms are triggered using a recipient with this key, only the
+     *   the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
+     *   to use the generated dedup key.
+     * 
+     * ***
+     * 
      * The `responders` block consists of:
      * 
      */
@@ -80,6 +89,15 @@ public final class NotificationArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * @return An array of reponders (only for OpsGenie). Each `responders` block
      * consists of the field documented below.
+     * 
+     * ***
+     * 
+     * The options parameter:
+     * 
+     * * rk        - (Optional) Routing key to route alarm notification (can be used with Victorops).
+     * * dedupkey  - (Optional) If multiple alarms are triggered using a recipient with this key, only the
+     *   the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
+     *   to use the generated dedup key.
      * 
      * ***
      * 
@@ -218,6 +236,15 @@ public final class NotificationArgs extends com.pulumi.resources.ResourceArgs {
          * 
          * ***
          * 
+         * The options parameter:
+         * 
+         * * rk        - (Optional) Routing key to route alarm notification (can be used with Victorops).
+         * * dedupkey  - (Optional) If multiple alarms are triggered using a recipient with this key, only the
+         *   the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
+         *   to use the generated dedup key.
+         * 
+         * ***
+         * 
          * The `responders` block consists of:
          * 
          * @return builder
@@ -234,6 +261,15 @@ public final class NotificationArgs extends com.pulumi.resources.ResourceArgs {
          * 
          * ***
          * 
+         * The options parameter:
+         * 
+         * * rk        - (Optional) Routing key to route alarm notification (can be used with Victorops).
+         * * dedupkey  - (Optional) If multiple alarms are triggered using a recipient with this key, only the
+         *   the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
+         *   to use the generated dedup key.
+         * 
+         * ***
+         * 
          * The `responders` block consists of:
          * 
          * @return builder
@@ -246,6 +282,15 @@ public final class NotificationArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param responders An array of reponders (only for OpsGenie). Each `responders` block
          * consists of the field documented below.
+         * 
+         * ***
+         * 
+         * The options parameter:
+         * 
+         * * rk        - (Optional) Routing key to route alarm notification (can be used with Victorops).
+         * * dedupkey  - (Optional) If multiple alarms are triggered using a recipient with this key, only the
+         *   the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
+         *   to use the generated dedup key.
          * 
          * ***
          * 

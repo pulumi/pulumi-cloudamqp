@@ -25,6 +25,7 @@ from .instance import *
 from .integration_aws_eventbridge import *
 from .integration_log import *
 from .integration_metric import *
+from .maintenance_window import *
 from .node_actions import *
 from .notification import *
 from .plugin import *
@@ -116,6 +117,14 @@ _utilities.register(
   "fqn": "pulumi_cloudamqp",
   "classes": {
    "cloudamqp:index/integrationMetric:IntegrationMetric": "IntegrationMetric"
+  }
+ },
+ {
+  "pkg": "cloudamqp",
+  "mod": "index/maintenanceWindow",
+  "fqn": "pulumi_cloudamqp",
+  "classes": {
+   "cloudamqp:index/maintenanceWindow:MaintenanceWindow": "MaintenanceWindow"
   }
  },
  {

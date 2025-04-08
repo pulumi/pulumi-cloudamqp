@@ -65,16 +65,25 @@ class GetVpcInfoResult:
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The name of the CloudAMQP instance.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="ownerId")
     def owner_id(self) -> str:
+        """
+        AWS account identifier.
+        """
         return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter(name="securityGroupId")
     def security_group_id(self) -> str:
+        """
+        AWS security group identifier.
+        """
         return pulumi.get(self, "security_group_id")
 
     @property
@@ -85,6 +94,9 @@ class GetVpcInfoResult:
     @property
     @pulumi.getter(name="vpcSubnet")
     def vpc_subnet(self) -> str:
+        """
+        Dedicated VPC subnet.
+        """
         return pulumi.get(self, "vpc_subnet")
 
 
@@ -107,67 +119,14 @@ def get_vpc_info(instance_id: Optional[int] = None,
                  vpc_id: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcInfoResult:
     """
-    Use this data source to retrieve information about VPC for a CloudAMQP instance.
-
-    > **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
-
-    ## Example Usage
-
-    <details>
-      <summary>
-        <b>
-          <i>AWS VPC peering pre v1.16.0</i>
-        </b>
-      </summary>
-
-    ```python
-    import pulumi
-    import pulumi_cloudamqp as cloudamqp
-
-    vpc_info = cloudamqp.get_vpc_info(instance_id=instance["id"])
-    ```
-    </details>
-
-    <details>
-      <summary>
-        <b>
-          <i>AWS VPC peering post v1.16.0 (Managed VPC)</i>
-        </b>
-      </summary>
-
-    ```python
-    import pulumi
-    import pulumi_cloudamqp as cloudamqp
-
-    vpc_info = cloudamqp.get_vpc_info(vpc_id=vpc["id"])
-    ```
-    </details>
-
-    ## Attributes reference
-
-    All attributes reference are computed
-
-    * `id`                  - The identifier for this resource.
-    * `name`                - The name of the CloudAMQP instance.
-    * `vpc_subnet`          - Dedicated VPC subnet.
-    * `owner_id`            - AWS account identifier.
-    * `security_group_id`   - AWS security group identifier.
-
-    ## Dependency
-
-    *Pre v1.16.0*
-    This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-
-    *Post v1.16.0*
-    This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
-
+    Use this data source to access information about an existing resource.
 
     :param int instance_id: The CloudAMQP instance identifier.
            
-           ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
+           ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
     :param str vpc_id: The managed VPC identifier.
            
-           ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
+           ***Note:*** Available from [v1.16.0], will be removed in next major version (v2.0)
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
@@ -187,67 +146,14 @@ def get_vpc_info_output(instance_id: Optional[pulumi.Input[Optional[int]]] = Non
                         vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVpcInfoResult]:
     """
-    Use this data source to retrieve information about VPC for a CloudAMQP instance.
-
-    > **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
-
-    ## Example Usage
-
-    <details>
-      <summary>
-        <b>
-          <i>AWS VPC peering pre v1.16.0</i>
-        </b>
-      </summary>
-
-    ```python
-    import pulumi
-    import pulumi_cloudamqp as cloudamqp
-
-    vpc_info = cloudamqp.get_vpc_info(instance_id=instance["id"])
-    ```
-    </details>
-
-    <details>
-      <summary>
-        <b>
-          <i>AWS VPC peering post v1.16.0 (Managed VPC)</i>
-        </b>
-      </summary>
-
-    ```python
-    import pulumi
-    import pulumi_cloudamqp as cloudamqp
-
-    vpc_info = cloudamqp.get_vpc_info(vpc_id=vpc["id"])
-    ```
-    </details>
-
-    ## Attributes reference
-
-    All attributes reference are computed
-
-    * `id`                  - The identifier for this resource.
-    * `name`                - The name of the CloudAMQP instance.
-    * `vpc_subnet`          - Dedicated VPC subnet.
-    * `owner_id`            - AWS account identifier.
-    * `security_group_id`   - AWS security group identifier.
-
-    ## Dependency
-
-    *Pre v1.16.0*
-    This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-
-    *Post v1.16.0*
-    This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
-
+    Use this data source to access information about an existing resource.
 
     :param int instance_id: The CloudAMQP instance identifier.
            
-           ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
+           ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
     :param str vpc_id: The managed VPC identifier.
            
-           ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
+           ***Note:*** Available from [v1.16.0], will be removed in next major version (v2.0)
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id

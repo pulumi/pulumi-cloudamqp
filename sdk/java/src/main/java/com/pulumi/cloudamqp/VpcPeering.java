@@ -18,13 +18,13 @@ import javax.annotation.Nullable;
 /**
  * ## Import
  * 
- * ### Peering Identifier
+ * ### Peering identifier
  * 
- * This can be found as *peering connection id* in your AWS VPC dashboard/Peering connections, for the correct VPC peering.
+ * This can be found as *peering connection id* in your AWS VPC dashboard/Peering connections, for the
  * 
- * Also available as the identifier for *aws_vpc_peering_connection* resource or
+ * correct VPC peering.
  * 
- * data source.
+ * Also available as the identifier for `aws_vpc_peering_connection` [resource] or [data source].
  * 
  */
 @ResourceType(type="cloudamqp:index/vpcPeering:VpcPeering")
@@ -32,7 +32,7 @@ public class VpcPeering extends com.pulumi.resources.CustomResource {
     /**
      * The CloudAMQP instance identifier.
      * 
-     * ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+     * ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
      * 
      */
     @Export(name="instanceId", refs={Integer.class}, tree="[0]")
@@ -41,7 +41,7 @@ public class VpcPeering extends com.pulumi.resources.CustomResource {
     /**
      * @return The CloudAMQP instance identifier.
      * 
-     * ***Deprecated: Changed from required to optional in v1.16.0, will be removed in next major version (v2.0)***
+     * ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
      * 
      */
     public Output<Optional<Integer>> instanceId() {
@@ -62,14 +62,16 @@ public class VpcPeering extends com.pulumi.resources.CustomResource {
         return this.peeringId;
     }
     /**
-     * Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+     * Configurable sleep time (seconds) between retries for accepting or
+     * removing peering. Default set to 60 seconds.
      * 
      */
     @Export(name="sleep", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> sleep;
 
     /**
-     * @return Configurable sleep time (seconds) between retries for accepting or removing peering. Default set to 60 seconds.
+     * @return Configurable sleep time (seconds) between retries for accepting or
+     * removing peering. Default set to 60 seconds.
      * 
      */
     public Output<Optional<Integer>> sleep() {
@@ -90,14 +92,16 @@ public class VpcPeering extends com.pulumi.resources.CustomResource {
         return this.status;
     }
     /**
-     * Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+     * Configurable timeout time (seconds) for accepting or removing
+     * peering. Default set to 3600 seconds.
      * 
      */
     @Export(name="timeout", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> timeout;
 
     /**
-     * @return Configurable timeout time (seconds) for accepting or removing peering. Default set to 3600 seconds.
+     * @return Configurable timeout time (seconds) for accepting or removing
+     * peering. Default set to 3600 seconds.
      * 
      */
     public Output<Optional<Integer>> timeout() {
@@ -106,7 +110,7 @@ public class VpcPeering extends com.pulumi.resources.CustomResource {
     /**
      * The managed VPC identifier.
      * 
-     * ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
+     * ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
      * 
      */
     @Export(name="vpcId", refs={String.class}, tree="[0]")
@@ -115,7 +119,7 @@ public class VpcPeering extends com.pulumi.resources.CustomResource {
     /**
      * @return The managed VPC identifier.
      * 
-     * ***Note: Introduced as optional in version v1.16.0, will be required in next major version (v2.0)***
+     * ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
      * 
      */
     public Output<Optional<String>> vpcId() {

@@ -36,6 +36,8 @@ namespace Pulumi.CloudAmqp.Inputs
         /// | AMQP         | 5672  |
         /// | AMQPS        | 5671  |
         /// | HTTPS        | 443   |
+        /// | MQTT         | 1883  |
+        /// | MQTTS        | 8883  |
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }

@@ -12,7 +12,8 @@ namespace Pulumi.CloudAmqp
     public static class GetPlugins
     {
         /// <summary>
-        /// Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
+        /// Use this data source to retrieve information about installed and available plugins for the CloudAMQP
+        /// instance.
         /// 
         /// ## Example Usage
         /// 
@@ -31,26 +32,6 @@ namespace Pulumi.CloudAmqp
         /// 
         /// });
         /// ```
-        /// 
-        /// ## Attributes reference
-        /// 
-        /// All attributes reference are computed
-        /// 
-        /// * `id`      - The identifier for this resource.
-        /// * `plugins` - An array of plugins. Each `plugins` block consists of the fields documented below.
-        /// * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
-        /// about plugins. Default set to 10 seconds. *Available from v1.29.0*
-        /// * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
-        /// information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
-        /// 
-        /// ___
-        /// 
-        /// The `plugins` block consist of
-        /// 
-        /// * `name`        - The type of the recipient.
-        /// * `version`     - Rabbit MQ version that the plugins are shipped with.
-        /// * `description` - Description of what the plugin does.
-        /// * `enabled`     - Enable or disable information for the plugin.
         /// 
         /// ## Dependency
         /// 
@@ -60,7 +41,8 @@ namespace Pulumi.CloudAmqp
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPluginsResult>("cloudamqp:index/getPlugins:getPlugins", args ?? new GetPluginsArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
+        /// Use this data source to retrieve information about installed and available plugins for the CloudAMQP
+        /// instance.
         /// 
         /// ## Example Usage
         /// 
@@ -79,26 +61,6 @@ namespace Pulumi.CloudAmqp
         /// 
         /// });
         /// ```
-        /// 
-        /// ## Attributes reference
-        /// 
-        /// All attributes reference are computed
-        /// 
-        /// * `id`      - The identifier for this resource.
-        /// * `plugins` - An array of plugins. Each `plugins` block consists of the fields documented below.
-        /// * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
-        /// about plugins. Default set to 10 seconds. *Available from v1.29.0*
-        /// * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
-        /// information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
-        /// 
-        /// ___
-        /// 
-        /// The `plugins` block consist of
-        /// 
-        /// * `name`        - The type of the recipient.
-        /// * `version`     - Rabbit MQ version that the plugins are shipped with.
-        /// * `description` - Description of what the plugin does.
-        /// * `enabled`     - Enable or disable information for the plugin.
         /// 
         /// ## Dependency
         /// 
@@ -108,7 +70,8 @@ namespace Pulumi.CloudAmqp
             => global::Pulumi.Deployment.Instance.Invoke<GetPluginsResult>("cloudamqp:index/getPlugins:getPlugins", args ?? new GetPluginsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
+        /// Use this data source to retrieve information about installed and available plugins for the CloudAMQP
+        /// instance.
         /// 
         /// ## Example Usage
         /// 
@@ -127,26 +90,6 @@ namespace Pulumi.CloudAmqp
         /// 
         /// });
         /// ```
-        /// 
-        /// ## Attributes reference
-        /// 
-        /// All attributes reference are computed
-        /// 
-        /// * `id`      - The identifier for this resource.
-        /// * `plugins` - An array of plugins. Each `plugins` block consists of the fields documented below.
-        /// * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
-        /// about plugins. Default set to 10 seconds. *Available from v1.29.0*
-        /// * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
-        /// information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
-        /// 
-        /// ___
-        /// 
-        /// The `plugins` block consist of
-        /// 
-        /// * `name`        - The type of the recipient.
-        /// * `version`     - Rabbit MQ version that the plugins are shipped with.
-        /// * `description` - Description of what the plugin does.
-        /// * `enabled`     - Enable or disable information for the plugin.
         /// 
         /// ## Dependency
         /// 
@@ -165,9 +108,17 @@ namespace Pulumi.CloudAmqp
         [Input("instanceId", required: true)]
         public int InstanceId { get; set; }
 
+        /// <summary>
+        /// Configurable sleep time (seconds) for retries when requesting
+        /// information about plugins. Default set to 10 seconds.
+        /// </summary>
         [Input("sleep")]
         public int? Sleep { get; set; }
 
+        /// <summary>
+        /// Configurable timeout time (seconds) for retries when requesting
+        /// information about plugins. Default set to 1800 seconds.
+        /// </summary>
         [Input("timeout")]
         public int? Timeout { get; set; }
 
@@ -185,9 +136,17 @@ namespace Pulumi.CloudAmqp
         [Input("instanceId", required: true)]
         public Input<int> InstanceId { get; set; } = null!;
 
+        /// <summary>
+        /// Configurable sleep time (seconds) for retries when requesting
+        /// information about plugins. Default set to 10 seconds.
+        /// </summary>
         [Input("sleep")]
         public Input<int>? Sleep { get; set; }
 
+        /// <summary>
+        /// Configurable timeout time (seconds) for retries when requesting
+        /// information about plugins. Default set to 1800 seconds.
+        /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
 
@@ -206,6 +165,9 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         public readonly string Id;
         public readonly int InstanceId;
+        /// <summary>
+        /// An array of plugins. Each `plugins` block consists of the fields documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetPluginsPluginResult> Plugins;
         public readonly int? Sleep;
         public readonly int? Timeout;

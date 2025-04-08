@@ -10,54 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
-    /// This resource allows you to upgrade LavinMQ version.
-    /// 
-    /// See below example usage.
-    /// 
-    /// Only available for dedicated subscription plans running ***LavinMQ***.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// &lt;details&gt;
-    ///   &lt;summary&gt;
-    ///     &lt;b&gt;
-    ///       &lt;i&gt;Upgrade LavinMQ, specify which version to upgrade to, from v1.32.0&lt;/i&gt;
-    ///     &lt;/b&gt;
-    ///   &lt;/summary&gt;
-    /// 
-    /// Specify the version to upgrade to. List available upgradable versions, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#get-available-versions).
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using CloudAmqp = Pulumi.CloudAmqp;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var instance = new CloudAmqp.Instance("instance", new()
-    ///     {
-    ///         Name = "lavinmq-version-upgrade-test",
-    ///         Plan = "lynx-1",
-    ///         Region = "amazon-web-services::us-west-1",
-    ///     });
-    /// 
-    ///     var upgrade = new CloudAmqp.UpgradeLavinmq("upgrade", new()
-    ///     {
-    ///         InstanceId = instance.Id,
-    ///         NewVersion = "1.3.1",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// &lt;/details&gt;
-    /// 
-    /// ## Important Upgrade Information
-    /// 
-    /// &gt; - All single node upgrades will require some downtime since LavinMQ needs a restart.
-    /// &gt; - Auto delete queues (queues that are marked AD) will be deleted during the update.
-    /// 
     /// ## Import
     /// 
     /// Not possible to import this resource.

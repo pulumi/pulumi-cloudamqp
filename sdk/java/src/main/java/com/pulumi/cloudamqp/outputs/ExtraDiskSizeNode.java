@@ -22,6 +22,10 @@ public final class ExtraDiskSizeNode {
      * 
      */
     private @Nullable Integer diskSize;
+    /**
+     * @return Name of the node.
+     * 
+     */
     private @Nullable String name;
 
     private ExtraDiskSizeNode() {}
@@ -39,6 +43,10 @@ public final class ExtraDiskSizeNode {
     public Optional<Integer> diskSize() {
         return Optional.ofNullable(this.diskSize);
     }
+    /**
+     * @return Name of the node.
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }

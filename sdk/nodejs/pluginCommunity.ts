@@ -7,12 +7,28 @@ import * as utilities from "./utilities";
 /**
  * ## Import
  *
- * `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP
+ * `cloudamqp_plugin_community` can be imported if it's has already been installed by using the name
  *
- * instance identifier. The name and identifier are CSV separated, see example below.
+ * argument of the resource together with CloudAMQP instance identifier (CSV separated). To retrieve
+ *
+ * list of available community plugins, use [CloudAMQP API list community plugins].
+ *
+ * From Terraform v1.5.0, the `import` block can be used to import this resource:
+ *
+ * hcl
+ *
+ * import {
+ *
+ *   to = cloudamqp_plugin_community.rabbitmq_delayed_message_exchange
+ *
+ *   id = format("rabbitmq_delayed_message_exchange,%s", cloudamqp_instance.instance.id)
+ *
+ * }
+ *
+ * Or use Terraform CLI:
  *
  * ```sh
- * $ pulumi import cloudamqp:index/pluginCommunity:PluginCommunity <resource_name> <plugin_name>,<instance_id>`
+ * $ pulumi import cloudamqp:index/pluginCommunity:PluginCommunity rabbitmq_delayed_message_exchange <plugin_name>,<instance_id>`
  * ```
  */
 export class PluginCommunity extends pulumi.CustomResource {
@@ -64,13 +80,17 @@ export class PluginCommunity extends pulumi.CustomResource {
      */
     public /*out*/ readonly require!: pulumi.Output<string>;
     /**
-     * Configurable sleep time (seconds) for retries when requesting information
-     * about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+     * Configurable sleep time (seconds) for retries when requesting
+     * information about community plugins. Default set to 10 seconds.
+     *
+     * ***Note:*** Available from [v1.29.0]
      */
     public readonly sleep!: pulumi.Output<number | undefined>;
     /**
      * Configurable timeout time (seconds) for retries when requesting
-     * information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+     * information about community plugins. Default set to 1800 seconds.
+     *
+     * ***Note:*** Available from [v1.29.0]
      */
     public readonly timeout!: pulumi.Output<number | undefined>;
 
@@ -140,13 +160,17 @@ export interface PluginCommunityState {
      */
     require?: pulumi.Input<string>;
     /**
-     * Configurable sleep time (seconds) for retries when requesting information
-     * about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+     * Configurable sleep time (seconds) for retries when requesting
+     * information about community plugins. Default set to 10 seconds.
+     *
+     * ***Note:*** Available from [v1.29.0]
      */
     sleep?: pulumi.Input<number>;
     /**
      * Configurable timeout time (seconds) for retries when requesting
-     * information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+     * information about community plugins. Default set to 1800 seconds.
+     *
+     * ***Note:*** Available from [v1.29.0]
      */
     timeout?: pulumi.Input<number>;
 }
@@ -168,13 +192,17 @@ export interface PluginCommunityArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Configurable sleep time (seconds) for retries when requesting information
-     * about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+     * Configurable sleep time (seconds) for retries when requesting
+     * information about community plugins. Default set to 10 seconds.
+     *
+     * ***Note:*** Available from [v1.29.0]
      */
     sleep?: pulumi.Input<number>;
     /**
      * Configurable timeout time (seconds) for retries when requesting
-     * information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+     * information about community plugins. Default set to 1800 seconds.
+     *
+     * ***Note:*** Available from [v1.29.0]
      */
     timeout?: pulumi.Input<number>;
 }

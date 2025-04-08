@@ -11,7 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipientId` or `name`.
+// Use this data source to retrieve information about default or created recipients. The recipient will
+// receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use
+// `recipientId` or `name`.
 //
 // ## Example Usage
 //
@@ -40,15 +42,6 @@ import (
 //
 // ```
 //
-// ## Attributes reference
-//
-// # All attributes reference are computed
-//
-// * `id`    - The identifier for this resource.
-// * `type`  - The type of the recipient.
-// * `value` - The notification endpoint, where to send the notification.
-// * `options`- Options argument (e.g. `rk` used for VictorOps routing key).
-//
 // ## Dependency
 //
 // This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -67,7 +60,8 @@ type LookupNotificationArgs struct {
 	// The CloudAMQP instance identifier.
 	InstanceId int `pulumi:"instanceId"`
 	// The name set for the recipient.
-	Name    *string           `pulumi:"name"`
+	Name *string `pulumi:"name"`
+	// Options argument (e.g. `rk` used for VictorOps routing key).
 	Options map[string]string `pulumi:"options"`
 	// The recipient identifier.
 	RecipientId *int `pulumi:"recipientId"`
@@ -76,13 +70,16 @@ type LookupNotificationArgs struct {
 // A collection of values returned by getNotification.
 type LookupNotificationResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id          string            `pulumi:"id"`
-	InstanceId  int               `pulumi:"instanceId"`
-	Name        *string           `pulumi:"name"`
+	Id         string  `pulumi:"id"`
+	InstanceId int     `pulumi:"instanceId"`
+	Name       *string `pulumi:"name"`
+	// Options argument (e.g. `rk` used for VictorOps routing key).
 	Options     map[string]string `pulumi:"options"`
 	RecipientId *int              `pulumi:"recipientId"`
-	Type        string            `pulumi:"type"`
-	Value       string            `pulumi:"value"`
+	// The type of the recipient.
+	Type string `pulumi:"type"`
+	// The notification endpoint, where to send the notification.
+	Value string `pulumi:"value"`
 }
 
 func LookupNotificationOutput(ctx *pulumi.Context, args LookupNotificationOutputArgs, opts ...pulumi.InvokeOption) LookupNotificationResultOutput {
@@ -99,7 +96,8 @@ type LookupNotificationOutputArgs struct {
 	// The CloudAMQP instance identifier.
 	InstanceId pulumi.IntInput `pulumi:"instanceId"`
 	// The name set for the recipient.
-	Name    pulumi.StringPtrInput `pulumi:"name"`
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Options argument (e.g. `rk` used for VictorOps routing key).
 	Options pulumi.StringMapInput `pulumi:"options"`
 	// The recipient identifier.
 	RecipientId pulumi.IntPtrInput `pulumi:"recipientId"`
@@ -137,6 +135,7 @@ func (o LookupNotificationResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupNotificationResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// Options argument (e.g. `rk` used for VictorOps routing key).
 func (o LookupNotificationResultOutput) Options() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupNotificationResult) map[string]string { return v.Options }).(pulumi.StringMapOutput)
 }
@@ -145,10 +144,12 @@ func (o LookupNotificationResultOutput) RecipientId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LookupNotificationResult) *int { return v.RecipientId }).(pulumi.IntPtrOutput)
 }
 
+// The type of the recipient.
 func (o LookupNotificationResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNotificationResult) string { return v.Type }).(pulumi.StringOutput)
 }
 
+// The notification endpoint, where to send the notification.
 func (o LookupNotificationResultOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNotificationResult) string { return v.Value }).(pulumi.StringOutput)
 }

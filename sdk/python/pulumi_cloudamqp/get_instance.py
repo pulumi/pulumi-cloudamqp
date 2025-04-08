@@ -88,26 +88,41 @@ class GetInstanceResult:
     @property
     @pulumi.getter
     def apikey(self) -> str:
+        """
+        (Sensitive) The API key to secondary API handing alarms, integration etc.
+        """
         return pulumi.get(self, "apikey")
 
     @property
     @pulumi.getter
     def backend(self) -> str:
+        """
+        Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
+        """
         return pulumi.get(self, "backend")
 
     @property
     @pulumi.getter
     def dedicated(self) -> bool:
+        """
+        Information if the CloudAMQP instance is shared or dedicated.
+        """
         return pulumi.get(self, "dedicated")
 
     @property
     @pulumi.getter
     def host(self) -> str:
+        """
+        The external hostname for the CloudAMQP instance.
+        """
         return pulumi.get(self, "host")
 
     @property
     @pulumi.getter(name="hostInternal")
     def host_internal(self) -> str:
+        """
+        The internal hostname for the CloudAMQP instance.
+        """
         return pulumi.get(self, "host_internal")
 
     @property
@@ -126,6 +141,9 @@ class GetInstanceResult:
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The name of the CloudAMQP instance.
+        """
         return pulumi.get(self, "name")
 
     @property
@@ -136,11 +154,17 @@ class GetInstanceResult:
     @property
     @pulumi.getter
     def nodes(self) -> int:
+        """
+        Number of nodes in the cluster of the CloudAMQP instance.
+        """
         return pulumi.get(self, "nodes")
 
     @property
     @pulumi.getter
     def plan(self) -> str:
+        """
+        The subscription plan for the CloudAMQP instance.
+        """
         return pulumi.get(self, "plan")
 
     @property
@@ -151,36 +175,59 @@ class GetInstanceResult:
     @property
     @pulumi.getter
     def region(self) -> str:
+        """
+        The cloud platform and region that host the CloudAMQP instance,
+        `{platform}::{region}`.
+        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="rmqVersion")
     def rmq_version(self) -> str:
+        """
+        The version of installed Rabbit MQ.
+        """
         return pulumi.get(self, "rmq_version")
 
     @property
     @pulumi.getter
     def tags(self) -> Sequence[str]:
+        """
+        Tags the CloudAMQP instance with categories.
+        """
         return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
     def url(self) -> str:
+        """
+        (Sensitive) The AMQP URL (uses the internal hostname if the instance was created
+        with VPC), used by clients to connect for pub/sub.
+        """
         return pulumi.get(self, "url")
 
     @property
     @pulumi.getter
     def vhost(self) -> str:
+        """
+        The virtual host configured in Rabbit MQ.
+        """
         return pulumi.get(self, "vhost")
 
     @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> int:
+        """
+        ID of the VPC configured for the CloudAMQP instance.
+        """
         return pulumi.get(self, "vpc_id")
 
     @property
     @pulumi.getter(name="vpcSubnet")
     def vpc_subnet(self) -> str:
+        """
+        Dedicated VPC subnet configured for the CloudAMQP instance.
+        """
         return pulumi.get(self, "vpc_subnet")
 
 
@@ -214,7 +261,8 @@ class AwaitableGetInstanceResult(GetInstanceResult):
 def get_instance(instance_id: Optional[int] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceResult:
     """
-    Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.
+    Use this data source to retrieve information about an already created CloudAMQP instance. In order
+    to retrieve the correct information, the CoudAMQP instance identifier is needed.
 
 
     :param int instance_id: The CloudAMQP instance identifier.
@@ -247,7 +295,8 @@ def get_instance(instance_id: Optional[int] = None,
 def get_instance_output(instance_id: Optional[pulumi.Input[int]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetInstanceResult]:
     """
-    Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.
+    Use this data source to retrieve information about an already created CloudAMQP instance. In order
+    to retrieve the correct information, the CoudAMQP instance identifier is needed.
 
 
     :param int instance_id: The CloudAMQP instance identifier.

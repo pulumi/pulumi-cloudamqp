@@ -297,6 +297,7 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * &lt;/details&gt;
  * 
  * &lt;details&gt;
@@ -386,6 +387,8 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
+ * &lt;/details&gt;
+ * 
  * &lt;details&gt;
  *   &lt;summary&gt;
  *     &lt;b&gt;
@@ -429,8 +432,6 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
- * 
- * &lt;/details&gt;
  * 
  * &lt;/details&gt;
  * 
@@ -484,11 +485,35 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * `cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+ * `cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP
+ * 
+ * instance identifier. The identifiers are CSV separated, see example below. To retrieve the resource,
+ * 
+ * use [CloudAMQP API list integration].
+ * 
+ * From Terraform v1.5.0, the `import` block can be used to import this resource:
+ * 
+ * hcl
+ * 
+ * import {
+ * 
+ *   to = cloudamqp_integration_log.this
+ * 
+ *   id = format(&#34;&lt;id&gt;,%s&#34;, cloudamqp_instance.instance.id)
+ * 
+ * }
  * 
  * ```sh
- * $ pulumi import cloudamqp:index/integrationLog:IntegrationLog &lt;resource_name&gt; &lt;id&gt;,&lt;instance_id&gt;`
+ * $ pulumi import cloudamqp:index/integrationLog:IntegrationLog this &lt;id&gt;,&lt;instance_id&gt;`
  * ```
+ * 
+ * [CloudAMQP API add integration]: https://docs.cloudamqp.com/cloudamqp_api.html#add-log-integration
+ * 
+ * [CloudAMQP API list integration]: https://docs.cloudamqp.com/cloudamqp_api.html#list-log-integrations
+ * 
+ * [Datadog documentation]: https://docs.datadoghq.com/getting_started/tagging/#define-tags
+ * 
+ * [integration type reference]: #integration-type-reference
  * 
  */
 @ResourceType(type="cloudamqp:index/integrationLog:IntegrationLog")
@@ -606,18 +631,22 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.dceUri);
     }
     /**
-     * ID of data collection rule that your DCE is linked to for Azure Monitor.
+     * ID of data collection rule that your DCE is linked to for Azure
+     * Monitor.
      * 
-     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of
+     * integration used. See [integration type reference] table below for more information.
      * 
      */
     @Export(name="dcrId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> dcrId;
 
     /**
-     * @return ID of data collection rule that your DCE is linked to for Azure Monitor.
+     * @return ID of data collection rule that your DCE is linked to for Azure
+     * Monitor.
      * 
-     * This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of
+     * integration used. See [integration type reference] table below for more information.
      * 
      */
     public Output<Optional<String>> dcrId() {
@@ -638,14 +667,16 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.endpoint);
     }
     /**
-     * The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+     * The host for Scalyr integration. (app.scalyr.com,
+     * app.eu.scalyr.com)
      * 
      */
     @Export(name="host", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> host;
 
     /**
-     * @return The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+     * @return The host for Scalyr integration. (app.scalyr.com,
+     * app.eu.scalyr.com)
      * 
      */
     public Output<Optional<String>> host() {
@@ -681,7 +712,7 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
     }
     /**
      * The name of the third party log integration. See
-     * Integration type reference
+     * [integration type reference]
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
@@ -689,7 +720,7 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The name of the third party log integration. See
-     * Integration type reference
+     * [integration type reference]
      * 
      */
     public Output<String> name() {
@@ -766,14 +797,16 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.secretAccessKey);
     }
     /**
-     * Assign source type to the data exported, eg. generic_single_line. (Splunk)
+     * Assign source type to the data exported, eg. generic_single_line.
+     * (Splunk)
      * 
      */
     @Export(name="sourcetype", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> sourcetype;
 
     /**
-     * @return Assign source type to the data exported, eg. generic_single_line. (Splunk)
+     * @return Assign source type to the data exported, eg. generic_single_line.
+     * (Splunk)
      * 
      */
     public Output<Optional<String>> sourcetype() {
@@ -810,7 +843,8 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
     /**
      * Tags. e.g. `env=prod,region=europe`.
      * 
-     * ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
+     * ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+     * letter, read more about tags format in the [Datadog documentation].
      * 
      */
     @Export(name="tags", refs={String.class}, tree="[0]")
@@ -819,7 +853,8 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
     /**
      * @return Tags. e.g. `env=prod,region=europe`.
      * 
-     * ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
+     * ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+     * letter, read more about tags format in the [Datadog documentation].
      * 
      */
     public Output<Optional<String>> tags() {

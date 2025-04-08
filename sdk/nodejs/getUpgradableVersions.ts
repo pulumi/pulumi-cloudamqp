@@ -5,7 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Use this data source to retrieve information about possible upgradable versions for RabbitMQ and Erlang.
+ * Use this data source to retrieve information about possible upgradable versions for RabbitMQ and
+ * Erlang.
  *
  * ## Example Usage
  *
@@ -17,13 +18,6 @@ import * as utilities from "./utilities";
  *     instanceId: instance.id,
  * });
  * ```
- *
- * ## Attributes reference
- *
- * All attributes reference are computed
- *
- * * `newRabbitmqVersion`  - Possible upgradable version for RabbitMQ.
- * * `newErlangVersion`    - Possible upgradable version for Erlang.
  *
  * ## Dependency
  *
@@ -55,11 +49,18 @@ export interface GetUpgradableVersionsResult {
      */
     readonly id: string;
     readonly instanceId: number;
+    /**
+     * Possible upgradable version for Erlang.
+     */
     readonly newErlangVersion: string;
+    /**
+     * Possible upgradable version for RabbitMQ.
+     */
     readonly newRabbitmqVersion: string;
 }
 /**
- * Use this data source to retrieve information about possible upgradable versions for RabbitMQ and Erlang.
+ * Use this data source to retrieve information about possible upgradable versions for RabbitMQ and
+ * Erlang.
  *
  * ## Example Usage
  *
@@ -71,13 +72,6 @@ export interface GetUpgradableVersionsResult {
  *     instanceId: instance.id,
  * });
  * ```
- *
- * ## Attributes reference
- *
- * All attributes reference are computed
- *
- * * `newRabbitmqVersion`  - Possible upgradable version for RabbitMQ.
- * * `newErlangVersion`    - Possible upgradable version for Erlang.
  *
  * ## Dependency
  *

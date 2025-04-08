@@ -60,6 +60,10 @@ class GetPluginsCommunityResult:
     @property
     @pulumi.getter
     def plugins(self) -> Sequence['outputs.GetPluginsCommunityPluginResult']:
+        """
+        An array of community plugins. Each `plugins` block consists of the fields documented
+        below.
+        """
         return pulumi.get(self, "plugins")
 
     @property
@@ -91,7 +95,8 @@ def get_plugins_community(instance_id: Optional[int] = None,
                           timeout: Optional[int] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPluginsCommunityResult:
     """
-    Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
+    Use this data source to retrieve information about available community plugins for the CloudAMQP
+    instance.
 
     ## Example Usage
 
@@ -102,31 +107,16 @@ def get_plugins_community(instance_id: Optional[int] = None,
     communit_plugins = cloudamqp.get_plugins_community(instance_id=instance["id"])
     ```
 
-    ## Attributes reference
-
-    All attributes reference are computed
-
-    * `id`      - The identifier for this resource.
-    * `plugins` - An array of community plugins. Each `plugins` block consists of the fields documented below.
-    * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
-      about community plugins. Default set to 10 seconds. *Available from v1.29.0*
-    * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
-      information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
-
-    ***
-
-    The `plugins` block consists of
-
-    * `name`        - The type of the recipient.
-    * `require`     - Min. required Rabbit MQ version to be used.
-    * `description` - Description of what the plugin does.
-
     ## Dependency
 
     This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 
 
     :param int instance_id: The CloudAMQP instance identifier.
+    :param int sleep: Configurable sleep time (seconds) for retries when requesting
+           information about community plugins. Default set to 10 seconds.
+    :param int timeout: Configurable timeout time (seconds) for retries when requesting
+           information about community plugins. Default set to 1800 seconds.
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
@@ -146,7 +136,8 @@ def get_plugins_community_output(instance_id: Optional[pulumi.Input[int]] = None
                                  timeout: Optional[pulumi.Input[Optional[int]]] = None,
                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPluginsCommunityResult]:
     """
-    Use this data source to retrieve information about available community plugins for the CloudAMQP instance.
+    Use this data source to retrieve information about available community plugins for the CloudAMQP
+    instance.
 
     ## Example Usage
 
@@ -157,31 +148,16 @@ def get_plugins_community_output(instance_id: Optional[pulumi.Input[int]] = None
     communit_plugins = cloudamqp.get_plugins_community(instance_id=instance["id"])
     ```
 
-    ## Attributes reference
-
-    All attributes reference are computed
-
-    * `id`      - The identifier for this resource.
-    * `plugins` - An array of community plugins. Each `plugins` block consists of the fields documented below.
-    * `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
-      about community plugins. Default set to 10 seconds. *Available from v1.29.0*
-    * `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
-      information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
-
-    ***
-
-    The `plugins` block consists of
-
-    * `name`        - The type of the recipient.
-    * `require`     - Min. required Rabbit MQ version to be used.
-    * `description` - Description of what the plugin does.
-
     ## Dependency
 
     This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 
 
     :param int instance_id: The CloudAMQP instance identifier.
+    :param int sleep: Configurable sleep time (seconds) for retries when requesting
+           information about community plugins. Default set to 10 seconds.
+    :param int timeout: Configurable timeout time (seconds) for retries when requesting
+           information about community plugins. Default set to 1800 seconds.
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id

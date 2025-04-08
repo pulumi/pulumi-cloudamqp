@@ -16,6 +16,10 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetAlarmResult {
     private @Nullable Integer alarmId;
+    /**
+     * @return Enable/disable status of the alarm.
+     * 
+     */
     private Boolean enabled;
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -23,20 +27,59 @@ public final class GetAlarmResult {
      */
     private String id;
     private Integer instanceId;
+    /**
+     * @return Message type `(total, unacked, ready)` used by queue alarm type.
+     * 
+     */
     private String messageType;
+    /**
+     * @return Regular expression for which queue to check.
+     * 
+     */
     private String queueRegex;
+    /**
+     * @return Identifier for recipient to be notified.
+     * 
+     */
     private List<Integer> recipients;
+    /**
+     * @return The reminder interval (in seconds) to resend the alarm if not resolved.
+     * Set to 0 for no reminders.
+     * 
+     */
     private Integer reminderInterval;
+    /**
+     * @return The time interval (in seconds) the `value_threshold` should be active
+     * before trigger an alarm.
+     * 
+     */
     private Integer timeThreshold;
     private @Nullable String type;
+    /**
+     * @return Disk value threshold calculation, `(fixed, percentage)` of disk space
+     * remaining.
+     * 
+     */
     private @Nullable String valueCalculation;
+    /**
+     * @return The value threshold that triggers the alarm.
+     * 
+     */
     private Integer valueThreshold;
+    /**
+     * @return Regular expression for which vhost to check
+     * 
+     */
     private String vhostRegex;
 
     private GetAlarmResult() {}
     public Optional<Integer> alarmId() {
         return Optional.ofNullable(this.alarmId);
     }
+    /**
+     * @return Enable/disable status of the alarm.
+     * 
+     */
     public Boolean enabled() {
         return this.enabled;
     }
@@ -50,30 +93,65 @@ public final class GetAlarmResult {
     public Integer instanceId() {
         return this.instanceId;
     }
+    /**
+     * @return Message type `(total, unacked, ready)` used by queue alarm type.
+     * 
+     */
     public String messageType() {
         return this.messageType;
     }
+    /**
+     * @return Regular expression for which queue to check.
+     * 
+     */
     public String queueRegex() {
         return this.queueRegex;
     }
+    /**
+     * @return Identifier for recipient to be notified.
+     * 
+     */
     public List<Integer> recipients() {
         return this.recipients;
     }
+    /**
+     * @return The reminder interval (in seconds) to resend the alarm if not resolved.
+     * Set to 0 for no reminders.
+     * 
+     */
     public Integer reminderInterval() {
         return this.reminderInterval;
     }
+    /**
+     * @return The time interval (in seconds) the `value_threshold` should be active
+     * before trigger an alarm.
+     * 
+     */
     public Integer timeThreshold() {
         return this.timeThreshold;
     }
     public Optional<String> type() {
         return Optional.ofNullable(this.type);
     }
+    /**
+     * @return Disk value threshold calculation, `(fixed, percentage)` of disk space
+     * remaining.
+     * 
+     */
     public Optional<String> valueCalculation() {
         return Optional.ofNullable(this.valueCalculation);
     }
+    /**
+     * @return The value threshold that triggers the alarm.
+     * 
+     */
     public Integer valueThreshold() {
         return this.valueThreshold;
     }
+    /**
+     * @return Regular expression for which vhost to check
+     * 
+     */
     public String vhostRegex() {
         return this.vhostRegex;
     }

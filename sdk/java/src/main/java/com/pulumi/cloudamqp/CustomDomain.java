@@ -17,13 +17,18 @@ import javax.annotation.Nullable;
 /**
  * This resource allows you to configure and manage your custom domain for the CloudAMQP instance.
  * 
- * Adding a custom domain to your instance will generate a TLS certificate from [Let&#39;s Encrypt], for the given hostname, and install it on all servers in your cluster. The certificate will be automatically renewed going forward.
+ * Adding a custom domain to your instance will generate a TLS certificate from [Let&#39;s Encrypt], for
+ * the given hostname, and install it on all servers in your cluster. The certificate will be
+ * automatically renewed going forward.
  * 
- * &gt; **WARNING:** Please note that when creating, changing or deleting the custom domain, the listeners on your servers will be restarted in order to apply the changes. This will close your current connections.
+ * &gt; **WARNING:** Please note that when creating, changing or deleting the custom domain, the
+ * listeners on your servers will be restarted in order to apply the changes. This will close your
+ * current connections.
  * 
- * Your custom domain name needs to point to your CloudAMQP hostname, preferably using a CNAME DNS record.
+ * Your custom domain name needs to point to your CloudAMQP hostname, preferably using a CNAME DNS
+ * record.
  * 
- * Only available for dedicated subscription plans.
+ * Only available for dedicated subscription plans running ***RabbitMQ***.
  * 
  * ## Example Usage
  * 
@@ -67,11 +72,27 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * `cloudamqp_custom_domain` can be imported using CloudAMQP instance identifier.
+ * `cloudamqp_custom_domain` can be imported using CloudAMQP instance identifier. To retrieve the
+ * 
+ * instance identifier, use [CloudAMQP API list instances].
+ * 
+ * hcl
+ * 
+ * import {
+ * 
+ *   to = cloudamqp_alarm.alarm
+ * 
+ *   id = cloudamqp_instance.instance.id
+ * 
+ * }
+ * 
+ * Or use Terraform CLI:
  * 
  * ```sh
  * $ pulumi import cloudamqp:index/customDomain:CustomDomain settings &lt;instance_id&gt;`
  * ```
+ * 
+ * [CloudAMQP API list instances]: https://docs.cloudamqp.com/#list-instances
  * 
  * [Let&#39;s Encrypt]: https://letsencrypt.org/
  * 

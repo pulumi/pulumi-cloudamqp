@@ -7,7 +7,23 @@ import * as utilities from "./utilities";
 /**
  * ## Import
  *
- * `cloudamqp_webhook` can be imported using the resource identifier together with CloudAMQP instance identifier. The identifiers are CSV separated, see example below.
+ * `cloudamqp_webhook` can be imported using the resource identifier together with CloudAMQP instance
+ *
+ * identifier (CSV separated). To retrieve the resource identifier, use [CloudAMQP API list webhooks].
+ *
+ * From Terraform v1.5.0, the `import` block can be used to import this resource:
+ *
+ * hcl
+ *
+ * import {
+ *
+ *   to = cloudamqp_webhook.webhook_queue
+ *
+ *   id = format("<id>,%s", cloudamqp_instance.instance.id)
+ *
+ * }
+ *
+ * Or use Terraform CLI:
  *
  * ```sh
  * $ pulumi import cloudamqp:index/webhook:Webhook webhook_queue <id>,<instance_id>`
@@ -66,7 +82,8 @@ export class Webhook extends pulumi.CustomResource {
      */
     public readonly vhost!: pulumi.Output<string>;
     /**
-     * A POST request will be made for each message in the queue to this endpoint.
+     * A POST request will be made for each message in the queue to this
+     * endpoint.
      */
     public readonly webhookUri!: pulumi.Output<string>;
 
@@ -149,7 +166,8 @@ export interface WebhookState {
      */
     vhost?: pulumi.Input<string>;
     /**
-     * A POST request will be made for each message in the queue to this endpoint.
+     * A POST request will be made for each message in the queue to this
+     * endpoint.
      */
     webhookUri?: pulumi.Input<string>;
 }
@@ -183,7 +201,8 @@ export interface WebhookArgs {
      */
     vhost: pulumi.Input<string>;
     /**
-     * A POST request will be made for each message in the queue to this endpoint.
+     * A POST request will be made for each message in the queue to this
+     * endpoint.
      */
     webhookUri: pulumi.Input<string>;
 }

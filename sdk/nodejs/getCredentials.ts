@@ -5,7 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Use this data source to retrieve information about the credentials of the configured user in Rabbit MQ. Information is extracted from `cloudamqp_instance.instance.url`.
+ * Use this data source to retrieve information about the credentials of the configured user in
+ * RabbitMQ. Information is extracted from `cloudamqp_instance.instance.url`.
  *
  * ## Example Usage
  *
@@ -17,14 +18,6 @@ import * as utilities from "./utilities";
  *     instanceId: instance.id,
  * });
  * ```
- *
- * ## Attributes reference
- *
- * All attributes reference are computed.
- *
- * * `id`          - The identifier for this data source.
- * * `username`    - (Sensitive) The username for the configured user in Rabbit MQ.
- * * `password`    - (Sensitive) The password used by the `username`.
  *
  * ## Dependency
  *
@@ -56,11 +49,18 @@ export interface GetCredentialsResult {
      */
     readonly id: string;
     readonly instanceId: number;
+    /**
+     * (Sensitive) The password used by the `username`.
+     */
     readonly password: string;
+    /**
+     * (Sensitive) The username for the configured user in Rabbit MQ.
+     */
     readonly username: string;
 }
 /**
- * Use this data source to retrieve information about the credentials of the configured user in Rabbit MQ. Information is extracted from `cloudamqp_instance.instance.url`.
+ * Use this data source to retrieve information about the credentials of the configured user in
+ * RabbitMQ. Information is extracted from `cloudamqp_instance.instance.url`.
  *
  * ## Example Usage
  *
@@ -72,14 +72,6 @@ export interface GetCredentialsResult {
  *     instanceId: instance.id,
  * });
  * ```
- *
- * ## Attributes reference
- *
- * All attributes reference are computed.
- *
- * * `id`          - The identifier for this data source.
- * * `username`    - (Sensitive) The username for the configured user in Rabbit MQ.
- * * `password`    - (Sensitive) The password used by the `username`.
  *
  * ## Dependency
  *

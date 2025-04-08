@@ -11,7 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to retrieve information about installed and available plugins for the CloudAMQP instance.
+// Use this data source to retrieve information about installed and available plugins for the CloudAMQP
+// instance.
 //
 // ## Example Usage
 //
@@ -39,26 +40,6 @@ import (
 //
 // ```
 //
-// ## Attributes reference
-//
-// # All attributes reference are computed
-//
-//   - `id`      - The identifier for this resource.
-//   - `plugins` - An array of plugins. Each `plugins` block consists of the fields documented below.
-//   - `sleep` - (Optional) Configurable sleep time (seconds) for retries when requesting information
-//     about plugins. Default set to 10 seconds. *Available from v1.29.0*
-//   - `timeout` - (Optional) - Configurable timeout time (seconds) for retries when requesting
-//     information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
-//
-// ***
-//
-// # The `plugins` block consist of
-//
-// * `name`        - The type of the recipient.
-// * `version`     - Rabbit MQ version that the plugins are shipped with.
-// * `description` - Description of what the plugin does.
-// * `enabled`     - Enable or disable information for the plugin.
-//
 // ## Dependency
 //
 // This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -75,19 +56,24 @@ func GetPlugins(ctx *pulumi.Context, args *GetPluginsArgs, opts ...pulumi.Invoke
 // A collection of arguments for invoking getPlugins.
 type GetPluginsArgs struct {
 	// The CloudAMQP instance identifier.
-	InstanceId int  `pulumi:"instanceId"`
-	Sleep      *int `pulumi:"sleep"`
-	Timeout    *int `pulumi:"timeout"`
+	InstanceId int `pulumi:"instanceId"`
+	// Configurable sleep time (seconds) for retries when requesting
+	// information about plugins. Default set to 10 seconds.
+	Sleep *int `pulumi:"sleep"`
+	// Configurable timeout time (seconds) for retries when requesting
+	// information about plugins. Default set to 1800 seconds.
+	Timeout *int `pulumi:"timeout"`
 }
 
 // A collection of values returned by getPlugins.
 type GetPluginsResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id         string             `pulumi:"id"`
-	InstanceId int                `pulumi:"instanceId"`
-	Plugins    []GetPluginsPlugin `pulumi:"plugins"`
-	Sleep      *int               `pulumi:"sleep"`
-	Timeout    *int               `pulumi:"timeout"`
+	Id         string `pulumi:"id"`
+	InstanceId int    `pulumi:"instanceId"`
+	// An array of plugins. Each `plugins` block consists of the fields documented below.
+	Plugins []GetPluginsPlugin `pulumi:"plugins"`
+	Sleep   *int               `pulumi:"sleep"`
+	Timeout *int               `pulumi:"timeout"`
 }
 
 func GetPluginsOutput(ctx *pulumi.Context, args GetPluginsOutputArgs, opts ...pulumi.InvokeOption) GetPluginsResultOutput {
@@ -102,9 +88,13 @@ func GetPluginsOutput(ctx *pulumi.Context, args GetPluginsOutputArgs, opts ...pu
 // A collection of arguments for invoking getPlugins.
 type GetPluginsOutputArgs struct {
 	// The CloudAMQP instance identifier.
-	InstanceId pulumi.IntInput    `pulumi:"instanceId"`
-	Sleep      pulumi.IntPtrInput `pulumi:"sleep"`
-	Timeout    pulumi.IntPtrInput `pulumi:"timeout"`
+	InstanceId pulumi.IntInput `pulumi:"instanceId"`
+	// Configurable sleep time (seconds) for retries when requesting
+	// information about plugins. Default set to 10 seconds.
+	Sleep pulumi.IntPtrInput `pulumi:"sleep"`
+	// Configurable timeout time (seconds) for retries when requesting
+	// information about plugins. Default set to 1800 seconds.
+	Timeout pulumi.IntPtrInput `pulumi:"timeout"`
 }
 
 func (GetPluginsOutputArgs) ElementType() reflect.Type {
@@ -135,6 +125,7 @@ func (o GetPluginsResultOutput) InstanceId() pulumi.IntOutput {
 	return o.ApplyT(func(v GetPluginsResult) int { return v.InstanceId }).(pulumi.IntOutput)
 }
 
+// An array of plugins. Each `plugins` block consists of the fields documented below.
 func (o GetPluginsResultOutput) Plugins() GetPluginsPluginArrayOutput {
 	return o.ApplyT(func(v GetPluginsResult) []GetPluginsPlugin { return v.Plugins }).(GetPluginsPluginArrayOutput)
 }

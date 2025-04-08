@@ -34,19 +34,32 @@ class RabbitConfigurationArgs:
         """
         The set of arguments for constructing a RabbitConfiguration resource.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[int] channel_max: Set the maximum permissible number of channels per connection.
-        :param pulumi.Input[str] cluster_partition_handling: Set how the cluster should handle network partition.
-        :param pulumi.Input[int] connection_max: Set the maximum permissible number of connection.
-        :param pulumi.Input[int] consumer_timeout: A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
-        :param pulumi.Input[int] heartbeat: Set the server AMQP 0-9-1 heartbeat timeout in seconds.
-        :param pulumi.Input[str] log_exchange_level: Log level for the logger used for log integrations and the CloudAMQP Console log view.
+        :param pulumi.Input[int] channel_max: Set the maximum permissible number of
+               channels per connection.
+        :param pulumi.Input[str] cluster_partition_handling: Set how the cluster should handle network
+               partition.
+        :param pulumi.Input[int] connection_max: Set the maximum permissible number of
+               connection.
+        :param pulumi.Input[int] consumer_timeout: A consumer that has recevied a message and
+               does not acknowledge that message within the timeout in
+               milliseconds
+        :param pulumi.Input[int] heartbeat: Set the server AMQP 0-9-1 heartbeat timeout
+               in seconds.
+        :param pulumi.Input[str] log_exchange_level: Log level for the logger used for log
+               integrations and the CloudAMQP Console log view.
                
-               *Note: Requires a restart of RabbitMQ to be applied.*
-        :param pulumi.Input[int] max_message_size: The largest allowed message payload size in bytes.
-        :param pulumi.Input[int] queue_index_embed_msgs_below: Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
-        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
-        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
-        :param pulumi.Input[float] vm_memory_high_watermark: When the server will enter memory based flow-control as relative to the maximum available memory.
+               ***Note:*** Requires a restart of RabbitMQ to be applied.
+        :param pulumi.Input[int] max_message_size: The largest allowed message payload size in
+               bytes.
+        :param pulumi.Input[int] queue_index_embed_msgs_below: Size in bytes below which to embed messages
+               in the queue index. 0 will turn off payload embedding in the
+               queue index.
+        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries
+               for RabbitMQ configuration. Default set to 60 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for RabbitMQ
+               configuration. Default set to 3600 seconds.
+        :param pulumi.Input[float] vm_memory_high_watermark: When the server will enter memory based
+               flow-control as relative to the maximum available memory.
         """
         pulumi.set(__self__, "instance_id", instance_id)
         if channel_max is not None:
@@ -88,7 +101,8 @@ class RabbitConfigurationArgs:
     @pulumi.getter(name="channelMax")
     def channel_max(self) -> Optional[pulumi.Input[int]]:
         """
-        Set the maximum permissible number of channels per connection.
+        Set the maximum permissible number of
+        channels per connection.
         """
         return pulumi.get(self, "channel_max")
 
@@ -100,7 +114,8 @@ class RabbitConfigurationArgs:
     @pulumi.getter(name="clusterPartitionHandling")
     def cluster_partition_handling(self) -> Optional[pulumi.Input[str]]:
         """
-        Set how the cluster should handle network partition.
+        Set how the cluster should handle network
+        partition.
         """
         return pulumi.get(self, "cluster_partition_handling")
 
@@ -112,7 +127,8 @@ class RabbitConfigurationArgs:
     @pulumi.getter(name="connectionMax")
     def connection_max(self) -> Optional[pulumi.Input[int]]:
         """
-        Set the maximum permissible number of connection.
+        Set the maximum permissible number of
+        connection.
         """
         return pulumi.get(self, "connection_max")
 
@@ -124,7 +140,9 @@ class RabbitConfigurationArgs:
     @pulumi.getter(name="consumerTimeout")
     def consumer_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
+        A consumer that has recevied a message and
+        does not acknowledge that message within the timeout in
+        milliseconds
         """
         return pulumi.get(self, "consumer_timeout")
 
@@ -136,7 +154,8 @@ class RabbitConfigurationArgs:
     @pulumi.getter
     def heartbeat(self) -> Optional[pulumi.Input[int]]:
         """
-        Set the server AMQP 0-9-1 heartbeat timeout in seconds.
+        Set the server AMQP 0-9-1 heartbeat timeout
+        in seconds.
         """
         return pulumi.get(self, "heartbeat")
 
@@ -148,9 +167,10 @@ class RabbitConfigurationArgs:
     @pulumi.getter(name="logExchangeLevel")
     def log_exchange_level(self) -> Optional[pulumi.Input[str]]:
         """
-        Log level for the logger used for log integrations and the CloudAMQP Console log view.
+        Log level for the logger used for log
+        integrations and the CloudAMQP Console log view.
 
-        *Note: Requires a restart of RabbitMQ to be applied.*
+        ***Note:*** Requires a restart of RabbitMQ to be applied.
         """
         return pulumi.get(self, "log_exchange_level")
 
@@ -162,7 +182,8 @@ class RabbitConfigurationArgs:
     @pulumi.getter(name="maxMessageSize")
     def max_message_size(self) -> Optional[pulumi.Input[int]]:
         """
-        The largest allowed message payload size in bytes.
+        The largest allowed message payload size in
+        bytes.
         """
         return pulumi.get(self, "max_message_size")
 
@@ -174,7 +195,9 @@ class RabbitConfigurationArgs:
     @pulumi.getter(name="queueIndexEmbedMsgsBelow")
     def queue_index_embed_msgs_below(self) -> Optional[pulumi.Input[int]]:
         """
-        Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
+        Size in bytes below which to embed messages
+        in the queue index. 0 will turn off payload embedding in the
+        queue index.
         """
         return pulumi.get(self, "queue_index_embed_msgs_below")
 
@@ -186,7 +209,8 @@ class RabbitConfigurationArgs:
     @pulumi.getter
     def sleep(self) -> Optional[pulumi.Input[int]]:
         """
-        Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+        Configurable sleep time in seconds between retries
+        for RabbitMQ configuration. Default set to 60 seconds.
         """
         return pulumi.get(self, "sleep")
 
@@ -198,7 +222,8 @@ class RabbitConfigurationArgs:
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+        Configurable timeout time in seconds for RabbitMQ
+        configuration. Default set to 3600 seconds.
         """
         return pulumi.get(self, "timeout")
 
@@ -210,7 +235,8 @@ class RabbitConfigurationArgs:
     @pulumi.getter(name="vmMemoryHighWatermark")
     def vm_memory_high_watermark(self) -> Optional[pulumi.Input[float]]:
         """
-        When the server will enter memory based flow-control as relative to the maximum available memory.
+        When the server will enter memory based
+        flow-control as relative to the maximum available memory.
         """
         return pulumi.get(self, "vm_memory_high_watermark")
 
@@ -236,20 +262,33 @@ class _RabbitConfigurationState:
                  vm_memory_high_watermark: Optional[pulumi.Input[float]] = None):
         """
         Input properties used for looking up and filtering RabbitConfiguration resources.
-        :param pulumi.Input[int] channel_max: Set the maximum permissible number of channels per connection.
-        :param pulumi.Input[str] cluster_partition_handling: Set how the cluster should handle network partition.
-        :param pulumi.Input[int] connection_max: Set the maximum permissible number of connection.
-        :param pulumi.Input[int] consumer_timeout: A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
-        :param pulumi.Input[int] heartbeat: Set the server AMQP 0-9-1 heartbeat timeout in seconds.
+        :param pulumi.Input[int] channel_max: Set the maximum permissible number of
+               channels per connection.
+        :param pulumi.Input[str] cluster_partition_handling: Set how the cluster should handle network
+               partition.
+        :param pulumi.Input[int] connection_max: Set the maximum permissible number of
+               connection.
+        :param pulumi.Input[int] consumer_timeout: A consumer that has recevied a message and
+               does not acknowledge that message within the timeout in
+               milliseconds
+        :param pulumi.Input[int] heartbeat: Set the server AMQP 0-9-1 heartbeat timeout
+               in seconds.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[str] log_exchange_level: Log level for the logger used for log integrations and the CloudAMQP Console log view.
+        :param pulumi.Input[str] log_exchange_level: Log level for the logger used for log
+               integrations and the CloudAMQP Console log view.
                
-               *Note: Requires a restart of RabbitMQ to be applied.*
-        :param pulumi.Input[int] max_message_size: The largest allowed message payload size in bytes.
-        :param pulumi.Input[int] queue_index_embed_msgs_below: Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
-        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
-        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
-        :param pulumi.Input[float] vm_memory_high_watermark: When the server will enter memory based flow-control as relative to the maximum available memory.
+               ***Note:*** Requires a restart of RabbitMQ to be applied.
+        :param pulumi.Input[int] max_message_size: The largest allowed message payload size in
+               bytes.
+        :param pulumi.Input[int] queue_index_embed_msgs_below: Size in bytes below which to embed messages
+               in the queue index. 0 will turn off payload embedding in the
+               queue index.
+        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries
+               for RabbitMQ configuration. Default set to 60 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for RabbitMQ
+               configuration. Default set to 3600 seconds.
+        :param pulumi.Input[float] vm_memory_high_watermark: When the server will enter memory based
+               flow-control as relative to the maximum available memory.
         """
         if channel_max is not None:
             pulumi.set(__self__, "channel_max", channel_max)
@@ -280,7 +319,8 @@ class _RabbitConfigurationState:
     @pulumi.getter(name="channelMax")
     def channel_max(self) -> Optional[pulumi.Input[int]]:
         """
-        Set the maximum permissible number of channels per connection.
+        Set the maximum permissible number of
+        channels per connection.
         """
         return pulumi.get(self, "channel_max")
 
@@ -292,7 +332,8 @@ class _RabbitConfigurationState:
     @pulumi.getter(name="clusterPartitionHandling")
     def cluster_partition_handling(self) -> Optional[pulumi.Input[str]]:
         """
-        Set how the cluster should handle network partition.
+        Set how the cluster should handle network
+        partition.
         """
         return pulumi.get(self, "cluster_partition_handling")
 
@@ -304,7 +345,8 @@ class _RabbitConfigurationState:
     @pulumi.getter(name="connectionMax")
     def connection_max(self) -> Optional[pulumi.Input[int]]:
         """
-        Set the maximum permissible number of connection.
+        Set the maximum permissible number of
+        connection.
         """
         return pulumi.get(self, "connection_max")
 
@@ -316,7 +358,9 @@ class _RabbitConfigurationState:
     @pulumi.getter(name="consumerTimeout")
     def consumer_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
+        A consumer that has recevied a message and
+        does not acknowledge that message within the timeout in
+        milliseconds
         """
         return pulumi.get(self, "consumer_timeout")
 
@@ -328,7 +372,8 @@ class _RabbitConfigurationState:
     @pulumi.getter
     def heartbeat(self) -> Optional[pulumi.Input[int]]:
         """
-        Set the server AMQP 0-9-1 heartbeat timeout in seconds.
+        Set the server AMQP 0-9-1 heartbeat timeout
+        in seconds.
         """
         return pulumi.get(self, "heartbeat")
 
@@ -352,9 +397,10 @@ class _RabbitConfigurationState:
     @pulumi.getter(name="logExchangeLevel")
     def log_exchange_level(self) -> Optional[pulumi.Input[str]]:
         """
-        Log level for the logger used for log integrations and the CloudAMQP Console log view.
+        Log level for the logger used for log
+        integrations and the CloudAMQP Console log view.
 
-        *Note: Requires a restart of RabbitMQ to be applied.*
+        ***Note:*** Requires a restart of RabbitMQ to be applied.
         """
         return pulumi.get(self, "log_exchange_level")
 
@@ -366,7 +412,8 @@ class _RabbitConfigurationState:
     @pulumi.getter(name="maxMessageSize")
     def max_message_size(self) -> Optional[pulumi.Input[int]]:
         """
-        The largest allowed message payload size in bytes.
+        The largest allowed message payload size in
+        bytes.
         """
         return pulumi.get(self, "max_message_size")
 
@@ -378,7 +425,9 @@ class _RabbitConfigurationState:
     @pulumi.getter(name="queueIndexEmbedMsgsBelow")
     def queue_index_embed_msgs_below(self) -> Optional[pulumi.Input[int]]:
         """
-        Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
+        Size in bytes below which to embed messages
+        in the queue index. 0 will turn off payload embedding in the
+        queue index.
         """
         return pulumi.get(self, "queue_index_embed_msgs_below")
 
@@ -390,7 +439,8 @@ class _RabbitConfigurationState:
     @pulumi.getter
     def sleep(self) -> Optional[pulumi.Input[int]]:
         """
-        Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+        Configurable sleep time in seconds between retries
+        for RabbitMQ configuration. Default set to 60 seconds.
         """
         return pulumi.get(self, "sleep")
 
@@ -402,7 +452,8 @@ class _RabbitConfigurationState:
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+        Configurable timeout time in seconds for RabbitMQ
+        configuration. Default set to 3600 seconds.
         """
         return pulumi.get(self, "timeout")
 
@@ -414,7 +465,8 @@ class _RabbitConfigurationState:
     @pulumi.getter(name="vmMemoryHighWatermark")
     def vm_memory_high_watermark(self) -> Optional[pulumi.Input[float]]:
         """
-        When the server will enter memory based flow-control as relative to the maximum available memory.
+        When the server will enter memory based
+        flow-control as relative to the maximum available memory.
         """
         return pulumi.get(self, "vm_memory_high_watermark")
 
@@ -444,7 +496,23 @@ class RabbitConfiguration(pulumi.CustomResource):
         """
         ## Import
 
-        `cloudamqp_rabbitmq_configuration` can be imported using the CloudAMQP instance identifier.
+        `cloudamqp_rabbitmq_configuration` can be imported using the CloudAMQP instance identifier.  To
+
+        retrieve the identifier, use [CloudAMQP API list intances].
+
+        From Terraform v1.5.0, the `import` block can be used to import this resource:
+
+        hcl
+
+        import {
+
+          to = cloudamqp_rabbitmq_configuration.config
+
+          id = cloudamqp_instance.instance.id
+
+        }
+
+        Or use Terraform CLI:
 
         ```sh
         $ pulumi import cloudamqp:index/rabbitConfiguration:RabbitConfiguration config <instance_id>`
@@ -452,20 +520,33 @@ class RabbitConfiguration(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] channel_max: Set the maximum permissible number of channels per connection.
-        :param pulumi.Input[str] cluster_partition_handling: Set how the cluster should handle network partition.
-        :param pulumi.Input[int] connection_max: Set the maximum permissible number of connection.
-        :param pulumi.Input[int] consumer_timeout: A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
-        :param pulumi.Input[int] heartbeat: Set the server AMQP 0-9-1 heartbeat timeout in seconds.
+        :param pulumi.Input[int] channel_max: Set the maximum permissible number of
+               channels per connection.
+        :param pulumi.Input[str] cluster_partition_handling: Set how the cluster should handle network
+               partition.
+        :param pulumi.Input[int] connection_max: Set the maximum permissible number of
+               connection.
+        :param pulumi.Input[int] consumer_timeout: A consumer that has recevied a message and
+               does not acknowledge that message within the timeout in
+               milliseconds
+        :param pulumi.Input[int] heartbeat: Set the server AMQP 0-9-1 heartbeat timeout
+               in seconds.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[str] log_exchange_level: Log level for the logger used for log integrations and the CloudAMQP Console log view.
+        :param pulumi.Input[str] log_exchange_level: Log level for the logger used for log
+               integrations and the CloudAMQP Console log view.
                
-               *Note: Requires a restart of RabbitMQ to be applied.*
-        :param pulumi.Input[int] max_message_size: The largest allowed message payload size in bytes.
-        :param pulumi.Input[int] queue_index_embed_msgs_below: Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
-        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
-        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
-        :param pulumi.Input[float] vm_memory_high_watermark: When the server will enter memory based flow-control as relative to the maximum available memory.
+               ***Note:*** Requires a restart of RabbitMQ to be applied.
+        :param pulumi.Input[int] max_message_size: The largest allowed message payload size in
+               bytes.
+        :param pulumi.Input[int] queue_index_embed_msgs_below: Size in bytes below which to embed messages
+               in the queue index. 0 will turn off payload embedding in the
+               queue index.
+        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries
+               for RabbitMQ configuration. Default set to 60 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for RabbitMQ
+               configuration. Default set to 3600 seconds.
+        :param pulumi.Input[float] vm_memory_high_watermark: When the server will enter memory based
+               flow-control as relative to the maximum available memory.
         """
         ...
     @overload
@@ -476,7 +557,23 @@ class RabbitConfiguration(pulumi.CustomResource):
         """
         ## Import
 
-        `cloudamqp_rabbitmq_configuration` can be imported using the CloudAMQP instance identifier.
+        `cloudamqp_rabbitmq_configuration` can be imported using the CloudAMQP instance identifier.  To
+
+        retrieve the identifier, use [CloudAMQP API list intances].
+
+        From Terraform v1.5.0, the `import` block can be used to import this resource:
+
+        hcl
+
+        import {
+
+          to = cloudamqp_rabbitmq_configuration.config
+
+          id = cloudamqp_instance.instance.id
+
+        }
+
+        Or use Terraform CLI:
 
         ```sh
         $ pulumi import cloudamqp:index/rabbitConfiguration:RabbitConfiguration config <instance_id>`
@@ -561,20 +658,33 @@ class RabbitConfiguration(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] channel_max: Set the maximum permissible number of channels per connection.
-        :param pulumi.Input[str] cluster_partition_handling: Set how the cluster should handle network partition.
-        :param pulumi.Input[int] connection_max: Set the maximum permissible number of connection.
-        :param pulumi.Input[int] consumer_timeout: A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
-        :param pulumi.Input[int] heartbeat: Set the server AMQP 0-9-1 heartbeat timeout in seconds.
+        :param pulumi.Input[int] channel_max: Set the maximum permissible number of
+               channels per connection.
+        :param pulumi.Input[str] cluster_partition_handling: Set how the cluster should handle network
+               partition.
+        :param pulumi.Input[int] connection_max: Set the maximum permissible number of
+               connection.
+        :param pulumi.Input[int] consumer_timeout: A consumer that has recevied a message and
+               does not acknowledge that message within the timeout in
+               milliseconds
+        :param pulumi.Input[int] heartbeat: Set the server AMQP 0-9-1 heartbeat timeout
+               in seconds.
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[str] log_exchange_level: Log level for the logger used for log integrations and the CloudAMQP Console log view.
+        :param pulumi.Input[str] log_exchange_level: Log level for the logger used for log
+               integrations and the CloudAMQP Console log view.
                
-               *Note: Requires a restart of RabbitMQ to be applied.*
-        :param pulumi.Input[int] max_message_size: The largest allowed message payload size in bytes.
-        :param pulumi.Input[int] queue_index_embed_msgs_below: Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
-        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
-        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
-        :param pulumi.Input[float] vm_memory_high_watermark: When the server will enter memory based flow-control as relative to the maximum available memory.
+               ***Note:*** Requires a restart of RabbitMQ to be applied.
+        :param pulumi.Input[int] max_message_size: The largest allowed message payload size in
+               bytes.
+        :param pulumi.Input[int] queue_index_embed_msgs_below: Size in bytes below which to embed messages
+               in the queue index. 0 will turn off payload embedding in the
+               queue index.
+        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries
+               for RabbitMQ configuration. Default set to 60 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for RabbitMQ
+               configuration. Default set to 3600 seconds.
+        :param pulumi.Input[float] vm_memory_high_watermark: When the server will enter memory based
+               flow-control as relative to the maximum available memory.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -598,7 +708,8 @@ class RabbitConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="channelMax")
     def channel_max(self) -> pulumi.Output[int]:
         """
-        Set the maximum permissible number of channels per connection.
+        Set the maximum permissible number of
+        channels per connection.
         """
         return pulumi.get(self, "channel_max")
 
@@ -606,7 +717,8 @@ class RabbitConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="clusterPartitionHandling")
     def cluster_partition_handling(self) -> pulumi.Output[str]:
         """
-        Set how the cluster should handle network partition.
+        Set how the cluster should handle network
+        partition.
         """
         return pulumi.get(self, "cluster_partition_handling")
 
@@ -614,7 +726,8 @@ class RabbitConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="connectionMax")
     def connection_max(self) -> pulumi.Output[int]:
         """
-        Set the maximum permissible number of connection.
+        Set the maximum permissible number of
+        connection.
         """
         return pulumi.get(self, "connection_max")
 
@@ -622,7 +735,9 @@ class RabbitConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="consumerTimeout")
     def consumer_timeout(self) -> pulumi.Output[int]:
         """
-        A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
+        A consumer that has recevied a message and
+        does not acknowledge that message within the timeout in
+        milliseconds
         """
         return pulumi.get(self, "consumer_timeout")
 
@@ -630,7 +745,8 @@ class RabbitConfiguration(pulumi.CustomResource):
     @pulumi.getter
     def heartbeat(self) -> pulumi.Output[int]:
         """
-        Set the server AMQP 0-9-1 heartbeat timeout in seconds.
+        Set the server AMQP 0-9-1 heartbeat timeout
+        in seconds.
         """
         return pulumi.get(self, "heartbeat")
 
@@ -646,9 +762,10 @@ class RabbitConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="logExchangeLevel")
     def log_exchange_level(self) -> pulumi.Output[str]:
         """
-        Log level for the logger used for log integrations and the CloudAMQP Console log view.
+        Log level for the logger used for log
+        integrations and the CloudAMQP Console log view.
 
-        *Note: Requires a restart of RabbitMQ to be applied.*
+        ***Note:*** Requires a restart of RabbitMQ to be applied.
         """
         return pulumi.get(self, "log_exchange_level")
 
@@ -656,7 +773,8 @@ class RabbitConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="maxMessageSize")
     def max_message_size(self) -> pulumi.Output[int]:
         """
-        The largest allowed message payload size in bytes.
+        The largest allowed message payload size in
+        bytes.
         """
         return pulumi.get(self, "max_message_size")
 
@@ -664,7 +782,9 @@ class RabbitConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="queueIndexEmbedMsgsBelow")
     def queue_index_embed_msgs_below(self) -> pulumi.Output[int]:
         """
-        Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
+        Size in bytes below which to embed messages
+        in the queue index. 0 will turn off payload embedding in the
+        queue index.
         """
         return pulumi.get(self, "queue_index_embed_msgs_below")
 
@@ -672,7 +792,8 @@ class RabbitConfiguration(pulumi.CustomResource):
     @pulumi.getter
     def sleep(self) -> pulumi.Output[Optional[int]]:
         """
-        Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+        Configurable sleep time in seconds between retries
+        for RabbitMQ configuration. Default set to 60 seconds.
         """
         return pulumi.get(self, "sleep")
 
@@ -680,7 +801,8 @@ class RabbitConfiguration(pulumi.CustomResource):
     @pulumi.getter
     def timeout(self) -> pulumi.Output[Optional[int]]:
         """
-        Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+        Configurable timeout time in seconds for RabbitMQ
+        configuration. Default set to 3600 seconds.
         """
         return pulumi.get(self, "timeout")
 
@@ -688,7 +810,8 @@ class RabbitConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="vmMemoryHighWatermark")
     def vm_memory_high_watermark(self) -> pulumi.Output[float]:
         """
-        When the server will enter memory based flow-control as relative to the maximum available memory.
+        When the server will enter memory based
+        flow-control as relative to the maximum available memory.
         """
         return pulumi.get(self, "vm_memory_high_watermark")
 

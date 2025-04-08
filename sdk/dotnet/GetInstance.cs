@@ -12,19 +12,22 @@ namespace Pulumi.CloudAmqp
     public static class GetInstance
     {
         /// <summary>
-        /// Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.
+        /// Use this data source to retrieve information about an already created CloudAMQP instance. In order
+        /// to retrieve the correct information, the CoudAMQP instance identifier is needed.
         /// </summary>
         public static Task<GetInstanceResult> InvokeAsync(GetInstanceArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetInstanceResult>("cloudamqp:index/getInstance:getInstance", args ?? new GetInstanceArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.
+        /// Use this data source to retrieve information about an already created CloudAMQP instance. In order
+        /// to retrieve the correct information, the CoudAMQP instance identifier is needed.
         /// </summary>
         public static Output<GetInstanceResult> Invoke(GetInstanceInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetInstanceResult>("cloudamqp:index/getInstance:getInstance", args ?? new GetInstanceInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to retrieve information about an already created CloudAMQP instance. In order to retrieve the correct information, the CoudAMQP instance identifier is needed.
+        /// Use this data source to retrieve information about an already created CloudAMQP instance. In order
+        /// to retrieve the correct information, the CoudAMQP instance identifier is needed.
         /// </summary>
         public static Output<GetInstanceResult> Invoke(GetInstanceInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetInstanceResult>("cloudamqp:index/getInstance:getInstance", args ?? new GetInstanceInvokeArgs(), options.WithDefaults());
@@ -63,27 +66,74 @@ namespace Pulumi.CloudAmqp
     [OutputType]
     public sealed class GetInstanceResult
     {
+        /// <summary>
+        /// (Sensitive) The API key to secondary API handing alarms, integration etc.
+        /// </summary>
         public readonly string Apikey;
+        /// <summary>
+        /// Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
+        /// </summary>
         public readonly string Backend;
+        /// <summary>
+        /// Information if the CloudAMQP instance is shared or dedicated.
+        /// </summary>
         public readonly bool Dedicated;
+        /// <summary>
+        /// The external hostname for the CloudAMQP instance.
+        /// </summary>
         public readonly string Host;
+        /// <summary>
+        /// The internal hostname for the CloudAMQP instance.
+        /// </summary>
         public readonly string HostInternal;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly int InstanceId;
+        /// <summary>
+        /// The name of the CloudAMQP instance.
+        /// </summary>
         public readonly string Name;
         public readonly bool NoDefaultAlarms;
+        /// <summary>
+        /// Number of nodes in the cluster of the CloudAMQP instance.
+        /// </summary>
         public readonly int Nodes;
+        /// <summary>
+        /// The subscription plan for the CloudAMQP instance.
+        /// </summary>
         public readonly string Plan;
         public readonly bool Ready;
+        /// <summary>
+        /// The cloud platform and region that host the CloudAMQP instance,
+        /// `{platform}::{region}`.
+        /// </summary>
         public readonly string Region;
+        /// <summary>
+        /// The version of installed Rabbit MQ.
+        /// </summary>
         public readonly string RmqVersion;
+        /// <summary>
+        /// Tags the CloudAMQP instance with categories.
+        /// </summary>
         public readonly ImmutableArray<string> Tags;
+        /// <summary>
+        /// (Sensitive) The AMQP URL (uses the internal hostname if the instance was created
+        /// with VPC), used by clients to connect for pub/sub.
+        /// </summary>
         public readonly string Url;
+        /// <summary>
+        /// The virtual host configured in Rabbit MQ.
+        /// </summary>
         public readonly string Vhost;
+        /// <summary>
+        /// ID of the VPC configured for the CloudAMQP instance.
+        /// </summary>
         public readonly int VpcId;
+        /// <summary>
+        /// Dedicated VPC subnet configured for the CloudAMQP instance.
+        /// </summary>
         public readonly string VpcSubnet;
 
         [OutputConstructor]

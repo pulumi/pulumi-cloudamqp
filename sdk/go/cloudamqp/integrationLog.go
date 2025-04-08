@@ -244,6 +244,7 @@ import (
 //	}
 //
 // ```
+//
 // </details>
 //
 // <details>
@@ -317,6 +318,8 @@ import (
 //
 // ```
 //
+// </details>
+//
 // <details>
 //
 //	<summary>
@@ -352,8 +355,6 @@ import (
 //	}
 //
 // ```
-//
-// </details>
 //
 // </details>
 //
@@ -399,11 +400,34 @@ import (
 //
 // ## Import
 //
-// `cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+// `cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP
+//
+// instance identifier. The identifiers are CSV separated, see example below. To retrieve the resource,
+//
+// use [CloudAMQP API list integration].
+//
+// From Terraform v1.5.0, the `import` block can be used to import this resource:
+//
+// hcl
+//
+// import {
+//
+//	to = cloudamqp_integration_log.this
+//
+//	id = format("<id>,%s", cloudamqp_instance.instance.id)
+//
+// }
 //
 // ```sh
-// $ pulumi import cloudamqp:index/integrationLog:IntegrationLog <resource_name> <id>,<instance_id>`
+// $ pulumi import cloudamqp:index/integrationLog:IntegrationLog this <id>,<instance_id>`
 // ```
+//
+// [integration type reference]: #integration-type-reference
+//
+// [CloudAMQP API list integration]: https://docs.cloudamqp.com/cloudamqp_api.html#list-log-integrations
+//
+// [CloudAMQP API add integration]: https://docs.cloudamqp.com/cloudamqp_api.html#add-log-integration
+// [Datadog documentation]: https://docs.datadoghq.com/getting_started/tagging/#define-tags
 type IntegrationLog struct {
 	pulumi.CustomResourceState
 
@@ -423,20 +447,23 @@ type IntegrationLog struct {
 	Credentials pulumi.StringPtrOutput `pulumi:"credentials"`
 	// The data collection endpoint for Azure monitor.
 	DceUri pulumi.StringPtrOutput `pulumi:"dceUri"`
-	// ID of data collection rule that your DCE is linked to for Azure Monitor.
+	// ID of data collection rule that your DCE is linked to for Azure
+	// Monitor.
 	//
-	// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+	// This is the full list of all arguments. Only a subset of arguments are used based on which type of
+	// integration used. See [integration type reference] table below for more information.
 	DcrId pulumi.StringPtrOutput `pulumi:"dcrId"`
 	// The syslog destination to send the logs to for Coralogix.
 	Endpoint pulumi.StringPtrOutput `pulumi:"endpoint"`
-	// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+	// The host for Scalyr integration. (app.scalyr.com,
+	// app.eu.scalyr.com)
 	Host pulumi.StringPtrOutput `pulumi:"host"`
 	// Destination to send the logs.
 	HostPort pulumi.StringPtrOutput `pulumi:"hostPort"`
 	// Instance identifier used to make proxy calls
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
 	// The name of the third party log integration. See
-	// Integration type reference
+	// [integration type reference]
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The private access key.
 	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
@@ -448,7 +475,8 @@ type IntegrationLog struct {
 	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// AWS secret access key.
 	SecretAccessKey pulumi.StringPtrOutput `pulumi:"secretAccessKey"`
-	// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+	// Assign source type to the data exported, eg. generic_single_line.
+	// (Splunk)
 	Sourcetype pulumi.StringPtrOutput `pulumi:"sourcetype"`
 	// The subsystem name for Coralogix.
 	Subsystem pulumi.StringPtrOutput `pulumi:"subsystem"`
@@ -456,7 +484,8 @@ type IntegrationLog struct {
 	Table pulumi.StringPtrOutput `pulumi:"table"`
 	// Tags. e.g. `env=prod,region=europe`.
 	//
-	// ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
+	// ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+	// letter, read more about tags format in the [Datadog documentation].
 	Tags pulumi.StringPtrOutput `pulumi:"tags"`
 	// The tenant identifier for Azure monitor.
 	TenantId pulumi.StringPtrOutput `pulumi:"tenantId"`
@@ -550,20 +579,23 @@ type integrationLogState struct {
 	Credentials *string `pulumi:"credentials"`
 	// The data collection endpoint for Azure monitor.
 	DceUri *string `pulumi:"dceUri"`
-	// ID of data collection rule that your DCE is linked to for Azure Monitor.
+	// ID of data collection rule that your DCE is linked to for Azure
+	// Monitor.
 	//
-	// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+	// This is the full list of all arguments. Only a subset of arguments are used based on which type of
+	// integration used. See [integration type reference] table below for more information.
 	DcrId *string `pulumi:"dcrId"`
 	// The syslog destination to send the logs to for Coralogix.
 	Endpoint *string `pulumi:"endpoint"`
-	// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+	// The host for Scalyr integration. (app.scalyr.com,
+	// app.eu.scalyr.com)
 	Host *string `pulumi:"host"`
 	// Destination to send the logs.
 	HostPort *string `pulumi:"hostPort"`
 	// Instance identifier used to make proxy calls
 	InstanceId *int `pulumi:"instanceId"`
 	// The name of the third party log integration. See
-	// Integration type reference
+	// [integration type reference]
 	Name *string `pulumi:"name"`
 	// The private access key.
 	PrivateKey *string `pulumi:"privateKey"`
@@ -575,7 +607,8 @@ type integrationLogState struct {
 	Region *string `pulumi:"region"`
 	// AWS secret access key.
 	SecretAccessKey *string `pulumi:"secretAccessKey"`
-	// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+	// Assign source type to the data exported, eg. generic_single_line.
+	// (Splunk)
 	Sourcetype *string `pulumi:"sourcetype"`
 	// The subsystem name for Coralogix.
 	Subsystem *string `pulumi:"subsystem"`
@@ -583,7 +616,8 @@ type integrationLogState struct {
 	Table *string `pulumi:"table"`
 	// Tags. e.g. `env=prod,region=europe`.
 	//
-	// ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
+	// ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+	// letter, read more about tags format in the [Datadog documentation].
 	Tags *string `pulumi:"tags"`
 	// The tenant identifier for Azure monitor.
 	TenantId *string `pulumi:"tenantId"`
@@ -610,20 +644,23 @@ type IntegrationLogState struct {
 	Credentials pulumi.StringPtrInput
 	// The data collection endpoint for Azure monitor.
 	DceUri pulumi.StringPtrInput
-	// ID of data collection rule that your DCE is linked to for Azure Monitor.
+	// ID of data collection rule that your DCE is linked to for Azure
+	// Monitor.
 	//
-	// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+	// This is the full list of all arguments. Only a subset of arguments are used based on which type of
+	// integration used. See [integration type reference] table below for more information.
 	DcrId pulumi.StringPtrInput
 	// The syslog destination to send the logs to for Coralogix.
 	Endpoint pulumi.StringPtrInput
-	// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+	// The host for Scalyr integration. (app.scalyr.com,
+	// app.eu.scalyr.com)
 	Host pulumi.StringPtrInput
 	// Destination to send the logs.
 	HostPort pulumi.StringPtrInput
 	// Instance identifier used to make proxy calls
 	InstanceId pulumi.IntPtrInput
 	// The name of the third party log integration. See
-	// Integration type reference
+	// [integration type reference]
 	Name pulumi.StringPtrInput
 	// The private access key.
 	PrivateKey pulumi.StringPtrInput
@@ -635,7 +672,8 @@ type IntegrationLogState struct {
 	Region pulumi.StringPtrInput
 	// AWS secret access key.
 	SecretAccessKey pulumi.StringPtrInput
-	// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+	// Assign source type to the data exported, eg. generic_single_line.
+	// (Splunk)
 	Sourcetype pulumi.StringPtrInput
 	// The subsystem name for Coralogix.
 	Subsystem pulumi.StringPtrInput
@@ -643,7 +681,8 @@ type IntegrationLogState struct {
 	Table pulumi.StringPtrInput
 	// Tags. e.g. `env=prod,region=europe`.
 	//
-	// ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
+	// ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+	// letter, read more about tags format in the [Datadog documentation].
 	Tags pulumi.StringPtrInput
 	// The tenant identifier for Azure monitor.
 	TenantId pulumi.StringPtrInput
@@ -674,20 +713,23 @@ type integrationLogArgs struct {
 	Credentials *string `pulumi:"credentials"`
 	// The data collection endpoint for Azure monitor.
 	DceUri *string `pulumi:"dceUri"`
-	// ID of data collection rule that your DCE is linked to for Azure Monitor.
+	// ID of data collection rule that your DCE is linked to for Azure
+	// Monitor.
 	//
-	// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+	// This is the full list of all arguments. Only a subset of arguments are used based on which type of
+	// integration used. See [integration type reference] table below for more information.
 	DcrId *string `pulumi:"dcrId"`
 	// The syslog destination to send the logs to for Coralogix.
 	Endpoint *string `pulumi:"endpoint"`
-	// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+	// The host for Scalyr integration. (app.scalyr.com,
+	// app.eu.scalyr.com)
 	Host *string `pulumi:"host"`
 	// Destination to send the logs.
 	HostPort *string `pulumi:"hostPort"`
 	// Instance identifier used to make proxy calls
 	InstanceId int `pulumi:"instanceId"`
 	// The name of the third party log integration. See
-	// Integration type reference
+	// [integration type reference]
 	Name *string `pulumi:"name"`
 	// The private access key.
 	PrivateKey *string `pulumi:"privateKey"`
@@ -699,7 +741,8 @@ type integrationLogArgs struct {
 	Region *string `pulumi:"region"`
 	// AWS secret access key.
 	SecretAccessKey *string `pulumi:"secretAccessKey"`
-	// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+	// Assign source type to the data exported, eg. generic_single_line.
+	// (Splunk)
 	Sourcetype *string `pulumi:"sourcetype"`
 	// The subsystem name for Coralogix.
 	Subsystem *string `pulumi:"subsystem"`
@@ -707,7 +750,8 @@ type integrationLogArgs struct {
 	Table *string `pulumi:"table"`
 	// Tags. e.g. `env=prod,region=europe`.
 	//
-	// ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
+	// ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+	// letter, read more about tags format in the [Datadog documentation].
 	Tags *string `pulumi:"tags"`
 	// The tenant identifier for Azure monitor.
 	TenantId *string `pulumi:"tenantId"`
@@ -735,20 +779,23 @@ type IntegrationLogArgs struct {
 	Credentials pulumi.StringPtrInput
 	// The data collection endpoint for Azure monitor.
 	DceUri pulumi.StringPtrInput
-	// ID of data collection rule that your DCE is linked to for Azure Monitor.
+	// ID of data collection rule that your DCE is linked to for Azure
+	// Monitor.
 	//
-	// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+	// This is the full list of all arguments. Only a subset of arguments are used based on which type of
+	// integration used. See [integration type reference] table below for more information.
 	DcrId pulumi.StringPtrInput
 	// The syslog destination to send the logs to for Coralogix.
 	Endpoint pulumi.StringPtrInput
-	// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+	// The host for Scalyr integration. (app.scalyr.com,
+	// app.eu.scalyr.com)
 	Host pulumi.StringPtrInput
 	// Destination to send the logs.
 	HostPort pulumi.StringPtrInput
 	// Instance identifier used to make proxy calls
 	InstanceId pulumi.IntInput
 	// The name of the third party log integration. See
-	// Integration type reference
+	// [integration type reference]
 	Name pulumi.StringPtrInput
 	// The private access key.
 	PrivateKey pulumi.StringPtrInput
@@ -760,7 +807,8 @@ type IntegrationLogArgs struct {
 	Region pulumi.StringPtrInput
 	// AWS secret access key.
 	SecretAccessKey pulumi.StringPtrInput
-	// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+	// Assign source type to the data exported, eg. generic_single_line.
+	// (Splunk)
 	Sourcetype pulumi.StringPtrInput
 	// The subsystem name for Coralogix.
 	Subsystem pulumi.StringPtrInput
@@ -768,7 +816,8 @@ type IntegrationLogArgs struct {
 	Table pulumi.StringPtrInput
 	// Tags. e.g. `env=prod,region=europe`.
 	//
-	// ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
+	// ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+	// letter, read more about tags format in the [Datadog documentation].
 	Tags pulumi.StringPtrInput
 	// The tenant identifier for Azure monitor.
 	TenantId pulumi.StringPtrInput
@@ -905,9 +954,11 @@ func (o IntegrationLogOutput) DceUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.DceUri }).(pulumi.StringPtrOutput)
 }
 
-// ID of data collection rule that your DCE is linked to for Azure Monitor.
+// ID of data collection rule that your DCE is linked to for Azure
+// Monitor.
 //
-// This is the full list of all arguments. Only a subset of arguments are used based on which type of integration used. See Integration Type reference table below for more information.
+// This is the full list of all arguments. Only a subset of arguments are used based on which type of
+// integration used. See [integration type reference] table below for more information.
 func (o IntegrationLogOutput) DcrId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.DcrId }).(pulumi.StringPtrOutput)
 }
@@ -917,7 +968,8 @@ func (o IntegrationLogOutput) Endpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.Endpoint }).(pulumi.StringPtrOutput)
 }
 
-// The host for Scalyr integration. (app.scalyr.com, app.eu.scalyr.com)
+// The host for Scalyr integration. (app.scalyr.com,
+// app.eu.scalyr.com)
 func (o IntegrationLogOutput) Host() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.Host }).(pulumi.StringPtrOutput)
 }
@@ -933,7 +985,7 @@ func (o IntegrationLogOutput) InstanceId() pulumi.IntOutput {
 }
 
 // The name of the third party log integration. See
-// Integration type reference
+// [integration type reference]
 func (o IntegrationLogOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *IntegrationLog) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -963,7 +1015,8 @@ func (o IntegrationLogOutput) SecretAccessKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.SecretAccessKey }).(pulumi.StringPtrOutput)
 }
 
-// Assign source type to the data exported, eg. generic_single_line. (Splunk)
+// Assign source type to the data exported, eg. generic_single_line.
+// (Splunk)
 func (o IntegrationLogOutput) Sourcetype() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.Sourcetype }).(pulumi.StringPtrOutput)
 }
@@ -980,7 +1033,8 @@ func (o IntegrationLogOutput) Table() pulumi.StringPtrOutput {
 
 // Tags. e.g. `env=prod,region=europe`.
 //
-// ***Note: If tags are used with Datadog. The value part (prod, europe, ...) must start with a letter, read more about tags format in the [Datadog documentation](https://docs.datadoghq.com/getting_started/tagging/#define-tags)***
+// ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+// letter, read more about tags format in the [Datadog documentation].
 func (o IntegrationLogOutput) Tags() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationLog) pulumi.StringPtrOutput { return v.Tags }).(pulumi.StringPtrOutput)
 }

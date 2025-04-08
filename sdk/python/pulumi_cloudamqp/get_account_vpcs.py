@@ -46,6 +46,9 @@ class GetAccountVpcsResult:
     @property
     @pulumi.getter
     def vpcs(self) -> Sequence['outputs.GetAccountVpcsVpcResult']:
+        """
+        An array of VPCs. Each `vpcs` block consists of the fields documented below.
+        """
         return pulumi.get(self, "vpcs")
 
 
@@ -61,11 +64,14 @@ class AwaitableGetAccountVpcsResult(GetAccountVpcsResult):
 
 def get_account_vpcs(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccountVpcsResult:
     """
-    Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
+    Use this data source to retrieve basic information about all standalone VPCs available for an
+    account. Uses the included apikey in provider configuration to determine which account to read from.
 
     ## Example Usage
 
-    Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
+    Can be used in other resources/data sources when the VPC identifier is unknown, while other
+    attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over
+    VPCs to find the matching one and extract the VPC identifier.
 
     ```python
     import pulumi
@@ -75,24 +81,6 @@ def get_account_vpcs(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGe
     vpc_list = cloudamqp.get_account_vpcs()
     pulumi.export("vpcId", [vpc for vpc in vpc_list.vpcs if vpc.name == my_vpc_name][0].id)
     ```
-
-    ## Attributes reference
-
-    All attributes reference are computed
-
-    * `id`      - The identifier for this data source. Set to `na` since there is no unique identifier.
-    * `vpcs`    - An array of VPCs. Each `vpcs` block consists of the fields documented below.
-
-    ***
-
-    The `vpcs` block consist of
-
-    * `id`          - The VPC identifier.
-    * `name`        - The VPC instance name.
-    * `region`      - The region the VPC is hosted in.
-    * `subnet`      - The VPC subnet.
-    * `tags`        - Optional tags set for the VPC.
-    * `vpc_name`    - VPC name given when hosted at the cloud provider.
 
     ## Dependency
 
@@ -107,11 +95,14 @@ def get_account_vpcs(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGe
         vpcs=pulumi.get(__ret__, 'vpcs'))
 def get_account_vpcs_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAccountVpcsResult]:
     """
-    Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
+    Use this data source to retrieve basic information about all standalone VPCs available for an
+    account. Uses the included apikey in provider configuration to determine which account to read from.
 
     ## Example Usage
 
-    Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
+    Can be used in other resources/data sources when the VPC identifier is unknown, while other
+    attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over
+    VPCs to find the matching one and extract the VPC identifier.
 
     ```python
     import pulumi
@@ -121,24 +112,6 @@ def get_account_vpcs_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.In
     vpc_list = cloudamqp.get_account_vpcs()
     pulumi.export("vpcId", [vpc for vpc in vpc_list.vpcs if vpc.name == my_vpc_name][0].id)
     ```
-
-    ## Attributes reference
-
-    All attributes reference are computed
-
-    * `id`      - The identifier for this data source. Set to `na` since there is no unique identifier.
-    * `vpcs`    - An array of VPCs. Each `vpcs` block consists of the fields documented below.
-
-    ***
-
-    The `vpcs` block consist of
-
-    * `id`          - The VPC identifier.
-    * `name`        - The VPC instance name.
-    * `region`      - The region the VPC is hosted in.
-    * `subnet`      - The VPC subnet.
-    * `tags`        - Optional tags set for the VPC.
-    * `vpc_name`    - VPC name given when hosted at the cloud provider.
 
     ## Dependency
 

@@ -177,15 +177,16 @@ class NodeActions(pulumi.CustomResource):
 
         </details>
 
-        Using data source `get_nodes` to restart RabbitMQ on all nodes.</br>
-        ***Note: RabbitMQ restart on multiple nodes need to be chained, so one node restart at the time.***
-
         <details>
           <summary>
             <b>
               <i>Multi node RabbitMQ restart</i>
             </b>
           </summary>
+
+        Using data source `get_nodes` to restart RabbitMQ on all nodes.
+
+        > **Note:** RabbitMQ restart on multiple nodes need to be chained, let one node restart at the time.
 
         ```python
         import pulumi
@@ -256,7 +257,16 @@ class NodeActions(pulumi.CustomResource):
 
         ## Action reference
 
-        Valid options for action.
+        Valid actions for ***LavinMQ***.
+
+        | Action       | Info                               |
+        |--------------|------------------------------------|
+        | start        | Start LavinMQ                      |
+        | stop         | Stop LavinMQ                       |
+        | restart      | Restart LavinMQ                    |
+        | reboot       | Reboot the node                    |
+
+        Valid actions for ***RabbitMQ***.
 
         | Action       | Info                               |
         |--------------|------------------------------------|
@@ -268,7 +278,8 @@ class NodeActions(pulumi.CustomResource):
 
         ## Dependency
 
-        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id` and node name.
+        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id` and node
+        name.
 
         ## Import
 
@@ -313,15 +324,16 @@ class NodeActions(pulumi.CustomResource):
 
         </details>
 
-        Using data source `get_nodes` to restart RabbitMQ on all nodes.</br>
-        ***Note: RabbitMQ restart on multiple nodes need to be chained, so one node restart at the time.***
-
         <details>
           <summary>
             <b>
               <i>Multi node RabbitMQ restart</i>
             </b>
           </summary>
+
+        Using data source `get_nodes` to restart RabbitMQ on all nodes.
+
+        > **Note:** RabbitMQ restart on multiple nodes need to be chained, let one node restart at the time.
 
         ```python
         import pulumi
@@ -392,7 +404,16 @@ class NodeActions(pulumi.CustomResource):
 
         ## Action reference
 
-        Valid options for action.
+        Valid actions for ***LavinMQ***.
+
+        | Action       | Info                               |
+        |--------------|------------------------------------|
+        | start        | Start LavinMQ                      |
+        | stop         | Stop LavinMQ                       |
+        | restart      | Restart LavinMQ                    |
+        | reboot       | Reboot the node                    |
+
+        Valid actions for ***RabbitMQ***.
 
         | Action       | Info                               |
         |--------------|------------------------------------|
@@ -404,7 +425,8 @@ class NodeActions(pulumi.CustomResource):
 
         ## Dependency
 
-        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id` and node name.
+        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id` and node
+        name.
 
         ## Import
 

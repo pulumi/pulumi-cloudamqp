@@ -21,9 +21,21 @@ public final class GetNotificationResult {
     private String id;
     private Integer instanceId;
     private @Nullable String name;
+    /**
+     * @return Options argument (e.g. `rk` used for VictorOps routing key).
+     * 
+     */
     private @Nullable Map<String,String> options;
     private @Nullable Integer recipientId;
+    /**
+     * @return The type of the recipient.
+     * 
+     */
     private String type;
+    /**
+     * @return The notification endpoint, where to send the notification.
+     * 
+     */
     private String value;
 
     private GetNotificationResult() {}
@@ -40,15 +52,27 @@ public final class GetNotificationResult {
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
+    /**
+     * @return Options argument (e.g. `rk` used for VictorOps routing key).
+     * 
+     */
     public Map<String,String> options() {
         return this.options == null ? Map.of() : this.options;
     }
     public Optional<Integer> recipientId() {
         return Optional.ofNullable(this.recipientId);
     }
+    /**
+     * @return The type of the recipient.
+     * 
+     */
     public String type() {
         return this.type;
     }
+    /**
+     * @return The notification endpoint, where to send the notification.
+     * 
+     */
     public String value() {
         return this.value;
     }

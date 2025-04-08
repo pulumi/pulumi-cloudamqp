@@ -17,14 +17,16 @@ public final class GetAlarmPlainArgs extends com.pulumi.resources.InvokeArgs {
     public static final GetAlarmPlainArgs Empty = new GetAlarmPlainArgs();
 
     /**
-     * The alarm identifier. Either use this or `type` to give `cloudamqp.Alarm` necessary information to retrieve the alarm.
+     * The alarm identifier. Either use this or `type` to give
+     * `cloudamqp.Alarm` necessary information to retrieve the alarm.
      * 
      */
     @Import(name="alarmId")
     private @Nullable Integer alarmId;
 
     /**
-     * @return The alarm identifier. Either use this or `type` to give `cloudamqp.Alarm` necessary information to retrieve the alarm.
+     * @return The alarm identifier. Either use this or `type` to give
+     * `cloudamqp.Alarm` necessary information to retrieve the alarm.
      * 
      */
     public Optional<Integer> alarmId() {
@@ -47,23 +49,37 @@ public final class GetAlarmPlainArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * The alarm type. Either use this or `alarm_id` to give `cloudamqp.Alarm` necessary information when retrieve the alarm. Supported alarm types
+     * The alarm type. Either use this or `alarm_id` to give `cloudamqp.Alarm`
+     * necessary information when retrieve the alarm. Supported
+     * alarm types.
      * 
      */
     @Import(name="type")
     private @Nullable String type;
 
     /**
-     * @return The alarm type. Either use this or `alarm_id` to give `cloudamqp.Alarm` necessary information when retrieve the alarm. Supported alarm types
+     * @return The alarm type. Either use this or `alarm_id` to give `cloudamqp.Alarm`
+     * necessary information when retrieve the alarm. Supported
+     * alarm types.
      * 
      */
     public Optional<String> type() {
         return Optional.ofNullable(this.type);
     }
 
+    /**
+     * Disk value threshold calculation, `(fixed, percentage)` of disk space
+     * remaining.
+     * 
+     */
     @Import(name="valueCalculation")
     private @Nullable String valueCalculation;
 
+    /**
+     * @return Disk value threshold calculation, `(fixed, percentage)` of disk space
+     * remaining.
+     * 
+     */
     public Optional<String> valueCalculation() {
         return Optional.ofNullable(this.valueCalculation);
     }
@@ -96,7 +112,8 @@ public final class GetAlarmPlainArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param alarmId The alarm identifier. Either use this or `type` to give `cloudamqp.Alarm` necessary information to retrieve the alarm.
+         * @param alarmId The alarm identifier. Either use this or `type` to give
+         * `cloudamqp.Alarm` necessary information to retrieve the alarm.
          * 
          * @return builder
          * 
@@ -118,7 +135,9 @@ public final class GetAlarmPlainArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param type The alarm type. Either use this or `alarm_id` to give `cloudamqp.Alarm` necessary information when retrieve the alarm. Supported alarm types
+         * @param type The alarm type. Either use this or `alarm_id` to give `cloudamqp.Alarm`
+         * necessary information when retrieve the alarm. Supported
+         * alarm types.
          * 
          * @return builder
          * 
@@ -128,6 +147,13 @@ public final class GetAlarmPlainArgs extends com.pulumi.resources.InvokeArgs {
             return this;
         }
 
+        /**
+         * @param valueCalculation Disk value threshold calculation, `(fixed, percentage)` of disk space
+         * remaining.
+         * 
+         * @return builder
+         * 
+         */
         public Builder valueCalculation(@Nullable String valueCalculation) {
             $.valueCalculation = valueCalculation;
             return this;

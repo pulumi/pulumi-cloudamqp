@@ -18,14 +18,16 @@ public final class ExtraDiskSizeArgs extends com.pulumi.resources.ResourceArgs {
     public static final ExtraDiskSizeArgs Empty = new ExtraDiskSizeArgs();
 
     /**
-     * When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
+     * When resizing the disk, allow cluster downtime if necessary.
+     * Default set to false.
      * 
      */
     @Import(name="allowDowntime")
     private @Nullable Output<Boolean> allowDowntime;
 
     /**
-     * @return When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
+     * @return When resizing the disk, allow cluster downtime if necessary.
+     * Default set to false.
      * 
      */
     public Optional<Output<Boolean>> allowDowntime() {
@@ -33,14 +35,16 @@ public final class ExtraDiskSizeArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+     * Extra disk size in GB. Supported values: 0, 25, 50, 100,
+     * 250, 500, 1000, 2000
      * 
      */
     @Import(name="extraDiskSize", required=true)
     private Output<Integer> extraDiskSize;
 
     /**
-     * @return Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+     * @return Extra disk size in GB. Supported values: 0, 25, 50, 100,
+     * 250, 500, 1000, 2000
      * 
      */
     public Output<Integer> extraDiskSize() {
@@ -63,14 +67,16 @@ public final class ExtraDiskSizeArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
+     * Configurable sleep time in seconds between retries for resizing the
+     * disk. Default set to 30 seconds.
      * 
      */
     @Import(name="sleep")
     private @Nullable Output<Integer> sleep;
 
     /**
-     * @return Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
+     * @return Configurable sleep time in seconds between retries for resizing the
+     * disk. Default set to 30 seconds.
      * 
      */
     public Optional<Output<Integer>> sleep() {
@@ -78,18 +84,20 @@ public final class ExtraDiskSizeArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+     * Configurable timeout time in seconds for resizing the disk. Default
+     * set to 1800 seconds.
      * 
-     * ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
+     * ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
      * 
      */
     @Import(name="timeout")
     private @Nullable Output<Integer> timeout;
 
     /**
-     * @return Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+     * @return Configurable timeout time in seconds for resizing the disk. Default
+     * set to 1800 seconds.
      * 
-     * ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
+     * ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
      * 
      */
     public Optional<Output<Integer>> timeout() {
@@ -125,7 +133,8 @@ public final class ExtraDiskSizeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allowDowntime When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
+         * @param allowDowntime When resizing the disk, allow cluster downtime if necessary.
+         * Default set to false.
          * 
          * @return builder
          * 
@@ -136,7 +145,8 @@ public final class ExtraDiskSizeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allowDowntime When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
+         * @param allowDowntime When resizing the disk, allow cluster downtime if necessary.
+         * Default set to false.
          * 
          * @return builder
          * 
@@ -146,7 +156,8 @@ public final class ExtraDiskSizeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param extraDiskSize Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+         * @param extraDiskSize Extra disk size in GB. Supported values: 0, 25, 50, 100,
+         * 250, 500, 1000, 2000
          * 
          * @return builder
          * 
@@ -157,7 +168,8 @@ public final class ExtraDiskSizeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param extraDiskSize Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+         * @param extraDiskSize Extra disk size in GB. Supported values: 0, 25, 50, 100,
+         * 250, 500, 1000, 2000
          * 
          * @return builder
          * 
@@ -188,7 +200,8 @@ public final class ExtraDiskSizeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sleep Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
+         * @param sleep Configurable sleep time in seconds between retries for resizing the
+         * disk. Default set to 30 seconds.
          * 
          * @return builder
          * 
@@ -199,7 +212,8 @@ public final class ExtraDiskSizeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sleep Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
+         * @param sleep Configurable sleep time in seconds between retries for resizing the
+         * disk. Default set to 30 seconds.
          * 
          * @return builder
          * 
@@ -209,9 +223,10 @@ public final class ExtraDiskSizeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param timeout Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+         * @param timeout Configurable timeout time in seconds for resizing the disk. Default
+         * set to 1800 seconds.
          * 
-         * ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
+         * ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
          * 
          * @return builder
          * 
@@ -222,9 +237,10 @@ public final class ExtraDiskSizeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param timeout Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+         * @param timeout Configurable timeout time in seconds for resizing the disk. Default
+         * set to 1800 seconds.
          * 
-         * ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
+         * ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
          * 
          * @return builder
          * 

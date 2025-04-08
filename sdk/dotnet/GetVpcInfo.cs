@@ -11,234 +11,12 @@ namespace Pulumi.CloudAmqp
 {
     public static class GetVpcInfo
     {
-        /// <summary>
-        /// Use this data source to retrieve information about VPC for a CloudAMQP instance.
-        /// 
-        /// &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// &lt;details&gt;
-        ///   &lt;summary&gt;
-        ///     &lt;b&gt;
-        ///       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
-        ///     &lt;/b&gt;
-        ///   &lt;/summary&gt;
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using CloudAmqp = Pulumi.CloudAmqp;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var vpcInfo = CloudAmqp.GetVpcInfo.Invoke(new()
-        ///     {
-        ///         InstanceId = instance.Id,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;/details&gt;
-        /// 
-        /// &lt;details&gt;
-        ///   &lt;summary&gt;
-        ///     &lt;b&gt;
-        ///       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
-        ///     &lt;/b&gt;
-        ///   &lt;/summary&gt;
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using CloudAmqp = Pulumi.CloudAmqp;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var vpcInfo = CloudAmqp.GetVpcInfo.Invoke(new()
-        ///     {
-        ///         VpcId = vpc.Id,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;/details&gt;
-        /// 
-        /// 
-        /// ## Attributes reference
-        /// 
-        /// All attributes reference are computed
-        /// 
-        /// * `id`                  - The identifier for this resource.
-        /// * `name`                - The name of the CloudAMQP instance.
-        /// * `vpc_subnet`          - Dedicated VPC subnet.
-        /// * `owner_id`            - AWS account identifier.
-        /// * `security_group_id`   - AWS security group identifier.
-        /// 
-        /// ## Dependency
-        /// 
-        /// *Pre v1.16.0*
-        /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-        /// 
-        /// *Post v1.16.0*
-        /// This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
-        /// </summary>
         public static Task<GetVpcInfoResult> InvokeAsync(GetVpcInfoArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetVpcInfoResult>("cloudamqp:index/getVpcInfo:getVpcInfo", args ?? new GetVpcInfoArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// Use this data source to retrieve information about VPC for a CloudAMQP instance.
-        /// 
-        /// &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// &lt;details&gt;
-        ///   &lt;summary&gt;
-        ///     &lt;b&gt;
-        ///       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
-        ///     &lt;/b&gt;
-        ///   &lt;/summary&gt;
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using CloudAmqp = Pulumi.CloudAmqp;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var vpcInfo = CloudAmqp.GetVpcInfo.Invoke(new()
-        ///     {
-        ///         InstanceId = instance.Id,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;/details&gt;
-        /// 
-        /// &lt;details&gt;
-        ///   &lt;summary&gt;
-        ///     &lt;b&gt;
-        ///       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
-        ///     &lt;/b&gt;
-        ///   &lt;/summary&gt;
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using CloudAmqp = Pulumi.CloudAmqp;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var vpcInfo = CloudAmqp.GetVpcInfo.Invoke(new()
-        ///     {
-        ///         VpcId = vpc.Id,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;/details&gt;
-        /// 
-        /// 
-        /// ## Attributes reference
-        /// 
-        /// All attributes reference are computed
-        /// 
-        /// * `id`                  - The identifier for this resource.
-        /// * `name`                - The name of the CloudAMQP instance.
-        /// * `vpc_subnet`          - Dedicated VPC subnet.
-        /// * `owner_id`            - AWS account identifier.
-        /// * `security_group_id`   - AWS security group identifier.
-        /// 
-        /// ## Dependency
-        /// 
-        /// *Pre v1.16.0*
-        /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-        /// 
-        /// *Post v1.16.0*
-        /// This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
-        /// </summary>
         public static Output<GetVpcInfoResult> Invoke(GetVpcInfoInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVpcInfoResult>("cloudamqp:index/getVpcInfo:getVpcInfo", args ?? new GetVpcInfoInvokeArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// Use this data source to retrieve information about VPC for a CloudAMQP instance.
-        /// 
-        /// &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// &lt;details&gt;
-        ///   &lt;summary&gt;
-        ///     &lt;b&gt;
-        ///       &lt;i&gt;AWS VPC peering pre v1.16.0&lt;/i&gt;
-        ///     &lt;/b&gt;
-        ///   &lt;/summary&gt;
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using CloudAmqp = Pulumi.CloudAmqp;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var vpcInfo = CloudAmqp.GetVpcInfo.Invoke(new()
-        ///     {
-        ///         InstanceId = instance.Id,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;/details&gt;
-        /// 
-        /// &lt;details&gt;
-        ///   &lt;summary&gt;
-        ///     &lt;b&gt;
-        ///       &lt;i&gt;AWS VPC peering post v1.16.0 (Managed VPC)&lt;/i&gt;
-        ///     &lt;/b&gt;
-        ///   &lt;/summary&gt;
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using CloudAmqp = Pulumi.CloudAmqp;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var vpcInfo = CloudAmqp.GetVpcInfo.Invoke(new()
-        ///     {
-        ///         VpcId = vpc.Id,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;/details&gt;
-        /// 
-        /// 
-        /// ## Attributes reference
-        /// 
-        /// All attributes reference are computed
-        /// 
-        /// * `id`                  - The identifier for this resource.
-        /// * `name`                - The name of the CloudAMQP instance.
-        /// * `vpc_subnet`          - Dedicated VPC subnet.
-        /// * `owner_id`            - AWS account identifier.
-        /// * `security_group_id`   - AWS security group identifier.
-        /// 
-        /// ## Dependency
-        /// 
-        /// *Pre v1.16.0*
-        /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-        /// 
-        /// *Post v1.16.0*
-        /// This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance identifier, `cloudamqp_instance.instance.id`.
-        /// </summary>
         public static Output<GetVpcInfoResult> Invoke(GetVpcInfoInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetVpcInfoResult>("cloudamqp:index/getVpcInfo:getVpcInfo", args ?? new GetVpcInfoInvokeArgs(), options.WithDefaults());
     }
@@ -249,7 +27,7 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// The CloudAMQP instance identifier.
         /// 
-        /// ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
+        /// ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
         /// </summary>
         [Input("instanceId")]
         public int? InstanceId { get; set; }
@@ -257,7 +35,7 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// The managed VPC identifier.
         /// 
-        /// ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
+        /// ***Note:*** Available from [v1.16.0], will be removed in next major version (v2.0)
         /// </summary>
         [Input("vpcId")]
         public string? VpcId { get; set; }
@@ -273,7 +51,7 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// The CloudAMQP instance identifier.
         /// 
-        /// ***Deprecated: Changed from required to optional in v1.16.0 will be removed in next major version (v2.0)***
+        /// ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
@@ -281,7 +59,7 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// The managed VPC identifier.
         /// 
-        /// ***Note: Added as optional in version v1.16.0 and will be required in next major version (v2.0)***
+        /// ***Note:*** Available from [v1.16.0], will be removed in next major version (v2.0)
         /// </summary>
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }
@@ -301,10 +79,22 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         public readonly string Id;
         public readonly int? InstanceId;
+        /// <summary>
+        /// The name of the CloudAMQP instance.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// AWS account identifier.
+        /// </summary>
         public readonly string OwnerId;
+        /// <summary>
+        /// AWS security group identifier.
+        /// </summary>
         public readonly string SecurityGroupId;
         public readonly string? VpcId;
+        /// <summary>
+        /// Dedicated VPC subnet.
+        /// </summary>
         public readonly string VpcSubnet;
 
         [OutputConstructor]

@@ -19,10 +19,28 @@ import javax.annotation.Nullable;
 /**
  * ## Import
  * 
- * `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP instance identifier. The name and identifier are CSV separated, see example below.
+ * `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP
+ * 
+ * instance identifier (CSV separated). To retrieve list of available community plugins, use
+ * 
+ * [CloudAMQP API list plugins].
+ * 
+ * From Terraform v1.5.0, the `import` block can be used to import this resource:
+ * 
+ * hcl
+ * 
+ * import {
+ * 
+ *   to = cloudamqp_plugin.&lt;resource_name&gt;
+ * 
+ *   id = format(&#34;&lt;plugin_name&gt;,%s&#34;, cloudamqp_instance.instance.id)
+ * 
+ * }
+ * 
+ * Or use Terraform CLI:
  * 
  * ```sh
- * $ pulumi import cloudamqp:index/plugin:Plugin rabbitmq_management rabbitmq_management,&lt;instance_id&gt;`
+ * $ pulumi import cloudamqp:index/plugin:Plugin &lt;resource_name&gt; &lt;plugin_name&gt;,&lt;instance_id&gt;`
  * ```
  * 
  */
@@ -85,16 +103,20 @@ public class Plugin extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * Configurable sleep time (seconds) for retries when requesting information
-     * about plugins. Default set to 10 seconds. *Available from v1.29.0*
+     * Configurable sleep time (seconds) for retries when requesting
+     * information about plugins. Default set to 10 seconds.
+     * 
+     * ***Note:*** Available from [v1.29.0]
      * 
      */
     @Export(name="sleep", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> sleep;
 
     /**
-     * @return Configurable sleep time (seconds) for retries when requesting information
-     * about plugins. Default set to 10 seconds. *Available from v1.29.0*
+     * @return Configurable sleep time (seconds) for retries when requesting
+     * information about plugins. Default set to 10 seconds.
+     * 
+     * ***Note:*** Available from [v1.29.0]
      * 
      */
     public Output<Optional<Integer>> sleep() {
@@ -102,7 +124,9 @@ public class Plugin extends com.pulumi.resources.CustomResource {
     }
     /**
      * Configurable timeout time (seconds) for retries when requesting
-     * information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+     * information about plugins. Default set to 1800 seconds.
+     * 
+     * ***Note:*** Available from [v1.29.0]
      * 
      */
     @Export(name="timeout", refs={Integer.class}, tree="[0]")
@@ -110,7 +134,9 @@ public class Plugin extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Configurable timeout time (seconds) for retries when requesting
-     * information about plugins. Default set to 1800 seconds. *Available from v1.29.0*
+     * information about plugins. Default set to 1800 seconds.
+     * 
+     * ***Note:*** Available from [v1.29.0]
      * 
      */
     public Output<Optional<Integer>> timeout() {

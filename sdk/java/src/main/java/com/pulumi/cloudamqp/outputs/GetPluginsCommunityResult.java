@@ -21,6 +21,11 @@ public final class GetPluginsCommunityResult {
      */
     private String id;
     private Integer instanceId;
+    /**
+     * @return An array of community plugins. Each `plugins` block consists of the fields documented
+     * below.
+     * 
+     */
     private List<GetPluginsCommunityPlugin> plugins;
     private @Nullable Integer sleep;
     private @Nullable Integer timeout;
@@ -36,6 +41,11 @@ public final class GetPluginsCommunityResult {
     public Integer instanceId() {
         return this.instanceId;
     }
+    /**
+     * @return An array of community plugins. Each `plugins` block consists of the fields documented
+     * below.
+     * 
+     */
     public List<GetPluginsCommunityPlugin> plugins() {
         return this.plugins;
     }

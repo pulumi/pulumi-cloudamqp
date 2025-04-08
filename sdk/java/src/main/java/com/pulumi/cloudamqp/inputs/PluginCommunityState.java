@@ -93,16 +93,20 @@ public final class PluginCommunityState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Configurable sleep time (seconds) for retries when requesting information
-     * about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+     * Configurable sleep time (seconds) for retries when requesting
+     * information about community plugins. Default set to 10 seconds.
+     * 
+     * ***Note:*** Available from [v1.29.0]
      * 
      */
     @Import(name="sleep")
     private @Nullable Output<Integer> sleep;
 
     /**
-     * @return Configurable sleep time (seconds) for retries when requesting information
-     * about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+     * @return Configurable sleep time (seconds) for retries when requesting
+     * information about community plugins. Default set to 10 seconds.
+     * 
+     * ***Note:*** Available from [v1.29.0]
      * 
      */
     public Optional<Output<Integer>> sleep() {
@@ -111,7 +115,9 @@ public final class PluginCommunityState extends com.pulumi.resources.ResourceArg
 
     /**
      * Configurable timeout time (seconds) for retries when requesting
-     * information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+     * information about community plugins. Default set to 1800 seconds.
+     * 
+     * ***Note:*** Available from [v1.29.0]
      * 
      */
     @Import(name="timeout")
@@ -119,7 +125,9 @@ public final class PluginCommunityState extends com.pulumi.resources.ResourceArg
 
     /**
      * @return Configurable timeout time (seconds) for retries when requesting
-     * information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+     * information about community plugins. Default set to 1800 seconds.
+     * 
+     * ***Note:*** Available from [v1.29.0]
      * 
      */
     public Optional<Output<Integer>> timeout() {
@@ -262,8 +270,10 @@ public final class PluginCommunityState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param sleep Configurable sleep time (seconds) for retries when requesting information
-         * about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+         * @param sleep Configurable sleep time (seconds) for retries when requesting
+         * information about community plugins. Default set to 10 seconds.
+         * 
+         * ***Note:*** Available from [v1.29.0]
          * 
          * @return builder
          * 
@@ -274,8 +284,10 @@ public final class PluginCommunityState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param sleep Configurable sleep time (seconds) for retries when requesting information
-         * about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+         * @param sleep Configurable sleep time (seconds) for retries when requesting
+         * information about community plugins. Default set to 10 seconds.
+         * 
+         * ***Note:*** Available from [v1.29.0]
          * 
          * @return builder
          * 
@@ -286,7 +298,9 @@ public final class PluginCommunityState extends com.pulumi.resources.ResourceArg
 
         /**
          * @param timeout Configurable timeout time (seconds) for retries when requesting
-         * information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+         * information about community plugins. Default set to 1800 seconds.
+         * 
+         * ***Note:*** Available from [v1.29.0]
          * 
          * @return builder
          * 
@@ -298,7 +312,9 @@ public final class PluginCommunityState extends com.pulumi.resources.ResourceArg
 
         /**
          * @param timeout Configurable timeout time (seconds) for retries when requesting
-         * information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+         * information about community plugins. Default set to 1800 seconds.
+         * 
+         * ***Note:*** Available from [v1.29.0]
          * 
          * @return builder
          * 

@@ -28,13 +28,17 @@ class ExtraDiskSizeArgs:
                  timeout: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a ExtraDiskSize resource.
-        :param pulumi.Input[int] extra_disk_size: Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+        :param pulumi.Input[int] extra_disk_size: Extra disk size in GB. Supported values: 0, 25, 50, 100,
+               250, 500, 1000, 2000
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[bool] allow_downtime: When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
-        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
-        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+        :param pulumi.Input[bool] allow_downtime: When resizing the disk, allow cluster downtime if necessary.
+               Default set to false.
+        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for resizing the
+               disk. Default set to 30 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for resizing the disk. Default
+               set to 1800 seconds.
                
-               ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
+               ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
         """
         pulumi.set(__self__, "extra_disk_size", extra_disk_size)
         pulumi.set(__self__, "instance_id", instance_id)
@@ -49,7 +53,8 @@ class ExtraDiskSizeArgs:
     @pulumi.getter(name="extraDiskSize")
     def extra_disk_size(self) -> pulumi.Input[int]:
         """
-        Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+        Extra disk size in GB. Supported values: 0, 25, 50, 100,
+        250, 500, 1000, 2000
         """
         return pulumi.get(self, "extra_disk_size")
 
@@ -73,7 +78,8 @@ class ExtraDiskSizeArgs:
     @pulumi.getter(name="allowDowntime")
     def allow_downtime(self) -> Optional[pulumi.Input[bool]]:
         """
-        When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
+        When resizing the disk, allow cluster downtime if necessary.
+        Default set to false.
         """
         return pulumi.get(self, "allow_downtime")
 
@@ -85,7 +91,8 @@ class ExtraDiskSizeArgs:
     @pulumi.getter
     def sleep(self) -> Optional[pulumi.Input[int]]:
         """
-        Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
+        Configurable sleep time in seconds between retries for resizing the
+        disk. Default set to 30 seconds.
         """
         return pulumi.get(self, "sleep")
 
@@ -97,9 +104,10 @@ class ExtraDiskSizeArgs:
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+        Configurable timeout time in seconds for resizing the disk. Default
+        set to 1800 seconds.
 
-        ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
+        ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
         """
         return pulumi.get(self, "timeout")
 
@@ -119,13 +127,18 @@ class _ExtraDiskSizeState:
                  timeout: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering ExtraDiskSize resources.
-        :param pulumi.Input[bool] allow_downtime: When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
-        :param pulumi.Input[int] extra_disk_size: Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+        :param pulumi.Input[bool] allow_downtime: When resizing the disk, allow cluster downtime if necessary.
+               Default set to false.
+        :param pulumi.Input[int] extra_disk_size: Extra disk size in GB. Supported values: 0, 25, 50, 100,
+               250, 500, 1000, 2000
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
-        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+        :param pulumi.Input[Sequence[pulumi.Input['ExtraDiskSizeNodeArgs']]] nodes: An array of node information. Each `nodes` block consists of the fields documented below.
+        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for resizing the
+               disk. Default set to 30 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for resizing the disk. Default
+               set to 1800 seconds.
                
-               ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
+               ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
         """
         if allow_downtime is not None:
             pulumi.set(__self__, "allow_downtime", allow_downtime)
@@ -144,7 +157,8 @@ class _ExtraDiskSizeState:
     @pulumi.getter(name="allowDowntime")
     def allow_downtime(self) -> Optional[pulumi.Input[bool]]:
         """
-        When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
+        When resizing the disk, allow cluster downtime if necessary.
+        Default set to false.
         """
         return pulumi.get(self, "allow_downtime")
 
@@ -156,7 +170,8 @@ class _ExtraDiskSizeState:
     @pulumi.getter(name="extraDiskSize")
     def extra_disk_size(self) -> Optional[pulumi.Input[int]]:
         """
-        Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+        Extra disk size in GB. Supported values: 0, 25, 50, 100,
+        250, 500, 1000, 2000
         """
         return pulumi.get(self, "extra_disk_size")
 
@@ -179,6 +194,9 @@ class _ExtraDiskSizeState:
     @property
     @pulumi.getter
     def nodes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ExtraDiskSizeNodeArgs']]]]:
+        """
+        An array of node information. Each `nodes` block consists of the fields documented below.
+        """
         return pulumi.get(self, "nodes")
 
     @nodes.setter
@@ -189,7 +207,8 @@ class _ExtraDiskSizeState:
     @pulumi.getter
     def sleep(self) -> Optional[pulumi.Input[int]]:
         """
-        Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
+        Configurable sleep time in seconds between retries for resizing the
+        disk. Default set to 30 seconds.
         """
         return pulumi.get(self, "sleep")
 
@@ -201,9 +220,10 @@ class _ExtraDiskSizeState:
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+        Configurable timeout time in seconds for resizing the disk. Default
+        set to 1800 seconds.
 
-        ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
+        ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
         """
         return pulumi.get(self, "timeout")
 
@@ -230,22 +250,26 @@ class ExtraDiskSize(pulumi.CustomResource):
 
         ***From v1.25.0***: Google Compute Engine (GCE) and Azure available.
 
-        Introducing a new optional argument called `allow_downtime`.  Leaving it out or set it to false will proceed to try and resize the disk without downtime, available for *AWS* and *GCE*.
-        While *Azure* only support swapping the disk, and this argument needs to be set to *true*.
+        Introducing a new optional argument called `allow_downtime`. Leaving it out or set it to false will
+        proceed to try and resize the disk without downtime, available for *AWS*, *GCE* and *Azure*.
 
         `allow_downtime` also makes it possible to circumvent the time rate limit or shrinking the disk.
 
-        | Cloud Platform        | allow_downtime=false | allow_downtime=true           |
-        |-----------------------|----------------------|-------------------------------|
-        | amazon-web-services   | Expand current disk* | Try to expand, otherwise swap |
-        | google-compute-engine | Expand current disk* | Try to expand, otherwise swap |
-        | azure-arm             | Not supported        | Swap disk to new size         |
+        | Cloud Platform        | allow_downtime=false | allow_downtime=true           | Possible to resize |
+        |-----------------------|----------------------|-------------------------------|--------------------|
+        | amazon-web-services   | Expand current disk* | Try to expand, otherwise swap | Every 6 hour       |
+        | google-compute-engine | Expand current disk* | Try to expand, otherwise swap | Every 4 hour       |
+        | azure-arm             | Expand current disk* | Expand current disk           | No time rate limit |
 
         *Preferable method to use.
 
-        > **WARNING:** Due to restrictions from cloud providers, it's only possible to resize the disk every 8 hours. Unless the `allow_downtime=true` is set, then the disk will be swapped for a new.
+        > **Note:** Due to restrictions from cloud providers, it's only possible to resize the disk after
+        the rate time limit. See `Possible to resize` column above for the different cloud platforms.
 
-        Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/) and only available for dedicated subscription plans.
+        > **Note:** Shrinking the disk will always need to swap the old disk to a new one and require
+        `allow_downtime` set to *true*.
+
+        Pricing is available at [CloudAMQP] and only available for dedicated subscription plans.
 
         ## Example Usage
 
@@ -263,7 +287,7 @@ class ExtraDiskSize(pulumi.CustomResource):
         # Instance
         instance = cloudamqp.Instance("instance",
             name="Instance",
-            plan="bunny-1",
+            plan="penguin-1",
             region="amazon-web-services::us-west-2")
         # Resize disk with 25 extra GB
         resize_disk = cloudamqp.ExtraDiskSize("resize_disk",
@@ -290,7 +314,7 @@ class ExtraDiskSize(pulumi.CustomResource):
         # Instance
         instance = cloudamqp.Instance("instance",
             name="Instance",
-            plan="bunny-1",
+            plan="penguin-1",
             region="amazon-web-services::us-west-2")
         # Resize disk with 25 extra GB, without downtime
         resize_disk = cloudamqp.ExtraDiskSize("resize_disk",
@@ -317,7 +341,7 @@ class ExtraDiskSize(pulumi.CustomResource):
         # Instance
         instance = cloudamqp.Instance("instance",
             name="Instance",
-            plan="bunny-1",
+            plan="penguin-1",
             region="google-compute-engine::us-central1")
         # Resize disk with 25 extra GB, without downtime
         resize_disk = cloudamqp.ExtraDiskSize("resize_disk",
@@ -333,7 +357,7 @@ class ExtraDiskSize(pulumi.CustomResource):
         <details>
           <summary>
             <b>
-              <i>Azure extra disk size with downtime</i>
+              <i>Azure extra disk size without downtime</i>
             </b>
           </summary>
 
@@ -344,36 +368,18 @@ class ExtraDiskSize(pulumi.CustomResource):
         # Instance
         instance = cloudamqp.Instance("instance",
             name="Instance",
-            plan="bunny-1",
+            plan="penguin-1",
             region="azure-arm::centralus")
         # Resize disk with 25 extra GB, with downtime
         resize_disk = cloudamqp.ExtraDiskSize("resize_disk",
             instance_id=instance.id,
-            extra_disk_size=25,
-            allow_downtime=True)
+            extra_disk_size=25)
         # Optional, refresh nodes info after disk resize by adding dependency
         # to cloudamqp_extra_disk_size.resize_disk resource
         nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
         ```
 
         </details>
-
-        ## Attributes reference
-
-        All attributes reference are computed
-
-        * `id`    - The identifier for this resource.
-        * `nodes` - An array of node information. Each `nodes` block consists of the fields documented below.
-
-        ***
-
-        The `nodes` block consist of
-
-        * `name`                  - Name of the node.
-        * `disk_size`             - Subscription plan disk size
-        * `additional_disk_size`  - Additional added disk size
-
-        ***Note:*** *Total disk size = disk_size + additional_disk_size*
 
         ## Dependency
 
@@ -383,15 +389,23 @@ class ExtraDiskSize(pulumi.CustomResource):
 
         Not possible to import this resource.
 
+        [CloudAMQP]: https://www.cloudamqp.com/
+
+        [v1.25.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.25.0
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] allow_downtime: When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
-        :param pulumi.Input[int] extra_disk_size: Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+        :param pulumi.Input[bool] allow_downtime: When resizing the disk, allow cluster downtime if necessary.
+               Default set to false.
+        :param pulumi.Input[int] extra_disk_size: Extra disk size in GB. Supported values: 0, 25, 50, 100,
+               250, 500, 1000, 2000
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
-        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for resizing the
+               disk. Default set to 30 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for resizing the disk. Default
+               set to 1800 seconds.
                
-               ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
+               ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
         """
         ...
     @overload
@@ -406,22 +420,26 @@ class ExtraDiskSize(pulumi.CustomResource):
 
         ***From v1.25.0***: Google Compute Engine (GCE) and Azure available.
 
-        Introducing a new optional argument called `allow_downtime`.  Leaving it out or set it to false will proceed to try and resize the disk without downtime, available for *AWS* and *GCE*.
-        While *Azure* only support swapping the disk, and this argument needs to be set to *true*.
+        Introducing a new optional argument called `allow_downtime`. Leaving it out or set it to false will
+        proceed to try and resize the disk without downtime, available for *AWS*, *GCE* and *Azure*.
 
         `allow_downtime` also makes it possible to circumvent the time rate limit or shrinking the disk.
 
-        | Cloud Platform        | allow_downtime=false | allow_downtime=true           |
-        |-----------------------|----------------------|-------------------------------|
-        | amazon-web-services   | Expand current disk* | Try to expand, otherwise swap |
-        | google-compute-engine | Expand current disk* | Try to expand, otherwise swap |
-        | azure-arm             | Not supported        | Swap disk to new size         |
+        | Cloud Platform        | allow_downtime=false | allow_downtime=true           | Possible to resize |
+        |-----------------------|----------------------|-------------------------------|--------------------|
+        | amazon-web-services   | Expand current disk* | Try to expand, otherwise swap | Every 6 hour       |
+        | google-compute-engine | Expand current disk* | Try to expand, otherwise swap | Every 4 hour       |
+        | azure-arm             | Expand current disk* | Expand current disk           | No time rate limit |
 
         *Preferable method to use.
 
-        > **WARNING:** Due to restrictions from cloud providers, it's only possible to resize the disk every 8 hours. Unless the `allow_downtime=true` is set, then the disk will be swapped for a new.
+        > **Note:** Due to restrictions from cloud providers, it's only possible to resize the disk after
+        the rate time limit. See `Possible to resize` column above for the different cloud platforms.
 
-        Pricing is available at [cloudamqp.com](https://www.cloudamqp.com/) and only available for dedicated subscription plans.
+        > **Note:** Shrinking the disk will always need to swap the old disk to a new one and require
+        `allow_downtime` set to *true*.
+
+        Pricing is available at [CloudAMQP] and only available for dedicated subscription plans.
 
         ## Example Usage
 
@@ -439,7 +457,7 @@ class ExtraDiskSize(pulumi.CustomResource):
         # Instance
         instance = cloudamqp.Instance("instance",
             name="Instance",
-            plan="bunny-1",
+            plan="penguin-1",
             region="amazon-web-services::us-west-2")
         # Resize disk with 25 extra GB
         resize_disk = cloudamqp.ExtraDiskSize("resize_disk",
@@ -466,7 +484,7 @@ class ExtraDiskSize(pulumi.CustomResource):
         # Instance
         instance = cloudamqp.Instance("instance",
             name="Instance",
-            plan="bunny-1",
+            plan="penguin-1",
             region="amazon-web-services::us-west-2")
         # Resize disk with 25 extra GB, without downtime
         resize_disk = cloudamqp.ExtraDiskSize("resize_disk",
@@ -493,7 +511,7 @@ class ExtraDiskSize(pulumi.CustomResource):
         # Instance
         instance = cloudamqp.Instance("instance",
             name="Instance",
-            plan="bunny-1",
+            plan="penguin-1",
             region="google-compute-engine::us-central1")
         # Resize disk with 25 extra GB, without downtime
         resize_disk = cloudamqp.ExtraDiskSize("resize_disk",
@@ -509,7 +527,7 @@ class ExtraDiskSize(pulumi.CustomResource):
         <details>
           <summary>
             <b>
-              <i>Azure extra disk size with downtime</i>
+              <i>Azure extra disk size without downtime</i>
             </b>
           </summary>
 
@@ -520,36 +538,18 @@ class ExtraDiskSize(pulumi.CustomResource):
         # Instance
         instance = cloudamqp.Instance("instance",
             name="Instance",
-            plan="bunny-1",
+            plan="penguin-1",
             region="azure-arm::centralus")
         # Resize disk with 25 extra GB, with downtime
         resize_disk = cloudamqp.ExtraDiskSize("resize_disk",
             instance_id=instance.id,
-            extra_disk_size=25,
-            allow_downtime=True)
+            extra_disk_size=25)
         # Optional, refresh nodes info after disk resize by adding dependency
         # to cloudamqp_extra_disk_size.resize_disk resource
         nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
         ```
 
         </details>
-
-        ## Attributes reference
-
-        All attributes reference are computed
-
-        * `id`    - The identifier for this resource.
-        * `nodes` - An array of node information. Each `nodes` block consists of the fields documented below.
-
-        ***
-
-        The `nodes` block consist of
-
-        * `name`                  - Name of the node.
-        * `disk_size`             - Subscription plan disk size
-        * `additional_disk_size`  - Additional added disk size
-
-        ***Note:*** *Total disk size = disk_size + additional_disk_size*
 
         ## Dependency
 
@@ -558,6 +558,10 @@ class ExtraDiskSize(pulumi.CustomResource):
         ## Import
 
         Not possible to import this resource.
+
+        [CloudAMQP]: https://www.cloudamqp.com/
+
+        [v1.25.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.25.0
 
         :param str resource_name: The name of the resource.
         :param ExtraDiskSizeArgs args: The arguments to use to populate this resource's properties.
@@ -621,13 +625,18 @@ class ExtraDiskSize(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] allow_downtime: When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
-        :param pulumi.Input[int] extra_disk_size: Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+        :param pulumi.Input[bool] allow_downtime: When resizing the disk, allow cluster downtime if necessary.
+               Default set to false.
+        :param pulumi.Input[int] extra_disk_size: Extra disk size in GB. Supported values: 0, 25, 50, 100,
+               250, 500, 1000, 2000
         :param pulumi.Input[int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
-        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ExtraDiskSizeNodeArgs', 'ExtraDiskSizeNodeArgsDict']]]] nodes: An array of node information. Each `nodes` block consists of the fields documented below.
+        :param pulumi.Input[int] sleep: Configurable sleep time in seconds between retries for resizing the
+               disk. Default set to 30 seconds.
+        :param pulumi.Input[int] timeout: Configurable timeout time in seconds for resizing the disk. Default
+               set to 1800 seconds.
                
-               ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
+               ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -645,7 +654,8 @@ class ExtraDiskSize(pulumi.CustomResource):
     @pulumi.getter(name="allowDowntime")
     def allow_downtime(self) -> pulumi.Output[Optional[bool]]:
         """
-        When resizing the disk, allow cluster downtime if necessary. Default set to false. Required when hosting in *Azure*.
+        When resizing the disk, allow cluster downtime if necessary.
+        Default set to false.
         """
         return pulumi.get(self, "allow_downtime")
 
@@ -653,7 +663,8 @@ class ExtraDiskSize(pulumi.CustomResource):
     @pulumi.getter(name="extraDiskSize")
     def extra_disk_size(self) -> pulumi.Output[int]:
         """
-        Extra disk size in GB. Supported values: 0, 25, 50, 100, 250, 500, 1000, 2000
+        Extra disk size in GB. Supported values: 0, 25, 50, 100,
+        250, 500, 1000, 2000
         """
         return pulumi.get(self, "extra_disk_size")
 
@@ -668,13 +679,17 @@ class ExtraDiskSize(pulumi.CustomResource):
     @property
     @pulumi.getter
     def nodes(self) -> pulumi.Output[Sequence['outputs.ExtraDiskSizeNode']]:
+        """
+        An array of node information. Each `nodes` block consists of the fields documented below.
+        """
         return pulumi.get(self, "nodes")
 
     @property
     @pulumi.getter
     def sleep(self) -> pulumi.Output[Optional[int]]:
         """
-        Configurable sleep time in seconds between retries for resizing the disk. Default set to 30 seconds.
+        Configurable sleep time in seconds between retries for resizing the
+        disk. Default set to 30 seconds.
         """
         return pulumi.get(self, "sleep")
 
@@ -682,9 +697,10 @@ class ExtraDiskSize(pulumi.CustomResource):
     @pulumi.getter
     def timeout(self) -> pulumi.Output[Optional[int]]:
         """
-        Configurable timeout time in seconds for resizing the disk. Default set to 1800 seconds.
+        Configurable timeout time in seconds for resizing the disk. Default
+        set to 1800 seconds.
 
-        ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from v1.25.0.
+        ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
         """
         return pulumi.get(self, "timeout")
 

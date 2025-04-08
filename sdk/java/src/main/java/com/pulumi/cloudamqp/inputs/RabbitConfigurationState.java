@@ -18,14 +18,16 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
     public static final RabbitConfigurationState Empty = new RabbitConfigurationState();
 
     /**
-     * Set the maximum permissible number of channels per connection.
+     * Set the maximum permissible number of
+     * channels per connection.
      * 
      */
     @Import(name="channelMax")
     private @Nullable Output<Integer> channelMax;
 
     /**
-     * @return Set the maximum permissible number of channels per connection.
+     * @return Set the maximum permissible number of
+     * channels per connection.
      * 
      */
     public Optional<Output<Integer>> channelMax() {
@@ -33,14 +35,16 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Set how the cluster should handle network partition.
+     * Set how the cluster should handle network
+     * partition.
      * 
      */
     @Import(name="clusterPartitionHandling")
     private @Nullable Output<String> clusterPartitionHandling;
 
     /**
-     * @return Set how the cluster should handle network partition.
+     * @return Set how the cluster should handle network
+     * partition.
      * 
      */
     public Optional<Output<String>> clusterPartitionHandling() {
@@ -48,14 +52,16 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Set the maximum permissible number of connection.
+     * Set the maximum permissible number of
+     * connection.
      * 
      */
     @Import(name="connectionMax")
     private @Nullable Output<Integer> connectionMax;
 
     /**
-     * @return Set the maximum permissible number of connection.
+     * @return Set the maximum permissible number of
+     * connection.
      * 
      */
     public Optional<Output<Integer>> connectionMax() {
@@ -63,14 +69,18 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
+     * A consumer that has recevied a message and
+     * does not acknowledge that message within the timeout in
+     * milliseconds
      * 
      */
     @Import(name="consumerTimeout")
     private @Nullable Output<Integer> consumerTimeout;
 
     /**
-     * @return A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
+     * @return A consumer that has recevied a message and
+     * does not acknowledge that message within the timeout in
+     * milliseconds
      * 
      */
     public Optional<Output<Integer>> consumerTimeout() {
@@ -78,14 +88,16 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Set the server AMQP 0-9-1 heartbeat timeout in seconds.
+     * Set the server AMQP 0-9-1 heartbeat timeout
+     * in seconds.
      * 
      */
     @Import(name="heartbeat")
     private @Nullable Output<Integer> heartbeat;
 
     /**
-     * @return Set the server AMQP 0-9-1 heartbeat timeout in seconds.
+     * @return Set the server AMQP 0-9-1 heartbeat timeout
+     * in seconds.
      * 
      */
     public Optional<Output<Integer>> heartbeat() {
@@ -108,18 +120,20 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Log level for the logger used for log integrations and the CloudAMQP Console log view.
+     * Log level for the logger used for log
+     * integrations and the CloudAMQP Console log view.
      * 
-     * *Note: Requires a restart of RabbitMQ to be applied.*
+     * ***Note:*** Requires a restart of RabbitMQ to be applied.
      * 
      */
     @Import(name="logExchangeLevel")
     private @Nullable Output<String> logExchangeLevel;
 
     /**
-     * @return Log level for the logger used for log integrations and the CloudAMQP Console log view.
+     * @return Log level for the logger used for log
+     * integrations and the CloudAMQP Console log view.
      * 
-     * *Note: Requires a restart of RabbitMQ to be applied.*
+     * ***Note:*** Requires a restart of RabbitMQ to be applied.
      * 
      */
     public Optional<Output<String>> logExchangeLevel() {
@@ -127,14 +141,16 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * The largest allowed message payload size in bytes.
+     * The largest allowed message payload size in
+     * bytes.
      * 
      */
     @Import(name="maxMessageSize")
     private @Nullable Output<Integer> maxMessageSize;
 
     /**
-     * @return The largest allowed message payload size in bytes.
+     * @return The largest allowed message payload size in
+     * bytes.
      * 
      */
     public Optional<Output<Integer>> maxMessageSize() {
@@ -142,14 +158,18 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
+     * Size in bytes below which to embed messages
+     * in the queue index. 0 will turn off payload embedding in the
+     * queue index.
      * 
      */
     @Import(name="queueIndexEmbedMsgsBelow")
     private @Nullable Output<Integer> queueIndexEmbedMsgsBelow;
 
     /**
-     * @return Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
+     * @return Size in bytes below which to embed messages
+     * in the queue index. 0 will turn off payload embedding in the
+     * queue index.
      * 
      */
     public Optional<Output<Integer>> queueIndexEmbedMsgsBelow() {
@@ -157,14 +177,16 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+     * Configurable sleep time in seconds between retries
+     * for RabbitMQ configuration. Default set to 60 seconds.
      * 
      */
     @Import(name="sleep")
     private @Nullable Output<Integer> sleep;
 
     /**
-     * @return Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+     * @return Configurable sleep time in seconds between retries
+     * for RabbitMQ configuration. Default set to 60 seconds.
      * 
      */
     public Optional<Output<Integer>> sleep() {
@@ -172,14 +194,16 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+     * Configurable timeout time in seconds for RabbitMQ
+     * configuration. Default set to 3600 seconds.
      * 
      */
     @Import(name="timeout")
     private @Nullable Output<Integer> timeout;
 
     /**
-     * @return Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+     * @return Configurable timeout time in seconds for RabbitMQ
+     * configuration. Default set to 3600 seconds.
      * 
      */
     public Optional<Output<Integer>> timeout() {
@@ -187,14 +211,16 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * When the server will enter memory based flow-control as relative to the maximum available memory.
+     * When the server will enter memory based
+     * flow-control as relative to the maximum available memory.
      * 
      */
     @Import(name="vmMemoryHighWatermark")
     private @Nullable Output<Double> vmMemoryHighWatermark;
 
     /**
-     * @return When the server will enter memory based flow-control as relative to the maximum available memory.
+     * @return When the server will enter memory based
+     * flow-control as relative to the maximum available memory.
      * 
      */
     public Optional<Output<Double>> vmMemoryHighWatermark() {
@@ -237,7 +263,8 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param channelMax Set the maximum permissible number of channels per connection.
+         * @param channelMax Set the maximum permissible number of
+         * channels per connection.
          * 
          * @return builder
          * 
@@ -248,7 +275,8 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param channelMax Set the maximum permissible number of channels per connection.
+         * @param channelMax Set the maximum permissible number of
+         * channels per connection.
          * 
          * @return builder
          * 
@@ -258,7 +286,8 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param clusterPartitionHandling Set how the cluster should handle network partition.
+         * @param clusterPartitionHandling Set how the cluster should handle network
+         * partition.
          * 
          * @return builder
          * 
@@ -269,7 +298,8 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param clusterPartitionHandling Set how the cluster should handle network partition.
+         * @param clusterPartitionHandling Set how the cluster should handle network
+         * partition.
          * 
          * @return builder
          * 
@@ -279,7 +309,8 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param connectionMax Set the maximum permissible number of connection.
+         * @param connectionMax Set the maximum permissible number of
+         * connection.
          * 
          * @return builder
          * 
@@ -290,7 +321,8 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param connectionMax Set the maximum permissible number of connection.
+         * @param connectionMax Set the maximum permissible number of
+         * connection.
          * 
          * @return builder
          * 
@@ -300,7 +332,9 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param consumerTimeout A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
+         * @param consumerTimeout A consumer that has recevied a message and
+         * does not acknowledge that message within the timeout in
+         * milliseconds
          * 
          * @return builder
          * 
@@ -311,7 +345,9 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param consumerTimeout A consumer that has recevied a message and does not acknowledge that message within the timeout in milliseconds
+         * @param consumerTimeout A consumer that has recevied a message and
+         * does not acknowledge that message within the timeout in
+         * milliseconds
          * 
          * @return builder
          * 
@@ -321,7 +357,8 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param heartbeat Set the server AMQP 0-9-1 heartbeat timeout in seconds.
+         * @param heartbeat Set the server AMQP 0-9-1 heartbeat timeout
+         * in seconds.
          * 
          * @return builder
          * 
@@ -332,7 +369,8 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param heartbeat Set the server AMQP 0-9-1 heartbeat timeout in seconds.
+         * @param heartbeat Set the server AMQP 0-9-1 heartbeat timeout
+         * in seconds.
          * 
          * @return builder
          * 
@@ -363,9 +401,10 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param logExchangeLevel Log level for the logger used for log integrations and the CloudAMQP Console log view.
+         * @param logExchangeLevel Log level for the logger used for log
+         * integrations and the CloudAMQP Console log view.
          * 
-         * *Note: Requires a restart of RabbitMQ to be applied.*
+         * ***Note:*** Requires a restart of RabbitMQ to be applied.
          * 
          * @return builder
          * 
@@ -376,9 +415,10 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param logExchangeLevel Log level for the logger used for log integrations and the CloudAMQP Console log view.
+         * @param logExchangeLevel Log level for the logger used for log
+         * integrations and the CloudAMQP Console log view.
          * 
-         * *Note: Requires a restart of RabbitMQ to be applied.*
+         * ***Note:*** Requires a restart of RabbitMQ to be applied.
          * 
          * @return builder
          * 
@@ -388,7 +428,8 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param maxMessageSize The largest allowed message payload size in bytes.
+         * @param maxMessageSize The largest allowed message payload size in
+         * bytes.
          * 
          * @return builder
          * 
@@ -399,7 +440,8 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param maxMessageSize The largest allowed message payload size in bytes.
+         * @param maxMessageSize The largest allowed message payload size in
+         * bytes.
          * 
          * @return builder
          * 
@@ -409,7 +451,9 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param queueIndexEmbedMsgsBelow Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
+         * @param queueIndexEmbedMsgsBelow Size in bytes below which to embed messages
+         * in the queue index. 0 will turn off payload embedding in the
+         * queue index.
          * 
          * @return builder
          * 
@@ -420,7 +464,9 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param queueIndexEmbedMsgsBelow Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
+         * @param queueIndexEmbedMsgsBelow Size in bytes below which to embed messages
+         * in the queue index. 0 will turn off payload embedding in the
+         * queue index.
          * 
          * @return builder
          * 
@@ -430,7 +476,8 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param sleep Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+         * @param sleep Configurable sleep time in seconds between retries
+         * for RabbitMQ configuration. Default set to 60 seconds.
          * 
          * @return builder
          * 
@@ -441,7 +488,8 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param sleep Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+         * @param sleep Configurable sleep time in seconds between retries
+         * for RabbitMQ configuration. Default set to 60 seconds.
          * 
          * @return builder
          * 
@@ -451,7 +499,8 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param timeout Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+         * @param timeout Configurable timeout time in seconds for RabbitMQ
+         * configuration. Default set to 3600 seconds.
          * 
          * @return builder
          * 
@@ -462,7 +511,8 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param timeout Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+         * @param timeout Configurable timeout time in seconds for RabbitMQ
+         * configuration. Default set to 3600 seconds.
          * 
          * @return builder
          * 
@@ -472,7 +522,8 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param vmMemoryHighWatermark When the server will enter memory based flow-control as relative to the maximum available memory.
+         * @param vmMemoryHighWatermark When the server will enter memory based
+         * flow-control as relative to the maximum available memory.
          * 
          * @return builder
          * 
@@ -483,7 +534,8 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param vmMemoryHighWatermark When the server will enter memory based flow-control as relative to the maximum available memory.
+         * @param vmMemoryHighWatermark When the server will enter memory based
+         * flow-control as relative to the maximum available memory.
          * 
          * @return builder
          * 

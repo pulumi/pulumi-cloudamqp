@@ -12,11 +12,14 @@ namespace Pulumi.CloudAmqp
     public static class GetAccountVpcs
     {
         /// <summary>
-        /// Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
+        /// Use this data source to retrieve basic information about all standalone VPCs available for an
+        /// account. Uses the included apikey in provider configuration to determine which account to read from.
         /// 
         /// ## Example Usage
         /// 
-        /// Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
+        /// Can be used in other resources/data sources when the VPC identifier is unknown, while other
+        /// attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over
+        /// VPCs to find the matching one and extract the VPC identifier.
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -39,24 +42,6 @@ namespace Pulumi.CloudAmqp
         ///     };
         /// });
         /// ```
-        /// 
-        /// ## Attributes reference
-        /// 
-        /// All attributes reference are computed
-        /// 
-        /// * `id`      - The identifier for this data source. Set to `na` since there is no unique identifier.
-        /// * `vpcs`    - An array of VPCs. Each `vpcs` block consists of the fields documented below.
-        /// 
-        /// ___
-        /// 
-        /// The `vpcs` block consist of
-        /// 
-        /// * `id`          - The VPC identifier.
-        /// * `name`        - The VPC instance name.
-        /// * `region`      - The region the VPC is hosted in.
-        /// * `subnet`      - The VPC subnet.
-        /// * `tags`        - Optional tags set for the VPC.
-        /// * `vpc_name`    - VPC name given when hosted at the cloud provider.
         /// 
         /// ## Dependency
         /// 
@@ -66,11 +51,14 @@ namespace Pulumi.CloudAmqp
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAccountVpcsResult>("cloudamqp:index/getAccountVpcs:getAccountVpcs", InvokeArgs.Empty, options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
+        /// Use this data source to retrieve basic information about all standalone VPCs available for an
+        /// account. Uses the included apikey in provider configuration to determine which account to read from.
         /// 
         /// ## Example Usage
         /// 
-        /// Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
+        /// Can be used in other resources/data sources when the VPC identifier is unknown, while other
+        /// attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over
+        /// VPCs to find the matching one and extract the VPC identifier.
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -93,24 +81,6 @@ namespace Pulumi.CloudAmqp
         ///     };
         /// });
         /// ```
-        /// 
-        /// ## Attributes reference
-        /// 
-        /// All attributes reference are computed
-        /// 
-        /// * `id`      - The identifier for this data source. Set to `na` since there is no unique identifier.
-        /// * `vpcs`    - An array of VPCs. Each `vpcs` block consists of the fields documented below.
-        /// 
-        /// ___
-        /// 
-        /// The `vpcs` block consist of
-        /// 
-        /// * `id`          - The VPC identifier.
-        /// * `name`        - The VPC instance name.
-        /// * `region`      - The region the VPC is hosted in.
-        /// * `subnet`      - The VPC subnet.
-        /// * `tags`        - Optional tags set for the VPC.
-        /// * `vpc_name`    - VPC name given when hosted at the cloud provider.
         /// 
         /// ## Dependency
         /// 
@@ -120,11 +90,14 @@ namespace Pulumi.CloudAmqp
             => global::Pulumi.Deployment.Instance.Invoke<GetAccountVpcsResult>("cloudamqp:index/getAccountVpcs:getAccountVpcs", InvokeArgs.Empty, options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to retrieve basic information about all standalone VPCs available for an account. Uses the included apikey in provider configuration to determine which account to read from.
+        /// Use this data source to retrieve basic information about all standalone VPCs available for an
+        /// account. Uses the included apikey in provider configuration to determine which account to read from.
         /// 
         /// ## Example Usage
         /// 
-        /// Can be used in other resources/data sources when the VPC identifier is unknown, while other attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over VPCs to find the matching one and extract the VPC identifier.
+        /// Can be used in other resources/data sources when the VPC identifier is unknown, while other
+        /// attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over
+        /// VPCs to find the matching one and extract the VPC identifier.
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -147,24 +120,6 @@ namespace Pulumi.CloudAmqp
         ///     };
         /// });
         /// ```
-        /// 
-        /// ## Attributes reference
-        /// 
-        /// All attributes reference are computed
-        /// 
-        /// * `id`      - The identifier for this data source. Set to `na` since there is no unique identifier.
-        /// * `vpcs`    - An array of VPCs. Each `vpcs` block consists of the fields documented below.
-        /// 
-        /// ___
-        /// 
-        /// The `vpcs` block consist of
-        /// 
-        /// * `id`          - The VPC identifier.
-        /// * `name`        - The VPC instance name.
-        /// * `region`      - The region the VPC is hosted in.
-        /// * `subnet`      - The VPC subnet.
-        /// * `tags`        - Optional tags set for the VPC.
-        /// * `vpc_name`    - VPC name given when hosted at the cloud provider.
         /// 
         /// ## Dependency
         /// 
@@ -182,6 +137,9 @@ namespace Pulumi.CloudAmqp
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// An array of VPCs. Each `vpcs` block consists of the fields documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetAccountVpcsVpcResult> Vpcs;
 
         [OutputConstructor]

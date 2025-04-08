@@ -11,21 +11,53 @@ import java.util.Objects;
 
 @CustomType
 public final class GetPluginsPlugin {
+    /**
+     * @return Description of what the plugin does.
+     * 
+     */
     private String description;
+    /**
+     * @return Enable or disable information for the plugin.
+     * 
+     */
     private Boolean enabled;
+    /**
+     * @return The type of the recipient.
+     * 
+     */
     private String name;
+    /**
+     * @return Rabbit MQ version that the plugins are shipped with.
+     * 
+     */
     private String version;
 
     private GetPluginsPlugin() {}
+    /**
+     * @return Description of what the plugin does.
+     * 
+     */
     public String description() {
         return this.description;
     }
+    /**
+     * @return Enable or disable information for the plugin.
+     * 
+     */
     public Boolean enabled() {
         return this.enabled;
     }
+    /**
+     * @return The type of the recipient.
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return Rabbit MQ version that the plugins are shipped with.
+     * 
+     */
     public String version() {
         return this.version;
     }

@@ -70,6 +70,9 @@ class GetNotificationResult:
     @property
     @pulumi.getter
     def options(self) -> Optional[Mapping[str, str]]:
+        """
+        Options argument (e.g. `rk` used for VictorOps routing key).
+        """
         return pulumi.get(self, "options")
 
     @property
@@ -80,11 +83,17 @@ class GetNotificationResult:
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        The type of the recipient.
+        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
     def value(self) -> str:
+        """
+        The notification endpoint, where to send the notification.
+        """
         return pulumi.get(self, "value")
 
 
@@ -109,7 +118,9 @@ def get_notification(instance_id: Optional[int] = None,
                      recipient_id: Optional[int] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNotificationResult:
     """
-    Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipient_id` or `name`.
+    Use this data source to retrieve information about default or created recipients. The recipient will
+    receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use
+    `recipient_id` or `name`.
 
     ## Example Usage
 
@@ -121,15 +132,6 @@ def get_notification(instance_id: Optional[int] = None,
         name="default")
     ```
 
-    ## Attributes reference
-
-    All attributes reference are computed
-
-    * `id`    - The identifier for this resource.
-    * `type`  - The type of the recipient.
-    * `value` - The notification endpoint, where to send the notification.
-    * `options`- Options argument (e.g. `rk` used for VictorOps routing key).
-
     ## Dependency
 
     This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -137,6 +139,7 @@ def get_notification(instance_id: Optional[int] = None,
 
     :param int instance_id: The CloudAMQP instance identifier.
     :param str name: The name set for the recipient.
+    :param Mapping[str, str] options: Options argument (e.g. `rk` used for VictorOps routing key).
     :param int recipient_id: The recipient identifier.
     """
     __args__ = dict()
@@ -161,7 +164,9 @@ def get_notification_output(instance_id: Optional[pulumi.Input[int]] = None,
                             recipient_id: Optional[pulumi.Input[Optional[int]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNotificationResult]:
     """
-    Use this data source to retrieve information about default or created recipients. The recipient will receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use `recipient_id` or `name`.
+    Use this data source to retrieve information about default or created recipients. The recipient will
+    receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use
+    `recipient_id` or `name`.
 
     ## Example Usage
 
@@ -173,15 +178,6 @@ def get_notification_output(instance_id: Optional[pulumi.Input[int]] = None,
         name="default")
     ```
 
-    ## Attributes reference
-
-    All attributes reference are computed
-
-    * `id`    - The identifier for this resource.
-    * `type`  - The type of the recipient.
-    * `value` - The notification endpoint, where to send the notification.
-    * `options`- Options argument (e.g. `rk` used for VictorOps routing key).
-
     ## Dependency
 
     This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -189,6 +185,7 @@ def get_notification_output(instance_id: Optional[pulumi.Input[int]] = None,
 
     :param int instance_id: The CloudAMQP instance identifier.
     :param str name: The name set for the recipient.
+    :param Mapping[str, str] options: Options argument (e.g. `rk` used for VictorOps routing key).
     :param int recipient_id: The recipient identifier.
     """
     __args__ = dict()

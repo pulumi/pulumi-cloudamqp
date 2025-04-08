@@ -107,14 +107,16 @@ public final class WebhookState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A POST request will be made for each message in the queue to this endpoint.
+     * A POST request will be made for each message in the queue to this
+     * endpoint.
      * 
      */
     @Import(name="webhookUri")
     private @Nullable Output<String> webhookUri;
 
     /**
-     * @return A POST request will be made for each message in the queue to this endpoint.
+     * @return A POST request will be made for each message in the queue to this
+     * endpoint.
      * 
      */
     public Optional<Output<String>> webhookUri() {
@@ -278,7 +280,8 @@ public final class WebhookState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param webhookUri A POST request will be made for each message in the queue to this endpoint.
+         * @param webhookUri A POST request will be made for each message in the queue to this
+         * endpoint.
          * 
          * @return builder
          * 
@@ -289,7 +292,8 @@ public final class WebhookState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param webhookUri A POST request will be made for each message in the queue to this endpoint.
+         * @param webhookUri A POST request will be made for each message in the queue to this
+         * endpoint.
          * 
          * @return builder
          * 

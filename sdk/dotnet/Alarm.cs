@@ -12,7 +12,23 @@ namespace Pulumi.CloudAmqp
     /// <summary>
     /// ## Import
     /// 
-    /// `cloudamqp_alarm` can be imported using CloudAMQP internal identifier of the alarm together (CSV separated) with the instance identifier. To retrieve the alarm identifier, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-alarms)
+    /// `cloudamqp_alarm` can be imported using the resource identifier together with the CloudAMQP instance
+    /// 
+    /// identifier (CSV separated). To retrieve the resource identifier, use [CloudAMQP API list alarms].
+    /// 
+    /// From Terraform v1.5.0, the `import` block can be used to import this resource:
+    /// 
+    /// hcl
+    /// 
+    /// import {
+    /// 
+    ///   to = cloudamqp_alarm.alarm
+    /// 
+    ///   id = format("&lt;id&gt;,%s", cloudamqp_instance.instance.id)
+    /// 
+    /// }
+    /// 
+    /// Or use Terraform CLI:
     /// 
     /// ```sh
     /// $ pulumi import cloudamqp:index/alarm:Alarm alarm &lt;id&gt;,&lt;instance_id&gt;`
@@ -48,19 +64,22 @@ namespace Pulumi.CloudAmqp
         public Output<string?> QueueRegex { get; private set; } = null!;
 
         /// <summary>
-        /// Identifier for recipient to be notified. Leave empty to notify all recipients.
+        /// Identifier for recipient to be notified. Leave empty to notify
+        /// all recipients.
         /// </summary>
         [Output("recipients")]
         public Output<ImmutableArray<int>> Recipients { get; private set; } = null!;
 
         /// <summary>
-        /// The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+        /// The reminder interval (in seconds) to resend the alarm if not
+        /// resolved. Set to 0 for no reminders. The Default is 0.
         /// </summary>
         [Output("reminderInterval")]
         public Output<int?> ReminderInterval { get; private set; } = null!;
 
         /// <summary>
-        /// The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
+        /// The time interval (in seconds) the `value_threshold` should be
+        /// active before triggering an alarm.
         /// </summary>
         [Output("timeThreshold")]
         public Output<int?> TimeThreshold { get; private set; } = null!;
@@ -72,7 +91,8 @@ namespace Pulumi.CloudAmqp
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+        /// Disk value threshold calculation, `fixed, percentage` of disk
+        /// space remaining.
         /// 
         /// Based on alarm type, different arguments are flagged as required or optional.
         /// </summary>
@@ -167,7 +187,8 @@ namespace Pulumi.CloudAmqp
         private InputList<int>? _recipients;
 
         /// <summary>
-        /// Identifier for recipient to be notified. Leave empty to notify all recipients.
+        /// Identifier for recipient to be notified. Leave empty to notify
+        /// all recipients.
         /// </summary>
         public InputList<int> Recipients
         {
@@ -176,13 +197,15 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
-        /// The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+        /// The reminder interval (in seconds) to resend the alarm if not
+        /// resolved. Set to 0 for no reminders. The Default is 0.
         /// </summary>
         [Input("reminderInterval")]
         public Input<int>? ReminderInterval { get; set; }
 
         /// <summary>
-        /// The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
+        /// The time interval (in seconds) the `value_threshold` should be
+        /// active before triggering an alarm.
         /// </summary>
         [Input("timeThreshold")]
         public Input<int>? TimeThreshold { get; set; }
@@ -194,7 +217,8 @@ namespace Pulumi.CloudAmqp
         public Input<string> Type { get; set; } = null!;
 
         /// <summary>
-        /// Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+        /// Disk value threshold calculation, `fixed, percentage` of disk
+        /// space remaining.
         /// 
         /// Based on alarm type, different arguments are flagged as required or optional.
         /// </summary>
@@ -251,7 +275,8 @@ namespace Pulumi.CloudAmqp
         private InputList<int>? _recipients;
 
         /// <summary>
-        /// Identifier for recipient to be notified. Leave empty to notify all recipients.
+        /// Identifier for recipient to be notified. Leave empty to notify
+        /// all recipients.
         /// </summary>
         public InputList<int> Recipients
         {
@@ -260,13 +285,15 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
-        /// The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+        /// The reminder interval (in seconds) to resend the alarm if not
+        /// resolved. Set to 0 for no reminders. The Default is 0.
         /// </summary>
         [Input("reminderInterval")]
         public Input<int>? ReminderInterval { get; set; }
 
         /// <summary>
-        /// The time interval (in seconds) the `value_threshold` should be active before triggering an alarm.
+        /// The time interval (in seconds) the `value_threshold` should be
+        /// active before triggering an alarm.
         /// </summary>
         [Input("timeThreshold")]
         public Input<int>? TimeThreshold { get; set; }
@@ -278,7 +305,8 @@ namespace Pulumi.CloudAmqp
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+        /// Disk value threshold calculation, `fixed, percentage` of disk
+        /// space remaining.
         /// 
         /// Based on alarm type, different arguments are flagged as required or optional.
         /// </summary>

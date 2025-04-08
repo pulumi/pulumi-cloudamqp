@@ -12,12 +12,28 @@ namespace Pulumi.CloudAmqp
     /// <summary>
     /// ## Import
     /// 
-    /// `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP
+    /// `cloudamqp_plugin_community` can be imported if it's has already been installed by using the name
     /// 
-    /// instance identifier. The name and identifier are CSV separated, see example below.
+    /// argument of the resource together with CloudAMQP instance identifier (CSV separated). To retrieve
+    /// 
+    /// list of available community plugins, use [CloudAMQP API list community plugins].
+    /// 
+    /// From Terraform v1.5.0, the `import` block can be used to import this resource:
+    /// 
+    /// hcl
+    /// 
+    /// import {
+    /// 
+    ///   to = cloudamqp_plugin_community.rabbitmq_delayed_message_exchange
+    /// 
+    ///   id = format("rabbitmq_delayed_message_exchange,%s", cloudamqp_instance.instance.id)
+    /// 
+    /// }
+    /// 
+    /// Or use Terraform CLI:
     /// 
     /// ```sh
-    /// $ pulumi import cloudamqp:index/pluginCommunity:PluginCommunity &lt;resource_name&gt; &lt;plugin_name&gt;,&lt;instance_id&gt;`
+    /// $ pulumi import cloudamqp:index/pluginCommunity:PluginCommunity rabbitmq_delayed_message_exchange &lt;plugin_name&gt;,&lt;instance_id&gt;`
     /// ```
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/pluginCommunity:PluginCommunity")]
@@ -54,15 +70,19 @@ namespace Pulumi.CloudAmqp
         public Output<string> Require { get; private set; } = null!;
 
         /// <summary>
-        /// Configurable sleep time (seconds) for retries when requesting information
-        /// about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+        /// Configurable sleep time (seconds) for retries when requesting
+        /// information about community plugins. Default set to 10 seconds.
+        /// 
+        /// ***Note:*** Available from [v1.29.0]
         /// </summary>
         [Output("sleep")]
         public Output<int?> Sleep { get; private set; } = null!;
 
         /// <summary>
         /// Configurable timeout time (seconds) for retries when requesting
-        /// information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+        /// information about community plugins. Default set to 1800 seconds.
+        /// 
+        /// ***Note:*** Available from [v1.29.0]
         /// </summary>
         [Output("timeout")]
         public Output<int?> Timeout { get; private set; } = null!;
@@ -132,15 +152,19 @@ namespace Pulumi.CloudAmqp
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Configurable sleep time (seconds) for retries when requesting information
-        /// about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+        /// Configurable sleep time (seconds) for retries when requesting
+        /// information about community plugins. Default set to 10 seconds.
+        /// 
+        /// ***Note:*** Available from [v1.29.0]
         /// </summary>
         [Input("sleep")]
         public Input<int>? Sleep { get; set; }
 
         /// <summary>
         /// Configurable timeout time (seconds) for retries when requesting
-        /// information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+        /// information about community plugins. Default set to 1800 seconds.
+        /// 
+        /// ***Note:*** Available from [v1.29.0]
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
@@ -184,15 +208,19 @@ namespace Pulumi.CloudAmqp
         public Input<string>? Require { get; set; }
 
         /// <summary>
-        /// Configurable sleep time (seconds) for retries when requesting information
-        /// about community plugins. Default set to 10 seconds. *Available from v1.29.0*
+        /// Configurable sleep time (seconds) for retries when requesting
+        /// information about community plugins. Default set to 10 seconds.
+        /// 
+        /// ***Note:*** Available from [v1.29.0]
         /// </summary>
         [Input("sleep")]
         public Input<int>? Sleep { get; set; }
 
         /// <summary>
         /// Configurable timeout time (seconds) for retries when requesting
-        /// information about community plugins. Default set to 1800 seconds. *Available from v1.29.0*
+        /// information about community plugins. Default set to 1800 seconds.
+        /// 
+        /// ***Note:*** Available from [v1.29.0]
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }

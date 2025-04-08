@@ -14,7 +14,23 @@ import (
 
 // ## Import
 //
-// `cloudamqp_alarm` can be imported using CloudAMQP internal identifier of the alarm together (CSV separated) with the instance identifier. To retrieve the alarm identifier, use [CloudAMQP API](https://docs.cloudamqp.com/cloudamqp_api.html#list-alarms)
+// `cloudamqp_alarm` can be imported using the resource identifier together with the CloudAMQP instance
+//
+// identifier (CSV separated). To retrieve the resource identifier, use [CloudAMQP API list alarms].
+//
+// From Terraform v1.5.0, the `import` block can be used to import this resource:
+//
+// hcl
+//
+// import {
+//
+//	to = cloudamqp_alarm.alarm
+//
+//	id = format("<id>,%s", cloudamqp_instance.instance.id)
+//
+// }
+//
+// Or use Terraform CLI:
 //
 // ```sh
 // $ pulumi import cloudamqp:index/alarm:Alarm alarm <id>,<instance_id>`
@@ -32,15 +48,19 @@ type Alarm struct {
 	MessageType pulumi.StringPtrOutput `pulumi:"messageType"`
 	// Regex for which queue to check.
 	QueueRegex pulumi.StringPtrOutput `pulumi:"queueRegex"`
-	// Identifier for recipient to be notified. Leave empty to notify all recipients.
+	// Identifier for recipient to be notified. Leave empty to notify
+	// all recipients.
 	Recipients pulumi.IntArrayOutput `pulumi:"recipients"`
-	// The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+	// The reminder interval (in seconds) to resend the alarm if not
+	// resolved. Set to 0 for no reminders. The Default is 0.
 	ReminderInterval pulumi.IntPtrOutput `pulumi:"reminderInterval"`
-	// The time interval (in seconds) the `valueThreshold` should be active before triggering an alarm.
+	// The time interval (in seconds) the `valueThreshold` should be
+	// active before triggering an alarm.
 	TimeThreshold pulumi.IntPtrOutput `pulumi:"timeThreshold"`
 	// The alarm type, see valid options below.
 	Type pulumi.StringOutput `pulumi:"type"`
-	// Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+	// Disk value threshold calculation, `fixed, percentage` of disk
+	// space remaining.
 	//
 	// Based on alarm type, different arguments are flagged as required or optional.
 	ValueCalculation pulumi.StringPtrOutput `pulumi:"valueCalculation"`
@@ -102,15 +122,19 @@ type alarmState struct {
 	MessageType *string `pulumi:"messageType"`
 	// Regex for which queue to check.
 	QueueRegex *string `pulumi:"queueRegex"`
-	// Identifier for recipient to be notified. Leave empty to notify all recipients.
+	// Identifier for recipient to be notified. Leave empty to notify
+	// all recipients.
 	Recipients []int `pulumi:"recipients"`
-	// The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+	// The reminder interval (in seconds) to resend the alarm if not
+	// resolved. Set to 0 for no reminders. The Default is 0.
 	ReminderInterval *int `pulumi:"reminderInterval"`
-	// The time interval (in seconds) the `valueThreshold` should be active before triggering an alarm.
+	// The time interval (in seconds) the `valueThreshold` should be
+	// active before triggering an alarm.
 	TimeThreshold *int `pulumi:"timeThreshold"`
 	// The alarm type, see valid options below.
 	Type *string `pulumi:"type"`
-	// Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+	// Disk value threshold calculation, `fixed, percentage` of disk
+	// space remaining.
 	//
 	// Based on alarm type, different arguments are flagged as required or optional.
 	ValueCalculation *string `pulumi:"valueCalculation"`
@@ -131,15 +155,19 @@ type AlarmState struct {
 	MessageType pulumi.StringPtrInput
 	// Regex for which queue to check.
 	QueueRegex pulumi.StringPtrInput
-	// Identifier for recipient to be notified. Leave empty to notify all recipients.
+	// Identifier for recipient to be notified. Leave empty to notify
+	// all recipients.
 	Recipients pulumi.IntArrayInput
-	// The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+	// The reminder interval (in seconds) to resend the alarm if not
+	// resolved. Set to 0 for no reminders. The Default is 0.
 	ReminderInterval pulumi.IntPtrInput
-	// The time interval (in seconds) the `valueThreshold` should be active before triggering an alarm.
+	// The time interval (in seconds) the `valueThreshold` should be
+	// active before triggering an alarm.
 	TimeThreshold pulumi.IntPtrInput
 	// The alarm type, see valid options below.
 	Type pulumi.StringPtrInput
-	// Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+	// Disk value threshold calculation, `fixed, percentage` of disk
+	// space remaining.
 	//
 	// Based on alarm type, different arguments are flagged as required or optional.
 	ValueCalculation pulumi.StringPtrInput
@@ -164,15 +192,19 @@ type alarmArgs struct {
 	MessageType *string `pulumi:"messageType"`
 	// Regex for which queue to check.
 	QueueRegex *string `pulumi:"queueRegex"`
-	// Identifier for recipient to be notified. Leave empty to notify all recipients.
+	// Identifier for recipient to be notified. Leave empty to notify
+	// all recipients.
 	Recipients []int `pulumi:"recipients"`
-	// The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+	// The reminder interval (in seconds) to resend the alarm if not
+	// resolved. Set to 0 for no reminders. The Default is 0.
 	ReminderInterval *int `pulumi:"reminderInterval"`
-	// The time interval (in seconds) the `valueThreshold` should be active before triggering an alarm.
+	// The time interval (in seconds) the `valueThreshold` should be
+	// active before triggering an alarm.
 	TimeThreshold *int `pulumi:"timeThreshold"`
 	// The alarm type, see valid options below.
 	Type string `pulumi:"type"`
-	// Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+	// Disk value threshold calculation, `fixed, percentage` of disk
+	// space remaining.
 	//
 	// Based on alarm type, different arguments are flagged as required or optional.
 	ValueCalculation *string `pulumi:"valueCalculation"`
@@ -194,15 +226,19 @@ type AlarmArgs struct {
 	MessageType pulumi.StringPtrInput
 	// Regex for which queue to check.
 	QueueRegex pulumi.StringPtrInput
-	// Identifier for recipient to be notified. Leave empty to notify all recipients.
+	// Identifier for recipient to be notified. Leave empty to notify
+	// all recipients.
 	Recipients pulumi.IntArrayInput
-	// The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+	// The reminder interval (in seconds) to resend the alarm if not
+	// resolved. Set to 0 for no reminders. The Default is 0.
 	ReminderInterval pulumi.IntPtrInput
-	// The time interval (in seconds) the `valueThreshold` should be active before triggering an alarm.
+	// The time interval (in seconds) the `valueThreshold` should be
+	// active before triggering an alarm.
 	TimeThreshold pulumi.IntPtrInput
 	// The alarm type, see valid options below.
 	Type pulumi.StringInput
-	// Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+	// Disk value threshold calculation, `fixed, percentage` of disk
+	// space remaining.
 	//
 	// Based on alarm type, different arguments are flagged as required or optional.
 	ValueCalculation pulumi.StringPtrInput
@@ -321,17 +357,20 @@ func (o AlarmOutput) QueueRegex() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Alarm) pulumi.StringPtrOutput { return v.QueueRegex }).(pulumi.StringPtrOutput)
 }
 
-// Identifier for recipient to be notified. Leave empty to notify all recipients.
+// Identifier for recipient to be notified. Leave empty to notify
+// all recipients.
 func (o AlarmOutput) Recipients() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v *Alarm) pulumi.IntArrayOutput { return v.Recipients }).(pulumi.IntArrayOutput)
 }
 
-// The reminder interval (in seconds) to resend the alarm if not resolved. Set to 0 for no reminders. The Default is 0.
+// The reminder interval (in seconds) to resend the alarm if not
+// resolved. Set to 0 for no reminders. The Default is 0.
 func (o AlarmOutput) ReminderInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Alarm) pulumi.IntPtrOutput { return v.ReminderInterval }).(pulumi.IntPtrOutput)
 }
 
-// The time interval (in seconds) the `valueThreshold` should be active before triggering an alarm.
+// The time interval (in seconds) the `valueThreshold` should be
+// active before triggering an alarm.
 func (o AlarmOutput) TimeThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Alarm) pulumi.IntPtrOutput { return v.TimeThreshold }).(pulumi.IntPtrOutput)
 }
@@ -341,7 +380,8 @@ func (o AlarmOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Alarm) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
-// Disk value threshold calculation, `fixed, percentage` of disk space remaining.
+// Disk value threshold calculation, `fixed, percentage` of disk
+// space remaining.
 //
 // Based on alarm type, different arguments are flagged as required or optional.
 func (o AlarmOutput) ValueCalculation() pulumi.StringPtrOutput {

@@ -30,16 +30,36 @@ public final class GetPluginsPlainArgs extends com.pulumi.resources.InvokeArgs {
         return this.instanceId;
     }
 
+    /**
+     * Configurable sleep time (seconds) for retries when requesting
+     * information about plugins. Default set to 10 seconds.
+     * 
+     */
     @Import(name="sleep")
     private @Nullable Integer sleep;
 
+    /**
+     * @return Configurable sleep time (seconds) for retries when requesting
+     * information about plugins. Default set to 10 seconds.
+     * 
+     */
     public Optional<Integer> sleep() {
         return Optional.ofNullable(this.sleep);
     }
 
+    /**
+     * Configurable timeout time (seconds) for retries when requesting
+     * information about plugins. Default set to 1800 seconds.
+     * 
+     */
     @Import(name="timeout")
     private @Nullable Integer timeout;
 
+    /**
+     * @return Configurable timeout time (seconds) for retries when requesting
+     * information about plugins. Default set to 1800 seconds.
+     * 
+     */
     public Optional<Integer> timeout() {
         return Optional.ofNullable(this.timeout);
     }
@@ -81,11 +101,25 @@ public final class GetPluginsPlainArgs extends com.pulumi.resources.InvokeArgs {
             return this;
         }
 
+        /**
+         * @param sleep Configurable sleep time (seconds) for retries when requesting
+         * information about plugins. Default set to 10 seconds.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sleep(@Nullable Integer sleep) {
             $.sleep = sleep;
             return this;
         }
 
+        /**
+         * @param timeout Configurable timeout time (seconds) for retries when requesting
+         * information about plugins. Default set to 1800 seconds.
+         * 
+         * @return builder
+         * 
+         */
         public Builder timeout(@Nullable Integer timeout) {
             $.timeout = timeout;
             return this;
