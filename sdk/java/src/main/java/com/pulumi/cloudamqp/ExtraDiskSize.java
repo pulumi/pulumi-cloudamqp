@@ -96,9 +96,9 @@ import javax.annotation.Nullable;
  * 
  *         // Optional, refresh nodes info after disk resize by adding dependency
  *         // to cloudamqp_extra_disk_size.resize_disk resource
- *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
- *             .instanceId(instance.id())
- *             .build());
+ *         final var nodes = instance.id().applyValue(_id -> CloudamqpFunctions.getNodes(GetNodesArgs.builder()
+ *             .instanceId(_id)
+ *             .build()));
  * 
  *     }
  * }
@@ -157,9 +157,9 @@ import javax.annotation.Nullable;
  * 
  *         // Optional, refresh nodes info after disk resize by adding dependency
  *         // to cloudamqp_extra_disk_size.resize_disk resource
- *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
- *             .instanceId(instance.id())
- *             .build());
+ *         final var nodes = instance.id().applyValue(_id -> CloudamqpFunctions.getNodes(GetNodesArgs.builder()
+ *             .instanceId(_id)
+ *             .build()));
  * 
  *     }
  * }
@@ -218,9 +218,9 @@ import javax.annotation.Nullable;
  * 
  *         // Optional, refresh nodes info after disk resize by adding dependency
  *         // to cloudamqp_extra_disk_size.resize_disk resource
- *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
- *             .instanceId(instance.id())
- *             .build());
+ *         final var nodes = instance.id().applyValue(_id -> CloudamqpFunctions.getNodes(GetNodesArgs.builder()
+ *             .instanceId(_id)
+ *             .build()));
  * 
  *     }
  * }
@@ -279,9 +279,9 @@ import javax.annotation.Nullable;
  * 
  *         // Optional, refresh nodes info after disk resize by adding dependency
  *         // to cloudamqp_extra_disk_size.resize_disk resource
- *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
- *             .instanceId(instance.id())
- *             .build());
+ *         final var nodes = instance.id().applyValue(_id -> CloudamqpFunctions.getNodes(GetNodesArgs.builder()
+ *             .instanceId(_id)
+ *             .build()));
  * 
  *     }
  * }
