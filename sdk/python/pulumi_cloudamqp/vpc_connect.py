@@ -360,6 +360,9 @@ class _VpcConnectState:
 
 
 class VpcConnect(pulumi.CustomResource):
+
+    pulumi_type = "cloudamqp:index/vpcConnect:VpcConnect"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -477,6 +477,9 @@ class _RabbitConfigurationState:
 
 
 class RabbitConfiguration(pulumi.CustomResource):
+
+    pulumi_type = "cloudamqp:index/rabbitConfiguration:RabbitConfiguration"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

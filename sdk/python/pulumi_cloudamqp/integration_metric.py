@@ -721,6 +721,9 @@ class _IntegrationMetricState:
 
 
 class IntegrationMetric(pulumi.CustomResource):
+
+    pulumi_type = "cloudamqp:index/integrationMetric:IntegrationMetric"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
