@@ -233,6 +233,9 @@ class _VpcPeeringState:
 
 
 class VpcPeering(pulumi.CustomResource):
+
+    pulumi_type = "cloudamqp:index/vpcPeering:VpcPeering"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

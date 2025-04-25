@@ -234,6 +234,9 @@ class _ExtraDiskSizeState:
 
 
 class ExtraDiskSize(pulumi.CustomResource):
+
+    pulumi_type = "cloudamqp:index/extraDiskSize:ExtraDiskSize"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

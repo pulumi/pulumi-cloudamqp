@@ -236,6 +236,9 @@ class _IntegrationAwsEventbridgeState:
 
 
 class IntegrationAwsEventbridge(pulumi.CustomResource):
+
+    pulumi_type = "cloudamqp:index/integrationAwsEventbridge:IntegrationAwsEventbridge"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

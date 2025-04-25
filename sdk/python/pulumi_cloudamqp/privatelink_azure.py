@@ -248,6 +248,9 @@ class _PrivatelinkAzureState:
 
 
 class PrivatelinkAzure(pulumi.CustomResource):
+
+    pulumi_type = "cloudamqp:index/privatelinkAzure:PrivatelinkAzure"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

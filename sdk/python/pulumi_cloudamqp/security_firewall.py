@@ -190,6 +190,9 @@ class _SecurityFirewallState:
 
 
 class SecurityFirewall(pulumi.CustomResource):
+
+    pulumi_type = "cloudamqp:index/securityFirewall:SecurityFirewall"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
