@@ -69,6 +69,9 @@ class ProviderArgs:
 
 
 class Provider(pulumi.ProviderResource):
+
+    pulumi_type = "pulumi:providers:cloudamqp"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
