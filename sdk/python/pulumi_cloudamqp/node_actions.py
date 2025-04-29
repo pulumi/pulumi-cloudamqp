@@ -143,6 +143,9 @@ class _NodeActionsState:
 
 
 class NodeActions(pulumi.CustomResource):
+
+    pulumi_type = "cloudamqp:index/nodeActions:NodeActions"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

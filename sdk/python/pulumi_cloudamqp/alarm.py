@@ -414,6 +414,9 @@ class _AlarmState:
 
 
 class Alarm(pulumi.CustomResource):
+
+    pulumi_type = "cloudamqp:index/alarm:Alarm"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

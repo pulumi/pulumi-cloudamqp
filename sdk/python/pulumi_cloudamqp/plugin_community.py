@@ -248,6 +248,9 @@ class _PluginCommunityState:
 
 
 class PluginCommunity(pulumi.CustomResource):
+
+    pulumi_type = "cloudamqp:index/pluginCommunity:PluginCommunity"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

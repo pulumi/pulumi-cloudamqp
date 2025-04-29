@@ -97,6 +97,9 @@ class _UpgradeLavinmqState:
 
 
 class UpgradeLavinmq(pulumi.CustomResource):
+
+    pulumi_type = "cloudamqp:index/upgradeLavinmq:UpgradeLavinmq"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
