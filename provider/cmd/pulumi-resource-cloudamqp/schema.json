@@ -252,6 +252,73 @@
                 }
             }
         },
+        "cloudamqp:index/getAlarmsAlarm:getAlarmsAlarm": {
+            "properties": {
+                "alarmId": {
+                    "type": "integer",
+                    "description": "The alarm identifier.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Enable/disable status of the alarm.\n"
+                },
+                "messageType": {
+                    "type": "string",
+                    "description": "Message type `(total, unacked, ready)` used by queue alarm type.\n"
+                },
+                "queueRegex": {
+                    "type": "string",
+                    "description": "Regular expression for which queue to check.\n"
+                },
+                "recipients": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "description": "Identifier for recipient to be notified.\n"
+                },
+                "reminderInterval": {
+                    "type": "integer",
+                    "description": "The reminder interval (in seconds) to resend the alarm if not resolved.\nSet to 0 for no reminders.\n"
+                },
+                "timeThreshold": {
+                    "type": "integer",
+                    "description": "The time interval (in seconds) the `value_threshold` should be active\nbefore trigger an alarm.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The alarm type to filter for. Supported\nalarm types.\n"
+                },
+                "valueCalculation": {
+                    "type": "string",
+                    "description": "Disk value threshold calculation, `(fixed, percentage)` of disk space\nremaining.\n"
+                },
+                "valueThreshold": {
+                    "type": "integer",
+                    "description": "The value threshold that triggers the alarm.\n"
+                },
+                "vhostRegex": {
+                    "type": "string",
+                    "description": "Regular expression for which vhost to check\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "enabled",
+                "messageType",
+                "queueRegex",
+                "recipients",
+                "reminderInterval",
+                "timeThreshold",
+                "valueThreshold",
+                "vhostRegex"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "cloudamqp:index/getNodesNode:getNodesNode": {
             "properties": {
                 "additionalDiskSize": {
@@ -312,6 +379,46 @@
                 "name",
                 "rabbitmqVersion",
                 "running"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "cloudamqp:index/getNotificationsRecipient:getNotificationsRecipient": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the recipient.\n"
+                },
+                "options": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Options argument (e.g. `rk` used for VictorOps routing key).\n"
+                },
+                "recipientId": {
+                    "type": "integer",
+                    "description": "The identifier for the recipient.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the recipient.\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The notification endpoint, where to send the notification.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "options",
+                "recipientId",
+                "type",
+                "value"
             ],
             "language": {
                 "nodejs": {
@@ -3597,6 +3704,55 @@
                 "type": "object"
             }
         },
+        "cloudamqp:index/getAlarms:getAlarms": {
+            "description": "Use this data source to retrieve a list of default or created alarms.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst queueAlarms = cloudamqp.getAlarms({\n    instanceId: instance.id,\n    type: \"queue\",\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nqueue_alarms = cloudamqp.get_alarms(instance_id=instance[\"id\"],\n    type=\"queue\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var queueAlarms = CloudAmqp.GetAlarms.Invoke(new()\n    {\n        InstanceId = instance.Id,\n        Type = \"queue\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.GetAlarms(ctx, \u0026cloudamqp.GetAlarmsArgs{\n\t\t\tInstanceId: instance.Id,\n\t\t\tType:       pulumi.StringRef(\"queue\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.cloudamqp.CloudamqpFunctions;\nimport com.pulumi.cloudamqp.inputs.GetAlarmsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var queueAlarms = CloudamqpFunctions.getAlarms(GetAlarmsArgs.builder()\n            .instanceId(instance.id())\n            .type(\"queue\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  queueAlarms:\n    fn::invoke:\n      function: cloudamqp:getAlarms\n      arguments:\n        instanceId: ${instance.id}\n        type: queue\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Dependency\n\nThis data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n\n## Alarm Types\n\n`cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getAlarms.\n",
+                "properties": {
+                    "instanceId": {
+                        "type": "integer",
+                        "description": "The CloudAMQP instance identifier.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The alarm type to filter for. Supported\nalarm types.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "instanceId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getAlarms.\n",
+                "properties": {
+                    "alarms": {
+                        "description": "List of alarms (see below for nested schema)\n",
+                        "items": {
+                            "$ref": "#/types/cloudamqp:index/getAlarmsAlarm:getAlarmsAlarm"
+                        },
+                        "type": "array"
+                    },
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "type": "string"
+                    },
+                    "instanceId": {
+                        "type": "integer"
+                    },
+                    "type": {
+                        "description": "The type of the alarm.\n",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "alarms",
+                    "instanceId",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
         "cloudamqp:index/getCredentials:getCredentials": {
             "description": "Use this data source to retrieve information about the credentials of the configured user in\nRabbitMQ. Information is extracted from `cloudamqp_instance.instance.url`.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst credentials = cloudamqp.getCredentials({\n    instanceId: instance.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\ncredentials = cloudamqp.get_credentials(instance_id=instance[\"id\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var credentials = CloudAmqp.GetCredentials.Invoke(new()\n    {\n        InstanceId = instance.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.GetCredentials(ctx, \u0026cloudamqp.GetCredentialsArgs{\n\t\t\tInstanceId: instance.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.cloudamqp.CloudamqpFunctions;\nimport com.pulumi.cloudamqp.inputs.GetCredentialsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var credentials = CloudamqpFunctions.getCredentials(GetCredentialsArgs.builder()\n            .instanceId(instance.id())\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  credentials:\n    fn::invoke:\n      function: cloudamqp:getCredentials\n      arguments:\n        instanceId: ${instance.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Dependency\n\nThis data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n",
             "inputs": {
@@ -3870,6 +4026,47 @@
                     "instanceId",
                     "type",
                     "value",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
+        "cloudamqp:index/getNotifications:getNotifications": {
+            "description": "Use this data source to retrieve information about all notification recipients. Each recipient will\nreceive notifications assigned to an alarm that has triggered.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst defaultRecipient = cloudamqp.getNotifications({\n    instanceId: instance.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\ndefault_recipient = cloudamqp.get_notifications(instance_id=instance[\"id\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var defaultRecipient = CloudAmqp.GetNotifications.Invoke(new()\n    {\n        InstanceId = instance.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.GetNotifications(ctx, \u0026cloudamqp.GetNotificationsArgs{\n\t\t\tInstanceId: instance.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.cloudamqp.CloudamqpFunctions;\nimport com.pulumi.cloudamqp.inputs.GetNotificationsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var defaultRecipient = CloudamqpFunctions.getNotifications(GetNotificationsArgs.builder()\n            .instanceId(instance.id())\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  defaultRecipient:\n    fn::invoke:\n      function: cloudamqp:getNotifications\n      arguments:\n        instanceId: ${instance.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Dependency\n\nThis data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getNotifications.\n",
+                "properties": {
+                    "instanceId": {
+                        "type": "integer",
+                        "description": "The CloudAMQP instance identifier.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "instanceId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getNotifications.\n",
+                "properties": {
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "type": "string"
+                    },
+                    "instanceId": {
+                        "type": "integer"
+                    },
+                    "recipients": {
+                        "description": "List of alarms (see below for nested schema)\n",
+                        "items": {
+                            "$ref": "#/types/cloudamqp:index/getNotificationsRecipient:getNotificationsRecipient"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "instanceId",
+                    "recipients",
                     "id"
                 ],
                 "type": "object"
