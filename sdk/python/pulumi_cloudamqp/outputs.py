@@ -22,7 +22,9 @@ __all__ = [
     'SecurityFirewallRule',
     'GetAccountInstanceResult',
     'GetAccountVpcsVpcResult',
+    'GetAlarmsAlarmResult',
     'GetNodesNodeResult',
+    'GetNotificationsRecipientResult',
     'GetPluginsCommunityPluginResult',
     'GetPluginsPluginResult',
 ]
@@ -443,6 +445,145 @@ class GetAccountVpcsVpcResult(dict):
 
 
 @pulumi.output_type
+class GetAlarmsAlarmResult(dict):
+    def __init__(__self__, *,
+                 enabled: builtins.bool,
+                 message_type: builtins.str,
+                 queue_regex: builtins.str,
+                 recipients: Sequence[builtins.int],
+                 reminder_interval: builtins.int,
+                 time_threshold: builtins.int,
+                 value_threshold: builtins.int,
+                 vhost_regex: builtins.str,
+                 alarm_id: Optional[builtins.int] = None,
+                 type: Optional[builtins.str] = None,
+                 value_calculation: Optional[builtins.str] = None):
+        """
+        :param builtins.bool enabled: Enable/disable status of the alarm.
+        :param builtins.str message_type: Message type `(total, unacked, ready)` used by queue alarm type.
+        :param builtins.str queue_regex: Regular expression for which queue to check.
+        :param Sequence[builtins.int] recipients: Identifier for recipient to be notified.
+        :param builtins.int reminder_interval: The reminder interval (in seconds) to resend the alarm if not resolved.
+               Set to 0 for no reminders.
+        :param builtins.int time_threshold: The time interval (in seconds) the `value_threshold` should be active
+               before trigger an alarm.
+        :param builtins.int value_threshold: The value threshold that triggers the alarm.
+        :param builtins.str vhost_regex: Regular expression for which vhost to check
+        :param builtins.int alarm_id: The alarm identifier.
+        :param builtins.str type: The alarm type to filter for. Supported
+               alarm types.
+        :param builtins.str value_calculation: Disk value threshold calculation, `(fixed, percentage)` of disk space
+               remaining.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "message_type", message_type)
+        pulumi.set(__self__, "queue_regex", queue_regex)
+        pulumi.set(__self__, "recipients", recipients)
+        pulumi.set(__self__, "reminder_interval", reminder_interval)
+        pulumi.set(__self__, "time_threshold", time_threshold)
+        pulumi.set(__self__, "value_threshold", value_threshold)
+        pulumi.set(__self__, "vhost_regex", vhost_regex)
+        if alarm_id is not None:
+            pulumi.set(__self__, "alarm_id", alarm_id)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if value_calculation is not None:
+            pulumi.set(__self__, "value_calculation", value_calculation)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> builtins.bool:
+        """
+        Enable/disable status of the alarm.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="messageType")
+    def message_type(self) -> builtins.str:
+        """
+        Message type `(total, unacked, ready)` used by queue alarm type.
+        """
+        return pulumi.get(self, "message_type")
+
+    @property
+    @pulumi.getter(name="queueRegex")
+    def queue_regex(self) -> builtins.str:
+        """
+        Regular expression for which queue to check.
+        """
+        return pulumi.get(self, "queue_regex")
+
+    @property
+    @pulumi.getter
+    def recipients(self) -> Sequence[builtins.int]:
+        """
+        Identifier for recipient to be notified.
+        """
+        return pulumi.get(self, "recipients")
+
+    @property
+    @pulumi.getter(name="reminderInterval")
+    def reminder_interval(self) -> builtins.int:
+        """
+        The reminder interval (in seconds) to resend the alarm if not resolved.
+        Set to 0 for no reminders.
+        """
+        return pulumi.get(self, "reminder_interval")
+
+    @property
+    @pulumi.getter(name="timeThreshold")
+    def time_threshold(self) -> builtins.int:
+        """
+        The time interval (in seconds) the `value_threshold` should be active
+        before trigger an alarm.
+        """
+        return pulumi.get(self, "time_threshold")
+
+    @property
+    @pulumi.getter(name="valueThreshold")
+    def value_threshold(self) -> builtins.int:
+        """
+        The value threshold that triggers the alarm.
+        """
+        return pulumi.get(self, "value_threshold")
+
+    @property
+    @pulumi.getter(name="vhostRegex")
+    def vhost_regex(self) -> builtins.str:
+        """
+        Regular expression for which vhost to check
+        """
+        return pulumi.get(self, "vhost_regex")
+
+    @property
+    @pulumi.getter(name="alarmId")
+    def alarm_id(self) -> Optional[builtins.int]:
+        """
+        The alarm identifier.
+        """
+        return pulumi.get(self, "alarm_id")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[builtins.str]:
+        """
+        The alarm type to filter for. Supported
+        alarm types.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="valueCalculation")
+    def value_calculation(self) -> Optional[builtins.str]:
+        """
+        Disk value threshold calculation, `(fixed, percentage)` of disk space
+        remaining.
+        """
+        return pulumi.get(self, "value_calculation")
+
+
+@pulumi.output_type
 class GetNodesNodeResult(dict):
     def __init__(__self__, *,
                  additional_disk_size: builtins.int,
@@ -568,6 +709,68 @@ class GetNodesNodeResult(dict):
         Is the node running?
         """
         return pulumi.get(self, "running")
+
+
+@pulumi.output_type
+class GetNotificationsRecipientResult(dict):
+    def __init__(__self__, *,
+                 name: builtins.str,
+                 options: Mapping[str, builtins.str],
+                 recipient_id: builtins.int,
+                 type: builtins.str,
+                 value: builtins.str):
+        """
+        :param builtins.str name: The name of the recipient.
+        :param Mapping[str, builtins.str] options: Options argument (e.g. `rk` used for VictorOps routing key).
+        :param builtins.int recipient_id: The identifier for the recipient.
+        :param builtins.str type: The type of the recipient.
+        :param builtins.str value: The notification endpoint, where to send the notification.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "options", options)
+        pulumi.set(__self__, "recipient_id", recipient_id)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> builtins.str:
+        """
+        The name of the recipient.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def options(self) -> Mapping[str, builtins.str]:
+        """
+        Options argument (e.g. `rk` used for VictorOps routing key).
+        """
+        return pulumi.get(self, "options")
+
+    @property
+    @pulumi.getter(name="recipientId")
+    def recipient_id(self) -> builtins.int:
+        """
+        The identifier for the recipient.
+        """
+        return pulumi.get(self, "recipient_id")
+
+    @property
+    @pulumi.getter
+    def type(self) -> builtins.str:
+        """
+        The type of the recipient.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def value(self) -> builtins.str:
+        """
+        The notification endpoint, where to send the notification.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type

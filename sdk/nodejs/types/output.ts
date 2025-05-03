@@ -70,6 +70,57 @@ export interface GetAccountVpcsVpc {
     vpcName: string;
 }
 
+export interface GetAlarmsAlarm {
+    /**
+     * The alarm identifier.
+     */
+    alarmId?: number;
+    /**
+     * Enable/disable status of the alarm.
+     */
+    enabled: boolean;
+    /**
+     * Message type `(total, unacked, ready)` used by queue alarm type.
+     */
+    messageType: string;
+    /**
+     * Regular expression for which queue to check.
+     */
+    queueRegex: string;
+    /**
+     * Identifier for recipient to be notified.
+     */
+    recipients: number[];
+    /**
+     * The reminder interval (in seconds) to resend the alarm if not resolved.
+     * Set to 0 for no reminders.
+     */
+    reminderInterval: number;
+    /**
+     * The time interval (in seconds) the `valueThreshold` should be active
+     * before trigger an alarm.
+     */
+    timeThreshold: number;
+    /**
+     * The alarm type to filter for. Supported
+     * alarm types.
+     */
+    type?: string;
+    /**
+     * Disk value threshold calculation, `(fixed, percentage)` of disk space
+     * remaining.
+     */
+    valueCalculation?: string;
+    /**
+     * The value threshold that triggers the alarm.
+     */
+    valueThreshold: number;
+    /**
+     * Regular expression for which vhost to check
+     */
+    vhostRegex: string;
+}
+
 export interface GetNodesNode {
     /**
      * Additional added disk size
@@ -115,6 +166,29 @@ export interface GetNodesNode {
      * Is the node running?
      */
     running: boolean;
+}
+
+export interface GetNotificationsRecipient {
+    /**
+     * The name of the recipient.
+     */
+    name: string;
+    /**
+     * Options argument (e.g. `rk` used for VictorOps routing key).
+     */
+    options: {[key: string]: string};
+    /**
+     * The identifier for the recipient.
+     */
+    recipientId: number;
+    /**
+     * The type of the recipient.
+     */
+    type: string;
+    /**
+     * The notification endpoint, where to send the notification.
+     */
+    value: string;
 }
 
 export interface GetPluginsCommunityPlugin {

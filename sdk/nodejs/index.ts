@@ -40,6 +40,11 @@ export const getAlarm: typeof import("./getAlarm").getAlarm = null as any;
 export const getAlarmOutput: typeof import("./getAlarm").getAlarmOutput = null as any;
 utilities.lazyLoad(exports, ["getAlarm","getAlarmOutput"], () => require("./getAlarm"));
 
+export { GetAlarmsArgs, GetAlarmsResult, GetAlarmsOutputArgs } from "./getAlarms";
+export const getAlarms: typeof import("./getAlarms").getAlarms = null as any;
+export const getAlarmsOutput: typeof import("./getAlarms").getAlarmsOutput = null as any;
+utilities.lazyLoad(exports, ["getAlarms","getAlarmsOutput"], () => require("./getAlarms"));
+
 export { GetCredentialsArgs, GetCredentialsResult, GetCredentialsOutputArgs } from "./getCredentials";
 export const getCredentials: typeof import("./getCredentials").getCredentials = null as any;
 export const getCredentialsOutput: typeof import("./getCredentials").getCredentialsOutput = null as any;
@@ -59,6 +64,11 @@ export { GetNotificationArgs, GetNotificationResult, GetNotificationOutputArgs }
 export const getNotification: typeof import("./getNotification").getNotification = null as any;
 export const getNotificationOutput: typeof import("./getNotification").getNotificationOutput = null as any;
 utilities.lazyLoad(exports, ["getNotification","getNotificationOutput"], () => require("./getNotification"));
+
+export { GetNotificationsArgs, GetNotificationsResult, GetNotificationsOutputArgs } from "./getNotifications";
+export const getNotifications: typeof import("./getNotifications").getNotifications = null as any;
+export const getNotificationsOutput: typeof import("./getNotifications").getNotificationsOutput = null as any;
+utilities.lazyLoad(exports, ["getNotifications","getNotificationsOutput"], () => require("./getNotifications"));
 
 export { GetPluginsArgs, GetPluginsResult, GetPluginsOutputArgs } from "./getPlugins";
 export const getPlugins: typeof import("./getPlugins").getPlugins = null as any;

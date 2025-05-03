@@ -6,6 +6,8 @@ package com.pulumi.cloudamqp;
 import com.pulumi.cloudamqp.Utilities;
 import com.pulumi.cloudamqp.inputs.GetAlarmArgs;
 import com.pulumi.cloudamqp.inputs.GetAlarmPlainArgs;
+import com.pulumi.cloudamqp.inputs.GetAlarmsArgs;
+import com.pulumi.cloudamqp.inputs.GetAlarmsPlainArgs;
 import com.pulumi.cloudamqp.inputs.GetCredentialsArgs;
 import com.pulumi.cloudamqp.inputs.GetCredentialsPlainArgs;
 import com.pulumi.cloudamqp.inputs.GetInstanceArgs;
@@ -14,6 +16,8 @@ import com.pulumi.cloudamqp.inputs.GetNodesArgs;
 import com.pulumi.cloudamqp.inputs.GetNodesPlainArgs;
 import com.pulumi.cloudamqp.inputs.GetNotificationArgs;
 import com.pulumi.cloudamqp.inputs.GetNotificationPlainArgs;
+import com.pulumi.cloudamqp.inputs.GetNotificationsArgs;
+import com.pulumi.cloudamqp.inputs.GetNotificationsPlainArgs;
 import com.pulumi.cloudamqp.inputs.GetPluginsArgs;
 import com.pulumi.cloudamqp.inputs.GetPluginsCommunityArgs;
 import com.pulumi.cloudamqp.inputs.GetPluginsCommunityPlainArgs;
@@ -27,10 +31,12 @@ import com.pulumi.cloudamqp.inputs.GetVpcInfoPlainArgs;
 import com.pulumi.cloudamqp.outputs.GetAccountResult;
 import com.pulumi.cloudamqp.outputs.GetAccountVpcsResult;
 import com.pulumi.cloudamqp.outputs.GetAlarmResult;
+import com.pulumi.cloudamqp.outputs.GetAlarmsResult;
 import com.pulumi.cloudamqp.outputs.GetCredentialsResult;
 import com.pulumi.cloudamqp.outputs.GetInstanceResult;
 import com.pulumi.cloudamqp.outputs.GetNodesResult;
 import com.pulumi.cloudamqp.outputs.GetNotificationResult;
+import com.pulumi.cloudamqp.outputs.GetNotificationsResult;
 import com.pulumi.cloudamqp.outputs.GetPluginsCommunityResult;
 import com.pulumi.cloudamqp.outputs.GetPluginsResult;
 import com.pulumi.cloudamqp.outputs.GetUpgradableVersionsResult;
@@ -507,6 +513,261 @@ public final class CloudamqpFunctions {
      */
     public static CompletableFuture<GetAlarmResult> getAlarmPlain(GetAlarmPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getAlarm:getAlarm", TypeShape.of(GetAlarmResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to retrieve a list of default or created alarms.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetAlarmsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var queueAlarms = CloudamqpFunctions.getAlarms(GetAlarmsArgs.builder()
+     *             .instanceId(instance.id())
+     *             .type("queue")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Dependency
+     * 
+     * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * ## Alarm Types
+     * 
+     * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+     * 
+     */
+    public static Output<GetAlarmsResult> getAlarms(GetAlarmsArgs args) {
+        return getAlarms(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to retrieve a list of default or created alarms.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetAlarmsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var queueAlarms = CloudamqpFunctions.getAlarms(GetAlarmsArgs.builder()
+     *             .instanceId(instance.id())
+     *             .type("queue")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Dependency
+     * 
+     * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * ## Alarm Types
+     * 
+     * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+     * 
+     */
+    public static CompletableFuture<GetAlarmsResult> getAlarmsPlain(GetAlarmsPlainArgs args) {
+        return getAlarmsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to retrieve a list of default or created alarms.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetAlarmsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var queueAlarms = CloudamqpFunctions.getAlarms(GetAlarmsArgs.builder()
+     *             .instanceId(instance.id())
+     *             .type("queue")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Dependency
+     * 
+     * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * ## Alarm Types
+     * 
+     * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+     * 
+     */
+    public static Output<GetAlarmsResult> getAlarms(GetAlarmsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("cloudamqp:index/getAlarms:getAlarms", TypeShape.of(GetAlarmsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to retrieve a list of default or created alarms.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetAlarmsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var queueAlarms = CloudamqpFunctions.getAlarms(GetAlarmsArgs.builder()
+     *             .instanceId(instance.id())
+     *             .type("queue")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Dependency
+     * 
+     * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * ## Alarm Types
+     * 
+     * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+     * 
+     */
+    public static Output<GetAlarmsResult> getAlarms(GetAlarmsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("cloudamqp:index/getAlarms:getAlarms", TypeShape.of(GetAlarmsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to retrieve a list of default or created alarms.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetAlarmsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var queueAlarms = CloudamqpFunctions.getAlarms(GetAlarmsArgs.builder()
+     *             .instanceId(instance.id())
+     *             .type("queue")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Dependency
+     * 
+     * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * ## Alarm Types
+     * 
+     * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+     * 
+     */
+    public static CompletableFuture<GetAlarmsResult> getAlarmsPlain(GetAlarmsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("cloudamqp:index/getAlarms:getAlarms", TypeShape.of(GetAlarmsResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Use this data source to retrieve information about the credentials of the configured user in
@@ -1257,6 +1518,241 @@ public final class CloudamqpFunctions {
      */
     public static CompletableFuture<GetNotificationResult> getNotificationPlain(GetNotificationPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getNotification:getNotification", TypeShape.of(GetNotificationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to retrieve information about all notification recipients. Each recipient will
+     * receive notifications assigned to an alarm that has triggered.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetNotificationsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var defaultRecipient = CloudamqpFunctions.getNotifications(GetNotificationsArgs.builder()
+     *             .instanceId(instance.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Dependency
+     * 
+     * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+     * 
+     */
+    public static Output<GetNotificationsResult> getNotifications(GetNotificationsArgs args) {
+        return getNotifications(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to retrieve information about all notification recipients. Each recipient will
+     * receive notifications assigned to an alarm that has triggered.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetNotificationsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var defaultRecipient = CloudamqpFunctions.getNotifications(GetNotificationsArgs.builder()
+     *             .instanceId(instance.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Dependency
+     * 
+     * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+     * 
+     */
+    public static CompletableFuture<GetNotificationsResult> getNotificationsPlain(GetNotificationsPlainArgs args) {
+        return getNotificationsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to retrieve information about all notification recipients. Each recipient will
+     * receive notifications assigned to an alarm that has triggered.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetNotificationsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var defaultRecipient = CloudamqpFunctions.getNotifications(GetNotificationsArgs.builder()
+     *             .instanceId(instance.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Dependency
+     * 
+     * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+     * 
+     */
+    public static Output<GetNotificationsResult> getNotifications(GetNotificationsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("cloudamqp:index/getNotifications:getNotifications", TypeShape.of(GetNotificationsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to retrieve information about all notification recipients. Each recipient will
+     * receive notifications assigned to an alarm that has triggered.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetNotificationsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var defaultRecipient = CloudamqpFunctions.getNotifications(GetNotificationsArgs.builder()
+     *             .instanceId(instance.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Dependency
+     * 
+     * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+     * 
+     */
+    public static Output<GetNotificationsResult> getNotifications(GetNotificationsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("cloudamqp:index/getNotifications:getNotifications", TypeShape.of(GetNotificationsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to retrieve information about all notification recipients. Each recipient will
+     * receive notifications assigned to an alarm that has triggered.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetNotificationsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var defaultRecipient = CloudamqpFunctions.getNotifications(GetNotificationsArgs.builder()
+     *             .instanceId(instance.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Dependency
+     * 
+     * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+     * 
+     */
+    public static CompletableFuture<GetNotificationsResult> getNotificationsPlain(GetNotificationsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("cloudamqp:index/getNotifications:getNotifications", TypeShape.of(GetNotificationsResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Use this data source to retrieve information about installed and available plugins for the CloudAMQP
