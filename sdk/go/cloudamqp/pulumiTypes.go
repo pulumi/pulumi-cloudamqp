@@ -850,6 +850,205 @@ func (o GetAccountVpcsVpcArrayOutput) Index(i pulumi.IntInput) GetAccountVpcsVpc
 	}).(GetAccountVpcsVpcOutput)
 }
 
+type GetAlarmsAlarm struct {
+	// The alarm identifier.
+	AlarmId *int `pulumi:"alarmId"`
+	// Enable/disable status of the alarm.
+	Enabled bool `pulumi:"enabled"`
+	// Message type `(total, unacked, ready)` used by queue alarm type.
+	MessageType string `pulumi:"messageType"`
+	// Regular expression for which queue to check.
+	QueueRegex string `pulumi:"queueRegex"`
+	// Identifier for recipient to be notified.
+	Recipients []int `pulumi:"recipients"`
+	// The reminder interval (in seconds) to resend the alarm if not resolved.
+	// Set to 0 for no reminders.
+	ReminderInterval int `pulumi:"reminderInterval"`
+	// The time interval (in seconds) the `valueThreshold` should be active
+	// before trigger an alarm.
+	TimeThreshold int `pulumi:"timeThreshold"`
+	// The alarm type to filter for. Supported
+	// alarm types.
+	Type *string `pulumi:"type"`
+	// Disk value threshold calculation, `(fixed, percentage)` of disk space
+	// remaining.
+	ValueCalculation *string `pulumi:"valueCalculation"`
+	// The value threshold that triggers the alarm.
+	ValueThreshold int `pulumi:"valueThreshold"`
+	// Regular expression for which vhost to check
+	VhostRegex string `pulumi:"vhostRegex"`
+}
+
+// GetAlarmsAlarmInput is an input type that accepts GetAlarmsAlarmArgs and GetAlarmsAlarmOutput values.
+// You can construct a concrete instance of `GetAlarmsAlarmInput` via:
+//
+//	GetAlarmsAlarmArgs{...}
+type GetAlarmsAlarmInput interface {
+	pulumi.Input
+
+	ToGetAlarmsAlarmOutput() GetAlarmsAlarmOutput
+	ToGetAlarmsAlarmOutputWithContext(context.Context) GetAlarmsAlarmOutput
+}
+
+type GetAlarmsAlarmArgs struct {
+	// The alarm identifier.
+	AlarmId pulumi.IntPtrInput `pulumi:"alarmId"`
+	// Enable/disable status of the alarm.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// Message type `(total, unacked, ready)` used by queue alarm type.
+	MessageType pulumi.StringInput `pulumi:"messageType"`
+	// Regular expression for which queue to check.
+	QueueRegex pulumi.StringInput `pulumi:"queueRegex"`
+	// Identifier for recipient to be notified.
+	Recipients pulumi.IntArrayInput `pulumi:"recipients"`
+	// The reminder interval (in seconds) to resend the alarm if not resolved.
+	// Set to 0 for no reminders.
+	ReminderInterval pulumi.IntInput `pulumi:"reminderInterval"`
+	// The time interval (in seconds) the `valueThreshold` should be active
+	// before trigger an alarm.
+	TimeThreshold pulumi.IntInput `pulumi:"timeThreshold"`
+	// The alarm type to filter for. Supported
+	// alarm types.
+	Type pulumi.StringPtrInput `pulumi:"type"`
+	// Disk value threshold calculation, `(fixed, percentage)` of disk space
+	// remaining.
+	ValueCalculation pulumi.StringPtrInput `pulumi:"valueCalculation"`
+	// The value threshold that triggers the alarm.
+	ValueThreshold pulumi.IntInput `pulumi:"valueThreshold"`
+	// Regular expression for which vhost to check
+	VhostRegex pulumi.StringInput `pulumi:"vhostRegex"`
+}
+
+func (GetAlarmsAlarmArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlarmsAlarm)(nil)).Elem()
+}
+
+func (i GetAlarmsAlarmArgs) ToGetAlarmsAlarmOutput() GetAlarmsAlarmOutput {
+	return i.ToGetAlarmsAlarmOutputWithContext(context.Background())
+}
+
+func (i GetAlarmsAlarmArgs) ToGetAlarmsAlarmOutputWithContext(ctx context.Context) GetAlarmsAlarmOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlarmsAlarmOutput)
+}
+
+// GetAlarmsAlarmArrayInput is an input type that accepts GetAlarmsAlarmArray and GetAlarmsAlarmArrayOutput values.
+// You can construct a concrete instance of `GetAlarmsAlarmArrayInput` via:
+//
+//	GetAlarmsAlarmArray{ GetAlarmsAlarmArgs{...} }
+type GetAlarmsAlarmArrayInput interface {
+	pulumi.Input
+
+	ToGetAlarmsAlarmArrayOutput() GetAlarmsAlarmArrayOutput
+	ToGetAlarmsAlarmArrayOutputWithContext(context.Context) GetAlarmsAlarmArrayOutput
+}
+
+type GetAlarmsAlarmArray []GetAlarmsAlarmInput
+
+func (GetAlarmsAlarmArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlarmsAlarm)(nil)).Elem()
+}
+
+func (i GetAlarmsAlarmArray) ToGetAlarmsAlarmArrayOutput() GetAlarmsAlarmArrayOutput {
+	return i.ToGetAlarmsAlarmArrayOutputWithContext(context.Background())
+}
+
+func (i GetAlarmsAlarmArray) ToGetAlarmsAlarmArrayOutputWithContext(ctx context.Context) GetAlarmsAlarmArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlarmsAlarmArrayOutput)
+}
+
+type GetAlarmsAlarmOutput struct{ *pulumi.OutputState }
+
+func (GetAlarmsAlarmOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlarmsAlarm)(nil)).Elem()
+}
+
+func (o GetAlarmsAlarmOutput) ToGetAlarmsAlarmOutput() GetAlarmsAlarmOutput {
+	return o
+}
+
+func (o GetAlarmsAlarmOutput) ToGetAlarmsAlarmOutputWithContext(ctx context.Context) GetAlarmsAlarmOutput {
+	return o
+}
+
+// The alarm identifier.
+func (o GetAlarmsAlarmOutput) AlarmId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetAlarmsAlarm) *int { return v.AlarmId }).(pulumi.IntPtrOutput)
+}
+
+// Enable/disable status of the alarm.
+func (o GetAlarmsAlarmOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAlarmsAlarm) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// Message type `(total, unacked, ready)` used by queue alarm type.
+func (o GetAlarmsAlarmOutput) MessageType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmsAlarm) string { return v.MessageType }).(pulumi.StringOutput)
+}
+
+// Regular expression for which queue to check.
+func (o GetAlarmsAlarmOutput) QueueRegex() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmsAlarm) string { return v.QueueRegex }).(pulumi.StringOutput)
+}
+
+// Identifier for recipient to be notified.
+func (o GetAlarmsAlarmOutput) Recipients() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetAlarmsAlarm) []int { return v.Recipients }).(pulumi.IntArrayOutput)
+}
+
+// The reminder interval (in seconds) to resend the alarm if not resolved.
+// Set to 0 for no reminders.
+func (o GetAlarmsAlarmOutput) ReminderInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAlarmsAlarm) int { return v.ReminderInterval }).(pulumi.IntOutput)
+}
+
+// The time interval (in seconds) the `valueThreshold` should be active
+// before trigger an alarm.
+func (o GetAlarmsAlarmOutput) TimeThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAlarmsAlarm) int { return v.TimeThreshold }).(pulumi.IntOutput)
+}
+
+// The alarm type to filter for. Supported
+// alarm types.
+func (o GetAlarmsAlarmOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAlarmsAlarm) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+// Disk value threshold calculation, `(fixed, percentage)` of disk space
+// remaining.
+func (o GetAlarmsAlarmOutput) ValueCalculation() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAlarmsAlarm) *string { return v.ValueCalculation }).(pulumi.StringPtrOutput)
+}
+
+// The value threshold that triggers the alarm.
+func (o GetAlarmsAlarmOutput) ValueThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAlarmsAlarm) int { return v.ValueThreshold }).(pulumi.IntOutput)
+}
+
+// Regular expression for which vhost to check
+func (o GetAlarmsAlarmOutput) VhostRegex() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmsAlarm) string { return v.VhostRegex }).(pulumi.StringOutput)
+}
+
+type GetAlarmsAlarmArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAlarmsAlarmArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlarmsAlarm)(nil)).Elem()
+}
+
+func (o GetAlarmsAlarmArrayOutput) ToGetAlarmsAlarmArrayOutput() GetAlarmsAlarmArrayOutput {
+	return o
+}
+
+func (o GetAlarmsAlarmArrayOutput) ToGetAlarmsAlarmArrayOutputWithContext(ctx context.Context) GetAlarmsAlarmArrayOutput {
+	return o
+}
+
+func (o GetAlarmsAlarmArrayOutput) Index(i pulumi.IntInput) GetAlarmsAlarmOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAlarmsAlarm {
+		return vs[0].([]GetAlarmsAlarm)[vs[1].(int)]
+	}).(GetAlarmsAlarmOutput)
+}
+
 type GetNodesNode struct {
 	// Additional added disk size
 	AdditionalDiskSize int `pulumi:"additionalDiskSize"`
@@ -1035,6 +1234,139 @@ func (o GetNodesNodeArrayOutput) Index(i pulumi.IntInput) GetNodesNodeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodesNode {
 		return vs[0].([]GetNodesNode)[vs[1].(int)]
 	}).(GetNodesNodeOutput)
+}
+
+type GetNotificationsRecipient struct {
+	// The name of the recipient.
+	Name string `pulumi:"name"`
+	// Options argument (e.g. `rk` used for VictorOps routing key).
+	Options map[string]string `pulumi:"options"`
+	// The identifier for the recipient.
+	RecipientId int `pulumi:"recipientId"`
+	// The type of the recipient.
+	Type string `pulumi:"type"`
+	// The notification endpoint, where to send the notification.
+	Value string `pulumi:"value"`
+}
+
+// GetNotificationsRecipientInput is an input type that accepts GetNotificationsRecipientArgs and GetNotificationsRecipientOutput values.
+// You can construct a concrete instance of `GetNotificationsRecipientInput` via:
+//
+//	GetNotificationsRecipientArgs{...}
+type GetNotificationsRecipientInput interface {
+	pulumi.Input
+
+	ToGetNotificationsRecipientOutput() GetNotificationsRecipientOutput
+	ToGetNotificationsRecipientOutputWithContext(context.Context) GetNotificationsRecipientOutput
+}
+
+type GetNotificationsRecipientArgs struct {
+	// The name of the recipient.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Options argument (e.g. `rk` used for VictorOps routing key).
+	Options pulumi.StringMapInput `pulumi:"options"`
+	// The identifier for the recipient.
+	RecipientId pulumi.IntInput `pulumi:"recipientId"`
+	// The type of the recipient.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The notification endpoint, where to send the notification.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetNotificationsRecipientArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNotificationsRecipient)(nil)).Elem()
+}
+
+func (i GetNotificationsRecipientArgs) ToGetNotificationsRecipientOutput() GetNotificationsRecipientOutput {
+	return i.ToGetNotificationsRecipientOutputWithContext(context.Background())
+}
+
+func (i GetNotificationsRecipientArgs) ToGetNotificationsRecipientOutputWithContext(ctx context.Context) GetNotificationsRecipientOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNotificationsRecipientOutput)
+}
+
+// GetNotificationsRecipientArrayInput is an input type that accepts GetNotificationsRecipientArray and GetNotificationsRecipientArrayOutput values.
+// You can construct a concrete instance of `GetNotificationsRecipientArrayInput` via:
+//
+//	GetNotificationsRecipientArray{ GetNotificationsRecipientArgs{...} }
+type GetNotificationsRecipientArrayInput interface {
+	pulumi.Input
+
+	ToGetNotificationsRecipientArrayOutput() GetNotificationsRecipientArrayOutput
+	ToGetNotificationsRecipientArrayOutputWithContext(context.Context) GetNotificationsRecipientArrayOutput
+}
+
+type GetNotificationsRecipientArray []GetNotificationsRecipientInput
+
+func (GetNotificationsRecipientArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNotificationsRecipient)(nil)).Elem()
+}
+
+func (i GetNotificationsRecipientArray) ToGetNotificationsRecipientArrayOutput() GetNotificationsRecipientArrayOutput {
+	return i.ToGetNotificationsRecipientArrayOutputWithContext(context.Background())
+}
+
+func (i GetNotificationsRecipientArray) ToGetNotificationsRecipientArrayOutputWithContext(ctx context.Context) GetNotificationsRecipientArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNotificationsRecipientArrayOutput)
+}
+
+type GetNotificationsRecipientOutput struct{ *pulumi.OutputState }
+
+func (GetNotificationsRecipientOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNotificationsRecipient)(nil)).Elem()
+}
+
+func (o GetNotificationsRecipientOutput) ToGetNotificationsRecipientOutput() GetNotificationsRecipientOutput {
+	return o
+}
+
+func (o GetNotificationsRecipientOutput) ToGetNotificationsRecipientOutputWithContext(ctx context.Context) GetNotificationsRecipientOutput {
+	return o
+}
+
+// The name of the recipient.
+func (o GetNotificationsRecipientOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationsRecipient) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Options argument (e.g. `rk` used for VictorOps routing key).
+func (o GetNotificationsRecipientOutput) Options() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetNotificationsRecipient) map[string]string { return v.Options }).(pulumi.StringMapOutput)
+}
+
+// The identifier for the recipient.
+func (o GetNotificationsRecipientOutput) RecipientId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNotificationsRecipient) int { return v.RecipientId }).(pulumi.IntOutput)
+}
+
+// The type of the recipient.
+func (o GetNotificationsRecipientOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationsRecipient) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The notification endpoint, where to send the notification.
+func (o GetNotificationsRecipientOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationsRecipient) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetNotificationsRecipientArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNotificationsRecipientArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNotificationsRecipient)(nil)).Elem()
+}
+
+func (o GetNotificationsRecipientArrayOutput) ToGetNotificationsRecipientArrayOutput() GetNotificationsRecipientArrayOutput {
+	return o
+}
+
+func (o GetNotificationsRecipientArrayOutput) ToGetNotificationsRecipientArrayOutputWithContext(ctx context.Context) GetNotificationsRecipientArrayOutput {
+	return o
+}
+
+func (o GetNotificationsRecipientArrayOutput) Index(i pulumi.IntInput) GetNotificationsRecipientOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNotificationsRecipient {
+		return vs[0].([]GetNotificationsRecipient)[vs[1].(int)]
+	}).(GetNotificationsRecipientOutput)
 }
 
 type GetPluginsCommunityPlugin struct {
@@ -1289,8 +1621,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountInstanceArrayInput)(nil)).Elem(), GetAccountInstanceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountVpcsVpcInput)(nil)).Elem(), GetAccountVpcsVpcArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountVpcsVpcArrayInput)(nil)).Elem(), GetAccountVpcsVpcArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlarmsAlarmInput)(nil)).Elem(), GetAlarmsAlarmArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlarmsAlarmArrayInput)(nil)).Elem(), GetAlarmsAlarmArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeInput)(nil)).Elem(), GetNodesNodeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeArrayInput)(nil)).Elem(), GetNodesNodeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNotificationsRecipientInput)(nil)).Elem(), GetNotificationsRecipientArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNotificationsRecipientArrayInput)(nil)).Elem(), GetNotificationsRecipientArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPluginsCommunityPluginInput)(nil)).Elem(), GetPluginsCommunityPluginArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPluginsCommunityPluginArrayInput)(nil)).Elem(), GetPluginsCommunityPluginArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPluginsPluginInput)(nil)).Elem(), GetPluginsPluginArgs{})
@@ -1307,8 +1643,12 @@ func init() {
 	pulumi.RegisterOutputType(GetAccountInstanceArrayOutput{})
 	pulumi.RegisterOutputType(GetAccountVpcsVpcOutput{})
 	pulumi.RegisterOutputType(GetAccountVpcsVpcArrayOutput{})
+	pulumi.RegisterOutputType(GetAlarmsAlarmOutput{})
+	pulumi.RegisterOutputType(GetAlarmsAlarmArrayOutput{})
 	pulumi.RegisterOutputType(GetNodesNodeOutput{})
 	pulumi.RegisterOutputType(GetNodesNodeArrayOutput{})
+	pulumi.RegisterOutputType(GetNotificationsRecipientOutput{})
+	pulumi.RegisterOutputType(GetNotificationsRecipientArrayOutput{})
 	pulumi.RegisterOutputType(GetPluginsCommunityPluginOutput{})
 	pulumi.RegisterOutputType(GetPluginsCommunityPluginArrayOutput{})
 	pulumi.RegisterOutputType(GetPluginsPluginOutput{})

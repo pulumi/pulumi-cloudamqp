@@ -13,10 +13,12 @@ from .extra_disk_size import *
 from .get_account import *
 from .get_account_vpcs import *
 from .get_alarm import *
+from .get_alarms import *
 from .get_credentials import *
 from .get_instance import *
 from .get_nodes import *
 from .get_notification import *
+from .get_notifications import *
 from .get_plugins import *
 from .get_plugins_community import *
 from .get_upgradable_versions import *
