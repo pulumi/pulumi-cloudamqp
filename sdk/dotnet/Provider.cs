@@ -22,7 +22,7 @@ namespace Pulumi.CloudAmqp
         /// Key used to authentication to the CloudAMQP Customer API
         /// </summary>
         [Output("apikey")]
-        public Output<string> Apikey { get; private set; } = null!;
+        public Output<string?> Apikey { get; private set; } = null!;
 
         /// <summary>
         /// Base URL to CloudAMQP Customer website
@@ -38,7 +38,7 @@ namespace Pulumi.CloudAmqp
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Provider(string name, ProviderArgs args, CustomResourceOptions? options = null)
+        public Provider(string name, ProviderArgs? args = null, CustomResourceOptions? options = null)
             : base("cloudamqp", name, args ?? new ProviderArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -54,6 +54,12 @@ namespace Pulumi.CloudAmqp
             merged.Id = id ?? merged.Id;
             return merged;
         }
+
+        /// <summary>
+        /// This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.
+        /// </summary>
+        public global::Pulumi.Output<ProviderTerraformConfigResult> TerraformConfig()
+            => global::Pulumi.Deployment.Instance.Call<ProviderTerraformConfigResult>("pulumi:providers:cloudamqp/terraformConfig", CallArgs.Empty, this);
     }
 
     public sealed class ProviderArgs : global::Pulumi.ResourceArgs
@@ -61,8 +67,8 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Key used to authentication to the CloudAMQP Customer API
         /// </summary>
-        [Input("apikey", required: true)]
-        public Input<string> Apikey { get; set; } = null!;
+        [Input("apikey")]
+        public Input<string>? Apikey { get; set; }
 
         /// <summary>
         /// Base URL to CloudAMQP Customer website
@@ -77,5 +83,20 @@ namespace Pulumi.CloudAmqp
         {
         }
         public static new ProviderArgs Empty => new ProviderArgs();
+    }
+
+    /// <summary>
+    /// The results of the <see cref="Provider.TerraformConfig"/> method.
+    /// </summary>
+    [OutputType]
+    public sealed class ProviderTerraformConfigResult
+    {
+        public readonly ImmutableDictionary<string, object> Result;
+
+        [OutputConstructor]
+        private ProviderTerraformConfigResult(ImmutableDictionary<string, object> result)
+        {
+            Result = result;
+        }
     }
 }

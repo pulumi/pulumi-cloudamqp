@@ -617,10 +617,8 @@ class _InstanceState:
         pulumi.set(self, "vpc_subnet", value)
 
 
+@pulumi.type_token("cloudamqp:index/instance:Instance")
 class Instance(pulumi.CustomResource):
-
-    pulumi_type = "cloudamqp:index/instance:Instance"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

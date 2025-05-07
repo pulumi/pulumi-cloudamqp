@@ -233,10 +233,8 @@ class _ExtraDiskSizeState:
         pulumi.set(self, "timeout", value)
 
 
+@pulumi.type_token("cloudamqp:index/extraDiskSize:ExtraDiskSize")
 class ExtraDiskSize(pulumi.CustomResource):
-
-    pulumi_type = "cloudamqp:index/extraDiskSize:ExtraDiskSize"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

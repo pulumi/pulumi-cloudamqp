@@ -150,10 +150,8 @@ export type PrivatelinkAzure = import("./privatelinkAzure").PrivatelinkAzure;
 export const PrivatelinkAzure: typeof import("./privatelinkAzure").PrivatelinkAzure = null as any;
 utilities.lazyLoad(exports, ["PrivatelinkAzure"], () => require("./privatelinkAzure"));
 
-export { ProviderArgs } from "./provider";
-export type Provider = import("./provider").Provider;
-export const Provider: typeof import("./provider").Provider = null as any;
-utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+export * from "./provider";
+import { Provider } from "./provider";
 
 export { RabbitConfigurationArgs, RabbitConfigurationState } from "./rabbitConfiguration";
 export type RabbitConfiguration = import("./rabbitConfiguration").RabbitConfiguration;

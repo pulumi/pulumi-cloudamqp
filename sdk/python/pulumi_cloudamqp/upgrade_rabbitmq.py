@@ -132,10 +132,8 @@ class _UpgradeRabbitmqState:
         pulumi.set(self, "new_version", value)
 
 
+@pulumi.type_token("cloudamqp:index/upgradeRabbitmq:UpgradeRabbitmq")
 class UpgradeRabbitmq(pulumi.CustomResource):
-
-    pulumi_type = "cloudamqp:index/upgradeRabbitmq:UpgradeRabbitmq"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

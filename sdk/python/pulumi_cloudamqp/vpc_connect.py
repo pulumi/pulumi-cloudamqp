@@ -359,10 +359,8 @@ class _VpcConnectState:
         pulumi.set(self, "timeout", value)
 
 
+@pulumi.type_token("cloudamqp:index/vpcConnect:VpcConnect")
 class VpcConnect(pulumi.CustomResource):
-
-    pulumi_type = "cloudamqp:index/vpcConnect:VpcConnect"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

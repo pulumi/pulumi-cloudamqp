@@ -247,10 +247,8 @@ class _PrivatelinkAzureState:
         pulumi.set(self, "timeout", value)
 
 
+@pulumi.type_token("cloudamqp:index/privatelinkAzure:PrivatelinkAzure")
 class PrivatelinkAzure(pulumi.CustomResource):
-
-    pulumi_type = "cloudamqp:index/privatelinkAzure:PrivatelinkAzure"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

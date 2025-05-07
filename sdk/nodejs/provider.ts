@@ -28,7 +28,7 @@ export class Provider extends pulumi.ProviderResource {
     /**
      * Key used to authentication to the CloudAMQP Customer API
      */
-    public readonly apikey!: pulumi.Output<string>;
+    public readonly apikey!: pulumi.Output<string | undefined>;
     /**
      * Base URL to CloudAMQP Customer website
      */
@@ -41,19 +41,25 @@ export class Provider extends pulumi.ProviderResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: ProviderArgs, opts?: pulumi.ResourceOptions) {
+    constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            if ((!args || args.apikey === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'apikey'");
-            }
             resourceInputs["apikey"] = args ? args.apikey : undefined;
             resourceInputs["baseurl"] = args ? args.baseurl : undefined;
             resourceInputs["enableFasterInstanceDestroy"] = pulumi.output(args ? args.enableFasterInstanceDestroy : undefined).apply(JSON.stringify);
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
+    }
+
+    /**
+     * This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.
+     */
+    terraformConfig(): pulumi.Output<Provider.TerraformConfigResult> {
+        return pulumi.runtime.call("pulumi:providers:cloudamqp/terraformConfig", {
+            "__self__": this,
+        }, this);
     }
 }
 
@@ -64,10 +70,20 @@ export interface ProviderArgs {
     /**
      * Key used to authentication to the CloudAMQP Customer API
      */
-    apikey: pulumi.Input<string>;
+    apikey?: pulumi.Input<string>;
     /**
      * Base URL to CloudAMQP Customer website
      */
     baseurl?: pulumi.Input<string>;
     enableFasterInstanceDestroy?: pulumi.Input<boolean>;
+}
+
+export namespace Provider {
+    /**
+     * The results of the Provider.terraformConfig method.
+     */
+    export interface TerraformConfigResult {
+        readonly result: {[key: string]: any};
+    }
+
 }

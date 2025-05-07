@@ -280,10 +280,8 @@ class _NotificationState:
         pulumi.set(self, "value", value)
 
 
+@pulumi.type_token("cloudamqp:index/notification:Notification")
 class Notification(pulumi.CustomResource):
-
-    pulumi_type = "cloudamqp:index/notification:Notification"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
