@@ -142,10 +142,8 @@ class _NodeActionsState:
         pulumi.set(self, "running", value)
 
 
+@pulumi.type_token("cloudamqp:index/nodeActions:NodeActions")
 class NodeActions(pulumi.CustomResource):
-
-    pulumi_type = "cloudamqp:index/nodeActions:NodeActions"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -235,10 +235,8 @@ class _IntegrationAwsEventbridgeState:
         pulumi.set(self, "with_headers", value)
 
 
+@pulumi.type_token("cloudamqp:index/integrationAwsEventbridge:IntegrationAwsEventbridge")
 class IntegrationAwsEventbridge(pulumi.CustomResource):
-
-    pulumi_type = "cloudamqp:index/integrationAwsEventbridge:IntegrationAwsEventbridge"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

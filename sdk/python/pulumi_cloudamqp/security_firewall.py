@@ -189,10 +189,8 @@ class _SecurityFirewallState:
         pulumi.set(self, "timeout", value)
 
 
+@pulumi.type_token("cloudamqp:index/securityFirewall:SecurityFirewall")
 class SecurityFirewall(pulumi.CustomResource):
-
-    pulumi_type = "cloudamqp:index/securityFirewall:SecurityFirewall"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

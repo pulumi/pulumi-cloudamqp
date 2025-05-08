@@ -247,10 +247,8 @@ class _PluginCommunityState:
         pulumi.set(self, "timeout", value)
 
 
+@pulumi.type_token("cloudamqp:index/pluginCommunity:PluginCommunity")
 class PluginCommunity(pulumi.CustomResource):
-
-    pulumi_type = "cloudamqp:index/pluginCommunity:PluginCommunity"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -95,10 +95,8 @@ class _CustomDomainState:
         pulumi.set(self, "instance_id", value)
 
 
+@pulumi.type_token("cloudamqp:index/customDomain:CustomDomain")
 class CustomDomain(pulumi.CustomResource):
-
-    pulumi_type = "cloudamqp:index/customDomain:CustomDomain"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

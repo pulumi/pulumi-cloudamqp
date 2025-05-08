@@ -164,10 +164,8 @@ class _MaintenanceWindowState:
         pulumi.set(self, "preferred_time", value)
 
 
+@pulumi.type_token("cloudamqp:index/maintenanceWindow:MaintenanceWindow")
 class MaintenanceWindow(pulumi.CustomResource):
-
-    pulumi_type = "cloudamqp:index/maintenanceWindow:MaintenanceWindow"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

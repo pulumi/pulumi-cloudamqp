@@ -256,10 +256,8 @@ class _WebhookState:
         pulumi.set(self, "webhook_uri", value)
 
 
+@pulumi.type_token("cloudamqp:index/webhook:Webhook")
 class Webhook(pulumi.CustomResource):
-
-    pulumi_type = "cloudamqp:index/webhook:Webhook"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -720,10 +720,8 @@ class _IntegrationMetricState:
         pulumi.set(self, "vhost_whitelist", value)
 
 
+@pulumi.type_token("cloudamqp:index/integrationMetric:IntegrationMetric")
 class IntegrationMetric(pulumi.CustomResource):
-
-    pulumi_type = "cloudamqp:index/integrationMetric:IntegrationMetric"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

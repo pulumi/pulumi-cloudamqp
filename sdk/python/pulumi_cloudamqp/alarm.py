@@ -413,10 +413,8 @@ class _AlarmState:
         pulumi.set(self, "vhost_regex", value)
 
 
+@pulumi.type_token("cloudamqp:index/alarm:Alarm")
 class Alarm(pulumi.CustomResource):
-
-    pulumi_type = "cloudamqp:index/alarm:Alarm"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
