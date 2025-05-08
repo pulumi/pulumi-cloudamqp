@@ -476,10 +476,8 @@ class _RabbitConfigurationState:
         pulumi.set(self, "vm_memory_high_watermark", value)
 
 
+@pulumi.type_token("cloudamqp:index/rabbitConfiguration:RabbitConfiguration")
 class RabbitConfiguration(pulumi.CustomResource):
-
-    pulumi_type = "cloudamqp:index/rabbitConfiguration:RabbitConfiguration"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

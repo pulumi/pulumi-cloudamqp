@@ -904,10 +904,8 @@ class _IntegrationLogState:
         pulumi.set(self, "url", value)
 
 
+@pulumi.type_token("cloudamqp:index/integrationLog:IntegrationLog")
 class IntegrationLog(pulumi.CustomResource):
-
-    pulumi_type = "cloudamqp:index/integrationLog:IntegrationLog"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

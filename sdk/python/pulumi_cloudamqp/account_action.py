@@ -99,10 +99,8 @@ class _AccountActionState:
         pulumi.set(self, "instance_id", value)
 
 
+@pulumi.type_token("cloudamqp:index/accountAction:AccountAction")
 class AccountAction(pulumi.CustomResource):
-
-    pulumi_type = "cloudamqp:index/accountAction:AccountAction"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

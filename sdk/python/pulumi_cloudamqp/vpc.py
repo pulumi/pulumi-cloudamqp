@@ -175,10 +175,8 @@ class _VpcState:
         pulumi.set(self, "vpc_name", value)
 
 
+@pulumi.type_token("cloudamqp:index/vpc:Vpc")
 class Vpc(pulumi.CustomResource):
-
-    pulumi_type = "cloudamqp:index/vpc:Vpc"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
