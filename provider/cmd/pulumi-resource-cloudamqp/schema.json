@@ -519,7 +519,10 @@
         },
         "requiredInputs": [
             "apikey"
-        ]
+        ],
+        "methods": {
+            "terraformConfig": "pulumi:providers:cloudamqp/terraformConfig"
+        }
     },
     "resources": {
         "cloudamqp:index/accountAction:AccountAction": {
@@ -4340,6 +4343,35 @@
                     "securityGroupId",
                     "vpcSubnet",
                     "id"
+                ],
+                "type": "object"
+            }
+        },
+        "pulumi:providers:cloudamqp/terraformConfig": {
+            "description": "This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.",
+            "inputs": {
+                "properties": {
+                    "__self__": {
+                        "type": "ref",
+                        "$ref": "#/resources/pulumi:providers:cloudamqp"
+                    }
+                },
+                "type": "pulumi:providers:cloudamqp/terraformConfig",
+                "required": [
+                    "__self__"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "result": {
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        },
+                        "type": "object"
+                    }
+                },
+                "required": [
+                    "result"
                 ],
                 "type": "object"
             }
