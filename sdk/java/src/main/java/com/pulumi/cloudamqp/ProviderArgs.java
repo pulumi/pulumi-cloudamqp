@@ -5,7 +5,6 @@ package com.pulumi.cloudamqp;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -21,15 +20,15 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
      * Key used to authentication to the CloudAMQP Customer API
      * 
      */
-    @Import(name="apikey", required=true)
-    private Output<String> apikey;
+    @Import(name="apikey")
+    private @Nullable Output<String> apikey;
 
     /**
      * @return Key used to authentication to the CloudAMQP Customer API
      * 
      */
-    public Output<String> apikey() {
-        return this.apikey;
+    public Optional<Output<String>> apikey() {
+        return Optional.ofNullable(this.apikey);
     }
 
     /**
@@ -86,7 +85,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder apikey(Output<String> apikey) {
+        public Builder apikey(@Nullable Output<String> apikey) {
             $.apikey = apikey;
             return this;
         }
@@ -132,9 +131,6 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public ProviderArgs build() {
-            if ($.apikey == null) {
-                throw new MissingRequiredPropertyException("ProviderArgs", "apikey");
-            }
             return $;
         }
     }

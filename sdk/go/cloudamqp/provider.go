@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -20,7 +19,7 @@ type Provider struct {
 	pulumi.ProviderResourceState
 
 	// Key used to authentication to the CloudAMQP Customer API
-	Apikey pulumi.StringOutput `pulumi:"apikey"`
+	Apikey pulumi.StringPtrOutput `pulumi:"apikey"`
 	// Base URL to CloudAMQP Customer website
 	Baseurl pulumi.StringPtrOutput `pulumi:"baseurl"`
 }
@@ -29,12 +28,9 @@ type Provider struct {
 func NewProvider(ctx *pulumi.Context,
 	name string, args *ProviderArgs, opts ...pulumi.ResourceOption) (*Provider, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &ProviderArgs{}
 	}
 
-	if args.Apikey == nil {
-		return nil, errors.New("invalid value for required argument 'Apikey'")
-	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:cloudamqp", name, args, &resource, opts...)
@@ -46,7 +42,7 @@ func NewProvider(ctx *pulumi.Context,
 
 type providerArgs struct {
 	// Key used to authentication to the CloudAMQP Customer API
-	Apikey string `pulumi:"apikey"`
+	Apikey *string `pulumi:"apikey"`
 	// Base URL to CloudAMQP Customer website
 	Baseurl                     *string `pulumi:"baseurl"`
 	EnableFasterInstanceDestroy *bool   `pulumi:"enableFasterInstanceDestroy"`
@@ -55,7 +51,7 @@ type providerArgs struct {
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
 	// Key used to authentication to the CloudAMQP Customer API
-	Apikey pulumi.StringInput
+	Apikey pulumi.StringPtrInput
 	// Base URL to CloudAMQP Customer website
 	Baseurl                     pulumi.StringPtrInput
 	EnableFasterInstanceDestroy pulumi.BoolPtrInput
@@ -122,8 +118,8 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 }
 
 // Key used to authentication to the CloudAMQP Customer API
-func (o ProviderOutput) Apikey() pulumi.StringOutput {
-	return o.ApplyT(func(v *Provider) pulumi.StringOutput { return v.Apikey }).(pulumi.StringOutput)
+func (o ProviderOutput) Apikey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Apikey }).(pulumi.StringPtrOutput)
 }
 
 // Base URL to CloudAMQP Customer website

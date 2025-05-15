@@ -20,7 +20,7 @@ __all__ = ['ProviderArgs', 'Provider']
 @pulumi.input_type
 class ProviderArgs:
     def __init__(__self__, *,
-                 apikey: pulumi.Input[builtins.str],
+                 apikey: Optional[pulumi.Input[builtins.str]] = None,
                  baseurl: Optional[pulumi.Input[builtins.str]] = None,
                  enable_faster_instance_destroy: Optional[pulumi.Input[builtins.bool]] = None):
         """
@@ -28,7 +28,8 @@ class ProviderArgs:
         :param pulumi.Input[builtins.str] apikey: Key used to authentication to the CloudAMQP Customer API
         :param pulumi.Input[builtins.str] baseurl: Base URL to CloudAMQP Customer website
         """
-        pulumi.set(__self__, "apikey", apikey)
+        if apikey is not None:
+            pulumi.set(__self__, "apikey", apikey)
         if baseurl is not None:
             pulumi.set(__self__, "baseurl", baseurl)
         if enable_faster_instance_destroy is not None:
@@ -36,14 +37,14 @@ class ProviderArgs:
 
     @property
     @pulumi.getter
-    def apikey(self) -> pulumi.Input[builtins.str]:
+    def apikey(self) -> Optional[pulumi.Input[builtins.str]]:
         """
         Key used to authentication to the CloudAMQP Customer API
         """
         return pulumi.get(self, "apikey")
 
     @apikey.setter
-    def apikey(self, value: pulumi.Input[builtins.str]):
+    def apikey(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "apikey", value)
 
     @property
@@ -93,7 +94,7 @@ class Provider(pulumi.ProviderResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: ProviderArgs,
+                 args: Optional[ProviderArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The provider type for the cloudamqp package. By default, resources use package-wide configuration
@@ -128,8 +129,6 @@ class Provider(pulumi.ProviderResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProviderArgs.__new__(ProviderArgs)
 
-            if apikey is None and not opts.urn:
-                raise TypeError("Missing required property 'apikey'")
             __props__.__dict__["apikey"] = apikey
             __props__.__dict__["baseurl"] = baseurl
             __props__.__dict__["enable_faster_instance_destroy"] = pulumi.Output.from_input(enable_faster_instance_destroy).apply(pulumi.runtime.to_json) if enable_faster_instance_destroy is not None else None
@@ -141,7 +140,7 @@ class Provider(pulumi.ProviderResource):
 
     @property
     @pulumi.getter
-    def apikey(self) -> pulumi.Output[builtins.str]:
+    def apikey(self) -> pulumi.Output[Optional[builtins.str]]:
         """
         Key used to authentication to the CloudAMQP Customer API
         """
