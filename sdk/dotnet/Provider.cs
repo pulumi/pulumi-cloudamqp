@@ -22,7 +22,7 @@ namespace Pulumi.CloudAmqp
         /// Key used to authentication to the CloudAMQP Customer API
         /// </summary>
         [Output("apikey")]
-        public Output<string> Apikey { get; private set; } = null!;
+        public Output<string?> Apikey { get; private set; } = null!;
 
         /// <summary>
         /// Base URL to CloudAMQP Customer website
@@ -38,7 +38,7 @@ namespace Pulumi.CloudAmqp
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Provider(string name, ProviderArgs args, CustomResourceOptions? options = null)
+        public Provider(string name, ProviderArgs? args = null, CustomResourceOptions? options = null)
             : base("cloudamqp", name, args ?? new ProviderArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -67,8 +67,8 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Key used to authentication to the CloudAMQP Customer API
         /// </summary>
-        [Input("apikey", required: true)]
-        public Input<string> Apikey { get; set; } = null!;
+        [Input("apikey")]
+        public Input<string>? Apikey { get; set; }
 
         /// <summary>
         /// Base URL to CloudAMQP Customer website
