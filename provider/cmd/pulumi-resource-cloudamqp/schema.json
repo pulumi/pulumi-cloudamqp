@@ -501,9 +501,6 @@
                 "type": "boolean"
             }
         },
-        "required": [
-            "apikey"
-        ],
         "inputProperties": {
             "apikey": {
                 "type": "string",
@@ -517,9 +514,6 @@
                 "type": "boolean"
             }
         },
-        "requiredInputs": [
-            "apikey"
-        ],
         "methods": {
             "terraformConfig": "pulumi:providers:cloudamqp/terraformConfig"
         }
