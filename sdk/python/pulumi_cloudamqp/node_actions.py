@@ -228,9 +228,9 @@ class NodeActions(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         list_nodes = cloudamqp.get_nodes(instance_id=instance["id"])
-        rabbitmq_config = cloudamqp.index.RabbitmqConfiguration("rabbitmq_config",
-            instance_id=instance.id,
-            log_exchange_level=info)
+        rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmq_config",
+            instance_id=instance["id"],
+            log_exchange_level="info")
         restart01 = cloudamqp.NodeActions("restart_01",
             instance_id=instance["id"],
             action="restart",
@@ -375,9 +375,9 @@ class NodeActions(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         list_nodes = cloudamqp.get_nodes(instance_id=instance["id"])
-        rabbitmq_config = cloudamqp.index.RabbitmqConfiguration("rabbitmq_config",
-            instance_id=instance.id,
-            log_exchange_level=info)
+        rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmq_config",
+            instance_id=instance["id"],
+            log_exchange_level="info")
         restart01 = cloudamqp.NodeActions("restart_01",
             instance_id=instance["id"],
             action="restart",

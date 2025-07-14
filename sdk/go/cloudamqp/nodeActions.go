@@ -148,9 +148,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			rabbitmqConfig, err := cloudamqp.NewRabbitmqConfiguration(ctx, "rabbitmq_config", &cloudamqp.RabbitmqConfigurationArgs{
-//				InstanceId:       instance.Id,
-//				LogExchangeLevel: "info",
+//			rabbitmqConfig, err := cloudamqp.NewRabbitConfiguration(ctx, "rabbitmq_config", &cloudamqp.RabbitConfigurationArgs{
+//				InstanceId:       pulumi.Any(instance.Id),
+//				LogExchangeLevel: pulumi.String("info"),
 //			})
 //			if err != nil {
 //				return err

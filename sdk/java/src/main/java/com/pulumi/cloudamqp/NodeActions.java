@@ -157,8 +157,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.cloudamqp.CloudamqpFunctions;
  * import com.pulumi.cloudamqp.inputs.GetNodesArgs;
- * import com.pulumi.cloudamqp.rabbitmqConfiguration;
- * import com.pulumi.cloudamqp.rabbitmqConfigurationArgs;
+ * import com.pulumi.cloudamqp.RabbitConfiguration;
+ * import com.pulumi.cloudamqp.RabbitConfigurationArgs;
  * import com.pulumi.cloudamqp.NodeActions;
  * import com.pulumi.cloudamqp.NodeActionsArgs;
  * import com.pulumi.resources.CustomResourceOptions;
@@ -179,7 +179,7 @@ import javax.annotation.Nullable;
  *             .instanceId(instance.id())
  *             .build());
  * 
- *         var rabbitmqConfig = new RabbitmqConfiguration("rabbitmqConfig", RabbitmqConfigurationArgs.builder()
+ *         var rabbitmqConfig = new RabbitConfiguration("rabbitmqConfig", RabbitConfigurationArgs.builder()
  *             .instanceId(instance.id())
  *             .logExchangeLevel("info")
  *             .build());

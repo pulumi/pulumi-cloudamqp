@@ -13,6 +13,7 @@
         "strict": true
     },
     "files": [
+        "accountActions.ts",
         "alarm.ts",
         "config/index.ts",
         "config/vars.ts",
@@ -34,6 +35,7 @@
         "getVpcInfo.ts",
         "index.ts",
         "instance.ts",
+        "integrationAwsEventbridge.ts",
         "integrationLog.ts",
         "integrationMetric.ts",
         "maintenanceWindow.ts",
@@ -44,6 +46,7 @@
         "privatelinkAws.ts",
         "privatelinkAzure.ts",
         "provider.ts",
+        "rabbitConfiguration.ts",
         "securityFirewall.ts",
         "types/index.ts",
         "types/input.ts",

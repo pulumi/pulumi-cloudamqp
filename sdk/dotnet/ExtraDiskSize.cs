@@ -66,7 +66,7 @@ namespace Pulumi.CloudAmqp
     ///     var resizeDisk = new CloudAmqp.ExtraDiskSize("resize_disk", new()
     ///     {
     ///         InstanceId = instance.Id,
-    ///         ExtraDiskSize = 25,
+    ///         ExtraDiskSizeGb = 25,
     ///     });
     /// 
     ///     // Optional, refresh nodes info after disk resize by adding dependency
@@ -108,7 +108,7 @@ namespace Pulumi.CloudAmqp
     ///     var resizeDisk = new CloudAmqp.ExtraDiskSize("resize_disk", new()
     ///     {
     ///         InstanceId = instance.Id,
-    ///         ExtraDiskSize = 25,
+    ///         ExtraDiskSizeGb = 25,
     ///     });
     /// 
     ///     // Optional, refresh nodes info after disk resize by adding dependency
@@ -150,7 +150,7 @@ namespace Pulumi.CloudAmqp
     ///     var resizeDisk = new CloudAmqp.ExtraDiskSize("resize_disk", new()
     ///     {
     ///         InstanceId = instance.Id,
-    ///         ExtraDiskSize = 25,
+    ///         ExtraDiskSizeGb = 25,
     ///     });
     /// 
     ///     // Optional, refresh nodes info after disk resize by adding dependency
@@ -192,7 +192,7 @@ namespace Pulumi.CloudAmqp
     ///     var resizeDisk = new CloudAmqp.ExtraDiskSize("resize_disk", new()
     ///     {
     ///         InstanceId = instance.Id,
-    ///         ExtraDiskSize = 25,
+    ///         ExtraDiskSizeGb = 25,
     ///     });
     /// 
     ///     // Optional, refresh nodes info after disk resize by adding dependency
@@ -234,7 +234,7 @@ namespace Pulumi.CloudAmqp
         /// 250, 500, 1000, 2000
         /// </summary>
         [Output("extraDiskSize")]
-        public Output<int> ExtraDiskSize { get; private set; } = null!;
+        public Output<int> ExtraDiskSizeGb { get; private set; } = null!;
 
         /// <summary>
         /// The CloudAMQP instance ID.
@@ -322,7 +322,7 @@ namespace Pulumi.CloudAmqp
         /// 250, 500, 1000, 2000
         /// </summary>
         [Input("extraDiskSize", required: true)]
-        public Input<int> ExtraDiskSize { get; set; } = null!;
+        public Input<int> ExtraDiskSizeGb { get; set; } = null!;
 
         /// <summary>
         /// The CloudAMQP instance ID.
@@ -366,7 +366,7 @@ namespace Pulumi.CloudAmqp
         /// 250, 500, 1000, 2000
         /// </summary>
         [Input("extraDiskSize")]
-        public Input<int>? ExtraDiskSize { get; set; }
+        public Input<int>? ExtraDiskSizeGb { get; set; }
 
         /// <summary>
         /// The CloudAMQP instance ID.

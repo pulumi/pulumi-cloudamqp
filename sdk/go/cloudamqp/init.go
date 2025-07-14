@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "cloudamqp:index/accountActions:AccountActions":
+		r = &AccountActions{}
 	case "cloudamqp:index/alarm:Alarm":
 		r = &Alarm{}
 	case "cloudamqp:index/customDomain:CustomDomain":
@@ -29,6 +31,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ExtraDiskSize{}
 	case "cloudamqp:index/instance:Instance":
 		r = &Instance{}
+	case "cloudamqp:index/integrationAwsEventbridge:IntegrationAwsEventbridge":
+		r = &IntegrationAwsEventbridge{}
 	case "cloudamqp:index/integrationLog:IntegrationLog":
 		r = &IntegrationLog{}
 	case "cloudamqp:index/integrationMetric:IntegrationMetric":
@@ -47,6 +51,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &PrivatelinkAws{}
 	case "cloudamqp:index/privatelinkAzure:PrivatelinkAzure":
 		r = &PrivatelinkAzure{}
+	case "cloudamqp:index/rabbitConfiguration:RabbitConfiguration":
+		r = &RabbitConfiguration{}
 	case "cloudamqp:index/securityFirewall:SecurityFirewall":
 		r = &SecurityFirewall{}
 	case "cloudamqp:index/upgradeLavinmq:UpgradeLavinmq":
@@ -96,6 +102,11 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"cloudamqp",
+		"index/accountActions",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"cloudamqp",
 		"index/alarm",
 		&module{version},
 	)
@@ -112,6 +123,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"cloudamqp",
 		"index/instance",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"cloudamqp",
+		"index/integrationAwsEventbridge",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -157,6 +173,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"cloudamqp",
 		"index/privatelinkAzure",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"cloudamqp",
+		"index/rabbitConfiguration",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
