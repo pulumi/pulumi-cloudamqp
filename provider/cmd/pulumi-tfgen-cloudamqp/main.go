@@ -1,4 +1,4 @@
-// Copyright 2016-2018, Pulumi Corporation.
+// Copyright 2016-2025, Pulumi Corporation.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,13 +15,10 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
-
 	cloudamqp "github.com/pulumi/pulumi-cloudamqp/provider/v3"
-	"github.com/pulumi/pulumi-cloudamqp/provider/v3/pkg/version"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfgen"
 )
 
 func main() {
-	// Modify the path to point to the new provider
-	tfgen.Main("cloudamqp", version.Version, cloudamqp.Provider())
+	tfgen.MainWithMuxer("cloudamqp", cloudamqp.Provider())
 }
