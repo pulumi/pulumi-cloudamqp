@@ -56,19 +56,19 @@ func Provider() tfbridge.ProviderInfo {
 		Repository:        "https://github.com/pulumi/pulumi-cloudamqp",
 		Config:            map[string]*tfbridge.SchemaInfo{},
 		DocRules:          &tfbridge.DocRuleInfo{EditRules: docEditRules},
-		Resources: map[string]*tfbridge.ResourceInfo{
-			"cloudamqp_rabbitmq_configuration": {Tok: makeResource("RabbitConfiguration")},
-			"cloudamqp_integration_metric": {
-				Docs: &tfbridge.DocInfo{AllowMissing: true},
-			},
-			"cloudamqp_extra_disk_size": {
-				Fields: map[string]*tfbridge.SchemaInfo{
-					"extra_disk_size": {
-						CSharpName: "ExtraDiskSizeGb",
-					},
-				},
-			},
-		},
+		// Resources: map[string]*tfbridge.ResourceInfo{
+		// 	"cloudamqp_rabbitmq_configuration": {Tok: makeResource("RabbitConfiguration")},
+		// 	"cloudamqp_integration_metric": {
+		// 		Docs: &tfbridge.DocInfo{AllowMissing: true},
+		// 	},
+		// 	"cloudamqp_extra_disk_size": {
+		// 		Fields: map[string]*tfbridge.SchemaInfo{
+		// 			"extra_disk_size": {
+		// 				CSharpName: "ExtraDiskSizeGb",
+		// 			},
+		// 		},
+		// 	},
+		// },
 		JavaScript: &tfbridge.JavaScriptInfo{
 			DevDependencies: map[string]string{
 				"@types/node": "^10.0.0",
