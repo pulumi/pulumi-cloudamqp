@@ -127,7 +127,7 @@ namespace Pulumi.CloudAmqp
     ///         InstanceId = instance.Id,
     ///     });
     /// 
-    ///     var rabbitmqConfig = new CloudAmqp.RabbitConfiguration("rabbitmq_config", new()
+    ///     var rabbitmqConfig = new CloudAmqp.Index.RabbitmqConfiguration("rabbitmq_config", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         LogExchangeLevel = "info",

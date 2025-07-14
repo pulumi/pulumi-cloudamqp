@@ -6,7 +6,6 @@ import builtins
 from . import _utilities
 import typing
 # Export this package's modules as members:
-from .account_action import *
 from .alarm import *
 from .custom_domain import *
 from .extra_disk_size import *
@@ -25,7 +24,6 @@ from .get_upgradable_versions import *
 from .get_vpc_gcp_info import *
 from .get_vpc_info import *
 from .instance import *
-from .integration_aws_eventbridge import *
 from .integration_log import *
 from .integration_metric import *
 from .maintenance_window import *
@@ -36,7 +34,6 @@ from .plugin_community import *
 from .privatelink_aws import *
 from .privatelink_azure import *
 from .provider import *
-from .rabbit_configuration import *
 from .security_firewall import *
 from .upgrade_lavinmq import *
 from .upgrade_rabbitmq import *
@@ -58,14 +55,6 @@ else:
 _utilities.register(
     resource_modules="""
 [
- {
-  "pkg": "cloudamqp",
-  "mod": "index/accountAction",
-  "fqn": "pulumi_cloudamqp",
-  "classes": {
-   "cloudamqp:index/accountAction:AccountAction": "AccountAction"
-  }
- },
  {
   "pkg": "cloudamqp",
   "mod": "index/alarm",
@@ -96,14 +85,6 @@ _utilities.register(
   "fqn": "pulumi_cloudamqp",
   "classes": {
    "cloudamqp:index/instance:Instance": "Instance"
-  }
- },
- {
-  "pkg": "cloudamqp",
-  "mod": "index/integrationAwsEventbridge",
-  "fqn": "pulumi_cloudamqp",
-  "classes": {
-   "cloudamqp:index/integrationAwsEventbridge:IntegrationAwsEventbridge": "IntegrationAwsEventbridge"
   }
  },
  {
@@ -176,14 +157,6 @@ _utilities.register(
   "fqn": "pulumi_cloudamqp",
   "classes": {
    "cloudamqp:index/privatelinkAzure:PrivatelinkAzure": "PrivatelinkAzure"
-  }
- },
- {
-  "pkg": "cloudamqp",
-  "mod": "index/rabbitConfiguration",
-  "fqn": "pulumi_cloudamqp",
-  "classes": {
-   "cloudamqp:index/rabbitConfiguration:RabbitConfiguration": "RabbitConfiguration"
   }
  },
  {

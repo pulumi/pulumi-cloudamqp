@@ -5,11 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export { AccountActionArgs, AccountActionState } from "./accountAction";
-export type AccountAction = import("./accountAction").AccountAction;
-export const AccountAction: typeof import("./accountAction").AccountAction = null as any;
-utilities.lazyLoad(exports, ["AccountAction"], () => require("./accountAction"));
-
 export { AlarmArgs, AlarmState } from "./alarm";
 export type Alarm = import("./alarm").Alarm;
 export const Alarm: typeof import("./alarm").Alarm = null as any;
@@ -100,11 +95,6 @@ export type Instance = import("./instance").Instance;
 export const Instance: typeof import("./instance").Instance = null as any;
 utilities.lazyLoad(exports, ["Instance"], () => require("./instance"));
 
-export { IntegrationAwsEventbridgeArgs, IntegrationAwsEventbridgeState } from "./integrationAwsEventbridge";
-export type IntegrationAwsEventbridge = import("./integrationAwsEventbridge").IntegrationAwsEventbridge;
-export const IntegrationAwsEventbridge: typeof import("./integrationAwsEventbridge").IntegrationAwsEventbridge = null as any;
-utilities.lazyLoad(exports, ["IntegrationAwsEventbridge"], () => require("./integrationAwsEventbridge"));
-
 export { IntegrationLogArgs, IntegrationLogState } from "./integrationLog";
 export type IntegrationLog = import("./integrationLog").IntegrationLog;
 export const IntegrationLog: typeof import("./integrationLog").IntegrationLog = null as any;
@@ -152,11 +142,6 @@ utilities.lazyLoad(exports, ["PrivatelinkAzure"], () => require("./privatelinkAz
 
 export * from "./provider";
 import { Provider } from "./provider";
-
-export { RabbitConfigurationArgs, RabbitConfigurationState } from "./rabbitConfiguration";
-export type RabbitConfiguration = import("./rabbitConfiguration").RabbitConfiguration;
-export const RabbitConfiguration: typeof import("./rabbitConfiguration").RabbitConfiguration = null as any;
-utilities.lazyLoad(exports, ["RabbitConfiguration"], () => require("./rabbitConfiguration"));
 
 export { SecurityFirewallArgs, SecurityFirewallState } from "./securityFirewall";
 export type SecurityFirewall = import("./securityFirewall").SecurityFirewall;
@@ -212,8 +197,6 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "cloudamqp:index/accountAction:AccountAction":
-                return new AccountAction(name, <any>undefined, { urn })
             case "cloudamqp:index/alarm:Alarm":
                 return new Alarm(name, <any>undefined, { urn })
             case "cloudamqp:index/customDomain:CustomDomain":
@@ -222,8 +205,6 @@ const _module = {
                 return new ExtraDiskSize(name, <any>undefined, { urn })
             case "cloudamqp:index/instance:Instance":
                 return new Instance(name, <any>undefined, { urn })
-            case "cloudamqp:index/integrationAwsEventbridge:IntegrationAwsEventbridge":
-                return new IntegrationAwsEventbridge(name, <any>undefined, { urn })
             case "cloudamqp:index/integrationLog:IntegrationLog":
                 return new IntegrationLog(name, <any>undefined, { urn })
             case "cloudamqp:index/integrationMetric:IntegrationMetric":
@@ -242,8 +223,6 @@ const _module = {
                 return new PrivatelinkAws(name, <any>undefined, { urn })
             case "cloudamqp:index/privatelinkAzure:PrivatelinkAzure":
                 return new PrivatelinkAzure(name, <any>undefined, { urn })
-            case "cloudamqp:index/rabbitConfiguration:RabbitConfiguration":
-                return new RabbitConfiguration(name, <any>undefined, { urn })
             case "cloudamqp:index/securityFirewall:SecurityFirewall":
                 return new SecurityFirewall(name, <any>undefined, { urn })
             case "cloudamqp:index/upgradeLavinmq:UpgradeLavinmq":
@@ -265,12 +244,10 @@ const _module = {
         }
     },
 };
-pulumi.runtime.registerResourceModule("cloudamqp", "index/accountAction", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/alarm", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/customDomain", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/extraDiskSize", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/instance", _module)
-pulumi.runtime.registerResourceModule("cloudamqp", "index/integrationAwsEventbridge", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/integrationLog", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/integrationMetric", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/maintenanceWindow", _module)
@@ -280,7 +257,6 @@ pulumi.runtime.registerResourceModule("cloudamqp", "index/plugin", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/pluginCommunity", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/privatelinkAws", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/privatelinkAzure", _module)
-pulumi.runtime.registerResourceModule("cloudamqp", "index/rabbitConfiguration", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/securityFirewall", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/upgradeLavinmq", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/upgradeRabbitmq", _module)

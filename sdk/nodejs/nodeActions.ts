@@ -90,7 +90,7 @@ import * as utilities from "./utilities";
  * const listNodes = cloudamqp.getNodes({
  *     instanceId: instance.id,
  * });
- * const rabbitmqConfig = new cloudamqp.RabbitConfiguration("rabbitmq_config", {
+ * const rabbitmqConfig = new cloudamqp.index.RabbitmqConfiguration("rabbitmq_config", {
  *     instanceId: instance.id,
  *     logExchangeLevel: "info",
  * });
