@@ -68,6 +68,7 @@ func Provider() tfbridge.ProviderInfo {
 		TFProviderLicense: ref(tfbridge.MITLicenseType),
 		Homepage:          "https://pulumi.io",
 		Repository:        "https://github.com/pulumi/pulumi-cloudamqp",
+		Version:           version.Version,
 		Config:            map[string]*tfbridge.SchemaInfo{},
 		DocRules:          &tfbridge.DocRuleInfo{EditRules: docEditRules},
 		MetadataInfo:      tfbridge.NewProviderMetadata(metadata),
