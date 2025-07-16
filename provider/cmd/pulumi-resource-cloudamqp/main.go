@@ -1,4 +1,4 @@
-// Copyright 2016-2018, Pulumi Corporation.
+// Copyright 2016-2025, Pulumi Corporation.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,18 +17,19 @@
 package main
 
 import (
+	"context"
+
 	_ "embed"
 
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 
 	cloudamqp "github.com/pulumi/pulumi-cloudamqp/provider/v3"
-	"github.com/pulumi/pulumi-cloudamqp/provider/v3/pkg/version"
 )
 
 //go:embed schema-embed.json
 var pulumiSchema []byte
 
 func main() {
-	// Modify the path to point to the new provider
-	tfbridge.Main("cloudamqp", version.Version, cloudamqp.Provider(), pulumiSchema)
+	ctx := context.Background()
+	tfbridge.MainWithMuxer(ctx, "cloudamqp", cloudamqp.Provider(), pulumiSchema)
 }

@@ -58,8 +58,6 @@ type RabbitConfiguration struct {
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
 	// Log level for the logger used for log
 	// integrations and the CloudAMQP Console log view.
-	//
-	// ***Note:*** Requires a restart of RabbitMQ to be applied.
 	LogExchangeLevel pulumi.StringOutput `pulumi:"logExchangeLevel"`
 	// The largest allowed message payload size in
 	// bytes.
@@ -70,10 +68,10 @@ type RabbitConfiguration struct {
 	QueueIndexEmbedMsgsBelow pulumi.IntOutput `pulumi:"queueIndexEmbedMsgsBelow"`
 	// Configurable sleep time in seconds between retries
 	// for RabbitMQ configuration. Default set to 60 seconds.
-	Sleep pulumi.IntPtrOutput `pulumi:"sleep"`
+	Sleep pulumi.IntOutput `pulumi:"sleep"`
 	// Configurable timeout time in seconds for RabbitMQ
 	// configuration. Default set to 3600 seconds.
-	Timeout pulumi.IntPtrOutput `pulumi:"timeout"`
+	Timeout pulumi.IntOutput `pulumi:"timeout"`
 	// When the server will enter memory based
 	// flow-control as relative to the maximum available memory.
 	VmMemoryHighWatermark pulumi.Float64Output `pulumi:"vmMemoryHighWatermark"`
@@ -132,8 +130,6 @@ type rabbitConfigurationState struct {
 	InstanceId *int `pulumi:"instanceId"`
 	// Log level for the logger used for log
 	// integrations and the CloudAMQP Console log view.
-	//
-	// ***Note:*** Requires a restart of RabbitMQ to be applied.
 	LogExchangeLevel *string `pulumi:"logExchangeLevel"`
 	// The largest allowed message payload size in
 	// bytes.
@@ -174,8 +170,6 @@ type RabbitConfigurationState struct {
 	InstanceId pulumi.IntPtrInput
 	// Log level for the logger used for log
 	// integrations and the CloudAMQP Console log view.
-	//
-	// ***Note:*** Requires a restart of RabbitMQ to be applied.
 	LogExchangeLevel pulumi.StringPtrInput
 	// The largest allowed message payload size in
 	// bytes.
@@ -220,8 +214,6 @@ type rabbitConfigurationArgs struct {
 	InstanceId int `pulumi:"instanceId"`
 	// Log level for the logger used for log
 	// integrations and the CloudAMQP Console log view.
-	//
-	// ***Note:*** Requires a restart of RabbitMQ to be applied.
 	LogExchangeLevel *string `pulumi:"logExchangeLevel"`
 	// The largest allowed message payload size in
 	// bytes.
@@ -263,8 +255,6 @@ type RabbitConfigurationArgs struct {
 	InstanceId pulumi.IntInput
 	// Log level for the logger used for log
 	// integrations and the CloudAMQP Console log view.
-	//
-	// ***Note:*** Requires a restart of RabbitMQ to be applied.
 	LogExchangeLevel pulumi.StringPtrInput
 	// The largest allowed message payload size in
 	// bytes.
@@ -409,8 +399,6 @@ func (o RabbitConfigurationOutput) InstanceId() pulumi.IntOutput {
 
 // Log level for the logger used for log
 // integrations and the CloudAMQP Console log view.
-//
-// ***Note:*** Requires a restart of RabbitMQ to be applied.
 func (o RabbitConfigurationOutput) LogExchangeLevel() pulumi.StringOutput {
 	return o.ApplyT(func(v *RabbitConfiguration) pulumi.StringOutput { return v.LogExchangeLevel }).(pulumi.StringOutput)
 }
@@ -430,14 +418,14 @@ func (o RabbitConfigurationOutput) QueueIndexEmbedMsgsBelow() pulumi.IntOutput {
 
 // Configurable sleep time in seconds between retries
 // for RabbitMQ configuration. Default set to 60 seconds.
-func (o RabbitConfigurationOutput) Sleep() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntPtrOutput { return v.Sleep }).(pulumi.IntPtrOutput)
+func (o RabbitConfigurationOutput) Sleep() pulumi.IntOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntOutput { return v.Sleep }).(pulumi.IntOutput)
 }
 
 // Configurable timeout time in seconds for RabbitMQ
 // configuration. Default set to 3600 seconds.
-func (o RabbitConfigurationOutput) Timeout() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntPtrOutput { return v.Timeout }).(pulumi.IntPtrOutput)
+func (o RabbitConfigurationOutput) Timeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntOutput { return v.Timeout }).(pulumi.IntOutput)
 }
 
 // When the server will enter memory based

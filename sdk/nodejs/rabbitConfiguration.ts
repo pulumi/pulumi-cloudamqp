@@ -90,8 +90,6 @@ export class RabbitConfiguration extends pulumi.CustomResource {
     /**
      * Log level for the logger used for log
      * integrations and the CloudAMQP Console log view.
-     *
-     * ***Note:*** Requires a restart of RabbitMQ to be applied.
      */
     public readonly logExchangeLevel!: pulumi.Output<string>;
     /**
@@ -109,12 +107,12 @@ export class RabbitConfiguration extends pulumi.CustomResource {
      * Configurable sleep time in seconds between retries
      * for RabbitMQ configuration. Default set to 60 seconds.
      */
-    public readonly sleep!: pulumi.Output<number | undefined>;
+    public readonly sleep!: pulumi.Output<number>;
     /**
      * Configurable timeout time in seconds for RabbitMQ
      * configuration. Default set to 3600 seconds.
      */
-    public readonly timeout!: pulumi.Output<number | undefined>;
+    public readonly timeout!: pulumi.Output<number>;
     /**
      * When the server will enter memory based
      * flow-control as relative to the maximum available memory.
@@ -206,8 +204,6 @@ export interface RabbitConfigurationState {
     /**
      * Log level for the logger used for log
      * integrations and the CloudAMQP Console log view.
-     *
-     * ***Note:*** Requires a restart of RabbitMQ to be applied.
      */
     logExchangeLevel?: pulumi.Input<string>;
     /**
@@ -275,8 +271,6 @@ export interface RabbitConfigurationArgs {
     /**
      * Log level for the logger used for log
      * integrations and the CloudAMQP Console log view.
-     *
-     * ***Note:*** Requires a restart of RabbitMQ to be applied.
      */
     logExchangeLevel?: pulumi.Input<string>;
     /**

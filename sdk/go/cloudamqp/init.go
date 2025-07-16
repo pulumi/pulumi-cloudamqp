@@ -21,8 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
-	case "cloudamqp:index/accountAction:AccountAction":
-		r = &AccountAction{}
+	case "cloudamqp:index/accountActions:AccountActions":
+		r = &AccountActions{}
 	case "cloudamqp:index/alarm:Alarm":
 		r = &Alarm{}
 	case "cloudamqp:index/customDomain:CustomDomain":
@@ -102,7 +102,7 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"cloudamqp",
-		"index/accountAction",
+		"index/accountActions",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

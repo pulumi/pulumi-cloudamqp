@@ -13,7 +13,6 @@ import com.pulumi.core.internal.Codegen;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -144,8 +143,6 @@ public class RabbitConfiguration extends com.pulumi.resources.CustomResource {
      * Log level for the logger used for log
      * integrations and the CloudAMQP Console log view.
      * 
-     * ***Note:*** Requires a restart of RabbitMQ to be applied.
-     * 
      */
     @Export(name="logExchangeLevel", refs={String.class}, tree="[0]")
     private Output<String> logExchangeLevel;
@@ -153,8 +150,6 @@ public class RabbitConfiguration extends com.pulumi.resources.CustomResource {
     /**
      * @return Log level for the logger used for log
      * integrations and the CloudAMQP Console log view.
-     * 
-     * ***Note:*** Requires a restart of RabbitMQ to be applied.
      * 
      */
     public Output<String> logExchangeLevel() {
@@ -200,15 +195,15 @@ public class RabbitConfiguration extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="sleep", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> sleep;
+    private Output<Integer> sleep;
 
     /**
      * @return Configurable sleep time in seconds between retries
      * for RabbitMQ configuration. Default set to 60 seconds.
      * 
      */
-    public Output<Optional<Integer>> sleep() {
-        return Codegen.optional(this.sleep);
+    public Output<Integer> sleep() {
+        return this.sleep;
     }
     /**
      * Configurable timeout time in seconds for RabbitMQ
@@ -216,15 +211,15 @@ public class RabbitConfiguration extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="timeout", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> timeout;
+    private Output<Integer> timeout;
 
     /**
      * @return Configurable timeout time in seconds for RabbitMQ
      * configuration. Default set to 3600 seconds.
      * 
      */
-    public Output<Optional<Integer>> timeout() {
-        return Codegen.optional(this.timeout);
+    public Output<Integer> timeout() {
+        return this.timeout;
     }
     /**
      * When the server will enter memory based

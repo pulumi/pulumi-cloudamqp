@@ -63,10 +63,7 @@
             "enableFasterInstanceDestroy": {
                 "type": "boolean"
             }
-        },
-        "defaults": [
-            "apikey"
-        ]
+        }
     },
     "types": {
         "cloudamqp:index/ExtraDiskSizeNode:ExtraDiskSizeNode": {
@@ -519,16 +516,15 @@
         }
     },
     "resources": {
-        "cloudamqp:index/accountAction:AccountAction": {
-            "description": "\n\n## Import\n\nNot possible to import this resource.\n\n",
+        "cloudamqp:index/accountActions:AccountActions": {
             "properties": {
                 "action": {
                     "type": "string",
-                    "description": "The action to be invoked. Allowed actions\n`rotate-password`, `rotate-apikey`.\n"
+                    "description": "The action to perform on the node\n"
                 },
                 "instanceId": {
                     "type": "integer",
-                    "description": "The CloudAMQP instance ID.\n"
+                    "description": "Instance identifier\n"
                 }
             },
             "required": [
@@ -538,12 +534,11 @@
             "inputProperties": {
                 "action": {
                     "type": "string",
-                    "description": "The action to be invoked. Allowed actions\n`rotate-password`, `rotate-apikey`.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The action to perform on the node\n"
                 },
                 "instanceId": {
                     "type": "integer",
-                    "description": "The CloudAMQP instance ID.\n"
+                    "description": "Instance identifier\n"
                 }
             },
             "requiredInputs": [
@@ -551,16 +546,15 @@
                 "instanceId"
             ],
             "stateInputs": {
-                "description": "Input properties used for looking up and filtering AccountAction resources.\n",
+                "description": "Input properties used for looking up and filtering AccountActions resources.\n",
                 "properties": {
                     "action": {
                         "type": "string",
-                        "description": "The action to be invoked. Allowed actions\n`rotate-password`, `rotate-apikey`.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The action to perform on the node\n"
                     },
                     "instanceId": {
                         "type": "integer",
-                        "description": "The CloudAMQP instance ID.\n"
+                        "description": "Instance identifier\n"
                     }
                 },
                 "type": "object"
@@ -1199,33 +1193,27 @@
             "inputProperties": {
                 "awsAccountId": {
                     "type": "string",
-                    "description": "The 12 digit AWS Account ID where you want the events to be sent to.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The 12 digit AWS Account ID where you want the events to be sent to.\n"
                 },
                 "awsRegion": {
                     "type": "string",
-                    "description": "The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)\n",
-                    "willReplaceOnChanges": true
+                    "description": "The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)\n"
                 },
                 "instanceId": {
                     "type": "integer",
-                    "description": "Instance identifier\n",
-                    "willReplaceOnChanges": true
+                    "description": "Instance identifier\n"
                 },
                 "queue": {
                     "type": "string",
-                    "description": "A (durable) queue on your RabbitMQ instance.\n",
-                    "willReplaceOnChanges": true
+                    "description": "A (durable) queue on your RabbitMQ instance.\n"
                 },
                 "vhost": {
                     "type": "string",
-                    "description": "The VHost the queue resides in.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The VHost the queue resides in.\n"
                 },
                 "withHeaders": {
                     "type": "boolean",
-                    "description": "Include message headers in the event data.\n",
-                    "willReplaceOnChanges": true
+                    "description": "Include message headers in the event data.\n"
                 }
             },
             "requiredInputs": [
@@ -1241,23 +1229,19 @@
                 "properties": {
                     "awsAccountId": {
                         "type": "string",
-                        "description": "The 12 digit AWS Account ID where you want the events to be sent to.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The 12 digit AWS Account ID where you want the events to be sent to.\n"
                     },
                     "awsRegion": {
                         "type": "string",
-                        "description": "The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)\n",
-                        "willReplaceOnChanges": true
+                        "description": "The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)\n"
                     },
                     "instanceId": {
                         "type": "integer",
-                        "description": "Instance identifier\n",
-                        "willReplaceOnChanges": true
+                        "description": "Instance identifier\n"
                     },
                     "queue": {
                         "type": "string",
-                        "description": "A (durable) queue on your RabbitMQ instance.\n",
-                        "willReplaceOnChanges": true
+                        "description": "A (durable) queue on your RabbitMQ instance.\n"
                     },
                     "status": {
                         "type": "string",
@@ -1265,13 +1249,11 @@
                     },
                     "vhost": {
                         "type": "string",
-                        "description": "The VHost the queue resides in.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The VHost the queue resides in.\n"
                     },
                     "withHeaders": {
                         "type": "boolean",
-                        "description": "Include message headers in the event data.\n",
-                        "willReplaceOnChanges": true
+                        "description": "Include message headers in the event data.\n"
                     }
                 },
                 "type": "object"
@@ -2648,7 +2630,7 @@
                 },
                 "logExchangeLevel": {
                     "type": "string",
-                    "description": "Log level for the logger used for log\nintegrations and the CloudAMQP Console log view.\n\n***Note:*** Requires a restart of RabbitMQ to be applied.\n"
+                    "description": "Log level for the logger used for log\nintegrations and the CloudAMQP Console log view.\n"
                 },
                 "maxMessageSize": {
                     "type": "integer",
@@ -2681,6 +2663,8 @@
                 "logExchangeLevel",
                 "maxMessageSize",
                 "queueIndexEmbedMsgsBelow",
+                "sleep",
+                "timeout",
                 "vmMemoryHighWatermark"
             ],
             "inputProperties": {
@@ -2706,12 +2690,11 @@
                 },
                 "instanceId": {
                     "type": "integer",
-                    "description": "The CloudAMQP instance ID.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The CloudAMQP instance ID.\n"
                 },
                 "logExchangeLevel": {
                     "type": "string",
-                    "description": "Log level for the logger used for log\nintegrations and the CloudAMQP Console log view.\n\n***Note:*** Requires a restart of RabbitMQ to be applied.\n"
+                    "description": "Log level for the logger used for log\nintegrations and the CloudAMQP Console log view.\n"
                 },
                 "maxMessageSize": {
                     "type": "integer",
@@ -2762,12 +2745,11 @@
                     },
                     "instanceId": {
                         "type": "integer",
-                        "description": "The CloudAMQP instance ID.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The CloudAMQP instance ID.\n"
                     },
                     "logExchangeLevel": {
                         "type": "string",
-                        "description": "Log level for the logger used for log\nintegrations and the CloudAMQP Console log view.\n\n***Note:*** Requires a restart of RabbitMQ to be applied.\n"
+                        "description": "Log level for the logger used for log\nintegrations and the CloudAMQP Console log view.\n"
                     },
                     "maxMessageSize": {
                         "type": "integer",

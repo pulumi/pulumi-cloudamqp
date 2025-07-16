@@ -5,10 +5,10 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export { AccountActionArgs, AccountActionState } from "./accountAction";
-export type AccountAction = import("./accountAction").AccountAction;
-export const AccountAction: typeof import("./accountAction").AccountAction = null as any;
-utilities.lazyLoad(exports, ["AccountAction"], () => require("./accountAction"));
+export { AccountActionsArgs, AccountActionsState } from "./accountActions";
+export type AccountActions = import("./accountActions").AccountActions;
+export const AccountActions: typeof import("./accountActions").AccountActions = null as any;
+utilities.lazyLoad(exports, ["AccountActions"], () => require("./accountActions"));
 
 export { AlarmArgs, AlarmState } from "./alarm";
 export type Alarm = import("./alarm").Alarm;
@@ -212,8 +212,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "cloudamqp:index/accountAction:AccountAction":
-                return new AccountAction(name, <any>undefined, { urn })
+            case "cloudamqp:index/accountActions:AccountActions":
+                return new AccountActions(name, <any>undefined, { urn })
             case "cloudamqp:index/alarm:Alarm":
                 return new Alarm(name, <any>undefined, { urn })
             case "cloudamqp:index/customDomain:CustomDomain":
@@ -265,7 +265,7 @@ const _module = {
         }
     },
 };
-pulumi.runtime.registerResourceModule("cloudamqp", "index/accountAction", _module)
+pulumi.runtime.registerResourceModule("cloudamqp", "index/accountActions", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/alarm", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/customDomain", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/extraDiskSize", _module)

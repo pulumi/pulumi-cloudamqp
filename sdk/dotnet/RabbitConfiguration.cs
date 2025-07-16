@@ -82,8 +82,6 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Log level for the logger used for log
         /// integrations and the CloudAMQP Console log view.
-        /// 
-        /// ***Note:*** Requires a restart of RabbitMQ to be applied.
         /// </summary>
         [Output("logExchangeLevel")]
         public Output<string> LogExchangeLevel { get; private set; } = null!;
@@ -108,14 +106,14 @@ namespace Pulumi.CloudAmqp
         /// for RabbitMQ configuration. Default set to 60 seconds.
         /// </summary>
         [Output("sleep")]
-        public Output<int?> Sleep { get; private set; } = null!;
+        public Output<int> Sleep { get; private set; } = null!;
 
         /// <summary>
         /// Configurable timeout time in seconds for RabbitMQ
         /// configuration. Default set to 3600 seconds.
         /// </summary>
         [Output("timeout")]
-        public Output<int?> Timeout { get; private set; } = null!;
+        public Output<int> Timeout { get; private set; } = null!;
 
         /// <summary>
         /// When the server will enter memory based
@@ -215,8 +213,6 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Log level for the logger used for log
         /// integrations and the CloudAMQP Console log view.
-        /// 
-        /// ***Note:*** Requires a restart of RabbitMQ to be applied.
         /// </summary>
         [Input("logExchangeLevel")]
         public Input<string>? LogExchangeLevel { get; set; }
@@ -310,8 +306,6 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Log level for the logger used for log
         /// integrations and the CloudAMQP Console log view.
-        /// 
-        /// ***Note:*** Requires a restart of RabbitMQ to be applied.
         /// </summary>
         [Input("logExchangeLevel")]
         public Input<string>? LogExchangeLevel { get; set; }

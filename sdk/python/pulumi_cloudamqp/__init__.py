@@ -6,7 +6,7 @@ import builtins
 from . import _utilities
 import typing
 # Export this package's modules as members:
-from .account_action import *
+from .account_actions import *
 from .alarm import *
 from .custom_domain import *
 from .extra_disk_size import *
@@ -60,10 +60,10 @@ _utilities.register(
 [
  {
   "pkg": "cloudamqp",
-  "mod": "index/accountAction",
+  "mod": "index/accountActions",
   "fqn": "pulumi_cloudamqp",
   "classes": {
-   "cloudamqp:index/accountAction:AccountAction": "AccountAction"
+   "cloudamqp:index/accountActions:AccountActions": "AccountActions"
   }
  },
  {

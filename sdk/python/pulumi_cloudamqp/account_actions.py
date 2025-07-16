@@ -15,18 +15,17 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
-__all__ = ['AccountActionArgs', 'AccountAction']
+__all__ = ['AccountActionsArgs', 'AccountActions']
 
 @pulumi.input_type
-class AccountActionArgs:
+class AccountActionsArgs:
     def __init__(__self__, *,
                  action: pulumi.Input[builtins.str],
                  instance_id: pulumi.Input[builtins.int]):
         """
-        The set of arguments for constructing a AccountAction resource.
-        :param pulumi.Input[builtins.str] action: The action to be invoked. Allowed actions
-               `rotate-password`, `rotate-apikey`.
-        :param pulumi.Input[builtins.int] instance_id: The CloudAMQP instance ID.
+        The set of arguments for constructing a AccountActions resource.
+        :param pulumi.Input[builtins.str] action: The action to perform on the node
+        :param pulumi.Input[builtins.int] instance_id: Instance identifier
         """
         pulumi.set(__self__, "action", action)
         pulumi.set(__self__, "instance_id", instance_id)
@@ -35,8 +34,7 @@ class AccountActionArgs:
     @pulumi.getter
     def action(self) -> pulumi.Input[builtins.str]:
         """
-        The action to be invoked. Allowed actions
-        `rotate-password`, `rotate-apikey`.
+        The action to perform on the node
         """
         return pulumi.get(self, "action")
 
@@ -48,7 +46,7 @@ class AccountActionArgs:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Input[builtins.int]:
         """
-        The CloudAMQP instance ID.
+        Instance identifier
         """
         return pulumi.get(self, "instance_id")
 
@@ -58,15 +56,14 @@ class AccountActionArgs:
 
 
 @pulumi.input_type
-class _AccountActionState:
+class _AccountActionsState:
     def __init__(__self__, *,
                  action: Optional[pulumi.Input[builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[builtins.int]] = None):
         """
-        Input properties used for looking up and filtering AccountAction resources.
-        :param pulumi.Input[builtins.str] action: The action to be invoked. Allowed actions
-               `rotate-password`, `rotate-apikey`.
-        :param pulumi.Input[builtins.int] instance_id: The CloudAMQP instance ID.
+        Input properties used for looking up and filtering AccountActions resources.
+        :param pulumi.Input[builtins.str] action: The action to perform on the node
+        :param pulumi.Input[builtins.int] instance_id: Instance identifier
         """
         if action is not None:
             pulumi.set(__self__, "action", action)
@@ -77,8 +74,7 @@ class _AccountActionState:
     @pulumi.getter
     def action(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        The action to be invoked. Allowed actions
-        `rotate-password`, `rotate-apikey`.
+        The action to perform on the node
         """
         return pulumi.get(self, "action")
 
@@ -90,7 +86,7 @@ class _AccountActionState:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[builtins.int]]:
         """
-        The CloudAMQP instance ID.
+        Instance identifier
         """
         return pulumi.get(self, "instance_id")
 
@@ -99,8 +95,8 @@ class _AccountActionState:
         pulumi.set(self, "instance_id", value)
 
 
-@pulumi.type_token("cloudamqp:index/accountAction:AccountAction")
-class AccountAction(pulumi.CustomResource):
+@pulumi.type_token("cloudamqp:index/accountActions:AccountActions")
+class AccountActions(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -109,34 +105,27 @@ class AccountAction(pulumi.CustomResource):
                  instance_id: Optional[pulumi.Input[builtins.int]] = None,
                  __props__=None):
         """
-        ## Import
-
-        Not possible to import this resource.
-
+        Create a AccountActions resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[builtins.str] action: The action to be invoked. Allowed actions
-               `rotate-password`, `rotate-apikey`.
-        :param pulumi.Input[builtins.int] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[builtins.str] action: The action to perform on the node
+        :param pulumi.Input[builtins.int] instance_id: Instance identifier
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: AccountActionArgs,
+                 args: AccountActionsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Import
-
-        Not possible to import this resource.
-
+        Create a AccountActions resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
-        :param AccountActionArgs args: The arguments to use to populate this resource's properties.
+        :param AccountActionsArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(AccountActionArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(AccountActionsArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -154,7 +143,7 @@ class AccountAction(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = AccountActionArgs.__new__(AccountActionArgs)
+            __props__ = AccountActionsArgs.__new__(AccountActionsArgs)
 
             if action is None and not opts.urn:
                 raise TypeError("Missing required property 'action'")
@@ -162,8 +151,8 @@ class AccountAction(pulumi.CustomResource):
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
-        super(AccountAction, __self__).__init__(
-            'cloudamqp:index/accountAction:AccountAction',
+        super(AccountActions, __self__).__init__(
+            'cloudamqp:index/accountActions:AccountActions',
             resource_name,
             __props__,
             opts)
@@ -173,32 +162,30 @@ class AccountAction(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             action: Optional[pulumi.Input[builtins.str]] = None,
-            instance_id: Optional[pulumi.Input[builtins.int]] = None) -> 'AccountAction':
+            instance_id: Optional[pulumi.Input[builtins.int]] = None) -> 'AccountActions':
         """
-        Get an existing AccountAction resource's state with the given name, id, and optional extra
+        Get an existing AccountActions resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[builtins.str] action: The action to be invoked. Allowed actions
-               `rotate-password`, `rotate-apikey`.
-        :param pulumi.Input[builtins.int] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[builtins.str] action: The action to perform on the node
+        :param pulumi.Input[builtins.int] instance_id: Instance identifier
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _AccountActionState.__new__(_AccountActionState)
+        __props__ = _AccountActionsState.__new__(_AccountActionsState)
 
         __props__.__dict__["action"] = action
         __props__.__dict__["instance_id"] = instance_id
-        return AccountAction(resource_name, opts=opts, __props__=__props__)
+        return AccountActions(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter
     def action(self) -> pulumi.Output[builtins.str]:
         """
-        The action to be invoked. Allowed actions
-        `rotate-password`, `rotate-apikey`.
+        The action to perform on the node
         """
         return pulumi.get(self, "action")
 
@@ -206,7 +193,7 @@ class AccountAction(pulumi.CustomResource):
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[builtins.int]:
         """
-        The CloudAMQP instance ID.
+        Instance identifier
         """
         return pulumi.get(self, "instance_id")
 

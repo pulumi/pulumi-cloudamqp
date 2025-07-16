@@ -123,8 +123,6 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
      * Log level for the logger used for log
      * integrations and the CloudAMQP Console log view.
      * 
-     * ***Note:*** Requires a restart of RabbitMQ to be applied.
-     * 
      */
     @Import(name="logExchangeLevel")
     private @Nullable Output<String> logExchangeLevel;
@@ -132,8 +130,6 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
     /**
      * @return Log level for the logger used for log
      * integrations and the CloudAMQP Console log view.
-     * 
-     * ***Note:*** Requires a restart of RabbitMQ to be applied.
      * 
      */
     public Optional<Output<String>> logExchangeLevel() {
@@ -404,8 +400,6 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
          * @param logExchangeLevel Log level for the logger used for log
          * integrations and the CloudAMQP Console log view.
          * 
-         * ***Note:*** Requires a restart of RabbitMQ to be applied.
-         * 
          * @return builder
          * 
          */
@@ -417,8 +411,6 @@ public final class RabbitConfigurationState extends com.pulumi.resources.Resourc
         /**
          * @param logExchangeLevel Log level for the logger used for log
          * integrations and the CloudAMQP Console log view.
-         * 
-         * ***Note:*** Requires a restart of RabbitMQ to be applied.
          * 
          * @return builder
          * 

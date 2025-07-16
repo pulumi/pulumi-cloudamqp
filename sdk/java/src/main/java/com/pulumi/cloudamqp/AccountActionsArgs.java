@@ -11,21 +11,19 @@ import java.lang.String;
 import java.util.Objects;
 
 
-public final class AccountActionArgs extends com.pulumi.resources.ResourceArgs {
+public final class AccountActionsArgs extends com.pulumi.resources.ResourceArgs {
 
-    public static final AccountActionArgs Empty = new AccountActionArgs();
+    public static final AccountActionsArgs Empty = new AccountActionsArgs();
 
     /**
-     * The action to be invoked. Allowed actions
-     * `rotate-password`, `rotate-apikey`.
+     * The action to perform on the node
      * 
      */
     @Import(name="action", required=true)
     private Output<String> action;
 
     /**
-     * @return The action to be invoked. Allowed actions
-     * `rotate-password`, `rotate-apikey`.
+     * @return The action to perform on the node
      * 
      */
     public Output<String> action() {
@@ -33,23 +31,23 @@ public final class AccountActionArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The CloudAMQP instance ID.
+     * Instance identifier
      * 
      */
     @Import(name="instanceId", required=true)
     private Output<Integer> instanceId;
 
     /**
-     * @return The CloudAMQP instance ID.
+     * @return Instance identifier
      * 
      */
     public Output<Integer> instanceId() {
         return this.instanceId;
     }
 
-    private AccountActionArgs() {}
+    private AccountActionsArgs() {}
 
-    private AccountActionArgs(AccountActionArgs $) {
+    private AccountActionsArgs(AccountActionsArgs $) {
         this.action = $.action;
         this.instanceId = $.instanceId;
     }
@@ -57,24 +55,23 @@ public final class AccountActionArgs extends com.pulumi.resources.ResourceArgs {
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(AccountActionArgs defaults) {
+    public static Builder builder(AccountActionsArgs defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private AccountActionArgs $;
+        private AccountActionsArgs $;
 
         public Builder() {
-            $ = new AccountActionArgs();
+            $ = new AccountActionsArgs();
         }
 
-        public Builder(AccountActionArgs defaults) {
-            $ = new AccountActionArgs(Objects.requireNonNull(defaults));
+        public Builder(AccountActionsArgs defaults) {
+            $ = new AccountActionsArgs(Objects.requireNonNull(defaults));
         }
 
         /**
-         * @param action The action to be invoked. Allowed actions
-         * `rotate-password`, `rotate-apikey`.
+         * @param action The action to perform on the node
          * 
          * @return builder
          * 
@@ -85,8 +82,7 @@ public final class AccountActionArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param action The action to be invoked. Allowed actions
-         * `rotate-password`, `rotate-apikey`.
+         * @param action The action to perform on the node
          * 
          * @return builder
          * 
@@ -96,7 +92,7 @@ public final class AccountActionArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param instanceId The CloudAMQP instance ID.
+         * @param instanceId Instance identifier
          * 
          * @return builder
          * 
@@ -107,7 +103,7 @@ public final class AccountActionArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param instanceId The CloudAMQP instance ID.
+         * @param instanceId Instance identifier
          * 
          * @return builder
          * 
@@ -116,12 +112,12 @@ public final class AccountActionArgs extends com.pulumi.resources.ResourceArgs {
             return instanceId(Output.of(instanceId));
         }
 
-        public AccountActionArgs build() {
+        public AccountActionsArgs build() {
             if ($.action == null) {
-                throw new MissingRequiredPropertyException("AccountActionArgs", "action");
+                throw new MissingRequiredPropertyException("AccountActionsArgs", "action");
             }
             if ($.instanceId == null) {
-                throw new MissingRequiredPropertyException("AccountActionArgs", "instanceId");
+                throw new MissingRequiredPropertyException("AccountActionsArgs", "instanceId");
             }
             return $;
         }

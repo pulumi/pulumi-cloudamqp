@@ -4,14 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * ## Import
- *
- * Not possible to import this resource.
- */
-export class AccountAction extends pulumi.CustomResource {
+export class AccountActions extends pulumi.CustomResource {
     /**
-     * Get an existing AccountAction resource's state with the given name, ID, and optional extra
+     * Get an existing AccountActions resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -19,51 +14,50 @@ export class AccountAction extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AccountActionState, opts?: pulumi.CustomResourceOptions): AccountAction {
-        return new AccountAction(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AccountActionsState, opts?: pulumi.CustomResourceOptions): AccountActions {
+        return new AccountActions(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'cloudamqp:index/accountAction:AccountAction';
+    public static readonly __pulumiType = 'cloudamqp:index/accountActions:AccountActions';
 
     /**
-     * Returns true if the given object is an instance of AccountAction.  This is designed to work even
+     * Returns true if the given object is an instance of AccountActions.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is AccountAction {
+    public static isInstance(obj: any): obj is AccountActions {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === AccountAction.__pulumiType;
+        return obj['__pulumiType'] === AccountActions.__pulumiType;
     }
 
     /**
-     * The action to be invoked. Allowed actions
-     * `rotate-password`, `rotate-apikey`.
+     * The action to perform on the node
      */
     public readonly action!: pulumi.Output<string>;
     /**
-     * The CloudAMQP instance ID.
+     * Instance identifier
      */
     public readonly instanceId!: pulumi.Output<number>;
 
     /**
-     * Create a AccountAction resource with the given unique name, arguments, and options.
+     * Create a AccountActions resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: AccountActionArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: AccountActionArgs | AccountActionState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: AccountActionsArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: AccountActionsArgs | AccountActionsState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as AccountActionState | undefined;
+            const state = argsOrState as AccountActionsState | undefined;
             resourceInputs["action"] = state ? state.action : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
         } else {
-            const args = argsOrState as AccountActionArgs | undefined;
+            const args = argsOrState as AccountActionsArgs | undefined;
             if ((!args || args.action === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'action'");
             }
@@ -74,36 +68,34 @@ export class AccountAction extends pulumi.CustomResource {
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(AccountAction.__pulumiType, name, resourceInputs, opts);
+        super(AccountActions.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering AccountAction resources.
+ * Input properties used for looking up and filtering AccountActions resources.
  */
-export interface AccountActionState {
+export interface AccountActionsState {
     /**
-     * The action to be invoked. Allowed actions
-     * `rotate-password`, `rotate-apikey`.
+     * The action to perform on the node
      */
     action?: pulumi.Input<string>;
     /**
-     * The CloudAMQP instance ID.
+     * Instance identifier
      */
     instanceId?: pulumi.Input<number>;
 }
 
 /**
- * The set of arguments for constructing a AccountAction resource.
+ * The set of arguments for constructing a AccountActions resource.
  */
-export interface AccountActionArgs {
+export interface AccountActionsArgs {
     /**
-     * The action to be invoked. Allowed actions
-     * `rotate-password`, `rotate-apikey`.
+     * The action to perform on the node
      */
     action: pulumi.Input<string>;
     /**
-     * The CloudAMQP instance ID.
+     * Instance identifier
      */
     instanceId: pulumi.Input<number>;
 }

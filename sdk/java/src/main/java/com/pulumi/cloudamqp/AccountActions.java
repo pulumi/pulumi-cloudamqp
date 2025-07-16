@@ -3,9 +3,9 @@
 
 package com.pulumi.cloudamqp;
 
-import com.pulumi.cloudamqp.AccountActionArgs;
+import com.pulumi.cloudamqp.AccountActionsArgs;
 import com.pulumi.cloudamqp.Utilities;
-import com.pulumi.cloudamqp.inputs.AccountActionState;
+import com.pulumi.cloudamqp.inputs.AccountActionsState;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Export;
 import com.pulumi.core.annotations.ResourceType;
@@ -14,39 +14,31 @@ import java.lang.Integer;
 import java.lang.String;
 import javax.annotation.Nullable;
 
-/**
- * ## Import
- * 
- * Not possible to import this resource.
- * 
- */
-@ResourceType(type="cloudamqp:index/accountAction:AccountAction")
-public class AccountAction extends com.pulumi.resources.CustomResource {
+@ResourceType(type="cloudamqp:index/accountActions:AccountActions")
+public class AccountActions extends com.pulumi.resources.CustomResource {
     /**
-     * The action to be invoked. Allowed actions
-     * `rotate-password`, `rotate-apikey`.
+     * The action to perform on the node
      * 
      */
     @Export(name="action", refs={String.class}, tree="[0]")
     private Output<String> action;
 
     /**
-     * @return The action to be invoked. Allowed actions
-     * `rotate-password`, `rotate-apikey`.
+     * @return The action to perform on the node
      * 
      */
     public Output<String> action() {
         return this.action;
     }
     /**
-     * The CloudAMQP instance ID.
+     * Instance identifier
      * 
      */
     @Export(name="instanceId", refs={Integer.class}, tree="[0]")
     private Output<Integer> instanceId;
 
     /**
-     * @return The CloudAMQP instance ID.
+     * @return Instance identifier
      * 
      */
     public Output<Integer> instanceId() {
@@ -57,15 +49,15 @@ public class AccountAction extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public AccountAction(java.lang.String name) {
-        this(name, AccountActionArgs.Empty);
+    public AccountActions(java.lang.String name) {
+        this(name, AccountActionsArgs.Empty);
     }
     /**
      *
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public AccountAction(java.lang.String name, AccountActionArgs args) {
+    public AccountActions(java.lang.String name, AccountActionsArgs args) {
         this(name, args, null);
     }
     /**
@@ -74,19 +66,19 @@ public class AccountAction extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public AccountAction(java.lang.String name, AccountActionArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("cloudamqp:index/accountAction:AccountAction", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
+    public AccountActions(java.lang.String name, AccountActionsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("cloudamqp:index/accountActions:AccountActions", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private AccountAction(java.lang.String name, Output<java.lang.String> id, @Nullable AccountActionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("cloudamqp:index/accountAction:AccountAction", name, state, makeResourceOptions(options, id), false);
+    private AccountActions(java.lang.String name, Output<java.lang.String> id, @Nullable AccountActionsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("cloudamqp:index/accountActions:AccountActions", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static AccountActionArgs makeArgs(AccountActionArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    private static AccountActionsArgs makeArgs(AccountActionsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         if (options != null && options.getUrn().isPresent()) {
             return null;
         }
-        return args == null ? AccountActionArgs.Empty : args;
+        return args == null ? AccountActionsArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
@@ -105,7 +97,7 @@ public class AccountAction extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static AccountAction get(java.lang.String name, Output<java.lang.String> id, @Nullable AccountActionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        return new AccountAction(name, id, state, options);
+    public static AccountActions get(java.lang.String name, Output<java.lang.String> id, @Nullable AccountActionsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        return new AccountActions(name, id, state, options);
     }
 }

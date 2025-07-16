@@ -12,21 +12,19 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 
-public final class AccountActionState extends com.pulumi.resources.ResourceArgs {
+public final class AccountActionsState extends com.pulumi.resources.ResourceArgs {
 
-    public static final AccountActionState Empty = new AccountActionState();
+    public static final AccountActionsState Empty = new AccountActionsState();
 
     /**
-     * The action to be invoked. Allowed actions
-     * `rotate-password`, `rotate-apikey`.
+     * The action to perform on the node
      * 
      */
     @Import(name="action")
     private @Nullable Output<String> action;
 
     /**
-     * @return The action to be invoked. Allowed actions
-     * `rotate-password`, `rotate-apikey`.
+     * @return The action to perform on the node
      * 
      */
     public Optional<Output<String>> action() {
@@ -34,23 +32,23 @@ public final class AccountActionState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The CloudAMQP instance ID.
+     * Instance identifier
      * 
      */
     @Import(name="instanceId")
     private @Nullable Output<Integer> instanceId;
 
     /**
-     * @return The CloudAMQP instance ID.
+     * @return Instance identifier
      * 
      */
     public Optional<Output<Integer>> instanceId() {
         return Optional.ofNullable(this.instanceId);
     }
 
-    private AccountActionState() {}
+    private AccountActionsState() {}
 
-    private AccountActionState(AccountActionState $) {
+    private AccountActionsState(AccountActionsState $) {
         this.action = $.action;
         this.instanceId = $.instanceId;
     }
@@ -58,24 +56,23 @@ public final class AccountActionState extends com.pulumi.resources.ResourceArgs 
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(AccountActionState defaults) {
+    public static Builder builder(AccountActionsState defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private AccountActionState $;
+        private AccountActionsState $;
 
         public Builder() {
-            $ = new AccountActionState();
+            $ = new AccountActionsState();
         }
 
-        public Builder(AccountActionState defaults) {
-            $ = new AccountActionState(Objects.requireNonNull(defaults));
+        public Builder(AccountActionsState defaults) {
+            $ = new AccountActionsState(Objects.requireNonNull(defaults));
         }
 
         /**
-         * @param action The action to be invoked. Allowed actions
-         * `rotate-password`, `rotate-apikey`.
+         * @param action The action to perform on the node
          * 
          * @return builder
          * 
@@ -86,8 +83,7 @@ public final class AccountActionState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param action The action to be invoked. Allowed actions
-         * `rotate-password`, `rotate-apikey`.
+         * @param action The action to perform on the node
          * 
          * @return builder
          * 
@@ -97,7 +93,7 @@ public final class AccountActionState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param instanceId The CloudAMQP instance ID.
+         * @param instanceId Instance identifier
          * 
          * @return builder
          * 
@@ -108,7 +104,7 @@ public final class AccountActionState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param instanceId The CloudAMQP instance ID.
+         * @param instanceId Instance identifier
          * 
          * @return builder
          * 
@@ -117,7 +113,7 @@ public final class AccountActionState extends com.pulumi.resources.ResourceArgs 
             return instanceId(Output.of(instanceId));
         }
 
-        public AccountActionState build() {
+        public AccountActionsState build() {
             return $;
         }
     }

@@ -48,8 +48,6 @@ class RabbitConfigurationArgs:
                in seconds.
         :param pulumi.Input[builtins.str] log_exchange_level: Log level for the logger used for log
                integrations and the CloudAMQP Console log view.
-               
-               ***Note:*** Requires a restart of RabbitMQ to be applied.
         :param pulumi.Input[builtins.int] max_message_size: The largest allowed message payload size in
                bytes.
         :param pulumi.Input[builtins.int] queue_index_embed_msgs_below: Size in bytes below which to embed messages
@@ -170,8 +168,6 @@ class RabbitConfigurationArgs:
         """
         Log level for the logger used for log
         integrations and the CloudAMQP Console log view.
-
-        ***Note:*** Requires a restart of RabbitMQ to be applied.
         """
         return pulumi.get(self, "log_exchange_level")
 
@@ -277,8 +273,6 @@ class _RabbitConfigurationState:
         :param pulumi.Input[builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[builtins.str] log_exchange_level: Log level for the logger used for log
                integrations and the CloudAMQP Console log view.
-               
-               ***Note:*** Requires a restart of RabbitMQ to be applied.
         :param pulumi.Input[builtins.int] max_message_size: The largest allowed message payload size in
                bytes.
         :param pulumi.Input[builtins.int] queue_index_embed_msgs_below: Size in bytes below which to embed messages
@@ -400,8 +394,6 @@ class _RabbitConfigurationState:
         """
         Log level for the logger used for log
         integrations and the CloudAMQP Console log view.
-
-        ***Note:*** Requires a restart of RabbitMQ to be applied.
         """
         return pulumi.get(self, "log_exchange_level")
 
@@ -536,8 +528,6 @@ class RabbitConfiguration(pulumi.CustomResource):
         :param pulumi.Input[builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[builtins.str] log_exchange_level: Log level for the logger used for log
                integrations and the CloudAMQP Console log view.
-               
-               ***Note:*** Requires a restart of RabbitMQ to be applied.
         :param pulumi.Input[builtins.int] max_message_size: The largest allowed message payload size in
                bytes.
         :param pulumi.Input[builtins.int] queue_index_embed_msgs_below: Size in bytes below which to embed messages
@@ -674,8 +664,6 @@ class RabbitConfiguration(pulumi.CustomResource):
         :param pulumi.Input[builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[builtins.str] log_exchange_level: Log level for the logger used for log
                integrations and the CloudAMQP Console log view.
-               
-               ***Note:*** Requires a restart of RabbitMQ to be applied.
         :param pulumi.Input[builtins.int] max_message_size: The largest allowed message payload size in
                bytes.
         :param pulumi.Input[builtins.int] queue_index_embed_msgs_below: Size in bytes below which to embed messages
@@ -766,8 +754,6 @@ class RabbitConfiguration(pulumi.CustomResource):
         """
         Log level for the logger used for log
         integrations and the CloudAMQP Console log view.
-
-        ***Note:*** Requires a restart of RabbitMQ to be applied.
         """
         return pulumi.get(self, "log_exchange_level")
 
@@ -792,7 +778,7 @@ class RabbitConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def sleep(self) -> pulumi.Output[Optional[builtins.int]]:
+    def sleep(self) -> pulumi.Output[builtins.int]:
         """
         Configurable sleep time in seconds between retries
         for RabbitMQ configuration. Default set to 60 seconds.
@@ -801,7 +787,7 @@ class RabbitConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def timeout(self) -> pulumi.Output[Optional[builtins.int]]:
+    def timeout(self) -> pulumi.Output[builtins.int]:
         """
         Configurable timeout time in seconds for RabbitMQ
         configuration. Default set to 3600 seconds.

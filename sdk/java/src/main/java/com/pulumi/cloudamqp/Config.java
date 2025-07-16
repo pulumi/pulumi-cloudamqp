@@ -15,8 +15,8 @@ public final class Config {
  * Key used to authentication to the CloudAMQP Customer API
  * 
  */
-    public String apikey() {
-        return Codegen.stringProp("apikey").config(config).require();
+    public Optional<String> apikey() {
+        return Codegen.stringProp("apikey").config(config).get();
     }
 /**
  * Base URL to CloudAMQP Customer website

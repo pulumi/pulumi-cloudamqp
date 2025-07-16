@@ -9,42 +9,36 @@ using Pulumi.Serialization;
 
 namespace Pulumi.CloudAmqp
 {
-    /// <summary>
-    /// ## Import
-    /// 
-    /// Not possible to import this resource.
-    /// </summary>
-    [CloudAmqpResourceType("cloudamqp:index/accountAction:AccountAction")]
-    public partial class AccountAction : global::Pulumi.CustomResource
+    [CloudAmqpResourceType("cloudamqp:index/accountActions:AccountActions")]
+    public partial class AccountActions : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The action to be invoked. Allowed actions
-        /// `rotate-password`, `rotate-apikey`.
+        /// The action to perform on the node
         /// </summary>
         [Output("action")]
         public Output<string> Action { get; private set; } = null!;
 
         /// <summary>
-        /// The CloudAMQP instance ID.
+        /// Instance identifier
         /// </summary>
         [Output("instanceId")]
         public Output<int> InstanceId { get; private set; } = null!;
 
 
         /// <summary>
-        /// Create a AccountAction resource with the given unique name, arguments, and options.
+        /// Create a AccountActions resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public AccountAction(string name, AccountActionArgs args, CustomResourceOptions? options = null)
-            : base("cloudamqp:index/accountAction:AccountAction", name, args ?? new AccountActionArgs(), MakeResourceOptions(options, ""))
+        public AccountActions(string name, AccountActionsArgs args, CustomResourceOptions? options = null)
+            : base("cloudamqp:index/accountActions:AccountActions", name, args ?? new AccountActionsArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private AccountAction(string name, Input<string> id, AccountActionState? state = null, CustomResourceOptions? options = null)
-            : base("cloudamqp:index/accountAction:AccountAction", name, state, MakeResourceOptions(options, id))
+        private AccountActions(string name, Input<string> id, AccountActionsState? state = null, CustomResourceOptions? options = null)
+            : base("cloudamqp:index/accountActions:AccountActions", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -60,7 +54,7 @@ namespace Pulumi.CloudAmqp
             return merged;
         }
         /// <summary>
-        /// Get an existing AccountAction resource's state with the given name, ID, and optional extra
+        /// Get an existing AccountActions resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -68,51 +62,49 @@ namespace Pulumi.CloudAmqp
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static AccountAction Get(string name, Input<string> id, AccountActionState? state = null, CustomResourceOptions? options = null)
+        public static AccountActions Get(string name, Input<string> id, AccountActionsState? state = null, CustomResourceOptions? options = null)
         {
-            return new AccountAction(name, id, state, options);
+            return new AccountActions(name, id, state, options);
         }
     }
 
-    public sealed class AccountActionArgs : global::Pulumi.ResourceArgs
+    public sealed class AccountActionsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The action to be invoked. Allowed actions
-        /// `rotate-password`, `rotate-apikey`.
+        /// The action to perform on the node
         /// </summary>
         [Input("action", required: true)]
         public Input<string> Action { get; set; } = null!;
 
         /// <summary>
-        /// The CloudAMQP instance ID.
+        /// Instance identifier
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<int> InstanceId { get; set; } = null!;
 
-        public AccountActionArgs()
+        public AccountActionsArgs()
         {
         }
-        public static new AccountActionArgs Empty => new AccountActionArgs();
+        public static new AccountActionsArgs Empty => new AccountActionsArgs();
     }
 
-    public sealed class AccountActionState : global::Pulumi.ResourceArgs
+    public sealed class AccountActionsState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The action to be invoked. Allowed actions
-        /// `rotate-password`, `rotate-apikey`.
+        /// The action to perform on the node
         /// </summary>
         [Input("action")]
         public Input<string>? Action { get; set; }
 
         /// <summary>
-        /// The CloudAMQP instance ID.
+        /// Instance identifier
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
 
-        public AccountActionState()
+        public AccountActionsState()
         {
         }
-        public static new AccountActionState Empty => new AccountActionState();
+        public static new AccountActionsState Empty => new AccountActionsState();
     }
 }

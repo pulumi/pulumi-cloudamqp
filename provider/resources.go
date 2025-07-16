@@ -16,12 +16,16 @@ package cloudamqp
 
 import (
 	"bytes"
+	"context"
 	"fmt"
 	"net/http"
 	"path"
 
+	_ "embed" // used to embed metadata
+
 	"github.com/cloudamqp/terraform-provider-cloudamqp/cloudamqp"
 
+	pf "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tfbridgetokens "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
@@ -42,9 +46,19 @@ func makeResource(res string) tokens.Type { return tfbridge.MakeResource(mainPkg
 
 func ref[T any](t T) *T { return &t }
 
+//go:embed cmd/pulumi-resource-cloudamqp/bridge-metadata.json
+var metadata []byte
+
 func Provider() tfbridge.ProviderInfo {
+	tfProviderSDKv2 := cloudamqp.Provider("", http.DefaultClient)
+	tfProviderPluginFw := cloudamqp.New("", http.DefaultClient)
+
+	p := pf.MuxShimWithDisjointgPF(context.Background(),
+		shimv2.NewProvider(tfProviderSDKv2),
+		tfProviderPluginFw)
+
 	prov := tfbridge.ProviderInfo{
-		P:                 shimv2.NewProvider(cloudamqp.Provider("", http.DefaultClient)),
+		P:                 p,
 		Name:              "cloudamqp",
 		DisplayName:       "CloudAMQP",
 		GitHubOrg:         "cloudamqp",
@@ -54,8 +68,10 @@ func Provider() tfbridge.ProviderInfo {
 		TFProviderLicense: ref(tfbridge.MITLicenseType),
 		Homepage:          "https://pulumi.io",
 		Repository:        "https://github.com/pulumi/pulumi-cloudamqp",
+		Version:           version.Version,
 		Config:            map[string]*tfbridge.SchemaInfo{},
 		DocRules:          &tfbridge.DocRuleInfo{EditRules: docEditRules},
+		MetadataInfo:      tfbridge.NewProviderMetadata(metadata),
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"cloudamqp_rabbitmq_configuration": {Tok: makeResource("RabbitConfiguration")},
 			"cloudamqp_integration_metric": {
