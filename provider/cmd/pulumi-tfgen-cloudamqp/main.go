@@ -15,8 +15,9 @@
 package main
 
 import (
-	cloudamqp "github.com/pulumi/pulumi-cloudamqp/provider/v3"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfgen"
+
+	cloudamqp "github.com/pulumi/pulumi-cloudamqp/provider/v3"
 )
 
 func main() {

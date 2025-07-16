@@ -17,10 +17,11 @@ package cloudamqp
 import (
 	"bytes"
 	"context"
-	_ "embed"
 	"fmt"
 	"net/http"
 	"path"
+
+	_ "embed"
 
 	"github.com/cloudamqp/terraform-provider-cloudamqp/cloudamqp"
 
