@@ -21,7 +21,7 @@ import (
 	"net/http"
 	"path"
 
-	_ "embed"
+	_ "embed" // used to embed metadata
 
 	"github.com/cloudamqp/terraform-provider-cloudamqp/cloudamqp"
 
