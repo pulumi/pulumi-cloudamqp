@@ -28,11 +28,11 @@ export class Provider extends pulumi.ProviderResource {
     /**
      * Key used to authentication to the CloudAMQP Customer API
      */
-    public readonly apikey!: pulumi.Output<string | undefined>;
+    declare public readonly apikey: pulumi.Output<string | undefined>;
     /**
      * Base URL to CloudAMQP Customer website
      */
-    public readonly baseurl!: pulumi.Output<string | undefined>;
+    declare public readonly baseurl: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -45,9 +45,9 @@ export class Provider extends pulumi.ProviderResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            resourceInputs["apikey"] = args ? args.apikey : undefined;
-            resourceInputs["baseurl"] = args ? args.baseurl : undefined;
-            resourceInputs["enableFasterInstanceDestroy"] = pulumi.output(args ? args.enableFasterInstanceDestroy : undefined).apply(JSON.stringify);
+            resourceInputs["apikey"] = args?.apikey;
+            resourceInputs["baseurl"] = args?.baseurl;
+            resourceInputs["enableFasterInstanceDestroy"] = pulumi.output(args?.enableFasterInstanceDestroy).apply(JSON.stringify);
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Provider.__pulumiType, name, resourceInputs, opts);

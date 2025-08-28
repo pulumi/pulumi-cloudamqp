@@ -60,55 +60,55 @@ export class Alarm extends pulumi.CustomResource {
     /**
      * Enable or disable the alarm to trigger.
      */
-    public readonly enabled!: pulumi.Output<boolean>;
+    declare public readonly enabled: pulumi.Output<boolean>;
     /**
      * The CloudAMQP instance ID.
      */
-    public readonly instanceId!: pulumi.Output<number>;
+    declare public readonly instanceId: pulumi.Output<number>;
     /**
      * Message type `(total, unacked, ready)` used by queue alarm type.
      *
      * Specific argument for `disk` alarm
      */
-    public readonly messageType!: pulumi.Output<string | undefined>;
+    declare public readonly messageType: pulumi.Output<string | undefined>;
     /**
      * Regex for which queue to check.
      */
-    public readonly queueRegex!: pulumi.Output<string | undefined>;
+    declare public readonly queueRegex: pulumi.Output<string | undefined>;
     /**
      * Identifier for recipient to be notified. Leave empty to notify
      * all recipients.
      */
-    public readonly recipients!: pulumi.Output<number[]>;
+    declare public readonly recipients: pulumi.Output<number[]>;
     /**
      * The reminder interval (in seconds) to resend the alarm if not
      * resolved. Set to 0 for no reminders. The Default is 0.
      */
-    public readonly reminderInterval!: pulumi.Output<number | undefined>;
+    declare public readonly reminderInterval: pulumi.Output<number | undefined>;
     /**
      * The time interval (in seconds) the `valueThreshold` should be
      * active before triggering an alarm.
      */
-    public readonly timeThreshold!: pulumi.Output<number | undefined>;
+    declare public readonly timeThreshold: pulumi.Output<number | undefined>;
     /**
      * The alarm type, see valid options below.
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
     /**
      * Disk value threshold calculation, `fixed, percentage` of disk
      * space remaining.
      *
      * Based on alarm type, different arguments are flagged as required or optional.
      */
-    public readonly valueCalculation!: pulumi.Output<string | undefined>;
+    declare public readonly valueCalculation: pulumi.Output<string | undefined>;
     /**
      * The value to trigger the alarm for.
      */
-    public readonly valueThreshold!: pulumi.Output<number | undefined>;
+    declare public readonly valueThreshold: pulumi.Output<number | undefined>;
     /**
      * Regex for which vhost to check
      */
-    public readonly vhostRegex!: pulumi.Output<string | undefined>;
+    declare public readonly vhostRegex: pulumi.Output<string | undefined>;
 
     /**
      * Create a Alarm resource with the given unique name, arguments, and options.
@@ -123,42 +123,42 @@ export class Alarm extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AlarmState | undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["messageType"] = state ? state.messageType : undefined;
-            resourceInputs["queueRegex"] = state ? state.queueRegex : undefined;
-            resourceInputs["recipients"] = state ? state.recipients : undefined;
-            resourceInputs["reminderInterval"] = state ? state.reminderInterval : undefined;
-            resourceInputs["timeThreshold"] = state ? state.timeThreshold : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["valueCalculation"] = state ? state.valueCalculation : undefined;
-            resourceInputs["valueThreshold"] = state ? state.valueThreshold : undefined;
-            resourceInputs["vhostRegex"] = state ? state.vhostRegex : undefined;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["messageType"] = state?.messageType;
+            resourceInputs["queueRegex"] = state?.queueRegex;
+            resourceInputs["recipients"] = state?.recipients;
+            resourceInputs["reminderInterval"] = state?.reminderInterval;
+            resourceInputs["timeThreshold"] = state?.timeThreshold;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["valueCalculation"] = state?.valueCalculation;
+            resourceInputs["valueThreshold"] = state?.valueThreshold;
+            resourceInputs["vhostRegex"] = state?.vhostRegex;
         } else {
             const args = argsOrState as AlarmArgs | undefined;
-            if ((!args || args.enabled === undefined) && !opts.urn) {
+            if (args?.enabled === undefined && !opts.urn) {
                 throw new Error("Missing required property 'enabled'");
             }
-            if ((!args || args.instanceId === undefined) && !opts.urn) {
+            if (args?.instanceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            if ((!args || args.recipients === undefined) && !opts.urn) {
+            if (args?.recipients === undefined && !opts.urn) {
                 throw new Error("Missing required property 'recipients'");
             }
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["messageType"] = args ? args.messageType : undefined;
-            resourceInputs["queueRegex"] = args ? args.queueRegex : undefined;
-            resourceInputs["recipients"] = args ? args.recipients : undefined;
-            resourceInputs["reminderInterval"] = args ? args.reminderInterval : undefined;
-            resourceInputs["timeThreshold"] = args ? args.timeThreshold : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["valueCalculation"] = args ? args.valueCalculation : undefined;
-            resourceInputs["valueThreshold"] = args ? args.valueThreshold : undefined;
-            resourceInputs["vhostRegex"] = args ? args.vhostRegex : undefined;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["messageType"] = args?.messageType;
+            resourceInputs["queueRegex"] = args?.queueRegex;
+            resourceInputs["recipients"] = args?.recipients;
+            resourceInputs["reminderInterval"] = args?.reminderInterval;
+            resourceInputs["timeThreshold"] = args?.timeThreshold;
+            resourceInputs["type"] = args?.type;
+            resourceInputs["valueCalculation"] = args?.valueCalculation;
+            resourceInputs["valueThreshold"] = args?.valueThreshold;
+            resourceInputs["vhostRegex"] = args?.vhostRegex;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Alarm.__pulumiType, name, resourceInputs, opts);

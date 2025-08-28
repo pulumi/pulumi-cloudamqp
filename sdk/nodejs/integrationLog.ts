@@ -294,35 +294,35 @@ export class IntegrationLog extends pulumi.CustomResource {
     /**
      * AWS access key identifier.
      */
-    public readonly accessKeyId!: pulumi.Output<string | undefined>;
+    declare public readonly accessKeyId: pulumi.Output<string | undefined>;
     /**
      * The API key.
      */
-    public readonly apiKey!: pulumi.Output<string | undefined>;
+    declare public readonly apiKey: pulumi.Output<string | undefined>;
     /**
      * The application name for Coralogix.
      */
-    public readonly application!: pulumi.Output<string | undefined>;
+    declare public readonly application: pulumi.Output<string | undefined>;
     /**
      * The application identifier for Azure monitor.
      */
-    public readonly applicationId!: pulumi.Output<string | undefined>;
+    declare public readonly applicationId: pulumi.Output<string | undefined>;
     /**
      * The application secret for Azure monitor.
      */
-    public readonly applicationSecret!: pulumi.Output<string | undefined>;
+    declare public readonly applicationSecret: pulumi.Output<string | undefined>;
     /**
      * The client email registered for the integration service.
      */
-    public readonly clientEmail!: pulumi.Output<string>;
+    declare public readonly clientEmail: pulumi.Output<string>;
     /**
      * Google Service Account private key credentials.
      */
-    public readonly credentials!: pulumi.Output<string | undefined>;
+    declare public readonly credentials: pulumi.Output<string | undefined>;
     /**
      * The data collection endpoint for Azure monitor.
      */
-    public readonly dceUri!: pulumi.Output<string | undefined>;
+    declare public readonly dceUri: pulumi.Output<string | undefined>;
     /**
      * ID of data collection rule that your DCE is linked to for Azure
      * Monitor.
@@ -330,81 +330,81 @@ export class IntegrationLog extends pulumi.CustomResource {
      * This is the full list of all arguments. Only a subset of arguments are used based on which type of
      * integration used. See [integration type reference] table below for more information.
      */
-    public readonly dcrId!: pulumi.Output<string | undefined>;
+    declare public readonly dcrId: pulumi.Output<string | undefined>;
     /**
      * The syslog destination to send the logs to for Coralogix.
      */
-    public readonly endpoint!: pulumi.Output<string | undefined>;
+    declare public readonly endpoint: pulumi.Output<string | undefined>;
     /**
      * The host for Scalyr integration. (app.scalyr.com,
      * app.eu.scalyr.com)
      */
-    public readonly host!: pulumi.Output<string | undefined>;
+    declare public readonly host: pulumi.Output<string | undefined>;
     /**
      * Destination to send the logs.
      */
-    public readonly hostPort!: pulumi.Output<string | undefined>;
+    declare public readonly hostPort: pulumi.Output<string | undefined>;
     /**
      * Instance identifier used to make proxy calls
      */
-    public readonly instanceId!: pulumi.Output<number>;
+    declare public readonly instanceId: pulumi.Output<number>;
     /**
      * The name of the third party log integration. See
      * [integration type reference]
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The private access key.
      */
-    public readonly privateKey!: pulumi.Output<string>;
+    declare public readonly privateKey: pulumi.Output<string>;
     /**
      * Private key identifier. (Stackdriver)
      */
-    public readonly privateKeyId!: pulumi.Output<string>;
+    declare public readonly privateKeyId: pulumi.Output<string>;
     /**
      * The project identifier.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Region hosting the integration service.
      */
-    public readonly region!: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * AWS secret access key.
      */
-    public readonly secretAccessKey!: pulumi.Output<string | undefined>;
+    declare public readonly secretAccessKey: pulumi.Output<string | undefined>;
     /**
      * Assign source type to the data exported, eg. generic_single_line.
      * (Splunk)
      */
-    public readonly sourcetype!: pulumi.Output<string | undefined>;
+    declare public readonly sourcetype: pulumi.Output<string | undefined>;
     /**
      * The subsystem name for Coralogix.
      */
-    public readonly subsystem!: pulumi.Output<string | undefined>;
+    declare public readonly subsystem: pulumi.Output<string | undefined>;
     /**
      * The table name for Azure monitor.
      */
-    public readonly table!: pulumi.Output<string | undefined>;
+    declare public readonly table: pulumi.Output<string | undefined>;
     /**
      * Tags. e.g. `env=prod,region=europe`.
      *
      * ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
      * letter, read more about tags format in the [Datadog documentation].
      */
-    public readonly tags!: pulumi.Output<string | undefined>;
+    declare public readonly tags: pulumi.Output<string | undefined>;
     /**
      * The tenant identifier for Azure monitor.
      */
-    public readonly tenantId!: pulumi.Output<string | undefined>;
+    declare public readonly tenantId: pulumi.Output<string | undefined>;
     /**
      * Token used for authentication.
      */
-    public readonly token!: pulumi.Output<string | undefined>;
+    declare public readonly token: pulumi.Output<string | undefined>;
     /**
      * Endpoint to log integration.
      */
-    public readonly url!: pulumi.Output<string | undefined>;
+    declare public readonly url: pulumi.Output<string | undefined>;
 
     /**
      * Create a IntegrationLog resource with the given unique name, arguments, and options.
@@ -419,63 +419,63 @@ export class IntegrationLog extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IntegrationLogState | undefined;
-            resourceInputs["accessKeyId"] = state ? state.accessKeyId : undefined;
-            resourceInputs["apiKey"] = state ? state.apiKey : undefined;
-            resourceInputs["application"] = state ? state.application : undefined;
-            resourceInputs["applicationId"] = state ? state.applicationId : undefined;
-            resourceInputs["applicationSecret"] = state ? state.applicationSecret : undefined;
-            resourceInputs["clientEmail"] = state ? state.clientEmail : undefined;
-            resourceInputs["credentials"] = state ? state.credentials : undefined;
-            resourceInputs["dceUri"] = state ? state.dceUri : undefined;
-            resourceInputs["dcrId"] = state ? state.dcrId : undefined;
-            resourceInputs["endpoint"] = state ? state.endpoint : undefined;
-            resourceInputs["host"] = state ? state.host : undefined;
-            resourceInputs["hostPort"] = state ? state.hostPort : undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["privateKey"] = state ? state.privateKey : undefined;
-            resourceInputs["privateKeyId"] = state ? state.privateKeyId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["secretAccessKey"] = state ? state.secretAccessKey : undefined;
-            resourceInputs["sourcetype"] = state ? state.sourcetype : undefined;
-            resourceInputs["subsystem"] = state ? state.subsystem : undefined;
-            resourceInputs["table"] = state ? state.table : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["tenantId"] = state ? state.tenantId : undefined;
-            resourceInputs["token"] = state ? state.token : undefined;
-            resourceInputs["url"] = state ? state.url : undefined;
+            resourceInputs["accessKeyId"] = state?.accessKeyId;
+            resourceInputs["apiKey"] = state?.apiKey;
+            resourceInputs["application"] = state?.application;
+            resourceInputs["applicationId"] = state?.applicationId;
+            resourceInputs["applicationSecret"] = state?.applicationSecret;
+            resourceInputs["clientEmail"] = state?.clientEmail;
+            resourceInputs["credentials"] = state?.credentials;
+            resourceInputs["dceUri"] = state?.dceUri;
+            resourceInputs["dcrId"] = state?.dcrId;
+            resourceInputs["endpoint"] = state?.endpoint;
+            resourceInputs["host"] = state?.host;
+            resourceInputs["hostPort"] = state?.hostPort;
+            resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["privateKey"] = state?.privateKey;
+            resourceInputs["privateKeyId"] = state?.privateKeyId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["secretAccessKey"] = state?.secretAccessKey;
+            resourceInputs["sourcetype"] = state?.sourcetype;
+            resourceInputs["subsystem"] = state?.subsystem;
+            resourceInputs["table"] = state?.table;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["tenantId"] = state?.tenantId;
+            resourceInputs["token"] = state?.token;
+            resourceInputs["url"] = state?.url;
         } else {
             const args = argsOrState as IntegrationLogArgs | undefined;
-            if ((!args || args.instanceId === undefined) && !opts.urn) {
+            if (args?.instanceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
             resourceInputs["accessKeyId"] = args?.accessKeyId ? pulumi.secret(args.accessKeyId) : undefined;
             resourceInputs["apiKey"] = args?.apiKey ? pulumi.secret(args.apiKey) : undefined;
-            resourceInputs["application"] = args ? args.application : undefined;
-            resourceInputs["applicationId"] = args ? args.applicationId : undefined;
+            resourceInputs["application"] = args?.application;
+            resourceInputs["applicationId"] = args?.applicationId;
             resourceInputs["applicationSecret"] = args?.applicationSecret ? pulumi.secret(args.applicationSecret) : undefined;
-            resourceInputs["clientEmail"] = args ? args.clientEmail : undefined;
+            resourceInputs["clientEmail"] = args?.clientEmail;
             resourceInputs["credentials"] = args?.credentials ? pulumi.secret(args.credentials) : undefined;
-            resourceInputs["dceUri"] = args ? args.dceUri : undefined;
-            resourceInputs["dcrId"] = args ? args.dcrId : undefined;
-            resourceInputs["endpoint"] = args ? args.endpoint : undefined;
-            resourceInputs["host"] = args ? args.host : undefined;
-            resourceInputs["hostPort"] = args ? args.hostPort : undefined;
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["dceUri"] = args?.dceUri;
+            resourceInputs["dcrId"] = args?.dcrId;
+            resourceInputs["endpoint"] = args?.endpoint;
+            resourceInputs["host"] = args?.host;
+            resourceInputs["hostPort"] = args?.hostPort;
+            resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["name"] = args?.name;
             resourceInputs["privateKey"] = args?.privateKey ? pulumi.secret(args.privateKey) : undefined;
             resourceInputs["privateKeyId"] = args?.privateKeyId ? pulumi.secret(args.privateKeyId) : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["region"] = args?.region;
             resourceInputs["secretAccessKey"] = args?.secretAccessKey ? pulumi.secret(args.secretAccessKey) : undefined;
-            resourceInputs["sourcetype"] = args ? args.sourcetype : undefined;
-            resourceInputs["subsystem"] = args ? args.subsystem : undefined;
-            resourceInputs["table"] = args ? args.table : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["tenantId"] = args ? args.tenantId : undefined;
+            resourceInputs["sourcetype"] = args?.sourcetype;
+            resourceInputs["subsystem"] = args?.subsystem;
+            resourceInputs["table"] = args?.table;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["tenantId"] = args?.tenantId;
             resourceInputs["token"] = args?.token ? pulumi.secret(args.token) : undefined;
-            resourceInputs["url"] = args ? args.url : undefined;
+            resourceInputs["url"] = args?.url;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["accessKeyId", "apiKey", "applicationSecret", "credentials", "privateKey", "privateKeyId", "secretAccessKey", "token"] };

@@ -151,19 +151,19 @@ export class MaintenanceWindow extends pulumi.CustomResource {
      * Allow scheduling of a maintenance for version update
      * once a new LavinMQ version been released.
      */
-    public readonly automaticUpdates!: pulumi.Output<string>;
+    declare public readonly automaticUpdates: pulumi.Output<string>;
     /**
      * The CloudAMQP instance ID.
      */
-    public readonly instanceId!: pulumi.Output<number>;
+    declare public readonly instanceId: pulumi.Output<number>;
     /**
      * Preferred day of the week when to schedule maintenance.
      */
-    public readonly preferredDay!: pulumi.Output<string | undefined>;
+    declare public readonly preferredDay: pulumi.Output<string | undefined>;
     /**
      * Preferred time (UTC) of the day when to schedule maintenance.
      */
-    public readonly preferredTime!: pulumi.Output<string | undefined>;
+    declare public readonly preferredTime: pulumi.Output<string | undefined>;
 
     /**
      * Create a MaintenanceWindow resource with the given unique name, arguments, and options.
@@ -178,19 +178,19 @@ export class MaintenanceWindow extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MaintenanceWindowState | undefined;
-            resourceInputs["automaticUpdates"] = state ? state.automaticUpdates : undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["preferredDay"] = state ? state.preferredDay : undefined;
-            resourceInputs["preferredTime"] = state ? state.preferredTime : undefined;
+            resourceInputs["automaticUpdates"] = state?.automaticUpdates;
+            resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["preferredDay"] = state?.preferredDay;
+            resourceInputs["preferredTime"] = state?.preferredTime;
         } else {
             const args = argsOrState as MaintenanceWindowArgs | undefined;
-            if ((!args || args.instanceId === undefined) && !opts.urn) {
+            if (args?.instanceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            resourceInputs["automaticUpdates"] = args ? args.automaticUpdates : undefined;
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["preferredDay"] = args ? args.preferredDay : undefined;
-            resourceInputs["preferredTime"] = args ? args.preferredTime : undefined;
+            resourceInputs["automaticUpdates"] = args?.automaticUpdates;
+            resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["preferredDay"] = args?.preferredDay;
+            resourceInputs["preferredTime"] = args?.preferredTime;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(MaintenanceWindow.__pulumiType, name, resourceInputs, opts);

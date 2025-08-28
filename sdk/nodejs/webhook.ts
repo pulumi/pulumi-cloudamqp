@@ -60,32 +60,32 @@ export class Webhook extends pulumi.CustomResource {
     /**
      * Max simultaneous requests to the endpoint.
      */
-    public readonly concurrency!: pulumi.Output<number>;
+    declare public readonly concurrency: pulumi.Output<number>;
     /**
      * The CloudAMQP instance ID.
      */
-    public readonly instanceId!: pulumi.Output<number>;
+    declare public readonly instanceId: pulumi.Output<number>;
     /**
      * A (durable) queue on your RabbitMQ instance.
      */
-    public readonly queue!: pulumi.Output<string>;
+    declare public readonly queue: pulumi.Output<string>;
     /**
      * Configurable sleep time in seconds between retries for webhook
      */
-    public readonly sleep!: pulumi.Output<number | undefined>;
+    declare public readonly sleep: pulumi.Output<number | undefined>;
     /**
      * Configurable timeout time in seconds for webhook
      */
-    public readonly timeout!: pulumi.Output<number | undefined>;
+    declare public readonly timeout: pulumi.Output<number | undefined>;
     /**
      * The vhost the queue resides in.
      */
-    public readonly vhost!: pulumi.Output<string>;
+    declare public readonly vhost: pulumi.Output<string>;
     /**
      * A POST request will be made for each message in the queue to this
      * endpoint.
      */
-    public readonly webhookUri!: pulumi.Output<string>;
+    declare public readonly webhookUri: pulumi.Output<string>;
 
     /**
      * Create a Webhook resource with the given unique name, arguments, and options.
@@ -100,37 +100,37 @@ export class Webhook extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WebhookState | undefined;
-            resourceInputs["concurrency"] = state ? state.concurrency : undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["queue"] = state ? state.queue : undefined;
-            resourceInputs["sleep"] = state ? state.sleep : undefined;
-            resourceInputs["timeout"] = state ? state.timeout : undefined;
-            resourceInputs["vhost"] = state ? state.vhost : undefined;
-            resourceInputs["webhookUri"] = state ? state.webhookUri : undefined;
+            resourceInputs["concurrency"] = state?.concurrency;
+            resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["queue"] = state?.queue;
+            resourceInputs["sleep"] = state?.sleep;
+            resourceInputs["timeout"] = state?.timeout;
+            resourceInputs["vhost"] = state?.vhost;
+            resourceInputs["webhookUri"] = state?.webhookUri;
         } else {
             const args = argsOrState as WebhookArgs | undefined;
-            if ((!args || args.concurrency === undefined) && !opts.urn) {
+            if (args?.concurrency === undefined && !opts.urn) {
                 throw new Error("Missing required property 'concurrency'");
             }
-            if ((!args || args.instanceId === undefined) && !opts.urn) {
+            if (args?.instanceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            if ((!args || args.queue === undefined) && !opts.urn) {
+            if (args?.queue === undefined && !opts.urn) {
                 throw new Error("Missing required property 'queue'");
             }
-            if ((!args || args.vhost === undefined) && !opts.urn) {
+            if (args?.vhost === undefined && !opts.urn) {
                 throw new Error("Missing required property 'vhost'");
             }
-            if ((!args || args.webhookUri === undefined) && !opts.urn) {
+            if (args?.webhookUri === undefined && !opts.urn) {
                 throw new Error("Missing required property 'webhookUri'");
             }
-            resourceInputs["concurrency"] = args ? args.concurrency : undefined;
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["queue"] = args ? args.queue : undefined;
-            resourceInputs["sleep"] = args ? args.sleep : undefined;
-            resourceInputs["timeout"] = args ? args.timeout : undefined;
-            resourceInputs["vhost"] = args ? args.vhost : undefined;
-            resourceInputs["webhookUri"] = args ? args.webhookUri : undefined;
+            resourceInputs["concurrency"] = args?.concurrency;
+            resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["queue"] = args?.queue;
+            resourceInputs["sleep"] = args?.sleep;
+            resourceInputs["timeout"] = args?.timeout;
+            resourceInputs["vhost"] = args?.vhost;
+            resourceInputs["webhookUri"] = args?.webhookUri;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Webhook.__pulumiType, name, resourceInputs, opts);

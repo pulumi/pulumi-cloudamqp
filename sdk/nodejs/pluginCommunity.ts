@@ -62,37 +62,37 @@ export class PluginCommunity extends pulumi.CustomResource {
     /**
      * The description of the plugin.
      */
-    public /*out*/ readonly description!: pulumi.Output<string>;
+    declare public /*out*/ readonly description: pulumi.Output<string>;
     /**
      * Enable or disable the plugins.
      */
-    public readonly enabled!: pulumi.Output<boolean>;
+    declare public readonly enabled: pulumi.Output<boolean>;
     /**
      * The CloudAMQP instance ID.
      */
-    public readonly instanceId!: pulumi.Output<number>;
+    declare public readonly instanceId: pulumi.Output<number>;
     /**
      * The name of the Rabbit MQ community plugin.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Required version of RabbitMQ.
      */
-    public /*out*/ readonly require!: pulumi.Output<string>;
+    declare public /*out*/ readonly require: pulumi.Output<string>;
     /**
      * Configurable sleep time (seconds) for retries when requesting
      * information about community plugins. Default set to 10 seconds.
      *
      * ***Note:*** Available from [v1.29.0]
      */
-    public readonly sleep!: pulumi.Output<number | undefined>;
+    declare public readonly sleep: pulumi.Output<number | undefined>;
     /**
      * Configurable timeout time (seconds) for retries when requesting
      * information about community plugins. Default set to 1800 seconds.
      *
      * ***Note:*** Available from [v1.29.0]
      */
-    public readonly timeout!: pulumi.Output<number | undefined>;
+    declare public readonly timeout: pulumi.Output<number | undefined>;
 
     /**
      * Create a PluginCommunity resource with the given unique name, arguments, and options.
@@ -107,26 +107,26 @@ export class PluginCommunity extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PluginCommunityState | undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["require"] = state ? state.require : undefined;
-            resourceInputs["sleep"] = state ? state.sleep : undefined;
-            resourceInputs["timeout"] = state ? state.timeout : undefined;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["require"] = state?.require;
+            resourceInputs["sleep"] = state?.sleep;
+            resourceInputs["timeout"] = state?.timeout;
         } else {
             const args = argsOrState as PluginCommunityArgs | undefined;
-            if ((!args || args.enabled === undefined) && !opts.urn) {
+            if (args?.enabled === undefined && !opts.urn) {
                 throw new Error("Missing required property 'enabled'");
             }
-            if ((!args || args.instanceId === undefined) && !opts.urn) {
+            if (args?.instanceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["sleep"] = args ? args.sleep : undefined;
-            resourceInputs["timeout"] = args ? args.timeout : undefined;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["sleep"] = args?.sleep;
+            resourceInputs["timeout"] = args?.timeout;
             resourceInputs["description"] = undefined /*out*/;
             resourceInputs["require"] = undefined /*out*/;
         }

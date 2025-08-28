@@ -63,30 +63,30 @@ export class PrivatelinkAzure extends pulumi.CustomResource {
      * Approved subscriptions to access the endpoint service.
      * See format below.
      */
-    public readonly approvedSubscriptions!: pulumi.Output<string[]>;
+    declare public readonly approvedSubscriptions: pulumi.Output<string[]>;
     /**
      * The CloudAMQP instance identifier.
      */
-    public readonly instanceId!: pulumi.Output<number>;
+    declare public readonly instanceId: pulumi.Output<number>;
     /**
      * Name of the server having the PrivateLink enabled.
      */
-    public /*out*/ readonly serverName!: pulumi.Output<string>;
+    declare public /*out*/ readonly serverName: pulumi.Output<string>;
     /**
      * Service name (alias) of the PrivateLink, needed when creating the endpoint.
      */
-    public /*out*/ readonly serviceName!: pulumi.Output<string>;
+    declare public /*out*/ readonly serviceName: pulumi.Output<string>;
     /**
      * Configurable sleep time (seconds) when enable PrivateLink.
      * Default set to 10 seconds.
      *
      * ***Note:*** Available from [v1.29.0]
      */
-    public readonly sleep!: pulumi.Output<number | undefined>;
+    declare public readonly sleep: pulumi.Output<number | undefined>;
     /**
      * PrivateLink status [enable, pending, disable]
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
      * Configurable timeout time (seconds) when enable PrivateLink.
      * Default set to 1800 seconds.
@@ -96,7 +96,7 @@ export class PrivatelinkAzure extends pulumi.CustomResource {
      * Approved subscriptions format (GUID): <br>
      * `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
      */
-    public readonly timeout!: pulumi.Output<number | undefined>;
+    declare public readonly timeout: pulumi.Output<number | undefined>;
 
     /**
      * Create a PrivatelinkAzure resource with the given unique name, arguments, and options.
@@ -111,25 +111,25 @@ export class PrivatelinkAzure extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PrivatelinkAzureState | undefined;
-            resourceInputs["approvedSubscriptions"] = state ? state.approvedSubscriptions : undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["serverName"] = state ? state.serverName : undefined;
-            resourceInputs["serviceName"] = state ? state.serviceName : undefined;
-            resourceInputs["sleep"] = state ? state.sleep : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["timeout"] = state ? state.timeout : undefined;
+            resourceInputs["approvedSubscriptions"] = state?.approvedSubscriptions;
+            resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["serverName"] = state?.serverName;
+            resourceInputs["serviceName"] = state?.serviceName;
+            resourceInputs["sleep"] = state?.sleep;
+            resourceInputs["status"] = state?.status;
+            resourceInputs["timeout"] = state?.timeout;
         } else {
             const args = argsOrState as PrivatelinkAzureArgs | undefined;
-            if ((!args || args.approvedSubscriptions === undefined) && !opts.urn) {
+            if (args?.approvedSubscriptions === undefined && !opts.urn) {
                 throw new Error("Missing required property 'approvedSubscriptions'");
             }
-            if ((!args || args.instanceId === undefined) && !opts.urn) {
+            if (args?.instanceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            resourceInputs["approvedSubscriptions"] = args ? args.approvedSubscriptions : undefined;
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["sleep"] = args ? args.sleep : undefined;
-            resourceInputs["timeout"] = args ? args.timeout : undefined;
+            resourceInputs["approvedSubscriptions"] = args?.approvedSubscriptions;
+            resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["sleep"] = args?.sleep;
+            resourceInputs["timeout"] = args?.timeout;
             resourceInputs["serverName"] = undefined /*out*/;
             resourceInputs["serviceName"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;

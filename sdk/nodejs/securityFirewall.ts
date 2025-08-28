@@ -62,17 +62,17 @@ export class SecurityFirewall extends pulumi.CustomResource {
     /**
      * The CloudAMQP instance ID.
      */
-    public readonly instanceId!: pulumi.Output<number>;
+    declare public readonly instanceId: pulumi.Output<number>;
     /**
      * An array of rules, minimum of 1 needs to be configured. Each `rules`
      * block consists of the field documented below.
      */
-    public readonly rules!: pulumi.Output<outputs.SecurityFirewallRule[]>;
+    declare public readonly rules: pulumi.Output<outputs.SecurityFirewallRule[]>;
     /**
      * Configurable sleep time in seconds between retries for firewall
      * configuration. Default set to 30 seconds.
      */
-    public readonly sleep!: pulumi.Output<number | undefined>;
+    declare public readonly sleep: pulumi.Output<number | undefined>;
     /**
      * Configurable timeout time in seconds for firewall configuration.
      * Default set to 1800 seconds.
@@ -81,7 +81,7 @@ export class SecurityFirewall extends pulumi.CustomResource {
      *
      * The `rules` block consists of:
      */
-    public readonly timeout!: pulumi.Output<number | undefined>;
+    declare public readonly timeout: pulumi.Output<number | undefined>;
 
     /**
      * Create a SecurityFirewall resource with the given unique name, arguments, and options.
@@ -96,22 +96,22 @@ export class SecurityFirewall extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecurityFirewallState | undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["rules"] = state ? state.rules : undefined;
-            resourceInputs["sleep"] = state ? state.sleep : undefined;
-            resourceInputs["timeout"] = state ? state.timeout : undefined;
+            resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["rules"] = state?.rules;
+            resourceInputs["sleep"] = state?.sleep;
+            resourceInputs["timeout"] = state?.timeout;
         } else {
             const args = argsOrState as SecurityFirewallArgs | undefined;
-            if ((!args || args.instanceId === undefined) && !opts.urn) {
+            if (args?.instanceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            if ((!args || args.rules === undefined) && !opts.urn) {
+            if (args?.rules === undefined && !opts.urn) {
                 throw new Error("Missing required property 'rules'");
             }
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["rules"] = args ? args.rules : undefined;
-            resourceInputs["sleep"] = args ? args.sleep : undefined;
-            resourceInputs["timeout"] = args ? args.timeout : undefined;
+            resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["rules"] = args?.rules;
+            resourceInputs["sleep"] = args?.sleep;
+            resourceInputs["timeout"] = args?.timeout;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecurityFirewall.__pulumiType, name, resourceInputs, opts);
