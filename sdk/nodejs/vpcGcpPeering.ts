@@ -48,53 +48,53 @@ export class VpcGcpPeering extends pulumi.CustomResource {
     /**
      * VPC peering auto created routes
      */
-    public /*out*/ readonly autoCreateRoutes!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly autoCreateRoutes: pulumi.Output<boolean>;
     /**
      * The CloudAMQP instance identifier.
      *
      * ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
      */
-    public readonly instanceId!: pulumi.Output<number | undefined>;
+    declare public readonly instanceId: pulumi.Output<number | undefined>;
     /**
      * Network URI of the VPC network to which you will peer with.
      * See examples above for the format.
      */
-    public readonly peerNetworkUri!: pulumi.Output<string>;
+    declare public readonly peerNetworkUri: pulumi.Output<string>;
     /**
      * Configurable sleep time (seconds) between retries when
      * requesting or reading peering. Default set to 10 seconds.
      *
      * ***Note:*** Available from [v1.29.0]
      */
-    public readonly sleep!: pulumi.Output<number | undefined>;
+    declare public readonly sleep: pulumi.Output<number | undefined>;
     /**
      * VPC peering state
      */
-    public /*out*/ readonly state!: pulumi.Output<string>;
+    declare public /*out*/ readonly state: pulumi.Output<string>;
     /**
      * VPC peering state details
      */
-    public /*out*/ readonly stateDetails!: pulumi.Output<string>;
+    declare public /*out*/ readonly stateDetails: pulumi.Output<string>;
     /**
      * Configurable timeout time (seconds) before retries times
      * out. Default set to 1800 seconds.
      *
      * ***Note:*** Available from [v1.29.0]
      */
-    public readonly timeout!: pulumi.Output<number | undefined>;
+    declare public readonly timeout: pulumi.Output<number | undefined>;
     /**
      * The managed VPC identifier.
      *
      * ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
      */
-    public readonly vpcId!: pulumi.Output<string | undefined>;
+    declare public readonly vpcId: pulumi.Output<string | undefined>;
     /**
      * Makes the resource wait until the peering is connected.
      * Default set to false.
      *
      * ***Note:*** Available from [v1.28.0]
      */
-    public readonly waitOnPeeringStatus!: pulumi.Output<boolean | undefined>;
+    declare public readonly waitOnPeeringStatus: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a VpcGcpPeering resource with the given unique name, arguments, and options.
@@ -109,26 +109,26 @@ export class VpcGcpPeering extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpcGcpPeeringState | undefined;
-            resourceInputs["autoCreateRoutes"] = state ? state.autoCreateRoutes : undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["peerNetworkUri"] = state ? state.peerNetworkUri : undefined;
-            resourceInputs["sleep"] = state ? state.sleep : undefined;
-            resourceInputs["state"] = state ? state.state : undefined;
-            resourceInputs["stateDetails"] = state ? state.stateDetails : undefined;
-            resourceInputs["timeout"] = state ? state.timeout : undefined;
-            resourceInputs["vpcId"] = state ? state.vpcId : undefined;
-            resourceInputs["waitOnPeeringStatus"] = state ? state.waitOnPeeringStatus : undefined;
+            resourceInputs["autoCreateRoutes"] = state?.autoCreateRoutes;
+            resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["peerNetworkUri"] = state?.peerNetworkUri;
+            resourceInputs["sleep"] = state?.sleep;
+            resourceInputs["state"] = state?.state;
+            resourceInputs["stateDetails"] = state?.stateDetails;
+            resourceInputs["timeout"] = state?.timeout;
+            resourceInputs["vpcId"] = state?.vpcId;
+            resourceInputs["waitOnPeeringStatus"] = state?.waitOnPeeringStatus;
         } else {
             const args = argsOrState as VpcGcpPeeringArgs | undefined;
-            if ((!args || args.peerNetworkUri === undefined) && !opts.urn) {
+            if (args?.peerNetworkUri === undefined && !opts.urn) {
                 throw new Error("Missing required property 'peerNetworkUri'");
             }
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["peerNetworkUri"] = args ? args.peerNetworkUri : undefined;
-            resourceInputs["sleep"] = args ? args.sleep : undefined;
-            resourceInputs["timeout"] = args ? args.timeout : undefined;
-            resourceInputs["vpcId"] = args ? args.vpcId : undefined;
-            resourceInputs["waitOnPeeringStatus"] = args ? args.waitOnPeeringStatus : undefined;
+            resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["peerNetworkUri"] = args?.peerNetworkUri;
+            resourceInputs["sleep"] = args?.sleep;
+            resourceInputs["timeout"] = args?.timeout;
+            resourceInputs["vpcId"] = args?.vpcId;
+            resourceInputs["waitOnPeeringStatus"] = args?.waitOnPeeringStatus;
             resourceInputs["autoCreateRoutes"] = undefined /*out*/;
             resourceInputs["state"] = undefined /*out*/;
             resourceInputs["stateDetails"] = undefined /*out*/;

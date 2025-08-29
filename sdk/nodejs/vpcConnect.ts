@@ -60,41 +60,41 @@ export class VpcConnect extends pulumi.CustomResource {
     /**
      * Covering availability zones used when creating an endpoint from other VPC. (AWS)
      */
-    public /*out*/ readonly activeZones!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly activeZones: pulumi.Output<string[]>;
     /**
      * List of allowed prinicpals used by AWS, see below table.
      */
-    public readonly allowedPrincipals!: pulumi.Output<string[] | undefined>;
+    declare public readonly allowedPrincipals: pulumi.Output<string[] | undefined>;
     /**
      * List of allowed projects used by GCP, see below table.
      */
-    public readonly allowedProjects!: pulumi.Output<string[] | undefined>;
+    declare public readonly allowedProjects: pulumi.Output<string[] | undefined>;
     /**
      * List of approved subscriptions used by Azure, see below
      * table.
      */
-    public readonly approvedSubscriptions!: pulumi.Output<string[] | undefined>;
+    declare public readonly approvedSubscriptions: pulumi.Output<string[] | undefined>;
     /**
      * The CloudAMQP instance identifier.
      */
-    public readonly instanceId!: pulumi.Output<number>;
+    declare public readonly instanceId: pulumi.Output<number>;
     /**
      * The region where the CloudAMQP instance is hosted.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * Service name (alias for Azure, see example above) of the PrivateLink.
      */
-    public /*out*/ readonly serviceName!: pulumi.Output<string>;
+    declare public /*out*/ readonly serviceName: pulumi.Output<string>;
     /**
      * Configurable sleep time (seconds) when enable Private
      * Service Connect. Default set to 10 seconds.
      */
-    public readonly sleep!: pulumi.Output<number | undefined>;
+    declare public readonly sleep: pulumi.Output<number | undefined>;
     /**
      * Private Service Connect status [enable, pending, disable]
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
      * Configurable timeout time (seconds) when enable Private
      * Service Connect. Default set to 1800 seconds.
@@ -110,7 +110,7 @@ export class VpcConnect extends pulumi.CustomResource {
      * | Azure | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX |
      * | GCP | Project IDs [Google docs] | 6 to 30 lowercase letters, digits, or hyphens |
      */
-    public readonly timeout!: pulumi.Output<number | undefined>;
+    declare public readonly timeout: pulumi.Output<number | undefined>;
 
     /**
      * Create a VpcConnect resource with the given unique name, arguments, and options.
@@ -125,31 +125,31 @@ export class VpcConnect extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpcConnectState | undefined;
-            resourceInputs["activeZones"] = state ? state.activeZones : undefined;
-            resourceInputs["allowedPrincipals"] = state ? state.allowedPrincipals : undefined;
-            resourceInputs["allowedProjects"] = state ? state.allowedProjects : undefined;
-            resourceInputs["approvedSubscriptions"] = state ? state.approvedSubscriptions : undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["serviceName"] = state ? state.serviceName : undefined;
-            resourceInputs["sleep"] = state ? state.sleep : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["timeout"] = state ? state.timeout : undefined;
+            resourceInputs["activeZones"] = state?.activeZones;
+            resourceInputs["allowedPrincipals"] = state?.allowedPrincipals;
+            resourceInputs["allowedProjects"] = state?.allowedProjects;
+            resourceInputs["approvedSubscriptions"] = state?.approvedSubscriptions;
+            resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["serviceName"] = state?.serviceName;
+            resourceInputs["sleep"] = state?.sleep;
+            resourceInputs["status"] = state?.status;
+            resourceInputs["timeout"] = state?.timeout;
         } else {
             const args = argsOrState as VpcConnectArgs | undefined;
-            if ((!args || args.instanceId === undefined) && !opts.urn) {
+            if (args?.instanceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            if ((!args || args.region === undefined) && !opts.urn) {
+            if (args?.region === undefined && !opts.urn) {
                 throw new Error("Missing required property 'region'");
             }
-            resourceInputs["allowedPrincipals"] = args ? args.allowedPrincipals : undefined;
-            resourceInputs["allowedProjects"] = args ? args.allowedProjects : undefined;
-            resourceInputs["approvedSubscriptions"] = args ? args.approvedSubscriptions : undefined;
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["sleep"] = args ? args.sleep : undefined;
-            resourceInputs["timeout"] = args ? args.timeout : undefined;
+            resourceInputs["allowedPrincipals"] = args?.allowedPrincipals;
+            resourceInputs["allowedProjects"] = args?.allowedProjects;
+            resourceInputs["approvedSubscriptions"] = args?.approvedSubscriptions;
+            resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["sleep"] = args?.sleep;
+            resourceInputs["timeout"] = args?.timeout;
             resourceInputs["activeZones"] = undefined /*out*/;
             resourceInputs["serviceName"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;

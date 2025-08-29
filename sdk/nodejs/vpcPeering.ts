@@ -48,31 +48,31 @@ export class VpcPeering extends pulumi.CustomResource {
      *
      * ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
      */
-    public readonly instanceId!: pulumi.Output<number | undefined>;
+    declare public readonly instanceId: pulumi.Output<number | undefined>;
     /**
      * Peering identifier created by AW peering request.
      */
-    public readonly peeringId!: pulumi.Output<string>;
+    declare public readonly peeringId: pulumi.Output<string>;
     /**
      * Configurable sleep time (seconds) between retries for accepting or
      * removing peering. Default set to 60 seconds.
      */
-    public readonly sleep!: pulumi.Output<number | undefined>;
+    declare public readonly sleep: pulumi.Output<number | undefined>;
     /**
      * VPC peering status
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
      * Configurable timeout time (seconds) for accepting or removing
      * peering. Default set to 3600 seconds.
      */
-    public readonly timeout!: pulumi.Output<number | undefined>;
+    declare public readonly timeout: pulumi.Output<number | undefined>;
     /**
      * The managed VPC identifier.
      *
      * ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
      */
-    public readonly vpcId!: pulumi.Output<string | undefined>;
+    declare public readonly vpcId: pulumi.Output<string | undefined>;
 
     /**
      * Create a VpcPeering resource with the given unique name, arguments, and options.
@@ -87,22 +87,22 @@ export class VpcPeering extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpcPeeringState | undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["peeringId"] = state ? state.peeringId : undefined;
-            resourceInputs["sleep"] = state ? state.sleep : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["timeout"] = state ? state.timeout : undefined;
-            resourceInputs["vpcId"] = state ? state.vpcId : undefined;
+            resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["peeringId"] = state?.peeringId;
+            resourceInputs["sleep"] = state?.sleep;
+            resourceInputs["status"] = state?.status;
+            resourceInputs["timeout"] = state?.timeout;
+            resourceInputs["vpcId"] = state?.vpcId;
         } else {
             const args = argsOrState as VpcPeeringArgs | undefined;
-            if ((!args || args.peeringId === undefined) && !opts.urn) {
+            if (args?.peeringId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'peeringId'");
             }
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["peeringId"] = args ? args.peeringId : undefined;
-            resourceInputs["sleep"] = args ? args.sleep : undefined;
-            resourceInputs["timeout"] = args ? args.timeout : undefined;
-            resourceInputs["vpcId"] = args ? args.vpcId : undefined;
+            resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["peeringId"] = args?.peeringId;
+            resourceInputs["sleep"] = args?.sleep;
+            resourceInputs["timeout"] = args?.timeout;
+            resourceInputs["vpcId"] = args?.vpcId;
             resourceInputs["status"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

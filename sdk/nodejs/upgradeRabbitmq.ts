@@ -41,15 +41,15 @@ export class UpgradeRabbitmq extends pulumi.CustomResource {
      * Helper argument to change upgrade behaviour to latest possible
      * version
      */
-    public readonly currentVersion!: pulumi.Output<string | undefined>;
+    declare public readonly currentVersion: pulumi.Output<string | undefined>;
     /**
      * The CloudAMQP instance identifier
      */
-    public readonly instanceId!: pulumi.Output<number>;
+    declare public readonly instanceId: pulumi.Output<number>;
     /**
      * The new version to upgrade to
      */
-    public readonly newVersion!: pulumi.Output<string | undefined>;
+    declare public readonly newVersion: pulumi.Output<string | undefined>;
 
     /**
      * Create a UpgradeRabbitmq resource with the given unique name, arguments, and options.
@@ -64,17 +64,17 @@ export class UpgradeRabbitmq extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UpgradeRabbitmqState | undefined;
-            resourceInputs["currentVersion"] = state ? state.currentVersion : undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["newVersion"] = state ? state.newVersion : undefined;
+            resourceInputs["currentVersion"] = state?.currentVersion;
+            resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["newVersion"] = state?.newVersion;
         } else {
             const args = argsOrState as UpgradeRabbitmqArgs | undefined;
-            if ((!args || args.instanceId === undefined) && !opts.urn) {
+            if (args?.instanceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            resourceInputs["currentVersion"] = args ? args.currentVersion : undefined;
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["newVersion"] = args ? args.newVersion : undefined;
+            resourceInputs["currentVersion"] = args?.currentVersion;
+            resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["newVersion"] = args?.newVersion;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(UpgradeRabbitmq.__pulumiType, name, resourceInputs, opts);

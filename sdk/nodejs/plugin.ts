@@ -62,37 +62,37 @@ export class Plugin extends pulumi.CustomResource {
     /**
      * The description of the plugin.
      */
-    public /*out*/ readonly description!: pulumi.Output<string>;
+    declare public /*out*/ readonly description: pulumi.Output<string>;
     /**
      * Enable or disable the plugins.
      */
-    public readonly enabled!: pulumi.Output<boolean>;
+    declare public readonly enabled: pulumi.Output<boolean>;
     /**
      * The CloudAMQP instance ID.
      */
-    public readonly instanceId!: pulumi.Output<number>;
+    declare public readonly instanceId: pulumi.Output<number>;
     /**
      * The name of the Rabbit MQ plugin.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Configurable sleep time (seconds) for retries when requesting
      * information about plugins. Default set to 10 seconds.
      *
      * ***Note:*** Available from [v1.29.0]
      */
-    public readonly sleep!: pulumi.Output<number | undefined>;
+    declare public readonly sleep: pulumi.Output<number | undefined>;
     /**
      * Configurable timeout time (seconds) for retries when requesting
      * information about plugins. Default set to 1800 seconds.
      *
      * ***Note:*** Available from [v1.29.0]
      */
-    public readonly timeout!: pulumi.Output<number | undefined>;
+    declare public readonly timeout: pulumi.Output<number | undefined>;
     /**
      * The version of the plugin.
      */
-    public /*out*/ readonly version!: pulumi.Output<string>;
+    declare public /*out*/ readonly version: pulumi.Output<string>;
 
     /**
      * Create a Plugin resource with the given unique name, arguments, and options.
@@ -107,26 +107,26 @@ export class Plugin extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PluginState | undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["sleep"] = state ? state.sleep : undefined;
-            resourceInputs["timeout"] = state ? state.timeout : undefined;
-            resourceInputs["version"] = state ? state.version : undefined;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["sleep"] = state?.sleep;
+            resourceInputs["timeout"] = state?.timeout;
+            resourceInputs["version"] = state?.version;
         } else {
             const args = argsOrState as PluginArgs | undefined;
-            if ((!args || args.enabled === undefined) && !opts.urn) {
+            if (args?.enabled === undefined && !opts.urn) {
                 throw new Error("Missing required property 'enabled'");
             }
-            if ((!args || args.instanceId === undefined) && !opts.urn) {
+            if (args?.instanceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["sleep"] = args ? args.sleep : undefined;
-            resourceInputs["timeout"] = args ? args.timeout : undefined;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["sleep"] = args?.sleep;
+            resourceInputs["timeout"] = args?.timeout;
             resourceInputs["description"] = undefined /*out*/;
             resourceInputs["version"] = undefined /*out*/;
         }

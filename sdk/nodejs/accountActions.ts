@@ -35,11 +35,11 @@ export class AccountActions extends pulumi.CustomResource {
     /**
      * The action to perform on the node
      */
-    public readonly action!: pulumi.Output<string>;
+    declare public readonly action: pulumi.Output<string>;
     /**
      * Instance identifier
      */
-    public readonly instanceId!: pulumi.Output<number>;
+    declare public readonly instanceId: pulumi.Output<number>;
 
     /**
      * Create a AccountActions resource with the given unique name, arguments, and options.
@@ -54,18 +54,18 @@ export class AccountActions extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AccountActionsState | undefined;
-            resourceInputs["action"] = state ? state.action : undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
+            resourceInputs["action"] = state?.action;
+            resourceInputs["instanceId"] = state?.instanceId;
         } else {
             const args = argsOrState as AccountActionsArgs | undefined;
-            if ((!args || args.action === undefined) && !opts.urn) {
+            if (args?.action === undefined && !opts.urn) {
                 throw new Error("Missing required property 'action'");
             }
-            if ((!args || args.instanceId === undefined) && !opts.urn) {
+            if (args?.instanceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            resourceInputs["action"] = args ? args.action : undefined;
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
+            resourceInputs["action"] = args?.action;
+            resourceInputs["instanceId"] = args?.instanceId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AccountActions.__pulumiType, name, resourceInputs, opts);

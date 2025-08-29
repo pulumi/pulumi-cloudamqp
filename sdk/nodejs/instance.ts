@@ -319,11 +319,11 @@ export class Instance extends pulumi.CustomResource {
      * API key needed to communicate to CloudAMQP's second API. The second API is used
      * to manage alarms, integration and more, full description [CloudAMQP API].
      */
-    public /*out*/ readonly apikey!: pulumi.Output<string>;
+    declare public /*out*/ readonly apikey: pulumi.Output<string>;
     /**
      * Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
      */
-    public /*out*/ readonly backend!: pulumi.Output<string>;
+    declare public /*out*/ readonly backend: pulumi.Output<string>;
     /**
      * Copy settings from one CloudAMQP instance to a new. Consists of
      * the block documented below.
@@ -332,32 +332,32 @@ export class Instance extends pulumi.CustomResource {
      *
      * The `copySettings` block consists of:
      */
-    public readonly copySettings!: pulumi.Output<outputs.InstanceCopySetting[] | undefined>;
+    declare public readonly copySettings: pulumi.Output<outputs.InstanceCopySetting[] | undefined>;
     /**
      * Information if the CloudAMQP instance is shared or dedicated.
      */
-    public /*out*/ readonly dedicated!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly dedicated: pulumi.Output<boolean>;
     /**
      * The external hostname for the CloudAMQP instance.
      */
-    public /*out*/ readonly host!: pulumi.Output<string>;
+    declare public /*out*/ readonly host: pulumi.Output<string>;
     /**
      * The internal hostname for the CloudAMQP instance.
      */
-    public /*out*/ readonly hostInternal!: pulumi.Output<string>;
+    declare public /*out*/ readonly hostInternal: pulumi.Output<string>;
     /**
      * Keep associated VPC when deleting instance. Default set to
      * false.
      */
-    public readonly keepAssociatedVpc!: pulumi.Output<boolean | undefined>;
+    declare public readonly keepAssociatedVpc: pulumi.Output<boolean | undefined>;
     /**
      * Name of the CloudAMQP instance.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Set to true to not create default alarms
      */
-    public readonly noDefaultAlarms!: pulumi.Output<boolean>;
+    declare public readonly noDefaultAlarms: pulumi.Output<boolean>;
     /**
      * Number of nodes, 1, 3 or 5 depending on plan used. Only needed for
      * legacy plans, will otherwise be computed.
@@ -366,22 +366,22 @@ export class Instance extends pulumi.CustomResource {
      * New subscriptions plans use the plan to determine number of nodes. In order to
      * change number of nodes the `plan` needs to be updated.
      */
-    public readonly nodes!: pulumi.Output<number>;
+    declare public readonly nodes: pulumi.Output<number>;
     /**
      * The subscription plan. See available [plans].
      */
-    public readonly plan!: pulumi.Output<string>;
+    declare public readonly plan: pulumi.Output<string>;
     /**
      * Flag describing if the resource is ready
      */
-    public /*out*/ readonly ready!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly ready: pulumi.Output<boolean>;
     /**
      * The region to host the instance in. See available [regions].
      *
      * ***Note:*** Changing region will force the instance to be destroyed and a new created in the new
      * region. All data will be lost and a new name assigned.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The Rabbit MQ version. Can be left out, will then be set to
      * default value used by CloudAMQP API.
@@ -389,26 +389,26 @@ export class Instance extends pulumi.CustomResource {
      * ***Note:*** There is not yet any support in the provider to change the RMQ version. Once it's set
      * in the initial creation, it will remain.
      */
-    public readonly rmqVersion!: pulumi.Output<string>;
+    declare public readonly rmqVersion: pulumi.Output<string>;
     /**
      * One or more tags for the CloudAMQP instance, makes it possible to
      * categories multiple instances in console view. Default there is no tags assigned.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * The AMQP URL (uses the internal hostname if the instance was created with VPC).
      * Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
      */
-    public /*out*/ readonly url!: pulumi.Output<string>;
+    declare public /*out*/ readonly url: pulumi.Output<string>;
     /**
      * The virtual host used by Rabbit MQ.
      */
-    public /*out*/ readonly vhost!: pulumi.Output<string>;
+    declare public /*out*/ readonly vhost: pulumi.Output<string>;
     /**
      * The VPC ID. Use this to create your instance in an existing
      * VPC. See available [example].
      */
-    public readonly vpcId!: pulumi.Output<number>;
+    declare public readonly vpcId: pulumi.Output<number>;
     /**
      * Creates a dedicated VPC subnet, shouldn't overlap with other
      * VPC subnet, default subnet used 10.56.72.0/24.
@@ -417,7 +417,7 @@ export class Instance extends pulumi.CustomResource {
      *
      * ***Note:*** Extra fee will be charged when using VPC, see [CloudAMQP] for more information.
      */
-    public readonly vpcSubnet!: pulumi.Output<string>;
+    declare public readonly vpcSubnet: pulumi.Output<string>;
 
     /**
      * Create a Instance resource with the given unique name, arguments, and options.
@@ -432,44 +432,44 @@ export class Instance extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as InstanceState | undefined;
-            resourceInputs["apikey"] = state ? state.apikey : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["copySettings"] = state ? state.copySettings : undefined;
-            resourceInputs["dedicated"] = state ? state.dedicated : undefined;
-            resourceInputs["host"] = state ? state.host : undefined;
-            resourceInputs["hostInternal"] = state ? state.hostInternal : undefined;
-            resourceInputs["keepAssociatedVpc"] = state ? state.keepAssociatedVpc : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["noDefaultAlarms"] = state ? state.noDefaultAlarms : undefined;
-            resourceInputs["nodes"] = state ? state.nodes : undefined;
-            resourceInputs["plan"] = state ? state.plan : undefined;
-            resourceInputs["ready"] = state ? state.ready : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["rmqVersion"] = state ? state.rmqVersion : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["url"] = state ? state.url : undefined;
-            resourceInputs["vhost"] = state ? state.vhost : undefined;
-            resourceInputs["vpcId"] = state ? state.vpcId : undefined;
-            resourceInputs["vpcSubnet"] = state ? state.vpcSubnet : undefined;
+            resourceInputs["apikey"] = state?.apikey;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["copySettings"] = state?.copySettings;
+            resourceInputs["dedicated"] = state?.dedicated;
+            resourceInputs["host"] = state?.host;
+            resourceInputs["hostInternal"] = state?.hostInternal;
+            resourceInputs["keepAssociatedVpc"] = state?.keepAssociatedVpc;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["noDefaultAlarms"] = state?.noDefaultAlarms;
+            resourceInputs["nodes"] = state?.nodes;
+            resourceInputs["plan"] = state?.plan;
+            resourceInputs["ready"] = state?.ready;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["rmqVersion"] = state?.rmqVersion;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["url"] = state?.url;
+            resourceInputs["vhost"] = state?.vhost;
+            resourceInputs["vpcId"] = state?.vpcId;
+            resourceInputs["vpcSubnet"] = state?.vpcSubnet;
         } else {
             const args = argsOrState as InstanceArgs | undefined;
-            if ((!args || args.plan === undefined) && !opts.urn) {
+            if (args?.plan === undefined && !opts.urn) {
                 throw new Error("Missing required property 'plan'");
             }
-            if ((!args || args.region === undefined) && !opts.urn) {
+            if (args?.region === undefined && !opts.urn) {
                 throw new Error("Missing required property 'region'");
             }
-            resourceInputs["copySettings"] = args ? args.copySettings : undefined;
-            resourceInputs["keepAssociatedVpc"] = args ? args.keepAssociatedVpc : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["noDefaultAlarms"] = args ? args.noDefaultAlarms : undefined;
-            resourceInputs["nodes"] = args ? args.nodes : undefined;
-            resourceInputs["plan"] = args ? args.plan : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["rmqVersion"] = args ? args.rmqVersion : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["vpcId"] = args ? args.vpcId : undefined;
-            resourceInputs["vpcSubnet"] = args ? args.vpcSubnet : undefined;
+            resourceInputs["copySettings"] = args?.copySettings;
+            resourceInputs["keepAssociatedVpc"] = args?.keepAssociatedVpc;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["noDefaultAlarms"] = args?.noDefaultAlarms;
+            resourceInputs["nodes"] = args?.nodes;
+            resourceInputs["plan"] = args?.plan;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["rmqVersion"] = args?.rmqVersion;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["vpcId"] = args?.vpcId;
+            resourceInputs["vpcSubnet"] = args?.vpcSubnet;
             resourceInputs["apikey"] = undefined /*out*/;
             resourceInputs["backend"] = undefined /*out*/;
             resourceInputs["dedicated"] = undefined /*out*/;

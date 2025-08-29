@@ -40,11 +40,11 @@ export class UpgradeLavinmq extends pulumi.CustomResource {
     /**
      * The CloudAMQP instance identifier
      */
-    public readonly instanceId!: pulumi.Output<number>;
+    declare public readonly instanceId: pulumi.Output<number>;
     /**
      * The new version to upgrade to
      */
-    public readonly newVersion!: pulumi.Output<string | undefined>;
+    declare public readonly newVersion: pulumi.Output<string | undefined>;
 
     /**
      * Create a UpgradeLavinmq resource with the given unique name, arguments, and options.
@@ -59,15 +59,15 @@ export class UpgradeLavinmq extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UpgradeLavinmqState | undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["newVersion"] = state ? state.newVersion : undefined;
+            resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["newVersion"] = state?.newVersion;
         } else {
             const args = argsOrState as UpgradeLavinmqArgs | undefined;
-            if ((!args || args.instanceId === undefined) && !opts.urn) {
+            if (args?.instanceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["newVersion"] = args ? args.newVersion : undefined;
+            resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["newVersion"] = args?.newVersion;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(UpgradeLavinmq.__pulumiType, name, resourceInputs, opts);
