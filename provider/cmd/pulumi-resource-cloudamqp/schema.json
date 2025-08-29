@@ -54,11 +54,11 @@
         "variables": {
             "apikey": {
                 "type": "string",
-                "description": "Key used to authentication to the CloudAMQP Customer API\n"
+                "description": "Key used to authentication to the CloudAMQP Customer API"
             },
             "baseurl": {
                 "type": "string",
-                "description": "Base URL to CloudAMQP Customer website\n"
+                "description": "Base URL to CloudAMQP Customer website"
             },
             "enableFasterInstanceDestroy": {
                 "type": "boolean"
@@ -488,11 +488,11 @@
         "properties": {
             "apikey": {
                 "type": "string",
-                "description": "Key used to authentication to the CloudAMQP Customer API\n"
+                "description": "Key used to authentication to the CloudAMQP Customer API"
             },
             "baseurl": {
                 "type": "string",
-                "description": "Base URL to CloudAMQP Customer website\n"
+                "description": "Base URL to CloudAMQP Customer website"
             },
             "enableFasterInstanceDestroy": {
                 "type": "boolean"
@@ -501,11 +501,11 @@
         "inputProperties": {
             "apikey": {
                 "type": "string",
-                "description": "Key used to authentication to the CloudAMQP Customer API\n"
+                "description": "Key used to authentication to the CloudAMQP Customer API"
             },
             "baseurl": {
                 "type": "string",
-                "description": "Base URL to CloudAMQP Customer website\n"
+                "description": "Base URL to CloudAMQP Customer website"
             },
             "enableFasterInstanceDestroy": {
                 "type": "boolean"
@@ -520,11 +520,11 @@
             "properties": {
                 "action": {
                     "type": "string",
-                    "description": "The action to perform on the node\n"
+                    "description": "The action to perform on the node"
                 },
                 "instanceId": {
                     "type": "integer",
-                    "description": "Instance identifier\n"
+                    "description": "Instance identifier"
                 }
             },
             "required": [
@@ -534,11 +534,11 @@
             "inputProperties": {
                 "action": {
                     "type": "string",
-                    "description": "The action to perform on the node\n"
+                    "description": "The action to perform on the node"
                 },
                 "instanceId": {
                     "type": "integer",
-                    "description": "Instance identifier\n"
+                    "description": "Instance identifier"
                 }
             },
             "requiredInputs": [
@@ -550,11 +550,11 @@
                 "properties": {
                     "action": {
                         "type": "string",
-                        "description": "The action to perform on the node\n"
+                        "description": "The action to perform on the node"
                     },
                     "instanceId": {
                         "type": "integer",
-                        "description": "Instance identifier\n"
+                        "description": "Instance identifier"
                     }
                 },
                 "type": "object"
@@ -931,7 +931,7 @@
                 },
                 "noDefaultAlarms": {
                     "type": "boolean",
-                    "description": "Set to true to not create default alarms\n"
+                    "description": "Set to true to not create default alarms"
                 },
                 "nodes": {
                     "type": "integer",
@@ -943,7 +943,7 @@
                 },
                 "ready": {
                     "type": "boolean",
-                    "description": "Flag describing if the resource is ready\n"
+                    "description": "Flag describing if the resource is ready"
                 },
                 "region": {
                     "type": "string",
@@ -1014,7 +1014,7 @@
                 },
                 "noDefaultAlarms": {
                     "type": "boolean",
-                    "description": "Set to true to not create default alarms\n"
+                    "description": "Set to true to not create default alarms"
                 },
                 "nodes": {
                     "type": "integer",
@@ -1096,7 +1096,7 @@
                     },
                     "noDefaultAlarms": {
                         "type": "boolean",
-                        "description": "Set to true to not create default alarms\n"
+                        "description": "Set to true to not create default alarms"
                     },
                     "nodes": {
                         "type": "integer",
@@ -1108,7 +1108,7 @@
                     },
                     "ready": {
                         "type": "boolean",
-                        "description": "Flag describing if the resource is ready\n"
+                        "description": "Flag describing if the resource is ready"
                     },
                     "region": {
                         "type": "string",
@@ -1154,19 +1154,19 @@
             "properties": {
                 "awsAccountId": {
                     "type": "string",
-                    "description": "The 12 digit AWS Account ID where you want the events to be sent to.\n"
+                    "description": "The 12 digit AWS Account ID where you want the events to be sent to."
                 },
                 "awsRegion": {
                     "type": "string",
-                    "description": "The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)\n"
+                    "description": "The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)"
                 },
                 "instanceId": {
                     "type": "integer",
-                    "description": "Instance identifier\n"
+                    "description": "Instance identifier"
                 },
                 "queue": {
                     "type": "string",
-                    "description": "A (durable) queue on your RabbitMQ instance.\n"
+                    "description": "A (durable) queue on your RabbitMQ instance."
                 },
                 "status": {
                     "type": "string",
@@ -1174,11 +1174,11 @@
                 },
                 "vhost": {
                     "type": "string",
-                    "description": "The VHost the queue resides in.\n"
+                    "description": "The VHost the queue resides in."
                 },
                 "withHeaders": {
                     "type": "boolean",
-                    "description": "Include message headers in the event data.\n"
+                    "description": "Include message headers in the event data."
                 }
             },
             "required": [
@@ -1193,27 +1193,27 @@
             "inputProperties": {
                 "awsAccountId": {
                     "type": "string",
-                    "description": "The 12 digit AWS Account ID where you want the events to be sent to.\n"
+                    "description": "The 12 digit AWS Account ID where you want the events to be sent to."
                 },
                 "awsRegion": {
                     "type": "string",
-                    "description": "The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)\n"
+                    "description": "The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)"
                 },
                 "instanceId": {
                     "type": "integer",
-                    "description": "Instance identifier\n"
+                    "description": "Instance identifier"
                 },
                 "queue": {
                     "type": "string",
-                    "description": "A (durable) queue on your RabbitMQ instance.\n"
+                    "description": "A (durable) queue on your RabbitMQ instance."
                 },
                 "vhost": {
                     "type": "string",
-                    "description": "The VHost the queue resides in.\n"
+                    "description": "The VHost the queue resides in."
                 },
                 "withHeaders": {
                     "type": "boolean",
-                    "description": "Include message headers in the event data.\n"
+                    "description": "Include message headers in the event data."
                 }
             },
             "requiredInputs": [
@@ -1229,19 +1229,19 @@
                 "properties": {
                     "awsAccountId": {
                         "type": "string",
-                        "description": "The 12 digit AWS Account ID where you want the events to be sent to.\n"
+                        "description": "The 12 digit AWS Account ID where you want the events to be sent to."
                     },
                     "awsRegion": {
                         "type": "string",
-                        "description": "The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)\n"
+                        "description": "The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)"
                     },
                     "instanceId": {
                         "type": "integer",
-                        "description": "Instance identifier\n"
+                        "description": "Instance identifier"
                     },
                     "queue": {
                         "type": "string",
-                        "description": "A (durable) queue on your RabbitMQ instance.\n"
+                        "description": "A (durable) queue on your RabbitMQ instance."
                     },
                     "status": {
                         "type": "string",
@@ -1249,11 +1249,11 @@
                     },
                     "vhost": {
                         "type": "string",
-                        "description": "The VHost the queue resides in.\n"
+                        "description": "The VHost the queue resides in."
                     },
                     "withHeaders": {
                         "type": "boolean",
-                        "description": "Include message headers in the event data.\n"
+                        "description": "Include message headers in the event data."
                     }
                 },
                 "type": "object"
@@ -1316,7 +1316,7 @@
                 },
                 "instanceId": {
                     "type": "integer",
-                    "description": "Instance identifier used to make proxy calls\n"
+                    "description": "Instance identifier used to make proxy calls"
                 },
                 "name": {
                     "type": "string",
@@ -1329,7 +1329,7 @@
                 },
                 "privateKeyId": {
                     "type": "string",
-                    "description": "Private key identifier. (Stackdriver)\n",
+                    "description": "Private key identifier. (Stackdriver)",
                     "secret": true
                 },
                 "projectId": {
@@ -1438,7 +1438,7 @@
                 },
                 "instanceId": {
                     "type": "integer",
-                    "description": "Instance identifier used to make proxy calls\n",
+                    "description": "Instance identifier used to make proxy calls",
                     "willReplaceOnChanges": true
                 },
                 "name": {
@@ -1452,7 +1452,7 @@
                 },
                 "privateKeyId": {
                     "type": "string",
-                    "description": "Private key identifier. (Stackdriver)\n",
+                    "description": "Private key identifier. (Stackdriver)",
                     "secret": true
                 },
                 "projectId": {
@@ -1558,7 +1558,7 @@
                     },
                     "instanceId": {
                         "type": "integer",
-                        "description": "Instance identifier used to make proxy calls\n",
+                        "description": "Instance identifier used to make proxy calls",
                         "willReplaceOnChanges": true
                     },
                     "name": {
@@ -1572,7 +1572,7 @@
                     },
                     "privateKeyId": {
                         "type": "string",
-                        "description": "Private key identifier. (Stackdriver)\n",
+                        "description": "Private key identifier. (Stackdriver)",
                         "secret": true
                     },
                     "projectId": {
@@ -1626,94 +1626,94 @@
             "properties": {
                 "accessKeyId": {
                     "type": "string",
-                    "description": "AWS access key identifier. (Cloudwatch)\n"
+                    "description": "AWS access key identifier. (Cloudwatch)"
                 },
                 "apiKey": {
                     "type": "string",
-                    "description": "The API key for the integration service. (Librato)\n",
+                    "description": "The API key for the integration service. (Librato)",
                     "secret": true
                 },
                 "clientEmail": {
                     "type": "string",
-                    "description": "The client email. (Stackdriver)\n"
+                    "description": "The client email. (Stackdriver)"
                 },
                 "credentials": {
                     "type": "string",
-                    "description": "Base64Encoded credentials. (Stackdriver)\n",
+                    "description": "Base64Encoded credentials. (Stackdriver)",
                     "secret": true
                 },
                 "email": {
                     "type": "string",
-                    "description": "The email address registred for the integration service. (Librato)\n"
+                    "description": "The email address registred for the integration service. (Librato)"
                 },
                 "iamExternalId": {
                     "type": "string",
-                    "description": "External identifier that match the role you created. (Cloudwatch)\n"
+                    "description": "External identifier that match the role you created. (Cloudwatch)"
                 },
                 "iamRole": {
                     "type": "string",
-                    "description": "The ARN of the role to be assumed when publishing metrics. (Cloudwatch)\n"
+                    "description": "The ARN of the role to be assumed when publishing metrics. (Cloudwatch)"
                 },
                 "includeAdQueues": {
                     "type": "boolean",
-                    "description": "(optional) Include Auto-Delete queues\n"
+                    "description": "(optional) Include Auto-Delete queues"
                 },
                 "instanceId": {
                     "type": "integer",
-                    "description": "Instance identifier\n"
+                    "description": "Instance identifier"
                 },
                 "licenseKey": {
                     "type": "string",
-                    "description": "The license key registred for the integration service. (New Relic)\n",
+                    "description": "The license key registred for the integration service. (New Relic)",
                     "secret": true
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of metrics integration\n"
+                    "description": "The name of metrics integration"
                 },
                 "privateKey": {
                     "type": "string",
-                    "description": "The private key. (Stackdriver)\n",
+                    "description": "The private key. (Stackdriver)",
                     "secret": true
                 },
                 "privateKeyId": {
                     "type": "string",
-                    "description": "Private key identifier. (Stackdriver)\n",
+                    "description": "Private key identifier. (Stackdriver)",
                     "secret": true
                 },
                 "projectId": {
                     "type": "string",
-                    "description": "Project ID. (Stackdriver)\n"
+                    "description": "Project ID. (Stackdriver)"
                 },
                 "queueAllowlist": {
                     "type": "string",
-                    "description": "(optional) allowlist using regular expression\n"
+                    "description": "(optional) allowlist using regular expression"
                 },
                 "queueWhitelist": {
                     "type": "string",
-                    "description": "**Deprecated**\n",
+                    "description": "**Deprecated**",
                     "deprecationMessage": "use queue_allowlist instead"
                 },
                 "region": {
                     "type": "string",
-                    "description": "AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)\n"
+                    "description": "AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)"
                 },
                 "secretAccessKey": {
                     "type": "string",
-                    "description": "AWS secret key. (Cloudwatch)\n",
+                    "description": "AWS secret key. (Cloudwatch)",
                     "secret": true
                 },
                 "tags": {
                     "type": "string",
-                    "description": "(optional) tags. E.g. env=prod,region=europe\n"
+                    "description": "(optional) tags. E.g. env=prod,region=europe"
                 },
                 "vhostAllowlist": {
                     "type": "string",
-                    "description": "(optional) allowlist using regular expression\n"
+                    "description": "(optional) allowlist using regular expression"
                 },
                 "vhostWhitelist": {
                     "type": "string",
-                    "description": "**Deprecated**\n",
+                    "description": "**Deprecated**",
                     "deprecationMessage": "use vhost_allowlist instead"
                 }
             },
@@ -1728,95 +1728,95 @@
             "inputProperties": {
                 "accessKeyId": {
                     "type": "string",
-                    "description": "AWS access key identifier. (Cloudwatch)\n"
+                    "description": "AWS access key identifier. (Cloudwatch)"
                 },
                 "apiKey": {
                     "type": "string",
-                    "description": "The API key for the integration service. (Librato)\n",
+                    "description": "The API key for the integration service. (Librato)",
                     "secret": true
                 },
                 "clientEmail": {
                     "type": "string",
-                    "description": "The client email. (Stackdriver)\n"
+                    "description": "The client email. (Stackdriver)"
                 },
                 "credentials": {
                     "type": "string",
-                    "description": "Base64Encoded credentials. (Stackdriver)\n",
+                    "description": "Base64Encoded credentials. (Stackdriver)",
                     "secret": true
                 },
                 "email": {
                     "type": "string",
-                    "description": "The email address registred for the integration service. (Librato)\n"
+                    "description": "The email address registred for the integration service. (Librato)"
                 },
                 "iamExternalId": {
                     "type": "string",
-                    "description": "External identifier that match the role you created. (Cloudwatch)\n"
+                    "description": "External identifier that match the role you created. (Cloudwatch)"
                 },
                 "iamRole": {
                     "type": "string",
-                    "description": "The ARN of the role to be assumed when publishing metrics. (Cloudwatch)\n"
+                    "description": "The ARN of the role to be assumed when publishing metrics. (Cloudwatch)"
                 },
                 "includeAdQueues": {
                     "type": "boolean",
-                    "description": "(optional) Include Auto-Delete queues\n"
+                    "description": "(optional) Include Auto-Delete queues"
                 },
                 "instanceId": {
                     "type": "integer",
-                    "description": "Instance identifier\n",
+                    "description": "Instance identifier",
                     "willReplaceOnChanges": true
                 },
                 "licenseKey": {
                     "type": "string",
-                    "description": "The license key registred for the integration service. (New Relic)\n",
+                    "description": "The license key registred for the integration service. (New Relic)",
                     "secret": true
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of metrics integration\n"
+                    "description": "The name of metrics integration"
                 },
                 "privateKey": {
                     "type": "string",
-                    "description": "The private key. (Stackdriver)\n",
+                    "description": "The private key. (Stackdriver)",
                     "secret": true
                 },
                 "privateKeyId": {
                     "type": "string",
-                    "description": "Private key identifier. (Stackdriver)\n",
+                    "description": "Private key identifier. (Stackdriver)",
                     "secret": true
                 },
                 "projectId": {
                     "type": "string",
-                    "description": "Project ID. (Stackdriver)\n"
+                    "description": "Project ID. (Stackdriver)"
                 },
                 "queueAllowlist": {
                     "type": "string",
-                    "description": "(optional) allowlist using regular expression\n"
+                    "description": "(optional) allowlist using regular expression"
                 },
                 "queueWhitelist": {
                     "type": "string",
-                    "description": "**Deprecated**\n",
+                    "description": "**Deprecated**",
                     "deprecationMessage": "use queue_allowlist instead"
                 },
                 "region": {
                     "type": "string",
-                    "description": "AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)\n"
+                    "description": "AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)"
                 },
                 "secretAccessKey": {
                     "type": "string",
-                    "description": "AWS secret key. (Cloudwatch)\n",
+                    "description": "AWS secret key. (Cloudwatch)",
                     "secret": true
                 },
                 "tags": {
                     "type": "string",
-                    "description": "(optional) tags. E.g. env=prod,region=europe\n"
+                    "description": "(optional) tags. E.g. env=prod,region=europe"
                 },
                 "vhostAllowlist": {
                     "type": "string",
-                    "description": "(optional) allowlist using regular expression\n"
+                    "description": "(optional) allowlist using regular expression"
                 },
                 "vhostWhitelist": {
                     "type": "string",
-                    "description": "**Deprecated**\n",
+                    "description": "**Deprecated**",
                     "deprecationMessage": "use vhost_allowlist instead"
                 }
             },
@@ -1828,95 +1828,95 @@
                 "properties": {
                     "accessKeyId": {
                         "type": "string",
-                        "description": "AWS access key identifier. (Cloudwatch)\n"
+                        "description": "AWS access key identifier. (Cloudwatch)"
                     },
                     "apiKey": {
                         "type": "string",
-                        "description": "The API key for the integration service. (Librato)\n",
+                        "description": "The API key for the integration service. (Librato)",
                         "secret": true
                     },
                     "clientEmail": {
                         "type": "string",
-                        "description": "The client email. (Stackdriver)\n"
+                        "description": "The client email. (Stackdriver)"
                     },
                     "credentials": {
                         "type": "string",
-                        "description": "Base64Encoded credentials. (Stackdriver)\n",
+                        "description": "Base64Encoded credentials. (Stackdriver)",
                         "secret": true
                     },
                     "email": {
                         "type": "string",
-                        "description": "The email address registred for the integration service. (Librato)\n"
+                        "description": "The email address registred for the integration service. (Librato)"
                     },
                     "iamExternalId": {
                         "type": "string",
-                        "description": "External identifier that match the role you created. (Cloudwatch)\n"
+                        "description": "External identifier that match the role you created. (Cloudwatch)"
                     },
                     "iamRole": {
                         "type": "string",
-                        "description": "The ARN of the role to be assumed when publishing metrics. (Cloudwatch)\n"
+                        "description": "The ARN of the role to be assumed when publishing metrics. (Cloudwatch)"
                     },
                     "includeAdQueues": {
                         "type": "boolean",
-                        "description": "(optional) Include Auto-Delete queues\n"
+                        "description": "(optional) Include Auto-Delete queues"
                     },
                     "instanceId": {
                         "type": "integer",
-                        "description": "Instance identifier\n",
+                        "description": "Instance identifier",
                         "willReplaceOnChanges": true
                     },
                     "licenseKey": {
                         "type": "string",
-                        "description": "The license key registred for the integration service. (New Relic)\n",
+                        "description": "The license key registred for the integration service. (New Relic)",
                         "secret": true
                     },
                     "name": {
                         "type": "string",
-                        "description": "The name of metrics integration\n"
+                        "description": "The name of metrics integration"
                     },
                     "privateKey": {
                         "type": "string",
-                        "description": "The private key. (Stackdriver)\n",
+                        "description": "The private key. (Stackdriver)",
                         "secret": true
                     },
                     "privateKeyId": {
                         "type": "string",
-                        "description": "Private key identifier. (Stackdriver)\n",
+                        "description": "Private key identifier. (Stackdriver)",
                         "secret": true
                     },
                     "projectId": {
                         "type": "string",
-                        "description": "Project ID. (Stackdriver)\n"
+                        "description": "Project ID. (Stackdriver)"
                     },
                     "queueAllowlist": {
                         "type": "string",
-                        "description": "(optional) allowlist using regular expression\n"
+                        "description": "(optional) allowlist using regular expression"
                     },
                     "queueWhitelist": {
                         "type": "string",
-                        "description": "**Deprecated**\n",
+                        "description": "**Deprecated**",
                         "deprecationMessage": "use queue_allowlist instead"
                     },
                     "region": {
                         "type": "string",
-                        "description": "AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)\n"
+                        "description": "AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)"
                     },
                     "secretAccessKey": {
                         "type": "string",
-                        "description": "AWS secret key. (Cloudwatch)\n",
+                        "description": "AWS secret key. (Cloudwatch)",
                         "secret": true
                     },
                     "tags": {
                         "type": "string",
-                        "description": "(optional) tags. E.g. env=prod,region=europe\n"
+                        "description": "(optional) tags. E.g. env=prod,region=europe"
                     },
                     "vhostAllowlist": {
                         "type": "string",
-                        "description": "(optional) allowlist using regular expression\n"
+                        "description": "(optional) allowlist using regular expression"
                     },
                     "vhostWhitelist": {
                         "type": "string",
-                        "description": "**Deprecated**\n",
+                        "description": "**Deprecated**",
                         "deprecationMessage": "use vhost_allowlist instead"
                     }
                 },
@@ -3439,11 +3439,11 @@
                 },
                 "sleep": {
                     "type": "integer",
-                    "description": "Configurable sleep time in seconds between retries for webhook\n"
+                    "description": "Configurable sleep time in seconds between retries for webhook"
                 },
                 "timeout": {
                     "type": "integer",
-                    "description": "Configurable timeout time in seconds for webhook\n"
+                    "description": "Configurable timeout time in seconds for webhook"
                 },
                 "vhost": {
                     "type": "string",
@@ -3477,11 +3477,11 @@
                 },
                 "sleep": {
                     "type": "integer",
-                    "description": "Configurable sleep time in seconds between retries for webhook\n"
+                    "description": "Configurable sleep time in seconds between retries for webhook"
                 },
                 "timeout": {
                     "type": "integer",
-                    "description": "Configurable timeout time in seconds for webhook\n"
+                    "description": "Configurable timeout time in seconds for webhook"
                 },
                 "vhost": {
                     "type": "string",
@@ -3517,11 +3517,11 @@
                     },
                     "sleep": {
                         "type": "integer",
-                        "description": "Configurable sleep time in seconds between retries for webhook\n"
+                        "description": "Configurable sleep time in seconds between retries for webhook"
                     },
                     "timeout": {
                         "type": "integer",
-                        "description": "Configurable timeout time in seconds for webhook\n"
+                        "description": "Configurable timeout time in seconds for webhook"
                     },
                     "vhost": {
                         "type": "string",
@@ -3543,7 +3543,7 @@
                 "description": "A collection of values returned by getAccount.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "instances": {
@@ -3567,7 +3567,7 @@
                 "description": "A collection of values returned by getAccountVpcs.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "vpcs": {
@@ -3623,7 +3623,7 @@
                         "type": "boolean"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "instanceId": {
@@ -3713,7 +3713,7 @@
                         "type": "array"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "instanceId": {
@@ -3751,7 +3751,7 @@
                 "description": "A collection of values returned by getCredentials.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "instanceId": {
@@ -3817,7 +3817,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "instanceId": {
@@ -3917,7 +3917,7 @@
                 "description": "A collection of values returned by getNodes.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "instanceId": {
@@ -3973,7 +3973,7 @@
                 "description": "A collection of values returned by getNotification.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "instanceId": {
@@ -4029,7 +4029,7 @@
                 "description": "A collection of values returned by getNotifications.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "instanceId": {
@@ -4078,7 +4078,7 @@
                 "description": "A collection of values returned by getPlugins.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "instanceId": {
@@ -4133,7 +4133,7 @@
                 "description": "A collection of values returned by getPluginsCommunity.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "instanceId": {
@@ -4180,7 +4180,7 @@
                 "description": "A collection of values returned by getUpgradableVersions.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "instanceId": {
@@ -4231,7 +4231,7 @@
                 "description": "A collection of values returned by getVpcGcpInfo.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "instanceId": {
@@ -4287,7 +4287,7 @@
                 "description": "A collection of values returned by getVpcInfo.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "instanceId": {

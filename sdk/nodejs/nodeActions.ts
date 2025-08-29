@@ -187,19 +187,19 @@ export class NodeActions extends pulumi.CustomResource {
     /**
      * The action to invoke on the node.
      */
-    public readonly action!: pulumi.Output<string>;
+    declare public readonly action: pulumi.Output<string>;
     /**
      * The CloudAMQP instance ID.
      */
-    public readonly instanceId!: pulumi.Output<number>;
+    declare public readonly instanceId: pulumi.Output<number>;
     /**
      * The node name, e.g `green-guinea-pig-01`.
      */
-    public readonly nodeName!: pulumi.Output<string>;
+    declare public readonly nodeName: pulumi.Output<string>;
     /**
      * If the node is running.
      */
-    public /*out*/ readonly running!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly running: pulumi.Output<boolean>;
 
     /**
      * Create a NodeActions resource with the given unique name, arguments, and options.
@@ -214,24 +214,24 @@ export class NodeActions extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as NodeActionsState | undefined;
-            resourceInputs["action"] = state ? state.action : undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["nodeName"] = state ? state.nodeName : undefined;
-            resourceInputs["running"] = state ? state.running : undefined;
+            resourceInputs["action"] = state?.action;
+            resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["nodeName"] = state?.nodeName;
+            resourceInputs["running"] = state?.running;
         } else {
             const args = argsOrState as NodeActionsArgs | undefined;
-            if ((!args || args.action === undefined) && !opts.urn) {
+            if (args?.action === undefined && !opts.urn) {
                 throw new Error("Missing required property 'action'");
             }
-            if ((!args || args.instanceId === undefined) && !opts.urn) {
+            if (args?.instanceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            if ((!args || args.nodeName === undefined) && !opts.urn) {
+            if (args?.nodeName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'nodeName'");
             }
-            resourceInputs["action"] = args ? args.action : undefined;
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["nodeName"] = args ? args.nodeName : undefined;
+            resourceInputs["action"] = args?.action;
+            resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["nodeName"] = args?.nodeName;
             resourceInputs["running"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

@@ -60,30 +60,30 @@ export class PrivatelinkAws extends pulumi.CustomResource {
     /**
      * Covering availability zones used when creating an Endpoint from other VPC.
      */
-    public /*out*/ readonly activeZones!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly activeZones: pulumi.Output<string[]>;
     /**
      * Allowed principals to access the endpoint service.
      */
-    public readonly allowedPrincipals!: pulumi.Output<string[]>;
+    declare public readonly allowedPrincipals: pulumi.Output<string[]>;
     /**
      * The CloudAMQP instance identifier.
      */
-    public readonly instanceId!: pulumi.Output<number>;
+    declare public readonly instanceId: pulumi.Output<number>;
     /**
      * Service name of the PrivateLink used when creating the endpoint from other VPC.
      */
-    public /*out*/ readonly serviceName!: pulumi.Output<string>;
+    declare public /*out*/ readonly serviceName: pulumi.Output<string>;
     /**
      * Configurable sleep time (seconds) when enable PrivateLink.
      * Default set to 10 seconds.
      *
      * ***Note:*** Available from [v1.29.0]
      */
-    public readonly sleep!: pulumi.Output<number | undefined>;
+    declare public readonly sleep: pulumi.Output<number | undefined>;
     /**
      * PrivateLink status [enable, pending, disable]
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
      * Configurable timeout time (seconds) when enable PrivateLink.
      * Default set to 1800 seconds.
@@ -95,7 +95,7 @@ export class PrivatelinkAws extends pulumi.CustomResource {
      * `arn:aws:iam::aws-account-id:user/user-name` <br>
      * `arn:aws:iam::aws-account-id:role/role-name`
      */
-    public readonly timeout!: pulumi.Output<number | undefined>;
+    declare public readonly timeout: pulumi.Output<number | undefined>;
 
     /**
      * Create a PrivatelinkAws resource with the given unique name, arguments, and options.
@@ -110,25 +110,25 @@ export class PrivatelinkAws extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PrivatelinkAwsState | undefined;
-            resourceInputs["activeZones"] = state ? state.activeZones : undefined;
-            resourceInputs["allowedPrincipals"] = state ? state.allowedPrincipals : undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["serviceName"] = state ? state.serviceName : undefined;
-            resourceInputs["sleep"] = state ? state.sleep : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["timeout"] = state ? state.timeout : undefined;
+            resourceInputs["activeZones"] = state?.activeZones;
+            resourceInputs["allowedPrincipals"] = state?.allowedPrincipals;
+            resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["serviceName"] = state?.serviceName;
+            resourceInputs["sleep"] = state?.sleep;
+            resourceInputs["status"] = state?.status;
+            resourceInputs["timeout"] = state?.timeout;
         } else {
             const args = argsOrState as PrivatelinkAwsArgs | undefined;
-            if ((!args || args.allowedPrincipals === undefined) && !opts.urn) {
+            if (args?.allowedPrincipals === undefined && !opts.urn) {
                 throw new Error("Missing required property 'allowedPrincipals'");
             }
-            if ((!args || args.instanceId === undefined) && !opts.urn) {
+            if (args?.instanceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            resourceInputs["allowedPrincipals"] = args ? args.allowedPrincipals : undefined;
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["sleep"] = args ? args.sleep : undefined;
-            resourceInputs["timeout"] = args ? args.timeout : undefined;
+            resourceInputs["allowedPrincipals"] = args?.allowedPrincipals;
+            resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["sleep"] = args?.sleep;
+            resourceInputs["timeout"] = args?.timeout;
             resourceInputs["activeZones"] = undefined /*out*/;
             resourceInputs["serviceName"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;

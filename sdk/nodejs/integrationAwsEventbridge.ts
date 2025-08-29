@@ -121,31 +121,31 @@ export class IntegrationAwsEventbridge extends pulumi.CustomResource {
     /**
      * The 12 digit AWS Account ID where you want the events to be sent to.
      */
-    public readonly awsAccountId!: pulumi.Output<string>;
+    declare public readonly awsAccountId: pulumi.Output<string>;
     /**
      * The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
      */
-    public readonly awsRegion!: pulumi.Output<string>;
+    declare public readonly awsRegion: pulumi.Output<string>;
     /**
      * Instance identifier
      */
-    public readonly instanceId!: pulumi.Output<number>;
+    declare public readonly instanceId: pulumi.Output<number>;
     /**
      * A (durable) queue on your RabbitMQ instance.
      */
-    public readonly queue!: pulumi.Output<string>;
+    declare public readonly queue: pulumi.Output<string>;
     /**
      * Always set to null, unless there is an error starting the EventBridge.
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
      * The VHost the queue resides in.
      */
-    public readonly vhost!: pulumi.Output<string>;
+    declare public readonly vhost: pulumi.Output<string>;
     /**
      * Include message headers in the event data.
      */
-    public readonly withHeaders!: pulumi.Output<boolean>;
+    declare public readonly withHeaders: pulumi.Output<boolean>;
 
     /**
      * Create a IntegrationAwsEventbridge resource with the given unique name, arguments, and options.
@@ -160,39 +160,39 @@ export class IntegrationAwsEventbridge extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IntegrationAwsEventbridgeState | undefined;
-            resourceInputs["awsAccountId"] = state ? state.awsAccountId : undefined;
-            resourceInputs["awsRegion"] = state ? state.awsRegion : undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["queue"] = state ? state.queue : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["vhost"] = state ? state.vhost : undefined;
-            resourceInputs["withHeaders"] = state ? state.withHeaders : undefined;
+            resourceInputs["awsAccountId"] = state?.awsAccountId;
+            resourceInputs["awsRegion"] = state?.awsRegion;
+            resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["queue"] = state?.queue;
+            resourceInputs["status"] = state?.status;
+            resourceInputs["vhost"] = state?.vhost;
+            resourceInputs["withHeaders"] = state?.withHeaders;
         } else {
             const args = argsOrState as IntegrationAwsEventbridgeArgs | undefined;
-            if ((!args || args.awsAccountId === undefined) && !opts.urn) {
+            if (args?.awsAccountId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'awsAccountId'");
             }
-            if ((!args || args.awsRegion === undefined) && !opts.urn) {
+            if (args?.awsRegion === undefined && !opts.urn) {
                 throw new Error("Missing required property 'awsRegion'");
             }
-            if ((!args || args.instanceId === undefined) && !opts.urn) {
+            if (args?.instanceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            if ((!args || args.queue === undefined) && !opts.urn) {
+            if (args?.queue === undefined && !opts.urn) {
                 throw new Error("Missing required property 'queue'");
             }
-            if ((!args || args.vhost === undefined) && !opts.urn) {
+            if (args?.vhost === undefined && !opts.urn) {
                 throw new Error("Missing required property 'vhost'");
             }
-            if ((!args || args.withHeaders === undefined) && !opts.urn) {
+            if (args?.withHeaders === undefined && !opts.urn) {
                 throw new Error("Missing required property 'withHeaders'");
             }
-            resourceInputs["awsAccountId"] = args ? args.awsAccountId : undefined;
-            resourceInputs["awsRegion"] = args ? args.awsRegion : undefined;
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["queue"] = args ? args.queue : undefined;
-            resourceInputs["vhost"] = args ? args.vhost : undefined;
-            resourceInputs["withHeaders"] = args ? args.withHeaders : undefined;
+            resourceInputs["awsAccountId"] = args?.awsAccountId;
+            resourceInputs["awsRegion"] = args?.awsRegion;
+            resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["queue"] = args?.queue;
+            resourceInputs["vhost"] = args?.vhost;
+            resourceInputs["withHeaders"] = args?.withHeaders;
             resourceInputs["status"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

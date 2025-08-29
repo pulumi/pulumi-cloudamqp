@@ -229,91 +229,91 @@ export class IntegrationMetric extends pulumi.CustomResource {
     /**
      * AWS access key identifier. (Cloudwatch)
      */
-    public readonly accessKeyId!: pulumi.Output<string | undefined>;
+    declare public readonly accessKeyId: pulumi.Output<string | undefined>;
     /**
      * The API key for the integration service. (Librato)
      */
-    public readonly apiKey!: pulumi.Output<string | undefined>;
+    declare public readonly apiKey: pulumi.Output<string | undefined>;
     /**
      * The client email. (Stackdriver)
      */
-    public readonly clientEmail!: pulumi.Output<string>;
+    declare public readonly clientEmail: pulumi.Output<string>;
     /**
      * Base64Encoded credentials. (Stackdriver)
      */
-    public readonly credentials!: pulumi.Output<string | undefined>;
+    declare public readonly credentials: pulumi.Output<string | undefined>;
     /**
      * The email address registred for the integration service. (Librato)
      */
-    public readonly email!: pulumi.Output<string | undefined>;
+    declare public readonly email: pulumi.Output<string | undefined>;
     /**
      * External identifier that match the role you created. (Cloudwatch)
      */
-    public readonly iamExternalId!: pulumi.Output<string | undefined>;
+    declare public readonly iamExternalId: pulumi.Output<string | undefined>;
     /**
      * The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
      */
-    public readonly iamRole!: pulumi.Output<string | undefined>;
+    declare public readonly iamRole: pulumi.Output<string | undefined>;
     /**
      * (optional) Include Auto-Delete queues
      */
-    public readonly includeAdQueues!: pulumi.Output<boolean | undefined>;
+    declare public readonly includeAdQueues: pulumi.Output<boolean | undefined>;
     /**
      * Instance identifier
      */
-    public readonly instanceId!: pulumi.Output<number>;
+    declare public readonly instanceId: pulumi.Output<number>;
     /**
      * The license key registred for the integration service. (New Relic)
      */
-    public readonly licenseKey!: pulumi.Output<string | undefined>;
+    declare public readonly licenseKey: pulumi.Output<string | undefined>;
     /**
      * The name of metrics integration
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The private key. (Stackdriver)
      */
-    public readonly privateKey!: pulumi.Output<string>;
+    declare public readonly privateKey: pulumi.Output<string>;
     /**
      * Private key identifier. (Stackdriver)
      */
-    public readonly privateKeyId!: pulumi.Output<string>;
+    declare public readonly privateKeyId: pulumi.Output<string>;
     /**
      * Project ID. (Stackdriver)
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * (optional) allowlist using regular expression
      */
-    public readonly queueAllowlist!: pulumi.Output<string | undefined>;
+    declare public readonly queueAllowlist: pulumi.Output<string | undefined>;
     /**
      * **Deprecated**
      *
      * @deprecated use queueAllowlist instead
      */
-    public readonly queueWhitelist!: pulumi.Output<string | undefined>;
+    declare public readonly queueWhitelist: pulumi.Output<string | undefined>;
     /**
      * AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
      */
-    public readonly region!: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * AWS secret key. (Cloudwatch)
      */
-    public readonly secretAccessKey!: pulumi.Output<string | undefined>;
+    declare public readonly secretAccessKey: pulumi.Output<string | undefined>;
     /**
      * (optional) tags. E.g. env=prod,region=europe
      */
-    public readonly tags!: pulumi.Output<string | undefined>;
+    declare public readonly tags: pulumi.Output<string | undefined>;
     /**
      * (optional) allowlist using regular expression
      */
-    public readonly vhostAllowlist!: pulumi.Output<string | undefined>;
+    declare public readonly vhostAllowlist: pulumi.Output<string | undefined>;
     /**
      * **Deprecated**
      *
      * @deprecated use vhostAllowlist instead
      */
-    public readonly vhostWhitelist!: pulumi.Output<string | undefined>;
+    declare public readonly vhostWhitelist: pulumi.Output<string | undefined>;
 
     /**
      * Create a IntegrationMetric resource with the given unique name, arguments, and options.
@@ -328,53 +328,53 @@ export class IntegrationMetric extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IntegrationMetricState | undefined;
-            resourceInputs["accessKeyId"] = state ? state.accessKeyId : undefined;
-            resourceInputs["apiKey"] = state ? state.apiKey : undefined;
-            resourceInputs["clientEmail"] = state ? state.clientEmail : undefined;
-            resourceInputs["credentials"] = state ? state.credentials : undefined;
-            resourceInputs["email"] = state ? state.email : undefined;
-            resourceInputs["iamExternalId"] = state ? state.iamExternalId : undefined;
-            resourceInputs["iamRole"] = state ? state.iamRole : undefined;
-            resourceInputs["includeAdQueues"] = state ? state.includeAdQueues : undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["licenseKey"] = state ? state.licenseKey : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["privateKey"] = state ? state.privateKey : undefined;
-            resourceInputs["privateKeyId"] = state ? state.privateKeyId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["queueAllowlist"] = state ? state.queueAllowlist : undefined;
-            resourceInputs["queueWhitelist"] = state ? state.queueWhitelist : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["secretAccessKey"] = state ? state.secretAccessKey : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["vhostAllowlist"] = state ? state.vhostAllowlist : undefined;
-            resourceInputs["vhostWhitelist"] = state ? state.vhostWhitelist : undefined;
+            resourceInputs["accessKeyId"] = state?.accessKeyId;
+            resourceInputs["apiKey"] = state?.apiKey;
+            resourceInputs["clientEmail"] = state?.clientEmail;
+            resourceInputs["credentials"] = state?.credentials;
+            resourceInputs["email"] = state?.email;
+            resourceInputs["iamExternalId"] = state?.iamExternalId;
+            resourceInputs["iamRole"] = state?.iamRole;
+            resourceInputs["includeAdQueues"] = state?.includeAdQueues;
+            resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["licenseKey"] = state?.licenseKey;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["privateKey"] = state?.privateKey;
+            resourceInputs["privateKeyId"] = state?.privateKeyId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["queueAllowlist"] = state?.queueAllowlist;
+            resourceInputs["queueWhitelist"] = state?.queueWhitelist;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["secretAccessKey"] = state?.secretAccessKey;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["vhostAllowlist"] = state?.vhostAllowlist;
+            resourceInputs["vhostWhitelist"] = state?.vhostWhitelist;
         } else {
             const args = argsOrState as IntegrationMetricArgs | undefined;
-            if ((!args || args.instanceId === undefined) && !opts.urn) {
+            if (args?.instanceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            resourceInputs["accessKeyId"] = args ? args.accessKeyId : undefined;
+            resourceInputs["accessKeyId"] = args?.accessKeyId;
             resourceInputs["apiKey"] = args?.apiKey ? pulumi.secret(args.apiKey) : undefined;
-            resourceInputs["clientEmail"] = args ? args.clientEmail : undefined;
+            resourceInputs["clientEmail"] = args?.clientEmail;
             resourceInputs["credentials"] = args?.credentials ? pulumi.secret(args.credentials) : undefined;
-            resourceInputs["email"] = args ? args.email : undefined;
-            resourceInputs["iamExternalId"] = args ? args.iamExternalId : undefined;
-            resourceInputs["iamRole"] = args ? args.iamRole : undefined;
-            resourceInputs["includeAdQueues"] = args ? args.includeAdQueues : undefined;
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
+            resourceInputs["email"] = args?.email;
+            resourceInputs["iamExternalId"] = args?.iamExternalId;
+            resourceInputs["iamRole"] = args?.iamRole;
+            resourceInputs["includeAdQueues"] = args?.includeAdQueues;
+            resourceInputs["instanceId"] = args?.instanceId;
             resourceInputs["licenseKey"] = args?.licenseKey ? pulumi.secret(args.licenseKey) : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["name"] = args?.name;
             resourceInputs["privateKey"] = args?.privateKey ? pulumi.secret(args.privateKey) : undefined;
             resourceInputs["privateKeyId"] = args?.privateKeyId ? pulumi.secret(args.privateKeyId) : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["queueAllowlist"] = args ? args.queueAllowlist : undefined;
-            resourceInputs["queueWhitelist"] = args ? args.queueWhitelist : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["queueAllowlist"] = args?.queueAllowlist;
+            resourceInputs["queueWhitelist"] = args?.queueWhitelist;
+            resourceInputs["region"] = args?.region;
             resourceInputs["secretAccessKey"] = args?.secretAccessKey ? pulumi.secret(args.secretAccessKey) : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["vhostAllowlist"] = args ? args.vhostAllowlist : undefined;
-            resourceInputs["vhostWhitelist"] = args ? args.vhostWhitelist : undefined;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["vhostAllowlist"] = args?.vhostAllowlist;
+            resourceInputs["vhostWhitelist"] = args?.vhostWhitelist;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["apiKey", "credentials", "licenseKey", "privateKey", "privateKeyId", "secretAccessKey"] };

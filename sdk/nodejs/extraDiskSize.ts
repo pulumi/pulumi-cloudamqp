@@ -204,32 +204,32 @@ export class ExtraDiskSize extends pulumi.CustomResource {
      * When resizing the disk, allow cluster downtime if necessary.
      * Default set to false.
      */
-    public readonly allowDowntime!: pulumi.Output<boolean | undefined>;
+    declare public readonly allowDowntime: pulumi.Output<boolean | undefined>;
     /**
      * Extra disk size in GB. Supported values: 0, 25, 50, 100,
      * 250, 500, 1000, 2000
      */
-    public readonly extraDiskSize!: pulumi.Output<number>;
+    declare public readonly extraDiskSize: pulumi.Output<number>;
     /**
      * The CloudAMQP instance ID.
      */
-    public readonly instanceId!: pulumi.Output<number>;
+    declare public readonly instanceId: pulumi.Output<number>;
     /**
      * An array of node information. Each `nodes` block consists of the fields documented below.
      */
-    public /*out*/ readonly nodes!: pulumi.Output<outputs.ExtraDiskSizeNode[]>;
+    declare public /*out*/ readonly nodes: pulumi.Output<outputs.ExtraDiskSizeNode[]>;
     /**
      * Configurable sleep time in seconds between retries for resizing the
      * disk. Default set to 30 seconds.
      */
-    public readonly sleep!: pulumi.Output<number | undefined>;
+    declare public readonly sleep: pulumi.Output<number | undefined>;
     /**
      * Configurable timeout time in seconds for resizing the disk. Default
      * set to 1800 seconds.
      *
      * ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from [v1.25.0].
      */
-    public readonly timeout!: pulumi.Output<number | undefined>;
+    declare public readonly timeout: pulumi.Output<number | undefined>;
 
     /**
      * Create a ExtraDiskSize resource with the given unique name, arguments, and options.
@@ -244,25 +244,25 @@ export class ExtraDiskSize extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ExtraDiskSizeState | undefined;
-            resourceInputs["allowDowntime"] = state ? state.allowDowntime : undefined;
-            resourceInputs["extraDiskSize"] = state ? state.extraDiskSize : undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["nodes"] = state ? state.nodes : undefined;
-            resourceInputs["sleep"] = state ? state.sleep : undefined;
-            resourceInputs["timeout"] = state ? state.timeout : undefined;
+            resourceInputs["allowDowntime"] = state?.allowDowntime;
+            resourceInputs["extraDiskSize"] = state?.extraDiskSize;
+            resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["nodes"] = state?.nodes;
+            resourceInputs["sleep"] = state?.sleep;
+            resourceInputs["timeout"] = state?.timeout;
         } else {
             const args = argsOrState as ExtraDiskSizeArgs | undefined;
-            if ((!args || args.extraDiskSize === undefined) && !opts.urn) {
+            if (args?.extraDiskSize === undefined && !opts.urn) {
                 throw new Error("Missing required property 'extraDiskSize'");
             }
-            if ((!args || args.instanceId === undefined) && !opts.urn) {
+            if (args?.instanceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            resourceInputs["allowDowntime"] = args ? args.allowDowntime : undefined;
-            resourceInputs["extraDiskSize"] = args ? args.extraDiskSize : undefined;
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["sleep"] = args ? args.sleep : undefined;
-            resourceInputs["timeout"] = args ? args.timeout : undefined;
+            resourceInputs["allowDowntime"] = args?.allowDowntime;
+            resourceInputs["extraDiskSize"] = args?.extraDiskSize;
+            resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["sleep"] = args?.sleep;
+            resourceInputs["timeout"] = args?.timeout;
             resourceInputs["nodes"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
