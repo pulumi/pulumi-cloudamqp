@@ -22,6 +22,8 @@ import javax.annotation.Nullable;
  * 
  * Available for dedicated subscription plans.
  * 
+ * From **August 5, 2025** LavinMQ instances will have `automatic_updates` set to `on` by default.
+ * 
  * ## Example Usage
  * 
  * &lt;details&gt;
