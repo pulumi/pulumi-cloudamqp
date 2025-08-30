@@ -422,6 +422,7 @@ import (
 // [Managed VPC]: ../guides/info_managed_vpc#dedicated-instance-and-vpc_subnet
 // [plans]: ../guides/info_plan.md
 // [**RabbitMQ**]: https://www.rabbitmq.com
+// [instance regions]: ../guides/info_region.md
 //
 // ## Import
 //

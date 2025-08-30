@@ -18,6 +18,8 @@ import (
 //
 // Available for dedicated subscription plans.
 //
+// From **August 5, 2025** LavinMQ instances will have `automaticUpdates` set to `on` by default.
+//
 // ## Example Usage
 //
 // <details>
