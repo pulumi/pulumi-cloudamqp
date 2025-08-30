@@ -1501,8 +1501,8 @@ github.com/chzyer/test v0.0.0-20180213035817-a1ea475d72b1/go.mod h1:Q3SI9o4m/ZMn
 github.com/chzyer/test v0.0.0-20210722231415-061457976a23/go.mod h1:Q3SI9o4m/ZMnBNeIyt5eFwwo7qiLfzFZmjNmxjkiQlU=
 github.com/chzyer/test v1.0.0/go.mod h1:2JlltgoNkt4TW/z9V/IzDdFaMTM2JPIi26O1pF38GC8=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
-github.com/cloudamqp/terraform-provider-cloudamqp v1.35.1 h1:CckqAN0pFBgoQzar7ky89ax8TQvuZUiSxXeP7P3Y2zM=
-github.com/cloudamqp/terraform-provider-cloudamqp v1.35.1/go.mod h1:+tugDnej3Z1IDvOVriBkNvGb74o2RrY/pthlg8hJDtQ=
+github.com/cloudamqp/terraform-provider-cloudamqp v1.36.0 h1:9O22rhxt9wRJbuYGIm4W3N4IaP7HX/x4s3RQAkMdxuA=
+github.com/cloudamqp/terraform-provider-cloudamqp v1.36.0/go.mod h1:YTKUHQSUu6OvgHD88J+5EJ4qiQMeimEmQzEmObo2PQg=
 github.com/cloudflare/circl v1.3.7/go.mod h1:sRTcRWXGLrKw6yIGJ+l7amYJFfAXbZG0kBSc8r4zxgA=
 github.com/cloudflare/circl v1.6.0/go.mod h1:uddAzsPgqdMAYatqJ0lsjX1oECcQLIlRpzZh3pJrofs=
 github.com/cloudflare/circl v1.6.1 h1:zqIqSPIndyBh1bjLVVDHMPpVKqp8Su/V+6MeDzzQBQ0=
