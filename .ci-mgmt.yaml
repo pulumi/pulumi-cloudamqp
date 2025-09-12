@@ -2,6 +2,8 @@ provider: cloudamqp
 major-version: 3
 makeTemplate: bridged
 team: ecosystem
+esc:
+  enabled: true
 env:
   CLOUDAMQP_APIKEY: ${{ secrets.CLOUDAMQP_APIKEY }}
 pulumiConvert: 1
