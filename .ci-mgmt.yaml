@@ -3,12 +3,12 @@ major-version: 3
 makeTemplate: bridged
 team: ecosystem
 esc:
-  enabled: true
+    enabled: true
 env:
-  CLOUDAMQP_APIKEY: ${{ secrets.CLOUDAMQP_APIKEY }}
+    CLOUDAMQP_APIKEY: ${{ secrets.CLOUDAMQP_APIKEY }}
 pulumiConvert: 1
 registryDocs: true
 plugins:
-  - name: terraform
-    version: "1.0.16"
-    kind: converter
+    - name: terraform
+      version: "1.0.16"
+      kind: converter
