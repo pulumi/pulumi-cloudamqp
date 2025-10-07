@@ -118,7 +118,7 @@ public final class AlarmArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The time interval (in seconds) the `value_threshold` should be
+     * The time interval (in seconds) the `valueThreshold` should be
      * active before triggering an alarm.
      * 
      */
@@ -126,7 +126,7 @@ public final class AlarmArgs extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<Integer> timeThreshold;
 
     /**
-     * @return The time interval (in seconds) the `value_threshold` should be
+     * @return The time interval (in seconds) the `valueThreshold` should be
      * active before triggering an alarm.
      * 
      */
@@ -380,7 +380,7 @@ public final class AlarmArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param timeThreshold The time interval (in seconds) the `value_threshold` should be
+         * @param timeThreshold The time interval (in seconds) the `valueThreshold` should be
          * active before triggering an alarm.
          * 
          * @return builder
@@ -392,7 +392,7 @@ public final class AlarmArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param timeThreshold The time interval (in seconds) the `value_threshold` should be
+         * @param timeThreshold The time interval (in seconds) the `valueThreshold` should be
          * active before triggering an alarm.
          * 
          * @return builder
