@@ -135,7 +135,7 @@ namespace Pulumi.CloudAmqp
         public readonly string Id;
         public readonly int InstanceId;
         /// <summary>
-        /// An array of node information. Each `nodes` block consists of the fields documented below.
+        /// An array of node information. Each `Nodes` block consists of the fields documented below.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetNodesNodeResult> Nodes;
 

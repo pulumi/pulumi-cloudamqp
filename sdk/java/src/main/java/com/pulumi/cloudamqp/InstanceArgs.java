@@ -26,7 +26,7 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
      * 
      * ***
      * 
-     * The `copy_settings` block consists of:
+     * The `copySettings` block consists of:
      * 
      */
     @Import(name="copySettings")
@@ -38,7 +38,7 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
      * 
      * ***
      * 
-     * The `copy_settings` block consists of:
+     * The `copySettings` block consists of:
      * 
      */
     public Optional<Output<List<InstanceCopySettingArgs>>> copySettings() {
@@ -275,7 +275,7 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
          * 
          * ***
          * 
-         * The `copy_settings` block consists of:
+         * The `copySettings` block consists of:
          * 
          * @return builder
          * 
@@ -291,7 +291,7 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
          * 
          * ***
          * 
-         * The `copy_settings` block consists of:
+         * The `copySettings` block consists of:
          * 
          * @return builder
          * 
@@ -306,7 +306,7 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
          * 
          * ***
          * 
-         * The `copy_settings` block consists of:
+         * The `copySettings` block consists of:
          * 
          * @return builder
          * 

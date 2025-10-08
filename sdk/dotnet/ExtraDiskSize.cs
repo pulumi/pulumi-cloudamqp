@@ -16,10 +16,10 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ***From v1.25.0***: Google Compute Engine (GCE) and Azure available.
     /// 
-    /// Introducing a new optional argument called `allow_downtime`. Leaving it out or set it to false will
+    /// Introducing a new optional argument called `AllowDowntime`. Leaving it out or set it to false will
     /// proceed to try and resize the disk without downtime, available for *AWS*, *GCE* and *Azure*.
     /// 
-    /// `allow_downtime` also makes it possible to circumvent the time rate limit or shrinking the disk.
+    /// `AllowDowntime` also makes it possible to circumvent the time rate limit or shrinking the disk.
     /// 
     /// | Cloud Platform        | allow_downtime=false | allow_downtime=true           | Possible to resize |
     /// |-----------------------|----------------------|-------------------------------|--------------------|
@@ -33,7 +33,7 @@ namespace Pulumi.CloudAmqp
     /// the rate time limit. See `Possible to resize` column above for the different cloud platforms.
     /// 
     /// &gt; **Note:** Shrinking the disk will always need to swap the old disk to a new one and require
-    /// `allow_downtime` set to *true*.
+    /// `AllowDowntime` set to *true*.
     /// 
     /// Pricing is available at [CloudAMQP] and only available for dedicated subscription plans.
     /// 
@@ -243,7 +243,7 @@ namespace Pulumi.CloudAmqp
         public Output<int> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// An array of node information. Each `nodes` block consists of the fields documented below.
+        /// An array of node information. Each `Nodes` block consists of the fields documented below.
         /// </summary>
         [Output("nodes")]
         public Output<ImmutableArray<Outputs.ExtraDiskSizeNode>> Nodes { get; private set; } = null!;
@@ -259,7 +259,7 @@ namespace Pulumi.CloudAmqp
         /// Configurable timeout time in seconds for resizing the disk. Default
         /// set to 1800 seconds.
         /// 
-        /// ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
+        /// ***Note:*** `AllowDowntime`, `Sleep`, `Timeout` only available from [v1.25.0].
         /// </summary>
         [Output("timeout")]
         public Output<int?> Timeout { get; private set; } = null!;
@@ -341,7 +341,7 @@ namespace Pulumi.CloudAmqp
         /// Configurable timeout time in seconds for resizing the disk. Default
         /// set to 1800 seconds.
         /// 
-        /// ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
+        /// ***Note:*** `AllowDowntime`, `Sleep`, `Timeout` only available from [v1.25.0].
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
@@ -378,7 +378,7 @@ namespace Pulumi.CloudAmqp
         private InputList<Inputs.ExtraDiskSizeNodeGetArgs>? _nodes;
 
         /// <summary>
-        /// An array of node information. Each `nodes` block consists of the fields documented below.
+        /// An array of node information. Each `Nodes` block consists of the fields documented below.
         /// </summary>
         public InputList<Inputs.ExtraDiskSizeNodeGetArgs> Nodes
         {
@@ -397,7 +397,7 @@ namespace Pulumi.CloudAmqp
         /// Configurable timeout time in seconds for resizing the disk. Default
         /// set to 1800 seconds.
         /// 
-        /// ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
+        /// ***Note:*** `AllowDowntime`, `Sleep`, `Timeout` only available from [v1.25.0].
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
