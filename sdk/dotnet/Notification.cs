@@ -309,13 +309,13 @@ namespace Pulumi.CloudAmqp
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Options argument (e.g. `rk` used for VictorOps routing key).
+        /// Options argument (e.g. `Rk` used for VictorOps routing key).
         /// </summary>
         [Output("options")]
         public Output<ImmutableDictionary<string, string>?> Options { get; private set; } = null!;
 
         /// <summary>
-        /// An array of reponders (only for OpsGenie). Each `responders` block
+        /// An array of reponders (only for OpsGenie). Each `Responders` block
         /// consists of the field documented below.
         /// 
         /// ___
@@ -329,13 +329,13 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ___
         /// 
-        /// The `responders` block consists of:
+        /// The `Responders` block consists of:
         /// </summary>
         [Output("responders")]
         public Output<ImmutableArray<Outputs.NotificationResponder>> Responders { get; private set; } = null!;
 
         /// <summary>
-        /// Type of responder. [`team`, `user`, `escalation`, `schedule`]
+        /// Type of responder. [`Team`, `User`, `Escalation`, `Schedule`]
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -408,7 +408,7 @@ namespace Pulumi.CloudAmqp
         private InputMap<string>? _options;
 
         /// <summary>
-        /// Options argument (e.g. `rk` used for VictorOps routing key).
+        /// Options argument (e.g. `Rk` used for VictorOps routing key).
         /// </summary>
         public InputMap<string> Options
         {
@@ -420,7 +420,7 @@ namespace Pulumi.CloudAmqp
         private InputList<Inputs.NotificationResponderArgs>? _responders;
 
         /// <summary>
-        /// An array of reponders (only for OpsGenie). Each `responders` block
+        /// An array of reponders (only for OpsGenie). Each `Responders` block
         /// consists of the field documented below.
         /// 
         /// ___
@@ -434,7 +434,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ___
         /// 
-        /// The `responders` block consists of:
+        /// The `Responders` block consists of:
         /// </summary>
         public InputList<Inputs.NotificationResponderArgs> Responders
         {
@@ -443,7 +443,7 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
-        /// Type of responder. [`team`, `user`, `escalation`, `schedule`]
+        /// Type of responder. [`Team`, `User`, `Escalation`, `Schedule`]
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -478,7 +478,7 @@ namespace Pulumi.CloudAmqp
         private InputMap<string>? _options;
 
         /// <summary>
-        /// Options argument (e.g. `rk` used for VictorOps routing key).
+        /// Options argument (e.g. `Rk` used for VictorOps routing key).
         /// </summary>
         public InputMap<string> Options
         {
@@ -490,7 +490,7 @@ namespace Pulumi.CloudAmqp
         private InputList<Inputs.NotificationResponderGetArgs>? _responders;
 
         /// <summary>
-        /// An array of reponders (only for OpsGenie). Each `responders` block
+        /// An array of reponders (only for OpsGenie). Each `Responders` block
         /// consists of the field documented below.
         /// 
         /// ___
@@ -504,7 +504,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ___
         /// 
-        /// The `responders` block consists of:
+        /// The `Responders` block consists of:
         /// </summary>
         public InputList<Inputs.NotificationResponderGetArgs> Responders
         {
@@ -513,7 +513,7 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
-        /// Type of responder. [`team`, `user`, `escalation`, `schedule`]
+        /// Type of responder. [`Team`, `User`, `Escalation`, `Schedule`]
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

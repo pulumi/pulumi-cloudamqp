@@ -180,7 +180,7 @@ public class VpcConnect extends com.pulumi.resources.CustomResource {
      * 
      * ***
      * 
-     * The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the
+     * The `allowedPrincipals`, `approvedSubscriptions` or `allowedProjects` data depends on the
      * provider platform:
      * 
      * | Platform | Description | Format |
@@ -199,7 +199,7 @@ public class VpcConnect extends com.pulumi.resources.CustomResource {
      * 
      * ***
      * 
-     * The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the
+     * The `allowedPrincipals`, `approvedSubscriptions` or `allowedProjects` data depends on the
      * provider platform:
      * 
      * | Platform | Description | Format |

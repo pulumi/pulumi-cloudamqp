@@ -247,10 +247,10 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
      * **Deprecated**
      * 
      * @deprecated
-     * use queue_allowlist instead
+     * use queueAllowlist instead
      * 
      */
-    @Deprecated /* use queue_allowlist instead */
+    @Deprecated /* use queueAllowlist instead */
     @Import(name="queueWhitelist")
     private @Nullable Output<String> queueWhitelist;
 
@@ -258,10 +258,10 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
      * @return **Deprecated**
      * 
      * @deprecated
-     * use queue_allowlist instead
+     * use queueAllowlist instead
      * 
      */
-    @Deprecated /* use queue_allowlist instead */
+    @Deprecated /* use queueAllowlist instead */
     public Optional<Output<String>> queueWhitelist() {
         return Optional.ofNullable(this.queueWhitelist);
     }
@@ -330,10 +330,10 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
      * **Deprecated**
      * 
      * @deprecated
-     * use vhost_allowlist instead
+     * use vhostAllowlist instead
      * 
      */
-    @Deprecated /* use vhost_allowlist instead */
+    @Deprecated /* use vhostAllowlist instead */
     @Import(name="vhostWhitelist")
     private @Nullable Output<String> vhostWhitelist;
 
@@ -341,10 +341,10 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
      * @return **Deprecated**
      * 
      * @deprecated
-     * use vhost_allowlist instead
+     * use vhostAllowlist instead
      * 
      */
-    @Deprecated /* use vhost_allowlist instead */
+    @Deprecated /* use vhostAllowlist instead */
     public Optional<Output<String>> vhostWhitelist() {
         return Optional.ofNullable(this.vhostWhitelist);
     }
@@ -714,10 +714,10 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
          * @return builder
          * 
          * @deprecated
-         * use queue_allowlist instead
+         * use queueAllowlist instead
          * 
          */
-        @Deprecated /* use queue_allowlist instead */
+        @Deprecated /* use queueAllowlist instead */
         public Builder queueWhitelist(@Nullable Output<String> queueWhitelist) {
             $.queueWhitelist = queueWhitelist;
             return this;
@@ -729,10 +729,10 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
          * @return builder
          * 
          * @deprecated
-         * use queue_allowlist instead
+         * use queueAllowlist instead
          * 
          */
-        @Deprecated /* use queue_allowlist instead */
+        @Deprecated /* use queueAllowlist instead */
         public Builder queueWhitelist(String queueWhitelist) {
             return queueWhitelist(Output.of(queueWhitelist));
         }
@@ -827,10 +827,10 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
          * @return builder
          * 
          * @deprecated
-         * use vhost_allowlist instead
+         * use vhostAllowlist instead
          * 
          */
-        @Deprecated /* use vhost_allowlist instead */
+        @Deprecated /* use vhostAllowlist instead */
         public Builder vhostWhitelist(@Nullable Output<String> vhostWhitelist) {
             $.vhostWhitelist = vhostWhitelist;
             return this;
@@ -842,10 +842,10 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
          * @return builder
          * 
          * @deprecated
-         * use vhost_allowlist instead
+         * use vhostAllowlist instead
          * 
          */
-        @Deprecated /* use vhost_allowlist instead */
+        @Deprecated /* use vhostAllowlist instead */
         public Builder vhostWhitelist(String vhostWhitelist) {
             return vhostWhitelist(Output.of(vhostWhitelist));
         }

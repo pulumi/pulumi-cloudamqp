@@ -18,7 +18,7 @@ namespace Pulumi.CloudAmqp
         /// ## Example Usage
         /// 
         /// Can be used in other resources/data sources when the VPC identifier is unknown, while other
-        /// attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over
+        /// attributes are known. E.g. find correct VPC using the `Name` you gave your VPC. Then iterate over
         /// VPCs to find the matching one and extract the VPC identifier.
         /// 
         /// ```csharp
@@ -57,7 +57,7 @@ namespace Pulumi.CloudAmqp
         /// ## Example Usage
         /// 
         /// Can be used in other resources/data sources when the VPC identifier is unknown, while other
-        /// attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over
+        /// attributes are known. E.g. find correct VPC using the `Name` you gave your VPC. Then iterate over
         /// VPCs to find the matching one and extract the VPC identifier.
         /// 
         /// ```csharp
@@ -96,7 +96,7 @@ namespace Pulumi.CloudAmqp
         /// ## Example Usage
         /// 
         /// Can be used in other resources/data sources when the VPC identifier is unknown, while other
-        /// attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over
+        /// attributes are known. E.g. find correct VPC using the `Name` you gave your VPC. Then iterate over
         /// VPCs to find the matching one and extract the VPC identifier.
         /// 
         /// ```csharp
@@ -138,7 +138,7 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// An array of VPCs. Each `vpcs` block consists of the fields documented below.
+        /// An array of VPCs. Each `Vpcs` block consists of the fields documented below.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAccountVpcsVpcResult> Vpcs;
 

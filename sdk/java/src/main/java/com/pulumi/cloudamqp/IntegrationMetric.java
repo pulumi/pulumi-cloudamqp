@@ -273,7 +273,7 @@ import javax.annotation.Nullable;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
  * 
- * Use variable file populated with project_id, private_key and client_email
+ * Use variable file populated with project_id, privateKey and clientEmail
  * 
  * <pre>
  * {@code
@@ -310,7 +310,7 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
- * or by using google_service_account_key resource from Google provider
+ * or by using googleServiceAccountKey resource from Google provider
  * 
  * ## Import
  * 
@@ -563,10 +563,10 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      * **Deprecated**
      * 
      * @deprecated
-     * use queue_allowlist instead
+     * use queueAllowlist instead
      * 
      */
-    @Deprecated /* use queue_allowlist instead */
+    @Deprecated /* use queueAllowlist instead */
     @Export(name="queueWhitelist", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> queueWhitelist;
 
@@ -637,10 +637,10 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
      * **Deprecated**
      * 
      * @deprecated
-     * use vhost_allowlist instead
+     * use vhostAllowlist instead
      * 
      */
-    @Deprecated /* use vhost_allowlist instead */
+    @Deprecated /* use vhostAllowlist instead */
     @Export(name="vhostWhitelist", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> vhostWhitelist;
 
