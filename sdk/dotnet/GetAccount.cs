@@ -42,7 +42,7 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// An array of instances. Each `instances` block consists of the fields documented
+        /// An array of instances. Each `Instances` block consists of the fields documented
         /// below.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAccountInstanceResult> Instances;

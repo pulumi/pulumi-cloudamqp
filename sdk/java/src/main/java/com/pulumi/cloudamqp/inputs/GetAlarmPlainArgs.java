@@ -49,7 +49,7 @@ public final class GetAlarmPlainArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * The alarm type. Either use this or `alarm_id` to give `cloudamqp.Alarm`
+     * The alarm type. Either use this or `alarmId` to give `cloudamqp.Alarm`
      * necessary information when retrieve the alarm. Supported
      * alarm types.
      * 
@@ -58,7 +58,7 @@ public final class GetAlarmPlainArgs extends com.pulumi.resources.InvokeArgs {
     private @Nullable String type;
 
     /**
-     * @return The alarm type. Either use this or `alarm_id` to give `cloudamqp.Alarm`
+     * @return The alarm type. Either use this or `alarmId` to give `cloudamqp.Alarm`
      * necessary information when retrieve the alarm. Supported
      * alarm types.
      * 
@@ -135,7 +135,7 @@ public final class GetAlarmPlainArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param type The alarm type. Either use this or `alarm_id` to give `cloudamqp.Alarm`
+         * @param type The alarm type. Either use this or `alarmId` to give `cloudamqp.Alarm`
          * necessary information when retrieve the alarm. Supported
          * alarm types.
          * 

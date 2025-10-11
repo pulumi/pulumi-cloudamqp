@@ -44,7 +44,7 @@ namespace Pulumi.CloudAmqp
         public Output<int> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// An array of rules, minimum of 1 needs to be configured. Each `rules`
+        /// An array of rules, minimum of 1 needs to be configured. Each `Rules`
         /// block consists of the field documented below.
         /// </summary>
         [Output("rules")]
@@ -63,7 +63,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ___
         /// 
-        /// The `rules` block consists of:
+        /// The `Rules` block consists of:
         /// </summary>
         [Output("timeout")]
         public Output<int?> Timeout { get; private set; } = null!;
@@ -124,7 +124,7 @@ namespace Pulumi.CloudAmqp
         private InputList<Inputs.SecurityFirewallRuleArgs>? _rules;
 
         /// <summary>
-        /// An array of rules, minimum of 1 needs to be configured. Each `rules`
+        /// An array of rules, minimum of 1 needs to be configured. Each `Rules`
         /// block consists of the field documented below.
         /// </summary>
         public InputList<Inputs.SecurityFirewallRuleArgs> Rules
@@ -146,7 +146,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ___
         /// 
-        /// The `rules` block consists of:
+        /// The `Rules` block consists of:
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
@@ -169,7 +169,7 @@ namespace Pulumi.CloudAmqp
         private InputList<Inputs.SecurityFirewallRuleGetArgs>? _rules;
 
         /// <summary>
-        /// An array of rules, minimum of 1 needs to be configured. Each `rules`
+        /// An array of rules, minimum of 1 needs to be configured. Each `Rules`
         /// block consists of the field documented below.
         /// </summary>
         public InputList<Inputs.SecurityFirewallRuleGetArgs> Rules
@@ -191,7 +191,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ___
         /// 
-        /// The `rules` block consists of:
+        /// The `Rules` block consists of:
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }

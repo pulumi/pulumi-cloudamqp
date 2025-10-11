@@ -62,13 +62,13 @@ namespace Pulumi.CloudAmqp
     /// 
     /// The following arguments are supported:
     /// 
-    /// * `aws_account_id`  - (ForceNew/Required) The 12 digit AWS Account ID where you want the events to
+    /// * `AwsAccountId`  - (ForceNew/Required) The 12 digit AWS Account ID where you want the events to
     ///                       be sent to.
-    /// * `aws_region`      - (ForceNew/Required) The AWS region where you the events to be sent to.
+    /// * `AwsRegion`      - (ForceNew/Required) The AWS region where you the events to be sent to.
     ///                       (e.g. us-west-1, us-west-2, ..., etc.)
-    /// * `vhost`           - (ForceNew/Required) The VHost the queue resides in.
-    /// * `queue`           - (ForceNew/Required) A (durable) queue on your RabbitMQ instance.
-    /// * `with_headers`    - (ForceNew/Required) Include message headers in the event data.
+    /// * `Vhost`           - (ForceNew/Required) The VHost the queue resides in.
+    /// * `Queue`           - (ForceNew/Required) A (durable) queue on your RabbitMQ instance.
+    /// * `WithHeaders`    - (ForceNew/Required) Include message headers in the event data.
     ///                       `({ "headers": { }, "body": { "your": "message" } })`
     /// 
     /// ## Dependency

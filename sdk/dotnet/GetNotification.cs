@@ -14,7 +14,7 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Use this data source to retrieve information about default or created recipients. The recipient will
         /// receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use
-        /// `recipient_id` or `name`.
+        /// `RecipientId` or `Name`.
         /// 
         /// ## Example Usage
         /// 
@@ -45,7 +45,7 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Use this data source to retrieve information about default or created recipients. The recipient will
         /// receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use
-        /// `recipient_id` or `name`.
+        /// `RecipientId` or `Name`.
         /// 
         /// ## Example Usage
         /// 
@@ -76,7 +76,7 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Use this data source to retrieve information about default or created recipients. The recipient will
         /// receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use
-        /// `recipient_id` or `name`.
+        /// `RecipientId` or `Name`.
         /// 
         /// ## Example Usage
         /// 
@@ -124,7 +124,7 @@ namespace Pulumi.CloudAmqp
         private Dictionary<string, string>? _options;
 
         /// <summary>
-        /// Options argument (e.g. `rk` used for VictorOps routing key).
+        /// Options argument (e.g. `Rk` used for VictorOps routing key).
         /// </summary>
         public Dictionary<string, string> Options
         {
@@ -162,7 +162,7 @@ namespace Pulumi.CloudAmqp
         private InputMap<string>? _options;
 
         /// <summary>
-        /// Options argument (e.g. `rk` used for VictorOps routing key).
+        /// Options argument (e.g. `Rk` used for VictorOps routing key).
         /// </summary>
         public InputMap<string> Options
         {
@@ -193,7 +193,7 @@ namespace Pulumi.CloudAmqp
         public readonly int InstanceId;
         public readonly string? Name;
         /// <summary>
-        /// Options argument (e.g. `rk` used for VictorOps routing key).
+        /// Options argument (e.g. `Rk` used for VictorOps routing key).
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Options;
         public readonly int? RecipientId;

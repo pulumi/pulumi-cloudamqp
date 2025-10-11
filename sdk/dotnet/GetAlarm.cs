@@ -12,8 +12,8 @@ namespace Pulumi.CloudAmqp
     public static class GetAlarm
     {
         /// <summary>
-        /// Use this data source to retrieve information about default or created alarms. Either use `alarm_id`
-        /// or `type` to retrieve the alarm.
+        /// Use this data source to retrieve information about default or created alarms. Either use `AlarmId`
+        /// or `Type` to retrieve the alarm.
         /// 
         /// ## Example Usage
         /// 
@@ -46,8 +46,8 @@ namespace Pulumi.CloudAmqp
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAlarmResult>("cloudamqp:index/getAlarm:getAlarm", args ?? new GetAlarmArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to retrieve information about default or created alarms. Either use `alarm_id`
-        /// or `type` to retrieve the alarm.
+        /// Use this data source to retrieve information about default or created alarms. Either use `AlarmId`
+        /// or `Type` to retrieve the alarm.
         /// 
         /// ## Example Usage
         /// 
@@ -80,8 +80,8 @@ namespace Pulumi.CloudAmqp
             => global::Pulumi.Deployment.Instance.Invoke<GetAlarmResult>("cloudamqp:index/getAlarm:getAlarm", args ?? new GetAlarmInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to retrieve information about default or created alarms. Either use `alarm_id`
-        /// or `type` to retrieve the alarm.
+        /// Use this data source to retrieve information about default or created alarms. Either use `AlarmId`
+        /// or `Type` to retrieve the alarm.
         /// 
         /// ## Example Usage
         /// 
@@ -118,7 +118,7 @@ namespace Pulumi.CloudAmqp
     public sealed class GetAlarmArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The alarm identifier. Either use this or `type` to give
+        /// The alarm identifier. Either use this or `Type` to give
         /// `cloudamqp.Alarm` necessary information to retrieve the alarm.
         /// </summary>
         [Input("alarmId")]
@@ -131,7 +131,7 @@ namespace Pulumi.CloudAmqp
         public int InstanceId { get; set; }
 
         /// <summary>
-        /// The alarm type. Either use this or `alarm_id` to give `cloudamqp.Alarm`
+        /// The alarm type. Either use this or `AlarmId` to give `cloudamqp.Alarm`
         /// necessary information when retrieve the alarm. Supported
         /// alarm types.
         /// </summary>
@@ -154,7 +154,7 @@ namespace Pulumi.CloudAmqp
     public sealed class GetAlarmInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The alarm identifier. Either use this or `type` to give
+        /// The alarm identifier. Either use this or `Type` to give
         /// `cloudamqp.Alarm` necessary information to retrieve the alarm.
         /// </summary>
         [Input("alarmId")]
@@ -167,7 +167,7 @@ namespace Pulumi.CloudAmqp
         public Input<int> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// The alarm type. Either use this or `alarm_id` to give `cloudamqp.Alarm`
+        /// The alarm type. Either use this or `AlarmId` to give `cloudamqp.Alarm`
         /// necessary information when retrieve the alarm. Supported
         /// alarm types.
         /// </summary>
@@ -219,7 +219,7 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         public readonly int ReminderInterval;
         /// <summary>
-        /// The time interval (in seconds) the `value_threshold` should be active
+        /// The time interval (in seconds) the `ValueThreshold` should be active
         /// before trigger an alarm.
         /// </summary>
         public readonly int TimeThreshold;

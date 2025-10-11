@@ -92,7 +92,7 @@ namespace Pulumi.CloudAmqp
     /// &lt;details&gt;
     ///   &lt;summary&gt;
     ///     &lt;b&gt;
-    ///       &lt;i&gt;Dedicated instance using attribute vpc_subnet to create VPC, before v1.16.0&lt;/i&gt;
+    ///       &lt;i&gt;Dedicated instance using attribute VpcSubnet to create VPC, before v1.16.0&lt;/i&gt;
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
@@ -125,7 +125,7 @@ namespace Pulumi.CloudAmqp
     ///   &lt;summary&gt;
     ///     &lt;b&gt;
     ///       &lt;i&gt;
-    ///         Dedicated instance using attribute vpc_subnet to create VPC and then import managed VPC,
+    ///         Dedicated instance using attribute VpcSubnet to create VPC and then import managed VPC,
     ///         from v1.16.0 (Managed VPC)
     ///       &lt;/i&gt;
     ///     &lt;/b&gt;
@@ -156,8 +156,8 @@ namespace Pulumi.CloudAmqp
     /// ```
     /// 
     /// Once the instance and the VPC are created, the VPC can be imported as managed VPC and added to the
-    /// configuration file. Set attribute `vpc_id` to the managed VPC identifier. To keep the managed VPC
-    /// when deleting the instance, set attribute `keep_associated_vpc` to true. For more information see
+    /// configuration file. Set attribute `VpcId` to the managed VPC identifier. To keep the managed VPC
+    /// when deleting the instance, set attribute `KeepAssociatedVpc` to true. For more information see
     /// guide [Managed VPC].
     /// 
     /// ```csharp
@@ -251,7 +251,7 @@ namespace Pulumi.CloudAmqp
     /// });
     /// ```
     /// 
-    /// Set attribute `keep_associated_vpc` to true, will keep managed VPC when deleting the instances.
+    /// Set attribute `KeepAssociatedVpc` to true, will keep managed VPC when deleting the instances.
     /// 
     /// &lt;/details&gt;
     /// 
@@ -417,7 +417,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ___
         /// 
-        /// The `copy_settings` block consists of:
+        /// The `CopySettings` block consists of:
         /// </summary>
         [Output("copySettings")]
         public Output<ImmutableArray<Outputs.InstanceCopySetting>> CopySettings { get; private set; } = null!;
@@ -465,7 +465,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ***Deprecated:*** Legacy subscriptions plan can still change this to scale up or down the instance.
         /// New subscriptions plans use the plan to determine number of nodes. In order to
-        /// change number of nodes the `plan` needs to be updated.
+        /// change number of nodes the `Plan` needs to be updated.
         /// </summary>
         [Output("nodes")]
         public Output<int> Nodes { get; private set; } = null!;
@@ -599,7 +599,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ___
         /// 
-        /// The `copy_settings` block consists of:
+        /// The `CopySettings` block consists of:
         /// </summary>
         public InputList<Inputs.InstanceCopySettingArgs> CopySettings
         {
@@ -632,7 +632,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ***Deprecated:*** Legacy subscriptions plan can still change this to scale up or down the instance.
         /// New subscriptions plans use the plan to determine number of nodes. In order to
-        /// change number of nodes the `plan` needs to be updated.
+        /// change number of nodes the `Plan` needs to be updated.
         /// </summary>
         [Input("nodes")]
         public Input<int>? Nodes { get; set; }
@@ -733,7 +733,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ___
         /// 
-        /// The `copy_settings` block consists of:
+        /// The `CopySettings` block consists of:
         /// </summary>
         public InputList<Inputs.InstanceCopySettingGetArgs> CopySettings
         {
@@ -784,7 +784,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ***Deprecated:*** Legacy subscriptions plan can still change this to scale up or down the instance.
         /// New subscriptions plans use the plan to determine number of nodes. In order to
-        /// change number of nodes the `plan` needs to be updated.
+        /// change number of nodes the `Plan` needs to be updated.
         /// </summary>
         [Input("nodes")]
         public Input<int>? Nodes { get; set; }

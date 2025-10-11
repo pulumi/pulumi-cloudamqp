@@ -25,7 +25,7 @@ namespace Pulumi.CloudAmqp.Inputs
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Type of responder. [`team`, `user`, `escalation`, `schedule`]
+        /// Type of responder. [`Team`, `User`, `Escalation`, `Schedule`]
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -33,8 +33,8 @@ namespace Pulumi.CloudAmqp.Inputs
         /// <summary>
         /// Username of the responder
         /// 
-        /// Responders of type `team`, `escalation` and `schedule` can use either id or name.
-        /// While `user` can use either id or username.
+        /// Responders of type `Team`, `Escalation` and `Schedule` can use either id or name.
+        /// While `User` can use either id or username.
         /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }

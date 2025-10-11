@@ -24,10 +24,10 @@ import javax.annotation.Nullable;
  * 
  * ***From v1.25.0***: Google Compute Engine (GCE) and Azure available.
  * 
- * Introducing a new optional argument called `allow_downtime`. Leaving it out or set it to false will
+ * Introducing a new optional argument called `allowDowntime`. Leaving it out or set it to false will
  * proceed to try and resize the disk without downtime, available for *AWS*, *GCE* and *Azure*.
  * 
- * `allow_downtime` also makes it possible to circumvent the time rate limit or shrinking the disk.
+ * `allowDowntime` also makes it possible to circumvent the time rate limit or shrinking the disk.
  * 
  * | Cloud Platform        | allow_downtime=false | allow_downtime=true           | Possible to resize |
  * |-----------------------|----------------------|-------------------------------|--------------------|
@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
  * the rate time limit. See `Possible to resize` column above for the different cloud platforms.
  * 
  * &gt; **Note:** Shrinking the disk will always need to swap the old disk to a new one and require
- * `allow_downtime` set to *true*.
+ * `allowDowntime` set to *true*.
  * 
  * Pricing is available at [CloudAMQP] and only available for dedicated subscription plans.
  * 
@@ -378,7 +378,7 @@ public class ExtraDiskSize extends com.pulumi.resources.CustomResource {
      * Configurable timeout time in seconds for resizing the disk. Default
      * set to 1800 seconds.
      * 
-     * ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
+     * ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from [v1.25.0].
      * 
      */
     @Export(name="timeout", refs={Integer.class}, tree="[0]")
@@ -388,7 +388,7 @@ public class ExtraDiskSize extends com.pulumi.resources.CustomResource {
      * @return Configurable timeout time in seconds for resizing the disk. Default
      * set to 1800 seconds.
      * 
-     * ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
+     * ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from [v1.25.0].
      * 
      */
     public Output<Optional<Integer>> timeout() {

@@ -101,7 +101,7 @@ import javax.annotation.Nullable;
  * &lt;details&gt;
  *   &lt;summary&gt;
  *     &lt;b&gt;
- *       &lt;i&gt;Dedicated instance using attribute vpc_subnet to create VPC, before v1.16.0&lt;/i&gt;
+ *       &lt;i&gt;Dedicated instance using attribute vpcSubnet to create VPC, before v1.16.0&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
  * 
@@ -146,7 +146,7 @@ import javax.annotation.Nullable;
  *   &lt;summary&gt;
  *     &lt;b&gt;
  *       &lt;i&gt;
- *         Dedicated instance using attribute vpc_subnet to create VPC and then import managed VPC,
+ *         Dedicated instance using attribute vpcSubnet to create VPC and then import managed VPC,
  *         from v1.16.0 (Managed VPC)
  *       &lt;/i&gt;
  *     &lt;/b&gt;
@@ -189,8 +189,8 @@ import javax.annotation.Nullable;
  * </pre>
  * 
  * Once the instance and the VPC are created, the VPC can be imported as managed VPC and added to the
- * configuration file. Set attribute `vpc_id` to the managed VPC identifier. To keep the managed VPC
- * when deleting the instance, set attribute `keep_associated_vpc` to true. For more information see
+ * configuration file. Set attribute `vpcId` to the managed VPC identifier. To keep the managed VPC
+ * when deleting the instance, set attribute `keepAssociatedVpc` to true. For more information see
  * guide [Managed VPC].
  * 
  * <pre>
@@ -306,7 +306,7 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
- * Set attribute `keep_associated_vpc` to true, will keep managed VPC when deleting the instances.
+ * Set attribute `keepAssociatedVpc` to true, will keep managed VPC when deleting the instances.
  * 
  * &lt;/details&gt;
  * 
@@ -503,7 +503,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * 
      * ***
      * 
-     * The `copy_settings` block consists of:
+     * The `copySettings` block consists of:
      * 
      */
     @Export(name="copySettings", refs={List.class,InstanceCopySetting.class}, tree="[0,1]")
@@ -515,7 +515,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * 
      * ***
      * 
-     * The `copy_settings` block consists of:
+     * The `copySettings` block consists of:
      * 
      */
     public Output<Optional<List<InstanceCopySetting>>> copySettings() {

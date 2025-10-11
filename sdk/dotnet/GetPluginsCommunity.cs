@@ -166,7 +166,7 @@ namespace Pulumi.CloudAmqp
         public readonly string Id;
         public readonly int InstanceId;
         /// <summary>
-        /// An array of community plugins. Each `plugins` block consists of the fields documented
+        /// An array of community plugins. Each `Plugins` block consists of the fields documented
         /// below.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetPluginsCommunityPluginResult> Plugins;

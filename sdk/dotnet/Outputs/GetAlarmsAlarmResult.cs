@@ -39,7 +39,7 @@ namespace Pulumi.CloudAmqp.Outputs
         /// </summary>
         public readonly int ReminderInterval;
         /// <summary>
-        /// The time interval (in seconds) the `value_threshold` should be active
+        /// The time interval (in seconds) the `ValueThreshold` should be active
         /// before trigger an alarm.
         /// </summary>
         public readonly int TimeThreshold;

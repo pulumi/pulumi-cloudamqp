@@ -138,7 +138,7 @@ public class Alarm extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.reminderInterval);
     }
     /**
-     * The time interval (in seconds) the `value_threshold` should be
+     * The time interval (in seconds) the `valueThreshold` should be
      * active before triggering an alarm.
      * 
      */
@@ -146,7 +146,7 @@ public class Alarm extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ Integer> timeThreshold;
 
     /**
-     * @return The time interval (in seconds) the `value_threshold` should be
+     * @return The time interval (in seconds) the `valueThreshold` should be
      * active before triggering an alarm.
      * 
      */

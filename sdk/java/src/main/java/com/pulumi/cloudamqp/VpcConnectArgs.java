@@ -118,7 +118,7 @@ public final class VpcConnectArgs extends com.pulumi.resources.ResourceArgs {
      * 
      * ***
      * 
-     * The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the
+     * The `allowedPrincipals`, `approvedSubscriptions` or `allowedProjects` data depends on the
      * provider platform:
      * 
      * | Platform | Description | Format |
@@ -137,7 +137,7 @@ public final class VpcConnectArgs extends com.pulumi.resources.ResourceArgs {
      * 
      * ***
      * 
-     * The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the
+     * The `allowedPrincipals`, `approvedSubscriptions` or `allowedProjects` data depends on the
      * provider platform:
      * 
      * | Platform | Description | Format |
@@ -348,7 +348,7 @@ public final class VpcConnectArgs extends com.pulumi.resources.ResourceArgs {
          * 
          * ***
          * 
-         * The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the
+         * The `allowedPrincipals`, `approvedSubscriptions` or `allowedProjects` data depends on the
          * provider platform:
          * 
          * | Platform | Description | Format |
@@ -371,7 +371,7 @@ public final class VpcConnectArgs extends com.pulumi.resources.ResourceArgs {
          * 
          * ***
          * 
-         * The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the
+         * The `allowedPrincipals`, `approvedSubscriptions` or `allowedProjects` data depends on the
          * provider platform:
          * 
          * | Platform | Description | Format |

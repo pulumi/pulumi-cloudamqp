@@ -282,7 +282,7 @@ namespace Pulumi.CloudAmqp
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
-    /// Use variable file populated with project_id, private_key and client_email
+    /// Use variable file populated with project_id, PrivateKey and ClientEmail
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -304,7 +304,7 @@ namespace Pulumi.CloudAmqp
     /// });
     /// ```
     /// 
-    /// or by using google_service_account_key resource from Google provider
+    /// or by using GoogleServiceAccountKey resource from Google provider
     /// 
     /// ## Import
     /// 

@@ -52,7 +52,7 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Message type `(total, unacked, ready)` used by queue alarm type.
         /// 
-        /// Specific argument for `disk` alarm
+        /// Specific argument for `Disk` alarm
         /// </summary>
         [Output("messageType")]
         public Output<string?> MessageType { get; private set; } = null!;
@@ -78,7 +78,7 @@ namespace Pulumi.CloudAmqp
         public Output<int?> ReminderInterval { get; private set; } = null!;
 
         /// <summary>
-        /// The time interval (in seconds) the `value_threshold` should be
+        /// The time interval (in seconds) the `ValueThreshold` should be
         /// active before triggering an alarm.
         /// </summary>
         [Output("timeThreshold")]
@@ -172,7 +172,7 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Message type `(total, unacked, ready)` used by queue alarm type.
         /// 
-        /// Specific argument for `disk` alarm
+        /// Specific argument for `Disk` alarm
         /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
@@ -204,7 +204,7 @@ namespace Pulumi.CloudAmqp
         public Input<int>? ReminderInterval { get; set; }
 
         /// <summary>
-        /// The time interval (in seconds) the `value_threshold` should be
+        /// The time interval (in seconds) the `ValueThreshold` should be
         /// active before triggering an alarm.
         /// </summary>
         [Input("timeThreshold")]
@@ -260,7 +260,7 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Message type `(total, unacked, ready)` used by queue alarm type.
         /// 
-        /// Specific argument for `disk` alarm
+        /// Specific argument for `Disk` alarm
         /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
@@ -292,7 +292,7 @@ namespace Pulumi.CloudAmqp
         public Input<int>? ReminderInterval { get; set; }
 
         /// <summary>
-        /// The time interval (in seconds) the `value_threshold` should be
+        /// The time interval (in seconds) the `ValueThreshold` should be
         /// active before triggering an alarm.
         /// </summary>
         [Input("timeThreshold")]

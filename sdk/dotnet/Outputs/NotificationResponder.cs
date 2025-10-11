@@ -22,14 +22,14 @@ namespace Pulumi.CloudAmqp.Outputs
         /// </summary>
         public readonly string? Name;
         /// <summary>
-        /// Type of responder. [`team`, `user`, `escalation`, `schedule`]
+        /// Type of responder. [`Team`, `User`, `Escalation`, `Schedule`]
         /// </summary>
         public readonly string Type;
         /// <summary>
         /// Username of the responder
         /// 
-        /// Responders of type `team`, `escalation` and `schedule` can use either id or name.
-        /// While `user` can use either id or username.
+        /// Responders of type `Team`, `Escalation` and `Schedule` can use either id or name.
+        /// While `User` can use either id or username.
         /// </summary>
         public readonly string? Username;
 
