@@ -99,7 +99,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ___
         /// 
-        /// The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the
+        /// The `AllowedPrincipals`, `ApprovedSubscriptions` or `AllowedProjects` data depends on the
         /// provider platform:
         /// 
         /// | Platform | Description | Format |
@@ -219,7 +219,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ___
         /// 
-        /// The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the
+        /// The `AllowedPrincipals`, `ApprovedSubscriptions` or `AllowedProjects` data depends on the
         /// provider platform:
         /// 
         /// | Platform | Description | Format |
@@ -325,7 +325,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ___
         /// 
-        /// The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the
+        /// The `AllowedPrincipals`, `ApprovedSubscriptions` or `AllowedProjects` data depends on the
         /// provider platform:
         /// 
         /// | Platform | Description | Format |

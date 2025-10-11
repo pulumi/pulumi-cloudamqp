@@ -138,7 +138,7 @@ namespace Pulumi.CloudAmqp
         public readonly string Id;
         public readonly int InstanceId;
         /// <summary>
-        /// (Sensitive) The password used by the `username`.
+        /// (Sensitive) The password used by the `Username`.
         /// </summary>
         public readonly string Password;
         /// <summary>

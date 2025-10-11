@@ -47,7 +47,7 @@ public final class GetAlarmsAlarm {
      */
     private Integer reminderInterval;
     /**
-     * @return The time interval (in seconds) the `value_threshold` should be active
+     * @return The time interval (in seconds) the `valueThreshold` should be active
      * before trigger an alarm.
      * 
      */
@@ -120,7 +120,7 @@ public final class GetAlarmsAlarm {
         return this.reminderInterval;
     }
     /**
-     * @return The time interval (in seconds) the `value_threshold` should be active
+     * @return The time interval (in seconds) the `valueThreshold` should be active
      * before trigger an alarm.
      * 
      */

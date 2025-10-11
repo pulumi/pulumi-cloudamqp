@@ -18,7 +18,7 @@ namespace Pulumi.CloudAmqp.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Options argument (e.g. `rk` used for VictorOps routing key).
+        /// Options argument (e.g. `Rk` used for VictorOps routing key).
         /// </summary>
         public readonly ImmutableDictionary<string, string> Options;
         /// <summary>

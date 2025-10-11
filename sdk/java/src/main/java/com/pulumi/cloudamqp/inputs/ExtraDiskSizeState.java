@@ -103,7 +103,7 @@ public final class ExtraDiskSizeState extends com.pulumi.resources.ResourceArgs 
      * Configurable timeout time in seconds for resizing the disk. Default
      * set to 1800 seconds.
      * 
-     * ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
+     * ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from [v1.25.0].
      * 
      */
     @Import(name="timeout")
@@ -113,7 +113,7 @@ public final class ExtraDiskSizeState extends com.pulumi.resources.ResourceArgs 
      * @return Configurable timeout time in seconds for resizing the disk. Default
      * set to 1800 seconds.
      * 
-     * ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
+     * ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from [v1.25.0].
      * 
      */
     public Optional<Output<Integer>> timeout() {
@@ -274,7 +274,7 @@ public final class ExtraDiskSizeState extends com.pulumi.resources.ResourceArgs 
          * @param timeout Configurable timeout time in seconds for resizing the disk. Default
          * set to 1800 seconds.
          * 
-         * ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
+         * ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from [v1.25.0].
          * 
          * @return builder
          * 
@@ -288,7 +288,7 @@ public final class ExtraDiskSizeState extends com.pulumi.resources.ResourceArgs 
          * @param timeout Configurable timeout time in seconds for resizing the disk. Default
          * set to 1800 seconds.
          * 
-         * ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
+         * ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from [v1.25.0].
          * 
          * @return builder
          * 
