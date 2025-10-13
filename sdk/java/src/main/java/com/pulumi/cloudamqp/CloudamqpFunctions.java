@@ -111,6 +111,16 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve basic information about all standalone VPCs available for an
      * account. Uses the included apikey in provider configuration to determine which account to read from.
      * 
+     * ## Example Usage
+     * 
+     * Can be used in other resources/data sources when the VPC identifier is unknown, while other
+     * attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over
+     * VPCs to find the matching one and extract the VPC identifier.
+     * 
+     * ## Dependency
+     * 
+     * This data source depends on apikey set in the provider configuration.
+     * 
      */
     public static Output<GetAccountVpcsResult> getAccountVpcs() {
         return getAccountVpcs(InvokeArgs.Empty, InvokeOptions.Empty);
@@ -118,6 +128,16 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve basic information about all standalone VPCs available for an
      * account. Uses the included apikey in provider configuration to determine which account to read from.
+     * 
+     * ## Example Usage
+     * 
+     * Can be used in other resources/data sources when the VPC identifier is unknown, while other
+     * attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over
+     * VPCs to find the matching one and extract the VPC identifier.
+     * 
+     * ## Dependency
+     * 
+     * This data source depends on apikey set in the provider configuration.
      * 
      */
     public static CompletableFuture<GetAccountVpcsResult> getAccountVpcsPlain() {
@@ -127,6 +147,16 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve basic information about all standalone VPCs available for an
      * account. Uses the included apikey in provider configuration to determine which account to read from.
      * 
+     * ## Example Usage
+     * 
+     * Can be used in other resources/data sources when the VPC identifier is unknown, while other
+     * attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over
+     * VPCs to find the matching one and extract the VPC identifier.
+     * 
+     * ## Dependency
+     * 
+     * This data source depends on apikey set in the provider configuration.
+     * 
      */
     public static Output<GetAccountVpcsResult> getAccountVpcs(InvokeArgs args) {
         return getAccountVpcs(args, InvokeOptions.Empty);
@@ -134,6 +164,16 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve basic information about all standalone VPCs available for an
      * account. Uses the included apikey in provider configuration to determine which account to read from.
+     * 
+     * ## Example Usage
+     * 
+     * Can be used in other resources/data sources when the VPC identifier is unknown, while other
+     * attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over
+     * VPCs to find the matching one and extract the VPC identifier.
+     * 
+     * ## Dependency
+     * 
+     * This data source depends on apikey set in the provider configuration.
      * 
      */
     public static CompletableFuture<GetAccountVpcsResult> getAccountVpcsPlain(InvokeArgs args) {
@@ -143,6 +183,16 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve basic information about all standalone VPCs available for an
      * account. Uses the included apikey in provider configuration to determine which account to read from.
      * 
+     * ## Example Usage
+     * 
+     * Can be used in other resources/data sources when the VPC identifier is unknown, while other
+     * attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over
+     * VPCs to find the matching one and extract the VPC identifier.
+     * 
+     * ## Dependency
+     * 
+     * This data source depends on apikey set in the provider configuration.
+     * 
      */
     public static Output<GetAccountVpcsResult> getAccountVpcs(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("cloudamqp:index/getAccountVpcs:getAccountVpcs", TypeShape.of(GetAccountVpcsResult.class), args, Utilities.withVersion(options));
@@ -150,6 +200,16 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve basic information about all standalone VPCs available for an
      * account. Uses the included apikey in provider configuration to determine which account to read from.
+     * 
+     * ## Example Usage
+     * 
+     * Can be used in other resources/data sources when the VPC identifier is unknown, while other
+     * attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over
+     * VPCs to find the matching one and extract the VPC identifier.
+     * 
+     * ## Dependency
+     * 
+     * This data source depends on apikey set in the provider configuration.
      * 
      */
     public static Output<GetAccountVpcsResult> getAccountVpcs(InvokeArgs args, InvokeOutputOptions options) {
@@ -159,12 +219,22 @@ public final class CloudamqpFunctions {
      * Use this data source to retrieve basic information about all standalone VPCs available for an
      * account. Uses the included apikey in provider configuration to determine which account to read from.
      * 
+     * ## Example Usage
+     * 
+     * Can be used in other resources/data sources when the VPC identifier is unknown, while other
+     * attributes are known. E.g. find correct VPC using the `name` you gave your VPC. Then iterate over
+     * VPCs to find the matching one and extract the VPC identifier.
+     * 
+     * ## Dependency
+     * 
+     * This data source depends on apikey set in the provider configuration.
+     * 
      */
     public static CompletableFuture<GetAccountVpcsResult> getAccountVpcsPlain(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getAccountVpcs:getAccountVpcs", TypeShape.of(GetAccountVpcsResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about default or created alarms. Either use `alarm_id`
+     * Use this data source to retrieve information about default or created alarms. Either use `alarmId`
      * or `type` to retrieve the alarm.
      * 
      * ## Example Usage
@@ -214,7 +284,7 @@ public final class CloudamqpFunctions {
         return getAlarm(args, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve information about default or created alarms. Either use `alarm_id`
+     * Use this data source to retrieve information about default or created alarms. Either use `alarmId`
      * or `type` to retrieve the alarm.
      * 
      * ## Example Usage
@@ -264,7 +334,7 @@ public final class CloudamqpFunctions {
         return getAlarmPlain(args, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to retrieve information about default or created alarms. Either use `alarm_id`
+     * Use this data source to retrieve information about default or created alarms. Either use `alarmId`
      * or `type` to retrieve the alarm.
      * 
      * ## Example Usage
@@ -314,7 +384,7 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getAlarm:getAlarm", TypeShape.of(GetAlarmResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about default or created alarms. Either use `alarm_id`
+     * Use this data source to retrieve information about default or created alarms. Either use `alarmId`
      * or `type` to retrieve the alarm.
      * 
      * ## Example Usage
@@ -364,7 +434,7 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getAlarm:getAlarm", TypeShape.of(GetAlarmResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to retrieve information about default or created alarms. Either use `alarm_id`
+     * Use this data source to retrieve information about default or created alarms. Either use `alarmId`
      * or `type` to retrieve the alarm.
      * 
      * ## Example Usage
@@ -1146,7 +1216,7 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve information about default or created recipients. The recipient will
      * receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use
-     * `recipient_id` or `name`.
+     * `recipientId` or `name`.
      * 
      * ## Example Usage
      * 
@@ -1193,7 +1263,7 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve information about default or created recipients. The recipient will
      * receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use
-     * `recipient_id` or `name`.
+     * `recipientId` or `name`.
      * 
      * ## Example Usage
      * 
@@ -1240,7 +1310,7 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve information about default or created recipients. The recipient will
      * receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use
-     * `recipient_id` or `name`.
+     * `recipientId` or `name`.
      * 
      * ## Example Usage
      * 
@@ -1287,7 +1357,7 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve information about default or created recipients. The recipient will
      * receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use
-     * `recipient_id` or `name`.
+     * `recipientId` or `name`.
      * 
      * ## Example Usage
      * 
@@ -1334,7 +1404,7 @@ public final class CloudamqpFunctions {
     /**
      * Use this data source to retrieve information about default or created recipients. The recipient will
      * receive notifications assigned to an alarm that has triggered. To retrieve the recipient either use
-     * `recipient_id` or `name`.
+     * `recipientId` or `name`.
      * 
      * ## Example Usage
      * 
