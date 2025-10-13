@@ -81,13 +81,13 @@ import javax.annotation.Nullable;
  * 
  * The following arguments are supported:
  * 
- * * `aws_account_id`  - (ForceNew/Required) The 12 digit AWS Account ID where you want the events to
+ * * `awsAccountId`  - (ForceNew/Required) The 12 digit AWS Account ID where you want the events to
  *                       be sent to.
- * * `aws_region`      - (ForceNew/Required) The AWS region where you the events to be sent to.
+ * * `awsRegion`      - (ForceNew/Required) The AWS region where you the events to be sent to.
  *                       (e.g. us-west-1, us-west-2, ..., etc.)
  * * `vhost`           - (ForceNew/Required) The VHost the queue resides in.
  * * `queue`           - (ForceNew/Required) A (durable) queue on your RabbitMQ instance.
- * * `with_headers`    - (ForceNew/Required) Include message headers in the event data.
+ * * `withHeaders`    - (ForceNew/Required) Include message headers in the event data.
  *                       `({ &#34;headers&#34;: { }, &#34;body&#34;: { &#34;your&#34;: &#34;message&#34; } })`
  * 
  * ## Dependency
