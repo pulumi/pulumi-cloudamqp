@@ -398,6 +398,228 @@ import (
 //
 // or by using googleServiceAccountKey resource from Google provider
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi-google/sdk/go/google"
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			serviceAccount, err := google.NewServiceAccount(ctx, "service_account", &google.ServiceAccountArgs{
+//				AccountId:   "<account_id>",
+//				Description: "<description>",
+//				DisplayName: "<display_name>",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			serviceAccountKey, err := google.NewServiceAccountKey(ctx, "service_account_key", &google.ServiceAccountKeyArgs{
+//				ServiceAccountId: serviceAccount.Name,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			invokeJsondecode, err := std.Jsondecode(ctx, map[string]interface{}{
+//				"input": std.Base64decode(ctx, map[string]interface{}{
+//					"input": serviceAccountKey.PrivateKey,
+//				}, nil).Result,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			invokeJsondecode1, err := std.Jsondecode(ctx, map[string]interface{}{
+//				"input": std.Base64decode(ctx, map[string]interface{}{
+//					"input": serviceAccountKey.PrivateKey,
+//				}, nil).Result,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			invokeJsondecode2, err := std.Jsondecode(ctx, map[string]interface{}{
+//				"input": std.Base64decode(ctx, map[string]interface{}{
+//					"input": serviceAccountKey.PrivateKey,
+//				}, nil).Result,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewIntegrationLog(ctx, "stackdriver", &cloudamqp.IntegrationLogArgs{
+//				InstanceId:  pulumi.Any(instance.Id),
+//				Name:        pulumi.String("stackdriver"),
+//				ProjectId:   invokeJsondecode.Result.ProjectId,
+//				PrivateKey:  invokeJsondecode1.Result.PrivateKey,
+//				ClientEmail: invokeJsondecode2.Result.ClientEmail,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Stackdriver log integration (v1.21.0 or newer versions)</i>
+//	  </b>
+//	</summary>
+//
+// Use credentials argument and let the provider do the Base64decode and internally populate,
+// *project_id, client_name, private_key*
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi-google/sdk/go/google"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			serviceAccount, err := google.NewServiceAccount(ctx, "service_account", &google.ServiceAccountArgs{
+//				AccountId:   "<account_id>",
+//				Description: "<description>",
+//				DisplayName: "<display_name>",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			serviceAccountKey, err := google.NewServiceAccountKey(ctx, "service_account_key", &google.ServiceAccountKeyArgs{
+//				ServiceAccountId: serviceAccount.Name,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewIntegrationLog(ctx, "stackdriver", &cloudamqp.IntegrationLogArgs{
+//				InstanceId:  pulumi.Any(instance.Id),
+//				Name:        pulumi.String("stackdriver"),
+//				Credentials: serviceAccountKey.PrivateKey,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// or use the same as earlier version and decode the google service account key
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi-google/sdk/go/google"
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			serviceAccount, err := google.NewServiceAccount(ctx, "service_account", &google.ServiceAccountArgs{
+//				AccountId:   "<account_id>",
+//				Description: "<description>",
+//				DisplayName: "<display_name>",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			serviceAccountKey, err := google.NewServiceAccountKey(ctx, "service_account_key", &google.ServiceAccountKeyArgs{
+//				ServiceAccountId: serviceAccount.Name,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			invokeJsondecode, err := std.Jsondecode(ctx, map[string]interface{}{
+//				"input": std.Base64decode(ctx, map[string]interface{}{
+//					"input": serviceAccountKey.PrivateKey,
+//				}, nil).Result,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			invokeJsondecode1, err := std.Jsondecode(ctx, map[string]interface{}{
+//				"input": std.Base64decode(ctx, map[string]interface{}{
+//					"input": serviceAccountKey.PrivateKey,
+//				}, nil).Result,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			invokeJsondecode2, err := std.Jsondecode(ctx, map[string]interface{}{
+//				"input": std.Base64decode(ctx, map[string]interface{}{
+//					"input": serviceAccountKey.PrivateKey,
+//				}, nil).Result,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewIntegrationLog(ctx, "stackdriver", &cloudamqp.IntegrationLogArgs{
+//				InstanceId:  pulumi.Any(instance.Id),
+//				Name:        pulumi.String("stackdriver"),
+//				ProjectId:   invokeJsondecode.Result.ProjectId,
+//				PrivateKey:  invokeJsondecode1.Result.PrivateKey,
+//				ClientEmail: invokeJsondecode2.Result.ClientEmail,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// ## Integration type reference
+//
+// Valid arguments for third party log integrations. See more information at
+// [CloudAMQP API add integration].
+//
+// Required arguments for all integrations: name
+//
+// | Integration | name | Required arguments |
+// | ---- | ---- | ---- |
+// | Azure monitor | azureMonitor | tenant_id, application_id, application_secret, dce_uri, table, dcrId |
+// | CloudWatch | cloudwatchlog | access_key_id, secret_access_key, region |
+// | Coralogix | coralogix | private_key, endpoint, application, subsystem |
+// | Data Dog | datadog | region, api_keys, tags |
+// | Log Entries | logentries | token |
+// | Loggly | loggly | token |
+// | Papertrail | papertrail | url |
+// | Scalyr | scalyr | token, host |
+// | Splunk | splunk | token, host_port, sourcetype |
+// | Stackdriver | stackdriver | credentials |
+//
+// ***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments: project_id, private_key,
+//
+//	clientEmail
+//
+// ## Dependency
+//
+// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+//
 // ## Import
 //
 // `cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP
@@ -424,9 +646,9 @@ import (
 //
 // [integration type reference]: #integration-type-reference
 //
+// [CloudAMQP API add integration]: https://docs.cloudamqp.com/cloudamqp_api.html#add-log-integration
 // [CloudAMQP API list integration]: https://docs.cloudamqp.com/cloudamqp_api.html#list-log-integrations
 //
-// [CloudAMQP API add integration]: https://docs.cloudamqp.com/cloudamqp_api.html#add-log-integration
 // [Datadog documentation]: https://docs.datadoghq.com/getting_started/tagging/#define-tags
 type IntegrationLog struct {
 	pulumi.CustomResourceState
