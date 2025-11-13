@@ -898,6 +898,154 @@ class IntegrationMetric(pulumi.CustomResource):
 
         or by using google_service_account_key resource from Google provider
 
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+        import pulumi_google as google
+        import pulumi_std as std
+
+        service_account = google.index.ServiceAccount("service_account",
+            account_id=<account_id>,
+            description=<description>,
+            display_name=<display_name>)
+        service_account_key = google.index.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
+        stackdriver = cloudamqp.IntegrationMetric("stackdriver",
+            instance_id=instance["id"],
+            name="stackdriver",
+            project_id=std.index.jsondecode(input=std.index.base64decode(input=service_account_key["privateKey"])["result"])["result"]["projectId"],
+            private_key=std.index.jsondecode(input=std.index.base64decode(input=service_account_key["privateKey"])["result"])["result"]["privateKey"],
+            client_email=std.index.jsondecode(input=std.index.base64decode(input=service_account_key["privateKey"])["result"])["result"]["clientEmail"])
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Stackdriver metric integration (v1.21.0 or newer versions)</i>
+            </b>
+          </summary>
+
+        Use credentials argument and let the provider do the Base64decode and internally populate,
+        *project_id, client_name, private_key*
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+        import pulumi_google as google
+
+        service_account = google.index.ServiceAccount("service_account",
+            account_id=<account_id>,
+            description=<description>,
+            display_name=<display_name>)
+        service_account_key = google.index.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
+        stackdriver = cloudamqp.IntegrationMetric("stackdriver",
+            instance_id=instance["id"],
+            name="stackdriver",
+            credentials=service_account_key["privateKey"])
+        ```
+
+        or use the same as earlier version and decode the google service account key
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+        import pulumi_google as google
+        import pulumi_std as std
+
+        service_account = google.index.ServiceAccount("service_account",
+            account_id=<account_id>,
+            description=<description>,
+            display_name=<display_name>)
+        service_account_key = google.index.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
+        stackdriver = cloudamqp.IntegrationMetric("stackdriver",
+            instance_id=instance["id"],
+            name="stackdriver",
+            project_id=std.index.jsondecode(input=std.index.base64decode(input=service_account_key["privateKey"])["result"])["result"]["projectId"],
+            private_key=std.index.jsondecode(input=std.index.base64decode(input=service_account_key["privateKey"])["result"])["result"]["privateKey"],
+            client_email=std.index.jsondecode(input=std.index.base64decode(input=service_account_key["privateKey"])["result"])["result"]["clientEmail"])
+        ```
+
+        </details>
+
+        ## Argument References
+
+        The following arguments are supported:
+
+        * `name`              - (Required) The name of the third party log integration. See
+                              `Integration service reference`
+        * `region`            - (Optional) Region hosting the integration service.
+        * `access_key_id`     - (Optional) AWS access key identifier.
+        * `secret_access_key` - (Optional) AWS secret access key.
+        * `iam_role`          - (Optional) The ARN of the role to be assumed when publishing metrics.
+        * `iam_external_id`   - (Optional) External identifier that match the role you created.
+        * `api_key`           - (Optional) The API key for the integration service.
+        * `email`             - (Optional) The email address registred for the integration service.
+        * `credentials`       - (Optional) Google Service Account private key credentials.
+        * `project_id`        - (Optional/Computed) The project identifier.
+        * `private_key`       - (Optional/Computed) The private access key.
+        * `client_email`      - (Optional/Computed) The client email registered for the integration service.
+        * `tags`              - (Optional) Tags. e.g. `env=prod,region=europe`.
+          
+          ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+                    letter, read more about tags format in the [Datadog documentation].
+
+        * `queue_allowlist`   - (Optional) Allowlist queues using regular expression. Leave empty to include
+                              all queues.
+        * `vhost_allowlist`   - (Optional) Allowlist vhost using regular expression. Leave empty to include
+                              all vhosts.
+        * `queue_whitelist`   - **Deprecated** Use queue_allowlist instead
+        * `vhost_whitelist`   - **Deprecated** Use vhost_allowlist instead
+        * `include_ad_queues` - (Optional) Include auto delete queues.
+
+        This is the full list of all arguments. Only a subset of arguments are used based on which type of
+        integration used. See [integration type reference] below for more information.
+
+        ## Integration service references
+
+        Valid names for third party log integration.
+
+        | Name          | Description |
+        |---------------|---------------------------------------------------------------|
+        | cloudwatch    | Access key: Create an IAM user with permission to `PutMetricData` |
+        | cloudwatch_v2 | Access key: Create an IAM user with permission to `PutMetricData` |
+        | cloudwatch    | Assume role: Create a IAM role with the permission to `PutMetricData` |
+        | cloudwatch_v2 | Assume role: Create a IAM role with the permission to `PutMetricData` |
+        | datadog       | Create a Datadog API key at app.datadoghq.com |
+        | datadog_v2    | Create a Datadog API key at app.datadoghq.com |
+        | librato       | Create a new API token (with record only permissions) here: https://metrics.librato.com/tokens |
+        | newrelic      | Deprecated! |
+        | newrelic_v2   | Find or register an Insert API key for your account: Go to insights.newrelic.com > Manage data > API keys. |
+        | stackdriver   | Create a service account and add 'monitor metrics writer' role from your Google Cloud Account |
+
+        ## Integration type reference
+
+        Valid arguments for third party metrics integrations. See more information at
+        [CloudAMQP API add integrations].
+
+        Required arguments for all integrations: *name*</br>
+        Optional arguments for all integrations: *tags*, *queue_allowlist*, *vhost_allowlist*
+
+        | Name                   | Type           | Required arguments                                   |
+        |------------------------|----------------|------------------------------------------------------|
+        | Cloudwatch             | cloudwatch     | Access key: region, access_key_id, secret_access_key |
+        | Cloudwatch v2          | cloudwatch_v2  | Access key: region, access_key_id, secret_access_key |
+        | Cloudwatch             | cloudwatch     | Assume role: region, iam_role, iam_external_id       |
+        | Cloudwatch v2          | cloudwatch_v2  | Assume role: region, iam_role, iam_external_id       |
+        | Datadog                | datadog        | api_key, region                                      |
+        | Datadog v2             | datadog_v2     | api_key, region                                      |
+        | Librato                | librato        | email, api_key                                       |
+        | New relic (deprecated) | newrelic       | -                                                    |
+        | New relic v2           | newrelic_v2    | api_key, region                                      |
+        | Stackdriver            | stackdriver    | credentials                                          |
+
+        ***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments: project_id, private_key,
+        client_email
+
+        ## Dependency
+
+        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
         ## Import
 
         `cloudamqp_integration_metric`can be imported using the resource identifier together with CloudAMQP
@@ -1112,6 +1260,154 @@ class IntegrationMetric(pulumi.CustomResource):
         ```
 
         or by using google_service_account_key resource from Google provider
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+        import pulumi_google as google
+        import pulumi_std as std
+
+        service_account = google.index.ServiceAccount("service_account",
+            account_id=<account_id>,
+            description=<description>,
+            display_name=<display_name>)
+        service_account_key = google.index.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
+        stackdriver = cloudamqp.IntegrationMetric("stackdriver",
+            instance_id=instance["id"],
+            name="stackdriver",
+            project_id=std.index.jsondecode(input=std.index.base64decode(input=service_account_key["privateKey"])["result"])["result"]["projectId"],
+            private_key=std.index.jsondecode(input=std.index.base64decode(input=service_account_key["privateKey"])["result"])["result"]["privateKey"],
+            client_email=std.index.jsondecode(input=std.index.base64decode(input=service_account_key["privateKey"])["result"])["result"]["clientEmail"])
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Stackdriver metric integration (v1.21.0 or newer versions)</i>
+            </b>
+          </summary>
+
+        Use credentials argument and let the provider do the Base64decode and internally populate,
+        *project_id, client_name, private_key*
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+        import pulumi_google as google
+
+        service_account = google.index.ServiceAccount("service_account",
+            account_id=<account_id>,
+            description=<description>,
+            display_name=<display_name>)
+        service_account_key = google.index.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
+        stackdriver = cloudamqp.IntegrationMetric("stackdriver",
+            instance_id=instance["id"],
+            name="stackdriver",
+            credentials=service_account_key["privateKey"])
+        ```
+
+        or use the same as earlier version and decode the google service account key
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+        import pulumi_google as google
+        import pulumi_std as std
+
+        service_account = google.index.ServiceAccount("service_account",
+            account_id=<account_id>,
+            description=<description>,
+            display_name=<display_name>)
+        service_account_key = google.index.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
+        stackdriver = cloudamqp.IntegrationMetric("stackdriver",
+            instance_id=instance["id"],
+            name="stackdriver",
+            project_id=std.index.jsondecode(input=std.index.base64decode(input=service_account_key["privateKey"])["result"])["result"]["projectId"],
+            private_key=std.index.jsondecode(input=std.index.base64decode(input=service_account_key["privateKey"])["result"])["result"]["privateKey"],
+            client_email=std.index.jsondecode(input=std.index.base64decode(input=service_account_key["privateKey"])["result"])["result"]["clientEmail"])
+        ```
+
+        </details>
+
+        ## Argument References
+
+        The following arguments are supported:
+
+        * `name`              - (Required) The name of the third party log integration. See
+                              `Integration service reference`
+        * `region`            - (Optional) Region hosting the integration service.
+        * `access_key_id`     - (Optional) AWS access key identifier.
+        * `secret_access_key` - (Optional) AWS secret access key.
+        * `iam_role`          - (Optional) The ARN of the role to be assumed when publishing metrics.
+        * `iam_external_id`   - (Optional) External identifier that match the role you created.
+        * `api_key`           - (Optional) The API key for the integration service.
+        * `email`             - (Optional) The email address registred for the integration service.
+        * `credentials`       - (Optional) Google Service Account private key credentials.
+        * `project_id`        - (Optional/Computed) The project identifier.
+        * `private_key`       - (Optional/Computed) The private access key.
+        * `client_email`      - (Optional/Computed) The client email registered for the integration service.
+        * `tags`              - (Optional) Tags. e.g. `env=prod,region=europe`.
+          
+          ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+                    letter, read more about tags format in the [Datadog documentation].
+
+        * `queue_allowlist`   - (Optional) Allowlist queues using regular expression. Leave empty to include
+                              all queues.
+        * `vhost_allowlist`   - (Optional) Allowlist vhost using regular expression. Leave empty to include
+                              all vhosts.
+        * `queue_whitelist`   - **Deprecated** Use queue_allowlist instead
+        * `vhost_whitelist`   - **Deprecated** Use vhost_allowlist instead
+        * `include_ad_queues` - (Optional) Include auto delete queues.
+
+        This is the full list of all arguments. Only a subset of arguments are used based on which type of
+        integration used. See [integration type reference] below for more information.
+
+        ## Integration service references
+
+        Valid names for third party log integration.
+
+        | Name          | Description |
+        |---------------|---------------------------------------------------------------|
+        | cloudwatch    | Access key: Create an IAM user with permission to `PutMetricData` |
+        | cloudwatch_v2 | Access key: Create an IAM user with permission to `PutMetricData` |
+        | cloudwatch    | Assume role: Create a IAM role with the permission to `PutMetricData` |
+        | cloudwatch_v2 | Assume role: Create a IAM role with the permission to `PutMetricData` |
+        | datadog       | Create a Datadog API key at app.datadoghq.com |
+        | datadog_v2    | Create a Datadog API key at app.datadoghq.com |
+        | librato       | Create a new API token (with record only permissions) here: https://metrics.librato.com/tokens |
+        | newrelic      | Deprecated! |
+        | newrelic_v2   | Find or register an Insert API key for your account: Go to insights.newrelic.com > Manage data > API keys. |
+        | stackdriver   | Create a service account and add 'monitor metrics writer' role from your Google Cloud Account |
+
+        ## Integration type reference
+
+        Valid arguments for third party metrics integrations. See more information at
+        [CloudAMQP API add integrations].
+
+        Required arguments for all integrations: *name*</br>
+        Optional arguments for all integrations: *tags*, *queue_allowlist*, *vhost_allowlist*
+
+        | Name                   | Type           | Required arguments                                   |
+        |------------------------|----------------|------------------------------------------------------|
+        | Cloudwatch             | cloudwatch     | Access key: region, access_key_id, secret_access_key |
+        | Cloudwatch v2          | cloudwatch_v2  | Access key: region, access_key_id, secret_access_key |
+        | Cloudwatch             | cloudwatch     | Assume role: region, iam_role, iam_external_id       |
+        | Cloudwatch v2          | cloudwatch_v2  | Assume role: region, iam_role, iam_external_id       |
+        | Datadog                | datadog        | api_key, region                                      |
+        | Datadog v2             | datadog_v2     | api_key, region                                      |
+        | Librato                | librato        | email, api_key                                       |
+        | New relic (deprecated) | newrelic       | -                                                    |
+        | New relic v2           | newrelic_v2    | api_key, region                                      |
+        | Stackdriver            | stackdriver    | credentials                                          |
+
+        ***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments: project_id, private_key,
+        client_email
+
+        ## Dependency
+
+        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 
         ## Import
 
