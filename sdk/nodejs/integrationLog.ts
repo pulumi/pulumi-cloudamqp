@@ -231,6 +231,133 @@ import * as utilities from "./utilities";
  *
  * or by using googleServiceAccountKey resource from Google provider
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ * import * as google from "@pulumi/google";
+ * import * as std from "@pulumi/std";
+ *
+ * const serviceAccount = new google.index.ServiceAccount("service_account", {
+ *     accountId: "<account_id>",
+ *     description: "<description>",
+ *     displayName: "<display_name>",
+ * });
+ * const serviceAccountKey = new google.index.ServiceAccountKey("service_account_key", {serviceAccountId: serviceAccount.name});
+ * const stackdriver = new cloudamqp.IntegrationLog("stackdriver", {
+ *     instanceId: instance.id,
+ *     name: "stackdriver",
+ *     projectId: std.index.jsondecode({
+ *         input: std.index.base64decode({
+ *             input: serviceAccountKey.privateKey,
+ *         }).result,
+ *     }).result.projectId,
+ *     privateKey: std.index.jsondecode({
+ *         input: std.index.base64decode({
+ *             input: serviceAccountKey.privateKey,
+ *         }).result,
+ *     }).result.privateKey,
+ *     clientEmail: std.index.jsondecode({
+ *         input: std.index.base64decode({
+ *             input: serviceAccountKey.privateKey,
+ *         }).result,
+ *     }).result.clientEmail,
+ * });
+ * ```
+ *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Stackdriver log integration (v1.21.0 or newer versions)</i>
+ *     </b>
+ *   </summary>
+ *
+ * Use credentials argument and let the provider do the Base64decode and internally populate,
+ * *project_id, client_name, private_key*
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ * import * as google from "@pulumi/google";
+ *
+ * const serviceAccount = new google.index.ServiceAccount("service_account", {
+ *     accountId: "<account_id>",
+ *     description: "<description>",
+ *     displayName: "<display_name>",
+ * });
+ * const serviceAccountKey = new google.index.ServiceAccountKey("service_account_key", {serviceAccountId: serviceAccount.name});
+ * const stackdriver = new cloudamqp.IntegrationLog("stackdriver", {
+ *     instanceId: instance.id,
+ *     name: "stackdriver",
+ *     credentials: serviceAccountKey.privateKey,
+ * });
+ * ```
+ *
+ * or use the same as earlier version and decode the google service account key
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ * import * as google from "@pulumi/google";
+ * import * as std from "@pulumi/std";
+ *
+ * const serviceAccount = new google.index.ServiceAccount("service_account", {
+ *     accountId: "<account_id>",
+ *     description: "<description>",
+ *     displayName: "<display_name>",
+ * });
+ * const serviceAccountKey = new google.index.ServiceAccountKey("service_account_key", {serviceAccountId: serviceAccount.name});
+ * const stackdriver = new cloudamqp.IntegrationLog("stackdriver", {
+ *     instanceId: instance.id,
+ *     name: "stackdriver",
+ *     projectId: std.index.jsondecode({
+ *         input: std.index.base64decode({
+ *             input: serviceAccountKey.privateKey,
+ *         }).result,
+ *     }).result.projectId,
+ *     privateKey: std.index.jsondecode({
+ *         input: std.index.base64decode({
+ *             input: serviceAccountKey.privateKey,
+ *         }).result,
+ *     }).result.privateKey,
+ *     clientEmail: std.index.jsondecode({
+ *         input: std.index.base64decode({
+ *             input: serviceAccountKey.privateKey,
+ *         }).result,
+ *     }).result.clientEmail,
+ * });
+ * ```
+ *
+ * </details>
+ *
+ * ## Integration type reference
+ *
+ * Valid arguments for third party log integrations. See more information at
+ * [CloudAMQP API add integration].
+ *
+ * Required arguments for all integrations: name
+ *
+ * | Integration | name | Required arguments |
+ * | ---- | ---- | ---- |
+ * | Azure monitor | azureMonitor | tenant_id, application_id, application_secret, dce_uri, table, dcrId |
+ * | CloudWatch | cloudwatchlog | access_key_id, secret_access_key, region |
+ * | Coralogix | coralogix | private_key, endpoint, application, subsystem |
+ * | Data Dog | datadog | region, api_keys, tags |
+ * | Log Entries | logentries | token |
+ * | Loggly | loggly | token |
+ * | Papertrail | papertrail | url |
+ * | Scalyr | scalyr | token, host |
+ * | Splunk | splunk | token, host_port, sourcetype |
+ * | Stackdriver | stackdriver | credentials |
+ *
+ * ***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments: project_id, private_key,
+ *             clientEmail
+ *
+ * ## Dependency
+ *
+ * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ *
  * ## Import
  *
  * `cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP
