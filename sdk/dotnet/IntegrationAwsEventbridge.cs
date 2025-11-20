@@ -25,6 +25,13 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;AWS Eventbridge integration&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -58,6 +65,51 @@ namespace Pulumi.CloudAmqp
     /// });
     /// ```
     /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;AWS Eventbridge integration with prefetch from [v1.38.0]&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     {
+    ///         Name = "Test instance",
+    ///         Plan = "penguin-1",
+    ///         Region = "amazon-web-services::us-west-1",
+    ///         RmqVersion = "3.11.5",
+    ///         Tags = new[]
+    ///         {
+    ///             "aws",
+    ///         },
+    ///     });
+    /// 
+    ///     var @this = new CloudAmqp.IntegrationAwsEventbridge("this", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Vhost = instance.Vhost,
+    ///         Queue = "&lt;QUEUE-NAME&gt;",
+    ///         AwsAccountId = "&lt;AWS-ACCOUNT-ID&gt;",
+    ///         AwsRegion = "us-west-1",
+    ///         WithHeaders = true,
+    ///         Prefetch = 100,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
     /// ## Argument References
     /// 
     /// The following arguments are supported:
@@ -70,6 +122,8 @@ namespace Pulumi.CloudAmqp
     /// * `Queue`           - (ForceNew/Required) A (durable) queue on your RabbitMQ instance.
     /// * `WithHeaders`    - (ForceNew/Required) Include message headers in the event data.
     ///                       `({ "headers": { }, "body": { "your": "message" } })`
+    /// * `Prefetch`        - (ForceNew/Optional) Set the prefetch for the Eventbrigde consumer to increase
+    ///                       throughput. Supported from [v1.38.0].
     /// 
     /// ## Dependency
     /// 
@@ -105,7 +159,9 @@ namespace Pulumi.CloudAmqp
     /// 
     /// [AWS Eventbridge console]: https://console.aws.amazon.com/events/home
     /// 
-    /// [CloudAMQP API list eventbridges]: https://docs.cloudamqp.com/cloudamqp_api.html#list-eventbridges
+    /// [v1.38.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.38.0
+    /// 
+    /// [CloudAMQP API list eventbridges]: https://docs.cloudamqp.com/instance-api.html#tag/eventbridge/get/eventbridges
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/integrationAwsEventbridge:IntegrationAwsEventbridge")]
     public partial class IntegrationAwsEventbridge : global::Pulumi.CustomResource
@@ -127,6 +183,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Output("instanceId")]
         public Output<int> InstanceId { get; private set; } = null!;
+
+        /// <summary>
+        /// Number of messages to prefetch. Default set to 1.
+        /// </summary>
+        [Output("prefetch")]
+        public Output<int> Prefetch { get; private set; } = null!;
 
         /// <summary>
         /// A (durable) queue on your RabbitMQ instance.
@@ -217,6 +279,12 @@ namespace Pulumi.CloudAmqp
         public Input<int> InstanceId { get; set; } = null!;
 
         /// <summary>
+        /// Number of messages to prefetch. Default set to 1.
+        /// </summary>
+        [Input("prefetch")]
+        public Input<int>? Prefetch { get; set; }
+
+        /// <summary>
         /// A (durable) queue on your RabbitMQ instance.
         /// </summary>
         [Input("queue", required: true)]
@@ -259,6 +327,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
+
+        /// <summary>
+        /// Number of messages to prefetch. Default set to 1.
+        /// </summary>
+        [Input("prefetch")]
+        public Input<int>? Prefetch { get; set; }
 
         /// <summary>
         /// A (durable) queue on your RabbitMQ instance.

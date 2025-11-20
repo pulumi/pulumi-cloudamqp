@@ -587,15 +587,15 @@ import (
 //
 // [integration type reference]: #integration-type-reference
 //
-// [CloudAMQP API add integrations]: https://docs.cloudamqp.com/cloudamqp_api.html#add-metrics-integration
-// [CloudAMQP API list integrations]: https://docs.cloudamqp.com/cloudamqp_api.html#list-metrics-integrations
+// [CloudAMQP API add integrations]: https://docs.cloudamqp.com/instance-api.html#tag/integrations/post/integrations/metrics/{system}
+// [CloudAMQP API list integrations]: https://docs.cloudamqp.com/instance-api.html#tag/integrations/get/integrations/metrics
 // [Datadog documentation]: https://docs.datadoghq.com/getting_started/tagging/#define-tags
 type IntegrationMetric struct {
 	pulumi.CustomResourceState
 
 	// AWS access key identifier. (Cloudwatch)
 	AccessKeyId pulumi.StringPtrOutput `pulumi:"accessKeyId"`
-	// The API key for the integration service. (Librato)
+	// The API key for the integration service. (Librato, Data Dog, New Relic)
 	ApiKey pulumi.StringPtrOutput `pulumi:"apiKey"`
 	// The client email. (Stackdriver)
 	ClientEmail pulumi.StringOutput `pulumi:"clientEmail"`
@@ -611,9 +611,7 @@ type IntegrationMetric struct {
 	IncludeAdQueues pulumi.BoolPtrOutput `pulumi:"includeAdQueues"`
 	// Instance identifier
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
-	// The license key registred for the integration service. (New Relic)
-	LicenseKey pulumi.StringPtrOutput `pulumi:"licenseKey"`
-	// The name of metrics integration
+	// The name of log integration
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The private key. (Stackdriver)
 	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
@@ -623,10 +621,6 @@ type IntegrationMetric struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// (optional) allowlist using regular expression
 	QueueAllowlist pulumi.StringPtrOutput `pulumi:"queueAllowlist"`
-	// **Deprecated**
-	//
-	// Deprecated: use queueAllowlist instead
-	QueueWhitelist pulumi.StringPtrOutput `pulumi:"queueWhitelist"`
 	// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
 	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// AWS secret key. (Cloudwatch)
@@ -635,10 +629,6 @@ type IntegrationMetric struct {
 	Tags pulumi.StringPtrOutput `pulumi:"tags"`
 	// (optional) allowlist using regular expression
 	VhostAllowlist pulumi.StringPtrOutput `pulumi:"vhostAllowlist"`
-	// **Deprecated**
-	//
-	// Deprecated: use vhostAllowlist instead
-	VhostWhitelist pulumi.StringPtrOutput `pulumi:"vhostWhitelist"`
 }
 
 // NewIntegrationMetric registers a new resource with the given unique name, arguments, and options.
@@ -657,9 +647,6 @@ func NewIntegrationMetric(ctx *pulumi.Context,
 	if args.Credentials != nil {
 		args.Credentials = pulumi.ToSecret(args.Credentials).(pulumi.StringPtrInput)
 	}
-	if args.LicenseKey != nil {
-		args.LicenseKey = pulumi.ToSecret(args.LicenseKey).(pulumi.StringPtrInput)
-	}
 	if args.PrivateKey != nil {
 		args.PrivateKey = pulumi.ToSecret(args.PrivateKey).(pulumi.StringPtrInput)
 	}
@@ -672,7 +659,6 @@ func NewIntegrationMetric(ctx *pulumi.Context,
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"apiKey",
 		"credentials",
-		"licenseKey",
 		"privateKey",
 		"privateKeyId",
 		"secretAccessKey",
@@ -703,7 +689,7 @@ func GetIntegrationMetric(ctx *pulumi.Context,
 type integrationMetricState struct {
 	// AWS access key identifier. (Cloudwatch)
 	AccessKeyId *string `pulumi:"accessKeyId"`
-	// The API key for the integration service. (Librato)
+	// The API key for the integration service. (Librato, Data Dog, New Relic)
 	ApiKey *string `pulumi:"apiKey"`
 	// The client email. (Stackdriver)
 	ClientEmail *string `pulumi:"clientEmail"`
@@ -719,9 +705,7 @@ type integrationMetricState struct {
 	IncludeAdQueues *bool `pulumi:"includeAdQueues"`
 	// Instance identifier
 	InstanceId *int `pulumi:"instanceId"`
-	// The license key registred for the integration service. (New Relic)
-	LicenseKey *string `pulumi:"licenseKey"`
-	// The name of metrics integration
+	// The name of log integration
 	Name *string `pulumi:"name"`
 	// The private key. (Stackdriver)
 	PrivateKey *string `pulumi:"privateKey"`
@@ -731,10 +715,6 @@ type integrationMetricState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// (optional) allowlist using regular expression
 	QueueAllowlist *string `pulumi:"queueAllowlist"`
-	// **Deprecated**
-	//
-	// Deprecated: use queueAllowlist instead
-	QueueWhitelist *string `pulumi:"queueWhitelist"`
 	// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
 	Region *string `pulumi:"region"`
 	// AWS secret key. (Cloudwatch)
@@ -743,16 +723,12 @@ type integrationMetricState struct {
 	Tags *string `pulumi:"tags"`
 	// (optional) allowlist using regular expression
 	VhostAllowlist *string `pulumi:"vhostAllowlist"`
-	// **Deprecated**
-	//
-	// Deprecated: use vhostAllowlist instead
-	VhostWhitelist *string `pulumi:"vhostWhitelist"`
 }
 
 type IntegrationMetricState struct {
 	// AWS access key identifier. (Cloudwatch)
 	AccessKeyId pulumi.StringPtrInput
-	// The API key for the integration service. (Librato)
+	// The API key for the integration service. (Librato, Data Dog, New Relic)
 	ApiKey pulumi.StringPtrInput
 	// The client email. (Stackdriver)
 	ClientEmail pulumi.StringPtrInput
@@ -768,9 +744,7 @@ type IntegrationMetricState struct {
 	IncludeAdQueues pulumi.BoolPtrInput
 	// Instance identifier
 	InstanceId pulumi.IntPtrInput
-	// The license key registred for the integration service. (New Relic)
-	LicenseKey pulumi.StringPtrInput
-	// The name of metrics integration
+	// The name of log integration
 	Name pulumi.StringPtrInput
 	// The private key. (Stackdriver)
 	PrivateKey pulumi.StringPtrInput
@@ -780,10 +754,6 @@ type IntegrationMetricState struct {
 	ProjectId pulumi.StringPtrInput
 	// (optional) allowlist using regular expression
 	QueueAllowlist pulumi.StringPtrInput
-	// **Deprecated**
-	//
-	// Deprecated: use queueAllowlist instead
-	QueueWhitelist pulumi.StringPtrInput
 	// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
 	Region pulumi.StringPtrInput
 	// AWS secret key. (Cloudwatch)
@@ -792,10 +762,6 @@ type IntegrationMetricState struct {
 	Tags pulumi.StringPtrInput
 	// (optional) allowlist using regular expression
 	VhostAllowlist pulumi.StringPtrInput
-	// **Deprecated**
-	//
-	// Deprecated: use vhostAllowlist instead
-	VhostWhitelist pulumi.StringPtrInput
 }
 
 func (IntegrationMetricState) ElementType() reflect.Type {
@@ -805,7 +771,7 @@ func (IntegrationMetricState) ElementType() reflect.Type {
 type integrationMetricArgs struct {
 	// AWS access key identifier. (Cloudwatch)
 	AccessKeyId *string `pulumi:"accessKeyId"`
-	// The API key for the integration service. (Librato)
+	// The API key for the integration service. (Librato, Data Dog, New Relic)
 	ApiKey *string `pulumi:"apiKey"`
 	// The client email. (Stackdriver)
 	ClientEmail *string `pulumi:"clientEmail"`
@@ -821,9 +787,7 @@ type integrationMetricArgs struct {
 	IncludeAdQueues *bool `pulumi:"includeAdQueues"`
 	// Instance identifier
 	InstanceId int `pulumi:"instanceId"`
-	// The license key registred for the integration service. (New Relic)
-	LicenseKey *string `pulumi:"licenseKey"`
-	// The name of metrics integration
+	// The name of log integration
 	Name *string `pulumi:"name"`
 	// The private key. (Stackdriver)
 	PrivateKey *string `pulumi:"privateKey"`
@@ -833,10 +797,6 @@ type integrationMetricArgs struct {
 	ProjectId *string `pulumi:"projectId"`
 	// (optional) allowlist using regular expression
 	QueueAllowlist *string `pulumi:"queueAllowlist"`
-	// **Deprecated**
-	//
-	// Deprecated: use queueAllowlist instead
-	QueueWhitelist *string `pulumi:"queueWhitelist"`
 	// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
 	Region *string `pulumi:"region"`
 	// AWS secret key. (Cloudwatch)
@@ -845,17 +805,13 @@ type integrationMetricArgs struct {
 	Tags *string `pulumi:"tags"`
 	// (optional) allowlist using regular expression
 	VhostAllowlist *string `pulumi:"vhostAllowlist"`
-	// **Deprecated**
-	//
-	// Deprecated: use vhostAllowlist instead
-	VhostWhitelist *string `pulumi:"vhostWhitelist"`
 }
 
 // The set of arguments for constructing a IntegrationMetric resource.
 type IntegrationMetricArgs struct {
 	// AWS access key identifier. (Cloudwatch)
 	AccessKeyId pulumi.StringPtrInput
-	// The API key for the integration service. (Librato)
+	// The API key for the integration service. (Librato, Data Dog, New Relic)
 	ApiKey pulumi.StringPtrInput
 	// The client email. (Stackdriver)
 	ClientEmail pulumi.StringPtrInput
@@ -871,9 +827,7 @@ type IntegrationMetricArgs struct {
 	IncludeAdQueues pulumi.BoolPtrInput
 	// Instance identifier
 	InstanceId pulumi.IntInput
-	// The license key registred for the integration service. (New Relic)
-	LicenseKey pulumi.StringPtrInput
-	// The name of metrics integration
+	// The name of log integration
 	Name pulumi.StringPtrInput
 	// The private key. (Stackdriver)
 	PrivateKey pulumi.StringPtrInput
@@ -883,10 +837,6 @@ type IntegrationMetricArgs struct {
 	ProjectId pulumi.StringPtrInput
 	// (optional) allowlist using regular expression
 	QueueAllowlist pulumi.StringPtrInput
-	// **Deprecated**
-	//
-	// Deprecated: use queueAllowlist instead
-	QueueWhitelist pulumi.StringPtrInput
 	// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
 	Region pulumi.StringPtrInput
 	// AWS secret key. (Cloudwatch)
@@ -895,10 +845,6 @@ type IntegrationMetricArgs struct {
 	Tags pulumi.StringPtrInput
 	// (optional) allowlist using regular expression
 	VhostAllowlist pulumi.StringPtrInput
-	// **Deprecated**
-	//
-	// Deprecated: use vhostAllowlist instead
-	VhostWhitelist pulumi.StringPtrInput
 }
 
 func (IntegrationMetricArgs) ElementType() reflect.Type {
@@ -993,7 +939,7 @@ func (o IntegrationMetricOutput) AccessKeyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.AccessKeyId }).(pulumi.StringPtrOutput)
 }
 
-// The API key for the integration service. (Librato)
+// The API key for the integration service. (Librato, Data Dog, New Relic)
 func (o IntegrationMetricOutput) ApiKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.ApiKey }).(pulumi.StringPtrOutput)
 }
@@ -1033,12 +979,7 @@ func (o IntegrationMetricOutput) InstanceId() pulumi.IntOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.IntOutput { return v.InstanceId }).(pulumi.IntOutput)
 }
 
-// The license key registred for the integration service. (New Relic)
-func (o IntegrationMetricOutput) LicenseKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.LicenseKey }).(pulumi.StringPtrOutput)
-}
-
-// The name of metrics integration
+// The name of log integration
 func (o IntegrationMetricOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -1063,13 +1004,6 @@ func (o IntegrationMetricOutput) QueueAllowlist() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.QueueAllowlist }).(pulumi.StringPtrOutput)
 }
 
-// **Deprecated**
-//
-// Deprecated: use queueAllowlist instead
-func (o IntegrationMetricOutput) QueueWhitelist() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.QueueWhitelist }).(pulumi.StringPtrOutput)
-}
-
 // AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
 func (o IntegrationMetricOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
@@ -1088,13 +1022,6 @@ func (o IntegrationMetricOutput) Tags() pulumi.StringPtrOutput {
 // (optional) allowlist using regular expression
 func (o IntegrationMetricOutput) VhostAllowlist() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.VhostAllowlist }).(pulumi.StringPtrOutput)
-}
-
-// **Deprecated**
-//
-// Deprecated: use vhostAllowlist instead
-func (o IntegrationMetricOutput) VhostWhitelist() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.VhostWhitelist }).(pulumi.StringPtrOutput)
 }
 
 type IntegrationMetricArrayOutput struct{ *pulumi.OutputState }

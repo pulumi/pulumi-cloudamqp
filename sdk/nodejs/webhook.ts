@@ -72,11 +72,11 @@ export class Webhook extends pulumi.CustomResource {
     /**
      * Configurable sleep time in seconds between retries for webhook
      */
-    declare public readonly sleep: pulumi.Output<number | undefined>;
+    declare public readonly sleep: pulumi.Output<number>;
     /**
      * Configurable timeout time in seconds for webhook
      */
-    declare public readonly timeout: pulumi.Output<number | undefined>;
+    declare public readonly timeout: pulumi.Output<number>;
     /**
      * The vhost the queue resides in.
      */

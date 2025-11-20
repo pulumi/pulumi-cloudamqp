@@ -579,9 +579,9 @@ import javax.annotation.Nullable;
  * $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric &lt;resource_name&gt; &lt;resource_id&gt;,&lt;instance_id&gt;`
  * ```
  * 
- * [CloudAMQP API add integrations]: https://docs.cloudamqp.com/cloudamqp_api.html#add-metrics-integration
+ * [CloudAMQP API add integrations]: https://docs.cloudamqp.com/instance-api.html#tag/integrations/post/integrations/metrics/{system}
  * 
- * [CloudAMQP API list integrations]: https://docs.cloudamqp.com/cloudamqp_api.html#list-metrics-integrations
+ * [CloudAMQP API list integrations]: https://docs.cloudamqp.com/instance-api.html#tag/integrations/get/integrations/metrics
  * 
  * [Datadog documentation]: https://docs.datadoghq.com/getting_started/tagging/#define-tags
  * 
@@ -605,14 +605,14 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.accessKeyId);
     }
     /**
-     * The API key for the integration service. (Librato)
+     * The API key for the integration service. (Librato, Data Dog, New Relic)
      * 
      */
     @Export(name="apiKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> apiKey;
 
     /**
-     * @return The API key for the integration service. (Librato)
+     * @return The API key for the integration service. (Librato, Data Dog, New Relic)
      * 
      */
     public Output<Optional<String>> apiKey() {
@@ -717,28 +717,14 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
         return this.instanceId;
     }
     /**
-     * The license key registred for the integration service. (New Relic)
-     * 
-     */
-    @Export(name="licenseKey", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> licenseKey;
-
-    /**
-     * @return The license key registred for the integration service. (New Relic)
-     * 
-     */
-    public Output<Optional<String>> licenseKey() {
-        return Codegen.optional(this.licenseKey);
-    }
-    /**
-     * The name of metrics integration
+     * The name of log integration
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return The name of metrics integration
+     * @return The name of log integration
      * 
      */
     public Output<String> name() {
@@ -801,24 +787,6 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.queueAllowlist);
     }
     /**
-     * **Deprecated**
-     * 
-     * @deprecated
-     * use queueAllowlist instead
-     * 
-     */
-    @Deprecated /* use queueAllowlist instead */
-    @Export(name="queueWhitelist", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> queueWhitelist;
-
-    /**
-     * @return **Deprecated**
-     * 
-     */
-    public Output<Optional<String>> queueWhitelist() {
-        return Codegen.optional(this.queueWhitelist);
-    }
-    /**
      * AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
      * 
      */
@@ -874,24 +842,6 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> vhostAllowlist() {
         return Codegen.optional(this.vhostAllowlist);
     }
-    /**
-     * **Deprecated**
-     * 
-     * @deprecated
-     * use vhostAllowlist instead
-     * 
-     */
-    @Deprecated /* use vhostAllowlist instead */
-    @Export(name="vhostWhitelist", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> vhostWhitelist;
-
-    /**
-     * @return **Deprecated**
-     * 
-     */
-    public Output<Optional<String>> vhostWhitelist() {
-        return Codegen.optional(this.vhostWhitelist);
-    }
 
     /**
      *
@@ -935,7 +885,6 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
             .additionalSecretOutputs(List.of(
                 "apiKey",
                 "credentials",
-                "licenseKey",
                 "privateKey",
                 "privateKeyId",
                 "secretAccessKey"

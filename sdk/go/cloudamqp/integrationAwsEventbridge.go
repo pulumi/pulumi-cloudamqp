@@ -27,6 +27,14 @@ import (
 //
 // ## Example Usage
 //
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>AWS Eventbridge integration</i>
+//	  </b>
+//	</summary>
+//
 // ```go
 // package main
 //
@@ -68,6 +76,60 @@ import (
 //
 // ```
 //
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>AWS Eventbridge integration with prefetch from [v1.38.0]</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:       pulumi.String("Test instance"),
+//				Plan:       pulumi.String("penguin-1"),
+//				Region:     pulumi.String("amazon-web-services::us-west-1"),
+//				RmqVersion: pulumi.String("3.11.5"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("aws"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewIntegrationAwsEventbridge(ctx, "this", &cloudamqp.IntegrationAwsEventbridgeArgs{
+//				InstanceId:   instance.ID(),
+//				Vhost:        instance.Vhost,
+//				Queue:        pulumi.String("<QUEUE-NAME>"),
+//				AwsAccountId: pulumi.String("<AWS-ACCOUNT-ID>"),
+//				AwsRegion:    pulumi.String("us-west-1"),
+//				WithHeaders:  pulumi.Bool(true),
+//				Prefetch:     pulumi.Int(100),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
 // ## Argument References
 //
 // The following arguments are supported:
@@ -80,6 +142,8 @@ import (
 //   - `queue`           - (ForceNew/Required) A (durable) queue on your RabbitMQ instance.
 //   - `withHeaders`    - (ForceNew/Required) Include message headers in the event data.
 //     `({ "headers": { }, "body": { "your": "message" } })`
+//   - `prefetch`        - (ForceNew/Optional) Set the prefetch for the Eventbrigde consumer to increase
+//     throughput. Supported from [v1.38.0].
 //
 // ## Dependency
 //
@@ -113,7 +177,8 @@ import (
 //
 // [AWS EventBridge]: https://aws.amazon.com/eventbridge
 // [AWS Eventbridge console]: https://console.aws.amazon.com/events/home
-// [CloudAMQP API list eventbridges]: https://docs.cloudamqp.com/cloudamqp_api.html#list-eventbridges
+// [v1.38.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.38.0
+// [CloudAMQP API list eventbridges]: https://docs.cloudamqp.com/instance-api.html#tag/eventbridge/get/eventbridges
 type IntegrationAwsEventbridge struct {
 	pulumi.CustomResourceState
 
@@ -123,6 +188,8 @@ type IntegrationAwsEventbridge struct {
 	AwsRegion pulumi.StringOutput `pulumi:"awsRegion"`
 	// Instance identifier
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
+	// Number of messages to prefetch. Default set to 1.
+	Prefetch pulumi.IntOutput `pulumi:"prefetch"`
 	// A (durable) queue on your RabbitMQ instance.
 	Queue pulumi.StringOutput `pulumi:"queue"`
 	// Always set to null, unless there is an error starting the EventBridge.
@@ -187,6 +254,8 @@ type integrationAwsEventbridgeState struct {
 	AwsRegion *string `pulumi:"awsRegion"`
 	// Instance identifier
 	InstanceId *int `pulumi:"instanceId"`
+	// Number of messages to prefetch. Default set to 1.
+	Prefetch *int `pulumi:"prefetch"`
 	// A (durable) queue on your RabbitMQ instance.
 	Queue *string `pulumi:"queue"`
 	// Always set to null, unless there is an error starting the EventBridge.
@@ -204,6 +273,8 @@ type IntegrationAwsEventbridgeState struct {
 	AwsRegion pulumi.StringPtrInput
 	// Instance identifier
 	InstanceId pulumi.IntPtrInput
+	// Number of messages to prefetch. Default set to 1.
+	Prefetch pulumi.IntPtrInput
 	// A (durable) queue on your RabbitMQ instance.
 	Queue pulumi.StringPtrInput
 	// Always set to null, unless there is an error starting the EventBridge.
@@ -225,6 +296,8 @@ type integrationAwsEventbridgeArgs struct {
 	AwsRegion string `pulumi:"awsRegion"`
 	// Instance identifier
 	InstanceId int `pulumi:"instanceId"`
+	// Number of messages to prefetch. Default set to 1.
+	Prefetch *int `pulumi:"prefetch"`
 	// A (durable) queue on your RabbitMQ instance.
 	Queue string `pulumi:"queue"`
 	// The VHost the queue resides in.
@@ -241,6 +314,8 @@ type IntegrationAwsEventbridgeArgs struct {
 	AwsRegion pulumi.StringInput
 	// Instance identifier
 	InstanceId pulumi.IntInput
+	// Number of messages to prefetch. Default set to 1.
+	Prefetch pulumi.IntPtrInput
 	// A (durable) queue on your RabbitMQ instance.
 	Queue pulumi.StringInput
 	// The VHost the queue resides in.
@@ -349,6 +424,11 @@ func (o IntegrationAwsEventbridgeOutput) AwsRegion() pulumi.StringOutput {
 // Instance identifier
 func (o IntegrationAwsEventbridgeOutput) InstanceId() pulumi.IntOutput {
 	return o.ApplyT(func(v *IntegrationAwsEventbridge) pulumi.IntOutput { return v.InstanceId }).(pulumi.IntOutput)
+}
+
+// Number of messages to prefetch. Default set to 1.
+func (o IntegrationAwsEventbridgeOutput) Prefetch() pulumi.IntOutput {
+	return o.ApplyT(func(v *IntegrationAwsEventbridge) pulumi.IntOutput { return v.Prefetch }).(pulumi.IntOutput)
 }
 
 // A (durable) queue on your RabbitMQ instance.

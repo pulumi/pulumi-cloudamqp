@@ -115,6 +115,11 @@ export type IntegrationMetric = import("./integrationMetric").IntegrationMetric;
 export const IntegrationMetric: typeof import("./integrationMetric").IntegrationMetric = null as any;
 utilities.lazyLoad(exports, ["IntegrationMetric"], () => require("./integrationMetric"));
 
+export { IntegrationMetricPrometheusArgs, IntegrationMetricPrometheusState } from "./integrationMetricPrometheus";
+export type IntegrationMetricPrometheus = import("./integrationMetricPrometheus").IntegrationMetricPrometheus;
+export const IntegrationMetricPrometheus: typeof import("./integrationMetricPrometheus").IntegrationMetricPrometheus = null as any;
+utilities.lazyLoad(exports, ["IntegrationMetricPrometheus"], () => require("./integrationMetricPrometheus"));
+
 export { MaintenanceWindowArgs, MaintenanceWindowState } from "./maintenanceWindow";
 export type MaintenanceWindow = import("./maintenanceWindow").MaintenanceWindow;
 export const MaintenanceWindow: typeof import("./maintenanceWindow").MaintenanceWindow = null as any;
@@ -129,6 +134,11 @@ export { NotificationArgs, NotificationState } from "./notification";
 export type Notification = import("./notification").Notification;
 export const Notification: typeof import("./notification").Notification = null as any;
 utilities.lazyLoad(exports, ["Notification"], () => require("./notification"));
+
+export { Oauth2ConfigurationArgs, Oauth2ConfigurationState } from "./oauth2Configuration";
+export type Oauth2Configuration = import("./oauth2Configuration").Oauth2Configuration;
+export const Oauth2Configuration: typeof import("./oauth2Configuration").Oauth2Configuration = null as any;
+utilities.lazyLoad(exports, ["Oauth2Configuration"], () => require("./oauth2Configuration"));
 
 export { PluginArgs, PluginState } from "./plugin";
 export type Plugin = import("./plugin").Plugin;
@@ -228,12 +238,16 @@ const _module = {
                 return new IntegrationLog(name, <any>undefined, { urn })
             case "cloudamqp:index/integrationMetric:IntegrationMetric":
                 return new IntegrationMetric(name, <any>undefined, { urn })
+            case "cloudamqp:index/integrationMetricPrometheus:IntegrationMetricPrometheus":
+                return new IntegrationMetricPrometheus(name, <any>undefined, { urn })
             case "cloudamqp:index/maintenanceWindow:MaintenanceWindow":
                 return new MaintenanceWindow(name, <any>undefined, { urn })
             case "cloudamqp:index/nodeActions:NodeActions":
                 return new NodeActions(name, <any>undefined, { urn })
             case "cloudamqp:index/notification:Notification":
                 return new Notification(name, <any>undefined, { urn })
+            case "cloudamqp:index/oauth2Configuration:Oauth2Configuration":
+                return new Oauth2Configuration(name, <any>undefined, { urn })
             case "cloudamqp:index/plugin:Plugin":
                 return new Plugin(name, <any>undefined, { urn })
             case "cloudamqp:index/pluginCommunity:PluginCommunity":
@@ -273,9 +287,11 @@ pulumi.runtime.registerResourceModule("cloudamqp", "index/instance", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/integrationAwsEventbridge", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/integrationLog", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/integrationMetric", _module)
+pulumi.runtime.registerResourceModule("cloudamqp", "index/integrationMetricPrometheus", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/maintenanceWindow", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/nodeActions", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/notification", _module)
+pulumi.runtime.registerResourceModule("cloudamqp", "index/oauth2Configuration", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/plugin", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/pluginCommunity", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/privatelinkAws", _module)

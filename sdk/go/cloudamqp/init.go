@@ -37,12 +37,16 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &IntegrationLog{}
 	case "cloudamqp:index/integrationMetric:IntegrationMetric":
 		r = &IntegrationMetric{}
+	case "cloudamqp:index/integrationMetricPrometheus:IntegrationMetricPrometheus":
+		r = &IntegrationMetricPrometheus{}
 	case "cloudamqp:index/maintenanceWindow:MaintenanceWindow":
 		r = &MaintenanceWindow{}
 	case "cloudamqp:index/nodeActions:NodeActions":
 		r = &NodeActions{}
 	case "cloudamqp:index/notification:Notification":
 		r = &Notification{}
+	case "cloudamqp:index/oauth2Configuration:Oauth2Configuration":
+		r = &Oauth2Configuration{}
 	case "cloudamqp:index/plugin:Plugin":
 		r = &Plugin{}
 	case "cloudamqp:index/pluginCommunity:PluginCommunity":
@@ -142,6 +146,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"cloudamqp",
+		"index/integrationMetricPrometheus",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"cloudamqp",
 		"index/maintenanceWindow",
 		&module{version},
 	)
@@ -153,6 +162,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"cloudamqp",
 		"index/notification",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"cloudamqp",
+		"index/oauth2Configuration",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -12,7 +12,6 @@ import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -90,28 +89,28 @@ public class Webhook extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="sleep", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> sleep;
+    private Output<Integer> sleep;
 
     /**
      * @return Configurable sleep time in seconds between retries for webhook
      * 
      */
-    public Output<Optional<Integer>> sleep() {
-        return Codegen.optional(this.sleep);
+    public Output<Integer> sleep() {
+        return this.sleep;
     }
     /**
      * Configurable timeout time in seconds for webhook
      * 
      */
     @Export(name="timeout", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> timeout;
+    private Output<Integer> timeout;
 
     /**
      * @return Configurable timeout time in seconds for webhook
      * 
      */
-    public Output<Optional<Integer>> timeout() {
-        return Codegen.optional(this.timeout);
+    public Output<Integer> timeout() {
+        return this.timeout;
     }
     /**
      * The vhost the queue resides in.

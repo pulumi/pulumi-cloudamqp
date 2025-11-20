@@ -117,7 +117,7 @@ import * as utilities from "./utilities";
  * $ pulumi import cloudamqp:index/maintenanceWindow:MaintenanceWindow this <id>`
  * ```
  *
- * [CloudAMQP API list instances]: https://docs.cloudamqp.com/#list-instances
+ * [CloudAMQP API list instances]: https://docs.cloudamqp.com/index.html#tag/instances/get/instances
  *
  * [format]: https://developer.hashicorp.com/terraform/language/functions/formatdate#specification-syntax
  */

@@ -33,14 +33,14 @@ public final class IntegrationMetricState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * The API key for the integration service. (Librato)
+     * The API key for the integration service. (Librato, Data Dog, New Relic)
      * 
      */
     @Import(name="apiKey")
     private @Nullable Output<String> apiKey;
 
     /**
-     * @return The API key for the integration service. (Librato)
+     * @return The API key for the integration service. (Librato, Data Dog, New Relic)
      * 
      */
     public Optional<Output<String>> apiKey() {
@@ -153,29 +153,14 @@ public final class IntegrationMetricState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * The license key registred for the integration service. (New Relic)
-     * 
-     */
-    @Import(name="licenseKey")
-    private @Nullable Output<String> licenseKey;
-
-    /**
-     * @return The license key registred for the integration service. (New Relic)
-     * 
-     */
-    public Optional<Output<String>> licenseKey() {
-        return Optional.ofNullable(this.licenseKey);
-    }
-
-    /**
-     * The name of metrics integration
+     * The name of log integration
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The name of metrics integration
+     * @return The name of log integration
      * 
      */
     public Optional<Output<String>> name() {
@@ -243,29 +228,6 @@ public final class IntegrationMetricState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * **Deprecated**
-     * 
-     * @deprecated
-     * use queueAllowlist instead
-     * 
-     */
-    @Deprecated /* use queueAllowlist instead */
-    @Import(name="queueWhitelist")
-    private @Nullable Output<String> queueWhitelist;
-
-    /**
-     * @return **Deprecated**
-     * 
-     * @deprecated
-     * use queueAllowlist instead
-     * 
-     */
-    @Deprecated /* use queueAllowlist instead */
-    public Optional<Output<String>> queueWhitelist() {
-        return Optional.ofNullable(this.queueWhitelist);
-    }
-
-    /**
      * AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
      * 
      */
@@ -325,29 +287,6 @@ public final class IntegrationMetricState extends com.pulumi.resources.ResourceA
         return Optional.ofNullable(this.vhostAllowlist);
     }
 
-    /**
-     * **Deprecated**
-     * 
-     * @deprecated
-     * use vhostAllowlist instead
-     * 
-     */
-    @Deprecated /* use vhostAllowlist instead */
-    @Import(name="vhostWhitelist")
-    private @Nullable Output<String> vhostWhitelist;
-
-    /**
-     * @return **Deprecated**
-     * 
-     * @deprecated
-     * use vhostAllowlist instead
-     * 
-     */
-    @Deprecated /* use vhostAllowlist instead */
-    public Optional<Output<String>> vhostWhitelist() {
-        return Optional.ofNullable(this.vhostWhitelist);
-    }
-
     private IntegrationMetricState() {}
 
     private IntegrationMetricState(IntegrationMetricState $) {
@@ -360,18 +299,15 @@ public final class IntegrationMetricState extends com.pulumi.resources.ResourceA
         this.iamRole = $.iamRole;
         this.includeAdQueues = $.includeAdQueues;
         this.instanceId = $.instanceId;
-        this.licenseKey = $.licenseKey;
         this.name = $.name;
         this.privateKey = $.privateKey;
         this.privateKeyId = $.privateKeyId;
         this.projectId = $.projectId;
         this.queueAllowlist = $.queueAllowlist;
-        this.queueWhitelist = $.queueWhitelist;
         this.region = $.region;
         this.secretAccessKey = $.secretAccessKey;
         this.tags = $.tags;
         this.vhostAllowlist = $.vhostAllowlist;
-        this.vhostWhitelist = $.vhostWhitelist;
     }
 
     public static Builder builder() {
@@ -414,7 +350,7 @@ public final class IntegrationMetricState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param apiKey The API key for the integration service. (Librato)
+         * @param apiKey The API key for the integration service. (Librato, Data Dog, New Relic)
          * 
          * @return builder
          * 
@@ -425,7 +361,7 @@ public final class IntegrationMetricState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param apiKey The API key for the integration service. (Librato)
+         * @param apiKey The API key for the integration service. (Librato, Data Dog, New Relic)
          * 
          * @return builder
          * 
@@ -582,28 +518,7 @@ public final class IntegrationMetricState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param licenseKey The license key registred for the integration service. (New Relic)
-         * 
-         * @return builder
-         * 
-         */
-        public Builder licenseKey(@Nullable Output<String> licenseKey) {
-            $.licenseKey = licenseKey;
-            return this;
-        }
-
-        /**
-         * @param licenseKey The license key registred for the integration service. (New Relic)
-         * 
-         * @return builder
-         * 
-         */
-        public Builder licenseKey(String licenseKey) {
-            return licenseKey(Output.of(licenseKey));
-        }
-
-        /**
-         * @param name The name of metrics integration
+         * @param name The name of log integration
          * 
          * @return builder
          * 
@@ -614,7 +529,7 @@ public final class IntegrationMetricState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param name The name of metrics integration
+         * @param name The name of log integration
          * 
          * @return builder
          * 
@@ -708,35 +623,6 @@ public final class IntegrationMetricState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param queueWhitelist **Deprecated**
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * use queueAllowlist instead
-         * 
-         */
-        @Deprecated /* use queueAllowlist instead */
-        public Builder queueWhitelist(@Nullable Output<String> queueWhitelist) {
-            $.queueWhitelist = queueWhitelist;
-            return this;
-        }
-
-        /**
-         * @param queueWhitelist **Deprecated**
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * use queueAllowlist instead
-         * 
-         */
-        @Deprecated /* use queueAllowlist instead */
-        public Builder queueWhitelist(String queueWhitelist) {
-            return queueWhitelist(Output.of(queueWhitelist));
-        }
-
-        /**
          * @param region AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
          * 
          * @return builder
@@ -818,35 +704,6 @@ public final class IntegrationMetricState extends com.pulumi.resources.ResourceA
          */
         public Builder vhostAllowlist(String vhostAllowlist) {
             return vhostAllowlist(Output.of(vhostAllowlist));
-        }
-
-        /**
-         * @param vhostWhitelist **Deprecated**
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * use vhostAllowlist instead
-         * 
-         */
-        @Deprecated /* use vhostAllowlist instead */
-        public Builder vhostWhitelist(@Nullable Output<String> vhostWhitelist) {
-            $.vhostWhitelist = vhostWhitelist;
-            return this;
-        }
-
-        /**
-         * @param vhostWhitelist **Deprecated**
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * use vhostAllowlist instead
-         * 
-         */
-        @Deprecated /* use vhostAllowlist instead */
-        public Builder vhostWhitelist(String vhostWhitelist) {
-            return vhostWhitelist(Output.of(vhostWhitelist));
         }
 
         public IntegrationMetricState build() {

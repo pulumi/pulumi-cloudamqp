@@ -298,6 +298,50 @@ import (
 //
 // </details>
 //
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Dedicated instance with preferred AZs</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:   pulumi.String("terraform-cloudamqp-instance"),
+//				Plan:   pulumi.String("penguin-3"),
+//				Region: pulumi.String("amazon-web-services::us-east-1"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("terraform"),
+//				},
+//				PreferredAzs: pulumi.StringArray{
+//					pulumi.String("use1-az1"),
+//					pulumi.String("use1-az2"),
+//					pulumi.String("use1-az3"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
 // ### Settings supported by LavinMQ
 //
 // ***Allowed values:*** alarms, definitions, firewall, metrics
@@ -412,8 +456,8 @@ import (
 // </details>
 //
 // [CloudAMQP]: https://cloudamqp.com
-// [CloudAMQP API]: https://docs.cloudamqp.com/cloudamqp_api.html
-// [CloudAMQP API list instances]: https://docs.cloudamqp.com/#list-instances
+// [CloudAMQP API]: https://docs.cloudamqp.com/instance-api.html
+// [CloudAMQP API list instances]: https://docs.cloudamqp.com/index.html#tag/instances/get/instances
 // [CloudAMQP plans]: https://www.cloudamqp.com/plans.html
 // [copy settings]: #copy-settings-to-a-new-dedicated-instance
 // [example]: ../guides/info_vpc_existing.md
@@ -423,6 +467,10 @@ import (
 // [plans]: ../guides/info_plan.md
 // [**RabbitMQ**]: https://www.rabbitmq.com
 // [instance regions]: ../guides/info_region.md
+// [aws-availability-zones]: https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-availability-zones.html
+// [azure-region-list]: https://learn.microsoft.com/en-us/azure/reliability/regions-list
+// [gcp-region-zones]: https://cloud.google.com/compute/docs/regions-zones#available
+// [do-regional-availability]: https://docs.digitalocean.com/platform/regional-availability/
 //
 // ## Import
 //
@@ -457,10 +505,6 @@ type Instance struct {
 	Backend pulumi.StringOutput `pulumi:"backend"`
 	// Copy settings from one CloudAMQP instance to a new. Consists of
 	// the block documented below.
-	//
-	// ***
-	//
-	// The `copySettings` block consists of:
 	CopySettings InstanceCopySettingArrayOutput `pulumi:"copySettings"`
 	// Information if the CloudAMQP instance is shared or dedicated.
 	Dedicated pulumi.BoolOutput `pulumi:"dedicated"`
@@ -484,6 +528,18 @@ type Instance struct {
 	Nodes pulumi.IntOutput `pulumi:"nodes"`
 	// The subscription plan. See available [plans].
 	Plan pulumi.StringOutput `pulumi:"plan"`
+	// The AZs to place your nodes in. Each entry corresponds to a server in your cluster, so for a 3 node cluster, provide 3 AZs in the list.
+	//
+	// ***Note:*** `preferredAz` can only be set upon instance creation as of now and the result is not guaranteed. On eventual failed resource allocation in the zone, CloudAMQP will fallback to a different zone.
+	// * AWS: AZ id in [aws-availability-zones]
+	// * Azure: 1,2 or 3 in supported regions [azure-region-list]
+	// * GCP: zones in [gcp-region-zones]
+	// * Digital Ocean: Slug in [do-regional-availability]
+	//
+	// ***
+	//
+	// The `copySettings` block consists of:
+	PreferredAzs pulumi.StringArrayOutput `pulumi:"preferredAzs"`
 	// Flag describing if the resource is ready
 	Ready pulumi.BoolOutput `pulumi:"ready"`
 	// The region to host the instance in. See available [regions].
@@ -565,10 +621,6 @@ type instanceState struct {
 	Backend *string `pulumi:"backend"`
 	// Copy settings from one CloudAMQP instance to a new. Consists of
 	// the block documented below.
-	//
-	// ***
-	//
-	// The `copySettings` block consists of:
 	CopySettings []InstanceCopySetting `pulumi:"copySettings"`
 	// Information if the CloudAMQP instance is shared or dedicated.
 	Dedicated *bool `pulumi:"dedicated"`
@@ -592,6 +644,18 @@ type instanceState struct {
 	Nodes *int `pulumi:"nodes"`
 	// The subscription plan. See available [plans].
 	Plan *string `pulumi:"plan"`
+	// The AZs to place your nodes in. Each entry corresponds to a server in your cluster, so for a 3 node cluster, provide 3 AZs in the list.
+	//
+	// ***Note:*** `preferredAz` can only be set upon instance creation as of now and the result is not guaranteed. On eventual failed resource allocation in the zone, CloudAMQP will fallback to a different zone.
+	// * AWS: AZ id in [aws-availability-zones]
+	// * Azure: 1,2 or 3 in supported regions [azure-region-list]
+	// * GCP: zones in [gcp-region-zones]
+	// * Digital Ocean: Slug in [do-regional-availability]
+	//
+	// ***
+	//
+	// The `copySettings` block consists of:
+	PreferredAzs []string `pulumi:"preferredAzs"`
 	// Flag describing if the resource is ready
 	Ready *bool `pulumi:"ready"`
 	// The region to host the instance in. See available [regions].
@@ -633,10 +697,6 @@ type InstanceState struct {
 	Backend pulumi.StringPtrInput
 	// Copy settings from one CloudAMQP instance to a new. Consists of
 	// the block documented below.
-	//
-	// ***
-	//
-	// The `copySettings` block consists of:
 	CopySettings InstanceCopySettingArrayInput
 	// Information if the CloudAMQP instance is shared or dedicated.
 	Dedicated pulumi.BoolPtrInput
@@ -660,6 +720,18 @@ type InstanceState struct {
 	Nodes pulumi.IntPtrInput
 	// The subscription plan. See available [plans].
 	Plan pulumi.StringPtrInput
+	// The AZs to place your nodes in. Each entry corresponds to a server in your cluster, so for a 3 node cluster, provide 3 AZs in the list.
+	//
+	// ***Note:*** `preferredAz` can only be set upon instance creation as of now and the result is not guaranteed. On eventual failed resource allocation in the zone, CloudAMQP will fallback to a different zone.
+	// * AWS: AZ id in [aws-availability-zones]
+	// * Azure: 1,2 or 3 in supported regions [azure-region-list]
+	// * GCP: zones in [gcp-region-zones]
+	// * Digital Ocean: Slug in [do-regional-availability]
+	//
+	// ***
+	//
+	// The `copySettings` block consists of:
+	PreferredAzs pulumi.StringArrayInput
 	// Flag describing if the resource is ready
 	Ready pulumi.BoolPtrInput
 	// The region to host the instance in. See available [regions].
@@ -700,10 +772,6 @@ func (InstanceState) ElementType() reflect.Type {
 type instanceArgs struct {
 	// Copy settings from one CloudAMQP instance to a new. Consists of
 	// the block documented below.
-	//
-	// ***
-	//
-	// The `copySettings` block consists of:
 	CopySettings []InstanceCopySetting `pulumi:"copySettings"`
 	// Keep associated VPC when deleting instance. Default set to
 	// false.
@@ -721,6 +789,18 @@ type instanceArgs struct {
 	Nodes *int `pulumi:"nodes"`
 	// The subscription plan. See available [plans].
 	Plan string `pulumi:"plan"`
+	// The AZs to place your nodes in. Each entry corresponds to a server in your cluster, so for a 3 node cluster, provide 3 AZs in the list.
+	//
+	// ***Note:*** `preferredAz` can only be set upon instance creation as of now and the result is not guaranteed. On eventual failed resource allocation in the zone, CloudAMQP will fallback to a different zone.
+	// * AWS: AZ id in [aws-availability-zones]
+	// * Azure: 1,2 or 3 in supported regions [azure-region-list]
+	// * GCP: zones in [gcp-region-zones]
+	// * Digital Ocean: Slug in [do-regional-availability]
+	//
+	// ***
+	//
+	// The `copySettings` block consists of:
+	PreferredAzs []string `pulumi:"preferredAzs"`
 	// The region to host the instance in. See available [regions].
 	//
 	// ***Note:*** Changing region will force the instance to be destroyed and a new created in the new
@@ -751,10 +831,6 @@ type instanceArgs struct {
 type InstanceArgs struct {
 	// Copy settings from one CloudAMQP instance to a new. Consists of
 	// the block documented below.
-	//
-	// ***
-	//
-	// The `copySettings` block consists of:
 	CopySettings InstanceCopySettingArrayInput
 	// Keep associated VPC when deleting instance. Default set to
 	// false.
@@ -772,6 +848,18 @@ type InstanceArgs struct {
 	Nodes pulumi.IntPtrInput
 	// The subscription plan. See available [plans].
 	Plan pulumi.StringInput
+	// The AZs to place your nodes in. Each entry corresponds to a server in your cluster, so for a 3 node cluster, provide 3 AZs in the list.
+	//
+	// ***Note:*** `preferredAz` can only be set upon instance creation as of now and the result is not guaranteed. On eventual failed resource allocation in the zone, CloudAMQP will fallback to a different zone.
+	// * AWS: AZ id in [aws-availability-zones]
+	// * Azure: 1,2 or 3 in supported regions [azure-region-list]
+	// * GCP: zones in [gcp-region-zones]
+	// * Digital Ocean: Slug in [do-regional-availability]
+	//
+	// ***
+	//
+	// The `copySettings` block consists of:
+	PreferredAzs pulumi.StringArrayInput
 	// The region to host the instance in. See available [regions].
 	//
 	// ***Note:*** Changing region will force the instance to be destroyed and a new created in the new
@@ -898,10 +986,6 @@ func (o InstanceOutput) Backend() pulumi.StringOutput {
 
 // Copy settings from one CloudAMQP instance to a new. Consists of
 // the block documented below.
-//
-// ***
-//
-// The `copySettings` block consists of:
 func (o InstanceOutput) CopySettings() InstanceCopySettingArrayOutput {
 	return o.ApplyT(func(v *Instance) InstanceCopySettingArrayOutput { return v.CopySettings }).(InstanceCopySettingArrayOutput)
 }
@@ -950,6 +1034,21 @@ func (o InstanceOutput) Nodes() pulumi.IntOutput {
 // The subscription plan. See available [plans].
 func (o InstanceOutput) Plan() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.Plan }).(pulumi.StringOutput)
+}
+
+// The AZs to place your nodes in. Each entry corresponds to a server in your cluster, so for a 3 node cluster, provide 3 AZs in the list.
+//
+// ***Note:*** `preferredAz` can only be set upon instance creation as of now and the result is not guaranteed. On eventual failed resource allocation in the zone, CloudAMQP will fallback to a different zone.
+// * AWS: AZ id in [aws-availability-zones]
+// * Azure: 1,2 or 3 in supported regions [azure-region-list]
+// * GCP: zones in [gcp-region-zones]
+// * Digital Ocean: Slug in [do-regional-availability]
+//
+// ***
+//
+// The `copySettings` block consists of:
+func (o InstanceOutput) PreferredAzs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringArrayOutput { return v.PreferredAzs }).(pulumi.StringArrayOutput)
 }
 
 // Flag describing if the resource is ready

@@ -32,7 +32,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ## Depedency
+ * ## Dependency
  *
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
  *
@@ -58,7 +58,7 @@ import * as utilities from "./utilities";
  * $ pulumi import cloudamqp:index/customDomain:CustomDomain settings <instance_id>`
  * ```
  *
- * [CloudAMQP API list instances]: https://docs.cloudamqp.com/#list-instances
+ * [CloudAMQP API list instances]: https://docs.cloudamqp.com/index.html#tag/instances/get/instances
  *
  * [Let's Encrypt]: https://letsencrypt.org/
  */

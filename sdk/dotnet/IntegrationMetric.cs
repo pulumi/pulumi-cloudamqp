@@ -472,9 +472,9 @@ namespace Pulumi.CloudAmqp
     /// $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric &lt;resource_name&gt; &lt;resource_id&gt;,&lt;instance_id&gt;`
     /// ```
     /// 
-    /// [CloudAMQP API add integrations]: https://docs.cloudamqp.com/cloudamqp_api.html#add-metrics-integration
+    /// [CloudAMQP API add integrations]: https://docs.cloudamqp.com/instance-api.html#tag/integrations/post/integrations/metrics/{system}
     /// 
-    /// [CloudAMQP API list integrations]: https://docs.cloudamqp.com/cloudamqp_api.html#list-metrics-integrations
+    /// [CloudAMQP API list integrations]: https://docs.cloudamqp.com/instance-api.html#tag/integrations/get/integrations/metrics
     /// 
     /// [Datadog documentation]: https://docs.datadoghq.com/getting_started/tagging/#define-tags
     /// 
@@ -490,7 +490,7 @@ namespace Pulumi.CloudAmqp
         public Output<string?> AccessKeyId { get; private set; } = null!;
 
         /// <summary>
-        /// The API key for the integration service. (Librato)
+        /// The API key for the integration service. (Librato, Data Dog, New Relic)
         /// </summary>
         [Output("apiKey")]
         public Output<string?> ApiKey { get; private set; } = null!;
@@ -538,13 +538,7 @@ namespace Pulumi.CloudAmqp
         public Output<int> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// The license key registred for the integration service. (New Relic)
-        /// </summary>
-        [Output("licenseKey")]
-        public Output<string?> LicenseKey { get; private set; } = null!;
-
-        /// <summary>
-        /// The name of metrics integration
+        /// The name of log integration
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -574,12 +568,6 @@ namespace Pulumi.CloudAmqp
         public Output<string?> QueueAllowlist { get; private set; } = null!;
 
         /// <summary>
-        /// **Deprecated**
-        /// </summary>
-        [Output("queueWhitelist")]
-        public Output<string?> QueueWhitelist { get; private set; } = null!;
-
-        /// <summary>
         /// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
         /// </summary>
         [Output("region")]
@@ -602,12 +590,6 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Output("vhostAllowlist")]
         public Output<string?> VhostAllowlist { get; private set; } = null!;
-
-        /// <summary>
-        /// **Deprecated**
-        /// </summary>
-        [Output("vhostWhitelist")]
-        public Output<string?> VhostWhitelist { get; private set; } = null!;
 
 
         /// <summary>
@@ -636,7 +618,6 @@ namespace Pulumi.CloudAmqp
                 {
                     "apiKey",
                     "credentials",
-                    "licenseKey",
                     "privateKey",
                     "privateKeyId",
                     "secretAccessKey",
@@ -674,7 +655,7 @@ namespace Pulumi.CloudAmqp
         private Input<string>? _apiKey;
 
         /// <summary>
-        /// The API key for the integration service. (Librato)
+        /// The API key for the integration service. (Librato, Data Dog, New Relic)
         /// </summary>
         public Input<string>? ApiKey
         {
@@ -738,24 +719,8 @@ namespace Pulumi.CloudAmqp
         [Input("instanceId", required: true)]
         public Input<int> InstanceId { get; set; } = null!;
 
-        [Input("licenseKey")]
-        private Input<string>? _licenseKey;
-
         /// <summary>
-        /// The license key registred for the integration service. (New Relic)
-        /// </summary>
-        public Input<string>? LicenseKey
-        {
-            get => _licenseKey;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _licenseKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
-
-        /// <summary>
-        /// The name of metrics integration
+        /// The name of log integration
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -805,12 +770,6 @@ namespace Pulumi.CloudAmqp
         public Input<string>? QueueAllowlist { get; set; }
 
         /// <summary>
-        /// **Deprecated**
-        /// </summary>
-        [Input("queueWhitelist")]
-        public Input<string>? QueueWhitelist { get; set; }
-
-        /// <summary>
         /// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
         /// </summary>
         [Input("region")]
@@ -844,12 +803,6 @@ namespace Pulumi.CloudAmqp
         [Input("vhostAllowlist")]
         public Input<string>? VhostAllowlist { get; set; }
 
-        /// <summary>
-        /// **Deprecated**
-        /// </summary>
-        [Input("vhostWhitelist")]
-        public Input<string>? VhostWhitelist { get; set; }
-
         public IntegrationMetricArgs()
         {
         }
@@ -868,7 +821,7 @@ namespace Pulumi.CloudAmqp
         private Input<string>? _apiKey;
 
         /// <summary>
-        /// The API key for the integration service. (Librato)
+        /// The API key for the integration service. (Librato, Data Dog, New Relic)
         /// </summary>
         public Input<string>? ApiKey
         {
@@ -932,24 +885,8 @@ namespace Pulumi.CloudAmqp
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
 
-        [Input("licenseKey")]
-        private Input<string>? _licenseKey;
-
         /// <summary>
-        /// The license key registred for the integration service. (New Relic)
-        /// </summary>
-        public Input<string>? LicenseKey
-        {
-            get => _licenseKey;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _licenseKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
-
-        /// <summary>
-        /// The name of metrics integration
+        /// The name of log integration
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -999,12 +936,6 @@ namespace Pulumi.CloudAmqp
         public Input<string>? QueueAllowlist { get; set; }
 
         /// <summary>
-        /// **Deprecated**
-        /// </summary>
-        [Input("queueWhitelist")]
-        public Input<string>? QueueWhitelist { get; set; }
-
-        /// <summary>
         /// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
         /// </summary>
         [Input("region")]
@@ -1037,12 +968,6 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Input("vhostAllowlist")]
         public Input<string>? VhostAllowlist { get; set; }
-
-        /// <summary>
-        /// **Deprecated**
-        /// </summary>
-        [Input("vhostWhitelist")]
-        public Input<string>? VhostWhitelist { get; set; }
 
         public IntegrationMetricState()
         {

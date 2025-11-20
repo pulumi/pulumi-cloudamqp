@@ -62,6 +62,32 @@ import * as utilities from "./utilities";
  * <details>
  *   <summary>
  *     <b>
+ *       <i>Cloudwatch log integration with retention and tags (from [v1.38.0])</i>
+ *     </b>
+ *   </summary>
+ *
+ * Use retention and/or tags on the integration to make changes to `CloudAMQP` Log Group.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const cloudwatch = new cloudamqp.IntegrationLog("cloudwatch", {
+ *     instanceId: instance.id,
+ *     name: "cloudwatchlog",
+ *     accessKeyId: awsAccessKeyId,
+ *     secretAccessKey: awsSecretAccessKey,
+ *     region: awsRegion,
+ *     retention: 14,
+ *     tags: "Project=A,Environment=Development",
+ * });
+ * ```
+ *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
  *       <i>Coralogix log integration</i>
  *     </b>
  *   </summary>
@@ -107,7 +133,7 @@ import * as utilities from "./utilities";
  * <details>
  *   <summary>
  *     <b>
- *       <i>Logentries log integration</i>
+ *       <i>Log entries log integration</i>
  *     </b>
  *   </summary>
  *
@@ -331,29 +357,6 @@ import * as utilities from "./utilities";
  *
  * </details>
  *
- * ## Integration type reference
- *
- * Valid arguments for third party log integrations. See more information at
- * [CloudAMQP API add integration].
- *
- * Required arguments for all integrations: name
- *
- * | Integration | name | Required arguments |
- * | ---- | ---- | ---- |
- * | Azure monitor | azureMonitor | tenant_id, application_id, application_secret, dce_uri, table, dcrId |
- * | CloudWatch | cloudwatchlog | access_key_id, secret_access_key, region |
- * | Coralogix | coralogix | private_key, endpoint, application, subsystem |
- * | Data Dog | datadog | region, api_keys, tags |
- * | Log Entries | logentries | token |
- * | Loggly | loggly | token |
- * | Papertrail | papertrail | url |
- * | Scalyr | scalyr | token, host |
- * | Splunk | splunk | token, host_port, sourcetype |
- * | Stackdriver | stackdriver | credentials |
- *
- * ***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments: project_id, private_key,
- *             clientEmail
- *
  * ## Dependency
  *
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -382,13 +385,25 @@ import * as utilities from "./utilities";
  * $ pulumi import cloudamqp:index/integrationLog:IntegrationLog this <id>,<instance_id>`
  * ```
  *
- * [CloudAMQP API add integration]: https://docs.cloudamqp.com/cloudamqp_api.html#add-log-integration
+ * [v1.38.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.38.0
  *
- * [CloudAMQP API list integration]: https://docs.cloudamqp.com/cloudamqp_api.html#list-log-integrations
+ * [CloudAMQP API add integration]: https://docs.cloudamqp.com/instance-api.html#tag/integrations/post/integrations/logs/{system}
+ *
+ * [Tutorial to find/create all arguments]: https://learn.microsoft.com/en-us/azure/azure-monitor/logs/tutorial-logs-ingestion-portal
+ *
+ * [Cloudwatch Log retention]: https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutRetentionPolicy.html#API_PutRetentionPolicy_RequestSyntax
+ *
+ * [Cloudwatch Log tags]: https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_TagLogGroup.html#API_TagLogGroup_RequestSyntax
+ *
+ * [Coralogix documentation]: https://coralogix.com/docs/send-your-data-api-key/
+ *
+ * [app.datadoghq.com]: https://app.datadoghq.com/
  *
  * [Datadog documentation]: https://docs.datadoghq.com/getting_started/tagging/#define-tags
  *
- * [integration type reference]: #integration-type-reference
+ * [logentries add-log]: https://logentries.com/app#/add-log/manual
+ *
+ * [CloudAMQP API list integration]: https://docs.cloudamqp.com/instance-api.html#tag/integrations/get/integrations/logs
  */
 export class IntegrationLog extends pulumi.CustomResource {
     /**
@@ -423,65 +438,69 @@ export class IntegrationLog extends pulumi.CustomResource {
      */
     declare public readonly accessKeyId: pulumi.Output<string | undefined>;
     /**
-     * The API key.
+     * The API key for the integration service. (Datadog)
      */
     declare public readonly apiKey: pulumi.Output<string | undefined>;
     /**
-     * The application name for Coralogix.
+     * The name of the application. (Azure Monitor)
      */
     declare public readonly application: pulumi.Output<string | undefined>;
     /**
-     * The application identifier for Azure monitor.
+     * The application identifier.
      */
     declare public readonly applicationId: pulumi.Output<string | undefined>;
     /**
-     * The application secret for Azure monitor.
+     * The application secret.
      */
     declare public readonly applicationSecret: pulumi.Output<string | undefined>;
     /**
-     * The client email registered for the integration service.
+     * The client email. (Stackdriver)
      */
     declare public readonly clientEmail: pulumi.Output<string>;
     /**
-     * Google Service Account private key credentials.
+     * Base64Encoded credentials. (Stackdriver)
      */
     declare public readonly credentials: pulumi.Output<string | undefined>;
     /**
-     * The data collection endpoint for Azure monitor.
+     * The data collection endpoint.
      */
     declare public readonly dceUri: pulumi.Output<string | undefined>;
     /**
-     * ID of data collection rule that your DCE is linked to for Azure
-     * Monitor.
-     *
-     * This is the full list of all arguments. Only a subset of arguments are used based on which type of
-     * integration used. See [integration type reference] table below for more information.
+     * ID of data collection rule that your DCE is linked to.
      */
     declare public readonly dcrId: pulumi.Output<string | undefined>;
     /**
-     * The syslog destination to send the logs to for Coralogix.
+     * The syslog destination to send the logs to. (Papertrail)
      */
     declare public readonly endpoint: pulumi.Output<string | undefined>;
     /**
-     * The host for Scalyr integration. (app.scalyr.com,
-     * app.eu.scalyr.com)
+     * The host information. (Scalyr)
      */
     declare public readonly host: pulumi.Output<string | undefined>;
     /**
-     * Destination to send the logs.
+     * Destination to send the logs. (Splunk)
      */
     declare public readonly hostPort: pulumi.Output<string | undefined>;
     /**
-     * Instance identifier used to make proxy calls
+     * Instance identifier for the CloudAMQP instance.
+     *
+     * Valid arguments for each third party log integrations below. Corresponding API backend documentation can be
+     * found here [CloudAMQP API add integration].
+     *
+     * <details>
+     * <summary>
+     * <b>Azure monitoring</b>
+     * </summary>
+     *
+     * The following arguments used by Azure monitoring.
      */
     declare public readonly instanceId: pulumi.Output<number>;
     /**
-     * The name of the third party log integration. See
-     * [integration type reference]
+     * The name of the third party log integration (`cloudwatchlog`).
      */
     declare public readonly name: pulumi.Output<string>;
     /**
-     * The private access key.
+     * The private API key used for authentication. (Stackdriver, Coralogix)
      */
     declare public readonly privateKey: pulumi.Output<string>;
     /**
@@ -489,47 +508,66 @@ export class IntegrationLog extends pulumi.CustomResource {
      */
     declare public readonly privateKeyId: pulumi.Output<string>;
     /**
-     * The project identifier.
+     * The project ID for the integration service. (Stackdriver)
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
-     * Region hosting the integration service.
+     * AWS region hosting the integration service.
+     *
+     * Optional arguments introduced in version [v1.38.0].
      */
     declare public readonly region: pulumi.Output<string | undefined>;
+    /**
+     * Number of days to retain log events in `CloudAMQP` log group.
+     *
+     * ***Note:*** Possible values are: 0 (never expire) or between 1-3653, read more about valid values in
+     * the [Cloudwatch Log retention].
+     */
+    declare public readonly retention: pulumi.Output<number | undefined>;
     /**
      * AWS secret access key.
      */
     declare public readonly secretAccessKey: pulumi.Output<string | undefined>;
     /**
-     * Assign source type to the data exported, eg. generic_single_line.
-     * (Splunk)
+     * Assign source type to the data exported, eg. generic_single_line. (Splunk)
      */
     declare public readonly sourcetype: pulumi.Output<string | undefined>;
     /**
-     * The subsystem name for Coralogix.
+     * The name of the subsystem. (Azure Monitor)
      */
     declare public readonly subsystem: pulumi.Output<string | undefined>;
     /**
-     * The table name for Azure monitor.
+     * The table name.
+     *
+     * Use Azure portal to configure external access for Azure Monitor. [Tutorial to find/create all arguments]
+     *
+     * </details>
+     *
+     * <details>
+     * <summary>
+     * <b>Cloudwatch</b>
+     * </summary>
+     *
+     * The following arguments used by CloudWatch.
      */
     declare public readonly table: pulumi.Output<string | undefined>;
     /**
-     * Tags. e.g. `env=prod,region=europe`.
+     * Enter tags to `CloudAMQP` log group like this: `Project=A,Environment=Development`.
      *
-     * ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
-     * letter, read more about tags format in the [Datadog documentation].
+     * ***Note:*** Tags are only added, unwanted tags needs to be removed manually in the AWS console.
+     * Read more about tags format in the [Cloudwatch Log tags]
      */
     declare public readonly tags: pulumi.Output<string | undefined>;
     /**
-     * The tenant identifier for Azure monitor.
+     * The tenant identifier.
      */
     declare public readonly tenantId: pulumi.Output<string | undefined>;
     /**
-     * Token used for authentication.
+     * The token used for authentication. (Loggly, Logentries, Splunk, Scalyr)
      */
     declare public readonly token: pulumi.Output<string | undefined>;
     /**
-     * Endpoint to log integration.
+     * The URL to push the logs to. (Papertrail)
      */
     declare public readonly url: pulumi.Output<string | undefined>;
 
@@ -564,6 +602,7 @@ export class IntegrationLog extends pulumi.CustomResource {
             resourceInputs["privateKeyId"] = state?.privateKeyId;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["region"] = state?.region;
+            resourceInputs["retention"] = state?.retention;
             resourceInputs["secretAccessKey"] = state?.secretAccessKey;
             resourceInputs["sourcetype"] = state?.sourcetype;
             resourceInputs["subsystem"] = state?.subsystem;
@@ -595,6 +634,7 @@ export class IntegrationLog extends pulumi.CustomResource {
             resourceInputs["privateKeyId"] = args?.privateKeyId ? pulumi.secret(args.privateKeyId) : undefined;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["region"] = args?.region;
+            resourceInputs["retention"] = args?.retention;
             resourceInputs["secretAccessKey"] = args?.secretAccessKey ? pulumi.secret(args.secretAccessKey) : undefined;
             resourceInputs["sourcetype"] = args?.sourcetype;
             resourceInputs["subsystem"] = args?.subsystem;
@@ -620,65 +660,69 @@ export interface IntegrationLogState {
      */
     accessKeyId?: pulumi.Input<string>;
     /**
-     * The API key.
+     * The API key for the integration service. (Datadog)
      */
     apiKey?: pulumi.Input<string>;
     /**
-     * The application name for Coralogix.
+     * The name of the application. (Azure Monitor)
      */
     application?: pulumi.Input<string>;
     /**
-     * The application identifier for Azure monitor.
+     * The application identifier.
      */
     applicationId?: pulumi.Input<string>;
     /**
-     * The application secret for Azure monitor.
+     * The application secret.
      */
     applicationSecret?: pulumi.Input<string>;
     /**
-     * The client email registered for the integration service.
+     * The client email. (Stackdriver)
      */
     clientEmail?: pulumi.Input<string>;
     /**
-     * Google Service Account private key credentials.
+     * Base64Encoded credentials. (Stackdriver)
      */
     credentials?: pulumi.Input<string>;
     /**
-     * The data collection endpoint for Azure monitor.
+     * The data collection endpoint.
      */
     dceUri?: pulumi.Input<string>;
     /**
-     * ID of data collection rule that your DCE is linked to for Azure
-     * Monitor.
-     *
-     * This is the full list of all arguments. Only a subset of arguments are used based on which type of
-     * integration used. See [integration type reference] table below for more information.
+     * ID of data collection rule that your DCE is linked to.
      */
     dcrId?: pulumi.Input<string>;
     /**
-     * The syslog destination to send the logs to for Coralogix.
+     * The syslog destination to send the logs to. (Papertrail)
      */
     endpoint?: pulumi.Input<string>;
     /**
-     * The host for Scalyr integration. (app.scalyr.com,
-     * app.eu.scalyr.com)
+     * The host information. (Scalyr)
      */
     host?: pulumi.Input<string>;
     /**
-     * Destination to send the logs.
+     * Destination to send the logs. (Splunk)
      */
     hostPort?: pulumi.Input<string>;
     /**
-     * Instance identifier used to make proxy calls
+     * Instance identifier for the CloudAMQP instance.
+     *
+     * Valid arguments for each third party log integrations below. Corresponding API backend documentation can be
+     * found here [CloudAMQP API add integration].
+     *
+     * <details>
+     * <summary>
+     * <b>Azure monitoring</b>
+     * </summary>
+     *
+     * The following arguments used by Azure monitoring.
      */
     instanceId?: pulumi.Input<number>;
     /**
-     * The name of the third party log integration. See
-     * [integration type reference]
+     * The name of the third party log integration (`cloudwatchlog`).
      */
     name?: pulumi.Input<string>;
     /**
-     * The private access key.
+     * The private API key used for authentication. (Stackdriver, Coralogix)
      */
     privateKey?: pulumi.Input<string>;
     /**
@@ -686,47 +730,66 @@ export interface IntegrationLogState {
      */
     privateKeyId?: pulumi.Input<string>;
     /**
-     * The project identifier.
+     * The project ID for the integration service. (Stackdriver)
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Region hosting the integration service.
+     * AWS region hosting the integration service.
+     *
+     * Optional arguments introduced in version [v1.38.0].
      */
     region?: pulumi.Input<string>;
+    /**
+     * Number of days to retain log events in `CloudAMQP` log group.
+     *
+     * ***Note:*** Possible values are: 0 (never expire) or between 1-3653, read more about valid values in
+     * the [Cloudwatch Log retention].
+     */
+    retention?: pulumi.Input<number>;
     /**
      * AWS secret access key.
      */
     secretAccessKey?: pulumi.Input<string>;
     /**
-     * Assign source type to the data exported, eg. generic_single_line.
-     * (Splunk)
+     * Assign source type to the data exported, eg. generic_single_line. (Splunk)
      */
     sourcetype?: pulumi.Input<string>;
     /**
-     * The subsystem name for Coralogix.
+     * The name of the subsystem. (Azure Monitor)
      */
     subsystem?: pulumi.Input<string>;
     /**
-     * The table name for Azure monitor.
+     * The table name.
+     *
+     * Use Azure portal to configure external access for Azure Monitor. [Tutorial to find/create all arguments]
+     *
+     * </details>
+     *
+     * <details>
+     * <summary>
+     * <b>Cloudwatch</b>
+     * </summary>
+     *
+     * The following arguments used by CloudWatch.
      */
     table?: pulumi.Input<string>;
     /**
-     * Tags. e.g. `env=prod,region=europe`.
+     * Enter tags to `CloudAMQP` log group like this: `Project=A,Environment=Development`.
      *
-     * ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
-     * letter, read more about tags format in the [Datadog documentation].
+     * ***Note:*** Tags are only added, unwanted tags needs to be removed manually in the AWS console.
+     * Read more about tags format in the [Cloudwatch Log tags]
      */
     tags?: pulumi.Input<string>;
     /**
-     * The tenant identifier for Azure monitor.
+     * The tenant identifier.
      */
     tenantId?: pulumi.Input<string>;
     /**
-     * Token used for authentication.
+     * The token used for authentication. (Loggly, Logentries, Splunk, Scalyr)
      */
     token?: pulumi.Input<string>;
     /**
-     * Endpoint to log integration.
+     * The URL to push the logs to. (Papertrail)
      */
     url?: pulumi.Input<string>;
 }
@@ -740,65 +803,69 @@ export interface IntegrationLogArgs {
      */
     accessKeyId?: pulumi.Input<string>;
     /**
-     * The API key.
+     * The API key for the integration service. (Datadog)
      */
     apiKey?: pulumi.Input<string>;
     /**
-     * The application name for Coralogix.
+     * The name of the application. (Azure Monitor)
      */
     application?: pulumi.Input<string>;
     /**
-     * The application identifier for Azure monitor.
+     * The application identifier.
      */
     applicationId?: pulumi.Input<string>;
     /**
-     * The application secret for Azure monitor.
+     * The application secret.
      */
     applicationSecret?: pulumi.Input<string>;
     /**
-     * The client email registered for the integration service.
+     * The client email. (Stackdriver)
      */
     clientEmail?: pulumi.Input<string>;
     /**
-     * Google Service Account private key credentials.
+     * Base64Encoded credentials. (Stackdriver)
      */
     credentials?: pulumi.Input<string>;
     /**
-     * The data collection endpoint for Azure monitor.
+     * The data collection endpoint.
      */
     dceUri?: pulumi.Input<string>;
     /**
-     * ID of data collection rule that your DCE is linked to for Azure
-     * Monitor.
-     *
-     * This is the full list of all arguments. Only a subset of arguments are used based on which type of
-     * integration used. See [integration type reference] table below for more information.
+     * ID of data collection rule that your DCE is linked to.
      */
     dcrId?: pulumi.Input<string>;
     /**
-     * The syslog destination to send the logs to for Coralogix.
+     * The syslog destination to send the logs to. (Papertrail)
      */
     endpoint?: pulumi.Input<string>;
     /**
-     * The host for Scalyr integration. (app.scalyr.com,
-     * app.eu.scalyr.com)
+     * The host information. (Scalyr)
      */
     host?: pulumi.Input<string>;
     /**
-     * Destination to send the logs.
+     * Destination to send the logs. (Splunk)
      */
     hostPort?: pulumi.Input<string>;
     /**
-     * Instance identifier used to make proxy calls
+     * Instance identifier for the CloudAMQP instance.
+     *
+     * Valid arguments for each third party log integrations below. Corresponding API backend documentation can be
+     * found here [CloudAMQP API add integration].
+     *
+     * <details>
+     * <summary>
+     * <b>Azure monitoring</b>
+     * </summary>
+     *
+     * The following arguments used by Azure monitoring.
      */
     instanceId: pulumi.Input<number>;
     /**
-     * The name of the third party log integration. See
-     * [integration type reference]
+     * The name of the third party log integration (`cloudwatchlog`).
      */
     name?: pulumi.Input<string>;
     /**
-     * The private access key.
+     * The private API key used for authentication. (Stackdriver, Coralogix)
      */
     privateKey?: pulumi.Input<string>;
     /**
@@ -806,47 +873,66 @@ export interface IntegrationLogArgs {
      */
     privateKeyId?: pulumi.Input<string>;
     /**
-     * The project identifier.
+     * The project ID for the integration service. (Stackdriver)
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Region hosting the integration service.
+     * AWS region hosting the integration service.
+     *
+     * Optional arguments introduced in version [v1.38.0].
      */
     region?: pulumi.Input<string>;
+    /**
+     * Number of days to retain log events in `CloudAMQP` log group.
+     *
+     * ***Note:*** Possible values are: 0 (never expire) or between 1-3653, read more about valid values in
+     * the [Cloudwatch Log retention].
+     */
+    retention?: pulumi.Input<number>;
     /**
      * AWS secret access key.
      */
     secretAccessKey?: pulumi.Input<string>;
     /**
-     * Assign source type to the data exported, eg. generic_single_line.
-     * (Splunk)
+     * Assign source type to the data exported, eg. generic_single_line. (Splunk)
      */
     sourcetype?: pulumi.Input<string>;
     /**
-     * The subsystem name for Coralogix.
+     * The name of the subsystem. (Azure Monitor)
      */
     subsystem?: pulumi.Input<string>;
     /**
-     * The table name for Azure monitor.
+     * The table name.
+     *
+     * Use Azure portal to configure external access for Azure Monitor. [Tutorial to find/create all arguments]
+     *
+     * </details>
+     *
+     * <details>
+     * <summary>
+     * <b>Cloudwatch</b>
+     * </summary>
+     *
+     * The following arguments used by CloudWatch.
      */
     table?: pulumi.Input<string>;
     /**
-     * Tags. e.g. `env=prod,region=europe`.
+     * Enter tags to `CloudAMQP` log group like this: `Project=A,Environment=Development`.
      *
-     * ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
-     * letter, read more about tags format in the [Datadog documentation].
+     * ***Note:*** Tags are only added, unwanted tags needs to be removed manually in the AWS console.
+     * Read more about tags format in the [Cloudwatch Log tags]
      */
     tags?: pulumi.Input<string>;
     /**
-     * The tenant identifier for Azure monitor.
+     * The tenant identifier.
      */
     tenantId?: pulumi.Input<string>;
     /**
-     * Token used for authentication.
+     * The token used for authentication. (Loggly, Logentries, Splunk, Scalyr)
      */
     token?: pulumi.Input<string>;
     /**
-     * Endpoint to log integration.
+     * The URL to push the logs to. (Papertrail)
      */
     url?: pulumi.Input<string>;
 }

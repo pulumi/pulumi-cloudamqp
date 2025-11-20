@@ -310,6 +310,53 @@ import javax.annotation.Nullable;
  * 
  * &lt;/details&gt;
  * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Dedicated instance with preferred AZs&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var instance = new Instance("instance", InstanceArgs.builder()
+ *             .name("terraform-cloudamqp-instance")
+ *             .plan("penguin-3")
+ *             .region("amazon-web-services::us-east-1")
+ *             .tags("terraform")
+ *             .preferredAzs(            
+ *                 "use1-az1",
+ *                 "use1-az2",
+ *                 "use1-az3")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
  * ### Settings supported by LavinMQ
  * 
  * ***Allowed values:*** alarms, definitions, firewall, metrics
@@ -428,8 +475,8 @@ import javax.annotation.Nullable;
  * &lt;/details&gt;
  * 
  * [CloudAMQP]: https://cloudamqp.com
- * [CloudAMQP API]: https://docs.cloudamqp.com/cloudamqp_api.html
- * [CloudAMQP API list instances]: https://docs.cloudamqp.com/#list-instances
+ * [CloudAMQP API]: https://docs.cloudamqp.com/instance-api.html
+ * [CloudAMQP API list instances]: https://docs.cloudamqp.com/index.html#tag/instances/get/instances
  * [CloudAMQP plans]: https://www.cloudamqp.com/plans.html
  * [copy settings]: #copy-settings-to-a-new-dedicated-instance
  * [example]: ../guides/info_vpc_existing.md
@@ -439,6 +486,10 @@ import javax.annotation.Nullable;
  * [plans]: ../guides/info_plan.md
  * [**RabbitMQ**]: https://www.rabbitmq.com
  * [instance regions]: ../guides/info_region.md
+ * [aws-availability-zones]: https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-availability-zones.html
+ * [azure-region-list]: https://learn.microsoft.com/en-us/azure/reliability/regions-list
+ * [gcp-region-zones]: https://cloud.google.com/compute/docs/regions-zones#available
+ * [do-regional-availability]: https://docs.digitalocean.com/platform/regional-availability/
  * 
  * ## Import
  * 
@@ -501,10 +552,6 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * Copy settings from one CloudAMQP instance to a new. Consists of
      * the block documented below.
      * 
-     * ***
-     * 
-     * The `copySettings` block consists of:
-     * 
      */
     @Export(name="copySettings", refs={List.class,InstanceCopySetting.class}, tree="[0,1]")
     private Output</* @Nullable */ List<InstanceCopySetting>> copySettings;
@@ -512,10 +559,6 @@ public class Instance extends com.pulumi.resources.CustomResource {
     /**
      * @return Copy settings from one CloudAMQP instance to a new. Consists of
      * the block documented below.
-     * 
-     * ***
-     * 
-     * The `copySettings` block consists of:
      * 
      */
     public Output<Optional<List<InstanceCopySetting>>> copySettings() {
@@ -644,6 +687,40 @@ public class Instance extends com.pulumi.resources.CustomResource {
      */
     public Output<String> plan() {
         return this.plan;
+    }
+    /**
+     * The AZs to place your nodes in. Each entry corresponds to a server in your cluster, so for a 3 node cluster, provide 3 AZs in the list.
+     * 
+     * ***Note:*** `preferredAz` can only be set upon instance creation as of now and the result is not guaranteed. On eventual failed resource allocation in the zone, CloudAMQP will fallback to a different zone.
+     * * AWS: AZ id in [aws-availability-zones]
+     * * Azure: 1,2 or 3 in supported regions [azure-region-list]
+     * * GCP: zones in [gcp-region-zones]
+     * * Digital Ocean: Slug in [do-regional-availability]
+     * 
+     * ***
+     * 
+     * The `copySettings` block consists of:
+     * 
+     */
+    @Export(name="preferredAzs", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> preferredAzs;
+
+    /**
+     * @return The AZs to place your nodes in. Each entry corresponds to a server in your cluster, so for a 3 node cluster, provide 3 AZs in the list.
+     * 
+     * ***Note:*** `preferredAz` can only be set upon instance creation as of now and the result is not guaranteed. On eventual failed resource allocation in the zone, CloudAMQP will fallback to a different zone.
+     * * AWS: AZ id in [aws-availability-zones]
+     * * Azure: 1,2 or 3 in supported regions [azure-region-list]
+     * * GCP: zones in [gcp-region-zones]
+     * * Digital Ocean: Slug in [do-regional-availability]
+     * 
+     * ***
+     * 
+     * The `copySettings` block consists of:
+     * 
+     */
+    public Output<Optional<List<String>>> preferredAzs() {
+        return Codegen.optional(this.preferredAzs);
     }
     /**
      * Flag describing if the resource is ready

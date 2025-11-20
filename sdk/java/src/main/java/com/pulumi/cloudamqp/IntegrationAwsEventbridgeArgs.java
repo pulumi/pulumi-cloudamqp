@@ -10,6 +10,8 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class IntegrationAwsEventbridgeArgs extends com.pulumi.resources.ResourceArgs {
@@ -59,6 +61,21 @@ public final class IntegrationAwsEventbridgeArgs extends com.pulumi.resources.Re
      */
     public Output<Integer> instanceId() {
         return this.instanceId;
+    }
+
+    /**
+     * Number of messages to prefetch. Default set to 1.
+     * 
+     */
+    @Import(name="prefetch")
+    private @Nullable Output<Integer> prefetch;
+
+    /**
+     * @return Number of messages to prefetch. Default set to 1.
+     * 
+     */
+    public Optional<Output<Integer>> prefetch() {
+        return Optional.ofNullable(this.prefetch);
     }
 
     /**
@@ -112,6 +129,7 @@ public final class IntegrationAwsEventbridgeArgs extends com.pulumi.resources.Re
         this.awsAccountId = $.awsAccountId;
         this.awsRegion = $.awsRegion;
         this.instanceId = $.instanceId;
+        this.prefetch = $.prefetch;
         this.queue = $.queue;
         this.vhost = $.vhost;
         this.withHeaders = $.withHeaders;
@@ -196,6 +214,27 @@ public final class IntegrationAwsEventbridgeArgs extends com.pulumi.resources.Re
          */
         public Builder instanceId(Integer instanceId) {
             return instanceId(Output.of(instanceId));
+        }
+
+        /**
+         * @param prefetch Number of messages to prefetch. Default set to 1.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder prefetch(@Nullable Output<Integer> prefetch) {
+            $.prefetch = prefetch;
+            return this;
+        }
+
+        /**
+         * @param prefetch Number of messages to prefetch. Default set to 1.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder prefetch(Integer prefetch) {
+            return prefetch(Output.of(prefetch));
         }
 
         /**

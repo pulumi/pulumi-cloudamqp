@@ -24,7 +24,8 @@ class IntegrationAwsEventbridgeArgs:
                  instance_id: pulumi.Input[_builtins.int],
                  queue: pulumi.Input[_builtins.str],
                  vhost: pulumi.Input[_builtins.str],
-                 with_headers: pulumi.Input[_builtins.bool]):
+                 with_headers: pulumi.Input[_builtins.bool],
+                 prefetch: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a IntegrationAwsEventbridge resource.
         :param pulumi.Input[_builtins.str] aws_account_id: The 12 digit AWS Account ID where you want the events to be sent to.
@@ -33,6 +34,7 @@ class IntegrationAwsEventbridgeArgs:
         :param pulumi.Input[_builtins.str] queue: A (durable) queue on your RabbitMQ instance.
         :param pulumi.Input[_builtins.str] vhost: The VHost the queue resides in.
         :param pulumi.Input[_builtins.bool] with_headers: Include message headers in the event data.
+        :param pulumi.Input[_builtins.int] prefetch: Number of messages to prefetch. Default set to 1.
         """
         pulumi.set(__self__, "aws_account_id", aws_account_id)
         pulumi.set(__self__, "aws_region", aws_region)
@@ -40,6 +42,8 @@ class IntegrationAwsEventbridgeArgs:
         pulumi.set(__self__, "queue", queue)
         pulumi.set(__self__, "vhost", vhost)
         pulumi.set(__self__, "with_headers", with_headers)
+        if prefetch is not None:
+            pulumi.set(__self__, "prefetch", prefetch)
 
     @_builtins.property
     @pulumi.getter(name="awsAccountId")
@@ -113,6 +117,18 @@ class IntegrationAwsEventbridgeArgs:
     def with_headers(self, value: pulumi.Input[_builtins.bool]):
         pulumi.set(self, "with_headers", value)
 
+    @_builtins.property
+    @pulumi.getter
+    def prefetch(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Number of messages to prefetch. Default set to 1.
+        """
+        return pulumi.get(self, "prefetch")
+
+    @prefetch.setter
+    def prefetch(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "prefetch", value)
+
 
 @pulumi.input_type
 class _IntegrationAwsEventbridgeState:
@@ -120,6 +136,7 @@ class _IntegrationAwsEventbridgeState:
                  aws_account_id: Optional[pulumi.Input[_builtins.str]] = None,
                  aws_region: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 prefetch: Optional[pulumi.Input[_builtins.int]] = None,
                  queue: Optional[pulumi.Input[_builtins.str]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
                  vhost: Optional[pulumi.Input[_builtins.str]] = None,
@@ -129,6 +146,7 @@ class _IntegrationAwsEventbridgeState:
         :param pulumi.Input[_builtins.str] aws_account_id: The 12 digit AWS Account ID where you want the events to be sent to.
         :param pulumi.Input[_builtins.str] aws_region: The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
         :param pulumi.Input[_builtins.int] instance_id: Instance identifier
+        :param pulumi.Input[_builtins.int] prefetch: Number of messages to prefetch. Default set to 1.
         :param pulumi.Input[_builtins.str] queue: A (durable) queue on your RabbitMQ instance.
         :param pulumi.Input[_builtins.str] status: Always set to null, unless there is an error starting the EventBridge.
         :param pulumi.Input[_builtins.str] vhost: The VHost the queue resides in.
@@ -140,6 +158,8 @@ class _IntegrationAwsEventbridgeState:
             pulumi.set(__self__, "aws_region", aws_region)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
+        if prefetch is not None:
+            pulumi.set(__self__, "prefetch", prefetch)
         if queue is not None:
             pulumi.set(__self__, "queue", queue)
         if status is not None:
@@ -184,6 +204,18 @@ class _IntegrationAwsEventbridgeState:
     @instance_id.setter
     def instance_id(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "instance_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def prefetch(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Number of messages to prefetch. Default set to 1.
+        """
+        return pulumi.get(self, "prefetch")
+
+    @prefetch.setter
+    def prefetch(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "prefetch", value)
 
     @_builtins.property
     @pulumi.getter
@@ -243,6 +275,7 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
                  aws_account_id: Optional[pulumi.Input[_builtins.str]] = None,
                  aws_region: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 prefetch: Optional[pulumi.Input[_builtins.int]] = None,
                  queue: Optional[pulumi.Input[_builtins.str]] = None,
                  vhost: Optional[pulumi.Input[_builtins.str]] = None,
                  with_headers: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -263,6 +296,13 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
 
         ## Example Usage
 
+        <details>
+          <summary>
+            <b>
+              <i>AWS Eventbridge integration</i>
+            </b>
+          </summary>
+
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -282,6 +322,37 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
             with_headers=True)
         ```
 
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>AWS Eventbridge integration with prefetch from [v1.38.0]</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        instance = cloudamqp.Instance("instance",
+            name="Test instance",
+            plan="penguin-1",
+            region="amazon-web-services::us-west-1",
+            rmq_version="3.11.5",
+            tags=["aws"])
+        this = cloudamqp.IntegrationAwsEventbridge("this",
+            instance_id=instance.id,
+            vhost=instance.vhost,
+            queue="<QUEUE-NAME>",
+            aws_account_id="<AWS-ACCOUNT-ID>",
+            aws_region="us-west-1",
+            with_headers=True,
+            prefetch=100)
+        ```
+
+        </details>
+
         ## Argument References
 
         The following arguments are supported:
@@ -294,6 +365,8 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
         * `queue`           - (ForceNew/Required) A (durable) queue on your RabbitMQ instance.
         * `with_headers`    - (ForceNew/Required) Include message headers in the event data.
                               `({ "headers": { }, "body": { "your": "message" } })`
+        * `prefetch`        - (ForceNew/Optional) Set the prefetch for the Eventbrigde consumer to increase
+                              throughput. Supported from [v1.38.0].
 
         ## Dependency
 
@@ -329,13 +402,16 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
 
         [AWS Eventbridge console]: https://console.aws.amazon.com/events/home
 
-        [CloudAMQP API list eventbridges]: https://docs.cloudamqp.com/cloudamqp_api.html#list-eventbridges
+        [v1.38.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.38.0
+
+        [CloudAMQP API list eventbridges]: https://docs.cloudamqp.com/instance-api.html#tag/eventbridge/get/eventbridges
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] aws_account_id: The 12 digit AWS Account ID where you want the events to be sent to.
         :param pulumi.Input[_builtins.str] aws_region: The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
         :param pulumi.Input[_builtins.int] instance_id: Instance identifier
+        :param pulumi.Input[_builtins.int] prefetch: Number of messages to prefetch. Default set to 1.
         :param pulumi.Input[_builtins.str] queue: A (durable) queue on your RabbitMQ instance.
         :param pulumi.Input[_builtins.str] vhost: The VHost the queue resides in.
         :param pulumi.Input[_builtins.bool] with_headers: Include message headers in the event data.
@@ -362,6 +438,13 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
 
         ## Example Usage
 
+        <details>
+          <summary>
+            <b>
+              <i>AWS Eventbridge integration</i>
+            </b>
+          </summary>
+
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
@@ -381,6 +464,37 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
             with_headers=True)
         ```
 
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>AWS Eventbridge integration with prefetch from [v1.38.0]</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        instance = cloudamqp.Instance("instance",
+            name="Test instance",
+            plan="penguin-1",
+            region="amazon-web-services::us-west-1",
+            rmq_version="3.11.5",
+            tags=["aws"])
+        this = cloudamqp.IntegrationAwsEventbridge("this",
+            instance_id=instance.id,
+            vhost=instance.vhost,
+            queue="<QUEUE-NAME>",
+            aws_account_id="<AWS-ACCOUNT-ID>",
+            aws_region="us-west-1",
+            with_headers=True,
+            prefetch=100)
+        ```
+
+        </details>
+
         ## Argument References
 
         The following arguments are supported:
@@ -393,6 +507,8 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
         * `queue`           - (ForceNew/Required) A (durable) queue on your RabbitMQ instance.
         * `with_headers`    - (ForceNew/Required) Include message headers in the event data.
                               `({ "headers": { }, "body": { "your": "message" } })`
+        * `prefetch`        - (ForceNew/Optional) Set the prefetch for the Eventbrigde consumer to increase
+                              throughput. Supported from [v1.38.0].
 
         ## Dependency
 
@@ -428,7 +544,9 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
 
         [AWS Eventbridge console]: https://console.aws.amazon.com/events/home
 
-        [CloudAMQP API list eventbridges]: https://docs.cloudamqp.com/cloudamqp_api.html#list-eventbridges
+        [v1.38.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.38.0
+
+        [CloudAMQP API list eventbridges]: https://docs.cloudamqp.com/instance-api.html#tag/eventbridge/get/eventbridges
 
         :param str resource_name: The name of the resource.
         :param IntegrationAwsEventbridgeArgs args: The arguments to use to populate this resource's properties.
@@ -448,6 +566,7 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
                  aws_account_id: Optional[pulumi.Input[_builtins.str]] = None,
                  aws_region: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 prefetch: Optional[pulumi.Input[_builtins.int]] = None,
                  queue: Optional[pulumi.Input[_builtins.str]] = None,
                  vhost: Optional[pulumi.Input[_builtins.str]] = None,
                  with_headers: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -469,6 +588,7 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
+            __props__.__dict__["prefetch"] = prefetch
             if queue is None and not opts.urn:
                 raise TypeError("Missing required property 'queue'")
             __props__.__dict__["queue"] = queue
@@ -492,6 +612,7 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
             aws_account_id: Optional[pulumi.Input[_builtins.str]] = None,
             aws_region: Optional[pulumi.Input[_builtins.str]] = None,
             instance_id: Optional[pulumi.Input[_builtins.int]] = None,
+            prefetch: Optional[pulumi.Input[_builtins.int]] = None,
             queue: Optional[pulumi.Input[_builtins.str]] = None,
             status: Optional[pulumi.Input[_builtins.str]] = None,
             vhost: Optional[pulumi.Input[_builtins.str]] = None,
@@ -506,6 +627,7 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] aws_account_id: The 12 digit AWS Account ID where you want the events to be sent to.
         :param pulumi.Input[_builtins.str] aws_region: The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
         :param pulumi.Input[_builtins.int] instance_id: Instance identifier
+        :param pulumi.Input[_builtins.int] prefetch: Number of messages to prefetch. Default set to 1.
         :param pulumi.Input[_builtins.str] queue: A (durable) queue on your RabbitMQ instance.
         :param pulumi.Input[_builtins.str] status: Always set to null, unless there is an error starting the EventBridge.
         :param pulumi.Input[_builtins.str] vhost: The VHost the queue resides in.
@@ -518,6 +640,7 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
         __props__.__dict__["aws_account_id"] = aws_account_id
         __props__.__dict__["aws_region"] = aws_region
         __props__.__dict__["instance_id"] = instance_id
+        __props__.__dict__["prefetch"] = prefetch
         __props__.__dict__["queue"] = queue
         __props__.__dict__["status"] = status
         __props__.__dict__["vhost"] = vhost
@@ -547,6 +670,14 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
         Instance identifier
         """
         return pulumi.get(self, "instance_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def prefetch(self) -> pulumi.Output[_builtins.int]:
+        """
+        Number of messages to prefetch. Default set to 1.
+        """
+        return pulumi.get(self, "prefetch")
 
     @_builtins.property
     @pulumi.getter

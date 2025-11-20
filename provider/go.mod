@@ -7,7 +7,7 @@ toolchain go1.24.10
 replace github.com/hashicorp/vault => github.com/hashicorp/vault v1.2.0
 
 require (
-	github.com/cloudamqp/terraform-provider-cloudamqp v1.36.0
+	github.com/cloudamqp/terraform-provider-cloudamqp v0.0.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.117.0
 	github.com/pulumi/pulumi/sdk/v3 v3.207.0
 )
@@ -22,7 +22,10 @@ require (
 //	        github.com/hashicorp/terraform-plugin-sdk/helper/resource imports
 //	        github.com/hashicorp/terraform-plugin-test/v2 imports
 //	        github.com/hashicorp/terraform-exec/tfinstall: module github.com/hashicorp/terraform-exec@latest found (v0.20.0), but does not contain package github.com/hashicorp/terraform-exec/tfinstall
-replace github.com/hashicorp/terraform-exec => github.com/hashicorp/terraform-exec v0.15.0
+replace (
+	github.com/cloudamqp/terraform-provider-cloudamqp => ../upstream
+	github.com/hashicorp/terraform-exec => github.com/hashicorp/terraform-exec v0.15.0
+)
 
 require (
 	cloud.google.com/go v0.112.1 // indirect
@@ -95,12 +98,11 @@ require (
 	github.com/hashicorp/hil v0.0.0-20190212132231-97b3a9cdfa93 // indirect
 	github.com/hashicorp/logutils v1.0.0 // indirect
 	github.com/hashicorp/terraform-plugin-framework v1.16.1 // indirect
-	github.com/hashicorp/terraform-plugin-framework-validators v0.18.0 // indirect
+	github.com/hashicorp/terraform-plugin-framework-validators v0.19.0 // indirect
 	github.com/hashicorp/terraform-plugin-go v0.29.0 // indirect
 	github.com/hashicorp/terraform-plugin-log v0.9.0 // indirect
-	github.com/hashicorp/terraform-plugin-mux v0.21.0 // indirect
 	github.com/hashicorp/terraform-plugin-sdk v1.17.2 // indirect
-	github.com/hashicorp/terraform-plugin-sdk/v2 v2.37.0 // indirect
+	github.com/hashicorp/terraform-plugin-sdk/v2 v2.38.1 // indirect
 	github.com/hashicorp/terraform-registry-address v0.4.0 // indirect
 	github.com/hashicorp/terraform-svchost v0.1.1 // indirect
 	github.com/hashicorp/yamux v0.1.2 // indirect
