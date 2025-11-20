@@ -72,6 +72,7 @@ func Provider() tfbridge.ProviderInfo {
 		Config:            map[string]*tfbridge.SchemaInfo{},
 		DocRules:          &tfbridge.DocRuleInfo{EditRules: docEditRules},
 		MetadataInfo:      tfbridge.NewProviderMetadata(metadata),
+		UpstreamRepoPath:  "./upstream",
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"cloudamqp_rabbitmq_configuration": {Tok: makeResource("RabbitConfiguration")},
 			"cloudamqp_integration_metric": {
