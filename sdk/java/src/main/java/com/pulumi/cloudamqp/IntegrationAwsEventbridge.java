@@ -31,6 +31,13 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;AWS Eventbridge integration&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
  * <pre>
  * {@code
  * package generated_program;
@@ -77,6 +84,64 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;AWS Eventbridge integration with prefetch from [v1.38.0]&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import com.pulumi.cloudamqp.IntegrationAwsEventbridge;
+ * import com.pulumi.cloudamqp.IntegrationAwsEventbridgeArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var instance = new Instance("instance", InstanceArgs.builder()
+ *             .name("Test instance")
+ *             .plan("penguin-1")
+ *             .region("amazon-web-services::us-west-1")
+ *             .rmqVersion("3.11.5")
+ *             .tags("aws")
+ *             .build());
+ * 
+ *         var this_ = new IntegrationAwsEventbridge("this", IntegrationAwsEventbridgeArgs.builder()
+ *             .instanceId(instance.id())
+ *             .vhost(instance.vhost())
+ *             .queue("<QUEUE-NAME>")
+ *             .awsAccountId("<AWS-ACCOUNT-ID>")
+ *             .awsRegion("us-west-1")
+ *             .withHeaders(true)
+ *             .prefetch(100)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
  * ## Argument References
  * 
  * The following arguments are supported:
@@ -89,6 +154,8 @@ import javax.annotation.Nullable;
  * * `queue`           - (ForceNew/Required) A (durable) queue on your RabbitMQ instance.
  * * `withHeaders`    - (ForceNew/Required) Include message headers in the event data.
  *                       `({ &#34;headers&#34;: { }, &#34;body&#34;: { &#34;your&#34;: &#34;message&#34; } })`
+ * * `prefetch`        - (ForceNew/Optional) Set the prefetch for the Eventbrigde consumer to increase
+ *                       throughput. Supported from [v1.38.0].
  * 
  * ## Dependency
  * 
@@ -124,7 +191,9 @@ import javax.annotation.Nullable;
  * 
  * [AWS Eventbridge console]: https://console.aws.amazon.com/events/home
  * 
- * [CloudAMQP API list eventbridges]: https://docs.cloudamqp.com/cloudamqp_api.html#list-eventbridges
+ * [v1.38.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.38.0
+ * 
+ * [CloudAMQP API list eventbridges]: https://docs.cloudamqp.com/instance-api.html#tag/eventbridge/get/eventbridges
  * 
  */
 @ResourceType(type="cloudamqp:index/integrationAwsEventbridge:IntegrationAwsEventbridge")
@@ -170,6 +239,20 @@ public class IntegrationAwsEventbridge extends com.pulumi.resources.CustomResour
      */
     public Output<Integer> instanceId() {
         return this.instanceId;
+    }
+    /**
+     * Number of messages to prefetch. Default set to 1.
+     * 
+     */
+    @Export(name="prefetch", refs={Integer.class}, tree="[0]")
+    private Output<Integer> prefetch;
+
+    /**
+     * @return Number of messages to prefetch. Default set to 1.
+     * 
+     */
+    public Output<Integer> prefetch() {
+        return this.prefetch;
     }
     /**
      * A (durable) queue on your RabbitMQ instance.

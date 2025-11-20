@@ -32,14 +32,14 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The API key.
+     * The API key for the integration service. (Datadog)
      * 
      */
     @Import(name="apiKey")
     private @Nullable Output<String> apiKey;
 
     /**
-     * @return The API key.
+     * @return The API key for the integration service. (Datadog)
      * 
      */
     public Optional<Output<String>> apiKey() {
@@ -47,14 +47,14 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The application name for Coralogix.
+     * The name of the application. (Azure Monitor)
      * 
      */
     @Import(name="application")
     private @Nullable Output<String> application;
 
     /**
-     * @return The application name for Coralogix.
+     * @return The name of the application. (Azure Monitor)
      * 
      */
     public Optional<Output<String>> application() {
@@ -62,14 +62,14 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The application identifier for Azure monitor.
+     * The application identifier.
      * 
      */
     @Import(name="applicationId")
     private @Nullable Output<String> applicationId;
 
     /**
-     * @return The application identifier for Azure monitor.
+     * @return The application identifier.
      * 
      */
     public Optional<Output<String>> applicationId() {
@@ -77,14 +77,14 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The application secret for Azure monitor.
+     * The application secret.
      * 
      */
     @Import(name="applicationSecret")
     private @Nullable Output<String> applicationSecret;
 
     /**
-     * @return The application secret for Azure monitor.
+     * @return The application secret.
      * 
      */
     public Optional<Output<String>> applicationSecret() {
@@ -92,14 +92,14 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The client email registered for the integration service.
+     * The client email. (Stackdriver)
      * 
      */
     @Import(name="clientEmail")
     private @Nullable Output<String> clientEmail;
 
     /**
-     * @return The client email registered for the integration service.
+     * @return The client email. (Stackdriver)
      * 
      */
     public Optional<Output<String>> clientEmail() {
@@ -107,14 +107,14 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Google Service Account private key credentials.
+     * Base64Encoded credentials. (Stackdriver)
      * 
      */
     @Import(name="credentials")
     private @Nullable Output<String> credentials;
 
     /**
-     * @return Google Service Account private key credentials.
+     * @return Base64Encoded credentials. (Stackdriver)
      * 
      */
     public Optional<Output<String>> credentials() {
@@ -122,14 +122,14 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The data collection endpoint for Azure monitor.
+     * The data collection endpoint.
      * 
      */
     @Import(name="dceUri")
     private @Nullable Output<String> dceUri;
 
     /**
-     * @return The data collection endpoint for Azure monitor.
+     * @return The data collection endpoint.
      * 
      */
     public Optional<Output<String>> dceUri() {
@@ -137,22 +137,14 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * ID of data collection rule that your DCE is linked to for Azure
-     * Monitor.
-     * 
-     * This is the full list of all arguments. Only a subset of arguments are used based on which type of
-     * integration used. See [integration type reference] table below for more information.
+     * ID of data collection rule that your DCE is linked to.
      * 
      */
     @Import(name="dcrId")
     private @Nullable Output<String> dcrId;
 
     /**
-     * @return ID of data collection rule that your DCE is linked to for Azure
-     * Monitor.
-     * 
-     * This is the full list of all arguments. Only a subset of arguments are used based on which type of
-     * integration used. See [integration type reference] table below for more information.
+     * @return ID of data collection rule that your DCE is linked to.
      * 
      */
     public Optional<Output<String>> dcrId() {
@@ -160,14 +152,14 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The syslog destination to send the logs to for Coralogix.
+     * The syslog destination to send the logs to. (Papertrail)
      * 
      */
     @Import(name="endpoint")
     private @Nullable Output<String> endpoint;
 
     /**
-     * @return The syslog destination to send the logs to for Coralogix.
+     * @return The syslog destination to send the logs to. (Papertrail)
      * 
      */
     public Optional<Output<String>> endpoint() {
@@ -175,16 +167,14 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The host for Scalyr integration. (app.scalyr.com,
-     * app.eu.scalyr.com)
+     * The host information. (Scalyr)
      * 
      */
     @Import(name="host")
     private @Nullable Output<String> host;
 
     /**
-     * @return The host for Scalyr integration. (app.scalyr.com,
-     * app.eu.scalyr.com)
+     * @return The host information. (Scalyr)
      * 
      */
     public Optional<Output<String>> host() {
@@ -192,14 +182,14 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Destination to send the logs.
+     * Destination to send the logs. (Splunk)
      * 
      */
     @Import(name="hostPort")
     private @Nullable Output<String> hostPort;
 
     /**
-     * @return Destination to send the logs.
+     * @return Destination to send the logs. (Splunk)
      * 
      */
     public Optional<Output<String>> hostPort() {
@@ -207,14 +197,34 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Instance identifier used to make proxy calls
+     * Instance identifier for the CloudAMQP instance.
+     * 
+     * Valid arguments for each third party log integrations below. Corresponding API backend documentation can be
+     * found here [CloudAMQP API add integration].
+     * 
+     * &lt;details&gt;
+     * &lt;summary&gt;
+     * &lt;b&gt;Azure monitoring&lt;/b&gt;
+     * &lt;/summary&gt;
+     * 
+     * The following arguments used by Azure monitoring.
      * 
      */
     @Import(name="instanceId")
     private @Nullable Output<Integer> instanceId;
 
     /**
-     * @return Instance identifier used to make proxy calls
+     * @return Instance identifier for the CloudAMQP instance.
+     * 
+     * Valid arguments for each third party log integrations below. Corresponding API backend documentation can be
+     * found here [CloudAMQP API add integration].
+     * 
+     * &lt;details&gt;
+     * &lt;summary&gt;
+     * &lt;b&gt;Azure monitoring&lt;/b&gt;
+     * &lt;/summary&gt;
+     * 
+     * The following arguments used by Azure monitoring.
      * 
      */
     public Optional<Output<Integer>> instanceId() {
@@ -222,16 +232,14 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The name of the third party log integration. See
-     * [integration type reference]
+     * The name of the third party log integration (`cloudwatchlog`).
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The name of the third party log integration. See
-     * [integration type reference]
+     * @return The name of the third party log integration (`cloudwatchlog`).
      * 
      */
     public Optional<Output<String>> name() {
@@ -239,14 +247,14 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The private access key.
+     * The private API key used for authentication. (Stackdriver, Coralogix)
      * 
      */
     @Import(name="privateKey")
     private @Nullable Output<String> privateKey;
 
     /**
-     * @return The private access key.
+     * @return The private API key used for authentication. (Stackdriver, Coralogix)
      * 
      */
     public Optional<Output<String>> privateKey() {
@@ -269,14 +277,14 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The project identifier.
+     * The project ID for the integration service. (Stackdriver)
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
     /**
-     * @return The project identifier.
+     * @return The project ID for the integration service. (Stackdriver)
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -284,18 +292,43 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Region hosting the integration service.
+     * AWS region hosting the integration service.
+     * 
+     * Optional arguments introduced in version [v1.38.0].
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return Region hosting the integration service.
+     * @return AWS region hosting the integration service.
+     * 
+     * Optional arguments introduced in version [v1.38.0].
      * 
      */
     public Optional<Output<String>> region() {
         return Optional.ofNullable(this.region);
+    }
+
+    /**
+     * Number of days to retain log events in `CloudAMQP` log group.
+     * 
+     * ***Note:*** Possible values are: 0 (never expire) or between 1-3653, read more about valid values in
+     * the [Cloudwatch Log retention].
+     * 
+     */
+    @Import(name="retention")
+    private @Nullable Output<Integer> retention;
+
+    /**
+     * @return Number of days to retain log events in `CloudAMQP` log group.
+     * 
+     * ***Note:*** Possible values are: 0 (never expire) or between 1-3653, read more about valid values in
+     * the [Cloudwatch Log retention].
+     * 
+     */
+    public Optional<Output<Integer>> retention() {
+        return Optional.ofNullable(this.retention);
     }
 
     /**
@@ -314,16 +347,14 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Assign source type to the data exported, eg. generic_single_line.
-     * (Splunk)
+     * Assign source type to the data exported, eg. generic_single_line. (Splunk)
      * 
      */
     @Import(name="sourcetype")
     private @Nullable Output<String> sourcetype;
 
     /**
-     * @return Assign source type to the data exported, eg. generic_single_line.
-     * (Splunk)
+     * @return Assign source type to the data exported, eg. generic_single_line. (Splunk)
      * 
      */
     public Optional<Output<String>> sourcetype() {
@@ -331,14 +362,14 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The subsystem name for Coralogix.
+     * The name of the subsystem. (Azure Monitor)
      * 
      */
     @Import(name="subsystem")
     private @Nullable Output<String> subsystem;
 
     /**
-     * @return The subsystem name for Coralogix.
+     * @return The name of the subsystem. (Azure Monitor)
      * 
      */
     public Optional<Output<String>> subsystem() {
@@ -346,14 +377,36 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The table name for Azure monitor.
+     * The table name.
+     * 
+     * Use Azure portal to configure external access for Azure Monitor. [Tutorial to find/create all arguments]
+     * 
+     * &lt;/details&gt;
+     * 
+     * &lt;details&gt;
+     * &lt;summary&gt;
+     * &lt;b&gt;Cloudwatch&lt;/b&gt;
+     * &lt;/summary&gt;
+     * 
+     * The following arguments used by CloudWatch.
      * 
      */
     @Import(name="table")
     private @Nullable Output<String> table;
 
     /**
-     * @return The table name for Azure monitor.
+     * @return The table name.
+     * 
+     * Use Azure portal to configure external access for Azure Monitor. [Tutorial to find/create all arguments]
+     * 
+     * &lt;/details&gt;
+     * 
+     * &lt;details&gt;
+     * &lt;summary&gt;
+     * &lt;b&gt;Cloudwatch&lt;/b&gt;
+     * &lt;/summary&gt;
+     * 
+     * The following arguments used by CloudWatch.
      * 
      */
     public Optional<Output<String>> table() {
@@ -361,20 +414,20 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Tags. e.g. `env=prod,region=europe`.
+     * Enter tags to `CloudAMQP` log group like this: `Project=A,Environment=Development`.
      * 
-     * ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
-     * letter, read more about tags format in the [Datadog documentation].
+     * ***Note:*** Tags are only added, unwanted tags needs to be removed manually in the AWS console.
+     * Read more about tags format in the [Cloudwatch Log tags]
      * 
      */
     @Import(name="tags")
     private @Nullable Output<String> tags;
 
     /**
-     * @return Tags. e.g. `env=prod,region=europe`.
+     * @return Enter tags to `CloudAMQP` log group like this: `Project=A,Environment=Development`.
      * 
-     * ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
-     * letter, read more about tags format in the [Datadog documentation].
+     * ***Note:*** Tags are only added, unwanted tags needs to be removed manually in the AWS console.
+     * Read more about tags format in the [Cloudwatch Log tags]
      * 
      */
     public Optional<Output<String>> tags() {
@@ -382,14 +435,14 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The tenant identifier for Azure monitor.
+     * The tenant identifier.
      * 
      */
     @Import(name="tenantId")
     private @Nullable Output<String> tenantId;
 
     /**
-     * @return The tenant identifier for Azure monitor.
+     * @return The tenant identifier.
      * 
      */
     public Optional<Output<String>> tenantId() {
@@ -397,14 +450,14 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Token used for authentication.
+     * The token used for authentication. (Loggly, Logentries, Splunk, Scalyr)
      * 
      */
     @Import(name="token")
     private @Nullable Output<String> token;
 
     /**
-     * @return Token used for authentication.
+     * @return The token used for authentication. (Loggly, Logentries, Splunk, Scalyr)
      * 
      */
     public Optional<Output<String>> token() {
@@ -412,14 +465,14 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Endpoint to log integration.
+     * The URL to push the logs to. (Papertrail)
      * 
      */
     @Import(name="url")
     private @Nullable Output<String> url;
 
     /**
-     * @return Endpoint to log integration.
+     * @return The URL to push the logs to. (Papertrail)
      * 
      */
     public Optional<Output<String>> url() {
@@ -447,6 +500,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         this.privateKeyId = $.privateKeyId;
         this.projectId = $.projectId;
         this.region = $.region;
+        this.retention = $.retention;
         this.secretAccessKey = $.secretAccessKey;
         this.sourcetype = $.sourcetype;
         this.subsystem = $.subsystem;
@@ -497,7 +551,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param apiKey The API key.
+         * @param apiKey The API key for the integration service. (Datadog)
          * 
          * @return builder
          * 
@@ -508,7 +562,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param apiKey The API key.
+         * @param apiKey The API key for the integration service. (Datadog)
          * 
          * @return builder
          * 
@@ -518,7 +572,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param application The application name for Coralogix.
+         * @param application The name of the application. (Azure Monitor)
          * 
          * @return builder
          * 
@@ -529,7 +583,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param application The application name for Coralogix.
+         * @param application The name of the application. (Azure Monitor)
          * 
          * @return builder
          * 
@@ -539,7 +593,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param applicationId The application identifier for Azure monitor.
+         * @param applicationId The application identifier.
          * 
          * @return builder
          * 
@@ -550,7 +604,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param applicationId The application identifier for Azure monitor.
+         * @param applicationId The application identifier.
          * 
          * @return builder
          * 
@@ -560,7 +614,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param applicationSecret The application secret for Azure monitor.
+         * @param applicationSecret The application secret.
          * 
          * @return builder
          * 
@@ -571,7 +625,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param applicationSecret The application secret for Azure monitor.
+         * @param applicationSecret The application secret.
          * 
          * @return builder
          * 
@@ -581,7 +635,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param clientEmail The client email registered for the integration service.
+         * @param clientEmail The client email. (Stackdriver)
          * 
          * @return builder
          * 
@@ -592,7 +646,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param clientEmail The client email registered for the integration service.
+         * @param clientEmail The client email. (Stackdriver)
          * 
          * @return builder
          * 
@@ -602,7 +656,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param credentials Google Service Account private key credentials.
+         * @param credentials Base64Encoded credentials. (Stackdriver)
          * 
          * @return builder
          * 
@@ -613,7 +667,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param credentials Google Service Account private key credentials.
+         * @param credentials Base64Encoded credentials. (Stackdriver)
          * 
          * @return builder
          * 
@@ -623,7 +677,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param dceUri The data collection endpoint for Azure monitor.
+         * @param dceUri The data collection endpoint.
          * 
          * @return builder
          * 
@@ -634,7 +688,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param dceUri The data collection endpoint for Azure monitor.
+         * @param dceUri The data collection endpoint.
          * 
          * @return builder
          * 
@@ -644,11 +698,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param dcrId ID of data collection rule that your DCE is linked to for Azure
-         * Monitor.
-         * 
-         * This is the full list of all arguments. Only a subset of arguments are used based on which type of
-         * integration used. See [integration type reference] table below for more information.
+         * @param dcrId ID of data collection rule that your DCE is linked to.
          * 
          * @return builder
          * 
@@ -659,11 +709,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param dcrId ID of data collection rule that your DCE is linked to for Azure
-         * Monitor.
-         * 
-         * This is the full list of all arguments. Only a subset of arguments are used based on which type of
-         * integration used. See [integration type reference] table below for more information.
+         * @param dcrId ID of data collection rule that your DCE is linked to.
          * 
          * @return builder
          * 
@@ -673,7 +719,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param endpoint The syslog destination to send the logs to for Coralogix.
+         * @param endpoint The syslog destination to send the logs to. (Papertrail)
          * 
          * @return builder
          * 
@@ -684,7 +730,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param endpoint The syslog destination to send the logs to for Coralogix.
+         * @param endpoint The syslog destination to send the logs to. (Papertrail)
          * 
          * @return builder
          * 
@@ -694,8 +740,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param host The host for Scalyr integration. (app.scalyr.com,
-         * app.eu.scalyr.com)
+         * @param host The host information. (Scalyr)
          * 
          * @return builder
          * 
@@ -706,8 +751,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param host The host for Scalyr integration. (app.scalyr.com,
-         * app.eu.scalyr.com)
+         * @param host The host information. (Scalyr)
          * 
          * @return builder
          * 
@@ -717,7 +761,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param hostPort Destination to send the logs.
+         * @param hostPort Destination to send the logs. (Splunk)
          * 
          * @return builder
          * 
@@ -728,7 +772,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param hostPort Destination to send the logs.
+         * @param hostPort Destination to send the logs. (Splunk)
          * 
          * @return builder
          * 
@@ -738,7 +782,17 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param instanceId Instance identifier used to make proxy calls
+         * @param instanceId Instance identifier for the CloudAMQP instance.
+         * 
+         * Valid arguments for each third party log integrations below. Corresponding API backend documentation can be
+         * found here [CloudAMQP API add integration].
+         * 
+         * &lt;details&gt;
+         * &lt;summary&gt;
+         * &lt;b&gt;Azure monitoring&lt;/b&gt;
+         * &lt;/summary&gt;
+         * 
+         * The following arguments used by Azure monitoring.
          * 
          * @return builder
          * 
@@ -749,7 +803,17 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param instanceId Instance identifier used to make proxy calls
+         * @param instanceId Instance identifier for the CloudAMQP instance.
+         * 
+         * Valid arguments for each third party log integrations below. Corresponding API backend documentation can be
+         * found here [CloudAMQP API add integration].
+         * 
+         * &lt;details&gt;
+         * &lt;summary&gt;
+         * &lt;b&gt;Azure monitoring&lt;/b&gt;
+         * &lt;/summary&gt;
+         * 
+         * The following arguments used by Azure monitoring.
          * 
          * @return builder
          * 
@@ -759,8 +823,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param name The name of the third party log integration. See
-         * [integration type reference]
+         * @param name The name of the third party log integration (`cloudwatchlog`).
          * 
          * @return builder
          * 
@@ -771,8 +834,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param name The name of the third party log integration. See
-         * [integration type reference]
+         * @param name The name of the third party log integration (`cloudwatchlog`).
          * 
          * @return builder
          * 
@@ -782,7 +844,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param privateKey The private access key.
+         * @param privateKey The private API key used for authentication. (Stackdriver, Coralogix)
          * 
          * @return builder
          * 
@@ -793,7 +855,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param privateKey The private access key.
+         * @param privateKey The private API key used for authentication. (Stackdriver, Coralogix)
          * 
          * @return builder
          * 
@@ -824,7 +886,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param projectId The project identifier.
+         * @param projectId The project ID for the integration service. (Stackdriver)
          * 
          * @return builder
          * 
@@ -835,7 +897,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param projectId The project identifier.
+         * @param projectId The project ID for the integration service. (Stackdriver)
          * 
          * @return builder
          * 
@@ -845,7 +907,9 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param region Region hosting the integration service.
+         * @param region AWS region hosting the integration service.
+         * 
+         * Optional arguments introduced in version [v1.38.0].
          * 
          * @return builder
          * 
@@ -856,13 +920,42 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param region Region hosting the integration service.
+         * @param region AWS region hosting the integration service.
+         * 
+         * Optional arguments introduced in version [v1.38.0].
          * 
          * @return builder
          * 
          */
         public Builder region(String region) {
             return region(Output.of(region));
+        }
+
+        /**
+         * @param retention Number of days to retain log events in `CloudAMQP` log group.
+         * 
+         * ***Note:*** Possible values are: 0 (never expire) or between 1-3653, read more about valid values in
+         * the [Cloudwatch Log retention].
+         * 
+         * @return builder
+         * 
+         */
+        public Builder retention(@Nullable Output<Integer> retention) {
+            $.retention = retention;
+            return this;
+        }
+
+        /**
+         * @param retention Number of days to retain log events in `CloudAMQP` log group.
+         * 
+         * ***Note:*** Possible values are: 0 (never expire) or between 1-3653, read more about valid values in
+         * the [Cloudwatch Log retention].
+         * 
+         * @return builder
+         * 
+         */
+        public Builder retention(Integer retention) {
+            return retention(Output.of(retention));
         }
 
         /**
@@ -887,8 +980,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param sourcetype Assign source type to the data exported, eg. generic_single_line.
-         * (Splunk)
+         * @param sourcetype Assign source type to the data exported, eg. generic_single_line. (Splunk)
          * 
          * @return builder
          * 
@@ -899,8 +991,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param sourcetype Assign source type to the data exported, eg. generic_single_line.
-         * (Splunk)
+         * @param sourcetype Assign source type to the data exported, eg. generic_single_line. (Splunk)
          * 
          * @return builder
          * 
@@ -910,7 +1001,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param subsystem The subsystem name for Coralogix.
+         * @param subsystem The name of the subsystem. (Azure Monitor)
          * 
          * @return builder
          * 
@@ -921,7 +1012,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param subsystem The subsystem name for Coralogix.
+         * @param subsystem The name of the subsystem. (Azure Monitor)
          * 
          * @return builder
          * 
@@ -931,7 +1022,18 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param table The table name for Azure monitor.
+         * @param table The table name.
+         * 
+         * Use Azure portal to configure external access for Azure Monitor. [Tutorial to find/create all arguments]
+         * 
+         * &lt;/details&gt;
+         * 
+         * &lt;details&gt;
+         * &lt;summary&gt;
+         * &lt;b&gt;Cloudwatch&lt;/b&gt;
+         * &lt;/summary&gt;
+         * 
+         * The following arguments used by CloudWatch.
          * 
          * @return builder
          * 
@@ -942,7 +1044,18 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param table The table name for Azure monitor.
+         * @param table The table name.
+         * 
+         * Use Azure portal to configure external access for Azure Monitor. [Tutorial to find/create all arguments]
+         * 
+         * &lt;/details&gt;
+         * 
+         * &lt;details&gt;
+         * &lt;summary&gt;
+         * &lt;b&gt;Cloudwatch&lt;/b&gt;
+         * &lt;/summary&gt;
+         * 
+         * The following arguments used by CloudWatch.
          * 
          * @return builder
          * 
@@ -952,10 +1065,10 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param tags Tags. e.g. `env=prod,region=europe`.
+         * @param tags Enter tags to `CloudAMQP` log group like this: `Project=A,Environment=Development`.
          * 
-         * ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
-         * letter, read more about tags format in the [Datadog documentation].
+         * ***Note:*** Tags are only added, unwanted tags needs to be removed manually in the AWS console.
+         * Read more about tags format in the [Cloudwatch Log tags]
          * 
          * @return builder
          * 
@@ -966,10 +1079,10 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param tags Tags. e.g. `env=prod,region=europe`.
+         * @param tags Enter tags to `CloudAMQP` log group like this: `Project=A,Environment=Development`.
          * 
-         * ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
-         * letter, read more about tags format in the [Datadog documentation].
+         * ***Note:*** Tags are only added, unwanted tags needs to be removed manually in the AWS console.
+         * Read more about tags format in the [Cloudwatch Log tags]
          * 
          * @return builder
          * 
@@ -979,7 +1092,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param tenantId The tenant identifier for Azure monitor.
+         * @param tenantId The tenant identifier.
          * 
          * @return builder
          * 
@@ -990,7 +1103,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param tenantId The tenant identifier for Azure monitor.
+         * @param tenantId The tenant identifier.
          * 
          * @return builder
          * 
@@ -1000,7 +1113,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param token Token used for authentication.
+         * @param token The token used for authentication. (Loggly, Logentries, Splunk, Scalyr)
          * 
          * @return builder
          * 
@@ -1011,7 +1124,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param token Token used for authentication.
+         * @param token The token used for authentication. (Loggly, Logentries, Splunk, Scalyr)
          * 
          * @return builder
          * 
@@ -1021,7 +1134,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param url Endpoint to log integration.
+         * @param url The URL to push the logs to. (Papertrail)
          * 
          * @return builder
          * 
@@ -1032,7 +1145,7 @@ public final class IntegrationLogState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param url Endpoint to log integration.
+         * @param url The URL to push the logs to. (Papertrail)
          * 
          * @return builder
          * 

@@ -246,6 +246,1277 @@ func (o InstanceCopySettingArrayOutput) Index(i pulumi.IntInput) InstanceCopySet
 	}).(InstanceCopySettingOutput)
 }
 
+type IntegrationMetricPrometheusAzureMonitor struct {
+	// Azure Application Insights Connection String for authentication.
+	ConnectionString string `pulumi:"connectionString"`
+}
+
+// IntegrationMetricPrometheusAzureMonitorInput is an input type that accepts IntegrationMetricPrometheusAzureMonitorArgs and IntegrationMetricPrometheusAzureMonitorOutput values.
+// You can construct a concrete instance of `IntegrationMetricPrometheusAzureMonitorInput` via:
+//
+//	IntegrationMetricPrometheusAzureMonitorArgs{...}
+type IntegrationMetricPrometheusAzureMonitorInput interface {
+	pulumi.Input
+
+	ToIntegrationMetricPrometheusAzureMonitorOutput() IntegrationMetricPrometheusAzureMonitorOutput
+	ToIntegrationMetricPrometheusAzureMonitorOutputWithContext(context.Context) IntegrationMetricPrometheusAzureMonitorOutput
+}
+
+type IntegrationMetricPrometheusAzureMonitorArgs struct {
+	// Azure Application Insights Connection String for authentication.
+	ConnectionString pulumi.StringInput `pulumi:"connectionString"`
+}
+
+func (IntegrationMetricPrometheusAzureMonitorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationMetricPrometheusAzureMonitor)(nil)).Elem()
+}
+
+func (i IntegrationMetricPrometheusAzureMonitorArgs) ToIntegrationMetricPrometheusAzureMonitorOutput() IntegrationMetricPrometheusAzureMonitorOutput {
+	return i.ToIntegrationMetricPrometheusAzureMonitorOutputWithContext(context.Background())
+}
+
+func (i IntegrationMetricPrometheusAzureMonitorArgs) ToIntegrationMetricPrometheusAzureMonitorOutputWithContext(ctx context.Context) IntegrationMetricPrometheusAzureMonitorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPrometheusAzureMonitorOutput)
+}
+
+func (i IntegrationMetricPrometheusAzureMonitorArgs) ToIntegrationMetricPrometheusAzureMonitorPtrOutput() IntegrationMetricPrometheusAzureMonitorPtrOutput {
+	return i.ToIntegrationMetricPrometheusAzureMonitorPtrOutputWithContext(context.Background())
+}
+
+func (i IntegrationMetricPrometheusAzureMonitorArgs) ToIntegrationMetricPrometheusAzureMonitorPtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusAzureMonitorPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPrometheusAzureMonitorOutput).ToIntegrationMetricPrometheusAzureMonitorPtrOutputWithContext(ctx)
+}
+
+// IntegrationMetricPrometheusAzureMonitorPtrInput is an input type that accepts IntegrationMetricPrometheusAzureMonitorArgs, IntegrationMetricPrometheusAzureMonitorPtr and IntegrationMetricPrometheusAzureMonitorPtrOutput values.
+// You can construct a concrete instance of `IntegrationMetricPrometheusAzureMonitorPtrInput` via:
+//
+//	        IntegrationMetricPrometheusAzureMonitorArgs{...}
+//
+//	or:
+//
+//	        nil
+type IntegrationMetricPrometheusAzureMonitorPtrInput interface {
+	pulumi.Input
+
+	ToIntegrationMetricPrometheusAzureMonitorPtrOutput() IntegrationMetricPrometheusAzureMonitorPtrOutput
+	ToIntegrationMetricPrometheusAzureMonitorPtrOutputWithContext(context.Context) IntegrationMetricPrometheusAzureMonitorPtrOutput
+}
+
+type integrationMetricPrometheusAzureMonitorPtrType IntegrationMetricPrometheusAzureMonitorArgs
+
+func IntegrationMetricPrometheusAzureMonitorPtr(v *IntegrationMetricPrometheusAzureMonitorArgs) IntegrationMetricPrometheusAzureMonitorPtrInput {
+	return (*integrationMetricPrometheusAzureMonitorPtrType)(v)
+}
+
+func (*integrationMetricPrometheusAzureMonitorPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationMetricPrometheusAzureMonitor)(nil)).Elem()
+}
+
+func (i *integrationMetricPrometheusAzureMonitorPtrType) ToIntegrationMetricPrometheusAzureMonitorPtrOutput() IntegrationMetricPrometheusAzureMonitorPtrOutput {
+	return i.ToIntegrationMetricPrometheusAzureMonitorPtrOutputWithContext(context.Background())
+}
+
+func (i *integrationMetricPrometheusAzureMonitorPtrType) ToIntegrationMetricPrometheusAzureMonitorPtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusAzureMonitorPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPrometheusAzureMonitorPtrOutput)
+}
+
+type IntegrationMetricPrometheusAzureMonitorOutput struct{ *pulumi.OutputState }
+
+func (IntegrationMetricPrometheusAzureMonitorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationMetricPrometheusAzureMonitor)(nil)).Elem()
+}
+
+func (o IntegrationMetricPrometheusAzureMonitorOutput) ToIntegrationMetricPrometheusAzureMonitorOutput() IntegrationMetricPrometheusAzureMonitorOutput {
+	return o
+}
+
+func (o IntegrationMetricPrometheusAzureMonitorOutput) ToIntegrationMetricPrometheusAzureMonitorOutputWithContext(ctx context.Context) IntegrationMetricPrometheusAzureMonitorOutput {
+	return o
+}
+
+func (o IntegrationMetricPrometheusAzureMonitorOutput) ToIntegrationMetricPrometheusAzureMonitorPtrOutput() IntegrationMetricPrometheusAzureMonitorPtrOutput {
+	return o.ToIntegrationMetricPrometheusAzureMonitorPtrOutputWithContext(context.Background())
+}
+
+func (o IntegrationMetricPrometheusAzureMonitorOutput) ToIntegrationMetricPrometheusAzureMonitorPtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusAzureMonitorPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IntegrationMetricPrometheusAzureMonitor) *IntegrationMetricPrometheusAzureMonitor {
+		return &v
+	}).(IntegrationMetricPrometheusAzureMonitorPtrOutput)
+}
+
+// Azure Application Insights Connection String for authentication.
+func (o IntegrationMetricPrometheusAzureMonitorOutput) ConnectionString() pulumi.StringOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusAzureMonitor) string { return v.ConnectionString }).(pulumi.StringOutput)
+}
+
+type IntegrationMetricPrometheusAzureMonitorPtrOutput struct{ *pulumi.OutputState }
+
+func (IntegrationMetricPrometheusAzureMonitorPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationMetricPrometheusAzureMonitor)(nil)).Elem()
+}
+
+func (o IntegrationMetricPrometheusAzureMonitorPtrOutput) ToIntegrationMetricPrometheusAzureMonitorPtrOutput() IntegrationMetricPrometheusAzureMonitorPtrOutput {
+	return o
+}
+
+func (o IntegrationMetricPrometheusAzureMonitorPtrOutput) ToIntegrationMetricPrometheusAzureMonitorPtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusAzureMonitorPtrOutput {
+	return o
+}
+
+func (o IntegrationMetricPrometheusAzureMonitorPtrOutput) Elem() IntegrationMetricPrometheusAzureMonitorOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusAzureMonitor) IntegrationMetricPrometheusAzureMonitor {
+		if v != nil {
+			return *v
+		}
+		var ret IntegrationMetricPrometheusAzureMonitor
+		return ret
+	}).(IntegrationMetricPrometheusAzureMonitorOutput)
+}
+
+// Azure Application Insights Connection String for authentication.
+func (o IntegrationMetricPrometheusAzureMonitorPtrOutput) ConnectionString() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusAzureMonitor) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ConnectionString
+	}).(pulumi.StringPtrOutput)
+}
+
+type IntegrationMetricPrometheusCloudwatchV3 struct {
+	// AWS IAM external ID for role assumption.
+	IamExternalId string `pulumi:"iamExternalId"`
+	// AWS IAM role ARN with PutMetricData permission for CloudWatch integration.
+	IamRole string `pulumi:"iamRole"`
+	// AWS region for CloudWatch metrics.
+	Region string `pulumi:"region"`
+	// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+	Tags *string `pulumi:"tags"`
+}
+
+// IntegrationMetricPrometheusCloudwatchV3Input is an input type that accepts IntegrationMetricPrometheusCloudwatchV3Args and IntegrationMetricPrometheusCloudwatchV3Output values.
+// You can construct a concrete instance of `IntegrationMetricPrometheusCloudwatchV3Input` via:
+//
+//	IntegrationMetricPrometheusCloudwatchV3Args{...}
+type IntegrationMetricPrometheusCloudwatchV3Input interface {
+	pulumi.Input
+
+	ToIntegrationMetricPrometheusCloudwatchV3Output() IntegrationMetricPrometheusCloudwatchV3Output
+	ToIntegrationMetricPrometheusCloudwatchV3OutputWithContext(context.Context) IntegrationMetricPrometheusCloudwatchV3Output
+}
+
+type IntegrationMetricPrometheusCloudwatchV3Args struct {
+	// AWS IAM external ID for role assumption.
+	IamExternalId pulumi.StringInput `pulumi:"iamExternalId"`
+	// AWS IAM role ARN with PutMetricData permission for CloudWatch integration.
+	IamRole pulumi.StringInput `pulumi:"iamRole"`
+	// AWS region for CloudWatch metrics.
+	Region pulumi.StringInput `pulumi:"region"`
+	// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+	Tags pulumi.StringPtrInput `pulumi:"tags"`
+}
+
+func (IntegrationMetricPrometheusCloudwatchV3Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationMetricPrometheusCloudwatchV3)(nil)).Elem()
+}
+
+func (i IntegrationMetricPrometheusCloudwatchV3Args) ToIntegrationMetricPrometheusCloudwatchV3Output() IntegrationMetricPrometheusCloudwatchV3Output {
+	return i.ToIntegrationMetricPrometheusCloudwatchV3OutputWithContext(context.Background())
+}
+
+func (i IntegrationMetricPrometheusCloudwatchV3Args) ToIntegrationMetricPrometheusCloudwatchV3OutputWithContext(ctx context.Context) IntegrationMetricPrometheusCloudwatchV3Output {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPrometheusCloudwatchV3Output)
+}
+
+func (i IntegrationMetricPrometheusCloudwatchV3Args) ToIntegrationMetricPrometheusCloudwatchV3PtrOutput() IntegrationMetricPrometheusCloudwatchV3PtrOutput {
+	return i.ToIntegrationMetricPrometheusCloudwatchV3PtrOutputWithContext(context.Background())
+}
+
+func (i IntegrationMetricPrometheusCloudwatchV3Args) ToIntegrationMetricPrometheusCloudwatchV3PtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusCloudwatchV3PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPrometheusCloudwatchV3Output).ToIntegrationMetricPrometheusCloudwatchV3PtrOutputWithContext(ctx)
+}
+
+// IntegrationMetricPrometheusCloudwatchV3PtrInput is an input type that accepts IntegrationMetricPrometheusCloudwatchV3Args, IntegrationMetricPrometheusCloudwatchV3Ptr and IntegrationMetricPrometheusCloudwatchV3PtrOutput values.
+// You can construct a concrete instance of `IntegrationMetricPrometheusCloudwatchV3PtrInput` via:
+//
+//	        IntegrationMetricPrometheusCloudwatchV3Args{...}
+//
+//	or:
+//
+//	        nil
+type IntegrationMetricPrometheusCloudwatchV3PtrInput interface {
+	pulumi.Input
+
+	ToIntegrationMetricPrometheusCloudwatchV3PtrOutput() IntegrationMetricPrometheusCloudwatchV3PtrOutput
+	ToIntegrationMetricPrometheusCloudwatchV3PtrOutputWithContext(context.Context) IntegrationMetricPrometheusCloudwatchV3PtrOutput
+}
+
+type integrationMetricPrometheusCloudwatchV3PtrType IntegrationMetricPrometheusCloudwatchV3Args
+
+func IntegrationMetricPrometheusCloudwatchV3Ptr(v *IntegrationMetricPrometheusCloudwatchV3Args) IntegrationMetricPrometheusCloudwatchV3PtrInput {
+	return (*integrationMetricPrometheusCloudwatchV3PtrType)(v)
+}
+
+func (*integrationMetricPrometheusCloudwatchV3PtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationMetricPrometheusCloudwatchV3)(nil)).Elem()
+}
+
+func (i *integrationMetricPrometheusCloudwatchV3PtrType) ToIntegrationMetricPrometheusCloudwatchV3PtrOutput() IntegrationMetricPrometheusCloudwatchV3PtrOutput {
+	return i.ToIntegrationMetricPrometheusCloudwatchV3PtrOutputWithContext(context.Background())
+}
+
+func (i *integrationMetricPrometheusCloudwatchV3PtrType) ToIntegrationMetricPrometheusCloudwatchV3PtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusCloudwatchV3PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPrometheusCloudwatchV3PtrOutput)
+}
+
+type IntegrationMetricPrometheusCloudwatchV3Output struct{ *pulumi.OutputState }
+
+func (IntegrationMetricPrometheusCloudwatchV3Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationMetricPrometheusCloudwatchV3)(nil)).Elem()
+}
+
+func (o IntegrationMetricPrometheusCloudwatchV3Output) ToIntegrationMetricPrometheusCloudwatchV3Output() IntegrationMetricPrometheusCloudwatchV3Output {
+	return o
+}
+
+func (o IntegrationMetricPrometheusCloudwatchV3Output) ToIntegrationMetricPrometheusCloudwatchV3OutputWithContext(ctx context.Context) IntegrationMetricPrometheusCloudwatchV3Output {
+	return o
+}
+
+func (o IntegrationMetricPrometheusCloudwatchV3Output) ToIntegrationMetricPrometheusCloudwatchV3PtrOutput() IntegrationMetricPrometheusCloudwatchV3PtrOutput {
+	return o.ToIntegrationMetricPrometheusCloudwatchV3PtrOutputWithContext(context.Background())
+}
+
+func (o IntegrationMetricPrometheusCloudwatchV3Output) ToIntegrationMetricPrometheusCloudwatchV3PtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusCloudwatchV3PtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IntegrationMetricPrometheusCloudwatchV3) *IntegrationMetricPrometheusCloudwatchV3 {
+		return &v
+	}).(IntegrationMetricPrometheusCloudwatchV3PtrOutput)
+}
+
+// AWS IAM external ID for role assumption.
+func (o IntegrationMetricPrometheusCloudwatchV3Output) IamExternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusCloudwatchV3) string { return v.IamExternalId }).(pulumi.StringOutput)
+}
+
+// AWS IAM role ARN with PutMetricData permission for CloudWatch integration.
+func (o IntegrationMetricPrometheusCloudwatchV3Output) IamRole() pulumi.StringOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusCloudwatchV3) string { return v.IamRole }).(pulumi.StringOutput)
+}
+
+// AWS region for CloudWatch metrics.
+func (o IntegrationMetricPrometheusCloudwatchV3Output) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusCloudwatchV3) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+func (o IntegrationMetricPrometheusCloudwatchV3Output) Tags() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusCloudwatchV3) *string { return v.Tags }).(pulumi.StringPtrOutput)
+}
+
+type IntegrationMetricPrometheusCloudwatchV3PtrOutput struct{ *pulumi.OutputState }
+
+func (IntegrationMetricPrometheusCloudwatchV3PtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationMetricPrometheusCloudwatchV3)(nil)).Elem()
+}
+
+func (o IntegrationMetricPrometheusCloudwatchV3PtrOutput) ToIntegrationMetricPrometheusCloudwatchV3PtrOutput() IntegrationMetricPrometheusCloudwatchV3PtrOutput {
+	return o
+}
+
+func (o IntegrationMetricPrometheusCloudwatchV3PtrOutput) ToIntegrationMetricPrometheusCloudwatchV3PtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusCloudwatchV3PtrOutput {
+	return o
+}
+
+func (o IntegrationMetricPrometheusCloudwatchV3PtrOutput) Elem() IntegrationMetricPrometheusCloudwatchV3Output {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusCloudwatchV3) IntegrationMetricPrometheusCloudwatchV3 {
+		if v != nil {
+			return *v
+		}
+		var ret IntegrationMetricPrometheusCloudwatchV3
+		return ret
+	}).(IntegrationMetricPrometheusCloudwatchV3Output)
+}
+
+// AWS IAM external ID for role assumption.
+func (o IntegrationMetricPrometheusCloudwatchV3PtrOutput) IamExternalId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusCloudwatchV3) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.IamExternalId
+	}).(pulumi.StringPtrOutput)
+}
+
+// AWS IAM role ARN with PutMetricData permission for CloudWatch integration.
+func (o IntegrationMetricPrometheusCloudwatchV3PtrOutput) IamRole() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusCloudwatchV3) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.IamRole
+	}).(pulumi.StringPtrOutput)
+}
+
+// AWS region for CloudWatch metrics.
+func (o IntegrationMetricPrometheusCloudwatchV3PtrOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusCloudwatchV3) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Region
+	}).(pulumi.StringPtrOutput)
+}
+
+// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+func (o IntegrationMetricPrometheusCloudwatchV3PtrOutput) Tags() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusCloudwatchV3) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Tags
+	}).(pulumi.StringPtrOutput)
+}
+
+type IntegrationMetricPrometheusDatadogV3 struct {
+	// Datadog API key for authentication.
+	ApiKey string `pulumi:"apiKey"`
+	// Enable metric name transformation to match Datadog's RabbitMQ dashboard format. Default: `false`. **Note:** This option is only available for RabbitMQ clusters, not LavinMQ clusters.
+	RabbitmqDashboardMetricsFormat *bool `pulumi:"rabbitmqDashboardMetricsFormat"`
+	// Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`.
+	Region string `pulumi:"region"`
+	// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+	Tags *string `pulumi:"tags"`
+}
+
+// IntegrationMetricPrometheusDatadogV3Input is an input type that accepts IntegrationMetricPrometheusDatadogV3Args and IntegrationMetricPrometheusDatadogV3Output values.
+// You can construct a concrete instance of `IntegrationMetricPrometheusDatadogV3Input` via:
+//
+//	IntegrationMetricPrometheusDatadogV3Args{...}
+type IntegrationMetricPrometheusDatadogV3Input interface {
+	pulumi.Input
+
+	ToIntegrationMetricPrometheusDatadogV3Output() IntegrationMetricPrometheusDatadogV3Output
+	ToIntegrationMetricPrometheusDatadogV3OutputWithContext(context.Context) IntegrationMetricPrometheusDatadogV3Output
+}
+
+type IntegrationMetricPrometheusDatadogV3Args struct {
+	// Datadog API key for authentication.
+	ApiKey pulumi.StringInput `pulumi:"apiKey"`
+	// Enable metric name transformation to match Datadog's RabbitMQ dashboard format. Default: `false`. **Note:** This option is only available for RabbitMQ clusters, not LavinMQ clusters.
+	RabbitmqDashboardMetricsFormat pulumi.BoolPtrInput `pulumi:"rabbitmqDashboardMetricsFormat"`
+	// Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`.
+	Region pulumi.StringInput `pulumi:"region"`
+	// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+	Tags pulumi.StringPtrInput `pulumi:"tags"`
+}
+
+func (IntegrationMetricPrometheusDatadogV3Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationMetricPrometheusDatadogV3)(nil)).Elem()
+}
+
+func (i IntegrationMetricPrometheusDatadogV3Args) ToIntegrationMetricPrometheusDatadogV3Output() IntegrationMetricPrometheusDatadogV3Output {
+	return i.ToIntegrationMetricPrometheusDatadogV3OutputWithContext(context.Background())
+}
+
+func (i IntegrationMetricPrometheusDatadogV3Args) ToIntegrationMetricPrometheusDatadogV3OutputWithContext(ctx context.Context) IntegrationMetricPrometheusDatadogV3Output {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPrometheusDatadogV3Output)
+}
+
+func (i IntegrationMetricPrometheusDatadogV3Args) ToIntegrationMetricPrometheusDatadogV3PtrOutput() IntegrationMetricPrometheusDatadogV3PtrOutput {
+	return i.ToIntegrationMetricPrometheusDatadogV3PtrOutputWithContext(context.Background())
+}
+
+func (i IntegrationMetricPrometheusDatadogV3Args) ToIntegrationMetricPrometheusDatadogV3PtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusDatadogV3PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPrometheusDatadogV3Output).ToIntegrationMetricPrometheusDatadogV3PtrOutputWithContext(ctx)
+}
+
+// IntegrationMetricPrometheusDatadogV3PtrInput is an input type that accepts IntegrationMetricPrometheusDatadogV3Args, IntegrationMetricPrometheusDatadogV3Ptr and IntegrationMetricPrometheusDatadogV3PtrOutput values.
+// You can construct a concrete instance of `IntegrationMetricPrometheusDatadogV3PtrInput` via:
+//
+//	        IntegrationMetricPrometheusDatadogV3Args{...}
+//
+//	or:
+//
+//	        nil
+type IntegrationMetricPrometheusDatadogV3PtrInput interface {
+	pulumi.Input
+
+	ToIntegrationMetricPrometheusDatadogV3PtrOutput() IntegrationMetricPrometheusDatadogV3PtrOutput
+	ToIntegrationMetricPrometheusDatadogV3PtrOutputWithContext(context.Context) IntegrationMetricPrometheusDatadogV3PtrOutput
+}
+
+type integrationMetricPrometheusDatadogV3PtrType IntegrationMetricPrometheusDatadogV3Args
+
+func IntegrationMetricPrometheusDatadogV3Ptr(v *IntegrationMetricPrometheusDatadogV3Args) IntegrationMetricPrometheusDatadogV3PtrInput {
+	return (*integrationMetricPrometheusDatadogV3PtrType)(v)
+}
+
+func (*integrationMetricPrometheusDatadogV3PtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationMetricPrometheusDatadogV3)(nil)).Elem()
+}
+
+func (i *integrationMetricPrometheusDatadogV3PtrType) ToIntegrationMetricPrometheusDatadogV3PtrOutput() IntegrationMetricPrometheusDatadogV3PtrOutput {
+	return i.ToIntegrationMetricPrometheusDatadogV3PtrOutputWithContext(context.Background())
+}
+
+func (i *integrationMetricPrometheusDatadogV3PtrType) ToIntegrationMetricPrometheusDatadogV3PtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusDatadogV3PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPrometheusDatadogV3PtrOutput)
+}
+
+type IntegrationMetricPrometheusDatadogV3Output struct{ *pulumi.OutputState }
+
+func (IntegrationMetricPrometheusDatadogV3Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationMetricPrometheusDatadogV3)(nil)).Elem()
+}
+
+func (o IntegrationMetricPrometheusDatadogV3Output) ToIntegrationMetricPrometheusDatadogV3Output() IntegrationMetricPrometheusDatadogV3Output {
+	return o
+}
+
+func (o IntegrationMetricPrometheusDatadogV3Output) ToIntegrationMetricPrometheusDatadogV3OutputWithContext(ctx context.Context) IntegrationMetricPrometheusDatadogV3Output {
+	return o
+}
+
+func (o IntegrationMetricPrometheusDatadogV3Output) ToIntegrationMetricPrometheusDatadogV3PtrOutput() IntegrationMetricPrometheusDatadogV3PtrOutput {
+	return o.ToIntegrationMetricPrometheusDatadogV3PtrOutputWithContext(context.Background())
+}
+
+func (o IntegrationMetricPrometheusDatadogV3Output) ToIntegrationMetricPrometheusDatadogV3PtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusDatadogV3PtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IntegrationMetricPrometheusDatadogV3) *IntegrationMetricPrometheusDatadogV3 {
+		return &v
+	}).(IntegrationMetricPrometheusDatadogV3PtrOutput)
+}
+
+// Datadog API key for authentication.
+func (o IntegrationMetricPrometheusDatadogV3Output) ApiKey() pulumi.StringOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusDatadogV3) string { return v.ApiKey }).(pulumi.StringOutput)
+}
+
+// Enable metric name transformation to match Datadog's RabbitMQ dashboard format. Default: `false`. **Note:** This option is only available for RabbitMQ clusters, not LavinMQ clusters.
+func (o IntegrationMetricPrometheusDatadogV3Output) RabbitmqDashboardMetricsFormat() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusDatadogV3) *bool { return v.RabbitmqDashboardMetricsFormat }).(pulumi.BoolPtrOutput)
+}
+
+// Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`.
+func (o IntegrationMetricPrometheusDatadogV3Output) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusDatadogV3) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+func (o IntegrationMetricPrometheusDatadogV3Output) Tags() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusDatadogV3) *string { return v.Tags }).(pulumi.StringPtrOutput)
+}
+
+type IntegrationMetricPrometheusDatadogV3PtrOutput struct{ *pulumi.OutputState }
+
+func (IntegrationMetricPrometheusDatadogV3PtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationMetricPrometheusDatadogV3)(nil)).Elem()
+}
+
+func (o IntegrationMetricPrometheusDatadogV3PtrOutput) ToIntegrationMetricPrometheusDatadogV3PtrOutput() IntegrationMetricPrometheusDatadogV3PtrOutput {
+	return o
+}
+
+func (o IntegrationMetricPrometheusDatadogV3PtrOutput) ToIntegrationMetricPrometheusDatadogV3PtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusDatadogV3PtrOutput {
+	return o
+}
+
+func (o IntegrationMetricPrometheusDatadogV3PtrOutput) Elem() IntegrationMetricPrometheusDatadogV3Output {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusDatadogV3) IntegrationMetricPrometheusDatadogV3 {
+		if v != nil {
+			return *v
+		}
+		var ret IntegrationMetricPrometheusDatadogV3
+		return ret
+	}).(IntegrationMetricPrometheusDatadogV3Output)
+}
+
+// Datadog API key for authentication.
+func (o IntegrationMetricPrometheusDatadogV3PtrOutput) ApiKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusDatadogV3) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ApiKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// Enable metric name transformation to match Datadog's RabbitMQ dashboard format. Default: `false`. **Note:** This option is only available for RabbitMQ clusters, not LavinMQ clusters.
+func (o IntegrationMetricPrometheusDatadogV3PtrOutput) RabbitmqDashboardMetricsFormat() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusDatadogV3) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.RabbitmqDashboardMetricsFormat
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`.
+func (o IntegrationMetricPrometheusDatadogV3PtrOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusDatadogV3) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Region
+	}).(pulumi.StringPtrOutput)
+}
+
+// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+func (o IntegrationMetricPrometheusDatadogV3PtrOutput) Tags() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusDatadogV3) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Tags
+	}).(pulumi.StringPtrOutput)
+}
+
+type IntegrationMetricPrometheusDynatrace struct {
+	// Dynatrace access token with 'Ingest metrics' permission.
+	AccessToken string `pulumi:"accessToken"`
+	// Dynatrace environment ID.
+	EnvironmentId string `pulumi:"environmentId"`
+	// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+	Tags *string `pulumi:"tags"`
+}
+
+// IntegrationMetricPrometheusDynatraceInput is an input type that accepts IntegrationMetricPrometheusDynatraceArgs and IntegrationMetricPrometheusDynatraceOutput values.
+// You can construct a concrete instance of `IntegrationMetricPrometheusDynatraceInput` via:
+//
+//	IntegrationMetricPrometheusDynatraceArgs{...}
+type IntegrationMetricPrometheusDynatraceInput interface {
+	pulumi.Input
+
+	ToIntegrationMetricPrometheusDynatraceOutput() IntegrationMetricPrometheusDynatraceOutput
+	ToIntegrationMetricPrometheusDynatraceOutputWithContext(context.Context) IntegrationMetricPrometheusDynatraceOutput
+}
+
+type IntegrationMetricPrometheusDynatraceArgs struct {
+	// Dynatrace access token with 'Ingest metrics' permission.
+	AccessToken pulumi.StringInput `pulumi:"accessToken"`
+	// Dynatrace environment ID.
+	EnvironmentId pulumi.StringInput `pulumi:"environmentId"`
+	// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+	Tags pulumi.StringPtrInput `pulumi:"tags"`
+}
+
+func (IntegrationMetricPrometheusDynatraceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationMetricPrometheusDynatrace)(nil)).Elem()
+}
+
+func (i IntegrationMetricPrometheusDynatraceArgs) ToIntegrationMetricPrometheusDynatraceOutput() IntegrationMetricPrometheusDynatraceOutput {
+	return i.ToIntegrationMetricPrometheusDynatraceOutputWithContext(context.Background())
+}
+
+func (i IntegrationMetricPrometheusDynatraceArgs) ToIntegrationMetricPrometheusDynatraceOutputWithContext(ctx context.Context) IntegrationMetricPrometheusDynatraceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPrometheusDynatraceOutput)
+}
+
+func (i IntegrationMetricPrometheusDynatraceArgs) ToIntegrationMetricPrometheusDynatracePtrOutput() IntegrationMetricPrometheusDynatracePtrOutput {
+	return i.ToIntegrationMetricPrometheusDynatracePtrOutputWithContext(context.Background())
+}
+
+func (i IntegrationMetricPrometheusDynatraceArgs) ToIntegrationMetricPrometheusDynatracePtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusDynatracePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPrometheusDynatraceOutput).ToIntegrationMetricPrometheusDynatracePtrOutputWithContext(ctx)
+}
+
+// IntegrationMetricPrometheusDynatracePtrInput is an input type that accepts IntegrationMetricPrometheusDynatraceArgs, IntegrationMetricPrometheusDynatracePtr and IntegrationMetricPrometheusDynatracePtrOutput values.
+// You can construct a concrete instance of `IntegrationMetricPrometheusDynatracePtrInput` via:
+//
+//	        IntegrationMetricPrometheusDynatraceArgs{...}
+//
+//	or:
+//
+//	        nil
+type IntegrationMetricPrometheusDynatracePtrInput interface {
+	pulumi.Input
+
+	ToIntegrationMetricPrometheusDynatracePtrOutput() IntegrationMetricPrometheusDynatracePtrOutput
+	ToIntegrationMetricPrometheusDynatracePtrOutputWithContext(context.Context) IntegrationMetricPrometheusDynatracePtrOutput
+}
+
+type integrationMetricPrometheusDynatracePtrType IntegrationMetricPrometheusDynatraceArgs
+
+func IntegrationMetricPrometheusDynatracePtr(v *IntegrationMetricPrometheusDynatraceArgs) IntegrationMetricPrometheusDynatracePtrInput {
+	return (*integrationMetricPrometheusDynatracePtrType)(v)
+}
+
+func (*integrationMetricPrometheusDynatracePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationMetricPrometheusDynatrace)(nil)).Elem()
+}
+
+func (i *integrationMetricPrometheusDynatracePtrType) ToIntegrationMetricPrometheusDynatracePtrOutput() IntegrationMetricPrometheusDynatracePtrOutput {
+	return i.ToIntegrationMetricPrometheusDynatracePtrOutputWithContext(context.Background())
+}
+
+func (i *integrationMetricPrometheusDynatracePtrType) ToIntegrationMetricPrometheusDynatracePtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusDynatracePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPrometheusDynatracePtrOutput)
+}
+
+type IntegrationMetricPrometheusDynatraceOutput struct{ *pulumi.OutputState }
+
+func (IntegrationMetricPrometheusDynatraceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationMetricPrometheusDynatrace)(nil)).Elem()
+}
+
+func (o IntegrationMetricPrometheusDynatraceOutput) ToIntegrationMetricPrometheusDynatraceOutput() IntegrationMetricPrometheusDynatraceOutput {
+	return o
+}
+
+func (o IntegrationMetricPrometheusDynatraceOutput) ToIntegrationMetricPrometheusDynatraceOutputWithContext(ctx context.Context) IntegrationMetricPrometheusDynatraceOutput {
+	return o
+}
+
+func (o IntegrationMetricPrometheusDynatraceOutput) ToIntegrationMetricPrometheusDynatracePtrOutput() IntegrationMetricPrometheusDynatracePtrOutput {
+	return o.ToIntegrationMetricPrometheusDynatracePtrOutputWithContext(context.Background())
+}
+
+func (o IntegrationMetricPrometheusDynatraceOutput) ToIntegrationMetricPrometheusDynatracePtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusDynatracePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IntegrationMetricPrometheusDynatrace) *IntegrationMetricPrometheusDynatrace {
+		return &v
+	}).(IntegrationMetricPrometheusDynatracePtrOutput)
+}
+
+// Dynatrace access token with 'Ingest metrics' permission.
+func (o IntegrationMetricPrometheusDynatraceOutput) AccessToken() pulumi.StringOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusDynatrace) string { return v.AccessToken }).(pulumi.StringOutput)
+}
+
+// Dynatrace environment ID.
+func (o IntegrationMetricPrometheusDynatraceOutput) EnvironmentId() pulumi.StringOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusDynatrace) string { return v.EnvironmentId }).(pulumi.StringOutput)
+}
+
+// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+func (o IntegrationMetricPrometheusDynatraceOutput) Tags() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusDynatrace) *string { return v.Tags }).(pulumi.StringPtrOutput)
+}
+
+type IntegrationMetricPrometheusDynatracePtrOutput struct{ *pulumi.OutputState }
+
+func (IntegrationMetricPrometheusDynatracePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationMetricPrometheusDynatrace)(nil)).Elem()
+}
+
+func (o IntegrationMetricPrometheusDynatracePtrOutput) ToIntegrationMetricPrometheusDynatracePtrOutput() IntegrationMetricPrometheusDynatracePtrOutput {
+	return o
+}
+
+func (o IntegrationMetricPrometheusDynatracePtrOutput) ToIntegrationMetricPrometheusDynatracePtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusDynatracePtrOutput {
+	return o
+}
+
+func (o IntegrationMetricPrometheusDynatracePtrOutput) Elem() IntegrationMetricPrometheusDynatraceOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusDynatrace) IntegrationMetricPrometheusDynatrace {
+		if v != nil {
+			return *v
+		}
+		var ret IntegrationMetricPrometheusDynatrace
+		return ret
+	}).(IntegrationMetricPrometheusDynatraceOutput)
+}
+
+// Dynatrace access token with 'Ingest metrics' permission.
+func (o IntegrationMetricPrometheusDynatracePtrOutput) AccessToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusDynatrace) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.AccessToken
+	}).(pulumi.StringPtrOutput)
+}
+
+// Dynatrace environment ID.
+func (o IntegrationMetricPrometheusDynatracePtrOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusDynatrace) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.EnvironmentId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+func (o IntegrationMetricPrometheusDynatracePtrOutput) Tags() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusDynatrace) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Tags
+	}).(pulumi.StringPtrOutput)
+}
+
+type IntegrationMetricPrometheusNewrelicV3 struct {
+	// New Relic API key for authentication.
+	ApiKey string `pulumi:"apiKey"`
+	// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+	Tags *string `pulumi:"tags"`
+}
+
+// IntegrationMetricPrometheusNewrelicV3Input is an input type that accepts IntegrationMetricPrometheusNewrelicV3Args and IntegrationMetricPrometheusNewrelicV3Output values.
+// You can construct a concrete instance of `IntegrationMetricPrometheusNewrelicV3Input` via:
+//
+//	IntegrationMetricPrometheusNewrelicV3Args{...}
+type IntegrationMetricPrometheusNewrelicV3Input interface {
+	pulumi.Input
+
+	ToIntegrationMetricPrometheusNewrelicV3Output() IntegrationMetricPrometheusNewrelicV3Output
+	ToIntegrationMetricPrometheusNewrelicV3OutputWithContext(context.Context) IntegrationMetricPrometheusNewrelicV3Output
+}
+
+type IntegrationMetricPrometheusNewrelicV3Args struct {
+	// New Relic API key for authentication.
+	ApiKey pulumi.StringInput `pulumi:"apiKey"`
+	// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+	Tags pulumi.StringPtrInput `pulumi:"tags"`
+}
+
+func (IntegrationMetricPrometheusNewrelicV3Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationMetricPrometheusNewrelicV3)(nil)).Elem()
+}
+
+func (i IntegrationMetricPrometheusNewrelicV3Args) ToIntegrationMetricPrometheusNewrelicV3Output() IntegrationMetricPrometheusNewrelicV3Output {
+	return i.ToIntegrationMetricPrometheusNewrelicV3OutputWithContext(context.Background())
+}
+
+func (i IntegrationMetricPrometheusNewrelicV3Args) ToIntegrationMetricPrometheusNewrelicV3OutputWithContext(ctx context.Context) IntegrationMetricPrometheusNewrelicV3Output {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPrometheusNewrelicV3Output)
+}
+
+func (i IntegrationMetricPrometheusNewrelicV3Args) ToIntegrationMetricPrometheusNewrelicV3PtrOutput() IntegrationMetricPrometheusNewrelicV3PtrOutput {
+	return i.ToIntegrationMetricPrometheusNewrelicV3PtrOutputWithContext(context.Background())
+}
+
+func (i IntegrationMetricPrometheusNewrelicV3Args) ToIntegrationMetricPrometheusNewrelicV3PtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusNewrelicV3PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPrometheusNewrelicV3Output).ToIntegrationMetricPrometheusNewrelicV3PtrOutputWithContext(ctx)
+}
+
+// IntegrationMetricPrometheusNewrelicV3PtrInput is an input type that accepts IntegrationMetricPrometheusNewrelicV3Args, IntegrationMetricPrometheusNewrelicV3Ptr and IntegrationMetricPrometheusNewrelicV3PtrOutput values.
+// You can construct a concrete instance of `IntegrationMetricPrometheusNewrelicV3PtrInput` via:
+//
+//	        IntegrationMetricPrometheusNewrelicV3Args{...}
+//
+//	or:
+//
+//	        nil
+type IntegrationMetricPrometheusNewrelicV3PtrInput interface {
+	pulumi.Input
+
+	ToIntegrationMetricPrometheusNewrelicV3PtrOutput() IntegrationMetricPrometheusNewrelicV3PtrOutput
+	ToIntegrationMetricPrometheusNewrelicV3PtrOutputWithContext(context.Context) IntegrationMetricPrometheusNewrelicV3PtrOutput
+}
+
+type integrationMetricPrometheusNewrelicV3PtrType IntegrationMetricPrometheusNewrelicV3Args
+
+func IntegrationMetricPrometheusNewrelicV3Ptr(v *IntegrationMetricPrometheusNewrelicV3Args) IntegrationMetricPrometheusNewrelicV3PtrInput {
+	return (*integrationMetricPrometheusNewrelicV3PtrType)(v)
+}
+
+func (*integrationMetricPrometheusNewrelicV3PtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationMetricPrometheusNewrelicV3)(nil)).Elem()
+}
+
+func (i *integrationMetricPrometheusNewrelicV3PtrType) ToIntegrationMetricPrometheusNewrelicV3PtrOutput() IntegrationMetricPrometheusNewrelicV3PtrOutput {
+	return i.ToIntegrationMetricPrometheusNewrelicV3PtrOutputWithContext(context.Background())
+}
+
+func (i *integrationMetricPrometheusNewrelicV3PtrType) ToIntegrationMetricPrometheusNewrelicV3PtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusNewrelicV3PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPrometheusNewrelicV3PtrOutput)
+}
+
+type IntegrationMetricPrometheusNewrelicV3Output struct{ *pulumi.OutputState }
+
+func (IntegrationMetricPrometheusNewrelicV3Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationMetricPrometheusNewrelicV3)(nil)).Elem()
+}
+
+func (o IntegrationMetricPrometheusNewrelicV3Output) ToIntegrationMetricPrometheusNewrelicV3Output() IntegrationMetricPrometheusNewrelicV3Output {
+	return o
+}
+
+func (o IntegrationMetricPrometheusNewrelicV3Output) ToIntegrationMetricPrometheusNewrelicV3OutputWithContext(ctx context.Context) IntegrationMetricPrometheusNewrelicV3Output {
+	return o
+}
+
+func (o IntegrationMetricPrometheusNewrelicV3Output) ToIntegrationMetricPrometheusNewrelicV3PtrOutput() IntegrationMetricPrometheusNewrelicV3PtrOutput {
+	return o.ToIntegrationMetricPrometheusNewrelicV3PtrOutputWithContext(context.Background())
+}
+
+func (o IntegrationMetricPrometheusNewrelicV3Output) ToIntegrationMetricPrometheusNewrelicV3PtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusNewrelicV3PtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IntegrationMetricPrometheusNewrelicV3) *IntegrationMetricPrometheusNewrelicV3 {
+		return &v
+	}).(IntegrationMetricPrometheusNewrelicV3PtrOutput)
+}
+
+// New Relic API key for authentication.
+func (o IntegrationMetricPrometheusNewrelicV3Output) ApiKey() pulumi.StringOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusNewrelicV3) string { return v.ApiKey }).(pulumi.StringOutput)
+}
+
+// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+func (o IntegrationMetricPrometheusNewrelicV3Output) Tags() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusNewrelicV3) *string { return v.Tags }).(pulumi.StringPtrOutput)
+}
+
+type IntegrationMetricPrometheusNewrelicV3PtrOutput struct{ *pulumi.OutputState }
+
+func (IntegrationMetricPrometheusNewrelicV3PtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationMetricPrometheusNewrelicV3)(nil)).Elem()
+}
+
+func (o IntegrationMetricPrometheusNewrelicV3PtrOutput) ToIntegrationMetricPrometheusNewrelicV3PtrOutput() IntegrationMetricPrometheusNewrelicV3PtrOutput {
+	return o
+}
+
+func (o IntegrationMetricPrometheusNewrelicV3PtrOutput) ToIntegrationMetricPrometheusNewrelicV3PtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusNewrelicV3PtrOutput {
+	return o
+}
+
+func (o IntegrationMetricPrometheusNewrelicV3PtrOutput) Elem() IntegrationMetricPrometheusNewrelicV3Output {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusNewrelicV3) IntegrationMetricPrometheusNewrelicV3 {
+		if v != nil {
+			return *v
+		}
+		var ret IntegrationMetricPrometheusNewrelicV3
+		return ret
+	}).(IntegrationMetricPrometheusNewrelicV3Output)
+}
+
+// New Relic API key for authentication.
+func (o IntegrationMetricPrometheusNewrelicV3PtrOutput) ApiKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusNewrelicV3) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ApiKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+func (o IntegrationMetricPrometheusNewrelicV3PtrOutput) Tags() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusNewrelicV3) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Tags
+	}).(pulumi.StringPtrOutput)
+}
+
+type IntegrationMetricPrometheusSplunkV2 struct {
+	// Splunk HEC endpoint URL. Example: `https://your-instance-id.splunkcloud.com:8088/services/collector`.
+	Endpoint string `pulumi:"endpoint"`
+	// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+	Tags *string `pulumi:"tags"`
+	// Splunk HEC (HTTP Event Collector) token for authentication.
+	Token string `pulumi:"token"`
+}
+
+// IntegrationMetricPrometheusSplunkV2Input is an input type that accepts IntegrationMetricPrometheusSplunkV2Args and IntegrationMetricPrometheusSplunkV2Output values.
+// You can construct a concrete instance of `IntegrationMetricPrometheusSplunkV2Input` via:
+//
+//	IntegrationMetricPrometheusSplunkV2Args{...}
+type IntegrationMetricPrometheusSplunkV2Input interface {
+	pulumi.Input
+
+	ToIntegrationMetricPrometheusSplunkV2Output() IntegrationMetricPrometheusSplunkV2Output
+	ToIntegrationMetricPrometheusSplunkV2OutputWithContext(context.Context) IntegrationMetricPrometheusSplunkV2Output
+}
+
+type IntegrationMetricPrometheusSplunkV2Args struct {
+	// Splunk HEC endpoint URL. Example: `https://your-instance-id.splunkcloud.com:8088/services/collector`.
+	Endpoint pulumi.StringInput `pulumi:"endpoint"`
+	// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+	Tags pulumi.StringPtrInput `pulumi:"tags"`
+	// Splunk HEC (HTTP Event Collector) token for authentication.
+	Token pulumi.StringInput `pulumi:"token"`
+}
+
+func (IntegrationMetricPrometheusSplunkV2Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationMetricPrometheusSplunkV2)(nil)).Elem()
+}
+
+func (i IntegrationMetricPrometheusSplunkV2Args) ToIntegrationMetricPrometheusSplunkV2Output() IntegrationMetricPrometheusSplunkV2Output {
+	return i.ToIntegrationMetricPrometheusSplunkV2OutputWithContext(context.Background())
+}
+
+func (i IntegrationMetricPrometheusSplunkV2Args) ToIntegrationMetricPrometheusSplunkV2OutputWithContext(ctx context.Context) IntegrationMetricPrometheusSplunkV2Output {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPrometheusSplunkV2Output)
+}
+
+func (i IntegrationMetricPrometheusSplunkV2Args) ToIntegrationMetricPrometheusSplunkV2PtrOutput() IntegrationMetricPrometheusSplunkV2PtrOutput {
+	return i.ToIntegrationMetricPrometheusSplunkV2PtrOutputWithContext(context.Background())
+}
+
+func (i IntegrationMetricPrometheusSplunkV2Args) ToIntegrationMetricPrometheusSplunkV2PtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusSplunkV2PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPrometheusSplunkV2Output).ToIntegrationMetricPrometheusSplunkV2PtrOutputWithContext(ctx)
+}
+
+// IntegrationMetricPrometheusSplunkV2PtrInput is an input type that accepts IntegrationMetricPrometheusSplunkV2Args, IntegrationMetricPrometheusSplunkV2Ptr and IntegrationMetricPrometheusSplunkV2PtrOutput values.
+// You can construct a concrete instance of `IntegrationMetricPrometheusSplunkV2PtrInput` via:
+//
+//	        IntegrationMetricPrometheusSplunkV2Args{...}
+//
+//	or:
+//
+//	        nil
+type IntegrationMetricPrometheusSplunkV2PtrInput interface {
+	pulumi.Input
+
+	ToIntegrationMetricPrometheusSplunkV2PtrOutput() IntegrationMetricPrometheusSplunkV2PtrOutput
+	ToIntegrationMetricPrometheusSplunkV2PtrOutputWithContext(context.Context) IntegrationMetricPrometheusSplunkV2PtrOutput
+}
+
+type integrationMetricPrometheusSplunkV2PtrType IntegrationMetricPrometheusSplunkV2Args
+
+func IntegrationMetricPrometheusSplunkV2Ptr(v *IntegrationMetricPrometheusSplunkV2Args) IntegrationMetricPrometheusSplunkV2PtrInput {
+	return (*integrationMetricPrometheusSplunkV2PtrType)(v)
+}
+
+func (*integrationMetricPrometheusSplunkV2PtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationMetricPrometheusSplunkV2)(nil)).Elem()
+}
+
+func (i *integrationMetricPrometheusSplunkV2PtrType) ToIntegrationMetricPrometheusSplunkV2PtrOutput() IntegrationMetricPrometheusSplunkV2PtrOutput {
+	return i.ToIntegrationMetricPrometheusSplunkV2PtrOutputWithContext(context.Background())
+}
+
+func (i *integrationMetricPrometheusSplunkV2PtrType) ToIntegrationMetricPrometheusSplunkV2PtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusSplunkV2PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPrometheusSplunkV2PtrOutput)
+}
+
+type IntegrationMetricPrometheusSplunkV2Output struct{ *pulumi.OutputState }
+
+func (IntegrationMetricPrometheusSplunkV2Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationMetricPrometheusSplunkV2)(nil)).Elem()
+}
+
+func (o IntegrationMetricPrometheusSplunkV2Output) ToIntegrationMetricPrometheusSplunkV2Output() IntegrationMetricPrometheusSplunkV2Output {
+	return o
+}
+
+func (o IntegrationMetricPrometheusSplunkV2Output) ToIntegrationMetricPrometheusSplunkV2OutputWithContext(ctx context.Context) IntegrationMetricPrometheusSplunkV2Output {
+	return o
+}
+
+func (o IntegrationMetricPrometheusSplunkV2Output) ToIntegrationMetricPrometheusSplunkV2PtrOutput() IntegrationMetricPrometheusSplunkV2PtrOutput {
+	return o.ToIntegrationMetricPrometheusSplunkV2PtrOutputWithContext(context.Background())
+}
+
+func (o IntegrationMetricPrometheusSplunkV2Output) ToIntegrationMetricPrometheusSplunkV2PtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusSplunkV2PtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IntegrationMetricPrometheusSplunkV2) *IntegrationMetricPrometheusSplunkV2 {
+		return &v
+	}).(IntegrationMetricPrometheusSplunkV2PtrOutput)
+}
+
+// Splunk HEC endpoint URL. Example: `https://your-instance-id.splunkcloud.com:8088/services/collector`.
+func (o IntegrationMetricPrometheusSplunkV2Output) Endpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusSplunkV2) string { return v.Endpoint }).(pulumi.StringOutput)
+}
+
+// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+func (o IntegrationMetricPrometheusSplunkV2Output) Tags() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusSplunkV2) *string { return v.Tags }).(pulumi.StringPtrOutput)
+}
+
+// Splunk HEC (HTTP Event Collector) token for authentication.
+func (o IntegrationMetricPrometheusSplunkV2Output) Token() pulumi.StringOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusSplunkV2) string { return v.Token }).(pulumi.StringOutput)
+}
+
+type IntegrationMetricPrometheusSplunkV2PtrOutput struct{ *pulumi.OutputState }
+
+func (IntegrationMetricPrometheusSplunkV2PtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationMetricPrometheusSplunkV2)(nil)).Elem()
+}
+
+func (o IntegrationMetricPrometheusSplunkV2PtrOutput) ToIntegrationMetricPrometheusSplunkV2PtrOutput() IntegrationMetricPrometheusSplunkV2PtrOutput {
+	return o
+}
+
+func (o IntegrationMetricPrometheusSplunkV2PtrOutput) ToIntegrationMetricPrometheusSplunkV2PtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusSplunkV2PtrOutput {
+	return o
+}
+
+func (o IntegrationMetricPrometheusSplunkV2PtrOutput) Elem() IntegrationMetricPrometheusSplunkV2Output {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusSplunkV2) IntegrationMetricPrometheusSplunkV2 {
+		if v != nil {
+			return *v
+		}
+		var ret IntegrationMetricPrometheusSplunkV2
+		return ret
+	}).(IntegrationMetricPrometheusSplunkV2Output)
+}
+
+// Splunk HEC endpoint URL. Example: `https://your-instance-id.splunkcloud.com:8088/services/collector`.
+func (o IntegrationMetricPrometheusSplunkV2PtrOutput) Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusSplunkV2) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Endpoint
+	}).(pulumi.StringPtrOutput)
+}
+
+// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+func (o IntegrationMetricPrometheusSplunkV2PtrOutput) Tags() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusSplunkV2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Tags
+	}).(pulumi.StringPtrOutput)
+}
+
+// Splunk HEC (HTTP Event Collector) token for authentication.
+func (o IntegrationMetricPrometheusSplunkV2PtrOutput) Token() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusSplunkV2) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Token
+	}).(pulumi.StringPtrOutput)
+}
+
+type IntegrationMetricPrometheusStackdriverV2 struct {
+	// Google service account client email (extracted from credentials file).
+	ClientEmail *string `pulumi:"clientEmail"`
+	// Base64-encoded Google service account key JSON file with 'Monitoring Metric Writer' permission.
+	CredentialsFile string `pulumi:"credentialsFile"`
+	// Google service account private key (extracted from credentials file).
+	PrivateKey *string `pulumi:"privateKey"`
+	// Google service account private key ID (extracted from credentials file).
+	PrivateKeyId *string `pulumi:"privateKeyId"`
+	// Google Cloud project ID (extracted from credentials file).
+	ProjectId *string `pulumi:"projectId"`
+	// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+	//
+	// The following computed attributes are available:
+	Tags *string `pulumi:"tags"`
+}
+
+// IntegrationMetricPrometheusStackdriverV2Input is an input type that accepts IntegrationMetricPrometheusStackdriverV2Args and IntegrationMetricPrometheusStackdriverV2Output values.
+// You can construct a concrete instance of `IntegrationMetricPrometheusStackdriverV2Input` via:
+//
+//	IntegrationMetricPrometheusStackdriverV2Args{...}
+type IntegrationMetricPrometheusStackdriverV2Input interface {
+	pulumi.Input
+
+	ToIntegrationMetricPrometheusStackdriverV2Output() IntegrationMetricPrometheusStackdriverV2Output
+	ToIntegrationMetricPrometheusStackdriverV2OutputWithContext(context.Context) IntegrationMetricPrometheusStackdriverV2Output
+}
+
+type IntegrationMetricPrometheusStackdriverV2Args struct {
+	// Google service account client email (extracted from credentials file).
+	ClientEmail pulumi.StringPtrInput `pulumi:"clientEmail"`
+	// Base64-encoded Google service account key JSON file with 'Monitoring Metric Writer' permission.
+	CredentialsFile pulumi.StringInput `pulumi:"credentialsFile"`
+	// Google service account private key (extracted from credentials file).
+	PrivateKey pulumi.StringPtrInput `pulumi:"privateKey"`
+	// Google service account private key ID (extracted from credentials file).
+	PrivateKeyId pulumi.StringPtrInput `pulumi:"privateKeyId"`
+	// Google Cloud project ID (extracted from credentials file).
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
+	// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+	//
+	// The following computed attributes are available:
+	Tags pulumi.StringPtrInput `pulumi:"tags"`
+}
+
+func (IntegrationMetricPrometheusStackdriverV2Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationMetricPrometheusStackdriverV2)(nil)).Elem()
+}
+
+func (i IntegrationMetricPrometheusStackdriverV2Args) ToIntegrationMetricPrometheusStackdriverV2Output() IntegrationMetricPrometheusStackdriverV2Output {
+	return i.ToIntegrationMetricPrometheusStackdriverV2OutputWithContext(context.Background())
+}
+
+func (i IntegrationMetricPrometheusStackdriverV2Args) ToIntegrationMetricPrometheusStackdriverV2OutputWithContext(ctx context.Context) IntegrationMetricPrometheusStackdriverV2Output {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPrometheusStackdriverV2Output)
+}
+
+func (i IntegrationMetricPrometheusStackdriverV2Args) ToIntegrationMetricPrometheusStackdriverV2PtrOutput() IntegrationMetricPrometheusStackdriverV2PtrOutput {
+	return i.ToIntegrationMetricPrometheusStackdriverV2PtrOutputWithContext(context.Background())
+}
+
+func (i IntegrationMetricPrometheusStackdriverV2Args) ToIntegrationMetricPrometheusStackdriverV2PtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusStackdriverV2PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPrometheusStackdriverV2Output).ToIntegrationMetricPrometheusStackdriverV2PtrOutputWithContext(ctx)
+}
+
+// IntegrationMetricPrometheusStackdriverV2PtrInput is an input type that accepts IntegrationMetricPrometheusStackdriverV2Args, IntegrationMetricPrometheusStackdriverV2Ptr and IntegrationMetricPrometheusStackdriverV2PtrOutput values.
+// You can construct a concrete instance of `IntegrationMetricPrometheusStackdriverV2PtrInput` via:
+//
+//	        IntegrationMetricPrometheusStackdriverV2Args{...}
+//
+//	or:
+//
+//	        nil
+type IntegrationMetricPrometheusStackdriverV2PtrInput interface {
+	pulumi.Input
+
+	ToIntegrationMetricPrometheusStackdriverV2PtrOutput() IntegrationMetricPrometheusStackdriverV2PtrOutput
+	ToIntegrationMetricPrometheusStackdriverV2PtrOutputWithContext(context.Context) IntegrationMetricPrometheusStackdriverV2PtrOutput
+}
+
+type integrationMetricPrometheusStackdriverV2PtrType IntegrationMetricPrometheusStackdriverV2Args
+
+func IntegrationMetricPrometheusStackdriverV2Ptr(v *IntegrationMetricPrometheusStackdriverV2Args) IntegrationMetricPrometheusStackdriverV2PtrInput {
+	return (*integrationMetricPrometheusStackdriverV2PtrType)(v)
+}
+
+func (*integrationMetricPrometheusStackdriverV2PtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationMetricPrometheusStackdriverV2)(nil)).Elem()
+}
+
+func (i *integrationMetricPrometheusStackdriverV2PtrType) ToIntegrationMetricPrometheusStackdriverV2PtrOutput() IntegrationMetricPrometheusStackdriverV2PtrOutput {
+	return i.ToIntegrationMetricPrometheusStackdriverV2PtrOutputWithContext(context.Background())
+}
+
+func (i *integrationMetricPrometheusStackdriverV2PtrType) ToIntegrationMetricPrometheusStackdriverV2PtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusStackdriverV2PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPrometheusStackdriverV2PtrOutput)
+}
+
+type IntegrationMetricPrometheusStackdriverV2Output struct{ *pulumi.OutputState }
+
+func (IntegrationMetricPrometheusStackdriverV2Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationMetricPrometheusStackdriverV2)(nil)).Elem()
+}
+
+func (o IntegrationMetricPrometheusStackdriverV2Output) ToIntegrationMetricPrometheusStackdriverV2Output() IntegrationMetricPrometheusStackdriverV2Output {
+	return o
+}
+
+func (o IntegrationMetricPrometheusStackdriverV2Output) ToIntegrationMetricPrometheusStackdriverV2OutputWithContext(ctx context.Context) IntegrationMetricPrometheusStackdriverV2Output {
+	return o
+}
+
+func (o IntegrationMetricPrometheusStackdriverV2Output) ToIntegrationMetricPrometheusStackdriverV2PtrOutput() IntegrationMetricPrometheusStackdriverV2PtrOutput {
+	return o.ToIntegrationMetricPrometheusStackdriverV2PtrOutputWithContext(context.Background())
+}
+
+func (o IntegrationMetricPrometheusStackdriverV2Output) ToIntegrationMetricPrometheusStackdriverV2PtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusStackdriverV2PtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IntegrationMetricPrometheusStackdriverV2) *IntegrationMetricPrometheusStackdriverV2 {
+		return &v
+	}).(IntegrationMetricPrometheusStackdriverV2PtrOutput)
+}
+
+// Google service account client email (extracted from credentials file).
+func (o IntegrationMetricPrometheusStackdriverV2Output) ClientEmail() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusStackdriverV2) *string { return v.ClientEmail }).(pulumi.StringPtrOutput)
+}
+
+// Base64-encoded Google service account key JSON file with 'Monitoring Metric Writer' permission.
+func (o IntegrationMetricPrometheusStackdriverV2Output) CredentialsFile() pulumi.StringOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusStackdriverV2) string { return v.CredentialsFile }).(pulumi.StringOutput)
+}
+
+// Google service account private key (extracted from credentials file).
+func (o IntegrationMetricPrometheusStackdriverV2Output) PrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusStackdriverV2) *string { return v.PrivateKey }).(pulumi.StringPtrOutput)
+}
+
+// Google service account private key ID (extracted from credentials file).
+func (o IntegrationMetricPrometheusStackdriverV2Output) PrivateKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusStackdriverV2) *string { return v.PrivateKeyId }).(pulumi.StringPtrOutput)
+}
+
+// Google Cloud project ID (extracted from credentials file).
+func (o IntegrationMetricPrometheusStackdriverV2Output) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusStackdriverV2) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
+}
+
+// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+//
+// The following computed attributes are available:
+func (o IntegrationMetricPrometheusStackdriverV2Output) Tags() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusStackdriverV2) *string { return v.Tags }).(pulumi.StringPtrOutput)
+}
+
+type IntegrationMetricPrometheusStackdriverV2PtrOutput struct{ *pulumi.OutputState }
+
+func (IntegrationMetricPrometheusStackdriverV2PtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationMetricPrometheusStackdriverV2)(nil)).Elem()
+}
+
+func (o IntegrationMetricPrometheusStackdriverV2PtrOutput) ToIntegrationMetricPrometheusStackdriverV2PtrOutput() IntegrationMetricPrometheusStackdriverV2PtrOutput {
+	return o
+}
+
+func (o IntegrationMetricPrometheusStackdriverV2PtrOutput) ToIntegrationMetricPrometheusStackdriverV2PtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusStackdriverV2PtrOutput {
+	return o
+}
+
+func (o IntegrationMetricPrometheusStackdriverV2PtrOutput) Elem() IntegrationMetricPrometheusStackdriverV2Output {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusStackdriverV2) IntegrationMetricPrometheusStackdriverV2 {
+		if v != nil {
+			return *v
+		}
+		var ret IntegrationMetricPrometheusStackdriverV2
+		return ret
+	}).(IntegrationMetricPrometheusStackdriverV2Output)
+}
+
+// Google service account client email (extracted from credentials file).
+func (o IntegrationMetricPrometheusStackdriverV2PtrOutput) ClientEmail() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusStackdriverV2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientEmail
+	}).(pulumi.StringPtrOutput)
+}
+
+// Base64-encoded Google service account key JSON file with 'Monitoring Metric Writer' permission.
+func (o IntegrationMetricPrometheusStackdriverV2PtrOutput) CredentialsFile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusStackdriverV2) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.CredentialsFile
+	}).(pulumi.StringPtrOutput)
+}
+
+// Google service account private key (extracted from credentials file).
+func (o IntegrationMetricPrometheusStackdriverV2PtrOutput) PrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusStackdriverV2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// Google service account private key ID (extracted from credentials file).
+func (o IntegrationMetricPrometheusStackdriverV2PtrOutput) PrivateKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusStackdriverV2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKeyId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Google Cloud project ID (extracted from credentials file).
+func (o IntegrationMetricPrometheusStackdriverV2PtrOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusStackdriverV2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ProjectId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+//
+// The following computed attributes are available:
+func (o IntegrationMetricPrometheusStackdriverV2PtrOutput) Tags() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusStackdriverV2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Tags
+	}).(pulumi.StringPtrOutput)
+}
+
 type NotificationResponder struct {
 	// Identifier in UUID format
 	Id *string `pulumi:"id"`
@@ -1613,6 +2884,20 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ExtraDiskSizeNodeArrayInput)(nil)).Elem(), ExtraDiskSizeNodeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceCopySettingInput)(nil)).Elem(), InstanceCopySettingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceCopySettingArrayInput)(nil)).Elem(), InstanceCopySettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusAzureMonitorInput)(nil)).Elem(), IntegrationMetricPrometheusAzureMonitorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusAzureMonitorPtrInput)(nil)).Elem(), IntegrationMetricPrometheusAzureMonitorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusCloudwatchV3Input)(nil)).Elem(), IntegrationMetricPrometheusCloudwatchV3Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusCloudwatchV3PtrInput)(nil)).Elem(), IntegrationMetricPrometheusCloudwatchV3Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusDatadogV3Input)(nil)).Elem(), IntegrationMetricPrometheusDatadogV3Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusDatadogV3PtrInput)(nil)).Elem(), IntegrationMetricPrometheusDatadogV3Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusDynatraceInput)(nil)).Elem(), IntegrationMetricPrometheusDynatraceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusDynatracePtrInput)(nil)).Elem(), IntegrationMetricPrometheusDynatraceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusNewrelicV3Input)(nil)).Elem(), IntegrationMetricPrometheusNewrelicV3Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusNewrelicV3PtrInput)(nil)).Elem(), IntegrationMetricPrometheusNewrelicV3Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusSplunkV2Input)(nil)).Elem(), IntegrationMetricPrometheusSplunkV2Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusSplunkV2PtrInput)(nil)).Elem(), IntegrationMetricPrometheusSplunkV2Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusStackdriverV2Input)(nil)).Elem(), IntegrationMetricPrometheusStackdriverV2Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusStackdriverV2PtrInput)(nil)).Elem(), IntegrationMetricPrometheusStackdriverV2Args{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NotificationResponderInput)(nil)).Elem(), NotificationResponderArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NotificationResponderArrayInput)(nil)).Elem(), NotificationResponderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityFirewallRuleInput)(nil)).Elem(), SecurityFirewallRuleArgs{})
@@ -1635,6 +2920,20 @@ func init() {
 	pulumi.RegisterOutputType(ExtraDiskSizeNodeArrayOutput{})
 	pulumi.RegisterOutputType(InstanceCopySettingOutput{})
 	pulumi.RegisterOutputType(InstanceCopySettingArrayOutput{})
+	pulumi.RegisterOutputType(IntegrationMetricPrometheusAzureMonitorOutput{})
+	pulumi.RegisterOutputType(IntegrationMetricPrometheusAzureMonitorPtrOutput{})
+	pulumi.RegisterOutputType(IntegrationMetricPrometheusCloudwatchV3Output{})
+	pulumi.RegisterOutputType(IntegrationMetricPrometheusCloudwatchV3PtrOutput{})
+	pulumi.RegisterOutputType(IntegrationMetricPrometheusDatadogV3Output{})
+	pulumi.RegisterOutputType(IntegrationMetricPrometheusDatadogV3PtrOutput{})
+	pulumi.RegisterOutputType(IntegrationMetricPrometheusDynatraceOutput{})
+	pulumi.RegisterOutputType(IntegrationMetricPrometheusDynatracePtrOutput{})
+	pulumi.RegisterOutputType(IntegrationMetricPrometheusNewrelicV3Output{})
+	pulumi.RegisterOutputType(IntegrationMetricPrometheusNewrelicV3PtrOutput{})
+	pulumi.RegisterOutputType(IntegrationMetricPrometheusSplunkV2Output{})
+	pulumi.RegisterOutputType(IntegrationMetricPrometheusSplunkV2PtrOutput{})
+	pulumi.RegisterOutputType(IntegrationMetricPrometheusStackdriverV2Output{})
+	pulumi.RegisterOutputType(IntegrationMetricPrometheusStackdriverV2PtrOutput{})
 	pulumi.RegisterOutputType(NotificationResponderOutput{})
 	pulumi.RegisterOutputType(NotificationResponderArrayOutput{})
 	pulumi.RegisterOutputType(SecurityFirewallRuleOutput{})

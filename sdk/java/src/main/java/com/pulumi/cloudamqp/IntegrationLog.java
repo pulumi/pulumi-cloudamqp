@@ -118,6 +118,54 @@ import javax.annotation.Nullable;
  * &lt;details&gt;
  *   &lt;summary&gt;
  *     &lt;b&gt;
+ *       &lt;i&gt;Cloudwatch log integration with retention and tags (from [v1.38.0])&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * Use retention and/or tags on the integration to make changes to `CloudAMQP` Log Group.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.IntegrationLog;
+ * import com.pulumi.cloudamqp.IntegrationLogArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var cloudwatch = new IntegrationLog("cloudwatch", IntegrationLogArgs.builder()
+ *             .instanceId(instance.id())
+ *             .name("cloudwatchlog")
+ *             .accessKeyId(awsAccessKeyId)
+ *             .secretAccessKey(awsSecretAccessKey)
+ *             .region(awsRegion)
+ *             .retention(14)
+ *             .tags("Project=A,Environment=Development")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
  *       &lt;i&gt;Coralogix log integration&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
@@ -207,7 +255,7 @@ import javax.annotation.Nullable;
  * &lt;details&gt;
  *   &lt;summary&gt;
  *     &lt;b&gt;
- *       &lt;i&gt;Logentries log integration&lt;/i&gt;
+ *       &lt;i&gt;Log entries log integration&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
  * 
@@ -626,29 +674,6 @@ import javax.annotation.Nullable;
  * 
  * &lt;/details&gt;
  * 
- * ## Integration type reference
- * 
- * Valid arguments for third party log integrations. See more information at
- * [CloudAMQP API add integration].
- * 
- * Required arguments for all integrations: name
- * 
- * | Integration | name | Required arguments |
- * | ---- | ---- | ---- |
- * | Azure monitor | azureMonitor | tenant_id, application_id, application_secret, dce_uri, table, dcrId |
- * | CloudWatch | cloudwatchlog | access_key_id, secret_access_key, region |
- * | Coralogix | coralogix | private_key, endpoint, application, subsystem |
- * | Data Dog | datadog | region, api_keys, tags |
- * | Log Entries | logentries | token |
- * | Loggly | loggly | token |
- * | Papertrail | papertrail | url |
- * | Scalyr | scalyr | token, host |
- * | Splunk | splunk | token, host_port, sourcetype |
- * | Stackdriver | stackdriver | credentials |
- * 
- * ***Note:*** Stackdriver (v1.20.2 or earlier versions) required arguments: project_id, private_key,
- *             clientEmail
- * 
  * ## Dependency
  * 
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -677,13 +702,25 @@ import javax.annotation.Nullable;
  * $ pulumi import cloudamqp:index/integrationLog:IntegrationLog this &lt;id&gt;,&lt;instance_id&gt;`
  * ```
  * 
- * [CloudAMQP API add integration]: https://docs.cloudamqp.com/cloudamqp_api.html#add-log-integration
+ * [v1.38.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.38.0
  * 
- * [CloudAMQP API list integration]: https://docs.cloudamqp.com/cloudamqp_api.html#list-log-integrations
+ * [CloudAMQP API add integration]: https://docs.cloudamqp.com/instance-api.html#tag/integrations/post/integrations/logs/{system}
+ * 
+ * [Tutorial to find/create all arguments]: https://learn.microsoft.com/en-us/azure/azure-monitor/logs/tutorial-logs-ingestion-portal
+ * 
+ * [Cloudwatch Log retention]: https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutRetentionPolicy.html#API_PutRetentionPolicy_RequestSyntax
+ * 
+ * [Cloudwatch Log tags]: https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_TagLogGroup.html#API_TagLogGroup_RequestSyntax
+ * 
+ * [Coralogix documentation]: https://coralogix.com/docs/send-your-data-api-key/
+ * 
+ * [app.datadoghq.com]: https://app.datadoghq.com/
  * 
  * [Datadog documentation]: https://docs.datadoghq.com/getting_started/tagging/#define-tags
  * 
- * [integration type reference]: #integration-type-reference
+ * [logentries add-log]: https://logentries.com/app#/add-log/manual
+ * 
+ * [CloudAMQP API list integration]: https://docs.cloudamqp.com/instance-api.html#tag/integrations/get/integrations/logs
  * 
  */
 @ResourceType(type="cloudamqp:index/integrationLog:IntegrationLog")
@@ -703,208 +740,216 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.accessKeyId);
     }
     /**
-     * The API key.
+     * The API key for the integration service. (Datadog)
      * 
      */
     @Export(name="apiKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> apiKey;
 
     /**
-     * @return The API key.
+     * @return The API key for the integration service. (Datadog)
      * 
      */
     public Output<Optional<String>> apiKey() {
         return Codegen.optional(this.apiKey);
     }
     /**
-     * The application name for Coralogix.
+     * The name of the application. (Azure Monitor)
      * 
      */
     @Export(name="application", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> application;
 
     /**
-     * @return The application name for Coralogix.
+     * @return The name of the application. (Azure Monitor)
      * 
      */
     public Output<Optional<String>> application() {
         return Codegen.optional(this.application);
     }
     /**
-     * The application identifier for Azure monitor.
+     * The application identifier.
      * 
      */
     @Export(name="applicationId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> applicationId;
 
     /**
-     * @return The application identifier for Azure monitor.
+     * @return The application identifier.
      * 
      */
     public Output<Optional<String>> applicationId() {
         return Codegen.optional(this.applicationId);
     }
     /**
-     * The application secret for Azure monitor.
+     * The application secret.
      * 
      */
     @Export(name="applicationSecret", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> applicationSecret;
 
     /**
-     * @return The application secret for Azure monitor.
+     * @return The application secret.
      * 
      */
     public Output<Optional<String>> applicationSecret() {
         return Codegen.optional(this.applicationSecret);
     }
     /**
-     * The client email registered for the integration service.
+     * The client email. (Stackdriver)
      * 
      */
     @Export(name="clientEmail", refs={String.class}, tree="[0]")
     private Output<String> clientEmail;
 
     /**
-     * @return The client email registered for the integration service.
+     * @return The client email. (Stackdriver)
      * 
      */
     public Output<String> clientEmail() {
         return this.clientEmail;
     }
     /**
-     * Google Service Account private key credentials.
+     * Base64Encoded credentials. (Stackdriver)
      * 
      */
     @Export(name="credentials", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> credentials;
 
     /**
-     * @return Google Service Account private key credentials.
+     * @return Base64Encoded credentials. (Stackdriver)
      * 
      */
     public Output<Optional<String>> credentials() {
         return Codegen.optional(this.credentials);
     }
     /**
-     * The data collection endpoint for Azure monitor.
+     * The data collection endpoint.
      * 
      */
     @Export(name="dceUri", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> dceUri;
 
     /**
-     * @return The data collection endpoint for Azure monitor.
+     * @return The data collection endpoint.
      * 
      */
     public Output<Optional<String>> dceUri() {
         return Codegen.optional(this.dceUri);
     }
     /**
-     * ID of data collection rule that your DCE is linked to for Azure
-     * Monitor.
-     * 
-     * This is the full list of all arguments. Only a subset of arguments are used based on which type of
-     * integration used. See [integration type reference] table below for more information.
+     * ID of data collection rule that your DCE is linked to.
      * 
      */
     @Export(name="dcrId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> dcrId;
 
     /**
-     * @return ID of data collection rule that your DCE is linked to for Azure
-     * Monitor.
-     * 
-     * This is the full list of all arguments. Only a subset of arguments are used based on which type of
-     * integration used. See [integration type reference] table below for more information.
+     * @return ID of data collection rule that your DCE is linked to.
      * 
      */
     public Output<Optional<String>> dcrId() {
         return Codegen.optional(this.dcrId);
     }
     /**
-     * The syslog destination to send the logs to for Coralogix.
+     * The syslog destination to send the logs to. (Papertrail)
      * 
      */
     @Export(name="endpoint", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> endpoint;
 
     /**
-     * @return The syslog destination to send the logs to for Coralogix.
+     * @return The syslog destination to send the logs to. (Papertrail)
      * 
      */
     public Output<Optional<String>> endpoint() {
         return Codegen.optional(this.endpoint);
     }
     /**
-     * The host for Scalyr integration. (app.scalyr.com,
-     * app.eu.scalyr.com)
+     * The host information. (Scalyr)
      * 
      */
     @Export(name="host", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> host;
 
     /**
-     * @return The host for Scalyr integration. (app.scalyr.com,
-     * app.eu.scalyr.com)
+     * @return The host information. (Scalyr)
      * 
      */
     public Output<Optional<String>> host() {
         return Codegen.optional(this.host);
     }
     /**
-     * Destination to send the logs.
+     * Destination to send the logs. (Splunk)
      * 
      */
     @Export(name="hostPort", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> hostPort;
 
     /**
-     * @return Destination to send the logs.
+     * @return Destination to send the logs. (Splunk)
      * 
      */
     public Output<Optional<String>> hostPort() {
         return Codegen.optional(this.hostPort);
     }
     /**
-     * Instance identifier used to make proxy calls
+     * Instance identifier for the CloudAMQP instance.
+     * 
+     * Valid arguments for each third party log integrations below. Corresponding API backend documentation can be
+     * found here [CloudAMQP API add integration].
+     * 
+     * &lt;details&gt;
+     * &lt;summary&gt;
+     * &lt;b&gt;Azure monitoring&lt;/b&gt;
+     * &lt;/summary&gt;
+     * 
+     * The following arguments used by Azure monitoring.
      * 
      */
     @Export(name="instanceId", refs={Integer.class}, tree="[0]")
     private Output<Integer> instanceId;
 
     /**
-     * @return Instance identifier used to make proxy calls
+     * @return Instance identifier for the CloudAMQP instance.
+     * 
+     * Valid arguments for each third party log integrations below. Corresponding API backend documentation can be
+     * found here [CloudAMQP API add integration].
+     * 
+     * &lt;details&gt;
+     * &lt;summary&gt;
+     * &lt;b&gt;Azure monitoring&lt;/b&gt;
+     * &lt;/summary&gt;
+     * 
+     * The following arguments used by Azure monitoring.
      * 
      */
     public Output<Integer> instanceId() {
         return this.instanceId;
     }
     /**
-     * The name of the third party log integration. See
-     * [integration type reference]
+     * The name of the third party log integration (`cloudwatchlog`).
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return The name of the third party log integration. See
-     * [integration type reference]
+     * @return The name of the third party log integration (`cloudwatchlog`).
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * The private access key.
+     * The private API key used for authentication. (Stackdriver, Coralogix)
      * 
      */
     @Export(name="privateKey", refs={String.class}, tree="[0]")
     private Output<String> privateKey;
 
     /**
-     * @return The private access key.
+     * @return The private API key used for authentication. (Stackdriver, Coralogix)
      * 
      */
     public Output<String> privateKey() {
@@ -925,32 +970,56 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
         return this.privateKeyId;
     }
     /**
-     * The project identifier.
+     * The project ID for the integration service. (Stackdriver)
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return The project identifier.
+     * @return The project ID for the integration service. (Stackdriver)
      * 
      */
     public Output<String> projectId() {
         return this.projectId;
     }
     /**
-     * Region hosting the integration service.
+     * AWS region hosting the integration service.
+     * 
+     * Optional arguments introduced in version [v1.38.0].
      * 
      */
     @Export(name="region", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> region;
 
     /**
-     * @return Region hosting the integration service.
+     * @return AWS region hosting the integration service.
+     * 
+     * Optional arguments introduced in version [v1.38.0].
      * 
      */
     public Output<Optional<String>> region() {
         return Codegen.optional(this.region);
+    }
+    /**
+     * Number of days to retain log events in `CloudAMQP` log group.
+     * 
+     * ***Note:*** Possible values are: 0 (never expire) or between 1-3653, read more about valid values in
+     * the [Cloudwatch Log retention].
+     * 
+     */
+    @Export(name="retention", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> retention;
+
+    /**
+     * @return Number of days to retain log events in `CloudAMQP` log group.
+     * 
+     * ***Note:*** Possible values are: 0 (never expire) or between 1-3653, read more about valid values in
+     * the [Cloudwatch Log retention].
+     * 
+     */
+    public Output<Optional<Integer>> retention() {
+        return Codegen.optional(this.retention);
     }
     /**
      * AWS secret access key.
@@ -967,106 +1036,126 @@ public class IntegrationLog extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.secretAccessKey);
     }
     /**
-     * Assign source type to the data exported, eg. generic_single_line.
-     * (Splunk)
+     * Assign source type to the data exported, eg. generic_single_line. (Splunk)
      * 
      */
     @Export(name="sourcetype", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> sourcetype;
 
     /**
-     * @return Assign source type to the data exported, eg. generic_single_line.
-     * (Splunk)
+     * @return Assign source type to the data exported, eg. generic_single_line. (Splunk)
      * 
      */
     public Output<Optional<String>> sourcetype() {
         return Codegen.optional(this.sourcetype);
     }
     /**
-     * The subsystem name for Coralogix.
+     * The name of the subsystem. (Azure Monitor)
      * 
      */
     @Export(name="subsystem", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> subsystem;
 
     /**
-     * @return The subsystem name for Coralogix.
+     * @return The name of the subsystem. (Azure Monitor)
      * 
      */
     public Output<Optional<String>> subsystem() {
         return Codegen.optional(this.subsystem);
     }
     /**
-     * The table name for Azure monitor.
+     * The table name.
+     * 
+     * Use Azure portal to configure external access for Azure Monitor. [Tutorial to find/create all arguments]
+     * 
+     * &lt;/details&gt;
+     * 
+     * &lt;details&gt;
+     * &lt;summary&gt;
+     * &lt;b&gt;Cloudwatch&lt;/b&gt;
+     * &lt;/summary&gt;
+     * 
+     * The following arguments used by CloudWatch.
      * 
      */
     @Export(name="table", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> table;
 
     /**
-     * @return The table name for Azure monitor.
+     * @return The table name.
+     * 
+     * Use Azure portal to configure external access for Azure Monitor. [Tutorial to find/create all arguments]
+     * 
+     * &lt;/details&gt;
+     * 
+     * &lt;details&gt;
+     * &lt;summary&gt;
+     * &lt;b&gt;Cloudwatch&lt;/b&gt;
+     * &lt;/summary&gt;
+     * 
+     * The following arguments used by CloudWatch.
      * 
      */
     public Output<Optional<String>> table() {
         return Codegen.optional(this.table);
     }
     /**
-     * Tags. e.g. `env=prod,region=europe`.
+     * Enter tags to `CloudAMQP` log group like this: `Project=A,Environment=Development`.
      * 
-     * ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
-     * letter, read more about tags format in the [Datadog documentation].
+     * ***Note:*** Tags are only added, unwanted tags needs to be removed manually in the AWS console.
+     * Read more about tags format in the [Cloudwatch Log tags]
      * 
      */
     @Export(name="tags", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tags;
 
     /**
-     * @return Tags. e.g. `env=prod,region=europe`.
+     * @return Enter tags to `CloudAMQP` log group like this: `Project=A,Environment=Development`.
      * 
-     * ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
-     * letter, read more about tags format in the [Datadog documentation].
+     * ***Note:*** Tags are only added, unwanted tags needs to be removed manually in the AWS console.
+     * Read more about tags format in the [Cloudwatch Log tags]
      * 
      */
     public Output<Optional<String>> tags() {
         return Codegen.optional(this.tags);
     }
     /**
-     * The tenant identifier for Azure monitor.
+     * The tenant identifier.
      * 
      */
     @Export(name="tenantId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tenantId;
 
     /**
-     * @return The tenant identifier for Azure monitor.
+     * @return The tenant identifier.
      * 
      */
     public Output<Optional<String>> tenantId() {
         return Codegen.optional(this.tenantId);
     }
     /**
-     * Token used for authentication.
+     * The token used for authentication. (Loggly, Logentries, Splunk, Scalyr)
      * 
      */
     @Export(name="token", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> token;
 
     /**
-     * @return Token used for authentication.
+     * @return The token used for authentication. (Loggly, Logentries, Splunk, Scalyr)
      * 
      */
     public Output<Optional<String>> token() {
         return Codegen.optional(this.token);
     }
     /**
-     * Endpoint to log integration.
+     * The URL to push the logs to. (Papertrail)
      * 
      */
     @Export(name="url", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> url;
 
     /**
-     * @return Endpoint to log integration.
+     * @return The URL to push the logs to. (Papertrail)
      * 
      */
     public Output<Optional<String>> url() {

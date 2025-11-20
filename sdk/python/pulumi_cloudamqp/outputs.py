@@ -17,6 +17,13 @@ from . import _utilities
 __all__ = [
     'ExtraDiskSizeNode',
     'InstanceCopySetting',
+    'IntegrationMetricPrometheusAzureMonitor',
+    'IntegrationMetricPrometheusCloudwatchV3',
+    'IntegrationMetricPrometheusDatadogV3',
+    'IntegrationMetricPrometheusDynatrace',
+    'IntegrationMetricPrometheusNewrelicV3',
+    'IntegrationMetricPrometheusSplunkV2',
+    'IntegrationMetricPrometheusStackdriverV2',
     'NotificationResponder',
     'SecurityFirewallRule',
     'GetAccountInstanceResult',
@@ -142,6 +149,439 @@ class InstanceCopySetting(dict):
         from.
         """
         return pulumi.get(self, "subscription_id")
+
+
+@pulumi.output_type
+class IntegrationMetricPrometheusAzureMonitor(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "connectionString":
+            suggest = "connection_string"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in IntegrationMetricPrometheusAzureMonitor. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        IntegrationMetricPrometheusAzureMonitor.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        IntegrationMetricPrometheusAzureMonitor.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 connection_string: _builtins.str):
+        """
+        :param _builtins.str connection_string: Azure Application Insights Connection String for authentication.
+        """
+        pulumi.set(__self__, "connection_string", connection_string)
+
+    @_builtins.property
+    @pulumi.getter(name="connectionString")
+    def connection_string(self) -> _builtins.str:
+        """
+        Azure Application Insights Connection String for authentication.
+        """
+        return pulumi.get(self, "connection_string")
+
+
+@pulumi.output_type
+class IntegrationMetricPrometheusCloudwatchV3(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "iamExternalId":
+            suggest = "iam_external_id"
+        elif key == "iamRole":
+            suggest = "iam_role"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in IntegrationMetricPrometheusCloudwatchV3. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        IntegrationMetricPrometheusCloudwatchV3.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        IntegrationMetricPrometheusCloudwatchV3.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 iam_external_id: _builtins.str,
+                 iam_role: _builtins.str,
+                 region: _builtins.str,
+                 tags: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str iam_external_id: AWS IAM external ID for role assumption.
+        :param _builtins.str iam_role: AWS IAM role ARN with PutMetricData permission for CloudWatch integration.
+        :param _builtins.str region: AWS region for CloudWatch metrics.
+        :param _builtins.str tags: Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        """
+        pulumi.set(__self__, "iam_external_id", iam_external_id)
+        pulumi.set(__self__, "iam_role", iam_role)
+        pulumi.set(__self__, "region", region)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="iamExternalId")
+    def iam_external_id(self) -> _builtins.str:
+        """
+        AWS IAM external ID for role assumption.
+        """
+        return pulumi.get(self, "iam_external_id")
+
+    @_builtins.property
+    @pulumi.getter(name="iamRole")
+    def iam_role(self) -> _builtins.str:
+        """
+        AWS IAM role ARN with PutMetricData permission for CloudWatch integration.
+        """
+        return pulumi.get(self, "iam_role")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        AWS region for CloudWatch metrics.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[_builtins.str]:
+        """
+        Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class IntegrationMetricPrometheusDatadogV3(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiKey":
+            suggest = "api_key"
+        elif key == "rabbitmqDashboardMetricsFormat":
+            suggest = "rabbitmq_dashboard_metrics_format"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in IntegrationMetricPrometheusDatadogV3. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        IntegrationMetricPrometheusDatadogV3.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        IntegrationMetricPrometheusDatadogV3.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_key: _builtins.str,
+                 region: _builtins.str,
+                 rabbitmq_dashboard_metrics_format: Optional[_builtins.bool] = None,
+                 tags: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str api_key: Datadog API key for authentication.
+        :param _builtins.str region: Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`.
+        :param _builtins.bool rabbitmq_dashboard_metrics_format: Enable metric name transformation to match Datadog's RabbitMQ dashboard format. Default: `false`. **Note:** This option is only available for RabbitMQ clusters, not LavinMQ clusters.
+        :param _builtins.str tags: Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        """
+        pulumi.set(__self__, "api_key", api_key)
+        pulumi.set(__self__, "region", region)
+        if rabbitmq_dashboard_metrics_format is not None:
+            pulumi.set(__self__, "rabbitmq_dashboard_metrics_format", rabbitmq_dashboard_metrics_format)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> _builtins.str:
+        """
+        Datadog API key for authentication.
+        """
+        return pulumi.get(self, "api_key")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="rabbitmqDashboardMetricsFormat")
+    def rabbitmq_dashboard_metrics_format(self) -> Optional[_builtins.bool]:
+        """
+        Enable metric name transformation to match Datadog's RabbitMQ dashboard format. Default: `false`. **Note:** This option is only available for RabbitMQ clusters, not LavinMQ clusters.
+        """
+        return pulumi.get(self, "rabbitmq_dashboard_metrics_format")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[_builtins.str]:
+        """
+        Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class IntegrationMetricPrometheusDynatrace(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accessToken":
+            suggest = "access_token"
+        elif key == "environmentId":
+            suggest = "environment_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in IntegrationMetricPrometheusDynatrace. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        IntegrationMetricPrometheusDynatrace.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        IntegrationMetricPrometheusDynatrace.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 access_token: _builtins.str,
+                 environment_id: _builtins.str,
+                 tags: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str access_token: Dynatrace access token with 'Ingest metrics' permission.
+        :param _builtins.str environment_id: Dynatrace environment ID.
+        :param _builtins.str tags: Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        """
+        pulumi.set(__self__, "access_token", access_token)
+        pulumi.set(__self__, "environment_id", environment_id)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="accessToken")
+    def access_token(self) -> _builtins.str:
+        """
+        Dynatrace access token with 'Ingest metrics' permission.
+        """
+        return pulumi.get(self, "access_token")
+
+    @_builtins.property
+    @pulumi.getter(name="environmentId")
+    def environment_id(self) -> _builtins.str:
+        """
+        Dynatrace environment ID.
+        """
+        return pulumi.get(self, "environment_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[_builtins.str]:
+        """
+        Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class IntegrationMetricPrometheusNewrelicV3(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiKey":
+            suggest = "api_key"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in IntegrationMetricPrometheusNewrelicV3. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        IntegrationMetricPrometheusNewrelicV3.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        IntegrationMetricPrometheusNewrelicV3.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_key: _builtins.str,
+                 tags: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str api_key: New Relic API key for authentication.
+        :param _builtins.str tags: Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        """
+        pulumi.set(__self__, "api_key", api_key)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> _builtins.str:
+        """
+        New Relic API key for authentication.
+        """
+        return pulumi.get(self, "api_key")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[_builtins.str]:
+        """
+        Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class IntegrationMetricPrometheusSplunkV2(dict):
+    def __init__(__self__, *,
+                 endpoint: _builtins.str,
+                 token: _builtins.str,
+                 tags: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str endpoint: Splunk HEC endpoint URL. Example: `https://your-instance-id.splunkcloud.com:8088/services/collector`.
+        :param _builtins.str token: Splunk HEC (HTTP Event Collector) token for authentication.
+        :param _builtins.str tags: Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        """
+        pulumi.set(__self__, "endpoint", endpoint)
+        pulumi.set(__self__, "token", token)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter
+    def endpoint(self) -> _builtins.str:
+        """
+        Splunk HEC endpoint URL. Example: `https://your-instance-id.splunkcloud.com:8088/services/collector`.
+        """
+        return pulumi.get(self, "endpoint")
+
+    @_builtins.property
+    @pulumi.getter
+    def token(self) -> _builtins.str:
+        """
+        Splunk HEC (HTTP Event Collector) token for authentication.
+        """
+        return pulumi.get(self, "token")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[_builtins.str]:
+        """
+        Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class IntegrationMetricPrometheusStackdriverV2(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "credentialsFile":
+            suggest = "credentials_file"
+        elif key == "clientEmail":
+            suggest = "client_email"
+        elif key == "privateKey":
+            suggest = "private_key"
+        elif key == "privateKeyId":
+            suggest = "private_key_id"
+        elif key == "projectId":
+            suggest = "project_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in IntegrationMetricPrometheusStackdriverV2. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        IntegrationMetricPrometheusStackdriverV2.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        IntegrationMetricPrometheusStackdriverV2.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 credentials_file: _builtins.str,
+                 client_email: Optional[_builtins.str] = None,
+                 private_key: Optional[_builtins.str] = None,
+                 private_key_id: Optional[_builtins.str] = None,
+                 project_id: Optional[_builtins.str] = None,
+                 tags: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str credentials_file: Base64-encoded Google service account key JSON file with 'Monitoring Metric Writer' permission.
+        :param _builtins.str client_email: Google service account client email (extracted from credentials file).
+        :param _builtins.str private_key: Google service account private key (extracted from credentials file).
+        :param _builtins.str private_key_id: Google service account private key ID (extracted from credentials file).
+        :param _builtins.str project_id: Google Cloud project ID (extracted from credentials file).
+        :param _builtins.str tags: Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+               
+               The following computed attributes are available:
+        """
+        pulumi.set(__self__, "credentials_file", credentials_file)
+        if client_email is not None:
+            pulumi.set(__self__, "client_email", client_email)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if private_key_id is not None:
+            pulumi.set(__self__, "private_key_id", private_key_id)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="credentialsFile")
+    def credentials_file(self) -> _builtins.str:
+        """
+        Base64-encoded Google service account key JSON file with 'Monitoring Metric Writer' permission.
+        """
+        return pulumi.get(self, "credentials_file")
+
+    @_builtins.property
+    @pulumi.getter(name="clientEmail")
+    def client_email(self) -> Optional[_builtins.str]:
+        """
+        Google service account client email (extracted from credentials file).
+        """
+        return pulumi.get(self, "client_email")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[_builtins.str]:
+        """
+        Google service account private key (extracted from credentials file).
+        """
+        return pulumi.get(self, "private_key")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyId")
+    def private_key_id(self) -> Optional[_builtins.str]:
+        """
+        Google service account private key ID (extracted from credentials file).
+        """
+        return pulumi.get(self, "private_key_id")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[_builtins.str]:
+        """
+        Google Cloud project ID (extracted from credentials file).
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[_builtins.str]:
+        """
+        Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+
+        The following computed attributes are available:
+        """
+        return pulumi.get(self, "tags")
 
 
 @pulumi.output_type

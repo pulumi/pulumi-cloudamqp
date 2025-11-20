@@ -244,9 +244,9 @@ class Vpc(pulumi.CustomResource):
         $ pulumi import cloudamqp:index/vpc:Vpc vpc <vpc_id>`
         ```
 
-        [CloudAMQP API list vpcs]: https://docs.cloudamqp.com/#list-vpcs
+        [CloudAMQP API list vpcs]: https://docs.cloudamqp.com/index.html#tag/vpcs/get/vpcs
 
-        [CloudAMQP plans]: https://www.cloudamqp.com/plans.html
+        [CloudAMQP plans]: https://docs.cloudamqp.com/index.html#tag/plans/get/plans
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -320,9 +320,9 @@ class Vpc(pulumi.CustomResource):
         $ pulumi import cloudamqp:index/vpc:Vpc vpc <vpc_id>`
         ```
 
-        [CloudAMQP API list vpcs]: https://docs.cloudamqp.com/#list-vpcs
+        [CloudAMQP API list vpcs]: https://docs.cloudamqp.com/index.html#tag/vpcs/get/vpcs
 
-        [CloudAMQP plans]: https://www.cloudamqp.com/plans.html
+        [CloudAMQP plans]: https://docs.cloudamqp.com/index.html#tag/plans/get/plans
 
         :param str resource_name: The name of the resource.
         :param VpcArgs args: The arguments to use to populate this resource's properties.

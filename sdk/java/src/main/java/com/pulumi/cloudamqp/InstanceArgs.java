@@ -24,10 +24,6 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
      * Copy settings from one CloudAMQP instance to a new. Consists of
      * the block documented below.
      * 
-     * ***
-     * 
-     * The `copySettings` block consists of:
-     * 
      */
     @Import(name="copySettings")
     private @Nullable Output<List<InstanceCopySettingArgs>> copySettings;
@@ -35,10 +31,6 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * @return Copy settings from one CloudAMQP instance to a new. Consists of
      * the block documented below.
-     * 
-     * ***
-     * 
-     * The `copySettings` block consists of:
      * 
      */
     public Optional<Output<List<InstanceCopySettingArgs>>> copySettings() {
@@ -130,6 +122,41 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Output<String> plan() {
         return this.plan;
+    }
+
+    /**
+     * The AZs to place your nodes in. Each entry corresponds to a server in your cluster, so for a 3 node cluster, provide 3 AZs in the list.
+     * 
+     * ***Note:*** `preferredAz` can only be set upon instance creation as of now and the result is not guaranteed. On eventual failed resource allocation in the zone, CloudAMQP will fallback to a different zone.
+     * * AWS: AZ id in [aws-availability-zones]
+     * * Azure: 1,2 or 3 in supported regions [azure-region-list]
+     * * GCP: zones in [gcp-region-zones]
+     * * Digital Ocean: Slug in [do-regional-availability]
+     * 
+     * ***
+     * 
+     * The `copySettings` block consists of:
+     * 
+     */
+    @Import(name="preferredAzs")
+    private @Nullable Output<List<String>> preferredAzs;
+
+    /**
+     * @return The AZs to place your nodes in. Each entry corresponds to a server in your cluster, so for a 3 node cluster, provide 3 AZs in the list.
+     * 
+     * ***Note:*** `preferredAz` can only be set upon instance creation as of now and the result is not guaranteed. On eventual failed resource allocation in the zone, CloudAMQP will fallback to a different zone.
+     * * AWS: AZ id in [aws-availability-zones]
+     * * Azure: 1,2 or 3 in supported regions [azure-region-list]
+     * * GCP: zones in [gcp-region-zones]
+     * * Digital Ocean: Slug in [do-regional-availability]
+     * 
+     * ***
+     * 
+     * The `copySettings` block consists of:
+     * 
+     */
+    public Optional<Output<List<String>>> preferredAzs() {
+        return Optional.ofNullable(this.preferredAzs);
     }
 
     /**
@@ -244,6 +271,7 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         this.noDefaultAlarms = $.noDefaultAlarms;
         this.nodes = $.nodes;
         this.plan = $.plan;
+        this.preferredAzs = $.preferredAzs;
         this.region = $.region;
         this.rmqVersion = $.rmqVersion;
         this.tags = $.tags;
@@ -273,10 +301,6 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
          * @param copySettings Copy settings from one CloudAMQP instance to a new. Consists of
          * the block documented below.
          * 
-         * ***
-         * 
-         * The `copySettings` block consists of:
-         * 
          * @return builder
          * 
          */
@@ -289,10 +313,6 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
          * @param copySettings Copy settings from one CloudAMQP instance to a new. Consists of
          * the block documented below.
          * 
-         * ***
-         * 
-         * The `copySettings` block consists of:
-         * 
          * @return builder
          * 
          */
@@ -303,10 +323,6 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param copySettings Copy settings from one CloudAMQP instance to a new. Consists of
          * the block documented below.
-         * 
-         * ***
-         * 
-         * The `copySettings` block consists of:
          * 
          * @return builder
          * 
@@ -430,6 +446,67 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder plan(String plan) {
             return plan(Output.of(plan));
+        }
+
+        /**
+         * @param preferredAzs The AZs to place your nodes in. Each entry corresponds to a server in your cluster, so for a 3 node cluster, provide 3 AZs in the list.
+         * 
+         * ***Note:*** `preferredAz` can only be set upon instance creation as of now and the result is not guaranteed. On eventual failed resource allocation in the zone, CloudAMQP will fallback to a different zone.
+         * * AWS: AZ id in [aws-availability-zones]
+         * * Azure: 1,2 or 3 in supported regions [azure-region-list]
+         * * GCP: zones in [gcp-region-zones]
+         * * Digital Ocean: Slug in [do-regional-availability]
+         * 
+         * ***
+         * 
+         * The `copySettings` block consists of:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder preferredAzs(@Nullable Output<List<String>> preferredAzs) {
+            $.preferredAzs = preferredAzs;
+            return this;
+        }
+
+        /**
+         * @param preferredAzs The AZs to place your nodes in. Each entry corresponds to a server in your cluster, so for a 3 node cluster, provide 3 AZs in the list.
+         * 
+         * ***Note:*** `preferredAz` can only be set upon instance creation as of now and the result is not guaranteed. On eventual failed resource allocation in the zone, CloudAMQP will fallback to a different zone.
+         * * AWS: AZ id in [aws-availability-zones]
+         * * Azure: 1,2 or 3 in supported regions [azure-region-list]
+         * * GCP: zones in [gcp-region-zones]
+         * * Digital Ocean: Slug in [do-regional-availability]
+         * 
+         * ***
+         * 
+         * The `copySettings` block consists of:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder preferredAzs(List<String> preferredAzs) {
+            return preferredAzs(Output.of(preferredAzs));
+        }
+
+        /**
+         * @param preferredAzs The AZs to place your nodes in. Each entry corresponds to a server in your cluster, so for a 3 node cluster, provide 3 AZs in the list.
+         * 
+         * ***Note:*** `preferredAz` can only be set upon instance creation as of now and the result is not guaranteed. On eventual failed resource allocation in the zone, CloudAMQP will fallback to a different zone.
+         * * AWS: AZ id in [aws-availability-zones]
+         * * Azure: 1,2 or 3 in supported regions [azure-region-list]
+         * * GCP: zones in [gcp-region-zones]
+         * * Digital Ocean: Slug in [do-regional-availability]
+         * 
+         * ***
+         * 
+         * The `copySettings` block consists of:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder preferredAzs(String... preferredAzs) {
+            return preferredAzs(List.of(preferredAzs));
         }
 
         /**

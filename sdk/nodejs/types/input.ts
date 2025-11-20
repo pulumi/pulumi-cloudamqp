@@ -35,6 +35,121 @@ export interface InstanceCopySetting {
     subscriptionId: pulumi.Input<string>;
 }
 
+export interface IntegrationMetricPrometheusAzureMonitor {
+    /**
+     * Azure Application Insights Connection String for authentication.
+     */
+    connectionString: pulumi.Input<string>;
+}
+
+export interface IntegrationMetricPrometheusCloudwatchV3 {
+    /**
+     * AWS IAM external ID for role assumption.
+     */
+    iamExternalId: pulumi.Input<string>;
+    /**
+     * AWS IAM role ARN with PutMetricData permission for CloudWatch integration.
+     */
+    iamRole: pulumi.Input<string>;
+    /**
+     * AWS region for CloudWatch metrics.
+     */
+    region: pulumi.Input<string>;
+    /**
+     * Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+     */
+    tags?: pulumi.Input<string>;
+}
+
+export interface IntegrationMetricPrometheusDatadogV3 {
+    /**
+     * Datadog API key for authentication.
+     */
+    apiKey: pulumi.Input<string>;
+    /**
+     * Enable metric name transformation to match Datadog's RabbitMQ dashboard format. Default: `false`. **Note:** This option is only available for RabbitMQ clusters, not LavinMQ clusters.
+     */
+    rabbitmqDashboardMetricsFormat?: pulumi.Input<boolean>;
+    /**
+     * Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`.
+     */
+    region: pulumi.Input<string>;
+    /**
+     * Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+     */
+    tags?: pulumi.Input<string>;
+}
+
+export interface IntegrationMetricPrometheusDynatrace {
+    /**
+     * Dynatrace access token with 'Ingest metrics' permission.
+     */
+    accessToken: pulumi.Input<string>;
+    /**
+     * Dynatrace environment ID.
+     */
+    environmentId: pulumi.Input<string>;
+    /**
+     * Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+     */
+    tags?: pulumi.Input<string>;
+}
+
+export interface IntegrationMetricPrometheusNewrelicV3 {
+    /**
+     * New Relic API key for authentication.
+     */
+    apiKey: pulumi.Input<string>;
+    /**
+     * Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+     */
+    tags?: pulumi.Input<string>;
+}
+
+export interface IntegrationMetricPrometheusSplunkV2 {
+    /**
+     * Splunk HEC endpoint URL. Example: `https://your-instance-id.splunkcloud.com:8088/services/collector`.
+     */
+    endpoint: pulumi.Input<string>;
+    /**
+     * Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+     */
+    tags?: pulumi.Input<string>;
+    /**
+     * Splunk HEC (HTTP Event Collector) token for authentication.
+     */
+    token: pulumi.Input<string>;
+}
+
+export interface IntegrationMetricPrometheusStackdriverV2 {
+    /**
+     * Google service account client email (extracted from credentials file).
+     */
+    clientEmail?: pulumi.Input<string>;
+    /**
+     * Base64-encoded Google service account key JSON file with 'Monitoring Metric Writer' permission.
+     */
+    credentialsFile: pulumi.Input<string>;
+    /**
+     * Google service account private key (extracted from credentials file).
+     */
+    privateKey?: pulumi.Input<string>;
+    /**
+     * Google service account private key ID (extracted from credentials file).
+     */
+    privateKeyId?: pulumi.Input<string>;
+    /**
+     * Google Cloud project ID (extracted from credentials file).
+     */
+    projectId?: pulumi.Input<string>;
+    /**
+     * Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+     *
+     * The following computed attributes are available:
+     */
+    tags?: pulumi.Input<string>;
+}
+
 export interface NotificationResponder {
     /**
      * Identifier in UUID format

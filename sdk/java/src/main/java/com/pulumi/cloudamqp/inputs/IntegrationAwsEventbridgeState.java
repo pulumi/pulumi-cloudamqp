@@ -63,6 +63,21 @@ public final class IntegrationAwsEventbridgeState extends com.pulumi.resources.R
     }
 
     /**
+     * Number of messages to prefetch. Default set to 1.
+     * 
+     */
+    @Import(name="prefetch")
+    private @Nullable Output<Integer> prefetch;
+
+    /**
+     * @return Number of messages to prefetch. Default set to 1.
+     * 
+     */
+    public Optional<Output<Integer>> prefetch() {
+        return Optional.ofNullable(this.prefetch);
+    }
+
+    /**
      * A (durable) queue on your RabbitMQ instance.
      * 
      */
@@ -128,6 +143,7 @@ public final class IntegrationAwsEventbridgeState extends com.pulumi.resources.R
         this.awsAccountId = $.awsAccountId;
         this.awsRegion = $.awsRegion;
         this.instanceId = $.instanceId;
+        this.prefetch = $.prefetch;
         this.queue = $.queue;
         this.status = $.status;
         this.vhost = $.vhost;
@@ -213,6 +229,27 @@ public final class IntegrationAwsEventbridgeState extends com.pulumi.resources.R
          */
         public Builder instanceId(Integer instanceId) {
             return instanceId(Output.of(instanceId));
+        }
+
+        /**
+         * @param prefetch Number of messages to prefetch. Default set to 1.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder prefetch(@Nullable Output<Integer> prefetch) {
+            $.prefetch = prefetch;
+            return this;
+        }
+
+        /**
+         * @param prefetch Number of messages to prefetch. Default set to 1.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder prefetch(Integer prefetch) {
+            return prefetch(Output.of(prefetch));
         }
 
         /**

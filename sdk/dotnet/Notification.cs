@@ -291,7 +291,7 @@ namespace Pulumi.CloudAmqp
     /// $ pulumi import cloudamqp:index/notification:Notification recipient &lt;id&gt;,&lt;instance_id&gt;`
     /// ```
     /// 
-    /// [CloudAMQP API list recipients]: https://docs.cloudamqp.com/cloudamqp_api.html#list-recipients
+    /// [CloudAMQP API list recipients]: https://docs.cloudamqp.com/instance-api.html#tag/alarms/get/alarms/recipients
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/notification:Notification")]
     public partial class Notification : global::Pulumi.CustomResource

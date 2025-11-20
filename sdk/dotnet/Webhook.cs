@@ -59,13 +59,13 @@ namespace Pulumi.CloudAmqp
         /// Configurable sleep time in seconds between retries for webhook
         /// </summary>
         [Output("sleep")]
-        public Output<int?> Sleep { get; private set; } = null!;
+        public Output<int> Sleep { get; private set; } = null!;
 
         /// <summary>
         /// Configurable timeout time in seconds for webhook
         /// </summary>
         [Output("timeout")]
-        public Output<int?> Timeout { get; private set; } = null!;
+        public Output<int> Timeout { get; private set; } = null!;
 
         /// <summary>
         /// The vhost the queue resides in.

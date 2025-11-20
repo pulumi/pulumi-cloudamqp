@@ -106,9 +106,9 @@ import javax.annotation.Nullable;
  * $ pulumi import cloudamqp:index/vpc:Vpc vpc &lt;vpc_id&gt;`
  * ```
  * 
- * [CloudAMQP API list vpcs]: https://docs.cloudamqp.com/#list-vpcs
+ * [CloudAMQP API list vpcs]: https://docs.cloudamqp.com/index.html#tag/vpcs/get/vpcs
  * 
- * [CloudAMQP plans]: https://www.cloudamqp.com/plans.html
+ * [CloudAMQP plans]: https://docs.cloudamqp.com/index.html#tag/plans/get/plans
  * 
  */
 @ResourceType(type="cloudamqp:index/vpc:Vpc")

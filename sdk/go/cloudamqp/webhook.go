@@ -45,9 +45,9 @@ type Webhook struct {
 	// A (durable) queue on your RabbitMQ instance.
 	Queue pulumi.StringOutput `pulumi:"queue"`
 	// Configurable sleep time in seconds between retries for webhook
-	Sleep pulumi.IntPtrOutput `pulumi:"sleep"`
+	Sleep pulumi.IntOutput `pulumi:"sleep"`
 	// Configurable timeout time in seconds for webhook
-	Timeout pulumi.IntPtrOutput `pulumi:"timeout"`
+	Timeout pulumi.IntOutput `pulumi:"timeout"`
 	// The vhost the queue resides in.
 	Vhost pulumi.StringOutput `pulumi:"vhost"`
 	// A POST request will be made for each message in the queue to this
@@ -279,13 +279,13 @@ func (o WebhookOutput) Queue() pulumi.StringOutput {
 }
 
 // Configurable sleep time in seconds between retries for webhook
-func (o WebhookOutput) Sleep() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *Webhook) pulumi.IntPtrOutput { return v.Sleep }).(pulumi.IntPtrOutput)
+func (o WebhookOutput) Sleep() pulumi.IntOutput {
+	return o.ApplyT(func(v *Webhook) pulumi.IntOutput { return v.Sleep }).(pulumi.IntOutput)
 }
 
 // Configurable timeout time in seconds for webhook
-func (o WebhookOutput) Timeout() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *Webhook) pulumi.IntPtrOutput { return v.Timeout }).(pulumi.IntPtrOutput)
+func (o WebhookOutput) Timeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *Webhook) pulumi.IntOutput { return v.Timeout }).(pulumi.IntOutput)
 }
 
 // The vhost the queue resides in.

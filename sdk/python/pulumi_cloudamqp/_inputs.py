@@ -19,6 +19,20 @@ __all__ = [
     'ExtraDiskSizeNodeArgsDict',
     'InstanceCopySettingArgs',
     'InstanceCopySettingArgsDict',
+    'IntegrationMetricPrometheusAzureMonitorArgs',
+    'IntegrationMetricPrometheusAzureMonitorArgsDict',
+    'IntegrationMetricPrometheusCloudwatchV3Args',
+    'IntegrationMetricPrometheusCloudwatchV3ArgsDict',
+    'IntegrationMetricPrometheusDatadogV3Args',
+    'IntegrationMetricPrometheusDatadogV3ArgsDict',
+    'IntegrationMetricPrometheusDynatraceArgs',
+    'IntegrationMetricPrometheusDynatraceArgsDict',
+    'IntegrationMetricPrometheusNewrelicV3Args',
+    'IntegrationMetricPrometheusNewrelicV3ArgsDict',
+    'IntegrationMetricPrometheusSplunkV2Args',
+    'IntegrationMetricPrometheusSplunkV2ArgsDict',
+    'IntegrationMetricPrometheusStackdriverV2Args',
+    'IntegrationMetricPrometheusStackdriverV2ArgsDict',
     'NotificationResponderArgs',
     'NotificationResponderArgsDict',
     'SecurityFirewallRuleArgs',
@@ -159,6 +173,544 @@ class InstanceCopySettingArgs:
     @subscription_id.setter
     def subscription_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "subscription_id", value)
+
+
+if not MYPY:
+    class IntegrationMetricPrometheusAzureMonitorArgsDict(TypedDict):
+        connection_string: pulumi.Input[_builtins.str]
+        """
+        Azure Application Insights Connection String for authentication.
+        """
+elif False:
+    IntegrationMetricPrometheusAzureMonitorArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class IntegrationMetricPrometheusAzureMonitorArgs:
+    def __init__(__self__, *,
+                 connection_string: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] connection_string: Azure Application Insights Connection String for authentication.
+        """
+        pulumi.set(__self__, "connection_string", connection_string)
+
+    @_builtins.property
+    @pulumi.getter(name="connectionString")
+    def connection_string(self) -> pulumi.Input[_builtins.str]:
+        """
+        Azure Application Insights Connection String for authentication.
+        """
+        return pulumi.get(self, "connection_string")
+
+    @connection_string.setter
+    def connection_string(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "connection_string", value)
+
+
+if not MYPY:
+    class IntegrationMetricPrometheusCloudwatchV3ArgsDict(TypedDict):
+        iam_external_id: pulumi.Input[_builtins.str]
+        """
+        AWS IAM external ID for role assumption.
+        """
+        iam_role: pulumi.Input[_builtins.str]
+        """
+        AWS IAM role ARN with PutMetricData permission for CloudWatch integration.
+        """
+        region: pulumi.Input[_builtins.str]
+        """
+        AWS region for CloudWatch metrics.
+        """
+        tags: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        """
+elif False:
+    IntegrationMetricPrometheusCloudwatchV3ArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class IntegrationMetricPrometheusCloudwatchV3Args:
+    def __init__(__self__, *,
+                 iam_external_id: pulumi.Input[_builtins.str],
+                 iam_role: pulumi.Input[_builtins.str],
+                 region: pulumi.Input[_builtins.str],
+                 tags: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] iam_external_id: AWS IAM external ID for role assumption.
+        :param pulumi.Input[_builtins.str] iam_role: AWS IAM role ARN with PutMetricData permission for CloudWatch integration.
+        :param pulumi.Input[_builtins.str] region: AWS region for CloudWatch metrics.
+        :param pulumi.Input[_builtins.str] tags: Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        """
+        pulumi.set(__self__, "iam_external_id", iam_external_id)
+        pulumi.set(__self__, "iam_role", iam_role)
+        pulumi.set(__self__, "region", region)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="iamExternalId")
+    def iam_external_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        AWS IAM external ID for role assumption.
+        """
+        return pulumi.get(self, "iam_external_id")
+
+    @iam_external_id.setter
+    def iam_external_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "iam_external_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="iamRole")
+    def iam_role(self) -> pulumi.Input[_builtins.str]:
+        """
+        AWS IAM role ARN with PutMetricData permission for CloudWatch integration.
+        """
+        return pulumi.get(self, "iam_role")
+
+    @iam_role.setter
+    def iam_role(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "iam_role", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> pulumi.Input[_builtins.str]:
+        """
+        AWS region for CloudWatch metrics.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "tags", value)
+
+
+if not MYPY:
+    class IntegrationMetricPrometheusDatadogV3ArgsDict(TypedDict):
+        api_key: pulumi.Input[_builtins.str]
+        """
+        Datadog API key for authentication.
+        """
+        region: pulumi.Input[_builtins.str]
+        """
+        Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`.
+        """
+        rabbitmq_dashboard_metrics_format: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        Enable metric name transformation to match Datadog's RabbitMQ dashboard format. Default: `false`. **Note:** This option is only available for RabbitMQ clusters, not LavinMQ clusters.
+        """
+        tags: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        """
+elif False:
+    IntegrationMetricPrometheusDatadogV3ArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class IntegrationMetricPrometheusDatadogV3Args:
+    def __init__(__self__, *,
+                 api_key: pulumi.Input[_builtins.str],
+                 region: pulumi.Input[_builtins.str],
+                 rabbitmq_dashboard_metrics_format: Optional[pulumi.Input[_builtins.bool]] = None,
+                 tags: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] api_key: Datadog API key for authentication.
+        :param pulumi.Input[_builtins.str] region: Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`.
+        :param pulumi.Input[_builtins.bool] rabbitmq_dashboard_metrics_format: Enable metric name transformation to match Datadog's RabbitMQ dashboard format. Default: `false`. **Note:** This option is only available for RabbitMQ clusters, not LavinMQ clusters.
+        :param pulumi.Input[_builtins.str] tags: Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        """
+        pulumi.set(__self__, "api_key", api_key)
+        pulumi.set(__self__, "region", region)
+        if rabbitmq_dashboard_metrics_format is not None:
+            pulumi.set(__self__, "rabbitmq_dashboard_metrics_format", rabbitmq_dashboard_metrics_format)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> pulumi.Input[_builtins.str]:
+        """
+        Datadog API key for authentication.
+        """
+        return pulumi.get(self, "api_key")
+
+    @api_key.setter
+    def api_key(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "api_key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> pulumi.Input[_builtins.str]:
+        """
+        Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter(name="rabbitmqDashboardMetricsFormat")
+    def rabbitmq_dashboard_metrics_format(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Enable metric name transformation to match Datadog's RabbitMQ dashboard format. Default: `false`. **Note:** This option is only available for RabbitMQ clusters, not LavinMQ clusters.
+        """
+        return pulumi.get(self, "rabbitmq_dashboard_metrics_format")
+
+    @rabbitmq_dashboard_metrics_format.setter
+    def rabbitmq_dashboard_metrics_format(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "rabbitmq_dashboard_metrics_format", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "tags", value)
+
+
+if not MYPY:
+    class IntegrationMetricPrometheusDynatraceArgsDict(TypedDict):
+        access_token: pulumi.Input[_builtins.str]
+        """
+        Dynatrace access token with 'Ingest metrics' permission.
+        """
+        environment_id: pulumi.Input[_builtins.str]
+        """
+        Dynatrace environment ID.
+        """
+        tags: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        """
+elif False:
+    IntegrationMetricPrometheusDynatraceArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class IntegrationMetricPrometheusDynatraceArgs:
+    def __init__(__self__, *,
+                 access_token: pulumi.Input[_builtins.str],
+                 environment_id: pulumi.Input[_builtins.str],
+                 tags: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] access_token: Dynatrace access token with 'Ingest metrics' permission.
+        :param pulumi.Input[_builtins.str] environment_id: Dynatrace environment ID.
+        :param pulumi.Input[_builtins.str] tags: Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        """
+        pulumi.set(__self__, "access_token", access_token)
+        pulumi.set(__self__, "environment_id", environment_id)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="accessToken")
+    def access_token(self) -> pulumi.Input[_builtins.str]:
+        """
+        Dynatrace access token with 'Ingest metrics' permission.
+        """
+        return pulumi.get(self, "access_token")
+
+    @access_token.setter
+    def access_token(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "access_token", value)
+
+    @_builtins.property
+    @pulumi.getter(name="environmentId")
+    def environment_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        Dynatrace environment ID.
+        """
+        return pulumi.get(self, "environment_id")
+
+    @environment_id.setter
+    def environment_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "environment_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "tags", value)
+
+
+if not MYPY:
+    class IntegrationMetricPrometheusNewrelicV3ArgsDict(TypedDict):
+        api_key: pulumi.Input[_builtins.str]
+        """
+        New Relic API key for authentication.
+        """
+        tags: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        """
+elif False:
+    IntegrationMetricPrometheusNewrelicV3ArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class IntegrationMetricPrometheusNewrelicV3Args:
+    def __init__(__self__, *,
+                 api_key: pulumi.Input[_builtins.str],
+                 tags: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] api_key: New Relic API key for authentication.
+        :param pulumi.Input[_builtins.str] tags: Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        """
+        pulumi.set(__self__, "api_key", api_key)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> pulumi.Input[_builtins.str]:
+        """
+        New Relic API key for authentication.
+        """
+        return pulumi.get(self, "api_key")
+
+    @api_key.setter
+    def api_key(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "api_key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "tags", value)
+
+
+if not MYPY:
+    class IntegrationMetricPrometheusSplunkV2ArgsDict(TypedDict):
+        endpoint: pulumi.Input[_builtins.str]
+        """
+        Splunk HEC endpoint URL. Example: `https://your-instance-id.splunkcloud.com:8088/services/collector`.
+        """
+        token: pulumi.Input[_builtins.str]
+        """
+        Splunk HEC (HTTP Event Collector) token for authentication.
+        """
+        tags: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        """
+elif False:
+    IntegrationMetricPrometheusSplunkV2ArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class IntegrationMetricPrometheusSplunkV2Args:
+    def __init__(__self__, *,
+                 endpoint: pulumi.Input[_builtins.str],
+                 token: pulumi.Input[_builtins.str],
+                 tags: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] endpoint: Splunk HEC endpoint URL. Example: `https://your-instance-id.splunkcloud.com:8088/services/collector`.
+        :param pulumi.Input[_builtins.str] token: Splunk HEC (HTTP Event Collector) token for authentication.
+        :param pulumi.Input[_builtins.str] tags: Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        """
+        pulumi.set(__self__, "endpoint", endpoint)
+        pulumi.set(__self__, "token", token)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter
+    def endpoint(self) -> pulumi.Input[_builtins.str]:
+        """
+        Splunk HEC endpoint URL. Example: `https://your-instance-id.splunkcloud.com:8088/services/collector`.
+        """
+        return pulumi.get(self, "endpoint")
+
+    @endpoint.setter
+    def endpoint(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "endpoint", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def token(self) -> pulumi.Input[_builtins.str]:
+        """
+        Splunk HEC (HTTP Event Collector) token for authentication.
+        """
+        return pulumi.get(self, "token")
+
+    @token.setter
+    def token(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "token", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "tags", value)
+
+
+if not MYPY:
+    class IntegrationMetricPrometheusStackdriverV2ArgsDict(TypedDict):
+        credentials_file: pulumi.Input[_builtins.str]
+        """
+        Base64-encoded Google service account key JSON file with 'Monitoring Metric Writer' permission.
+        """
+        client_email: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Google service account client email (extracted from credentials file).
+        """
+        private_key: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Google service account private key (extracted from credentials file).
+        """
+        private_key_id: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Google service account private key ID (extracted from credentials file).
+        """
+        project_id: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Google Cloud project ID (extracted from credentials file).
+        """
+        tags: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+
+        The following computed attributes are available:
+        """
+elif False:
+    IntegrationMetricPrometheusStackdriverV2ArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class IntegrationMetricPrometheusStackdriverV2Args:
+    def __init__(__self__, *,
+                 credentials_file: pulumi.Input[_builtins.str],
+                 client_email: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 tags: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] credentials_file: Base64-encoded Google service account key JSON file with 'Monitoring Metric Writer' permission.
+        :param pulumi.Input[_builtins.str] client_email: Google service account client email (extracted from credentials file).
+        :param pulumi.Input[_builtins.str] private_key: Google service account private key (extracted from credentials file).
+        :param pulumi.Input[_builtins.str] private_key_id: Google service account private key ID (extracted from credentials file).
+        :param pulumi.Input[_builtins.str] project_id: Google Cloud project ID (extracted from credentials file).
+        :param pulumi.Input[_builtins.str] tags: Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+               
+               The following computed attributes are available:
+        """
+        pulumi.set(__self__, "credentials_file", credentials_file)
+        if client_email is not None:
+            pulumi.set(__self__, "client_email", client_email)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if private_key_id is not None:
+            pulumi.set(__self__, "private_key_id", private_key_id)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="credentialsFile")
+    def credentials_file(self) -> pulumi.Input[_builtins.str]:
+        """
+        Base64-encoded Google service account key JSON file with 'Monitoring Metric Writer' permission.
+        """
+        return pulumi.get(self, "credentials_file")
+
+    @credentials_file.setter
+    def credentials_file(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "credentials_file", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientEmail")
+    def client_email(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Google service account client email (extracted from credentials file).
+        """
+        return pulumi.get(self, "client_email")
+
+    @client_email.setter
+    def client_email(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "client_email", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Google service account private key (extracted from credentials file).
+        """
+        return pulumi.get(self, "private_key")
+
+    @private_key.setter
+    def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "private_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyId")
+    def private_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Google service account private key ID (extracted from credentials file).
+        """
+        return pulumi.get(self, "private_key_id")
+
+    @private_key_id.setter
+    def private_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "private_key_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Google Cloud project ID (extracted from credentials file).
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+
+        The following computed attributes are available:
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "tags", value)
 
 
 if not MYPY:

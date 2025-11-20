@@ -368,9 +368,9 @@ import * as utilities from "./utilities";
  * $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric <resource_name> <resource_id>,<instance_id>`
  * ```
  *
- * [CloudAMQP API add integrations]: https://docs.cloudamqp.com/cloudamqp_api.html#add-metrics-integration
+ * [CloudAMQP API add integrations]: https://docs.cloudamqp.com/instance-api.html#tag/integrations/post/integrations/metrics/{system}
  *
- * [CloudAMQP API list integrations]: https://docs.cloudamqp.com/cloudamqp_api.html#list-metrics-integrations
+ * [CloudAMQP API list integrations]: https://docs.cloudamqp.com/instance-api.html#tag/integrations/get/integrations/metrics
  *
  * [Datadog documentation]: https://docs.datadoghq.com/getting_started/tagging/#define-tags
  *
@@ -409,7 +409,7 @@ export class IntegrationMetric extends pulumi.CustomResource {
      */
     declare public readonly accessKeyId: pulumi.Output<string | undefined>;
     /**
-     * The API key for the integration service. (Librato)
+     * The API key for the integration service. (Librato, Data Dog, New Relic)
      */
     declare public readonly apiKey: pulumi.Output<string | undefined>;
     /**
@@ -441,11 +441,7 @@ export class IntegrationMetric extends pulumi.CustomResource {
      */
     declare public readonly instanceId: pulumi.Output<number>;
     /**
-     * The license key registred for the integration service. (New Relic)
-     */
-    declare public readonly licenseKey: pulumi.Output<string | undefined>;
-    /**
-     * The name of metrics integration
+     * The name of log integration
      */
     declare public readonly name: pulumi.Output<string>;
     /**
@@ -465,12 +461,6 @@ export class IntegrationMetric extends pulumi.CustomResource {
      */
     declare public readonly queueAllowlist: pulumi.Output<string | undefined>;
     /**
-     * **Deprecated**
-     *
-     * @deprecated use queueAllowlist instead
-     */
-    declare public readonly queueWhitelist: pulumi.Output<string | undefined>;
-    /**
      * AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
      */
     declare public readonly region: pulumi.Output<string | undefined>;
@@ -486,12 +476,6 @@ export class IntegrationMetric extends pulumi.CustomResource {
      * (optional) allowlist using regular expression
      */
     declare public readonly vhostAllowlist: pulumi.Output<string | undefined>;
-    /**
-     * **Deprecated**
-     *
-     * @deprecated use vhostAllowlist instead
-     */
-    declare public readonly vhostWhitelist: pulumi.Output<string | undefined>;
 
     /**
      * Create a IntegrationMetric resource with the given unique name, arguments, and options.
@@ -515,18 +499,15 @@ export class IntegrationMetric extends pulumi.CustomResource {
             resourceInputs["iamRole"] = state?.iamRole;
             resourceInputs["includeAdQueues"] = state?.includeAdQueues;
             resourceInputs["instanceId"] = state?.instanceId;
-            resourceInputs["licenseKey"] = state?.licenseKey;
             resourceInputs["name"] = state?.name;
             resourceInputs["privateKey"] = state?.privateKey;
             resourceInputs["privateKeyId"] = state?.privateKeyId;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["queueAllowlist"] = state?.queueAllowlist;
-            resourceInputs["queueWhitelist"] = state?.queueWhitelist;
             resourceInputs["region"] = state?.region;
             resourceInputs["secretAccessKey"] = state?.secretAccessKey;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["vhostAllowlist"] = state?.vhostAllowlist;
-            resourceInputs["vhostWhitelist"] = state?.vhostWhitelist;
         } else {
             const args = argsOrState as IntegrationMetricArgs | undefined;
             if (args?.instanceId === undefined && !opts.urn) {
@@ -541,21 +522,18 @@ export class IntegrationMetric extends pulumi.CustomResource {
             resourceInputs["iamRole"] = args?.iamRole;
             resourceInputs["includeAdQueues"] = args?.includeAdQueues;
             resourceInputs["instanceId"] = args?.instanceId;
-            resourceInputs["licenseKey"] = args?.licenseKey ? pulumi.secret(args.licenseKey) : undefined;
             resourceInputs["name"] = args?.name;
             resourceInputs["privateKey"] = args?.privateKey ? pulumi.secret(args.privateKey) : undefined;
             resourceInputs["privateKeyId"] = args?.privateKeyId ? pulumi.secret(args.privateKeyId) : undefined;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["queueAllowlist"] = args?.queueAllowlist;
-            resourceInputs["queueWhitelist"] = args?.queueWhitelist;
             resourceInputs["region"] = args?.region;
             resourceInputs["secretAccessKey"] = args?.secretAccessKey ? pulumi.secret(args.secretAccessKey) : undefined;
             resourceInputs["tags"] = args?.tags;
             resourceInputs["vhostAllowlist"] = args?.vhostAllowlist;
-            resourceInputs["vhostWhitelist"] = args?.vhostWhitelist;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["apiKey", "credentials", "licenseKey", "privateKey", "privateKeyId", "secretAccessKey"] };
+        const secretOpts = { additionalSecretOutputs: ["apiKey", "credentials", "privateKey", "privateKeyId", "secretAccessKey"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(IntegrationMetric.__pulumiType, name, resourceInputs, opts);
     }
@@ -570,7 +548,7 @@ export interface IntegrationMetricState {
      */
     accessKeyId?: pulumi.Input<string>;
     /**
-     * The API key for the integration service. (Librato)
+     * The API key for the integration service. (Librato, Data Dog, New Relic)
      */
     apiKey?: pulumi.Input<string>;
     /**
@@ -602,11 +580,7 @@ export interface IntegrationMetricState {
      */
     instanceId?: pulumi.Input<number>;
     /**
-     * The license key registred for the integration service. (New Relic)
-     */
-    licenseKey?: pulumi.Input<string>;
-    /**
-     * The name of metrics integration
+     * The name of log integration
      */
     name?: pulumi.Input<string>;
     /**
@@ -626,12 +600,6 @@ export interface IntegrationMetricState {
      */
     queueAllowlist?: pulumi.Input<string>;
     /**
-     * **Deprecated**
-     *
-     * @deprecated use queueAllowlist instead
-     */
-    queueWhitelist?: pulumi.Input<string>;
-    /**
      * AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
      */
     region?: pulumi.Input<string>;
@@ -647,12 +615,6 @@ export interface IntegrationMetricState {
      * (optional) allowlist using regular expression
      */
     vhostAllowlist?: pulumi.Input<string>;
-    /**
-     * **Deprecated**
-     *
-     * @deprecated use vhostAllowlist instead
-     */
-    vhostWhitelist?: pulumi.Input<string>;
 }
 
 /**
@@ -664,7 +626,7 @@ export interface IntegrationMetricArgs {
      */
     accessKeyId?: pulumi.Input<string>;
     /**
-     * The API key for the integration service. (Librato)
+     * The API key for the integration service. (Librato, Data Dog, New Relic)
      */
     apiKey?: pulumi.Input<string>;
     /**
@@ -696,11 +658,7 @@ export interface IntegrationMetricArgs {
      */
     instanceId: pulumi.Input<number>;
     /**
-     * The license key registred for the integration service. (New Relic)
-     */
-    licenseKey?: pulumi.Input<string>;
-    /**
-     * The name of metrics integration
+     * The name of log integration
      */
     name?: pulumi.Input<string>;
     /**
@@ -720,12 +678,6 @@ export interface IntegrationMetricArgs {
      */
     queueAllowlist?: pulumi.Input<string>;
     /**
-     * **Deprecated**
-     *
-     * @deprecated use queueAllowlist instead
-     */
-    queueWhitelist?: pulumi.Input<string>;
-    /**
      * AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
      */
     region?: pulumi.Input<string>;
@@ -741,10 +693,4 @@ export interface IntegrationMetricArgs {
      * (optional) allowlist using regular expression
      */
     vhostAllowlist?: pulumi.Input<string>;
-    /**
-     * **Deprecated**
-     *
-     * @deprecated use vhostAllowlist instead
-     */
-    vhostWhitelist?: pulumi.Input<string>;
 }

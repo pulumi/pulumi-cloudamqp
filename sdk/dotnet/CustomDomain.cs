@@ -44,7 +44,7 @@ namespace Pulumi.CloudAmqp
     /// });
     /// ```
     /// 
-    /// ## Depedency
+    /// ## Dependency
     /// 
     /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
     /// 
@@ -70,7 +70,7 @@ namespace Pulumi.CloudAmqp
     /// $ pulumi import cloudamqp:index/customDomain:CustomDomain settings &lt;instance_id&gt;`
     /// ```
     /// 
-    /// [CloudAMQP API list instances]: https://docs.cloudamqp.com/#list-instances
+    /// [CloudAMQP API list instances]: https://docs.cloudamqp.com/index.html#tag/instances/get/instances
     /// 
     /// [Let's Encrypt]: https://letsencrypt.org/
     /// </summary>

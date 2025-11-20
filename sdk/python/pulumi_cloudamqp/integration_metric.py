@@ -28,41 +28,35 @@ class IntegrationMetricArgs:
                  iam_external_id: Optional[pulumi.Input[_builtins.str]] = None,
                  iam_role: Optional[pulumi.Input[_builtins.str]] = None,
                  include_ad_queues: Optional[pulumi.Input[_builtins.bool]] = None,
-                 license_key: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  queue_allowlist: Optional[pulumi.Input[_builtins.str]] = None,
-                 queue_whitelist: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost_allowlist: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost_whitelist: Optional[pulumi.Input[_builtins.str]] = None):
+                 vhost_allowlist: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a IntegrationMetric resource.
         :param pulumi.Input[_builtins.int] instance_id: Instance identifier
         :param pulumi.Input[_builtins.str] access_key_id: AWS access key identifier. (Cloudwatch)
-        :param pulumi.Input[_builtins.str] api_key: The API key for the integration service. (Librato)
+        :param pulumi.Input[_builtins.str] api_key: The API key for the integration service. (Librato, Data Dog, New Relic)
         :param pulumi.Input[_builtins.str] client_email: The client email. (Stackdriver)
         :param pulumi.Input[_builtins.str] credentials: Base64Encoded credentials. (Stackdriver)
         :param pulumi.Input[_builtins.str] email: The email address registred for the integration service. (Librato)
         :param pulumi.Input[_builtins.str] iam_external_id: External identifier that match the role you created. (Cloudwatch)
         :param pulumi.Input[_builtins.str] iam_role: The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
         :param pulumi.Input[_builtins.bool] include_ad_queues: (optional) Include Auto-Delete queues
-        :param pulumi.Input[_builtins.str] license_key: The license key registred for the integration service. (New Relic)
-        :param pulumi.Input[_builtins.str] name: The name of metrics integration
+        :param pulumi.Input[_builtins.str] name: The name of log integration
         :param pulumi.Input[_builtins.str] private_key: The private key. (Stackdriver)
         :param pulumi.Input[_builtins.str] private_key_id: Private key identifier. (Stackdriver)
         :param pulumi.Input[_builtins.str] project_id: Project ID. (Stackdriver)
         :param pulumi.Input[_builtins.str] queue_allowlist: (optional) allowlist using regular expression
-        :param pulumi.Input[_builtins.str] queue_whitelist: **Deprecated**
         :param pulumi.Input[_builtins.str] region: AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
         :param pulumi.Input[_builtins.str] secret_access_key: AWS secret key. (Cloudwatch)
         :param pulumi.Input[_builtins.str] tags: (optional) tags. E.g. env=prod,region=europe
         :param pulumi.Input[_builtins.str] vhost_allowlist: (optional) allowlist using regular expression
-        :param pulumi.Input[_builtins.str] vhost_whitelist: **Deprecated**
         """
         pulumi.set(__self__, "instance_id", instance_id)
         if access_key_id is not None:
@@ -81,8 +75,6 @@ class IntegrationMetricArgs:
             pulumi.set(__self__, "iam_role", iam_role)
         if include_ad_queues is not None:
             pulumi.set(__self__, "include_ad_queues", include_ad_queues)
-        if license_key is not None:
-            pulumi.set(__self__, "license_key", license_key)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if private_key is not None:
@@ -93,11 +85,6 @@ class IntegrationMetricArgs:
             pulumi.set(__self__, "project_id", project_id)
         if queue_allowlist is not None:
             pulumi.set(__self__, "queue_allowlist", queue_allowlist)
-        if queue_whitelist is not None:
-            warnings.warn("""use queue_allowlist instead""", DeprecationWarning)
-            pulumi.log.warn("""queue_whitelist is deprecated: use queue_allowlist instead""")
-        if queue_whitelist is not None:
-            pulumi.set(__self__, "queue_whitelist", queue_whitelist)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if secret_access_key is not None:
@@ -106,11 +93,6 @@ class IntegrationMetricArgs:
             pulumi.set(__self__, "tags", tags)
         if vhost_allowlist is not None:
             pulumi.set(__self__, "vhost_allowlist", vhost_allowlist)
-        if vhost_whitelist is not None:
-            warnings.warn("""use vhost_allowlist instead""", DeprecationWarning)
-            pulumi.log.warn("""vhost_whitelist is deprecated: use vhost_allowlist instead""")
-        if vhost_whitelist is not None:
-            pulumi.set(__self__, "vhost_whitelist", vhost_whitelist)
 
     @_builtins.property
     @pulumi.getter(name="instanceId")
@@ -140,7 +122,7 @@ class IntegrationMetricArgs:
     @pulumi.getter(name="apiKey")
     def api_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The API key for the integration service. (Librato)
+        The API key for the integration service. (Librato, Data Dog, New Relic)
         """
         return pulumi.get(self, "api_key")
 
@@ -221,22 +203,10 @@ class IntegrationMetricArgs:
         pulumi.set(self, "include_ad_queues", value)
 
     @_builtins.property
-    @pulumi.getter(name="licenseKey")
-    def license_key(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        The license key registred for the integration service. (New Relic)
-        """
-        return pulumi.get(self, "license_key")
-
-    @license_key.setter
-    def license_key(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "license_key", value)
-
-    @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The name of metrics integration
+        The name of log integration
         """
         return pulumi.get(self, "name")
 
@@ -293,19 +263,6 @@ class IntegrationMetricArgs:
         pulumi.set(self, "queue_allowlist", value)
 
     @_builtins.property
-    @pulumi.getter(name="queueWhitelist")
-    @_utilities.deprecated("""use queue_allowlist instead""")
-    def queue_whitelist(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        **Deprecated**
-        """
-        return pulumi.get(self, "queue_whitelist")
-
-    @queue_whitelist.setter
-    def queue_whitelist(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "queue_whitelist", value)
-
-    @_builtins.property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -353,19 +310,6 @@ class IntegrationMetricArgs:
     def vhost_allowlist(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "vhost_allowlist", value)
 
-    @_builtins.property
-    @pulumi.getter(name="vhostWhitelist")
-    @_utilities.deprecated("""use vhost_allowlist instead""")
-    def vhost_whitelist(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        **Deprecated**
-        """
-        return pulumi.get(self, "vhost_whitelist")
-
-    @vhost_whitelist.setter
-    def vhost_whitelist(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "vhost_whitelist", value)
-
 
 @pulumi.input_type
 class _IntegrationMetricState:
@@ -379,22 +323,19 @@ class _IntegrationMetricState:
                  iam_role: Optional[pulumi.Input[_builtins.str]] = None,
                  include_ad_queues: Optional[pulumi.Input[_builtins.bool]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 license_key: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  queue_allowlist: Optional[pulumi.Input[_builtins.str]] = None,
-                 queue_whitelist: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost_allowlist: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost_whitelist: Optional[pulumi.Input[_builtins.str]] = None):
+                 vhost_allowlist: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IntegrationMetric resources.
         :param pulumi.Input[_builtins.str] access_key_id: AWS access key identifier. (Cloudwatch)
-        :param pulumi.Input[_builtins.str] api_key: The API key for the integration service. (Librato)
+        :param pulumi.Input[_builtins.str] api_key: The API key for the integration service. (Librato, Data Dog, New Relic)
         :param pulumi.Input[_builtins.str] client_email: The client email. (Stackdriver)
         :param pulumi.Input[_builtins.str] credentials: Base64Encoded credentials. (Stackdriver)
         :param pulumi.Input[_builtins.str] email: The email address registred for the integration service. (Librato)
@@ -402,18 +343,15 @@ class _IntegrationMetricState:
         :param pulumi.Input[_builtins.str] iam_role: The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
         :param pulumi.Input[_builtins.bool] include_ad_queues: (optional) Include Auto-Delete queues
         :param pulumi.Input[_builtins.int] instance_id: Instance identifier
-        :param pulumi.Input[_builtins.str] license_key: The license key registred for the integration service. (New Relic)
-        :param pulumi.Input[_builtins.str] name: The name of metrics integration
+        :param pulumi.Input[_builtins.str] name: The name of log integration
         :param pulumi.Input[_builtins.str] private_key: The private key. (Stackdriver)
         :param pulumi.Input[_builtins.str] private_key_id: Private key identifier. (Stackdriver)
         :param pulumi.Input[_builtins.str] project_id: Project ID. (Stackdriver)
         :param pulumi.Input[_builtins.str] queue_allowlist: (optional) allowlist using regular expression
-        :param pulumi.Input[_builtins.str] queue_whitelist: **Deprecated**
         :param pulumi.Input[_builtins.str] region: AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
         :param pulumi.Input[_builtins.str] secret_access_key: AWS secret key. (Cloudwatch)
         :param pulumi.Input[_builtins.str] tags: (optional) tags. E.g. env=prod,region=europe
         :param pulumi.Input[_builtins.str] vhost_allowlist: (optional) allowlist using regular expression
-        :param pulumi.Input[_builtins.str] vhost_whitelist: **Deprecated**
         """
         if access_key_id is not None:
             pulumi.set(__self__, "access_key_id", access_key_id)
@@ -433,8 +371,6 @@ class _IntegrationMetricState:
             pulumi.set(__self__, "include_ad_queues", include_ad_queues)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
-        if license_key is not None:
-            pulumi.set(__self__, "license_key", license_key)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if private_key is not None:
@@ -445,11 +381,6 @@ class _IntegrationMetricState:
             pulumi.set(__self__, "project_id", project_id)
         if queue_allowlist is not None:
             pulumi.set(__self__, "queue_allowlist", queue_allowlist)
-        if queue_whitelist is not None:
-            warnings.warn("""use queue_allowlist instead""", DeprecationWarning)
-            pulumi.log.warn("""queue_whitelist is deprecated: use queue_allowlist instead""")
-        if queue_whitelist is not None:
-            pulumi.set(__self__, "queue_whitelist", queue_whitelist)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if secret_access_key is not None:
@@ -458,11 +389,6 @@ class _IntegrationMetricState:
             pulumi.set(__self__, "tags", tags)
         if vhost_allowlist is not None:
             pulumi.set(__self__, "vhost_allowlist", vhost_allowlist)
-        if vhost_whitelist is not None:
-            warnings.warn("""use vhost_allowlist instead""", DeprecationWarning)
-            pulumi.log.warn("""vhost_whitelist is deprecated: use vhost_allowlist instead""")
-        if vhost_whitelist is not None:
-            pulumi.set(__self__, "vhost_whitelist", vhost_whitelist)
 
     @_builtins.property
     @pulumi.getter(name="accessKeyId")
@@ -480,7 +406,7 @@ class _IntegrationMetricState:
     @pulumi.getter(name="apiKey")
     def api_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The API key for the integration service. (Librato)
+        The API key for the integration service. (Librato, Data Dog, New Relic)
         """
         return pulumi.get(self, "api_key")
 
@@ -573,22 +499,10 @@ class _IntegrationMetricState:
         pulumi.set(self, "instance_id", value)
 
     @_builtins.property
-    @pulumi.getter(name="licenseKey")
-    def license_key(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        The license key registred for the integration service. (New Relic)
-        """
-        return pulumi.get(self, "license_key")
-
-    @license_key.setter
-    def license_key(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "license_key", value)
-
-    @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The name of metrics integration
+        The name of log integration
         """
         return pulumi.get(self, "name")
 
@@ -645,19 +559,6 @@ class _IntegrationMetricState:
         pulumi.set(self, "queue_allowlist", value)
 
     @_builtins.property
-    @pulumi.getter(name="queueWhitelist")
-    @_utilities.deprecated("""use queue_allowlist instead""")
-    def queue_whitelist(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        **Deprecated**
-        """
-        return pulumi.get(self, "queue_whitelist")
-
-    @queue_whitelist.setter
-    def queue_whitelist(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "queue_whitelist", value)
-
-    @_builtins.property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -705,19 +606,6 @@ class _IntegrationMetricState:
     def vhost_allowlist(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "vhost_allowlist", value)
 
-    @_builtins.property
-    @pulumi.getter(name="vhostWhitelist")
-    @_utilities.deprecated("""use vhost_allowlist instead""")
-    def vhost_whitelist(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        **Deprecated**
-        """
-        return pulumi.get(self, "vhost_whitelist")
-
-    @vhost_whitelist.setter
-    def vhost_whitelist(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "vhost_whitelist", value)
-
 
 @pulumi.type_token("cloudamqp:index/integrationMetric:IntegrationMetric")
 class IntegrationMetric(pulumi.CustomResource):
@@ -734,18 +622,15 @@ class IntegrationMetric(pulumi.CustomResource):
                  iam_role: Optional[pulumi.Input[_builtins.str]] = None,
                  include_ad_queues: Optional[pulumi.Input[_builtins.bool]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 license_key: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  queue_allowlist: Optional[pulumi.Input[_builtins.str]] = None,
-                 queue_whitelist: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[_builtins.str]] = None,
                  vhost_allowlist: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost_whitelist: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
         This resource allows you to create and manage, forwarding metrics to third party integrations for a
@@ -1072,9 +957,9 @@ class IntegrationMetric(pulumi.CustomResource):
         $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric <resource_name> <resource_id>,<instance_id>`
         ```
 
-        [CloudAMQP API add integrations]: https://docs.cloudamqp.com/cloudamqp_api.html#add-metrics-integration
+        [CloudAMQP API add integrations]: https://docs.cloudamqp.com/instance-api.html#tag/integrations/post/integrations/metrics/{system}
 
-        [CloudAMQP API list integrations]: https://docs.cloudamqp.com/cloudamqp_api.html#list-metrics-integrations
+        [CloudAMQP API list integrations]: https://docs.cloudamqp.com/instance-api.html#tag/integrations/get/integrations/metrics
 
         [Datadog documentation]: https://docs.datadoghq.com/getting_started/tagging/#define-tags
 
@@ -1083,7 +968,7 @@ class IntegrationMetric(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] access_key_id: AWS access key identifier. (Cloudwatch)
-        :param pulumi.Input[_builtins.str] api_key: The API key for the integration service. (Librato)
+        :param pulumi.Input[_builtins.str] api_key: The API key for the integration service. (Librato, Data Dog, New Relic)
         :param pulumi.Input[_builtins.str] client_email: The client email. (Stackdriver)
         :param pulumi.Input[_builtins.str] credentials: Base64Encoded credentials. (Stackdriver)
         :param pulumi.Input[_builtins.str] email: The email address registred for the integration service. (Librato)
@@ -1091,18 +976,15 @@ class IntegrationMetric(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] iam_role: The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
         :param pulumi.Input[_builtins.bool] include_ad_queues: (optional) Include Auto-Delete queues
         :param pulumi.Input[_builtins.int] instance_id: Instance identifier
-        :param pulumi.Input[_builtins.str] license_key: The license key registred for the integration service. (New Relic)
-        :param pulumi.Input[_builtins.str] name: The name of metrics integration
+        :param pulumi.Input[_builtins.str] name: The name of log integration
         :param pulumi.Input[_builtins.str] private_key: The private key. (Stackdriver)
         :param pulumi.Input[_builtins.str] private_key_id: Private key identifier. (Stackdriver)
         :param pulumi.Input[_builtins.str] project_id: Project ID. (Stackdriver)
         :param pulumi.Input[_builtins.str] queue_allowlist: (optional) allowlist using regular expression
-        :param pulumi.Input[_builtins.str] queue_whitelist: **Deprecated**
         :param pulumi.Input[_builtins.str] region: AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
         :param pulumi.Input[_builtins.str] secret_access_key: AWS secret key. (Cloudwatch)
         :param pulumi.Input[_builtins.str] tags: (optional) tags. E.g. env=prod,region=europe
         :param pulumi.Input[_builtins.str] vhost_allowlist: (optional) allowlist using regular expression
-        :param pulumi.Input[_builtins.str] vhost_whitelist: **Deprecated**
         """
         ...
     @overload
@@ -1435,9 +1317,9 @@ class IntegrationMetric(pulumi.CustomResource):
         $ pulumi import cloudamqp:index/integrationMetric:IntegrationMetric <resource_name> <resource_id>,<instance_id>`
         ```
 
-        [CloudAMQP API add integrations]: https://docs.cloudamqp.com/cloudamqp_api.html#add-metrics-integration
+        [CloudAMQP API add integrations]: https://docs.cloudamqp.com/instance-api.html#tag/integrations/post/integrations/metrics/{system}
 
-        [CloudAMQP API list integrations]: https://docs.cloudamqp.com/cloudamqp_api.html#list-metrics-integrations
+        [CloudAMQP API list integrations]: https://docs.cloudamqp.com/instance-api.html#tag/integrations/get/integrations/metrics
 
         [Datadog documentation]: https://docs.datadoghq.com/getting_started/tagging/#define-tags
 
@@ -1467,18 +1349,15 @@ class IntegrationMetric(pulumi.CustomResource):
                  iam_role: Optional[pulumi.Input[_builtins.str]] = None,
                  include_ad_queues: Optional[pulumi.Input[_builtins.bool]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 license_key: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  queue_allowlist: Optional[pulumi.Input[_builtins.str]] = None,
-                 queue_whitelist: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[_builtins.str]] = None,
                  vhost_allowlist: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost_whitelist: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1499,19 +1378,16 @@ class IntegrationMetric(pulumi.CustomResource):
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
-            __props__.__dict__["license_key"] = None if license_key is None else pulumi.Output.secret(license_key)
             __props__.__dict__["name"] = name
             __props__.__dict__["private_key"] = None if private_key is None else pulumi.Output.secret(private_key)
             __props__.__dict__["private_key_id"] = None if private_key_id is None else pulumi.Output.secret(private_key_id)
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["queue_allowlist"] = queue_allowlist
-            __props__.__dict__["queue_whitelist"] = queue_whitelist
             __props__.__dict__["region"] = region
             __props__.__dict__["secret_access_key"] = None if secret_access_key is None else pulumi.Output.secret(secret_access_key)
             __props__.__dict__["tags"] = tags
             __props__.__dict__["vhost_allowlist"] = vhost_allowlist
-            __props__.__dict__["vhost_whitelist"] = vhost_whitelist
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["apiKey", "credentials", "licenseKey", "privateKey", "privateKeyId", "secretAccessKey"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["apiKey", "credentials", "privateKey", "privateKeyId", "secretAccessKey"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(IntegrationMetric, __self__).__init__(
             'cloudamqp:index/integrationMetric:IntegrationMetric',
@@ -1532,18 +1408,15 @@ class IntegrationMetric(pulumi.CustomResource):
             iam_role: Optional[pulumi.Input[_builtins.str]] = None,
             include_ad_queues: Optional[pulumi.Input[_builtins.bool]] = None,
             instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-            license_key: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             private_key: Optional[pulumi.Input[_builtins.str]] = None,
             private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
             queue_allowlist: Optional[pulumi.Input[_builtins.str]] = None,
-            queue_whitelist: Optional[pulumi.Input[_builtins.str]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
             secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
             tags: Optional[pulumi.Input[_builtins.str]] = None,
-            vhost_allowlist: Optional[pulumi.Input[_builtins.str]] = None,
-            vhost_whitelist: Optional[pulumi.Input[_builtins.str]] = None) -> 'IntegrationMetric':
+            vhost_allowlist: Optional[pulumi.Input[_builtins.str]] = None) -> 'IntegrationMetric':
         """
         Get an existing IntegrationMetric resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1552,7 +1425,7 @@ class IntegrationMetric(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] access_key_id: AWS access key identifier. (Cloudwatch)
-        :param pulumi.Input[_builtins.str] api_key: The API key for the integration service. (Librato)
+        :param pulumi.Input[_builtins.str] api_key: The API key for the integration service. (Librato, Data Dog, New Relic)
         :param pulumi.Input[_builtins.str] client_email: The client email. (Stackdriver)
         :param pulumi.Input[_builtins.str] credentials: Base64Encoded credentials. (Stackdriver)
         :param pulumi.Input[_builtins.str] email: The email address registred for the integration service. (Librato)
@@ -1560,18 +1433,15 @@ class IntegrationMetric(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] iam_role: The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
         :param pulumi.Input[_builtins.bool] include_ad_queues: (optional) Include Auto-Delete queues
         :param pulumi.Input[_builtins.int] instance_id: Instance identifier
-        :param pulumi.Input[_builtins.str] license_key: The license key registred for the integration service. (New Relic)
-        :param pulumi.Input[_builtins.str] name: The name of metrics integration
+        :param pulumi.Input[_builtins.str] name: The name of log integration
         :param pulumi.Input[_builtins.str] private_key: The private key. (Stackdriver)
         :param pulumi.Input[_builtins.str] private_key_id: Private key identifier. (Stackdriver)
         :param pulumi.Input[_builtins.str] project_id: Project ID. (Stackdriver)
         :param pulumi.Input[_builtins.str] queue_allowlist: (optional) allowlist using regular expression
-        :param pulumi.Input[_builtins.str] queue_whitelist: **Deprecated**
         :param pulumi.Input[_builtins.str] region: AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
         :param pulumi.Input[_builtins.str] secret_access_key: AWS secret key. (Cloudwatch)
         :param pulumi.Input[_builtins.str] tags: (optional) tags. E.g. env=prod,region=europe
         :param pulumi.Input[_builtins.str] vhost_allowlist: (optional) allowlist using regular expression
-        :param pulumi.Input[_builtins.str] vhost_whitelist: **Deprecated**
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1586,18 +1456,15 @@ class IntegrationMetric(pulumi.CustomResource):
         __props__.__dict__["iam_role"] = iam_role
         __props__.__dict__["include_ad_queues"] = include_ad_queues
         __props__.__dict__["instance_id"] = instance_id
-        __props__.__dict__["license_key"] = license_key
         __props__.__dict__["name"] = name
         __props__.__dict__["private_key"] = private_key
         __props__.__dict__["private_key_id"] = private_key_id
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["queue_allowlist"] = queue_allowlist
-        __props__.__dict__["queue_whitelist"] = queue_whitelist
         __props__.__dict__["region"] = region
         __props__.__dict__["secret_access_key"] = secret_access_key
         __props__.__dict__["tags"] = tags
         __props__.__dict__["vhost_allowlist"] = vhost_allowlist
-        __props__.__dict__["vhost_whitelist"] = vhost_whitelist
         return IntegrationMetric(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -1612,7 +1479,7 @@ class IntegrationMetric(pulumi.CustomResource):
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The API key for the integration service. (Librato)
+        The API key for the integration service. (Librato, Data Dog, New Relic)
         """
         return pulumi.get(self, "api_key")
 
@@ -1673,18 +1540,10 @@ class IntegrationMetric(pulumi.CustomResource):
         return pulumi.get(self, "instance_id")
 
     @_builtins.property
-    @pulumi.getter(name="licenseKey")
-    def license_key(self) -> pulumi.Output[Optional[_builtins.str]]:
-        """
-        The license key registred for the integration service. (New Relic)
-        """
-        return pulumi.get(self, "license_key")
-
-    @_builtins.property
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
         """
-        The name of metrics integration
+        The name of log integration
         """
         return pulumi.get(self, "name")
 
@@ -1721,15 +1580,6 @@ class IntegrationMetric(pulumi.CustomResource):
         return pulumi.get(self, "queue_allowlist")
 
     @_builtins.property
-    @pulumi.getter(name="queueWhitelist")
-    @_utilities.deprecated("""use queue_allowlist instead""")
-    def queue_whitelist(self) -> pulumi.Output[Optional[_builtins.str]]:
-        """
-        **Deprecated**
-        """
-        return pulumi.get(self, "queue_whitelist")
-
-    @_builtins.property
     @pulumi.getter
     def region(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
@@ -1760,13 +1610,4 @@ class IntegrationMetric(pulumi.CustomResource):
         (optional) allowlist using regular expression
         """
         return pulumi.get(self, "vhost_allowlist")
-
-    @_builtins.property
-    @pulumi.getter(name="vhostWhitelist")
-    @_utilities.deprecated("""use vhost_allowlist instead""")
-    def vhost_whitelist(self) -> pulumi.Output[Optional[_builtins.str]]:
-        """
-        **Deprecated**
-        """
-        return pulumi.get(self, "vhost_whitelist")
 

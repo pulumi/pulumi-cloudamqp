@@ -505,7 +505,7 @@ class Notification(pulumi.CustomResource):
         $ pulumi import cloudamqp:index/notification:Notification recipient <id>,<instance_id>`
         ```
 
-        [CloudAMQP API list recipients]: https://docs.cloudamqp.com/cloudamqp_api.html#list-recipients
+        [CloudAMQP API list recipients]: https://docs.cloudamqp.com/instance-api.html#tag/alarms/get/alarms/recipients
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -749,7 +749,7 @@ class Notification(pulumi.CustomResource):
         $ pulumi import cloudamqp:index/notification:Notification recipient <id>,<instance_id>`
         ```
 
-        [CloudAMQP API list recipients]: https://docs.cloudamqp.com/cloudamqp_api.html#list-recipients
+        [CloudAMQP API list recipients]: https://docs.cloudamqp.com/instance-api.html#tag/alarms/get/alarms/recipients
 
         :param str resource_name: The name of the resource.
         :param NotificationArgs args: The arguments to use to populate this resource's properties.

@@ -28,9 +28,11 @@ from .instance import *
 from .integration_aws_eventbridge import *
 from .integration_log import *
 from .integration_metric import *
+from .integration_metric_prometheus import *
 from .maintenance_window import *
 from .node_actions import *
 from .notification import *
+from .oauth2_configuration import *
 from .plugin import *
 from .plugin_community import *
 from .privatelink_aws import *
@@ -124,6 +126,14 @@ _utilities.register(
  },
  {
   "pkg": "cloudamqp",
+  "mod": "index/integrationMetricPrometheus",
+  "fqn": "pulumi_cloudamqp",
+  "classes": {
+   "cloudamqp:index/integrationMetricPrometheus:IntegrationMetricPrometheus": "IntegrationMetricPrometheus"
+  }
+ },
+ {
+  "pkg": "cloudamqp",
   "mod": "index/maintenanceWindow",
   "fqn": "pulumi_cloudamqp",
   "classes": {
@@ -144,6 +154,14 @@ _utilities.register(
   "fqn": "pulumi_cloudamqp",
   "classes": {
    "cloudamqp:index/notification:Notification": "Notification"
+  }
+ },
+ {
+  "pkg": "cloudamqp",
+  "mod": "index/oauth2Configuration",
+  "fqn": "pulumi_cloudamqp",
+  "classes": {
+   "cloudamqp:index/oauth2Configuration:Oauth2Configuration": "Oauth2Configuration"
   }
  },
  {

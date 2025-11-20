@@ -456,7 +456,7 @@ class Webhook(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def sleep(self) -> pulumi.Output[Optional[_builtins.int]]:
+    def sleep(self) -> pulumi.Output[_builtins.int]:
         """
         Configurable sleep time in seconds between retries for webhook
         """
@@ -464,7 +464,7 @@ class Webhook(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> pulumi.Output[Optional[_builtins.int]]:
+    def timeout(self) -> pulumi.Output[_builtins.int]:
         """
         Configurable timeout time in seconds for webhook
         """

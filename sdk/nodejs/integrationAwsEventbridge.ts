@@ -20,6 +20,13 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>AWS Eventbridge integration</i>
+ *     </b>
+ *   </summary>
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
@@ -41,6 +48,39 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>AWS Eventbridge integration with prefetch from [v1.38.0]</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const instance = new cloudamqp.Instance("instance", {
+ *     name: "Test instance",
+ *     plan: "penguin-1",
+ *     region: "amazon-web-services::us-west-1",
+ *     rmqVersion: "3.11.5",
+ *     tags: ["aws"],
+ * });
+ * const _this = new cloudamqp.IntegrationAwsEventbridge("this", {
+ *     instanceId: instance.id,
+ *     vhost: instance.vhost,
+ *     queue: "<QUEUE-NAME>",
+ *     awsAccountId: "<AWS-ACCOUNT-ID>",
+ *     awsRegion: "us-west-1",
+ *     withHeaders: true,
+ *     prefetch: 100,
+ * });
+ * ```
+ *
+ * </details>
+ *
  * ## Argument References
  *
  * The following arguments are supported:
@@ -53,6 +93,8 @@ import * as utilities from "./utilities";
  * * `queue`           - (ForceNew/Required) A (durable) queue on your RabbitMQ instance.
  * * `withHeaders`    - (ForceNew/Required) Include message headers in the event data.
  *                       `({ "headers": { }, "body": { "your": "message" } })`
+ * * `prefetch`        - (ForceNew/Optional) Set the prefetch for the Eventbrigde consumer to increase
+ *                       throughput. Supported from [v1.38.0].
  *
  * ## Dependency
  *
@@ -88,7 +130,9 @@ import * as utilities from "./utilities";
  *
  * [AWS Eventbridge console]: https://console.aws.amazon.com/events/home
  *
- * [CloudAMQP API list eventbridges]: https://docs.cloudamqp.com/cloudamqp_api.html#list-eventbridges
+ * [v1.38.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.38.0
+ *
+ * [CloudAMQP API list eventbridges]: https://docs.cloudamqp.com/instance-api.html#tag/eventbridge/get/eventbridges
  */
 export class IntegrationAwsEventbridge extends pulumi.CustomResource {
     /**
@@ -131,6 +175,10 @@ export class IntegrationAwsEventbridge extends pulumi.CustomResource {
      */
     declare public readonly instanceId: pulumi.Output<number>;
     /**
+     * Number of messages to prefetch. Default set to 1.
+     */
+    declare public readonly prefetch: pulumi.Output<number>;
+    /**
      * A (durable) queue on your RabbitMQ instance.
      */
     declare public readonly queue: pulumi.Output<string>;
@@ -163,6 +211,7 @@ export class IntegrationAwsEventbridge extends pulumi.CustomResource {
             resourceInputs["awsAccountId"] = state?.awsAccountId;
             resourceInputs["awsRegion"] = state?.awsRegion;
             resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["prefetch"] = state?.prefetch;
             resourceInputs["queue"] = state?.queue;
             resourceInputs["status"] = state?.status;
             resourceInputs["vhost"] = state?.vhost;
@@ -190,6 +239,7 @@ export class IntegrationAwsEventbridge extends pulumi.CustomResource {
             resourceInputs["awsAccountId"] = args?.awsAccountId;
             resourceInputs["awsRegion"] = args?.awsRegion;
             resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["prefetch"] = args?.prefetch;
             resourceInputs["queue"] = args?.queue;
             resourceInputs["vhost"] = args?.vhost;
             resourceInputs["withHeaders"] = args?.withHeaders;
@@ -216,6 +266,10 @@ export interface IntegrationAwsEventbridgeState {
      * Instance identifier
      */
     instanceId?: pulumi.Input<number>;
+    /**
+     * Number of messages to prefetch. Default set to 1.
+     */
+    prefetch?: pulumi.Input<number>;
     /**
      * A (durable) queue on your RabbitMQ instance.
      */
@@ -250,6 +304,10 @@ export interface IntegrationAwsEventbridgeArgs {
      * Instance identifier
      */
     instanceId: pulumi.Input<number>;
+    /**
+     * Number of messages to prefetch. Default set to 1.
+     */
+    prefetch?: pulumi.Input<number>;
     /**
      * A (durable) queue on your RabbitMQ instance.
      */
