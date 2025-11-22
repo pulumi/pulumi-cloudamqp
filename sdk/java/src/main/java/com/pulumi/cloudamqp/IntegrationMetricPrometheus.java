@@ -57,6 +57,7 @@ import javax.annotation.Nullable;
  *             .instanceId(instance.id())
  *             .newrelicV3(IntegrationMetricPrometheusNewrelicV3Args.builder()
  *                 .apiKey(newrelicApiKey)
+ *                 .region("us")
  *                 .tags("key=value,key2=value2")
  *                 .build())
  *             .build());

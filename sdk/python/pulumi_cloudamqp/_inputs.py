@@ -461,6 +461,10 @@ if not MYPY:
         """
         New Relic API key for authentication.
         """
+        region: pulumi.Input[_builtins.str]
+        """
+        New Relic region code. Valid values: `eu`, `us`.
+        """
         tags: NotRequired[pulumi.Input[_builtins.str]]
         """
         Additional tags to attach to metrics. Format: `key=value,key2=value2`.
@@ -472,12 +476,15 @@ elif False:
 class IntegrationMetricPrometheusNewrelicV3Args:
     def __init__(__self__, *,
                  api_key: pulumi.Input[_builtins.str],
+                 region: pulumi.Input[_builtins.str],
                  tags: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] api_key: New Relic API key for authentication.
+        :param pulumi.Input[_builtins.str] region: New Relic region code. Valid values: `eu`, `us`.
         :param pulumi.Input[_builtins.str] tags: Additional tags to attach to metrics. Format: `key=value,key2=value2`.
         """
         pulumi.set(__self__, "api_key", api_key)
+        pulumi.set(__self__, "region", region)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
 
@@ -492,6 +499,18 @@ class IntegrationMetricPrometheusNewrelicV3Args:
     @api_key.setter
     def api_key(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "api_key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> pulumi.Input[_builtins.str]:
+        """
+        New Relic region code. Valid values: `eu`, `us`.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter

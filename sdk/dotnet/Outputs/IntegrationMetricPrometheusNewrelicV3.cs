@@ -18,6 +18,10 @@ namespace Pulumi.CloudAmqp.Outputs
         /// </summary>
         public readonly string ApiKey;
         /// <summary>
+        /// New Relic region code. Valid values: `Eu`, `Us`.
+        /// </summary>
+        public readonly string Region;
+        /// <summary>
         /// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
         /// </summary>
         public readonly string? Tags;
@@ -26,9 +30,12 @@ namespace Pulumi.CloudAmqp.Outputs
         private IntegrationMetricPrometheusNewrelicV3(
             string apiKey,
 
+            string region,
+
             string? tags)
         {
             ApiKey = apiKey;
+            Region = region;
             Tags = tags;
         }
     }

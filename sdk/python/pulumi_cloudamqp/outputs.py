@@ -410,12 +410,15 @@ class IntegrationMetricPrometheusNewrelicV3(dict):
 
     def __init__(__self__, *,
                  api_key: _builtins.str,
+                 region: _builtins.str,
                  tags: Optional[_builtins.str] = None):
         """
         :param _builtins.str api_key: New Relic API key for authentication.
+        :param _builtins.str region: New Relic region code. Valid values: `eu`, `us`.
         :param _builtins.str tags: Additional tags to attach to metrics. Format: `key=value,key2=value2`.
         """
         pulumi.set(__self__, "api_key", api_key)
+        pulumi.set(__self__, "region", region)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
 
@@ -426,6 +429,14 @@ class IntegrationMetricPrometheusNewrelicV3(dict):
         New Relic API key for authentication.
         """
         return pulumi.get(self, "api_key")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        New Relic region code. Valid values: `eu`, `us`.
+        """
+        return pulumi.get(self, "region")
 
     @_builtins.property
     @pulumi.getter

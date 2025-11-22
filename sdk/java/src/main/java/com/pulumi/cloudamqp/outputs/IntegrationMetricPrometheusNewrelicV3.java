@@ -18,6 +18,11 @@ public final class IntegrationMetricPrometheusNewrelicV3 {
      */
     private String apiKey;
     /**
+     * @return New Relic region code. Valid values: `eu`, `us`.
+     * 
+     */
+    private String region;
+    /**
      * @return Additional tags to attach to metrics. Format: `key=value,key2=value2`.
      * 
      */
@@ -30,6 +35,13 @@ public final class IntegrationMetricPrometheusNewrelicV3 {
      */
     public String apiKey() {
         return this.apiKey;
+    }
+    /**
+     * @return New Relic region code. Valid values: `eu`, `us`.
+     * 
+     */
+    public String region() {
+        return this.region;
     }
     /**
      * @return Additional tags to attach to metrics. Format: `key=value,key2=value2`.
@@ -49,11 +61,13 @@ public final class IntegrationMetricPrometheusNewrelicV3 {
     @CustomType.Builder
     public static final class Builder {
         private String apiKey;
+        private String region;
         private @Nullable String tags;
         public Builder() {}
         public Builder(IntegrationMetricPrometheusNewrelicV3 defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.apiKey = defaults.apiKey;
+    	      this.region = defaults.region;
     	      this.tags = defaults.tags;
         }
 
@@ -66,6 +80,14 @@ public final class IntegrationMetricPrometheusNewrelicV3 {
             return this;
         }
         @CustomType.Setter
+        public Builder region(String region) {
+            if (region == null) {
+              throw new MissingRequiredPropertyException("IntegrationMetricPrometheusNewrelicV3", "region");
+            }
+            this.region = region;
+            return this;
+        }
+        @CustomType.Setter
         public Builder tags(@Nullable String tags) {
 
             this.tags = tags;
@@ -74,6 +96,7 @@ public final class IntegrationMetricPrometheusNewrelicV3 {
         public IntegrationMetricPrometheusNewrelicV3 build() {
             final var _resultValue = new IntegrationMetricPrometheusNewrelicV3();
             _resultValue.apiKey = apiKey;
+            _resultValue.region = region;
             _resultValue.tags = tags;
             return _resultValue;
         }

@@ -308,6 +308,7 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
             instance_id=instance["id"],
             newrelic_v3={
                 "api_key": newrelic_api_key,
+                "region": "us",
                 "tags": "key=value,key2=value2",
             })
         ```
@@ -480,6 +481,7 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
             instance_id=instance["id"],
             newrelic_v3={
                 "api_key": newrelic_api_key,
+                "region": "us",
                 "tags": "key=value,key2=value2",
             })
         ```
