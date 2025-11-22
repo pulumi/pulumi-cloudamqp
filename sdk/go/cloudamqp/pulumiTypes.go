@@ -949,6 +949,8 @@ func (o IntegrationMetricPrometheusDynatracePtrOutput) Tags() pulumi.StringPtrOu
 type IntegrationMetricPrometheusNewrelicV3 struct {
 	// New Relic API key for authentication.
 	ApiKey string `pulumi:"apiKey"`
+	// New Relic region code. Valid values: `eu`, `us`.
+	Region string `pulumi:"region"`
 	// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
 	Tags *string `pulumi:"tags"`
 }
@@ -967,6 +969,8 @@ type IntegrationMetricPrometheusNewrelicV3Input interface {
 type IntegrationMetricPrometheusNewrelicV3Args struct {
 	// New Relic API key for authentication.
 	ApiKey pulumi.StringInput `pulumi:"apiKey"`
+	// New Relic region code. Valid values: `eu`, `us`.
+	Region pulumi.StringInput `pulumi:"region"`
 	// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
 	Tags pulumi.StringPtrInput `pulumi:"tags"`
 }
@@ -1053,6 +1057,11 @@ func (o IntegrationMetricPrometheusNewrelicV3Output) ApiKey() pulumi.StringOutpu
 	return o.ApplyT(func(v IntegrationMetricPrometheusNewrelicV3) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// New Relic region code. Valid values: `eu`, `us`.
+func (o IntegrationMetricPrometheusNewrelicV3Output) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusNewrelicV3) string { return v.Region }).(pulumi.StringOutput)
+}
+
 // Additional tags to attach to metrics. Format: `key=value,key2=value2`.
 func (o IntegrationMetricPrometheusNewrelicV3Output) Tags() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IntegrationMetricPrometheusNewrelicV3) *string { return v.Tags }).(pulumi.StringPtrOutput)
@@ -1089,6 +1098,16 @@ func (o IntegrationMetricPrometheusNewrelicV3PtrOutput) ApiKey() pulumi.StringPt
 			return nil
 		}
 		return &v.ApiKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// New Relic region code. Valid values: `eu`, `us`.
+func (o IntegrationMetricPrometheusNewrelicV3PtrOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusNewrelicV3) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Region
 	}).(pulumi.StringPtrOutput)
 }
 

@@ -101,6 +101,10 @@ export interface IntegrationMetricPrometheusNewrelicV3 {
      */
     apiKey: pulumi.Input<string>;
     /**
+     * New Relic region code. Valid values: `eu`, `us`.
+     */
+    region: pulumi.Input<string>;
+    /**
      * Additional tags to attach to metrics. Format: `key=value,key2=value2`.
      */
     tags?: pulumi.Input<string>;

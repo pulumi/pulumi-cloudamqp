@@ -32,6 +32,21 @@ public final class IntegrationMetricPrometheusNewrelicV3Args extends com.pulumi.
     }
 
     /**
+     * New Relic region code. Valid values: `eu`, `us`.
+     * 
+     */
+    @Import(name="region", required=true)
+    private Output<String> region;
+
+    /**
+     * @return New Relic region code. Valid values: `eu`, `us`.
+     * 
+     */
+    public Output<String> region() {
+        return this.region;
+    }
+
+    /**
      * Additional tags to attach to metrics. Format: `key=value,key2=value2`.
      * 
      */
@@ -50,6 +65,7 @@ public final class IntegrationMetricPrometheusNewrelicV3Args extends com.pulumi.
 
     private IntegrationMetricPrometheusNewrelicV3Args(IntegrationMetricPrometheusNewrelicV3Args $) {
         this.apiKey = $.apiKey;
+        this.region = $.region;
         this.tags = $.tags;
     }
 
@@ -93,6 +109,27 @@ public final class IntegrationMetricPrometheusNewrelicV3Args extends com.pulumi.
         }
 
         /**
+         * @param region New Relic region code. Valid values: `eu`, `us`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(Output<String> region) {
+            $.region = region;
+            return this;
+        }
+
+        /**
+         * @param region New Relic region code. Valid values: `eu`, `us`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(String region) {
+            return region(Output.of(region));
+        }
+
+        /**
          * @param tags Additional tags to attach to metrics. Format: `key=value,key2=value2`.
          * 
          * @return builder
@@ -116,6 +153,9 @@ public final class IntegrationMetricPrometheusNewrelicV3Args extends com.pulumi.
         public IntegrationMetricPrometheusNewrelicV3Args build() {
             if ($.apiKey == null) {
                 throw new MissingRequiredPropertyException("IntegrationMetricPrometheusNewrelicV3Args", "apiKey");
+            }
+            if ($.region == null) {
+                throw new MissingRequiredPropertyException("IntegrationMetricPrometheusNewrelicV3Args", "region");
             }
             return $;
         }

@@ -29,6 +29,12 @@ namespace Pulumi.CloudAmqp.Inputs
         }
 
         /// <summary>
+        /// New Relic region code. Valid values: `Eu`, `Us`.
+        /// </summary>
+        [Input("region", required: true)]
+        public Input<string> Region { get; set; } = null!;
+
+        /// <summary>
         /// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
         /// </summary>
         [Input("tags")]

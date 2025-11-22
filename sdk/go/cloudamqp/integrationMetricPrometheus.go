@@ -34,6 +34,7 @@ import (
 //				InstanceId: pulumi.Any(instance.Id),
 //				NewrelicV3: &cloudamqp.IntegrationMetricPrometheusNewrelicV3Args{
 //					ApiKey: pulumi.Any(newrelicApiKey),
+//					Region: pulumi.String("us"),
 //					Tags:   pulumi.String("key=value,key2=value2"),
 //				},
 //			})

@@ -30,6 +30,7 @@ namespace Pulumi.CloudAmqp
     ///         NewrelicV3 = new CloudAmqp.Inputs.IntegrationMetricPrometheusNewrelicV3Args
     ///         {
     ///             ApiKey = newrelicApiKey,
+    ///             Region = "us",
     ///             Tags = "key=value,key2=value2",
     ///         },
     ///     });

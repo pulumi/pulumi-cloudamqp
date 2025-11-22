@@ -21,6 +21,7 @@ import * as utilities from "./utilities";
  *     instanceId: instance.id,
  *     newrelicV3: {
  *         apiKey: newrelicApiKey,
+ *         region: "us",
  *         tags: "key=value,key2=value2",
  *     },
  * });
