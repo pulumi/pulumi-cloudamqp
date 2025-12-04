@@ -39,6 +39,7 @@ config:
         value: true
 
 ```
+
 ```typescript
 import * as pulumi from "@pulumi/pulumi";
 import * as cloudamqp from "@pulumi/cloudamqp";
@@ -84,6 +85,7 @@ const cloudwatch = new cloudamqp.IntegrationMetric("cloudwatch", {
     region: awsRegion,
 });
 ```
+
 {{% /choosable %}}
 {{% choosable language python %}}
 ```yaml
@@ -97,6 +99,7 @@ config:
         value: true
 
 ```
+
 ```python
 import pulumi
 import pulumi_cloudamqp as cloudamqp
@@ -137,6 +140,7 @@ cloudwatch = cloudamqp.IntegrationMetric("cloudwatch",
     secret_access_key=aws_secret_key,
     region=aws_region)
 ```
+
 {{% /choosable %}}
 {{% choosable language csharp %}}
 ```yaml
@@ -150,6 +154,7 @@ config:
         value: true
 
 ```
+
 ```csharp
 using System.Collections.Generic;
 using System.Linq;
@@ -227,6 +232,7 @@ return await Deployment.RunAsync(() =>
 });
 
 ```
+
 {{% /choosable %}}
 {{% choosable language go %}}
 ```yaml
@@ -240,6 +246,7 @@ config:
         value: true
 
 ```
+
 ```go
 package main
 
@@ -319,6 +326,7 @@ func main() {
 	})
 }
 ```
+
 {{% /choosable %}}
 {{% choosable language yaml %}}
 ```yaml
@@ -332,6 +340,7 @@ config:
         value: true
 
 ```
+
 ```yaml
 resources:
   # Create a new cloudamqp instance
@@ -385,6 +394,7 @@ resources:
       secretAccessKey: ${awsSecretKey}
       region: ${awsRegion}
 ```
+
 {{% /choosable %}}
 {{% choosable language java %}}
 ```yaml
@@ -398,6 +408,7 @@ config:
         value: true
 
 ```
+
 ```java
 package generated_program;
 
@@ -476,6 +487,7 @@ public class App {
     }
 }
 ```
+
 {{% /choosable %}}
 {{< /chooser >}}
 ## Configuration Reference
