@@ -27,37 +27,40 @@ class RabbitConfigurationArgs:
                  heartbeat: Optional[pulumi.Input[_builtins.int]] = None,
                  log_exchange_level: Optional[pulumi.Input[_builtins.str]] = None,
                  max_message_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 message_interceptors_timestamp_overwrite: Optional[pulumi.Input[_builtins.str]] = None,
+                 mqtt_exchange: Optional[pulumi.Input[_builtins.str]] = None,
+                 mqtt_ssl_cert_login: Optional[pulumi.Input[_builtins.bool]] = None,
+                 mqtt_vhost: Optional[pulumi.Input[_builtins.str]] = None,
                  queue_index_embed_msgs_below: Optional[pulumi.Input[_builtins.int]] = None,
                  sleep: Optional[pulumi.Input[_builtins.int]] = None,
+                 ssl_cert_login_from: Optional[pulumi.Input[_builtins.str]] = None,
+                 ssl_options_fail_if_no_peer_cert: Optional[pulumi.Input[_builtins.bool]] = None,
+                 ssl_options_verify: Optional[pulumi.Input[_builtins.str]] = None,
                  timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  vm_memory_high_watermark: Optional[pulumi.Input[_builtins.float]] = None):
         """
         The set of arguments for constructing a RabbitConfiguration resource.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[_builtins.int] channel_max: Set the maximum permissible number of
-               channels per connection.
-        :param pulumi.Input[_builtins.str] cluster_partition_handling: Set how the cluster should handle network
-               partition.
-        :param pulumi.Input[_builtins.int] connection_max: Set the maximum permissible number of
-               connection.
-        :param pulumi.Input[_builtins.int] consumer_timeout: A consumer that has recevied a message and
-               does not acknowledge that message within the timeout in
-               milliseconds
-        :param pulumi.Input[_builtins.int] heartbeat: Set the server AMQP 0-9-1 heartbeat timeout
-               in seconds.
-        :param pulumi.Input[_builtins.str] log_exchange_level: Log level for the logger used for log
-               integrations and the CloudAMQP Console log view.
-        :param pulumi.Input[_builtins.int] max_message_size: The largest allowed message payload size in
-               bytes.
-        :param pulumi.Input[_builtins.int] queue_index_embed_msgs_below: Size in bytes below which to embed messages
-               in the queue index. 0 will turn off payload embedding in the
-               queue index.
-        :param pulumi.Input[_builtins.int] sleep: Configurable sleep time in seconds between retries
-               for RabbitMQ configuration. Default set to 60 seconds.
-        :param pulumi.Input[_builtins.int] timeout: Configurable timeout time in seconds for RabbitMQ
-               configuration. Default set to 3600 seconds.
-        :param pulumi.Input[_builtins.float] vm_memory_high_watermark: When the server will enter memory based
-               flow-control as relative to the maximum available memory.
+        :param pulumi.Input[_builtins.int] channel_max: Set the maximum permissible number of channels per connection.
+        :param pulumi.Input[_builtins.str] cluster_partition_handling: Set how the cluster should handle network partition.
+        :param pulumi.Input[_builtins.int] connection_max: Set the maximum permissible number of connection.
+        :param pulumi.Input[_builtins.int] consumer_timeout: A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds
+        :param pulumi.Input[_builtins.int] heartbeat: Set the server AMQP 0-9-1 heartbeat timeout in seconds.
+        :param pulumi.Input[_builtins.str] log_exchange_level: Log level for the logger used for log integrations and the CloudAMQP Console log view.
+        :param pulumi.Input[_builtins.int] max_message_size: The largest allowed message payload size in bytes.
+        :param pulumi.Input[_builtins.str] message_interceptors_timestamp_overwrite: Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
+        :param pulumi.Input[_builtins.str] mqtt_exchange: The exchange option determines which exchange messages from MQTT clients are published to.
+        :param pulumi.Input[_builtins.bool] mqtt_ssl_cert_login: Enable SSL certificate-based authentication for MQTT connections.
+        :param pulumi.Input[_builtins.str] mqtt_vhost: Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.
+        :param pulumi.Input[_builtins.int] queue_index_embed_msgs_below: Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
+        :param pulumi.Input[_builtins.int] sleep: Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+        :param pulumi.Input[_builtins.str] ssl_cert_login_from: Determines which certificate field to use as the username for TLS-based authentication.
+        :param pulumi.Input[_builtins.bool] ssl_options_fail_if_no_peer_cert: When set to true, TLS connections will fail if the client does not provide a certificate.
+        :param pulumi.Input[_builtins.str] ssl_options_verify: Controls peer certificate verification for TLS connections.
+               
+               Configure sleep and timeout for API requests retries
+        :param pulumi.Input[_builtins.int] timeout: Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+        :param pulumi.Input[_builtins.float] vm_memory_high_watermark: When the server will enter memory based flow-control as relative to the maximum available memory.
         """
         pulumi.set(__self__, "instance_id", instance_id)
         if channel_max is not None:
@@ -74,10 +77,24 @@ class RabbitConfigurationArgs:
             pulumi.set(__self__, "log_exchange_level", log_exchange_level)
         if max_message_size is not None:
             pulumi.set(__self__, "max_message_size", max_message_size)
+        if message_interceptors_timestamp_overwrite is not None:
+            pulumi.set(__self__, "message_interceptors_timestamp_overwrite", message_interceptors_timestamp_overwrite)
+        if mqtt_exchange is not None:
+            pulumi.set(__self__, "mqtt_exchange", mqtt_exchange)
+        if mqtt_ssl_cert_login is not None:
+            pulumi.set(__self__, "mqtt_ssl_cert_login", mqtt_ssl_cert_login)
+        if mqtt_vhost is not None:
+            pulumi.set(__self__, "mqtt_vhost", mqtt_vhost)
         if queue_index_embed_msgs_below is not None:
             pulumi.set(__self__, "queue_index_embed_msgs_below", queue_index_embed_msgs_below)
         if sleep is not None:
             pulumi.set(__self__, "sleep", sleep)
+        if ssl_cert_login_from is not None:
+            pulumi.set(__self__, "ssl_cert_login_from", ssl_cert_login_from)
+        if ssl_options_fail_if_no_peer_cert is not None:
+            pulumi.set(__self__, "ssl_options_fail_if_no_peer_cert", ssl_options_fail_if_no_peer_cert)
+        if ssl_options_verify is not None:
+            pulumi.set(__self__, "ssl_options_verify", ssl_options_verify)
         if timeout is not None:
             pulumi.set(__self__, "timeout", timeout)
         if vm_memory_high_watermark is not None:
@@ -99,8 +116,7 @@ class RabbitConfigurationArgs:
     @pulumi.getter(name="channelMax")
     def channel_max(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Set the maximum permissible number of
-        channels per connection.
+        Set the maximum permissible number of channels per connection.
         """
         return pulumi.get(self, "channel_max")
 
@@ -112,8 +128,7 @@ class RabbitConfigurationArgs:
     @pulumi.getter(name="clusterPartitionHandling")
     def cluster_partition_handling(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Set how the cluster should handle network
-        partition.
+        Set how the cluster should handle network partition.
         """
         return pulumi.get(self, "cluster_partition_handling")
 
@@ -125,8 +140,7 @@ class RabbitConfigurationArgs:
     @pulumi.getter(name="connectionMax")
     def connection_max(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Set the maximum permissible number of
-        connection.
+        Set the maximum permissible number of connection.
         """
         return pulumi.get(self, "connection_max")
 
@@ -138,9 +152,7 @@ class RabbitConfigurationArgs:
     @pulumi.getter(name="consumerTimeout")
     def consumer_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        A consumer that has recevied a message and
-        does not acknowledge that message within the timeout in
-        milliseconds
+        A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds
         """
         return pulumi.get(self, "consumer_timeout")
 
@@ -152,8 +164,7 @@ class RabbitConfigurationArgs:
     @pulumi.getter
     def heartbeat(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Set the server AMQP 0-9-1 heartbeat timeout
-        in seconds.
+        Set the server AMQP 0-9-1 heartbeat timeout in seconds.
         """
         return pulumi.get(self, "heartbeat")
 
@@ -165,8 +176,7 @@ class RabbitConfigurationArgs:
     @pulumi.getter(name="logExchangeLevel")
     def log_exchange_level(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Log level for the logger used for log
-        integrations and the CloudAMQP Console log view.
+        Log level for the logger used for log integrations and the CloudAMQP Console log view.
         """
         return pulumi.get(self, "log_exchange_level")
 
@@ -178,8 +188,7 @@ class RabbitConfigurationArgs:
     @pulumi.getter(name="maxMessageSize")
     def max_message_size(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        The largest allowed message payload size in
-        bytes.
+        The largest allowed message payload size in bytes.
         """
         return pulumi.get(self, "max_message_size")
 
@@ -188,12 +197,58 @@ class RabbitConfigurationArgs:
         pulumi.set(self, "max_message_size", value)
 
     @_builtins.property
+    @pulumi.getter(name="messageInterceptorsTimestampOverwrite")
+    def message_interceptors_timestamp_overwrite(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
+        """
+        return pulumi.get(self, "message_interceptors_timestamp_overwrite")
+
+    @message_interceptors_timestamp_overwrite.setter
+    def message_interceptors_timestamp_overwrite(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "message_interceptors_timestamp_overwrite", value)
+
+    @_builtins.property
+    @pulumi.getter(name="mqttExchange")
+    def mqtt_exchange(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The exchange option determines which exchange messages from MQTT clients are published to.
+        """
+        return pulumi.get(self, "mqtt_exchange")
+
+    @mqtt_exchange.setter
+    def mqtt_exchange(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "mqtt_exchange", value)
+
+    @_builtins.property
+    @pulumi.getter(name="mqttSslCertLogin")
+    def mqtt_ssl_cert_login(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Enable SSL certificate-based authentication for MQTT connections.
+        """
+        return pulumi.get(self, "mqtt_ssl_cert_login")
+
+    @mqtt_ssl_cert_login.setter
+    def mqtt_ssl_cert_login(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "mqtt_ssl_cert_login", value)
+
+    @_builtins.property
+    @pulumi.getter(name="mqttVhost")
+    def mqtt_vhost(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.
+        """
+        return pulumi.get(self, "mqtt_vhost")
+
+    @mqtt_vhost.setter
+    def mqtt_vhost(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "mqtt_vhost", value)
+
+    @_builtins.property
     @pulumi.getter(name="queueIndexEmbedMsgsBelow")
     def queue_index_embed_msgs_below(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Size in bytes below which to embed messages
-        in the queue index. 0 will turn off payload embedding in the
-        queue index.
+        Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
         """
         return pulumi.get(self, "queue_index_embed_msgs_below")
 
@@ -205,8 +260,7 @@ class RabbitConfigurationArgs:
     @pulumi.getter
     def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Configurable sleep time in seconds between retries
-        for RabbitMQ configuration. Default set to 60 seconds.
+        Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
         """
         return pulumi.get(self, "sleep")
 
@@ -215,11 +269,48 @@ class RabbitConfigurationArgs:
         pulumi.set(self, "sleep", value)
 
     @_builtins.property
+    @pulumi.getter(name="sslCertLoginFrom")
+    def ssl_cert_login_from(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Determines which certificate field to use as the username for TLS-based authentication.
+        """
+        return pulumi.get(self, "ssl_cert_login_from")
+
+    @ssl_cert_login_from.setter
+    def ssl_cert_login_from(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "ssl_cert_login_from", value)
+
+    @_builtins.property
+    @pulumi.getter(name="sslOptionsFailIfNoPeerCert")
+    def ssl_options_fail_if_no_peer_cert(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        When set to true, TLS connections will fail if the client does not provide a certificate.
+        """
+        return pulumi.get(self, "ssl_options_fail_if_no_peer_cert")
+
+    @ssl_options_fail_if_no_peer_cert.setter
+    def ssl_options_fail_if_no_peer_cert(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "ssl_options_fail_if_no_peer_cert", value)
+
+    @_builtins.property
+    @pulumi.getter(name="sslOptionsVerify")
+    def ssl_options_verify(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Controls peer certificate verification for TLS connections.
+
+        Configure sleep and timeout for API requests retries
+        """
+        return pulumi.get(self, "ssl_options_verify")
+
+    @ssl_options_verify.setter
+    def ssl_options_verify(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "ssl_options_verify", value)
+
+    @_builtins.property
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Configurable timeout time in seconds for RabbitMQ
-        configuration. Default set to 3600 seconds.
+        Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
         """
         return pulumi.get(self, "timeout")
 
@@ -231,8 +322,7 @@ class RabbitConfigurationArgs:
     @pulumi.getter(name="vmMemoryHighWatermark")
     def vm_memory_high_watermark(self) -> Optional[pulumi.Input[_builtins.float]]:
         """
-        When the server will enter memory based
-        flow-control as relative to the maximum available memory.
+        When the server will enter memory based flow-control as relative to the maximum available memory.
         """
         return pulumi.get(self, "vm_memory_high_watermark")
 
@@ -252,37 +342,40 @@ class _RabbitConfigurationState:
                  instance_id: Optional[pulumi.Input[_builtins.int]] = None,
                  log_exchange_level: Optional[pulumi.Input[_builtins.str]] = None,
                  max_message_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 message_interceptors_timestamp_overwrite: Optional[pulumi.Input[_builtins.str]] = None,
+                 mqtt_exchange: Optional[pulumi.Input[_builtins.str]] = None,
+                 mqtt_ssl_cert_login: Optional[pulumi.Input[_builtins.bool]] = None,
+                 mqtt_vhost: Optional[pulumi.Input[_builtins.str]] = None,
                  queue_index_embed_msgs_below: Optional[pulumi.Input[_builtins.int]] = None,
                  sleep: Optional[pulumi.Input[_builtins.int]] = None,
+                 ssl_cert_login_from: Optional[pulumi.Input[_builtins.str]] = None,
+                 ssl_options_fail_if_no_peer_cert: Optional[pulumi.Input[_builtins.bool]] = None,
+                 ssl_options_verify: Optional[pulumi.Input[_builtins.str]] = None,
                  timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  vm_memory_high_watermark: Optional[pulumi.Input[_builtins.float]] = None):
         """
         Input properties used for looking up and filtering RabbitConfiguration resources.
-        :param pulumi.Input[_builtins.int] channel_max: Set the maximum permissible number of
-               channels per connection.
-        :param pulumi.Input[_builtins.str] cluster_partition_handling: Set how the cluster should handle network
-               partition.
-        :param pulumi.Input[_builtins.int] connection_max: Set the maximum permissible number of
-               connection.
-        :param pulumi.Input[_builtins.int] consumer_timeout: A consumer that has recevied a message and
-               does not acknowledge that message within the timeout in
-               milliseconds
-        :param pulumi.Input[_builtins.int] heartbeat: Set the server AMQP 0-9-1 heartbeat timeout
-               in seconds.
+        :param pulumi.Input[_builtins.int] channel_max: Set the maximum permissible number of channels per connection.
+        :param pulumi.Input[_builtins.str] cluster_partition_handling: Set how the cluster should handle network partition.
+        :param pulumi.Input[_builtins.int] connection_max: Set the maximum permissible number of connection.
+        :param pulumi.Input[_builtins.int] consumer_timeout: A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds
+        :param pulumi.Input[_builtins.int] heartbeat: Set the server AMQP 0-9-1 heartbeat timeout in seconds.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[_builtins.str] log_exchange_level: Log level for the logger used for log
-               integrations and the CloudAMQP Console log view.
-        :param pulumi.Input[_builtins.int] max_message_size: The largest allowed message payload size in
-               bytes.
-        :param pulumi.Input[_builtins.int] queue_index_embed_msgs_below: Size in bytes below which to embed messages
-               in the queue index. 0 will turn off payload embedding in the
-               queue index.
-        :param pulumi.Input[_builtins.int] sleep: Configurable sleep time in seconds between retries
-               for RabbitMQ configuration. Default set to 60 seconds.
-        :param pulumi.Input[_builtins.int] timeout: Configurable timeout time in seconds for RabbitMQ
-               configuration. Default set to 3600 seconds.
-        :param pulumi.Input[_builtins.float] vm_memory_high_watermark: When the server will enter memory based
-               flow-control as relative to the maximum available memory.
+        :param pulumi.Input[_builtins.str] log_exchange_level: Log level for the logger used for log integrations and the CloudAMQP Console log view.
+        :param pulumi.Input[_builtins.int] max_message_size: The largest allowed message payload size in bytes.
+        :param pulumi.Input[_builtins.str] message_interceptors_timestamp_overwrite: Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
+        :param pulumi.Input[_builtins.str] mqtt_exchange: The exchange option determines which exchange messages from MQTT clients are published to.
+        :param pulumi.Input[_builtins.bool] mqtt_ssl_cert_login: Enable SSL certificate-based authentication for MQTT connections.
+        :param pulumi.Input[_builtins.str] mqtt_vhost: Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.
+        :param pulumi.Input[_builtins.int] queue_index_embed_msgs_below: Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
+        :param pulumi.Input[_builtins.int] sleep: Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+        :param pulumi.Input[_builtins.str] ssl_cert_login_from: Determines which certificate field to use as the username for TLS-based authentication.
+        :param pulumi.Input[_builtins.bool] ssl_options_fail_if_no_peer_cert: When set to true, TLS connections will fail if the client does not provide a certificate.
+        :param pulumi.Input[_builtins.str] ssl_options_verify: Controls peer certificate verification for TLS connections.
+               
+               Configure sleep and timeout for API requests retries
+        :param pulumi.Input[_builtins.int] timeout: Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+        :param pulumi.Input[_builtins.float] vm_memory_high_watermark: When the server will enter memory based flow-control as relative to the maximum available memory.
         """
         if channel_max is not None:
             pulumi.set(__self__, "channel_max", channel_max)
@@ -300,10 +393,24 @@ class _RabbitConfigurationState:
             pulumi.set(__self__, "log_exchange_level", log_exchange_level)
         if max_message_size is not None:
             pulumi.set(__self__, "max_message_size", max_message_size)
+        if message_interceptors_timestamp_overwrite is not None:
+            pulumi.set(__self__, "message_interceptors_timestamp_overwrite", message_interceptors_timestamp_overwrite)
+        if mqtt_exchange is not None:
+            pulumi.set(__self__, "mqtt_exchange", mqtt_exchange)
+        if mqtt_ssl_cert_login is not None:
+            pulumi.set(__self__, "mqtt_ssl_cert_login", mqtt_ssl_cert_login)
+        if mqtt_vhost is not None:
+            pulumi.set(__self__, "mqtt_vhost", mqtt_vhost)
         if queue_index_embed_msgs_below is not None:
             pulumi.set(__self__, "queue_index_embed_msgs_below", queue_index_embed_msgs_below)
         if sleep is not None:
             pulumi.set(__self__, "sleep", sleep)
+        if ssl_cert_login_from is not None:
+            pulumi.set(__self__, "ssl_cert_login_from", ssl_cert_login_from)
+        if ssl_options_fail_if_no_peer_cert is not None:
+            pulumi.set(__self__, "ssl_options_fail_if_no_peer_cert", ssl_options_fail_if_no_peer_cert)
+        if ssl_options_verify is not None:
+            pulumi.set(__self__, "ssl_options_verify", ssl_options_verify)
         if timeout is not None:
             pulumi.set(__self__, "timeout", timeout)
         if vm_memory_high_watermark is not None:
@@ -313,8 +420,7 @@ class _RabbitConfigurationState:
     @pulumi.getter(name="channelMax")
     def channel_max(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Set the maximum permissible number of
-        channels per connection.
+        Set the maximum permissible number of channels per connection.
         """
         return pulumi.get(self, "channel_max")
 
@@ -326,8 +432,7 @@ class _RabbitConfigurationState:
     @pulumi.getter(name="clusterPartitionHandling")
     def cluster_partition_handling(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Set how the cluster should handle network
-        partition.
+        Set how the cluster should handle network partition.
         """
         return pulumi.get(self, "cluster_partition_handling")
 
@@ -339,8 +444,7 @@ class _RabbitConfigurationState:
     @pulumi.getter(name="connectionMax")
     def connection_max(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Set the maximum permissible number of
-        connection.
+        Set the maximum permissible number of connection.
         """
         return pulumi.get(self, "connection_max")
 
@@ -352,9 +456,7 @@ class _RabbitConfigurationState:
     @pulumi.getter(name="consumerTimeout")
     def consumer_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        A consumer that has recevied a message and
-        does not acknowledge that message within the timeout in
-        milliseconds
+        A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds
         """
         return pulumi.get(self, "consumer_timeout")
 
@@ -366,8 +468,7 @@ class _RabbitConfigurationState:
     @pulumi.getter
     def heartbeat(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Set the server AMQP 0-9-1 heartbeat timeout
-        in seconds.
+        Set the server AMQP 0-9-1 heartbeat timeout in seconds.
         """
         return pulumi.get(self, "heartbeat")
 
@@ -391,8 +492,7 @@ class _RabbitConfigurationState:
     @pulumi.getter(name="logExchangeLevel")
     def log_exchange_level(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Log level for the logger used for log
-        integrations and the CloudAMQP Console log view.
+        Log level for the logger used for log integrations and the CloudAMQP Console log view.
         """
         return pulumi.get(self, "log_exchange_level")
 
@@ -404,8 +504,7 @@ class _RabbitConfigurationState:
     @pulumi.getter(name="maxMessageSize")
     def max_message_size(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        The largest allowed message payload size in
-        bytes.
+        The largest allowed message payload size in bytes.
         """
         return pulumi.get(self, "max_message_size")
 
@@ -414,12 +513,58 @@ class _RabbitConfigurationState:
         pulumi.set(self, "max_message_size", value)
 
     @_builtins.property
+    @pulumi.getter(name="messageInterceptorsTimestampOverwrite")
+    def message_interceptors_timestamp_overwrite(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
+        """
+        return pulumi.get(self, "message_interceptors_timestamp_overwrite")
+
+    @message_interceptors_timestamp_overwrite.setter
+    def message_interceptors_timestamp_overwrite(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "message_interceptors_timestamp_overwrite", value)
+
+    @_builtins.property
+    @pulumi.getter(name="mqttExchange")
+    def mqtt_exchange(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The exchange option determines which exchange messages from MQTT clients are published to.
+        """
+        return pulumi.get(self, "mqtt_exchange")
+
+    @mqtt_exchange.setter
+    def mqtt_exchange(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "mqtt_exchange", value)
+
+    @_builtins.property
+    @pulumi.getter(name="mqttSslCertLogin")
+    def mqtt_ssl_cert_login(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Enable SSL certificate-based authentication for MQTT connections.
+        """
+        return pulumi.get(self, "mqtt_ssl_cert_login")
+
+    @mqtt_ssl_cert_login.setter
+    def mqtt_ssl_cert_login(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "mqtt_ssl_cert_login", value)
+
+    @_builtins.property
+    @pulumi.getter(name="mqttVhost")
+    def mqtt_vhost(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.
+        """
+        return pulumi.get(self, "mqtt_vhost")
+
+    @mqtt_vhost.setter
+    def mqtt_vhost(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "mqtt_vhost", value)
+
+    @_builtins.property
     @pulumi.getter(name="queueIndexEmbedMsgsBelow")
     def queue_index_embed_msgs_below(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Size in bytes below which to embed messages
-        in the queue index. 0 will turn off payload embedding in the
-        queue index.
+        Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
         """
         return pulumi.get(self, "queue_index_embed_msgs_below")
 
@@ -431,8 +576,7 @@ class _RabbitConfigurationState:
     @pulumi.getter
     def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Configurable sleep time in seconds between retries
-        for RabbitMQ configuration. Default set to 60 seconds.
+        Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
         """
         return pulumi.get(self, "sleep")
 
@@ -441,11 +585,48 @@ class _RabbitConfigurationState:
         pulumi.set(self, "sleep", value)
 
     @_builtins.property
+    @pulumi.getter(name="sslCertLoginFrom")
+    def ssl_cert_login_from(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Determines which certificate field to use as the username for TLS-based authentication.
+        """
+        return pulumi.get(self, "ssl_cert_login_from")
+
+    @ssl_cert_login_from.setter
+    def ssl_cert_login_from(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "ssl_cert_login_from", value)
+
+    @_builtins.property
+    @pulumi.getter(name="sslOptionsFailIfNoPeerCert")
+    def ssl_options_fail_if_no_peer_cert(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        When set to true, TLS connections will fail if the client does not provide a certificate.
+        """
+        return pulumi.get(self, "ssl_options_fail_if_no_peer_cert")
+
+    @ssl_options_fail_if_no_peer_cert.setter
+    def ssl_options_fail_if_no_peer_cert(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "ssl_options_fail_if_no_peer_cert", value)
+
+    @_builtins.property
+    @pulumi.getter(name="sslOptionsVerify")
+    def ssl_options_verify(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Controls peer certificate verification for TLS connections.
+
+        Configure sleep and timeout for API requests retries
+        """
+        return pulumi.get(self, "ssl_options_verify")
+
+    @ssl_options_verify.setter
+    def ssl_options_verify(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "ssl_options_verify", value)
+
+    @_builtins.property
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Configurable timeout time in seconds for RabbitMQ
-        configuration. Default set to 3600 seconds.
+        Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
         """
         return pulumi.get(self, "timeout")
 
@@ -457,8 +638,7 @@ class _RabbitConfigurationState:
     @pulumi.getter(name="vmMemoryHighWatermark")
     def vm_memory_high_watermark(self) -> Optional[pulumi.Input[_builtins.float]]:
         """
-        When the server will enter memory based
-        flow-control as relative to the maximum available memory.
+        When the server will enter memory based flow-control as relative to the maximum available memory.
         """
         return pulumi.get(self, "vm_memory_high_watermark")
 
@@ -481,8 +661,15 @@ class RabbitConfiguration(pulumi.CustomResource):
                  instance_id: Optional[pulumi.Input[_builtins.int]] = None,
                  log_exchange_level: Optional[pulumi.Input[_builtins.str]] = None,
                  max_message_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 message_interceptors_timestamp_overwrite: Optional[pulumi.Input[_builtins.str]] = None,
+                 mqtt_exchange: Optional[pulumi.Input[_builtins.str]] = None,
+                 mqtt_ssl_cert_login: Optional[pulumi.Input[_builtins.bool]] = None,
+                 mqtt_vhost: Optional[pulumi.Input[_builtins.str]] = None,
                  queue_index_embed_msgs_below: Optional[pulumi.Input[_builtins.int]] = None,
                  sleep: Optional[pulumi.Input[_builtins.int]] = None,
+                 ssl_cert_login_from: Optional[pulumi.Input[_builtins.str]] = None,
+                 ssl_options_fail_if_no_peer_cert: Optional[pulumi.Input[_builtins.bool]] = None,
+                 ssl_options_verify: Optional[pulumi.Input[_builtins.str]] = None,
                  timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  vm_memory_high_watermark: Optional[pulumi.Input[_builtins.float]] = None,
                  __props__=None):
@@ -513,31 +700,27 @@ class RabbitConfiguration(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.int] channel_max: Set the maximum permissible number of
-               channels per connection.
-        :param pulumi.Input[_builtins.str] cluster_partition_handling: Set how the cluster should handle network
-               partition.
-        :param pulumi.Input[_builtins.int] connection_max: Set the maximum permissible number of
-               connection.
-        :param pulumi.Input[_builtins.int] consumer_timeout: A consumer that has recevied a message and
-               does not acknowledge that message within the timeout in
-               milliseconds
-        :param pulumi.Input[_builtins.int] heartbeat: Set the server AMQP 0-9-1 heartbeat timeout
-               in seconds.
+        :param pulumi.Input[_builtins.int] channel_max: Set the maximum permissible number of channels per connection.
+        :param pulumi.Input[_builtins.str] cluster_partition_handling: Set how the cluster should handle network partition.
+        :param pulumi.Input[_builtins.int] connection_max: Set the maximum permissible number of connection.
+        :param pulumi.Input[_builtins.int] consumer_timeout: A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds
+        :param pulumi.Input[_builtins.int] heartbeat: Set the server AMQP 0-9-1 heartbeat timeout in seconds.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[_builtins.str] log_exchange_level: Log level for the logger used for log
-               integrations and the CloudAMQP Console log view.
-        :param pulumi.Input[_builtins.int] max_message_size: The largest allowed message payload size in
-               bytes.
-        :param pulumi.Input[_builtins.int] queue_index_embed_msgs_below: Size in bytes below which to embed messages
-               in the queue index. 0 will turn off payload embedding in the
-               queue index.
-        :param pulumi.Input[_builtins.int] sleep: Configurable sleep time in seconds between retries
-               for RabbitMQ configuration. Default set to 60 seconds.
-        :param pulumi.Input[_builtins.int] timeout: Configurable timeout time in seconds for RabbitMQ
-               configuration. Default set to 3600 seconds.
-        :param pulumi.Input[_builtins.float] vm_memory_high_watermark: When the server will enter memory based
-               flow-control as relative to the maximum available memory.
+        :param pulumi.Input[_builtins.str] log_exchange_level: Log level for the logger used for log integrations and the CloudAMQP Console log view.
+        :param pulumi.Input[_builtins.int] max_message_size: The largest allowed message payload size in bytes.
+        :param pulumi.Input[_builtins.str] message_interceptors_timestamp_overwrite: Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
+        :param pulumi.Input[_builtins.str] mqtt_exchange: The exchange option determines which exchange messages from MQTT clients are published to.
+        :param pulumi.Input[_builtins.bool] mqtt_ssl_cert_login: Enable SSL certificate-based authentication for MQTT connections.
+        :param pulumi.Input[_builtins.str] mqtt_vhost: Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.
+        :param pulumi.Input[_builtins.int] queue_index_embed_msgs_below: Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
+        :param pulumi.Input[_builtins.int] sleep: Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+        :param pulumi.Input[_builtins.str] ssl_cert_login_from: Determines which certificate field to use as the username for TLS-based authentication.
+        :param pulumi.Input[_builtins.bool] ssl_options_fail_if_no_peer_cert: When set to true, TLS connections will fail if the client does not provide a certificate.
+        :param pulumi.Input[_builtins.str] ssl_options_verify: Controls peer certificate verification for TLS connections.
+               
+               Configure sleep and timeout for API requests retries
+        :param pulumi.Input[_builtins.int] timeout: Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+        :param pulumi.Input[_builtins.float] vm_memory_high_watermark: When the server will enter memory based flow-control as relative to the maximum available memory.
         """
         ...
     @overload
@@ -593,8 +776,15 @@ class RabbitConfiguration(pulumi.CustomResource):
                  instance_id: Optional[pulumi.Input[_builtins.int]] = None,
                  log_exchange_level: Optional[pulumi.Input[_builtins.str]] = None,
                  max_message_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 message_interceptors_timestamp_overwrite: Optional[pulumi.Input[_builtins.str]] = None,
+                 mqtt_exchange: Optional[pulumi.Input[_builtins.str]] = None,
+                 mqtt_ssl_cert_login: Optional[pulumi.Input[_builtins.bool]] = None,
+                 mqtt_vhost: Optional[pulumi.Input[_builtins.str]] = None,
                  queue_index_embed_msgs_below: Optional[pulumi.Input[_builtins.int]] = None,
                  sleep: Optional[pulumi.Input[_builtins.int]] = None,
+                 ssl_cert_login_from: Optional[pulumi.Input[_builtins.str]] = None,
+                 ssl_options_fail_if_no_peer_cert: Optional[pulumi.Input[_builtins.bool]] = None,
+                 ssl_options_verify: Optional[pulumi.Input[_builtins.str]] = None,
                  timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  vm_memory_high_watermark: Optional[pulumi.Input[_builtins.float]] = None,
                  __props__=None):
@@ -616,8 +806,15 @@ class RabbitConfiguration(pulumi.CustomResource):
             __props__.__dict__["instance_id"] = instance_id
             __props__.__dict__["log_exchange_level"] = log_exchange_level
             __props__.__dict__["max_message_size"] = max_message_size
+            __props__.__dict__["message_interceptors_timestamp_overwrite"] = message_interceptors_timestamp_overwrite
+            __props__.__dict__["mqtt_exchange"] = mqtt_exchange
+            __props__.__dict__["mqtt_ssl_cert_login"] = mqtt_ssl_cert_login
+            __props__.__dict__["mqtt_vhost"] = mqtt_vhost
             __props__.__dict__["queue_index_embed_msgs_below"] = queue_index_embed_msgs_below
             __props__.__dict__["sleep"] = sleep
+            __props__.__dict__["ssl_cert_login_from"] = ssl_cert_login_from
+            __props__.__dict__["ssl_options_fail_if_no_peer_cert"] = ssl_options_fail_if_no_peer_cert
+            __props__.__dict__["ssl_options_verify"] = ssl_options_verify
             __props__.__dict__["timeout"] = timeout
             __props__.__dict__["vm_memory_high_watermark"] = vm_memory_high_watermark
         super(RabbitConfiguration, __self__).__init__(
@@ -638,8 +835,15 @@ class RabbitConfiguration(pulumi.CustomResource):
             instance_id: Optional[pulumi.Input[_builtins.int]] = None,
             log_exchange_level: Optional[pulumi.Input[_builtins.str]] = None,
             max_message_size: Optional[pulumi.Input[_builtins.int]] = None,
+            message_interceptors_timestamp_overwrite: Optional[pulumi.Input[_builtins.str]] = None,
+            mqtt_exchange: Optional[pulumi.Input[_builtins.str]] = None,
+            mqtt_ssl_cert_login: Optional[pulumi.Input[_builtins.bool]] = None,
+            mqtt_vhost: Optional[pulumi.Input[_builtins.str]] = None,
             queue_index_embed_msgs_below: Optional[pulumi.Input[_builtins.int]] = None,
             sleep: Optional[pulumi.Input[_builtins.int]] = None,
+            ssl_cert_login_from: Optional[pulumi.Input[_builtins.str]] = None,
+            ssl_options_fail_if_no_peer_cert: Optional[pulumi.Input[_builtins.bool]] = None,
+            ssl_options_verify: Optional[pulumi.Input[_builtins.str]] = None,
             timeout: Optional[pulumi.Input[_builtins.int]] = None,
             vm_memory_high_watermark: Optional[pulumi.Input[_builtins.float]] = None) -> 'RabbitConfiguration':
         """
@@ -649,31 +853,27 @@ class RabbitConfiguration(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.int] channel_max: Set the maximum permissible number of
-               channels per connection.
-        :param pulumi.Input[_builtins.str] cluster_partition_handling: Set how the cluster should handle network
-               partition.
-        :param pulumi.Input[_builtins.int] connection_max: Set the maximum permissible number of
-               connection.
-        :param pulumi.Input[_builtins.int] consumer_timeout: A consumer that has recevied a message and
-               does not acknowledge that message within the timeout in
-               milliseconds
-        :param pulumi.Input[_builtins.int] heartbeat: Set the server AMQP 0-9-1 heartbeat timeout
-               in seconds.
+        :param pulumi.Input[_builtins.int] channel_max: Set the maximum permissible number of channels per connection.
+        :param pulumi.Input[_builtins.str] cluster_partition_handling: Set how the cluster should handle network partition.
+        :param pulumi.Input[_builtins.int] connection_max: Set the maximum permissible number of connection.
+        :param pulumi.Input[_builtins.int] consumer_timeout: A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds
+        :param pulumi.Input[_builtins.int] heartbeat: Set the server AMQP 0-9-1 heartbeat timeout in seconds.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[_builtins.str] log_exchange_level: Log level for the logger used for log
-               integrations and the CloudAMQP Console log view.
-        :param pulumi.Input[_builtins.int] max_message_size: The largest allowed message payload size in
-               bytes.
-        :param pulumi.Input[_builtins.int] queue_index_embed_msgs_below: Size in bytes below which to embed messages
-               in the queue index. 0 will turn off payload embedding in the
-               queue index.
-        :param pulumi.Input[_builtins.int] sleep: Configurable sleep time in seconds between retries
-               for RabbitMQ configuration. Default set to 60 seconds.
-        :param pulumi.Input[_builtins.int] timeout: Configurable timeout time in seconds for RabbitMQ
-               configuration. Default set to 3600 seconds.
-        :param pulumi.Input[_builtins.float] vm_memory_high_watermark: When the server will enter memory based
-               flow-control as relative to the maximum available memory.
+        :param pulumi.Input[_builtins.str] log_exchange_level: Log level for the logger used for log integrations and the CloudAMQP Console log view.
+        :param pulumi.Input[_builtins.int] max_message_size: The largest allowed message payload size in bytes.
+        :param pulumi.Input[_builtins.str] message_interceptors_timestamp_overwrite: Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
+        :param pulumi.Input[_builtins.str] mqtt_exchange: The exchange option determines which exchange messages from MQTT clients are published to.
+        :param pulumi.Input[_builtins.bool] mqtt_ssl_cert_login: Enable SSL certificate-based authentication for MQTT connections.
+        :param pulumi.Input[_builtins.str] mqtt_vhost: Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.
+        :param pulumi.Input[_builtins.int] queue_index_embed_msgs_below: Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
+        :param pulumi.Input[_builtins.int] sleep: Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
+        :param pulumi.Input[_builtins.str] ssl_cert_login_from: Determines which certificate field to use as the username for TLS-based authentication.
+        :param pulumi.Input[_builtins.bool] ssl_options_fail_if_no_peer_cert: When set to true, TLS connections will fail if the client does not provide a certificate.
+        :param pulumi.Input[_builtins.str] ssl_options_verify: Controls peer certificate verification for TLS connections.
+               
+               Configure sleep and timeout for API requests retries
+        :param pulumi.Input[_builtins.int] timeout: Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
+        :param pulumi.Input[_builtins.float] vm_memory_high_watermark: When the server will enter memory based flow-control as relative to the maximum available memory.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -687,8 +887,15 @@ class RabbitConfiguration(pulumi.CustomResource):
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["log_exchange_level"] = log_exchange_level
         __props__.__dict__["max_message_size"] = max_message_size
+        __props__.__dict__["message_interceptors_timestamp_overwrite"] = message_interceptors_timestamp_overwrite
+        __props__.__dict__["mqtt_exchange"] = mqtt_exchange
+        __props__.__dict__["mqtt_ssl_cert_login"] = mqtt_ssl_cert_login
+        __props__.__dict__["mqtt_vhost"] = mqtt_vhost
         __props__.__dict__["queue_index_embed_msgs_below"] = queue_index_embed_msgs_below
         __props__.__dict__["sleep"] = sleep
+        __props__.__dict__["ssl_cert_login_from"] = ssl_cert_login_from
+        __props__.__dict__["ssl_options_fail_if_no_peer_cert"] = ssl_options_fail_if_no_peer_cert
+        __props__.__dict__["ssl_options_verify"] = ssl_options_verify
         __props__.__dict__["timeout"] = timeout
         __props__.__dict__["vm_memory_high_watermark"] = vm_memory_high_watermark
         return RabbitConfiguration(resource_name, opts=opts, __props__=__props__)
@@ -697,8 +904,7 @@ class RabbitConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="channelMax")
     def channel_max(self) -> pulumi.Output[_builtins.int]:
         """
-        Set the maximum permissible number of
-        channels per connection.
+        Set the maximum permissible number of channels per connection.
         """
         return pulumi.get(self, "channel_max")
 
@@ -706,8 +912,7 @@ class RabbitConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="clusterPartitionHandling")
     def cluster_partition_handling(self) -> pulumi.Output[_builtins.str]:
         """
-        Set how the cluster should handle network
-        partition.
+        Set how the cluster should handle network partition.
         """
         return pulumi.get(self, "cluster_partition_handling")
 
@@ -715,8 +920,7 @@ class RabbitConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="connectionMax")
     def connection_max(self) -> pulumi.Output[_builtins.int]:
         """
-        Set the maximum permissible number of
-        connection.
+        Set the maximum permissible number of connection.
         """
         return pulumi.get(self, "connection_max")
 
@@ -724,9 +928,7 @@ class RabbitConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="consumerTimeout")
     def consumer_timeout(self) -> pulumi.Output[_builtins.int]:
         """
-        A consumer that has recevied a message and
-        does not acknowledge that message within the timeout in
-        milliseconds
+        A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds
         """
         return pulumi.get(self, "consumer_timeout")
 
@@ -734,8 +936,7 @@ class RabbitConfiguration(pulumi.CustomResource):
     @pulumi.getter
     def heartbeat(self) -> pulumi.Output[_builtins.int]:
         """
-        Set the server AMQP 0-9-1 heartbeat timeout
-        in seconds.
+        Set the server AMQP 0-9-1 heartbeat timeout in seconds.
         """
         return pulumi.get(self, "heartbeat")
 
@@ -751,8 +952,7 @@ class RabbitConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="logExchangeLevel")
     def log_exchange_level(self) -> pulumi.Output[_builtins.str]:
         """
-        Log level for the logger used for log
-        integrations and the CloudAMQP Console log view.
+        Log level for the logger used for log integrations and the CloudAMQP Console log view.
         """
         return pulumi.get(self, "log_exchange_level")
 
@@ -760,18 +960,47 @@ class RabbitConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="maxMessageSize")
     def max_message_size(self) -> pulumi.Output[_builtins.int]:
         """
-        The largest allowed message payload size in
-        bytes.
+        The largest allowed message payload size in bytes.
         """
         return pulumi.get(self, "max_message_size")
+
+    @_builtins.property
+    @pulumi.getter(name="messageInterceptorsTimestampOverwrite")
+    def message_interceptors_timestamp_overwrite(self) -> pulumi.Output[_builtins.str]:
+        """
+        Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
+        """
+        return pulumi.get(self, "message_interceptors_timestamp_overwrite")
+
+    @_builtins.property
+    @pulumi.getter(name="mqttExchange")
+    def mqtt_exchange(self) -> pulumi.Output[_builtins.str]:
+        """
+        The exchange option determines which exchange messages from MQTT clients are published to.
+        """
+        return pulumi.get(self, "mqtt_exchange")
+
+    @_builtins.property
+    @pulumi.getter(name="mqttSslCertLogin")
+    def mqtt_ssl_cert_login(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Enable SSL certificate-based authentication for MQTT connections.
+        """
+        return pulumi.get(self, "mqtt_ssl_cert_login")
+
+    @_builtins.property
+    @pulumi.getter(name="mqttVhost")
+    def mqtt_vhost(self) -> pulumi.Output[_builtins.str]:
+        """
+        Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.
+        """
+        return pulumi.get(self, "mqtt_vhost")
 
     @_builtins.property
     @pulumi.getter(name="queueIndexEmbedMsgsBelow")
     def queue_index_embed_msgs_below(self) -> pulumi.Output[_builtins.int]:
         """
-        Size in bytes below which to embed messages
-        in the queue index. 0 will turn off payload embedding in the
-        queue index.
+        Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
         """
         return pulumi.get(self, "queue_index_embed_msgs_below")
 
@@ -779,17 +1008,41 @@ class RabbitConfiguration(pulumi.CustomResource):
     @pulumi.getter
     def sleep(self) -> pulumi.Output[_builtins.int]:
         """
-        Configurable sleep time in seconds between retries
-        for RabbitMQ configuration. Default set to 60 seconds.
+        Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
         """
         return pulumi.get(self, "sleep")
+
+    @_builtins.property
+    @pulumi.getter(name="sslCertLoginFrom")
+    def ssl_cert_login_from(self) -> pulumi.Output[_builtins.str]:
+        """
+        Determines which certificate field to use as the username for TLS-based authentication.
+        """
+        return pulumi.get(self, "ssl_cert_login_from")
+
+    @_builtins.property
+    @pulumi.getter(name="sslOptionsFailIfNoPeerCert")
+    def ssl_options_fail_if_no_peer_cert(self) -> pulumi.Output[_builtins.bool]:
+        """
+        When set to true, TLS connections will fail if the client does not provide a certificate.
+        """
+        return pulumi.get(self, "ssl_options_fail_if_no_peer_cert")
+
+    @_builtins.property
+    @pulumi.getter(name="sslOptionsVerify")
+    def ssl_options_verify(self) -> pulumi.Output[_builtins.str]:
+        """
+        Controls peer certificate verification for TLS connections.
+
+        Configure sleep and timeout for API requests retries
+        """
+        return pulumi.get(self, "ssl_options_verify")
 
     @_builtins.property
     @pulumi.getter
     def timeout(self) -> pulumi.Output[_builtins.int]:
         """
-        Configurable timeout time in seconds for RabbitMQ
-        configuration. Default set to 3600 seconds.
+        Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
         """
         return pulumi.get(self, "timeout")
 
@@ -797,8 +1050,7 @@ class RabbitConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="vmMemoryHighWatermark")
     def vm_memory_high_watermark(self) -> pulumi.Output[_builtins.float]:
         """
-        When the server will enter memory based
-        flow-control as relative to the maximum available memory.
+        When the server will enter memory based flow-control as relative to the maximum available memory.
         """
         return pulumi.get(self, "vm_memory_high_watermark")
 

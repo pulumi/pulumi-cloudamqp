@@ -15,6 +15,11 @@ export type Alarm = import("./alarm").Alarm;
 export const Alarm: typeof import("./alarm").Alarm = null as any;
 utilities.lazyLoad(exports, ["Alarm"], () => require("./alarm"));
 
+export { CustomCertificateArgs, CustomCertificateState } from "./customCertificate";
+export type CustomCertificate = import("./customCertificate").CustomCertificate;
+export const CustomCertificate: typeof import("./customCertificate").CustomCertificate = null as any;
+utilities.lazyLoad(exports, ["CustomCertificate"], () => require("./customCertificate"));
+
 export { CustomDomainArgs, CustomDomainState } from "./customDomain";
 export type CustomDomain = import("./customDomain").CustomDomain;
 export const CustomDomain: typeof import("./customDomain").CustomDomain = null as any;
@@ -173,6 +178,11 @@ export type SecurityFirewall = import("./securityFirewall").SecurityFirewall;
 export const SecurityFirewall: typeof import("./securityFirewall").SecurityFirewall = null as any;
 utilities.lazyLoad(exports, ["SecurityFirewall"], () => require("./securityFirewall"));
 
+export { TrustStoreArgs, TrustStoreState } from "./trustStore";
+export type TrustStore = import("./trustStore").TrustStore;
+export const TrustStore: typeof import("./trustStore").TrustStore = null as any;
+utilities.lazyLoad(exports, ["TrustStore"], () => require("./trustStore"));
+
 export { UpgradeLavinmqArgs, UpgradeLavinmqState } from "./upgradeLavinmq";
 export type UpgradeLavinmq = import("./upgradeLavinmq").UpgradeLavinmq;
 export const UpgradeLavinmq: typeof import("./upgradeLavinmq").UpgradeLavinmq = null as any;
@@ -226,6 +236,8 @@ const _module = {
                 return new AccountActions(name, <any>undefined, { urn })
             case "cloudamqp:index/alarm:Alarm":
                 return new Alarm(name, <any>undefined, { urn })
+            case "cloudamqp:index/customCertificate:CustomCertificate":
+                return new CustomCertificate(name, <any>undefined, { urn })
             case "cloudamqp:index/customDomain:CustomDomain":
                 return new CustomDomain(name, <any>undefined, { urn })
             case "cloudamqp:index/extraDiskSize:ExtraDiskSize":
@@ -260,6 +272,8 @@ const _module = {
                 return new RabbitConfiguration(name, <any>undefined, { urn })
             case "cloudamqp:index/securityFirewall:SecurityFirewall":
                 return new SecurityFirewall(name, <any>undefined, { urn })
+            case "cloudamqp:index/trustStore:TrustStore":
+                return new TrustStore(name, <any>undefined, { urn })
             case "cloudamqp:index/upgradeLavinmq:UpgradeLavinmq":
                 return new UpgradeLavinmq(name, <any>undefined, { urn })
             case "cloudamqp:index/upgradeRabbitmq:UpgradeRabbitmq":
@@ -281,6 +295,7 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("cloudamqp", "index/accountActions", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/alarm", _module)
+pulumi.runtime.registerResourceModule("cloudamqp", "index/customCertificate", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/customDomain", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/extraDiskSize", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/instance", _module)
@@ -298,6 +313,7 @@ pulumi.runtime.registerResourceModule("cloudamqp", "index/privatelinkAws", _modu
 pulumi.runtime.registerResourceModule("cloudamqp", "index/privatelinkAzure", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/rabbitConfiguration", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/securityFirewall", _module)
+pulumi.runtime.registerResourceModule("cloudamqp", "index/trustStore", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/upgradeLavinmq", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/upgradeRabbitmq", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/vpc", _module)

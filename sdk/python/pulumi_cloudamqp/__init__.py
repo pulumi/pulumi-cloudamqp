@@ -8,6 +8,7 @@ import typing
 # Export this package's modules as members:
 from .account_actions import *
 from .alarm import *
+from .custom_certificate import *
 from .custom_domain import *
 from .extra_disk_size import *
 from .get_account import *
@@ -40,6 +41,7 @@ from .privatelink_azure import *
 from .provider import *
 from .rabbit_configuration import *
 from .security_firewall import *
+from .trust_store import *
 from .upgrade_lavinmq import *
 from .upgrade_rabbitmq import *
 from .vpc import *
@@ -74,6 +76,14 @@ _utilities.register(
   "fqn": "pulumi_cloudamqp",
   "classes": {
    "cloudamqp:index/alarm:Alarm": "Alarm"
+  }
+ },
+ {
+  "pkg": "cloudamqp",
+  "mod": "index/customCertificate",
+  "fqn": "pulumi_cloudamqp",
+  "classes": {
+   "cloudamqp:index/customCertificate:CustomCertificate": "CustomCertificate"
   }
  },
  {
@@ -210,6 +220,14 @@ _utilities.register(
   "fqn": "pulumi_cloudamqp",
   "classes": {
    "cloudamqp:index/securityFirewall:SecurityFirewall": "SecurityFirewall"
+  }
+ },
+ {
+  "pkg": "cloudamqp",
+  "mod": "index/trustStore",
+  "fqn": "pulumi_cloudamqp",
+  "classes": {
+   "cloudamqp:index/trustStore:TrustStore": "TrustStore"
   }
  },
  {

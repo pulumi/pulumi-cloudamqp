@@ -12,6 +12,7 @@ import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -124,6 +125,34 @@ public class CustomDomain extends com.pulumi.resources.CustomResource {
      */
     public Output<Integer> instanceId() {
         return this.instanceId;
+    }
+    /**
+     * Configurable sleep time in seconds between retries for custom domain configuration
+     * 
+     */
+    @Export(name="sleep", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> sleep;
+
+    /**
+     * @return Configurable sleep time in seconds between retries for custom domain configuration
+     * 
+     */
+    public Output<Optional<Integer>> sleep() {
+        return Codegen.optional(this.sleep);
+    }
+    /**
+     * Configurable timeout time in seconds for custom domain configuration
+     * 
+     */
+    @Export(name="timeout", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> timeout;
+
+    /**
+     * @return Configurable timeout time in seconds for custom domain configuration
+     * 
+     */
+    public Output<Optional<Integer>> timeout() {
+        return Codegen.optional(this.timeout);
     }
 
     /**

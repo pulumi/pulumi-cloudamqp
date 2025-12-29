@@ -10,24 +10,29 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Export;
 import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
-import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * This resource allows you to invoke actions on a specific node.
+ * This resource allows you to invoke actions on specific nodes or the entire cluster. Actions can target individual nodes, multiple nodes, or all nodes in the cluster at once.
  * 
  * Only available for dedicated subscription plans.
+ * 
+ * &gt; **Note:** From version 1.41.0, this resource supports cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`) and the `nodeNames` list attribute for targeting multiple nodes. The `nodeName` attribute is deprecated in favor of `nodeNames`.
  * 
  * ## Example Usage
  * 
  * &lt;details&gt;
  *   &lt;summary&gt;
  *     &lt;b&gt;
- *       &lt;i&gt;Already know the node identifier (e.g. from state file)&lt;/i&gt;
+ *       &lt;i&gt;Cluster-wide broker restart (recommended for v1.41.0+)&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
+ * 
+ * Restart the broker on all nodes of the cluster at once. Making sure the broker is stopped and started in correct order. This is the simplest approach for cluster-wide operations.
  * 
  * <pre>
  * {@code
@@ -51,11 +56,9 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         // New recipient to receieve notifications
- *         var nodeAction = new NodeActions("nodeAction", NodeActionsArgs.builder()
+ *         var clusterRestart = new NodeActions("clusterRestart", NodeActionsArgs.builder()
  *             .instanceId(instance.id())
- *             .nodeName("<node name>")
- *             .action("restart")
+ *             .action("cluster.restart")
  *             .build());
  * 
  *     }
@@ -68,13 +71,255 @@ import javax.annotation.Nullable;
  * &lt;details&gt;
  *   &lt;summary&gt;
  *     &lt;b&gt;
- *       &lt;i&gt;Multi node RabbitMQ restart&lt;/i&gt;
+ *       &lt;i&gt;Restart broker on specific nodes using node_names&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
  * 
- * Using data source `cloudamqp.getNodes` to restart RabbitMQ on all nodes.
+ * Target specific nodes using the `nodeNames` list attribute.
  * 
- * &gt; **Note:** RabbitMQ restart on multiple nodes need to be chained, let one node restart at the time.
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.CloudamqpFunctions;
+ * import com.pulumi.cloudamqp.inputs.GetNodesArgs;
+ * import com.pulumi.cloudamqp.NodeActions;
+ * import com.pulumi.cloudamqp.NodeActionsArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
+ *             .instanceId(instance.id())
+ *             .build());
+ * 
+ *         var restartSubset = new NodeActions("restartSubset", NodeActionsArgs.builder()
+ *             .instanceId(instance.id())
+ *             .action("restart")
+ *             .nodeNames(            
+ *                 nodes.nodes()[0].name(),
+ *                 nodes.nodes()[1].name())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Reboot a single node&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * Reboot the entire node (VM) rather than just the broker.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.CloudamqpFunctions;
+ * import com.pulumi.cloudamqp.inputs.GetNodesArgs;
+ * import com.pulumi.cloudamqp.NodeActions;
+ * import com.pulumi.cloudamqp.NodeActionsArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
+ *             .instanceId(instance.id())
+ *             .build());
+ * 
+ *         var rebootNode = new NodeActions("rebootNode", NodeActionsArgs.builder()
+ *             .instanceId(instance.id())
+ *             .action("reboot")
+ *             .nodeNames(nodes.nodes()[0].name())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Restart RabbitMQ management interface&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * Only restart the management interface without affecting the broker.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.CloudamqpFunctions;
+ * import com.pulumi.cloudamqp.inputs.GetNodesArgs;
+ * import com.pulumi.cloudamqp.NodeActions;
+ * import com.pulumi.cloudamqp.NodeActionsArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
+ *             .instanceId(instance.id())
+ *             .build());
+ * 
+ *         var mgmtRestart = new NodeActions("mgmtRestart", NodeActionsArgs.builder()
+ *             .instanceId(instance.id())
+ *             .action("mgmt.restart")
+ *             .nodeNames(nodes.nodes()[0].name())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Combine with configuration changes&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * Apply configuration changes and restart the cluster.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.RabbitConfiguration;
+ * import com.pulumi.cloudamqp.RabbitConfigurationArgs;
+ * import com.pulumi.cloudamqp.NodeActions;
+ * import com.pulumi.cloudamqp.NodeActionsArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var rabbitmqConfig = new RabbitConfiguration("rabbitmqConfig", RabbitConfigurationArgs.builder()
+ *             .instanceId(instance.id())
+ *             .logExchangeLevel("info")
+ *             .build());
+ * 
+ *         var clusterRestart = new NodeActions("clusterRestart", NodeActionsArgs.builder()
+ *             .instanceId(instance.id())
+ *             .action("cluster.restart")
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(rabbitmqConfig)
+ *                 .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Legacy Usage (pre-1.41.0)&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * These examples show the older approach using `nodeName` (singular) and chained restarts. While still supported, the cluster-level actions above are recommended for new configurations.
+ * 
+ * **Single node restart:**
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.NodeActions;
+ * import com.pulumi.cloudamqp.NodeActionsArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var nodeAction = new NodeActions("nodeAction", NodeActionsArgs.builder()
+ *             .instanceId(instance.id())
+ *             .nodeName("<node name>")
+ *             .action("restart")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * **Chained multi-node restart:**
+ * 
+ * &gt; **Note:** This approach restarts nodes sequentially to minimize cluster disruption. Consider using `cluster.restart` for simpler configuration.
  * 
  * <pre>
  * {@code
@@ -136,110 +381,51 @@ import javax.annotation.Nullable;
  * 
  * &lt;/details&gt;
  * 
- * &lt;details&gt;
- *   &lt;summary&gt;
- *     &lt;b&gt;
- *       &lt;i&gt;Combine log level configuration change with multi node RabbitMQ restart&lt;/i&gt;
- *     &lt;/b&gt;
- *   &lt;/summary&gt;
- * 
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.cloudamqp.CloudamqpFunctions;
- * import com.pulumi.cloudamqp.inputs.GetNodesArgs;
- * import com.pulumi.cloudamqp.RabbitConfiguration;
- * import com.pulumi.cloudamqp.RabbitConfigurationArgs;
- * import com.pulumi.cloudamqp.NodeActions;
- * import com.pulumi.cloudamqp.NodeActionsArgs;
- * import com.pulumi.resources.CustomResourceOptions;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         final var listNodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
- *             .instanceId(instance.id())
- *             .build());
- * 
- *         var rabbitmqConfig = new RabbitConfiguration("rabbitmqConfig", RabbitConfigurationArgs.builder()
- *             .instanceId(instance.id())
- *             .logExchangeLevel("info")
- *             .build());
- * 
- *         var restart01 = new NodeActions("restart01", NodeActionsArgs.builder()
- *             .instanceId(instance.id())
- *             .action("restart")
- *             .nodeName(listNodes.nodes()[0].name())
- *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(rabbitmqConfig)
- *                 .build());
- * 
- *         var restart02 = new NodeActions("restart02", NodeActionsArgs.builder()
- *             .instanceId(instance.id())
- *             .action("restart")
- *             .nodeName(listNodes.nodes()[1].name())
- *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(                
- *                     rabbitmqConfig,
- *                     restart01)
- *                 .build());
- * 
- *         var restart03 = new NodeActions("restart03", NodeActionsArgs.builder()
- *             .instanceId(instance.id())
- *             .action("restart")
- *             .nodeName(listNodes.nodes()[2].name())
- *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(                
- *                     rabbitmqConfig,
- *                     restart01,
- *                     restart02)
- *                 .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * 
- * &lt;/details&gt;
- * 
  * ## Action reference
  * 
- * Valid actions for ***LavinMQ***.
+ * Actions are categorized by what they affect:
  * 
- * | Action       | Info                               |
- * |--------------|------------------------------------|
- * | start        | Start LavinMQ                      |
- * | stop         | Stop LavinMQ                       |
- * | restart      | Restart LavinMQ                    |
- * | reboot       | Reboot the node                    |
+ * ### Broker Actions
  * 
- * Valid actions for ***RabbitMQ***.
+ * These actions control the message broker software (RabbitMQ or LavinMQ) on the specified nodes.
  * 
- * | Action       | Info                               |
- * |--------------|------------------------------------|
- * | start        | Start RabbitMQ                     |
- * | stop         | Stop RabbitMQ                      |
- * | restart      | Restart RabbitMQ                   |
- * | reboot       | Reboot the node                    |
- * | mgmt.restart | Restart the RabbitMQ mgmt interace |
+ * | Action  | Info                                      | Applies to        |
+ * |---------|-------------------------------------------|-------------------|
+ * | start   | Start the message broker                  | RabbitMQ, LavinMQ |
+ * | stop    | Stop the message broker                   | RabbitMQ, LavinMQ |
+ * | restart | Restart the message broker                | RabbitMQ, LavinMQ |
+ * 
+ * ### Management Interface Actions
+ * 
+ * These actions control the management interface without affecting the broker itself.
+ * 
+ * | Action       | Info                                      | Applies to |
+ * |--------------|-------------------------------------------|------------|
+ * | mgmt.restart | Restart the RabbitMQ management interface | RabbitMQ   |
+ * 
+ * ### Node Actions
+ * 
+ * These actions affect the entire node (VM), not just the broker software.
+ * 
+ * | Action | Info                                          | Applies to        |
+ * |--------|-----------------------------------------------|-------------------|
+ * | reboot | Reboot the entire node (VM)                   | RabbitMQ, LavinMQ |
+ * 
+ * ### Cluster Actions
+ * 
+ * &gt; **Available from version 1.41.0**
+ * 
+ * These actions operate on all nodes in the cluster simultaneously. The `nodeNames` attribute can be omitted for these actions.
+ * 
+ * | Action          | Info                                            | Applies to        |
+ * |-----------------|-------------------------------------------------|-------------------|
+ * | cluster.start   | Start the message broker on all cluster nodes   | RabbitMQ, LavinMQ |
+ * | cluster.stop    | Stop the message broker on all cluster nodes    | RabbitMQ, LavinMQ |
+ * | cluster.restart | Restart the message broker on all cluster nodes | RabbitMQ, LavinMQ |
  * 
  * ## Dependency
  * 
- * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id` and node
- * name.
+ * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`. For non-cluster actions, it also requires either `nodeName` or `nodeNames` to specify which nodes to act upon. Cluster-level actions automatically apply to all nodes in the cluster.
  * 
  * ## Import
  * 
@@ -249,14 +435,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="cloudamqp:index/nodeActions:NodeActions")
 public class NodeActions extends com.pulumi.resources.CustomResource {
     /**
-     * The action to invoke on the node.
+     * The action to invoke. See Action reference below for valid values.
      * 
      */
     @Export(name="action", refs={String.class}, tree="[0]")
     private Output<String> action;
 
     /**
-     * @return The action to invoke on the node.
+     * @return The action to invoke. See Action reference below for valid values.
      * 
      */
     public Output<String> action() {
@@ -277,32 +463,68 @@ public class NodeActions extends com.pulumi.resources.CustomResource {
         return this.instanceId;
     }
     /**
-     * The node name, e.g `green-guinea-pig-01`.
+     * The node name, e.g. `green-guinea-pig-01`. Use `nodeNames` instead. This attribute will be removed in a future version.
+     * 
+     * @deprecated
+     * Use nodeNames instead. This attribute will be removed in a future version.
      * 
      */
+    @Deprecated /* Use nodeNames instead. This attribute will be removed in a future version. */
     @Export(name="nodeName", refs={String.class}, tree="[0]")
-    private Output<String> nodeName;
+    private Output</* @Nullable */ String> nodeName;
 
     /**
-     * @return The node name, e.g `green-guinea-pig-01`.
+     * @return The node name, e.g. `green-guinea-pig-01`. Use `nodeNames` instead. This attribute will be removed in a future version.
      * 
      */
-    public Output<String> nodeName() {
-        return this.nodeName;
+    public Output<Optional<String>> nodeName() {
+        return Codegen.optional(this.nodeName);
     }
     /**
-     * If the node is running.
+     * List of node names to perform the action on, e.g. `[&#34;green-guinea-pig-01&#34;, &#34;green-guinea-pig-02&#34;]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
      * 
      */
-    @Export(name="running", refs={Boolean.class}, tree="[0]")
-    private Output<Boolean> running;
+    @Export(name="nodeNames", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> nodeNames;
 
     /**
-     * @return If the node is running.
+     * @return List of node names to perform the action on, e.g. `[&#34;green-guinea-pig-01&#34;, &#34;green-guinea-pig-02&#34;]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
      * 
      */
-    public Output<Boolean> running() {
-        return this.running;
+    public Output<Optional<List<String>>> nodeNames() {
+        return Codegen.optional(this.nodeNames);
+    }
+    /**
+     * Sleep interval in seconds between polling for node status. Default: `10`.
+     * 
+     */
+    @Export(name="sleep", refs={Integer.class}, tree="[0]")
+    private Output<Integer> sleep;
+
+    /**
+     * @return Sleep interval in seconds between polling for node status. Default: `10`.
+     * 
+     */
+    public Output<Integer> sleep() {
+        return this.sleep;
+    }
+    /**
+     * Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
+     * 
+     * &gt; **Note:** Either `nodeName` or `nodeNames` must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.
+     * 
+     */
+    @Export(name="timeout", refs={Integer.class}, tree="[0]")
+    private Output<Integer> timeout;
+
+    /**
+     * @return Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
+     * 
+     * &gt; **Note:** Either `nodeName` or `nodeNames` must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.
+     * 
+     */
+    public Output<Integer> timeout() {
+        return this.timeout;
     }
 
     /**

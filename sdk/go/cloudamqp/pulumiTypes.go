@@ -1865,6 +1865,178 @@ func (o SecurityFirewallRuleArrayOutput) Index(i pulumi.IntInput) SecurityFirewa
 	}).(SecurityFirewallRuleOutput)
 }
 
+type TrustStoreHttp struct {
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// PEM encoded CA certificates used to verify the HTTPS connection to the
+	// trust store URL. This is a write-only field - changes are only applied when `version`
+	// is incremented.
+	Cacert *string `pulumi:"cacert"`
+	// URL to fetch trust store certificates from. RabbitMQ will periodically
+	// fetch CA certificates from this URL.
+	Url string `pulumi:"url"`
+}
+
+// TrustStoreHttpInput is an input type that accepts TrustStoreHttpArgs and TrustStoreHttpOutput values.
+// You can construct a concrete instance of `TrustStoreHttpInput` via:
+//
+//	TrustStoreHttpArgs{...}
+type TrustStoreHttpInput interface {
+	pulumi.Input
+
+	ToTrustStoreHttpOutput() TrustStoreHttpOutput
+	ToTrustStoreHttpOutputWithContext(context.Context) TrustStoreHttpOutput
+}
+
+type TrustStoreHttpArgs struct {
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// PEM encoded CA certificates used to verify the HTTPS connection to the
+	// trust store URL. This is a write-only field - changes are only applied when `version`
+	// is incremented.
+	Cacert pulumi.StringPtrInput `pulumi:"cacert"`
+	// URL to fetch trust store certificates from. RabbitMQ will periodically
+	// fetch CA certificates from this URL.
+	Url pulumi.StringInput `pulumi:"url"`
+}
+
+func (TrustStoreHttpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrustStoreHttp)(nil)).Elem()
+}
+
+func (i TrustStoreHttpArgs) ToTrustStoreHttpOutput() TrustStoreHttpOutput {
+	return i.ToTrustStoreHttpOutputWithContext(context.Background())
+}
+
+func (i TrustStoreHttpArgs) ToTrustStoreHttpOutputWithContext(ctx context.Context) TrustStoreHttpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrustStoreHttpOutput)
+}
+
+func (i TrustStoreHttpArgs) ToTrustStoreHttpPtrOutput() TrustStoreHttpPtrOutput {
+	return i.ToTrustStoreHttpPtrOutputWithContext(context.Background())
+}
+
+func (i TrustStoreHttpArgs) ToTrustStoreHttpPtrOutputWithContext(ctx context.Context) TrustStoreHttpPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrustStoreHttpOutput).ToTrustStoreHttpPtrOutputWithContext(ctx)
+}
+
+// TrustStoreHttpPtrInput is an input type that accepts TrustStoreHttpArgs, TrustStoreHttpPtr and TrustStoreHttpPtrOutput values.
+// You can construct a concrete instance of `TrustStoreHttpPtrInput` via:
+//
+//	        TrustStoreHttpArgs{...}
+//
+//	or:
+//
+//	        nil
+type TrustStoreHttpPtrInput interface {
+	pulumi.Input
+
+	ToTrustStoreHttpPtrOutput() TrustStoreHttpPtrOutput
+	ToTrustStoreHttpPtrOutputWithContext(context.Context) TrustStoreHttpPtrOutput
+}
+
+type trustStoreHttpPtrType TrustStoreHttpArgs
+
+func TrustStoreHttpPtr(v *TrustStoreHttpArgs) TrustStoreHttpPtrInput {
+	return (*trustStoreHttpPtrType)(v)
+}
+
+func (*trustStoreHttpPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TrustStoreHttp)(nil)).Elem()
+}
+
+func (i *trustStoreHttpPtrType) ToTrustStoreHttpPtrOutput() TrustStoreHttpPtrOutput {
+	return i.ToTrustStoreHttpPtrOutputWithContext(context.Background())
+}
+
+func (i *trustStoreHttpPtrType) ToTrustStoreHttpPtrOutputWithContext(ctx context.Context) TrustStoreHttpPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrustStoreHttpPtrOutput)
+}
+
+type TrustStoreHttpOutput struct{ *pulumi.OutputState }
+
+func (TrustStoreHttpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrustStoreHttp)(nil)).Elem()
+}
+
+func (o TrustStoreHttpOutput) ToTrustStoreHttpOutput() TrustStoreHttpOutput {
+	return o
+}
+
+func (o TrustStoreHttpOutput) ToTrustStoreHttpOutputWithContext(ctx context.Context) TrustStoreHttpOutput {
+	return o
+}
+
+func (o TrustStoreHttpOutput) ToTrustStoreHttpPtrOutput() TrustStoreHttpPtrOutput {
+	return o.ToTrustStoreHttpPtrOutputWithContext(context.Background())
+}
+
+func (o TrustStoreHttpOutput) ToTrustStoreHttpPtrOutputWithContext(ctx context.Context) TrustStoreHttpPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TrustStoreHttp) *TrustStoreHttp {
+		return &v
+	}).(TrustStoreHttpPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// PEM encoded CA certificates used to verify the HTTPS connection to the
+// trust store URL. This is a write-only field - changes are only applied when `version`
+// is incremented.
+func (o TrustStoreHttpOutput) Cacert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TrustStoreHttp) *string { return v.Cacert }).(pulumi.StringPtrOutput)
+}
+
+// URL to fetch trust store certificates from. RabbitMQ will periodically
+// fetch CA certificates from this URL.
+func (o TrustStoreHttpOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v TrustStoreHttp) string { return v.Url }).(pulumi.StringOutput)
+}
+
+type TrustStoreHttpPtrOutput struct{ *pulumi.OutputState }
+
+func (TrustStoreHttpPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TrustStoreHttp)(nil)).Elem()
+}
+
+func (o TrustStoreHttpPtrOutput) ToTrustStoreHttpPtrOutput() TrustStoreHttpPtrOutput {
+	return o
+}
+
+func (o TrustStoreHttpPtrOutput) ToTrustStoreHttpPtrOutputWithContext(ctx context.Context) TrustStoreHttpPtrOutput {
+	return o
+}
+
+func (o TrustStoreHttpPtrOutput) Elem() TrustStoreHttpOutput {
+	return o.ApplyT(func(v *TrustStoreHttp) TrustStoreHttp {
+		if v != nil {
+			return *v
+		}
+		var ret TrustStoreHttp
+		return ret
+	}).(TrustStoreHttpOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// PEM encoded CA certificates used to verify the HTTPS connection to the
+// trust store URL. This is a write-only field - changes are only applied when `version`
+// is incremented.
+func (o TrustStoreHttpPtrOutput) Cacert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TrustStoreHttp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Cacert
+	}).(pulumi.StringPtrOutput)
+}
+
+// URL to fetch trust store certificates from. RabbitMQ will periodically
+// fetch CA certificates from this URL.
+func (o TrustStoreHttpPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TrustStoreHttp) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
 type GetAccountInstance struct {
 	// The instance identifier.
 	Id int `pulumi:"id"`
@@ -2921,6 +3093,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NotificationResponderArrayInput)(nil)).Elem(), NotificationResponderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityFirewallRuleInput)(nil)).Elem(), SecurityFirewallRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityFirewallRuleArrayInput)(nil)).Elem(), SecurityFirewallRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrustStoreHttpInput)(nil)).Elem(), TrustStoreHttpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrustStoreHttpPtrInput)(nil)).Elem(), TrustStoreHttpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountInstanceInput)(nil)).Elem(), GetAccountInstanceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountInstanceArrayInput)(nil)).Elem(), GetAccountInstanceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountVpcsVpcInput)(nil)).Elem(), GetAccountVpcsVpcArgs{})
@@ -2957,6 +3131,8 @@ func init() {
 	pulumi.RegisterOutputType(NotificationResponderArrayOutput{})
 	pulumi.RegisterOutputType(SecurityFirewallRuleOutput{})
 	pulumi.RegisterOutputType(SecurityFirewallRuleArrayOutput{})
+	pulumi.RegisterOutputType(TrustStoreHttpOutput{})
+	pulumi.RegisterOutputType(TrustStoreHttpPtrOutput{})
 	pulumi.RegisterOutputType(GetAccountInstanceOutput{})
 	pulumi.RegisterOutputType(GetAccountInstanceArrayOutput{})
 	pulumi.RegisterOutputType(GetAccountVpcsVpcOutput{})

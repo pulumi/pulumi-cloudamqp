@@ -89,6 +89,18 @@ namespace Pulumi.CloudAmqp
         [Output("instanceId")]
         public Output<int> InstanceId { get; private set; } = null!;
 
+        /// <summary>
+        /// Configurable sleep time in seconds between retries for custom domain configuration
+        /// </summary>
+        [Output("sleep")]
+        public Output<int?> Sleep { get; private set; } = null!;
+
+        /// <summary>
+        /// Configurable timeout time in seconds for custom domain configuration
+        /// </summary>
+        [Output("timeout")]
+        public Output<int?> Timeout { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a CustomDomain resource with the given unique name, arguments, and options.
@@ -147,6 +159,18 @@ namespace Pulumi.CloudAmqp
         [Input("instanceId", required: true)]
         public Input<int> InstanceId { get; set; } = null!;
 
+        /// <summary>
+        /// Configurable sleep time in seconds between retries for custom domain configuration
+        /// </summary>
+        [Input("sleep")]
+        public Input<int>? Sleep { get; set; }
+
+        /// <summary>
+        /// Configurable timeout time in seconds for custom domain configuration
+        /// </summary>
+        [Input("timeout")]
+        public Input<int>? Timeout { get; set; }
+
         public CustomDomainArgs()
         {
         }
@@ -166,6 +190,18 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
+
+        /// <summary>
+        /// Configurable sleep time in seconds between retries for custom domain configuration
+        /// </summary>
+        [Input("sleep")]
+        public Input<int>? Sleep { get; set; }
+
+        /// <summary>
+        /// Configurable timeout time in seconds for custom domain configuration
+        /// </summary>
+        [Input("timeout")]
+        public Input<int>? Timeout { get; set; }
 
         public CustomDomainState()
         {

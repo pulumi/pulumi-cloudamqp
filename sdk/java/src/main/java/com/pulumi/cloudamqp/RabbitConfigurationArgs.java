@@ -6,6 +6,7 @@ package com.pulumi.cloudamqp;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
@@ -19,16 +20,14 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
     public static final RabbitConfigurationArgs Empty = new RabbitConfigurationArgs();
 
     /**
-     * Set the maximum permissible number of
-     * channels per connection.
+     * Set the maximum permissible number of channels per connection.
      * 
      */
     @Import(name="channelMax")
     private @Nullable Output<Integer> channelMax;
 
     /**
-     * @return Set the maximum permissible number of
-     * channels per connection.
+     * @return Set the maximum permissible number of channels per connection.
      * 
      */
     public Optional<Output<Integer>> channelMax() {
@@ -36,16 +35,14 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Set how the cluster should handle network
-     * partition.
+     * Set how the cluster should handle network partition.
      * 
      */
     @Import(name="clusterPartitionHandling")
     private @Nullable Output<String> clusterPartitionHandling;
 
     /**
-     * @return Set how the cluster should handle network
-     * partition.
+     * @return Set how the cluster should handle network partition.
      * 
      */
     public Optional<Output<String>> clusterPartitionHandling() {
@@ -53,16 +50,14 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Set the maximum permissible number of
-     * connection.
+     * Set the maximum permissible number of connection.
      * 
      */
     @Import(name="connectionMax")
     private @Nullable Output<Integer> connectionMax;
 
     /**
-     * @return Set the maximum permissible number of
-     * connection.
+     * @return Set the maximum permissible number of connection.
      * 
      */
     public Optional<Output<Integer>> connectionMax() {
@@ -70,18 +65,14 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * A consumer that has recevied a message and
-     * does not acknowledge that message within the timeout in
-     * milliseconds
+     * A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds
      * 
      */
     @Import(name="consumerTimeout")
     private @Nullable Output<Integer> consumerTimeout;
 
     /**
-     * @return A consumer that has recevied a message and
-     * does not acknowledge that message within the timeout in
-     * milliseconds
+     * @return A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds
      * 
      */
     public Optional<Output<Integer>> consumerTimeout() {
@@ -89,16 +80,14 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Set the server AMQP 0-9-1 heartbeat timeout
-     * in seconds.
+     * Set the server AMQP 0-9-1 heartbeat timeout in seconds.
      * 
      */
     @Import(name="heartbeat")
     private @Nullable Output<Integer> heartbeat;
 
     /**
-     * @return Set the server AMQP 0-9-1 heartbeat timeout
-     * in seconds.
+     * @return Set the server AMQP 0-9-1 heartbeat timeout in seconds.
      * 
      */
     public Optional<Output<Integer>> heartbeat() {
@@ -121,16 +110,14 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Log level for the logger used for log
-     * integrations and the CloudAMQP Console log view.
+     * Log level for the logger used for log integrations and the CloudAMQP Console log view.
      * 
      */
     @Import(name="logExchangeLevel")
     private @Nullable Output<String> logExchangeLevel;
 
     /**
-     * @return Log level for the logger used for log
-     * integrations and the CloudAMQP Console log view.
+     * @return Log level for the logger used for log integrations and the CloudAMQP Console log view.
      * 
      */
     public Optional<Output<String>> logExchangeLevel() {
@@ -138,16 +125,14 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * The largest allowed message payload size in
-     * bytes.
+     * The largest allowed message payload size in bytes.
      * 
      */
     @Import(name="maxMessageSize")
     private @Nullable Output<Integer> maxMessageSize;
 
     /**
-     * @return The largest allowed message payload size in
-     * bytes.
+     * @return The largest allowed message payload size in bytes.
      * 
      */
     public Optional<Output<Integer>> maxMessageSize() {
@@ -155,18 +140,74 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Size in bytes below which to embed messages
-     * in the queue index. 0 will turn off payload embedding in the
-     * queue index.
+     * Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
+     * 
+     */
+    @Import(name="messageInterceptorsTimestampOverwrite")
+    private @Nullable Output<String> messageInterceptorsTimestampOverwrite;
+
+    /**
+     * @return Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
+     * 
+     */
+    public Optional<Output<String>> messageInterceptorsTimestampOverwrite() {
+        return Optional.ofNullable(this.messageInterceptorsTimestampOverwrite);
+    }
+
+    /**
+     * The exchange option determines which exchange messages from MQTT clients are published to.
+     * 
+     */
+    @Import(name="mqttExchange")
+    private @Nullable Output<String> mqttExchange;
+
+    /**
+     * @return The exchange option determines which exchange messages from MQTT clients are published to.
+     * 
+     */
+    public Optional<Output<String>> mqttExchange() {
+        return Optional.ofNullable(this.mqttExchange);
+    }
+
+    /**
+     * Enable SSL certificate-based authentication for MQTT connections.
+     * 
+     */
+    @Import(name="mqttSslCertLogin")
+    private @Nullable Output<Boolean> mqttSslCertLogin;
+
+    /**
+     * @return Enable SSL certificate-based authentication for MQTT connections.
+     * 
+     */
+    public Optional<Output<Boolean>> mqttSslCertLogin() {
+        return Optional.ofNullable(this.mqttSslCertLogin);
+    }
+
+    /**
+     * Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.
+     * 
+     */
+    @Import(name="mqttVhost")
+    private @Nullable Output<String> mqttVhost;
+
+    /**
+     * @return Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.
+     * 
+     */
+    public Optional<Output<String>> mqttVhost() {
+        return Optional.ofNullable(this.mqttVhost);
+    }
+
+    /**
+     * Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
      * 
      */
     @Import(name="queueIndexEmbedMsgsBelow")
     private @Nullable Output<Integer> queueIndexEmbedMsgsBelow;
 
     /**
-     * @return Size in bytes below which to embed messages
-     * in the queue index. 0 will turn off payload embedding in the
-     * queue index.
+     * @return Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
      * 
      */
     public Optional<Output<Integer>> queueIndexEmbedMsgsBelow() {
@@ -174,16 +215,14 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Configurable sleep time in seconds between retries
-     * for RabbitMQ configuration. Default set to 60 seconds.
+     * Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
      * 
      */
     @Import(name="sleep")
     private @Nullable Output<Integer> sleep;
 
     /**
-     * @return Configurable sleep time in seconds between retries
-     * for RabbitMQ configuration. Default set to 60 seconds.
+     * @return Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
      * 
      */
     public Optional<Output<Integer>> sleep() {
@@ -191,16 +230,63 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Configurable timeout time in seconds for RabbitMQ
-     * configuration. Default set to 3600 seconds.
+     * Determines which certificate field to use as the username for TLS-based authentication.
+     * 
+     */
+    @Import(name="sslCertLoginFrom")
+    private @Nullable Output<String> sslCertLoginFrom;
+
+    /**
+     * @return Determines which certificate field to use as the username for TLS-based authentication.
+     * 
+     */
+    public Optional<Output<String>> sslCertLoginFrom() {
+        return Optional.ofNullable(this.sslCertLoginFrom);
+    }
+
+    /**
+     * When set to true, TLS connections will fail if the client does not provide a certificate.
+     * 
+     */
+    @Import(name="sslOptionsFailIfNoPeerCert")
+    private @Nullable Output<Boolean> sslOptionsFailIfNoPeerCert;
+
+    /**
+     * @return When set to true, TLS connections will fail if the client does not provide a certificate.
+     * 
+     */
+    public Optional<Output<Boolean>> sslOptionsFailIfNoPeerCert() {
+        return Optional.ofNullable(this.sslOptionsFailIfNoPeerCert);
+    }
+
+    /**
+     * Controls peer certificate verification for TLS connections.
+     * 
+     * Configure sleep and timeout for API requests retries
+     * 
+     */
+    @Import(name="sslOptionsVerify")
+    private @Nullable Output<String> sslOptionsVerify;
+
+    /**
+     * @return Controls peer certificate verification for TLS connections.
+     * 
+     * Configure sleep and timeout for API requests retries
+     * 
+     */
+    public Optional<Output<String>> sslOptionsVerify() {
+        return Optional.ofNullable(this.sslOptionsVerify);
+    }
+
+    /**
+     * Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
      * 
      */
     @Import(name="timeout")
     private @Nullable Output<Integer> timeout;
 
     /**
-     * @return Configurable timeout time in seconds for RabbitMQ
-     * configuration. Default set to 3600 seconds.
+     * @return Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
      * 
      */
     public Optional<Output<Integer>> timeout() {
@@ -208,16 +294,14 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * When the server will enter memory based
-     * flow-control as relative to the maximum available memory.
+     * When the server will enter memory based flow-control as relative to the maximum available memory.
      * 
      */
     @Import(name="vmMemoryHighWatermark")
     private @Nullable Output<Double> vmMemoryHighWatermark;
 
     /**
-     * @return When the server will enter memory based
-     * flow-control as relative to the maximum available memory.
+     * @return When the server will enter memory based flow-control as relative to the maximum available memory.
      * 
      */
     public Optional<Output<Double>> vmMemoryHighWatermark() {
@@ -235,8 +319,15 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         this.instanceId = $.instanceId;
         this.logExchangeLevel = $.logExchangeLevel;
         this.maxMessageSize = $.maxMessageSize;
+        this.messageInterceptorsTimestampOverwrite = $.messageInterceptorsTimestampOverwrite;
+        this.mqttExchange = $.mqttExchange;
+        this.mqttSslCertLogin = $.mqttSslCertLogin;
+        this.mqttVhost = $.mqttVhost;
         this.queueIndexEmbedMsgsBelow = $.queueIndexEmbedMsgsBelow;
         this.sleep = $.sleep;
+        this.sslCertLoginFrom = $.sslCertLoginFrom;
+        this.sslOptionsFailIfNoPeerCert = $.sslOptionsFailIfNoPeerCert;
+        this.sslOptionsVerify = $.sslOptionsVerify;
         this.timeout = $.timeout;
         this.vmMemoryHighWatermark = $.vmMemoryHighWatermark;
     }
@@ -260,8 +351,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param channelMax Set the maximum permissible number of
-         * channels per connection.
+         * @param channelMax Set the maximum permissible number of channels per connection.
          * 
          * @return builder
          * 
@@ -272,8 +362,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param channelMax Set the maximum permissible number of
-         * channels per connection.
+         * @param channelMax Set the maximum permissible number of channels per connection.
          * 
          * @return builder
          * 
@@ -283,8 +372,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param clusterPartitionHandling Set how the cluster should handle network
-         * partition.
+         * @param clusterPartitionHandling Set how the cluster should handle network partition.
          * 
          * @return builder
          * 
@@ -295,8 +383,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param clusterPartitionHandling Set how the cluster should handle network
-         * partition.
+         * @param clusterPartitionHandling Set how the cluster should handle network partition.
          * 
          * @return builder
          * 
@@ -306,8 +393,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param connectionMax Set the maximum permissible number of
-         * connection.
+         * @param connectionMax Set the maximum permissible number of connection.
          * 
          * @return builder
          * 
@@ -318,8 +404,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param connectionMax Set the maximum permissible number of
-         * connection.
+         * @param connectionMax Set the maximum permissible number of connection.
          * 
          * @return builder
          * 
@@ -329,9 +414,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param consumerTimeout A consumer that has recevied a message and
-         * does not acknowledge that message within the timeout in
-         * milliseconds
+         * @param consumerTimeout A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds
          * 
          * @return builder
          * 
@@ -342,9 +425,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param consumerTimeout A consumer that has recevied a message and
-         * does not acknowledge that message within the timeout in
-         * milliseconds
+         * @param consumerTimeout A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds
          * 
          * @return builder
          * 
@@ -354,8 +435,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param heartbeat Set the server AMQP 0-9-1 heartbeat timeout
-         * in seconds.
+         * @param heartbeat Set the server AMQP 0-9-1 heartbeat timeout in seconds.
          * 
          * @return builder
          * 
@@ -366,8 +446,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param heartbeat Set the server AMQP 0-9-1 heartbeat timeout
-         * in seconds.
+         * @param heartbeat Set the server AMQP 0-9-1 heartbeat timeout in seconds.
          * 
          * @return builder
          * 
@@ -398,8 +477,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param logExchangeLevel Log level for the logger used for log
-         * integrations and the CloudAMQP Console log view.
+         * @param logExchangeLevel Log level for the logger used for log integrations and the CloudAMQP Console log view.
          * 
          * @return builder
          * 
@@ -410,8 +488,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param logExchangeLevel Log level for the logger used for log
-         * integrations and the CloudAMQP Console log view.
+         * @param logExchangeLevel Log level for the logger used for log integrations and the CloudAMQP Console log view.
          * 
          * @return builder
          * 
@@ -421,8 +498,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param maxMessageSize The largest allowed message payload size in
-         * bytes.
+         * @param maxMessageSize The largest allowed message payload size in bytes.
          * 
          * @return builder
          * 
@@ -433,8 +509,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param maxMessageSize The largest allowed message payload size in
-         * bytes.
+         * @param maxMessageSize The largest allowed message payload size in bytes.
          * 
          * @return builder
          * 
@@ -444,9 +519,91 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param queueIndexEmbedMsgsBelow Size in bytes below which to embed messages
-         * in the queue index. 0 will turn off payload embedding in the
-         * queue index.
+         * @param messageInterceptorsTimestampOverwrite Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder messageInterceptorsTimestampOverwrite(@Nullable Output<String> messageInterceptorsTimestampOverwrite) {
+            $.messageInterceptorsTimestampOverwrite = messageInterceptorsTimestampOverwrite;
+            return this;
+        }
+
+        /**
+         * @param messageInterceptorsTimestampOverwrite Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder messageInterceptorsTimestampOverwrite(String messageInterceptorsTimestampOverwrite) {
+            return messageInterceptorsTimestampOverwrite(Output.of(messageInterceptorsTimestampOverwrite));
+        }
+
+        /**
+         * @param mqttExchange The exchange option determines which exchange messages from MQTT clients are published to.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mqttExchange(@Nullable Output<String> mqttExchange) {
+            $.mqttExchange = mqttExchange;
+            return this;
+        }
+
+        /**
+         * @param mqttExchange The exchange option determines which exchange messages from MQTT clients are published to.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mqttExchange(String mqttExchange) {
+            return mqttExchange(Output.of(mqttExchange));
+        }
+
+        /**
+         * @param mqttSslCertLogin Enable SSL certificate-based authentication for MQTT connections.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mqttSslCertLogin(@Nullable Output<Boolean> mqttSslCertLogin) {
+            $.mqttSslCertLogin = mqttSslCertLogin;
+            return this;
+        }
+
+        /**
+         * @param mqttSslCertLogin Enable SSL certificate-based authentication for MQTT connections.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mqttSslCertLogin(Boolean mqttSslCertLogin) {
+            return mqttSslCertLogin(Output.of(mqttSslCertLogin));
+        }
+
+        /**
+         * @param mqttVhost Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mqttVhost(@Nullable Output<String> mqttVhost) {
+            $.mqttVhost = mqttVhost;
+            return this;
+        }
+
+        /**
+         * @param mqttVhost Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mqttVhost(String mqttVhost) {
+            return mqttVhost(Output.of(mqttVhost));
+        }
+
+        /**
+         * @param queueIndexEmbedMsgsBelow Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
          * 
          * @return builder
          * 
@@ -457,9 +614,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param queueIndexEmbedMsgsBelow Size in bytes below which to embed messages
-         * in the queue index. 0 will turn off payload embedding in the
-         * queue index.
+         * @param queueIndexEmbedMsgsBelow Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
          * 
          * @return builder
          * 
@@ -469,8 +624,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param sleep Configurable sleep time in seconds between retries
-         * for RabbitMQ configuration. Default set to 60 seconds.
+         * @param sleep Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
          * 
          * @return builder
          * 
@@ -481,8 +635,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param sleep Configurable sleep time in seconds between retries
-         * for RabbitMQ configuration. Default set to 60 seconds.
+         * @param sleep Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
          * 
          * @return builder
          * 
@@ -492,8 +645,74 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param timeout Configurable timeout time in seconds for RabbitMQ
-         * configuration. Default set to 3600 seconds.
+         * @param sslCertLoginFrom Determines which certificate field to use as the username for TLS-based authentication.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sslCertLoginFrom(@Nullable Output<String> sslCertLoginFrom) {
+            $.sslCertLoginFrom = sslCertLoginFrom;
+            return this;
+        }
+
+        /**
+         * @param sslCertLoginFrom Determines which certificate field to use as the username for TLS-based authentication.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sslCertLoginFrom(String sslCertLoginFrom) {
+            return sslCertLoginFrom(Output.of(sslCertLoginFrom));
+        }
+
+        /**
+         * @param sslOptionsFailIfNoPeerCert When set to true, TLS connections will fail if the client does not provide a certificate.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sslOptionsFailIfNoPeerCert(@Nullable Output<Boolean> sslOptionsFailIfNoPeerCert) {
+            $.sslOptionsFailIfNoPeerCert = sslOptionsFailIfNoPeerCert;
+            return this;
+        }
+
+        /**
+         * @param sslOptionsFailIfNoPeerCert When set to true, TLS connections will fail if the client does not provide a certificate.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sslOptionsFailIfNoPeerCert(Boolean sslOptionsFailIfNoPeerCert) {
+            return sslOptionsFailIfNoPeerCert(Output.of(sslOptionsFailIfNoPeerCert));
+        }
+
+        /**
+         * @param sslOptionsVerify Controls peer certificate verification for TLS connections.
+         * 
+         * Configure sleep and timeout for API requests retries
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sslOptionsVerify(@Nullable Output<String> sslOptionsVerify) {
+            $.sslOptionsVerify = sslOptionsVerify;
+            return this;
+        }
+
+        /**
+         * @param sslOptionsVerify Controls peer certificate verification for TLS connections.
+         * 
+         * Configure sleep and timeout for API requests retries
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sslOptionsVerify(String sslOptionsVerify) {
+            return sslOptionsVerify(Output.of(sslOptionsVerify));
+        }
+
+        /**
+         * @param timeout Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
          * 
          * @return builder
          * 
@@ -504,8 +723,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param timeout Configurable timeout time in seconds for RabbitMQ
-         * configuration. Default set to 3600 seconds.
+         * @param timeout Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
          * 
          * @return builder
          * 
@@ -515,8 +733,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param vmMemoryHighWatermark When the server will enter memory based
-         * flow-control as relative to the maximum available memory.
+         * @param vmMemoryHighWatermark When the server will enter memory based flow-control as relative to the maximum available memory.
          * 
          * @return builder
          * 
@@ -527,8 +744,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param vmMemoryHighWatermark When the server will enter memory based
-         * flow-control as relative to the maximum available memory.
+         * @param vmMemoryHighWatermark When the server will enter memory based flow-control as relative to the maximum available memory.
          * 
          * @return builder
          * 

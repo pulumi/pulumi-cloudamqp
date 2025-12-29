@@ -89,6 +89,10 @@ type CustomDomain struct {
 	Hostname pulumi.StringOutput `pulumi:"hostname"`
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
+	// Configurable sleep time in seconds between retries for custom domain configuration
+	Sleep pulumi.IntPtrOutput `pulumi:"sleep"`
+	// Configurable timeout time in seconds for custom domain configuration
+	Timeout pulumi.IntPtrOutput `pulumi:"timeout"`
 }
 
 // NewCustomDomain registers a new resource with the given unique name, arguments, and options.
@@ -131,6 +135,10 @@ type customDomainState struct {
 	Hostname *string `pulumi:"hostname"`
 	// The CloudAMQP instance ID.
 	InstanceId *int `pulumi:"instanceId"`
+	// Configurable sleep time in seconds between retries for custom domain configuration
+	Sleep *int `pulumi:"sleep"`
+	// Configurable timeout time in seconds for custom domain configuration
+	Timeout *int `pulumi:"timeout"`
 }
 
 type CustomDomainState struct {
@@ -138,6 +146,10 @@ type CustomDomainState struct {
 	Hostname pulumi.StringPtrInput
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntPtrInput
+	// Configurable sleep time in seconds between retries for custom domain configuration
+	Sleep pulumi.IntPtrInput
+	// Configurable timeout time in seconds for custom domain configuration
+	Timeout pulumi.IntPtrInput
 }
 
 func (CustomDomainState) ElementType() reflect.Type {
@@ -149,6 +161,10 @@ type customDomainArgs struct {
 	Hostname string `pulumi:"hostname"`
 	// The CloudAMQP instance ID.
 	InstanceId int `pulumi:"instanceId"`
+	// Configurable sleep time in seconds between retries for custom domain configuration
+	Sleep *int `pulumi:"sleep"`
+	// Configurable timeout time in seconds for custom domain configuration
+	Timeout *int `pulumi:"timeout"`
 }
 
 // The set of arguments for constructing a CustomDomain resource.
@@ -157,6 +173,10 @@ type CustomDomainArgs struct {
 	Hostname pulumi.StringInput
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntInput
+	// Configurable sleep time in seconds between retries for custom domain configuration
+	Sleep pulumi.IntPtrInput
+	// Configurable timeout time in seconds for custom domain configuration
+	Timeout pulumi.IntPtrInput
 }
 
 func (CustomDomainArgs) ElementType() reflect.Type {
@@ -254,6 +274,16 @@ func (o CustomDomainOutput) Hostname() pulumi.StringOutput {
 // The CloudAMQP instance ID.
 func (o CustomDomainOutput) InstanceId() pulumi.IntOutput {
 	return o.ApplyT(func(v *CustomDomain) pulumi.IntOutput { return v.InstanceId }).(pulumi.IntOutput)
+}
+
+// Configurable sleep time in seconds between retries for custom domain configuration
+func (o CustomDomainOutput) Sleep() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CustomDomain) pulumi.IntPtrOutput { return v.Sleep }).(pulumi.IntPtrOutput)
+}
+
+// Configurable timeout time in seconds for custom domain configuration
+func (o CustomDomainOutput) Timeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CustomDomain) pulumi.IntPtrOutput { return v.Timeout }).(pulumi.IntPtrOutput)
 }
 
 type CustomDomainArrayOutput struct{ *pulumi.OutputState }

@@ -5,28 +5,30 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * This resource allows you to invoke actions on a specific node.
+ * This resource allows you to invoke actions on specific nodes or the entire cluster. Actions can target individual nodes, multiple nodes, or all nodes in the cluster at once.
  *
  * Only available for dedicated subscription plans.
+ *
+ * > **Note:** From version 1.41.0, this resource supports cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`) and the `nodeNames` list attribute for targeting multiple nodes. The `nodeName` attribute is deprecated in favor of `nodeNames`.
  *
  * ## Example Usage
  *
  * <details>
  *   <summary>
  *     <b>
- *       <i>Already know the node identifier (e.g. from state file)</i>
+ *       <i>Cluster-wide broker restart (recommended for v1.41.0+)</i>
  *     </b>
  *   </summary>
+ *
+ * Restart the broker on all nodes of the cluster at once. Making sure the broker is stopped and started in correct order. This is the simplest approach for cluster-wide operations.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
- * // New recipient to receieve notifications
- * const nodeAction = new cloudamqp.NodeActions("node_action", {
+ * const clusterRestart = new cloudamqp.NodeActions("cluster_restart", {
  *     instanceId: instance.id,
- *     nodeName: "<node name>",
- *     action: "restart",
+ *     action: "cluster.restart",
  * });
  * ```
  *
@@ -35,13 +37,133 @@ import * as utilities from "./utilities";
  * <details>
  *   <summary>
  *     <b>
- *       <i>Multi node RabbitMQ restart</i>
+ *       <i>Restart broker on specific nodes using node_names</i>
  *     </b>
  *   </summary>
  *
- * Using data source `cloudamqp.getNodes` to restart RabbitMQ on all nodes.
+ * Target specific nodes using the `nodeNames` list attribute.
  *
- * > **Note:** RabbitMQ restart on multiple nodes need to be chained, let one node restart at the time.
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const nodes = cloudamqp.getNodes({
+ *     instanceId: instance.id,
+ * });
+ * const restartSubset = new cloudamqp.NodeActions("restart_subset", {
+ *     instanceId: instance.id,
+ *     action: "restart",
+ *     nodeNames: [
+ *         nodes.then(nodes => nodes.nodes?.[0]?.name),
+ *         nodes.then(nodes => nodes.nodes?.[1]?.name),
+ *     ],
+ * });
+ * ```
+ *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Reboot a single node</i>
+ *     </b>
+ *   </summary>
+ *
+ * Reboot the entire node (VM) rather than just the broker.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const nodes = cloudamqp.getNodes({
+ *     instanceId: instance.id,
+ * });
+ * const rebootNode = new cloudamqp.NodeActions("reboot_node", {
+ *     instanceId: instance.id,
+ *     action: "reboot",
+ *     nodeNames: [nodes.then(nodes => nodes.nodes?.[0]?.name)],
+ * });
+ * ```
+ *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Restart RabbitMQ management interface</i>
+ *     </b>
+ *   </summary>
+ *
+ * Only restart the management interface without affecting the broker.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const nodes = cloudamqp.getNodes({
+ *     instanceId: instance.id,
+ * });
+ * const mgmtRestart = new cloudamqp.NodeActions("mgmt_restart", {
+ *     instanceId: instance.id,
+ *     action: "mgmt.restart",
+ *     nodeNames: [nodes.then(nodes => nodes.nodes?.[0]?.name)],
+ * });
+ * ```
+ *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Combine with configuration changes</i>
+ *     </b>
+ *   </summary>
+ *
+ * Apply configuration changes and restart the cluster.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const rabbitmqConfig = new cloudamqp.RabbitConfiguration("rabbitmq_config", {
+ *     instanceId: instance.id,
+ *     logExchangeLevel: "info",
+ * });
+ * const clusterRestart = new cloudamqp.NodeActions("cluster_restart", {
+ *     instanceId: instance.id,
+ *     action: "cluster.restart",
+ * }, {
+ *     dependsOn: [rabbitmqConfig],
+ * });
+ * ```
+ *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Legacy Usage (pre-1.41.0)</i>
+ *     </b>
+ *   </summary>
+ *
+ * These examples show the older approach using `nodeName` (singular) and chained restarts. While still supported, the cluster-level actions above are recommended for new configurations.
+ *
+ * **Single node restart:**
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const nodeAction = new cloudamqp.NodeActions("node_action", {
+ *     instanceId: instance.id,
+ *     nodeName: "<node name>",
+ *     action: "restart",
+ * });
+ * ```
+ *
+ * **Chained multi-node restart:**
+ *
+ * > **Note:** This approach restarts nodes sequentially to minimize cluster disruption. Consider using `cluster.restart` for simpler configuration.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -76,81 +198,51 @@ import * as utilities from "./utilities";
  *
  * </details>
  *
- * <details>
- *   <summary>
- *     <b>
- *       <i>Combine log level configuration change with multi node RabbitMQ restart</i>
- *     </b>
- *   </summary>
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as cloudamqp from "@pulumi/cloudamqp";
- *
- * const listNodes = cloudamqp.getNodes({
- *     instanceId: instance.id,
- * });
- * const rabbitmqConfig = new cloudamqp.RabbitConfiguration("rabbitmq_config", {
- *     instanceId: instance.id,
- *     logExchangeLevel: "info",
- * });
- * const restart01 = new cloudamqp.NodeActions("restart_01", {
- *     instanceId: instance.id,
- *     action: "restart",
- *     nodeName: listNodes.then(listNodes => listNodes.nodes?.[0]?.name),
- * }, {
- *     dependsOn: [rabbitmqConfig],
- * });
- * const restart02 = new cloudamqp.NodeActions("restart_02", {
- *     instanceId: instance.id,
- *     action: "restart",
- *     nodeName: listNodes.then(listNodes => listNodes.nodes?.[1]?.name),
- * }, {
- *     dependsOn: [
- *         rabbitmqConfig,
- *         restart01,
- *     ],
- * });
- * const restart03 = new cloudamqp.NodeActions("restart_03", {
- *     instanceId: instance.id,
- *     action: "restart",
- *     nodeName: listNodes.then(listNodes => listNodes.nodes?.[2]?.name),
- * }, {
- *     dependsOn: [
- *         rabbitmqConfig,
- *         restart01,
- *         restart02,
- *     ],
- * });
- * ```
- *
- * </details>
- *
  * ## Action reference
  *
- * Valid actions for ***LavinMQ***.
+ * Actions are categorized by what they affect:
  *
- * | Action       | Info                               |
- * |--------------|------------------------------------|
- * | start        | Start LavinMQ                      |
- * | stop         | Stop LavinMQ                       |
- * | restart      | Restart LavinMQ                    |
- * | reboot       | Reboot the node                    |
+ * ### Broker Actions
  *
- * Valid actions for ***RabbitMQ***.
+ * These actions control the message broker software (RabbitMQ or LavinMQ) on the specified nodes.
  *
- * | Action       | Info                               |
- * |--------------|------------------------------------|
- * | start        | Start RabbitMQ                     |
- * | stop         | Stop RabbitMQ                      |
- * | restart      | Restart RabbitMQ                   |
- * | reboot       | Reboot the node                    |
- * | mgmt.restart | Restart the RabbitMQ mgmt interace |
+ * | Action  | Info                                      | Applies to        |
+ * |---------|-------------------------------------------|-------------------|
+ * | start   | Start the message broker                  | RabbitMQ, LavinMQ |
+ * | stop    | Stop the message broker                   | RabbitMQ, LavinMQ |
+ * | restart | Restart the message broker                | RabbitMQ, LavinMQ |
+ *
+ * ### Management Interface Actions
+ *
+ * These actions control the management interface without affecting the broker itself.
+ *
+ * | Action       | Info                                      | Applies to |
+ * |--------------|-------------------------------------------|------------|
+ * | mgmt.restart | Restart the RabbitMQ management interface | RabbitMQ   |
+ *
+ * ### Node Actions
+ *
+ * These actions affect the entire node (VM), not just the broker software.
+ *
+ * | Action | Info                                          | Applies to        |
+ * |--------|-----------------------------------------------|-------------------|
+ * | reboot | Reboot the entire node (VM)                   | RabbitMQ, LavinMQ |
+ *
+ * ### Cluster Actions
+ *
+ * > **Available from version 1.41.0**
+ *
+ * These actions operate on all nodes in the cluster simultaneously. The `nodeNames` attribute can be omitted for these actions.
+ *
+ * | Action          | Info                                            | Applies to        |
+ * |-----------------|-------------------------------------------------|-------------------|
+ * | cluster.start   | Start the message broker on all cluster nodes   | RabbitMQ, LavinMQ |
+ * | cluster.stop    | Stop the message broker on all cluster nodes    | RabbitMQ, LavinMQ |
+ * | cluster.restart | Restart the message broker on all cluster nodes | RabbitMQ, LavinMQ |
  *
  * ## Dependency
  *
- * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id` and node
- * name.
+ * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`. For non-cluster actions, it also requires either `nodeName` or `nodeNames` to specify which nodes to act upon. Cluster-level actions automatically apply to all nodes in the cluster.
  *
  * ## Import
  *
@@ -185,7 +277,7 @@ export class NodeActions extends pulumi.CustomResource {
     }
 
     /**
-     * The action to invoke on the node.
+     * The action to invoke. See Action reference below for valid values.
      */
     declare public readonly action: pulumi.Output<string>;
     /**
@@ -193,13 +285,25 @@ export class NodeActions extends pulumi.CustomResource {
      */
     declare public readonly instanceId: pulumi.Output<number>;
     /**
-     * The node name, e.g `green-guinea-pig-01`.
+     * The node name, e.g. `green-guinea-pig-01`. Use `nodeNames` instead. This attribute will be removed in a future version.
+     *
+     * @deprecated Use nodeNames instead. This attribute will be removed in a future version.
      */
-    declare public readonly nodeName: pulumi.Output<string>;
+    declare public readonly nodeName: pulumi.Output<string | undefined>;
     /**
-     * If the node is running.
+     * List of node names to perform the action on, e.g. `["green-guinea-pig-01", "green-guinea-pig-02"]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
      */
-    declare public /*out*/ readonly running: pulumi.Output<boolean>;
+    declare public readonly nodeNames: pulumi.Output<string[] | undefined>;
+    /**
+     * Sleep interval in seconds between polling for node status. Default: `10`.
+     */
+    declare public readonly sleep: pulumi.Output<number>;
+    /**
+     * Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
+     *
+     * > **Note:** Either `nodeName` or `nodeNames` must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.
+     */
+    declare public readonly timeout: pulumi.Output<number>;
 
     /**
      * Create a NodeActions resource with the given unique name, arguments, and options.
@@ -217,7 +321,9 @@ export class NodeActions extends pulumi.CustomResource {
             resourceInputs["action"] = state?.action;
             resourceInputs["instanceId"] = state?.instanceId;
             resourceInputs["nodeName"] = state?.nodeName;
-            resourceInputs["running"] = state?.running;
+            resourceInputs["nodeNames"] = state?.nodeNames;
+            resourceInputs["sleep"] = state?.sleep;
+            resourceInputs["timeout"] = state?.timeout;
         } else {
             const args = argsOrState as NodeActionsArgs | undefined;
             if (args?.action === undefined && !opts.urn) {
@@ -226,13 +332,12 @@ export class NodeActions extends pulumi.CustomResource {
             if (args?.instanceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            if (args?.nodeName === undefined && !opts.urn) {
-                throw new Error("Missing required property 'nodeName'");
-            }
             resourceInputs["action"] = args?.action;
             resourceInputs["instanceId"] = args?.instanceId;
             resourceInputs["nodeName"] = args?.nodeName;
-            resourceInputs["running"] = undefined /*out*/;
+            resourceInputs["nodeNames"] = args?.nodeNames;
+            resourceInputs["sleep"] = args?.sleep;
+            resourceInputs["timeout"] = args?.timeout;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(NodeActions.__pulumiType, name, resourceInputs, opts);
@@ -244,7 +349,7 @@ export class NodeActions extends pulumi.CustomResource {
  */
 export interface NodeActionsState {
     /**
-     * The action to invoke on the node.
+     * The action to invoke. See Action reference below for valid values.
      */
     action?: pulumi.Input<string>;
     /**
@@ -252,13 +357,25 @@ export interface NodeActionsState {
      */
     instanceId?: pulumi.Input<number>;
     /**
-     * The node name, e.g `green-guinea-pig-01`.
+     * The node name, e.g. `green-guinea-pig-01`. Use `nodeNames` instead. This attribute will be removed in a future version.
+     *
+     * @deprecated Use nodeNames instead. This attribute will be removed in a future version.
      */
     nodeName?: pulumi.Input<string>;
     /**
-     * If the node is running.
+     * List of node names to perform the action on, e.g. `["green-guinea-pig-01", "green-guinea-pig-02"]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
      */
-    running?: pulumi.Input<boolean>;
+    nodeNames?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Sleep interval in seconds between polling for node status. Default: `10`.
+     */
+    sleep?: pulumi.Input<number>;
+    /**
+     * Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
+     *
+     * > **Note:** Either `nodeName` or `nodeNames` must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.
+     */
+    timeout?: pulumi.Input<number>;
 }
 
 /**
@@ -266,7 +383,7 @@ export interface NodeActionsState {
  */
 export interface NodeActionsArgs {
     /**
-     * The action to invoke on the node.
+     * The action to invoke. See Action reference below for valid values.
      */
     action: pulumi.Input<string>;
     /**
@@ -274,7 +391,23 @@ export interface NodeActionsArgs {
      */
     instanceId: pulumi.Input<number>;
     /**
-     * The node name, e.g `green-guinea-pig-01`.
+     * The node name, e.g. `green-guinea-pig-01`. Use `nodeNames` instead. This attribute will be removed in a future version.
+     *
+     * @deprecated Use nodeNames instead. This attribute will be removed in a future version.
      */
-    nodeName: pulumi.Input<string>;
+    nodeName?: pulumi.Input<string>;
+    /**
+     * List of node names to perform the action on, e.g. `["green-guinea-pig-01", "green-guinea-pig-02"]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
+     */
+    nodeNames?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Sleep interval in seconds between polling for node status. Default: `10`.
+     */
+    sleep?: pulumi.Input<number>;
+    /**
+     * Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
+     *
+     * > **Note:** Either `nodeName` or `nodeNames` must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.
+     */
+    timeout?: pulumi.Input<number>;
 }

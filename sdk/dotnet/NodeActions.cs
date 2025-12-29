@@ -10,18 +10,22 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
-    /// This resource allows you to invoke actions on a specific node.
+    /// This resource allows you to invoke actions on specific nodes or the entire cluster. Actions can target individual nodes, multiple nodes, or all nodes in the cluster at once.
     /// 
     /// Only available for dedicated subscription plans.
+    /// 
+    /// &gt; **Note:** From version 1.41.0, this resource supports cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`) and the `NodeNames` list attribute for targeting multiple nodes. The `NodeName` attribute is deprecated in favor of `NodeNames`.
     /// 
     /// ## Example Usage
     /// 
     /// &lt;details&gt;
     ///   &lt;summary&gt;
     ///     &lt;b&gt;
-    ///       &lt;i&gt;Already know the node identifier (e.g. from state file)&lt;/i&gt;
+    ///       &lt;i&gt;Cluster-wide broker restart (recommended for v1.41.0+)&lt;/i&gt;
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
+    /// 
+    /// Restart the broker on all nodes of the cluster at once. Making sure the broker is stopped and started in correct order. This is the simplest approach for cluster-wide operations.
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -31,7 +35,188 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     // New recipient to receieve notifications
+    ///     var clusterRestart = new CloudAmqp.NodeActions("cluster_restart", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Action = "cluster.restart",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Restart broker on specific nodes using node_names&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// Target specific nodes using the `NodeNames` list attribute.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var nodes = CloudAmqp.GetNodes.Invoke(new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///     });
+    /// 
+    ///     var restartSubset = new CloudAmqp.NodeActions("restart_subset", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Action = "restart",
+    ///         NodeNames = new[]
+    ///         {
+    ///             nodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[0]?.Name),
+    ///             nodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[1]?.Name),
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Reboot a single node&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// Reboot the entire node (VM) rather than just the broker.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var nodes = CloudAmqp.GetNodes.Invoke(new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///     });
+    /// 
+    ///     var rebootNode = new CloudAmqp.NodeActions("reboot_node", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Action = "reboot",
+    ///         NodeNames = new[]
+    ///         {
+    ///             nodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[0]?.Name),
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Restart RabbitMQ management interface&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// Only restart the management interface without affecting the broker.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var nodes = CloudAmqp.GetNodes.Invoke(new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///     });
+    /// 
+    ///     var mgmtRestart = new CloudAmqp.NodeActions("mgmt_restart", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Action = "mgmt.restart",
+    ///         NodeNames = new[]
+    ///         {
+    ///             nodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[0]?.Name),
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Combine with configuration changes&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// Apply configuration changes and restart the cluster.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var rabbitmqConfig = new CloudAmqp.RabbitConfiguration("rabbitmq_config", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         LogExchangeLevel = "info",
+    ///     });
+    /// 
+    ///     var clusterRestart = new CloudAmqp.NodeActions("cluster_restart", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Action = "cluster.restart",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             rabbitmqConfig,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Legacy Usage (pre-1.41.0)&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// These examples show the older approach using `NodeName` (singular) and chained restarts. While still supported, the cluster-level actions above are recommended for new configurations.
+    /// 
+    /// **Single node restart:**
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
     ///     var nodeAction = new CloudAmqp.NodeActions("node_action", new()
     ///     {
     ///         InstanceId = instance.Id,
@@ -42,18 +227,9 @@ namespace Pulumi.CloudAmqp
     /// });
     /// ```
     /// 
-    /// &lt;/details&gt;
+    /// **Chained multi-node restart:**
     /// 
-    /// &lt;details&gt;
-    ///   &lt;summary&gt;
-    ///     &lt;b&gt;
-    ///       &lt;i&gt;Multi node RabbitMQ restart&lt;/i&gt;
-    ///     &lt;/b&gt;
-    ///   &lt;/summary&gt;
-    /// 
-    /// Using data source `cloudamqp.getNodes` to restart RabbitMQ on all nodes.
-    /// 
-    /// &gt; **Note:** RabbitMQ restart on multiple nodes need to be chained, let one node restart at the time.
+    /// &gt; **Note:** This approach restarts nodes sequentially to minimize cluster disruption. Consider using `cluster.restart` for simpler configuration.
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -97,79 +273,6 @@ namespace Pulumi.CloudAmqp
     ///     {
     ///         DependsOn =
     ///         {
-    ///             restart01,
-    ///             restart02,
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// &lt;/details&gt;
-    /// 
-    /// &lt;details&gt;
-    ///   &lt;summary&gt;
-    ///     &lt;b&gt;
-    ///       &lt;i&gt;Combine log level configuration change with multi node RabbitMQ restart&lt;/i&gt;
-    ///     &lt;/b&gt;
-    ///   &lt;/summary&gt;
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using CloudAmqp = Pulumi.CloudAmqp;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var listNodes = CloudAmqp.GetNodes.Invoke(new()
-    ///     {
-    ///         InstanceId = instance.Id,
-    ///     });
-    /// 
-    ///     var rabbitmqConfig = new CloudAmqp.RabbitConfiguration("rabbitmq_config", new()
-    ///     {
-    ///         InstanceId = instance.Id,
-    ///         LogExchangeLevel = "info",
-    ///     });
-    /// 
-    ///     var restart01 = new CloudAmqp.NodeActions("restart_01", new()
-    ///     {
-    ///         InstanceId = instance.Id,
-    ///         Action = "restart",
-    ///         NodeName = listNodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[0]?.Name),
-    ///     }, new CustomResourceOptions
-    ///     {
-    ///         DependsOn =
-    ///         {
-    ///             rabbitmqConfig,
-    ///         },
-    ///     });
-    /// 
-    ///     var restart02 = new CloudAmqp.NodeActions("restart_02", new()
-    ///     {
-    ///         InstanceId = instance.Id,
-    ///         Action = "restart",
-    ///         NodeName = listNodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[1]?.Name),
-    ///     }, new CustomResourceOptions
-    ///     {
-    ///         DependsOn =
-    ///         {
-    ///             rabbitmqConfig,
-    ///             restart01,
-    ///         },
-    ///     });
-    /// 
-    ///     var restart03 = new CloudAmqp.NodeActions("restart_03", new()
-    ///     {
-    ///         InstanceId = instance.Id,
-    ///         Action = "restart",
-    ///         NodeName = listNodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[2]?.Name),
-    ///     }, new CustomResourceOptions
-    ///     {
-    ///         DependsOn =
-    ///         {
-    ///             rabbitmqConfig,
     ///             restart01,
     ///             restart02,
     ///         },
@@ -182,29 +285,49 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ## Action reference
     /// 
-    /// Valid actions for ***LavinMQ***.
+    /// Actions are categorized by what they affect:
     /// 
-    /// | Action       | Info                               |
-    /// |--------------|------------------------------------|
-    /// | start        | Start LavinMQ                      |
-    /// | stop         | Stop LavinMQ                       |
-    /// | restart      | Restart LavinMQ                    |
-    /// | reboot       | Reboot the node                    |
+    /// ### Broker Actions
     /// 
-    /// Valid actions for ***RabbitMQ***.
+    /// These actions control the message broker software (RabbitMQ or LavinMQ) on the specified nodes.
     /// 
-    /// | Action       | Info                               |
-    /// |--------------|------------------------------------|
-    /// | start        | Start RabbitMQ                     |
-    /// | stop         | Stop RabbitMQ                      |
-    /// | restart      | Restart RabbitMQ                   |
-    /// | reboot       | Reboot the node                    |
-    /// | mgmt.restart | Restart the RabbitMQ mgmt interace |
+    /// | Action  | Info                                      | Applies to        |
+    /// |---------|-------------------------------------------|-------------------|
+    /// | start   | Start the message broker                  | RabbitMQ, LavinMQ |
+    /// | stop    | Stop the message broker                   | RabbitMQ, LavinMQ |
+    /// | restart | Restart the message broker                | RabbitMQ, LavinMQ |
+    /// 
+    /// ### Management Interface Actions
+    /// 
+    /// These actions control the management interface without affecting the broker itself.
+    /// 
+    /// | Action       | Info                                      | Applies to |
+    /// |--------------|-------------------------------------------|------------|
+    /// | mgmt.restart | Restart the RabbitMQ management interface | RabbitMQ   |
+    /// 
+    /// ### Node Actions
+    /// 
+    /// These actions affect the entire node (VM), not just the broker software.
+    /// 
+    /// | Action | Info                                          | Applies to        |
+    /// |--------|-----------------------------------------------|-------------------|
+    /// | reboot | Reboot the entire node (VM)                   | RabbitMQ, LavinMQ |
+    /// 
+    /// ### Cluster Actions
+    /// 
+    /// &gt; **Available from version 1.41.0**
+    /// 
+    /// These actions operate on all nodes in the cluster simultaneously. The `NodeNames` attribute can be omitted for these actions.
+    /// 
+    /// | Action          | Info                                            | Applies to        |
+    /// |-----------------|-------------------------------------------------|-------------------|
+    /// | cluster.start   | Start the message broker on all cluster nodes   | RabbitMQ, LavinMQ |
+    /// | cluster.stop    | Stop the message broker on all cluster nodes    | RabbitMQ, LavinMQ |
+    /// | cluster.restart | Restart the message broker on all cluster nodes | RabbitMQ, LavinMQ |
     /// 
     /// ## Dependency
     /// 
-    /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id` and node
-    /// name.
+    /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`. For non-cluster actions, it also requires either `NodeName` or `NodeNames` to specify which nodes to act upon. Cluster-level actions automatically apply to all nodes in the cluster.
     /// 
     /// ## Import
     /// 
@@ -214,7 +337,7 @@ namespace Pulumi.CloudAmqp
     public partial class NodeActions : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The action to invoke on the node.
+        /// The action to invoke. See Action reference below for valid values.
         /// </summary>
         [Output("action")]
         public Output<string> Action { get; private set; } = null!;
@@ -226,16 +349,30 @@ namespace Pulumi.CloudAmqp
         public Output<int> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// The node name, e.g `green-guinea-pig-01`.
+        /// The node name, e.g. `green-guinea-pig-01`. Use `NodeNames` instead. This attribute will be removed in a future version.
         /// </summary>
         [Output("nodeName")]
-        public Output<string> NodeName { get; private set; } = null!;
+        public Output<string?> NodeName { get; private set; } = null!;
 
         /// <summary>
-        /// If the node is running.
+        /// List of node names to perform the action on, e.g. `["green-guinea-pig-01", "green-guinea-pig-02"]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
         /// </summary>
-        [Output("running")]
-        public Output<bool> Running { get; private set; } = null!;
+        [Output("nodeNames")]
+        public Output<ImmutableArray<string>> NodeNames { get; private set; } = null!;
+
+        /// <summary>
+        /// Sleep interval in seconds between polling for node status. Default: `10`.
+        /// </summary>
+        [Output("sleep")]
+        public Output<int> Sleep { get; private set; } = null!;
+
+        /// <summary>
+        /// Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
+        /// 
+        /// &gt; **Note:** Either `NodeName` or `NodeNames` must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.
+        /// </summary>
+        [Output("timeout")]
+        public Output<int> Timeout { get; private set; } = null!;
 
 
         /// <summary>
@@ -284,7 +421,7 @@ namespace Pulumi.CloudAmqp
     public sealed class NodeActionsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The action to invoke on the node.
+        /// The action to invoke. See Action reference below for valid values.
         /// </summary>
         [Input("action", required: true)]
         public Input<string> Action { get; set; } = null!;
@@ -296,10 +433,36 @@ namespace Pulumi.CloudAmqp
         public Input<int> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// The node name, e.g `green-guinea-pig-01`.
+        /// The node name, e.g. `green-guinea-pig-01`. Use `NodeNames` instead. This attribute will be removed in a future version.
         /// </summary>
-        [Input("nodeName", required: true)]
-        public Input<string> NodeName { get; set; } = null!;
+        [Input("nodeName")]
+        public Input<string>? NodeName { get; set; }
+
+        [Input("nodeNames")]
+        private InputList<string>? _nodeNames;
+
+        /// <summary>
+        /// List of node names to perform the action on, e.g. `["green-guinea-pig-01", "green-guinea-pig-02"]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
+        /// </summary>
+        public InputList<string> NodeNames
+        {
+            get => _nodeNames ?? (_nodeNames = new InputList<string>());
+            set => _nodeNames = value;
+        }
+
+        /// <summary>
+        /// Sleep interval in seconds between polling for node status. Default: `10`.
+        /// </summary>
+        [Input("sleep")]
+        public Input<int>? Sleep { get; set; }
+
+        /// <summary>
+        /// Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
+        /// 
+        /// &gt; **Note:** Either `NodeName` or `NodeNames` must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.
+        /// </summary>
+        [Input("timeout")]
+        public Input<int>? Timeout { get; set; }
 
         public NodeActionsArgs()
         {
@@ -310,7 +473,7 @@ namespace Pulumi.CloudAmqp
     public sealed class NodeActionsState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The action to invoke on the node.
+        /// The action to invoke. See Action reference below for valid values.
         /// </summary>
         [Input("action")]
         public Input<string>? Action { get; set; }
@@ -322,16 +485,36 @@ namespace Pulumi.CloudAmqp
         public Input<int>? InstanceId { get; set; }
 
         /// <summary>
-        /// The node name, e.g `green-guinea-pig-01`.
+        /// The node name, e.g. `green-guinea-pig-01`. Use `NodeNames` instead. This attribute will be removed in a future version.
         /// </summary>
         [Input("nodeName")]
         public Input<string>? NodeName { get; set; }
 
+        [Input("nodeNames")]
+        private InputList<string>? _nodeNames;
+
         /// <summary>
-        /// If the node is running.
+        /// List of node names to perform the action on, e.g. `["green-guinea-pig-01", "green-guinea-pig-02"]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
         /// </summary>
-        [Input("running")]
-        public Input<bool>? Running { get; set; }
+        public InputList<string> NodeNames
+        {
+            get => _nodeNames ?? (_nodeNames = new InputList<string>());
+            set => _nodeNames = value;
+        }
+
+        /// <summary>
+        /// Sleep interval in seconds between polling for node status. Default: `10`.
+        /// </summary>
+        [Input("sleep")]
+        public Input<int>? Sleep { get; set; }
+
+        /// <summary>
+        /// Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
+        /// 
+        /// &gt; **Note:** Either `NodeName` or `NodeNames` must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.
+        /// </summary>
+        [Input("timeout")]
+        public Input<int>? Timeout { get; set; }
 
         public NodeActionsState()
         {

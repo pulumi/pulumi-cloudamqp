@@ -26,6 +26,7 @@ __all__ = [
     'IntegrationMetricPrometheusStackdriverV2',
     'NotificationResponder',
     'SecurityFirewallRule',
+    'TrustStoreHttp',
     'GetAccountInstanceResult',
     'GetAccountVpcsVpcResult',
     'GetAlarmsAlarmResult',
@@ -755,6 +756,44 @@ class SecurityFirewallRule(dict):
         Pre-defined service ports, see table below
         """
         return pulumi.get(self, "services")
+
+
+@pulumi.output_type
+class TrustStoreHttp(dict):
+    def __init__(__self__, *,
+                 url: _builtins.str,
+                 cacert: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str url: URL to fetch trust store certificates from. RabbitMQ will periodically
+               fetch CA certificates from this URL.
+        :param _builtins.str cacert: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               PEM encoded CA certificates used to verify the HTTPS connection to the
+               trust store URL. This is a write-only field - changes are only applied when `version`
+               is incremented.
+        """
+        pulumi.set(__self__, "url", url)
+        if cacert is not None:
+            pulumi.set(__self__, "cacert", cacert)
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> _builtins.str:
+        """
+        URL to fetch trust store certificates from. RabbitMQ will periodically
+        fetch CA certificates from this URL.
+        """
+        return pulumi.get(self, "url")
+
+    @_builtins.property
+    @pulumi.getter
+    def cacert(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        PEM encoded CA certificates used to verify the HTTPS connection to the
+        trust store URL. This is a write-only field - changes are only applied when `version`
+        is incremented.
+        """
+        return pulumi.get(self, "cacert")
 
 
 @pulumi.output_type
