@@ -5,9 +5,9 @@ package com.pulumi.cloudamqp.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -18,14 +18,14 @@ public final class NodeActionsState extends com.pulumi.resources.ResourceArgs {
     public static final NodeActionsState Empty = new NodeActionsState();
 
     /**
-     * The action to invoke on the node.
+     * The action to invoke. See Action reference below for valid values.
      * 
      */
     @Import(name="action")
     private @Nullable Output<String> action;
 
     /**
-     * @return The action to invoke on the node.
+     * @return The action to invoke. See Action reference below for valid values.
      * 
      */
     public Optional<Output<String>> action() {
@@ -48,33 +48,75 @@ public final class NodeActionsState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The node name, e.g `green-guinea-pig-01`.
+     * The node name, e.g. `green-guinea-pig-01`. Use `nodeNames` instead. This attribute will be removed in a future version.
+     * 
+     * @deprecated
+     * Use nodeNames instead. This attribute will be removed in a future version.
      * 
      */
+    @Deprecated /* Use nodeNames instead. This attribute will be removed in a future version. */
     @Import(name="nodeName")
     private @Nullable Output<String> nodeName;
 
     /**
-     * @return The node name, e.g `green-guinea-pig-01`.
+     * @return The node name, e.g. `green-guinea-pig-01`. Use `nodeNames` instead. This attribute will be removed in a future version.
+     * 
+     * @deprecated
+     * Use nodeNames instead. This attribute will be removed in a future version.
      * 
      */
+    @Deprecated /* Use nodeNames instead. This attribute will be removed in a future version. */
     public Optional<Output<String>> nodeName() {
         return Optional.ofNullable(this.nodeName);
     }
 
     /**
-     * If the node is running.
+     * List of node names to perform the action on, e.g. `[&#34;green-guinea-pig-01&#34;, &#34;green-guinea-pig-02&#34;]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
      * 
      */
-    @Import(name="running")
-    private @Nullable Output<Boolean> running;
+    @Import(name="nodeNames")
+    private @Nullable Output<List<String>> nodeNames;
 
     /**
-     * @return If the node is running.
+     * @return List of node names to perform the action on, e.g. `[&#34;green-guinea-pig-01&#34;, &#34;green-guinea-pig-02&#34;]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
      * 
      */
-    public Optional<Output<Boolean>> running() {
-        return Optional.ofNullable(this.running);
+    public Optional<Output<List<String>>> nodeNames() {
+        return Optional.ofNullable(this.nodeNames);
+    }
+
+    /**
+     * Sleep interval in seconds between polling for node status. Default: `10`.
+     * 
+     */
+    @Import(name="sleep")
+    private @Nullable Output<Integer> sleep;
+
+    /**
+     * @return Sleep interval in seconds between polling for node status. Default: `10`.
+     * 
+     */
+    public Optional<Output<Integer>> sleep() {
+        return Optional.ofNullable(this.sleep);
+    }
+
+    /**
+     * Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
+     * 
+     * &gt; **Note:** Either `nodeName` or `nodeNames` must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.
+     * 
+     */
+    @Import(name="timeout")
+    private @Nullable Output<Integer> timeout;
+
+    /**
+     * @return Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
+     * 
+     * &gt; **Note:** Either `nodeName` or `nodeNames` must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.
+     * 
+     */
+    public Optional<Output<Integer>> timeout() {
+        return Optional.ofNullable(this.timeout);
     }
 
     private NodeActionsState() {}
@@ -83,7 +125,9 @@ public final class NodeActionsState extends com.pulumi.resources.ResourceArgs {
         this.action = $.action;
         this.instanceId = $.instanceId;
         this.nodeName = $.nodeName;
-        this.running = $.running;
+        this.nodeNames = $.nodeNames;
+        this.sleep = $.sleep;
+        this.timeout = $.timeout;
     }
 
     public static Builder builder() {
@@ -105,7 +149,7 @@ public final class NodeActionsState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param action The action to invoke on the node.
+         * @param action The action to invoke. See Action reference below for valid values.
          * 
          * @return builder
          * 
@@ -116,7 +160,7 @@ public final class NodeActionsState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param action The action to invoke on the node.
+         * @param action The action to invoke. See Action reference below for valid values.
          * 
          * @return builder
          * 
@@ -147,45 +191,109 @@ public final class NodeActionsState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param nodeName The node name, e.g `green-guinea-pig-01`.
+         * @param nodeName The node name, e.g. `green-guinea-pig-01`. Use `nodeNames` instead. This attribute will be removed in a future version.
          * 
          * @return builder
          * 
+         * @deprecated
+         * Use nodeNames instead. This attribute will be removed in a future version.
+         * 
          */
+        @Deprecated /* Use nodeNames instead. This attribute will be removed in a future version. */
         public Builder nodeName(@Nullable Output<String> nodeName) {
             $.nodeName = nodeName;
             return this;
         }
 
         /**
-         * @param nodeName The node name, e.g `green-guinea-pig-01`.
+         * @param nodeName The node name, e.g. `green-guinea-pig-01`. Use `nodeNames` instead. This attribute will be removed in a future version.
          * 
          * @return builder
          * 
+         * @deprecated
+         * Use nodeNames instead. This attribute will be removed in a future version.
+         * 
          */
+        @Deprecated /* Use nodeNames instead. This attribute will be removed in a future version. */
         public Builder nodeName(String nodeName) {
             return nodeName(Output.of(nodeName));
         }
 
         /**
-         * @param running If the node is running.
+         * @param nodeNames List of node names to perform the action on, e.g. `[&#34;green-guinea-pig-01&#34;, &#34;green-guinea-pig-02&#34;]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
          * 
          * @return builder
          * 
          */
-        public Builder running(@Nullable Output<Boolean> running) {
-            $.running = running;
+        public Builder nodeNames(@Nullable Output<List<String>> nodeNames) {
+            $.nodeNames = nodeNames;
             return this;
         }
 
         /**
-         * @param running If the node is running.
+         * @param nodeNames List of node names to perform the action on, e.g. `[&#34;green-guinea-pig-01&#34;, &#34;green-guinea-pig-02&#34;]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
          * 
          * @return builder
          * 
          */
-        public Builder running(Boolean running) {
-            return running(Output.of(running));
+        public Builder nodeNames(List<String> nodeNames) {
+            return nodeNames(Output.of(nodeNames));
+        }
+
+        /**
+         * @param nodeNames List of node names to perform the action on, e.g. `[&#34;green-guinea-pig-01&#34;, &#34;green-guinea-pig-02&#34;]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder nodeNames(String... nodeNames) {
+            return nodeNames(List.of(nodeNames));
+        }
+
+        /**
+         * @param sleep Sleep interval in seconds between polling for node status. Default: `10`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sleep(@Nullable Output<Integer> sleep) {
+            $.sleep = sleep;
+            return this;
+        }
+
+        /**
+         * @param sleep Sleep interval in seconds between polling for node status. Default: `10`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sleep(Integer sleep) {
+            return sleep(Output.of(sleep));
+        }
+
+        /**
+         * @param timeout Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
+         * 
+         * &gt; **Note:** Either `nodeName` or `nodeNames` must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder timeout(@Nullable Output<Integer> timeout) {
+            $.timeout = timeout;
+            return this;
+        }
+
+        /**
+         * @param timeout Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
+         * 
+         * &gt; **Note:** Either `nodeName` or `nodeNames` must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder timeout(Integer timeout) {
+            return timeout(Output.of(timeout));
         }
 
         public NodeActionsState build() {

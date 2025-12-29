@@ -20,14 +20,22 @@ __all__ = ['CustomDomainArgs', 'CustomDomain']
 class CustomDomainArgs:
     def __init__(__self__, *,
                  hostname: pulumi.Input[_builtins.str],
-                 instance_id: pulumi.Input[_builtins.int]):
+                 instance_id: pulumi.Input[_builtins.int],
+                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
+                 timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a CustomDomain resource.
         :param pulumi.Input[_builtins.str] hostname: Your custom domain name.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[_builtins.int] sleep: Configurable sleep time in seconds between retries for custom domain configuration
+        :param pulumi.Input[_builtins.int] timeout: Configurable timeout time in seconds for custom domain configuration
         """
         pulumi.set(__self__, "hostname", hostname)
         pulumi.set(__self__, "instance_id", instance_id)
+        if sleep is not None:
+            pulumi.set(__self__, "sleep", sleep)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
 
     @_builtins.property
     @pulumi.getter
@@ -53,21 +61,53 @@ class CustomDomainArgs:
     def instance_id(self, value: pulumi.Input[_builtins.int]):
         pulumi.set(self, "instance_id", value)
 
+    @_builtins.property
+    @pulumi.getter
+    def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Configurable sleep time in seconds between retries for custom domain configuration
+        """
+        return pulumi.get(self, "sleep")
+
+    @sleep.setter
+    def sleep(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "sleep", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Configurable timeout time in seconds for custom domain configuration
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "timeout", value)
+
 
 @pulumi.input_type
 class _CustomDomainState:
     def __init__(__self__, *,
                  hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None):
+                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
+                 timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering CustomDomain resources.
         :param pulumi.Input[_builtins.str] hostname: Your custom domain name.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[_builtins.int] sleep: Configurable sleep time in seconds between retries for custom domain configuration
+        :param pulumi.Input[_builtins.int] timeout: Configurable timeout time in seconds for custom domain configuration
         """
         if hostname is not None:
             pulumi.set(__self__, "hostname", hostname)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
+        if sleep is not None:
+            pulumi.set(__self__, "sleep", sleep)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
 
     @_builtins.property
     @pulumi.getter
@@ -93,6 +133,30 @@ class _CustomDomainState:
     def instance_id(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "instance_id", value)
 
+    @_builtins.property
+    @pulumi.getter
+    def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Configurable sleep time in seconds between retries for custom domain configuration
+        """
+        return pulumi.get(self, "sleep")
+
+    @sleep.setter
+    def sleep(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "sleep", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Configurable timeout time in seconds for custom domain configuration
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "timeout", value)
+
 
 @pulumi.type_token("cloudamqp:index/customDomain:CustomDomain")
 class CustomDomain(pulumi.CustomResource):
@@ -102,6 +166,8 @@ class CustomDomain(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  hostname: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
+                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
         This resource allows you to configure and manage your custom domain for the CloudAMQP instance.
@@ -164,6 +230,8 @@ class CustomDomain(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] hostname: Your custom domain name.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[_builtins.int] sleep: Configurable sleep time in seconds between retries for custom domain configuration
+        :param pulumi.Input[_builtins.int] timeout: Configurable timeout time in seconds for custom domain configuration
         """
         ...
     @overload
@@ -245,6 +313,8 @@ class CustomDomain(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  hostname: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
+                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -260,6 +330,8 @@ class CustomDomain(pulumi.CustomResource):
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
+            __props__.__dict__["sleep"] = sleep
+            __props__.__dict__["timeout"] = timeout
         super(CustomDomain, __self__).__init__(
             'cloudamqp:index/customDomain:CustomDomain',
             resource_name,
@@ -271,7 +343,9 @@ class CustomDomain(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             hostname: Optional[pulumi.Input[_builtins.str]] = None,
-            instance_id: Optional[pulumi.Input[_builtins.int]] = None) -> 'CustomDomain':
+            instance_id: Optional[pulumi.Input[_builtins.int]] = None,
+            sleep: Optional[pulumi.Input[_builtins.int]] = None,
+            timeout: Optional[pulumi.Input[_builtins.int]] = None) -> 'CustomDomain':
         """
         Get an existing CustomDomain resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -281,6 +355,8 @@ class CustomDomain(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] hostname: Your custom domain name.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[_builtins.int] sleep: Configurable sleep time in seconds between retries for custom domain configuration
+        :param pulumi.Input[_builtins.int] timeout: Configurable timeout time in seconds for custom domain configuration
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -288,6 +364,8 @@ class CustomDomain(pulumi.CustomResource):
 
         __props__.__dict__["hostname"] = hostname
         __props__.__dict__["instance_id"] = instance_id
+        __props__.__dict__["sleep"] = sleep
+        __props__.__dict__["timeout"] = timeout
         return CustomDomain(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -305,4 +383,20 @@ class CustomDomain(pulumi.CustomResource):
         The CloudAMQP instance ID.
         """
         return pulumi.get(self, "instance_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def sleep(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Configurable sleep time in seconds between retries for custom domain configuration
+        """
+        return pulumi.get(self, "sleep")
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Configurable timeout time in seconds for custom domain configuration
+        """
+        return pulumi.get(self, "timeout")
 

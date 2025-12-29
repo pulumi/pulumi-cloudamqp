@@ -37,6 +37,8 @@ __all__ = [
     'NotificationResponderArgsDict',
     'SecurityFirewallRuleArgs',
     'SecurityFirewallRuleArgsDict',
+    'TrustStoreHttpArgs',
+    'TrustStoreHttpArgsDict',
 ]
 
 MYPY = False
@@ -993,5 +995,68 @@ class SecurityFirewallRuleArgs:
     @services.setter
     def services(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "services", value)
+
+
+if not MYPY:
+    class TrustStoreHttpArgsDict(TypedDict):
+        url: pulumi.Input[_builtins.str]
+        """
+        URL to fetch trust store certificates from. RabbitMQ will periodically
+        fetch CA certificates from this URL.
+        """
+        cacert: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        PEM encoded CA certificates used to verify the HTTPS connection to the
+        trust store URL. This is a write-only field - changes are only applied when `version`
+        is incremented.
+        """
+elif False:
+    TrustStoreHttpArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class TrustStoreHttpArgs:
+    def __init__(__self__, *,
+                 url: pulumi.Input[_builtins.str],
+                 cacert: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] url: URL to fetch trust store certificates from. RabbitMQ will periodically
+               fetch CA certificates from this URL.
+        :param pulumi.Input[_builtins.str] cacert: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               PEM encoded CA certificates used to verify the HTTPS connection to the
+               trust store URL. This is a write-only field - changes are only applied when `version`
+               is incremented.
+        """
+        pulumi.set(__self__, "url", url)
+        if cacert is not None:
+            pulumi.set(__self__, "cacert", cacert)
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> pulumi.Input[_builtins.str]:
+        """
+        URL to fetch trust store certificates from. RabbitMQ will periodically
+        fetch CA certificates from this URL.
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "url", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def cacert(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        PEM encoded CA certificates used to verify the HTTPS connection to the
+        trust store URL. This is a write-only field - changes are only applied when `version`
+        is incremented.
+        """
+        return pulumi.get(self, "cacert")
+
+    @cacert.setter
+    def cacert(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "cacert", value)
 
 

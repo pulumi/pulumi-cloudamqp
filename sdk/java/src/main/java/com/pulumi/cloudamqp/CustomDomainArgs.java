@@ -9,6 +9,8 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class CustomDomainArgs extends com.pulumi.resources.ResourceArgs {
@@ -45,11 +47,43 @@ public final class CustomDomainArgs extends com.pulumi.resources.ResourceArgs {
         return this.instanceId;
     }
 
+    /**
+     * Configurable sleep time in seconds between retries for custom domain configuration
+     * 
+     */
+    @Import(name="sleep")
+    private @Nullable Output<Integer> sleep;
+
+    /**
+     * @return Configurable sleep time in seconds between retries for custom domain configuration
+     * 
+     */
+    public Optional<Output<Integer>> sleep() {
+        return Optional.ofNullable(this.sleep);
+    }
+
+    /**
+     * Configurable timeout time in seconds for custom domain configuration
+     * 
+     */
+    @Import(name="timeout")
+    private @Nullable Output<Integer> timeout;
+
+    /**
+     * @return Configurable timeout time in seconds for custom domain configuration
+     * 
+     */
+    public Optional<Output<Integer>> timeout() {
+        return Optional.ofNullable(this.timeout);
+    }
+
     private CustomDomainArgs() {}
 
     private CustomDomainArgs(CustomDomainArgs $) {
         this.hostname = $.hostname;
         this.instanceId = $.instanceId;
+        this.sleep = $.sleep;
+        this.timeout = $.timeout;
     }
 
     public static Builder builder() {
@@ -110,6 +144,48 @@ public final class CustomDomainArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder instanceId(Integer instanceId) {
             return instanceId(Output.of(instanceId));
+        }
+
+        /**
+         * @param sleep Configurable sleep time in seconds between retries for custom domain configuration
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sleep(@Nullable Output<Integer> sleep) {
+            $.sleep = sleep;
+            return this;
+        }
+
+        /**
+         * @param sleep Configurable sleep time in seconds between retries for custom domain configuration
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sleep(Integer sleep) {
+            return sleep(Output.of(sleep));
+        }
+
+        /**
+         * @param timeout Configurable timeout time in seconds for custom domain configuration
+         * 
+         * @return builder
+         * 
+         */
+        public Builder timeout(@Nullable Output<Integer> timeout) {
+            $.timeout = timeout;
+            return this;
+        }
+
+        /**
+         * @param timeout Configurable timeout time in seconds for custom domain configuration
+         * 
+         * @return builder
+         * 
+         */
+        public Builder timeout(Integer timeout) {
+            return timeout(Output.of(timeout));
         }
 
         public CustomDomainArgs build() {

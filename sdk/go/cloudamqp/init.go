@@ -25,6 +25,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AccountActions{}
 	case "cloudamqp:index/alarm:Alarm":
 		r = &Alarm{}
+	case "cloudamqp:index/customCertificate:CustomCertificate":
+		r = &CustomCertificate{}
 	case "cloudamqp:index/customDomain:CustomDomain":
 		r = &CustomDomain{}
 	case "cloudamqp:index/extraDiskSize:ExtraDiskSize":
@@ -59,6 +61,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RabbitConfiguration{}
 	case "cloudamqp:index/securityFirewall:SecurityFirewall":
 		r = &SecurityFirewall{}
+	case "cloudamqp:index/trustStore:TrustStore":
+		r = &TrustStore{}
 	case "cloudamqp:index/upgradeLavinmq:UpgradeLavinmq":
 		r = &UpgradeLavinmq{}
 	case "cloudamqp:index/upgradeRabbitmq:UpgradeRabbitmq":
@@ -112,6 +116,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"cloudamqp",
 		"index/alarm",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"cloudamqp",
+		"index/customCertificate",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -197,6 +206,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"cloudamqp",
 		"index/securityFirewall",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"cloudamqp",
+		"index/trustStore",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

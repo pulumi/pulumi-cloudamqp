@@ -38,42 +38,45 @@ import (
 type RabbitConfiguration struct {
 	pulumi.CustomResourceState
 
-	// Set the maximum permissible number of
-	// channels per connection.
+	// Set the maximum permissible number of channels per connection.
 	ChannelMax pulumi.IntOutput `pulumi:"channelMax"`
-	// Set how the cluster should handle network
-	// partition.
+	// Set how the cluster should handle network partition.
 	ClusterPartitionHandling pulumi.StringOutput `pulumi:"clusterPartitionHandling"`
-	// Set the maximum permissible number of
-	// connection.
+	// Set the maximum permissible number of connection.
 	ConnectionMax pulumi.IntOutput `pulumi:"connectionMax"`
-	// A consumer that has recevied a message and
-	// does not acknowledge that message within the timeout in
-	// milliseconds
+	// A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds
 	ConsumerTimeout pulumi.IntOutput `pulumi:"consumerTimeout"`
-	// Set the server AMQP 0-9-1 heartbeat timeout
-	// in seconds.
+	// Set the server AMQP 0-9-1 heartbeat timeout in seconds.
 	Heartbeat pulumi.IntOutput `pulumi:"heartbeat"`
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
-	// Log level for the logger used for log
-	// integrations and the CloudAMQP Console log view.
+	// Log level for the logger used for log integrations and the CloudAMQP Console log view.
 	LogExchangeLevel pulumi.StringOutput `pulumi:"logExchangeLevel"`
-	// The largest allowed message payload size in
-	// bytes.
+	// The largest allowed message payload size in bytes.
 	MaxMessageSize pulumi.IntOutput `pulumi:"maxMessageSize"`
-	// Size in bytes below which to embed messages
-	// in the queue index. 0 will turn off payload embedding in the
-	// queue index.
+	// Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
+	MessageInterceptorsTimestampOverwrite pulumi.StringOutput `pulumi:"messageInterceptorsTimestampOverwrite"`
+	// The exchange option determines which exchange messages from MQTT clients are published to.
+	MqttExchange pulumi.StringOutput `pulumi:"mqttExchange"`
+	// Enable SSL certificate-based authentication for MQTT connections.
+	MqttSslCertLogin pulumi.BoolOutput `pulumi:"mqttSslCertLogin"`
+	// Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.
+	MqttVhost pulumi.StringOutput `pulumi:"mqttVhost"`
+	// Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
 	QueueIndexEmbedMsgsBelow pulumi.IntOutput `pulumi:"queueIndexEmbedMsgsBelow"`
-	// Configurable sleep time in seconds between retries
-	// for RabbitMQ configuration. Default set to 60 seconds.
+	// Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
 	Sleep pulumi.IntOutput `pulumi:"sleep"`
-	// Configurable timeout time in seconds for RabbitMQ
-	// configuration. Default set to 3600 seconds.
+	// Determines which certificate field to use as the username for TLS-based authentication.
+	SslCertLoginFrom pulumi.StringOutput `pulumi:"sslCertLoginFrom"`
+	// When set to true, TLS connections will fail if the client does not provide a certificate.
+	SslOptionsFailIfNoPeerCert pulumi.BoolOutput `pulumi:"sslOptionsFailIfNoPeerCert"`
+	// Controls peer certificate verification for TLS connections.
+	//
+	// Configure sleep and timeout for API requests retries
+	SslOptionsVerify pulumi.StringOutput `pulumi:"sslOptionsVerify"`
+	// Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
 	Timeout pulumi.IntOutput `pulumi:"timeout"`
-	// When the server will enter memory based
-	// flow-control as relative to the maximum available memory.
+	// When the server will enter memory based flow-control as relative to the maximum available memory.
 	VmMemoryHighWatermark pulumi.Float64Output `pulumi:"vmMemoryHighWatermark"`
 }
 
@@ -110,82 +113,88 @@ func GetRabbitConfiguration(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RabbitConfiguration resources.
 type rabbitConfigurationState struct {
-	// Set the maximum permissible number of
-	// channels per connection.
+	// Set the maximum permissible number of channels per connection.
 	ChannelMax *int `pulumi:"channelMax"`
-	// Set how the cluster should handle network
-	// partition.
+	// Set how the cluster should handle network partition.
 	ClusterPartitionHandling *string `pulumi:"clusterPartitionHandling"`
-	// Set the maximum permissible number of
-	// connection.
+	// Set the maximum permissible number of connection.
 	ConnectionMax *int `pulumi:"connectionMax"`
-	// A consumer that has recevied a message and
-	// does not acknowledge that message within the timeout in
-	// milliseconds
+	// A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds
 	ConsumerTimeout *int `pulumi:"consumerTimeout"`
-	// Set the server AMQP 0-9-1 heartbeat timeout
-	// in seconds.
+	// Set the server AMQP 0-9-1 heartbeat timeout in seconds.
 	Heartbeat *int `pulumi:"heartbeat"`
 	// The CloudAMQP instance ID.
 	InstanceId *int `pulumi:"instanceId"`
-	// Log level for the logger used for log
-	// integrations and the CloudAMQP Console log view.
+	// Log level for the logger used for log integrations and the CloudAMQP Console log view.
 	LogExchangeLevel *string `pulumi:"logExchangeLevel"`
-	// The largest allowed message payload size in
-	// bytes.
+	// The largest allowed message payload size in bytes.
 	MaxMessageSize *int `pulumi:"maxMessageSize"`
-	// Size in bytes below which to embed messages
-	// in the queue index. 0 will turn off payload embedding in the
-	// queue index.
+	// Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
+	MessageInterceptorsTimestampOverwrite *string `pulumi:"messageInterceptorsTimestampOverwrite"`
+	// The exchange option determines which exchange messages from MQTT clients are published to.
+	MqttExchange *string `pulumi:"mqttExchange"`
+	// Enable SSL certificate-based authentication for MQTT connections.
+	MqttSslCertLogin *bool `pulumi:"mqttSslCertLogin"`
+	// Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.
+	MqttVhost *string `pulumi:"mqttVhost"`
+	// Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
 	QueueIndexEmbedMsgsBelow *int `pulumi:"queueIndexEmbedMsgsBelow"`
-	// Configurable sleep time in seconds between retries
-	// for RabbitMQ configuration. Default set to 60 seconds.
+	// Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
 	Sleep *int `pulumi:"sleep"`
-	// Configurable timeout time in seconds for RabbitMQ
-	// configuration. Default set to 3600 seconds.
+	// Determines which certificate field to use as the username for TLS-based authentication.
+	SslCertLoginFrom *string `pulumi:"sslCertLoginFrom"`
+	// When set to true, TLS connections will fail if the client does not provide a certificate.
+	SslOptionsFailIfNoPeerCert *bool `pulumi:"sslOptionsFailIfNoPeerCert"`
+	// Controls peer certificate verification for TLS connections.
+	//
+	// Configure sleep and timeout for API requests retries
+	SslOptionsVerify *string `pulumi:"sslOptionsVerify"`
+	// Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
 	Timeout *int `pulumi:"timeout"`
-	// When the server will enter memory based
-	// flow-control as relative to the maximum available memory.
+	// When the server will enter memory based flow-control as relative to the maximum available memory.
 	VmMemoryHighWatermark *float64 `pulumi:"vmMemoryHighWatermark"`
 }
 
 type RabbitConfigurationState struct {
-	// Set the maximum permissible number of
-	// channels per connection.
+	// Set the maximum permissible number of channels per connection.
 	ChannelMax pulumi.IntPtrInput
-	// Set how the cluster should handle network
-	// partition.
+	// Set how the cluster should handle network partition.
 	ClusterPartitionHandling pulumi.StringPtrInput
-	// Set the maximum permissible number of
-	// connection.
+	// Set the maximum permissible number of connection.
 	ConnectionMax pulumi.IntPtrInput
-	// A consumer that has recevied a message and
-	// does not acknowledge that message within the timeout in
-	// milliseconds
+	// A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds
 	ConsumerTimeout pulumi.IntPtrInput
-	// Set the server AMQP 0-9-1 heartbeat timeout
-	// in seconds.
+	// Set the server AMQP 0-9-1 heartbeat timeout in seconds.
 	Heartbeat pulumi.IntPtrInput
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntPtrInput
-	// Log level for the logger used for log
-	// integrations and the CloudAMQP Console log view.
+	// Log level for the logger used for log integrations and the CloudAMQP Console log view.
 	LogExchangeLevel pulumi.StringPtrInput
-	// The largest allowed message payload size in
-	// bytes.
+	// The largest allowed message payload size in bytes.
 	MaxMessageSize pulumi.IntPtrInput
-	// Size in bytes below which to embed messages
-	// in the queue index. 0 will turn off payload embedding in the
-	// queue index.
+	// Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
+	MessageInterceptorsTimestampOverwrite pulumi.StringPtrInput
+	// The exchange option determines which exchange messages from MQTT clients are published to.
+	MqttExchange pulumi.StringPtrInput
+	// Enable SSL certificate-based authentication for MQTT connections.
+	MqttSslCertLogin pulumi.BoolPtrInput
+	// Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.
+	MqttVhost pulumi.StringPtrInput
+	// Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
 	QueueIndexEmbedMsgsBelow pulumi.IntPtrInput
-	// Configurable sleep time in seconds between retries
-	// for RabbitMQ configuration. Default set to 60 seconds.
+	// Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
 	Sleep pulumi.IntPtrInput
-	// Configurable timeout time in seconds for RabbitMQ
-	// configuration. Default set to 3600 seconds.
+	// Determines which certificate field to use as the username for TLS-based authentication.
+	SslCertLoginFrom pulumi.StringPtrInput
+	// When set to true, TLS connections will fail if the client does not provide a certificate.
+	SslOptionsFailIfNoPeerCert pulumi.BoolPtrInput
+	// Controls peer certificate verification for TLS connections.
+	//
+	// Configure sleep and timeout for API requests retries
+	SslOptionsVerify pulumi.StringPtrInput
+	// Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
 	Timeout pulumi.IntPtrInput
-	// When the server will enter memory based
-	// flow-control as relative to the maximum available memory.
+	// When the server will enter memory based flow-control as relative to the maximum available memory.
 	VmMemoryHighWatermark pulumi.Float64PtrInput
 }
 
@@ -194,83 +203,89 @@ func (RabbitConfigurationState) ElementType() reflect.Type {
 }
 
 type rabbitConfigurationArgs struct {
-	// Set the maximum permissible number of
-	// channels per connection.
+	// Set the maximum permissible number of channels per connection.
 	ChannelMax *int `pulumi:"channelMax"`
-	// Set how the cluster should handle network
-	// partition.
+	// Set how the cluster should handle network partition.
 	ClusterPartitionHandling *string `pulumi:"clusterPartitionHandling"`
-	// Set the maximum permissible number of
-	// connection.
+	// Set the maximum permissible number of connection.
 	ConnectionMax *int `pulumi:"connectionMax"`
-	// A consumer that has recevied a message and
-	// does not acknowledge that message within the timeout in
-	// milliseconds
+	// A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds
 	ConsumerTimeout *int `pulumi:"consumerTimeout"`
-	// Set the server AMQP 0-9-1 heartbeat timeout
-	// in seconds.
+	// Set the server AMQP 0-9-1 heartbeat timeout in seconds.
 	Heartbeat *int `pulumi:"heartbeat"`
 	// The CloudAMQP instance ID.
 	InstanceId int `pulumi:"instanceId"`
-	// Log level for the logger used for log
-	// integrations and the CloudAMQP Console log view.
+	// Log level for the logger used for log integrations and the CloudAMQP Console log view.
 	LogExchangeLevel *string `pulumi:"logExchangeLevel"`
-	// The largest allowed message payload size in
-	// bytes.
+	// The largest allowed message payload size in bytes.
 	MaxMessageSize *int `pulumi:"maxMessageSize"`
-	// Size in bytes below which to embed messages
-	// in the queue index. 0 will turn off payload embedding in the
-	// queue index.
+	// Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
+	MessageInterceptorsTimestampOverwrite *string `pulumi:"messageInterceptorsTimestampOverwrite"`
+	// The exchange option determines which exchange messages from MQTT clients are published to.
+	MqttExchange *string `pulumi:"mqttExchange"`
+	// Enable SSL certificate-based authentication for MQTT connections.
+	MqttSslCertLogin *bool `pulumi:"mqttSslCertLogin"`
+	// Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.
+	MqttVhost *string `pulumi:"mqttVhost"`
+	// Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
 	QueueIndexEmbedMsgsBelow *int `pulumi:"queueIndexEmbedMsgsBelow"`
-	// Configurable sleep time in seconds between retries
-	// for RabbitMQ configuration. Default set to 60 seconds.
+	// Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
 	Sleep *int `pulumi:"sleep"`
-	// Configurable timeout time in seconds for RabbitMQ
-	// configuration. Default set to 3600 seconds.
+	// Determines which certificate field to use as the username for TLS-based authentication.
+	SslCertLoginFrom *string `pulumi:"sslCertLoginFrom"`
+	// When set to true, TLS connections will fail if the client does not provide a certificate.
+	SslOptionsFailIfNoPeerCert *bool `pulumi:"sslOptionsFailIfNoPeerCert"`
+	// Controls peer certificate verification for TLS connections.
+	//
+	// Configure sleep and timeout for API requests retries
+	SslOptionsVerify *string `pulumi:"sslOptionsVerify"`
+	// Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
 	Timeout *int `pulumi:"timeout"`
-	// When the server will enter memory based
-	// flow-control as relative to the maximum available memory.
+	// When the server will enter memory based flow-control as relative to the maximum available memory.
 	VmMemoryHighWatermark *float64 `pulumi:"vmMemoryHighWatermark"`
 }
 
 // The set of arguments for constructing a RabbitConfiguration resource.
 type RabbitConfigurationArgs struct {
-	// Set the maximum permissible number of
-	// channels per connection.
+	// Set the maximum permissible number of channels per connection.
 	ChannelMax pulumi.IntPtrInput
-	// Set how the cluster should handle network
-	// partition.
+	// Set how the cluster should handle network partition.
 	ClusterPartitionHandling pulumi.StringPtrInput
-	// Set the maximum permissible number of
-	// connection.
+	// Set the maximum permissible number of connection.
 	ConnectionMax pulumi.IntPtrInput
-	// A consumer that has recevied a message and
-	// does not acknowledge that message within the timeout in
-	// milliseconds
+	// A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds
 	ConsumerTimeout pulumi.IntPtrInput
-	// Set the server AMQP 0-9-1 heartbeat timeout
-	// in seconds.
+	// Set the server AMQP 0-9-1 heartbeat timeout in seconds.
 	Heartbeat pulumi.IntPtrInput
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntInput
-	// Log level for the logger used for log
-	// integrations and the CloudAMQP Console log view.
+	// Log level for the logger used for log integrations and the CloudAMQP Console log view.
 	LogExchangeLevel pulumi.StringPtrInput
-	// The largest allowed message payload size in
-	// bytes.
+	// The largest allowed message payload size in bytes.
 	MaxMessageSize pulumi.IntPtrInput
-	// Size in bytes below which to embed messages
-	// in the queue index. 0 will turn off payload embedding in the
-	// queue index.
+	// Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
+	MessageInterceptorsTimestampOverwrite pulumi.StringPtrInput
+	// The exchange option determines which exchange messages from MQTT clients are published to.
+	MqttExchange pulumi.StringPtrInput
+	// Enable SSL certificate-based authentication for MQTT connections.
+	MqttSslCertLogin pulumi.BoolPtrInput
+	// Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.
+	MqttVhost pulumi.StringPtrInput
+	// Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
 	QueueIndexEmbedMsgsBelow pulumi.IntPtrInput
-	// Configurable sleep time in seconds between retries
-	// for RabbitMQ configuration. Default set to 60 seconds.
+	// Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
 	Sleep pulumi.IntPtrInput
-	// Configurable timeout time in seconds for RabbitMQ
-	// configuration. Default set to 3600 seconds.
+	// Determines which certificate field to use as the username for TLS-based authentication.
+	SslCertLoginFrom pulumi.StringPtrInput
+	// When set to true, TLS connections will fail if the client does not provide a certificate.
+	SslOptionsFailIfNoPeerCert pulumi.BoolPtrInput
+	// Controls peer certificate verification for TLS connections.
+	//
+	// Configure sleep and timeout for API requests retries
+	SslOptionsVerify pulumi.StringPtrInput
+	// Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
 	Timeout pulumi.IntPtrInput
-	// When the server will enter memory based
-	// flow-control as relative to the maximum available memory.
+	// When the server will enter memory based flow-control as relative to the maximum available memory.
 	VmMemoryHighWatermark pulumi.Float64PtrInput
 }
 
@@ -361,33 +376,27 @@ func (o RabbitConfigurationOutput) ToRabbitConfigurationOutputWithContext(ctx co
 	return o
 }
 
-// Set the maximum permissible number of
-// channels per connection.
+// Set the maximum permissible number of channels per connection.
 func (o RabbitConfigurationOutput) ChannelMax() pulumi.IntOutput {
 	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntOutput { return v.ChannelMax }).(pulumi.IntOutput)
 }
 
-// Set how the cluster should handle network
-// partition.
+// Set how the cluster should handle network partition.
 func (o RabbitConfigurationOutput) ClusterPartitionHandling() pulumi.StringOutput {
 	return o.ApplyT(func(v *RabbitConfiguration) pulumi.StringOutput { return v.ClusterPartitionHandling }).(pulumi.StringOutput)
 }
 
-// Set the maximum permissible number of
-// connection.
+// Set the maximum permissible number of connection.
 func (o RabbitConfigurationOutput) ConnectionMax() pulumi.IntOutput {
 	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntOutput { return v.ConnectionMax }).(pulumi.IntOutput)
 }
 
-// A consumer that has recevied a message and
-// does not acknowledge that message within the timeout in
-// milliseconds
+// A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds
 func (o RabbitConfigurationOutput) ConsumerTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntOutput { return v.ConsumerTimeout }).(pulumi.IntOutput)
 }
 
-// Set the server AMQP 0-9-1 heartbeat timeout
-// in seconds.
+// Set the server AMQP 0-9-1 heartbeat timeout in seconds.
 func (o RabbitConfigurationOutput) Heartbeat() pulumi.IntOutput {
 	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntOutput { return v.Heartbeat }).(pulumi.IntOutput)
 }
@@ -397,39 +406,69 @@ func (o RabbitConfigurationOutput) InstanceId() pulumi.IntOutput {
 	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntOutput { return v.InstanceId }).(pulumi.IntOutput)
 }
 
-// Log level for the logger used for log
-// integrations and the CloudAMQP Console log view.
+// Log level for the logger used for log integrations and the CloudAMQP Console log view.
 func (o RabbitConfigurationOutput) LogExchangeLevel() pulumi.StringOutput {
 	return o.ApplyT(func(v *RabbitConfiguration) pulumi.StringOutput { return v.LogExchangeLevel }).(pulumi.StringOutput)
 }
 
-// The largest allowed message payload size in
-// bytes.
+// The largest allowed message payload size in bytes.
 func (o RabbitConfigurationOutput) MaxMessageSize() pulumi.IntOutput {
 	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntOutput { return v.MaxMessageSize }).(pulumi.IntOutput)
 }
 
-// Size in bytes below which to embed messages
-// in the queue index. 0 will turn off payload embedding in the
-// queue index.
+// Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
+func (o RabbitConfigurationOutput) MessageInterceptorsTimestampOverwrite() pulumi.StringOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.StringOutput { return v.MessageInterceptorsTimestampOverwrite }).(pulumi.StringOutput)
+}
+
+// The exchange option determines which exchange messages from MQTT clients are published to.
+func (o RabbitConfigurationOutput) MqttExchange() pulumi.StringOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.StringOutput { return v.MqttExchange }).(pulumi.StringOutput)
+}
+
+// Enable SSL certificate-based authentication for MQTT connections.
+func (o RabbitConfigurationOutput) MqttSslCertLogin() pulumi.BoolOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.BoolOutput { return v.MqttSslCertLogin }).(pulumi.BoolOutput)
+}
+
+// Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.
+func (o RabbitConfigurationOutput) MqttVhost() pulumi.StringOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.StringOutput { return v.MqttVhost }).(pulumi.StringOutput)
+}
+
+// Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
 func (o RabbitConfigurationOutput) QueueIndexEmbedMsgsBelow() pulumi.IntOutput {
 	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntOutput { return v.QueueIndexEmbedMsgsBelow }).(pulumi.IntOutput)
 }
 
-// Configurable sleep time in seconds between retries
-// for RabbitMQ configuration. Default set to 60 seconds.
+// Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
 func (o RabbitConfigurationOutput) Sleep() pulumi.IntOutput {
 	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntOutput { return v.Sleep }).(pulumi.IntOutput)
 }
 
-// Configurable timeout time in seconds for RabbitMQ
-// configuration. Default set to 3600 seconds.
+// Determines which certificate field to use as the username for TLS-based authentication.
+func (o RabbitConfigurationOutput) SslCertLoginFrom() pulumi.StringOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.StringOutput { return v.SslCertLoginFrom }).(pulumi.StringOutput)
+}
+
+// When set to true, TLS connections will fail if the client does not provide a certificate.
+func (o RabbitConfigurationOutput) SslOptionsFailIfNoPeerCert() pulumi.BoolOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.BoolOutput { return v.SslOptionsFailIfNoPeerCert }).(pulumi.BoolOutput)
+}
+
+// Controls peer certificate verification for TLS connections.
+//
+// Configure sleep and timeout for API requests retries
+func (o RabbitConfigurationOutput) SslOptionsVerify() pulumi.StringOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.StringOutput { return v.SslOptionsVerify }).(pulumi.StringOutput)
+}
+
+// Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
 func (o RabbitConfigurationOutput) Timeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntOutput { return v.Timeout }).(pulumi.IntOutput)
 }
 
-// When the server will enter memory based
-// flow-control as relative to the maximum available memory.
+// When the server will enter memory based flow-control as relative to the maximum available memory.
 func (o RabbitConfigurationOutput) VmMemoryHighWatermark() pulumi.Float64Output {
 	return o.ApplyT(func(v *RabbitConfiguration) pulumi.Float64Output { return v.VmMemoryHighWatermark }).(pulumi.Float64Output)
 }

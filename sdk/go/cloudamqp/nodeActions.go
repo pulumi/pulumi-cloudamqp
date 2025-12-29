@@ -12,9 +12,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource allows you to invoke actions on a specific node.
+// This resource allows you to invoke actions on specific nodes or the entire cluster. Actions can target individual nodes, multiple nodes, or all nodes in the cluster at once.
 //
 // Only available for dedicated subscription plans.
+//
+// > **Note:** From version 1.41.0, this resource supports cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`) and the `nodeNames` list attribute for targeting multiple nodes. The `nodeName` attribute is deprecated in favor of `nodeNames`.
 //
 // ## Example Usage
 //
@@ -22,9 +24,11 @@ import (
 //
 //	<summary>
 //	  <b>
-//	    <i>Already know the node identifier (e.g. from state file)</i>
+//	    <i>Cluster-wide broker restart (recommended for v1.41.0+)</i>
 //	  </b>
 //	</summary>
+//
+// Restart the broker on all nodes of the cluster at once. Making sure the broker is stopped and started in correct order. This is the simplest approach for cluster-wide operations.
 //
 // ```go
 // package main
@@ -38,7 +42,230 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// New recipient to receieve notifications
+//			_, err := cloudamqp.NewNodeActions(ctx, "cluster_restart", &cloudamqp.NodeActionsArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				Action:     pulumi.String("cluster.restart"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Restart broker on specific nodes using node_names</i>
+//	  </b>
+//	</summary>
+//
+// Target specific nodes using the `nodeNames` list attribute.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			nodes, err := cloudamqp.GetNodes(ctx, &cloudamqp.GetNodesArgs{
+//				InstanceId: instance.Id,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewNodeActions(ctx, "restart_subset", &cloudamqp.NodeActionsArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				Action:     pulumi.String("restart"),
+//				NodeNames: pulumi.StringArray{
+//					pulumi.String(nodes.Nodes[0].Name),
+//					pulumi.String(nodes.Nodes[1].Name),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Reboot a single node</i>
+//	  </b>
+//	</summary>
+//
+// Reboot the entire node (VM) rather than just the broker.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			nodes, err := cloudamqp.GetNodes(ctx, &cloudamqp.GetNodesArgs{
+//				InstanceId: instance.Id,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewNodeActions(ctx, "reboot_node", &cloudamqp.NodeActionsArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				Action:     pulumi.String("reboot"),
+//				NodeNames: pulumi.StringArray{
+//					pulumi.String(nodes.Nodes[0].Name),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Restart RabbitMQ management interface</i>
+//	  </b>
+//	</summary>
+//
+// Only restart the management interface without affecting the broker.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			nodes, err := cloudamqp.GetNodes(ctx, &cloudamqp.GetNodesArgs{
+//				InstanceId: instance.Id,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewNodeActions(ctx, "mgmt_restart", &cloudamqp.NodeActionsArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				Action:     pulumi.String("mgmt.restart"),
+//				NodeNames: pulumi.StringArray{
+//					pulumi.String(nodes.Nodes[0].Name),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Combine with configuration changes</i>
+//	  </b>
+//	</summary>
+//
+// Apply configuration changes and restart the cluster.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			rabbitmqConfig, err := cloudamqp.NewRabbitConfiguration(ctx, "rabbitmq_config", &cloudamqp.RabbitConfigurationArgs{
+//				InstanceId:       pulumi.Any(instance.Id),
+//				LogExchangeLevel: pulumi.String("info"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewNodeActions(ctx, "cluster_restart", &cloudamqp.NodeActionsArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				Action:     pulumi.String("cluster.restart"),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				rabbitmqConfig,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Legacy Usage (pre-1.41.0)</i>
+//	  </b>
+//	</summary>
+//
+// These examples show the older approach using `nodeName` (singular) and chained restarts. While still supported, the cluster-level actions above are recommended for new configurations.
+//
+// **Single node restart:**
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewNodeActions(ctx, "node_action", &cloudamqp.NodeActionsArgs{
 //				InstanceId: pulumi.Any(instance.Id),
 //				NodeName:   pulumi.String("<node name>"),
@@ -53,19 +280,9 @@ import (
 //
 // ```
 //
-// </details>
+// **Chained multi-node restart:**
 //
-// <details>
-//
-//	<summary>
-//	  <b>
-//	    <i>Multi node RabbitMQ restart</i>
-//	  </b>
-//	</summary>
-//
-// Using data source `getNodes` to restart RabbitMQ on all nodes.
-//
-// > **Note:** RabbitMQ restart on multiple nodes need to be chained, let one node restart at the time.
+// > **Note:** This approach restarts nodes sequentially to minimize cluster disruption. Consider using `cluster.restart` for simpler configuration.
 //
 // ```go
 // package main
@@ -108,80 +325,6 @@ import (
 //				Action:     pulumi.String("restart"),
 //				NodeName:   pulumi.String(listNodes.Nodes[2].Name),
 //			}, pulumi.DependsOn([]pulumi.Resource{
-//				restart01,
-//				restart02,
-//			}))
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// </details>
-//
-// <details>
-//
-//	<summary>
-//	  <b>
-//	    <i>Combine log level configuration change with multi node RabbitMQ restart</i>
-//	  </b>
-//	</summary>
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			listNodes, err := cloudamqp.GetNodes(ctx, &cloudamqp.GetNodesArgs{
-//				InstanceId: instance.Id,
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			rabbitmqConfig, err := cloudamqp.NewRabbitConfiguration(ctx, "rabbitmq_config", &cloudamqp.RabbitConfigurationArgs{
-//				InstanceId:       pulumi.Any(instance.Id),
-//				LogExchangeLevel: pulumi.String("info"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			restart01, err := cloudamqp.NewNodeActions(ctx, "restart_01", &cloudamqp.NodeActionsArgs{
-//				InstanceId: pulumi.Any(instance.Id),
-//				Action:     pulumi.String("restart"),
-//				NodeName:   pulumi.String(listNodes.Nodes[0].Name),
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				rabbitmqConfig,
-//			}))
-//			if err != nil {
-//				return err
-//			}
-//			restart02, err := cloudamqp.NewNodeActions(ctx, "restart_02", &cloudamqp.NodeActionsArgs{
-//				InstanceId: pulumi.Any(instance.Id),
-//				Action:     pulumi.String("restart"),
-//				NodeName:   pulumi.String(listNodes.Nodes[1].Name),
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				rabbitmqConfig,
-//				restart01,
-//			}))
-//			if err != nil {
-//				return err
-//			}
-//			_, err = cloudamqp.NewNodeActions(ctx, "restart_03", &cloudamqp.NodeActionsArgs{
-//				InstanceId: pulumi.Any(instance.Id),
-//				Action:     pulumi.String("restart"),
-//				NodeName:   pulumi.String(listNodes.Nodes[2].Name),
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				rabbitmqConfig,
 //				restart01,
 //				restart02,
 //			}))
@@ -198,29 +341,49 @@ import (
 //
 // ## Action reference
 //
-// Valid actions for ***LavinMQ***.
+// Actions are categorized by what they affect:
 //
-// | Action       | Info                               |
-// |--------------|------------------------------------|
-// | start        | Start LavinMQ                      |
-// | stop         | Stop LavinMQ                       |
-// | restart      | Restart LavinMQ                    |
-// | reboot       | Reboot the node                    |
+// ### Broker Actions
 //
-// Valid actions for ***RabbitMQ***.
+// These actions control the message broker software (RabbitMQ or LavinMQ) on the specified nodes.
 //
-// | Action       | Info                               |
-// |--------------|------------------------------------|
-// | start        | Start RabbitMQ                     |
-// | stop         | Stop RabbitMQ                      |
-// | restart      | Restart RabbitMQ                   |
-// | reboot       | Reboot the node                    |
-// | mgmt.restart | Restart the RabbitMQ mgmt interace |
+// | Action  | Info                                      | Applies to        |
+// |---------|-------------------------------------------|-------------------|
+// | start   | Start the message broker                  | RabbitMQ, LavinMQ |
+// | stop    | Stop the message broker                   | RabbitMQ, LavinMQ |
+// | restart | Restart the message broker                | RabbitMQ, LavinMQ |
+//
+// ### Management Interface Actions
+//
+// These actions control the management interface without affecting the broker itself.
+//
+// | Action       | Info                                      | Applies to |
+// |--------------|-------------------------------------------|------------|
+// | mgmt.restart | Restart the RabbitMQ management interface | RabbitMQ   |
+//
+// ### Node Actions
+//
+// These actions affect the entire node (VM), not just the broker software.
+//
+// | Action | Info                                          | Applies to        |
+// |--------|-----------------------------------------------|-------------------|
+// | reboot | Reboot the entire node (VM)                   | RabbitMQ, LavinMQ |
+//
+// ### Cluster Actions
+//
+// > **Available from version 1.41.0**
+//
+// These actions operate on all nodes in the cluster simultaneously. The `nodeNames` attribute can be omitted for these actions.
+//
+// | Action          | Info                                            | Applies to        |
+// |-----------------|-------------------------------------------------|-------------------|
+// | cluster.start   | Start the message broker on all cluster nodes   | RabbitMQ, LavinMQ |
+// | cluster.stop    | Stop the message broker on all cluster nodes    | RabbitMQ, LavinMQ |
+// | cluster.restart | Restart the message broker on all cluster nodes | RabbitMQ, LavinMQ |
 //
 // ## Dependency
 //
-// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id` and node
-// name.
+// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`. For non-cluster actions, it also requires either `nodeName` or `nodeNames` to specify which nodes to act upon. Cluster-level actions automatically apply to all nodes in the cluster.
 //
 // ## Import
 //
@@ -228,14 +391,22 @@ import (
 type NodeActions struct {
 	pulumi.CustomResourceState
 
-	// The action to invoke on the node.
+	// The action to invoke. See Action reference below for valid values.
 	Action pulumi.StringOutput `pulumi:"action"`
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
-	// The node name, e.g `green-guinea-pig-01`.
-	NodeName pulumi.StringOutput `pulumi:"nodeName"`
-	// If the node is running.
-	Running pulumi.BoolOutput `pulumi:"running"`
+	// The node name, e.g. `green-guinea-pig-01`. Use `nodeNames` instead. This attribute will be removed in a future version.
+	//
+	// Deprecated: Use nodeNames instead. This attribute will be removed in a future version.
+	NodeName pulumi.StringPtrOutput `pulumi:"nodeName"`
+	// List of node names to perform the action on, e.g. `["green-guinea-pig-01", "green-guinea-pig-02"]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
+	NodeNames pulumi.StringArrayOutput `pulumi:"nodeNames"`
+	// Sleep interval in seconds between polling for node status. Default: `10`.
+	Sleep pulumi.IntOutput `pulumi:"sleep"`
+	// Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
+	//
+	// > **Note:** Either `nodeName` or `nodeNames` must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.
+	Timeout pulumi.IntOutput `pulumi:"timeout"`
 }
 
 // NewNodeActions registers a new resource with the given unique name, arguments, and options.
@@ -250,9 +421,6 @@ func NewNodeActions(ctx *pulumi.Context,
 	}
 	if args.InstanceId == nil {
 		return nil, errors.New("invalid value for required argument 'InstanceId'")
-	}
-	if args.NodeName == nil {
-		return nil, errors.New("invalid value for required argument 'NodeName'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource NodeActions
@@ -277,25 +445,41 @@ func GetNodeActions(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering NodeActions resources.
 type nodeActionsState struct {
-	// The action to invoke on the node.
+	// The action to invoke. See Action reference below for valid values.
 	Action *string `pulumi:"action"`
 	// The CloudAMQP instance ID.
 	InstanceId *int `pulumi:"instanceId"`
-	// The node name, e.g `green-guinea-pig-01`.
+	// The node name, e.g. `green-guinea-pig-01`. Use `nodeNames` instead. This attribute will be removed in a future version.
+	//
+	// Deprecated: Use nodeNames instead. This attribute will be removed in a future version.
 	NodeName *string `pulumi:"nodeName"`
-	// If the node is running.
-	Running *bool `pulumi:"running"`
+	// List of node names to perform the action on, e.g. `["green-guinea-pig-01", "green-guinea-pig-02"]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
+	NodeNames []string `pulumi:"nodeNames"`
+	// Sleep interval in seconds between polling for node status. Default: `10`.
+	Sleep *int `pulumi:"sleep"`
+	// Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
+	//
+	// > **Note:** Either `nodeName` or `nodeNames` must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.
+	Timeout *int `pulumi:"timeout"`
 }
 
 type NodeActionsState struct {
-	// The action to invoke on the node.
+	// The action to invoke. See Action reference below for valid values.
 	Action pulumi.StringPtrInput
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntPtrInput
-	// The node name, e.g `green-guinea-pig-01`.
+	// The node name, e.g. `green-guinea-pig-01`. Use `nodeNames` instead. This attribute will be removed in a future version.
+	//
+	// Deprecated: Use nodeNames instead. This attribute will be removed in a future version.
 	NodeName pulumi.StringPtrInput
-	// If the node is running.
-	Running pulumi.BoolPtrInput
+	// List of node names to perform the action on, e.g. `["green-guinea-pig-01", "green-guinea-pig-02"]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
+	NodeNames pulumi.StringArrayInput
+	// Sleep interval in seconds between polling for node status. Default: `10`.
+	Sleep pulumi.IntPtrInput
+	// Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
+	//
+	// > **Note:** Either `nodeName` or `nodeNames` must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.
+	Timeout pulumi.IntPtrInput
 }
 
 func (NodeActionsState) ElementType() reflect.Type {
@@ -303,22 +487,42 @@ func (NodeActionsState) ElementType() reflect.Type {
 }
 
 type nodeActionsArgs struct {
-	// The action to invoke on the node.
+	// The action to invoke. See Action reference below for valid values.
 	Action string `pulumi:"action"`
 	// The CloudAMQP instance ID.
 	InstanceId int `pulumi:"instanceId"`
-	// The node name, e.g `green-guinea-pig-01`.
-	NodeName string `pulumi:"nodeName"`
+	// The node name, e.g. `green-guinea-pig-01`. Use `nodeNames` instead. This attribute will be removed in a future version.
+	//
+	// Deprecated: Use nodeNames instead. This attribute will be removed in a future version.
+	NodeName *string `pulumi:"nodeName"`
+	// List of node names to perform the action on, e.g. `["green-guinea-pig-01", "green-guinea-pig-02"]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
+	NodeNames []string `pulumi:"nodeNames"`
+	// Sleep interval in seconds between polling for node status. Default: `10`.
+	Sleep *int `pulumi:"sleep"`
+	// Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
+	//
+	// > **Note:** Either `nodeName` or `nodeNames` must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.
+	Timeout *int `pulumi:"timeout"`
 }
 
 // The set of arguments for constructing a NodeActions resource.
 type NodeActionsArgs struct {
-	// The action to invoke on the node.
+	// The action to invoke. See Action reference below for valid values.
 	Action pulumi.StringInput
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntInput
-	// The node name, e.g `green-guinea-pig-01`.
-	NodeName pulumi.StringInput
+	// The node name, e.g. `green-guinea-pig-01`. Use `nodeNames` instead. This attribute will be removed in a future version.
+	//
+	// Deprecated: Use nodeNames instead. This attribute will be removed in a future version.
+	NodeName pulumi.StringPtrInput
+	// List of node names to perform the action on, e.g. `["green-guinea-pig-01", "green-guinea-pig-02"]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
+	NodeNames pulumi.StringArrayInput
+	// Sleep interval in seconds between polling for node status. Default: `10`.
+	Sleep pulumi.IntPtrInput
+	// Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
+	//
+	// > **Note:** Either `nodeName` or `nodeNames` must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.
+	Timeout pulumi.IntPtrInput
 }
 
 func (NodeActionsArgs) ElementType() reflect.Type {
@@ -408,7 +612,7 @@ func (o NodeActionsOutput) ToNodeActionsOutputWithContext(ctx context.Context) N
 	return o
 }
 
-// The action to invoke on the node.
+// The action to invoke. See Action reference below for valid values.
 func (o NodeActionsOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v *NodeActions) pulumi.StringOutput { return v.Action }).(pulumi.StringOutput)
 }
@@ -418,14 +622,28 @@ func (o NodeActionsOutput) InstanceId() pulumi.IntOutput {
 	return o.ApplyT(func(v *NodeActions) pulumi.IntOutput { return v.InstanceId }).(pulumi.IntOutput)
 }
 
-// The node name, e.g `green-guinea-pig-01`.
-func (o NodeActionsOutput) NodeName() pulumi.StringOutput {
-	return o.ApplyT(func(v *NodeActions) pulumi.StringOutput { return v.NodeName }).(pulumi.StringOutput)
+// The node name, e.g. `green-guinea-pig-01`. Use `nodeNames` instead. This attribute will be removed in a future version.
+//
+// Deprecated: Use nodeNames instead. This attribute will be removed in a future version.
+func (o NodeActionsOutput) NodeName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NodeActions) pulumi.StringPtrOutput { return v.NodeName }).(pulumi.StringPtrOutput)
 }
 
-// If the node is running.
-func (o NodeActionsOutput) Running() pulumi.BoolOutput {
-	return o.ApplyT(func(v *NodeActions) pulumi.BoolOutput { return v.Running }).(pulumi.BoolOutput)
+// List of node names to perform the action on, e.g. `["green-guinea-pig-01", "green-guinea-pig-02"]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
+func (o NodeActionsOutput) NodeNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NodeActions) pulumi.StringArrayOutput { return v.NodeNames }).(pulumi.StringArrayOutput)
+}
+
+// Sleep interval in seconds between polling for node status. Default: `10`.
+func (o NodeActionsOutput) Sleep() pulumi.IntOutput {
+	return o.ApplyT(func(v *NodeActions) pulumi.IntOutput { return v.Sleep }).(pulumi.IntOutput)
+}
+
+// Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
+//
+// > **Note:** Either `nodeName` or `nodeNames` must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.
+func (o NodeActionsOutput) Timeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *NodeActions) pulumi.IntOutput { return v.Timeout }).(pulumi.IntOutput)
 }
 
 type NodeActionsArrayOutput struct{ *pulumi.OutputState }

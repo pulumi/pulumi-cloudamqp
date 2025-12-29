@@ -21,22 +21,40 @@ class NodeActionsArgs:
     def __init__(__self__, *,
                  action: pulumi.Input[_builtins.str],
                  instance_id: pulumi.Input[_builtins.int],
-                 node_name: pulumi.Input[_builtins.str]):
+                 node_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 node_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
+                 timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a NodeActions resource.
-        :param pulumi.Input[_builtins.str] action: The action to invoke on the node.
+        :param pulumi.Input[_builtins.str] action: The action to invoke. See Action reference below for valid values.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[_builtins.str] node_name: The node name, e.g `green-guinea-pig-01`.
+        :param pulumi.Input[_builtins.str] node_name: The node name, e.g. `green-guinea-pig-01`. Use `node_names` instead. This attribute will be removed in a future version.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] node_names: List of node names to perform the action on, e.g. `["green-guinea-pig-01", "green-guinea-pig-02"]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
+        :param pulumi.Input[_builtins.int] sleep: Sleep interval in seconds between polling for node status. Default: `10`.
+        :param pulumi.Input[_builtins.int] timeout: Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
+               
+               > **Note:** Either `node_name` or `node_names` must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.
         """
         pulumi.set(__self__, "action", action)
         pulumi.set(__self__, "instance_id", instance_id)
-        pulumi.set(__self__, "node_name", node_name)
+        if node_name is not None:
+            warnings.warn("""Use node_names instead. This attribute will be removed in a future version.""", DeprecationWarning)
+            pulumi.log.warn("""node_name is deprecated: Use node_names instead. This attribute will be removed in a future version.""")
+        if node_name is not None:
+            pulumi.set(__self__, "node_name", node_name)
+        if node_names is not None:
+            pulumi.set(__self__, "node_names", node_names)
+        if sleep is not None:
+            pulumi.set(__self__, "sleep", sleep)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
 
     @_builtins.property
     @pulumi.getter
     def action(self) -> pulumi.Input[_builtins.str]:
         """
-        The action to invoke on the node.
+        The action to invoke. See Action reference below for valid values.
         """
         return pulumi.get(self, "action")
 
@@ -58,15 +76,54 @@ class NodeActionsArgs:
 
     @_builtins.property
     @pulumi.getter(name="nodeName")
-    def node_name(self) -> pulumi.Input[_builtins.str]:
+    @_utilities.deprecated("""Use node_names instead. This attribute will be removed in a future version.""")
+    def node_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The node name, e.g `green-guinea-pig-01`.
+        The node name, e.g. `green-guinea-pig-01`. Use `node_names` instead. This attribute will be removed in a future version.
         """
         return pulumi.get(self, "node_name")
 
     @node_name.setter
-    def node_name(self, value: pulumi.Input[_builtins.str]):
+    def node_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "node_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="nodeNames")
+    def node_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of node names to perform the action on, e.g. `["green-guinea-pig-01", "green-guinea-pig-02"]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
+        """
+        return pulumi.get(self, "node_names")
+
+    @node_names.setter
+    def node_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "node_names", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Sleep interval in seconds between polling for node status. Default: `10`.
+        """
+        return pulumi.get(self, "sleep")
+
+    @sleep.setter
+    def sleep(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "sleep", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
+
+        > **Note:** Either `node_name` or `node_names` must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "timeout", value)
 
 
 @pulumi.input_type
@@ -75,28 +132,41 @@ class _NodeActionsState:
                  action: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.int]] = None,
                  node_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 running: Optional[pulumi.Input[_builtins.bool]] = None):
+                 node_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
+                 timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering NodeActions resources.
-        :param pulumi.Input[_builtins.str] action: The action to invoke on the node.
+        :param pulumi.Input[_builtins.str] action: The action to invoke. See Action reference below for valid values.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[_builtins.str] node_name: The node name, e.g `green-guinea-pig-01`.
-        :param pulumi.Input[_builtins.bool] running: If the node is running.
+        :param pulumi.Input[_builtins.str] node_name: The node name, e.g. `green-guinea-pig-01`. Use `node_names` instead. This attribute will be removed in a future version.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] node_names: List of node names to perform the action on, e.g. `["green-guinea-pig-01", "green-guinea-pig-02"]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
+        :param pulumi.Input[_builtins.int] sleep: Sleep interval in seconds between polling for node status. Default: `10`.
+        :param pulumi.Input[_builtins.int] timeout: Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
+               
+               > **Note:** Either `node_name` or `node_names` must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.
         """
         if action is not None:
             pulumi.set(__self__, "action", action)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
         if node_name is not None:
+            warnings.warn("""Use node_names instead. This attribute will be removed in a future version.""", DeprecationWarning)
+            pulumi.log.warn("""node_name is deprecated: Use node_names instead. This attribute will be removed in a future version.""")
+        if node_name is not None:
             pulumi.set(__self__, "node_name", node_name)
-        if running is not None:
-            pulumi.set(__self__, "running", running)
+        if node_names is not None:
+            pulumi.set(__self__, "node_names", node_names)
+        if sleep is not None:
+            pulumi.set(__self__, "sleep", sleep)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
 
     @_builtins.property
     @pulumi.getter
     def action(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The action to invoke on the node.
+        The action to invoke. See Action reference below for valid values.
         """
         return pulumi.get(self, "action")
 
@@ -118,9 +188,10 @@ class _NodeActionsState:
 
     @_builtins.property
     @pulumi.getter(name="nodeName")
+    @_utilities.deprecated("""Use node_names instead. This attribute will be removed in a future version.""")
     def node_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The node name, e.g `green-guinea-pig-01`.
+        The node name, e.g. `green-guinea-pig-01`. Use `node_names` instead. This attribute will be removed in a future version.
         """
         return pulumi.get(self, "node_name")
 
@@ -129,16 +200,42 @@ class _NodeActionsState:
         pulumi.set(self, "node_name", value)
 
     @_builtins.property
-    @pulumi.getter
-    def running(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    @pulumi.getter(name="nodeNames")
+    def node_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        If the node is running.
+        List of node names to perform the action on, e.g. `["green-guinea-pig-01", "green-guinea-pig-02"]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
         """
-        return pulumi.get(self, "running")
+        return pulumi.get(self, "node_names")
 
-    @running.setter
-    def running(self, value: Optional[pulumi.Input[_builtins.bool]]):
-        pulumi.set(self, "running", value)
+    @node_names.setter
+    def node_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "node_names", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Sleep interval in seconds between polling for node status. Default: `10`.
+        """
+        return pulumi.get(self, "sleep")
+
+    @sleep.setter
+    def sleep(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "sleep", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
+
+        > **Note:** Either `node_name` or `node_names` must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "timeout", value)
 
 
 @pulumi.type_token("cloudamqp:index/nodeActions:NodeActions")
@@ -150,30 +247,35 @@ class NodeActions(pulumi.CustomResource):
                  action: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.int]] = None,
                  node_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 node_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
+                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
-        This resource allows you to invoke actions on a specific node.
+        This resource allows you to invoke actions on specific nodes or the entire cluster. Actions can target individual nodes, multiple nodes, or all nodes in the cluster at once.
 
         Only available for dedicated subscription plans.
+
+        > **Note:** From version 1.41.0, this resource supports cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`) and the `node_names` list attribute for targeting multiple nodes. The `node_name` attribute is deprecated in favor of `node_names`.
 
         ## Example Usage
 
         <details>
           <summary>
             <b>
-              <i>Already know the node identifier (e.g. from state file)</i>
+              <i>Cluster-wide broker restart (recommended for v1.41.0+)</i>
             </b>
           </summary>
+
+        Restart the broker on all nodes of the cluster at once. Making sure the broker is stopped and started in correct order. This is the simplest approach for cluster-wide operations.
 
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        # New recipient to receieve notifications
-        node_action = cloudamqp.NodeActions("node_action",
+        cluster_restart = cloudamqp.NodeActions("cluster_restart",
             instance_id=instance["id"],
-            node_name="<node name>",
-            action="restart")
+            action="cluster.restart")
         ```
 
         </details>
@@ -181,13 +283,120 @@ class NodeActions(pulumi.CustomResource):
         <details>
           <summary>
             <b>
-              <i>Multi node RabbitMQ restart</i>
+              <i>Restart broker on specific nodes using node_names</i>
             </b>
           </summary>
 
-        Using data source `get_nodes` to restart RabbitMQ on all nodes.
+        Target specific nodes using the `node_names` list attribute.
 
-        > **Note:** RabbitMQ restart on multiple nodes need to be chained, let one node restart at the time.
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        nodes = cloudamqp.get_nodes(instance_id=instance["id"])
+        restart_subset = cloudamqp.NodeActions("restart_subset",
+            instance_id=instance["id"],
+            action="restart",
+            node_names=[
+                nodes.nodes[0].name,
+                nodes.nodes[1].name,
+            ])
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Reboot a single node</i>
+            </b>
+          </summary>
+
+        Reboot the entire node (VM) rather than just the broker.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        nodes = cloudamqp.get_nodes(instance_id=instance["id"])
+        reboot_node = cloudamqp.NodeActions("reboot_node",
+            instance_id=instance["id"],
+            action="reboot",
+            node_names=[nodes.nodes[0].name])
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Restart RabbitMQ management interface</i>
+            </b>
+          </summary>
+
+        Only restart the management interface without affecting the broker.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        nodes = cloudamqp.get_nodes(instance_id=instance["id"])
+        mgmt_restart = cloudamqp.NodeActions("mgmt_restart",
+            instance_id=instance["id"],
+            action="mgmt.restart",
+            node_names=[nodes.nodes[0].name])
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Combine with configuration changes</i>
+            </b>
+          </summary>
+
+        Apply configuration changes and restart the cluster.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmq_config",
+            instance_id=instance["id"],
+            log_exchange_level="info")
+        cluster_restart = cloudamqp.NodeActions("cluster_restart",
+            instance_id=instance["id"],
+            action="cluster.restart",
+            opts = pulumi.ResourceOptions(depends_on=[rabbitmq_config]))
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Legacy Usage (pre-1.41.0)</i>
+            </b>
+          </summary>
+
+        These examples show the older approach using `node_name` (singular) and chained restarts. While still supported, the cluster-level actions above are recommended for new configurations.
+
+        **Single node restart:**
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        node_action = cloudamqp.NodeActions("node_action",
+            instance_id=instance["id"],
+            node_name="<node name>",
+            action="restart")
+        ```
+
+        **Chained multi-node restart:**
+
+        > **Note:** This approach restarts nodes sequentially to minimize cluster disruption. Consider using `cluster.restart` for simpler configuration.
 
         ```python
         import pulumi
@@ -215,72 +424,51 @@ class NodeActions(pulumi.CustomResource):
 
         </details>
 
-        <details>
-          <summary>
-            <b>
-              <i>Combine log level configuration change with multi node RabbitMQ restart</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        list_nodes = cloudamqp.get_nodes(instance_id=instance["id"])
-        rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmq_config",
-            instance_id=instance["id"],
-            log_exchange_level="info")
-        restart01 = cloudamqp.NodeActions("restart_01",
-            instance_id=instance["id"],
-            action="restart",
-            node_name=list_nodes.nodes[0].name,
-            opts = pulumi.ResourceOptions(depends_on=[rabbitmq_config]))
-        restart02 = cloudamqp.NodeActions("restart_02",
-            instance_id=instance["id"],
-            action="restart",
-            node_name=list_nodes.nodes[1].name,
-            opts = pulumi.ResourceOptions(depends_on=[
-                    rabbitmq_config,
-                    restart01,
-                ]))
-        restart03 = cloudamqp.NodeActions("restart_03",
-            instance_id=instance["id"],
-            action="restart",
-            node_name=list_nodes.nodes[2].name,
-            opts = pulumi.ResourceOptions(depends_on=[
-                    rabbitmq_config,
-                    restart01,
-                    restart02,
-                ]))
-        ```
-
-        </details>
-
         ## Action reference
 
-        Valid actions for ***LavinMQ***.
+        Actions are categorized by what they affect:
 
-        | Action       | Info                               |
-        |--------------|------------------------------------|
-        | start        | Start LavinMQ                      |
-        | stop         | Stop LavinMQ                       |
-        | restart      | Restart LavinMQ                    |
-        | reboot       | Reboot the node                    |
+        ### Broker Actions
 
-        Valid actions for ***RabbitMQ***.
+        These actions control the message broker software (RabbitMQ or LavinMQ) on the specified nodes.
 
-        | Action       | Info                               |
-        |--------------|------------------------------------|
-        | start        | Start RabbitMQ                     |
-        | stop         | Stop RabbitMQ                      |
-        | restart      | Restart RabbitMQ                   |
-        | reboot       | Reboot the node                    |
-        | mgmt.restart | Restart the RabbitMQ mgmt interace |
+        | Action  | Info                                      | Applies to        |
+        |---------|-------------------------------------------|-------------------|
+        | start   | Start the message broker                  | RabbitMQ, LavinMQ |
+        | stop    | Stop the message broker                   | RabbitMQ, LavinMQ |
+        | restart | Restart the message broker                | RabbitMQ, LavinMQ |
+
+        ### Management Interface Actions
+
+        These actions control the management interface without affecting the broker itself.
+
+        | Action       | Info                                      | Applies to |
+        |--------------|-------------------------------------------|------------|
+        | mgmt.restart | Restart the RabbitMQ management interface | RabbitMQ   |
+
+        ### Node Actions
+
+        These actions affect the entire node (VM), not just the broker software.
+
+        | Action | Info                                          | Applies to        |
+        |--------|-----------------------------------------------|-------------------|
+        | reboot | Reboot the entire node (VM)                   | RabbitMQ, LavinMQ |
+
+        ### Cluster Actions
+
+        > **Available from version 1.41.0**
+
+        These actions operate on all nodes in the cluster simultaneously. The `node_names` attribute can be omitted for these actions.
+
+        | Action          | Info                                            | Applies to        |
+        |-----------------|-------------------------------------------------|-------------------|
+        | cluster.start   | Start the message broker on all cluster nodes   | RabbitMQ, LavinMQ |
+        | cluster.stop    | Stop the message broker on all cluster nodes    | RabbitMQ, LavinMQ |
+        | cluster.restart | Restart the message broker on all cluster nodes | RabbitMQ, LavinMQ |
 
         ## Dependency
 
-        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id` and node
-        name.
+        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`. For non-cluster actions, it also requires either `node_name` or `node_names` to specify which nodes to act upon. Cluster-level actions automatically apply to all nodes in the cluster.
 
         ## Import
 
@@ -288,9 +476,14 @@ class NodeActions(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] action: The action to invoke on the node.
+        :param pulumi.Input[_builtins.str] action: The action to invoke. See Action reference below for valid values.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[_builtins.str] node_name: The node name, e.g `green-guinea-pig-01`.
+        :param pulumi.Input[_builtins.str] node_name: The node name, e.g. `green-guinea-pig-01`. Use `node_names` instead. This attribute will be removed in a future version.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] node_names: List of node names to perform the action on, e.g. `["green-guinea-pig-01", "green-guinea-pig-02"]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
+        :param pulumi.Input[_builtins.int] sleep: Sleep interval in seconds between polling for node status. Default: `10`.
+        :param pulumi.Input[_builtins.int] timeout: Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
+               
+               > **Note:** Either `node_name` or `node_names` must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.
         """
         ...
     @overload
@@ -299,28 +492,30 @@ class NodeActions(pulumi.CustomResource):
                  args: NodeActionsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        This resource allows you to invoke actions on a specific node.
+        This resource allows you to invoke actions on specific nodes or the entire cluster. Actions can target individual nodes, multiple nodes, or all nodes in the cluster at once.
 
         Only available for dedicated subscription plans.
+
+        > **Note:** From version 1.41.0, this resource supports cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`) and the `node_names` list attribute for targeting multiple nodes. The `node_name` attribute is deprecated in favor of `node_names`.
 
         ## Example Usage
 
         <details>
           <summary>
             <b>
-              <i>Already know the node identifier (e.g. from state file)</i>
+              <i>Cluster-wide broker restart (recommended for v1.41.0+)</i>
             </b>
           </summary>
+
+        Restart the broker on all nodes of the cluster at once. Making sure the broker is stopped and started in correct order. This is the simplest approach for cluster-wide operations.
 
         ```python
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        # New recipient to receieve notifications
-        node_action = cloudamqp.NodeActions("node_action",
+        cluster_restart = cloudamqp.NodeActions("cluster_restart",
             instance_id=instance["id"],
-            node_name="<node name>",
-            action="restart")
+            action="cluster.restart")
         ```
 
         </details>
@@ -328,13 +523,120 @@ class NodeActions(pulumi.CustomResource):
         <details>
           <summary>
             <b>
-              <i>Multi node RabbitMQ restart</i>
+              <i>Restart broker on specific nodes using node_names</i>
             </b>
           </summary>
 
-        Using data source `get_nodes` to restart RabbitMQ on all nodes.
+        Target specific nodes using the `node_names` list attribute.
 
-        > **Note:** RabbitMQ restart on multiple nodes need to be chained, let one node restart at the time.
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        nodes = cloudamqp.get_nodes(instance_id=instance["id"])
+        restart_subset = cloudamqp.NodeActions("restart_subset",
+            instance_id=instance["id"],
+            action="restart",
+            node_names=[
+                nodes.nodes[0].name,
+                nodes.nodes[1].name,
+            ])
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Reboot a single node</i>
+            </b>
+          </summary>
+
+        Reboot the entire node (VM) rather than just the broker.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        nodes = cloudamqp.get_nodes(instance_id=instance["id"])
+        reboot_node = cloudamqp.NodeActions("reboot_node",
+            instance_id=instance["id"],
+            action="reboot",
+            node_names=[nodes.nodes[0].name])
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Restart RabbitMQ management interface</i>
+            </b>
+          </summary>
+
+        Only restart the management interface without affecting the broker.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        nodes = cloudamqp.get_nodes(instance_id=instance["id"])
+        mgmt_restart = cloudamqp.NodeActions("mgmt_restart",
+            instance_id=instance["id"],
+            action="mgmt.restart",
+            node_names=[nodes.nodes[0].name])
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Combine with configuration changes</i>
+            </b>
+          </summary>
+
+        Apply configuration changes and restart the cluster.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmq_config",
+            instance_id=instance["id"],
+            log_exchange_level="info")
+        cluster_restart = cloudamqp.NodeActions("cluster_restart",
+            instance_id=instance["id"],
+            action="cluster.restart",
+            opts = pulumi.ResourceOptions(depends_on=[rabbitmq_config]))
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Legacy Usage (pre-1.41.0)</i>
+            </b>
+          </summary>
+
+        These examples show the older approach using `node_name` (singular) and chained restarts. While still supported, the cluster-level actions above are recommended for new configurations.
+
+        **Single node restart:**
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        node_action = cloudamqp.NodeActions("node_action",
+            instance_id=instance["id"],
+            node_name="<node name>",
+            action="restart")
+        ```
+
+        **Chained multi-node restart:**
+
+        > **Note:** This approach restarts nodes sequentially to minimize cluster disruption. Consider using `cluster.restart` for simpler configuration.
 
         ```python
         import pulumi
@@ -362,72 +664,51 @@ class NodeActions(pulumi.CustomResource):
 
         </details>
 
-        <details>
-          <summary>
-            <b>
-              <i>Combine log level configuration change with multi node RabbitMQ restart</i>
-            </b>
-          </summary>
-
-        ```python
-        import pulumi
-        import pulumi_cloudamqp as cloudamqp
-
-        list_nodes = cloudamqp.get_nodes(instance_id=instance["id"])
-        rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmq_config",
-            instance_id=instance["id"],
-            log_exchange_level="info")
-        restart01 = cloudamqp.NodeActions("restart_01",
-            instance_id=instance["id"],
-            action="restart",
-            node_name=list_nodes.nodes[0].name,
-            opts = pulumi.ResourceOptions(depends_on=[rabbitmq_config]))
-        restart02 = cloudamqp.NodeActions("restart_02",
-            instance_id=instance["id"],
-            action="restart",
-            node_name=list_nodes.nodes[1].name,
-            opts = pulumi.ResourceOptions(depends_on=[
-                    rabbitmq_config,
-                    restart01,
-                ]))
-        restart03 = cloudamqp.NodeActions("restart_03",
-            instance_id=instance["id"],
-            action="restart",
-            node_name=list_nodes.nodes[2].name,
-            opts = pulumi.ResourceOptions(depends_on=[
-                    rabbitmq_config,
-                    restart01,
-                    restart02,
-                ]))
-        ```
-
-        </details>
-
         ## Action reference
 
-        Valid actions for ***LavinMQ***.
+        Actions are categorized by what they affect:
 
-        | Action       | Info                               |
-        |--------------|------------------------------------|
-        | start        | Start LavinMQ                      |
-        | stop         | Stop LavinMQ                       |
-        | restart      | Restart LavinMQ                    |
-        | reboot       | Reboot the node                    |
+        ### Broker Actions
 
-        Valid actions for ***RabbitMQ***.
+        These actions control the message broker software (RabbitMQ or LavinMQ) on the specified nodes.
 
-        | Action       | Info                               |
-        |--------------|------------------------------------|
-        | start        | Start RabbitMQ                     |
-        | stop         | Stop RabbitMQ                      |
-        | restart      | Restart RabbitMQ                   |
-        | reboot       | Reboot the node                    |
-        | mgmt.restart | Restart the RabbitMQ mgmt interace |
+        | Action  | Info                                      | Applies to        |
+        |---------|-------------------------------------------|-------------------|
+        | start   | Start the message broker                  | RabbitMQ, LavinMQ |
+        | stop    | Stop the message broker                   | RabbitMQ, LavinMQ |
+        | restart | Restart the message broker                | RabbitMQ, LavinMQ |
+
+        ### Management Interface Actions
+
+        These actions control the management interface without affecting the broker itself.
+
+        | Action       | Info                                      | Applies to |
+        |--------------|-------------------------------------------|------------|
+        | mgmt.restart | Restart the RabbitMQ management interface | RabbitMQ   |
+
+        ### Node Actions
+
+        These actions affect the entire node (VM), not just the broker software.
+
+        | Action | Info                                          | Applies to        |
+        |--------|-----------------------------------------------|-------------------|
+        | reboot | Reboot the entire node (VM)                   | RabbitMQ, LavinMQ |
+
+        ### Cluster Actions
+
+        > **Available from version 1.41.0**
+
+        These actions operate on all nodes in the cluster simultaneously. The `node_names` attribute can be omitted for these actions.
+
+        | Action          | Info                                            | Applies to        |
+        |-----------------|-------------------------------------------------|-------------------|
+        | cluster.start   | Start the message broker on all cluster nodes   | RabbitMQ, LavinMQ |
+        | cluster.stop    | Stop the message broker on all cluster nodes    | RabbitMQ, LavinMQ |
+        | cluster.restart | Restart the message broker on all cluster nodes | RabbitMQ, LavinMQ |
 
         ## Dependency
 
-        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id` and node
-        name.
+        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`. For non-cluster actions, it also requires either `node_name` or `node_names` to specify which nodes to act upon. Cluster-level actions automatically apply to all nodes in the cluster.
 
         ## Import
 
@@ -451,6 +732,9 @@ class NodeActions(pulumi.CustomResource):
                  action: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.int]] = None,
                  node_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 node_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
+                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -466,10 +750,10 @@ class NodeActions(pulumi.CustomResource):
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
-            if node_name is None and not opts.urn:
-                raise TypeError("Missing required property 'node_name'")
             __props__.__dict__["node_name"] = node_name
-            __props__.__dict__["running"] = None
+            __props__.__dict__["node_names"] = node_names
+            __props__.__dict__["sleep"] = sleep
+            __props__.__dict__["timeout"] = timeout
         super(NodeActions, __self__).__init__(
             'cloudamqp:index/nodeActions:NodeActions',
             resource_name,
@@ -483,7 +767,9 @@ class NodeActions(pulumi.CustomResource):
             action: Optional[pulumi.Input[_builtins.str]] = None,
             instance_id: Optional[pulumi.Input[_builtins.int]] = None,
             node_name: Optional[pulumi.Input[_builtins.str]] = None,
-            running: Optional[pulumi.Input[_builtins.bool]] = None) -> 'NodeActions':
+            node_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            sleep: Optional[pulumi.Input[_builtins.int]] = None,
+            timeout: Optional[pulumi.Input[_builtins.int]] = None) -> 'NodeActions':
         """
         Get an existing NodeActions resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -491,10 +777,14 @@ class NodeActions(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] action: The action to invoke on the node.
+        :param pulumi.Input[_builtins.str] action: The action to invoke. See Action reference below for valid values.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[_builtins.str] node_name: The node name, e.g `green-guinea-pig-01`.
-        :param pulumi.Input[_builtins.bool] running: If the node is running.
+        :param pulumi.Input[_builtins.str] node_name: The node name, e.g. `green-guinea-pig-01`. Use `node_names` instead. This attribute will be removed in a future version.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] node_names: List of node names to perform the action on, e.g. `["green-guinea-pig-01", "green-guinea-pig-02"]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
+        :param pulumi.Input[_builtins.int] sleep: Sleep interval in seconds between polling for node status. Default: `10`.
+        :param pulumi.Input[_builtins.int] timeout: Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
+               
+               > **Note:** Either `node_name` or `node_names` must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -503,14 +793,16 @@ class NodeActions(pulumi.CustomResource):
         __props__.__dict__["action"] = action
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["node_name"] = node_name
-        __props__.__dict__["running"] = running
+        __props__.__dict__["node_names"] = node_names
+        __props__.__dict__["sleep"] = sleep
+        __props__.__dict__["timeout"] = timeout
         return NodeActions(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter
     def action(self) -> pulumi.Output[_builtins.str]:
         """
-        The action to invoke on the node.
+        The action to invoke. See Action reference below for valid values.
         """
         return pulumi.get(self, "action")
 
@@ -524,17 +816,36 @@ class NodeActions(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="nodeName")
-    def node_name(self) -> pulumi.Output[_builtins.str]:
+    @_utilities.deprecated("""Use node_names instead. This attribute will be removed in a future version.""")
+    def node_name(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The node name, e.g `green-guinea-pig-01`.
+        The node name, e.g. `green-guinea-pig-01`. Use `node_names` instead. This attribute will be removed in a future version.
         """
         return pulumi.get(self, "node_name")
 
     @_builtins.property
+    @pulumi.getter(name="nodeNames")
+    def node_names(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        List of node names to perform the action on, e.g. `["green-guinea-pig-01", "green-guinea-pig-02"]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
+        """
+        return pulumi.get(self, "node_names")
+
+    @_builtins.property
     @pulumi.getter
-    def running(self) -> pulumi.Output[_builtins.bool]:
+    def sleep(self) -> pulumi.Output[_builtins.int]:
         """
-        If the node is running.
+        Sleep interval in seconds between polling for node status. Default: `10`.
         """
-        return pulumi.get(self, "running")
+        return pulumi.get(self, "sleep")
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> pulumi.Output[_builtins.int]:
+        """
+        Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
+
+        > **Note:** Either `node_name` or `node_names` must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.
+        """
+        return pulumi.get(self, "timeout")
 

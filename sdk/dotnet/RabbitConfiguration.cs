@@ -38,37 +38,31 @@ namespace Pulumi.CloudAmqp
     public partial class RabbitConfiguration : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Set the maximum permissible number of
-        /// channels per connection.
+        /// Set the maximum permissible number of channels per connection.
         /// </summary>
         [Output("channelMax")]
         public Output<int> ChannelMax { get; private set; } = null!;
 
         /// <summary>
-        /// Set how the cluster should handle network
-        /// partition.
+        /// Set how the cluster should handle network partition.
         /// </summary>
         [Output("clusterPartitionHandling")]
         public Output<string> ClusterPartitionHandling { get; private set; } = null!;
 
         /// <summary>
-        /// Set the maximum permissible number of
-        /// connection.
+        /// Set the maximum permissible number of connection.
         /// </summary>
         [Output("connectionMax")]
         public Output<int> ConnectionMax { get; private set; } = null!;
 
         /// <summary>
-        /// A consumer that has recevied a message and
-        /// does not acknowledge that message within the timeout in
-        /// milliseconds
+        /// A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds
         /// </summary>
         [Output("consumerTimeout")]
         public Output<int> ConsumerTimeout { get; private set; } = null!;
 
         /// <summary>
-        /// Set the server AMQP 0-9-1 heartbeat timeout
-        /// in seconds.
+        /// Set the server AMQP 0-9-1 heartbeat timeout in seconds.
         /// </summary>
         [Output("heartbeat")]
         public Output<int> Heartbeat { get; private set; } = null!;
@@ -80,44 +74,81 @@ namespace Pulumi.CloudAmqp
         public Output<int> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// Log level for the logger used for log
-        /// integrations and the CloudAMQP Console log view.
+        /// Log level for the logger used for log integrations and the CloudAMQP Console log view.
         /// </summary>
         [Output("logExchangeLevel")]
         public Output<string> LogExchangeLevel { get; private set; } = null!;
 
         /// <summary>
-        /// The largest allowed message payload size in
-        /// bytes.
+        /// The largest allowed message payload size in bytes.
         /// </summary>
         [Output("maxMessageSize")]
         public Output<int> MaxMessageSize { get; private set; } = null!;
 
         /// <summary>
-        /// Size in bytes below which to embed messages
-        /// in the queue index. 0 will turn off payload embedding in the
-        /// queue index.
+        /// Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
+        /// </summary>
+        [Output("messageInterceptorsTimestampOverwrite")]
+        public Output<string> MessageInterceptorsTimestampOverwrite { get; private set; } = null!;
+
+        /// <summary>
+        /// The exchange option determines which exchange messages from MQTT clients are published to.
+        /// </summary>
+        [Output("mqttExchange")]
+        public Output<string> MqttExchange { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable SSL certificate-based authentication for MQTT connections.
+        /// </summary>
+        [Output("mqttSslCertLogin")]
+        public Output<bool> MqttSslCertLogin { get; private set; } = null!;
+
+        /// <summary>
+        /// Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.
+        /// </summary>
+        [Output("mqttVhost")]
+        public Output<string> MqttVhost { get; private set; } = null!;
+
+        /// <summary>
+        /// Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
         /// </summary>
         [Output("queueIndexEmbedMsgsBelow")]
         public Output<int> QueueIndexEmbedMsgsBelow { get; private set; } = null!;
 
         /// <summary>
-        /// Configurable sleep time in seconds between retries
-        /// for RabbitMQ configuration. Default set to 60 seconds.
+        /// Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
         /// </summary>
         [Output("sleep")]
         public Output<int> Sleep { get; private set; } = null!;
 
         /// <summary>
-        /// Configurable timeout time in seconds for RabbitMQ
-        /// configuration. Default set to 3600 seconds.
+        /// Determines which certificate field to use as the username for TLS-based authentication.
+        /// </summary>
+        [Output("sslCertLoginFrom")]
+        public Output<string> SslCertLoginFrom { get; private set; } = null!;
+
+        /// <summary>
+        /// When set to true, TLS connections will fail if the client does not provide a certificate.
+        /// </summary>
+        [Output("sslOptionsFailIfNoPeerCert")]
+        public Output<bool> SslOptionsFailIfNoPeerCert { get; private set; } = null!;
+
+        /// <summary>
+        /// Controls peer certificate verification for TLS connections.
+        /// 
+        /// Configure sleep and timeout for API requests retries
+        /// </summary>
+        [Output("sslOptionsVerify")]
+        public Output<string> SslOptionsVerify { get; private set; } = null!;
+
+        /// <summary>
+        /// Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
         /// </summary>
         [Output("timeout")]
         public Output<int> Timeout { get; private set; } = null!;
 
         /// <summary>
-        /// When the server will enter memory based
-        /// flow-control as relative to the maximum available memory.
+        /// When the server will enter memory based flow-control as relative to the maximum available memory.
         /// </summary>
         [Output("vmMemoryHighWatermark")]
         public Output<double> VmMemoryHighWatermark { get; private set; } = null!;
@@ -169,37 +200,31 @@ namespace Pulumi.CloudAmqp
     public sealed class RabbitConfigurationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Set the maximum permissible number of
-        /// channels per connection.
+        /// Set the maximum permissible number of channels per connection.
         /// </summary>
         [Input("channelMax")]
         public Input<int>? ChannelMax { get; set; }
 
         /// <summary>
-        /// Set how the cluster should handle network
-        /// partition.
+        /// Set how the cluster should handle network partition.
         /// </summary>
         [Input("clusterPartitionHandling")]
         public Input<string>? ClusterPartitionHandling { get; set; }
 
         /// <summary>
-        /// Set the maximum permissible number of
-        /// connection.
+        /// Set the maximum permissible number of connection.
         /// </summary>
         [Input("connectionMax")]
         public Input<int>? ConnectionMax { get; set; }
 
         /// <summary>
-        /// A consumer that has recevied a message and
-        /// does not acknowledge that message within the timeout in
-        /// milliseconds
+        /// A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds
         /// </summary>
         [Input("consumerTimeout")]
         public Input<int>? ConsumerTimeout { get; set; }
 
         /// <summary>
-        /// Set the server AMQP 0-9-1 heartbeat timeout
-        /// in seconds.
+        /// Set the server AMQP 0-9-1 heartbeat timeout in seconds.
         /// </summary>
         [Input("heartbeat")]
         public Input<int>? Heartbeat { get; set; }
@@ -211,44 +236,81 @@ namespace Pulumi.CloudAmqp
         public Input<int> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// Log level for the logger used for log
-        /// integrations and the CloudAMQP Console log view.
+        /// Log level for the logger used for log integrations and the CloudAMQP Console log view.
         /// </summary>
         [Input("logExchangeLevel")]
         public Input<string>? LogExchangeLevel { get; set; }
 
         /// <summary>
-        /// The largest allowed message payload size in
-        /// bytes.
+        /// The largest allowed message payload size in bytes.
         /// </summary>
         [Input("maxMessageSize")]
         public Input<int>? MaxMessageSize { get; set; }
 
         /// <summary>
-        /// Size in bytes below which to embed messages
-        /// in the queue index. 0 will turn off payload embedding in the
-        /// queue index.
+        /// Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
+        /// </summary>
+        [Input("messageInterceptorsTimestampOverwrite")]
+        public Input<string>? MessageInterceptorsTimestampOverwrite { get; set; }
+
+        /// <summary>
+        /// The exchange option determines which exchange messages from MQTT clients are published to.
+        /// </summary>
+        [Input("mqttExchange")]
+        public Input<string>? MqttExchange { get; set; }
+
+        /// <summary>
+        /// Enable SSL certificate-based authentication for MQTT connections.
+        /// </summary>
+        [Input("mqttSslCertLogin")]
+        public Input<bool>? MqttSslCertLogin { get; set; }
+
+        /// <summary>
+        /// Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.
+        /// </summary>
+        [Input("mqttVhost")]
+        public Input<string>? MqttVhost { get; set; }
+
+        /// <summary>
+        /// Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
         /// </summary>
         [Input("queueIndexEmbedMsgsBelow")]
         public Input<int>? QueueIndexEmbedMsgsBelow { get; set; }
 
         /// <summary>
-        /// Configurable sleep time in seconds between retries
-        /// for RabbitMQ configuration. Default set to 60 seconds.
+        /// Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
         /// </summary>
         [Input("sleep")]
         public Input<int>? Sleep { get; set; }
 
         /// <summary>
-        /// Configurable timeout time in seconds for RabbitMQ
-        /// configuration. Default set to 3600 seconds.
+        /// Determines which certificate field to use as the username for TLS-based authentication.
+        /// </summary>
+        [Input("sslCertLoginFrom")]
+        public Input<string>? SslCertLoginFrom { get; set; }
+
+        /// <summary>
+        /// When set to true, TLS connections will fail if the client does not provide a certificate.
+        /// </summary>
+        [Input("sslOptionsFailIfNoPeerCert")]
+        public Input<bool>? SslOptionsFailIfNoPeerCert { get; set; }
+
+        /// <summary>
+        /// Controls peer certificate verification for TLS connections.
+        /// 
+        /// Configure sleep and timeout for API requests retries
+        /// </summary>
+        [Input("sslOptionsVerify")]
+        public Input<string>? SslOptionsVerify { get; set; }
+
+        /// <summary>
+        /// Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
 
         /// <summary>
-        /// When the server will enter memory based
-        /// flow-control as relative to the maximum available memory.
+        /// When the server will enter memory based flow-control as relative to the maximum available memory.
         /// </summary>
         [Input("vmMemoryHighWatermark")]
         public Input<double>? VmMemoryHighWatermark { get; set; }
@@ -262,37 +324,31 @@ namespace Pulumi.CloudAmqp
     public sealed class RabbitConfigurationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Set the maximum permissible number of
-        /// channels per connection.
+        /// Set the maximum permissible number of channels per connection.
         /// </summary>
         [Input("channelMax")]
         public Input<int>? ChannelMax { get; set; }
 
         /// <summary>
-        /// Set how the cluster should handle network
-        /// partition.
+        /// Set how the cluster should handle network partition.
         /// </summary>
         [Input("clusterPartitionHandling")]
         public Input<string>? ClusterPartitionHandling { get; set; }
 
         /// <summary>
-        /// Set the maximum permissible number of
-        /// connection.
+        /// Set the maximum permissible number of connection.
         /// </summary>
         [Input("connectionMax")]
         public Input<int>? ConnectionMax { get; set; }
 
         /// <summary>
-        /// A consumer that has recevied a message and
-        /// does not acknowledge that message within the timeout in
-        /// milliseconds
+        /// A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds
         /// </summary>
         [Input("consumerTimeout")]
         public Input<int>? ConsumerTimeout { get; set; }
 
         /// <summary>
-        /// Set the server AMQP 0-9-1 heartbeat timeout
-        /// in seconds.
+        /// Set the server AMQP 0-9-1 heartbeat timeout in seconds.
         /// </summary>
         [Input("heartbeat")]
         public Input<int>? Heartbeat { get; set; }
@@ -304,44 +360,81 @@ namespace Pulumi.CloudAmqp
         public Input<int>? InstanceId { get; set; }
 
         /// <summary>
-        /// Log level for the logger used for log
-        /// integrations and the CloudAMQP Console log view.
+        /// Log level for the logger used for log integrations and the CloudAMQP Console log view.
         /// </summary>
         [Input("logExchangeLevel")]
         public Input<string>? LogExchangeLevel { get; set; }
 
         /// <summary>
-        /// The largest allowed message payload size in
-        /// bytes.
+        /// The largest allowed message payload size in bytes.
         /// </summary>
         [Input("maxMessageSize")]
         public Input<int>? MaxMessageSize { get; set; }
 
         /// <summary>
-        /// Size in bytes below which to embed messages
-        /// in the queue index. 0 will turn off payload embedding in the
-        /// queue index.
+        /// Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
+        /// </summary>
+        [Input("messageInterceptorsTimestampOverwrite")]
+        public Input<string>? MessageInterceptorsTimestampOverwrite { get; set; }
+
+        /// <summary>
+        /// The exchange option determines which exchange messages from MQTT clients are published to.
+        /// </summary>
+        [Input("mqttExchange")]
+        public Input<string>? MqttExchange { get; set; }
+
+        /// <summary>
+        /// Enable SSL certificate-based authentication for MQTT connections.
+        /// </summary>
+        [Input("mqttSslCertLogin")]
+        public Input<bool>? MqttSslCertLogin { get; set; }
+
+        /// <summary>
+        /// Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.
+        /// </summary>
+        [Input("mqttVhost")]
+        public Input<string>? MqttVhost { get; set; }
+
+        /// <summary>
+        /// Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
         /// </summary>
         [Input("queueIndexEmbedMsgsBelow")]
         public Input<int>? QueueIndexEmbedMsgsBelow { get; set; }
 
         /// <summary>
-        /// Configurable sleep time in seconds between retries
-        /// for RabbitMQ configuration. Default set to 60 seconds.
+        /// Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
         /// </summary>
         [Input("sleep")]
         public Input<int>? Sleep { get; set; }
 
         /// <summary>
-        /// Configurable timeout time in seconds for RabbitMQ
-        /// configuration. Default set to 3600 seconds.
+        /// Determines which certificate field to use as the username for TLS-based authentication.
+        /// </summary>
+        [Input("sslCertLoginFrom")]
+        public Input<string>? SslCertLoginFrom { get; set; }
+
+        /// <summary>
+        /// When set to true, TLS connections will fail if the client does not provide a certificate.
+        /// </summary>
+        [Input("sslOptionsFailIfNoPeerCert")]
+        public Input<bool>? SslOptionsFailIfNoPeerCert { get; set; }
+
+        /// <summary>
+        /// Controls peer certificate verification for TLS connections.
+        /// 
+        /// Configure sleep and timeout for API requests retries
+        /// </summary>
+        [Input("sslOptionsVerify")]
+        public Input<string>? SslOptionsVerify { get; set; }
+
+        /// <summary>
+        /// Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
 
         /// <summary>
-        /// When the server will enter memory based
-        /// flow-control as relative to the maximum available memory.
+        /// When the server will enter memory based flow-control as relative to the maximum available memory.
         /// </summary>
         [Input("vmMemoryHighWatermark")]
         public Input<double>? VmMemoryHighWatermark { get; set; }

@@ -218,3 +218,18 @@ export interface SecurityFirewallRule {
      */
     services?: pulumi.Input<pulumi.Input<string>[]>;
 }
+
+export interface TrustStoreHttp {
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * PEM encoded CA certificates used to verify the HTTPS connection to the
+     * trust store URL. This is a write-only field - changes are only applied when `version`
+     * is incremented.
+     */
+    cacert?: pulumi.Input<string>;
+    /**
+     * URL to fetch trust store certificates from. RabbitMQ will periodically
+     * fetch CA certificates from this URL.
+     */
+    url: pulumi.Input<string>;
+}

@@ -98,6 +98,14 @@ export class CustomDomain extends pulumi.CustomResource {
      * The CloudAMQP instance ID.
      */
     declare public readonly instanceId: pulumi.Output<number>;
+    /**
+     * Configurable sleep time in seconds between retries for custom domain configuration
+     */
+    declare public readonly sleep: pulumi.Output<number | undefined>;
+    /**
+     * Configurable timeout time in seconds for custom domain configuration
+     */
+    declare public readonly timeout: pulumi.Output<number | undefined>;
 
     /**
      * Create a CustomDomain resource with the given unique name, arguments, and options.
@@ -114,6 +122,8 @@ export class CustomDomain extends pulumi.CustomResource {
             const state = argsOrState as CustomDomainState | undefined;
             resourceInputs["hostname"] = state?.hostname;
             resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["sleep"] = state?.sleep;
+            resourceInputs["timeout"] = state?.timeout;
         } else {
             const args = argsOrState as CustomDomainArgs | undefined;
             if (args?.hostname === undefined && !opts.urn) {
@@ -124,6 +134,8 @@ export class CustomDomain extends pulumi.CustomResource {
             }
             resourceInputs["hostname"] = args?.hostname;
             resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["sleep"] = args?.sleep;
+            resourceInputs["timeout"] = args?.timeout;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(CustomDomain.__pulumiType, name, resourceInputs, opts);
@@ -142,6 +154,14 @@ export interface CustomDomainState {
      * The CloudAMQP instance ID.
      */
     instanceId?: pulumi.Input<number>;
+    /**
+     * Configurable sleep time in seconds between retries for custom domain configuration
+     */
+    sleep?: pulumi.Input<number>;
+    /**
+     * Configurable timeout time in seconds for custom domain configuration
+     */
+    timeout?: pulumi.Input<number>;
 }
 
 /**
@@ -156,4 +176,12 @@ export interface CustomDomainArgs {
      * The CloudAMQP instance ID.
      */
     instanceId: pulumi.Input<number>;
+    /**
+     * Configurable sleep time in seconds between retries for custom domain configuration
+     */
+    sleep?: pulumi.Input<number>;
+    /**
+     * Configurable timeout time in seconds for custom domain configuration
+     */
+    timeout?: pulumi.Input<number>;
 }
