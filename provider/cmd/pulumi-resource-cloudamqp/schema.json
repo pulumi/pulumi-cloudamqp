@@ -343,6 +343,23 @@
                 "ip"
             ]
         },
+        "cloudamqp:index/TrustStoreHttp:TrustStoreHttp": {
+            "properties": {
+                "cacert": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nPEM encoded CA certificates used to verify the HTTPS connection to the\ntrust store URL. This is a write-only field - changes are only applied when \u003cspan pulumi-lang-nodejs=\"`version`\" pulumi-lang-dotnet=\"`Version`\" pulumi-lang-go=\"`version`\" pulumi-lang-python=\"`version`\" pulumi-lang-yaml=\"`version`\" pulumi-lang-java=\"`version`\"\u003e`version`\u003c/span\u003e\nis incremented.\n",
+                    "secret": true
+                },
+                "url": {
+                    "type": "string",
+                    "description": "URL to fetch trust store certificates from. RabbitMQ will periodically\nfetch CA certificates from this URL.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "url"
+            ]
+        },
         "cloudamqp:index/getAccountInstance:getAccountInstance": {
             "properties": {
                 "id": {
@@ -905,6 +922,115 @@
                 "type": "object"
             }
         },
+        "cloudamqp:index/customCertificate:CustomCertificate": {
+            "description": "This resource allows you to upload a custom certificate to all servers in your cluster. Update is\nnot supported, all changes require replacement. \u003cspan pulumi-lang-nodejs=\"`ca`\" pulumi-lang-dotnet=\"`Ca`\" pulumi-lang-go=\"`ca`\" pulumi-lang-python=\"`ca`\" pulumi-lang-yaml=\"`ca`\" pulumi-lang-java=\"`ca`\"\u003e`ca`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`cert`\" pulumi-lang-dotnet=\"`Cert`\" pulumi-lang-go=\"`cert`\" pulumi-lang-python=\"`cert`\" pulumi-lang-yaml=\"`cert`\" pulumi-lang-java=\"`cert`\"\u003e`cert`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`privateKey`\" pulumi-lang-dotnet=\"`PrivateKey`\" pulumi-lang-go=\"`privateKey`\" pulumi-lang-python=\"`private_key`\" pulumi-lang-yaml=\"`privateKey`\" pulumi-lang-java=\"`privateKey`\"\u003e`private_key`\u003c/span\u003e all use **WriteOnly**,\nno information is present in plan phase, logs or stored in the state.\n\n\u003e **WARNING:** Please note that when uploading a custom or restoring to default certificate,\nall current connections will be closed.\n\n\u003e **Note:** Destroying this resource will restore the cluster to use the default CloudAMQP certificate.\n\nOnly available for dedicated subscription plans running ***RabbitMQ***.\n\n",
+            "properties": {
+                "ca": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nThe PEM-encoded Certificate Authority (CA).\n",
+                    "secret": true
+                },
+                "cert": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nThe PEM-encoded server certificate.\n",
+                    "secret": true
+                },
+                "instanceId": {
+                    "type": "integer",
+                    "description": "The CloudAMQP instance identifier.\n"
+                },
+                "privateKey": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nThe PEM-encoded private key corresponding to the certificate.\n",
+                    "secret": true
+                },
+                "sniHosts": {
+                    "type": "string",
+                    "description": "A hostname (Server Name Indication) that this certificate applies to.\n"
+                },
+                "version": {
+                    "type": "integer",
+                    "description": "An argument to trigger force new (default: 1).\n"
+                }
+            },
+            "required": [
+                "ca",
+                "cert",
+                "instanceId",
+                "privateKey",
+                "sniHosts",
+                "version"
+            ],
+            "inputProperties": {
+                "ca": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nThe PEM-encoded Certificate Authority (CA).\n",
+                    "secret": true
+                },
+                "cert": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nThe PEM-encoded server certificate.\n",
+                    "secret": true
+                },
+                "instanceId": {
+                    "type": "integer",
+                    "description": "The CloudAMQP instance identifier.\n"
+                },
+                "privateKey": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nThe PEM-encoded private key corresponding to the certificate.\n",
+                    "secret": true
+                },
+                "sniHosts": {
+                    "type": "string",
+                    "description": "A hostname (Server Name Indication) that this certificate applies to.\n"
+                },
+                "version": {
+                    "type": "integer",
+                    "description": "An argument to trigger force new (default: 1).\n"
+                }
+            },
+            "requiredInputs": [
+                "ca",
+                "cert",
+                "instanceId",
+                "privateKey",
+                "sniHosts"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering CustomCertificate resources.\n",
+                "properties": {
+                    "ca": {
+                        "type": "string",
+                        "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nThe PEM-encoded Certificate Authority (CA).\n",
+                        "secret": true
+                    },
+                    "cert": {
+                        "type": "string",
+                        "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nThe PEM-encoded server certificate.\n",
+                        "secret": true
+                    },
+                    "instanceId": {
+                        "type": "integer",
+                        "description": "The CloudAMQP instance identifier.\n"
+                    },
+                    "privateKey": {
+                        "type": "string",
+                        "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nThe PEM-encoded private key corresponding to the certificate.\n",
+                        "secret": true
+                    },
+                    "sniHosts": {
+                        "type": "string",
+                        "description": "A hostname (Server Name Indication) that this certificate applies to.\n"
+                    },
+                    "version": {
+                        "type": "integer",
+                        "description": "An argument to trigger force new (default: 1).\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "cloudamqp:index/customDomain:CustomDomain": {
             "description": "This resource allows you to configure and manage your custom domain for the CloudAMQP instance.\n\nAdding a custom domain to your instance will generate a TLS certificate from [Let's Encrypt], for\nthe given hostname, and install it on all servers in your cluster. The certificate will be\nautomatically renewed going forward.\n\n\u003e **WARNING:** Please note that when creating, changing or deleting the custom domain, the\nlisteners on your servers will be restarted in order to apply the changes. This will close your\ncurrent connections.\n\nYour custom domain name needs to point to your CloudAMQP hostname, preferably using a CNAME DNS\nrecord.\n\nOnly available for dedicated subscription plans running ***RabbitMQ***.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst settings = new cloudamqp.CustomDomain(\"settings\", {\n    instanceId: instance.id,\n    hostname: \"myname.mydomain\",\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nsettings = cloudamqp.CustomDomain(\"settings\",\n    instance_id=instance[\"id\"],\n    hostname=\"myname.mydomain\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var settings = new CloudAmqp.CustomDomain(\"settings\", new()\n    {\n        InstanceId = instance.Id,\n        Hostname = \"myname.mydomain\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.NewCustomDomain(ctx, \"settings\", \u0026cloudamqp.CustomDomainArgs{\n\t\t\tInstanceId: pulumi.Any(instance.Id),\n\t\t\tHostname:   pulumi.String(\"myname.mydomain\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.cloudamqp.CustomDomain;\nimport com.pulumi.cloudamqp.CustomDomainArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var settings = new CustomDomain(\"settings\", CustomDomainArgs.builder()\n            .instanceId(instance.id())\n            .hostname(\"myname.mydomain\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  settings:\n    type: cloudamqp:CustomDomain\n    properties:\n      instanceId: ${instance.id}\n      hostname: myname.mydomain\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Dependency\n\nThis resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n\n## Import\n\n`cloudamqp_custom_domain` can be imported using CloudAMQP instance identifier. To retrieve the\n\ninstance identifier, use [CloudAMQP API list instances].\n\nhcl\n\nimport {\n\n  to = cloudamqp_alarm.alarm\n\n  id = cloudamqp_instance.instance.id\n\n}\n\nOr use Terraform CLI:\n\n```sh\n$ pulumi import cloudamqp:index/customDomain:CustomDomain settings \u003cinstance_id\u003e`\n```\n\n[CloudAMQP API list instances]: https://docs.cloudamqp.com/index.html#tag/instances/get/instances\n\n[Let's Encrypt]: https://letsencrypt.org/\n\n",
             "properties": {
@@ -915,6 +1041,14 @@
                 "instanceId": {
                     "type": "integer",
                     "description": "The CloudAMQP instance ID.\n"
+                },
+                "sleep": {
+                    "type": "integer",
+                    "description": "Configurable sleep time in seconds between retries for custom domain configuration"
+                },
+                "timeout": {
+                    "type": "integer",
+                    "description": "Configurable timeout time in seconds for custom domain configuration"
                 }
             },
             "required": [
@@ -930,6 +1064,14 @@
                     "type": "integer",
                     "description": "The CloudAMQP instance ID.\n",
                     "willReplaceOnChanges": true
+                },
+                "sleep": {
+                    "type": "integer",
+                    "description": "Configurable sleep time in seconds between retries for custom domain configuration"
+                },
+                "timeout": {
+                    "type": "integer",
+                    "description": "Configurable timeout time in seconds for custom domain configuration"
                 }
             },
             "requiredInputs": [
@@ -947,6 +1089,14 @@
                         "type": "integer",
                         "description": "The CloudAMQP instance ID.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "sleep": {
+                        "type": "integer",
+                        "description": "Configurable sleep time in seconds between retries for custom domain configuration"
+                    },
+                    "timeout": {
+                        "type": "integer",
+                        "description": "Configurable timeout time in seconds for custom domain configuration"
                     }
                 },
                 "type": "object"
@@ -2286,11 +2436,11 @@
             }
         },
         "cloudamqp:index/nodeActions:NodeActions": {
-            "description": "This resource allows you to invoke actions on a specific node.\n\nOnly available for dedicated subscription plans.\n\n## Example Usage\n\n\u003cdetails\u003e\n  \u003csummary\u003e\n    \u003cb\u003e\n      \u003ci\u003eAlready know the node identifier (e.g. from state file)\u003c/i\u003e\n    \u003c/b\u003e\n  \u003c/summary\u003e\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\n// New recipient to receieve notifications\nconst nodeAction = new cloudamqp.NodeActions(\"node_action\", {\n    instanceId: instance.id,\n    nodeName: \"\u003cnode name\u003e\",\n    action: \"restart\",\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\n# New recipient to receieve notifications\nnode_action = cloudamqp.NodeActions(\"node_action\",\n    instance_id=instance[\"id\"],\n    node_name=\"\u003cnode name\u003e\",\n    action=\"restart\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // New recipient to receieve notifications\n    var nodeAction = new CloudAmqp.NodeActions(\"node_action\", new()\n    {\n        InstanceId = instance.Id,\n        NodeName = \"\u003cnode name\u003e\",\n        Action = \"restart\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// New recipient to receieve notifications\n\t\t_, err := cloudamqp.NewNodeActions(ctx, \"node_action\", \u0026cloudamqp.NodeActionsArgs{\n\t\t\tInstanceId: pulumi.Any(instance.Id),\n\t\t\tNodeName:   pulumi.String(\"\u003cnode name\u003e\"),\n\t\t\tAction:     pulumi.String(\"restart\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.cloudamqp.NodeActions;\nimport com.pulumi.cloudamqp.NodeActionsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // New recipient to receieve notifications\n        var nodeAction = new NodeActions(\"nodeAction\", NodeActionsArgs.builder()\n            .instanceId(instance.id())\n            .nodeName(\"\u003cnode name\u003e\")\n            .action(\"restart\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # New recipient to receieve notifications\n  nodeAction:\n    type: cloudamqp:NodeActions\n    name: node_action\n    properties:\n      instanceId: ${instance.id}\n      nodeName: \u003cnode name\u003e\n      action: restart\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n\u003c/details\u003e\n\n\u003cdetails\u003e\n  \u003csummary\u003e\n    \u003cb\u003e\n      \u003ci\u003eMulti node RabbitMQ restart\u003c/i\u003e\n    \u003c/b\u003e\n  \u003c/summary\u003e\n\nUsing data source \u003cspan pulumi-lang-nodejs=\"`cloudamqp.getNodes`\" pulumi-lang-dotnet=\"`cloudamqp.getNodes`\" pulumi-lang-go=\"`getNodes`\" pulumi-lang-python=\"`get_nodes`\" pulumi-lang-yaml=\"`cloudamqp.getNodes`\" pulumi-lang-java=\"`cloudamqp.getNodes`\"\u003e`cloudamqp.getNodes`\u003c/span\u003e to restart RabbitMQ on all nodes.\n\n\u003e **Note:** RabbitMQ restart on multiple nodes need to be chained, let one node restart at the time.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst listNodes = cloudamqp.getNodes({\n    instanceId: instance.id,\n});\nconst restart01 = new cloudamqp.NodeActions(\"restart_01\", {\n    instanceId: instance.id,\n    action: \"restart\",\n    nodeName: listNodes.then(listNodes =\u003e listNodes.nodes?.[0]?.name),\n});\nconst restart02 = new cloudamqp.NodeActions(\"restart_02\", {\n    instanceId: instance.id,\n    action: \"restart\",\n    nodeName: listNodes.then(listNodes =\u003e listNodes.nodes?.[1]?.name),\n}, {\n    dependsOn: [restart01],\n});\nconst restart03 = new cloudamqp.NodeActions(\"restart_03\", {\n    instanceId: instance.id,\n    action: \"restart\",\n    nodeName: listNodes.then(listNodes =\u003e listNodes.nodes?.[2]?.name),\n}, {\n    dependsOn: [\n        restart01,\n        restart02,\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nlist_nodes = cloudamqp.get_nodes(instance_id=instance[\"id\"])\nrestart01 = cloudamqp.NodeActions(\"restart_01\",\n    instance_id=instance[\"id\"],\n    action=\"restart\",\n    node_name=list_nodes.nodes[0].name)\nrestart02 = cloudamqp.NodeActions(\"restart_02\",\n    instance_id=instance[\"id\"],\n    action=\"restart\",\n    node_name=list_nodes.nodes[1].name,\n    opts = pulumi.ResourceOptions(depends_on=[restart01]))\nrestart03 = cloudamqp.NodeActions(\"restart_03\",\n    instance_id=instance[\"id\"],\n    action=\"restart\",\n    node_name=list_nodes.nodes[2].name,\n    opts = pulumi.ResourceOptions(depends_on=[\n            restart01,\n            restart02,\n        ]))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var listNodes = CloudAmqp.GetNodes.Invoke(new()\n    {\n        InstanceId = instance.Id,\n    });\n\n    var restart01 = new CloudAmqp.NodeActions(\"restart_01\", new()\n    {\n        InstanceId = instance.Id,\n        Action = \"restart\",\n        NodeName = listNodes.Apply(getNodesResult =\u003e getNodesResult.Nodes[0]?.Name),\n    });\n\n    var restart02 = new CloudAmqp.NodeActions(\"restart_02\", new()\n    {\n        InstanceId = instance.Id,\n        Action = \"restart\",\n        NodeName = listNodes.Apply(getNodesResult =\u003e getNodesResult.Nodes[1]?.Name),\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            restart01,\n        },\n    });\n\n    var restart03 = new CloudAmqp.NodeActions(\"restart_03\", new()\n    {\n        InstanceId = instance.Id,\n        Action = \"restart\",\n        NodeName = listNodes.Apply(getNodesResult =\u003e getNodesResult.Nodes[2]?.Name),\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            restart01,\n            restart02,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tlistNodes, err := cloudamqp.GetNodes(ctx, \u0026cloudamqp.GetNodesArgs{\n\t\t\tInstanceId: instance.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\trestart01, err := cloudamqp.NewNodeActions(ctx, \"restart_01\", \u0026cloudamqp.NodeActionsArgs{\n\t\t\tInstanceId: pulumi.Any(instance.Id),\n\t\t\tAction:     pulumi.String(\"restart\"),\n\t\t\tNodeName:   pulumi.String(listNodes.Nodes[0].Name),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\trestart02, err := cloudamqp.NewNodeActions(ctx, \"restart_02\", \u0026cloudamqp.NodeActionsArgs{\n\t\t\tInstanceId: pulumi.Any(instance.Id),\n\t\t\tAction:     pulumi.String(\"restart\"),\n\t\t\tNodeName:   pulumi.String(listNodes.Nodes[1].Name),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\trestart01,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewNodeActions(ctx, \"restart_03\", \u0026cloudamqp.NodeActionsArgs{\n\t\t\tInstanceId: pulumi.Any(instance.Id),\n\t\t\tAction:     pulumi.String(\"restart\"),\n\t\t\tNodeName:   pulumi.String(listNodes.Nodes[2].Name),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\trestart01,\n\t\t\trestart02,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.cloudamqp.CloudamqpFunctions;\nimport com.pulumi.cloudamqp.inputs.GetNodesArgs;\nimport com.pulumi.cloudamqp.NodeActions;\nimport com.pulumi.cloudamqp.NodeActionsArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var listNodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()\n            .instanceId(instance.id())\n            .build());\n\n        var restart01 = new NodeActions(\"restart01\", NodeActionsArgs.builder()\n            .instanceId(instance.id())\n            .action(\"restart\")\n            .nodeName(listNodes.nodes()[0].name())\n            .build());\n\n        var restart02 = new NodeActions(\"restart02\", NodeActionsArgs.builder()\n            .instanceId(instance.id())\n            .action(\"restart\")\n            .nodeName(listNodes.nodes()[1].name())\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(restart01)\n                .build());\n\n        var restart03 = new NodeActions(\"restart03\", NodeActionsArgs.builder()\n            .instanceId(instance.id())\n            .action(\"restart\")\n            .nodeName(listNodes.nodes()[2].name())\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(                \n                    restart01,\n                    restart02)\n                .build());\n\n    }\n}\n```\n```yaml\nresources:\n  restart01:\n    type: cloudamqp:NodeActions\n    name: restart_01\n    properties:\n      instanceId: ${instance.id}\n      action: restart\n      nodeName: ${listNodes.nodes[0].name}\n  restart02:\n    type: cloudamqp:NodeActions\n    name: restart_02\n    properties:\n      instanceId: ${instance.id}\n      action: restart\n      nodeName: ${listNodes.nodes[1].name}\n    options:\n      dependsOn:\n        - ${restart01}\n  restart03:\n    type: cloudamqp:NodeActions\n    name: restart_03\n    properties:\n      instanceId: ${instance.id}\n      action: restart\n      nodeName: ${listNodes.nodes[2].name}\n    options:\n      dependsOn:\n        - ${restart01}\n        - ${restart02}\nvariables:\n  listNodes:\n    fn::invoke:\n      function: cloudamqp:getNodes\n      arguments:\n        instanceId: ${instance.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n\u003c/details\u003e\n\n\u003cdetails\u003e\n  \u003csummary\u003e\n    \u003cb\u003e\n      \u003ci\u003eCombine log level configuration change with multi node RabbitMQ restart\u003c/i\u003e\n    \u003c/b\u003e\n  \u003c/summary\u003e\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst listNodes = cloudamqp.getNodes({\n    instanceId: instance.id,\n});\nconst rabbitmqConfig = new cloudamqp.RabbitConfiguration(\"rabbitmq_config\", {\n    instanceId: instance.id,\n    logExchangeLevel: \"info\",\n});\nconst restart01 = new cloudamqp.NodeActions(\"restart_01\", {\n    instanceId: instance.id,\n    action: \"restart\",\n    nodeName: listNodes.then(listNodes =\u003e listNodes.nodes?.[0]?.name),\n}, {\n    dependsOn: [rabbitmqConfig],\n});\nconst restart02 = new cloudamqp.NodeActions(\"restart_02\", {\n    instanceId: instance.id,\n    action: \"restart\",\n    nodeName: listNodes.then(listNodes =\u003e listNodes.nodes?.[1]?.name),\n}, {\n    dependsOn: [\n        rabbitmqConfig,\n        restart01,\n    ],\n});\nconst restart03 = new cloudamqp.NodeActions(\"restart_03\", {\n    instanceId: instance.id,\n    action: \"restart\",\n    nodeName: listNodes.then(listNodes =\u003e listNodes.nodes?.[2]?.name),\n}, {\n    dependsOn: [\n        rabbitmqConfig,\n        restart01,\n        restart02,\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nlist_nodes = cloudamqp.get_nodes(instance_id=instance[\"id\"])\nrabbitmq_config = cloudamqp.RabbitConfiguration(\"rabbitmq_config\",\n    instance_id=instance[\"id\"],\n    log_exchange_level=\"info\")\nrestart01 = cloudamqp.NodeActions(\"restart_01\",\n    instance_id=instance[\"id\"],\n    action=\"restart\",\n    node_name=list_nodes.nodes[0].name,\n    opts = pulumi.ResourceOptions(depends_on=[rabbitmq_config]))\nrestart02 = cloudamqp.NodeActions(\"restart_02\",\n    instance_id=instance[\"id\"],\n    action=\"restart\",\n    node_name=list_nodes.nodes[1].name,\n    opts = pulumi.ResourceOptions(depends_on=[\n            rabbitmq_config,\n            restart01,\n        ]))\nrestart03 = cloudamqp.NodeActions(\"restart_03\",\n    instance_id=instance[\"id\"],\n    action=\"restart\",\n    node_name=list_nodes.nodes[2].name,\n    opts = pulumi.ResourceOptions(depends_on=[\n            rabbitmq_config,\n            restart01,\n            restart02,\n        ]))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var listNodes = CloudAmqp.GetNodes.Invoke(new()\n    {\n        InstanceId = instance.Id,\n    });\n\n    var rabbitmqConfig = new CloudAmqp.RabbitConfiguration(\"rabbitmq_config\", new()\n    {\n        InstanceId = instance.Id,\n        LogExchangeLevel = \"info\",\n    });\n\n    var restart01 = new CloudAmqp.NodeActions(\"restart_01\", new()\n    {\n        InstanceId = instance.Id,\n        Action = \"restart\",\n        NodeName = listNodes.Apply(getNodesResult =\u003e getNodesResult.Nodes[0]?.Name),\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            rabbitmqConfig,\n        },\n    });\n\n    var restart02 = new CloudAmqp.NodeActions(\"restart_02\", new()\n    {\n        InstanceId = instance.Id,\n        Action = \"restart\",\n        NodeName = listNodes.Apply(getNodesResult =\u003e getNodesResult.Nodes[1]?.Name),\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            rabbitmqConfig,\n            restart01,\n        },\n    });\n\n    var restart03 = new CloudAmqp.NodeActions(\"restart_03\", new()\n    {\n        InstanceId = instance.Id,\n        Action = \"restart\",\n        NodeName = listNodes.Apply(getNodesResult =\u003e getNodesResult.Nodes[2]?.Name),\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            rabbitmqConfig,\n            restart01,\n            restart02,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tlistNodes, err := cloudamqp.GetNodes(ctx, \u0026cloudamqp.GetNodesArgs{\n\t\t\tInstanceId: instance.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\trabbitmqConfig, err := cloudamqp.NewRabbitConfiguration(ctx, \"rabbitmq_config\", \u0026cloudamqp.RabbitConfigurationArgs{\n\t\t\tInstanceId:       pulumi.Any(instance.Id),\n\t\t\tLogExchangeLevel: pulumi.String(\"info\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\trestart01, err := cloudamqp.NewNodeActions(ctx, \"restart_01\", \u0026cloudamqp.NodeActionsArgs{\n\t\t\tInstanceId: pulumi.Any(instance.Id),\n\t\t\tAction:     pulumi.String(\"restart\"),\n\t\t\tNodeName:   pulumi.String(listNodes.Nodes[0].Name),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\trabbitmqConfig,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\trestart02, err := cloudamqp.NewNodeActions(ctx, \"restart_02\", \u0026cloudamqp.NodeActionsArgs{\n\t\t\tInstanceId: pulumi.Any(instance.Id),\n\t\t\tAction:     pulumi.String(\"restart\"),\n\t\t\tNodeName:   pulumi.String(listNodes.Nodes[1].Name),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\trabbitmqConfig,\n\t\t\trestart01,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewNodeActions(ctx, \"restart_03\", \u0026cloudamqp.NodeActionsArgs{\n\t\t\tInstanceId: pulumi.Any(instance.Id),\n\t\t\tAction:     pulumi.String(\"restart\"),\n\t\t\tNodeName:   pulumi.String(listNodes.Nodes[2].Name),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\trabbitmqConfig,\n\t\t\trestart01,\n\t\t\trestart02,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.cloudamqp.CloudamqpFunctions;\nimport com.pulumi.cloudamqp.inputs.GetNodesArgs;\nimport com.pulumi.cloudamqp.RabbitConfiguration;\nimport com.pulumi.cloudamqp.RabbitConfigurationArgs;\nimport com.pulumi.cloudamqp.NodeActions;\nimport com.pulumi.cloudamqp.NodeActionsArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var listNodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()\n            .instanceId(instance.id())\n            .build());\n\n        var rabbitmqConfig = new RabbitConfiguration(\"rabbitmqConfig\", RabbitConfigurationArgs.builder()\n            .instanceId(instance.id())\n            .logExchangeLevel(\"info\")\n            .build());\n\n        var restart01 = new NodeActions(\"restart01\", NodeActionsArgs.builder()\n            .instanceId(instance.id())\n            .action(\"restart\")\n            .nodeName(listNodes.nodes()[0].name())\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(rabbitmqConfig)\n                .build());\n\n        var restart02 = new NodeActions(\"restart02\", NodeActionsArgs.builder()\n            .instanceId(instance.id())\n            .action(\"restart\")\n            .nodeName(listNodes.nodes()[1].name())\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(                \n                    rabbitmqConfig,\n                    restart01)\n                .build());\n\n        var restart03 = new NodeActions(\"restart03\", NodeActionsArgs.builder()\n            .instanceId(instance.id())\n            .action(\"restart\")\n            .nodeName(listNodes.nodes()[2].name())\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(                \n                    rabbitmqConfig,\n                    restart01,\n                    restart02)\n                .build());\n\n    }\n}\n```\n```yaml\nresources:\n  rabbitmqConfig:\n    type: cloudamqp:RabbitConfiguration\n    name: rabbitmq_config\n    properties:\n      instanceId: ${instance.id}\n      logExchangeLevel: info\n  restart01:\n    type: cloudamqp:NodeActions\n    name: restart_01\n    properties:\n      instanceId: ${instance.id}\n      action: restart\n      nodeName: ${listNodes.nodes[0].name}\n    options:\n      dependsOn:\n        - ${rabbitmqConfig}\n  restart02:\n    type: cloudamqp:NodeActions\n    name: restart_02\n    properties:\n      instanceId: ${instance.id}\n      action: restart\n      nodeName: ${listNodes.nodes[1].name}\n    options:\n      dependsOn:\n        - ${rabbitmqConfig}\n        - ${restart01}\n  restart03:\n    type: cloudamqp:NodeActions\n    name: restart_03\n    properties:\n      instanceId: ${instance.id}\n      action: restart\n      nodeName: ${listNodes.nodes[2].name}\n    options:\n      dependsOn:\n        - ${rabbitmqConfig}\n        - ${restart01}\n        - ${restart02}\nvariables:\n  listNodes:\n    fn::invoke:\n      function: cloudamqp:getNodes\n      arguments:\n        instanceId: ${instance.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n\u003c/details\u003e\n\n## Action reference\n\nValid actions for ***LavinMQ***.\n\n| Action       | Info                               |\n|--------------|------------------------------------|\n| start        | Start LavinMQ                      |\n| stop         | Stop LavinMQ                       |\n| restart      | Restart LavinMQ                    |\n| reboot       | Reboot the node                    |\n\nValid actions for ***RabbitMQ***.\n\n| Action       | Info                               |\n|--------------|------------------------------------|\n| start        | Start RabbitMQ                     |\n| stop         | Stop RabbitMQ                      |\n| restart      | Restart RabbitMQ                   |\n| reboot       | Reboot the node                    |\n| mgmt.restart | Restart the RabbitMQ mgmt interace |\n\n## Dependency\n\nThis resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id` and node\nname.\n\n## Import\n\nThis resource cannot be imported.\n\n",
+            "description": "This resource allows you to invoke actions on specific nodes or the entire cluster. Actions can target individual nodes, multiple nodes, or all nodes in the cluster at once.\n\nOnly available for dedicated subscription plans.\n\n\u003e **Note:** From version 1.41.0, this resource supports cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`) and the \u003cspan pulumi-lang-nodejs=\"`nodeNames`\" pulumi-lang-dotnet=\"`NodeNames`\" pulumi-lang-go=\"`nodeNames`\" pulumi-lang-python=\"`node_names`\" pulumi-lang-yaml=\"`nodeNames`\" pulumi-lang-java=\"`nodeNames`\"\u003e`node_names`\u003c/span\u003e list attribute for targeting multiple nodes. The \u003cspan pulumi-lang-nodejs=\"`nodeName`\" pulumi-lang-dotnet=\"`NodeName`\" pulumi-lang-go=\"`nodeName`\" pulumi-lang-python=\"`node_name`\" pulumi-lang-yaml=\"`nodeName`\" pulumi-lang-java=\"`nodeName`\"\u003e`node_name`\u003c/span\u003e attribute is deprecated in favor of \u003cspan pulumi-lang-nodejs=\"`nodeNames`\" pulumi-lang-dotnet=\"`NodeNames`\" pulumi-lang-go=\"`nodeNames`\" pulumi-lang-python=\"`node_names`\" pulumi-lang-yaml=\"`nodeNames`\" pulumi-lang-java=\"`nodeNames`\"\u003e`node_names`\u003c/span\u003e.\n\n## Example Usage\n\n\u003cdetails\u003e\n  \u003csummary\u003e\n    \u003cb\u003e\n      \u003ci\u003eCluster-wide broker restart (recommended for v1.41.0+)\u003c/i\u003e\n    \u003c/b\u003e\n  \u003c/summary\u003e\n\nRestart the broker on all nodes of the cluster at once. Making sure the broker is stopped and started in correct order. This is the simplest approach for cluster-wide operations.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst clusterRestart = new cloudamqp.NodeActions(\"cluster_restart\", {\n    instanceId: instance.id,\n    action: \"cluster.restart\",\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\ncluster_restart = cloudamqp.NodeActions(\"cluster_restart\",\n    instance_id=instance[\"id\"],\n    action=\"cluster.restart\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var clusterRestart = new CloudAmqp.NodeActions(\"cluster_restart\", new()\n    {\n        InstanceId = instance.Id,\n        Action = \"cluster.restart\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.NewNodeActions(ctx, \"cluster_restart\", \u0026cloudamqp.NodeActionsArgs{\n\t\t\tInstanceId: pulumi.Any(instance.Id),\n\t\t\tAction:     pulumi.String(\"cluster.restart\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.cloudamqp.NodeActions;\nimport com.pulumi.cloudamqp.NodeActionsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var clusterRestart = new NodeActions(\"clusterRestart\", NodeActionsArgs.builder()\n            .instanceId(instance.id())\n            .action(\"cluster.restart\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  clusterRestart:\n    type: cloudamqp:NodeActions\n    name: cluster_restart\n    properties:\n      instanceId: ${instance.id}\n      action: cluster.restart\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n\u003c/details\u003e\n\n\u003cdetails\u003e\n  \u003csummary\u003e\n    \u003cb\u003e\n      \u003ci\u003eRestart broker on specific nodes using node_names\u003c/i\u003e\n    \u003c/b\u003e\n  \u003c/summary\u003e\n\nTarget specific nodes using the \u003cspan pulumi-lang-nodejs=\"`nodeNames`\" pulumi-lang-dotnet=\"`NodeNames`\" pulumi-lang-go=\"`nodeNames`\" pulumi-lang-python=\"`node_names`\" pulumi-lang-yaml=\"`nodeNames`\" pulumi-lang-java=\"`nodeNames`\"\u003e`node_names`\u003c/span\u003e list attribute.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst nodes = cloudamqp.getNodes({\n    instanceId: instance.id,\n});\nconst restartSubset = new cloudamqp.NodeActions(\"restart_subset\", {\n    instanceId: instance.id,\n    action: \"restart\",\n    nodeNames: [\n        nodes.then(nodes =\u003e nodes.nodes?.[0]?.name),\n        nodes.then(nodes =\u003e nodes.nodes?.[1]?.name),\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nnodes = cloudamqp.get_nodes(instance_id=instance[\"id\"])\nrestart_subset = cloudamqp.NodeActions(\"restart_subset\",\n    instance_id=instance[\"id\"],\n    action=\"restart\",\n    node_names=[\n        nodes.nodes[0].name,\n        nodes.nodes[1].name,\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var nodes = CloudAmqp.GetNodes.Invoke(new()\n    {\n        InstanceId = instance.Id,\n    });\n\n    var restartSubset = new CloudAmqp.NodeActions(\"restart_subset\", new()\n    {\n        InstanceId = instance.Id,\n        Action = \"restart\",\n        NodeNames = new[]\n        {\n            nodes.Apply(getNodesResult =\u003e getNodesResult.Nodes[0]?.Name),\n            nodes.Apply(getNodesResult =\u003e getNodesResult.Nodes[1]?.Name),\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tnodes, err := cloudamqp.GetNodes(ctx, \u0026cloudamqp.GetNodesArgs{\n\t\t\tInstanceId: instance.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewNodeActions(ctx, \"restart_subset\", \u0026cloudamqp.NodeActionsArgs{\n\t\t\tInstanceId: pulumi.Any(instance.Id),\n\t\t\tAction:     pulumi.String(\"restart\"),\n\t\t\tNodeNames: pulumi.StringArray{\n\t\t\t\tpulumi.String(nodes.Nodes[0].Name),\n\t\t\t\tpulumi.String(nodes.Nodes[1].Name),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.cloudamqp.CloudamqpFunctions;\nimport com.pulumi.cloudamqp.inputs.GetNodesArgs;\nimport com.pulumi.cloudamqp.NodeActions;\nimport com.pulumi.cloudamqp.NodeActionsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()\n            .instanceId(instance.id())\n            .build());\n\n        var restartSubset = new NodeActions(\"restartSubset\", NodeActionsArgs.builder()\n            .instanceId(instance.id())\n            .action(\"restart\")\n            .nodeNames(            \n                nodes.nodes()[0].name(),\n                nodes.nodes()[1].name())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  restartSubset:\n    type: cloudamqp:NodeActions\n    name: restart_subset\n    properties:\n      instanceId: ${instance.id}\n      action: restart\n      nodeNames:\n        - ${nodes.nodes[0].name}\n        - ${nodes.nodes[1].name}\nvariables:\n  nodes:\n    fn::invoke:\n      function: cloudamqp:getNodes\n      arguments:\n        instanceId: ${instance.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n\u003c/details\u003e\n\n\u003cdetails\u003e\n  \u003csummary\u003e\n    \u003cb\u003e\n      \u003ci\u003eReboot a single node\u003c/i\u003e\n    \u003c/b\u003e\n  \u003c/summary\u003e\n\nReboot the entire node (VM) rather than just the broker.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst nodes = cloudamqp.getNodes({\n    instanceId: instance.id,\n});\nconst rebootNode = new cloudamqp.NodeActions(\"reboot_node\", {\n    instanceId: instance.id,\n    action: \"reboot\",\n    nodeNames: [nodes.then(nodes =\u003e nodes.nodes?.[0]?.name)],\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nnodes = cloudamqp.get_nodes(instance_id=instance[\"id\"])\nreboot_node = cloudamqp.NodeActions(\"reboot_node\",\n    instance_id=instance[\"id\"],\n    action=\"reboot\",\n    node_names=[nodes.nodes[0].name])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var nodes = CloudAmqp.GetNodes.Invoke(new()\n    {\n        InstanceId = instance.Id,\n    });\n\n    var rebootNode = new CloudAmqp.NodeActions(\"reboot_node\", new()\n    {\n        InstanceId = instance.Id,\n        Action = \"reboot\",\n        NodeNames = new[]\n        {\n            nodes.Apply(getNodesResult =\u003e getNodesResult.Nodes[0]?.Name),\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tnodes, err := cloudamqp.GetNodes(ctx, \u0026cloudamqp.GetNodesArgs{\n\t\t\tInstanceId: instance.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewNodeActions(ctx, \"reboot_node\", \u0026cloudamqp.NodeActionsArgs{\n\t\t\tInstanceId: pulumi.Any(instance.Id),\n\t\t\tAction:     pulumi.String(\"reboot\"),\n\t\t\tNodeNames: pulumi.StringArray{\n\t\t\t\tpulumi.String(nodes.Nodes[0].Name),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.cloudamqp.CloudamqpFunctions;\nimport com.pulumi.cloudamqp.inputs.GetNodesArgs;\nimport com.pulumi.cloudamqp.NodeActions;\nimport com.pulumi.cloudamqp.NodeActionsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()\n            .instanceId(instance.id())\n            .build());\n\n        var rebootNode = new NodeActions(\"rebootNode\", NodeActionsArgs.builder()\n            .instanceId(instance.id())\n            .action(\"reboot\")\n            .nodeNames(nodes.nodes()[0].name())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  rebootNode:\n    type: cloudamqp:NodeActions\n    name: reboot_node\n    properties:\n      instanceId: ${instance.id}\n      action: reboot\n      nodeNames:\n        - ${nodes.nodes[0].name}\nvariables:\n  nodes:\n    fn::invoke:\n      function: cloudamqp:getNodes\n      arguments:\n        instanceId: ${instance.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n\u003c/details\u003e\n\n\u003cdetails\u003e\n  \u003csummary\u003e\n    \u003cb\u003e\n      \u003ci\u003eRestart RabbitMQ management interface\u003c/i\u003e\n    \u003c/b\u003e\n  \u003c/summary\u003e\n\nOnly restart the management interface without affecting the broker.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst nodes = cloudamqp.getNodes({\n    instanceId: instance.id,\n});\nconst mgmtRestart = new cloudamqp.NodeActions(\"mgmt_restart\", {\n    instanceId: instance.id,\n    action: \"mgmt.restart\",\n    nodeNames: [nodes.then(nodes =\u003e nodes.nodes?.[0]?.name)],\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nnodes = cloudamqp.get_nodes(instance_id=instance[\"id\"])\nmgmt_restart = cloudamqp.NodeActions(\"mgmt_restart\",\n    instance_id=instance[\"id\"],\n    action=\"mgmt.restart\",\n    node_names=[nodes.nodes[0].name])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var nodes = CloudAmqp.GetNodes.Invoke(new()\n    {\n        InstanceId = instance.Id,\n    });\n\n    var mgmtRestart = new CloudAmqp.NodeActions(\"mgmt_restart\", new()\n    {\n        InstanceId = instance.Id,\n        Action = \"mgmt.restart\",\n        NodeNames = new[]\n        {\n            nodes.Apply(getNodesResult =\u003e getNodesResult.Nodes[0]?.Name),\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tnodes, err := cloudamqp.GetNodes(ctx, \u0026cloudamqp.GetNodesArgs{\n\t\t\tInstanceId: instance.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewNodeActions(ctx, \"mgmt_restart\", \u0026cloudamqp.NodeActionsArgs{\n\t\t\tInstanceId: pulumi.Any(instance.Id),\n\t\t\tAction:     pulumi.String(\"mgmt.restart\"),\n\t\t\tNodeNames: pulumi.StringArray{\n\t\t\t\tpulumi.String(nodes.Nodes[0].Name),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.cloudamqp.CloudamqpFunctions;\nimport com.pulumi.cloudamqp.inputs.GetNodesArgs;\nimport com.pulumi.cloudamqp.NodeActions;\nimport com.pulumi.cloudamqp.NodeActionsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()\n            .instanceId(instance.id())\n            .build());\n\n        var mgmtRestart = new NodeActions(\"mgmtRestart\", NodeActionsArgs.builder()\n            .instanceId(instance.id())\n            .action(\"mgmt.restart\")\n            .nodeNames(nodes.nodes()[0].name())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  mgmtRestart:\n    type: cloudamqp:NodeActions\n    name: mgmt_restart\n    properties:\n      instanceId: ${instance.id}\n      action: mgmt.restart\n      nodeNames:\n        - ${nodes.nodes[0].name}\nvariables:\n  nodes:\n    fn::invoke:\n      function: cloudamqp:getNodes\n      arguments:\n        instanceId: ${instance.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n\u003c/details\u003e\n\n\u003cdetails\u003e\n  \u003csummary\u003e\n    \u003cb\u003e\n      \u003ci\u003eCombine with configuration changes\u003c/i\u003e\n    \u003c/b\u003e\n  \u003c/summary\u003e\n\nApply configuration changes and restart the cluster.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst rabbitmqConfig = new cloudamqp.RabbitConfiguration(\"rabbitmq_config\", {\n    instanceId: instance.id,\n    logExchangeLevel: \"info\",\n});\nconst clusterRestart = new cloudamqp.NodeActions(\"cluster_restart\", {\n    instanceId: instance.id,\n    action: \"cluster.restart\",\n}, {\n    dependsOn: [rabbitmqConfig],\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nrabbitmq_config = cloudamqp.RabbitConfiguration(\"rabbitmq_config\",\n    instance_id=instance[\"id\"],\n    log_exchange_level=\"info\")\ncluster_restart = cloudamqp.NodeActions(\"cluster_restart\",\n    instance_id=instance[\"id\"],\n    action=\"cluster.restart\",\n    opts = pulumi.ResourceOptions(depends_on=[rabbitmq_config]))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var rabbitmqConfig = new CloudAmqp.RabbitConfiguration(\"rabbitmq_config\", new()\n    {\n        InstanceId = instance.Id,\n        LogExchangeLevel = \"info\",\n    });\n\n    var clusterRestart = new CloudAmqp.NodeActions(\"cluster_restart\", new()\n    {\n        InstanceId = instance.Id,\n        Action = \"cluster.restart\",\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            rabbitmqConfig,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trabbitmqConfig, err := cloudamqp.NewRabbitConfiguration(ctx, \"rabbitmq_config\", \u0026cloudamqp.RabbitConfigurationArgs{\n\t\t\tInstanceId:       pulumi.Any(instance.Id),\n\t\t\tLogExchangeLevel: pulumi.String(\"info\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewNodeActions(ctx, \"cluster_restart\", \u0026cloudamqp.NodeActionsArgs{\n\t\t\tInstanceId: pulumi.Any(instance.Id),\n\t\t\tAction:     pulumi.String(\"cluster.restart\"),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\trabbitmqConfig,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.cloudamqp.RabbitConfiguration;\nimport com.pulumi.cloudamqp.RabbitConfigurationArgs;\nimport com.pulumi.cloudamqp.NodeActions;\nimport com.pulumi.cloudamqp.NodeActionsArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var rabbitmqConfig = new RabbitConfiguration(\"rabbitmqConfig\", RabbitConfigurationArgs.builder()\n            .instanceId(instance.id())\n            .logExchangeLevel(\"info\")\n            .build());\n\n        var clusterRestart = new NodeActions(\"clusterRestart\", NodeActionsArgs.builder()\n            .instanceId(instance.id())\n            .action(\"cluster.restart\")\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(rabbitmqConfig)\n                .build());\n\n    }\n}\n```\n```yaml\nresources:\n  rabbitmqConfig:\n    type: cloudamqp:RabbitConfiguration\n    name: rabbitmq_config\n    properties:\n      instanceId: ${instance.id}\n      logExchangeLevel: info\n  clusterRestart:\n    type: cloudamqp:NodeActions\n    name: cluster_restart\n    properties:\n      instanceId: ${instance.id}\n      action: cluster.restart\n    options:\n      dependsOn:\n        - ${rabbitmqConfig}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n\u003c/details\u003e\n\n\u003cdetails\u003e\n  \u003csummary\u003e\n    \u003cb\u003e\n      \u003ci\u003eLegacy Usage (pre-1.41.0)\u003c/i\u003e\n    \u003c/b\u003e\n  \u003c/summary\u003e\n\nThese examples show the older approach using \u003cspan pulumi-lang-nodejs=\"`nodeName`\" pulumi-lang-dotnet=\"`NodeName`\" pulumi-lang-go=\"`nodeName`\" pulumi-lang-python=\"`node_name`\" pulumi-lang-yaml=\"`nodeName`\" pulumi-lang-java=\"`nodeName`\"\u003e`node_name`\u003c/span\u003e (singular) and chained restarts. While still supported, the cluster-level actions above are recommended for new configurations.\n\n**Single node restart:**\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst nodeAction = new cloudamqp.NodeActions(\"node_action\", {\n    instanceId: instance.id,\n    nodeName: \"\u003cnode name\u003e\",\n    action: \"restart\",\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nnode_action = cloudamqp.NodeActions(\"node_action\",\n    instance_id=instance[\"id\"],\n    node_name=\"\u003cnode name\u003e\",\n    action=\"restart\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var nodeAction = new CloudAmqp.NodeActions(\"node_action\", new()\n    {\n        InstanceId = instance.Id,\n        NodeName = \"\u003cnode name\u003e\",\n        Action = \"restart\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.NewNodeActions(ctx, \"node_action\", \u0026cloudamqp.NodeActionsArgs{\n\t\t\tInstanceId: pulumi.Any(instance.Id),\n\t\t\tNodeName:   pulumi.String(\"\u003cnode name\u003e\"),\n\t\t\tAction:     pulumi.String(\"restart\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.cloudamqp.NodeActions;\nimport com.pulumi.cloudamqp.NodeActionsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var nodeAction = new NodeActions(\"nodeAction\", NodeActionsArgs.builder()\n            .instanceId(instance.id())\n            .nodeName(\"\u003cnode name\u003e\")\n            .action(\"restart\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  nodeAction:\n    type: cloudamqp:NodeActions\n    name: node_action\n    properties:\n      instanceId: ${instance.id}\n      nodeName: \u003cnode name\u003e\n      action: restart\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n**Chained multi-node restart:**\n\n\u003e **Note:** This approach restarts nodes sequentially to minimize cluster disruption. Consider using `cluster.restart` for simpler configuration.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst listNodes = cloudamqp.getNodes({\n    instanceId: instance.id,\n});\nconst restart01 = new cloudamqp.NodeActions(\"restart_01\", {\n    instanceId: instance.id,\n    action: \"restart\",\n    nodeName: listNodes.then(listNodes =\u003e listNodes.nodes?.[0]?.name),\n});\nconst restart02 = new cloudamqp.NodeActions(\"restart_02\", {\n    instanceId: instance.id,\n    action: \"restart\",\n    nodeName: listNodes.then(listNodes =\u003e listNodes.nodes?.[1]?.name),\n}, {\n    dependsOn: [restart01],\n});\nconst restart03 = new cloudamqp.NodeActions(\"restart_03\", {\n    instanceId: instance.id,\n    action: \"restart\",\n    nodeName: listNodes.then(listNodes =\u003e listNodes.nodes?.[2]?.name),\n}, {\n    dependsOn: [\n        restart01,\n        restart02,\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nlist_nodes = cloudamqp.get_nodes(instance_id=instance[\"id\"])\nrestart01 = cloudamqp.NodeActions(\"restart_01\",\n    instance_id=instance[\"id\"],\n    action=\"restart\",\n    node_name=list_nodes.nodes[0].name)\nrestart02 = cloudamqp.NodeActions(\"restart_02\",\n    instance_id=instance[\"id\"],\n    action=\"restart\",\n    node_name=list_nodes.nodes[1].name,\n    opts = pulumi.ResourceOptions(depends_on=[restart01]))\nrestart03 = cloudamqp.NodeActions(\"restart_03\",\n    instance_id=instance[\"id\"],\n    action=\"restart\",\n    node_name=list_nodes.nodes[2].name,\n    opts = pulumi.ResourceOptions(depends_on=[\n            restart01,\n            restart02,\n        ]))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var listNodes = CloudAmqp.GetNodes.Invoke(new()\n    {\n        InstanceId = instance.Id,\n    });\n\n    var restart01 = new CloudAmqp.NodeActions(\"restart_01\", new()\n    {\n        InstanceId = instance.Id,\n        Action = \"restart\",\n        NodeName = listNodes.Apply(getNodesResult =\u003e getNodesResult.Nodes[0]?.Name),\n    });\n\n    var restart02 = new CloudAmqp.NodeActions(\"restart_02\", new()\n    {\n        InstanceId = instance.Id,\n        Action = \"restart\",\n        NodeName = listNodes.Apply(getNodesResult =\u003e getNodesResult.Nodes[1]?.Name),\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            restart01,\n        },\n    });\n\n    var restart03 = new CloudAmqp.NodeActions(\"restart_03\", new()\n    {\n        InstanceId = instance.Id,\n        Action = \"restart\",\n        NodeName = listNodes.Apply(getNodesResult =\u003e getNodesResult.Nodes[2]?.Name),\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            restart01,\n            restart02,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tlistNodes, err := cloudamqp.GetNodes(ctx, \u0026cloudamqp.GetNodesArgs{\n\t\t\tInstanceId: instance.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\trestart01, err := cloudamqp.NewNodeActions(ctx, \"restart_01\", \u0026cloudamqp.NodeActionsArgs{\n\t\t\tInstanceId: pulumi.Any(instance.Id),\n\t\t\tAction:     pulumi.String(\"restart\"),\n\t\t\tNodeName:   pulumi.String(listNodes.Nodes[0].Name),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\trestart02, err := cloudamqp.NewNodeActions(ctx, \"restart_02\", \u0026cloudamqp.NodeActionsArgs{\n\t\t\tInstanceId: pulumi.Any(instance.Id),\n\t\t\tAction:     pulumi.String(\"restart\"),\n\t\t\tNodeName:   pulumi.String(listNodes.Nodes[1].Name),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\trestart01,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudamqp.NewNodeActions(ctx, \"restart_03\", \u0026cloudamqp.NodeActionsArgs{\n\t\t\tInstanceId: pulumi.Any(instance.Id),\n\t\t\tAction:     pulumi.String(\"restart\"),\n\t\t\tNodeName:   pulumi.String(listNodes.Nodes[2].Name),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\trestart01,\n\t\t\trestart02,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.cloudamqp.CloudamqpFunctions;\nimport com.pulumi.cloudamqp.inputs.GetNodesArgs;\nimport com.pulumi.cloudamqp.NodeActions;\nimport com.pulumi.cloudamqp.NodeActionsArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var listNodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()\n            .instanceId(instance.id())\n            .build());\n\n        var restart01 = new NodeActions(\"restart01\", NodeActionsArgs.builder()\n            .instanceId(instance.id())\n            .action(\"restart\")\n            .nodeName(listNodes.nodes()[0].name())\n            .build());\n\n        var restart02 = new NodeActions(\"restart02\", NodeActionsArgs.builder()\n            .instanceId(instance.id())\n            .action(\"restart\")\n            .nodeName(listNodes.nodes()[1].name())\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(restart01)\n                .build());\n\n        var restart03 = new NodeActions(\"restart03\", NodeActionsArgs.builder()\n            .instanceId(instance.id())\n            .action(\"restart\")\n            .nodeName(listNodes.nodes()[2].name())\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(                \n                    restart01,\n                    restart02)\n                .build());\n\n    }\n}\n```\n```yaml\nresources:\n  restart01:\n    type: cloudamqp:NodeActions\n    name: restart_01\n    properties:\n      instanceId: ${instance.id}\n      action: restart\n      nodeName: ${listNodes.nodes[0].name}\n  restart02:\n    type: cloudamqp:NodeActions\n    name: restart_02\n    properties:\n      instanceId: ${instance.id}\n      action: restart\n      nodeName: ${listNodes.nodes[1].name}\n    options:\n      dependsOn:\n        - ${restart01}\n  restart03:\n    type: cloudamqp:NodeActions\n    name: restart_03\n    properties:\n      instanceId: ${instance.id}\n      action: restart\n      nodeName: ${listNodes.nodes[2].name}\n    options:\n      dependsOn:\n        - ${restart01}\n        - ${restart02}\nvariables:\n  listNodes:\n    fn::invoke:\n      function: cloudamqp:getNodes\n      arguments:\n        instanceId: ${instance.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n\u003c/details\u003e\n\n## Action reference\n\nActions are categorized by what they affect:\n\n### Broker Actions\n\nThese actions control the message broker software (RabbitMQ or LavinMQ) on the specified nodes.\n\n| Action  | Info                                      | Applies to        |\n|---------|-------------------------------------------|-------------------|\n| start   | Start the message broker                  | RabbitMQ, LavinMQ |\n| stop    | Stop the message broker                   | RabbitMQ, LavinMQ |\n| restart | Restart the message broker                | RabbitMQ, LavinMQ |\n\n### Management Interface Actions\n\nThese actions control the management interface without affecting the broker itself.\n\n| Action       | Info                                      | Applies to |\n|--------------|-------------------------------------------|------------|\n| mgmt.restart | Restart the RabbitMQ management interface | RabbitMQ   |\n\n### Node Actions\n\nThese actions affect the entire node (VM), not just the broker software.\n\n| Action | Info                                          | Applies to        |\n|--------|-----------------------------------------------|-------------------|\n| reboot | Reboot the entire node (VM)                   | RabbitMQ, LavinMQ |\n\n### Cluster Actions\n\n\u003e **Available from version 1.41.0**\n\nThese actions operate on all nodes in the cluster simultaneously. The \u003cspan pulumi-lang-nodejs=\"`nodeNames`\" pulumi-lang-dotnet=\"`NodeNames`\" pulumi-lang-go=\"`nodeNames`\" pulumi-lang-python=\"`node_names`\" pulumi-lang-yaml=\"`nodeNames`\" pulumi-lang-java=\"`nodeNames`\"\u003e`node_names`\u003c/span\u003e attribute can be omitted for these actions.\n\n| Action          | Info                                            | Applies to        |\n|-----------------|-------------------------------------------------|-------------------|\n| cluster.start   | Start the message broker on all cluster nodes   | RabbitMQ, LavinMQ |\n| cluster.stop    | Stop the message broker on all cluster nodes    | RabbitMQ, LavinMQ |\n| cluster.restart | Restart the message broker on all cluster nodes | RabbitMQ, LavinMQ |\n\n## Dependency\n\nThis resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`. For non-cluster actions, it also requires either \u003cspan pulumi-lang-nodejs=\"`nodeName`\" pulumi-lang-dotnet=\"`NodeName`\" pulumi-lang-go=\"`nodeName`\" pulumi-lang-python=\"`node_name`\" pulumi-lang-yaml=\"`nodeName`\" pulumi-lang-java=\"`nodeName`\"\u003e`node_name`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`nodeNames`\" pulumi-lang-dotnet=\"`NodeNames`\" pulumi-lang-go=\"`nodeNames`\" pulumi-lang-python=\"`node_names`\" pulumi-lang-yaml=\"`nodeNames`\" pulumi-lang-java=\"`nodeNames`\"\u003e`node_names`\u003c/span\u003e to specify which nodes to act upon. Cluster-level actions automatically apply to all nodes in the cluster.\n\n## Import\n\nThis resource cannot be imported.\n\n",
             "properties": {
                 "action": {
                     "type": "string",
-                    "description": "The action to invoke on the node.\n"
+                    "description": "The action to invoke. See Action reference below for valid values.\n"
                 },
                 "instanceId": {
                     "type": "integer",
@@ -2298,23 +2448,35 @@
                 },
                 "nodeName": {
                     "type": "string",
-                    "description": "The node name, e.g `green-guinea-pig-01`.\n"
+                    "description": "The node name, e.g. `green-guinea-pig-01`. Use \u003cspan pulumi-lang-nodejs=\"`nodeNames`\" pulumi-lang-dotnet=\"`NodeNames`\" pulumi-lang-go=\"`nodeNames`\" pulumi-lang-python=\"`node_names`\" pulumi-lang-yaml=\"`nodeNames`\" pulumi-lang-java=\"`nodeNames`\"\u003e`node_names`\u003c/span\u003e instead. This attribute will be removed in a future version.\n",
+                    "deprecationMessage": "Use\u003cspan pulumi-lang-nodejs=\" nodeNames \" pulumi-lang-dotnet=\" NodeNames \" pulumi-lang-go=\" nodeNames \" pulumi-lang-python=\" node_names \" pulumi-lang-yaml=\" nodeNames \" pulumi-lang-java=\" nodeNames \"\u003e node_names \u003c/span\u003einstead. This attribute will be removed in a future version."
                 },
-                "running": {
-                    "type": "boolean",
-                    "description": "If the node is running.\n"
+                "nodeNames": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of node names to perform the action on, e.g. `[\"green-guinea-pig-01\", \"green-guinea-pig-02\"]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.\n"
+                },
+                "sleep": {
+                    "type": "integer",
+                    "description": "Sleep interval in seconds between polling for node status. Default: \u003cspan pulumi-lang-nodejs=\"`10`\" pulumi-lang-dotnet=\"`10`\" pulumi-lang-go=\"`10`\" pulumi-lang-python=\"`10`\" pulumi-lang-yaml=\"`10`\" pulumi-lang-java=\"`10`\"\u003e`10`\u003c/span\u003e.\n"
+                },
+                "timeout": {
+                    "type": "integer",
+                    "description": "Timeout in seconds for the action to complete. Default: \u003cspan pulumi-lang-nodejs=\"`1800`\" pulumi-lang-dotnet=\"`1800`\" pulumi-lang-go=\"`1800`\" pulumi-lang-python=\"`1800`\" pulumi-lang-yaml=\"`1800`\" pulumi-lang-java=\"`1800`\"\u003e`1800`\u003c/span\u003e (30 minutes).\n\n\u003e **Note:** Either \u003cspan pulumi-lang-nodejs=\"`nodeName`\" pulumi-lang-dotnet=\"`NodeName`\" pulumi-lang-go=\"`nodeName`\" pulumi-lang-python=\"`node_name`\" pulumi-lang-yaml=\"`nodeName`\" pulumi-lang-java=\"`nodeName`\"\u003e`node_name`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`nodeNames`\" pulumi-lang-dotnet=\"`NodeNames`\" pulumi-lang-go=\"`nodeNames`\" pulumi-lang-python=\"`node_names`\" pulumi-lang-yaml=\"`nodeNames`\" pulumi-lang-java=\"`nodeNames`\"\u003e`node_names`\u003c/span\u003e must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.\n"
                 }
             },
             "required": [
                 "action",
                 "instanceId",
-                "nodeName",
-                "running"
+                "sleep",
+                "timeout"
             ],
             "inputProperties": {
                 "action": {
                     "type": "string",
-                    "description": "The action to invoke on the node.\n"
+                    "description": "The action to invoke. See Action reference below for valid values.\n"
                 },
                 "instanceId": {
                     "type": "integer",
@@ -2322,20 +2484,35 @@
                 },
                 "nodeName": {
                     "type": "string",
-                    "description": "The node name, e.g `green-guinea-pig-01`.\n"
+                    "description": "The node name, e.g. `green-guinea-pig-01`. Use \u003cspan pulumi-lang-nodejs=\"`nodeNames`\" pulumi-lang-dotnet=\"`NodeNames`\" pulumi-lang-go=\"`nodeNames`\" pulumi-lang-python=\"`node_names`\" pulumi-lang-yaml=\"`nodeNames`\" pulumi-lang-java=\"`nodeNames`\"\u003e`node_names`\u003c/span\u003e instead. This attribute will be removed in a future version.\n",
+                    "deprecationMessage": "Use\u003cspan pulumi-lang-nodejs=\" nodeNames \" pulumi-lang-dotnet=\" NodeNames \" pulumi-lang-go=\" nodeNames \" pulumi-lang-python=\" node_names \" pulumi-lang-yaml=\" nodeNames \" pulumi-lang-java=\" nodeNames \"\u003e node_names \u003c/span\u003einstead. This attribute will be removed in a future version."
+                },
+                "nodeNames": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of node names to perform the action on, e.g. `[\"green-guinea-pig-01\", \"green-guinea-pig-02\"]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.\n"
+                },
+                "sleep": {
+                    "type": "integer",
+                    "description": "Sleep interval in seconds between polling for node status. Default: \u003cspan pulumi-lang-nodejs=\"`10`\" pulumi-lang-dotnet=\"`10`\" pulumi-lang-go=\"`10`\" pulumi-lang-python=\"`10`\" pulumi-lang-yaml=\"`10`\" pulumi-lang-java=\"`10`\"\u003e`10`\u003c/span\u003e.\n"
+                },
+                "timeout": {
+                    "type": "integer",
+                    "description": "Timeout in seconds for the action to complete. Default: \u003cspan pulumi-lang-nodejs=\"`1800`\" pulumi-lang-dotnet=\"`1800`\" pulumi-lang-go=\"`1800`\" pulumi-lang-python=\"`1800`\" pulumi-lang-yaml=\"`1800`\" pulumi-lang-java=\"`1800`\"\u003e`1800`\u003c/span\u003e (30 minutes).\n\n\u003e **Note:** Either \u003cspan pulumi-lang-nodejs=\"`nodeName`\" pulumi-lang-dotnet=\"`NodeName`\" pulumi-lang-go=\"`nodeName`\" pulumi-lang-python=\"`node_name`\" pulumi-lang-yaml=\"`nodeName`\" pulumi-lang-java=\"`nodeName`\"\u003e`node_name`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`nodeNames`\" pulumi-lang-dotnet=\"`NodeNames`\" pulumi-lang-go=\"`nodeNames`\" pulumi-lang-python=\"`node_names`\" pulumi-lang-yaml=\"`nodeNames`\" pulumi-lang-java=\"`nodeNames`\"\u003e`node_names`\u003c/span\u003e must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.\n"
                 }
             },
             "requiredInputs": [
                 "action",
-                "instanceId",
-                "nodeName"
+                "instanceId"
             ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering NodeActions resources.\n",
                 "properties": {
                     "action": {
                         "type": "string",
-                        "description": "The action to invoke on the node.\n"
+                        "description": "The action to invoke. See Action reference below for valid values.\n"
                     },
                     "instanceId": {
                         "type": "integer",
@@ -2343,11 +2520,23 @@
                     },
                     "nodeName": {
                         "type": "string",
-                        "description": "The node name, e.g `green-guinea-pig-01`.\n"
+                        "description": "The node name, e.g. `green-guinea-pig-01`. Use \u003cspan pulumi-lang-nodejs=\"`nodeNames`\" pulumi-lang-dotnet=\"`NodeNames`\" pulumi-lang-go=\"`nodeNames`\" pulumi-lang-python=\"`node_names`\" pulumi-lang-yaml=\"`nodeNames`\" pulumi-lang-java=\"`nodeNames`\"\u003e`node_names`\u003c/span\u003e instead. This attribute will be removed in a future version.\n",
+                        "deprecationMessage": "Use\u003cspan pulumi-lang-nodejs=\" nodeNames \" pulumi-lang-dotnet=\" NodeNames \" pulumi-lang-go=\" nodeNames \" pulumi-lang-python=\" node_names \" pulumi-lang-yaml=\" nodeNames \" pulumi-lang-java=\" nodeNames \"\u003e node_names \u003c/span\u003einstead. This attribute will be removed in a future version."
                     },
-                    "running": {
-                        "type": "boolean",
-                        "description": "If the node is running.\n"
+                    "nodeNames": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of node names to perform the action on, e.g. `[\"green-guinea-pig-01\", \"green-guinea-pig-02\"]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.\n"
+                    },
+                    "sleep": {
+                        "type": "integer",
+                        "description": "Sleep interval in seconds between polling for node status. Default: \u003cspan pulumi-lang-nodejs=\"`10`\" pulumi-lang-dotnet=\"`10`\" pulumi-lang-go=\"`10`\" pulumi-lang-python=\"`10`\" pulumi-lang-yaml=\"`10`\" pulumi-lang-java=\"`10`\"\u003e`10`\u003c/span\u003e.\n"
+                    },
+                    "timeout": {
+                        "type": "integer",
+                        "description": "Timeout in seconds for the action to complete. Default: \u003cspan pulumi-lang-nodejs=\"`1800`\" pulumi-lang-dotnet=\"`1800`\" pulumi-lang-go=\"`1800`\" pulumi-lang-python=\"`1800`\" pulumi-lang-yaml=\"`1800`\" pulumi-lang-java=\"`1800`\"\u003e`1800`\u003c/span\u003e (30 minutes).\n\n\u003e **Note:** Either \u003cspan pulumi-lang-nodejs=\"`nodeName`\" pulumi-lang-dotnet=\"`NodeName`\" pulumi-lang-go=\"`nodeName`\" pulumi-lang-python=\"`node_name`\" pulumi-lang-yaml=\"`nodeName`\" pulumi-lang-java=\"`nodeName`\"\u003e`node_name`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`nodeNames`\" pulumi-lang-dotnet=\"`NodeNames`\" pulumi-lang-go=\"`nodeNames`\" pulumi-lang-python=\"`node_names`\" pulumi-lang-yaml=\"`nodeNames`\" pulumi-lang-java=\"`nodeNames`\"\u003e`node_names`\u003c/span\u003e must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.\n"
                     }
                 },
                 "type": "object"
@@ -3116,23 +3305,23 @@
             "properties": {
                 "channelMax": {
                     "type": "integer",
-                    "description": "Set the maximum permissible number of\nchannels per connection.\n"
+                    "description": "Set the maximum permissible number of channels per connection.\n"
                 },
                 "clusterPartitionHandling": {
                     "type": "string",
-                    "description": "Set how the cluster should handle network\npartition.\n"
+                    "description": "Set how the cluster should handle network partition.\n"
                 },
                 "connectionMax": {
                     "type": "integer",
-                    "description": "Set the maximum permissible number of\nconnection.\n"
+                    "description": "Set the maximum permissible number of connection.\n"
                 },
                 "consumerTimeout": {
                     "type": "integer",
-                    "description": "A consumer that has recevied a message and\ndoes not acknowledge that message within the timeout in\nmilliseconds\n"
+                    "description": "A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds\n"
                 },
                 "heartbeat": {
                     "type": "integer",
-                    "description": "Set the server AMQP 0-9-1 heartbeat timeout\nin seconds.\n"
+                    "description": "Set the server AMQP 0-9-1 heartbeat timeout in seconds.\n"
                 },
                 "instanceId": {
                     "type": "integer",
@@ -3140,27 +3329,55 @@
                 },
                 "logExchangeLevel": {
                     "type": "string",
-                    "description": "Log level for the logger used for log\nintegrations and the CloudAMQP Console log view.\n"
+                    "description": "Log level for the logger used for log integrations and the CloudAMQP Console log view.\n"
                 },
                 "maxMessageSize": {
                     "type": "integer",
-                    "description": "The largest allowed message payload size in\nbytes.\n"
+                    "description": "The largest allowed message payload size in bytes.\n"
+                },
+                "messageInterceptorsTimestampOverwrite": {
+                    "type": "string",
+                    "description": "Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.\n"
+                },
+                "mqttExchange": {
+                    "type": "string",
+                    "description": "The exchange option determines which exchange messages from MQTT clients are published to.\n"
+                },
+                "mqttSslCertLogin": {
+                    "type": "boolean",
+                    "description": "Enable SSL certificate-based authentication for MQTT connections.\n"
+                },
+                "mqttVhost": {
+                    "type": "string",
+                    "description": "Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.\n"
                 },
                 "queueIndexEmbedMsgsBelow": {
                     "type": "integer",
-                    "description": "Size in bytes below which to embed messages\nin the queue index. 0 will turn off payload embedding in the\nqueue index.\n"
+                    "description": "Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.\n"
                 },
                 "sleep": {
                     "type": "integer",
-                    "description": "Configurable sleep time in seconds between retries\nfor RabbitMQ configuration. Default set to 60 seconds.\n"
+                    "description": "Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.\n"
+                },
+                "sslCertLoginFrom": {
+                    "type": "string",
+                    "description": "Determines which certificate field to use as the username for TLS-based authentication.\n"
+                },
+                "sslOptionsFailIfNoPeerCert": {
+                    "type": "boolean",
+                    "description": "When set to true, TLS connections will fail if the client does not provide a certificate.\n"
+                },
+                "sslOptionsVerify": {
+                    "type": "string",
+                    "description": "Controls peer certificate verification for TLS connections.\n\nConfigure sleep and timeout for API requests retries\n"
                 },
                 "timeout": {
                     "type": "integer",
-                    "description": "Configurable timeout time in seconds for RabbitMQ\nconfiguration. Default set to 3600 seconds.\n"
+                    "description": "Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.\n"
                 },
                 "vmMemoryHighWatermark": {
                     "type": "number",
-                    "description": "When the server will enter memory based\nflow-control as relative to the maximum available memory.\n"
+                    "description": "When the server will enter memory based flow-control as relative to the maximum available memory.\n"
                 }
             },
             "required": [
@@ -3172,31 +3389,38 @@
                 "instanceId",
                 "logExchangeLevel",
                 "maxMessageSize",
+                "messageInterceptorsTimestampOverwrite",
+                "mqttExchange",
+                "mqttSslCertLogin",
+                "mqttVhost",
                 "queueIndexEmbedMsgsBelow",
                 "sleep",
+                "sslCertLoginFrom",
+                "sslOptionsFailIfNoPeerCert",
+                "sslOptionsVerify",
                 "timeout",
                 "vmMemoryHighWatermark"
             ],
             "inputProperties": {
                 "channelMax": {
                     "type": "integer",
-                    "description": "Set the maximum permissible number of\nchannels per connection.\n"
+                    "description": "Set the maximum permissible number of channels per connection.\n"
                 },
                 "clusterPartitionHandling": {
                     "type": "string",
-                    "description": "Set how the cluster should handle network\npartition.\n"
+                    "description": "Set how the cluster should handle network partition.\n"
                 },
                 "connectionMax": {
                     "type": "integer",
-                    "description": "Set the maximum permissible number of\nconnection.\n"
+                    "description": "Set the maximum permissible number of connection.\n"
                 },
                 "consumerTimeout": {
                     "type": "integer",
-                    "description": "A consumer that has recevied a message and\ndoes not acknowledge that message within the timeout in\nmilliseconds\n"
+                    "description": "A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds\n"
                 },
                 "heartbeat": {
                     "type": "integer",
-                    "description": "Set the server AMQP 0-9-1 heartbeat timeout\nin seconds.\n"
+                    "description": "Set the server AMQP 0-9-1 heartbeat timeout in seconds.\n"
                 },
                 "instanceId": {
                     "type": "integer",
@@ -3204,27 +3428,55 @@
                 },
                 "logExchangeLevel": {
                     "type": "string",
-                    "description": "Log level for the logger used for log\nintegrations and the CloudAMQP Console log view.\n"
+                    "description": "Log level for the logger used for log integrations and the CloudAMQP Console log view.\n"
                 },
                 "maxMessageSize": {
                     "type": "integer",
-                    "description": "The largest allowed message payload size in\nbytes.\n"
+                    "description": "The largest allowed message payload size in bytes.\n"
+                },
+                "messageInterceptorsTimestampOverwrite": {
+                    "type": "string",
+                    "description": "Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.\n"
+                },
+                "mqttExchange": {
+                    "type": "string",
+                    "description": "The exchange option determines which exchange messages from MQTT clients are published to.\n"
+                },
+                "mqttSslCertLogin": {
+                    "type": "boolean",
+                    "description": "Enable SSL certificate-based authentication for MQTT connections.\n"
+                },
+                "mqttVhost": {
+                    "type": "string",
+                    "description": "Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.\n"
                 },
                 "queueIndexEmbedMsgsBelow": {
                     "type": "integer",
-                    "description": "Size in bytes below which to embed messages\nin the queue index. 0 will turn off payload embedding in the\nqueue index.\n"
+                    "description": "Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.\n"
                 },
                 "sleep": {
                     "type": "integer",
-                    "description": "Configurable sleep time in seconds between retries\nfor RabbitMQ configuration. Default set to 60 seconds.\n"
+                    "description": "Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.\n"
+                },
+                "sslCertLoginFrom": {
+                    "type": "string",
+                    "description": "Determines which certificate field to use as the username for TLS-based authentication.\n"
+                },
+                "sslOptionsFailIfNoPeerCert": {
+                    "type": "boolean",
+                    "description": "When set to true, TLS connections will fail if the client does not provide a certificate.\n"
+                },
+                "sslOptionsVerify": {
+                    "type": "string",
+                    "description": "Controls peer certificate verification for TLS connections.\n\nConfigure sleep and timeout for API requests retries\n"
                 },
                 "timeout": {
                     "type": "integer",
-                    "description": "Configurable timeout time in seconds for RabbitMQ\nconfiguration. Default set to 3600 seconds.\n"
+                    "description": "Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.\n"
                 },
                 "vmMemoryHighWatermark": {
                     "type": "number",
-                    "description": "When the server will enter memory based\nflow-control as relative to the maximum available memory.\n"
+                    "description": "When the server will enter memory based flow-control as relative to the maximum available memory.\n"
                 }
             },
             "requiredInputs": [
@@ -3235,23 +3487,23 @@
                 "properties": {
                     "channelMax": {
                         "type": "integer",
-                        "description": "Set the maximum permissible number of\nchannels per connection.\n"
+                        "description": "Set the maximum permissible number of channels per connection.\n"
                     },
                     "clusterPartitionHandling": {
                         "type": "string",
-                        "description": "Set how the cluster should handle network\npartition.\n"
+                        "description": "Set how the cluster should handle network partition.\n"
                     },
                     "connectionMax": {
                         "type": "integer",
-                        "description": "Set the maximum permissible number of\nconnection.\n"
+                        "description": "Set the maximum permissible number of connection.\n"
                     },
                     "consumerTimeout": {
                         "type": "integer",
-                        "description": "A consumer that has recevied a message and\ndoes not acknowledge that message within the timeout in\nmilliseconds\n"
+                        "description": "A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds\n"
                     },
                     "heartbeat": {
                         "type": "integer",
-                        "description": "Set the server AMQP 0-9-1 heartbeat timeout\nin seconds.\n"
+                        "description": "Set the server AMQP 0-9-1 heartbeat timeout in seconds.\n"
                     },
                     "instanceId": {
                         "type": "integer",
@@ -3259,27 +3511,55 @@
                     },
                     "logExchangeLevel": {
                         "type": "string",
-                        "description": "Log level for the logger used for log\nintegrations and the CloudAMQP Console log view.\n"
+                        "description": "Log level for the logger used for log integrations and the CloudAMQP Console log view.\n"
                     },
                     "maxMessageSize": {
                         "type": "integer",
-                        "description": "The largest allowed message payload size in\nbytes.\n"
+                        "description": "The largest allowed message payload size in bytes.\n"
+                    },
+                    "messageInterceptorsTimestampOverwrite": {
+                        "type": "string",
+                        "description": "Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.\n"
+                    },
+                    "mqttExchange": {
+                        "type": "string",
+                        "description": "The exchange option determines which exchange messages from MQTT clients are published to.\n"
+                    },
+                    "mqttSslCertLogin": {
+                        "type": "boolean",
+                        "description": "Enable SSL certificate-based authentication for MQTT connections.\n"
+                    },
+                    "mqttVhost": {
+                        "type": "string",
+                        "description": "Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.\n"
                     },
                     "queueIndexEmbedMsgsBelow": {
                         "type": "integer",
-                        "description": "Size in bytes below which to embed messages\nin the queue index. 0 will turn off payload embedding in the\nqueue index.\n"
+                        "description": "Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.\n"
                     },
                     "sleep": {
                         "type": "integer",
-                        "description": "Configurable sleep time in seconds between retries\nfor RabbitMQ configuration. Default set to 60 seconds.\n"
+                        "description": "Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.\n"
+                    },
+                    "sslCertLoginFrom": {
+                        "type": "string",
+                        "description": "Determines which certificate field to use as the username for TLS-based authentication.\n"
+                    },
+                    "sslOptionsFailIfNoPeerCert": {
+                        "type": "boolean",
+                        "description": "When set to true, TLS connections will fail if the client does not provide a certificate.\n"
+                    },
+                    "sslOptionsVerify": {
+                        "type": "string",
+                        "description": "Controls peer certificate verification for TLS connections.\n\nConfigure sleep and timeout for API requests retries\n"
                     },
                     "timeout": {
                         "type": "integer",
-                        "description": "Configurable timeout time in seconds for RabbitMQ\nconfiguration. Default set to 3600 seconds.\n"
+                        "description": "Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.\n"
                     },
                     "vmMemoryHighWatermark": {
                         "type": "number",
-                        "description": "When the server will enter memory based\nflow-control as relative to the maximum available memory.\n"
+                        "description": "When the server will enter memory based flow-control as relative to the maximum available memory.\n"
                     }
                 },
                 "type": "object"
@@ -3360,6 +3640,101 @@
                     "timeout": {
                         "type": "integer",
                         "description": "Configurable timeout time in seconds for firewall configuration.\nDefault set to 1800 seconds.\n\n___\n\nThe \u003cspan pulumi-lang-nodejs=\"`rules`\" pulumi-lang-dotnet=\"`Rules`\" pulumi-lang-go=\"`rules`\" pulumi-lang-python=\"`rules`\" pulumi-lang-yaml=\"`rules`\" pulumi-lang-java=\"`rules`\"\u003e`rules`\u003c/span\u003e block consists of:\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "cloudamqp:index/trustStore:TrustStore": {
+            "description": "This resource allows you to configure a trust store for your RabbitMQ instance. The trust store enables RabbitMQ to fetch and use CA certificates from an external source for validating client certificates.\n\nOnly available for dedicated subscription plans running ***RabbitMQ***.\n\n## Example Usage\n\n\u003cdetails\u003e\n  \u003csummary\u003e\n    \u003cb\u003e\n      \u003ci\u003eBasic trust store configuration\u003c/i\u003e\n    \u003c/b\u003e\n  \u003c/summary\u003e\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst trustStore = new cloudamqp.TrustStore(\"trust_store\", {\n    instanceId: instance.id,\n    http: {\n        url: \"https://example.com/trust-store-certs\",\n    },\n    refreshInterval: 30,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\ntrust_store = cloudamqp.TrustStore(\"trust_store\",\n    instance_id=instance[\"id\"],\n    http={\n        \"url\": \"https://example.com/trust-store-certs\",\n    },\n    refresh_interval=30)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var trustStore = new CloudAmqp.TrustStore(\"trust_store\", new()\n    {\n        InstanceId = instance.Id,\n        Http = new CloudAmqp.Inputs.TrustStoreHttpArgs\n        {\n            Url = \"https://example.com/trust-store-certs\",\n        },\n        RefreshInterval = 30,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.NewTrustStore(ctx, \"trust_store\", \u0026cloudamqp.TrustStoreArgs{\n\t\t\tInstanceId: pulumi.Any(instance.Id),\n\t\t\tHttp: \u0026cloudamqp.TrustStoreHttpArgs{\n\t\t\t\tUrl: pulumi.String(\"https://example.com/trust-store-certs\"),\n\t\t\t},\n\t\t\tRefreshInterval: pulumi.Int(30),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.cloudamqp.TrustStore;\nimport com.pulumi.cloudamqp.TrustStoreArgs;\nimport com.pulumi.cloudamqp.inputs.TrustStoreHttpArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var trustStore = new TrustStore(\"trustStore\", TrustStoreArgs.builder()\n            .instanceId(instance.id())\n            .http(TrustStoreHttpArgs.builder()\n                .url(\"https://example.com/trust-store-certs\")\n                .build())\n            .refreshInterval(30)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  trustStore:\n    type: cloudamqp:TrustStore\n    name: trust_store\n    properties:\n      instanceId: ${instance.id}\n      http:\n        url: https://example.com/trust-store-certs\n      refreshInterval: 30\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n\u003c/details\u003e\n\n\u003cdetails\u003e\n  \u003csummary\u003e\n    \u003cb\u003e\n      \u003ci\u003eTrust store with CA certificate\u003c/i\u003e\n    \u003c/b\u003e\n  \u003c/summary\u003e\n\n## Import\n\n`cloudamqp_trust_store` can be imported using the CloudAMQP instance identifier.\n\nFrom Terraform v1.5.0, the `import` block can be used to import this resource:\n\nhcl\n\nimport {\n\n  to = cloudamqp_trust_store.trust_store\n\n  id = cloudamqp_instance.instance.id\n\n}\n\nOr use Terraform CLI:\n\n```sh\n$ pulumi import cloudamqp:index/trustStore:TrustStore trust_store \u003cinstance_id\u003e`\n```\n\n",
+            "properties": {
+                "http": {
+                    "$ref": "#/types/cloudamqp:index/TrustStoreHttp:TrustStoreHttp",
+                    "description": "HTTP trust store configuration block. See HTTP Block below.\n"
+                },
+                "instanceId": {
+                    "type": "integer",
+                    "description": "The CloudAMQP instance ID.\n"
+                },
+                "refreshInterval": {
+                    "type": "integer",
+                    "description": "Interval in seconds to refresh the trust store certificates. Defaults to 30 seconds.\nDefaults to 30 seconds.\n"
+                },
+                "sleep": {
+                    "type": "integer",
+                    "description": "Configurable sleep time in seconds between retries for\ntrust store operations. Defaults to 10 seconds.\n"
+                },
+                "timeout": {
+                    "type": "integer",
+                    "description": "Configurable timeout time in seconds for trust store\noperations. Defaults to 1800 seconds (30 minutes).\n"
+                },
+                "version": {
+                    "type": "integer",
+                    "description": "Version of write-only certificates. Increment this value to force an update of write-only fields like \u003cspan pulumi-lang-nodejs=\"`cacert`\" pulumi-lang-dotnet=\"`Cacert`\" pulumi-lang-go=\"`cacert`\" pulumi-lang-python=\"`cacert`\" pulumi-lang-yaml=\"`cacert`\" pulumi-lang-java=\"`cacert`\"\u003e`cacert`\u003c/span\u003e. Defaults to 1.\n"
+                }
+            },
+            "required": [
+                "instanceId",
+                "refreshInterval",
+                "sleep",
+                "timeout",
+                "version"
+            ],
+            "inputProperties": {
+                "http": {
+                    "$ref": "#/types/cloudamqp:index/TrustStoreHttp:TrustStoreHttp",
+                    "description": "HTTP trust store configuration block. See HTTP Block below.\n"
+                },
+                "instanceId": {
+                    "type": "integer",
+                    "description": "The CloudAMQP instance ID.\n"
+                },
+                "refreshInterval": {
+                    "type": "integer",
+                    "description": "Interval in seconds to refresh the trust store certificates. Defaults to 30 seconds.\nDefaults to 30 seconds.\n"
+                },
+                "sleep": {
+                    "type": "integer",
+                    "description": "Configurable sleep time in seconds between retries for\ntrust store operations. Defaults to 10 seconds.\n"
+                },
+                "timeout": {
+                    "type": "integer",
+                    "description": "Configurable timeout time in seconds for trust store\noperations. Defaults to 1800 seconds (30 minutes).\n"
+                },
+                "version": {
+                    "type": "integer",
+                    "description": "Version of write-only certificates. Increment this value to force an update of write-only fields like \u003cspan pulumi-lang-nodejs=\"`cacert`\" pulumi-lang-dotnet=\"`Cacert`\" pulumi-lang-go=\"`cacert`\" pulumi-lang-python=\"`cacert`\" pulumi-lang-yaml=\"`cacert`\" pulumi-lang-java=\"`cacert`\"\u003e`cacert`\u003c/span\u003e. Defaults to 1.\n"
+                }
+            },
+            "requiredInputs": [
+                "instanceId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering TrustStore resources.\n",
+                "properties": {
+                    "http": {
+                        "$ref": "#/types/cloudamqp:index/TrustStoreHttp:TrustStoreHttp",
+                        "description": "HTTP trust store configuration block. See HTTP Block below.\n"
+                    },
+                    "instanceId": {
+                        "type": "integer",
+                        "description": "The CloudAMQP instance ID.\n"
+                    },
+                    "refreshInterval": {
+                        "type": "integer",
+                        "description": "Interval in seconds to refresh the trust store certificates. Defaults to 30 seconds.\nDefaults to 30 seconds.\n"
+                    },
+                    "sleep": {
+                        "type": "integer",
+                        "description": "Configurable sleep time in seconds between retries for\ntrust store operations. Defaults to 10 seconds.\n"
+                    },
+                    "timeout": {
+                        "type": "integer",
+                        "description": "Configurable timeout time in seconds for trust store\noperations. Defaults to 1800 seconds (30 minutes).\n"
+                    },
+                    "version": {
+                        "type": "integer",
+                        "description": "Version of write-only certificates. Increment this value to force an update of write-only fields like \u003cspan pulumi-lang-nodejs=\"`cacert`\" pulumi-lang-dotnet=\"`Cacert`\" pulumi-lang-go=\"`cacert`\" pulumi-lang-python=\"`cacert`\" pulumi-lang-yaml=\"`cacert`\" pulumi-lang-java=\"`cacert`\"\u003e`cacert`\u003c/span\u003e. Defaults to 1.\n"
                     }
                 },
                 "type": "object"

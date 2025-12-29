@@ -28,6 +28,7 @@ import (
 	pf "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tfbridgetokens "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
+	tfshim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 
@@ -119,6 +120,25 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 	}
+
+	prov.P.ResourcesMap().Range(func(key string, value tfshim.Resource) bool {
+		idSchema := value.Schema().Get("id")
+		if idSchema == nil {
+			return true
+		}
+		if idSchema.Type() != tfshim.TypeString {
+			r := prov.Resources[key]
+			if r == nil {
+				r = &tfbridge.ResourceInfo{}
+				prov.Resources[key] = r
+			}
+			if r.Fields == nil {
+				r.Fields = make(map[string]*tfbridge.SchemaInfo, 1)
+			}
+			r.Fields["id"] = &tfbridge.SchemaInfo{Type: "string"}
+		}
+		return true
+	})
 
 	prov.MustComputeTokens(tfbridgetokens.SingleModule("cloudamqp_", mainMod,
 		tfbridgetokens.MakeStandard(mainPkg)))
