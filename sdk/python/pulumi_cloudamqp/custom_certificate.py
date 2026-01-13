@@ -24,6 +24,7 @@ class CustomCertificateArgs:
                  instance_id: pulumi.Input[_builtins.int],
                  private_key: pulumi.Input[_builtins.str],
                  sni_hosts: pulumi.Input[_builtins.str],
+                 key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a CustomCertificate resource.
@@ -35,13 +36,16 @@ class CustomCertificateArgs:
         :param pulumi.Input[_builtins.str] private_key: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The PEM-encoded private key corresponding to the certificate.
         :param pulumi.Input[_builtins.str] sni_hosts: A hostname (Server Name Indication) that this certificate applies to.
-        :param pulumi.Input[_builtins.int] version: An argument to trigger force new (default: 1).
+        :param pulumi.Input[_builtins.str] key_id: A string based argument to trigger force new (default: "").
+        :param pulumi.Input[_builtins.int] version: An integer based argument to trigger force new (default: 1).
         """
         pulumi.set(__self__, "ca", ca)
         pulumi.set(__self__, "cert", cert)
         pulumi.set(__self__, "instance_id", instance_id)
         pulumi.set(__self__, "private_key", private_key)
         pulumi.set(__self__, "sni_hosts", sni_hosts)
+        if key_id is not None:
+            pulumi.set(__self__, "key_id", key_id)
         if version is not None:
             pulumi.set(__self__, "version", version)
 
@@ -109,10 +113,22 @@ class CustomCertificateArgs:
         pulumi.set(self, "sni_hosts", value)
 
     @_builtins.property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        A string based argument to trigger force new (default: "").
+        """
+        return pulumi.get(self, "key_id")
+
+    @key_id.setter
+    def key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "key_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        An argument to trigger force new (default: 1).
+        An integer based argument to trigger force new (default: 1).
         """
         return pulumi.get(self, "version")
 
@@ -127,6 +143,7 @@ class _CustomCertificateState:
                  ca: Optional[pulumi.Input[_builtins.str]] = None,
                  cert: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  sni_hosts: Optional[pulumi.Input[_builtins.str]] = None,
                  version: Optional[pulumi.Input[_builtins.int]] = None):
@@ -137,10 +154,11 @@ class _CustomCertificateState:
         :param pulumi.Input[_builtins.str] cert: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The PEM-encoded server certificate.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier.
+        :param pulumi.Input[_builtins.str] key_id: A string based argument to trigger force new (default: "").
         :param pulumi.Input[_builtins.str] private_key: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The PEM-encoded private key corresponding to the certificate.
         :param pulumi.Input[_builtins.str] sni_hosts: A hostname (Server Name Indication) that this certificate applies to.
-        :param pulumi.Input[_builtins.int] version: An argument to trigger force new (default: 1).
+        :param pulumi.Input[_builtins.int] version: An integer based argument to trigger force new (default: 1).
         """
         if ca is not None:
             pulumi.set(__self__, "ca", ca)
@@ -148,6 +166,8 @@ class _CustomCertificateState:
             pulumi.set(__self__, "cert", cert)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
+        if key_id is not None:
+            pulumi.set(__self__, "key_id", key_id)
         if private_key is not None:
             pulumi.set(__self__, "private_key", private_key)
         if sni_hosts is not None:
@@ -194,6 +214,18 @@ class _CustomCertificateState:
         pulumi.set(self, "instance_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        A string based argument to trigger force new (default: "").
+        """
+        return pulumi.get(self, "key_id")
+
+    @key_id.setter
+    def key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "key_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="privateKey")
     def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -222,7 +254,7 @@ class _CustomCertificateState:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        An argument to trigger force new (default: 1).
+        An integer based argument to trigger force new (default: 1).
         """
         return pulumi.get(self, "version")
 
@@ -240,6 +272,7 @@ class CustomCertificate(pulumi.CustomResource):
                  ca: Optional[pulumi.Input[_builtins.str]] = None,
                  cert: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  sni_hosts: Optional[pulumi.Input[_builtins.str]] = None,
                  version: Optional[pulumi.Input[_builtins.int]] = None,
@@ -247,9 +280,9 @@ class CustomCertificate(pulumi.CustomResource):
         """
         This resource allows you to upload a custom certificate to all servers in your cluster. Update is
         not supported, all changes require replacement. `ca`, `cert` and `private_key` all use **WriteOnly**,
-        no information is present in plan phase, logs or stored in the state.
+        meaning no information is present in plan phase, logs or stored in the state for security purposes.
 
-        > **WARNING:** Please note that when uploading a custom or restoring to default certificate,
+        > **WARNING:** Please note that when uploading a custom certificate or restoring to default certificate,
         all current connections will be closed.
 
         > **Note:** Destroying this resource will restore the cluster to use the default CloudAMQP certificate.
@@ -263,10 +296,11 @@ class CustomCertificate(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cert: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The PEM-encoded server certificate.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier.
+        :param pulumi.Input[_builtins.str] key_id: A string based argument to trigger force new (default: "").
         :param pulumi.Input[_builtins.str] private_key: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The PEM-encoded private key corresponding to the certificate.
         :param pulumi.Input[_builtins.str] sni_hosts: A hostname (Server Name Indication) that this certificate applies to.
-        :param pulumi.Input[_builtins.int] version: An argument to trigger force new (default: 1).
+        :param pulumi.Input[_builtins.int] version: An integer based argument to trigger force new (default: 1).
         """
         ...
     @overload
@@ -277,9 +311,9 @@ class CustomCertificate(pulumi.CustomResource):
         """
         This resource allows you to upload a custom certificate to all servers in your cluster. Update is
         not supported, all changes require replacement. `ca`, `cert` and `private_key` all use **WriteOnly**,
-        no information is present in plan phase, logs or stored in the state.
+        meaning no information is present in plan phase, logs or stored in the state for security purposes.
 
-        > **WARNING:** Please note that when uploading a custom or restoring to default certificate,
+        > **WARNING:** Please note that when uploading a custom certificate or restoring to default certificate,
         all current connections will be closed.
 
         > **Note:** Destroying this resource will restore the cluster to use the default CloudAMQP certificate.
@@ -304,6 +338,7 @@ class CustomCertificate(pulumi.CustomResource):
                  ca: Optional[pulumi.Input[_builtins.str]] = None,
                  cert: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  sni_hosts: Optional[pulumi.Input[_builtins.str]] = None,
                  version: Optional[pulumi.Input[_builtins.int]] = None,
@@ -325,6 +360,7 @@ class CustomCertificate(pulumi.CustomResource):
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
+            __props__.__dict__["key_id"] = key_id
             if private_key is None and not opts.urn:
                 raise TypeError("Missing required property 'private_key'")
             __props__.__dict__["private_key"] = None if private_key is None else pulumi.Output.secret(private_key)
@@ -347,6 +383,7 @@ class CustomCertificate(pulumi.CustomResource):
             ca: Optional[pulumi.Input[_builtins.str]] = None,
             cert: Optional[pulumi.Input[_builtins.str]] = None,
             instance_id: Optional[pulumi.Input[_builtins.int]] = None,
+            key_id: Optional[pulumi.Input[_builtins.str]] = None,
             private_key: Optional[pulumi.Input[_builtins.str]] = None,
             sni_hosts: Optional[pulumi.Input[_builtins.str]] = None,
             version: Optional[pulumi.Input[_builtins.int]] = None) -> 'CustomCertificate':
@@ -362,10 +399,11 @@ class CustomCertificate(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cert: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The PEM-encoded server certificate.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier.
+        :param pulumi.Input[_builtins.str] key_id: A string based argument to trigger force new (default: "").
         :param pulumi.Input[_builtins.str] private_key: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The PEM-encoded private key corresponding to the certificate.
         :param pulumi.Input[_builtins.str] sni_hosts: A hostname (Server Name Indication) that this certificate applies to.
-        :param pulumi.Input[_builtins.int] version: An argument to trigger force new (default: 1).
+        :param pulumi.Input[_builtins.int] version: An integer based argument to trigger force new (default: 1).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -374,6 +412,7 @@ class CustomCertificate(pulumi.CustomResource):
         __props__.__dict__["ca"] = ca
         __props__.__dict__["cert"] = cert
         __props__.__dict__["instance_id"] = instance_id
+        __props__.__dict__["key_id"] = key_id
         __props__.__dict__["private_key"] = private_key
         __props__.__dict__["sni_hosts"] = sni_hosts
         __props__.__dict__["version"] = version
@@ -406,6 +445,14 @@ class CustomCertificate(pulumi.CustomResource):
         return pulumi.get(self, "instance_id")
 
     @_builtins.property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        A string based argument to trigger force new (default: "").
+        """
+        return pulumi.get(self, "key_id")
+
+    @_builtins.property
     @pulumi.getter(name="privateKey")
     def private_key(self) -> pulumi.Output[_builtins.str]:
         """
@@ -426,7 +473,7 @@ class CustomCertificate(pulumi.CustomResource):
     @pulumi.getter
     def version(self) -> pulumi.Output[_builtins.int]:
         """
-        An argument to trigger force new (default: 1).
+        An integer based argument to trigger force new (default: 1).
         """
         return pulumi.get(self, "version")
 

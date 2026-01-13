@@ -7,9 +7,9 @@ import * as utilities from "./utilities";
 /**
  * This resource allows you to upload a custom certificate to all servers in your cluster. Update is
  * not supported, all changes require replacement. `ca`, `cert` and `privateKey` all use **WriteOnly**,
- * no information is present in plan phase, logs or stored in the state.
+ * meaning no information is present in plan phase, logs or stored in the state for security purposes.
  *
- * > **WARNING:** Please note that when uploading a custom or restoring to default certificate,
+ * > **WARNING:** Please note that when uploading a custom certificate or restoring to default certificate,
  * all current connections will be closed.
  *
  * > **Note:** Destroying this resource will restore the cluster to use the default CloudAMQP certificate.
@@ -59,6 +59,10 @@ export class CustomCertificate extends pulumi.CustomResource {
      */
     declare public readonly instanceId: pulumi.Output<number>;
     /**
+     * A string based argument to trigger force new (default: "").
+     */
+    declare public readonly keyId: pulumi.Output<string>;
+    /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The PEM-encoded private key corresponding to the certificate.
      */
@@ -68,7 +72,7 @@ export class CustomCertificate extends pulumi.CustomResource {
      */
     declare public readonly sniHosts: pulumi.Output<string>;
     /**
-     * An argument to trigger force new (default: 1).
+     * An integer based argument to trigger force new (default: 1).
      */
     declare public readonly version: pulumi.Output<number>;
 
@@ -88,6 +92,7 @@ export class CustomCertificate extends pulumi.CustomResource {
             resourceInputs["ca"] = state?.ca;
             resourceInputs["cert"] = state?.cert;
             resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["keyId"] = state?.keyId;
             resourceInputs["privateKey"] = state?.privateKey;
             resourceInputs["sniHosts"] = state?.sniHosts;
             resourceInputs["version"] = state?.version;
@@ -111,6 +116,7 @@ export class CustomCertificate extends pulumi.CustomResource {
             resourceInputs["ca"] = args?.ca ? pulumi.secret(args.ca) : undefined;
             resourceInputs["cert"] = args?.cert ? pulumi.secret(args.cert) : undefined;
             resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["keyId"] = args?.keyId;
             resourceInputs["privateKey"] = args?.privateKey ? pulumi.secret(args.privateKey) : undefined;
             resourceInputs["sniHosts"] = args?.sniHosts;
             resourceInputs["version"] = args?.version;
@@ -141,6 +147,10 @@ export interface CustomCertificateState {
      */
     instanceId?: pulumi.Input<number>;
     /**
+     * A string based argument to trigger force new (default: "").
+     */
+    keyId?: pulumi.Input<string>;
+    /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The PEM-encoded private key corresponding to the certificate.
      */
@@ -150,7 +160,7 @@ export interface CustomCertificateState {
      */
     sniHosts?: pulumi.Input<string>;
     /**
-     * An argument to trigger force new (default: 1).
+     * An integer based argument to trigger force new (default: 1).
      */
     version?: pulumi.Input<number>;
 }
@@ -174,6 +184,10 @@ export interface CustomCertificateArgs {
      */
     instanceId: pulumi.Input<number>;
     /**
+     * A string based argument to trigger force new (default: "").
+     */
+    keyId?: pulumi.Input<string>;
+    /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The PEM-encoded private key corresponding to the certificate.
      */
@@ -183,7 +197,7 @@ export interface CustomCertificateArgs {
      */
     sniHosts: pulumi.Input<string>;
     /**
-     * An argument to trigger force new (default: 1).
+     * An integer based argument to trigger force new (default: 1).
      */
     version?: pulumi.Input<number>;
 }
