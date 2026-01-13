@@ -923,7 +923,7 @@
             }
         },
         "cloudamqp:index/customCertificate:CustomCertificate": {
-            "description": "This resource allows you to upload a custom certificate to all servers in your cluster. Update is\nnot supported, all changes require replacement. \u003cspan pulumi-lang-nodejs=\"`ca`\" pulumi-lang-dotnet=\"`Ca`\" pulumi-lang-go=\"`ca`\" pulumi-lang-python=\"`ca`\" pulumi-lang-yaml=\"`ca`\" pulumi-lang-java=\"`ca`\"\u003e`ca`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`cert`\" pulumi-lang-dotnet=\"`Cert`\" pulumi-lang-go=\"`cert`\" pulumi-lang-python=\"`cert`\" pulumi-lang-yaml=\"`cert`\" pulumi-lang-java=\"`cert`\"\u003e`cert`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`privateKey`\" pulumi-lang-dotnet=\"`PrivateKey`\" pulumi-lang-go=\"`privateKey`\" pulumi-lang-python=\"`private_key`\" pulumi-lang-yaml=\"`privateKey`\" pulumi-lang-java=\"`privateKey`\"\u003e`private_key`\u003c/span\u003e all use **WriteOnly**,\nno information is present in plan phase, logs or stored in the state.\n\n\u003e **WARNING:** Please note that when uploading a custom or restoring to default certificate,\nall current connections will be closed.\n\n\u003e **Note:** Destroying this resource will restore the cluster to use the default CloudAMQP certificate.\n\nOnly available for dedicated subscription plans running ***RabbitMQ***.\n\n",
+            "description": "This resource allows you to upload a custom certificate to all servers in your cluster. Update is\nnot supported, all changes require replacement. \u003cspan pulumi-lang-nodejs=\"`ca`\" pulumi-lang-dotnet=\"`Ca`\" pulumi-lang-go=\"`ca`\" pulumi-lang-python=\"`ca`\" pulumi-lang-yaml=\"`ca`\" pulumi-lang-java=\"`ca`\"\u003e`ca`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`cert`\" pulumi-lang-dotnet=\"`Cert`\" pulumi-lang-go=\"`cert`\" pulumi-lang-python=\"`cert`\" pulumi-lang-yaml=\"`cert`\" pulumi-lang-java=\"`cert`\"\u003e`cert`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`privateKey`\" pulumi-lang-dotnet=\"`PrivateKey`\" pulumi-lang-go=\"`privateKey`\" pulumi-lang-python=\"`private_key`\" pulumi-lang-yaml=\"`privateKey`\" pulumi-lang-java=\"`privateKey`\"\u003e`private_key`\u003c/span\u003e all use **WriteOnly**,\nmeaning no information is present in plan phase, logs or stored in the state for security purposes.\n\n\u003e **WARNING:** Please note that when uploading a custom certificate or restoring to default certificate,\nall current connections will be closed.\n\n\u003e **Note:** Destroying this resource will restore the cluster to use the default CloudAMQP certificate.\n\nOnly available for dedicated subscription plans running ***RabbitMQ***.\n\n",
             "properties": {
                 "ca": {
                     "type": "string",
@@ -939,6 +939,10 @@
                     "type": "integer",
                     "description": "The CloudAMQP instance identifier.\n"
                 },
+                "keyId": {
+                    "type": "string",
+                    "description": "A string based argument to trigger force new (default: \"\").\n"
+                },
                 "privateKey": {
                     "type": "string",
                     "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nThe PEM-encoded private key corresponding to the certificate.\n",
@@ -950,13 +954,14 @@
                 },
                 "version": {
                     "type": "integer",
-                    "description": "An argument to trigger force new (default: 1).\n"
+                    "description": "An integer based argument to trigger force new (default: 1).\n"
                 }
             },
             "required": [
                 "ca",
                 "cert",
                 "instanceId",
+                "keyId",
                 "privateKey",
                 "sniHosts",
                 "version"
@@ -976,6 +981,10 @@
                     "type": "integer",
                     "description": "The CloudAMQP instance identifier.\n"
                 },
+                "keyId": {
+                    "type": "string",
+                    "description": "A string based argument to trigger force new (default: \"\").\n"
+                },
                 "privateKey": {
                     "type": "string",
                     "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nThe PEM-encoded private key corresponding to the certificate.\n",
@@ -987,7 +996,7 @@
                 },
                 "version": {
                     "type": "integer",
-                    "description": "An argument to trigger force new (default: 1).\n"
+                    "description": "An integer based argument to trigger force new (default: 1).\n"
                 }
             },
             "requiredInputs": [
@@ -1014,6 +1023,10 @@
                         "type": "integer",
                         "description": "The CloudAMQP instance identifier.\n"
                     },
+                    "keyId": {
+                        "type": "string",
+                        "description": "A string based argument to trigger force new (default: \"\").\n"
+                    },
                     "privateKey": {
                         "type": "string",
                         "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nThe PEM-encoded private key corresponding to the certificate.\n",
@@ -1025,7 +1038,7 @@
                     },
                     "version": {
                         "type": "integer",
-                        "description": "An argument to trigger force new (default: 1).\n"
+                        "description": "An integer based argument to trigger force new (default: 1).\n"
                     }
                 },
                 "type": "object"
