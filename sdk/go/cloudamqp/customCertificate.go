@@ -14,9 +14,9 @@ import (
 
 // This resource allows you to upload a custom certificate to all servers in your cluster. Update is
 // not supported, all changes require replacement. `ca`, `cert` and `privateKey` all use **WriteOnly**,
-// no information is present in plan phase, logs or stored in the state.
+// meaning no information is present in plan phase, logs or stored in the state for security purposes.
 //
-// > **WARNING:** Please note that when uploading a custom or restoring to default certificate,
+// > **WARNING:** Please note that when uploading a custom certificate or restoring to default certificate,
 // all current connections will be closed.
 //
 // > **Note:** Destroying this resource will restore the cluster to use the default CloudAMQP certificate.
@@ -33,12 +33,14 @@ type CustomCertificate struct {
 	Cert pulumi.StringOutput `pulumi:"cert"`
 	// The CloudAMQP instance identifier.
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
+	// A string based argument to trigger force new (default: "").
+	KeyId pulumi.StringOutput `pulumi:"keyId"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// The PEM-encoded private key corresponding to the certificate.
 	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
 	// A hostname (Server Name Indication) that this certificate applies to.
 	SniHosts pulumi.StringOutput `pulumi:"sniHosts"`
-	// An argument to trigger force new (default: 1).
+	// An integer based argument to trigger force new (default: 1).
 	Version pulumi.IntOutput `pulumi:"version"`
 }
 
@@ -110,12 +112,14 @@ type customCertificateState struct {
 	Cert *string `pulumi:"cert"`
 	// The CloudAMQP instance identifier.
 	InstanceId *int `pulumi:"instanceId"`
+	// A string based argument to trigger force new (default: "").
+	KeyId *string `pulumi:"keyId"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// The PEM-encoded private key corresponding to the certificate.
 	PrivateKey *string `pulumi:"privateKey"`
 	// A hostname (Server Name Indication) that this certificate applies to.
 	SniHosts *string `pulumi:"sniHosts"`
-	// An argument to trigger force new (default: 1).
+	// An integer based argument to trigger force new (default: 1).
 	Version *int `pulumi:"version"`
 }
 
@@ -128,12 +132,14 @@ type CustomCertificateState struct {
 	Cert pulumi.StringPtrInput
 	// The CloudAMQP instance identifier.
 	InstanceId pulumi.IntPtrInput
+	// A string based argument to trigger force new (default: "").
+	KeyId pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// The PEM-encoded private key corresponding to the certificate.
 	PrivateKey pulumi.StringPtrInput
 	// A hostname (Server Name Indication) that this certificate applies to.
 	SniHosts pulumi.StringPtrInput
-	// An argument to trigger force new (default: 1).
+	// An integer based argument to trigger force new (default: 1).
 	Version pulumi.IntPtrInput
 }
 
@@ -150,12 +156,14 @@ type customCertificateArgs struct {
 	Cert string `pulumi:"cert"`
 	// The CloudAMQP instance identifier.
 	InstanceId int `pulumi:"instanceId"`
+	// A string based argument to trigger force new (default: "").
+	KeyId *string `pulumi:"keyId"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// The PEM-encoded private key corresponding to the certificate.
 	PrivateKey string `pulumi:"privateKey"`
 	// A hostname (Server Name Indication) that this certificate applies to.
 	SniHosts string `pulumi:"sniHosts"`
-	// An argument to trigger force new (default: 1).
+	// An integer based argument to trigger force new (default: 1).
 	Version *int `pulumi:"version"`
 }
 
@@ -169,12 +177,14 @@ type CustomCertificateArgs struct {
 	Cert pulumi.StringInput
 	// The CloudAMQP instance identifier.
 	InstanceId pulumi.IntInput
+	// A string based argument to trigger force new (default: "").
+	KeyId pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// The PEM-encoded private key corresponding to the certificate.
 	PrivateKey pulumi.StringInput
 	// A hostname (Server Name Indication) that this certificate applies to.
 	SniHosts pulumi.StringInput
-	// An argument to trigger force new (default: 1).
+	// An integer based argument to trigger force new (default: 1).
 	Version pulumi.IntPtrInput
 }
 
@@ -282,6 +292,11 @@ func (o CustomCertificateOutput) InstanceId() pulumi.IntOutput {
 	return o.ApplyT(func(v *CustomCertificate) pulumi.IntOutput { return v.InstanceId }).(pulumi.IntOutput)
 }
 
+// A string based argument to trigger force new (default: "").
+func (o CustomCertificateOutput) KeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CustomCertificate) pulumi.StringOutput { return v.KeyId }).(pulumi.StringOutput)
+}
+
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 // The PEM-encoded private key corresponding to the certificate.
 func (o CustomCertificateOutput) PrivateKey() pulumi.StringOutput {
@@ -293,7 +308,7 @@ func (o CustomCertificateOutput) SniHosts() pulumi.StringOutput {
 	return o.ApplyT(func(v *CustomCertificate) pulumi.StringOutput { return v.SniHosts }).(pulumi.StringOutput)
 }
 
-// An argument to trigger force new (default: 1).
+// An integer based argument to trigger force new (default: 1).
 func (o CustomCertificateOutput) Version() pulumi.IntOutput {
 	return o.ApplyT(func(v *CustomCertificate) pulumi.IntOutput { return v.Version }).(pulumi.IntOutput)
 }

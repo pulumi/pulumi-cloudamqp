@@ -67,6 +67,21 @@ public final class CustomCertificateArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * A string based argument to trigger force new (default: &#34;&#34;).
+     * 
+     */
+    @Import(name="keyId")
+    private @Nullable Output<String> keyId;
+
+    /**
+     * @return A string based argument to trigger force new (default: &#34;&#34;).
+     * 
+     */
+    public Optional<Output<String>> keyId() {
+        return Optional.ofNullable(this.keyId);
+    }
+
+    /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The PEM-encoded private key corresponding to the certificate.
      * 
@@ -99,14 +114,14 @@ public final class CustomCertificateArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * An argument to trigger force new (default: 1).
+     * An integer based argument to trigger force new (default: 1).
      * 
      */
     @Import(name="version")
     private @Nullable Output<Integer> version;
 
     /**
-     * @return An argument to trigger force new (default: 1).
+     * @return An integer based argument to trigger force new (default: 1).
      * 
      */
     public Optional<Output<Integer>> version() {
@@ -119,6 +134,7 @@ public final class CustomCertificateArgs extends com.pulumi.resources.ResourceAr
         this.ca = $.ca;
         this.cert = $.cert;
         this.instanceId = $.instanceId;
+        this.keyId = $.keyId;
         this.privateKey = $.privateKey;
         this.sniHosts = $.sniHosts;
         this.version = $.version;
@@ -210,6 +226,27 @@ public final class CustomCertificateArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
+         * @param keyId A string based argument to trigger force new (default: &#34;&#34;).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyId(@Nullable Output<String> keyId) {
+            $.keyId = keyId;
+            return this;
+        }
+
+        /**
+         * @param keyId A string based argument to trigger force new (default: &#34;&#34;).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyId(String keyId) {
+            return keyId(Output.of(keyId));
+        }
+
+        /**
          * @param privateKey **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * The PEM-encoded private key corresponding to the certificate.
          * 
@@ -254,7 +291,7 @@ public final class CustomCertificateArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param version An argument to trigger force new (default: 1).
+         * @param version An integer based argument to trigger force new (default: 1).
          * 
          * @return builder
          * 
@@ -265,7 +302,7 @@ public final class CustomCertificateArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param version An argument to trigger force new (default: 1).
+         * @param version An integer based argument to trigger force new (default: 1).
          * 
          * @return builder
          * 

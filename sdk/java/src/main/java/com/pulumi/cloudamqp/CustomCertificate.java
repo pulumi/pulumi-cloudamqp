@@ -18,9 +18,9 @@ import javax.annotation.Nullable;
 /**
  * This resource allows you to upload a custom certificate to all servers in your cluster. Update is
  * not supported, all changes require replacement. `ca`, `cert` and `privateKey` all use **WriteOnly**,
- * no information is present in plan phase, logs or stored in the state.
+ * meaning no information is present in plan phase, logs or stored in the state for security purposes.
  * 
- * &gt; **WARNING:** Please note that when uploading a custom or restoring to default certificate,
+ * &gt; **WARNING:** Please note that when uploading a custom certificate or restoring to default certificate,
  * all current connections will be closed.
  * 
  * &gt; **Note:** Destroying this resource will restore the cluster to use the default CloudAMQP certificate.
@@ -77,6 +77,20 @@ public class CustomCertificate extends com.pulumi.resources.CustomResource {
         return this.instanceId;
     }
     /**
+     * A string based argument to trigger force new (default: &#34;&#34;).
+     * 
+     */
+    @Export(name="keyId", refs={String.class}, tree="[0]")
+    private Output<String> keyId;
+
+    /**
+     * @return A string based argument to trigger force new (default: &#34;&#34;).
+     * 
+     */
+    public Output<String> keyId() {
+        return this.keyId;
+    }
+    /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The PEM-encoded private key corresponding to the certificate.
      * 
@@ -107,14 +121,14 @@ public class CustomCertificate extends com.pulumi.resources.CustomResource {
         return this.sniHosts;
     }
     /**
-     * An argument to trigger force new (default: 1).
+     * An integer based argument to trigger force new (default: 1).
      * 
      */
     @Export(name="version", refs={Integer.class}, tree="[0]")
     private Output<Integer> version;
 
     /**
-     * @return An argument to trigger force new (default: 1).
+     * @return An integer based argument to trigger force new (default: 1).
      * 
      */
     public Output<Integer> version() {
