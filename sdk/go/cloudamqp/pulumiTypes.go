@@ -1865,15 +1865,270 @@ func (o SecurityFirewallRuleArrayOutput) Index(i pulumi.IntInput) SecurityFirewa
 	}).(SecurityFirewallRuleOutput)
 }
 
+type TrustStoreFile struct {
+	// A list of certificate blocks (1-100 certificates). Each
+	// certificate block contains:
+	Certificates []TrustStoreFileCertificate `pulumi:"certificates"`
+}
+
+// TrustStoreFileInput is an input type that accepts TrustStoreFileArgs and TrustStoreFileOutput values.
+// You can construct a concrete instance of `TrustStoreFileInput` via:
+//
+//	TrustStoreFileArgs{...}
+type TrustStoreFileInput interface {
+	pulumi.Input
+
+	ToTrustStoreFileOutput() TrustStoreFileOutput
+	ToTrustStoreFileOutputWithContext(context.Context) TrustStoreFileOutput
+}
+
+type TrustStoreFileArgs struct {
+	// A list of certificate blocks (1-100 certificates). Each
+	// certificate block contains:
+	Certificates TrustStoreFileCertificateArrayInput `pulumi:"certificates"`
+}
+
+func (TrustStoreFileArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrustStoreFile)(nil)).Elem()
+}
+
+func (i TrustStoreFileArgs) ToTrustStoreFileOutput() TrustStoreFileOutput {
+	return i.ToTrustStoreFileOutputWithContext(context.Background())
+}
+
+func (i TrustStoreFileArgs) ToTrustStoreFileOutputWithContext(ctx context.Context) TrustStoreFileOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrustStoreFileOutput)
+}
+
+func (i TrustStoreFileArgs) ToTrustStoreFilePtrOutput() TrustStoreFilePtrOutput {
+	return i.ToTrustStoreFilePtrOutputWithContext(context.Background())
+}
+
+func (i TrustStoreFileArgs) ToTrustStoreFilePtrOutputWithContext(ctx context.Context) TrustStoreFilePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrustStoreFileOutput).ToTrustStoreFilePtrOutputWithContext(ctx)
+}
+
+// TrustStoreFilePtrInput is an input type that accepts TrustStoreFileArgs, TrustStoreFilePtr and TrustStoreFilePtrOutput values.
+// You can construct a concrete instance of `TrustStoreFilePtrInput` via:
+//
+//	        TrustStoreFileArgs{...}
+//
+//	or:
+//
+//	        nil
+type TrustStoreFilePtrInput interface {
+	pulumi.Input
+
+	ToTrustStoreFilePtrOutput() TrustStoreFilePtrOutput
+	ToTrustStoreFilePtrOutputWithContext(context.Context) TrustStoreFilePtrOutput
+}
+
+type trustStoreFilePtrType TrustStoreFileArgs
+
+func TrustStoreFilePtr(v *TrustStoreFileArgs) TrustStoreFilePtrInput {
+	return (*trustStoreFilePtrType)(v)
+}
+
+func (*trustStoreFilePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TrustStoreFile)(nil)).Elem()
+}
+
+func (i *trustStoreFilePtrType) ToTrustStoreFilePtrOutput() TrustStoreFilePtrOutput {
+	return i.ToTrustStoreFilePtrOutputWithContext(context.Background())
+}
+
+func (i *trustStoreFilePtrType) ToTrustStoreFilePtrOutputWithContext(ctx context.Context) TrustStoreFilePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrustStoreFilePtrOutput)
+}
+
+type TrustStoreFileOutput struct{ *pulumi.OutputState }
+
+func (TrustStoreFileOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrustStoreFile)(nil)).Elem()
+}
+
+func (o TrustStoreFileOutput) ToTrustStoreFileOutput() TrustStoreFileOutput {
+	return o
+}
+
+func (o TrustStoreFileOutput) ToTrustStoreFileOutputWithContext(ctx context.Context) TrustStoreFileOutput {
+	return o
+}
+
+func (o TrustStoreFileOutput) ToTrustStoreFilePtrOutput() TrustStoreFilePtrOutput {
+	return o.ToTrustStoreFilePtrOutputWithContext(context.Background())
+}
+
+func (o TrustStoreFileOutput) ToTrustStoreFilePtrOutputWithContext(ctx context.Context) TrustStoreFilePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TrustStoreFile) *TrustStoreFile {
+		return &v
+	}).(TrustStoreFilePtrOutput)
+}
+
+// A list of certificate blocks (1-100 certificates). Each
+// certificate block contains:
+func (o TrustStoreFileOutput) Certificates() TrustStoreFileCertificateArrayOutput {
+	return o.ApplyT(func(v TrustStoreFile) []TrustStoreFileCertificate { return v.Certificates }).(TrustStoreFileCertificateArrayOutput)
+}
+
+type TrustStoreFilePtrOutput struct{ *pulumi.OutputState }
+
+func (TrustStoreFilePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TrustStoreFile)(nil)).Elem()
+}
+
+func (o TrustStoreFilePtrOutput) ToTrustStoreFilePtrOutput() TrustStoreFilePtrOutput {
+	return o
+}
+
+func (o TrustStoreFilePtrOutput) ToTrustStoreFilePtrOutputWithContext(ctx context.Context) TrustStoreFilePtrOutput {
+	return o
+}
+
+func (o TrustStoreFilePtrOutput) Elem() TrustStoreFileOutput {
+	return o.ApplyT(func(v *TrustStoreFile) TrustStoreFile {
+		if v != nil {
+			return *v
+		}
+		var ret TrustStoreFile
+		return ret
+	}).(TrustStoreFileOutput)
+}
+
+// A list of certificate blocks (1-100 certificates). Each
+// certificate block contains:
+func (o TrustStoreFilePtrOutput) Certificates() TrustStoreFileCertificateArrayOutput {
+	return o.ApplyT(func(v *TrustStoreFile) []TrustStoreFileCertificate {
+		if v == nil {
+			return nil
+		}
+		return v.Certificates
+	}).(TrustStoreFileCertificateArrayOutput)
+}
+
+type TrustStoreFileCertificate struct {
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// PEM-encoded x.509 formatted leaf certificate content.
+	//
+	// Updates require incrementing `version` or changing `keyId`.
+	Content *string `pulumi:"content"`
+	// A unique identifier for the certificate.
+	Name *string `pulumi:"name"`
+}
+
+// TrustStoreFileCertificateInput is an input type that accepts TrustStoreFileCertificateArgs and TrustStoreFileCertificateOutput values.
+// You can construct a concrete instance of `TrustStoreFileCertificateInput` via:
+//
+//	TrustStoreFileCertificateArgs{...}
+type TrustStoreFileCertificateInput interface {
+	pulumi.Input
+
+	ToTrustStoreFileCertificateOutput() TrustStoreFileCertificateOutput
+	ToTrustStoreFileCertificateOutputWithContext(context.Context) TrustStoreFileCertificateOutput
+}
+
+type TrustStoreFileCertificateArgs struct {
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// PEM-encoded x.509 formatted leaf certificate content.
+	//
+	// Updates require incrementing `version` or changing `keyId`.
+	Content pulumi.StringPtrInput `pulumi:"content"`
+	// A unique identifier for the certificate.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (TrustStoreFileCertificateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrustStoreFileCertificate)(nil)).Elem()
+}
+
+func (i TrustStoreFileCertificateArgs) ToTrustStoreFileCertificateOutput() TrustStoreFileCertificateOutput {
+	return i.ToTrustStoreFileCertificateOutputWithContext(context.Background())
+}
+
+func (i TrustStoreFileCertificateArgs) ToTrustStoreFileCertificateOutputWithContext(ctx context.Context) TrustStoreFileCertificateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrustStoreFileCertificateOutput)
+}
+
+// TrustStoreFileCertificateArrayInput is an input type that accepts TrustStoreFileCertificateArray and TrustStoreFileCertificateArrayOutput values.
+// You can construct a concrete instance of `TrustStoreFileCertificateArrayInput` via:
+//
+//	TrustStoreFileCertificateArray{ TrustStoreFileCertificateArgs{...} }
+type TrustStoreFileCertificateArrayInput interface {
+	pulumi.Input
+
+	ToTrustStoreFileCertificateArrayOutput() TrustStoreFileCertificateArrayOutput
+	ToTrustStoreFileCertificateArrayOutputWithContext(context.Context) TrustStoreFileCertificateArrayOutput
+}
+
+type TrustStoreFileCertificateArray []TrustStoreFileCertificateInput
+
+func (TrustStoreFileCertificateArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrustStoreFileCertificate)(nil)).Elem()
+}
+
+func (i TrustStoreFileCertificateArray) ToTrustStoreFileCertificateArrayOutput() TrustStoreFileCertificateArrayOutput {
+	return i.ToTrustStoreFileCertificateArrayOutputWithContext(context.Background())
+}
+
+func (i TrustStoreFileCertificateArray) ToTrustStoreFileCertificateArrayOutputWithContext(ctx context.Context) TrustStoreFileCertificateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TrustStoreFileCertificateArrayOutput)
+}
+
+type TrustStoreFileCertificateOutput struct{ *pulumi.OutputState }
+
+func (TrustStoreFileCertificateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TrustStoreFileCertificate)(nil)).Elem()
+}
+
+func (o TrustStoreFileCertificateOutput) ToTrustStoreFileCertificateOutput() TrustStoreFileCertificateOutput {
+	return o
+}
+
+func (o TrustStoreFileCertificateOutput) ToTrustStoreFileCertificateOutputWithContext(ctx context.Context) TrustStoreFileCertificateOutput {
+	return o
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// PEM-encoded x.509 formatted leaf certificate content.
+//
+// Updates require incrementing `version` or changing `keyId`.
+func (o TrustStoreFileCertificateOutput) Content() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TrustStoreFileCertificate) *string { return v.Content }).(pulumi.StringPtrOutput)
+}
+
+// A unique identifier for the certificate.
+func (o TrustStoreFileCertificateOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TrustStoreFileCertificate) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type TrustStoreFileCertificateArrayOutput struct{ *pulumi.OutputState }
+
+func (TrustStoreFileCertificateArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TrustStoreFileCertificate)(nil)).Elem()
+}
+
+func (o TrustStoreFileCertificateArrayOutput) ToTrustStoreFileCertificateArrayOutput() TrustStoreFileCertificateArrayOutput {
+	return o
+}
+
+func (o TrustStoreFileCertificateArrayOutput) ToTrustStoreFileCertificateArrayOutputWithContext(ctx context.Context) TrustStoreFileCertificateArrayOutput {
+	return o
+}
+
+func (o TrustStoreFileCertificateArrayOutput) Index(i pulumi.IntInput) TrustStoreFileCertificateOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TrustStoreFileCertificate {
+		return vs[0].([]TrustStoreFileCertificate)[vs[1].(int)]
+	}).(TrustStoreFileCertificateOutput)
+}
+
 type TrustStoreHttp struct {
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// PEM encoded CA certificates used to verify the HTTPS connection to the
-	// trust store URL. This is a write-only field - changes are only applied when `version`
-	// is incremented.
+	// PEM-encoded CA certificates used to verify the HTTPS connection to
+	// the trust store URL. Updates require incrementing `version` or changing `keyId`.
 	Cacert *string `pulumi:"cacert"`
-	// URL to fetch trust store certificates from. RabbitMQ will periodically
-	// fetch CA certificates from this URL.
-	Url string `pulumi:"url"`
+	// URL to fetch trust store certificates from. RabbitMQ will periodically fetch
+	// CA certificates from this URL according to the `refreshInterval`.
+	Url *string `pulumi:"url"`
 }
 
 // TrustStoreHttpInput is an input type that accepts TrustStoreHttpArgs and TrustStoreHttpOutput values.
@@ -1889,13 +2144,12 @@ type TrustStoreHttpInput interface {
 
 type TrustStoreHttpArgs struct {
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// PEM encoded CA certificates used to verify the HTTPS connection to the
-	// trust store URL. This is a write-only field - changes are only applied when `version`
-	// is incremented.
+	// PEM-encoded CA certificates used to verify the HTTPS connection to
+	// the trust store URL. Updates require incrementing `version` or changing `keyId`.
 	Cacert pulumi.StringPtrInput `pulumi:"cacert"`
-	// URL to fetch trust store certificates from. RabbitMQ will periodically
-	// fetch CA certificates from this URL.
-	Url pulumi.StringInput `pulumi:"url"`
+	// URL to fetch trust store certificates from. RabbitMQ will periodically fetch
+	// CA certificates from this URL according to the `refreshInterval`.
+	Url pulumi.StringPtrInput `pulumi:"url"`
 }
 
 func (TrustStoreHttpArgs) ElementType() reflect.Type {
@@ -1976,17 +2230,16 @@ func (o TrustStoreHttpOutput) ToTrustStoreHttpPtrOutputWithContext(ctx context.C
 }
 
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-// PEM encoded CA certificates used to verify the HTTPS connection to the
-// trust store URL. This is a write-only field - changes are only applied when `version`
-// is incremented.
+// PEM-encoded CA certificates used to verify the HTTPS connection to
+// the trust store URL. Updates require incrementing `version` or changing `keyId`.
 func (o TrustStoreHttpOutput) Cacert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v TrustStoreHttp) *string { return v.Cacert }).(pulumi.StringPtrOutput)
 }
 
-// URL to fetch trust store certificates from. RabbitMQ will periodically
-// fetch CA certificates from this URL.
-func (o TrustStoreHttpOutput) Url() pulumi.StringOutput {
-	return o.ApplyT(func(v TrustStoreHttp) string { return v.Url }).(pulumi.StringOutput)
+// URL to fetch trust store certificates from. RabbitMQ will periodically fetch
+// CA certificates from this URL according to the `refreshInterval`.
+func (o TrustStoreHttpOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TrustStoreHttp) *string { return v.Url }).(pulumi.StringPtrOutput)
 }
 
 type TrustStoreHttpPtrOutput struct{ *pulumi.OutputState }
@@ -2014,9 +2267,8 @@ func (o TrustStoreHttpPtrOutput) Elem() TrustStoreHttpOutput {
 }
 
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-// PEM encoded CA certificates used to verify the HTTPS connection to the
-// trust store URL. This is a write-only field - changes are only applied when `version`
-// is incremented.
+// PEM-encoded CA certificates used to verify the HTTPS connection to
+// the trust store URL. Updates require incrementing `version` or changing `keyId`.
 func (o TrustStoreHttpPtrOutput) Cacert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *TrustStoreHttp) *string {
 		if v == nil {
@@ -2026,14 +2278,14 @@ func (o TrustStoreHttpPtrOutput) Cacert() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// URL to fetch trust store certificates from. RabbitMQ will periodically
-// fetch CA certificates from this URL.
+// URL to fetch trust store certificates from. RabbitMQ will periodically fetch
+// CA certificates from this URL according to the `refreshInterval`.
 func (o TrustStoreHttpPtrOutput) Url() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *TrustStoreHttp) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.Url
+		return v.Url
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -3093,6 +3345,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NotificationResponderArrayInput)(nil)).Elem(), NotificationResponderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityFirewallRuleInput)(nil)).Elem(), SecurityFirewallRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityFirewallRuleArrayInput)(nil)).Elem(), SecurityFirewallRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrustStoreFileInput)(nil)).Elem(), TrustStoreFileArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrustStoreFilePtrInput)(nil)).Elem(), TrustStoreFileArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrustStoreFileCertificateInput)(nil)).Elem(), TrustStoreFileCertificateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TrustStoreFileCertificateArrayInput)(nil)).Elem(), TrustStoreFileCertificateArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TrustStoreHttpInput)(nil)).Elem(), TrustStoreHttpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TrustStoreHttpPtrInput)(nil)).Elem(), TrustStoreHttpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountInstanceInput)(nil)).Elem(), GetAccountInstanceArgs{})
@@ -3131,6 +3387,10 @@ func init() {
 	pulumi.RegisterOutputType(NotificationResponderArrayOutput{})
 	pulumi.RegisterOutputType(SecurityFirewallRuleOutput{})
 	pulumi.RegisterOutputType(SecurityFirewallRuleArrayOutput{})
+	pulumi.RegisterOutputType(TrustStoreFileOutput{})
+	pulumi.RegisterOutputType(TrustStoreFilePtrOutput{})
+	pulumi.RegisterOutputType(TrustStoreFileCertificateOutput{})
+	pulumi.RegisterOutputType(TrustStoreFileCertificateArrayOutput{})
 	pulumi.RegisterOutputType(TrustStoreHttpOutput{})
 	pulumi.RegisterOutputType(TrustStoreHttpPtrOutput{})
 	pulumi.RegisterOutputType(GetAccountInstanceOutput{})

@@ -424,18 +424,39 @@ export interface SecurityFirewallRule {
     services?: string[];
 }
 
+export interface TrustStoreFile {
+    /**
+     * A list of certificate blocks (1-100 certificates). Each
+     * certificate block contains:
+     */
+    certificates?: outputs.TrustStoreFileCertificate[];
+}
+
+export interface TrustStoreFileCertificate {
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * PEM-encoded x.509 formatted leaf certificate content.
+     *
+     * Updates require incrementing `version` or changing `keyId`.
+     */
+    content?: string;
+    /**
+     * A unique identifier for the certificate.
+     */
+    name?: string;
+}
+
 export interface TrustStoreHttp {
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * PEM encoded CA certificates used to verify the HTTPS connection to the
-     * trust store URL. This is a write-only field - changes are only applied when `version`
-     * is incremented.
+     * PEM-encoded CA certificates used to verify the HTTPS connection to
+     * the trust store URL. Updates require incrementing `version` or changing `keyId`.
      */
     cacert?: string;
     /**
-     * URL to fetch trust store certificates from. RabbitMQ will periodically
-     * fetch CA certificates from this URL.
+     * URL to fetch trust store certificates from. RabbitMQ will periodically fetch
+     * CA certificates from this URL according to the `refreshInterval`.
      */
-    url: string;
+    url?: string;
 }
 

@@ -343,22 +343,45 @@
                 "ip"
             ]
         },
+        "cloudamqp:index/TrustStoreFile:TrustStoreFile": {
+            "properties": {
+                "certificates": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/cloudamqp:index/TrustStoreFileCertificate:TrustStoreFileCertificate"
+                    },
+                    "description": "A list of certificate blocks (1-100 certificates). Each\ncertificate block contains:\n"
+                }
+            },
+            "type": "object"
+        },
+        "cloudamqp:index/TrustStoreFileCertificate:TrustStoreFileCertificate": {
+            "properties": {
+                "content": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nPEM-encoded x.509 formatted leaf certificate content.\n\nUpdates require incrementing \u003cspan pulumi-lang-nodejs=\"`version`\" pulumi-lang-dotnet=\"`Version`\" pulumi-lang-go=\"`version`\" pulumi-lang-python=\"`version`\" pulumi-lang-yaml=\"`version`\" pulumi-lang-java=\"`version`\"\u003e`version`\u003c/span\u003e or changing \u003cspan pulumi-lang-nodejs=\"`keyId`\" pulumi-lang-dotnet=\"`KeyId`\" pulumi-lang-go=\"`keyId`\" pulumi-lang-python=\"`key_id`\" pulumi-lang-yaml=\"`keyId`\" pulumi-lang-java=\"`keyId`\"\u003e`key_id`\u003c/span\u003e.\n",
+                    "secret": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique identifier for the certificate.\n"
+                }
+            },
+            "type": "object"
+        },
         "cloudamqp:index/TrustStoreHttp:TrustStoreHttp": {
             "properties": {
                 "cacert": {
                     "type": "string",
-                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nPEM encoded CA certificates used to verify the HTTPS connection to the\ntrust store URL. This is a write-only field - changes are only applied when \u003cspan pulumi-lang-nodejs=\"`version`\" pulumi-lang-dotnet=\"`Version`\" pulumi-lang-go=\"`version`\" pulumi-lang-python=\"`version`\" pulumi-lang-yaml=\"`version`\" pulumi-lang-java=\"`version`\"\u003e`version`\u003c/span\u003e\nis incremented.\n",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nPEM-encoded CA certificates used to verify the HTTPS connection to\nthe trust store URL. Updates require incrementing \u003cspan pulumi-lang-nodejs=\"`version`\" pulumi-lang-dotnet=\"`Version`\" pulumi-lang-go=\"`version`\" pulumi-lang-python=\"`version`\" pulumi-lang-yaml=\"`version`\" pulumi-lang-java=\"`version`\"\u003e`version`\u003c/span\u003e or changing \u003cspan pulumi-lang-nodejs=\"`keyId`\" pulumi-lang-dotnet=\"`KeyId`\" pulumi-lang-go=\"`keyId`\" pulumi-lang-python=\"`key_id`\" pulumi-lang-yaml=\"`keyId`\" pulumi-lang-java=\"`keyId`\"\u003e`key_id`\u003c/span\u003e.\n",
                     "secret": true
                 },
                 "url": {
                     "type": "string",
-                    "description": "URL to fetch trust store certificates from. RabbitMQ will periodically\nfetch CA certificates from this URL.\n"
+                    "description": "URL to fetch trust store certificates from. RabbitMQ will periodically fetch\nCA certificates from this URL according to the \u003cspan pulumi-lang-nodejs=\"`refreshInterval`\" pulumi-lang-dotnet=\"`RefreshInterval`\" pulumi-lang-go=\"`refreshInterval`\" pulumi-lang-python=\"`refresh_interval`\" pulumi-lang-yaml=\"`refreshInterval`\" pulumi-lang-java=\"`refreshInterval`\"\u003e`refresh_interval`\u003c/span\u003e.\n"
                 }
             },
-            "type": "object",
-            "required": [
-                "url"
-            ]
+            "type": "object"
         },
         "cloudamqp:index/getAccountInstance:getAccountInstance": {
             "properties": {
@@ -3659,64 +3682,81 @@
             }
         },
         "cloudamqp:index/trustStore:TrustStore": {
-            "description": "This resource allows you to configure a trust store for your RabbitMQ instance. The trust store enables RabbitMQ to fetch and use CA certificates from an external source for validating client certificates.\n\nOnly available for dedicated subscription plans running ***RabbitMQ***.\n\n## Example Usage\n\n\u003cdetails\u003e\n  \u003csummary\u003e\n    \u003cb\u003e\n      \u003ci\u003eBasic trust store configuration\u003c/i\u003e\n    \u003c/b\u003e\n  \u003c/summary\u003e\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst trustStore = new cloudamqp.TrustStore(\"trust_store\", {\n    instanceId: instance.id,\n    http: {\n        url: \"https://example.com/trust-store-certs\",\n    },\n    refreshInterval: 30,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\ntrust_store = cloudamqp.TrustStore(\"trust_store\",\n    instance_id=instance[\"id\"],\n    http={\n        \"url\": \"https://example.com/trust-store-certs\",\n    },\n    refresh_interval=30)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var trustStore = new CloudAmqp.TrustStore(\"trust_store\", new()\n    {\n        InstanceId = instance.Id,\n        Http = new CloudAmqp.Inputs.TrustStoreHttpArgs\n        {\n            Url = \"https://example.com/trust-store-certs\",\n        },\n        RefreshInterval = 30,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.NewTrustStore(ctx, \"trust_store\", \u0026cloudamqp.TrustStoreArgs{\n\t\t\tInstanceId: pulumi.Any(instance.Id),\n\t\t\tHttp: \u0026cloudamqp.TrustStoreHttpArgs{\n\t\t\t\tUrl: pulumi.String(\"https://example.com/trust-store-certs\"),\n\t\t\t},\n\t\t\tRefreshInterval: pulumi.Int(30),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.cloudamqp.TrustStore;\nimport com.pulumi.cloudamqp.TrustStoreArgs;\nimport com.pulumi.cloudamqp.inputs.TrustStoreHttpArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var trustStore = new TrustStore(\"trustStore\", TrustStoreArgs.builder()\n            .instanceId(instance.id())\n            .http(TrustStoreHttpArgs.builder()\n                .url(\"https://example.com/trust-store-certs\")\n                .build())\n            .refreshInterval(30)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  trustStore:\n    type: cloudamqp:TrustStore\n    name: trust_store\n    properties:\n      instanceId: ${instance.id}\n      http:\n        url: https://example.com/trust-store-certs\n      refreshInterval: 30\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n\u003c/details\u003e\n\n\u003cdetails\u003e\n  \u003csummary\u003e\n    \u003cb\u003e\n      \u003ci\u003eTrust store with CA certificate\u003c/i\u003e\n    \u003c/b\u003e\n  \u003c/summary\u003e\n\n## Import\n\n`cloudamqp_trust_store` can be imported using the CloudAMQP instance identifier.\n\nFrom Terraform v1.5.0, the `import` block can be used to import this resource:\n\nhcl\n\nimport {\n\n  to = cloudamqp_trust_store.trust_store\n\n  id = cloudamqp_instance.instance.id\n\n}\n\nOr use Terraform CLI:\n\n```sh\n$ pulumi import cloudamqp:index/trustStore:TrustStore trust_store \u003cinstance_id\u003e`\n```\n\n",
+            "description": "This resource allows you to configure a trust store for your RabbitMQ broker. The trust store\nenables RabbitMQ to fetch and use CA certificates from an external source for validating client\ncertificates, or upload multiple leaf certificates as an allow list.\n\nThe `http.cacert` and `file.certificates` fields use **WriteOnly**, meaning no information is\npresent in plan phase, logs or stored in the state for security purposes. To update these fields,\nincrement either the \u003cspan pulumi-lang-nodejs=\"`version`\" pulumi-lang-dotnet=\"`Version`\" pulumi-lang-go=\"`version`\" pulumi-lang-python=\"`version`\" pulumi-lang-yaml=\"`version`\" pulumi-lang-java=\"`version`\"\u003e`version`\u003c/span\u003e or update the \u003cspan pulumi-lang-nodejs=\"`keyId`\" pulumi-lang-dotnet=\"`KeyId`\" pulumi-lang-go=\"`keyId`\" pulumi-lang-python=\"`key_id`\" pulumi-lang-yaml=\"`keyId`\" pulumi-lang-java=\"`keyId`\"\u003e`key_id`\u003c/span\u003e attribute.\n\n\u003e **Note:** Updates to write-only fields (`http.cacert` or `file.certificates`) are only applied\nwhen \u003cspan pulumi-lang-nodejs=\"`version`\" pulumi-lang-dotnet=\"`Version`\" pulumi-lang-go=\"`version`\" pulumi-lang-python=\"`version`\" pulumi-lang-yaml=\"`version`\" pulumi-lang-java=\"`version`\"\u003e`version`\u003c/span\u003e is incremented or \u003cspan pulumi-lang-nodejs=\"`keyId`\" pulumi-lang-dotnet=\"`KeyId`\" pulumi-lang-go=\"`keyId`\" pulumi-lang-python=\"`key_id`\" pulumi-lang-yaml=\"`keyId`\" pulumi-lang-java=\"`keyId`\"\u003e`key_id`\u003c/span\u003e is changed. This design allows you to manage certificate\nrotation explicitly.\n\n\u003e **Note:** After the trust store has been added, a restart of RabbitMQ is required for the changes to take effect.\n\nOnly available for dedicated subscription plans running ***RabbitMQ***.\n\n## Example Usage\n\n\u003cdetails\u003e\n  \u003csummary\u003e\n    \u003cb\u003e\n      \u003ci\u003eTrust store configuration with HTTP provider\u003c/i\u003e\n    \u003c/b\u003e\n  \u003c/summary\u003e\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst trustStore = new cloudamqp.TrustStore(\"trust_store\", {\n    instanceId: instance.id,\n    http: {\n        url: \"https://example.com/trust-store-certs\",\n    },\n    refreshInterval: 30,\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\ntrust_store = cloudamqp.TrustStore(\"trust_store\",\n    instance_id=instance[\"id\"],\n    http={\n        \"url\": \"https://example.com/trust-store-certs\",\n    },\n    refresh_interval=30)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var trustStore = new CloudAmqp.TrustStore(\"trust_store\", new()\n    {\n        InstanceId = instance.Id,\n        Http = new CloudAmqp.Inputs.TrustStoreHttpArgs\n        {\n            Url = \"https://example.com/trust-store-certs\",\n        },\n        RefreshInterval = 30,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.NewTrustStore(ctx, \"trust_store\", \u0026cloudamqp.TrustStoreArgs{\n\t\t\tInstanceId: pulumi.Any(instance.Id),\n\t\t\tHttp: \u0026cloudamqp.TrustStoreHttpArgs{\n\t\t\t\tUrl: pulumi.String(\"https://example.com/trust-store-certs\"),\n\t\t\t},\n\t\t\tRefreshInterval: pulumi.Int(30),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.cloudamqp.TrustStore;\nimport com.pulumi.cloudamqp.TrustStoreArgs;\nimport com.pulumi.cloudamqp.inputs.TrustStoreHttpArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var trustStore = new TrustStore(\"trustStore\", TrustStoreArgs.builder()\n            .instanceId(instance.id())\n            .http(TrustStoreHttpArgs.builder()\n                .url(\"https://example.com/trust-store-certs\")\n                .build())\n            .refreshInterval(30)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  trustStore:\n    type: cloudamqp:TrustStore\n    name: trust_store\n    properties:\n      instanceId: ${instance.id}\n      http:\n        url: https://example.com/trust-store-certs\n      refreshInterval: 30\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n\u003c/details\u003e\n\n\u003cdetails\u003e\n  \u003csummary\u003e\n    \u003cb\u003e\n      \u003ci\u003eTrust store with HTTP provider and CA certificate\u003c/i\u003e\n    \u003c/b\u003e\n  \u003c/summary\u003e\n\n## Import\n\n`cloudamqp_trust_store` can be imported using the CloudAMQP instance identifier.\n\nfields (`http.cacert` or `file.certificates`). You'll need to set these in your configuration.\n\nFrom Terraform v1.5.0, the `import` block can be used to import this resource:\n\nhcl\n\nimport {\n\n  to = cloudamqp_trust_store.trust_store\n\n  id = cloudamqp_instance.instance.id\n\n}\n\nOr use Terraform CLI:\n\n```sh\n$ pulumi import cloudamqp:index/trustStore:TrustStore trust_store \u003cinstance_id\u003e`\n```\n\n",
             "properties": {
+                "file": {
+                    "$ref": "#/types/cloudamqp:index/TrustStoreFile:TrustStoreFile",
+                    "description": "File trust store configuration block. See File Block below.\n"
+                },
                 "http": {
                     "$ref": "#/types/cloudamqp:index/TrustStoreHttp:TrustStoreHttp",
                     "description": "HTTP trust store configuration block. See HTTP Block below.\n"
                 },
                 "instanceId": {
                     "type": "integer",
-                    "description": "The CloudAMQP instance ID.\n"
+                    "description": "The CloudAMQP instance identifier.\n"
+                },
+                "keyId": {
+                    "type": "string",
+                    "description": "A string identifier to trigger updates of write-only certificate fields.\nChange this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: \"\").\n"
                 },
                 "refreshInterval": {
                     "type": "integer",
-                    "description": "Interval in seconds to refresh the trust store certificates. Defaults to 30 seconds.\nDefaults to 30 seconds.\n"
+                    "description": "Interval in seconds for RabbitMQ to refresh the trust\nstore certificates (default: 30).\n"
                 },
                 "sleep": {
                     "type": "integer",
-                    "description": "Configurable sleep time in seconds between retries for\ntrust store operations. Defaults to 10 seconds.\n"
+                    "description": "Configurable sleep time in seconds between retries for trust store\noperations (default: 10).\n"
                 },
                 "timeout": {
                     "type": "integer",
-                    "description": "Configurable timeout time in seconds for trust store\noperations. Defaults to 1800 seconds (30 minutes).\n"
+                    "description": "Configurable timeout time in seconds for trust store operations\n(default: 1800).\n\n***Note:*** Either \u003cspan pulumi-lang-nodejs=\"`http`\" pulumi-lang-dotnet=\"`Http`\" pulumi-lang-go=\"`http`\" pulumi-lang-python=\"`http`\" pulumi-lang-yaml=\"`http`\" pulumi-lang-java=\"`http`\"\u003e`http`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`file`\" pulumi-lang-dotnet=\"`File`\" pulumi-lang-go=\"`file`\" pulumi-lang-python=\"`file`\" pulumi-lang-yaml=\"`file`\" pulumi-lang-java=\"`file`\"\u003e`file`\u003c/span\u003e configuration block must be specified, but not both.\n"
                 },
                 "version": {
                     "type": "integer",
-                    "description": "Version of write-only certificates. Increment this value to force an update of write-only fields like \u003cspan pulumi-lang-nodejs=\"`cacert`\" pulumi-lang-dotnet=\"`Cacert`\" pulumi-lang-go=\"`cacert`\" pulumi-lang-python=\"`cacert`\" pulumi-lang-yaml=\"`cacert`\" pulumi-lang-java=\"`cacert`\"\u003e`cacert`\u003c/span\u003e. Defaults to 1.\n"
+                    "description": "An integer to trigger updates of write-only certificate fields.\nIncrement this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: 1).\n"
                 }
             },
             "required": [
                 "instanceId",
+                "keyId",
                 "refreshInterval",
                 "sleep",
                 "timeout",
                 "version"
             ],
             "inputProperties": {
+                "file": {
+                    "$ref": "#/types/cloudamqp:index/TrustStoreFile:TrustStoreFile",
+                    "description": "File trust store configuration block. See File Block below.\n"
+                },
                 "http": {
                     "$ref": "#/types/cloudamqp:index/TrustStoreHttp:TrustStoreHttp",
                     "description": "HTTP trust store configuration block. See HTTP Block below.\n"
                 },
                 "instanceId": {
                     "type": "integer",
-                    "description": "The CloudAMQP instance ID.\n"
+                    "description": "The CloudAMQP instance identifier.\n"
+                },
+                "keyId": {
+                    "type": "string",
+                    "description": "A string identifier to trigger updates of write-only certificate fields.\nChange this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: \"\").\n"
                 },
                 "refreshInterval": {
                     "type": "integer",
-                    "description": "Interval in seconds to refresh the trust store certificates. Defaults to 30 seconds.\nDefaults to 30 seconds.\n"
+                    "description": "Interval in seconds for RabbitMQ to refresh the trust\nstore certificates (default: 30).\n"
                 },
                 "sleep": {
                     "type": "integer",
-                    "description": "Configurable sleep time in seconds between retries for\ntrust store operations. Defaults to 10 seconds.\n"
+                    "description": "Configurable sleep time in seconds between retries for trust store\noperations (default: 10).\n"
                 },
                 "timeout": {
                     "type": "integer",
-                    "description": "Configurable timeout time in seconds for trust store\noperations. Defaults to 1800 seconds (30 minutes).\n"
+                    "description": "Configurable timeout time in seconds for trust store operations\n(default: 1800).\n\n***Note:*** Either \u003cspan pulumi-lang-nodejs=\"`http`\" pulumi-lang-dotnet=\"`Http`\" pulumi-lang-go=\"`http`\" pulumi-lang-python=\"`http`\" pulumi-lang-yaml=\"`http`\" pulumi-lang-java=\"`http`\"\u003e`http`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`file`\" pulumi-lang-dotnet=\"`File`\" pulumi-lang-go=\"`file`\" pulumi-lang-python=\"`file`\" pulumi-lang-yaml=\"`file`\" pulumi-lang-java=\"`file`\"\u003e`file`\u003c/span\u003e configuration block must be specified, but not both.\n"
                 },
                 "version": {
                     "type": "integer",
-                    "description": "Version of write-only certificates. Increment this value to force an update of write-only fields like \u003cspan pulumi-lang-nodejs=\"`cacert`\" pulumi-lang-dotnet=\"`Cacert`\" pulumi-lang-go=\"`cacert`\" pulumi-lang-python=\"`cacert`\" pulumi-lang-yaml=\"`cacert`\" pulumi-lang-java=\"`cacert`\"\u003e`cacert`\u003c/span\u003e. Defaults to 1.\n"
+                    "description": "An integer to trigger updates of write-only certificate fields.\nIncrement this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: 1).\n"
                 }
             },
             "requiredInputs": [
@@ -3725,29 +3765,37 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering TrustStore resources.\n",
                 "properties": {
+                    "file": {
+                        "$ref": "#/types/cloudamqp:index/TrustStoreFile:TrustStoreFile",
+                        "description": "File trust store configuration block. See File Block below.\n"
+                    },
                     "http": {
                         "$ref": "#/types/cloudamqp:index/TrustStoreHttp:TrustStoreHttp",
                         "description": "HTTP trust store configuration block. See HTTP Block below.\n"
                     },
                     "instanceId": {
                         "type": "integer",
-                        "description": "The CloudAMQP instance ID.\n"
+                        "description": "The CloudAMQP instance identifier.\n"
+                    },
+                    "keyId": {
+                        "type": "string",
+                        "description": "A string identifier to trigger updates of write-only certificate fields.\nChange this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: \"\").\n"
                     },
                     "refreshInterval": {
                         "type": "integer",
-                        "description": "Interval in seconds to refresh the trust store certificates. Defaults to 30 seconds.\nDefaults to 30 seconds.\n"
+                        "description": "Interval in seconds for RabbitMQ to refresh the trust\nstore certificates (default: 30).\n"
                     },
                     "sleep": {
                         "type": "integer",
-                        "description": "Configurable sleep time in seconds between retries for\ntrust store operations. Defaults to 10 seconds.\n"
+                        "description": "Configurable sleep time in seconds between retries for trust store\noperations (default: 10).\n"
                     },
                     "timeout": {
                         "type": "integer",
-                        "description": "Configurable timeout time in seconds for trust store\noperations. Defaults to 1800 seconds (30 minutes).\n"
+                        "description": "Configurable timeout time in seconds for trust store operations\n(default: 1800).\n\n***Note:*** Either \u003cspan pulumi-lang-nodejs=\"`http`\" pulumi-lang-dotnet=\"`Http`\" pulumi-lang-go=\"`http`\" pulumi-lang-python=\"`http`\" pulumi-lang-yaml=\"`http`\" pulumi-lang-java=\"`http`\"\u003e`http`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`file`\" pulumi-lang-dotnet=\"`File`\" pulumi-lang-go=\"`file`\" pulumi-lang-python=\"`file`\" pulumi-lang-yaml=\"`file`\" pulumi-lang-java=\"`file`\"\u003e`file`\u003c/span\u003e configuration block must be specified, but not both.\n"
                     },
                     "version": {
                         "type": "integer",
-                        "description": "Version of write-only certificates. Increment this value to force an update of write-only fields like \u003cspan pulumi-lang-nodejs=\"`cacert`\" pulumi-lang-dotnet=\"`Cacert`\" pulumi-lang-go=\"`cacert`\" pulumi-lang-python=\"`cacert`\" pulumi-lang-yaml=\"`cacert`\" pulumi-lang-java=\"`cacert`\"\u003e`cacert`\u003c/span\u003e. Defaults to 1.\n"
+                        "description": "An integer to trigger updates of write-only certificate fields.\nIncrement this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: 1).\n"
                     }
                 },
                 "type": "object"

@@ -6,17 +6,31 @@ package com.pulumi.cloudamqp;
 import com.pulumi.cloudamqp.TrustStoreArgs;
 import com.pulumi.cloudamqp.Utilities;
 import com.pulumi.cloudamqp.inputs.TrustStoreState;
+import com.pulumi.cloudamqp.outputs.TrustStoreFile;
 import com.pulumi.cloudamqp.outputs.TrustStoreHttp;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Export;
 import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
 import java.lang.Integer;
+import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * This resource allows you to configure a trust store for your RabbitMQ instance. The trust store enables RabbitMQ to fetch and use CA certificates from an external source for validating client certificates.
+ * This resource allows you to configure a trust store for your RabbitMQ broker. The trust store
+ * enables RabbitMQ to fetch and use CA certificates from an external source for validating client
+ * certificates, or upload multiple leaf certificates as an allow list.
+ * 
+ * The `http.cacert` and `file.certificates` fields use **WriteOnly**, meaning no information is
+ * present in plan phase, logs or stored in the state for security purposes. To update these fields,
+ * increment either the `version` or update the `keyId` attribute.
+ * 
+ * &gt; **Note:** Updates to write-only fields (`http.cacert` or `file.certificates`) are only applied
+ * when `version` is incremented or `keyId` is changed. This design allows you to manage certificate
+ * rotation explicitly.
+ * 
+ * &gt; **Note:** After the trust store has been added, a restart of RabbitMQ is required for the changes to take effect.
  * 
  * Only available for dedicated subscription plans running ***RabbitMQ***.
  * 
@@ -25,7 +39,7 @@ import javax.annotation.Nullable;
  * &lt;details&gt;
  *   &lt;summary&gt;
  *     &lt;b&gt;
- *       &lt;i&gt;Basic trust store configuration&lt;/i&gt;
+ *       &lt;i&gt;Trust store configuration with HTTP provider&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
  * 
@@ -70,13 +84,15 @@ import javax.annotation.Nullable;
  * &lt;details&gt;
  *   &lt;summary&gt;
  *     &lt;b&gt;
- *       &lt;i&gt;Trust store with CA certificate&lt;/i&gt;
+ *       &lt;i&gt;Trust store with HTTP provider and CA certificate&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
  * 
  * ## Import
  * 
  * `cloudamqp_trust_store` can be imported using the CloudAMQP instance identifier.
+ * 
+ * fields (`http.cacert` or `file.certificates`). You&#39;ll need to set these in your configuration.
  * 
  * From Terraform v1.5.0, the `import` block can be used to import this resource:
  * 
@@ -100,6 +116,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="cloudamqp:index/trustStore:TrustStore")
 public class TrustStore extends com.pulumi.resources.CustomResource {
     /**
+     * File trust store configuration block. See File Block below.
+     * 
+     */
+    @Export(name="file", refs={TrustStoreFile.class}, tree="[0]")
+    private Output</* @Nullable */ TrustStoreFile> file;
+
+    /**
+     * @return File trust store configuration block. See File Block below.
+     * 
+     */
+    public Output<Optional<TrustStoreFile>> file() {
+        return Codegen.optional(this.file);
+    }
+    /**
      * HTTP trust store configuration block. See HTTP Block below.
      * 
      */
@@ -114,76 +144,98 @@ public class TrustStore extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.http);
     }
     /**
-     * The CloudAMQP instance ID.
+     * The CloudAMQP instance identifier.
      * 
      */
     @Export(name="instanceId", refs={Integer.class}, tree="[0]")
     private Output<Integer> instanceId;
 
     /**
-     * @return The CloudAMQP instance ID.
+     * @return The CloudAMQP instance identifier.
      * 
      */
     public Output<Integer> instanceId() {
         return this.instanceId;
     }
     /**
-     * Interval in seconds to refresh the trust store certificates. Defaults to 30 seconds.
-     * Defaults to 30 seconds.
+     * A string identifier to trigger updates of write-only certificate fields.
+     * Change this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: &#34;&#34;).
+     * 
+     */
+    @Export(name="keyId", refs={String.class}, tree="[0]")
+    private Output<String> keyId;
+
+    /**
+     * @return A string identifier to trigger updates of write-only certificate fields.
+     * Change this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: &#34;&#34;).
+     * 
+     */
+    public Output<String> keyId() {
+        return this.keyId;
+    }
+    /**
+     * Interval in seconds for RabbitMQ to refresh the trust
+     * store certificates (default: 30).
      * 
      */
     @Export(name="refreshInterval", refs={Integer.class}, tree="[0]")
     private Output<Integer> refreshInterval;
 
     /**
-     * @return Interval in seconds to refresh the trust store certificates. Defaults to 30 seconds.
-     * Defaults to 30 seconds.
+     * @return Interval in seconds for RabbitMQ to refresh the trust
+     * store certificates (default: 30).
      * 
      */
     public Output<Integer> refreshInterval() {
         return this.refreshInterval;
     }
     /**
-     * Configurable sleep time in seconds between retries for
-     * trust store operations. Defaults to 10 seconds.
+     * Configurable sleep time in seconds between retries for trust store
+     * operations (default: 10).
      * 
      */
     @Export(name="sleep", refs={Integer.class}, tree="[0]")
     private Output<Integer> sleep;
 
     /**
-     * @return Configurable sleep time in seconds between retries for
-     * trust store operations. Defaults to 10 seconds.
+     * @return Configurable sleep time in seconds between retries for trust store
+     * operations (default: 10).
      * 
      */
     public Output<Integer> sleep() {
         return this.sleep;
     }
     /**
-     * Configurable timeout time in seconds for trust store
-     * operations. Defaults to 1800 seconds (30 minutes).
+     * Configurable timeout time in seconds for trust store operations
+     * (default: 1800).
+     * 
+     * ***Note:*** Either `http` or `file` configuration block must be specified, but not both.
      * 
      */
     @Export(name="timeout", refs={Integer.class}, tree="[0]")
     private Output<Integer> timeout;
 
     /**
-     * @return Configurable timeout time in seconds for trust store
-     * operations. Defaults to 1800 seconds (30 minutes).
+     * @return Configurable timeout time in seconds for trust store operations
+     * (default: 1800).
+     * 
+     * ***Note:*** Either `http` or `file` configuration block must be specified, but not both.
      * 
      */
     public Output<Integer> timeout() {
         return this.timeout;
     }
     /**
-     * Version of write-only certificates. Increment this value to force an update of write-only fields like `cacert`. Defaults to 1.
+     * An integer to trigger updates of write-only certificate fields.
+     * Increment this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: 1).
      * 
      */
     @Export(name="version", refs={Integer.class}, tree="[0]")
     private Output<Integer> version;
 
     /**
-     * @return Version of write-only certificates. Increment this value to force an update of write-only fields like `cacert`. Defaults to 1.
+     * @return An integer to trigger updates of write-only certificate fields.
+     * Increment this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: 1).
      * 
      */
     public Output<Integer> version() {

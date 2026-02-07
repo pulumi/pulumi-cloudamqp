@@ -4,7 +4,6 @@
 package com.pulumi.cloudamqp.outputs;
 
 import com.pulumi.core.annotations.CustomType;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -14,37 +13,35 @@ import javax.annotation.Nullable;
 public final class TrustStoreHttp {
     /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * PEM encoded CA certificates used to verify the HTTPS connection to the
-     * trust store URL. This is a write-only field - changes are only applied when `version`
-     * is incremented.
+     * PEM-encoded CA certificates used to verify the HTTPS connection to
+     * the trust store URL. Updates require incrementing `version` or changing `keyId`.
      * 
      */
     private @Nullable String cacert;
     /**
-     * @return URL to fetch trust store certificates from. RabbitMQ will periodically
-     * fetch CA certificates from this URL.
+     * @return URL to fetch trust store certificates from. RabbitMQ will periodically fetch
+     * CA certificates from this URL according to the `refreshInterval`.
      * 
      */
-    private String url;
+    private @Nullable String url;
 
     private TrustStoreHttp() {}
     /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * PEM encoded CA certificates used to verify the HTTPS connection to the
-     * trust store URL. This is a write-only field - changes are only applied when `version`
-     * is incremented.
+     * PEM-encoded CA certificates used to verify the HTTPS connection to
+     * the trust store URL. Updates require incrementing `version` or changing `keyId`.
      * 
      */
     public Optional<String> cacert() {
         return Optional.ofNullable(this.cacert);
     }
     /**
-     * @return URL to fetch trust store certificates from. RabbitMQ will periodically
-     * fetch CA certificates from this URL.
+     * @return URL to fetch trust store certificates from. RabbitMQ will periodically fetch
+     * CA certificates from this URL according to the `refreshInterval`.
      * 
      */
-    public String url() {
-        return this.url;
+    public Optional<String> url() {
+        return Optional.ofNullable(this.url);
     }
 
     public static Builder builder() {
@@ -57,7 +54,7 @@ public final class TrustStoreHttp {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable String cacert;
-        private String url;
+        private @Nullable String url;
         public Builder() {}
         public Builder(TrustStoreHttp defaults) {
     	      Objects.requireNonNull(defaults);
@@ -72,10 +69,8 @@ public final class TrustStoreHttp {
             return this;
         }
         @CustomType.Setter
-        public Builder url(String url) {
-            if (url == null) {
-              throw new MissingRequiredPropertyException("TrustStoreHttp", "url");
-            }
+        public Builder url(@Nullable String url) {
+
             this.url = url;
             return this;
         }

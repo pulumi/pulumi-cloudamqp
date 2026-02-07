@@ -3,11 +3,13 @@
 
 package com.pulumi.cloudamqp;
 
+import com.pulumi.cloudamqp.inputs.TrustStoreFileArgs;
 import com.pulumi.cloudamqp.inputs.TrustStoreHttpArgs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
+import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -16,6 +18,21 @@ import javax.annotation.Nullable;
 public final class TrustStoreArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final TrustStoreArgs Empty = new TrustStoreArgs();
+
+    /**
+     * File trust store configuration block. See File Block below.
+     * 
+     */
+    @Import(name="file")
+    private @Nullable Output<TrustStoreFileArgs> file;
+
+    /**
+     * @return File trust store configuration block. See File Block below.
+     * 
+     */
+    public Optional<Output<TrustStoreFileArgs>> file() {
+        return Optional.ofNullable(this.file);
+    }
 
     /**
      * HTTP trust store configuration block. See HTTP Block below.
@@ -33,14 +50,14 @@ public final class TrustStoreArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The CloudAMQP instance ID.
+     * The CloudAMQP instance identifier.
      * 
      */
     @Import(name="instanceId", required=true)
     private Output<Integer> instanceId;
 
     /**
-     * @return The CloudAMQP instance ID.
+     * @return The CloudAMQP instance identifier.
      * 
      */
     public Output<Integer> instanceId() {
@@ -48,16 +65,33 @@ public final class TrustStoreArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Interval in seconds to refresh the trust store certificates. Defaults to 30 seconds.
-     * Defaults to 30 seconds.
+     * A string identifier to trigger updates of write-only certificate fields.
+     * Change this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: &#34;&#34;).
+     * 
+     */
+    @Import(name="keyId")
+    private @Nullable Output<String> keyId;
+
+    /**
+     * @return A string identifier to trigger updates of write-only certificate fields.
+     * Change this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: &#34;&#34;).
+     * 
+     */
+    public Optional<Output<String>> keyId() {
+        return Optional.ofNullable(this.keyId);
+    }
+
+    /**
+     * Interval in seconds for RabbitMQ to refresh the trust
+     * store certificates (default: 30).
      * 
      */
     @Import(name="refreshInterval")
     private @Nullable Output<Integer> refreshInterval;
 
     /**
-     * @return Interval in seconds to refresh the trust store certificates. Defaults to 30 seconds.
-     * Defaults to 30 seconds.
+     * @return Interval in seconds for RabbitMQ to refresh the trust
+     * store certificates (default: 30).
      * 
      */
     public Optional<Output<Integer>> refreshInterval() {
@@ -65,16 +99,16 @@ public final class TrustStoreArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Configurable sleep time in seconds between retries for
-     * trust store operations. Defaults to 10 seconds.
+     * Configurable sleep time in seconds between retries for trust store
+     * operations (default: 10).
      * 
      */
     @Import(name="sleep")
     private @Nullable Output<Integer> sleep;
 
     /**
-     * @return Configurable sleep time in seconds between retries for
-     * trust store operations. Defaults to 10 seconds.
+     * @return Configurable sleep time in seconds between retries for trust store
+     * operations (default: 10).
      * 
      */
     public Optional<Output<Integer>> sleep() {
@@ -82,16 +116,20 @@ public final class TrustStoreArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Configurable timeout time in seconds for trust store
-     * operations. Defaults to 1800 seconds (30 minutes).
+     * Configurable timeout time in seconds for trust store operations
+     * (default: 1800).
+     * 
+     * ***Note:*** Either `http` or `file` configuration block must be specified, but not both.
      * 
      */
     @Import(name="timeout")
     private @Nullable Output<Integer> timeout;
 
     /**
-     * @return Configurable timeout time in seconds for trust store
-     * operations. Defaults to 1800 seconds (30 minutes).
+     * @return Configurable timeout time in seconds for trust store operations
+     * (default: 1800).
+     * 
+     * ***Note:*** Either `http` or `file` configuration block must be specified, but not both.
      * 
      */
     public Optional<Output<Integer>> timeout() {
@@ -99,14 +137,16 @@ public final class TrustStoreArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Version of write-only certificates. Increment this value to force an update of write-only fields like `cacert`. Defaults to 1.
+     * An integer to trigger updates of write-only certificate fields.
+     * Increment this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: 1).
      * 
      */
     @Import(name="version")
     private @Nullable Output<Integer> version;
 
     /**
-     * @return Version of write-only certificates. Increment this value to force an update of write-only fields like `cacert`. Defaults to 1.
+     * @return An integer to trigger updates of write-only certificate fields.
+     * Increment this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: 1).
      * 
      */
     public Optional<Output<Integer>> version() {
@@ -116,8 +156,10 @@ public final class TrustStoreArgs extends com.pulumi.resources.ResourceArgs {
     private TrustStoreArgs() {}
 
     private TrustStoreArgs(TrustStoreArgs $) {
+        this.file = $.file;
         this.http = $.http;
         this.instanceId = $.instanceId;
+        this.keyId = $.keyId;
         this.refreshInterval = $.refreshInterval;
         this.sleep = $.sleep;
         this.timeout = $.timeout;
@@ -143,6 +185,27 @@ public final class TrustStoreArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param file File trust store configuration block. See File Block below.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder file(@Nullable Output<TrustStoreFileArgs> file) {
+            $.file = file;
+            return this;
+        }
+
+        /**
+         * @param file File trust store configuration block. See File Block below.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder file(TrustStoreFileArgs file) {
+            return file(Output.of(file));
+        }
+
+        /**
          * @param http HTTP trust store configuration block. See HTTP Block below.
          * 
          * @return builder
@@ -164,7 +227,7 @@ public final class TrustStoreArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param instanceId The CloudAMQP instance ID.
+         * @param instanceId The CloudAMQP instance identifier.
          * 
          * @return builder
          * 
@@ -175,7 +238,7 @@ public final class TrustStoreArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param instanceId The CloudAMQP instance ID.
+         * @param instanceId The CloudAMQP instance identifier.
          * 
          * @return builder
          * 
@@ -185,8 +248,31 @@ public final class TrustStoreArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param refreshInterval Interval in seconds to refresh the trust store certificates. Defaults to 30 seconds.
-         * Defaults to 30 seconds.
+         * @param keyId A string identifier to trigger updates of write-only certificate fields.
+         * Change this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: &#34;&#34;).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyId(@Nullable Output<String> keyId) {
+            $.keyId = keyId;
+            return this;
+        }
+
+        /**
+         * @param keyId A string identifier to trigger updates of write-only certificate fields.
+         * Change this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: &#34;&#34;).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyId(String keyId) {
+            return keyId(Output.of(keyId));
+        }
+
+        /**
+         * @param refreshInterval Interval in seconds for RabbitMQ to refresh the trust
+         * store certificates (default: 30).
          * 
          * @return builder
          * 
@@ -197,8 +283,8 @@ public final class TrustStoreArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param refreshInterval Interval in seconds to refresh the trust store certificates. Defaults to 30 seconds.
-         * Defaults to 30 seconds.
+         * @param refreshInterval Interval in seconds for RabbitMQ to refresh the trust
+         * store certificates (default: 30).
          * 
          * @return builder
          * 
@@ -208,8 +294,8 @@ public final class TrustStoreArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sleep Configurable sleep time in seconds between retries for
-         * trust store operations. Defaults to 10 seconds.
+         * @param sleep Configurable sleep time in seconds between retries for trust store
+         * operations (default: 10).
          * 
          * @return builder
          * 
@@ -220,8 +306,8 @@ public final class TrustStoreArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sleep Configurable sleep time in seconds between retries for
-         * trust store operations. Defaults to 10 seconds.
+         * @param sleep Configurable sleep time in seconds between retries for trust store
+         * operations (default: 10).
          * 
          * @return builder
          * 
@@ -231,8 +317,10 @@ public final class TrustStoreArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param timeout Configurable timeout time in seconds for trust store
-         * operations. Defaults to 1800 seconds (30 minutes).
+         * @param timeout Configurable timeout time in seconds for trust store operations
+         * (default: 1800).
+         * 
+         * ***Note:*** Either `http` or `file` configuration block must be specified, but not both.
          * 
          * @return builder
          * 
@@ -243,8 +331,10 @@ public final class TrustStoreArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param timeout Configurable timeout time in seconds for trust store
-         * operations. Defaults to 1800 seconds (30 minutes).
+         * @param timeout Configurable timeout time in seconds for trust store operations
+         * (default: 1800).
+         * 
+         * ***Note:*** Either `http` or `file` configuration block must be specified, but not both.
          * 
          * @return builder
          * 
@@ -254,7 +344,8 @@ public final class TrustStoreArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param version Version of write-only certificates. Increment this value to force an update of write-only fields like `cacert`. Defaults to 1.
+         * @param version An integer to trigger updates of write-only certificate fields.
+         * Increment this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: 1).
          * 
          * @return builder
          * 
@@ -265,7 +356,8 @@ public final class TrustStoreArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param version Version of write-only certificates. Increment this value to force an update of write-only fields like `cacert`. Defaults to 1.
+         * @param version An integer to trigger updates of write-only certificate fields.
+         * Increment this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: 1).
          * 
          * @return builder
          * 
