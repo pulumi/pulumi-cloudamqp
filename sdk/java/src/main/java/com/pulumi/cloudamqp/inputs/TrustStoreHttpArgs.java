@@ -5,7 +5,6 @@ package com.pulumi.cloudamqp.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -18,9 +17,8 @@ public final class TrustStoreHttpArgs extends com.pulumi.resources.ResourceArgs 
 
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * PEM encoded CA certificates used to verify the HTTPS connection to the
-     * trust store URL. This is a write-only field - changes are only applied when `version`
-     * is incremented.
+     * PEM-encoded CA certificates used to verify the HTTPS connection to
+     * the trust store URL. Updates require incrementing `version` or changing `keyId`.
      * 
      */
     @Import(name="cacert")
@@ -28,9 +26,8 @@ public final class TrustStoreHttpArgs extends com.pulumi.resources.ResourceArgs 
 
     /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * PEM encoded CA certificates used to verify the HTTPS connection to the
-     * trust store URL. This is a write-only field - changes are only applied when `version`
-     * is incremented.
+     * PEM-encoded CA certificates used to verify the HTTPS connection to
+     * the trust store URL. Updates require incrementing `version` or changing `keyId`.
      * 
      */
     public Optional<Output<String>> cacert() {
@@ -38,20 +35,20 @@ public final class TrustStoreHttpArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * URL to fetch trust store certificates from. RabbitMQ will periodically
-     * fetch CA certificates from this URL.
+     * URL to fetch trust store certificates from. RabbitMQ will periodically fetch
+     * CA certificates from this URL according to the `refreshInterval`.
      * 
      */
-    @Import(name="url", required=true)
-    private Output<String> url;
+    @Import(name="url")
+    private @Nullable Output<String> url;
 
     /**
-     * @return URL to fetch trust store certificates from. RabbitMQ will periodically
-     * fetch CA certificates from this URL.
+     * @return URL to fetch trust store certificates from. RabbitMQ will periodically fetch
+     * CA certificates from this URL according to the `refreshInterval`.
      * 
      */
-    public Output<String> url() {
-        return this.url;
+    public Optional<Output<String>> url() {
+        return Optional.ofNullable(this.url);
     }
 
     private TrustStoreHttpArgs() {}
@@ -81,9 +78,8 @@ public final class TrustStoreHttpArgs extends com.pulumi.resources.ResourceArgs 
 
         /**
          * @param cacert **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-         * PEM encoded CA certificates used to verify the HTTPS connection to the
-         * trust store URL. This is a write-only field - changes are only applied when `version`
-         * is incremented.
+         * PEM-encoded CA certificates used to verify the HTTPS connection to
+         * the trust store URL. Updates require incrementing `version` or changing `keyId`.
          * 
          * @return builder
          * 
@@ -95,9 +91,8 @@ public final class TrustStoreHttpArgs extends com.pulumi.resources.ResourceArgs 
 
         /**
          * @param cacert **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-         * PEM encoded CA certificates used to verify the HTTPS connection to the
-         * trust store URL. This is a write-only field - changes are only applied when `version`
-         * is incremented.
+         * PEM-encoded CA certificates used to verify the HTTPS connection to
+         * the trust store URL. Updates require incrementing `version` or changing `keyId`.
          * 
          * @return builder
          * 
@@ -107,20 +102,20 @@ public final class TrustStoreHttpArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param url URL to fetch trust store certificates from. RabbitMQ will periodically
-         * fetch CA certificates from this URL.
+         * @param url URL to fetch trust store certificates from. RabbitMQ will periodically fetch
+         * CA certificates from this URL according to the `refreshInterval`.
          * 
          * @return builder
          * 
          */
-        public Builder url(Output<String> url) {
+        public Builder url(@Nullable Output<String> url) {
             $.url = url;
             return this;
         }
 
         /**
-         * @param url URL to fetch trust store certificates from. RabbitMQ will periodically
-         * fetch CA certificates from this URL.
+         * @param url URL to fetch trust store certificates from. RabbitMQ will periodically fetch
+         * CA certificates from this URL according to the `refreshInterval`.
          * 
          * @return builder
          * 
@@ -130,9 +125,6 @@ public final class TrustStoreHttpArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         public TrustStoreHttpArgs build() {
-            if ($.url == null) {
-                throw new MissingRequiredPropertyException("TrustStoreHttpArgs", "url");
-            }
             return $;
         }
     }

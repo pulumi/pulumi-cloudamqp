@@ -22,26 +22,38 @@ __all__ = ['TrustStoreArgs', 'TrustStore']
 class TrustStoreArgs:
     def __init__(__self__, *,
                  instance_id: pulumi.Input[_builtins.int],
+                 file: Optional[pulumi.Input['TrustStoreFileArgs']] = None,
                  http: Optional[pulumi.Input['TrustStoreHttpArgs']] = None,
+                 key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  refresh_interval: Optional[pulumi.Input[_builtins.int]] = None,
                  sleep: Optional[pulumi.Input[_builtins.int]] = None,
                  timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a TrustStore resource.
-        :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier.
+        :param pulumi.Input['TrustStoreFileArgs'] file: File trust store configuration block. See File Block below.
         :param pulumi.Input['TrustStoreHttpArgs'] http: HTTP trust store configuration block. See HTTP Block below.
-        :param pulumi.Input[_builtins.int] refresh_interval: Interval in seconds to refresh the trust store certificates. Defaults to 30 seconds.
-               Defaults to 30 seconds.
-        :param pulumi.Input[_builtins.int] sleep: Configurable sleep time in seconds between retries for
-               trust store operations. Defaults to 10 seconds.
-        :param pulumi.Input[_builtins.int] timeout: Configurable timeout time in seconds for trust store
-               operations. Defaults to 1800 seconds (30 minutes).
-        :param pulumi.Input[_builtins.int] version: Version of write-only certificates. Increment this value to force an update of write-only fields like `cacert`. Defaults to 1.
+        :param pulumi.Input[_builtins.str] key_id: A string identifier to trigger updates of write-only certificate fields.
+               Change this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: "").
+        :param pulumi.Input[_builtins.int] refresh_interval: Interval in seconds for RabbitMQ to refresh the trust
+               store certificates (default: 30).
+        :param pulumi.Input[_builtins.int] sleep: Configurable sleep time in seconds between retries for trust store
+               operations (default: 10).
+        :param pulumi.Input[_builtins.int] timeout: Configurable timeout time in seconds for trust store operations
+               (default: 1800).
+               
+               ***Note:*** Either `http` or `file` configuration block must be specified, but not both.
+        :param pulumi.Input[_builtins.int] version: An integer to trigger updates of write-only certificate fields.
+               Increment this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: 1).
         """
         pulumi.set(__self__, "instance_id", instance_id)
+        if file is not None:
+            pulumi.set(__self__, "file", file)
         if http is not None:
             pulumi.set(__self__, "http", http)
+        if key_id is not None:
+            pulumi.set(__self__, "key_id", key_id)
         if refresh_interval is not None:
             pulumi.set(__self__, "refresh_interval", refresh_interval)
         if sleep is not None:
@@ -55,13 +67,25 @@ class TrustStoreArgs:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Input[_builtins.int]:
         """
-        The CloudAMQP instance ID.
+        The CloudAMQP instance identifier.
         """
         return pulumi.get(self, "instance_id")
 
     @instance_id.setter
     def instance_id(self, value: pulumi.Input[_builtins.int]):
         pulumi.set(self, "instance_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def file(self) -> Optional[pulumi.Input['TrustStoreFileArgs']]:
+        """
+        File trust store configuration block. See File Block below.
+        """
+        return pulumi.get(self, "file")
+
+    @file.setter
+    def file(self, value: Optional[pulumi.Input['TrustStoreFileArgs']]):
+        pulumi.set(self, "file", value)
 
     @_builtins.property
     @pulumi.getter
@@ -76,11 +100,24 @@ class TrustStoreArgs:
         pulumi.set(self, "http", value)
 
     @_builtins.property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        A string identifier to trigger updates of write-only certificate fields.
+        Change this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: "").
+        """
+        return pulumi.get(self, "key_id")
+
+    @key_id.setter
+    def key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "key_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="refreshInterval")
     def refresh_interval(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Interval in seconds to refresh the trust store certificates. Defaults to 30 seconds.
-        Defaults to 30 seconds.
+        Interval in seconds for RabbitMQ to refresh the trust
+        store certificates (default: 30).
         """
         return pulumi.get(self, "refresh_interval")
 
@@ -92,8 +129,8 @@ class TrustStoreArgs:
     @pulumi.getter
     def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Configurable sleep time in seconds between retries for
-        trust store operations. Defaults to 10 seconds.
+        Configurable sleep time in seconds between retries for trust store
+        operations (default: 10).
         """
         return pulumi.get(self, "sleep")
 
@@ -105,8 +142,10 @@ class TrustStoreArgs:
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Configurable timeout time in seconds for trust store
-        operations. Defaults to 1800 seconds (30 minutes).
+        Configurable timeout time in seconds for trust store operations
+        (default: 1800).
+
+        ***Note:*** Either `http` or `file` configuration block must be specified, but not both.
         """
         return pulumi.get(self, "timeout")
 
@@ -118,7 +157,8 @@ class TrustStoreArgs:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Version of write-only certificates. Increment this value to force an update of write-only fields like `cacert`. Defaults to 1.
+        An integer to trigger updates of write-only certificate fields.
+        Increment this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: 1).
         """
         return pulumi.get(self, "version")
 
@@ -130,28 +170,40 @@ class TrustStoreArgs:
 @pulumi.input_type
 class _TrustStoreState:
     def __init__(__self__, *,
+                 file: Optional[pulumi.Input['TrustStoreFileArgs']] = None,
                  http: Optional[pulumi.Input['TrustStoreHttpArgs']] = None,
                  instance_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  refresh_interval: Optional[pulumi.Input[_builtins.int]] = None,
                  sleep: Optional[pulumi.Input[_builtins.int]] = None,
                  timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering TrustStore resources.
+        :param pulumi.Input['TrustStoreFileArgs'] file: File trust store configuration block. See File Block below.
         :param pulumi.Input['TrustStoreHttpArgs'] http: HTTP trust store configuration block. See HTTP Block below.
-        :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[_builtins.int] refresh_interval: Interval in seconds to refresh the trust store certificates. Defaults to 30 seconds.
-               Defaults to 30 seconds.
-        :param pulumi.Input[_builtins.int] sleep: Configurable sleep time in seconds between retries for
-               trust store operations. Defaults to 10 seconds.
-        :param pulumi.Input[_builtins.int] timeout: Configurable timeout time in seconds for trust store
-               operations. Defaults to 1800 seconds (30 minutes).
-        :param pulumi.Input[_builtins.int] version: Version of write-only certificates. Increment this value to force an update of write-only fields like `cacert`. Defaults to 1.
+        :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier.
+        :param pulumi.Input[_builtins.str] key_id: A string identifier to trigger updates of write-only certificate fields.
+               Change this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: "").
+        :param pulumi.Input[_builtins.int] refresh_interval: Interval in seconds for RabbitMQ to refresh the trust
+               store certificates (default: 30).
+        :param pulumi.Input[_builtins.int] sleep: Configurable sleep time in seconds between retries for trust store
+               operations (default: 10).
+        :param pulumi.Input[_builtins.int] timeout: Configurable timeout time in seconds for trust store operations
+               (default: 1800).
+               
+               ***Note:*** Either `http` or `file` configuration block must be specified, but not both.
+        :param pulumi.Input[_builtins.int] version: An integer to trigger updates of write-only certificate fields.
+               Increment this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: 1).
         """
+        if file is not None:
+            pulumi.set(__self__, "file", file)
         if http is not None:
             pulumi.set(__self__, "http", http)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
+        if key_id is not None:
+            pulumi.set(__self__, "key_id", key_id)
         if refresh_interval is not None:
             pulumi.set(__self__, "refresh_interval", refresh_interval)
         if sleep is not None:
@@ -160,6 +212,18 @@ class _TrustStoreState:
             pulumi.set(__self__, "timeout", timeout)
         if version is not None:
             pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def file(self) -> Optional[pulumi.Input['TrustStoreFileArgs']]:
+        """
+        File trust store configuration block. See File Block below.
+        """
+        return pulumi.get(self, "file")
+
+    @file.setter
+    def file(self, value: Optional[pulumi.Input['TrustStoreFileArgs']]):
+        pulumi.set(self, "file", value)
 
     @_builtins.property
     @pulumi.getter
@@ -177,7 +241,7 @@ class _TrustStoreState:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        The CloudAMQP instance ID.
+        The CloudAMQP instance identifier.
         """
         return pulumi.get(self, "instance_id")
 
@@ -186,11 +250,24 @@ class _TrustStoreState:
         pulumi.set(self, "instance_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        A string identifier to trigger updates of write-only certificate fields.
+        Change this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: "").
+        """
+        return pulumi.get(self, "key_id")
+
+    @key_id.setter
+    def key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "key_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="refreshInterval")
     def refresh_interval(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Interval in seconds to refresh the trust store certificates. Defaults to 30 seconds.
-        Defaults to 30 seconds.
+        Interval in seconds for RabbitMQ to refresh the trust
+        store certificates (default: 30).
         """
         return pulumi.get(self, "refresh_interval")
 
@@ -202,8 +279,8 @@ class _TrustStoreState:
     @pulumi.getter
     def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Configurable sleep time in seconds between retries for
-        trust store operations. Defaults to 10 seconds.
+        Configurable sleep time in seconds between retries for trust store
+        operations (default: 10).
         """
         return pulumi.get(self, "sleep")
 
@@ -215,8 +292,10 @@ class _TrustStoreState:
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Configurable timeout time in seconds for trust store
-        operations. Defaults to 1800 seconds (30 minutes).
+        Configurable timeout time in seconds for trust store operations
+        (default: 1800).
+
+        ***Note:*** Either `http` or `file` configuration block must be specified, but not both.
         """
         return pulumi.get(self, "timeout")
 
@@ -228,7 +307,8 @@ class _TrustStoreState:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Version of write-only certificates. Increment this value to force an update of write-only fields like `cacert`. Defaults to 1.
+        An integer to trigger updates of write-only certificate fields.
+        Increment this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: 1).
         """
         return pulumi.get(self, "version")
 
@@ -243,15 +323,29 @@ class TrustStore(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 file: Optional[pulumi.Input[Union['TrustStoreFileArgs', 'TrustStoreFileArgsDict']]] = None,
                  http: Optional[pulumi.Input[Union['TrustStoreHttpArgs', 'TrustStoreHttpArgsDict']]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  refresh_interval: Optional[pulumi.Input[_builtins.int]] = None,
                  sleep: Optional[pulumi.Input[_builtins.int]] = None,
                  timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  version: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
-        This resource allows you to configure a trust store for your RabbitMQ instance. The trust store enables RabbitMQ to fetch and use CA certificates from an external source for validating client certificates.
+        This resource allows you to configure a trust store for your RabbitMQ broker. The trust store
+        enables RabbitMQ to fetch and use CA certificates from an external source for validating client
+        certificates, or upload multiple leaf certificates as an allow list.
+
+        The `http.cacert` and `file.certificates` fields use **WriteOnly**, meaning no information is
+        present in plan phase, logs or stored in the state for security purposes. To update these fields,
+        increment either the `version` or update the `key_id` attribute.
+
+        > **Note:** Updates to write-only fields (`http.cacert` or `file.certificates`) are only applied
+        when `version` is incremented or `key_id` is changed. This design allows you to manage certificate
+        rotation explicitly.
+
+        > **Note:** After the trust store has been added, a restart of RabbitMQ is required for the changes to take effect.
 
         Only available for dedicated subscription plans running ***RabbitMQ***.
 
@@ -260,7 +354,7 @@ class TrustStore(pulumi.CustomResource):
         <details>
           <summary>
             <b>
-              <i>Basic trust store configuration</i>
+              <i>Trust store configuration with HTTP provider</i>
             </b>
           </summary>
 
@@ -281,13 +375,15 @@ class TrustStore(pulumi.CustomResource):
         <details>
           <summary>
             <b>
-              <i>Trust store with CA certificate</i>
+              <i>Trust store with HTTP provider and CA certificate</i>
             </b>
           </summary>
 
         ## Import
 
         `cloudamqp_trust_store` can be imported using the CloudAMQP instance identifier.
+
+        fields (`http.cacert` or `file.certificates`). You'll need to set these in your configuration.
 
         From Terraform v1.5.0, the `import` block can be used to import this resource:
 
@@ -309,15 +405,21 @@ class TrustStore(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['TrustStoreFileArgs', 'TrustStoreFileArgsDict']] file: File trust store configuration block. See File Block below.
         :param pulumi.Input[Union['TrustStoreHttpArgs', 'TrustStoreHttpArgsDict']] http: HTTP trust store configuration block. See HTTP Block below.
-        :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[_builtins.int] refresh_interval: Interval in seconds to refresh the trust store certificates. Defaults to 30 seconds.
-               Defaults to 30 seconds.
-        :param pulumi.Input[_builtins.int] sleep: Configurable sleep time in seconds between retries for
-               trust store operations. Defaults to 10 seconds.
-        :param pulumi.Input[_builtins.int] timeout: Configurable timeout time in seconds for trust store
-               operations. Defaults to 1800 seconds (30 minutes).
-        :param pulumi.Input[_builtins.int] version: Version of write-only certificates. Increment this value to force an update of write-only fields like `cacert`. Defaults to 1.
+        :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier.
+        :param pulumi.Input[_builtins.str] key_id: A string identifier to trigger updates of write-only certificate fields.
+               Change this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: "").
+        :param pulumi.Input[_builtins.int] refresh_interval: Interval in seconds for RabbitMQ to refresh the trust
+               store certificates (default: 30).
+        :param pulumi.Input[_builtins.int] sleep: Configurable sleep time in seconds between retries for trust store
+               operations (default: 10).
+        :param pulumi.Input[_builtins.int] timeout: Configurable timeout time in seconds for trust store operations
+               (default: 1800).
+               
+               ***Note:*** Either `http` or `file` configuration block must be specified, but not both.
+        :param pulumi.Input[_builtins.int] version: An integer to trigger updates of write-only certificate fields.
+               Increment this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: 1).
         """
         ...
     @overload
@@ -326,7 +428,19 @@ class TrustStore(pulumi.CustomResource):
                  args: TrustStoreArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        This resource allows you to configure a trust store for your RabbitMQ instance. The trust store enables RabbitMQ to fetch and use CA certificates from an external source for validating client certificates.
+        This resource allows you to configure a trust store for your RabbitMQ broker. The trust store
+        enables RabbitMQ to fetch and use CA certificates from an external source for validating client
+        certificates, or upload multiple leaf certificates as an allow list.
+
+        The `http.cacert` and `file.certificates` fields use **WriteOnly**, meaning no information is
+        present in plan phase, logs or stored in the state for security purposes. To update these fields,
+        increment either the `version` or update the `key_id` attribute.
+
+        > **Note:** Updates to write-only fields (`http.cacert` or `file.certificates`) are only applied
+        when `version` is incremented or `key_id` is changed. This design allows you to manage certificate
+        rotation explicitly.
+
+        > **Note:** After the trust store has been added, a restart of RabbitMQ is required for the changes to take effect.
 
         Only available for dedicated subscription plans running ***RabbitMQ***.
 
@@ -335,7 +449,7 @@ class TrustStore(pulumi.CustomResource):
         <details>
           <summary>
             <b>
-              <i>Basic trust store configuration</i>
+              <i>Trust store configuration with HTTP provider</i>
             </b>
           </summary>
 
@@ -356,13 +470,15 @@ class TrustStore(pulumi.CustomResource):
         <details>
           <summary>
             <b>
-              <i>Trust store with CA certificate</i>
+              <i>Trust store with HTTP provider and CA certificate</i>
             </b>
           </summary>
 
         ## Import
 
         `cloudamqp_trust_store` can be imported using the CloudAMQP instance identifier.
+
+        fields (`http.cacert` or `file.certificates`). You'll need to set these in your configuration.
 
         From Terraform v1.5.0, the `import` block can be used to import this resource:
 
@@ -397,8 +513,10 @@ class TrustStore(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 file: Optional[pulumi.Input[Union['TrustStoreFileArgs', 'TrustStoreFileArgsDict']]] = None,
                  http: Optional[pulumi.Input[Union['TrustStoreHttpArgs', 'TrustStoreHttpArgsDict']]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  refresh_interval: Optional[pulumi.Input[_builtins.int]] = None,
                  sleep: Optional[pulumi.Input[_builtins.int]] = None,
                  timeout: Optional[pulumi.Input[_builtins.int]] = None,
@@ -412,10 +530,12 @@ class TrustStore(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = TrustStoreArgs.__new__(TrustStoreArgs)
 
+            __props__.__dict__["file"] = file
             __props__.__dict__["http"] = http
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
+            __props__.__dict__["key_id"] = key_id
             __props__.__dict__["refresh_interval"] = refresh_interval
             __props__.__dict__["sleep"] = sleep
             __props__.__dict__["timeout"] = timeout
@@ -430,8 +550,10 @@ class TrustStore(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            file: Optional[pulumi.Input[Union['TrustStoreFileArgs', 'TrustStoreFileArgsDict']]] = None,
             http: Optional[pulumi.Input[Union['TrustStoreHttpArgs', 'TrustStoreHttpArgsDict']]] = None,
             instance_id: Optional[pulumi.Input[_builtins.int]] = None,
+            key_id: Optional[pulumi.Input[_builtins.str]] = None,
             refresh_interval: Optional[pulumi.Input[_builtins.int]] = None,
             sleep: Optional[pulumi.Input[_builtins.int]] = None,
             timeout: Optional[pulumi.Input[_builtins.int]] = None,
@@ -443,27 +565,43 @@ class TrustStore(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['TrustStoreFileArgs', 'TrustStoreFileArgsDict']] file: File trust store configuration block. See File Block below.
         :param pulumi.Input[Union['TrustStoreHttpArgs', 'TrustStoreHttpArgsDict']] http: HTTP trust store configuration block. See HTTP Block below.
-        :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[_builtins.int] refresh_interval: Interval in seconds to refresh the trust store certificates. Defaults to 30 seconds.
-               Defaults to 30 seconds.
-        :param pulumi.Input[_builtins.int] sleep: Configurable sleep time in seconds between retries for
-               trust store operations. Defaults to 10 seconds.
-        :param pulumi.Input[_builtins.int] timeout: Configurable timeout time in seconds for trust store
-               operations. Defaults to 1800 seconds (30 minutes).
-        :param pulumi.Input[_builtins.int] version: Version of write-only certificates. Increment this value to force an update of write-only fields like `cacert`. Defaults to 1.
+        :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier.
+        :param pulumi.Input[_builtins.str] key_id: A string identifier to trigger updates of write-only certificate fields.
+               Change this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: "").
+        :param pulumi.Input[_builtins.int] refresh_interval: Interval in seconds for RabbitMQ to refresh the trust
+               store certificates (default: 30).
+        :param pulumi.Input[_builtins.int] sleep: Configurable sleep time in seconds between retries for trust store
+               operations (default: 10).
+        :param pulumi.Input[_builtins.int] timeout: Configurable timeout time in seconds for trust store operations
+               (default: 1800).
+               
+               ***Note:*** Either `http` or `file` configuration block must be specified, but not both.
+        :param pulumi.Input[_builtins.int] version: An integer to trigger updates of write-only certificate fields.
+               Increment this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: 1).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _TrustStoreState.__new__(_TrustStoreState)
 
+        __props__.__dict__["file"] = file
         __props__.__dict__["http"] = http
         __props__.__dict__["instance_id"] = instance_id
+        __props__.__dict__["key_id"] = key_id
         __props__.__dict__["refresh_interval"] = refresh_interval
         __props__.__dict__["sleep"] = sleep
         __props__.__dict__["timeout"] = timeout
         __props__.__dict__["version"] = version
         return TrustStore(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter
+    def file(self) -> pulumi.Output[Optional['outputs.TrustStoreFile']]:
+        """
+        File trust store configuration block. See File Block below.
+        """
+        return pulumi.get(self, "file")
 
     @_builtins.property
     @pulumi.getter
@@ -477,16 +615,25 @@ class TrustStore(pulumi.CustomResource):
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[_builtins.int]:
         """
-        The CloudAMQP instance ID.
+        The CloudAMQP instance identifier.
         """
         return pulumi.get(self, "instance_id")
+
+    @_builtins.property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        A string identifier to trigger updates of write-only certificate fields.
+        Change this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: "").
+        """
+        return pulumi.get(self, "key_id")
 
     @_builtins.property
     @pulumi.getter(name="refreshInterval")
     def refresh_interval(self) -> pulumi.Output[_builtins.int]:
         """
-        Interval in seconds to refresh the trust store certificates. Defaults to 30 seconds.
-        Defaults to 30 seconds.
+        Interval in seconds for RabbitMQ to refresh the trust
+        store certificates (default: 30).
         """
         return pulumi.get(self, "refresh_interval")
 
@@ -494,8 +641,8 @@ class TrustStore(pulumi.CustomResource):
     @pulumi.getter
     def sleep(self) -> pulumi.Output[_builtins.int]:
         """
-        Configurable sleep time in seconds between retries for
-        trust store operations. Defaults to 10 seconds.
+        Configurable sleep time in seconds between retries for trust store
+        operations (default: 10).
         """
         return pulumi.get(self, "sleep")
 
@@ -503,8 +650,10 @@ class TrustStore(pulumi.CustomResource):
     @pulumi.getter
     def timeout(self) -> pulumi.Output[_builtins.int]:
         """
-        Configurable timeout time in seconds for trust store
-        operations. Defaults to 1800 seconds (30 minutes).
+        Configurable timeout time in seconds for trust store operations
+        (default: 1800).
+
+        ***Note:*** Either `http` or `file` configuration block must be specified, but not both.
         """
         return pulumi.get(self, "timeout")
 
@@ -512,7 +661,8 @@ class TrustStore(pulumi.CustomResource):
     @pulumi.getter
     def version(self) -> pulumi.Output[_builtins.int]:
         """
-        Version of write-only certificates. Increment this value to force an update of write-only fields like `cacert`. Defaults to 1.
+        An integer to trigger updates of write-only certificate fields.
+        Increment this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: 1).
         """
         return pulumi.get(self, "version")
 

@@ -11,28 +11,28 @@ namespace Pulumi.CloudAmqp.Outputs
 {
 
     [OutputType]
-    public sealed class TrustStoreHttp
+    public sealed class TrustStoreFileCertificate
     {
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// PEM-encoded CA certificates used to verify the HTTPS connection to
-        /// the trust store URL. Updates require incrementing `Version` or changing `KeyId`.
+        /// PEM-encoded x.509 formatted leaf certificate content.
+        /// 
+        /// Updates require incrementing `Version` or changing `KeyId`.
         /// </summary>
-        public readonly string? Cacert;
+        public readonly string? Content;
         /// <summary>
-        /// URL to fetch trust store certificates from. RabbitMQ will periodically fetch
-        /// CA certificates from this URL according to the `RefreshInterval`.
+        /// A unique identifier for the certificate.
         /// </summary>
-        public readonly string? Url;
+        public readonly string? Name;
 
         [OutputConstructor]
-        private TrustStoreHttp(
-            string? cacert,
+        private TrustStoreFileCertificate(
+            string? content,
 
-            string? url)
+            string? name)
         {
-            Cacert = cacert;
-            Url = url;
+            Content = content;
+            Name = name;
         }
     }
 }

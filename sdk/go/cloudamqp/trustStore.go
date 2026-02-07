@@ -12,7 +12,19 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource allows you to configure a trust store for your RabbitMQ instance. The trust store enables RabbitMQ to fetch and use CA certificates from an external source for validating client certificates.
+// This resource allows you to configure a trust store for your RabbitMQ broker. The trust store
+// enables RabbitMQ to fetch and use CA certificates from an external source for validating client
+// certificates, or upload multiple leaf certificates as an allow list.
+//
+// The `http.cacert` and `file.certificates` fields use **WriteOnly**, meaning no information is
+// present in plan phase, logs or stored in the state for security purposes. To update these fields,
+// increment either the `version` or update the `keyId` attribute.
+//
+// > **Note:** Updates to write-only fields (`http.cacert` or `file.certificates`) are only applied
+// when `version` is incremented or `keyId` is changed. This design allows you to manage certificate
+// rotation explicitly.
+//
+// > **Note:** After the trust store has been added, a restart of RabbitMQ is required for the changes to take effect.
 //
 // Only available for dedicated subscription plans running ***RabbitMQ***.
 //
@@ -22,7 +34,7 @@ import (
 //
 //	<summary>
 //	  <b>
-//	    <i>Basic trust store configuration</i>
+//	    <i>Trust store configuration with HTTP provider</i>
 //	  </b>
 //	</summary>
 //
@@ -60,13 +72,15 @@ import (
 //
 //	<summary>
 //	  <b>
-//	    <i>Trust store with CA certificate</i>
+//	    <i>Trust store with HTTP provider and CA certificate</i>
 //	  </b>
 //	</summary>
 //
 // ## Import
 //
 // `cloudamqp_trust_store` can be imported using the CloudAMQP instance identifier.
+//
+// fields (`http.cacert` or `file.certificates`). You'll need to set these in your configuration.
 //
 // From Terraform v1.5.0, the `import` block can be used to import this resource:
 //
@@ -88,20 +102,28 @@ import (
 type TrustStore struct {
 	pulumi.CustomResourceState
 
+	// File trust store configuration block. See File Block below.
+	File TrustStoreFilePtrOutput `pulumi:"file"`
 	// HTTP trust store configuration block. See HTTP Block below.
 	Http TrustStoreHttpPtrOutput `pulumi:"http"`
-	// The CloudAMQP instance ID.
+	// The CloudAMQP instance identifier.
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
-	// Interval in seconds to refresh the trust store certificates. Defaults to 30 seconds.
-	// Defaults to 30 seconds.
+	// A string identifier to trigger updates of write-only certificate fields.
+	// Change this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: "").
+	KeyId pulumi.StringOutput `pulumi:"keyId"`
+	// Interval in seconds for RabbitMQ to refresh the trust
+	// store certificates (default: 30).
 	RefreshInterval pulumi.IntOutput `pulumi:"refreshInterval"`
-	// Configurable sleep time in seconds between retries for
-	// trust store operations. Defaults to 10 seconds.
+	// Configurable sleep time in seconds between retries for trust store
+	// operations (default: 10).
 	Sleep pulumi.IntOutput `pulumi:"sleep"`
-	// Configurable timeout time in seconds for trust store
-	// operations. Defaults to 1800 seconds (30 minutes).
+	// Configurable timeout time in seconds for trust store operations
+	// (default: 1800).
+	//
+	// ***Note:*** Either `http` or `file` configuration block must be specified, but not both.
 	Timeout pulumi.IntOutput `pulumi:"timeout"`
-	// Version of write-only certificates. Increment this value to force an update of write-only fields like `cacert`. Defaults to 1.
+	// An integer to trigger updates of write-only certificate fields.
+	// Increment this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: 1).
 	Version pulumi.IntOutput `pulumi:"version"`
 }
 
@@ -138,38 +160,54 @@ func GetTrustStore(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering TrustStore resources.
 type trustStoreState struct {
+	// File trust store configuration block. See File Block below.
+	File *TrustStoreFile `pulumi:"file"`
 	// HTTP trust store configuration block. See HTTP Block below.
 	Http *TrustStoreHttp `pulumi:"http"`
-	// The CloudAMQP instance ID.
+	// The CloudAMQP instance identifier.
 	InstanceId *int `pulumi:"instanceId"`
-	// Interval in seconds to refresh the trust store certificates. Defaults to 30 seconds.
-	// Defaults to 30 seconds.
+	// A string identifier to trigger updates of write-only certificate fields.
+	// Change this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: "").
+	KeyId *string `pulumi:"keyId"`
+	// Interval in seconds for RabbitMQ to refresh the trust
+	// store certificates (default: 30).
 	RefreshInterval *int `pulumi:"refreshInterval"`
-	// Configurable sleep time in seconds between retries for
-	// trust store operations. Defaults to 10 seconds.
+	// Configurable sleep time in seconds between retries for trust store
+	// operations (default: 10).
 	Sleep *int `pulumi:"sleep"`
-	// Configurable timeout time in seconds for trust store
-	// operations. Defaults to 1800 seconds (30 minutes).
+	// Configurable timeout time in seconds for trust store operations
+	// (default: 1800).
+	//
+	// ***Note:*** Either `http` or `file` configuration block must be specified, but not both.
 	Timeout *int `pulumi:"timeout"`
-	// Version of write-only certificates. Increment this value to force an update of write-only fields like `cacert`. Defaults to 1.
+	// An integer to trigger updates of write-only certificate fields.
+	// Increment this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: 1).
 	Version *int `pulumi:"version"`
 }
 
 type TrustStoreState struct {
+	// File trust store configuration block. See File Block below.
+	File TrustStoreFilePtrInput
 	// HTTP trust store configuration block. See HTTP Block below.
 	Http TrustStoreHttpPtrInput
-	// The CloudAMQP instance ID.
+	// The CloudAMQP instance identifier.
 	InstanceId pulumi.IntPtrInput
-	// Interval in seconds to refresh the trust store certificates. Defaults to 30 seconds.
-	// Defaults to 30 seconds.
+	// A string identifier to trigger updates of write-only certificate fields.
+	// Change this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: "").
+	KeyId pulumi.StringPtrInput
+	// Interval in seconds for RabbitMQ to refresh the trust
+	// store certificates (default: 30).
 	RefreshInterval pulumi.IntPtrInput
-	// Configurable sleep time in seconds between retries for
-	// trust store operations. Defaults to 10 seconds.
+	// Configurable sleep time in seconds between retries for trust store
+	// operations (default: 10).
 	Sleep pulumi.IntPtrInput
-	// Configurable timeout time in seconds for trust store
-	// operations. Defaults to 1800 seconds (30 minutes).
+	// Configurable timeout time in seconds for trust store operations
+	// (default: 1800).
+	//
+	// ***Note:*** Either `http` or `file` configuration block must be specified, but not both.
 	Timeout pulumi.IntPtrInput
-	// Version of write-only certificates. Increment this value to force an update of write-only fields like `cacert`. Defaults to 1.
+	// An integer to trigger updates of write-only certificate fields.
+	// Increment this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: 1).
 	Version pulumi.IntPtrInput
 }
 
@@ -178,39 +216,55 @@ func (TrustStoreState) ElementType() reflect.Type {
 }
 
 type trustStoreArgs struct {
+	// File trust store configuration block. See File Block below.
+	File *TrustStoreFile `pulumi:"file"`
 	// HTTP trust store configuration block. See HTTP Block below.
 	Http *TrustStoreHttp `pulumi:"http"`
-	// The CloudAMQP instance ID.
+	// The CloudAMQP instance identifier.
 	InstanceId int `pulumi:"instanceId"`
-	// Interval in seconds to refresh the trust store certificates. Defaults to 30 seconds.
-	// Defaults to 30 seconds.
+	// A string identifier to trigger updates of write-only certificate fields.
+	// Change this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: "").
+	KeyId *string `pulumi:"keyId"`
+	// Interval in seconds for RabbitMQ to refresh the trust
+	// store certificates (default: 30).
 	RefreshInterval *int `pulumi:"refreshInterval"`
-	// Configurable sleep time in seconds between retries for
-	// trust store operations. Defaults to 10 seconds.
+	// Configurable sleep time in seconds between retries for trust store
+	// operations (default: 10).
 	Sleep *int `pulumi:"sleep"`
-	// Configurable timeout time in seconds for trust store
-	// operations. Defaults to 1800 seconds (30 minutes).
+	// Configurable timeout time in seconds for trust store operations
+	// (default: 1800).
+	//
+	// ***Note:*** Either `http` or `file` configuration block must be specified, but not both.
 	Timeout *int `pulumi:"timeout"`
-	// Version of write-only certificates. Increment this value to force an update of write-only fields like `cacert`. Defaults to 1.
+	// An integer to trigger updates of write-only certificate fields.
+	// Increment this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: 1).
 	Version *int `pulumi:"version"`
 }
 
 // The set of arguments for constructing a TrustStore resource.
 type TrustStoreArgs struct {
+	// File trust store configuration block. See File Block below.
+	File TrustStoreFilePtrInput
 	// HTTP trust store configuration block. See HTTP Block below.
 	Http TrustStoreHttpPtrInput
-	// The CloudAMQP instance ID.
+	// The CloudAMQP instance identifier.
 	InstanceId pulumi.IntInput
-	// Interval in seconds to refresh the trust store certificates. Defaults to 30 seconds.
-	// Defaults to 30 seconds.
+	// A string identifier to trigger updates of write-only certificate fields.
+	// Change this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: "").
+	KeyId pulumi.StringPtrInput
+	// Interval in seconds for RabbitMQ to refresh the trust
+	// store certificates (default: 30).
 	RefreshInterval pulumi.IntPtrInput
-	// Configurable sleep time in seconds between retries for
-	// trust store operations. Defaults to 10 seconds.
+	// Configurable sleep time in seconds between retries for trust store
+	// operations (default: 10).
 	Sleep pulumi.IntPtrInput
-	// Configurable timeout time in seconds for trust store
-	// operations. Defaults to 1800 seconds (30 minutes).
+	// Configurable timeout time in seconds for trust store operations
+	// (default: 1800).
+	//
+	// ***Note:*** Either `http` or `file` configuration block must be specified, but not both.
 	Timeout pulumi.IntPtrInput
-	// Version of write-only certificates. Increment this value to force an update of write-only fields like `cacert`. Defaults to 1.
+	// An integer to trigger updates of write-only certificate fields.
+	// Increment this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: 1).
 	Version pulumi.IntPtrInput
 }
 
@@ -301,35 +355,49 @@ func (o TrustStoreOutput) ToTrustStoreOutputWithContext(ctx context.Context) Tru
 	return o
 }
 
+// File trust store configuration block. See File Block below.
+func (o TrustStoreOutput) File() TrustStoreFilePtrOutput {
+	return o.ApplyT(func(v *TrustStore) TrustStoreFilePtrOutput { return v.File }).(TrustStoreFilePtrOutput)
+}
+
 // HTTP trust store configuration block. See HTTP Block below.
 func (o TrustStoreOutput) Http() TrustStoreHttpPtrOutput {
 	return o.ApplyT(func(v *TrustStore) TrustStoreHttpPtrOutput { return v.Http }).(TrustStoreHttpPtrOutput)
 }
 
-// The CloudAMQP instance ID.
+// The CloudAMQP instance identifier.
 func (o TrustStoreOutput) InstanceId() pulumi.IntOutput {
 	return o.ApplyT(func(v *TrustStore) pulumi.IntOutput { return v.InstanceId }).(pulumi.IntOutput)
 }
 
-// Interval in seconds to refresh the trust store certificates. Defaults to 30 seconds.
-// Defaults to 30 seconds.
+// A string identifier to trigger updates of write-only certificate fields.
+// Change this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: "").
+func (o TrustStoreOutput) KeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v *TrustStore) pulumi.StringOutput { return v.KeyId }).(pulumi.StringOutput)
+}
+
+// Interval in seconds for RabbitMQ to refresh the trust
+// store certificates (default: 30).
 func (o TrustStoreOutput) RefreshInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *TrustStore) pulumi.IntOutput { return v.RefreshInterval }).(pulumi.IntOutput)
 }
 
-// Configurable sleep time in seconds between retries for
-// trust store operations. Defaults to 10 seconds.
+// Configurable sleep time in seconds between retries for trust store
+// operations (default: 10).
 func (o TrustStoreOutput) Sleep() pulumi.IntOutput {
 	return o.ApplyT(func(v *TrustStore) pulumi.IntOutput { return v.Sleep }).(pulumi.IntOutput)
 }
 
-// Configurable timeout time in seconds for trust store
-// operations. Defaults to 1800 seconds (30 minutes).
+// Configurable timeout time in seconds for trust store operations
+// (default: 1800).
+//
+// ***Note:*** Either `http` or `file` configuration block must be specified, but not both.
 func (o TrustStoreOutput) Timeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *TrustStore) pulumi.IntOutput { return v.Timeout }).(pulumi.IntOutput)
 }
 
-// Version of write-only certificates. Increment this value to force an update of write-only fields like `cacert`. Defaults to 1.
+// An integer to trigger updates of write-only certificate fields.
+// Increment this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: 1).
 func (o TrustStoreOutput) Version() pulumi.IntOutput {
 	return o.ApplyT(func(v *TrustStore) pulumi.IntOutput { return v.Version }).(pulumi.IntOutput)
 }
