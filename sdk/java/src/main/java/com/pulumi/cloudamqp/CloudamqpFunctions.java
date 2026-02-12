@@ -2348,45 +2348,1431 @@ public final class CloudamqpFunctions {
     public static CompletableFuture<GetUpgradableVersionsResult> getUpgradableVersionsPlain(GetUpgradableVersionsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getUpgradableVersions:getUpgradableVersions", TypeShape.of(GetUpgradableVersionsResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
+     * 
+     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
+     * 
+     * ## Example Usage
+     * 
+     * &lt;details&gt;
+     *   &lt;summary&gt;
+     *     &lt;b&gt;
+     *       &lt;i&gt;AWS VPC peering before v1.16.0&lt;/i&gt;
+     *     &lt;/b&gt;
+     *   &lt;/summary&gt;
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
+     *             .instanceId(instance.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * &lt;/details&gt;
+     * 
+     * &lt;details&gt;
+     *   &lt;summary&gt;
+     *     &lt;b&gt;
+     *       &lt;i&gt;AWS VPC peering from [v1.16.0] (Managed VPC)&lt;/i&gt;
+     *     &lt;/b&gt;
+     *   &lt;/summary&gt;
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * &lt;/details&gt;
+     * 
+     * ## Dependency
+     * 
+     * ***Before v1.16.0:***
+     * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * ***From [v1.16.0]***
+     * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
+     * identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * [v1.16.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.16.0
+     * 
+     */
     public static Output<GetVpcGcpInfoResult> getVpcGcpInfo() {
         return getVpcGcpInfo(GetVpcGcpInfoArgs.Empty, InvokeOptions.Empty);
     }
+    /**
+     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
+     * 
+     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
+     * 
+     * ## Example Usage
+     * 
+     * &lt;details&gt;
+     *   &lt;summary&gt;
+     *     &lt;b&gt;
+     *       &lt;i&gt;AWS VPC peering before v1.16.0&lt;/i&gt;
+     *     &lt;/b&gt;
+     *   &lt;/summary&gt;
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
+     *             .instanceId(instance.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * &lt;/details&gt;
+     * 
+     * &lt;details&gt;
+     *   &lt;summary&gt;
+     *     &lt;b&gt;
+     *       &lt;i&gt;AWS VPC peering from [v1.16.0] (Managed VPC)&lt;/i&gt;
+     *     &lt;/b&gt;
+     *   &lt;/summary&gt;
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * &lt;/details&gt;
+     * 
+     * ## Dependency
+     * 
+     * ***Before v1.16.0:***
+     * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * ***From [v1.16.0]***
+     * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
+     * identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * [v1.16.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.16.0
+     * 
+     */
     public static CompletableFuture<GetVpcGcpInfoResult> getVpcGcpInfoPlain() {
         return getVpcGcpInfoPlain(GetVpcGcpInfoPlainArgs.Empty, InvokeOptions.Empty);
     }
+    /**
+     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
+     * 
+     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
+     * 
+     * ## Example Usage
+     * 
+     * &lt;details&gt;
+     *   &lt;summary&gt;
+     *     &lt;b&gt;
+     *       &lt;i&gt;AWS VPC peering before v1.16.0&lt;/i&gt;
+     *     &lt;/b&gt;
+     *   &lt;/summary&gt;
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
+     *             .instanceId(instance.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * &lt;/details&gt;
+     * 
+     * &lt;details&gt;
+     *   &lt;summary&gt;
+     *     &lt;b&gt;
+     *       &lt;i&gt;AWS VPC peering from [v1.16.0] (Managed VPC)&lt;/i&gt;
+     *     &lt;/b&gt;
+     *   &lt;/summary&gt;
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * &lt;/details&gt;
+     * 
+     * ## Dependency
+     * 
+     * ***Before v1.16.0:***
+     * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * ***From [v1.16.0]***
+     * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
+     * identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * [v1.16.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.16.0
+     * 
+     */
     public static Output<GetVpcGcpInfoResult> getVpcGcpInfo(GetVpcGcpInfoArgs args) {
         return getVpcGcpInfo(args, InvokeOptions.Empty);
     }
+    /**
+     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
+     * 
+     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
+     * 
+     * ## Example Usage
+     * 
+     * &lt;details&gt;
+     *   &lt;summary&gt;
+     *     &lt;b&gt;
+     *       &lt;i&gt;AWS VPC peering before v1.16.0&lt;/i&gt;
+     *     &lt;/b&gt;
+     *   &lt;/summary&gt;
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
+     *             .instanceId(instance.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * &lt;/details&gt;
+     * 
+     * &lt;details&gt;
+     *   &lt;summary&gt;
+     *     &lt;b&gt;
+     *       &lt;i&gt;AWS VPC peering from [v1.16.0] (Managed VPC)&lt;/i&gt;
+     *     &lt;/b&gt;
+     *   &lt;/summary&gt;
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * &lt;/details&gt;
+     * 
+     * ## Dependency
+     * 
+     * ***Before v1.16.0:***
+     * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * ***From [v1.16.0]***
+     * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
+     * identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * [v1.16.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.16.0
+     * 
+     */
     public static CompletableFuture<GetVpcGcpInfoResult> getVpcGcpInfoPlain(GetVpcGcpInfoPlainArgs args) {
         return getVpcGcpInfoPlain(args, InvokeOptions.Empty);
     }
+    /**
+     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
+     * 
+     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
+     * 
+     * ## Example Usage
+     * 
+     * &lt;details&gt;
+     *   &lt;summary&gt;
+     *     &lt;b&gt;
+     *       &lt;i&gt;AWS VPC peering before v1.16.0&lt;/i&gt;
+     *     &lt;/b&gt;
+     *   &lt;/summary&gt;
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
+     *             .instanceId(instance.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * &lt;/details&gt;
+     * 
+     * &lt;details&gt;
+     *   &lt;summary&gt;
+     *     &lt;b&gt;
+     *       &lt;i&gt;AWS VPC peering from [v1.16.0] (Managed VPC)&lt;/i&gt;
+     *     &lt;/b&gt;
+     *   &lt;/summary&gt;
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * &lt;/details&gt;
+     * 
+     * ## Dependency
+     * 
+     * ***Before v1.16.0:***
+     * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * ***From [v1.16.0]***
+     * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
+     * identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * [v1.16.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.16.0
+     * 
+     */
     public static Output<GetVpcGcpInfoResult> getVpcGcpInfo(GetVpcGcpInfoArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo", TypeShape.of(GetVpcGcpInfoResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
+     * 
+     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
+     * 
+     * ## Example Usage
+     * 
+     * &lt;details&gt;
+     *   &lt;summary&gt;
+     *     &lt;b&gt;
+     *       &lt;i&gt;AWS VPC peering before v1.16.0&lt;/i&gt;
+     *     &lt;/b&gt;
+     *   &lt;/summary&gt;
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
+     *             .instanceId(instance.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * &lt;/details&gt;
+     * 
+     * &lt;details&gt;
+     *   &lt;summary&gt;
+     *     &lt;b&gt;
+     *       &lt;i&gt;AWS VPC peering from [v1.16.0] (Managed VPC)&lt;/i&gt;
+     *     &lt;/b&gt;
+     *   &lt;/summary&gt;
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * &lt;/details&gt;
+     * 
+     * ## Dependency
+     * 
+     * ***Before v1.16.0:***
+     * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * ***From [v1.16.0]***
+     * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
+     * identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * [v1.16.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.16.0
+     * 
+     */
     public static Output<GetVpcGcpInfoResult> getVpcGcpInfo(GetVpcGcpInfoArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo", TypeShape.of(GetVpcGcpInfoResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
+     * 
+     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
+     * 
+     * ## Example Usage
+     * 
+     * &lt;details&gt;
+     *   &lt;summary&gt;
+     *     &lt;b&gt;
+     *       &lt;i&gt;AWS VPC peering before v1.16.0&lt;/i&gt;
+     *     &lt;/b&gt;
+     *   &lt;/summary&gt;
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
+     *             .instanceId(instance.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * &lt;/details&gt;
+     * 
+     * &lt;details&gt;
+     *   &lt;summary&gt;
+     *     &lt;b&gt;
+     *       &lt;i&gt;AWS VPC peering from [v1.16.0] (Managed VPC)&lt;/i&gt;
+     *     &lt;/b&gt;
+     *   &lt;/summary&gt;
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * &lt;/details&gt;
+     * 
+     * ## Dependency
+     * 
+     * ***Before v1.16.0:***
+     * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * ***From [v1.16.0]***
+     * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
+     * identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * [v1.16.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.16.0
+     * 
+     */
     public static CompletableFuture<GetVpcGcpInfoResult> getVpcGcpInfoPlain(GetVpcGcpInfoPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo", TypeShape.of(GetVpcGcpInfoResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
+     * 
+     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;details&gt;
+     *   &lt;summary&gt;
+     *     &lt;b&gt;
+     *       &lt;i&gt;AWS VPC peering before v1.16.0&lt;/i&gt;
+     *     &lt;/b&gt;
+     *   &lt;/summary&gt;
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
+     *             .instanceId(instance.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * &lt;/details&gt;
+     * 
+     * &lt;details&gt;
+     *   &lt;summary&gt;
+     *     &lt;b&gt;
+     *       &lt;i&gt;AWS VPC peering from [v1.16.0] (Managed VPC)&lt;/i&gt;
+     *     &lt;/b&gt;
+     *   &lt;/summary&gt;
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * &lt;/details&gt;
+     * 
+     * ## Dependency
+     * 
+     * *Before v1.16.0*
+     * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * *From [v1.16.0]*
+     * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
+     * identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * [v1.16.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.16.0
+     * 
+     */
     public static Output<GetVpcInfoResult> getVpcInfo() {
         return getVpcInfo(GetVpcInfoArgs.Empty, InvokeOptions.Empty);
     }
+    /**
+     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
+     * 
+     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;details&gt;
+     *   &lt;summary&gt;
+     *     &lt;b&gt;
+     *       &lt;i&gt;AWS VPC peering before v1.16.0&lt;/i&gt;
+     *     &lt;/b&gt;
+     *   &lt;/summary&gt;
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
+     *             .instanceId(instance.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * &lt;/details&gt;
+     * 
+     * &lt;details&gt;
+     *   &lt;summary&gt;
+     *     &lt;b&gt;
+     *       &lt;i&gt;AWS VPC peering from [v1.16.0] (Managed VPC)&lt;/i&gt;
+     *     &lt;/b&gt;
+     *   &lt;/summary&gt;
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * &lt;/details&gt;
+     * 
+     * ## Dependency
+     * 
+     * *Before v1.16.0*
+     * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * *From [v1.16.0]*
+     * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
+     * identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * [v1.16.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.16.0
+     * 
+     */
     public static CompletableFuture<GetVpcInfoResult> getVpcInfoPlain() {
         return getVpcInfoPlain(GetVpcInfoPlainArgs.Empty, InvokeOptions.Empty);
     }
+    /**
+     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
+     * 
+     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;details&gt;
+     *   &lt;summary&gt;
+     *     &lt;b&gt;
+     *       &lt;i&gt;AWS VPC peering before v1.16.0&lt;/i&gt;
+     *     &lt;/b&gt;
+     *   &lt;/summary&gt;
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
+     *             .instanceId(instance.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * &lt;/details&gt;
+     * 
+     * &lt;details&gt;
+     *   &lt;summary&gt;
+     *     &lt;b&gt;
+     *       &lt;i&gt;AWS VPC peering from [v1.16.0] (Managed VPC)&lt;/i&gt;
+     *     &lt;/b&gt;
+     *   &lt;/summary&gt;
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * &lt;/details&gt;
+     * 
+     * ## Dependency
+     * 
+     * *Before v1.16.0*
+     * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * *From [v1.16.0]*
+     * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
+     * identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * [v1.16.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.16.0
+     * 
+     */
     public static Output<GetVpcInfoResult> getVpcInfo(GetVpcInfoArgs args) {
         return getVpcInfo(args, InvokeOptions.Empty);
     }
+    /**
+     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
+     * 
+     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;details&gt;
+     *   &lt;summary&gt;
+     *     &lt;b&gt;
+     *       &lt;i&gt;AWS VPC peering before v1.16.0&lt;/i&gt;
+     *     &lt;/b&gt;
+     *   &lt;/summary&gt;
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
+     *             .instanceId(instance.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * &lt;/details&gt;
+     * 
+     * &lt;details&gt;
+     *   &lt;summary&gt;
+     *     &lt;b&gt;
+     *       &lt;i&gt;AWS VPC peering from [v1.16.0] (Managed VPC)&lt;/i&gt;
+     *     &lt;/b&gt;
+     *   &lt;/summary&gt;
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * &lt;/details&gt;
+     * 
+     * ## Dependency
+     * 
+     * *Before v1.16.0*
+     * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * *From [v1.16.0]*
+     * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
+     * identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * [v1.16.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.16.0
+     * 
+     */
     public static CompletableFuture<GetVpcInfoResult> getVpcInfoPlain(GetVpcInfoPlainArgs args) {
         return getVpcInfoPlain(args, InvokeOptions.Empty);
     }
+    /**
+     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
+     * 
+     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;details&gt;
+     *   &lt;summary&gt;
+     *     &lt;b&gt;
+     *       &lt;i&gt;AWS VPC peering before v1.16.0&lt;/i&gt;
+     *     &lt;/b&gt;
+     *   &lt;/summary&gt;
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
+     *             .instanceId(instance.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * &lt;/details&gt;
+     * 
+     * &lt;details&gt;
+     *   &lt;summary&gt;
+     *     &lt;b&gt;
+     *       &lt;i&gt;AWS VPC peering from [v1.16.0] (Managed VPC)&lt;/i&gt;
+     *     &lt;/b&gt;
+     *   &lt;/summary&gt;
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * &lt;/details&gt;
+     * 
+     * ## Dependency
+     * 
+     * *Before v1.16.0*
+     * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * *From [v1.16.0]*
+     * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
+     * identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * [v1.16.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.16.0
+     * 
+     */
     public static Output<GetVpcInfoResult> getVpcInfo(GetVpcInfoArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("cloudamqp:index/getVpcInfo:getVpcInfo", TypeShape.of(GetVpcInfoResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
+     * 
+     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;details&gt;
+     *   &lt;summary&gt;
+     *     &lt;b&gt;
+     *       &lt;i&gt;AWS VPC peering before v1.16.0&lt;/i&gt;
+     *     &lt;/b&gt;
+     *   &lt;/summary&gt;
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
+     *             .instanceId(instance.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * &lt;/details&gt;
+     * 
+     * &lt;details&gt;
+     *   &lt;summary&gt;
+     *     &lt;b&gt;
+     *       &lt;i&gt;AWS VPC peering from [v1.16.0] (Managed VPC)&lt;/i&gt;
+     *     &lt;/b&gt;
+     *   &lt;/summary&gt;
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * &lt;/details&gt;
+     * 
+     * ## Dependency
+     * 
+     * *Before v1.16.0*
+     * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * *From [v1.16.0]*
+     * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
+     * identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * [v1.16.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.16.0
+     * 
+     */
     public static Output<GetVpcInfoResult> getVpcInfo(GetVpcInfoArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("cloudamqp:index/getVpcInfo:getVpcInfo", TypeShape.of(GetVpcInfoResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Use this data source to retrieve information about VPC for a CloudAMQP instance.
+     * 
+     * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;details&gt;
+     *   &lt;summary&gt;
+     *     &lt;b&gt;
+     *       &lt;i&gt;AWS VPC peering before v1.16.0&lt;/i&gt;
+     *     &lt;/b&gt;
+     *   &lt;/summary&gt;
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
+     *             .instanceId(instance.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * &lt;/details&gt;
+     * 
+     * &lt;details&gt;
+     *   &lt;summary&gt;
+     *     &lt;b&gt;
+     *       &lt;i&gt;AWS VPC peering from [v1.16.0] (Managed VPC)&lt;/i&gt;
+     *     &lt;/b&gt;
+     *   &lt;/summary&gt;
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
+     *             .vpcId(vpc.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * &lt;/details&gt;
+     * 
+     * ## Dependency
+     * 
+     * *Before v1.16.0*
+     * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * *From [v1.16.0]*
+     * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
+     * identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * [v1.16.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.16.0
+     * 
+     */
     public static CompletableFuture<GetVpcInfoResult> getVpcInfoPlain(GetVpcInfoPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getVpcInfo:getVpcInfo", TypeShape.of(GetVpcInfoResult.class), args, Utilities.withVersion(options));
     }

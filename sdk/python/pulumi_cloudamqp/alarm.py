@@ -431,29 +431,132 @@ class Alarm(pulumi.CustomResource):
                  vhost_regex: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        ## Import
+        This resource allows you to create and manage alarms to trigger based on a set of conditions. Once
+        triggerd a notification will be sent to the assigned recipients. When creating a new instance, there
+        will also be a set of default alarms (cpu, memory and disk) created. All default alarms uses the
+        default recipient for notifications.
 
-        `cloudamqp_alarm` can be imported using the resource identifier together with the CloudAMQP instance
+        By setting `no_default_alarms` to *true* in `Instance`. This will create the instance
+        without default alarms and avoid the need to import them to get full control.
 
-        identifier (CSV separated). To retrieve the resource identifier, use [CloudAMQP API list alarms].
+        Available for all subscription plans, but `lemur`and `tiger`are limited to fewer alarm types. The
+        limited types supported can be seen in the table below in [Alarm Type Reference].
 
-        From Terraform v1.5.0, the `import` block can be used to import this resource:
+        ## Example Usage
 
-        hcl
+        <details>
+          <summary>
+            <b>
+              <i>Basic example of CPU and memory alarm</i>
+            </b>
+          </summary>
 
-        import {
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
 
-          to = cloudamqp_alarm.alarm
-
-          id = format("<id>,%s", cloudamqp_instance.instance.id)
-
-        }
-
-        Or use Terraform CLI:
-
-        ```sh
-        $ pulumi import cloudamqp:index/alarm:Alarm alarm <id>,<instance_id>`
+        # New recipient
+        recipient01 = cloudamqp.Notification("recipient_01",
+            instance_id=instance["id"],
+            type="email",
+            value="alarm@example.com",
+            name="alarm")
+        # New cpu alarm
+        cpu_alarm = cloudamqp.Alarm("cpu_alarm",
+            instance_id=instance["id"],
+            type="cpu",
+            enabled=True,
+            reminder_interval=600,
+            value_threshold=95,
+            time_threshold=600,
+            recipients=[recipient01.id])
+        # New memory alarm
+        memory_alarm = cloudamqp.Alarm("memory_alarm",
+            instance_id=instance["id"],
+            type="memory",
+            enabled=True,
+            reminder_interval=600,
+            value_threshold=95,
+            time_threshold=600,
+            recipients=[recipient01.id])
         ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Manage notice alarm, available from</i>
+              <a href="https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.29.5">v1.29.5</a>
+            </b>
+          </summary>
+
+        Only one notice alarm can exists and cannot be created, instead the alarm resource will be updated.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # New recipient
+        recipient01 = cloudamqp.Notification("recipient_01",
+            instance_id=instance["id"],
+            type="email",
+            value="alarm@example.com",
+            name="alarm")
+        # Update existing notice alarm
+        notice = cloudamqp.Alarm("notice",
+            instance_id=instance["id"],
+            type="notice",
+            enabled=True,
+            recipients=[recipient01.id])
+        ```
+
+        </details>
+
+        ## Alarm type reference
+
+        Supported alarm types: `cpu, memory, disk, queue, connection, flow, consumer, netsplit,
+          server_unreachable, notice`
+
+        Required arguments for all alarms: `instance_id, type, enabled`<br>
+        Optional argument for all alarms: `tags, queue_regex, vhost_regex`
+
+        | Name | Type | Shared | Dedicated | Required arguments |
+        | ---- | ---- | ---- | ---- | ---- |
+        | CPU | cpu | - | &#10004; | time_threshold, value_threshold |
+        | Memory | memory | - | &#10004;  | time_threshold, value_threshold |
+        | Disk space | disk | - | &#10004;  | time_threshold, value_threshold |
+        | Queue | queue | &#10004;  | &#10004; | time_threshold, value_threshold, queue_regex, vhost_regex, message_type |
+        | Connection | connection | &#10004; | &#10004; | time_threshold, value_threshold |
+        | Connection flow | flow | &#10004; | &#10004; | time_threshold, value_threshold |
+        | Consumer | consumer | &#10004; | &#10004; | time_threshold, value_threshold, queue, vhost |
+        | Netsplit | netsplit | - | &#10004; | time_threshold |
+        | Server unreachable | server_unreachable  | - | &#10004;  | time_threshold |
+        | Notice | notice | &#10004; | &#10004; | |
+
+        <br>
+
+        > Notice alarm is manadatory! Only one can exists and cannot be deleted. Setting `no_default_alarm`
+        to true, will still create this alarm. See updated changes to [notice alarm] below.
+
+        ## Dependency
+
+        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+        ## Notice alarm
+
+        There is a limitation for notice alarm in the API backend. This alarm is mandatory, multiple
+        alarms cannot exists or be deleted.
+
+        From provider version [v1.29.5] it's possible to manage the notice alarm and no longer needs to be
+        imported. Just create the alarm resource as usually and it will be updated with given recipients.
+        If the alarm is deleted it will only be removed from the state file, but will still be enabled in
+        the backend.
+
+        [Alarm Type Reference]: #alarm-type-reference
+        [CloudAMQP API list alarms]: https://docs.cloudamqp.com/instance-api.html#tag/alarms/get/alarms
+        [notice alarm]: #notice-alarm
+        [v1.29.5]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.29.5
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -484,29 +587,132 @@ class Alarm(pulumi.CustomResource):
                  args: AlarmArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Import
+        This resource allows you to create and manage alarms to trigger based on a set of conditions. Once
+        triggerd a notification will be sent to the assigned recipients. When creating a new instance, there
+        will also be a set of default alarms (cpu, memory and disk) created. All default alarms uses the
+        default recipient for notifications.
 
-        `cloudamqp_alarm` can be imported using the resource identifier together with the CloudAMQP instance
+        By setting `no_default_alarms` to *true* in `Instance`. This will create the instance
+        without default alarms and avoid the need to import them to get full control.
 
-        identifier (CSV separated). To retrieve the resource identifier, use [CloudAMQP API list alarms].
+        Available for all subscription plans, but `lemur`and `tiger`are limited to fewer alarm types. The
+        limited types supported can be seen in the table below in [Alarm Type Reference].
 
-        From Terraform v1.5.0, the `import` block can be used to import this resource:
+        ## Example Usage
 
-        hcl
+        <details>
+          <summary>
+            <b>
+              <i>Basic example of CPU and memory alarm</i>
+            </b>
+          </summary>
 
-        import {
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
 
-          to = cloudamqp_alarm.alarm
-
-          id = format("<id>,%s", cloudamqp_instance.instance.id)
-
-        }
-
-        Or use Terraform CLI:
-
-        ```sh
-        $ pulumi import cloudamqp:index/alarm:Alarm alarm <id>,<instance_id>`
+        # New recipient
+        recipient01 = cloudamqp.Notification("recipient_01",
+            instance_id=instance["id"],
+            type="email",
+            value="alarm@example.com",
+            name="alarm")
+        # New cpu alarm
+        cpu_alarm = cloudamqp.Alarm("cpu_alarm",
+            instance_id=instance["id"],
+            type="cpu",
+            enabled=True,
+            reminder_interval=600,
+            value_threshold=95,
+            time_threshold=600,
+            recipients=[recipient01.id])
+        # New memory alarm
+        memory_alarm = cloudamqp.Alarm("memory_alarm",
+            instance_id=instance["id"],
+            type="memory",
+            enabled=True,
+            reminder_interval=600,
+            value_threshold=95,
+            time_threshold=600,
+            recipients=[recipient01.id])
         ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Manage notice alarm, available from</i>
+              <a href="https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.29.5">v1.29.5</a>
+            </b>
+          </summary>
+
+        Only one notice alarm can exists and cannot be created, instead the alarm resource will be updated.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # New recipient
+        recipient01 = cloudamqp.Notification("recipient_01",
+            instance_id=instance["id"],
+            type="email",
+            value="alarm@example.com",
+            name="alarm")
+        # Update existing notice alarm
+        notice = cloudamqp.Alarm("notice",
+            instance_id=instance["id"],
+            type="notice",
+            enabled=True,
+            recipients=[recipient01.id])
+        ```
+
+        </details>
+
+        ## Alarm type reference
+
+        Supported alarm types: `cpu, memory, disk, queue, connection, flow, consumer, netsplit,
+          server_unreachable, notice`
+
+        Required arguments for all alarms: `instance_id, type, enabled`<br>
+        Optional argument for all alarms: `tags, queue_regex, vhost_regex`
+
+        | Name | Type | Shared | Dedicated | Required arguments |
+        | ---- | ---- | ---- | ---- | ---- |
+        | CPU | cpu | - | &#10004; | time_threshold, value_threshold |
+        | Memory | memory | - | &#10004;  | time_threshold, value_threshold |
+        | Disk space | disk | - | &#10004;  | time_threshold, value_threshold |
+        | Queue | queue | &#10004;  | &#10004; | time_threshold, value_threshold, queue_regex, vhost_regex, message_type |
+        | Connection | connection | &#10004; | &#10004; | time_threshold, value_threshold |
+        | Connection flow | flow | &#10004; | &#10004; | time_threshold, value_threshold |
+        | Consumer | consumer | &#10004; | &#10004; | time_threshold, value_threshold, queue, vhost |
+        | Netsplit | netsplit | - | &#10004; | time_threshold |
+        | Server unreachable | server_unreachable  | - | &#10004;  | time_threshold |
+        | Notice | notice | &#10004; | &#10004; | |
+
+        <br>
+
+        > Notice alarm is manadatory! Only one can exists and cannot be deleted. Setting `no_default_alarm`
+        to true, will still create this alarm. See updated changes to [notice alarm] below.
+
+        ## Dependency
+
+        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+        ## Notice alarm
+
+        There is a limitation for notice alarm in the API backend. This alarm is mandatory, multiple
+        alarms cannot exists or be deleted.
+
+        From provider version [v1.29.5] it's possible to manage the notice alarm and no longer needs to be
+        imported. Just create the alarm resource as usually and it will be updated with given recipients.
+        If the alarm is deleted it will only be removed from the state file, but will still be enabled in
+        the backend.
+
+        [Alarm Type Reference]: #alarm-type-reference
+        [CloudAMQP API list alarms]: https://docs.cloudamqp.com/instance-api.html#tag/alarms/get/alarms
+        [notice alarm]: #notice-alarm
+        [v1.29.5]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.29.5
 
         :param str resource_name: The name of the resource.
         :param AlarmArgs args: The arguments to use to populate this resource's properties.

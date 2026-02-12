@@ -200,29 +200,169 @@ class SecurityFirewall(pulumi.CustomResource):
                  timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
-        ## Import
+        This resource allows you to configure and manage firewall rules for the CloudAMQP instance.
 
-        `cloudamqp_security_firewall` can be imported using CloudAMQP instance identifier. To
+        > **WARNING:** Firewall rules applied with this resource will replace any existing firewall rules.
+        Make sure all wanted rules are present to not lose them.
 
-        retrieve the identifier, use [CloudAMQP API list intances].
+        > **NOTE:** From [v1.33.0] when destroying this resource the firewall on the servers will also be
+        removed. I.e. the firewall will be completely closed.
 
-        From Terraform v1.5.0, the `import` block can be used to import this resource:
+        Only available for dedicated subscription plans.
 
-        hcl
+        ## Example Usage
 
-        import {
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
 
-          to = cloudamqp_security_firewall.firewall
-
-          id = cloudamqp_instance.instance.id
-
-        }
-
-        Or use Terraform CLI:
-
-        ```sh
-        $ pulumi import cloudamqp:index/securityFirewall:SecurityFirewall firewall <instance_id>`
+        this = cloudamqp.SecurityFirewall("this",
+            instance_id=instance["id"],
+            rules=[
+                {
+                    "ip": "192.168.0.0/24",
+                    "ports": [
+                        4567,
+                        4568,
+                    ],
+                    "services": [
+                        "AMQP",
+                        "AMQPS",
+                        "HTTPS",
+                    ],
+                },
+                {
+                    "ip": "10.56.72.0/24",
+                    "ports": [],
+                    "services": [
+                        "AMQP",
+                        "AMQPS",
+                        "HTTPS",
+                    ],
+                },
+                {
+                    "ip": "192.168.1.10/32",
+                    "ports": [],
+                    "services": [
+                        "AMQP",
+                        "AMQPS",
+                        "HTTPS",
+                    ],
+                },
+            ])
         ```
+
+        <details>
+          <summary>
+            <b>
+              <i>Faster instance destroy when running `terraform destroy` from </i>
+              <a href="https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.27.0">v1.27.0</a>
+            </b>
+          </summary>
+
+        CloudAMQP Terraform provider [v1.27.0] enables faster `Instance` destroy when running
+        `terraform destroy`.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        instance = cloudamqp.Instance("instance",
+            name="terraform-cloudamqp-instance",
+            plan="penguin-1",
+            region="amazon-web-services::us-west-1",
+            tags=["terraform"])
+        this = cloudamqp.SecurityFirewall("this",
+            instance_id=instance.id,
+            rules=[
+                {
+                    "ip": "0.0.0.0/0",
+                    "ports": [],
+                    "services": ["HTTPS"],
+                    "description": "MGMT interface",
+                },
+                {
+                    "ip": "10.56.72.0/24",
+                    "ports": [],
+                    "services": [
+                        "AMQP",
+                        "AMQPS",
+                        "HTTPS",
+                    ],
+                    "description": "VPC subnet",
+                },
+            ])
+        ```
+
+        </details>
+
+        ## Dependency
+
+        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+        If used together with [VPC GPC peering], see additional information.
+
+        ## Known issues
+
+        <details>
+          <summary>Custom ports trigger new update every time</summary>
+
+          Before release v1.15.1 using the custom ports can cause a missmatch upon reading data and
+          trigger a new update every time.
+
+          Reason is that there is a bug in validating the response from the underlying API.
+
+          Update the provider to at least [v1.15.1] to fix the issue.
+         </details>
+
+        <details>
+          <summary>Using pre-defined service port in ports</summary>
+
+        Using one of the port from the pre-defined services in ports argument, see example of using port
+        5671 instead of the service *AMQPS*.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
+            instance_id=instance["id"],
+            rules=[{
+                "ip": "192.168.0.0/24",
+                "ports": [5671],
+                "services": [],
+            }])
+        ```
+
+        Will still create the firewall rule for the instance, but will trigger a new update each `plan` or
+        `apply`. Due to a missmatch between state file and underlying API response.
+
+        To solve this, edit the configuration file and change port 5671 to service *AMQPS* and run
+        `pulumi up -refresh-only` to only update the state file and remove the missmatch.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
+            instance_id=instance["id"],
+            rules=[{
+                "ip": "192.168.0.0/24",
+                "ports": [],
+                "services": ["AMQPS"],
+            }])
+        ```
+
+        The provider from [v1.15.2] will start to warn about using this.
+
+         </details>
+
+        [CloudAMQP API list intances]: https://docs.cloudamqp.com/index.html#tag/instances/get/instances
+        [v1.15.1]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.15.1
+        [v1.15.2]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.15.2
+        [v1.27.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.27.0
+        [v1.33.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.33.0
+        [VPC GPC peering]: ./vpc_gcp_peering#create-vpc-peering-with-additional-firewall-rules
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -245,29 +385,169 @@ class SecurityFirewall(pulumi.CustomResource):
                  args: SecurityFirewallArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Import
+        This resource allows you to configure and manage firewall rules for the CloudAMQP instance.
 
-        `cloudamqp_security_firewall` can be imported using CloudAMQP instance identifier. To
+        > **WARNING:** Firewall rules applied with this resource will replace any existing firewall rules.
+        Make sure all wanted rules are present to not lose them.
 
-        retrieve the identifier, use [CloudAMQP API list intances].
+        > **NOTE:** From [v1.33.0] when destroying this resource the firewall on the servers will also be
+        removed. I.e. the firewall will be completely closed.
 
-        From Terraform v1.5.0, the `import` block can be used to import this resource:
+        Only available for dedicated subscription plans.
 
-        hcl
+        ## Example Usage
 
-        import {
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
 
-          to = cloudamqp_security_firewall.firewall
-
-          id = cloudamqp_instance.instance.id
-
-        }
-
-        Or use Terraform CLI:
-
-        ```sh
-        $ pulumi import cloudamqp:index/securityFirewall:SecurityFirewall firewall <instance_id>`
+        this = cloudamqp.SecurityFirewall("this",
+            instance_id=instance["id"],
+            rules=[
+                {
+                    "ip": "192.168.0.0/24",
+                    "ports": [
+                        4567,
+                        4568,
+                    ],
+                    "services": [
+                        "AMQP",
+                        "AMQPS",
+                        "HTTPS",
+                    ],
+                },
+                {
+                    "ip": "10.56.72.0/24",
+                    "ports": [],
+                    "services": [
+                        "AMQP",
+                        "AMQPS",
+                        "HTTPS",
+                    ],
+                },
+                {
+                    "ip": "192.168.1.10/32",
+                    "ports": [],
+                    "services": [
+                        "AMQP",
+                        "AMQPS",
+                        "HTTPS",
+                    ],
+                },
+            ])
         ```
+
+        <details>
+          <summary>
+            <b>
+              <i>Faster instance destroy when running `terraform destroy` from </i>
+              <a href="https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.27.0">v1.27.0</a>
+            </b>
+          </summary>
+
+        CloudAMQP Terraform provider [v1.27.0] enables faster `Instance` destroy when running
+        `terraform destroy`.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        instance = cloudamqp.Instance("instance",
+            name="terraform-cloudamqp-instance",
+            plan="penguin-1",
+            region="amazon-web-services::us-west-1",
+            tags=["terraform"])
+        this = cloudamqp.SecurityFirewall("this",
+            instance_id=instance.id,
+            rules=[
+                {
+                    "ip": "0.0.0.0/0",
+                    "ports": [],
+                    "services": ["HTTPS"],
+                    "description": "MGMT interface",
+                },
+                {
+                    "ip": "10.56.72.0/24",
+                    "ports": [],
+                    "services": [
+                        "AMQP",
+                        "AMQPS",
+                        "HTTPS",
+                    ],
+                    "description": "VPC subnet",
+                },
+            ])
+        ```
+
+        </details>
+
+        ## Dependency
+
+        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+        If used together with [VPC GPC peering], see additional information.
+
+        ## Known issues
+
+        <details>
+          <summary>Custom ports trigger new update every time</summary>
+
+          Before release v1.15.1 using the custom ports can cause a missmatch upon reading data and
+          trigger a new update every time.
+
+          Reason is that there is a bug in validating the response from the underlying API.
+
+          Update the provider to at least [v1.15.1] to fix the issue.
+         </details>
+
+        <details>
+          <summary>Using pre-defined service port in ports</summary>
+
+        Using one of the port from the pre-defined services in ports argument, see example of using port
+        5671 instead of the service *AMQPS*.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
+            instance_id=instance["id"],
+            rules=[{
+                "ip": "192.168.0.0/24",
+                "ports": [5671],
+                "services": [],
+            }])
+        ```
+
+        Will still create the firewall rule for the instance, but will trigger a new update each `plan` or
+        `apply`. Due to a missmatch between state file and underlying API response.
+
+        To solve this, edit the configuration file and change port 5671 to service *AMQPS* and run
+        `pulumi up -refresh-only` to only update the state file and remove the missmatch.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
+            instance_id=instance["id"],
+            rules=[{
+                "ip": "192.168.0.0/24",
+                "ports": [],
+                "services": ["AMQPS"],
+            }])
+        ```
+
+        The provider from [v1.15.2] will start to warn about using this.
+
+         </details>
+
+        [CloudAMQP API list intances]: https://docs.cloudamqp.com/index.html#tag/instances/get/instances
+        [v1.15.1]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.15.1
+        [v1.15.2]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.15.2
+        [v1.27.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.27.0
+        [v1.33.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.33.0
+        [VPC GPC peering]: ./vpc_gcp_peering#create-vpc-peering-with-additional-firewall-rules
 
         :param str resource_name: The name of the resource.
         :param SecurityFirewallArgs args: The arguments to use to populate this resource's properties.

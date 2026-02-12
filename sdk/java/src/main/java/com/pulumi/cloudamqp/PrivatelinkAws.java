@@ -17,29 +17,240 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## Import
+ * Enable PrivateLink for a CloudAMQP instance hosted in AWS. If no existing VPC available when enable
+ * PrivateLink, a new VPC will be created with subnet `10.52.72.0/24`.
  * 
- * `cloudamqp_privatelink_aws` can be imported using CloudAMQP instance identifier. To retrieve the
+ * &gt; **Note:** Enabling PrivateLink will automatically add firewall rules for the peered subnet.
  * 
- * identifier, use [CloudAMQP API list intances].
+ * &lt;details&gt;
+ *  &lt;summary&gt;
+ *     &lt;i&gt;Default PrivateLink firewall rule&lt;/i&gt;
+ *   &lt;/summary&gt;
  * 
- * From Terraform v1.5.0, the `import` block can be used to import this resource:
+ * ## Example Usage
  * 
- * hcl
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;CloudAMQP instance without existing VPC&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
  * 
- * import {
+ * <pre>
+ * {@code
+ * package generated_program;
  * 
- *   to = cloudamqp_privatelink_aws.privatelink
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import com.pulumi.cloudamqp.PrivatelinkAws;
+ * import com.pulumi.cloudamqp.PrivatelinkAwsArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
  * 
- *   id = cloudamqp_instance.instance.id
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
  * 
+ *     public static void stack(Context ctx) {
+ *         var instance = new Instance("instance", InstanceArgs.builder()
+ *             .name("Instance 01")
+ *             .plan("bunny-1")
+ *             .region("amazon-web-services::us-west-1")
+ *             .tags()
+ *             .build());
+ * 
+ *         var privatelink = new PrivatelinkAws("privatelink", PrivatelinkAwsArgs.builder()
+ *             .instanceId(instance.id())
+ *             .allowedPrincipals("arn:aws:iam::aws-account-id:user/user-name")
+ *             .build());
+ * 
+ *     }
  * }
+ * }
+ * </pre>
  * 
- * Or use Terraform CLI:
+ * &lt;/details&gt;
  * 
- * ```sh
- * $ pulumi import cloudamqp:index/privatelinkAws:PrivatelinkAws privatelink &lt;id&gt;`
- * ```
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;CloudAMQP instance in an existing VPC&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Vpc;
+ * import com.pulumi.cloudamqp.VpcArgs;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import com.pulumi.cloudamqp.PrivatelinkAws;
+ * import com.pulumi.cloudamqp.PrivatelinkAwsArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var vpc = new Vpc("vpc", VpcArgs.builder()
+ *             .name("Standalone VPC")
+ *             .region("amazon-web-services::us-west-1")
+ *             .subnet("10.56.72.0/24")
+ *             .tags()
+ *             .build());
+ * 
+ *         var instance = new Instance("instance", InstanceArgs.builder()
+ *             .name("Instance 01")
+ *             .plan("bunny-1")
+ *             .region("amazon-web-services::us-west-1")
+ *             .tags()
+ *             .vpcId(vpc.id())
+ *             .keepAssociatedVpc(true)
+ *             .build());
+ * 
+ *         var privatelink = new PrivatelinkAws("privatelink", PrivatelinkAwsArgs.builder()
+ *             .instanceId(instance.id())
+ *             .allowedPrincipals("arn:aws:iam::aws-account-id:user/user-name")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * ### With Additional Firewall Rules
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;CloudAMQP instance in an existing VPC with managed firewall rules&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Vpc;
+ * import com.pulumi.cloudamqp.VpcArgs;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import com.pulumi.cloudamqp.PrivatelinkAws;
+ * import com.pulumi.cloudamqp.PrivatelinkAwsArgs;
+ * import com.pulumi.cloudamqp.SecurityFirewall;
+ * import com.pulumi.cloudamqp.SecurityFirewallArgs;
+ * import com.pulumi.cloudamqp.inputs.SecurityFirewallRuleArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var vpc = new Vpc("vpc", VpcArgs.builder()
+ *             .name("Standalone VPC")
+ *             .region("amazon-web-services::us-west-1")
+ *             .subnet("10.56.72.0/24")
+ *             .tags()
+ *             .build());
+ * 
+ *         var instance = new Instance("instance", InstanceArgs.builder()
+ *             .name("Instance 01")
+ *             .plan("bunny-1")
+ *             .region("amazon-web-services::us-west-1")
+ *             .tags()
+ *             .vpcId(vpc.id())
+ *             .keepAssociatedVpc(true)
+ *             .build());
+ * 
+ *         var privatelink = new PrivatelinkAws("privatelink", PrivatelinkAwsArgs.builder()
+ *             .instanceId(instance.id())
+ *             .allowedPrincipals("arn:aws:iam::aws-account-id:user/user-name")
+ *             .build());
+ * 
+ *         var firewallSettings = new SecurityFirewall("firewallSettings", SecurityFirewallArgs.builder()
+ *             .instanceId(instance.id())
+ *             .rules(            
+ *                 SecurityFirewallRuleArgs.builder()
+ *                     .description("Custom PrivateLink setup")
+ *                     .ip(vpc.subnet())
+ *                     .ports()
+ *                     .services(                    
+ *                         "AMQP",
+ *                         "AMQPS",
+ *                         "HTTPS",
+ *                         "STREAM",
+ *                         "STREAM_SSL")
+ *                     .build(),
+ *                 SecurityFirewallRuleArgs.builder()
+ *                     .description("MGMT interface")
+ *                     .ip("0.0.0.0/0")
+ *                     .ports()
+ *                     .services("HTTPS")
+ *                     .build())
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(privatelink)
+ *                 .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * [CloudAMQP API list intances]: https://docs.cloudamqp.com/index.html#tag/instances/get/instances
+ * [CloudAMQP plans]: https://www.cloudamqp.com/plans.html
+ * [CloudAMQP PrivateLink]: https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#aws-privatelink
+ * [cloudamqp.SecurityFirewall]: ./security_firewall.md
+ * [cloudamqp.VpcConnect]: ./vpc_connect.md
+ * [v1.29.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.29.0
+ * 
+ * ## Dependency
+ * 
+ * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ * 
+ * ## Create PrivateLink with additional firewall rules
+ * 
+ * To create a PrivateLink configuration with additional firewall rules, it&#39;s required to chain the
+ * [cloudamqp.SecurityFirewall] resource to avoid parallel conflicting resource calls. You can do this
+ * by making the firewall resource depend on the PrivateLink resource,
+ * `cloudamqp_privatelink_aws.privatelink`.
+ * 
+ * Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
+ * the PrivateLink also needs to be added.
  * 
  */
 @ResourceType(type="cloudamqp:index/privatelinkAws:PrivatelinkAws")

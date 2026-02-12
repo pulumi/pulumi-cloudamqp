@@ -17,17 +17,412 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * This resouce creates a VPC peering configuration for the CloudAMQP instance. The configuration will
+ * connect to another VPC network hosted on Google Cloud Platform (GCP). See the [GCP documentation]
+ * for more information on how to create the VPC peering configuration.
+ * 
+ * &gt; **Note:** Creating a VPC peering will automatically add firewall rules for the peered subnet.
+ * 
+ * &lt;details&gt;
+ *  &lt;summary&gt;
+ *     &lt;i&gt;Default VPC peering firewall rule&lt;/i&gt;
+ *   &lt;/summary&gt;
+ * 
+ * For LavinMQ:
+ * 
+ * ## Example Usage
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;VPC peering before v1.16.0&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import com.pulumi.cloudamqp.CloudamqpFunctions;
+ * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
+ * import com.pulumi.cloudamqp.VpcGcpPeering;
+ * import com.pulumi.cloudamqp.VpcGcpPeeringArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // CloudAMQP instance
+ *         var instance = new Instance("instance", InstanceArgs.builder()
+ *             .name("terraform-vpc-peering")
+ *             .plan("penguin-1")
+ *             .region("google-compute-engine::europe-north1")
+ *             .tags("terraform")
+ *             .vpcSubnet("10.40.72.0/24")
+ *             .build());
+ * 
+ *         // VPC information
+ *         final var vpcInfo = instance.id().applyValue(_id -> CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
+ *             .instanceId(_id)
+ *             .build()));
+ * 
+ *         // VPC peering configuration
+ *         var vpcPeeringRequest = new VpcGcpPeering("vpcPeeringRequest", VpcGcpPeeringArgs.builder()
+ *             .instanceId(instance.id())
+ *             .peerNetworkUri("https://www.googleapis.com/compute/v1/projects/PROJECT-NAME/global/networks/VPC-NETWORK-NAME")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;VPC peering from [v1.16.0] (Managed VPC)&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Vpc;
+ * import com.pulumi.cloudamqp.VpcArgs;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import com.pulumi.cloudamqp.CloudamqpFunctions;
+ * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
+ * import com.pulumi.cloudamqp.VpcGcpPeering;
+ * import com.pulumi.cloudamqp.VpcGcpPeeringArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // Managed VPC resource
+ *         var vpc = new Vpc("vpc", VpcArgs.builder()
+ *             .name("<VPC name>")
+ *             .region("google-compute-engine::europe-north1")
+ *             .subnet("10.56.72.0/24")
+ *             .tags()
+ *             .build());
+ * 
+ *         // CloudAMQP instance
+ *         var instance = new Instance("instance", InstanceArgs.builder()
+ *             .name("terraform-vpc-peering")
+ *             .plan("penguin-1")
+ *             .region("google-compute-engine::europe-north1")
+ *             .tags("terraform")
+ *             .vpcId(vpc.id())
+ *             .build());
+ * 
+ *         // VPC information
+ *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
+ *             .vpcId(vpc.info())
+ *             .build());
+ * 
+ *         // VPC peering configuration
+ *         var vpcPeeringRequest = new VpcGcpPeering("vpcPeeringRequest", VpcGcpPeeringArgs.builder()
+ *             .vpcId(vpc.id())
+ *             .peerNetworkUri("https://www.googleapis.com/compute/v1/projects/PROJECT-NAME/global/networks/VPC-NETWORK-NAME")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;VPC peering from [v1.28.0], waitOnPeeringStatus &lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * Default peering request, no need to set `waitOnPeeringStatus`. It&#39;s default set to false and will
+ * not wait on peering status. Create resource will be considered completed, regardless of the status
+ * of the state.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.VpcGcpPeering;
+ * import com.pulumi.cloudamqp.VpcGcpPeeringArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var vpcPeeringRequest = new VpcGcpPeering("vpcPeeringRequest", VpcGcpPeeringArgs.builder()
+ *             .vpcId(vpc.id())
+ *             .peerNetworkUri("https://www.googleapis.com/compute/v1/projects/ROJECT-NAME/global/networks/VPC-NETWORK-NAME")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * Peering request and waiting for peering status of the state to change to ACTIVE before the create
+ * resource is consider complete. This is done once both side have done the peering.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.VpcGcpPeering;
+ * import com.pulumi.cloudamqp.VpcGcpPeeringArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var vpcPeeringRequest = new VpcGcpPeering("vpcPeeringRequest", VpcGcpPeeringArgs.builder()
+ *             .vpcId(vpc.id())
+ *             .waitOnPeeringStatus(true)
+ *             .peerNetworkUri("https://www.googleapis.com/compute/v1/projects/PROJECT-NAME/global/networks/VPC-NETWORK-NAME")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * ### With Additional Firewall Rules
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;VPC peering before v1.16.0&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.VpcGcpPeering;
+ * import com.pulumi.cloudamqp.VpcGcpPeeringArgs;
+ * import com.pulumi.cloudamqp.SecurityFirewall;
+ * import com.pulumi.cloudamqp.SecurityFirewallArgs;
+ * import com.pulumi.cloudamqp.inputs.SecurityFirewallRuleArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // VPC peering configuration
+ *         var vpcPeeringRequest = new VpcGcpPeering("vpcPeeringRequest", VpcGcpPeeringArgs.builder()
+ *             .instanceId(instance.id())
+ *             .peerNetworkUri(peerNetworkUri)
+ *             .build());
+ * 
+ *         // Firewall rules
+ *         var firewallSettings = new SecurityFirewall("firewallSettings", SecurityFirewallArgs.builder()
+ *             .instanceId(instance.id())
+ *             .rules(            
+ *                 SecurityFirewallRuleArgs.builder()
+ *                     .ip(peerSubnet)
+ *                     .ports(                    
+ *                         15672,
+ *                         5552,
+ *                         5551)
+ *                     .services(                    
+ *                         "AMQP",
+ *                         "AMQPS")
+ *                     .description("VPC peering for <NETWORK>")
+ *                     .build(),
+ *                 SecurityFirewallRuleArgs.builder()
+ *                     .ip("192.168.0.0/24")
+ *                     .ports(                    
+ *                         4567,
+ *                         4568)
+ *                     .services(                    
+ *                         "AMQP",
+ *                         "AMQPS",
+ *                         "HTTPS")
+ *                     .build())
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(vpcPeeringRequest)
+ *                 .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;VPC peering from [v1.16.0] (Managed VPC)&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.VpcGcpPeering;
+ * import com.pulumi.cloudamqp.VpcGcpPeeringArgs;
+ * import com.pulumi.cloudamqp.SecurityFirewall;
+ * import com.pulumi.cloudamqp.SecurityFirewallArgs;
+ * import com.pulumi.cloudamqp.inputs.SecurityFirewallRuleArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // VPC peering configuration
+ *         var vpcPeeringRequest = new VpcGcpPeering("vpcPeeringRequest", VpcGcpPeeringArgs.builder()
+ *             .vpcId(vpc.id())
+ *             .peerNetworkUri(peerNetworkUri)
+ *             .build());
+ * 
+ *         // Firewall rules
+ *         var firewallSettings = new SecurityFirewall("firewallSettings", SecurityFirewallArgs.builder()
+ *             .instanceId(instance.id())
+ *             .rules(            
+ *                 SecurityFirewallRuleArgs.builder()
+ *                     .ip(peerSubnet)
+ *                     .ports(                    
+ *                         15672,
+ *                         5552,
+ *                         5551)
+ *                     .services(                    
+ *                         "AMQP",
+ *                         "AMQPS")
+ *                     .description("VPC peering for <NETWORK>")
+ *                     .build(),
+ *                 SecurityFirewallRuleArgs.builder()
+ *                     .ip("0.0.0.0/0")
+ *                     .ports()
+ *                     .services("HTTPS")
+ *                     .description("MGMT interface")
+ *                     .build())
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(vpcPeeringRequest)
+ *                 .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * [CloudAMQP plans]: https://www.cloudamqp.com/plans.html
+ * [cloudamqp.SecurityFirewall]: https://registry.terraform.io/providers/cloudamqp/cloudamqp/latest/docs/resources/security_firewall
+ * [GCP documentation]: https://cloud.google.com/vpc/docs/using-vpc-peering
+ * [v1.16.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.16.0
+ * [v1.28.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.28.0
+ * [v1.29.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.29.0
+ * 
+ * ## Dependency
+ * 
+ * ***From v1.16.0:***
+ * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
+ * identifier, `cloudamqp_instance.instance.id`.
+ * 
+ * ***Before v1.16.0:***
+ * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ * 
+ * ## Create VPC peering with additional firewall rules
+ * 
+ * To create a VPC peering configuration with additional firewall rules, it&#39;s required to chain the
+ * [cloudamqp.SecurityFirewall] resource to avoid parallel conflicting resource calls. This is done by
+ * adding dependency from the firewall resource to the VPC peering resource.
+ * 
+ * Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
+ * the VPC peering also needs to be added.
+ * 
+ * See example below.
+ * 
  * ## Import
  * 
- * ### Peering network URI
- * 
- * This is required to be able to import the correct peering. Following the same format as the argument
- * 
- * reference.
- * 
- * hcl
- * 
- * https://www.googleapis.com/compute/v1/projects/PROJECT-NAME/global/networks/VPC-NETWORK-NAME
+ * ***From v1.32.2:***
+ * `cloudamqp.VpcGcpPeering` can be imported while using the resource type, with CloudAMQP VPC
+ * identifier or instance identifier together with *peering_network_uri* (CSV seperated).
  * 
  */
 @ResourceType(type="cloudamqp:index/vpcGcpPeering:VpcGcpPeering")

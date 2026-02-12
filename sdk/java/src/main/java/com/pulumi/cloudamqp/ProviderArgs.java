@@ -46,9 +46,17 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.baseurl);
     }
 
+    /**
+     * Skips destroying backend resources on &#39;terraform destroy&#39;
+     * 
+     */
     @Import(name="enableFasterInstanceDestroy", json=true)
     private @Nullable Output<Boolean> enableFasterInstanceDestroy;
 
+    /**
+     * @return Skips destroying backend resources on &#39;terraform destroy&#39;
+     * 
+     */
     public Optional<Output<Boolean>> enableFasterInstanceDestroy() {
         return Optional.ofNullable(this.enableFasterInstanceDestroy);
     }
@@ -121,11 +129,23 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
             return baseurl(Output.of(baseurl));
         }
 
+        /**
+         * @param enableFasterInstanceDestroy Skips destroying backend resources on &#39;terraform destroy&#39;
+         * 
+         * @return builder
+         * 
+         */
         public Builder enableFasterInstanceDestroy(@Nullable Output<Boolean> enableFasterInstanceDestroy) {
             $.enableFasterInstanceDestroy = enableFasterInstanceDestroy;
             return this;
         }
 
+        /**
+         * @param enableFasterInstanceDestroy Skips destroying backend resources on &#39;terraform destroy&#39;
+         * 
+         * @return builder
+         * 
+         */
         public Builder enableFasterInstanceDestroy(Boolean enableFasterInstanceDestroy) {
             return enableFasterInstanceDestroy(Output.of(enableFasterInstanceDestroy));
         }

@@ -5,29 +5,237 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## Import
+ * This resource is a generic way to handle PrivateLink (AWS and Azure) and Private Service Connect
+ * (GCP). Communication between resources can be done just as they were living inside a VPC. CloudAMQP
+ * creates an Endpoint Service to connect the VPC and creating a new network interface to handle the
+ * communicate.
  *
- * `cloudamqp_vpc_connect` can be imported using CloudAMQP instance identifier. To
+ * If no existing VPC available when enable VPC connect, a new VPC will be created with subnet
+ * `10.52.72.0/24`.
  *
- * retrieve the identifier, use [CloudAMQP API list intances].
+ * More information can be found at: [CloudAMQP VPC Connect]
  *
- * From Terraform v1.5.0, the `import` block can be used to import this resource:
+ * > **Note:** Enabling VPC Connect will automatically add a firewall rule.
  *
- * hcl
+ * <details>
+ *  <summary>
+ *     <b>
+ *       <i>Default PrivateLink firewall rule [AWS, Azure]</i>
+ *     </b>
+ *   </summary>
  *
- * import {
+ * For LavinMQ:
  *
- *   to = cloudamqp_vpc_connect.this
+ * ## Example Usage
  *
- *   id = cloudamqp_instance.instance.id
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Enable VPC Connect (PrivateLink) in AWS</i>
+ *     </b>
+ *   </summary>
  *
- * }
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
  *
- * Or use Terraform CLI:
- *
- * ```sh
- * $ pulumi import cloudamqp:index/vpcConnect:VpcConnect vpc_connect <id>`
+ * const vpc = new cloudamqp.Vpc("vpc", {
+ *     name: "Standalone VPC",
+ *     region: "amazon-web-services::us-west-1",
+ *     subnet: "10.56.72.0/24",
+ *     tags: [],
+ * });
+ * const instance = new cloudamqp.Instance("instance", {
+ *     name: "Instance 01",
+ *     plan: "penguin-1",
+ *     region: "amazon-web-services::us-west-1",
+ *     tags: [],
+ *     vpcId: vpc.id,
+ *     keepAssociatedVpc: true,
+ * });
+ * const vpcConnect = new cloudamqp.VpcConnect("vpc_connect", {
+ *     instanceId: instance.id,
+ *     region: instance.region,
+ *     allowedPrincipals: ["arn:aws:iam::aws-account-id:user/user-name"],
+ * });
  * ```
+ *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Enable VPC Connect (PrivateLink) in Azure</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const vpc = new cloudamqp.Vpc("vpc", {
+ *     name: "Standalone VPC",
+ *     region: "azure-arm::westus",
+ *     subnet: "10.56.72.0/24",
+ *     tags: [],
+ * });
+ * const instance = new cloudamqp.Instance("instance", {
+ *     name: "Instance 01",
+ *     plan: "penguin-1",
+ *     region: "azure-arm::westus",
+ *     tags: [],
+ *     vpcId: vpc.id,
+ *     keepAssociatedVpc: true,
+ * });
+ * const vpcConnect = new cloudamqp.VpcConnect("vpc_connect", {
+ *     instanceId: instance.id,
+ *     region: instance.region,
+ *     approvedSubscriptions: ["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"],
+ * });
+ * ```
+ *
+ * The attribute `serviceName` found in resource `cloudamqp.VpcConnect` corresponds to the alias in
+ * the resource `azurermPrivateEndpoint` of the Azure provider. This can be used when creating the
+ * private endpoint.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as azurerm from "@pulumi/azurerm";
+ *
+ * const example = new azurerm.index.PrivateEndpoint("example", {
+ *     name: "example-endpoint",
+ *     location: exampleAzurermResourceGroup.location,
+ *     resourceGroupName: exampleAzurermResourceGroup.name,
+ *     subnetId: subnet.id,
+ *     privateServiceConnection: [{
+ *         name: "example-privateserviceconnection",
+ *         privateConnectionResourceAlias: vpcConnect.serviceName,
+ *         isManualConnection: true,
+ *         requestMessage: "PL",
+ *     }],
+ * });
+ * ```
+ *
+ * More information about the resource and argument can be found here:
+ * [privateConnectionResourceAlias]. Or check their example "Using a Private Link Service Alias with
+ * existing resources".
+ *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Enable VPC Connect (Private Service Connect) in GCP</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const vpc = new cloudamqp.Vpc("vpc", {
+ *     name: "Standalone VPC",
+ *     region: "google-compute-engine::us-west1",
+ *     subnet: "10.56.72.0/24",
+ *     tags: [],
+ * });
+ * const instance = new cloudamqp.Instance("instance", {
+ *     name: "Instance 01",
+ *     plan: "penguin-1",
+ *     region: "google-compute-engine::us-west1",
+ *     tags: [],
+ *     vpcId: vpc.id,
+ *     keepAssociatedVpc: true,
+ * });
+ * const vpcConnect = new cloudamqp.VpcConnect("vpc_connect", {
+ *     instanceId: instance.id,
+ *     region: instance.region,
+ *     allowedProjects: ["some-project-123456"],
+ * });
+ * ```
+ *
+ * </details>
+ *
+ * ### With Additional Firewall Rules
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>CloudAMQP instance in an existing VPC with managed firewall rules</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const vpc = new cloudamqp.Vpc("vpc", {
+ *     name: "Standalone VPC",
+ *     region: "amazon-web-services::us-west-1",
+ *     subnet: "10.56.72.0/24",
+ *     tags: [],
+ * });
+ * const instance = new cloudamqp.Instance("instance", {
+ *     name: "Instance 01",
+ *     plan: "penguin-1",
+ *     region: "amazon-web-services::us-west-1",
+ *     tags: [],
+ *     vpcId: vpc.id,
+ *     keepAssociatedVpc: true,
+ * });
+ * const vpcConnect = new cloudamqp.VpcConnect("vpc_connect", {
+ *     instanceId: instance.id,
+ *     allowedPrincipals: ["arn:aws:iam::aws-account-id:user/user-name"],
+ * });
+ * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
+ *     instanceId: instance.id,
+ *     rules: [
+ *         {
+ *             description: "Custom PrivateLink setup",
+ *             ip: vpc.subnet,
+ *             ports: [],
+ *             services: [
+ *                 "AMQP",
+ *                 "AMQPS",
+ *                 "HTTPS",
+ *             ],
+ *         },
+ *         {
+ *             description: "MGMT interface",
+ *             ip: "0.0.0.0/0",
+ *             ports: [],
+ *             services: ["HTTPS"],
+ *         },
+ *     ],
+ * }, {
+ *     dependsOn: [vpcConnect],
+ * });
+ * ```
+ *
+ * </details>
+ *
+ * [CloudAMQP API list intances]: https://docs.cloudamqp.com/index.html#tag/instances/get/instances
+ * [CloudAMQP VPC Connect]: https://www.cloudamqp.com/docs/cloudamqp-vpc-connect.html
+ * [cloudamqp.SecurityFirewall]: https://registry.terraform.io/providers/cloudamqp/cloudamqp/latest/docs/resources/security_firewall
+ * [Google docs]: https://cloud.google.com/resource-manager/reference/rest/v1/projects
+ * [privateConnectionResourceAlias]: ./private_endpoint#private_connection_resource_alias-1
+ *
+ * ## Dependency
+ *
+ * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ *
+ * Since `region` also is required, suggest to reuse the argument from CloudAMQP instance,
+ * `cloudamqp_instance.instance.region`.
+ *
+ * ## Create VPC Connect with additional firewall rules
+ *
+ * To create a PrivateLink/Private Service Connect configuration with additional firewall rules, it's
+ * required to chain the [cloudamqp.SecurityFirewall] resource to avoid parallel conflicting resource
+ * calls. You can do this by making the firewall resource depend on the VPC Connect resource
+ * `cloudamqp_vpc_connect.vpc_connect`.
+ *
+ * Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
+ * the VPC Connect also needs to be added.
  */
 export class VpcConnect extends pulumi.CustomResource {
     /**

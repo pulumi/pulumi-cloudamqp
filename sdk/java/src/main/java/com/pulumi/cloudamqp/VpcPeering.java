@@ -16,15 +16,417 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * This resouce allows you to accepting VPC peering request from an AWS requester. This is only
+ * available for CloudAMQP instance hosted in AWS.
+ * 
+ * &gt; **Note:** Creating a VPC peering will automatically add firewall rules for the peered subnet.
+ * 
+ * &lt;details&gt;
+ *  &lt;summary&gt;
+ *     &lt;i&gt;Default VPC peering firewall rule&lt;/i&gt;
+ *   &lt;/summary&gt;
+ * 
+ * For LavinMQ:
+ * 
+ * ## Example Usage
+ * 
+ * One way to manage the vpc peering is to combine CloudAMQP Terraform provider with AWS Terraform
+ * provider and run them at the same time.
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;AWS VPC peering before v1.16.0&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import com.pulumi.cloudamqp.CloudamqpFunctions;
+ * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
+ * import com.pulumi.aws.AwsFunctions;
+ * import com.pulumi.aws.VpcPeeringConnection;
+ * import com.pulumi.aws.VpcPeeringConnectionArgs;
+ * import com.pulumi.cloudamqp.VpcPeering;
+ * import com.pulumi.cloudamqp.VpcPeeringArgs;
+ * import com.pulumi.aws.Route;
+ * import com.pulumi.aws.RouteArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // CloudAMQP - new instance, need to be created with a vpc
+ *         var instance = new Instance("instance", InstanceArgs.builder()
+ *             .name("terraform-vpc-accepter")
+ *             .plan("penguin-1")
+ *             .region("amazon-web-services::us-east-1")
+ *             .tags("terraform")
+ *             .vpcSubnet("10.40.72.0/24")
+ *             .build());
+ * 
+ *         // CloudAMQP - Extract vpc information
+ *         final var vpcInfo = instance.id().applyValue(_id -> CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
+ *             .instanceId(_id)
+ *             .build()));
+ * 
+ *         // AWS - retrieve instance to get subnet identifier
+ *         final var awsInstance = AwsFunctions.Instance(Map.of("instanceTags", Map.of("name", awsInstanceName)));
+ * 
+ *         // AWS - retrieve subnet
+ *         final var subnet = AwsFunctions.Subnet(Map.of("id", awsInstance.subnetId()));
+ * 
+ *         // AWS - Create peering request
+ *         var awsVpcPeering = new VpcPeeringConnection("awsVpcPeering", VpcPeeringConnectionArgs.builder()
+ *             .vpcId(subnet.vpcId())
+ *             .peerVpcId(vpcInfo.id())
+ *             .peerOwnerId(vpcInfo.ownerId())
+ *             .tags(Map.of("name", awsPeeringName))
+ *             .build());
+ * 
+ *         // CloudAMQP - accept the peering request
+ *         var vpcAcceptPeering = new VpcPeering("vpcAcceptPeering", VpcPeeringArgs.builder()
+ *             .instanceId(instance.id())
+ *             .peeringId(awsVpcPeering.id())
+ *             .build());
+ * 
+ *         // AWS - retrieve the route table created in AWS
+ *         final var routeTable = AwsFunctions.RouteTable(Map.of("vpcId", subnet.vpcId()));
+ * 
+ *         // AWS - Once the peering request is accepted, configure routing table on accepter to allow traffic
+ *         var accepterRoute = new Route("accepterRoute", RouteArgs.builder()
+ *             .routeTableId(routeTable.routeTableId())
+ *             .destinationCidrBlock(instance.vpcSubnet())
+ *             .vpcPeeringConnectionId(awsVpcPeering.id())
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(List.of(vpcAcceptPeering))
+ *                 .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;AWS VPC peering from [v1.16.0] (Managed VPC)&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Vpc;
+ * import com.pulumi.cloudamqp.VpcArgs;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import com.pulumi.cloudamqp.CloudamqpFunctions;
+ * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
+ * import com.pulumi.aws.AwsFunctions;
+ * import com.pulumi.aws.VpcPeeringConnection;
+ * import com.pulumi.aws.VpcPeeringConnectionArgs;
+ * import com.pulumi.cloudamqp.VpcPeering;
+ * import com.pulumi.cloudamqp.VpcPeeringArgs;
+ * import com.pulumi.aws.Route;
+ * import com.pulumi.aws.RouteArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // CloudAMQP - Managed VPC resource
+ *         var vpc = new Vpc("vpc", VpcArgs.builder()
+ *             .name("<VPC name>")
+ *             .region("amazon-web-services::us-east-1")
+ *             .subnet("10.56.72.0/24")
+ *             .tags("terraform")
+ *             .build());
+ * 
+ *         // CloudAMQP - new instance, need to be created with a vpc
+ *         var instance = new Instance("instance", InstanceArgs.builder()
+ *             .name("terraform-vpc-accepter")
+ *             .plan("penguin-1")
+ *             .region("amazon-web-services::us-east-1")
+ *             .tags("terraform")
+ *             .vpcId(vpc.id())
+ *             .keepAssociatedVpc(true)
+ *             .build());
+ * 
+ *         // CloudAMQP - Extract vpc information
+ *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
+ *             .vpcId(vpc.id())
+ *             .build());
+ * 
+ *         // AWS - retrieve instance to get subnet identifier
+ *         final var awsInstance = AwsFunctions.Instance(Map.of("instanceTags", Map.of("name", awsInstanceName)));
+ * 
+ *         // AWS - retrieve subnet
+ *         final var subnet = AwsFunctions.Subnet(Map.of("id", awsInstance.subnetId()));
+ * 
+ *         // AWS - Create peering request
+ *         var awsVpcPeering = new VpcPeeringConnection("awsVpcPeering", VpcPeeringConnectionArgs.builder()
+ *             .vpcId(subnet.vpcId())
+ *             .peerVpcId(vpcInfo.id())
+ *             .peerOwnerId(vpcInfo.ownerId())
+ *             .tags(Map.of("name", awsPeeringName))
+ *             .build());
+ * 
+ *         // CloudAMQP - accept the peering request
+ *         var vpcAcceptPeering = new VpcPeering("vpcAcceptPeering", VpcPeeringArgs.builder()
+ *             .vpcId(vpc.id())
+ *             .peeringId(awsVpcPeering.id())
+ *             .sleep(30)
+ *             .timeout(600)
+ *             .build());
+ * 
+ *         // AWS - retrieve the route table created in AWS
+ *         final var routeTable = AwsFunctions.RouteTable(Map.of("vpcId", subnet.vpcId()));
+ * 
+ *         // AWS - Once the peering request is accepted, configure routing table on accepter to allow traffic
+ *         var accepterRoute = new Route("accepterRoute", RouteArgs.builder()
+ *             .routeTableId(routeTable.routeTableId())
+ *             .destinationCidrBlock(instance.vpcSubnet())
+ *             .vpcPeeringConnectionId(awsVpcPeering.id())
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(List.of(vpcAcceptPeering))
+ *                 .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ *  &lt;/details&gt;
+ * 
+ * ### With Additional Firewall Rules
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;VPC peering before v1.16.0&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.aws.AwsFunctions;
+ * import com.pulumi.cloudamqp.VpcPeering;
+ * import com.pulumi.cloudamqp.VpcPeeringArgs;
+ * import com.pulumi.cloudamqp.SecurityFirewall;
+ * import com.pulumi.cloudamqp.SecurityFirewallArgs;
+ * import com.pulumi.cloudamqp.inputs.SecurityFirewallRuleArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // AWS - retrieve subnet
+ *         final var subnet = AwsFunctions.Subnet(Map.of("id", awsInstance.subnetId()));
+ * 
+ *         // CloudAMQP - accept the peering request
+ *         var vpcAcceptPeering = new VpcPeering("vpcAcceptPeering", VpcPeeringArgs.builder()
+ *             .instanceId(instance.id())
+ *             .peeringId(awsVpcPeering.id())
+ *             .build());
+ * 
+ *         // Firewall rules
+ *         var firewallSettings = new SecurityFirewall("firewallSettings", SecurityFirewallArgs.builder()
+ *             .instanceId(instance.id())
+ *             .rules(            
+ *                 SecurityFirewallRuleArgs.builder()
+ *                     .ip(awsInstance.subnetId())
+ *                     .ports(                    
+ *                         15672,
+ *                         5552,
+ *                         5551)
+ *                     .services(                    
+ *                         "AMQP",
+ *                         "AMQPS")
+ *                     .description("VPC peering for <NETWORK>")
+ *                     .build(),
+ *                 SecurityFirewallRuleArgs.builder()
+ *                     .ip("192.168.0.0/24")
+ *                     .ports(                    
+ *                         4567,
+ *                         4568)
+ *                     .services(                    
+ *                         "AMQP",
+ *                         "AMQPS",
+ *                         "HTTPS")
+ *                     .build())
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(vpcAcceptPeering)
+ *                 .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;VPC peering from [v1.16.0] (Managed VPC)&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.aws.AwsFunctions;
+ * import com.pulumi.cloudamqp.VpcPeering;
+ * import com.pulumi.cloudamqp.VpcPeeringArgs;
+ * import com.pulumi.cloudamqp.SecurityFirewall;
+ * import com.pulumi.cloudamqp.SecurityFirewallArgs;
+ * import com.pulumi.cloudamqp.inputs.SecurityFirewallRuleArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // AWS - retrieve subnet
+ *         final var subnet = AwsFunctions.Subnet(Map.of("id", awsInstance.subnetId()));
+ * 
+ *         // CloudAMQP - accept the peering request
+ *         var vpcAcceptPeering = new VpcPeering("vpcAcceptPeering", VpcPeeringArgs.builder()
+ *             .vpcId(vpc.id())
+ *             .peeringId(awsVpcPeering.id())
+ *             .sleep(30)
+ *             .timeout(600)
+ *             .build());
+ * 
+ *         // AWS - VPC subnet for peering requester
+ *         final var requesterVpc = AwsFunctions.Vpc(Map.of("id", subnet.vpcId()));
+ * 
+ *         // CloudAMQP - Managed firewall rules
+ *         var firewallSettings = new SecurityFirewall("firewallSettings", SecurityFirewallArgs.builder()
+ *             .instanceId(instance.id())
+ *             .rules(            
+ *                 SecurityFirewallRuleArgs.builder()
+ *                     .ip(requesterVpc.cidrBlock())
+ *                     .ports(                    
+ *                         15672,
+ *                         5552,
+ *                         5551)
+ *                     .services(                    
+ *                         "AMQP",
+ *                         "AMQPS")
+ *                     .description("VPC peering for <NETWORK>")
+ *                     .build(),
+ *                 SecurityFirewallRuleArgs.builder()
+ *                     .ip("0.0.0.0/0")
+ *                     .ports()
+ *                     .services("HTTPS")
+ *                     .description("MGMT interface")
+ *                     .build())
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(vpcAcceptPeering)
+ *                 .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * [CloudAMQP plans]: https://www.cloudamqp.com/plans.html
+ * [cloudamqp.SecurityFirewall]: ./security_firewall.md
+ * [data source]: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/vpc_peering_connection
+ * [resource]: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_peering_connection
+ * [v1.16.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.16.0
+ * [v1.32.2]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.32.2
+ * 
+ * ## Dependency
+ * 
+ * ***Before v1.16.0:***
+ * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ * 
+ * ***From [v1.16.0]:***
+ * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
+ * identifier, `cloudamqp_instance.instance.id`.
+ * 
+ * ## Create VPC Peering with additional firewall rules
+ * 
+ * To create a VPC peering configuration with additional firewall rules, it&#39;s required to chain the
+ * [cloudamqp.SecurityFirewall] resource to avoid parallel conflicting resource calls. You can do this
+ * by making the firewall resource depend on the VPC peering resource
+ * `cloudamqp_vpc_peering.vpc_accept_peering`.
+ * 
+ * Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
+ * the VPC peering also needs to be added.
+ * 
+ * See example below.
+ * 
  * ## Import
  * 
- * ### Peering identifier
+ * ***Before v1.32.2:***
+ * Not possible to import this resource.
  * 
- * This can be found as *peering connection id* in your AWS VPC dashboard/Peering connections, for the
- * 
- * correct VPC peering.
- * 
- * Also available as the identifier for `aws_vpc_peering_connection` [resource] or [data source].
+ * ***From [v1.32.2]:***
+ * `cloudamqp.VpcPeering` can be imported while using the resource type, with CloudAMQP VPC
+ * identifier or instance identifier together with *peering_id* (CSV seperated).
  * 
  */
 @ResourceType(type="cloudamqp:index/vpcPeering:VpcPeering")

@@ -10,31 +10,189 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
-    /// ## Import
+    /// This resource allows you to enable or disable Rabbit MQ plugins.
     /// 
-    /// `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP
+    /// Only available for dedicated subscription plans running ***RabbitMQ***.
     /// 
-    /// instance identifier (CSV separated). To retrieve list of available community plugins, use
+    /// ## Example Usage
     /// 
-    /// [CloudAMQP API list plugins].
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    /// From Terraform v1.5.0, the `import` block can be used to import this resource:
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var rabbitmqTop = new CloudAmqp.Plugin("rabbitmq_top", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Name = "rabbitmq_top",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// hcl
-    /// 
-    /// import {
-    /// 
-    ///   to = cloudamqp_plugin.&lt;resource_name&gt;
-    /// 
-    ///   id = format("&lt;plugin_name&gt;,%s", cloudamqp_instance.instance.id)
-    /// 
-    /// }
-    /// 
-    /// Or use Terraform CLI:
-    /// 
-    /// ```sh
-    /// $ pulumi import cloudamqp:index/plugin:Plugin &lt;resource_name&gt; &lt;plugin_name&gt;,&lt;instance_id&gt;`
+    /// });
     /// ```
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Enable multiple plugins v1.19.1 and older versions&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// Rabbit MQ can only change one plugin at a time. It will fail if multiple plugins resources are used,
+    /// unless by creating dependencies with `DependOn` between the resources. Once one plugin has been
+    /// enabled, the other will continue. See example below.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var rabbitmqTop = new CloudAmqp.Plugin("rabbitmq_top", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Name = "rabbitmq_top",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var rabbitmqAmqp10 = new CloudAmqp.Plugin("rabbitmq_amqp1_0", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Name = "rabbitmq_amqp1_0",
+    ///         Enabled = true,
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             rabbitmqTop,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Enable multiple plugins from &lt;/i&gt;
+    ///       &lt;a href="https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.19.2"&gt;v1.19.2&lt;/a&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// CloudAMQP Terraform provider [v1.19.2] support asynchronous request for plugin actions.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var rabbitmqTop = new CloudAmqp.Plugin("rabbitmq_top", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Name = "rabbitmq_top",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var rabbitmqAmqp10 = new CloudAmqp.Plugin("rabbitmq_amqp1_0", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Name = "rabbitmq_amqp1_0",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Faster instance destroy when running `terraform destroy` from &lt;/i&gt;
+    ///       &lt;a href="https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.27.0"&gt;v1.27.0&lt;/a&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// CloudAMQP Terraform provider [v1.27.0] enables faster `cloudamqp.Instance` destroy when running
+    /// `terraform destroy`.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     {
+    ///         Name = "terraform-cloudamqp-instance",
+    ///         Plan = "bunny-1",
+    ///         Region = "amazon-web-services::us-west-1",
+    ///         Tags = new[]
+    ///         {
+    ///             "terraform",
+    ///         },
+    ///     });
+    /// 
+    ///     var rabbitmqTop = new CloudAmqp.Plugin("rabbitmq_top", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Name = "rabbitmq_top",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var rabbitmqAmqp10 = new CloudAmqp.Plugin("rabbitmq_amqp1_0", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Name = "rabbitmq_amqp1_0",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// ## Dependency
+    /// 
+    /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+    /// 
+    /// If multiple plugins should be enable, create dependencies between the plugin resources. See example
+    /// above.
+    /// 
+    /// ## Required plugins
+    /// 
+    /// Plugins that is not needed to be managed by the provider since they will always be enabled. We have
+    /// made `RabbitmqPrometheus` required for all clusters since RabbitMQ version 3.10.0.
+    /// 
+    /// | Name                      | Version |
+    /// |---------------------------|---------|
+    /// | RabbitmqManagement       | all     |
+    /// | RabbitmqManagementAgent | all     |
+    /// | RabbitmqPrometheus       | 3.10.0  |
+    /// 
+    /// ## Enable faster instance destroy
+    /// 
+    /// When running `terraform destroy` this resource will try to disable the managed plugin before
+    /// deleting `cloudamqp.Instance`. This is not necessary since the servers will be deleted.
+    /// 
+    /// Set `EnableFasterInstanceDestroy` to ***true*** in the provider configuration to skip this.
+    /// 
+    /// [CloudAMQP API list plugins]: https://docs.cloudamqp.com/instance-api.html#tag/plugins/get/plugins
+    /// [v1.19.2]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.19.2
+    /// [v1.27.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.27.0
+    /// [v1.29.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.29.0
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/plugin:Plugin")]
     public partial class Plugin : global::Pulumi.CustomResource

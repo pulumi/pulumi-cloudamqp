@@ -12,29 +12,405 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Import
+// This resource allows you update RabbitMQ config.
 //
-// `cloudamqp_rabbitmq_configuration` can be imported using the CloudAMQP instance identifier.  To
+// Only available for dedicated subscription plans running ***RabbitMQ***.
 //
-// retrieve the identifier, use [CloudAMQP API list intances].
+// ## Example Usage
 //
-// From Terraform v1.5.0, the `import` block can be used to import this resource:
+// <details>
 //
-// hcl
+//	<summary>
+//	  <b>
+//	    <i>RabbitMQ configuration and using 0 values</i>
+//	  </b>
+//	</summary>
 //
-// import {
+// From [v1.35.0] and migrating this resource to Terraform plugin Framework.
+// It's now possible to use 0 values in the configuration.
 //
-//	to = cloudamqp_rabbitmq_configuration.config
+// ```go
+// package main
 //
-//	id = cloudamqp_instance.instance.id
+// import (
 //
-// }
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
-// Or use Terraform CLI:
+// )
 //
-// ```sh
-// $ pulumi import cloudamqp:index/rabbitConfiguration:RabbitConfiguration config <instance_id>`
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewRabbitConfiguration(ctx, "rabbitmq_config", &cloudamqp.RabbitConfigurationArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				Heartbeat:  pulumi.Int(0),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>RabbitMQ configuration with default values</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewRabbitConfiguration(ctx, "rabbitmq_config", &cloudamqp.RabbitConfigurationArgs{
+//				InstanceId:               pulumi.Any(instance.Id),
+//				ChannelMax:               pulumi.Int(0),
+//				ConnectionMax:            pulumi.Int(-1),
+//				ConsumerTimeout:          pulumi.Int(7200000),
+//				Heartbeat:                pulumi.Int(120),
+//				LogExchangeLevel:         pulumi.String("error"),
+//				MaxMessageSize:           pulumi.Int(134217728),
+//				QueueIndexEmbedMsgsBelow: pulumi.Int(4096),
+//				VmMemoryHighWatermark:    pulumi.Float64(0.81),
+//				ClusterPartitionHandling: pulumi.String("autoheal"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Change log level and combine `NodeActions` for RabbitMQ restart</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			rabbitmqConfig, err := cloudamqp.NewRabbitConfiguration(ctx, "rabbitmq_config", &cloudamqp.RabbitConfigurationArgs{
+//				InstanceId:               pulumi.Any(instance.Id),
+//				ChannelMax:               pulumi.Int(0),
+//				ConnectionMax:            pulumi.Int(-1),
+//				ConsumerTimeout:          pulumi.Int(7200000),
+//				Heartbeat:                pulumi.Int(120),
+//				LogExchangeLevel:         pulumi.String("info"),
+//				MaxMessageSize:           pulumi.Int(134217728),
+//				QueueIndexEmbedMsgsBelow: pulumi.Int(4096),
+//				VmMemoryHighWatermark:    pulumi.Float64(0.81),
+//				ClusterPartitionHandling: pulumi.String("autoheal"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.GetNodes(ctx, &cloudamqp.GetNodesArgs{
+//				InstanceId: instance.Id,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewNodeActions(ctx, "node_action", &cloudamqp.NodeActionsArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				Action:     pulumi.String("cluster.restart"),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				rabbitmqConfig,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>
+//	      Only change log level for exchange. All other values will be read from the RabbitMQ
+//	      configuration.
+//	    </i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewRabbitConfiguration(ctx, "rabbit_config", &cloudamqp.RabbitConfigurationArgs{
+//				InstanceId:       pulumi.Any(instance.Id),
+//				LogExchangeLevel: pulumi.String("info"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>
+//	      MQTT and SSL configuration and combine `NodeActions` for RabbitMQ restart
+//	    </i>
+//	  </b>
+//	</summary>
+//
+// SSL certificate-based authentication for MQTT connections requires peer certificate verification.
+// Set the following when enabling `mqttSslCertLogin`:
+//
+// - `sslOptionsFailIfNoPeerCert` = ***true***
+// - `sslOptionsVerify` = ***verify_peer***
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			rabbitmqConfig, err := cloudamqp.NewRabbitConfiguration(ctx, "rabbitmq_config", &cloudamqp.RabbitConfigurationArgs{
+//				InstanceId:                 pulumi.Any(instance.Id),
+//				MqttVhost:                  pulumi.Any(instance.Vhost),
+//				MqttExchange:               pulumi.String("amq.topic"),
+//				MqttSslCertLogin:           pulumi.Bool(true),
+//				SslOptionsFailIfNoPeerCert: pulumi.Bool(true),
+//				SslOptionsVerify:           pulumi.String("verify_peer"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			nodes, err := cloudamqp.GetNodes(ctx, &cloudamqp.GetNodesArgs{
+//				InstanceId: instance.Id,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewNodeActions(ctx, "node_action", &cloudamqp.NodeActionsArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				NodeName:   pulumi.String(nodes.Nodes[0].Name),
+//				Action:     pulumi.String("restart"),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				rabbitmqConfig,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// ## Argument threshold values
+//
+// ### heartbeat
+//
+// | Type | Default | Min  | Affect |
+// |---|---|---|---|
+// | int | 120 | 0 | Only effects new connection |
+//
+// ### connectionMax
+//
+// | Type | Default | Min  | Affect |
+// |---|---|---|---|
+// | int | -1 | 1 | Applied immediately (RabbitMQ restart required before 3.11.13) |
+//
+// Note: -1 in the provider corresponds to INFINITY in the RabbitMQ config
+//
+// ### channelMax
+//
+// | Type | Default | Min | Affect |
+// |---|---|---|---|
+// | int | 128 | 0 | Only effects new connections |
+//
+// Note: 0 means "no limit"
+//
+// ### consumerTimeout
+//
+// | Type | Default | Min | Max | Unit | Affect |
+// |---|---|---|---|---|---|
+// | int | 7200000 | 10000 | 86400000 | milliseconds | Only effects new channels |
+//
+// Note: -1 in the provider corresponds to false (disable) in the RabbitMQ config
+//
+// ### vmMemoryHighWatermark
+//
+// | Type | Default | Min | Max | Affect |
+// |---|---|---|---|---|
+//
+//	| float | 0.81 | 0.4 | 0.9 | Applied immediately |
+//
+// ### queueIndexEmbedMsgsBelow
+//
+// | Type | Default | Min | Max | Unit | Affect |
+// |---|---|---|---|---|---|
+// | int | 4096 | 0 | 10485760 | bytes | Applied immediately for new queues |
+//
+// Note: Existing queues requires restart
+//
+// ### maxMessageSize
+//
+// | Type | Default | Min | Max | Unit | Affect |
+// |---|---|---|---|---|---|
+// | int | 134217728 | 1 | 536870912 | bytes | Only effects new channels |
+//
+// ### logExchangeLevel
+//
+// | Type | Default | Affect | Allowed values |
+// |---|---|---| --- |
+// | string | error | RabbitMQ restart required | `debug, info, warning, error, critical, none` |
+//
+// ### clusterPartitionHandling
+//
+// | Type  | Affect | Allowed values |
+// |---|---|---|
+// | string | Applied immediately | `autoheal, pause_minority, ignore` |
+//
+// Recommended setting for cluster_partition_handling: `autoheal` for cluster with 1-2
+// nodes, `pauseMinority` for cluster with 3 or more nodes. While `ignore` setting is not recommended.
+//
+// ### messageInterceptorsTimestampOverwrite
+//
+// | Type  | Affect | Allowed values |
+// |---|---|---|
+// | string | RabbitMQ restart required | `enabled_with_overwrite, enabled, disabled` |
+//
+// Note: Corresponds to setting `message_interceptors.incoming.set_header_timestamp.overwrite`
+//
+// ### mqttVhost
+//
+// | Type  | Affect |
+// | --- | --- |
+// | string | Only affects new connections |
+//
+// Note: A vhost is automatically created when `Instance` is created. This attribute defaults to that vhost (I.e. `cloudamqp_instance.instance.vhost`).
+//
+// ### mqttExchange
+//
+// | Type  | Affect |
+// | --- | --- |
+// | string | Only affects new connections |
+//
+// ### mqttSslCertLogin
+//
+// | Type  | Affect |
+// | --- | --- |
+// | bool | RabbitMQ restart required |
+//
+// Note: When enabled, `rabbit.ssl_options.fail_if_no_peer_cert` should be set to ***true*** and
+// `rabbit.ssl_options.verify` should be set to ***verify_peer*** for it to work properly.
+//
+// ### sslCertLoginFrom
+//
+// | Type  | Affect | Allowed values |
+// | --- | --- | --- |
+// | string | Only affects new connections | `commonName`, `distinguishedName` |
+//
+// ### sslOptionsFailIfNoPeerCert
+//
+// | Type  | Affect |
+// | --- | --- |
+// | string | RabbitMQ restart required |
+//
+// Note: When enabled, `rabbit.ssl_options.verify` must be set to ***verify_peer***.
+//
+// ### sslOptionsVerify
+//
+// | Type  | Affect | Allowed values |
+// | --- | --- | --- |
+// | string | RabbitMQ restart required | `verifyNone`, `verifyPeer` |
+//
+// Note: `verifyPeer` validates the client's certificate chain, `verifyNone` disables verification.
+//
+// ## Dependency
+//
+// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+//
+// ## Known issues
+//
+// <details>
+//
+//	<summary>Cannot set heartbeat=0 when creating this resource</summary>
+//
+// > **Note:** This is no longer the case from [v1.35.0].
+//
+// The provider is built by older `Terraform Plugin SDK` which doesn't support nullable configuration
+// values. Instead the values will be set to it's default value based on it's schema primitive type.
+//
+// * schema.TypeString = ""
+// * schema.TypeInt = 0
+// * schema.TypeFloat = 0.0
+// * schema.TypeBool = false
+//
+// During initial create of this resource, we need to exclude all arguments that can take these default
+// values. Argument such as `hearbeat`, `channelMax`, etc. cannot be set to its default value, 0 in
+// these cases. Current workaround is to use the default value in the initial create run, then change
+// to the wanted value in the re-run.
+//
+// Will be solved once we migrate the current provider to `Terraform Plugin Framework`.
+//
+// </details>
+//
+// [v1.35.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.35.0
+//
+// [CloudAMQP API list intances]: https://docs.cloudamqp.com/index.html#tag/instances/get/instances
 type RabbitConfiguration struct {
 	pulumi.CustomResourceState
 

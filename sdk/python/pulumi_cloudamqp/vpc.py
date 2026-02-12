@@ -220,34 +220,6 @@ class Vpc(pulumi.CustomResource):
         vpc_info = cloudamqp.get_vpc_info_output(vpc_id=vpc.id)
         ```
 
-        ## Import
-
-        `cloudamqp_vpc` can be imported using the CloudAMQP VPC identifier. To retrieve the identifier of an
-
-        instance, use [CloudAMQP API list vpcs].
-
-        From Terraform v1.5.0, the `import` block can be used to import this resource:
-
-        hcl
-
-        import {
-
-          to = cloudamqp_vpc.vpc
-
-          id = <vpc_id>
-
-        }
-
-        Or with Terraform CLI:
-
-        ```sh
-        $ pulumi import cloudamqp:index/vpc:Vpc vpc <vpc_id>`
-        ```
-
-        [CloudAMQP API list vpcs]: https://docs.cloudamqp.com/index.html#tag/vpcs/get/vpcs
-
-        [CloudAMQP plans]: https://docs.cloudamqp.com/index.html#tag/plans/get/plans
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: The name of the VPC.
@@ -295,34 +267,6 @@ class Vpc(pulumi.CustomResource):
         # Additional VPC information
         vpc_info = cloudamqp.get_vpc_info_output(vpc_id=vpc.id)
         ```
-
-        ## Import
-
-        `cloudamqp_vpc` can be imported using the CloudAMQP VPC identifier. To retrieve the identifier of an
-
-        instance, use [CloudAMQP API list vpcs].
-
-        From Terraform v1.5.0, the `import` block can be used to import this resource:
-
-        hcl
-
-        import {
-
-          to = cloudamqp_vpc.vpc
-
-          id = <vpc_id>
-
-        }
-
-        Or with Terraform CLI:
-
-        ```sh
-        $ pulumi import cloudamqp:index/vpc:Vpc vpc <vpc_id>`
-        ```
-
-        [CloudAMQP API list vpcs]: https://docs.cloudamqp.com/index.html#tag/vpcs/get/vpcs
-
-        [CloudAMQP plans]: https://docs.cloudamqp.com/index.html#tag/plans/get/plans
 
         :param str resource_name: The name of the resource.
         :param VpcArgs args: The arguments to use to populate this resource's properties.

@@ -57,31 +57,6 @@ import (
 // ## Dependency
 //
 // This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-//
-// ## Import
-//
-// `cloudamqp_custom_domain` can be imported using CloudAMQP instance identifier. To retrieve the
-//
-// instance identifier, use [CloudAMQP API list instances].
-//
-// hcl
-//
-// import {
-//
-//	to = cloudamqp_alarm.alarm
-//
-//	id = cloudamqp_instance.instance.id
-//
-// }
-//
-// Or use Terraform CLI:
-//
-// ```sh
-// $ pulumi import cloudamqp:index/customDomain:CustomDomain settings <instance_id>`
-// ```
-//
-// [CloudAMQP API list instances]: https://docs.cloudamqp.com/index.html#tag/instances/get/instances
-// [Let's Encrypt]: https://letsencrypt.org/
 type CustomDomain struct {
 	pulumi.CustomResourceState
 

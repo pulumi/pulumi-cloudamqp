@@ -12,29 +12,185 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Import
+// This resource allows you to create and manage alarms to trigger based on a set of conditions. Once
+// triggerd a notification will be sent to the assigned recipients. When creating a new instance, there
+// will also be a set of default alarms (cpu, memory and disk) created. All default alarms uses the
+// default recipient for notifications.
 //
-// `cloudamqp_alarm` can be imported using the resource identifier together with the CloudAMQP instance
+// By setting `noDefaultAlarms` to *true* in `Instance`. This will create the instance
+// without default alarms and avoid the need to import them to get full control.
 //
-// identifier (CSV separated). To retrieve the resource identifier, use [CloudAMQP API list alarms].
+// Available for all subscription plans, but `lemur`and `tiger`are limited to fewer alarm types. The
+// limited types supported can be seen in the table below in [Alarm Type Reference].
 //
-// From Terraform v1.5.0, the `import` block can be used to import this resource:
+// ## Example Usage
 //
-// hcl
+// <details>
 //
-// import {
+//	<summary>
+//	  <b>
+//	    <i>Basic example of CPU and memory alarm</i>
+//	  </b>
+//	</summary>
 //
-//	to = cloudamqp_alarm.alarm
+// ```go
+// package main
 //
-//	id = format("<id>,%s", cloudamqp_instance.instance.id)
+// import (
 //
-// }
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
-// Or use Terraform CLI:
+// )
 //
-// ```sh
-// $ pulumi import cloudamqp:index/alarm:Alarm alarm <id>,<instance_id>`
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// New recipient
+//			recipient01, err := cloudamqp.NewNotification(ctx, "recipient_01", &cloudamqp.NotificationArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				Type:       pulumi.String("email"),
+//				Value:      pulumi.String("alarm@example.com"),
+//				Name:       pulumi.String("alarm"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// New cpu alarm
+//			_, err = cloudamqp.NewAlarm(ctx, "cpu_alarm", &cloudamqp.AlarmArgs{
+//				InstanceId:       pulumi.Any(instance.Id),
+//				Type:             pulumi.String("cpu"),
+//				Enabled:          pulumi.Bool(true),
+//				ReminderInterval: pulumi.Int(600),
+//				ValueThreshold:   pulumi.Int(95),
+//				TimeThreshold:    pulumi.Int(600),
+//				Recipients: pulumi.IntArray{
+//					recipient01.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// New memory alarm
+//			_, err = cloudamqp.NewAlarm(ctx, "memory_alarm", &cloudamqp.AlarmArgs{
+//				InstanceId:       pulumi.Any(instance.Id),
+//				Type:             pulumi.String("memory"),
+//				Enabled:          pulumi.Bool(true),
+//				ReminderInterval: pulumi.Int(600),
+//				ValueThreshold:   pulumi.Int(95),
+//				TimeThreshold:    pulumi.Int(600),
+//				Recipients: pulumi.IntArray{
+//					recipient01.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Manage notice alarm, available from</i>
+//	    <a href="https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.29.5">v1.29.5</a>
+//	  </b>
+//	</summary>
+//
+// Only one notice alarm can exists and cannot be created, instead the alarm resource will be updated.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// New recipient
+//			recipient01, err := cloudamqp.NewNotification(ctx, "recipient_01", &cloudamqp.NotificationArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				Type:       pulumi.String("email"),
+//				Value:      pulumi.String("alarm@example.com"),
+//				Name:       pulumi.String("alarm"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Update existing notice alarm
+//			_, err = cloudamqp.NewAlarm(ctx, "notice", &cloudamqp.AlarmArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				Type:       pulumi.String("notice"),
+//				Enabled:    pulumi.Bool(true),
+//				Recipients: pulumi.IntArray{
+//					recipient01.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// ## Alarm type reference
+//
+// Supported alarm types: `cpu, memory, disk, queue, connection, flow, consumer, netsplit,
+//
+//	server_unreachable, notice`
+//
+// Required arguments for all alarms: `instance_id, type, enabled`<br>
+// Optional argument for all alarms: `tags, queue_regex, vhostRegex`
+//
+// | Name | Type | Shared | Dedicated | Required arguments |
+// | ---- | ---- | ---- | ---- | ---- |
+// | CPU | cpu | - | &#10004; | time_threshold, valueThreshold |
+// | Memory | memory | - | &#10004;  | time_threshold, valueThreshold |
+// | Disk space | disk | - | &#10004;  | time_threshold, valueThreshold |
+// | Queue | queue | &#10004;  | &#10004; | time_threshold, value_threshold, queue_regex, vhost_regex, messageType |
+// | Connection | connection | &#10004; | &#10004; | time_threshold, valueThreshold |
+// | Connection flow | flow | &#10004; | &#10004; | time_threshold, valueThreshold |
+// | Consumer | consumer | &#10004; | &#10004; | time_threshold, value_threshold, queue, vhost |
+// | Netsplit | netsplit | - | &#10004; | timeThreshold |
+// | Server unreachable | serverUnreachable  | - | &#10004;  | timeThreshold |
+// | Notice | notice | &#10004; | &#10004; | |
+//
+// <br>
+//
+// > Notice alarm is manadatory! Only one can exists and cannot be deleted. Setting `noDefaultAlarm`
+// to true, will still create this alarm. See updated changes to [notice alarm] below.
+//
+// ## Dependency
+//
+// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+//
+// ## Notice alarm
+//
+// There is a limitation for notice alarm in the API backend. This alarm is mandatory, multiple
+// alarms cannot exists or be deleted.
+//
+// From provider version [v1.29.5] it's possible to manage the notice alarm and no longer needs to be
+// imported. Just create the alarm resource as usually and it will be updated with given recipients.
+// If the alarm is deleted it will only be removed from the state file, but will still be enabled in
+// the backend.
+//
+// [Alarm Type Reference]: #alarm-type-reference
+// [CloudAMQP API list alarms]: https://docs.cloudamqp.com/instance-api.html#tag/alarms/get/alarms
+// [notice alarm]: #notice-alarm
+// [v1.29.5]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.29.5
 type Alarm struct {
 	pulumi.CustomResourceState
 

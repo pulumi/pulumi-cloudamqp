@@ -10,17 +10,348 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
+    /// This resouce creates a VPC peering configuration for the CloudAMQP instance. The configuration will
+    /// connect to another VPC network hosted on Google Cloud Platform (GCP). See the [GCP documentation]
+    /// for more information on how to create the VPC peering configuration.
+    /// 
+    /// &gt; **Note:** Creating a VPC peering will automatically add firewall rules for the peered subnet.
+    /// 
+    /// &lt;details&gt;
+    ///  &lt;summary&gt;
+    ///     &lt;i&gt;Default VPC peering firewall rule&lt;/i&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// For LavinMQ:
+    /// 
+    /// ## Example Usage
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;VPC peering before v1.16.0&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // CloudAMQP instance
+    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     {
+    ///         Name = "terraform-vpc-peering",
+    ///         Plan = "penguin-1",
+    ///         Region = "google-compute-engine::europe-north1",
+    ///         Tags = new[]
+    ///         {
+    ///             "terraform",
+    ///         },
+    ///         VpcSubnet = "10.40.72.0/24",
+    ///     });
+    /// 
+    ///     // VPC information
+    ///     var vpcInfo = CloudAmqp.GetVpcGcpInfo.Invoke(new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///     });
+    /// 
+    ///     // VPC peering configuration
+    ///     var vpcPeeringRequest = new CloudAmqp.VpcGcpPeering("vpc_peering_request", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         PeerNetworkUri = "https://www.googleapis.com/compute/v1/projects/PROJECT-NAME/global/networks/VPC-NETWORK-NAME",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;VPC peering from [v1.16.0] (Managed VPC)&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Managed VPC resource
+    ///     var vpc = new CloudAmqp.Vpc("vpc", new()
+    ///     {
+    ///         Name = "&lt;VPC name&gt;",
+    ///         Region = "google-compute-engine::europe-north1",
+    ///         Subnet = "10.56.72.0/24",
+    ///         Tags = new[] {},
+    ///     });
+    /// 
+    ///     // CloudAMQP instance
+    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     {
+    ///         Name = "terraform-vpc-peering",
+    ///         Plan = "penguin-1",
+    ///         Region = "google-compute-engine::europe-north1",
+    ///         Tags = new[]
+    ///         {
+    ///             "terraform",
+    ///         },
+    ///         VpcId = vpc.Id,
+    ///     });
+    /// 
+    ///     // VPC information
+    ///     var vpcInfo = CloudAmqp.GetVpcGcpInfo.Invoke(new()
+    ///     {
+    ///         VpcId = vpc.Info,
+    ///     });
+    /// 
+    ///     // VPC peering configuration
+    ///     var vpcPeeringRequest = new CloudAmqp.VpcGcpPeering("vpc_peering_request", new()
+    ///     {
+    ///         VpcId = vpc.Id,
+    ///         PeerNetworkUri = "https://www.googleapis.com/compute/v1/projects/PROJECT-NAME/global/networks/VPC-NETWORK-NAME",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;VPC peering from [v1.28.0], WaitOnPeeringStatus &lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// Default peering request, no need to set `WaitOnPeeringStatus`. It's default set to false and will
+    /// not wait on peering status. Create resource will be considered completed, regardless of the status
+    /// of the state.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var vpcPeeringRequest = new CloudAmqp.VpcGcpPeering("vpc_peering_request", new()
+    ///     {
+    ///         VpcId = vpc.Id,
+    ///         PeerNetworkUri = "https://www.googleapis.com/compute/v1/projects/ROJECT-NAME/global/networks/VPC-NETWORK-NAME",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// Peering request and waiting for peering status of the state to change to ACTIVE before the create
+    /// resource is consider complete. This is done once both side have done the peering.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var vpcPeeringRequest = new CloudAmqp.VpcGcpPeering("vpc_peering_request", new()
+    ///     {
+    ///         VpcId = vpc.Id,
+    ///         WaitOnPeeringStatus = true,
+    ///         PeerNetworkUri = "https://www.googleapis.com/compute/v1/projects/PROJECT-NAME/global/networks/VPC-NETWORK-NAME",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// ### With Additional Firewall Rules
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;VPC peering before v1.16.0&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // VPC peering configuration
+    ///     var vpcPeeringRequest = new CloudAmqp.VpcGcpPeering("vpc_peering_request", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         PeerNetworkUri = peerNetworkUri,
+    ///     });
+    /// 
+    ///     // Firewall rules
+    ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewall_settings", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Rules = new[]
+    ///         {
+    ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
+    ///             {
+    ///                 Ip = peerSubnet,
+    ///                 Ports = new[]
+    ///                 {
+    ///                     15672,
+    ///                     5552,
+    ///                     5551,
+    ///                 },
+    ///                 Services = new[]
+    ///                 {
+    ///                     "AMQP",
+    ///                     "AMQPS",
+    ///                 },
+    ///                 Description = "VPC peering for &lt;NETWORK&gt;",
+    ///             },
+    ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
+    ///             {
+    ///                 Ip = "192.168.0.0/24",
+    ///                 Ports = new[]
+    ///                 {
+    ///                     4567,
+    ///                     4568,
+    ///                 },
+    ///                 Services = new[]
+    ///                 {
+    ///                     "AMQP",
+    ///                     "AMQPS",
+    ///                     "HTTPS",
+    ///                 },
+    ///             },
+    ///         },
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             vpcPeeringRequest,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;VPC peering from [v1.16.0] (Managed VPC)&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // VPC peering configuration
+    ///     var vpcPeeringRequest = new CloudAmqp.VpcGcpPeering("vpc_peering_request", new()
+    ///     {
+    ///         VpcId = vpc.Id,
+    ///         PeerNetworkUri = peerNetworkUri,
+    ///     });
+    /// 
+    ///     // Firewall rules
+    ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewall_settings", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Rules = new[]
+    ///         {
+    ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
+    ///             {
+    ///                 Ip = peerSubnet,
+    ///                 Ports = new[]
+    ///                 {
+    ///                     15672,
+    ///                     5552,
+    ///                     5551,
+    ///                 },
+    ///                 Services = new[]
+    ///                 {
+    ///                     "AMQP",
+    ///                     "AMQPS",
+    ///                 },
+    ///                 Description = "VPC peering for &lt;NETWORK&gt;",
+    ///             },
+    ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
+    ///             {
+    ///                 Ip = "0.0.0.0/0",
+    ///                 Ports = new() { },
+    ///                 Services = new[]
+    ///                 {
+    ///                     "HTTPS",
+    ///                 },
+    ///                 Description = "MGMT interface",
+    ///             },
+    ///         },
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             vpcPeeringRequest,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// [CloudAMQP plans]: https://www.cloudamqp.com/plans.html
+    /// [cloudamqp.SecurityFirewall]: https://registry.terraform.io/providers/cloudamqp/cloudamqp/latest/docs/resources/security_firewall
+    /// [GCP documentation]: https://cloud.google.com/vpc/docs/using-vpc-peering
+    /// [v1.16.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.16.0
+    /// [v1.28.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.28.0
+    /// [v1.29.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.29.0
+    /// 
+    /// ## Dependency
+    /// 
+    /// ***From v1.16.0:***
+    /// This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
+    /// identifier, `cloudamqp_instance.instance.id`.
+    /// 
+    /// ***Before v1.16.0:***
+    /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+    /// 
+    /// ## Create VPC peering with additional firewall rules
+    /// 
+    /// To create a VPC peering configuration with additional firewall rules, it's required to chain the
+    /// [cloudamqp.SecurityFirewall] resource to avoid parallel conflicting resource calls. This is done by
+    /// adding dependency from the firewall resource to the VPC peering resource.
+    /// 
+    /// Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
+    /// the VPC peering also needs to be added.
+    /// 
+    /// See example below.
+    /// 
     /// ## Import
     /// 
-    /// ### Peering network URI
-    /// 
-    /// This is required to be able to import the correct peering. Following the same format as the argument
-    /// 
-    /// reference.
-    /// 
-    /// hcl
-    /// 
-    /// https://www.googleapis.com/compute/v1/projects/PROJECT-NAME/global/networks/VPC-NETWORK-NAME
+    /// ***From v1.32.2:***
+    /// `cloudamqp.VpcGcpPeering` can be imported while using the resource type, with CloudAMQP VPC
+    /// identifier or instance identifier together with *peering_network_uri* (CSV seperated).
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/vpcGcpPeering:VpcGcpPeering")]
     public partial class VpcGcpPeering : global::Pulumi.CustomResource

@@ -379,30 +379,6 @@ class TrustStore(pulumi.CustomResource):
             </b>
           </summary>
 
-        ## Import
-
-        `cloudamqp_trust_store` can be imported using the CloudAMQP instance identifier.
-
-        fields (`http.cacert` or `file.certificates`). You'll need to set these in your configuration.
-
-        From Terraform v1.5.0, the `import` block can be used to import this resource:
-
-        hcl
-
-        import {
-
-          to = cloudamqp_trust_store.trust_store
-
-          id = cloudamqp_instance.instance.id
-
-        }
-
-        Or use Terraform CLI:
-
-        ```sh
-        $ pulumi import cloudamqp:index/trustStore:TrustStore trust_store <instance_id>`
-        ```
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['TrustStoreFileArgs', 'TrustStoreFileArgsDict']] file: File trust store configuration block. See File Block below.
@@ -473,30 +449,6 @@ class TrustStore(pulumi.CustomResource):
               <i>Trust store with HTTP provider and CA certificate</i>
             </b>
           </summary>
-
-        ## Import
-
-        `cloudamqp_trust_store` can be imported using the CloudAMQP instance identifier.
-
-        fields (`http.cacert` or `file.certificates`). You'll need to set these in your configuration.
-
-        From Terraform v1.5.0, the `import` block can be used to import this resource:
-
-        hcl
-
-        import {
-
-          to = cloudamqp_trust_store.trust_store
-
-          id = cloudamqp_instance.instance.id
-
-        }
-
-        Or use Terraform CLI:
-
-        ```sh
-        $ pulumi import cloudamqp:index/trustStore:TrustStore trust_store <instance_id>`
-        ```
 
         :param str resource_name: The name of the resource.
         :param TrustStoreArgs args: The arguments to use to populate this resource's properties.

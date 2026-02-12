@@ -200,34 +200,6 @@ import * as utilities from "./utilities";
  * ## Dependency
  *
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
- *
- * ## Import
- *
- * `cloudamqp_notification` can be imported using the resource identifier together with CloudAMQP
- *
- * instance identifier (CSV separated). To retrieve the resource identifier, use
- *
- * [CloudAMQP API list recipients].
- *
- * From Terraform v1.5.0, the `import` block can be used to import this resource:
- *
- * hcl
- *
- * import {
- *
- *   to = cloudamqp_notification.recipient
- *
- *   id = format("<id>,%s", cloudamqp_instance.instance.id)
- *
- * }
- *
- * Or use Terraform CLI:
- *
- * ```sh
- * $ pulumi import cloudamqp:index/notification:Notification recipient <id>,<instance_id>`
- * ```
- *
- * [CloudAMQP API list recipients]: https://docs.cloudamqp.com/instance-api.html#tag/alarms/get/alarms/recipients
  */
 export class Notification extends pulumi.CustomResource {
     /**

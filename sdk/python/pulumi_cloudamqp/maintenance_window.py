@@ -259,34 +259,6 @@ class MaintenanceWindow(pulumi.CustomResource):
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 
-        ## Import
-
-        `cloudamqp_maintenance_window` can be imported using CloudAMQP instance identifier. To retrieve the
-
-        identifier of an instance, use [CloudAMQP API list instances].
-
-        From Terraform v1.5.0, the `import` block can be used to import this resource:
-
-        hcl
-
-        import {
-
-          to = cloudamqp_maintenance_window.this
-
-          id = cloudamqp_instance.instance.id
-
-        }
-
-        Or with Terraform CLI:
-
-        ```sh
-        $ pulumi import cloudamqp:index/maintenanceWindow:MaintenanceWindow this <id>`
-        ```
-
-        [CloudAMQP API list instances]: https://docs.cloudamqp.com/index.html#tag/instances/get/instances
-
-        [format]: https://developer.hashicorp.com/terraform/language/functions/formatdate#specification-syntax
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] automatic_updates: Allow scheduling of a maintenance for version update
@@ -385,34 +357,6 @@ class MaintenanceWindow(pulumi.CustomResource):
         ## Dependency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-
-        ## Import
-
-        `cloudamqp_maintenance_window` can be imported using CloudAMQP instance identifier. To retrieve the
-
-        identifier of an instance, use [CloudAMQP API list instances].
-
-        From Terraform v1.5.0, the `import` block can be used to import this resource:
-
-        hcl
-
-        import {
-
-          to = cloudamqp_maintenance_window.this
-
-          id = cloudamqp_instance.instance.id
-
-        }
-
-        Or with Terraform CLI:
-
-        ```sh
-        $ pulumi import cloudamqp:index/maintenanceWindow:MaintenanceWindow this <id>`
-        ```
-
-        [CloudAMQP API list instances]: https://docs.cloudamqp.com/index.html#tag/instances/get/instances
-
-        [format]: https://developer.hashicorp.com/terraform/language/functions/formatdate#specification-syntax
 
         :param str resource_name: The name of the resource.
         :param MaintenanceWindowArgs args: The arguments to use to populate this resource's properties.

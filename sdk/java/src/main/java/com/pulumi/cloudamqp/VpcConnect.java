@@ -17,29 +17,374 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## Import
+ * This resource is a generic way to handle PrivateLink (AWS and Azure) and Private Service Connect
+ * (GCP). Communication between resources can be done just as they were living inside a VPC. CloudAMQP
+ * creates an Endpoint Service to connect the VPC and creating a new network interface to handle the
+ * communicate.
  * 
- * `cloudamqp_vpc_connect` can be imported using CloudAMQP instance identifier. To
+ * If no existing VPC available when enable VPC connect, a new VPC will be created with subnet
+ * `10.52.72.0/24`.
  * 
- * retrieve the identifier, use [CloudAMQP API list intances].
+ * More information can be found at: [CloudAMQP VPC Connect]
  * 
- * From Terraform v1.5.0, the `import` block can be used to import this resource:
+ * &gt; **Note:** Enabling VPC Connect will automatically add a firewall rule.
  * 
- * hcl
+ * &lt;details&gt;
+ *  &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Default PrivateLink firewall rule [AWS, Azure]&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
  * 
- * import {
+ * For LavinMQ:
  * 
- *   to = cloudamqp_vpc_connect.this
+ * ## Example Usage
  * 
- *   id = cloudamqp_instance.instance.id
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Enable VPC Connect (PrivateLink) in AWS&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
  * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Vpc;
+ * import com.pulumi.cloudamqp.VpcArgs;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import com.pulumi.cloudamqp.VpcConnect;
+ * import com.pulumi.cloudamqp.VpcConnectArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var vpc = new Vpc("vpc", VpcArgs.builder()
+ *             .name("Standalone VPC")
+ *             .region("amazon-web-services::us-west-1")
+ *             .subnet("10.56.72.0/24")
+ *             .tags()
+ *             .build());
+ * 
+ *         var instance = new Instance("instance", InstanceArgs.builder()
+ *             .name("Instance 01")
+ *             .plan("penguin-1")
+ *             .region("amazon-web-services::us-west-1")
+ *             .tags()
+ *             .vpcId(vpc.id())
+ *             .keepAssociatedVpc(true)
+ *             .build());
+ * 
+ *         var vpcConnect = new VpcConnect("vpcConnect", VpcConnectArgs.builder()
+ *             .instanceId(instance.id())
+ *             .region(instance.region())
+ *             .allowedPrincipals("arn:aws:iam::aws-account-id:user/user-name")
+ *             .build());
+ * 
+ *     }
  * }
+ * }
+ * </pre>
  * 
- * Or use Terraform CLI:
+ * &lt;/details&gt;
  * 
- * ```sh
- * $ pulumi import cloudamqp:index/vpcConnect:VpcConnect vpc_connect &lt;id&gt;`
- * ```
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Enable VPC Connect (PrivateLink) in Azure&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Vpc;
+ * import com.pulumi.cloudamqp.VpcArgs;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import com.pulumi.cloudamqp.VpcConnect;
+ * import com.pulumi.cloudamqp.VpcConnectArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var vpc = new Vpc("vpc", VpcArgs.builder()
+ *             .name("Standalone VPC")
+ *             .region("azure-arm::westus")
+ *             .subnet("10.56.72.0/24")
+ *             .tags()
+ *             .build());
+ * 
+ *         var instance = new Instance("instance", InstanceArgs.builder()
+ *             .name("Instance 01")
+ *             .plan("penguin-1")
+ *             .region("azure-arm::westus")
+ *             .tags()
+ *             .vpcId(vpc.id())
+ *             .keepAssociatedVpc(true)
+ *             .build());
+ * 
+ *         var vpcConnect = new VpcConnect("vpcConnect", VpcConnectArgs.builder()
+ *             .instanceId(instance.id())
+ *             .region(instance.region())
+ *             .approvedSubscriptions("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * The attribute `serviceName` found in resource `cloudamqp.VpcConnect` corresponds to the alias in
+ * the resource `azurermPrivateEndpoint` of the Azure provider. This can be used when creating the
+ * private endpoint.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.azurerm.PrivateEndpoint;
+ * import com.pulumi.azurerm.PrivateEndpointArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new PrivateEndpoint("example", PrivateEndpointArgs.builder()
+ *             .name("example-endpoint")
+ *             .location(exampleAzurermResourceGroup.location())
+ *             .resourceGroupName(exampleAzurermResourceGroup.name())
+ *             .subnetId(subnet.id())
+ *             .privateServiceConnection(List.of(Map.ofEntries(
+ *                 Map.entry("name", "example-privateserviceconnection"),
+ *                 Map.entry("privateConnectionResourceAlias", vpcConnect.serviceName()),
+ *                 Map.entry("isManualConnection", true),
+ *                 Map.entry("requestMessage", "PL")
+ *             )))
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * More information about the resource and argument can be found here:
+ * [privateConnectionResourceAlias]. Or check their example &#34;Using a Private Link Service Alias with
+ * existing resources&#34;.
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Enable VPC Connect (Private Service Connect) in GCP&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Vpc;
+ * import com.pulumi.cloudamqp.VpcArgs;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import com.pulumi.cloudamqp.VpcConnect;
+ * import com.pulumi.cloudamqp.VpcConnectArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var vpc = new Vpc("vpc", VpcArgs.builder()
+ *             .name("Standalone VPC")
+ *             .region("google-compute-engine::us-west1")
+ *             .subnet("10.56.72.0/24")
+ *             .tags()
+ *             .build());
+ * 
+ *         var instance = new Instance("instance", InstanceArgs.builder()
+ *             .name("Instance 01")
+ *             .plan("penguin-1")
+ *             .region("google-compute-engine::us-west1")
+ *             .tags()
+ *             .vpcId(vpc.id())
+ *             .keepAssociatedVpc(true)
+ *             .build());
+ * 
+ *         var vpcConnect = new VpcConnect("vpcConnect", VpcConnectArgs.builder()
+ *             .instanceId(instance.id())
+ *             .region(instance.region())
+ *             .allowedProjects("some-project-123456")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * ### With Additional Firewall Rules
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;CloudAMQP instance in an existing VPC with managed firewall rules&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Vpc;
+ * import com.pulumi.cloudamqp.VpcArgs;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import com.pulumi.cloudamqp.VpcConnect;
+ * import com.pulumi.cloudamqp.VpcConnectArgs;
+ * import com.pulumi.cloudamqp.SecurityFirewall;
+ * import com.pulumi.cloudamqp.SecurityFirewallArgs;
+ * import com.pulumi.cloudamqp.inputs.SecurityFirewallRuleArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var vpc = new Vpc("vpc", VpcArgs.builder()
+ *             .name("Standalone VPC")
+ *             .region("amazon-web-services::us-west-1")
+ *             .subnet("10.56.72.0/24")
+ *             .tags()
+ *             .build());
+ * 
+ *         var instance = new Instance("instance", InstanceArgs.builder()
+ *             .name("Instance 01")
+ *             .plan("penguin-1")
+ *             .region("amazon-web-services::us-west-1")
+ *             .tags()
+ *             .vpcId(vpc.id())
+ *             .keepAssociatedVpc(true)
+ *             .build());
+ * 
+ *         var vpcConnect = new VpcConnect("vpcConnect", VpcConnectArgs.builder()
+ *             .instanceId(instance.id())
+ *             .allowedPrincipals("arn:aws:iam::aws-account-id:user/user-name")
+ *             .build());
+ * 
+ *         var firewallSettings = new SecurityFirewall("firewallSettings", SecurityFirewallArgs.builder()
+ *             .instanceId(instance.id())
+ *             .rules(            
+ *                 SecurityFirewallRuleArgs.builder()
+ *                     .description("Custom PrivateLink setup")
+ *                     .ip(vpc.subnet())
+ *                     .ports()
+ *                     .services(                    
+ *                         "AMQP",
+ *                         "AMQPS",
+ *                         "HTTPS")
+ *                     .build(),
+ *                 SecurityFirewallRuleArgs.builder()
+ *                     .description("MGMT interface")
+ *                     .ip("0.0.0.0/0")
+ *                     .ports()
+ *                     .services("HTTPS")
+ *                     .build())
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(vpcConnect)
+ *                 .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * [CloudAMQP API list intances]: https://docs.cloudamqp.com/index.html#tag/instances/get/instances
+ * [CloudAMQP VPC Connect]: https://www.cloudamqp.com/docs/cloudamqp-vpc-connect.html
+ * [cloudamqp.SecurityFirewall]: https://registry.terraform.io/providers/cloudamqp/cloudamqp/latest/docs/resources/security_firewall
+ * [Google docs]: https://cloud.google.com/resource-manager/reference/rest/v1/projects
+ * [privateConnectionResourceAlias]: ./private_endpoint#private_connection_resource_alias-1
+ * 
+ * ## Dependency
+ * 
+ * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ * 
+ * Since `region` also is required, suggest to reuse the argument from CloudAMQP instance,
+ * `cloudamqp_instance.instance.region`.
+ * 
+ * ## Create VPC Connect with additional firewall rules
+ * 
+ * To create a PrivateLink/Private Service Connect configuration with additional firewall rules, it&#39;s
+ * required to chain the [cloudamqp.SecurityFirewall] resource to avoid parallel conflicting resource
+ * calls. You can do this by making the firewall resource depend on the VPC Connect resource
+ * `cloudamqp_vpc_connect.vpc_connect`.
+ * 
+ * Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
+ * the VPC Connect also needs to be added.
  * 
  */
 @ResourceType(type="cloudamqp:index/vpcConnect:VpcConnect")

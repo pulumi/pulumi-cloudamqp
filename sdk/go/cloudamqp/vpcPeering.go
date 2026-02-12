@@ -12,15 +12,444 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// This resouce allows you to accepting VPC peering request from an AWS requester. This is only
+// available for CloudAMQP instance hosted in AWS.
+//
+// > **Note:** Creating a VPC peering will automatically add firewall rules for the peered subnet.
+//
+// <details>
+//
+//	<summary>
+//	   <i>Default VPC peering firewall rule</i>
+//	 </summary>
+//
+// For LavinMQ:
+//
+// ## Example Usage
+//
+// One way to manage the vpc peering is to combine CloudAMQP Terraform provider with AWS Terraform
+// provider and run them at the same time.
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>AWS VPC peering before v1.16.0</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-aws/sdk/go/aws"
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// CloudAMQP - new instance, need to be created with a vpc
+//			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:   pulumi.String("terraform-vpc-accepter"),
+//				Plan:   pulumi.String("penguin-1"),
+//				Region: pulumi.String("amazon-web-services::us-east-1"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("terraform"),
+//				},
+//				VpcSubnet: pulumi.String("10.40.72.0/24"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// CloudAMQP - Extract vpc information
+//			vpcInfo := instance.ID().ApplyT(func(id string) (cloudamqp.GetVpcInfoResult, error) {
+//				return cloudamqp.GetVpcInfoResult(interface{}(cloudamqp.GetVpcInfo(ctx, &cloudamqp.GetVpcInfoArgs{
+//					InstanceId: pulumi.IntRef(pulumi.IntRef(int(id))),
+//				}, nil))), nil
+//			}).(cloudamqp.GetVpcInfoResultOutput)
+//			// AWS - retrieve instance to get subnet identifier
+//			awsInstance, err := aws.Instance(ctx, map[string]interface{}{
+//				"instanceTags": map[string]interface{}{
+//					"name": awsInstanceName,
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			// AWS - retrieve subnet
+//			subnet, err := aws.Subnet(ctx, map[string]interface{}{
+//				"id": awsInstance.SubnetId,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			// AWS - Create peering request
+//			awsVpcPeering, err := aws.NewVpcPeeringConnection(ctx, "aws_vpc_peering", &aws.VpcPeeringConnectionArgs{
+//				VpcId:       subnet.VpcId,
+//				PeerVpcId:   vpcInfo.ID(),
+//				PeerOwnerId: vpcInfo.OwnerId,
+//				Tags: map[string]interface{}{
+//					"name": awsPeeringName,
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// CloudAMQP - accept the peering request
+//			vpcAcceptPeering, err := cloudamqp.NewVpcPeering(ctx, "vpc_accept_peering", &cloudamqp.VpcPeeringArgs{
+//				InstanceId: instance.ID(),
+//				PeeringId:  awsVpcPeering.Id,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// AWS - retrieve the route table created in AWS
+//			routeTable, err := aws.RouteTable(ctx, map[string]interface{}{
+//				"vpcId": subnet.VpcId,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			// AWS - Once the peering request is accepted, configure routing table on accepter to allow traffic
+//			_, err = aws.NewRoute(ctx, "accepter_route", &aws.RouteArgs{
+//				RouteTableId:           routeTable.RouteTableId,
+//				DestinationCidrBlock:   instance.VpcSubnet,
+//				VpcPeeringConnectionId: awsVpcPeering.Id,
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				vpcAcceptPeering,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>AWS VPC peering from [v1.16.0] (Managed VPC)</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-aws/sdk/go/aws"
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// CloudAMQP - Managed VPC resource
+//			vpc, err := cloudamqp.NewVpc(ctx, "vpc", &cloudamqp.VpcArgs{
+//				Name:   pulumi.String("<VPC name>"),
+//				Region: pulumi.String("amazon-web-services::us-east-1"),
+//				Subnet: pulumi.String("10.56.72.0/24"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("terraform"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// CloudAMQP - new instance, need to be created with a vpc
+//			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:   pulumi.String("terraform-vpc-accepter"),
+//				Plan:   pulumi.String("penguin-1"),
+//				Region: pulumi.String("amazon-web-services::us-east-1"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("terraform"),
+//				},
+//				VpcId:             vpc.ID(),
+//				KeepAssociatedVpc: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// CloudAMQP - Extract vpc information
+//			vpcInfo := cloudamqp.GetVpcInfoOutput(ctx, cloudamqp.GetVpcInfoOutputArgs{
+//				VpcId: vpc.ID(),
+//			}, nil)
+//			// AWS - retrieve instance to get subnet identifier
+//			awsInstance, err := aws.Instance(ctx, map[string]interface{}{
+//				"instanceTags": map[string]interface{}{
+//					"name": awsInstanceName,
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			// AWS - retrieve subnet
+//			subnet, err := aws.Subnet(ctx, map[string]interface{}{
+//				"id": awsInstance.SubnetId,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			// AWS - Create peering request
+//			awsVpcPeering, err := aws.NewVpcPeeringConnection(ctx, "aws_vpc_peering", &aws.VpcPeeringConnectionArgs{
+//				VpcId:       subnet.VpcId,
+//				PeerVpcId:   vpcInfo.ID(),
+//				PeerOwnerId: vpcInfo.OwnerId,
+//				Tags: map[string]interface{}{
+//					"name": awsPeeringName,
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// CloudAMQP - accept the peering request
+//			vpcAcceptPeering, err := cloudamqp.NewVpcPeering(ctx, "vpc_accept_peering", &cloudamqp.VpcPeeringArgs{
+//				VpcId:     vpc.ID(),
+//				PeeringId: awsVpcPeering.Id,
+//				Sleep:     pulumi.Int(30),
+//				Timeout:   pulumi.Int(600),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// AWS - retrieve the route table created in AWS
+//			routeTable, err := aws.RouteTable(ctx, map[string]interface{}{
+//				"vpcId": subnet.VpcId,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			// AWS - Once the peering request is accepted, configure routing table on accepter to allow traffic
+//			_, err = aws.NewRoute(ctx, "accepter_route", &aws.RouteArgs{
+//				RouteTableId:           routeTable.RouteTableId,
+//				DestinationCidrBlock:   instance.VpcSubnet,
+//				VpcPeeringConnectionId: awsVpcPeering.Id,
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				vpcAcceptPeering,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+//	</details>
+//
+// ### With Additional Firewall Rules
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>VPC peering before v1.16.0</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-aws/sdk/go/aws"
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// AWS - retrieve subnet
+//			_, err := aws.Subnet(ctx, map[string]interface{}{
+//				"id": awsInstance.SubnetId,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			// CloudAMQP - accept the peering request
+//			vpcAcceptPeering, err := cloudamqp.NewVpcPeering(ctx, "vpc_accept_peering", &cloudamqp.VpcPeeringArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				PeeringId:  pulumi.Any(awsVpcPeering.Id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Firewall rules
+//			_, err = cloudamqp.NewSecurityFirewall(ctx, "firewall_settings", &cloudamqp.SecurityFirewallArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				Rules: cloudamqp.SecurityFirewallRuleArray{
+//					&cloudamqp.SecurityFirewallRuleArgs{
+//						Ip: pulumi.Any(awsInstance.SubnetId),
+//						Ports: pulumi.IntArray{
+//							pulumi.Int(15672),
+//							pulumi.Int(5552),
+//							pulumi.Int(5551),
+//						},
+//						Services: pulumi.StringArray{
+//							pulumi.String("AMQP"),
+//							pulumi.String("AMQPS"),
+//						},
+//						Description: pulumi.String("VPC peering for <NETWORK>"),
+//					},
+//					&cloudamqp.SecurityFirewallRuleArgs{
+//						Ip: pulumi.String("192.168.0.0/24"),
+//						Ports: pulumi.IntArray{
+//							pulumi.Int(4567),
+//							pulumi.Int(4568),
+//						},
+//						Services: pulumi.StringArray{
+//							pulumi.String("AMQP"),
+//							pulumi.String("AMQPS"),
+//							pulumi.String("HTTPS"),
+//						},
+//					},
+//				},
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				vpcAcceptPeering,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>VPC peering from [v1.16.0] (Managed VPC)</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-aws/sdk/go/aws"
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// AWS - retrieve subnet
+//			subnet, err := aws.Subnet(ctx, map[string]interface{}{
+//				"id": awsInstance.SubnetId,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			// CloudAMQP - accept the peering request
+//			vpcAcceptPeering, err := cloudamqp.NewVpcPeering(ctx, "vpc_accept_peering", &cloudamqp.VpcPeeringArgs{
+//				VpcId:     pulumi.Any(vpc.Id),
+//				PeeringId: pulumi.Any(awsVpcPeering.Id),
+//				Sleep:     pulumi.Int(30),
+//				Timeout:   pulumi.Int(600),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// AWS - VPC subnet for peering requester
+//			requesterVpc, err := aws.Vpc(ctx, map[string]interface{}{
+//				"id": subnet.VpcId,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			// CloudAMQP - Managed firewall rules
+//			_, err = cloudamqp.NewSecurityFirewall(ctx, "firewall_settings", &cloudamqp.SecurityFirewallArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				Rules: cloudamqp.SecurityFirewallRuleArray{
+//					&cloudamqp.SecurityFirewallRuleArgs{
+//						Ip: pulumi.Any(requesterVpc.CidrBlock),
+//						Ports: pulumi.IntArray{
+//							pulumi.Int(15672),
+//							pulumi.Int(5552),
+//							pulumi.Int(5551),
+//						},
+//						Services: pulumi.StringArray{
+//							pulumi.String("AMQP"),
+//							pulumi.String("AMQPS"),
+//						},
+//						Description: pulumi.String("VPC peering for <NETWORK>"),
+//					},
+//					&cloudamqp.SecurityFirewallRuleArgs{
+//						Ip:    pulumi.String("0.0.0.0/0"),
+//						Ports: pulumi.IntArray{},
+//						Services: pulumi.StringArray{
+//							pulumi.String("HTTPS"),
+//						},
+//						Description: pulumi.String("MGMT interface"),
+//					},
+//				},
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				vpcAcceptPeering,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// [CloudAMQP plans]: https://www.cloudamqp.com/plans.html
+// [SecurityFirewall]: ./security_firewall.md
+// [data source]: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/vpc_peering_connection
+// [resource]: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_peering_connection
+// [v1.16.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.16.0
+// [v1.32.2]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.32.2
+//
+// ## Dependency
+//
+// ***Before v1.16.0:***
+// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+//
+// ***From [v1.16.0]:***
+// This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
+// identifier, `cloudamqp_instance.instance.id`.
+//
+// ## Create VPC Peering with additional firewall rules
+//
+// To create a VPC peering configuration with additional firewall rules, it's required to chain the
+// [SecurityFirewall] resource to avoid parallel conflicting resource calls. You can do this
+// by making the firewall resource depend on the VPC peering resource
+// `cloudamqp_vpc_peering.vpc_accept_peering`.
+//
+// Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
+// the VPC peering also needs to be added.
+//
+// See example below.
+//
 // ## Import
 //
-// ### Peering identifier
+// ***Before v1.32.2:***
+// Not possible to import this resource.
 //
-// This can be found as *peering connection id* in your AWS VPC dashboard/Peering connections, for the
-//
-// correct VPC peering.
-//
-// Also available as the identifier for `aws_vpc_peering_connection` [resource] or [data source].
+// ***From [v1.32.2]:***
+// `VpcPeering` can be imported while using the resource type, with CloudAMQP VPC
+// identifier or instance identifier together with *peering_id* (CSV seperated).
 type VpcPeering struct {
 	pulumi.CustomResourceState
 

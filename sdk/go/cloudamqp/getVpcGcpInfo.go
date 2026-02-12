@@ -11,6 +11,90 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Use this data source to retrieve information about VPC for a CloudAMQP instance.
+//
+// > **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
+//
+// ## Example Usage
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>AWS VPC peering before v1.16.0</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.GetVpcGcpInfo(ctx, &cloudamqp.GetVpcGcpInfoArgs{
+//				InstanceId: pulumi.IntRef(instance.Id),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>AWS VPC peering from [v1.16.0] (Managed VPC)</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.GetVpcGcpInfo(ctx, &cloudamqp.GetVpcGcpInfoArgs{
+//				VpcId: pulumi.StringRef(vpc.Id),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// ## Dependency
+//
+// ***Before v1.16.0:***
+// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+//
+// ***From [v1.16.0]***
+// This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
+// identifier, `cloudamqp_instance.instance.id`.
+//
+// [v1.16.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.16.0
 func GetVpcGcpInfo(ctx *pulumi.Context, args *GetVpcGcpInfoArgs, opts ...pulumi.InvokeOption) (*GetVpcGcpInfoResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetVpcGcpInfoResult

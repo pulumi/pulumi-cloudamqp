@@ -4,6 +4,60 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Use this data source to retrieve information about VPC for a CloudAMQP instance.
+ *
+ * > **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
+ *
+ * ## Example Usage
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>AWS VPC peering before v1.16.0</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const vpcInfo = cloudamqp.getVpcGcpInfo({
+ *     instanceId: instance.id,
+ * });
+ * ```
+ *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>AWS VPC peering from [v1.16.0] (Managed VPC)</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const vpcInfo = cloudamqp.getVpcGcpInfo({
+ *     vpcId: vpc.id,
+ * });
+ * ```
+ *
+ * </details>
+ *
+ * ## Dependency
+ *
+ * ***Before v1.16.0:***
+ * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ *
+ * ***From [v1.16.0]***
+ * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
+ * identifier, `cloudamqp_instance.instance.id`.
+ *
+ * [v1.16.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.16.0
+ */
 export function getVpcGcpInfo(args?: GetVpcGcpInfoArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcGcpInfoResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -68,6 +122,60 @@ export interface GetVpcGcpInfoResult {
      */
     readonly vpcSubnet: string;
 }
+/**
+ * Use this data source to retrieve information about VPC for a CloudAMQP instance.
+ *
+ * > **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
+ *
+ * ## Example Usage
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>AWS VPC peering before v1.16.0</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const vpcInfo = cloudamqp.getVpcGcpInfo({
+ *     instanceId: instance.id,
+ * });
+ * ```
+ *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>AWS VPC peering from [v1.16.0] (Managed VPC)</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const vpcInfo = cloudamqp.getVpcGcpInfo({
+ *     vpcId: vpc.id,
+ * });
+ * ```
+ *
+ * </details>
+ *
+ * ## Dependency
+ *
+ * ***Before v1.16.0:***
+ * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ *
+ * ***From [v1.16.0]***
+ * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
+ * identifier, `cloudamqp_instance.instance.id`.
+ *
+ * [v1.16.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.16.0
+ */
 export function getVpcGcpInfoOutput(args?: GetVpcGcpInfoOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetVpcGcpInfoResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

@@ -341,17 +341,246 @@ class VpcGcpPeering(pulumi.CustomResource):
                  wait_on_peering_status: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
+        This resouce creates a VPC peering configuration for the CloudAMQP instance. The configuration will
+        connect to another VPC network hosted on Google Cloud Platform (GCP). See the [GCP documentation]
+        for more information on how to create the VPC peering configuration.
+
+        > **Note:** Creating a VPC peering will automatically add firewall rules for the peered subnet.
+
+        <details>
+         <summary>
+            <i>Default VPC peering firewall rule</i>
+          </summary>
+
+        For LavinMQ:
+
+        ## Example Usage
+
+        <details>
+          <summary>
+            <b>
+              <i>VPC peering before v1.16.0</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # CloudAMQP instance
+        instance = cloudamqp.Instance("instance",
+            name="terraform-vpc-peering",
+            plan="penguin-1",
+            region="google-compute-engine::europe-north1",
+            tags=["terraform"],
+            vpc_subnet="10.40.72.0/24")
+        # VPC information
+        vpc_info = instance.id.apply(lambda id: cloudamqp.get_vpc_gcp_info_output(instance_id=id))
+        # VPC peering configuration
+        vpc_peering_request = cloudamqp.VpcGcpPeering("vpc_peering_request",
+            instance_id=instance.id,
+            peer_network_uri="https://www.googleapis.com/compute/v1/projects/PROJECT-NAME/global/networks/VPC-NETWORK-NAME")
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>VPC peering from [v1.16.0] (Managed VPC)</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # Managed VPC resource
+        vpc = cloudamqp.Vpc("vpc",
+            name="<VPC name>",
+            region="google-compute-engine::europe-north1",
+            subnet="10.56.72.0/24",
+            tags=[])
+        # CloudAMQP instance
+        instance = cloudamqp.Instance("instance",
+            name="terraform-vpc-peering",
+            plan="penguin-1",
+            region="google-compute-engine::europe-north1",
+            tags=["terraform"],
+            vpc_id=vpc.id)
+        # VPC information
+        vpc_info = cloudamqp.get_vpc_gcp_info(vpc_id=vpc.info)
+        # VPC peering configuration
+        vpc_peering_request = cloudamqp.VpcGcpPeering("vpc_peering_request",
+            vpc_id=vpc.id,
+            peer_network_uri="https://www.googleapis.com/compute/v1/projects/PROJECT-NAME/global/networks/VPC-NETWORK-NAME")
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>VPC peering from [v1.28.0], wait_on_peering_status </i>
+            </b>
+          </summary>
+
+        Default peering request, no need to set `wait_on_peering_status`. It's default set to false and will
+        not wait on peering status. Create resource will be considered completed, regardless of the status
+        of the state.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        vpc_peering_request = cloudamqp.VpcGcpPeering("vpc_peering_request",
+            vpc_id=vpc["id"],
+            peer_network_uri="https://www.googleapis.com/compute/v1/projects/ROJECT-NAME/global/networks/VPC-NETWORK-NAME")
+        ```
+
+        Peering request and waiting for peering status of the state to change to ACTIVE before the create
+        resource is consider complete. This is done once both side have done the peering.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        vpc_peering_request = cloudamqp.VpcGcpPeering("vpc_peering_request",
+            vpc_id=vpc["id"],
+            wait_on_peering_status=True,
+            peer_network_uri="https://www.googleapis.com/compute/v1/projects/PROJECT-NAME/global/networks/VPC-NETWORK-NAME")
+        ```
+
+        </details>
+
+        ### With Additional Firewall Rules
+
+        <details>
+          <summary>
+            <b>
+              <i>VPC peering before v1.16.0</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # VPC peering configuration
+        vpc_peering_request = cloudamqp.VpcGcpPeering("vpc_peering_request",
+            instance_id=instance["id"],
+            peer_network_uri=peer_network_uri)
+        # Firewall rules
+        firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
+            instance_id=instance["id"],
+            rules=[
+                {
+                    "ip": peer_subnet,
+                    "ports": [
+                        15672,
+                        5552,
+                        5551,
+                    ],
+                    "services": [
+                        "AMQP",
+                        "AMQPS",
+                    ],
+                    "description": "VPC peering for <NETWORK>",
+                },
+                {
+                    "ip": "192.168.0.0/24",
+                    "ports": [
+                        4567,
+                        4568,
+                    ],
+                    "services": [
+                        "AMQP",
+                        "AMQPS",
+                        "HTTPS",
+                    ],
+                },
+            ],
+            opts = pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>VPC peering from [v1.16.0] (Managed VPC)</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # VPC peering configuration
+        vpc_peering_request = cloudamqp.VpcGcpPeering("vpc_peering_request",
+            vpc_id=vpc["id"],
+            peer_network_uri=peer_network_uri)
+        # Firewall rules
+        firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
+            instance_id=instance["id"],
+            rules=[
+                {
+                    "ip": peer_subnet,
+                    "ports": [
+                        15672,
+                        5552,
+                        5551,
+                    ],
+                    "services": [
+                        "AMQP",
+                        "AMQPS",
+                    ],
+                    "description": "VPC peering for <NETWORK>",
+                },
+                {
+                    "ip": "0.0.0.0/0",
+                    "ports": [],
+                    "services": ["HTTPS"],
+                    "description": "MGMT interface",
+                },
+            ],
+            opts = pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
+        ```
+
+        </details>
+
+        [CloudAMQP plans]: https://www.cloudamqp.com/plans.html
+        [SecurityFirewall]: https://registry.terraform.io/providers/cloudamqp/cloudamqp/latest/docs/resources/security_firewall
+        [GCP documentation]: https://cloud.google.com/vpc/docs/using-vpc-peering
+        [v1.16.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.16.0
+        [v1.28.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.28.0
+        [v1.29.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.29.0
+
+        ## Dependency
+
+        ***From v1.16.0:***
+        This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
+        identifier, `cloudamqp_instance.instance.id`.
+
+        ***Before v1.16.0:***
+        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+        ## Create VPC peering with additional firewall rules
+
+        To create a VPC peering configuration with additional firewall rules, it's required to chain the
+        [SecurityFirewall] resource to avoid parallel conflicting resource calls. This is done by
+        adding dependency from the firewall resource to the VPC peering resource.
+
+        Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
+        the VPC peering also needs to be added.
+
+        See example below.
+
         ## Import
 
-        ### Peering network URI
-
-        This is required to be able to import the correct peering. Following the same format as the argument
-
-        reference.
-
-        hcl
-
-        https://www.googleapis.com/compute/v1/projects/PROJECT-NAME/global/networks/VPC-NETWORK-NAME
+        ***From v1.32.2:***
+        `VpcGcpPeering` can be imported while using the resource type, with CloudAMQP VPC
+        identifier or instance identifier together with *peering_network_uri* (CSV seperated).
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -383,17 +612,246 @@ class VpcGcpPeering(pulumi.CustomResource):
                  args: VpcGcpPeeringArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        This resouce creates a VPC peering configuration for the CloudAMQP instance. The configuration will
+        connect to another VPC network hosted on Google Cloud Platform (GCP). See the [GCP documentation]
+        for more information on how to create the VPC peering configuration.
+
+        > **Note:** Creating a VPC peering will automatically add firewall rules for the peered subnet.
+
+        <details>
+         <summary>
+            <i>Default VPC peering firewall rule</i>
+          </summary>
+
+        For LavinMQ:
+
+        ## Example Usage
+
+        <details>
+          <summary>
+            <b>
+              <i>VPC peering before v1.16.0</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # CloudAMQP instance
+        instance = cloudamqp.Instance("instance",
+            name="terraform-vpc-peering",
+            plan="penguin-1",
+            region="google-compute-engine::europe-north1",
+            tags=["terraform"],
+            vpc_subnet="10.40.72.0/24")
+        # VPC information
+        vpc_info = instance.id.apply(lambda id: cloudamqp.get_vpc_gcp_info_output(instance_id=id))
+        # VPC peering configuration
+        vpc_peering_request = cloudamqp.VpcGcpPeering("vpc_peering_request",
+            instance_id=instance.id,
+            peer_network_uri="https://www.googleapis.com/compute/v1/projects/PROJECT-NAME/global/networks/VPC-NETWORK-NAME")
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>VPC peering from [v1.16.0] (Managed VPC)</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # Managed VPC resource
+        vpc = cloudamqp.Vpc("vpc",
+            name="<VPC name>",
+            region="google-compute-engine::europe-north1",
+            subnet="10.56.72.0/24",
+            tags=[])
+        # CloudAMQP instance
+        instance = cloudamqp.Instance("instance",
+            name="terraform-vpc-peering",
+            plan="penguin-1",
+            region="google-compute-engine::europe-north1",
+            tags=["terraform"],
+            vpc_id=vpc.id)
+        # VPC information
+        vpc_info = cloudamqp.get_vpc_gcp_info(vpc_id=vpc.info)
+        # VPC peering configuration
+        vpc_peering_request = cloudamqp.VpcGcpPeering("vpc_peering_request",
+            vpc_id=vpc.id,
+            peer_network_uri="https://www.googleapis.com/compute/v1/projects/PROJECT-NAME/global/networks/VPC-NETWORK-NAME")
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>VPC peering from [v1.28.0], wait_on_peering_status </i>
+            </b>
+          </summary>
+
+        Default peering request, no need to set `wait_on_peering_status`. It's default set to false and will
+        not wait on peering status. Create resource will be considered completed, regardless of the status
+        of the state.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        vpc_peering_request = cloudamqp.VpcGcpPeering("vpc_peering_request",
+            vpc_id=vpc["id"],
+            peer_network_uri="https://www.googleapis.com/compute/v1/projects/ROJECT-NAME/global/networks/VPC-NETWORK-NAME")
+        ```
+
+        Peering request and waiting for peering status of the state to change to ACTIVE before the create
+        resource is consider complete. This is done once both side have done the peering.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        vpc_peering_request = cloudamqp.VpcGcpPeering("vpc_peering_request",
+            vpc_id=vpc["id"],
+            wait_on_peering_status=True,
+            peer_network_uri="https://www.googleapis.com/compute/v1/projects/PROJECT-NAME/global/networks/VPC-NETWORK-NAME")
+        ```
+
+        </details>
+
+        ### With Additional Firewall Rules
+
+        <details>
+          <summary>
+            <b>
+              <i>VPC peering before v1.16.0</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # VPC peering configuration
+        vpc_peering_request = cloudamqp.VpcGcpPeering("vpc_peering_request",
+            instance_id=instance["id"],
+            peer_network_uri=peer_network_uri)
+        # Firewall rules
+        firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
+            instance_id=instance["id"],
+            rules=[
+                {
+                    "ip": peer_subnet,
+                    "ports": [
+                        15672,
+                        5552,
+                        5551,
+                    ],
+                    "services": [
+                        "AMQP",
+                        "AMQPS",
+                    ],
+                    "description": "VPC peering for <NETWORK>",
+                },
+                {
+                    "ip": "192.168.0.0/24",
+                    "ports": [
+                        4567,
+                        4568,
+                    ],
+                    "services": [
+                        "AMQP",
+                        "AMQPS",
+                        "HTTPS",
+                    ],
+                },
+            ],
+            opts = pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>VPC peering from [v1.16.0] (Managed VPC)</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        # VPC peering configuration
+        vpc_peering_request = cloudamqp.VpcGcpPeering("vpc_peering_request",
+            vpc_id=vpc["id"],
+            peer_network_uri=peer_network_uri)
+        # Firewall rules
+        firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
+            instance_id=instance["id"],
+            rules=[
+                {
+                    "ip": peer_subnet,
+                    "ports": [
+                        15672,
+                        5552,
+                        5551,
+                    ],
+                    "services": [
+                        "AMQP",
+                        "AMQPS",
+                    ],
+                    "description": "VPC peering for <NETWORK>",
+                },
+                {
+                    "ip": "0.0.0.0/0",
+                    "ports": [],
+                    "services": ["HTTPS"],
+                    "description": "MGMT interface",
+                },
+            ],
+            opts = pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
+        ```
+
+        </details>
+
+        [CloudAMQP plans]: https://www.cloudamqp.com/plans.html
+        [SecurityFirewall]: https://registry.terraform.io/providers/cloudamqp/cloudamqp/latest/docs/resources/security_firewall
+        [GCP documentation]: https://cloud.google.com/vpc/docs/using-vpc-peering
+        [v1.16.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.16.0
+        [v1.28.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.28.0
+        [v1.29.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.29.0
+
+        ## Dependency
+
+        ***From v1.16.0:***
+        This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
+        identifier, `cloudamqp_instance.instance.id`.
+
+        ***Before v1.16.0:***
+        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+        ## Create VPC peering with additional firewall rules
+
+        To create a VPC peering configuration with additional firewall rules, it's required to chain the
+        [SecurityFirewall] resource to avoid parallel conflicting resource calls. This is done by
+        adding dependency from the firewall resource to the VPC peering resource.
+
+        Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
+        the VPC peering also needs to be added.
+
+        See example below.
+
         ## Import
 
-        ### Peering network URI
-
-        This is required to be able to import the correct peering. Following the same format as the argument
-
-        reference.
-
-        hcl
-
-        https://www.googleapis.com/compute/v1/projects/PROJECT-NAME/global/networks/VPC-NETWORK-NAME
+        ***From v1.32.2:***
+        `VpcGcpPeering` can be imported while using the resource type, with CloudAMQP VPC
+        identifier or instance identifier together with *peering_network_uri* (CSV seperated).
 
         :param str resource_name: The name of the resource.
         :param VpcGcpPeeringArgs args: The arguments to use to populate this resource's properties.

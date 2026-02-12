@@ -5,15 +5,315 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * This resouce allows you to accepting VPC peering request from an AWS requester. This is only
+ * available for CloudAMQP instance hosted in AWS.
+ *
+ * > **Note:** Creating a VPC peering will automatically add firewall rules for the peered subnet.
+ *
+ * <details>
+ *  <summary>
+ *     <i>Default VPC peering firewall rule</i>
+ *   </summary>
+ *
+ * For LavinMQ:
+ *
+ * ## Example Usage
+ *
+ * One way to manage the vpc peering is to combine CloudAMQP Terraform provider with AWS Terraform
+ * provider and run them at the same time.
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>AWS VPC peering before v1.16.0</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * // CloudAMQP - new instance, need to be created with a vpc
+ * const instance = new cloudamqp.Instance("instance", {
+ *     name: "terraform-vpc-accepter",
+ *     plan: "penguin-1",
+ *     region: "amazon-web-services::us-east-1",
+ *     tags: ["terraform"],
+ *     vpcSubnet: "10.40.72.0/24",
+ * });
+ * // CloudAMQP - Extract vpc information
+ * const vpcInfo = instance.id.apply(id => cloudamqp.getVpcInfoOutput({
+ *     instanceId: id,
+ * }));
+ * // AWS - retrieve instance to get subnet identifier
+ * const awsInstance = aws.index.Instance({
+ *     instanceTags: {
+ *         name: awsInstanceName,
+ *     },
+ * });
+ * // AWS - retrieve subnet
+ * const subnet = aws.index.Subnet({
+ *     id: awsInstance.subnetId,
+ * });
+ * // AWS - Create peering request
+ * const awsVpcPeering = new aws.index.VpcPeeringConnection("aws_vpc_peering", {
+ *     vpcId: subnet.vpcId,
+ *     peerVpcId: vpcInfo.id,
+ *     peerOwnerId: vpcInfo.ownerId,
+ *     tags: {
+ *         name: awsPeeringName,
+ *     },
+ * });
+ * // CloudAMQP - accept the peering request
+ * const vpcAcceptPeering = new cloudamqp.VpcPeering("vpc_accept_peering", {
+ *     instanceId: instance.id,
+ *     peeringId: awsVpcPeering.id,
+ * });
+ * // AWS - retrieve the route table created in AWS
+ * const routeTable = aws.index.RouteTable({
+ *     vpcId: subnet.vpcId,
+ * });
+ * // AWS - Once the peering request is accepted, configure routing table on accepter to allow traffic
+ * const accepterRoute = new aws.index.Route("accepter_route", {
+ *     routeTableId: routeTable.routeTableId,
+ *     destinationCidrBlock: instance.vpcSubnet,
+ *     vpcPeeringConnectionId: awsVpcPeering.id,
+ * }, {
+ *     dependsOn: [vpcAcceptPeering],
+ * });
+ * ```
+ *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>AWS VPC peering from [v1.16.0] (Managed VPC)</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * // CloudAMQP - Managed VPC resource
+ * const vpc = new cloudamqp.Vpc("vpc", {
+ *     name: "<VPC name>",
+ *     region: "amazon-web-services::us-east-1",
+ *     subnet: "10.56.72.0/24",
+ *     tags: ["terraform"],
+ * });
+ * // CloudAMQP - new instance, need to be created with a vpc
+ * const instance = new cloudamqp.Instance("instance", {
+ *     name: "terraform-vpc-accepter",
+ *     plan: "penguin-1",
+ *     region: "amazon-web-services::us-east-1",
+ *     tags: ["terraform"],
+ *     vpcId: vpc.id,
+ *     keepAssociatedVpc: true,
+ * });
+ * // CloudAMQP - Extract vpc information
+ * const vpcInfo = cloudamqp.getVpcInfoOutput({
+ *     vpcId: vpc.id,
+ * });
+ * // AWS - retrieve instance to get subnet identifier
+ * const awsInstance = aws.index.Instance({
+ *     instanceTags: {
+ *         name: awsInstanceName,
+ *     },
+ * });
+ * // AWS - retrieve subnet
+ * const subnet = aws.index.Subnet({
+ *     id: awsInstance.subnetId,
+ * });
+ * // AWS - Create peering request
+ * const awsVpcPeering = new aws.index.VpcPeeringConnection("aws_vpc_peering", {
+ *     vpcId: subnet.vpcId,
+ *     peerVpcId: vpcInfo.id,
+ *     peerOwnerId: vpcInfo.ownerId,
+ *     tags: {
+ *         name: awsPeeringName,
+ *     },
+ * });
+ * // CloudAMQP - accept the peering request
+ * const vpcAcceptPeering = new cloudamqp.VpcPeering("vpc_accept_peering", {
+ *     vpcId: vpc.id,
+ *     peeringId: awsVpcPeering.id,
+ *     sleep: 30,
+ *     timeout: 600,
+ * });
+ * // AWS - retrieve the route table created in AWS
+ * const routeTable = aws.index.RouteTable({
+ *     vpcId: subnet.vpcId,
+ * });
+ * // AWS - Once the peering request is accepted, configure routing table on accepter to allow traffic
+ * const accepterRoute = new aws.index.Route("accepter_route", {
+ *     routeTableId: routeTable.routeTableId,
+ *     destinationCidrBlock: instance.vpcSubnet,
+ *     vpcPeeringConnectionId: awsVpcPeering.id,
+ * }, {
+ *     dependsOn: [vpcAcceptPeering],
+ * });
+ * ```
+ *
+ *  </details>
+ *
+ * ### With Additional Firewall Rules
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>VPC peering before v1.16.0</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * // AWS - retrieve subnet
+ * const subnet = aws.index.Subnet({
+ *     id: awsInstance.subnetId,
+ * });
+ * // CloudAMQP - accept the peering request
+ * const vpcAcceptPeering = new cloudamqp.VpcPeering("vpc_accept_peering", {
+ *     instanceId: instance.id,
+ *     peeringId: awsVpcPeering.id,
+ * });
+ * // Firewall rules
+ * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
+ *     instanceId: instance.id,
+ *     rules: [
+ *         {
+ *             ip: awsInstance.subnetId,
+ *             ports: [
+ *                 15672,
+ *                 5552,
+ *                 5551,
+ *             ],
+ *             services: [
+ *                 "AMQP",
+ *                 "AMQPS",
+ *             ],
+ *             description: "VPC peering for <NETWORK>",
+ *         },
+ *         {
+ *             ip: "192.168.0.0/24",
+ *             ports: [
+ *                 4567,
+ *                 4568,
+ *             ],
+ *             services: [
+ *                 "AMQP",
+ *                 "AMQPS",
+ *                 "HTTPS",
+ *             ],
+ *         },
+ *     ],
+ * }, {
+ *     dependsOn: [vpcAcceptPeering],
+ * });
+ * ```
+ *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>VPC peering from [v1.16.0] (Managed VPC)</i>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * // AWS - retrieve subnet
+ * const subnet = aws.index.Subnet({
+ *     id: awsInstance.subnetId,
+ * });
+ * // CloudAMQP - accept the peering request
+ * const vpcAcceptPeering = new cloudamqp.VpcPeering("vpc_accept_peering", {
+ *     vpcId: vpc.id,
+ *     peeringId: awsVpcPeering.id,
+ *     sleep: 30,
+ *     timeout: 600,
+ * });
+ * // AWS - VPC subnet for peering requester
+ * const requesterVpc = aws.index.Vpc({
+ *     id: subnet.vpcId,
+ * });
+ * // CloudAMQP - Managed firewall rules
+ * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
+ *     instanceId: instance.id,
+ *     rules: [
+ *         {
+ *             ip: requesterVpc.cidrBlock,
+ *             ports: [
+ *                 15672,
+ *                 5552,
+ *                 5551,
+ *             ],
+ *             services: [
+ *                 "AMQP",
+ *                 "AMQPS",
+ *             ],
+ *             description: "VPC peering for <NETWORK>",
+ *         },
+ *         {
+ *             ip: "0.0.0.0/0",
+ *             ports: [],
+ *             services: ["HTTPS"],
+ *             description: "MGMT interface",
+ *         },
+ *     ],
+ * }, {
+ *     dependsOn: [vpcAcceptPeering],
+ * });
+ * ```
+ *
+ * </details>
+ *
+ * [CloudAMQP plans]: https://www.cloudamqp.com/plans.html
+ * [cloudamqp.SecurityFirewall]: ./security_firewall.md
+ * [data source]: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/vpc_peering_connection
+ * [resource]: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_peering_connection
+ * [v1.16.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.16.0
+ * [v1.32.2]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.32.2
+ *
+ * ## Dependency
+ *
+ * ***Before v1.16.0:***
+ * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ *
+ * ***From [v1.16.0]:***
+ * This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
+ * identifier, `cloudamqp_instance.instance.id`.
+ *
+ * ## Create VPC Peering with additional firewall rules
+ *
+ * To create a VPC peering configuration with additional firewall rules, it's required to chain the
+ * [cloudamqp.SecurityFirewall] resource to avoid parallel conflicting resource calls. You can do this
+ * by making the firewall resource depend on the VPC peering resource
+ * `cloudamqp_vpc_peering.vpc_accept_peering`.
+ *
+ * Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
+ * the VPC peering also needs to be added.
+ *
+ * See example below.
+ *
  * ## Import
  *
- * ### Peering identifier
+ * ***Before v1.32.2:***
+ * Not possible to import this resource.
  *
- * This can be found as *peering connection id* in your AWS VPC dashboard/Peering connections, for the
- *
- * correct VPC peering.
- *
- * Also available as the identifier for `aws_vpc_peering_connection` [resource] or [data source].
+ * ***From [v1.32.2]:***
+ * `cloudamqp.VpcPeering` can be imported while using the resource type, with CloudAMQP VPC
+ * identifier or instance identifier together with *peering_id* (CSV seperated).
  */
 export class VpcPeering extends pulumi.CustomResource {
     /**

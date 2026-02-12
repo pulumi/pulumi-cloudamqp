@@ -471,30 +471,6 @@ import (
 // [azure-region-list]: https://learn.microsoft.com/en-us/azure/reliability/regions-list
 // [gcp-region-zones]: https://cloud.google.com/compute/docs/regions-zones#available
 // [do-regional-availability]: https://docs.digitalocean.com/platform/regional-availability/
-//
-// ## Import
-//
-// `cloudamqp_instance`can be imported using resource identifier. To retrieve the resource identifier,
-//
-// use [CloudAMQP API list instances]
-//
-// From Terraform v1.5.0, the `import` block can be used to import this resource:
-//
-// hcl
-//
-// import {
-//
-//	to = cloudamqp_instance.instance
-//
-//	id = <id>
-//
-// }
-//
-// Or use Terraform CLI:
-//
-// ```sh
-// $ pulumi import cloudamqp:index/instance:Instance instance <id>`
-// ```
 type Instance struct {
 	pulumi.CustomResourceState
 

@@ -292,7 +292,6 @@ import javax.annotation.Nullable;
  * Not possible to import this resource.
  * 
  * [CloudAMQP]: https://www.cloudamqp.com/
- * 
  * [v1.25.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.25.0
  * 
  */

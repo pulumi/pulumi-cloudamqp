@@ -614,28 +614,6 @@ class Oauth2Configuration(pulumi.CustomResource):
           any existing configuration.
         * After a configuration has been applied, a restart of RabbitMQ is required for the changes to take effect.
 
-        ## Import
-
-        `cloudamqp_oauth2_configuration` can be imported using the CloudAMQP instance identifier.
-
-        From Terraform v1.5.0, the `import` block can be used to import this resource:
-
-        hcl
-
-        import {
-
-          to = cloudamqp_oauth2_configuration.oauth2_config
-
-          id = cloudamqp_instance.instance.id
-
-        }
-
-        Or use Terraform CLI:
-
-        ```sh
-        $ pulumi import cloudamqp:index/oauth2Configuration:Oauth2Configuration oauth2_config <instance_id>`
-        ```
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] additional_scopes_keys: List of additional JWT claim keys to extract OAuth2
@@ -770,28 +748,6 @@ class Oauth2Configuration(pulumi.CustomResource):
         * Only one OAuth2 configuration can exist per instance. Creating a new configuration will replace
           any existing configuration.
         * After a configuration has been applied, a restart of RabbitMQ is required for the changes to take effect.
-
-        ## Import
-
-        `cloudamqp_oauth2_configuration` can be imported using the CloudAMQP instance identifier.
-
-        From Terraform v1.5.0, the `import` block can be used to import this resource:
-
-        hcl
-
-        import {
-
-          to = cloudamqp_oauth2_configuration.oauth2_config
-
-          id = cloudamqp_instance.instance.id
-
-        }
-
-        Or use Terraform CLI:
-
-        ```sh
-        $ pulumi import cloudamqp:index/oauth2Configuration:Oauth2Configuration oauth2_config <instance_id>`
-        ```
 
         :param str resource_name: The name of the resource.
         :param Oauth2ConfigurationArgs args: The arguments to use to populate this resource's properties.

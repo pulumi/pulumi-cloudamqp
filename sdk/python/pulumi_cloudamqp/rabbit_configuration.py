@@ -674,29 +674,297 @@ class RabbitConfiguration(pulumi.CustomResource):
                  vm_memory_high_watermark: Optional[pulumi.Input[_builtins.float]] = None,
                  __props__=None):
         """
-        ## Import
+        This resource allows you update RabbitMQ config.
 
-        `cloudamqp_rabbitmq_configuration` can be imported using the CloudAMQP instance identifier.  To
+        Only available for dedicated subscription plans running ***RabbitMQ***.
 
-        retrieve the identifier, use [CloudAMQP API list intances].
+        ## Example Usage
 
-        From Terraform v1.5.0, the `import` block can be used to import this resource:
+        <details>
+          <summary>
+            <b>
+              <i>RabbitMQ configuration and using 0 values</i>
+            </b>
+          </summary>
 
-        hcl
+        From [v1.35.0] and migrating this resource to Terraform plugin Framework.
+        It's now possible to use 0 values in the configuration.
 
-        import {
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
 
-          to = cloudamqp_rabbitmq_configuration.config
-
-          id = cloudamqp_instance.instance.id
-
-        }
-
-        Or use Terraform CLI:
-
-        ```sh
-        $ pulumi import cloudamqp:index/rabbitConfiguration:RabbitConfiguration config <instance_id>`
+        rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmq_config",
+            instance_id=instance["id"],
+            heartbeat=0)
         ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>RabbitMQ configuration with default values</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmq_config",
+            instance_id=instance["id"],
+            channel_max=0,
+            connection_max=-1,
+            consumer_timeout=7200000,
+            heartbeat=120,
+            log_exchange_level="error",
+            max_message_size=134217728,
+            queue_index_embed_msgs_below=4096,
+            vm_memory_high_watermark=0.81,
+            cluster_partition_handling="autoheal")
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Change log level and combine `NodeActions` for RabbitMQ restart</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmq_config",
+            instance_id=instance["id"],
+            channel_max=0,
+            connection_max=-1,
+            consumer_timeout=7200000,
+            heartbeat=120,
+            log_exchange_level="info",
+            max_message_size=134217728,
+            queue_index_embed_msgs_below=4096,
+            vm_memory_high_watermark=0.81,
+            cluster_partition_handling="autoheal")
+        list_nodes = cloudamqp.get_nodes(instance_id=instance["id"])
+        node_action = cloudamqp.NodeActions("node_action",
+            instance_id=instance["id"],
+            action="cluster.restart",
+            opts = pulumi.ResourceOptions(depends_on=[rabbitmq_config]))
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>
+                Only change log level for exchange. All other values will be read from the RabbitMQ
+                configuration.
+              </i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        rabbit_config = cloudamqp.RabbitConfiguration("rabbit_config",
+            instance_id=instance["id"],
+            log_exchange_level="info")
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>
+                MQTT and SSL configuration and combine `NodeActions` for RabbitMQ restart
+              </i>
+            </b>
+          </summary>
+
+        SSL certificate-based authentication for MQTT connections requires peer certificate verification.
+        Set the following when enabling `mqtt_ssl_cert_login`:
+
+        - `ssl_options_fail_if_no_peer_cert` = ***true***
+        - `ssl_options_verify` = ***verify_peer***
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmq_config",
+            instance_id=instance["id"],
+            mqtt_vhost=instance["vhost"],
+            mqtt_exchange="amq.topic",
+            mqtt_ssl_cert_login=True,
+            ssl_options_fail_if_no_peer_cert=True,
+            ssl_options_verify="verify_peer")
+        nodes = cloudamqp.get_nodes(instance_id=instance["id"])
+        node_action = cloudamqp.NodeActions("node_action",
+            instance_id=instance["id"],
+            node_name=nodes.nodes[0].name,
+            action="restart",
+            opts = pulumi.ResourceOptions(depends_on=[rabbitmq_config]))
+        ```
+
+        </details>
+
+        ## Argument threshold values
+
+        ### heartbeat
+
+        | Type | Default | Min  | Affect |
+        |---|---|---|---|
+        | int | 120 | 0 | Only effects new connection |
+
+        ### connection_max
+
+        | Type | Default | Min  | Affect |
+        |---|---|---|---|
+        | int | -1 | 1 | Applied immediately (RabbitMQ restart required before 3.11.13) |
+
+        Note: -1 in the provider corresponds to INFINITY in the RabbitMQ config
+
+        ### channel_max
+
+        | Type | Default | Min | Affect |
+        |---|---|---|---|
+        | int | 128 | 0 | Only effects new connections |
+
+        Note: 0 means "no limit"
+
+        ### consumer_timeout
+
+        | Type | Default | Min | Max | Unit | Affect |
+        |---|---|---|---|---|---|
+        | int | 7200000 | 10000 | 86400000 | milliseconds | Only effects new channels |
+
+        Note: -1 in the provider corresponds to false (disable) in the RabbitMQ config
+
+        ### vm_memory_high_watermark
+
+        | Type | Default | Min | Max | Affect |
+        |---|---|---|---|---|
+         | float | 0.81 | 0.4 | 0.9 | Applied immediately |
+
+        ### queue_index_embed_msgs_below
+
+        | Type | Default | Min | Max | Unit | Affect |
+        |---|---|---|---|---|---|
+        | int | 4096 | 0 | 10485760 | bytes | Applied immediately for new queues |
+
+        Note: Existing queues requires restart
+
+        ### max_message_size
+
+        | Type | Default | Min | Max | Unit | Affect |
+        |---|---|---|---|---|---|
+        | int | 134217728 | 1 | 536870912 | bytes | Only effects new channels |
+
+        ### log_exchange_level
+
+        | Type | Default | Affect | Allowed values |
+        |---|---|---| --- |
+        | string | error | RabbitMQ restart required | `debug, info, warning, error, critical, none` |
+
+        ### cluster_partition_handling
+
+        | Type  | Affect | Allowed values |
+        |---|---|---|
+        | string | Applied immediately | `autoheal, pause_minority, ignore` |
+
+        Recommended setting for cluster_partition_handling: `autoheal` for cluster with 1-2
+        nodes, `pause_minority` for cluster with 3 or more nodes. While `ignore` setting is not recommended.
+
+        ### message_interceptors_timestamp_overwrite
+
+        | Type  | Affect | Allowed values |
+        |---|---|---|
+        | string | RabbitMQ restart required | `enabled_with_overwrite, enabled, disabled` |
+
+        Note: Corresponds to setting `message_interceptors.incoming.set_header_timestamp.overwrite`
+
+        ### mqtt_vhost
+
+        | Type  | Affect |
+        | --- | --- |
+        | string | Only affects new connections |
+
+        Note: A vhost is automatically created when `Instance` is created. This attribute defaults to that vhost (I.e. `cloudamqp_instance.instance.vhost`).
+
+        ### mqtt_exchange
+
+        | Type  | Affect |
+        | --- | --- |
+        | string | Only affects new connections |
+
+        ### mqtt_ssl_cert_login
+
+        | Type  | Affect |
+        | --- | --- |
+        | bool | RabbitMQ restart required |
+
+        Note: When enabled, `rabbit.ssl_options.fail_if_no_peer_cert` should be set to ***true*** and
+        `rabbit.ssl_options.verify` should be set to ***verify_peer*** for it to work properly.
+
+        ### ssl_cert_login_from
+
+        | Type  | Affect | Allowed values |
+        | --- | --- | --- |
+        | string | Only affects new connections | `common_name`, `distinguished_name` |
+
+        ### ssl_options_fail_if_no_peer_cert
+
+        | Type  | Affect |
+        | --- | --- |
+        | string | RabbitMQ restart required |
+
+        Note: When enabled, `rabbit.ssl_options.verify` must be set to ***verify_peer***.
+
+        ### ssl_options_verify
+
+        | Type  | Affect | Allowed values |
+        | --- | --- | --- |
+        | string | RabbitMQ restart required | `verify_none`, `verify_peer` |
+
+        Note: `verify_peer` validates the client's certificate chain, `verify_none` disables verification.
+
+        ## Dependency
+
+        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+        ## Known issues
+
+        <details>
+          <summary>Cannot set heartbeat=0 when creating this resource</summary>
+
+        > **Note:** This is no longer the case from [v1.35.0].
+
+        The provider is built by older `Terraform Plugin SDK` which doesn't support nullable configuration
+        values. Instead the values will be set to it's default value based on it's schema primitive type.
+
+        * schema.TypeString = ""
+        * schema.TypeInt = 0
+        * schema.TypeFloat = 0.0
+        * schema.TypeBool = false
+
+        During initial create of this resource, we need to exclude all arguments that can take these default
+        values. Argument such as `hearbeat`, `channel_max`, etc. cannot be set to its default value, 0 in
+        these cases. Current workaround is to use the default value in the initial create run, then change
+        to the wanted value in the re-run.
+
+        Will be solved once we migrate the current provider to `Terraform Plugin Framework`.
+
+        </details>
+
+        [CloudAMQP API list intances]: https://docs.cloudamqp.com/index.html#tag/instances/get/instances
+        [v1.35.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.35.0
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -729,29 +997,297 @@ class RabbitConfiguration(pulumi.CustomResource):
                  args: RabbitConfigurationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Import
+        This resource allows you update RabbitMQ config.
 
-        `cloudamqp_rabbitmq_configuration` can be imported using the CloudAMQP instance identifier.  To
+        Only available for dedicated subscription plans running ***RabbitMQ***.
 
-        retrieve the identifier, use [CloudAMQP API list intances].
+        ## Example Usage
 
-        From Terraform v1.5.0, the `import` block can be used to import this resource:
+        <details>
+          <summary>
+            <b>
+              <i>RabbitMQ configuration and using 0 values</i>
+            </b>
+          </summary>
 
-        hcl
+        From [v1.35.0] and migrating this resource to Terraform plugin Framework.
+        It's now possible to use 0 values in the configuration.
 
-        import {
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
 
-          to = cloudamqp_rabbitmq_configuration.config
-
-          id = cloudamqp_instance.instance.id
-
-        }
-
-        Or use Terraform CLI:
-
-        ```sh
-        $ pulumi import cloudamqp:index/rabbitConfiguration:RabbitConfiguration config <instance_id>`
+        rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmq_config",
+            instance_id=instance["id"],
+            heartbeat=0)
         ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>RabbitMQ configuration with default values</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmq_config",
+            instance_id=instance["id"],
+            channel_max=0,
+            connection_max=-1,
+            consumer_timeout=7200000,
+            heartbeat=120,
+            log_exchange_level="error",
+            max_message_size=134217728,
+            queue_index_embed_msgs_below=4096,
+            vm_memory_high_watermark=0.81,
+            cluster_partition_handling="autoheal")
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Change log level and combine `NodeActions` for RabbitMQ restart</i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmq_config",
+            instance_id=instance["id"],
+            channel_max=0,
+            connection_max=-1,
+            consumer_timeout=7200000,
+            heartbeat=120,
+            log_exchange_level="info",
+            max_message_size=134217728,
+            queue_index_embed_msgs_below=4096,
+            vm_memory_high_watermark=0.81,
+            cluster_partition_handling="autoheal")
+        list_nodes = cloudamqp.get_nodes(instance_id=instance["id"])
+        node_action = cloudamqp.NodeActions("node_action",
+            instance_id=instance["id"],
+            action="cluster.restart",
+            opts = pulumi.ResourceOptions(depends_on=[rabbitmq_config]))
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>
+                Only change log level for exchange. All other values will be read from the RabbitMQ
+                configuration.
+              </i>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        rabbit_config = cloudamqp.RabbitConfiguration("rabbit_config",
+            instance_id=instance["id"],
+            log_exchange_level="info")
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>
+                MQTT and SSL configuration and combine `NodeActions` for RabbitMQ restart
+              </i>
+            </b>
+          </summary>
+
+        SSL certificate-based authentication for MQTT connections requires peer certificate verification.
+        Set the following when enabling `mqtt_ssl_cert_login`:
+
+        - `ssl_options_fail_if_no_peer_cert` = ***true***
+        - `ssl_options_verify` = ***verify_peer***
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmq_config",
+            instance_id=instance["id"],
+            mqtt_vhost=instance["vhost"],
+            mqtt_exchange="amq.topic",
+            mqtt_ssl_cert_login=True,
+            ssl_options_fail_if_no_peer_cert=True,
+            ssl_options_verify="verify_peer")
+        nodes = cloudamqp.get_nodes(instance_id=instance["id"])
+        node_action = cloudamqp.NodeActions("node_action",
+            instance_id=instance["id"],
+            node_name=nodes.nodes[0].name,
+            action="restart",
+            opts = pulumi.ResourceOptions(depends_on=[rabbitmq_config]))
+        ```
+
+        </details>
+
+        ## Argument threshold values
+
+        ### heartbeat
+
+        | Type | Default | Min  | Affect |
+        |---|---|---|---|
+        | int | 120 | 0 | Only effects new connection |
+
+        ### connection_max
+
+        | Type | Default | Min  | Affect |
+        |---|---|---|---|
+        | int | -1 | 1 | Applied immediately (RabbitMQ restart required before 3.11.13) |
+
+        Note: -1 in the provider corresponds to INFINITY in the RabbitMQ config
+
+        ### channel_max
+
+        | Type | Default | Min | Affect |
+        |---|---|---|---|
+        | int | 128 | 0 | Only effects new connections |
+
+        Note: 0 means "no limit"
+
+        ### consumer_timeout
+
+        | Type | Default | Min | Max | Unit | Affect |
+        |---|---|---|---|---|---|
+        | int | 7200000 | 10000 | 86400000 | milliseconds | Only effects new channels |
+
+        Note: -1 in the provider corresponds to false (disable) in the RabbitMQ config
+
+        ### vm_memory_high_watermark
+
+        | Type | Default | Min | Max | Affect |
+        |---|---|---|---|---|
+         | float | 0.81 | 0.4 | 0.9 | Applied immediately |
+
+        ### queue_index_embed_msgs_below
+
+        | Type | Default | Min | Max | Unit | Affect |
+        |---|---|---|---|---|---|
+        | int | 4096 | 0 | 10485760 | bytes | Applied immediately for new queues |
+
+        Note: Existing queues requires restart
+
+        ### max_message_size
+
+        | Type | Default | Min | Max | Unit | Affect |
+        |---|---|---|---|---|---|
+        | int | 134217728 | 1 | 536870912 | bytes | Only effects new channels |
+
+        ### log_exchange_level
+
+        | Type | Default | Affect | Allowed values |
+        |---|---|---| --- |
+        | string | error | RabbitMQ restart required | `debug, info, warning, error, critical, none` |
+
+        ### cluster_partition_handling
+
+        | Type  | Affect | Allowed values |
+        |---|---|---|
+        | string | Applied immediately | `autoheal, pause_minority, ignore` |
+
+        Recommended setting for cluster_partition_handling: `autoheal` for cluster with 1-2
+        nodes, `pause_minority` for cluster with 3 or more nodes. While `ignore` setting is not recommended.
+
+        ### message_interceptors_timestamp_overwrite
+
+        | Type  | Affect | Allowed values |
+        |---|---|---|
+        | string | RabbitMQ restart required | `enabled_with_overwrite, enabled, disabled` |
+
+        Note: Corresponds to setting `message_interceptors.incoming.set_header_timestamp.overwrite`
+
+        ### mqtt_vhost
+
+        | Type  | Affect |
+        | --- | --- |
+        | string | Only affects new connections |
+
+        Note: A vhost is automatically created when `Instance` is created. This attribute defaults to that vhost (I.e. `cloudamqp_instance.instance.vhost`).
+
+        ### mqtt_exchange
+
+        | Type  | Affect |
+        | --- | --- |
+        | string | Only affects new connections |
+
+        ### mqtt_ssl_cert_login
+
+        | Type  | Affect |
+        | --- | --- |
+        | bool | RabbitMQ restart required |
+
+        Note: When enabled, `rabbit.ssl_options.fail_if_no_peer_cert` should be set to ***true*** and
+        `rabbit.ssl_options.verify` should be set to ***verify_peer*** for it to work properly.
+
+        ### ssl_cert_login_from
+
+        | Type  | Affect | Allowed values |
+        | --- | --- | --- |
+        | string | Only affects new connections | `common_name`, `distinguished_name` |
+
+        ### ssl_options_fail_if_no_peer_cert
+
+        | Type  | Affect |
+        | --- | --- |
+        | string | RabbitMQ restart required |
+
+        Note: When enabled, `rabbit.ssl_options.verify` must be set to ***verify_peer***.
+
+        ### ssl_options_verify
+
+        | Type  | Affect | Allowed values |
+        | --- | --- | --- |
+        | string | RabbitMQ restart required | `verify_none`, `verify_peer` |
+
+        Note: `verify_peer` validates the client's certificate chain, `verify_none` disables verification.
+
+        ## Dependency
+
+        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+        ## Known issues
+
+        <details>
+          <summary>Cannot set heartbeat=0 when creating this resource</summary>
+
+        > **Note:** This is no longer the case from [v1.35.0].
+
+        The provider is built by older `Terraform Plugin SDK` which doesn't support nullable configuration
+        values. Instead the values will be set to it's default value based on it's schema primitive type.
+
+        * schema.TypeString = ""
+        * schema.TypeInt = 0
+        * schema.TypeFloat = 0.0
+        * schema.TypeBool = false
+
+        During initial create of this resource, we need to exclude all arguments that can take these default
+        values. Argument such as `hearbeat`, `channel_max`, etc. cannot be set to its default value, 0 in
+        these cases. Current workaround is to use the default value in the initial create run, then change
+        to the wanted value in the re-run.
+
+        Will be solved once we migrate the current provider to `Terraform Plugin Framework`.
+
+        </details>
+
+        [CloudAMQP API list intances]: https://docs.cloudamqp.com/index.html#tag/instances/get/instances
+        [v1.35.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.35.0
 
         :param str resource_name: The name of the resource.
         :param RabbitConfigurationArgs args: The arguments to use to populate this resource's properties.

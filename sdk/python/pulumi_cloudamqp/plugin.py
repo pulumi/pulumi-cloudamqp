@@ -259,31 +259,137 @@ class Plugin(pulumi.CustomResource):
                  timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
-        ## Import
+        This resource allows you to enable or disable Rabbit MQ plugins.
 
-        `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP
+        Only available for dedicated subscription plans running ***RabbitMQ***.
 
-        instance identifier (CSV separated). To retrieve list of available community plugins, use
+        ## Example Usage
 
-        [CloudAMQP API list plugins].
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
 
-        From Terraform v1.5.0, the `import` block can be used to import this resource:
-
-        hcl
-
-        import {
-
-          to = cloudamqp_plugin.<resource_name>
-
-          id = format("<plugin_name>,%s", cloudamqp_instance.instance.id)
-
-        }
-
-        Or use Terraform CLI:
-
-        ```sh
-        $ pulumi import cloudamqp:index/plugin:Plugin <resource_name> <plugin_name>,<instance_id>`
+        rabbitmq_top = cloudamqp.Plugin("rabbitmq_top",
+            instance_id=instance["id"],
+            name="rabbitmq_top",
+            enabled=True)
         ```
+
+        <details>
+          <summary>
+            <b>
+              <i>Enable multiple plugins v1.19.1 and older versions</i>
+            </b>
+          </summary>
+
+        Rabbit MQ can only change one plugin at a time. It will fail if multiple plugins resources are used,
+        unless by creating dependencies with `depend_on` between the resources. Once one plugin has been
+        enabled, the other will continue. See example below.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        rabbitmq_top = cloudamqp.Plugin("rabbitmq_top",
+            instance_id=instance["id"],
+            name="rabbitmq_top",
+            enabled=True)
+        rabbitmq_amqp10 = cloudamqp.Plugin("rabbitmq_amqp1_0",
+            instance_id=instance["id"],
+            name="rabbitmq_amqp1_0",
+            enabled=True,
+            opts = pulumi.ResourceOptions(depends_on=[rabbitmq_top]))
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Enable multiple plugins from </i>
+              <a href="https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.19.2">v1.19.2</a>
+            </b>
+          </summary>
+
+        CloudAMQP Terraform provider [v1.19.2] support asynchronous request for plugin actions.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        rabbitmq_top = cloudamqp.Plugin("rabbitmq_top",
+            instance_id=instance["id"],
+            name="rabbitmq_top",
+            enabled=True)
+        rabbitmq_amqp10 = cloudamqp.Plugin("rabbitmq_amqp1_0",
+            instance_id=instance["id"],
+            name="rabbitmq_amqp1_0",
+            enabled=True)
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Faster instance destroy when running `terraform destroy` from </i>
+              <a href="https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.27.0">v1.27.0</a>
+            </b>
+          </summary>
+
+        CloudAMQP Terraform provider [v1.27.0] enables faster `Instance` destroy when running
+        `terraform destroy`.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        instance = cloudamqp.Instance("instance",
+            name="terraform-cloudamqp-instance",
+            plan="bunny-1",
+            region="amazon-web-services::us-west-1",
+            tags=["terraform"])
+        rabbitmq_top = cloudamqp.Plugin("rabbitmq_top",
+            instance_id=instance.id,
+            name="rabbitmq_top",
+            enabled=True)
+        rabbitmq_amqp10 = cloudamqp.Plugin("rabbitmq_amqp1_0",
+            instance_id=instance.id,
+            name="rabbitmq_amqp1_0",
+            enabled=True)
+        ```
+
+        </details>
+
+        ## Dependency
+
+        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+        If multiple plugins should be enable, create dependencies between the plugin resources. See example
+        above.
+
+        ## Required plugins
+
+        Plugins that is not needed to be managed by the provider since they will always be enabled. We have
+        made `rabbitmq_prometheus` required for all clusters since RabbitMQ version 3.10.0.
+
+        | Name                      | Version |
+        |---------------------------|---------|
+        | rabbitmq_management       | all     |
+        | rabbitmq_management_agent | all     |
+        | rabbitmq_prometheus       | 3.10.0  |
+
+        ## Enable faster instance destroy
+
+        When running `terraform destroy` this resource will try to disable the managed plugin before
+        deleting `Instance`. This is not necessary since the servers will be deleted.
+
+        Set `enable_faster_instance_destroy` to ***true*** in the provider configuration to skip this.
+
+        [CloudAMQP API list plugins]: https://docs.cloudamqp.com/instance-api.html#tag/plugins/get/plugins
+        [v1.19.2]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.19.2
+        [v1.27.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.27.0
+        [v1.29.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.29.0
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -306,31 +412,137 @@ class Plugin(pulumi.CustomResource):
                  args: PluginArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Import
+        This resource allows you to enable or disable Rabbit MQ plugins.
 
-        `cloudamqp_plugin` can be imported using the name argument of the resource together with CloudAMQP
+        Only available for dedicated subscription plans running ***RabbitMQ***.
 
-        instance identifier (CSV separated). To retrieve list of available community plugins, use
+        ## Example Usage
 
-        [CloudAMQP API list plugins].
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
 
-        From Terraform v1.5.0, the `import` block can be used to import this resource:
-
-        hcl
-
-        import {
-
-          to = cloudamqp_plugin.<resource_name>
-
-          id = format("<plugin_name>,%s", cloudamqp_instance.instance.id)
-
-        }
-
-        Or use Terraform CLI:
-
-        ```sh
-        $ pulumi import cloudamqp:index/plugin:Plugin <resource_name> <plugin_name>,<instance_id>`
+        rabbitmq_top = cloudamqp.Plugin("rabbitmq_top",
+            instance_id=instance["id"],
+            name="rabbitmq_top",
+            enabled=True)
         ```
+
+        <details>
+          <summary>
+            <b>
+              <i>Enable multiple plugins v1.19.1 and older versions</i>
+            </b>
+          </summary>
+
+        Rabbit MQ can only change one plugin at a time. It will fail if multiple plugins resources are used,
+        unless by creating dependencies with `depend_on` between the resources. Once one plugin has been
+        enabled, the other will continue. See example below.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        rabbitmq_top = cloudamqp.Plugin("rabbitmq_top",
+            instance_id=instance["id"],
+            name="rabbitmq_top",
+            enabled=True)
+        rabbitmq_amqp10 = cloudamqp.Plugin("rabbitmq_amqp1_0",
+            instance_id=instance["id"],
+            name="rabbitmq_amqp1_0",
+            enabled=True,
+            opts = pulumi.ResourceOptions(depends_on=[rabbitmq_top]))
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Enable multiple plugins from </i>
+              <a href="https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.19.2">v1.19.2</a>
+            </b>
+          </summary>
+
+        CloudAMQP Terraform provider [v1.19.2] support asynchronous request for plugin actions.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        rabbitmq_top = cloudamqp.Plugin("rabbitmq_top",
+            instance_id=instance["id"],
+            name="rabbitmq_top",
+            enabled=True)
+        rabbitmq_amqp10 = cloudamqp.Plugin("rabbitmq_amqp1_0",
+            instance_id=instance["id"],
+            name="rabbitmq_amqp1_0",
+            enabled=True)
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Faster instance destroy when running `terraform destroy` from </i>
+              <a href="https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.27.0">v1.27.0</a>
+            </b>
+          </summary>
+
+        CloudAMQP Terraform provider [v1.27.0] enables faster `Instance` destroy when running
+        `terraform destroy`.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        instance = cloudamqp.Instance("instance",
+            name="terraform-cloudamqp-instance",
+            plan="bunny-1",
+            region="amazon-web-services::us-west-1",
+            tags=["terraform"])
+        rabbitmq_top = cloudamqp.Plugin("rabbitmq_top",
+            instance_id=instance.id,
+            name="rabbitmq_top",
+            enabled=True)
+        rabbitmq_amqp10 = cloudamqp.Plugin("rabbitmq_amqp1_0",
+            instance_id=instance.id,
+            name="rabbitmq_amqp1_0",
+            enabled=True)
+        ```
+
+        </details>
+
+        ## Dependency
+
+        This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+        If multiple plugins should be enable, create dependencies between the plugin resources. See example
+        above.
+
+        ## Required plugins
+
+        Plugins that is not needed to be managed by the provider since they will always be enabled. We have
+        made `rabbitmq_prometheus` required for all clusters since RabbitMQ version 3.10.0.
+
+        | Name                      | Version |
+        |---------------------------|---------|
+        | rabbitmq_management       | all     |
+        | rabbitmq_management_agent | all     |
+        | rabbitmq_prometheus       | 3.10.0  |
+
+        ## Enable faster instance destroy
+
+        When running `terraform destroy` this resource will try to disable the managed plugin before
+        deleting `Instance`. This is not necessary since the servers will be deleted.
+
+        Set `enable_faster_instance_destroy` to ***true*** in the provider configuration to skip this.
+
+        [CloudAMQP API list plugins]: https://docs.cloudamqp.com/instance-api.html#tag/plugins/get/plugins
+        [v1.19.2]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.19.2
+        [v1.27.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.27.0
+        [v1.29.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.29.0
 
         :param str resource_name: The name of the resource.
         :param PluginArgs args: The arguments to use to populate this resource's properties.

@@ -10,29 +10,132 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
-    /// ## Import
+    /// This resource allows you to add, update or remove a swebhook for a specific vhost and queue.
     /// 
-    /// `cloudamqp_webhook` can be imported using the resource identifier together with CloudAMQP instance
+    /// Only available for dedicated subscription plans.
     /// 
-    /// identifier (CSV separated). To retrieve the resource identifier, use [CloudAMQP API list webhooks].
+    /// ## Example Usage
     /// 
-    /// From Terraform v1.5.0, the `import` block can be used to import this resource:
+    /// &lt;details&gt;
+    ///  &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Enable webhook from &lt;/i&gt;
+    ///       &lt;a href="https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.30.0"&gt;v1.30.0&lt;/a&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
     /// 
-    /// hcl
+    /// Support to updating the resource which makes the argument no longer require `ForceNew` behaviour.
+    /// The argument `RetryInterval` have also been removed.
     /// 
-    /// import {
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    ///   to = cloudamqp_webhook.webhook_queue
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var webhookQueue = new CloudAmqp.Webhook("webhook_queue", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Vhost = instance.Vhost,
+    ///         Queue = "webhook-queue",
+    ///         WebhookUri = "https://example.com/webhook?key=secret",
+    ///         Concurrency = 5,
+    ///     });
     /// 
-    ///   id = format("&lt;id&gt;,%s", cloudamqp_instance.instance.id)
-    /// 
-    /// }
-    /// 
-    /// Or use Terraform CLI:
-    /// 
-    /// ```sh
-    /// $ pulumi import cloudamqp:index/webhook:Webhook webhook_queue &lt;id&gt;,&lt;instance_id&gt;`
+    /// });
     /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///  &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Enable webhook before v1.30.0&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// For more information see below versions section.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var webhookQueue = new CloudAmqp.Webhook("webhook_queue", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Vhost = instance.Vhost,
+    ///         Queue = "webhook-queue",
+    ///         WebhookUri = "https://example.com/webhook?key=secret",
+    ///         RetryInterval = 5,
+    ///         Concurrency = 5,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// ## Dependency
+    /// 
+    /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+    /// 
+    /// ## Versions
+    /// 
+    /// Information for older versions
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;i&gt;Before v1.30.0&lt;/i&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    ///   Versions before v1.30.0 doesn't support updating the resource, therefore all arguments using the
+    ///   `ForceNew` behaviour. Any changes to an argument will destroy and re-create the resource. The
+    ///   argument `RetryInterval` is set to required, even if it's no longer supported in the backend.
+    /// 
+    ///   &lt;b&gt;Example Usage&lt;/b&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///   var webhookQueue = new CloudAmqp.Webhook("webhook_queue", new()
+    ///   {
+    ///       InstanceId = instance.Id,
+    ///       Vhost = instance.Vhost,
+    ///       Queue = "webhook-queue",
+    ///       WebhookUri = "https://example.com/webhook?key=secret",
+    ///       RetryInterval = 5,
+    ///       Concurrency = 5,
+    ///   });
+    /// 
+    /// });
+    /// ```
+    /// 
+    ///   **Argument Reference**
+    /// 
+    ///   The following arguments are supported:
+    /// 
+    ///   &gt; * `InstanceId`     - (Required/ForceNew) The CloudAMQP instance ID.
+    /// &gt; * `Vhost`           - (Required/ForceNew) The vhost the queue resides in.
+    /// &gt; * `Queue`           - (Required/ForceNew) A (durable) queue on your RabbitMQ instance.
+    /// &gt; * `WebhookUri`     - (Required/ForceNew) A POST request will be made for each message in the
+    /// &gt;                             queue to this endpoint.
+    /// &gt; * `RetryInterval`  - (Required/ForceNew) How often we retry if your endpoint fails (in seconds).
+    /// &gt; * `Concurrency`     - (Required/ForceNew) Max simultaneous requests to the endpoint.
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// [CloudAMQP API list webhooks]: https://docs.cloudamqp.com/instance-api.html#tag/webhooks/get/webhooks
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/webhook:Webhook")]
     public partial class Webhook : global::Pulumi.CustomResource

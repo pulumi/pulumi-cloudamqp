@@ -479,34 +479,6 @@ class Notification(pulumi.CustomResource):
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 
-        ## Import
-
-        `cloudamqp_notification` can be imported using the resource identifier together with CloudAMQP
-
-        instance identifier (CSV separated). To retrieve the resource identifier, use
-
-        [CloudAMQP API list recipients].
-
-        From Terraform v1.5.0, the `import` block can be used to import this resource:
-
-        hcl
-
-        import {
-
-          to = cloudamqp_notification.recipient
-
-          id = format("<id>,%s", cloudamqp_instance.instance.id)
-
-        }
-
-        Or use Terraform CLI:
-
-        ```sh
-        $ pulumi import cloudamqp:index/notification:Notification recipient <id>,<instance_id>`
-        ```
-
-        [CloudAMQP API list recipients]: https://docs.cloudamqp.com/instance-api.html#tag/alarms/get/alarms/recipients
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
@@ -722,34 +694,6 @@ class Notification(pulumi.CustomResource):
         ## Dependency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-
-        ## Import
-
-        `cloudamqp_notification` can be imported using the resource identifier together with CloudAMQP
-
-        instance identifier (CSV separated). To retrieve the resource identifier, use
-
-        [CloudAMQP API list recipients].
-
-        From Terraform v1.5.0, the `import` block can be used to import this resource:
-
-        hcl
-
-        import {
-
-          to = cloudamqp_notification.recipient
-
-          id = format("<id>,%s", cloudamqp_instance.instance.id)
-
-        }
-
-        Or use Terraform CLI:
-
-        ```sh
-        $ pulumi import cloudamqp:index/notification:Notification recipient <id>,<instance_id>`
-        ```
-
-        [CloudAMQP API list recipients]: https://docs.cloudamqp.com/instance-api.html#tag/alarms/get/alarms/recipients
 
         :param str resource_name: The name of the resource.
         :param NotificationArgs args: The arguments to use to populate this resource's properties.

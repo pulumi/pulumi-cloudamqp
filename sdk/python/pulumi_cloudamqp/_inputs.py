@@ -45,24 +45,19 @@ __all__ = [
     'TrustStoreHttpArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class ExtraDiskSizeNodeArgsDict(TypedDict):
-        additional_disk_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Additional added disk size
-        """
-        disk_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Subscription plan disk size
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Name of the node.
-        """
-elif False:
-    ExtraDiskSizeNodeArgsDict: TypeAlias = Mapping[str, Any]
+class ExtraDiskSizeNodeArgsDict(TypedDict):
+    additional_disk_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Additional added disk size
+    """
+    disk_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Subscription plan disk size
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Name of the node.
+    """
 
 @pulumi.input_type
 class ExtraDiskSizeNodeArgs:
@@ -119,22 +114,19 @@ class ExtraDiskSizeNodeArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class InstanceCopySettingArgsDict(TypedDict):
-        settings: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Array of one or more settings to be copied. Allowed values:
-        [alarms, config, definitions, firewall, logs, metrics, plugins]
+class InstanceCopySettingArgsDict(TypedDict):
+    settings: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Array of one or more settings to be copied. Allowed values:
+    [alarms, config, definitions, firewall, logs, metrics, plugins]
 
-        See more below, [copy settings].
-        """
-        subscription_id: pulumi.Input[_builtins.str]
-        """
-        Instance identifier of the CloudAMQP instance to copy the settings
-        from.
-        """
-elif False:
-    InstanceCopySettingArgsDict: TypeAlias = Mapping[str, Any]
+    See more below, [copy settings].
+    """
+    subscription_id: pulumi.Input[_builtins.str]
+    """
+    Instance identifier of the CloudAMQP instance to copy the settings
+    from.
+    """
 
 @pulumi.input_type
 class InstanceCopySettingArgs:
@@ -181,14 +173,11 @@ class InstanceCopySettingArgs:
         pulumi.set(self, "subscription_id", value)
 
 
-if not MYPY:
-    class IntegrationMetricPrometheusAzureMonitorArgsDict(TypedDict):
-        connection_string: pulumi.Input[_builtins.str]
-        """
-        Azure Application Insights Connection String for authentication.
-        """
-elif False:
-    IntegrationMetricPrometheusAzureMonitorArgsDict: TypeAlias = Mapping[str, Any]
+class IntegrationMetricPrometheusAzureMonitorArgsDict(TypedDict):
+    connection_string: pulumi.Input[_builtins.str]
+    """
+    Azure Application Insights Connection String for authentication.
+    """
 
 @pulumi.input_type
 class IntegrationMetricPrometheusAzureMonitorArgs:
@@ -212,26 +201,23 @@ class IntegrationMetricPrometheusAzureMonitorArgs:
         pulumi.set(self, "connection_string", value)
 
 
-if not MYPY:
-    class IntegrationMetricPrometheusCloudwatchV3ArgsDict(TypedDict):
-        iam_external_id: pulumi.Input[_builtins.str]
-        """
-        AWS IAM external ID for role assumption.
-        """
-        iam_role: pulumi.Input[_builtins.str]
-        """
-        AWS IAM role ARN with PutMetricData permission for CloudWatch integration.
-        """
-        region: pulumi.Input[_builtins.str]
-        """
-        AWS region for CloudWatch metrics.
-        """
-        tags: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Additional tags to attach to metrics. Format: `key=value,key2=value2`.
-        """
-elif False:
-    IntegrationMetricPrometheusCloudwatchV3ArgsDict: TypeAlias = Mapping[str, Any]
+class IntegrationMetricPrometheusCloudwatchV3ArgsDict(TypedDict):
+    iam_external_id: pulumi.Input[_builtins.str]
+    """
+    AWS IAM external ID for role assumption.
+    """
+    iam_role: pulumi.Input[_builtins.str]
+    """
+    AWS IAM role ARN with PutMetricData permission for CloudWatch integration.
+    """
+    region: pulumi.Input[_builtins.str]
+    """
+    AWS region for CloudWatch metrics.
+    """
+    tags: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+    """
 
 @pulumi.input_type
 class IntegrationMetricPrometheusCloudwatchV3Args:
@@ -301,26 +287,23 @@ class IntegrationMetricPrometheusCloudwatchV3Args:
         pulumi.set(self, "tags", value)
 
 
-if not MYPY:
-    class IntegrationMetricPrometheusDatadogV3ArgsDict(TypedDict):
-        api_key: pulumi.Input[_builtins.str]
-        """
-        Datadog API key for authentication.
-        """
-        region: pulumi.Input[_builtins.str]
-        """
-        Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`.
-        """
-        rabbitmq_dashboard_metrics_format: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Enable metric name transformation to match Datadog's RabbitMQ dashboard format. Default: `false`. **Note:** This option is only available for RabbitMQ clusters, not LavinMQ clusters.
-        """
-        tags: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Additional tags to attach to metrics. Format: `key=value,key2=value2`.
-        """
-elif False:
-    IntegrationMetricPrometheusDatadogV3ArgsDict: TypeAlias = Mapping[str, Any]
+class IntegrationMetricPrometheusDatadogV3ArgsDict(TypedDict):
+    api_key: pulumi.Input[_builtins.str]
+    """
+    Datadog API key for authentication.
+    """
+    region: pulumi.Input[_builtins.str]
+    """
+    Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`.
+    """
+    rabbitmq_dashboard_metrics_format: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Enable metric name transformation to match Datadog's RabbitMQ dashboard format. Default: `false`. **Note:** This option is only available for RabbitMQ clusters, not LavinMQ clusters.
+    """
+    tags: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+    """
 
 @pulumi.input_type
 class IntegrationMetricPrometheusDatadogV3Args:
@@ -391,22 +374,19 @@ class IntegrationMetricPrometheusDatadogV3Args:
         pulumi.set(self, "tags", value)
 
 
-if not MYPY:
-    class IntegrationMetricPrometheusDynatraceArgsDict(TypedDict):
-        access_token: pulumi.Input[_builtins.str]
-        """
-        Dynatrace access token with 'Ingest metrics' permission.
-        """
-        environment_id: pulumi.Input[_builtins.str]
-        """
-        Dynatrace environment ID.
-        """
-        tags: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Additional tags to attach to metrics. Format: `key=value,key2=value2`.
-        """
-elif False:
-    IntegrationMetricPrometheusDynatraceArgsDict: TypeAlias = Mapping[str, Any]
+class IntegrationMetricPrometheusDynatraceArgsDict(TypedDict):
+    access_token: pulumi.Input[_builtins.str]
+    """
+    Dynatrace access token with 'Ingest metrics' permission.
+    """
+    environment_id: pulumi.Input[_builtins.str]
+    """
+    Dynatrace environment ID.
+    """
+    tags: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+    """
 
 @pulumi.input_type
 class IntegrationMetricPrometheusDynatraceArgs:
@@ -461,22 +441,19 @@ class IntegrationMetricPrometheusDynatraceArgs:
         pulumi.set(self, "tags", value)
 
 
-if not MYPY:
-    class IntegrationMetricPrometheusNewrelicV3ArgsDict(TypedDict):
-        api_key: pulumi.Input[_builtins.str]
-        """
-        New Relic API key for authentication.
-        """
-        region: pulumi.Input[_builtins.str]
-        """
-        New Relic region code. Valid values: `eu`, `us`.
-        """
-        tags: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Additional tags to attach to metrics. Format: `key=value,key2=value2`.
-        """
-elif False:
-    IntegrationMetricPrometheusNewrelicV3ArgsDict: TypeAlias = Mapping[str, Any]
+class IntegrationMetricPrometheusNewrelicV3ArgsDict(TypedDict):
+    api_key: pulumi.Input[_builtins.str]
+    """
+    New Relic API key for authentication.
+    """
+    region: pulumi.Input[_builtins.str]
+    """
+    New Relic region code. Valid values: `eu`, `us`.
+    """
+    tags: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+    """
 
 @pulumi.input_type
 class IntegrationMetricPrometheusNewrelicV3Args:
@@ -531,22 +508,19 @@ class IntegrationMetricPrometheusNewrelicV3Args:
         pulumi.set(self, "tags", value)
 
 
-if not MYPY:
-    class IntegrationMetricPrometheusSplunkV2ArgsDict(TypedDict):
-        endpoint: pulumi.Input[_builtins.str]
-        """
-        Splunk HEC endpoint URL. Example: `https://your-instance-id.splunkcloud.com:8088/services/collector`.
-        """
-        token: pulumi.Input[_builtins.str]
-        """
-        Splunk HEC (HTTP Event Collector) token for authentication.
-        """
-        tags: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Additional tags to attach to metrics. Format: `key=value,key2=value2`.
-        """
-elif False:
-    IntegrationMetricPrometheusSplunkV2ArgsDict: TypeAlias = Mapping[str, Any]
+class IntegrationMetricPrometheusSplunkV2ArgsDict(TypedDict):
+    endpoint: pulumi.Input[_builtins.str]
+    """
+    Splunk HEC endpoint URL. Example: `https://your-instance-id.splunkcloud.com:8088/services/collector`.
+    """
+    token: pulumi.Input[_builtins.str]
+    """
+    Splunk HEC (HTTP Event Collector) token for authentication.
+    """
+    tags: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+    """
 
 @pulumi.input_type
 class IntegrationMetricPrometheusSplunkV2Args:
@@ -601,36 +575,33 @@ class IntegrationMetricPrometheusSplunkV2Args:
         pulumi.set(self, "tags", value)
 
 
-if not MYPY:
-    class IntegrationMetricPrometheusStackdriverV2ArgsDict(TypedDict):
-        credentials_file: pulumi.Input[_builtins.str]
-        """
-        Base64-encoded Google service account key JSON file with 'Monitoring Metric Writer' permission.
-        """
-        client_email: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Google service account client email (extracted from credentials file).
-        """
-        private_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Google service account private key (extracted from credentials file).
-        """
-        private_key_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Google service account private key ID (extracted from credentials file).
-        """
-        project_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Google Cloud project ID (extracted from credentials file).
-        """
-        tags: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+class IntegrationMetricPrometheusStackdriverV2ArgsDict(TypedDict):
+    credentials_file: pulumi.Input[_builtins.str]
+    """
+    Base64-encoded Google service account key JSON file with 'Monitoring Metric Writer' permission.
+    """
+    client_email: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Google service account client email (extracted from credentials file).
+    """
+    private_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Google service account private key (extracted from credentials file).
+    """
+    private_key_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Google service account private key ID (extracted from credentials file).
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Google Cloud project ID (extracted from credentials file).
+    """
+    tags: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Additional tags to attach to metrics. Format: `key=value,key2=value2`.
 
-        The following computed attributes are available:
-        """
-elif False:
-    IntegrationMetricPrometheusStackdriverV2ArgsDict: TypeAlias = Mapping[str, Any]
+    The following computed attributes are available:
+    """
 
 @pulumi.input_type
 class IntegrationMetricPrometheusStackdriverV2Args:
@@ -738,29 +709,26 @@ class IntegrationMetricPrometheusStackdriverV2Args:
         pulumi.set(self, "tags", value)
 
 
-if not MYPY:
-    class NotificationResponderArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Type of responder. [`team`, `user`, `escalation`, `schedule`]
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Identifier in UUID format
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Name of the responder
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Username of the responder
+class NotificationResponderArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Type of responder. [`team`, `user`, `escalation`, `schedule`]
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Identifier in UUID format
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Name of the responder
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Username of the responder
 
-        Responders of type `team`, `escalation` and `schedule` can use either id or name.
-        While `user` can use either id or username.
-        """
-elif False:
-    NotificationResponderArgsDict: TypeAlias = Mapping[str, Any]
+    Responders of type `team`, `escalation` and `schedule` can use either id or name.
+    While `user` can use either id or username.
+    """
 
 @pulumi.input_type
 class NotificationResponderArgs:
@@ -838,50 +806,47 @@ class NotificationResponderArgs:
         pulumi.set(self, "username", value)
 
 
-if not MYPY:
-    class SecurityFirewallRuleArgsDict(TypedDict):
-        ip: pulumi.Input[_builtins.str]
-        """
-        CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Description name of the rule. e.g. Default.
+class SecurityFirewallRuleArgsDict(TypedDict):
+    ip: pulumi.Input[_builtins.str]
+    """
+    CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Description name of the rule. e.g. Default.
 
-        Pre-defined services for RabbitMQ:
+    Pre-defined services for RabbitMQ:
 
-        | Service name | Port  |
-        |--------------|-------|
-        | AMQP         | 5672  |
-        | AMQPS        | 5671  |
-        | HTTPS        | 443   |
-        | MQTT         | 1883  |
-        | MQTTS        | 8883  |
-        | STOMP        | 61613 |
-        | STOMPS       | 61614 |
-        | STREAM       | 5552  |
-        | STREAM_SSL   | 5551  |
+    | Service name | Port  |
+    |--------------|-------|
+    | AMQP         | 5672  |
+    | AMQPS        | 5671  |
+    | HTTPS        | 443   |
+    | MQTT         | 1883  |
+    | MQTTS        | 8883  |
+    | STOMP        | 61613 |
+    | STOMPS       | 61614 |
+    | STREAM       | 5552  |
+    | STREAM_SSL   | 5551  |
 
-        Pre-defined services for LavinMQ:
+    Pre-defined services for LavinMQ:
 
-        | Service name | Port  |
-        |--------------|-------|
-        | AMQP         | 5672  |
-        | AMQPS        | 5671  |
-        | HTTPS        | 443   |
-        | MQTT         | 1883  |
-        | MQTTS        | 8883  |
-        """
-        ports: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]
-        """
-        Custom ports to be opened
-        """
-        services: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Pre-defined service ports, see table below
-        """
-elif False:
-    SecurityFirewallRuleArgsDict: TypeAlias = Mapping[str, Any]
+    | Service name | Port  |
+    |--------------|-------|
+    | AMQP         | 5672  |
+    | AMQPS        | 5671  |
+    | HTTPS        | 443   |
+    | MQTT         | 1883  |
+    | MQTTS        | 8883  |
+    """
+    ports: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]
+    """
+    Custom ports to be opened
+    """
+    services: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Pre-defined service ports, see table below
+    """
 
 @pulumi.input_type
 class SecurityFirewallRuleArgs:
@@ -1001,15 +966,12 @@ class SecurityFirewallRuleArgs:
         pulumi.set(self, "services", value)
 
 
-if not MYPY:
-    class TrustStoreFileArgsDict(TypedDict):
-        certificates: NotRequired[pulumi.Input[Sequence[pulumi.Input['TrustStoreFileCertificateArgsDict']]]]
-        """
-        A list of certificate blocks (1-100 certificates). Each
-        certificate block contains:
-        """
-elif False:
-    TrustStoreFileArgsDict: TypeAlias = Mapping[str, Any]
+class TrustStoreFileArgsDict(TypedDict):
+    certificates: NotRequired[pulumi.Input[Sequence[pulumi.Input['TrustStoreFileCertificateArgsDict']]]]
+    """
+    A list of certificate blocks (1-100 certificates). Each
+    certificate block contains:
+    """
 
 @pulumi.input_type
 class TrustStoreFileArgs:
@@ -1036,21 +998,18 @@ class TrustStoreFileArgs:
         pulumi.set(self, "certificates", value)
 
 
-if not MYPY:
-    class TrustStoreFileCertificateArgsDict(TypedDict):
-        content: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        PEM-encoded x.509 formatted leaf certificate content.
+class TrustStoreFileCertificateArgsDict(TypedDict):
+    content: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    PEM-encoded x.509 formatted leaf certificate content.
 
-        Updates require incrementing `version` or changing `key_id`.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A unique identifier for the certificate.
-        """
-elif False:
-    TrustStoreFileCertificateArgsDict: TypeAlias = Mapping[str, Any]
+    Updates require incrementing `version` or changing `key_id`.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A unique identifier for the certificate.
+    """
 
 @pulumi.input_type
 class TrustStoreFileCertificateArgs:
@@ -1097,21 +1056,18 @@ class TrustStoreFileCertificateArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class TrustStoreHttpArgsDict(TypedDict):
-        cacert: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        PEM-encoded CA certificates used to verify the HTTPS connection to
-        the trust store URL. Updates require incrementing `version` or changing `key_id`.
-        """
-        url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        URL to fetch trust store certificates from. RabbitMQ will periodically fetch
-        CA certificates from this URL according to the `refresh_interval`.
-        """
-elif False:
-    TrustStoreHttpArgsDict: TypeAlias = Mapping[str, Any]
+class TrustStoreHttpArgsDict(TypedDict):
+    cacert: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    PEM-encoded CA certificates used to verify the HTTPS connection to
+    the trust store URL. Updates require incrementing `version` or changing `key_id`.
+    """
+    url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    URL to fetch trust store certificates from. RabbitMQ will periodically fetch
+    CA certificates from this URL according to the `refresh_interval`.
+    """
 
 @pulumi.input_type
 class TrustStoreHttpArgs:

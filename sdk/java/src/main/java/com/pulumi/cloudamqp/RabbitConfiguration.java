@@ -17,29 +17,434 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
- * ## Import
+ * This resource allows you update RabbitMQ config.
  * 
- * `cloudamqp_rabbitmq_configuration` can be imported using the CloudAMQP instance identifier.  To
+ * Only available for dedicated subscription plans running ***RabbitMQ***.
  * 
- * retrieve the identifier, use [CloudAMQP API list intances].
+ * ## Example Usage
  * 
- * From Terraform v1.5.0, the `import` block can be used to import this resource:
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;RabbitMQ configuration and using 0 values&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
  * 
- * hcl
+ * From [v1.35.0] and migrating this resource to Terraform plugin Framework.
+ * It&#39;s now possible to use 0 values in the configuration.
  * 
- * import {
+ * <pre>
+ * {@code
+ * package generated_program;
  * 
- *   to = cloudamqp_rabbitmq_configuration.config
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.RabbitConfiguration;
+ * import com.pulumi.cloudamqp.RabbitConfigurationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
  * 
- *   id = cloudamqp_instance.instance.id
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
  * 
+ *     public static void stack(Context ctx) {
+ *         var rabbitmqConfig = new RabbitConfiguration("rabbitmqConfig", RabbitConfigurationArgs.builder()
+ *             .instanceId(instance.id())
+ *             .heartbeat(0)
+ *             .build());
+ * 
+ *     }
  * }
+ * }
+ * </pre>
  * 
- * Or use Terraform CLI:
+ * &lt;/details&gt;
  * 
- * ```sh
- * $ pulumi import cloudamqp:index/rabbitConfiguration:RabbitConfiguration config &lt;instance_id&gt;`
- * ```
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;RabbitMQ configuration with default values&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.RabbitConfiguration;
+ * import com.pulumi.cloudamqp.RabbitConfigurationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var rabbitmqConfig = new RabbitConfiguration("rabbitmqConfig", RabbitConfigurationArgs.builder()
+ *             .instanceId(instance.id())
+ *             .channelMax(0)
+ *             .connectionMax(-1)
+ *             .consumerTimeout(7200000)
+ *             .heartbeat(120)
+ *             .logExchangeLevel("error")
+ *             .maxMessageSize(134217728)
+ *             .queueIndexEmbedMsgsBelow(4096)
+ *             .vmMemoryHighWatermark(0.81)
+ *             .clusterPartitionHandling("autoheal")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Change log level and combine `cloudamqp.NodeActions` for RabbitMQ restart&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.RabbitConfiguration;
+ * import com.pulumi.cloudamqp.RabbitConfigurationArgs;
+ * import com.pulumi.cloudamqp.CloudamqpFunctions;
+ * import com.pulumi.cloudamqp.inputs.GetNodesArgs;
+ * import com.pulumi.cloudamqp.NodeActions;
+ * import com.pulumi.cloudamqp.NodeActionsArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var rabbitmqConfig = new RabbitConfiguration("rabbitmqConfig", RabbitConfigurationArgs.builder()
+ *             .instanceId(instance.id())
+ *             .channelMax(0)
+ *             .connectionMax(-1)
+ *             .consumerTimeout(7200000)
+ *             .heartbeat(120)
+ *             .logExchangeLevel("info")
+ *             .maxMessageSize(134217728)
+ *             .queueIndexEmbedMsgsBelow(4096)
+ *             .vmMemoryHighWatermark(0.81)
+ *             .clusterPartitionHandling("autoheal")
+ *             .build());
+ * 
+ *         final var listNodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
+ *             .instanceId(instance.id())
+ *             .build());
+ * 
+ *         var nodeAction = new NodeActions("nodeAction", NodeActionsArgs.builder()
+ *             .instanceId(instance.id())
+ *             .action("cluster.restart")
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(rabbitmqConfig)
+ *                 .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;
+ *         Only change log level for exchange. All other values will be read from the RabbitMQ
+ *         configuration.
+ *       &lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.RabbitConfiguration;
+ * import com.pulumi.cloudamqp.RabbitConfigurationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var rabbitConfig = new RabbitConfiguration("rabbitConfig", RabbitConfigurationArgs.builder()
+ *             .instanceId(instance.id())
+ *             .logExchangeLevel("info")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;
+ *         MQTT and SSL configuration and combine `cloudamqp.NodeActions` for RabbitMQ restart
+ *       &lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * SSL certificate-based authentication for MQTT connections requires peer certificate verification.
+ * Set the following when enabling `mqttSslCertLogin`:
+ * 
+ * - `sslOptionsFailIfNoPeerCert` = ***true***
+ * - `sslOptionsVerify` = ***verify_peer***
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.RabbitConfiguration;
+ * import com.pulumi.cloudamqp.RabbitConfigurationArgs;
+ * import com.pulumi.cloudamqp.CloudamqpFunctions;
+ * import com.pulumi.cloudamqp.inputs.GetNodesArgs;
+ * import com.pulumi.cloudamqp.NodeActions;
+ * import com.pulumi.cloudamqp.NodeActionsArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var rabbitmqConfig = new RabbitConfiguration("rabbitmqConfig", RabbitConfigurationArgs.builder()
+ *             .instanceId(instance.id())
+ *             .mqttVhost(instance.vhost())
+ *             .mqttExchange("amq.topic")
+ *             .mqttSslCertLogin(true)
+ *             .sslOptionsFailIfNoPeerCert(true)
+ *             .sslOptionsVerify("verify_peer")
+ *             .build());
+ * 
+ *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
+ *             .instanceId(instance.id())
+ *             .build());
+ * 
+ *         var nodeAction = new NodeActions("nodeAction", NodeActionsArgs.builder()
+ *             .instanceId(instance.id())
+ *             .nodeName(nodes.nodes()[0].name())
+ *             .action("restart")
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(rabbitmqConfig)
+ *                 .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * ## Argument threshold values
+ * 
+ * ### heartbeat
+ * 
+ * | Type | Default | Min  | Affect |
+ * |---|---|---|---|
+ * | int | 120 | 0 | Only effects new connection |
+ * 
+ * ### connectionMax
+ * 
+ * | Type | Default | Min  | Affect |
+ * |---|---|---|---|
+ * | int | -1 | 1 | Applied immediately (RabbitMQ restart required before 3.11.13) |
+ * 
+ * Note: -1 in the provider corresponds to INFINITY in the RabbitMQ config
+ * 
+ * ### channelMax
+ * 
+ * | Type | Default | Min | Affect |
+ * |---|---|---|---|
+ * | int | 128 | 0 | Only effects new connections |
+ * 
+ * Note: 0 means &#34;no limit&#34;
+ * 
+ * ### consumerTimeout
+ * 
+ * | Type | Default | Min | Max | Unit | Affect |
+ * |---|---|---|---|---|---|
+ * | int | 7200000 | 10000 | 86400000 | milliseconds | Only effects new channels |
+ * 
+ * Note: -1 in the provider corresponds to false (disable) in the RabbitMQ config
+ * 
+ * ### vmMemoryHighWatermark
+ * 
+ * | Type | Default | Min | Max | Affect |
+ * |---|---|---|---|---|
+ *  | float | 0.81 | 0.4 | 0.9 | Applied immediately |
+ * 
+ * ### queueIndexEmbedMsgsBelow
+ * 
+ * | Type | Default | Min | Max | Unit | Affect |
+ * |---|---|---|---|---|---|
+ * | int | 4096 | 0 | 10485760 | bytes | Applied immediately for new queues |
+ * 
+ * Note: Existing queues requires restart
+ * 
+ * ### maxMessageSize
+ * 
+ * | Type | Default | Min | Max | Unit | Affect |
+ * |---|---|---|---|---|---|
+ * | int | 134217728 | 1 | 536870912 | bytes | Only effects new channels |
+ * 
+ * ### logExchangeLevel
+ * 
+ * | Type | Default | Affect | Allowed values |
+ * |---|---|---| --- |
+ * | string | error | RabbitMQ restart required | `debug, info, warning, error, critical, none` |
+ * 
+ * ### clusterPartitionHandling
+ * 
+ * | Type  | Affect | Allowed values |
+ * |---|---|---|
+ * | string | Applied immediately | `autoheal, pause_minority, ignore` |
+ * 
+ * Recommended setting for cluster_partition_handling: `autoheal` for cluster with 1-2
+ * nodes, `pauseMinority` for cluster with 3 or more nodes. While `ignore` setting is not recommended.
+ * 
+ * ### messageInterceptorsTimestampOverwrite
+ * 
+ * | Type  | Affect | Allowed values |
+ * |---|---|---|
+ * | string | RabbitMQ restart required | `enabled_with_overwrite, enabled, disabled` |
+ * 
+ * Note: Corresponds to setting `message_interceptors.incoming.set_header_timestamp.overwrite`
+ * 
+ * ### mqttVhost
+ * 
+ * | Type  | Affect |
+ * | --- | --- |
+ * | string | Only affects new connections |
+ * 
+ * Note: A vhost is automatically created when `cloudamqp.Instance` is created. This attribute defaults to that vhost (I.e. `cloudamqp_instance.instance.vhost`).
+ * 
+ * ### mqttExchange
+ * 
+ * | Type  | Affect |
+ * | --- | --- |
+ * | string | Only affects new connections |
+ * 
+ * ### mqttSslCertLogin
+ * 
+ * | Type  | Affect |
+ * | --- | --- |
+ * | bool | RabbitMQ restart required |
+ * 
+ * Note: When enabled, `rabbit.ssl_options.fail_if_no_peer_cert` should be set to ***true*** and
+ * `rabbit.ssl_options.verify` should be set to ***verify_peer*** for it to work properly.
+ * 
+ * ### sslCertLoginFrom
+ * 
+ * | Type  | Affect | Allowed values |
+ * | --- | --- | --- |
+ * | string | Only affects new connections | `commonName`, `distinguishedName` |
+ * 
+ * ### sslOptionsFailIfNoPeerCert
+ * 
+ * | Type  | Affect |
+ * | --- | --- |
+ * | string | RabbitMQ restart required |
+ * 
+ * Note: When enabled, `rabbit.ssl_options.verify` must be set to ***verify_peer***.
+ * 
+ * ### sslOptionsVerify
+ * 
+ * | Type  | Affect | Allowed values |
+ * | --- | --- | --- |
+ * | string | RabbitMQ restart required | `verifyNone`, `verifyPeer` |
+ * 
+ * Note: `verifyPeer` validates the client&#39;s certificate chain, `verifyNone` disables verification.
+ * 
+ * ## Dependency
+ * 
+ * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ * 
+ * ## Known issues
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;Cannot set heartbeat=0 when creating this resource&lt;/summary&gt;
+ * 
+ * &gt; **Note:** This is no longer the case from [v1.35.0].
+ * 
+ * The provider is built by older `Terraform Plugin SDK` which doesn&#39;t support nullable configuration
+ * values. Instead the values will be set to it&#39;s default value based on it&#39;s schema primitive type.
+ * 
+ * * schema.TypeString = &#34;&#34;
+ * * schema.TypeInt = 0
+ * * schema.TypeFloat = 0.0
+ * * schema.TypeBool = false
+ * 
+ * During initial create of this resource, we need to exclude all arguments that can take these default
+ * values. Argument such as `hearbeat`, `channelMax`, etc. cannot be set to its default value, 0 in
+ * these cases. Current workaround is to use the default value in the initial create run, then change
+ * to the wanted value in the re-run.
+ * 
+ * Will be solved once we migrate the current provider to `Terraform Plugin Framework`.
+ * 
+ * &lt;/details&gt;
+ * 
+ * [CloudAMQP API list intances]: https://docs.cloudamqp.com/index.html#tag/instances/get/instances
+ * [v1.35.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.35.0
  * 
  */
 @ResourceType(type="cloudamqp:index/rabbitConfiguration:RabbitConfiguration")

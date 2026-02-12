@@ -10,31 +10,86 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
-    /// ## Import
+    /// This resource allows you to install or uninstall community plugins. Once installed the plugin will
+    /// be available in `cloudamqp.Plugin`.
     /// 
-    /// `cloudamqp_plugin_community` can be imported if it's has already been installed by using the name
+    /// Only available for dedicated subscription plans running ***RabbitMQ***.
     /// 
-    /// argument of the resource together with CloudAMQP instance identifier (CSV separated). To retrieve
+    /// ## Example Usage
     /// 
-    /// list of available community plugins, use [CloudAMQP API list community plugins].
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    /// From Terraform v1.5.0, the `import` block can be used to import this resource:
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var rabbitmqDelayedMessageExchange = new CloudAmqp.PluginCommunity("rabbitmq_delayed_message_exchange", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Name = "rabbitmq_delayed_message_exchange",
+    ///         Enabled = true,
+    ///     });
     /// 
-    /// hcl
-    /// 
-    /// import {
-    /// 
-    ///   to = cloudamqp_plugin_community.rabbitmq_delayed_message_exchange
-    /// 
-    ///   id = format("rabbitmq_delayed_message_exchange,%s", cloudamqp_instance.instance.id)
-    /// 
-    /// }
-    /// 
-    /// Or use Terraform CLI:
-    /// 
-    /// ```sh
-    /// $ pulumi import cloudamqp:index/pluginCommunity:PluginCommunity rabbitmq_delayed_message_exchange &lt;plugin_name&gt;,&lt;instance_id&gt;`
+    /// });
     /// ```
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Faster instance destroy when running `terraform destroy` from [v1.27.0]&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// CloudAMQP Terraform provider [v1.27.0] enables faster `cloudamqp.Instance` destroy when running
+    /// `terraform destroy`.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     {
+    ///         Name = "terraform-cloudamqp-instance",
+    ///         Plan = "bunny-1",
+    ///         Region = "amazon-web-services::us-west-1",
+    ///         Tags = new[]
+    ///         {
+    ///             "terraform",
+    ///         },
+    ///     });
+    /// 
+    ///     var rabbitmqDelayedMessageExchange = new CloudAmqp.PluginCommunity("rabbitmq_delayed_message_exchange", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Name = "rabbitmq_delayed_message_exchange",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// ## Dependency
+    /// 
+    /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+    /// 
+    /// ## Enable faster instance destroy
+    /// 
+    /// When running `terraform destroy` this resource will try to uninstall the managed community plugin
+    /// before deleting `cloudamqp.Instance`. This is not necessary since the servers will be deleted.
+    /// 
+    /// Set `EnableFasterInstanceDestroy` to ***true***  in the provider configuration to skip this.
+    /// 
+    /// [CloudAMQP API list community plugins]: https://docs.cloudamqp.com/instance-api.html#tag/plugins/get/plugins/community
+    /// [v1.27.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.27.0
+    /// [v1.29.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.29.0
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/pluginCommunity:PluginCommunity")]
     public partial class PluginCommunity : global::Pulumi.CustomResource

@@ -965,30 +965,6 @@ class Instance(pulumi.CustomResource):
         [gcp-region-zones]: https://cloud.google.com/compute/docs/regions-zones#available
         [do-regional-availability]: https://docs.digitalocean.com/platform/regional-availability/
 
-        ## Import
-
-        `cloudamqp_instance`can be imported using resource identifier. To retrieve the resource identifier,
-
-        use [CloudAMQP API list instances]
-
-        From Terraform v1.5.0, the `import` block can be used to import this resource:
-
-        hcl
-
-        import {
-
-          to = cloudamqp_instance.instance
-
-          id = <id>
-
-        }
-
-        Or use Terraform CLI:
-
-        ```sh
-        $ pulumi import cloudamqp:index/instance:Instance instance <id>`
-        ```
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceCopySettingArgs', 'InstanceCopySettingArgsDict']]]] copy_settings: Copy settings from one CloudAMQP instance to a new. Consists of
@@ -1314,30 +1290,6 @@ class Instance(pulumi.CustomResource):
         [azure-region-list]: https://learn.microsoft.com/en-us/azure/reliability/regions-list
         [gcp-region-zones]: https://cloud.google.com/compute/docs/regions-zones#available
         [do-regional-availability]: https://docs.digitalocean.com/platform/regional-availability/
-
-        ## Import
-
-        `cloudamqp_instance`can be imported using resource identifier. To retrieve the resource identifier,
-
-        use [CloudAMQP API list instances]
-
-        From Terraform v1.5.0, the `import` block can be used to import this resource:
-
-        hcl
-
-        import {
-
-          to = cloudamqp_instance.instance
-
-          id = <id>
-
-        }
-
-        Or use Terraform CLI:
-
-        ```sh
-        $ pulumi import cloudamqp:index/instance:Instance instance <id>`
-        ```
 
         :param str resource_name: The name of the resource.
         :param InstanceArgs args: The arguments to use to populate this resource's properties.
