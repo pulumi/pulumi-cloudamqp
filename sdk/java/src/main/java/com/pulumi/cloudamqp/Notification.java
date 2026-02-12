@@ -385,34 +385,6 @@ import javax.annotation.Nullable;
  * 
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
  * 
- * ## Import
- * 
- * `cloudamqp_notification` can be imported using the resource identifier together with CloudAMQP
- * 
- * instance identifier (CSV separated). To retrieve the resource identifier, use
- * 
- * [CloudAMQP API list recipients].
- * 
- * From Terraform v1.5.0, the `import` block can be used to import this resource:
- * 
- * hcl
- * 
- * import {
- * 
- *   to = cloudamqp_notification.recipient
- * 
- *   id = format(&#34;&lt;id&gt;,%s&#34;, cloudamqp_instance.instance.id)
- * 
- * }
- * 
- * Or use Terraform CLI:
- * 
- * ```sh
- * $ pulumi import cloudamqp:index/notification:Notification recipient &lt;id&gt;,&lt;instance_id&gt;`
- * ```
- * 
- * [CloudAMQP API list recipients]: https://docs.cloudamqp.com/instance-api.html#tag/alarms/get/alarms/recipients
- * 
  */
 @ResourceType(type="cloudamqp:index/notification:Notification")
 public class Notification extends com.pulumi.resources.CustomResource {

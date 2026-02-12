@@ -18,29 +18,188 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## Import
+ * This resource allows you to create and manage alarms to trigger based on a set of conditions. Once
+ * triggerd a notification will be sent to the assigned recipients. When creating a new instance, there
+ * will also be a set of default alarms (cpu, memory and disk) created. All default alarms uses the
+ * default recipient for notifications.
  * 
- * `cloudamqp_alarm` can be imported using the resource identifier together with the CloudAMQP instance
+ * By setting `noDefaultAlarms` to *true* in `cloudamqp.Instance`. This will create the instance
+ * without default alarms and avoid the need to import them to get full control.
  * 
- * identifier (CSV separated). To retrieve the resource identifier, use [CloudAMQP API list alarms].
+ * Available for all subscription plans, but `lemur`and `tiger`are limited to fewer alarm types. The
+ * limited types supported can be seen in the table below in [Alarm Type Reference].
  * 
- * From Terraform v1.5.0, the `import` block can be used to import this resource:
+ * ## Example Usage
  * 
- * hcl
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Basic example of CPU and memory alarm&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
  * 
- * import {
+ * <pre>
+ * {@code
+ * package generated_program;
  * 
- *   to = cloudamqp_alarm.alarm
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Notification;
+ * import com.pulumi.cloudamqp.NotificationArgs;
+ * import com.pulumi.cloudamqp.Alarm;
+ * import com.pulumi.cloudamqp.AlarmArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
  * 
- *   id = format(&#34;&lt;id&gt;,%s&#34;, cloudamqp_instance.instance.id)
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
+ *         Pulumi.run(App::stack);
+ *     }}{@code
  * 
+ *     public static void stack(Context ctx) }{{@code
+ *         // New recipient
+ *         var recipient01 = new Notification("recipient01", NotificationArgs.builder()
+ *             .instanceId(instance.id())
+ *             .type("email")
+ *             .value("alarm}{@literal @}{@code example.com")
+ *             .name("alarm")
+ *             .build());
+ * 
+ *         // New cpu alarm
+ *         var cpuAlarm = new Alarm("cpuAlarm", AlarmArgs.builder()
+ *             .instanceId(instance.id())
+ *             .type("cpu")
+ *             .enabled(true)
+ *             .reminderInterval(600)
+ *             .valueThreshold(95)
+ *             .timeThreshold(600)
+ *             .recipients(recipient01.id())
+ *             .build());
+ * 
+ *         // New memory alarm
+ *         var memoryAlarm = new Alarm("memoryAlarm", AlarmArgs.builder()
+ *             .instanceId(instance.id())
+ *             .type("memory")
+ *             .enabled(true)
+ *             .reminderInterval(600)
+ *             .valueThreshold(95)
+ *             .timeThreshold(600)
+ *             .recipients(recipient01.id())
+ *             .build());
+ * 
+ *     }}{@code
+ * }}{@code
  * }
+ * </pre>
  * 
- * Or use Terraform CLI:
+ * &lt;/details&gt;
  * 
- * ```sh
- * $ pulumi import cloudamqp:index/alarm:Alarm alarm &lt;id&gt;,&lt;instance_id&gt;`
- * ```
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Manage notice alarm, available from&lt;/i&gt;
+ *       &lt;a href=&#34;https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.29.5&#34;&gt;v1.29.5&lt;/a&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * Only one notice alarm can exists and cannot be created, instead the alarm resource will be updated.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Notification;
+ * import com.pulumi.cloudamqp.NotificationArgs;
+ * import com.pulumi.cloudamqp.Alarm;
+ * import com.pulumi.cloudamqp.AlarmArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
+ *         Pulumi.run(App::stack);
+ *     }}{@code
+ * 
+ *     public static void stack(Context ctx) }{{@code
+ *         // New recipient
+ *         var recipient01 = new Notification("recipient01", NotificationArgs.builder()
+ *             .instanceId(instance.id())
+ *             .type("email")
+ *             .value("alarm}{@literal @}{@code example.com")
+ *             .name("alarm")
+ *             .build());
+ * 
+ *         // Update existing notice alarm
+ *         var notice = new Alarm("notice", AlarmArgs.builder()
+ *             .instanceId(instance.id())
+ *             .type("notice")
+ *             .enabled(true)
+ *             .recipients(recipient01.id())
+ *             .build());
+ * 
+ *     }}{@code
+ * }}{@code
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * ## Alarm type reference
+ * 
+ * Supported alarm types: `cpu, memory, disk, queue, connection, flow, consumer, netsplit,
+ *   server_unreachable, notice`
+ * 
+ * Required arguments for all alarms: `instance_id, type, enabled`&lt;br&gt;
+ * Optional argument for all alarms: `tags, queue_regex, vhostRegex`
+ * 
+ * | Name | Type | Shared | Dedicated | Required arguments |
+ * | ---- | ---- | ---- | ---- | ---- |
+ * | CPU | cpu | - | &amp;#10004; | time_threshold, valueThreshold |
+ * | Memory | memory | - | &amp;#10004;  | time_threshold, valueThreshold |
+ * | Disk space | disk | - | &amp;#10004;  | time_threshold, valueThreshold |
+ * | Queue | queue | &amp;#10004;  | &amp;#10004; | time_threshold, value_threshold, queue_regex, vhost_regex, messageType |
+ * | Connection | connection | &amp;#10004; | &amp;#10004; | time_threshold, valueThreshold |
+ * | Connection flow | flow | &amp;#10004; | &amp;#10004; | time_threshold, valueThreshold |
+ * | Consumer | consumer | &amp;#10004; | &amp;#10004; | time_threshold, value_threshold, queue, vhost |
+ * | Netsplit | netsplit | - | &amp;#10004; | timeThreshold |
+ * | Server unreachable | serverUnreachable  | - | &amp;#10004;  | timeThreshold |
+ * | Notice | notice | &amp;#10004; | &amp;#10004; | |
+ * 
+ * &lt;br&gt;
+ * 
+ * &gt; Notice alarm is manadatory! Only one can exists and cannot be deleted. Setting `noDefaultAlarm`
+ * to true, will still create this alarm. See updated changes to [notice alarm] below.
+ * 
+ * ## Dependency
+ * 
+ * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ * 
+ * ## Notice alarm
+ * 
+ * There is a limitation for notice alarm in the API backend. This alarm is mandatory, multiple
+ * alarms cannot exists or be deleted.
+ * 
+ * From provider version [v1.29.5] it&#39;s possible to manage the notice alarm and no longer needs to be
+ * imported. Just create the alarm resource as usually and it will be updated with given recipients.
+ * If the alarm is deleted it will only be removed from the state file, but will still be enabled in
+ * the backend.
+ * 
+ * [Alarm Type Reference]: #alarm-type-reference
+ * [CloudAMQP API list alarms]: https://docs.cloudamqp.com/instance-api.html#tag/alarms/get/alarms
+ * [notice alarm]: #notice-alarm
+ * [v1.29.5]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.29.5
  * 
  */
 @ResourceType(type="cloudamqp:index/alarm:Alarm")

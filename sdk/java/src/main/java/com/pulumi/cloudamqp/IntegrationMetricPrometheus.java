@@ -308,47 +308,9 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * ### Stackdriver v2
+ * CloudAMQP Prometheus metric integrations can be imported using the integration identifier together with the instance identifier. The import identifier should be in the format `{integration_id},{instance_id}`.
  * 
- * hcl
- * 
- * import {
- * 
- *   to = cloudamqp_integration_metric_prometheus.stackdriver_v2
- * 
- *   id = format(&#34;&lt;integration_id&gt;,%s&#34;, cloudamqp_instance.instance.id)
- * 
- * }
- * 
- * Or use Terraform CLI:
- * 
- * ```sh
- * $ pulumi import cloudamqp:index/integrationMetricPrometheus:IntegrationMetricPrometheus newrelic_v3 &lt;integration_id&gt;,&lt;instance_id&gt;
- * ```
- * 
- * ```sh
- * $ pulumi import cloudamqp:index/integrationMetricPrometheus:IntegrationMetricPrometheus datadog_v3 &lt;integration_id&gt;,&lt;instance_id&gt;
- * ```
- * 
- * ```sh
- * $ pulumi import cloudamqp:index/integrationMetricPrometheus:IntegrationMetricPrometheus azure_monitor &lt;integration_id&gt;,&lt;instance_id&gt;
- * ```
- * 
- * ```sh
- * $ pulumi import cloudamqp:index/integrationMetricPrometheus:IntegrationMetricPrometheus splunk_v2 &lt;integration_id&gt;,&lt;instance_id&gt;
- * ```
- * 
- * ```sh
- * $ pulumi import cloudamqp:index/integrationMetricPrometheus:IntegrationMetricPrometheus dynatrace &lt;integration_id&gt;,&lt;instance_id&gt;
- * ```
- * 
- * ```sh
- * $ pulumi import cloudamqp:index/integrationMetricPrometheus:IntegrationMetricPrometheus cloudwatch_v3 &lt;integration_id&gt;,&lt;instance_id&gt;
- * ```
- * 
- * ```sh
- * $ pulumi import cloudamqp:index/integrationMetricPrometheus:IntegrationMetricPrometheus stackdriver_v2 &lt;integration_id&gt;,&lt;instance_id&gt;
- * ```
+ * From Terraform v1.5.0, the `import` block can be used to import this resource:
  * 
  */
 @ResourceType(type="cloudamqp:index/integrationMetricPrometheus:IntegrationMetricPrometheus")

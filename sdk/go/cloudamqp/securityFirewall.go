@@ -12,29 +12,252 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Import
+// This resource allows you to configure and manage firewall rules for the CloudAMQP instance.
 //
-// `cloudamqp_security_firewall` can be imported using CloudAMQP instance identifier. To
+// > **WARNING:** Firewall rules applied with this resource will replace any existing firewall rules.
+// Make sure all wanted rules are present to not lose them.
 //
-// retrieve the identifier, use [CloudAMQP API list intances].
+// > **NOTE:** From [v1.33.0] when destroying this resource the firewall on the servers will also be
+// removed. I.e. the firewall will be completely closed.
 //
-// From Terraform v1.5.0, the `import` block can be used to import this resource:
+// Only available for dedicated subscription plans.
 //
-// hcl
+// ## Example Usage
 //
-// import {
+// ```go
+// package main
 //
-//	to = cloudamqp_security_firewall.firewall
+// import (
 //
-//	id = cloudamqp_instance.instance.id
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
-// }
+// )
 //
-// Or use Terraform CLI:
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewSecurityFirewall(ctx, "this", &cloudamqp.SecurityFirewallArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				Rules: cloudamqp.SecurityFirewallRuleArray{
+//					&cloudamqp.SecurityFirewallRuleArgs{
+//						Ip: pulumi.String("192.168.0.0/24"),
+//						Ports: pulumi.IntArray{
+//							pulumi.Int(4567),
+//							pulumi.Int(4568),
+//						},
+//						Services: pulumi.StringArray{
+//							pulumi.String("AMQP"),
+//							pulumi.String("AMQPS"),
+//							pulumi.String("HTTPS"),
+//						},
+//					},
+//					&cloudamqp.SecurityFirewallRuleArgs{
+//						Ip:    pulumi.String("10.56.72.0/24"),
+//						Ports: pulumi.IntArray{},
+//						Services: pulumi.StringArray{
+//							pulumi.String("AMQP"),
+//							pulumi.String("AMQPS"),
+//							pulumi.String("HTTPS"),
+//						},
+//					},
+//					&cloudamqp.SecurityFirewallRuleArgs{
+//						Ip:    pulumi.String("192.168.1.10/32"),
+//						Ports: pulumi.IntArray{},
+//						Services: pulumi.StringArray{
+//							pulumi.String("AMQP"),
+//							pulumi.String("AMQPS"),
+//							pulumi.String("HTTPS"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
 //
-// ```sh
-// $ pulumi import cloudamqp:index/securityFirewall:SecurityFirewall firewall <instance_id>`
 // ```
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Faster instance destroy when running `terraform destroy` from </i>
+//	    <a href="https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.27.0">v1.27.0</a>
+//	  </b>
+//	</summary>
+//
+// CloudAMQP Terraform provider [v1.27.0] enables faster `Instance` destroy when running
+// `terraform destroy`.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:   pulumi.String("terraform-cloudamqp-instance"),
+//				Plan:   pulumi.String("penguin-1"),
+//				Region: pulumi.String("amazon-web-services::us-west-1"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("terraform"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewSecurityFirewall(ctx, "this", &cloudamqp.SecurityFirewallArgs{
+//				InstanceId: instance.ID(),
+//				Rules: cloudamqp.SecurityFirewallRuleArray{
+//					&cloudamqp.SecurityFirewallRuleArgs{
+//						Ip:    pulumi.String("0.0.0.0/0"),
+//						Ports: pulumi.IntArray{},
+//						Services: pulumi.StringArray{
+//							pulumi.String("HTTPS"),
+//						},
+//						Description: pulumi.String("MGMT interface"),
+//					},
+//					&cloudamqp.SecurityFirewallRuleArgs{
+//						Ip:    pulumi.String("10.56.72.0/24"),
+//						Ports: pulumi.IntArray{},
+//						Services: pulumi.StringArray{
+//							pulumi.String("AMQP"),
+//							pulumi.String("AMQPS"),
+//							pulumi.String("HTTPS"),
+//						},
+//						Description: pulumi.String("VPC subnet"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// ## Dependency
+//
+// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+//
+// If used together with [VPC GPC peering], see additional information.
+//
+// ## Known issues
+//
+// <details>
+//
+//	 <summary>Custom ports trigger new update every time</summary>
+//
+//	 Before release v1.15.1 using the custom ports can cause a missmatch upon reading data and
+//	 trigger a new update every time.
+//
+//	 Reason is that there is a bug in validating the response from the underlying API.
+//
+//	 Update the provider to at least [v1.15.1] to fix the issue.
+//	</details>
+//
+// <details>
+//
+//	<summary>Using pre-defined service port in ports</summary>
+//
+// Using one of the port from the pre-defined services in ports argument, see example of using port
+// 5671 instead of the service *AMQPS*.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewSecurityFirewall(ctx, "firewall_settings", &cloudamqp.SecurityFirewallArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				Rules: cloudamqp.SecurityFirewallRuleArray{
+//					&cloudamqp.SecurityFirewallRuleArgs{
+//						Ip: pulumi.String("192.168.0.0/24"),
+//						Ports: pulumi.IntArray{
+//							pulumi.Int(5671),
+//						},
+//						Services: pulumi.StringArray{},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Will still create the firewall rule for the instance, but will trigger a new update each `plan` or
+// `apply`. Due to a missmatch between state file and underlying API response.
+//
+// To solve this, edit the configuration file and change port 5671 to service *AMQPS* and run
+// `pulumi up -refresh-only` to only update the state file and remove the missmatch.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewSecurityFirewall(ctx, "firewall_settings", &cloudamqp.SecurityFirewallArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				Rules: cloudamqp.SecurityFirewallRuleArray{
+//					&cloudamqp.SecurityFirewallRuleArgs{
+//						Ip:    pulumi.String("192.168.0.0/24"),
+//						Ports: pulumi.IntArray{},
+//						Services: pulumi.StringArray{
+//							pulumi.String("AMQPS"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// The provider from [v1.15.2] will start to warn about using this.
+//
+//	</details>
+//
+// [CloudAMQP API list intances]: https://docs.cloudamqp.com/index.html#tag/instances/get/instances
+// [v1.15.1]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.15.1
+// [v1.15.2]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.15.2
+// [v1.27.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.27.0
+// [v1.33.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.33.0
+// [VPC GPC peering]: ./vpc_gcp_peering#create-vpc-peering-with-additional-firewall-rules
 type SecurityFirewall struct {
 	pulumi.CustomResourceState
 

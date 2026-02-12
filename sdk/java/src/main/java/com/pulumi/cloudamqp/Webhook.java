@@ -15,29 +15,177 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
- * ## Import
+ * This resource allows you to add, update or remove a swebhook for a specific vhost and queue.
  * 
- * `cloudamqp_webhook` can be imported using the resource identifier together with CloudAMQP instance
+ * Only available for dedicated subscription plans.
  * 
- * identifier (CSV separated). To retrieve the resource identifier, use [CloudAMQP API list webhooks].
+ * ## Example Usage
  * 
- * From Terraform v1.5.0, the `import` block can be used to import this resource:
+ * &lt;details&gt;
+ *  &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Enable webhook from &lt;/i&gt;
+ *       &lt;a href=&#34;https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.30.0&#34;&gt;v1.30.0&lt;/a&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
  * 
- * hcl
+ * Support to updating the resource which makes the argument no longer require `ForceNew` behaviour.
+ * The argument `retryInterval` have also been removed.
  * 
- * import {
+ * <pre>
+ * {@code
+ * package generated_program;
  * 
- *   to = cloudamqp_webhook.webhook_queue
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Webhook;
+ * import com.pulumi.cloudamqp.WebhookArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
  * 
- *   id = format(&#34;&lt;id&gt;,%s&#34;, cloudamqp_instance.instance.id)
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
  * 
+ *     public static void stack(Context ctx) {
+ *         var webhookQueue = new Webhook("webhookQueue", WebhookArgs.builder()
+ *             .instanceId(instance.id())
+ *             .vhost(instance.vhost())
+ *             .queue("webhook-queue")
+ *             .webhookUri("https://example.com/webhook?key=secret")
+ *             .concurrency(5)
+ *             .build());
+ * 
+ *     }
  * }
+ * }
+ * </pre>
  * 
- * Or use Terraform CLI:
+ * &lt;/details&gt;
  * 
- * ```sh
- * $ pulumi import cloudamqp:index/webhook:Webhook webhook_queue &lt;id&gt;,&lt;instance_id&gt;`
- * ```
+ * &lt;details&gt;
+ *  &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Enable webhook before v1.30.0&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * For more information see below versions section.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Webhook;
+ * import com.pulumi.cloudamqp.WebhookArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var webhookQueue = new Webhook("webhookQueue", WebhookArgs.builder()
+ *             .instanceId(instance.id())
+ *             .vhost(instance.vhost())
+ *             .queue("webhook-queue")
+ *             .webhookUri("https://example.com/webhook?key=secret")
+ *             .retryInterval(5)
+ *             .concurrency(5)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * ## Dependency
+ * 
+ * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ * 
+ * ## Versions
+ * 
+ * Information for older versions
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;i&gt;Before v1.30.0&lt;/i&gt;
+ *   &lt;/summary&gt;
+ * 
+ *   Versions before v1.30.0 doesn&#39;t support updating the resource, therefore all arguments using the
+ *   `ForceNew` behaviour. Any changes to an argument will destroy and re-create the resource. The
+ *   argument `retryInterval` is set to required, even if it&#39;s no longer supported in the backend.
+ * 
+ *   &lt;b&gt;Example Usage&lt;/b&gt;
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Webhook;
+ * import com.pulumi.cloudamqp.WebhookArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *   public static void main(String[] args) {
+ *       Pulumi.run(App::stack);
+ *   }
+ * 
+ *   public static void stack(Context ctx) {
+ *       var webhookQueue = new Webhook("webhookQueue", WebhookArgs.builder()
+ *           .instanceId(instance.id())
+ *           .vhost(instance.vhost())
+ *           .queue("webhook-queue")
+ *           .webhookUri("https://example.com/webhook?key=secret")
+ *           .retryInterval(5)
+ *           .concurrency(5)
+ *           .build());
+ * 
+ *   }
+ * }
+ * }
+ * </pre>
+ * 
+ *   **Argument Reference**
+ * 
+ *   The following arguments are supported:
+ * 
+ *   &gt; * `instanceId`     - (Required/ForceNew) The CloudAMQP instance ID.
+ * &gt; * `vhost`           - (Required/ForceNew) The vhost the queue resides in.
+ * &gt; * `queue`           - (Required/ForceNew) A (durable) queue on your RabbitMQ instance.
+ * &gt; * `webhookUri`     - (Required/ForceNew) A POST request will be made for each message in the
+ * &gt;                             queue to this endpoint.
+ * &gt; * `retryInterval`  - (Required/ForceNew) How often we retry if your endpoint fails (in seconds).
+ * &gt; * `concurrency`     - (Required/ForceNew) Max simultaneous requests to the endpoint.
+ * 
+ * &lt;/details&gt;
+ * 
+ * [CloudAMQP API list webhooks]: https://docs.cloudamqp.com/instance-api.html#tag/webhooks/get/webhooks
  * 
  */
 @ResourceType(type="cloudamqp:index/webhook:Webhook")

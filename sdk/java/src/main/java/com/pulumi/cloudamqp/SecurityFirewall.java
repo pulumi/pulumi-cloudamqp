@@ -17,29 +17,262 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## Import
+ * This resource allows you to configure and manage firewall rules for the CloudAMQP instance.
  * 
- * `cloudamqp_security_firewall` can be imported using CloudAMQP instance identifier. To
+ * &gt; **WARNING:** Firewall rules applied with this resource will replace any existing firewall rules.
+ * Make sure all wanted rules are present to not lose them.
  * 
- * retrieve the identifier, use [CloudAMQP API list intances].
+ * &gt; **NOTE:** From [v1.33.0] when destroying this resource the firewall on the servers will also be
+ * removed. I.e. the firewall will be completely closed.
  * 
- * From Terraform v1.5.0, the `import` block can be used to import this resource:
+ * Only available for dedicated subscription plans.
  * 
- * hcl
+ * ## Example Usage
  * 
- * import {
+ * <pre>
+ * {@code
+ * package generated_program;
  * 
- *   to = cloudamqp_security_firewall.firewall
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.SecurityFirewall;
+ * import com.pulumi.cloudamqp.SecurityFirewallArgs;
+ * import com.pulumi.cloudamqp.inputs.SecurityFirewallRuleArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
  * 
- *   id = cloudamqp_instance.instance.id
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
  * 
+ *     public static void stack(Context ctx) {
+ *         var this_ = new SecurityFirewall("this", SecurityFirewallArgs.builder()
+ *             .instanceId(instance.id())
+ *             .rules(            
+ *                 SecurityFirewallRuleArgs.builder()
+ *                     .ip("192.168.0.0/24")
+ *                     .ports(                    
+ *                         4567,
+ *                         4568)
+ *                     .services(                    
+ *                         "AMQP",
+ *                         "AMQPS",
+ *                         "HTTPS")
+ *                     .build(),
+ *                 SecurityFirewallRuleArgs.builder()
+ *                     .ip("10.56.72.0/24")
+ *                     .ports()
+ *                     .services(                    
+ *                         "AMQP",
+ *                         "AMQPS",
+ *                         "HTTPS")
+ *                     .build(),
+ *                 SecurityFirewallRuleArgs.builder()
+ *                     .ip("192.168.1.10/32")
+ *                     .ports()
+ *                     .services(                    
+ *                         "AMQP",
+ *                         "AMQPS",
+ *                         "HTTPS")
+ *                     .build())
+ *             .build());
+ * 
+ *     }
  * }
+ * }
+ * </pre>
  * 
- * Or use Terraform CLI:
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Faster instance destroy when running `terraform destroy` from &lt;/i&gt;
+ *       &lt;a href=&#34;https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.27.0&#34;&gt;v1.27.0&lt;/a&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
  * 
- * ```sh
- * $ pulumi import cloudamqp:index/securityFirewall:SecurityFirewall firewall &lt;instance_id&gt;`
- * ```
+ * CloudAMQP Terraform provider [v1.27.0] enables faster `cloudamqp.Instance` destroy when running
+ * `terraform destroy`.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import com.pulumi.cloudamqp.SecurityFirewall;
+ * import com.pulumi.cloudamqp.SecurityFirewallArgs;
+ * import com.pulumi.cloudamqp.inputs.SecurityFirewallRuleArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var instance = new Instance("instance", InstanceArgs.builder()
+ *             .name("terraform-cloudamqp-instance")
+ *             .plan("penguin-1")
+ *             .region("amazon-web-services::us-west-1")
+ *             .tags("terraform")
+ *             .build());
+ * 
+ *         var this_ = new SecurityFirewall("this", SecurityFirewallArgs.builder()
+ *             .instanceId(instance.id())
+ *             .rules(            
+ *                 SecurityFirewallRuleArgs.builder()
+ *                     .ip("0.0.0.0/0")
+ *                     .ports()
+ *                     .services("HTTPS")
+ *                     .description("MGMT interface")
+ *                     .build(),
+ *                 SecurityFirewallRuleArgs.builder()
+ *                     .ip("10.56.72.0/24")
+ *                     .ports()
+ *                     .services(                    
+ *                         "AMQP",
+ *                         "AMQPS",
+ *                         "HTTPS")
+ *                     .description("VPC subnet")
+ *                     .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * ## Dependency
+ * 
+ * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ * 
+ * If used together with [VPC GPC peering], see additional information.
+ * 
+ * ## Known issues
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;Custom ports trigger new update every time&lt;/summary&gt;
+ * 
+ *   Before release v1.15.1 using the custom ports can cause a missmatch upon reading data and
+ *   trigger a new update every time.
+ * 
+ *   Reason is that there is a bug in validating the response from the underlying API.
+ * 
+ *   Update the provider to at least [v1.15.1] to fix the issue.
+ *  &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;Using pre-defined service port in ports&lt;/summary&gt;
+ * 
+ * Using one of the port from the pre-defined services in ports argument, see example of using port
+ * 5671 instead of the service *AMQPS*.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.SecurityFirewall;
+ * import com.pulumi.cloudamqp.SecurityFirewallArgs;
+ * import com.pulumi.cloudamqp.inputs.SecurityFirewallRuleArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var firewallSettings = new SecurityFirewall("firewallSettings", SecurityFirewallArgs.builder()
+ *             .instanceId(instance.id())
+ *             .rules(SecurityFirewallRuleArgs.builder()
+ *                 .ip("192.168.0.0/24")
+ *                 .ports(5671)
+ *                 .services()
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * Will still create the firewall rule for the instance, but will trigger a new update each `plan` or
+ * `apply`. Due to a missmatch between state file and underlying API response.
+ * 
+ * To solve this, edit the configuration file and change port 5671 to service *AMQPS* and run
+ * `pulumi up -refresh-only` to only update the state file and remove the missmatch.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.SecurityFirewall;
+ * import com.pulumi.cloudamqp.SecurityFirewallArgs;
+ * import com.pulumi.cloudamqp.inputs.SecurityFirewallRuleArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var firewallSettings = new SecurityFirewall("firewallSettings", SecurityFirewallArgs.builder()
+ *             .instanceId(instance.id())
+ *             .rules(SecurityFirewallRuleArgs.builder()
+ *                 .ip("192.168.0.0/24")
+ *                 .ports()
+ *                 .services("AMQPS")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * The provider from [v1.15.2] will start to warn about using this.
+ * 
+ *  &lt;/details&gt;
+ * 
+ * [CloudAMQP API list intances]: https://docs.cloudamqp.com/index.html#tag/instances/get/instances
+ * [v1.15.1]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.15.1
+ * [v1.15.2]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.15.2
+ * [v1.27.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.27.0
+ * [v1.33.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.33.0
+ * [VPC GPC peering]: ./vpc_gcp_peering#create-vpc-peering-with-additional-firewall-rules
  * 
  */
 @ResourceType(type="cloudamqp:index/securityFirewall:SecurityFirewall")

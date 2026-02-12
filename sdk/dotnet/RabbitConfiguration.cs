@@ -10,29 +10,361 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
-    /// ## Import
+    /// This resource allows you update RabbitMQ config.
     /// 
-    /// `cloudamqp_rabbitmq_configuration` can be imported using the CloudAMQP instance identifier.  To
+    /// Only available for dedicated subscription plans running ***RabbitMQ***.
     /// 
-    /// retrieve the identifier, use [CloudAMQP API list intances].
+    /// ## Example Usage
     /// 
-    /// From Terraform v1.5.0, the `import` block can be used to import this resource:
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;RabbitMQ configuration and using 0 values&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
     /// 
-    /// hcl
+    /// From [v1.35.0] and migrating this resource to Terraform plugin Framework.
+    /// It's now possible to use 0 values in the configuration.
     /// 
-    /// import {
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    ///   to = cloudamqp_rabbitmq_configuration.config
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var rabbitmqConfig = new CloudAmqp.RabbitConfiguration("rabbitmq_config", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Heartbeat = 0,
+    ///     });
     /// 
-    ///   id = cloudamqp_instance.instance.id
-    /// 
-    /// }
-    /// 
-    /// Or use Terraform CLI:
-    /// 
-    /// ```sh
-    /// $ pulumi import cloudamqp:index/rabbitConfiguration:RabbitConfiguration config &lt;instance_id&gt;`
+    /// });
     /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;RabbitMQ configuration with default values&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var rabbitmqConfig = new CloudAmqp.RabbitConfiguration("rabbitmq_config", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         ChannelMax = 0,
+    ///         ConnectionMax = -1,
+    ///         ConsumerTimeout = 7200000,
+    ///         Heartbeat = 120,
+    ///         LogExchangeLevel = "error",
+    ///         MaxMessageSize = 134217728,
+    ///         QueueIndexEmbedMsgsBelow = 4096,
+    ///         VmMemoryHighWatermark = 0.81,
+    ///         ClusterPartitionHandling = "autoheal",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Change log level and combine `cloudamqp.NodeActions` for RabbitMQ restart&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var rabbitmqConfig = new CloudAmqp.RabbitConfiguration("rabbitmq_config", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         ChannelMax = 0,
+    ///         ConnectionMax = -1,
+    ///         ConsumerTimeout = 7200000,
+    ///         Heartbeat = 120,
+    ///         LogExchangeLevel = "info",
+    ///         MaxMessageSize = 134217728,
+    ///         QueueIndexEmbedMsgsBelow = 4096,
+    ///         VmMemoryHighWatermark = 0.81,
+    ///         ClusterPartitionHandling = "autoheal",
+    ///     });
+    /// 
+    ///     var listNodes = CloudAmqp.GetNodes.Invoke(new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///     });
+    /// 
+    ///     var nodeAction = new CloudAmqp.NodeActions("node_action", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Action = "cluster.restart",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             rabbitmqConfig,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;
+    ///         Only change log level for exchange. All other values will be read from the RabbitMQ
+    ///         configuration.
+    ///       &lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var rabbitConfig = new CloudAmqp.RabbitConfiguration("rabbit_config", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         LogExchangeLevel = "info",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;
+    ///         MQTT and SSL configuration and combine `cloudamqp.NodeActions` for RabbitMQ restart
+    ///       &lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// SSL certificate-based authentication for MQTT connections requires peer certificate verification.
+    /// Set the following when enabling `MqttSslCertLogin`:
+    /// 
+    /// - `SslOptionsFailIfNoPeerCert` = ***true***
+    /// - `SslOptionsVerify` = ***verify_peer***
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var rabbitmqConfig = new CloudAmqp.RabbitConfiguration("rabbitmq_config", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         MqttVhost = instance.Vhost,
+    ///         MqttExchange = "amq.topic",
+    ///         MqttSslCertLogin = true,
+    ///         SslOptionsFailIfNoPeerCert = true,
+    ///         SslOptionsVerify = "verify_peer",
+    ///     });
+    /// 
+    ///     var nodes = CloudAmqp.GetNodes.Invoke(new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///     });
+    /// 
+    ///     var nodeAction = new CloudAmqp.NodeActions("node_action", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         NodeName = nodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[0]?.Name),
+    ///         Action = "restart",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             rabbitmqConfig,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// ## Argument threshold values
+    /// 
+    /// ### heartbeat
+    /// 
+    /// | Type | Default | Min  | Affect |
+    /// |---|---|---|---|
+    /// | int | 120 | 0 | Only effects new connection |
+    /// 
+    /// ### ConnectionMax
+    /// 
+    /// | Type | Default | Min  | Affect |
+    /// |---|---|---|---|
+    /// | int | -1 | 1 | Applied immediately (RabbitMQ restart required before 3.11.13) |
+    /// 
+    /// Note: -1 in the provider corresponds to INFINITY in the RabbitMQ config
+    /// 
+    /// ### ChannelMax
+    /// 
+    /// | Type | Default | Min | Affect |
+    /// |---|---|---|---|
+    /// | int | 128 | 0 | Only effects new connections |
+    /// 
+    /// Note: 0 means "no limit"
+    /// 
+    /// ### ConsumerTimeout
+    /// 
+    /// | Type | Default | Min | Max | Unit | Affect |
+    /// |---|---|---|---|---|---|
+    /// | int | 7200000 | 10000 | 86400000 | milliseconds | Only effects new channels |
+    /// 
+    /// Note: -1 in the provider corresponds to false (disable) in the RabbitMQ config
+    /// 
+    /// ### VmMemoryHighWatermark
+    /// 
+    /// | Type | Default | Min | Max | Affect |
+    /// |---|---|---|---|---|
+    ///  | float | 0.81 | 0.4 | 0.9 | Applied immediately |
+    /// 
+    /// ### QueueIndexEmbedMsgsBelow
+    /// 
+    /// | Type | Default | Min | Max | Unit | Affect |
+    /// |---|---|---|---|---|---|
+    /// | int | 4096 | 0 | 10485760 | bytes | Applied immediately for new queues |
+    /// 
+    /// Note: Existing queues requires restart
+    /// 
+    /// ### MaxMessageSize
+    /// 
+    /// | Type | Default | Min | Max | Unit | Affect |
+    /// |---|---|---|---|---|---|
+    /// | int | 134217728 | 1 | 536870912 | bytes | Only effects new channels |
+    /// 
+    /// ### LogExchangeLevel
+    /// 
+    /// | Type | Default | Affect | Allowed values |
+    /// |---|---|---| --- |
+    /// | string | error | RabbitMQ restart required | `debug, info, warning, error, critical, none` |
+    /// 
+    /// ### ClusterPartitionHandling
+    /// 
+    /// | Type  | Affect | Allowed values |
+    /// |---|---|---|
+    /// | string | Applied immediately | `autoheal, pause_minority, ignore` |
+    /// 
+    /// Recommended setting for cluster_partition_handling: `Autoheal` for cluster with 1-2
+    /// nodes, `PauseMinority` for cluster with 3 or more nodes. While `Ignore` setting is not recommended.
+    /// 
+    /// ### MessageInterceptorsTimestampOverwrite
+    /// 
+    /// | Type  | Affect | Allowed values |
+    /// |---|---|---|
+    /// | string | RabbitMQ restart required | `enabled_with_overwrite, enabled, disabled` |
+    /// 
+    /// Note: Corresponds to setting `message_interceptors.incoming.set_header_timestamp.overwrite`
+    /// 
+    /// ### MqttVhost
+    /// 
+    /// | Type  | Affect |
+    /// | --- | --- |
+    /// | string | Only affects new connections |
+    /// 
+    /// Note: A vhost is automatically created when `cloudamqp.Instance` is created. This attribute defaults to that vhost (I.e. `cloudamqp_instance.instance.vhost`).
+    /// 
+    /// ### MqttExchange
+    /// 
+    /// | Type  | Affect |
+    /// | --- | --- |
+    /// | string | Only affects new connections |
+    /// 
+    /// ### MqttSslCertLogin
+    /// 
+    /// | Type  | Affect |
+    /// | --- | --- |
+    /// | bool | RabbitMQ restart required |
+    /// 
+    /// Note: When enabled, `rabbit.ssl_options.fail_if_no_peer_cert` should be set to ***true*** and
+    /// `rabbit.ssl_options.verify` should be set to ***verify_peer*** for it to work properly.
+    /// 
+    /// ### SslCertLoginFrom
+    /// 
+    /// | Type  | Affect | Allowed values |
+    /// | --- | --- | --- |
+    /// | string | Only affects new connections | `CommonName`, `DistinguishedName` |
+    /// 
+    /// ### SslOptionsFailIfNoPeerCert
+    /// 
+    /// | Type  | Affect |
+    /// | --- | --- |
+    /// | string | RabbitMQ restart required |
+    /// 
+    /// Note: When enabled, `rabbit.ssl_options.verify` must be set to ***verify_peer***.
+    /// 
+    /// ### SslOptionsVerify
+    /// 
+    /// | Type  | Affect | Allowed values |
+    /// | --- | --- | --- |
+    /// | string | RabbitMQ restart required | `VerifyNone`, `VerifyPeer` |
+    /// 
+    /// Note: `VerifyPeer` validates the client's certificate chain, `VerifyNone` disables verification.
+    /// 
+    /// ## Dependency
+    /// 
+    /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+    /// 
+    /// ## Known issues
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;Cannot set heartbeat=0 when creating this resource&lt;/summary&gt;
+    /// 
+    /// &gt; **Note:** This is no longer the case from [v1.35.0].
+    /// 
+    /// The provider is built by older `Terraform Plugin SDK` which doesn't support nullable configuration
+    /// values. Instead the values will be set to it's default value based on it's schema primitive type.
+    /// 
+    /// * schema.TypeString = ""
+    /// * schema.TypeInt = 0
+    /// * schema.TypeFloat = 0.0
+    /// * schema.TypeBool = false
+    /// 
+    /// During initial create of this resource, we need to exclude all arguments that can take these default
+    /// values. Argument such as `Hearbeat`, `ChannelMax`, etc. cannot be set to its default value, 0 in
+    /// these cases. Current workaround is to use the default value in the initial create run, then change
+    /// to the wanted value in the re-run.
+    /// 
+    /// Will be solved once we migrate the current provider to `Terraform Plugin Framework`.
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// [CloudAMQP API list intances]: https://docs.cloudamqp.com/index.html#tag/instances/get/instances
+    /// [v1.35.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.35.0
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/rabbitConfiguration:RabbitConfiguration")]
     public partial class RabbitConfiguration : global::Pulumi.CustomResource

@@ -391,7 +391,6 @@ class ExtraDiskSize(pulumi.CustomResource):
         Not possible to import this resource.
 
         [CloudAMQP]: https://www.cloudamqp.com/
-
         [v1.25.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.25.0
 
         :param str resource_name: The name of the resource.
@@ -561,7 +560,6 @@ class ExtraDiskSize(pulumi.CustomResource):
         Not possible to import this resource.
 
         [CloudAMQP]: https://www.cloudamqp.com/
-
         [v1.25.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.25.0
 
         :param str resource_name: The name of the resource.

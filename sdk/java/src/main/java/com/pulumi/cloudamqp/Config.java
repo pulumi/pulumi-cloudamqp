@@ -25,6 +25,10 @@ public final class Config {
     public Optional<String> baseurl() {
         return Codegen.stringProp("baseurl").config(config).get();
     }
+/**
+ * Skips destroying backend resources on &#39;terraform destroy&#39;
+ * 
+ */
     public Optional<Boolean> enableFasterInstanceDestroy() {
         return Codegen.booleanProp("enableFasterInstanceDestroy").config(config).get();
     }

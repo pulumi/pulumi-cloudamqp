@@ -82,34 +82,6 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
- * ## Import
- * 
- * `cloudamqp_vpc` can be imported using the CloudAMQP VPC identifier. To retrieve the identifier of an
- * 
- * instance, use [CloudAMQP API list vpcs].
- * 
- * From Terraform v1.5.0, the `import` block can be used to import this resource:
- * 
- * hcl
- * 
- * import {
- * 
- *   to = cloudamqp_vpc.vpc
- * 
- *   id = &lt;vpc_id&gt;
- * 
- * }
- * 
- * Or with Terraform CLI:
- * 
- * ```sh
- * $ pulumi import cloudamqp:index/vpc:Vpc vpc &lt;vpc_id&gt;`
- * ```
- * 
- * [CloudAMQP API list vpcs]: https://docs.cloudamqp.com/index.html#tag/vpcs/get/vpcs
- * 
- * [CloudAMQP plans]: https://docs.cloudamqp.com/index.html#tag/plans/get/plans
- * 
  */
 @ResourceType(type="cloudamqp:index/vpc:Vpc")
 public class Vpc extends com.pulumi.resources.CustomResource {

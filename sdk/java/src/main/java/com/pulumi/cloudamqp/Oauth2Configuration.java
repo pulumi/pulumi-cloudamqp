@@ -185,28 +185,6 @@ import javax.annotation.Nullable;
  *   any existing configuration.
  * * After a configuration has been applied, a restart of RabbitMQ is required for the changes to take effect.
  * 
- * ## Import
- * 
- * `cloudamqp_oauth2_configuration` can be imported using the CloudAMQP instance identifier.
- * 
- * From Terraform v1.5.0, the `import` block can be used to import this resource:
- * 
- * hcl
- * 
- * import {
- * 
- *   to = cloudamqp_oauth2_configuration.oauth2_config
- * 
- *   id = cloudamqp_instance.instance.id
- * 
- * }
- * 
- * Or use Terraform CLI:
- * 
- * ```sh
- * $ pulumi import cloudamqp:index/oauth2Configuration:Oauth2Configuration oauth2_config &lt;instance_id&gt;`
- * ```
- * 
  */
 @ResourceType(type="cloudamqp:index/oauth2Configuration:Oauth2Configuration")
 public class Oauth2Configuration extends com.pulumi.resources.CustomResource {

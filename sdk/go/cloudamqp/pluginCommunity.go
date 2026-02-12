@@ -12,31 +12,104 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Import
+// This resource allows you to install or uninstall community plugins. Once installed the plugin will
+// be available in `Plugin`.
 //
-// `cloudamqp_plugin_community` can be imported if it's has already been installed by using the name
+// Only available for dedicated subscription plans running ***RabbitMQ***.
 //
-// argument of the resource together with CloudAMQP instance identifier (CSV separated). To retrieve
+// ## Example Usage
 //
-// list of available community plugins, use [CloudAMQP API list community plugins].
+// ```go
+// package main
 //
-// From Terraform v1.5.0, the `import` block can be used to import this resource:
+// import (
 //
-// hcl
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
-// import {
+// )
 //
-//	to = cloudamqp_plugin_community.rabbitmq_delayed_message_exchange
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewPluginCommunity(ctx, "rabbitmq_delayed_message_exchange", &cloudamqp.PluginCommunityArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				Name:       pulumi.String("rabbitmq_delayed_message_exchange"),
+//				Enabled:    pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
 //
-//	id = format("rabbitmq_delayed_message_exchange,%s", cloudamqp_instance.instance.id)
-//
-// }
-//
-// Or use Terraform CLI:
-//
-// ```sh
-// $ pulumi import cloudamqp:index/pluginCommunity:PluginCommunity rabbitmq_delayed_message_exchange <plugin_name>,<instance_id>`
 // ```
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Faster instance destroy when running `terraform destroy` from [v1.27.0]</i>
+//	  </b>
+//	</summary>
+//
+// CloudAMQP Terraform provider [v1.27.0] enables faster `Instance` destroy when running
+// `terraform destroy`.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:   pulumi.String("terraform-cloudamqp-instance"),
+//				Plan:   pulumi.String("bunny-1"),
+//				Region: pulumi.String("amazon-web-services::us-west-1"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("terraform"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewPluginCommunity(ctx, "rabbitmq_delayed_message_exchange", &cloudamqp.PluginCommunityArgs{
+//				InstanceId: instance.ID(),
+//				Name:       pulumi.String("rabbitmq_delayed_message_exchange"),
+//				Enabled:    pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// ## Dependency
+//
+// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+//
+// ## Enable faster instance destroy
+//
+// When running `terraform destroy` this resource will try to uninstall the managed community plugin
+// before deleting `Instance`. This is not necessary since the servers will be deleted.
+//
+// Set `enableFasterInstanceDestroy` to ***true***  in the provider configuration to skip this.
+//
+// [v1.27.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.27.0
+//
+// [CloudAMQP API list community plugins]: https://docs.cloudamqp.com/instance-api.html#tag/plugins/get/plugins/community
+// [v1.29.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.29.0
 type PluginCommunity struct {
 	pulumi.CustomResourceState
 

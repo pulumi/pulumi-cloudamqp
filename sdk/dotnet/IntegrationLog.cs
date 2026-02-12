@@ -493,50 +493,6 @@ namespace Pulumi.CloudAmqp
     /// ## Dependency
     /// 
     /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-    /// 
-    /// ## Import
-    /// 
-    /// `cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP
-    /// 
-    /// instance identifier. The identifiers are CSV separated, see example below. To retrieve the resource,
-    /// 
-    /// use [CloudAMQP API list integration].
-    /// 
-    /// From Terraform v1.5.0, the `import` block can be used to import this resource:
-    /// 
-    /// hcl
-    /// 
-    /// import {
-    /// 
-    ///   to = cloudamqp_integration_log.this
-    /// 
-    ///   id = format("&lt;id&gt;,%s", cloudamqp_instance.instance.id)
-    /// 
-    /// }
-    /// 
-    /// ```sh
-    /// $ pulumi import cloudamqp:index/integrationLog:IntegrationLog this &lt;id&gt;,&lt;instance_id&gt;`
-    /// ```
-    /// 
-    /// [v1.38.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.38.0
-    /// 
-    /// [CloudAMQP API add integration]: https://docs.cloudamqp.com/instance-api.html#tag/integrations/post/integrations/logs/{system}
-    /// 
-    /// [Tutorial to find/create all arguments]: https://learn.microsoft.com/en-us/azure/azure-monitor/logs/tutorial-logs-ingestion-portal
-    /// 
-    /// [Cloudwatch Log retention]: https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutRetentionPolicy.html#API_PutRetentionPolicy_RequestSyntax
-    /// 
-    /// [Cloudwatch Log tags]: https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_TagLogGroup.html#API_TagLogGroup_RequestSyntax
-    /// 
-    /// [Coralogix documentation]: https://coralogix.com/docs/send-your-data-api-key/
-    /// 
-    /// [app.datadoghq.com]: https://app.datadoghq.com/
-    /// 
-    /// [Datadog documentation]: https://docs.datadoghq.com/getting_started/tagging/#define-tags
-    /// 
-    /// [logentries add-log]: https://logentries.com/app#/add-log/manual
-    /// 
-    /// [CloudAMQP API list integration]: https://docs.cloudamqp.com/instance-api.html#tag/integrations/get/integrations/logs
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/integrationLog:IntegrationLog")]
     public partial class IntegrationLog : global::Pulumi.CustomResource

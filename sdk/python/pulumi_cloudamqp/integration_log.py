@@ -1361,50 +1361,6 @@ class IntegrationLog(pulumi.CustomResource):
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 
-        ## Import
-
-        `cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP
-
-        instance identifier. The identifiers are CSV separated, see example below. To retrieve the resource,
-
-        use [CloudAMQP API list integration].
-
-        From Terraform v1.5.0, the `import` block can be used to import this resource:
-
-        hcl
-
-        import {
-
-          to = cloudamqp_integration_log.this
-
-          id = format("<id>,%s", cloudamqp_instance.instance.id)
-
-        }
-
-        ```sh
-        $ pulumi import cloudamqp:index/integrationLog:IntegrationLog this <id>,<instance_id>`
-        ```
-
-        [v1.38.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.38.0
-
-        [CloudAMQP API add integration]: https://docs.cloudamqp.com/instance-api.html#tag/integrations/post/integrations/logs/{system}
-
-        [Tutorial to find/create all arguments]: https://learn.microsoft.com/en-us/azure/azure-monitor/logs/tutorial-logs-ingestion-portal
-
-        [Cloudwatch Log retention]: https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutRetentionPolicy.html#API_PutRetentionPolicy_RequestSyntax
-
-        [Cloudwatch Log tags]: https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_TagLogGroup.html#API_TagLogGroup_RequestSyntax
-
-        [Coralogix documentation]: https://coralogix.com/docs/send-your-data-api-key/
-
-        [app.datadoghq.com]: https://app.datadoghq.com/
-
-        [Datadog documentation]: https://docs.datadoghq.com/getting_started/tagging/#define-tags
-
-        [logentries add-log]: https://logentries.com/app#/add-log/manual
-
-        [CloudAMQP API list integration]: https://docs.cloudamqp.com/instance-api.html#tag/integrations/get/integrations/logs
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] access_key_id: AWS access key identifier.
@@ -1785,50 +1741,6 @@ class IntegrationLog(pulumi.CustomResource):
         ## Dependency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-
-        ## Import
-
-        `cloudamqp_integration_log`can be imported using the resource identifier together with CloudAMQP
-
-        instance identifier. The identifiers are CSV separated, see example below. To retrieve the resource,
-
-        use [CloudAMQP API list integration].
-
-        From Terraform v1.5.0, the `import` block can be used to import this resource:
-
-        hcl
-
-        import {
-
-          to = cloudamqp_integration_log.this
-
-          id = format("<id>,%s", cloudamqp_instance.instance.id)
-
-        }
-
-        ```sh
-        $ pulumi import cloudamqp:index/integrationLog:IntegrationLog this <id>,<instance_id>`
-        ```
-
-        [v1.38.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.38.0
-
-        [CloudAMQP API add integration]: https://docs.cloudamqp.com/instance-api.html#tag/integrations/post/integrations/logs/{system}
-
-        [Tutorial to find/create all arguments]: https://learn.microsoft.com/en-us/azure/azure-monitor/logs/tutorial-logs-ingestion-portal
-
-        [Cloudwatch Log retention]: https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutRetentionPolicy.html#API_PutRetentionPolicy_RequestSyntax
-
-        [Cloudwatch Log tags]: https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_TagLogGroup.html#API_TagLogGroup_RequestSyntax
-
-        [Coralogix documentation]: https://coralogix.com/docs/send-your-data-api-key/
-
-        [app.datadoghq.com]: https://app.datadoghq.com/
-
-        [Datadog documentation]: https://docs.datadoghq.com/getting_started/tagging/#define-tags
-
-        [logentries add-log]: https://logentries.com/app#/add-log/manual
-
-        [CloudAMQP API list integration]: https://docs.cloudamqp.com/instance-api.html#tag/integrations/get/integrations/logs
 
         :param str resource_name: The name of the resource.
         :param IntegrationLogArgs args: The arguments to use to populate this resource's properties.

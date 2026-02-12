@@ -10,29 +10,209 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
-    /// ## Import
+    /// Enable PrivateLink for a CloudAMQP instance hosted in AWS. If no existing VPC available when enable
+    /// PrivateLink, a new VPC will be created with subnet `10.52.72.0/24`.
     /// 
-    /// `cloudamqp_privatelink_aws` can be imported using CloudAMQP instance identifier. To retrieve the
+    /// &gt; **Note:** Enabling PrivateLink will automatically add firewall rules for the peered subnet.
     /// 
-    /// identifier, use [CloudAMQP API list intances].
+    /// &lt;details&gt;
+    ///  &lt;summary&gt;
+    ///     &lt;i&gt;Default PrivateLink firewall rule&lt;/i&gt;
+    ///   &lt;/summary&gt;
     /// 
-    /// From Terraform v1.5.0, the `import` block can be used to import this resource:
+    /// ## Example Usage
     /// 
-    /// hcl
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;CloudAMQP instance without existing VPC&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
     /// 
-    /// import {
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    ///   to = cloudamqp_privatelink_aws.privatelink
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     {
+    ///         Name = "Instance 01",
+    ///         Plan = "bunny-1",
+    ///         Region = "amazon-web-services::us-west-1",
+    ///         Tags = new[] {},
+    ///     });
     /// 
-    ///   id = cloudamqp_instance.instance.id
+    ///     var privatelink = new CloudAmqp.PrivatelinkAws("privatelink", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         AllowedPrincipals = new[]
+    ///         {
+    ///             "arn:aws:iam::aws-account-id:user/user-name",
+    ///         },
+    ///     });
     /// 
-    /// }
-    /// 
-    /// Or use Terraform CLI:
-    /// 
-    /// ```sh
-    /// $ pulumi import cloudamqp:index/privatelinkAws:PrivatelinkAws privatelink &lt;id&gt;`
+    /// });
     /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;CloudAMQP instance in an existing VPC&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var vpc = new CloudAmqp.Vpc("vpc", new()
+    ///     {
+    ///         Name = "Standalone VPC",
+    ///         Region = "amazon-web-services::us-west-1",
+    ///         Subnet = "10.56.72.0/24",
+    ///         Tags = new[] {},
+    ///     });
+    /// 
+    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     {
+    ///         Name = "Instance 01",
+    ///         Plan = "bunny-1",
+    ///         Region = "amazon-web-services::us-west-1",
+    ///         Tags = new[] {},
+    ///         VpcId = vpc.Id,
+    ///         KeepAssociatedVpc = true,
+    ///     });
+    /// 
+    ///     var privatelink = new CloudAmqp.PrivatelinkAws("privatelink", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         AllowedPrincipals = new[]
+    ///         {
+    ///             "arn:aws:iam::aws-account-id:user/user-name",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// ### With Additional Firewall Rules
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;CloudAMQP instance in an existing VPC with managed firewall rules&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var vpc = new CloudAmqp.Vpc("vpc", new()
+    ///     {
+    ///         Name = "Standalone VPC",
+    ///         Region = "amazon-web-services::us-west-1",
+    ///         Subnet = "10.56.72.0/24",
+    ///         Tags = new[] {},
+    ///     });
+    /// 
+    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     {
+    ///         Name = "Instance 01",
+    ///         Plan = "bunny-1",
+    ///         Region = "amazon-web-services::us-west-1",
+    ///         Tags = new[] {},
+    ///         VpcId = vpc.Id,
+    ///         KeepAssociatedVpc = true,
+    ///     });
+    /// 
+    ///     var privatelink = new CloudAmqp.PrivatelinkAws("privatelink", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         AllowedPrincipals = new[]
+    ///         {
+    ///             "arn:aws:iam::aws-account-id:user/user-name",
+    ///         },
+    ///     });
+    /// 
+    ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewall_settings", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Rules = new[]
+    ///         {
+    ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
+    ///             {
+    ///                 Description = "Custom PrivateLink setup",
+    ///                 Ip = vpc.Subnet,
+    ///                 Ports = new() { },
+    ///                 Services = new[]
+    ///                 {
+    ///                     "AMQP",
+    ///                     "AMQPS",
+    ///                     "HTTPS",
+    ///                     "STREAM",
+    ///                     "STREAM_SSL",
+    ///                 },
+    ///             },
+    ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
+    ///             {
+    ///                 Description = "MGMT interface",
+    ///                 Ip = "0.0.0.0/0",
+    ///                 Ports = new() { },
+    ///                 Services = new[]
+    ///                 {
+    ///                     "HTTPS",
+    ///                 },
+    ///             },
+    ///         },
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             privatelink,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// [CloudAMQP API list intances]: https://docs.cloudamqp.com/index.html#tag/instances/get/instances
+    /// [CloudAMQP plans]: https://www.cloudamqp.com/plans.html
+    /// [CloudAMQP PrivateLink]: https://www.cloudamqp.com/docs/cloudamqp-privatelink.html#aws-privatelink
+    /// [cloudamqp.SecurityFirewall]: ./security_firewall.md
+    /// [cloudamqp.VpcConnect]: ./vpc_connect.md
+    /// [v1.29.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.29.0
+    /// 
+    /// ## Dependency
+    /// 
+    /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+    /// 
+    /// ## Create PrivateLink with additional firewall rules
+    /// 
+    /// To create a PrivateLink configuration with additional firewall rules, it's required to chain the
+    /// [cloudamqp.SecurityFirewall] resource to avoid parallel conflicting resource calls. You can do this
+    /// by making the firewall resource depend on the PrivateLink resource,
+    /// `cloudamqp_privatelink_aws.privatelink`.
+    /// 
+    /// Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
+    /// the PrivateLink also needs to be added.
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/privatelinkAws:PrivatelinkAws")]
     public partial class PrivatelinkAws : global::Pulumi.CustomResource

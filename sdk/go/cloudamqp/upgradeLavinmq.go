@@ -12,9 +12,70 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// This resource allows you to upgrade LavinMQ version.
+//
+// Only available for dedicated subscription plans running ***LavinMQ***.
+//
+// ## Example Usage
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Upgrade LavinMQ, specify which version to upgrade to, from [v1.32.0]</i>
+//	  </b>
+//	</summary>
+//
+// Specify the version to upgrade to. List available upgradable versions, use
+// [CloudAMQP API available versions].
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			instance, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:   pulumi.String("lavinmq-version-upgrade-test"),
+//				Plan:   pulumi.String("lynx-1"),
+//				Region: pulumi.String("amazon-web-services::us-west-1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cloudamqp.NewUpgradeLavinmq(ctx, "upgrade", &cloudamqp.UpgradeLavinmqArgs{
+//				InstanceId: instance.ID(),
+//				NewVersion: pulumi.String("1.3.1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// ## Important Upgrade Information
+//
+// > * All single node upgrades will require some downtime since LavinMQ needs a restart.
+// > * Auto delete queues (queues that are marked AD) will be deleted during the update.
+//
 // ## Import
 //
 // Not possible to import this resource.
+//
+// [CloudAMQP API available versions]: https://docs.cloudamqp.com/instance-api.html#tag/nodes/get/nodes/available-versions
+//
+// [v1.32.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.32.0
 type UpgradeLavinmq struct {
 	pulumi.CustomResourceState
 

@@ -25,4 +25,7 @@ Base URL to CloudAMQP Customer website
 """
 
 enableFasterInstanceDestroy: Optional[bool]
+"""
+Skips destroying backend resources on 'terraform destroy'
+"""
 

@@ -128,40 +128,6 @@ namespace Pulumi.CloudAmqp
     /// ## Dependency
     /// 
     /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
-    /// 
-    /// ## Import
-    /// 
-    /// `cloudamqp_integration_aws_eventbridge` can be imported using the resource identifier together with
-    /// 
-    /// CloudAMQP instance identifier (CSV separated). To retrieve the resource identifier, use
-    /// 
-    /// [CloudAMQP API list eventbridges].
-    /// 
-    /// From Terraform v1.5.0, the `import` block can be used to import this resource:
-    /// 
-    /// hcl
-    /// 
-    /// import {
-    /// 
-    ///   to = cloudamqp_integration_aws_eventbridge.this
-    /// 
-    ///   id = format("&lt;id&gt;,%s", cloudamqp_instance.instance.id)
-    /// 
-    /// }
-    /// 
-    /// Or with Terraform CLI:
-    /// 
-    /// ```sh
-    /// $ pulumi import cloudamqp:index/integrationAwsEventbridge:IntegrationAwsEventbridge this &lt;id&gt;,&lt;instance_id&gt;`
-    /// ```
-    /// 
-    /// [AWS EventBridge]: https://aws.amazon.com/eventbridge
-    /// 
-    /// [AWS Eventbridge console]: https://console.aws.amazon.com/events/home
-    /// 
-    /// [v1.38.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.38.0
-    /// 
-    /// [CloudAMQP API list eventbridges]: https://docs.cloudamqp.com/instance-api.html#tag/eventbridge/get/eventbridges
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/integrationAwsEventbridge:IntegrationAwsEventbridge")]
     public partial class IntegrationAwsEventbridge : global::Pulumi.CustomResource

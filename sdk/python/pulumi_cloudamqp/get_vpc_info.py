@@ -119,7 +119,55 @@ def get_vpc_info(instance_id: Optional[_builtins.int] = None,
                  vpc_id: Optional[_builtins.str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcInfoResult:
     """
-    Use this data source to access information about an existing resource.
+    Use this data source to retrieve information about VPC for a CloudAMQP instance.
+
+    > **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
+
+    ## Example Usage
+
+    <details>
+      <summary>
+        <b>
+          <i>AWS VPC peering before v1.16.0</i>
+        </b>
+      </summary>
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    vpc_info = cloudamqp.get_vpc_info(instance_id=instance["id"])
+    ```
+
+    </details>
+
+    <details>
+      <summary>
+        <b>
+          <i>AWS VPC peering from [v1.16.0] (Managed VPC)</i>
+        </b>
+      </summary>
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    vpc_info = cloudamqp.get_vpc_info(vpc_id=vpc["id"])
+    ```
+
+    </details>
+
+    ## Dependency
+
+    *Before v1.16.0*
+    This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+    *From [v1.16.0]*
+    This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
+    identifier, `cloudamqp_instance.instance.id`.
+
+    [v1.16.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.16.0
+
 
     :param _builtins.int instance_id: The CloudAMQP instance identifier.
            
@@ -146,7 +194,55 @@ def get_vpc_info_output(instance_id: Optional[pulumi.Input[Optional[_builtins.in
                         vpc_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVpcInfoResult]:
     """
-    Use this data source to access information about an existing resource.
+    Use this data source to retrieve information about VPC for a CloudAMQP instance.
+
+    > **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
+
+    ## Example Usage
+
+    <details>
+      <summary>
+        <b>
+          <i>AWS VPC peering before v1.16.0</i>
+        </b>
+      </summary>
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    vpc_info = cloudamqp.get_vpc_info(instance_id=instance["id"])
+    ```
+
+    </details>
+
+    <details>
+      <summary>
+        <b>
+          <i>AWS VPC peering from [v1.16.0] (Managed VPC)</i>
+        </b>
+      </summary>
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    vpc_info = cloudamqp.get_vpc_info(vpc_id=vpc["id"])
+    ```
+
+    </details>
+
+    ## Dependency
+
+    *Before v1.16.0*
+    This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+    *From [v1.16.0]*
+    This resource depends on CloudAMQP managed VPC identifier, `cloudamqp_vpc.vpc.id` or instance
+    identifier, `cloudamqp_instance.instance.id`.
+
+    [v1.16.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.16.0
+
 
     :param _builtins.int instance_id: The CloudAMQP instance identifier.
            

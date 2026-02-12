@@ -12,29 +12,160 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Import
+// This resource allows you to add, update or remove a swebhook for a specific vhost and queue.
 //
-// `cloudamqp_webhook` can be imported using the resource identifier together with CloudAMQP instance
+// Only available for dedicated subscription plans.
 //
-// identifier (CSV separated). To retrieve the resource identifier, use [CloudAMQP API list webhooks].
+// ## Example Usage
 //
-// From Terraform v1.5.0, the `import` block can be used to import this resource:
+// <details>
 //
-// hcl
+//	<summary>
+//	   <b>
+//	     <i>Enable webhook from </i>
+//	     <a href="https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.30.0">v1.30.0</a>
+//	   </b>
+//	 </summary>
 //
-// import {
+// Support to updating the resource which makes the argument no longer require `ForceNew` behaviour.
+// The argument `retryInterval` have also been removed.
 //
-//	to = cloudamqp_webhook.webhook_queue
+// ```go
+// package main
 //
-//	id = format("<id>,%s", cloudamqp_instance.instance.id)
+// import (
 //
-// }
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
-// Or use Terraform CLI:
+// )
 //
-// ```sh
-// $ pulumi import cloudamqp:index/webhook:Webhook webhook_queue <id>,<instance_id>`
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewWebhook(ctx, "webhook_queue", &cloudamqp.WebhookArgs{
+//				InstanceId:  pulumi.Any(instance.Id),
+//				Vhost:       pulumi.Any(instance.Vhost),
+//				Queue:       pulumi.String("webhook-queue"),
+//				WebhookUri:  pulumi.String("https://example.com/webhook?key=secret"),
+//				Concurrency: pulumi.Int(5),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	   <b>
+//	     <i>Enable webhook before v1.30.0</i>
+//	   </b>
+//	 </summary>
+//
+// For more information see below versions section.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewWebhook(ctx, "webhook_queue", &cloudamqp.WebhookArgs{
+//				InstanceId:    pulumi.Any(instance.Id),
+//				Vhost:         pulumi.Any(instance.Vhost),
+//				Queue:         pulumi.String("webhook-queue"),
+//				WebhookUri:    pulumi.String("https://example.com/webhook?key=secret"),
+//				RetryInterval: 5,
+//				Concurrency:   pulumi.Int(5),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// ## Dependency
+//
+// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+//
+// ## Versions
+//
+// # Information for older versions
+//
+// <details>
+//
+//	<summary>
+//	  <i>Before v1.30.0</i>
+//	</summary>
+//
+//	Versions before v1.30.0 doesn't support updating the resource, therefore all arguments using the
+//	`ForceNew` behaviour. Any changes to an argument will destroy and re-create the resource. The
+//	argument `retryInterval` is set to required, even if it's no longer supported in the backend.
+//
+//	<b>Example Usage</b>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//	  pulumi.Run(func(ctx *pulumi.Context) error {
+//	      _, err := cloudamqp.NewWebhook(ctx, "webhook_queue", &cloudamqp.WebhookArgs{
+//	          InstanceId:    pulumi.Any(instance.Id),
+//	          Vhost:         pulumi.Any(instance.Vhost),
+//	          Queue:         pulumi.String("webhook-queue"),
+//	          WebhookUri:    pulumi.String("https://example.com/webhook?key=secret"),
+//	          RetryInterval: 5,
+//	          Concurrency:   pulumi.Int(5),
+//	      })
+//	      if err != nil {
+//	          return err
+//	      }
+//	      return nil
+//	  })
+//	}
+//
+// ```
+//
+//	**Argument Reference**
+//
+//	The following arguments are supported:
+//
+//	> * `instanceId`     - (Required/ForceNew) The CloudAMQP instance ID.
+//
+// > * `vhost`           - (Required/ForceNew) The vhost the queue resides in.
+// > * `queue`           - (Required/ForceNew) A (durable) queue on your RabbitMQ instance.
+// > * `webhookUri`     - (Required/ForceNew) A POST request will be made for each message in the
+// >                             queue to this endpoint.
+// > * `retryInterval`  - (Required/ForceNew) How often we retry if your endpoint fails (in seconds).
+// > * `concurrency`     - (Required/ForceNew) Max simultaneous requests to the endpoint.
+//
+// </details>
+//
+// [CloudAMQP API list webhooks]: https://docs.cloudamqp.com/instance-api.html#tag/webhooks/get/webhooks
 type Webhook struct {
 	pulumi.CustomResourceState
 

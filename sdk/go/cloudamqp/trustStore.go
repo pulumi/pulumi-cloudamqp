@@ -75,30 +75,6 @@ import (
 //	    <i>Trust store with HTTP provider and CA certificate</i>
 //	  </b>
 //	</summary>
-//
-// ## Import
-//
-// `cloudamqp_trust_store` can be imported using the CloudAMQP instance identifier.
-//
-// fields (`http.cacert` or `file.certificates`). You'll need to set these in your configuration.
-//
-// From Terraform v1.5.0, the `import` block can be used to import this resource:
-//
-// hcl
-//
-// import {
-//
-//	to = cloudamqp_trust_store.trust_store
-//
-//	id = cloudamqp_instance.instance.id
-//
-// }
-//
-// Or use Terraform CLI:
-//
-// ```sh
-// $ pulumi import cloudamqp:index/trustStore:TrustStore trust_store <instance_id>`
-// ```
 type TrustStore struct {
 	pulumi.CustomResourceState
 

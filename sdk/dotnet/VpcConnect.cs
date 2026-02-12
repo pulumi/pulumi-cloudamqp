@@ -10,29 +10,317 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
-    /// ## Import
+    /// This resource is a generic way to handle PrivateLink (AWS and Azure) and Private Service Connect
+    /// (GCP). Communication between resources can be done just as they were living inside a VPC. CloudAMQP
+    /// creates an Endpoint Service to connect the VPC and creating a new network interface to handle the
+    /// communicate.
     /// 
-    /// `cloudamqp_vpc_connect` can be imported using CloudAMQP instance identifier. To
+    /// If no existing VPC available when enable VPC connect, a new VPC will be created with subnet
+    /// `10.52.72.0/24`.
     /// 
-    /// retrieve the identifier, use [CloudAMQP API list intances].
+    /// More information can be found at: [CloudAMQP VPC Connect]
     /// 
-    /// From Terraform v1.5.0, the `import` block can be used to import this resource:
+    /// &gt; **Note:** Enabling VPC Connect will automatically add a firewall rule.
     /// 
-    /// hcl
+    /// &lt;details&gt;
+    ///  &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Default PrivateLink firewall rule [AWS, Azure]&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
     /// 
-    /// import {
+    /// For LavinMQ:
     /// 
-    ///   to = cloudamqp_vpc_connect.this
+    /// ## Example Usage
     /// 
-    ///   id = cloudamqp_instance.instance.id
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Enable VPC Connect (PrivateLink) in AWS&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
     /// 
-    /// }
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
     /// 
-    /// Or use Terraform CLI:
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var vpc = new CloudAmqp.Vpc("vpc", new()
+    ///     {
+    ///         Name = "Standalone VPC",
+    ///         Region = "amazon-web-services::us-west-1",
+    ///         Subnet = "10.56.72.0/24",
+    ///         Tags = new[] {},
+    ///     });
     /// 
-    /// ```sh
-    /// $ pulumi import cloudamqp:index/vpcConnect:VpcConnect vpc_connect &lt;id&gt;`
+    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     {
+    ///         Name = "Instance 01",
+    ///         Plan = "penguin-1",
+    ///         Region = "amazon-web-services::us-west-1",
+    ///         Tags = new[] {},
+    ///         VpcId = vpc.Id,
+    ///         KeepAssociatedVpc = true,
+    ///     });
+    /// 
+    ///     var vpcConnect = new CloudAmqp.VpcConnect("vpc_connect", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Region = instance.Region,
+    ///         AllowedPrincipals = new[]
+    ///         {
+    ///             "arn:aws:iam::aws-account-id:user/user-name",
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Enable VPC Connect (PrivateLink) in Azure&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var vpc = new CloudAmqp.Vpc("vpc", new()
+    ///     {
+    ///         Name = "Standalone VPC",
+    ///         Region = "azure-arm::westus",
+    ///         Subnet = "10.56.72.0/24",
+    ///         Tags = new[] {},
+    ///     });
+    /// 
+    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     {
+    ///         Name = "Instance 01",
+    ///         Plan = "penguin-1",
+    ///         Region = "azure-arm::westus",
+    ///         Tags = new[] {},
+    ///         VpcId = vpc.Id,
+    ///         KeepAssociatedVpc = true,
+    ///     });
+    /// 
+    ///     var vpcConnect = new CloudAmqp.VpcConnect("vpc_connect", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Region = instance.Region,
+    ///         ApprovedSubscriptions = new[]
+    ///         {
+    ///             "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// The attribute `ServiceName` found in resource `cloudamqp.VpcConnect` corresponds to the alias in
+    /// the resource `AzurermPrivateEndpoint` of the Azure provider. This can be used when creating the
+    /// private endpoint.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Azurerm = Pulumi.Azurerm;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Azurerm.Index.PrivateEndpoint("example", new()
+    ///     {
+    ///         Name = "example-endpoint",
+    ///         Location = exampleAzurermResourceGroup.Location,
+    ///         ResourceGroupName = exampleAzurermResourceGroup.Name,
+    ///         SubnetId = subnet.Id,
+    ///         PrivateServiceConnection = new[]
+    ///         {
+    ///             
+    ///             {
+    ///                 { "name", "example-privateserviceconnection" },
+    ///                 { "privateConnectionResourceAlias", vpcConnect.ServiceName },
+    ///                 { "isManualConnection", true },
+    ///                 { "requestMessage", "PL" },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// More information about the resource and argument can be found here:
+    /// [PrivateConnectionResourceAlias]. Or check their example "Using a Private Link Service Alias with
+    /// existing resources".
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Enable VPC Connect (Private Service Connect) in GCP&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var vpc = new CloudAmqp.Vpc("vpc", new()
+    ///     {
+    ///         Name = "Standalone VPC",
+    ///         Region = "google-compute-engine::us-west1",
+    ///         Subnet = "10.56.72.0/24",
+    ///         Tags = new[] {},
+    ///     });
+    /// 
+    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     {
+    ///         Name = "Instance 01",
+    ///         Plan = "penguin-1",
+    ///         Region = "google-compute-engine::us-west1",
+    ///         Tags = new[] {},
+    ///         VpcId = vpc.Id,
+    ///         KeepAssociatedVpc = true,
+    ///     });
+    /// 
+    ///     var vpcConnect = new CloudAmqp.VpcConnect("vpc_connect", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Region = instance.Region,
+    ///         AllowedProjects = new[]
+    ///         {
+    ///             "some-project-123456",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// ### With Additional Firewall Rules
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;CloudAMQP instance in an existing VPC with managed firewall rules&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var vpc = new CloudAmqp.Vpc("vpc", new()
+    ///     {
+    ///         Name = "Standalone VPC",
+    ///         Region = "amazon-web-services::us-west-1",
+    ///         Subnet = "10.56.72.0/24",
+    ///         Tags = new[] {},
+    ///     });
+    /// 
+    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     {
+    ///         Name = "Instance 01",
+    ///         Plan = "penguin-1",
+    ///         Region = "amazon-web-services::us-west-1",
+    ///         Tags = new[] {},
+    ///         VpcId = vpc.Id,
+    ///         KeepAssociatedVpc = true,
+    ///     });
+    /// 
+    ///     var vpcConnect = new CloudAmqp.VpcConnect("vpc_connect", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         AllowedPrincipals = new[]
+    ///         {
+    ///             "arn:aws:iam::aws-account-id:user/user-name",
+    ///         },
+    ///     });
+    /// 
+    ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewall_settings", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Rules = new[]
+    ///         {
+    ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
+    ///             {
+    ///                 Description = "Custom PrivateLink setup",
+    ///                 Ip = vpc.Subnet,
+    ///                 Ports = new() { },
+    ///                 Services = new[]
+    ///                 {
+    ///                     "AMQP",
+    ///                     "AMQPS",
+    ///                     "HTTPS",
+    ///                 },
+    ///             },
+    ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
+    ///             {
+    ///                 Description = "MGMT interface",
+    ///                 Ip = "0.0.0.0/0",
+    ///                 Ports = new() { },
+    ///                 Services = new[]
+    ///                 {
+    ///                     "HTTPS",
+    ///                 },
+    ///             },
+    ///         },
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             vpcConnect,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// [CloudAMQP API list intances]: https://docs.cloudamqp.com/index.html#tag/instances/get/instances
+    /// [CloudAMQP VPC Connect]: https://www.cloudamqp.com/docs/cloudamqp-vpc-connect.html
+    /// [cloudamqp.SecurityFirewall]: https://registry.terraform.io/providers/cloudamqp/cloudamqp/latest/docs/resources/security_firewall
+    /// [Google docs]: https://cloud.google.com/resource-manager/reference/rest/v1/projects
+    /// [PrivateConnectionResourceAlias]: ./private_endpoint#private_connection_resource_alias-1
+    /// 
+    /// ## Dependency
+    /// 
+    /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+    /// 
+    /// Since `Region` also is required, suggest to reuse the argument from CloudAMQP instance,
+    /// `cloudamqp_instance.instance.region`.
+    /// 
+    /// ## Create VPC Connect with additional firewall rules
+    /// 
+    /// To create a PrivateLink/Private Service Connect configuration with additional firewall rules, it's
+    /// required to chain the [cloudamqp.SecurityFirewall] resource to avoid parallel conflicting resource
+    /// calls. You can do this by making the firewall resource depend on the VPC Connect resource
+    /// `cloudamqp_vpc_connect.vpc_connect`.
+    /// 
+    /// Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
+    /// the VPC Connect also needs to be added.
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/vpcConnect:VpcConnect")]
     public partial class VpcConnect : global::Pulumi.CustomResource

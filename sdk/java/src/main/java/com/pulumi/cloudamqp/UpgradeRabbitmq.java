@@ -16,6 +16,287 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * This resource allows you to upgrade RabbitMQ version. Depending on initial versions of RabbitMQ and
+ * Erlang of the CloudAMQP instance, multiple runs may be needed to get to the latest or wanted version.
+ * Reason for this is certain supported RabbitMQ version will also automatically upgrade Erlang version.
+ * 
+ * There is three different ways to trigger the version upgrade
+ * 
+ * &gt; * Specify RabbitMQ version to upgrade to
+ * &gt; * Upgrade to latest RabbitMQ version
+ * &gt; * Old behaviour to upgrade to latest RabbitMQ version
+ * 
+ * See example below for usage.
+ * 
+ * Only available for dedicated subscription plans running ***RabbitMQ***.
+ * 
+ * ## Example Usage
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Specify version upgrade, from [v1.31.0]&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * Specify the version to upgrade to. List available upgradable versions, use
+ * [CloudAMQP API available versions].
+ * 
+ * After the upgrade finished, there can still be newer versions available.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import com.pulumi.cloudamqp.UpgradeRabbitmq;
+ * import com.pulumi.cloudamqp.UpgradeRabbitmqArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var instance = new Instance("instance", InstanceArgs.builder()
+ *             .name("rabbitmq-version-upgrade-test")
+ *             .plan("bunny-1")
+ *             .region("amazon-web-services::us-west-1")
+ *             .build());
+ * 
+ *         var upgrade = new UpgradeRabbitmq("upgrade", UpgradeRabbitmqArgs.builder()
+ *             .instanceId(instance.id())
+ *             .newVersion("3.13.2")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Upgrade to latest possible version, from [v1.31.0]&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * This will upgrade RabbitMQ to the latest possible version detected by the data source
+ * `cloudamqp.getUpgradableVersions`. Multiple runs can be needed to upgrade the version even further.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import com.pulumi.cloudamqp.CloudamqpFunctions;
+ * import com.pulumi.cloudamqp.inputs.GetUpgradableVersionsArgs;
+ * import com.pulumi.cloudamqp.UpgradeRabbitmq;
+ * import com.pulumi.cloudamqp.UpgradeRabbitmqArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var instance = new Instance("instance", InstanceArgs.builder()
+ *             .name("rabbitmq-version-upgrade-test")
+ *             .plan("bunny-1")
+ *             .region("amazon-web-services::us-west-1")
+ *             .build());
+ * 
+ *         final var upgradableVersions = instance.id().applyValue(_id -> CloudamqpFunctions.getUpgradableVersions(GetUpgradableVersionsArgs.builder()
+ *             .instanceId(_id)
+ *             .build()));
+ * 
+ *         var upgrade = new UpgradeRabbitmq("upgrade", UpgradeRabbitmqArgs.builder()
+ *             .instanceId(instance.id())
+ *             .currentVersion(instance.rmqVersion())
+ *             .newVersion(upgradableVersions.applyValue(_upgradableVersions -> _upgradableVersions.newRabbitmqVersion()))
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Upgrade to latest possible version, before v1.31.0&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * Old behaviour of the upgrading the RabbitMQ version. No longer recommended.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.CloudamqpFunctions;
+ * import com.pulumi.cloudamqp.inputs.GetUpgradableVersionsArgs;
+ * import com.pulumi.cloudamqp.UpgradeRabbitmq;
+ * import com.pulumi.cloudamqp.UpgradeRabbitmqArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // Retrieve latest possible upgradable versions for RabbitMQ and Erlang
+ *         final var versions = CloudamqpFunctions.getUpgradableVersions(GetUpgradableVersionsArgs.builder()
+ *             .instanceId(instance.id())
+ *             .build());
+ * 
+ *         // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
+ *         var upgrade = new UpgradeRabbitmq("upgrade", UpgradeRabbitmqArgs.builder()
+ *             .instanceId(instance.id())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.CloudamqpFunctions;
+ * import com.pulumi.cloudamqp.inputs.GetUpgradableVersionsArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // Retrieve latest possible upgradable versions for RabbitMQ and Erlang
+ *         final var versions = CloudamqpFunctions.getUpgradableVersions(GetUpgradableVersionsArgs.builder()
+ *             .instanceId(instance.id())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * If newer version is still available to be upgradable in the data source, re-run again.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.CloudamqpFunctions;
+ * import com.pulumi.cloudamqp.inputs.GetUpgradableVersionsArgs;
+ * import com.pulumi.cloudamqp.UpgradeRabbitmq;
+ * import com.pulumi.cloudamqp.UpgradeRabbitmqArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // Retrieve latest possible upgradable versions for RabbitMQ and Erlang
+ *         final var versions = CloudamqpFunctions.getUpgradableVersions(GetUpgradableVersionsArgs.builder()
+ *             .instanceId(instance.id())
+ *             .build());
+ * 
+ *         // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
+ *         var upgrade = new UpgradeRabbitmq("upgrade", UpgradeRabbitmqArgs.builder()
+ *             .instanceId(instance.id())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * ## Important upgrade information
+ * 
+ * &gt; * All single node upgrades will require some downtime since RabbitMQ needs a restart.
+ * &gt; * From RabbitMQ version 3.9, rolling upgrades between minor versions (e.g. 3.9 to 3.10), in a
+ * &gt;       multi-node cluster are possible without downtime. This means that one node is upgraded at a time
+ * &gt;       while the other nodes are still running. For versions older than 3.9, patch version upgrades
+ * &gt;       (e.g. 3.8.x to 3.8.y) are possible without downtime in a multi-node cluster, but minor version
+ * &gt;       upgrades will require downtime.
+ * &gt; * Auto delete queues (queues that are marked AD) will be deleted during the update.
+ * &gt; * Any custom plugins support has installed on your behalf will be disabled and you need to contact
+ * &gt;       support{@literal @}cloudamqp.com and ask to have them re-installed.
+ * &gt; * TLS 1.0 and 1.1 will not be supported after the update.
+ * 
+ * ## Multiple runs
+ * 
+ * Depending on initial versions of RabbitMQ and Erlang of the CloudAMQP instance, multiple runs may be
+ * needed to get to the latest or wanted version.
+ * 
+ * Example steps needed when starting at RabbitMQ version 3.12.2
+ * 
+ * |  Version         | Supported upgrading versions              | Min version to upgrade Erlang |
+ * |------------------|-------------------------------------------|-------------------------------|
+ * | 3.12.2           | 3.12.4, 3.12.6, 3.12.10, 3.12.12, 3.12.13 | 3.12.13                       |
+ * | 3.12.13          | 3.13.2                                    | 3.13.2                        |
+ * | 3.13.2           | -                                         | -                             |
+ * 
+ * [CloudAMQP API available versions]: https://docs.cloudamqp.com/instance-api.html#tag/nodes/get/nodes/available-versions
+ * [v1.31.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.31.0
+ * 
  * ## Import
  * 
  * Not possible to import this resource.
