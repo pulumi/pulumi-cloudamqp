@@ -34,6 +34,7 @@ class Oauth2ConfigurationArgs:
                  verify_aud: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Oauth2Configuration resource.
+
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[_builtins.str] issuer: The issuer URL of the OAuth2 provider. This is typically
                the base URL of your OAuth2 provider (e.g., Auth0, Keycloak, etc.).
@@ -271,6 +272,7 @@ class _Oauth2ConfigurationState:
                  verify_aud: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering Oauth2Configuration resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] additional_scopes_keys: List of additional JWT claim keys to extract OAuth2
                scopes from.
         :param pulumi.Input[_builtins.str] audience: The audience to be passed along to the Oauth2 provider when
@@ -614,6 +616,7 @@ class Oauth2Configuration(pulumi.CustomResource):
           any existing configuration.
         * After a configuration has been applied, a restart of RabbitMQ is required for the changes to take effect.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] additional_scopes_keys: List of additional JWT claim keys to extract OAuth2
@@ -748,6 +751,7 @@ class Oauth2Configuration(pulumi.CustomResource):
         * Only one OAuth2 configuration can exist per instance. Creating a new configuration will replace
           any existing configuration.
         * After a configuration has been applied, a restart of RabbitMQ is required for the changes to take effect.
+
 
         :param str resource_name: The name of the resource.
         :param Oauth2ConfigurationArgs args: The arguments to use to populate this resource's properties.

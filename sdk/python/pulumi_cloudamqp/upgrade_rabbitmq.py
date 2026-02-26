@@ -24,6 +24,7 @@ class UpgradeRabbitmqArgs:
                  new_version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a UpgradeRabbitmq resource.
+
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier
         :param pulumi.Input[_builtins.str] current_version: Helper argument to change upgrade behaviour to latest possible
                version
@@ -81,6 +82,7 @@ class _UpgradeRabbitmqState:
                  new_version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering UpgradeRabbitmq resources.
+
         :param pulumi.Input[_builtins.str] current_version: Helper argument to change upgrade behaviour to latest possible
                version
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier
@@ -286,6 +288,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
 
         Not possible to import this resource.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] current_version: Helper argument to change upgrade behaviour to latest possible
@@ -443,6 +446,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         ## Import
 
         Not possible to import this resource.
+
 
         :param str resource_name: The name of the resource.
         :param UpgradeRabbitmqArgs args: The arguments to use to populate this resource's properties.

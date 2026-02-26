@@ -26,6 +26,7 @@ class VpcPeeringArgs:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a VpcPeering resource.
+
         :param pulumi.Input[_builtins.str] peering_id: Peering identifier created by AW peering request.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier.
                
@@ -126,6 +127,7 @@ class _VpcPeeringState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering VpcPeering resources.
+
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier.
                
                ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
@@ -515,6 +517,7 @@ class VpcPeering(pulumi.CustomResource):
         `VpcPeering` can be imported while using the resource type, with CloudAMQP VPC
         identifier or instance identifier together with *peering_id* (CSV seperated).
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier.
@@ -806,6 +809,7 @@ class VpcPeering(pulumi.CustomResource):
         ***From [v1.32.2]:***
         `VpcPeering` can be imported while using the resource type, with CloudAMQP VPC
         identifier or instance identifier together with *peering_id* (CSV seperated).
+
 
         :param str resource_name: The name of the resource.
         :param VpcPeeringArgs args: The arguments to use to populate this resource's properties.

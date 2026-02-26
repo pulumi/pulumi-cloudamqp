@@ -25,6 +25,7 @@ class PrivatelinkAwsArgs:
                  timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a PrivatelinkAws resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_principals: Allowed principals to access the endpoint service.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier.
         :param pulumi.Input[_builtins.int] sleep: Configurable sleep time (seconds) when enable PrivateLink.
@@ -120,6 +121,7 @@ class _PrivatelinkAwsState:
                  timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering PrivatelinkAws resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] active_zones: Covering availability zones used when creating an Endpoint from other VPC.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_principals: Allowed principals to access the endpoint service.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier.
@@ -403,6 +405,7 @@ class PrivatelinkAws(pulumi.CustomResource):
         Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
         the PrivateLink also needs to be added.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_principals: Allowed principals to access the endpoint service.
@@ -568,6 +571,7 @@ class PrivatelinkAws(pulumi.CustomResource):
 
         Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
         the PrivateLink also needs to be added.
+
 
         :param str resource_name: The name of the resource.
         :param PrivatelinkAwsArgs args: The arguments to use to populate this resource's properties.
