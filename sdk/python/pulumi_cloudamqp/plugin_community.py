@@ -26,6 +26,7 @@ class PluginCommunityArgs:
                  timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a PluginCommunity resource.
+
         :param pulumi.Input[_builtins.bool] enabled: Enable or disable the plugins.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[_builtins.str] name: The name of the Rabbit MQ community plugin.
@@ -126,6 +127,7 @@ class _PluginCommunityState:
                  timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering PluginCommunity resources.
+
         :param pulumi.Input[_builtins.str] description: The description of the plugin.
         :param pulumi.Input[_builtins.bool] enabled: Enable or disable the plugins.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
@@ -318,6 +320,7 @@ class PluginCommunity(pulumi.CustomResource):
         [v1.27.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.27.0
         [v1.29.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.29.0
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] enabled: Enable or disable the plugins.
@@ -397,6 +400,7 @@ class PluginCommunity(pulumi.CustomResource):
         [CloudAMQP API list community plugins]: https://docs.cloudamqp.com/instance-api.html#tag/plugins/get/plugins/community
         [v1.27.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.27.0
         [v1.29.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.29.0
+
 
         :param str resource_name: The name of the resource.
         :param PluginCommunityArgs args: The arguments to use to populate this resource's properties.

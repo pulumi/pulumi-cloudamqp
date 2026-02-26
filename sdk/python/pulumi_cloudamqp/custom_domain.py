@@ -25,6 +25,7 @@ class CustomDomainArgs:
                  timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a CustomDomain resource.
+
         :param pulumi.Input[_builtins.str] hostname: Your custom domain name.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[_builtins.int] sleep: Configurable sleep time in seconds between retries for custom domain configuration
@@ -95,6 +96,7 @@ class _CustomDomainState:
                  timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering CustomDomain resources.
+
         :param pulumi.Input[_builtins.str] hostname: Your custom domain name.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[_builtins.int] sleep: Configurable sleep time in seconds between retries for custom domain configuration
@@ -200,6 +202,7 @@ class CustomDomain(pulumi.CustomResource):
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] hostname: Your custom domain name.
@@ -243,6 +246,7 @@ class CustomDomain(pulumi.CustomResource):
         ## Dependency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
 
         :param str resource_name: The name of the resource.
         :param CustomDomainArgs args: The arguments to use to populate this resource's properties.

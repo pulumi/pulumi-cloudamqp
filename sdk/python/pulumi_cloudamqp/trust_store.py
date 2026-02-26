@@ -31,6 +31,7 @@ class TrustStoreArgs:
                  version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a TrustStore resource.
+
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier.
         :param pulumi.Input['TrustStoreFileArgs'] file: File trust store configuration block. See File Block below.
         :param pulumi.Input['TrustStoreHttpArgs'] http: HTTP trust store configuration block. See HTTP Block below.
@@ -180,6 +181,7 @@ class _TrustStoreState:
                  version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering TrustStore resources.
+
         :param pulumi.Input['TrustStoreFileArgs'] file: File trust store configuration block. See File Block below.
         :param pulumi.Input['TrustStoreHttpArgs'] http: HTTP trust store configuration block. See HTTP Block below.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier.
@@ -379,6 +381,7 @@ class TrustStore(pulumi.CustomResource):
             </b>
           </summary>
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['TrustStoreFileArgs', 'TrustStoreFileArgsDict']] file: File trust store configuration block. See File Block below.
@@ -449,6 +452,7 @@ class TrustStore(pulumi.CustomResource):
               <i>Trust store with HTTP provider and CA certificate</i>
             </b>
           </summary>
+
 
         :param str resource_name: The name of the resource.
         :param TrustStoreArgs args: The arguments to use to populate this resource's properties.

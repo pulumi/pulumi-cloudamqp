@@ -32,6 +32,7 @@ class IntegrationMetricPrometheusArgs:
                  stackdriver_v2: Optional[pulumi.Input['IntegrationMetricPrometheusStackdriverV2Args']] = None):
         """
         The set of arguments for constructing a IntegrationMetricPrometheus resource.
+
         :param pulumi.Input[_builtins.int] instance_id: Instance identifier for the CloudAMQP instance.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] metrics_filters: List of metrics to include in the integration. If not specified, default metrics are included.
                For more information about metrics filtering, see the [metrics filtering documentation](https://www.cloudamqp.com/docs/monitoring_metrics_splunk_v2.html#metrics-filtering).
@@ -161,6 +162,7 @@ class _IntegrationMetricPrometheusState:
                  stackdriver_v2: Optional[pulumi.Input['IntegrationMetricPrometheusStackdriverV2Args']] = None):
         """
         Input properties used for looking up and filtering IntegrationMetricPrometheus resources.
+
         :param pulumi.Input[_builtins.int] instance_id: Instance identifier for the CloudAMQP instance.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] metrics_filters: List of metrics to include in the integration. If not specified, default metrics are included.
                For more information about metrics filtering, see the [metrics filtering documentation](https://www.cloudamqp.com/docs/monitoring_metrics_splunk_v2.html#metrics-filtering).
@@ -414,6 +416,7 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
 
         From Terraform v1.5.0, the `import` block can be used to import this resource:
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] instance_id: Instance identifier for the CloudAMQP instance.
@@ -548,6 +551,7 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         CloudAMQP Prometheus metric integrations can be imported using the integration identifier together with the instance identifier. The import identifier should be in the format `{integration_id},{instance_id}`.
 
         From Terraform v1.5.0, the `import` block can be used to import this resource:
+
 
         :param str resource_name: The name of the resource.
         :param IntegrationMetricPrometheusArgs args: The arguments to use to populate this resource's properties.

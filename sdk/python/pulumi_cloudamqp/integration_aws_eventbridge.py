@@ -28,6 +28,7 @@ class IntegrationAwsEventbridgeArgs:
                  prefetch: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a IntegrationAwsEventbridge resource.
+
         :param pulumi.Input[_builtins.str] aws_account_id: The 12 digit AWS Account ID where you want the events to be sent to.
         :param pulumi.Input[_builtins.str] aws_region: The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
         :param pulumi.Input[_builtins.int] instance_id: Instance identifier
@@ -143,6 +144,7 @@ class _IntegrationAwsEventbridgeState:
                  with_headers: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering IntegrationAwsEventbridge resources.
+
         :param pulumi.Input[_builtins.str] aws_account_id: The 12 digit AWS Account ID where you want the events to be sent to.
         :param pulumi.Input[_builtins.str] aws_region: The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
         :param pulumi.Input[_builtins.int] instance_id: Instance identifier
@@ -372,6 +374,7 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] aws_account_id: The 12 digit AWS Account ID where you want the events to be sent to.
@@ -479,6 +482,7 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
         ## Dependency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
 
         :param str resource_name: The name of the resource.
         :param IntegrationAwsEventbridgeArgs args: The arguments to use to populate this resource's properties.

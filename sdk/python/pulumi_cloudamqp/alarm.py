@@ -32,6 +32,7 @@ class AlarmArgs:
                  vhost_regex: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Alarm resource.
+
         :param pulumi.Input[_builtins.bool] enabled: Enable or disable the alarm to trigger.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] recipients: Identifier for recipient to be notified. Leave empty to notify
@@ -228,6 +229,7 @@ class _AlarmState:
                  vhost_regex: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Alarm resources.
+
         :param pulumi.Input[_builtins.bool] enabled: Enable or disable the alarm to trigger.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[_builtins.str] message_type: Message type `(total, unacked, ready)` used by queue alarm type.
@@ -558,6 +560,7 @@ class Alarm(pulumi.CustomResource):
         [notice alarm]: #notice-alarm
         [v1.29.5]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.29.5
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] enabled: Enable or disable the alarm to trigger.
@@ -713,6 +716,7 @@ class Alarm(pulumi.CustomResource):
         [CloudAMQP API list alarms]: https://docs.cloudamqp.com/instance-api.html#tag/alarms/get/alarms
         [notice alarm]: #notice-alarm
         [v1.29.5]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.29.5
+
 
         :param str resource_name: The name of the resource.
         :param AlarmArgs args: The arguments to use to populate this resource's properties.
