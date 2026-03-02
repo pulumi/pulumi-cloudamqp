@@ -71,7 +71,7 @@ export interface IntegrationMetricPrometheusDatadogV3 {
      */
     rabbitmqDashboardMetricsFormat?: pulumi.Input<boolean>;
     /**
-     * Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`.
+     * Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`, `ap2`.
      */
     region: pulumi.Input<string>;
     /**

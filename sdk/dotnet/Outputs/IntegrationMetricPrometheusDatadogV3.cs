@@ -22,7 +22,7 @@ namespace Pulumi.CloudAmqp.Outputs
         /// </summary>
         public readonly bool? RabbitmqDashboardMetricsFormat;
         /// <summary>
-        /// Datadog region code. Valid values: `Us1`, `Us3`, `Us5`, `Eu1`.
+        /// Datadog region code. Valid values: `Us1`, `Us3`, `Us5`, `Eu1`, `Ap2`.
         /// </summary>
         public readonly string Region;
         /// <summary>
