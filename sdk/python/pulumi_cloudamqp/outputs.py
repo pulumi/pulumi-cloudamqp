@@ -289,7 +289,7 @@ class IntegrationMetricPrometheusDatadogV3(dict):
                  tags: Optional[_builtins.str] = None):
         """
         :param _builtins.str api_key: Datadog API key for authentication.
-        :param _builtins.str region: Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`.
+        :param _builtins.str region: Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`, `ap2`.
         :param _builtins.bool rabbitmq_dashboard_metrics_format: Enable metric name transformation to match Datadog's RabbitMQ dashboard format. Default: `false`. **Note:** This option is only available for RabbitMQ clusters, not LavinMQ clusters.
         :param _builtins.str tags: Additional tags to attach to metrics. Format: `key=value,key2=value2`.
         """
@@ -312,7 +312,7 @@ class IntegrationMetricPrometheusDatadogV3(dict):
     @pulumi.getter
     def region(self) -> _builtins.str:
         """
-        Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`.
+        Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`, `ap2`.
         """
         return pulumi.get(self, "region")
 

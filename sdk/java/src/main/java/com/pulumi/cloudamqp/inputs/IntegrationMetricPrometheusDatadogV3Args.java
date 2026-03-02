@@ -48,14 +48,14 @@ public final class IntegrationMetricPrometheusDatadogV3Args extends com.pulumi.r
     }
 
     /**
-     * Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`.
+     * Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`, `ap2`.
      * 
      */
     @Import(name="region", required=true)
     private Output<String> region;
 
     /**
-     * @return Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`.
+     * @return Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`, `ap2`.
      * 
      */
     public Output<String> region() {
@@ -147,7 +147,7 @@ public final class IntegrationMetricPrometheusDatadogV3Args extends com.pulumi.r
         }
 
         /**
-         * @param region Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`.
+         * @param region Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`, `ap2`.
          * 
          * @return builder
          * 
@@ -158,7 +158,7 @@ public final class IntegrationMetricPrometheusDatadogV3Args extends com.pulumi.r
         }
 
         /**
-         * @param region Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`.
+         * @param region Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`, `ap2`.
          * 
          * @return builder
          * 
