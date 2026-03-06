@@ -35,6 +35,7 @@ class InstanceArgs:
                  vpc_subnet: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Instance resource.
+
         :param pulumi.Input[_builtins.str] plan: The subscription plan. See available [plans].
         :param pulumi.Input[_builtins.str] region: The region to host the instance in. See available [regions].
                
@@ -303,6 +304,7 @@ class _InstanceState:
                  vpc_subnet: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
+
         :param pulumi.Input[_builtins.str] apikey: API key needed to communicate to CloudAMQP's second API. The second API is used
                to manage alarms, integration and more, full description [CloudAMQP API].
         :param pulumi.Input[_builtins.str] backend: Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
@@ -965,6 +967,7 @@ class Instance(pulumi.CustomResource):
         [gcp-region-zones]: https://cloud.google.com/compute/docs/regions-zones#available
         [do-regional-availability]: https://docs.digitalocean.com/platform/regional-availability/
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceCopySettingArgs', 'InstanceCopySettingArgsDict']]]] copy_settings: Copy settings from one CloudAMQP instance to a new. Consists of
@@ -1290,6 +1293,7 @@ class Instance(pulumi.CustomResource):
         [azure-region-list]: https://learn.microsoft.com/en-us/azure/reliability/regions-list
         [gcp-region-zones]: https://cloud.google.com/compute/docs/regions-zones#available
         [do-regional-availability]: https://docs.digitalocean.com/platform/regional-availability/
+
 
         :param str resource_name: The name of the resource.
         :param InstanceArgs args: The arguments to use to populate this resource's properties.

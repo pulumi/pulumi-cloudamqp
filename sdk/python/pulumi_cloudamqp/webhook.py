@@ -28,6 +28,7 @@ class WebhookArgs:
                  timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a Webhook resource.
+
         :param pulumi.Input[_builtins.int] concurrency: Max simultaneous requests to the endpoint.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[_builtins.str] queue: A (durable) queue on your RabbitMQ instance.
@@ -145,6 +146,7 @@ class _WebhookState:
                  webhook_uri: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Webhook resources.
+
         :param pulumi.Input[_builtins.int] concurrency: Max simultaneous requests to the endpoint.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[_builtins.str] queue: A (durable) queue on your RabbitMQ instance.
@@ -373,6 +375,7 @@ class Webhook(pulumi.CustomResource):
 
         [CloudAMQP API list webhooks]: https://docs.cloudamqp.com/instance-api.html#tag/webhooks/get/webhooks
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] concurrency: Max simultaneous requests to the endpoint.
@@ -493,6 +496,7 @@ class Webhook(pulumi.CustomResource):
         </details>
 
         [CloudAMQP API list webhooks]: https://docs.cloudamqp.com/instance-api.html#tag/webhooks/get/webhooks
+
 
         :param str resource_name: The name of the resource.
         :param WebhookArgs args: The arguments to use to populate this resource's properties.

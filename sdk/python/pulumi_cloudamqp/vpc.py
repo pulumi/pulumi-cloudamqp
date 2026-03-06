@@ -25,6 +25,7 @@ class VpcArgs:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Vpc resource.
+
         :param pulumi.Input[_builtins.str] region: The hosted region for the managed standalone VPC
         :param pulumi.Input[_builtins.str] subnet: The VPC subnet
         :param pulumi.Input[_builtins.str] name: The name of the VPC.
@@ -96,6 +97,7 @@ class _VpcState:
                  vpc_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Vpc resources.
+
         :param pulumi.Input[_builtins.str] name: The name of the VPC.
         :param pulumi.Input[_builtins.str] region: The hosted region for the managed standalone VPC
         :param pulumi.Input[_builtins.str] subnet: The VPC subnet
@@ -220,6 +222,7 @@ class Vpc(pulumi.CustomResource):
         vpc_info = cloudamqp.get_vpc_info_output(vpc_id=vpc.id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: The name of the VPC.
@@ -267,6 +270,7 @@ class Vpc(pulumi.CustomResource):
         # Additional VPC information
         vpc_info = cloudamqp.get_vpc_info_output(vpc_id=vpc.id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VpcArgs args: The arguments to use to populate this resource's properties.
