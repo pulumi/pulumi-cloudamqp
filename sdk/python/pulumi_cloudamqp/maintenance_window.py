@@ -25,6 +25,7 @@ class MaintenanceWindowArgs:
                  preferred_time: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MaintenanceWindow resource.
+
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[_builtins.str] automatic_updates: Allow scheduling of a maintenance for version update
                once a new LavinMQ version been released.
@@ -98,6 +99,7 @@ class _MaintenanceWindowState:
                  preferred_time: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MaintenanceWindow resources.
+
         :param pulumi.Input[_builtins.str] automatic_updates: Allow scheduling of a maintenance for version update
                once a new LavinMQ version been released.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
@@ -259,6 +261,7 @@ class MaintenanceWindow(pulumi.CustomResource):
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] automatic_updates: Allow scheduling of a maintenance for version update
@@ -357,6 +360,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         ## Dependency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
 
         :param str resource_name: The name of the resource.
         :param MaintenanceWindowArgs args: The arguments to use to populate this resource's properties.

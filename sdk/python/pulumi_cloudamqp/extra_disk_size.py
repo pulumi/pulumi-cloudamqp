@@ -28,6 +28,7 @@ class ExtraDiskSizeArgs:
                  timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a ExtraDiskSize resource.
+
         :param pulumi.Input[_builtins.int] extra_disk_size: Extra disk size in GB. Supported values: 0, 25, 50, 100,
                250, 500, 1000, 2000
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
@@ -127,6 +128,7 @@ class _ExtraDiskSizeState:
                  timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering ExtraDiskSize resources.
+
         :param pulumi.Input[_builtins.bool] allow_downtime: When resizing the disk, allow cluster downtime if necessary.
                Default set to false.
         :param pulumi.Input[_builtins.int] extra_disk_size: Extra disk size in GB. Supported values: 0, 25, 50, 100,
@@ -393,6 +395,7 @@ class ExtraDiskSize(pulumi.CustomResource):
         [CloudAMQP]: https://www.cloudamqp.com/
         [v1.25.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.25.0
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] allow_downtime: When resizing the disk, allow cluster downtime if necessary.
@@ -561,6 +564,7 @@ class ExtraDiskSize(pulumi.CustomResource):
 
         [CloudAMQP]: https://www.cloudamqp.com/
         [v1.25.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.25.0
+
 
         :param str resource_name: The name of the resource.
         :param ExtraDiskSizeArgs args: The arguments to use to populate this resource's properties.

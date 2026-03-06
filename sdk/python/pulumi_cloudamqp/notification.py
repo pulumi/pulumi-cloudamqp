@@ -29,6 +29,7 @@ class NotificationArgs:
                  responders: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationResponderArgs']]]] = None):
         """
         The set of arguments for constructing a Notification resource.
+
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[_builtins.str] type: Type of responder. [`team`, `user`, `escalation`, `schedule`]
         :param pulumi.Input[_builtins.str] value: Integration/API key or endpoint to send the notification.
@@ -158,6 +159,7 @@ class _NotificationState:
                  value: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Notification resources.
+
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[_builtins.str] name: Name of the responder
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] options: Options argument (e.g. `rk` used for VictorOps routing key).
@@ -479,6 +481,7 @@ class Notification(pulumi.CustomResource):
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
@@ -694,6 +697,7 @@ class Notification(pulumi.CustomResource):
         ## Dependency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
 
         :param str resource_name: The name of the resource.
         :param NotificationArgs args: The arguments to use to populate this resource's properties.

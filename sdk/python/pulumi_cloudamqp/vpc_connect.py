@@ -28,6 +28,7 @@ class VpcConnectArgs:
                  timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a VpcConnect resource.
+
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier.
         :param pulumi.Input[_builtins.str] region: The region where the CloudAMQP instance is hosted.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_principals: List of allowed prinicpals used by AWS, see below table.
@@ -177,6 +178,7 @@ class _VpcConnectState:
                  timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering VpcConnect resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] active_zones: Covering availability zones used when creating an endpoint from other VPC. (AWS)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_principals: List of allowed prinicpals used by AWS, see below table.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_projects: List of allowed projects used by GCP, see below table.
@@ -590,6 +592,7 @@ class VpcConnect(pulumi.CustomResource):
         Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
         the VPC Connect also needs to be added.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_principals: List of allowed prinicpals used by AWS, see below table.
@@ -837,6 +840,7 @@ class VpcConnect(pulumi.CustomResource):
 
         Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
         the VPC Connect also needs to be added.
+
 
         :param str resource_name: The name of the resource.
         :param VpcConnectArgs args: The arguments to use to populate this resource's properties.

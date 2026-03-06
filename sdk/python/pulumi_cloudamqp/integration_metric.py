@@ -39,6 +39,7 @@ class IntegrationMetricArgs:
                  vhost_allowlist: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a IntegrationMetric resource.
+
         :param pulumi.Input[_builtins.int] instance_id: Instance identifier
         :param pulumi.Input[_builtins.str] access_key_id: AWS access key identifier. (Cloudwatch)
         :param pulumi.Input[_builtins.str] api_key: The API key for the integration service. (Librato, Data Dog, New Relic)
@@ -334,6 +335,7 @@ class _IntegrationMetricState:
                  vhost_allowlist: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IntegrationMetric resources.
+
         :param pulumi.Input[_builtins.str] access_key_id: AWS access key identifier. (Cloudwatch)
         :param pulumi.Input[_builtins.str] api_key: The API key for the integration service. (Librato, Data Dog, New Relic)
         :param pulumi.Input[_builtins.str] client_email: The client email. (Stackdriver)
@@ -931,6 +933,7 @@ class IntegrationMetric(pulumi.CustomResource):
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] access_key_id: AWS access key identifier. (Cloudwatch)
@@ -1256,6 +1259,7 @@ class IntegrationMetric(pulumi.CustomResource):
         ## Dependency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
 
         :param str resource_name: The name of the resource.
         :param IntegrationMetricArgs args: The arguments to use to populate this resource's properties.
