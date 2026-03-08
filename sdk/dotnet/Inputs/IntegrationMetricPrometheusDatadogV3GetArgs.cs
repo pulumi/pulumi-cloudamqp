@@ -35,7 +35,7 @@ namespace Pulumi.CloudAmqp.Inputs
         public Input<bool>? RabbitmqDashboardMetricsFormat { get; set; }
 
         /// <summary>
-        /// Datadog region code. Valid values: `Us1`, `Us3`, `Us5`, `Eu1`.
+        /// Datadog region code. Valid values: `Us1`, `Us3`, `Us5`, `Eu1`, `Ap2`.
         /// </summary>
         [Input("region", required: true)]
         public Input<string> Region { get; set; } = null!;

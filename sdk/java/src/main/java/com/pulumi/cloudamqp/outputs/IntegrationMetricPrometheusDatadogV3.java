@@ -24,7 +24,7 @@ public final class IntegrationMetricPrometheusDatadogV3 {
      */
     private @Nullable Boolean rabbitmqDashboardMetricsFormat;
     /**
-     * @return Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`.
+     * @return Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`, `ap2`.
      * 
      */
     private String region;
@@ -50,7 +50,7 @@ public final class IntegrationMetricPrometheusDatadogV3 {
         return Optional.ofNullable(this.rabbitmqDashboardMetricsFormat);
     }
     /**
-     * @return Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`.
+     * @return Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`, `ap2`.
      * 
      */
     public String region() {
