@@ -27,6 +27,7 @@ class SecurityFirewallArgs:
                  timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a SecurityFirewall resource.
+
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules`
                block consists of the field documented below.
@@ -111,6 +112,7 @@ class _SecurityFirewallState:
                  timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering SecurityFirewall resources.
+
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules`
                block consists of the field documented below.
@@ -364,6 +366,7 @@ class SecurityFirewall(pulumi.CustomResource):
         [v1.33.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.33.0
         [VPC GPC peering]: ./vpc_gcp_peering#create-vpc-peering-with-additional-firewall-rules
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
@@ -548,6 +551,7 @@ class SecurityFirewall(pulumi.CustomResource):
         [v1.27.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.27.0
         [v1.33.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.33.0
         [VPC GPC peering]: ./vpc_gcp_peering#create-vpc-peering-with-additional-firewall-rules
+
 
         :param str resource_name: The name of the resource.
         :param SecurityFirewallArgs args: The arguments to use to populate this resource's properties.

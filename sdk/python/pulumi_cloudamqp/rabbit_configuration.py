@@ -40,6 +40,7 @@ class RabbitConfigurationArgs:
                  vm_memory_high_watermark: Optional[pulumi.Input[_builtins.float]] = None):
         """
         The set of arguments for constructing a RabbitConfiguration resource.
+
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[_builtins.int] channel_max: Set the maximum permissible number of channels per connection.
         :param pulumi.Input[_builtins.str] cluster_partition_handling: Set how the cluster should handle network partition.
@@ -355,6 +356,7 @@ class _RabbitConfigurationState:
                  vm_memory_high_watermark: Optional[pulumi.Input[_builtins.float]] = None):
         """
         Input properties used for looking up and filtering RabbitConfiguration resources.
+
         :param pulumi.Input[_builtins.int] channel_max: Set the maximum permissible number of channels per connection.
         :param pulumi.Input[_builtins.str] cluster_partition_handling: Set how the cluster should handle network partition.
         :param pulumi.Input[_builtins.int] connection_max: Set the maximum permissible number of connection.
@@ -966,6 +968,7 @@ class RabbitConfiguration(pulumi.CustomResource):
         [CloudAMQP API list intances]: https://docs.cloudamqp.com/index.html#tag/instances/get/instances
         [v1.35.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.35.0
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] channel_max: Set the maximum permissible number of channels per connection.
@@ -1288,6 +1291,7 @@ class RabbitConfiguration(pulumi.CustomResource):
 
         [CloudAMQP API list intances]: https://docs.cloudamqp.com/index.html#tag/instances/get/instances
         [v1.35.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.35.0
+
 
         :param str resource_name: The name of the resource.
         :param RabbitConfigurationArgs args: The arguments to use to populate this resource's properties.

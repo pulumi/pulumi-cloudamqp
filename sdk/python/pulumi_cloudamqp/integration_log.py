@@ -48,6 +48,7 @@ class IntegrationLogArgs:
                  url: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a IntegrationLog resource.
+
         :param pulumi.Input[_builtins.int] instance_id: Instance identifier for the CloudAMQP instance.
                
                Valid arguments for each third party log integrations below. Corresponding API backend documentation can be
@@ -545,6 +546,7 @@ class _IntegrationLogState:
                  url: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IntegrationLog resources.
+
         :param pulumi.Input[_builtins.str] access_key_id: AWS access key identifier.
         :param pulumi.Input[_builtins.str] api_key: The API key for the integration service. (Datadog)
         :param pulumi.Input[_builtins.str] application: The name of the application. (Azure Monitor)
@@ -1361,6 +1363,7 @@ class IntegrationLog(pulumi.CustomResource):
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] access_key_id: AWS access key identifier.
@@ -1741,6 +1744,7 @@ class IntegrationLog(pulumi.CustomResource):
         ## Dependency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
 
         :param str resource_name: The name of the resource.
         :param IntegrationLogArgs args: The arguments to use to populate this resource's properties.

@@ -23,6 +23,7 @@ class UpgradeLavinmqArgs:
                  new_version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a UpgradeLavinmq resource.
+
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier
         :param pulumi.Input[_builtins.str] new_version: The new version to upgrade to
         """
@@ -62,6 +63,7 @@ class _UpgradeLavinmqState:
                  new_version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering UpgradeLavinmq resources.
+
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier
         :param pulumi.Input[_builtins.str] new_version: The new version to upgrade to
         """
@@ -148,6 +150,7 @@ class UpgradeLavinmq(pulumi.CustomResource):
 
         Not possible to import this resource.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier
@@ -202,6 +205,7 @@ class UpgradeLavinmq(pulumi.CustomResource):
         ## Import
 
         Not possible to import this resource.
+
 
         :param str resource_name: The name of the resource.
         :param UpgradeLavinmqArgs args: The arguments to use to populate this resource's properties.

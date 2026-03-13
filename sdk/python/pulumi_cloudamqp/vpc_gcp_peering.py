@@ -27,6 +27,7 @@ class VpcGcpPeeringArgs:
                  wait_on_peering_status: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a VpcGcpPeering resource.
+
         :param pulumi.Input[_builtins.str] peer_network_uri: Network URI of the VPC network to which you will peer with.
                See examples above for the format.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier.
@@ -161,6 +162,7 @@ class _VpcGcpPeeringState:
                  wait_on_peering_status: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering VpcGcpPeering resources.
+
         :param pulumi.Input[_builtins.bool] auto_create_routes: VPC peering auto created routes
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier.
                
@@ -582,6 +584,7 @@ class VpcGcpPeering(pulumi.CustomResource):
         `VpcGcpPeering` can be imported while using the resource type, with CloudAMQP VPC
         identifier or instance identifier together with *peering_network_uri* (CSV seperated).
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier.
@@ -852,6 +855,7 @@ class VpcGcpPeering(pulumi.CustomResource):
         ***From v1.32.2:***
         `VpcGcpPeering` can be imported while using the resource type, with CloudAMQP VPC
         identifier or instance identifier together with *peering_network_uri* (CSV seperated).
+
 
         :param str resource_name: The name of the resource.
         :param VpcGcpPeeringArgs args: The arguments to use to populate this resource's properties.
