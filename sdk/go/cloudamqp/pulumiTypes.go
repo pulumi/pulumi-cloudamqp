@@ -582,7 +582,7 @@ type IntegrationMetricPrometheusDatadogV3 struct {
 	ApiKey string `pulumi:"apiKey"`
 	// Enable metric name transformation to match Datadog's RabbitMQ dashboard format. Default: `false`. **Note:** This option is only available for RabbitMQ clusters, not LavinMQ clusters.
 	RabbitmqDashboardMetricsFormat *bool `pulumi:"rabbitmqDashboardMetricsFormat"`
-	// Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`.
+	// Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`, `ap2`.
 	Region string `pulumi:"region"`
 	// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
 	Tags *string `pulumi:"tags"`
@@ -604,7 +604,7 @@ type IntegrationMetricPrometheusDatadogV3Args struct {
 	ApiKey pulumi.StringInput `pulumi:"apiKey"`
 	// Enable metric name transformation to match Datadog's RabbitMQ dashboard format. Default: `false`. **Note:** This option is only available for RabbitMQ clusters, not LavinMQ clusters.
 	RabbitmqDashboardMetricsFormat pulumi.BoolPtrInput `pulumi:"rabbitmqDashboardMetricsFormat"`
-	// Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`.
+	// Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`, `ap2`.
 	Region pulumi.StringInput `pulumi:"region"`
 	// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
 	Tags pulumi.StringPtrInput `pulumi:"tags"`
@@ -697,7 +697,7 @@ func (o IntegrationMetricPrometheusDatadogV3Output) RabbitmqDashboardMetricsForm
 	return o.ApplyT(func(v IntegrationMetricPrometheusDatadogV3) *bool { return v.RabbitmqDashboardMetricsFormat }).(pulumi.BoolPtrOutput)
 }
 
-// Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`.
+// Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`, `ap2`.
 func (o IntegrationMetricPrometheusDatadogV3Output) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v IntegrationMetricPrometheusDatadogV3) string { return v.Region }).(pulumi.StringOutput)
 }
@@ -751,7 +751,7 @@ func (o IntegrationMetricPrometheusDatadogV3PtrOutput) RabbitmqDashboardMetricsF
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`.
+// Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`, `ap2`.
 func (o IntegrationMetricPrometheusDatadogV3PtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationMetricPrometheusDatadogV3) *string {
 		if v == nil {
