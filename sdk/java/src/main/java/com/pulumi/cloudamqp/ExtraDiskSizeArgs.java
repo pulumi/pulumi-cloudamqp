@@ -89,6 +89,8 @@ public final class ExtraDiskSizeArgs extends com.pulumi.resources.ResourceArgs {
      * 
      * ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from [v1.25.0].
      * 
+     * ***Note:*** `timeout` was overridden to 3 hours starting from [v1.43.1]
+     * 
      */
     @Import(name="timeout")
     private @Nullable Output<Integer> timeout;
@@ -98,6 +100,8 @@ public final class ExtraDiskSizeArgs extends com.pulumi.resources.ResourceArgs {
      * set to 1800 seconds.
      * 
      * ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from [v1.25.0].
+     * 
+     * ***Note:*** `timeout` was overridden to 3 hours starting from [v1.43.1]
      * 
      */
     public Optional<Output<Integer>> timeout() {
@@ -228,6 +232,8 @@ public final class ExtraDiskSizeArgs extends com.pulumi.resources.ResourceArgs {
          * 
          * ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from [v1.25.0].
          * 
+         * ***Note:*** `timeout` was overridden to 3 hours starting from [v1.43.1]
+         * 
          * @return builder
          * 
          */
@@ -241,6 +247,8 @@ public final class ExtraDiskSizeArgs extends com.pulumi.resources.ResourceArgs {
          * set to 1800 seconds.
          * 
          * ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from [v1.25.0].
+         * 
+         * ***Note:*** `timeout` was overridden to 3 hours starting from [v1.43.1]
          * 
          * @return builder
          * 
