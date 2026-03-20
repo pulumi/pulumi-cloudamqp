@@ -217,6 +217,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// [CloudAMQP]: https://www.cloudamqp.com/
     /// [v1.25.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.25.0
+    /// [v1.43.1]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.43.1
     /// </summary>
     [CloudAmqpResourceType("cloudamqp:index/extraDiskSize:ExtraDiskSize")]
     public partial class ExtraDiskSize : global::Pulumi.CustomResource
@@ -259,6 +260,8 @@ namespace Pulumi.CloudAmqp
         /// set to 1800 seconds.
         /// 
         /// ***Note:*** `AllowDowntime`, `Sleep`, `Timeout` only available from [v1.25.0].
+        /// 
+        /// ***Note:*** `Timeout` was overridden to 3 hours starting from [v1.43.1]
         /// </summary>
         [Output("timeout")]
         public Output<int?> Timeout { get; private set; } = null!;
@@ -341,6 +344,8 @@ namespace Pulumi.CloudAmqp
         /// set to 1800 seconds.
         /// 
         /// ***Note:*** `AllowDowntime`, `Sleep`, `Timeout` only available from [v1.25.0].
+        /// 
+        /// ***Note:*** `Timeout` was overridden to 3 hours starting from [v1.43.1]
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
@@ -397,6 +402,8 @@ namespace Pulumi.CloudAmqp
         /// set to 1800 seconds.
         /// 
         /// ***Note:*** `AllowDowntime`, `Sleep`, `Timeout` only available from [v1.25.0].
+        /// 
+        /// ***Note:*** `Timeout` was overridden to 3 hours starting from [v1.43.1]
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }

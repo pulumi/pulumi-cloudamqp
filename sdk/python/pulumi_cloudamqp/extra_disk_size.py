@@ -39,6 +39,8 @@ class ExtraDiskSizeArgs:
                set to 1800 seconds.
                
                ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
+               
+               ***Note:*** `timeout` was overridden to 3 hours starting from [v1.43.1]
         """
         pulumi.set(__self__, "extra_disk_size", extra_disk_size)
         pulumi.set(__self__, "instance_id", instance_id)
@@ -108,6 +110,8 @@ class ExtraDiskSizeArgs:
         set to 1800 seconds.
 
         ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
+
+        ***Note:*** `timeout` was overridden to 3 hours starting from [v1.43.1]
         """
         return pulumi.get(self, "timeout")
 
@@ -139,6 +143,8 @@ class _ExtraDiskSizeState:
                set to 1800 seconds.
                
                ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
+               
+               ***Note:*** `timeout` was overridden to 3 hours starting from [v1.43.1]
         """
         if allow_downtime is not None:
             pulumi.set(__self__, "allow_downtime", allow_downtime)
@@ -224,6 +230,8 @@ class _ExtraDiskSizeState:
         set to 1800 seconds.
 
         ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
+
+        ***Note:*** `timeout` was overridden to 3 hours starting from [v1.43.1]
         """
         return pulumi.get(self, "timeout")
 
@@ -392,6 +400,7 @@ class ExtraDiskSize(pulumi.CustomResource):
 
         [CloudAMQP]: https://www.cloudamqp.com/
         [v1.25.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.25.0
+        [v1.43.1]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.43.1
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -406,6 +415,8 @@ class ExtraDiskSize(pulumi.CustomResource):
                set to 1800 seconds.
                
                ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
+               
+               ***Note:*** `timeout` was overridden to 3 hours starting from [v1.43.1]
         """
         ...
     @overload
@@ -561,6 +572,7 @@ class ExtraDiskSize(pulumi.CustomResource):
 
         [CloudAMQP]: https://www.cloudamqp.com/
         [v1.25.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.25.0
+        [v1.43.1]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.43.1
 
         :param str resource_name: The name of the resource.
         :param ExtraDiskSizeArgs args: The arguments to use to populate this resource's properties.
@@ -636,6 +648,8 @@ class ExtraDiskSize(pulumi.CustomResource):
                set to 1800 seconds.
                
                ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
+               
+               ***Note:*** `timeout` was overridden to 3 hours starting from [v1.43.1]
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -700,6 +714,8 @@ class ExtraDiskSize(pulumi.CustomResource):
         set to 1800 seconds.
 
         ***Note:*** `allow_downtime`, `sleep`, `timeout` only available from [v1.25.0].
+
+        ***Note:*** `timeout` was overridden to 3 hours starting from [v1.43.1]
         """
         return pulumi.get(self, "timeout")
 

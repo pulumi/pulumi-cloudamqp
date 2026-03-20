@@ -260,6 +260,7 @@ import (
 // [CloudAMQP]: https://www.cloudamqp.com/
 //
 // [v1.25.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.25.0
+// [v1.43.1]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.43.1
 type ExtraDiskSize struct {
 	pulumi.CustomResourceState
 
@@ -280,6 +281,8 @@ type ExtraDiskSize struct {
 	// set to 1800 seconds.
 	//
 	// ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from [v1.25.0].
+	//
+	// ***Note:*** `timeout` was overridden to 3 hours starting from [v1.43.1]
 	Timeout pulumi.IntPtrOutput `pulumi:"timeout"`
 }
 
@@ -336,6 +339,8 @@ type extraDiskSizeState struct {
 	// set to 1800 seconds.
 	//
 	// ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from [v1.25.0].
+	//
+	// ***Note:*** `timeout` was overridden to 3 hours starting from [v1.43.1]
 	Timeout *int `pulumi:"timeout"`
 }
 
@@ -357,6 +362,8 @@ type ExtraDiskSizeState struct {
 	// set to 1800 seconds.
 	//
 	// ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from [v1.25.0].
+	//
+	// ***Note:*** `timeout` was overridden to 3 hours starting from [v1.43.1]
 	Timeout pulumi.IntPtrInput
 }
 
@@ -380,6 +387,8 @@ type extraDiskSizeArgs struct {
 	// set to 1800 seconds.
 	//
 	// ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from [v1.25.0].
+	//
+	// ***Note:*** `timeout` was overridden to 3 hours starting from [v1.43.1]
 	Timeout *int `pulumi:"timeout"`
 }
 
@@ -400,6 +409,8 @@ type ExtraDiskSizeArgs struct {
 	// set to 1800 seconds.
 	//
 	// ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from [v1.25.0].
+	//
+	// ***Note:*** `timeout` was overridden to 3 hours starting from [v1.43.1]
 	Timeout pulumi.IntPtrInput
 }
 
@@ -522,6 +533,8 @@ func (o ExtraDiskSizeOutput) Sleep() pulumi.IntPtrOutput {
 // set to 1800 seconds.
 //
 // ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from [v1.25.0].
+//
+// ***Note:*** `timeout` was overridden to 3 hours starting from [v1.43.1]
 func (o ExtraDiskSizeOutput) Timeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ExtraDiskSize) pulumi.IntPtrOutput { return v.Timeout }).(pulumi.IntPtrOutput)
 }

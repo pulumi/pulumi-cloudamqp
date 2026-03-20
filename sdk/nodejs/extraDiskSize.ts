@@ -170,6 +170,7 @@ import * as utilities from "./utilities";
  *
  * [CloudAMQP]: https://www.cloudamqp.com/
  * [v1.25.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.25.0
+ * [v1.43.1]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.43.1
  */
 export class ExtraDiskSize extends pulumi.CustomResource {
     /**
@@ -227,6 +228,8 @@ export class ExtraDiskSize extends pulumi.CustomResource {
      * set to 1800 seconds.
      *
      * ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from [v1.25.0].
+     *
+     * ***Note:*** `timeout` was overridden to 3 hours starting from [v1.43.1]
      */
     declare public readonly timeout: pulumi.Output<number | undefined>;
 
@@ -301,6 +304,8 @@ export interface ExtraDiskSizeState {
      * set to 1800 seconds.
      *
      * ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from [v1.25.0].
+     *
+     * ***Note:*** `timeout` was overridden to 3 hours starting from [v1.43.1]
      */
     timeout?: pulumi.Input<number>;
 }
@@ -333,6 +338,8 @@ export interface ExtraDiskSizeArgs {
      * set to 1800 seconds.
      *
      * ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from [v1.25.0].
+     *
+     * ***Note:*** `timeout` was overridden to 3 hours starting from [v1.43.1]
      */
     timeout?: pulumi.Input<number>;
 }

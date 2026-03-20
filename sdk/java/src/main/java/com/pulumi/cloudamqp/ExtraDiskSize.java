@@ -293,6 +293,7 @@ import javax.annotation.Nullable;
  * 
  * [CloudAMQP]: https://www.cloudamqp.com/
  * [v1.25.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.25.0
+ * [v1.43.1]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.43.1
  * 
  */
 @ResourceType(type="cloudamqp:index/extraDiskSize:ExtraDiskSize")
@@ -379,6 +380,8 @@ public class ExtraDiskSize extends com.pulumi.resources.CustomResource {
      * 
      * ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from [v1.25.0].
      * 
+     * ***Note:*** `timeout` was overridden to 3 hours starting from [v1.43.1]
+     * 
      */
     @Export(name="timeout", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> timeout;
@@ -388,6 +391,8 @@ public class ExtraDiskSize extends com.pulumi.resources.CustomResource {
      * set to 1800 seconds.
      * 
      * ***Note:*** `allowDowntime`, `sleep`, `timeout` only available from [v1.25.0].
+     * 
+     * ***Note:*** `timeout` was overridden to 3 hours starting from [v1.43.1]
      * 
      */
     public Output<Optional<Integer>> timeout() {
