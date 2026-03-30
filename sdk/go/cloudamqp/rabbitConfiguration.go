@@ -242,7 +242,7 @@ import (
 //			}
 //			_, err = cloudamqp.NewNodeActions(ctx, "node_action", &cloudamqp.NodeActionsArgs{
 //				InstanceId: pulumi.Any(instance.Id),
-//				NodeName:   pulumi.String(nodes.Nodes[0].Name),
+//				NodeName:   pulumi.String(pulumi.String(nodes.Nodes[0].Name)),
 //				Action:     pulumi.String("restart"),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				rabbitmqConfig,
