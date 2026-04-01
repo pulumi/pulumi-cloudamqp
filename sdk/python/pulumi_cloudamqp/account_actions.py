@@ -23,6 +23,7 @@ class AccountActionsArgs:
                  instance_id: pulumi.Input[_builtins.int]):
         """
         The set of arguments for constructing a AccountActions resource.
+
         :param pulumi.Input[_builtins.str] action: The action to perform on the node
         :param pulumi.Input[_builtins.int] instance_id: Instance identifier
         """
@@ -61,6 +62,7 @@ class _AccountActionsState:
                  instance_id: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering AccountActions resources.
+
         :param pulumi.Input[_builtins.str] action: The action to perform on the node
         :param pulumi.Input[_builtins.int] instance_id: Instance identifier
         """
@@ -105,6 +107,7 @@ class AccountActions(pulumi.CustomResource):
                  __props__=None):
         """
         Create a AccountActions resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] action: The action to perform on the node
@@ -118,6 +121,7 @@ class AccountActions(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a AccountActions resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param AccountActionsArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

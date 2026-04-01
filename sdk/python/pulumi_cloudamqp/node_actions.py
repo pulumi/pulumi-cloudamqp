@@ -27,6 +27,7 @@ class NodeActionsArgs:
                  timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a NodeActions resource.
+
         :param pulumi.Input[_builtins.str] action: The action to invoke. See Action reference below for valid values.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[_builtins.str] node_name: The node name, e.g. `green-guinea-pig-01`. Use `node_names` instead. This attribute will be removed in a future version.
@@ -137,6 +138,7 @@ class _NodeActionsState:
                  timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering NodeActions resources.
+
         :param pulumi.Input[_builtins.str] action: The action to invoke. See Action reference below for valid values.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[_builtins.str] node_name: The node name, e.g. `green-guinea-pig-01`. Use `node_names` instead. This attribute will be removed in a future version.
@@ -474,6 +476,7 @@ class NodeActions(pulumi.CustomResource):
 
         This resource cannot be imported.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] action: The action to invoke. See Action reference below for valid values.
@@ -713,6 +716,7 @@ class NodeActions(pulumi.CustomResource):
         ## Import
 
         This resource cannot be imported.
+
 
         :param str resource_name: The name of the resource.
         :param NodeActionsArgs args: The arguments to use to populate this resource's properties.

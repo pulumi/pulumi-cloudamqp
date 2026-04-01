@@ -25,6 +25,7 @@ class PrivatelinkAzureArgs:
                  timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a PrivatelinkAzure resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] approved_subscriptions: Approved subscriptions to access the endpoint service.
                See format below.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier.
@@ -118,6 +119,7 @@ class _PrivatelinkAzureState:
                  timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering PrivatelinkAzure resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] approved_subscriptions: Approved subscriptions to access the endpoint service.
                See format below.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier.
@@ -399,6 +401,7 @@ class PrivatelinkAzure(pulumi.CustomResource):
         Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
         the PrivateLink also needs to be added.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] approved_subscriptions: Approved subscriptions to access the endpoint service.
@@ -563,6 +566,7 @@ class PrivatelinkAzure(pulumi.CustomResource):
 
         Furthermore, since all firewall rules are overwritten, the otherwise automatically added rules for
         the PrivateLink also needs to be added.
+
 
         :param str resource_name: The name of the resource.
         :param PrivatelinkAzureArgs args: The arguments to use to populate this resource's properties.
