@@ -335,6 +335,8 @@ class TrustStore(pulumi.CustomResource):
                  version: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resource allows you to configure a trust store for your RabbitMQ broker. The trust store
         enables RabbitMQ to fetch and use CA certificates from an external source for validating client
         certificates, or upload multiple leaf certificates as an allow list.
@@ -407,6 +409,8 @@ class TrustStore(pulumi.CustomResource):
                  args: TrustStoreArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resource allows you to configure a trust store for your RabbitMQ broker. The trust store
         enables RabbitMQ to fetch and use CA certificates from an external source for validating client
         certificates, or upload multiple leaf certificates as an allow list.

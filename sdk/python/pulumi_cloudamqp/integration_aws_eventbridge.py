@@ -283,6 +283,8 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
                  with_headers: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resource allows you to create and manage, an [AWS EventBridge] for a CloudAMQP instance. Once
         created, continue to map the EventBridge in the [AWS Eventbridge console].
 
@@ -392,6 +394,8 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
                  args: IntegrationAwsEventbridgeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resource allows you to create and manage, an [AWS EventBridge] for a CloudAMQP instance. Once
         created, continue to map the EventBridge in the [AWS Eventbridge console].
 

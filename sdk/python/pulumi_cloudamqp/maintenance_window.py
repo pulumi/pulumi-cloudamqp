@@ -177,6 +177,8 @@ class MaintenanceWindow(pulumi.CustomResource):
                  preferred_time: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resource allows you to set the preferred start of new scheduled maintenances. The maintenance
         windows are 3 hours long and CloudAMQP attempts to begin the maintenance as close as possible to the
         preferred start. A maintenance will never start before the window.
@@ -277,6 +279,8 @@ class MaintenanceWindow(pulumi.CustomResource):
                  args: MaintenanceWindowArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resource allows you to set the preferred start of new scheduled maintenances. The maintenance
         windows are 3 hours long and CloudAMQP attempts to begin the maintenance as close as possible to the
         preferred start. A maintenance will never start before the window.

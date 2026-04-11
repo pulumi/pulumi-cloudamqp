@@ -12,6 +12,8 @@ namespace Pulumi.CloudAmqp
     public static class GetInstance
     {
         /// <summary>
+        /// &lt;!-- markdownlint-disable MD033 --&gt;
+        /// 
         /// Use this data source to retrieve information about an already created CloudAMQP instance. In order
         /// to retrieve the correct information, the CoudAMQP instance identifier is needed.
         /// </summary>
@@ -19,6 +21,8 @@ namespace Pulumi.CloudAmqp
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetInstanceResult>("cloudamqp:index/getInstance:getInstance", args ?? new GetInstanceArgs(), options.WithDefaults());
 
         /// <summary>
+        /// &lt;!-- markdownlint-disable MD033 --&gt;
+        /// 
         /// Use this data source to retrieve information about an already created CloudAMQP instance. In order
         /// to retrieve the correct information, the CoudAMQP instance identifier is needed.
         /// </summary>
@@ -26,6 +30,8 @@ namespace Pulumi.CloudAmqp
             => global::Pulumi.Deployment.Instance.Invoke<GetInstanceResult>("cloudamqp:index/getInstance:getInstance", args ?? new GetInstanceInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// &lt;!-- markdownlint-disable MD033 --&gt;
+        /// 
         /// Use this data source to retrieve information about an already created CloudAMQP instance. In order
         /// to retrieve the correct information, the CoudAMQP instance identifier is needed.
         /// </summary>
@@ -74,6 +80,10 @@ namespace Pulumi.CloudAmqp
         /// Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
         /// </summary>
         public readonly string Backend;
+        /// <summary>
+        /// (Sensitive) Broker credentials block with information extracted from URL.
+        /// </summary>
+        public readonly ImmutableDictionary<string, string> Credentials;
         /// <summary>
         /// Information if the CloudAMQP instance is shared or dedicated.
         /// </summary>
@@ -142,6 +152,8 @@ namespace Pulumi.CloudAmqp
 
             string backend,
 
+            ImmutableDictionary<string, string> credentials,
+
             bool dedicated,
 
             string host,
@@ -178,6 +190,7 @@ namespace Pulumi.CloudAmqp
         {
             Apikey = apikey;
             Backend = backend;
+            Credentials = credentials;
             Dedicated = dedicated;
             Host = host;
             HostInternal = hostInternal;

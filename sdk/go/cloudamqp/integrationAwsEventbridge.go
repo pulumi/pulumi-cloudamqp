@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// <!-- markdownlint-disable MD033 -->
+//
 // This resource allows you to create and manage, an [AWS EventBridge] for a CloudAMQP instance. Once
 // created, continue to map the EventBridge in the [AWS Eventbridge console].
 //

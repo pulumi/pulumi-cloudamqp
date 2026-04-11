@@ -296,6 +296,9 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
                  stackdriver_v2: Optional[pulumi.Input[Union['IntegrationMetricPrometheusStackdriverV2Args', 'IntegrationMetricPrometheusStackdriverV2ArgsDict']]] = None,
                  __props__=None):
         """
+        <!-- markdownlint-disable MD024 -->
+        <!-- markdownlint-disable MD033 -->
+
         This resource allows you to create and manage Prometheus-compatible metric integrations for CloudAMQP instances. Currently supported integrations include New Relic v3, Datadog v3, Azure Monitor, Splunk v2, Dynatrace, CloudWatch v3, and Stackdriver v2.
 
         ## Example Usage
@@ -432,6 +435,9 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
                  args: IntegrationMetricPrometheusArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        <!-- markdownlint-disable MD024 -->
+        <!-- markdownlint-disable MD033 -->
+
         This resource allows you to create and manage Prometheus-compatible metric integrations for CloudAMQP instances. Currently supported integrations include New Relic v3, Datadog v3, Azure Monitor, Splunk v2, Dynatrace, CloudWatch v3, and Stackdriver v2.
 
         ## Example Usage

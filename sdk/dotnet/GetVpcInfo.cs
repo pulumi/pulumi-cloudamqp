@@ -12,6 +12,8 @@ namespace Pulumi.CloudAmqp
     public static class GetVpcInfo
     {
         /// <summary>
+        /// &lt;!-- markdownlint-disable MD033 --&gt;
+        /// 
         /// Use this data source to retrieve information about VPC for a CloudAMQP instance.
         /// 
         /// &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
@@ -83,6 +85,8 @@ namespace Pulumi.CloudAmqp
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetVpcInfoResult>("cloudamqp:index/getVpcInfo:getVpcInfo", args ?? new GetVpcInfoArgs(), options.WithDefaults());
 
         /// <summary>
+        /// &lt;!-- markdownlint-disable MD033 --&gt;
+        /// 
         /// Use this data source to retrieve information about VPC for a CloudAMQP instance.
         /// 
         /// &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
@@ -154,6 +158,8 @@ namespace Pulumi.CloudAmqp
             => global::Pulumi.Deployment.Instance.Invoke<GetVpcInfoResult>("cloudamqp:index/getVpcInfo:getVpcInfo", args ?? new GetVpcInfoInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// &lt;!-- markdownlint-disable MD033 --&gt;
+        /// 
         /// Use this data source to retrieve information about VPC for a CloudAMQP instance.
         /// 
         /// &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.

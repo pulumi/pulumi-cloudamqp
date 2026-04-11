@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// <!-- markdownlint-disable MD033 -->
+//
 // This resource allows you to configure OAuth2 authentication for your RabbitMQ instance.
 //
 // Only available for dedicated subscription plans running ***RabbitMQ***.

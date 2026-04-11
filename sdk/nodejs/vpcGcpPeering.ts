@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * <!-- markdownlint-disable MD033 -->
+ *
  * This resouce creates a VPC peering configuration for the CloudAMQP instance. The configuration will
  * connect to another VPC network hosted on Google Cloud Platform (GCP). See the [GCP documentation]
  * for more information on how to create the VPC peering configuration.

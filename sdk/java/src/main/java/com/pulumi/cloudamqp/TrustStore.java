@@ -18,6 +18,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * &lt;!-- markdownlint-disable MD033 --&gt;
+ * 
  * This resource allows you to configure a trust store for your RabbitMQ broker. The trust store
  * enables RabbitMQ to fetch and use CA certificates from an external source for validating client
  * certificates, or upload multiple leaf certificates as an allow list.

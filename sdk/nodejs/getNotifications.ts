@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * <!-- markdownlint-disable MD033 -->
+ *
  * Use this data source to retrieve information about all notification recipients. Each recipient will
  * receive notifications assigned to an alarm that has triggered.
  *
@@ -57,6 +59,8 @@ export interface GetNotificationsResult {
     readonly recipients: outputs.GetNotificationsRecipient[];
 }
 /**
+ * <!-- markdownlint-disable MD033 -->
+ *
  * Use this data source to retrieve information about all notification recipients. Each recipient will
  * receive notifications assigned to an alarm that has triggered.
  *

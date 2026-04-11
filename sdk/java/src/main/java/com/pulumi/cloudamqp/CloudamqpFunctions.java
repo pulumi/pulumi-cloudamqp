@@ -484,6 +484,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getAlarm:getAlarm", TypeShape.of(GetAlarmResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve a list of default or created alarms.
      * 
      * ## Example Usage
@@ -533,6 +535,8 @@ public final class CloudamqpFunctions {
         return getAlarms(args, InvokeOptions.Empty);
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve a list of default or created alarms.
      * 
      * ## Example Usage
@@ -582,6 +586,8 @@ public final class CloudamqpFunctions {
         return getAlarmsPlain(args, InvokeOptions.Empty);
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve a list of default or created alarms.
      * 
      * ## Example Usage
@@ -631,6 +637,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getAlarms:getAlarms", TypeShape.of(GetAlarmsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve a list of default or created alarms.
      * 
      * ## Example Usage
@@ -680,6 +688,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getAlarms:getAlarms", TypeShape.of(GetAlarmsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve a list of default or created alarms.
      * 
      * ## Example Usage
@@ -729,6 +739,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getAlarms:getAlarms", TypeShape.of(GetAlarmsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * &gt; **Deprecated** This data source will be removed in next major version (v2.0). Use the credentials attribute in `cloudamqp.Instance` resource or data source instead.
+     * 
      * Use this data source to retrieve information about the credentials of the configured user in
      * RabbitMQ. Information is extracted from `cloudamqp_instance.instance.url`.
      * 
@@ -768,12 +780,57 @@ public final class CloudamqpFunctions {
      * ## Dependency
      * 
      * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * ## Known issues
+     * 
+     * The data source causes unnecessary provider reconfigurations when the associated `cloudamqp.Instance` resource changes, leading to potential authentication failures during apply operations.
+     * 
+     * Migration example:
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.Instance;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetCredentialsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // New (recommended)
+     *         // Access credentials directly from the resource
+     *         var instance = new Instance("instance");
+     * 
+     *         // Old (deprecated)
+     *         final var credentials = instance.id().applyValue(_id -> CloudamqpFunctions.getCredentials(GetCredentialsArgs.builder()
+     *             .instanceId(_id)
+     *             .build()));
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static Output<GetCredentialsResult> getCredentials(GetCredentialsArgs args) {
         return getCredentials(args, InvokeOptions.Empty);
     }
     /**
+     * &gt; **Deprecated** This data source will be removed in next major version (v2.0). Use the credentials attribute in `cloudamqp.Instance` resource or data source instead.
+     * 
      * Use this data source to retrieve information about the credentials of the configured user in
      * RabbitMQ. Information is extracted from `cloudamqp_instance.instance.url`.
      * 
@@ -813,12 +870,57 @@ public final class CloudamqpFunctions {
      * ## Dependency
      * 
      * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * ## Known issues
+     * 
+     * The data source causes unnecessary provider reconfigurations when the associated `cloudamqp.Instance` resource changes, leading to potential authentication failures during apply operations.
+     * 
+     * Migration example:
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.Instance;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetCredentialsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // New (recommended)
+     *         // Access credentials directly from the resource
+     *         var instance = new Instance("instance");
+     * 
+     *         // Old (deprecated)
+     *         final var credentials = instance.id().applyValue(_id -> CloudamqpFunctions.getCredentials(GetCredentialsArgs.builder()
+     *             .instanceId(_id)
+     *             .build()));
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetCredentialsResult> getCredentialsPlain(GetCredentialsPlainArgs args) {
         return getCredentialsPlain(args, InvokeOptions.Empty);
     }
     /**
+     * &gt; **Deprecated** This data source will be removed in next major version (v2.0). Use the credentials attribute in `cloudamqp.Instance` resource or data source instead.
+     * 
      * Use this data source to retrieve information about the credentials of the configured user in
      * RabbitMQ. Information is extracted from `cloudamqp_instance.instance.url`.
      * 
@@ -858,12 +960,57 @@ public final class CloudamqpFunctions {
      * ## Dependency
      * 
      * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * ## Known issues
+     * 
+     * The data source causes unnecessary provider reconfigurations when the associated `cloudamqp.Instance` resource changes, leading to potential authentication failures during apply operations.
+     * 
+     * Migration example:
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.Instance;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetCredentialsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // New (recommended)
+     *         // Access credentials directly from the resource
+     *         var instance = new Instance("instance");
+     * 
+     *         // Old (deprecated)
+     *         final var credentials = instance.id().applyValue(_id -> CloudamqpFunctions.getCredentials(GetCredentialsArgs.builder()
+     *             .instanceId(_id)
+     *             .build()));
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static Output<GetCredentialsResult> getCredentials(GetCredentialsArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("cloudamqp:index/getCredentials:getCredentials", TypeShape.of(GetCredentialsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * &gt; **Deprecated** This data source will be removed in next major version (v2.0). Use the credentials attribute in `cloudamqp.Instance` resource or data source instead.
+     * 
      * Use this data source to retrieve information about the credentials of the configured user in
      * RabbitMQ. Information is extracted from `cloudamqp_instance.instance.url`.
      * 
@@ -903,12 +1050,57 @@ public final class CloudamqpFunctions {
      * ## Dependency
      * 
      * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+     * 
+     * ## Known issues
+     * 
+     * The data source causes unnecessary provider reconfigurations when the associated `cloudamqp.Instance` resource changes, leading to potential authentication failures during apply operations.
+     * 
+     * Migration example:
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.Instance;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetCredentialsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // New (recommended)
+     *         // Access credentials directly from the resource
+     *         var instance = new Instance("instance");
+     * 
+     *         // Old (deprecated)
+     *         final var credentials = instance.id().applyValue(_id -> CloudamqpFunctions.getCredentials(GetCredentialsArgs.builder()
+     *             .instanceId(_id)
+     *             .build()));
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static Output<GetCredentialsResult> getCredentials(GetCredentialsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("cloudamqp:index/getCredentials:getCredentials", TypeShape.of(GetCredentialsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * &gt; **Deprecated** This data source will be removed in next major version (v2.0). Use the credentials attribute in `cloudamqp.Instance` resource or data source instead.
+     * 
      * Use this data source to retrieve information about the credentials of the configured user in
      * RabbitMQ. Information is extracted from `cloudamqp_instance.instance.url`.
      * 
@@ -949,11 +1141,56 @@ public final class CloudamqpFunctions {
      * 
      * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
      * 
+     * ## Known issues
+     * 
+     * The data source causes unnecessary provider reconfigurations when the associated `cloudamqp.Instance` resource changes, leading to potential authentication failures during apply operations.
+     * 
+     * Migration example:
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.cloudamqp.Instance;
+     * import com.pulumi.cloudamqp.CloudamqpFunctions;
+     * import com.pulumi.cloudamqp.inputs.GetCredentialsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // New (recommended)
+     *         // Access credentials directly from the resource
+     *         var instance = new Instance("instance");
+     * 
+     *         // Old (deprecated)
+     *         final var credentials = instance.id().applyValue(_id -> CloudamqpFunctions.getCredentials(GetCredentialsArgs.builder()
+     *             .instanceId(_id)
+     *             .build()));
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static CompletableFuture<GetCredentialsResult> getCredentialsPlain(GetCredentialsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getCredentials:getCredentials", TypeShape.of(GetCredentialsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve information about an already created CloudAMQP instance. In order
      * to retrieve the correct information, the CoudAMQP instance identifier is needed.
      * 
@@ -962,6 +1199,8 @@ public final class CloudamqpFunctions {
         return getInstance(args, InvokeOptions.Empty);
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve information about an already created CloudAMQP instance. In order
      * to retrieve the correct information, the CoudAMQP instance identifier is needed.
      * 
@@ -970,6 +1209,8 @@ public final class CloudamqpFunctions {
         return getInstancePlain(args, InvokeOptions.Empty);
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve information about an already created CloudAMQP instance. In order
      * to retrieve the correct information, the CoudAMQP instance identifier is needed.
      * 
@@ -978,6 +1219,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getInstance:getInstance", TypeShape.of(GetInstanceResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve information about an already created CloudAMQP instance. In order
      * to retrieve the correct information, the CoudAMQP instance identifier is needed.
      * 
@@ -986,6 +1229,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getInstance:getInstance", TypeShape.of(GetInstanceResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve information about an already created CloudAMQP instance. In order
      * to retrieve the correct information, the CoudAMQP instance identifier is needed.
      * 
@@ -1449,6 +1694,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getNotification:getNotification", TypeShape.of(GetNotificationResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve information about all notification recipients. Each recipient will
      * receive notifications assigned to an alarm that has triggered.
      * 
@@ -1494,6 +1741,8 @@ public final class CloudamqpFunctions {
         return getNotifications(args, InvokeOptions.Empty);
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve information about all notification recipients. Each recipient will
      * receive notifications assigned to an alarm that has triggered.
      * 
@@ -1539,6 +1788,8 @@ public final class CloudamqpFunctions {
         return getNotificationsPlain(args, InvokeOptions.Empty);
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve information about all notification recipients. Each recipient will
      * receive notifications assigned to an alarm that has triggered.
      * 
@@ -1584,6 +1835,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getNotifications:getNotifications", TypeShape.of(GetNotificationsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve information about all notification recipients. Each recipient will
      * receive notifications assigned to an alarm that has triggered.
      * 
@@ -1629,6 +1882,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getNotifications:getNotifications", TypeShape.of(GetNotificationsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve information about all notification recipients. Each recipient will
      * receive notifications assigned to an alarm that has triggered.
      * 
@@ -2349,6 +2604,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getUpgradableVersions:getUpgradableVersions", TypeShape.of(GetUpgradableVersionsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve information about VPC for a CloudAMQP instance.
      * 
      * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
@@ -2451,6 +2708,8 @@ public final class CloudamqpFunctions {
         return getVpcGcpInfo(GetVpcGcpInfoArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve information about VPC for a CloudAMQP instance.
      * 
      * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
@@ -2553,6 +2812,8 @@ public final class CloudamqpFunctions {
         return getVpcGcpInfoPlain(GetVpcGcpInfoPlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve information about VPC for a CloudAMQP instance.
      * 
      * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
@@ -2655,6 +2916,8 @@ public final class CloudamqpFunctions {
         return getVpcGcpInfo(args, InvokeOptions.Empty);
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve information about VPC for a CloudAMQP instance.
      * 
      * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
@@ -2757,6 +3020,8 @@ public final class CloudamqpFunctions {
         return getVpcGcpInfoPlain(args, InvokeOptions.Empty);
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve information about VPC for a CloudAMQP instance.
      * 
      * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
@@ -2859,6 +3124,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo", TypeShape.of(GetVpcGcpInfoResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve information about VPC for a CloudAMQP instance.
      * 
      * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
@@ -2961,6 +3228,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo", TypeShape.of(GetVpcGcpInfoResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve information about VPC for a CloudAMQP instance.
      * 
      * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in Google Cloud Platform (GCP).
@@ -3063,6 +3332,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo", TypeShape.of(GetVpcGcpInfoResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve information about VPC for a CloudAMQP instance.
      * 
      * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
@@ -3165,6 +3436,8 @@ public final class CloudamqpFunctions {
         return getVpcInfo(GetVpcInfoArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve information about VPC for a CloudAMQP instance.
      * 
      * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
@@ -3267,6 +3540,8 @@ public final class CloudamqpFunctions {
         return getVpcInfoPlain(GetVpcInfoPlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve information about VPC for a CloudAMQP instance.
      * 
      * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
@@ -3369,6 +3644,8 @@ public final class CloudamqpFunctions {
         return getVpcInfo(args, InvokeOptions.Empty);
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve information about VPC for a CloudAMQP instance.
      * 
      * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
@@ -3471,6 +3748,8 @@ public final class CloudamqpFunctions {
         return getVpcInfoPlain(args, InvokeOptions.Empty);
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve information about VPC for a CloudAMQP instance.
      * 
      * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
@@ -3573,6 +3852,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getVpcInfo:getVpcInfo", TypeShape.of(GetVpcInfoResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve information about VPC for a CloudAMQP instance.
      * 
      * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
@@ -3675,6 +3956,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getVpcInfo:getVpcInfo", TypeShape.of(GetVpcInfoResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * &lt;!-- markdownlint-disable MD033 --&gt;
+     * 
      * Use this data source to retrieve information about VPC for a CloudAMQP instance.
      * 
      * &gt; **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.

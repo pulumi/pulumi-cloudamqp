@@ -12,6 +12,8 @@ namespace Pulumi.CloudAmqp
     public static class GetAlarms
     {
         /// <summary>
+        /// &lt;!-- markdownlint-disable MD033 --&gt;
+        /// 
         /// Use this data source to retrieve a list of default or created alarms.
         /// 
         /// ## Example Usage
@@ -45,6 +47,8 @@ namespace Pulumi.CloudAmqp
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAlarmsResult>("cloudamqp:index/getAlarms:getAlarms", args ?? new GetAlarmsArgs(), options.WithDefaults());
 
         /// <summary>
+        /// &lt;!-- markdownlint-disable MD033 --&gt;
+        /// 
         /// Use this data source to retrieve a list of default or created alarms.
         /// 
         /// ## Example Usage
@@ -78,6 +82,8 @@ namespace Pulumi.CloudAmqp
             => global::Pulumi.Deployment.Instance.Invoke<GetAlarmsResult>("cloudamqp:index/getAlarms:getAlarms", args ?? new GetAlarmsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// &lt;!-- markdownlint-disable MD033 --&gt;
+        /// 
         /// Use this data source to retrieve a list of default or created alarms.
         /// 
         /// ## Example Usage

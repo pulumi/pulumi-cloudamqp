@@ -202,6 +202,8 @@ class SecurityFirewall(pulumi.CustomResource):
                  timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resource allows you to configure and manage firewall rules for the CloudAMQP instance.
 
         > **WARNING:** Firewall rules applied with this resource will replace any existing firewall rules.
@@ -388,6 +390,8 @@ class SecurityFirewall(pulumi.CustomResource):
                  args: SecurityFirewallArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resource allows you to configure and manage firewall rules for the CloudAMQP instance.
 
         > **WARNING:** Firewall rules applied with this resource will replace any existing firewall rules.

@@ -261,6 +261,8 @@ class Plugin(pulumi.CustomResource):
                  timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resource allows you to enable or disable Rabbit MQ plugins.
 
         Only available for dedicated subscription plans running ***RabbitMQ***.
@@ -415,6 +417,8 @@ class Plugin(pulumi.CustomResource):
                  args: PluginArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resource allows you to enable or disable Rabbit MQ plugins.
 
         Only available for dedicated subscription plans running ***RabbitMQ***.

@@ -255,6 +255,8 @@ class ExtraDiskSize(pulumi.CustomResource):
                  timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resource allows you to resize the disk with additional storage capacity.
 
         ***Before v1.25.0***: Only available for Amazon Web Services (AWS) without downtime.
@@ -428,6 +430,8 @@ class ExtraDiskSize(pulumi.CustomResource):
                  args: ExtraDiskSizeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resource allows you to resize the disk with additional storage capacity.
 
         ***Before v1.25.0***: Only available for Amazon Web Services (AWS) without downtime.

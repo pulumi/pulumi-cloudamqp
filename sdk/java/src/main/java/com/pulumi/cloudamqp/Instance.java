@@ -15,10 +15,13 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * &lt;!-- markdownlint-disable MD033 --&gt;
+ * 
  * This resource allows you to create and manage a CloudAMQP instance running either [**RabbitMQ**] or
  * [**LavinMQ**] and can be deployed to multiple cloud platforms provider and regions, see
  * [instance regions] for more information.
@@ -357,6 +360,56 @@ import javax.annotation.Nullable;
  * 
  * &lt;/details&gt;
  * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Provider-to-provider configuration, from &lt;/i&gt;
+ *       &lt;a href=&#34;https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.44.0&#34;&gt;v1.44.0&lt;/a&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import com.pulumi.lavinmq.Vhost;
+ * import com.pulumi.lavinmq.VhostArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var instance = new Instance("instance", InstanceArgs.builder()
+ *             .name("terraform-cloudamqp-instance")
+ *             .plan("penguin-1")
+ *             .region("amazon-web-services::us-east-1")
+ *             .tags("terraform")
+ *             .build());
+ * 
+ *         var newVhost = new Vhost("newVhost", VhostArgs.builder()
+ *             .name("new_vhost")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
  * ### Settings supported by LavinMQ
  * 
  * ***Allowed values:*** alarms, definitions, firewall, metrics
@@ -495,7 +548,7 @@ import javax.annotation.Nullable;
 @ResourceType(type="cloudamqp:index/instance:Instance")
 public class Instance extends com.pulumi.resources.CustomResource {
     /**
-     * API key needed to communicate to CloudAMQP&#39;s second API. The second API is used
+     * (Sensitive) API key needed to communicate to CloudAMQP&#39;s second API. The second API is used
      * to manage alarms, integration and more, full description [CloudAMQP API].
      * 
      */
@@ -503,7 +556,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
     private Output<String> apikey;
 
     /**
-     * @return API key needed to communicate to CloudAMQP&#39;s second API. The second API is used
+     * @return (Sensitive) API key needed to communicate to CloudAMQP&#39;s second API. The second API is used
      * to manage alarms, integration and more, full description [CloudAMQP API].
      * 
      */
@@ -539,6 +592,20 @@ public class Instance extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<List<InstanceCopySetting>>> copySettings() {
         return Codegen.optional(this.copySettings);
+    }
+    /**
+     * (Sensitive) Broker credentials block with information extracted from URL.
+     * 
+     */
+    @Export(name="credentials", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output<Map<String,String>> credentials;
+
+    /**
+     * @return (Sensitive) Broker credentials block with information extracted from URL.
+     * 
+     */
+    public Output<Map<String,String>> credentials() {
+        return this.credentials;
     }
     /**
      * Information if the CloudAMQP instance is shared or dedicated.
@@ -771,7 +838,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.tags);
     }
     /**
-     * The AMQP URL (uses the internal hostname if the instance was created with VPC).
+     * (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC).
      * Has the format: `amqps://{username}:{password}{@literal @}{hostname}/{vhost}`
      * 
      */
@@ -779,7 +846,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
     private Output<String> url;
 
     /**
-     * @return The AMQP URL (uses the internal hostname if the instance was created with VPC).
+     * @return (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC).
      * Has the format: `amqps://{username}:{password}{@literal @}{hostname}/{vhost}`
      * 
      */
@@ -882,6 +949,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
                 "apikey",
+                "credentials",
                 "url"
             ))
             .build();

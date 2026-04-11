@@ -11,6 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// > **Deprecated** This data source will be removed in next major version (v2.0). Use the credentials attribute in `Instance` resource or data source instead.
+//
 // Use this data source to retrieve information about the credentials of the configured user in
 // RabbitMQ. Information is extracted from `cloudamqp_instance.instance.url`.
 //
@@ -43,6 +45,42 @@ import (
 // ## Dependency
 //
 // This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+//
+// ## Known issues
+//
+// The data source causes unnecessary provider reconfigurations when the associated `Instance` resource changes, leading to potential authentication failures during apply operations.
+//
+// Migration example:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// New (recommended)
+//			// Access credentials directly from the resource
+//			instance, err := cloudamqp.NewInstance(ctx, "instance", nil)
+//			if err != nil {
+//				return err
+//			}
+//			// Old (deprecated)
+//			_ = instance.ID().ApplyT(func(id string) (cloudamqp.GetCredentialsResult, error) {
+//				return cloudamqp.GetCredentialsResult(interface{}(cloudamqp.GetCredentials(ctx, &cloudamqp.GetCredentialsArgs{
+//					InstanceId: id,
+//				}, nil))), nil
+//			}).(cloudamqp.GetCredentialsResultOutput)
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetCredentials(ctx *pulumi.Context, args *GetCredentialsArgs, opts ...pulumi.InvokeOption) (*GetCredentialsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetCredentialsResult

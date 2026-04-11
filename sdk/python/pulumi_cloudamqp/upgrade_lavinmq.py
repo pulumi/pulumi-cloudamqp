@@ -107,6 +107,8 @@ class UpgradeLavinmq(pulumi.CustomResource):
                  new_version: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resource allows you to upgrade LavinMQ version.
 
         Only available for dedicated subscription plans running ***LavinMQ***.
@@ -116,7 +118,8 @@ class UpgradeLavinmq(pulumi.CustomResource):
         <details>
           <summary>
             <b>
-              <i>Upgrade LavinMQ, specify which version to upgrade to, from [v1.32.0]</i>
+              <i>Upgrade LavinMQ, specify which version to upgrade to, from </i>
+              <a href="https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.32.0">v1.32.0</a>
             </b>
           </summary>
 
@@ -144,7 +147,6 @@ class UpgradeLavinmq(pulumi.CustomResource):
         > * Auto delete queues (queues that are marked AD) will be deleted during the update.
 
         [CloudAMQP API available versions]: https://docs.cloudamqp.com/instance-api.html#tag/nodes/get/nodes/available-versions
-        [v1.32.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.32.0
 
         ## Import
 
@@ -163,6 +165,8 @@ class UpgradeLavinmq(pulumi.CustomResource):
                  args: UpgradeLavinmqArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resource allows you to upgrade LavinMQ version.
 
         Only available for dedicated subscription plans running ***LavinMQ***.
@@ -172,7 +176,8 @@ class UpgradeLavinmq(pulumi.CustomResource):
         <details>
           <summary>
             <b>
-              <i>Upgrade LavinMQ, specify which version to upgrade to, from [v1.32.0]</i>
+              <i>Upgrade LavinMQ, specify which version to upgrade to, from </i>
+              <a href="https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.32.0">v1.32.0</a>
             </b>
           </summary>
 
@@ -200,7 +205,6 @@ class UpgradeLavinmq(pulumi.CustomResource):
         > * Auto delete queues (queues that are marked AD) will be deleted during the update.
 
         [CloudAMQP API available versions]: https://docs.cloudamqp.com/instance-api.html#tag/nodes/get/nodes/available-versions
-        [v1.32.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.32.0
 
         ## Import
 

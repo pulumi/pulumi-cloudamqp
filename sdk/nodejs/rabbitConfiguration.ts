@@ -11,6 +11,8 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!-- markdownlint-disable MD033 -->
+ *
  * <details>
  *   <summary>
  *     <b>
@@ -142,6 +144,7 @@ import * as utilities from "./utilities";
  *     mqttVhost: instance.vhost,
  *     mqttExchange: "amq.topic",
  *     mqttSslCertLogin: true,
+ *     mqttMaxSessionExpiryIntervalSeconds: 1800,
  *     sslOptionsFailIfNoPeerCert: true,
  *     sslOptionsVerify: "verify_peer",
  * });
@@ -163,14 +166,14 @@ import * as utilities from "./utilities";
  *
  * ### heartbeat
  *
- * | Type | Default | Min  | Affect |
- * |---|---|---|---|
+ * | Type | Default | Min | Affect |
+ * | --- | --- | --- | --- |
  * | int | 120 | 0 | Only effects new connection |
  *
  * ### connectionMax
  *
- * | Type | Default | Min  | Affect |
- * |---|---|---|---|
+ * | Type | Default | Min | Affect |
+ * | --- | --- | --- | --- |
  * | int | -1 | 1 | Applied immediately (RabbitMQ restart required before 3.11.13) |
  *
  * Note: -1 in the provider corresponds to INFINITY in the RabbitMQ config
@@ -178,15 +181,15 @@ import * as utilities from "./utilities";
  * ### channelMax
  *
  * | Type | Default | Min | Affect |
- * |---|---|---|---|
- * | int | 128 | 0 | Only effects new connections |
+ * | --- | --- | --- | --- |
+ * | int | 128 | 0 | Only affects new connections |
  *
  * Note: 0 means "no limit"
  *
  * ### consumerTimeout
  *
  * | Type | Default | Min | Max | Unit | Affect |
- * |---|---|---|---|---|---|
+ * | --- | --- | --- | --- | --- | --- |
  * | int | 7200000 | 10000 | 86400000 | milliseconds | Only effects new channels |
  *
  * Note: -1 in the provider corresponds to false (disable) in the RabbitMQ config
@@ -194,13 +197,13 @@ import * as utilities from "./utilities";
  * ### vmMemoryHighWatermark
  *
  * | Type | Default | Min | Max | Affect |
- * |---|---|---|---|---|
- *  | float | 0.81 | 0.4 | 0.9 | Applied immediately |
+ * | --- | --- | --- | --- | --- |
+ * | float | 0.81 | 0.4 | 0.9 | Applied immediately |
  *
  * ### queueIndexEmbedMsgsBelow
  *
  * | Type | Default | Min | Max | Unit | Affect |
- * |---|---|---|---|---|---|
+ * | --- | --- | --- | --- | --- | --- |
  * | int | 4096 | 0 | 10485760 | bytes | Applied immediately for new queues |
  *
  * Note: Existing queues requires restart
@@ -208,19 +211,19 @@ import * as utilities from "./utilities";
  * ### maxMessageSize
  *
  * | Type | Default | Min | Max | Unit | Affect |
- * |---|---|---|---|---|---|
+ * | --- | --- | --- | --- | --- | --- |
  * | int | 134217728 | 1 | 536870912 | bytes | Only effects new channels |
  *
  * ### logExchangeLevel
  *
  * | Type | Default | Affect | Allowed values |
- * |---|---|---| --- |
+ * | --- | --- | --- | --- |
  * | string | error | RabbitMQ restart required | `debug, info, warning, error, critical, none` |
  *
  * ### clusterPartitionHandling
  *
- * | Type  | Affect | Allowed values |
- * |---|---|---|
+ * | Type | Affect | Allowed values |
+ * | --- | --- | --- |
  * | string | Applied immediately | `autoheal, pause_minority, ignore` |
  *
  * Recommended setting for cluster_partition_handling: `autoheal` for cluster with 1-2
@@ -228,15 +231,15 @@ import * as utilities from "./utilities";
  *
  * ### messageInterceptorsTimestampOverwrite
  *
- * | Type  | Affect | Allowed values |
- * |---|---|---|
+ * | Type | Affect | Allowed values |
+ * | --- | --- | --- |
  * | string | RabbitMQ restart required | `enabled_with_overwrite, enabled, disabled` |
  *
  * Note: Corresponds to setting `message_interceptors.incoming.set_header_timestamp.overwrite`
  *
  * ### mqttVhost
  *
- * | Type  | Affect |
+ * | Type | Affect |
  * | --- | --- |
  * | string | Only affects new connections |
  *
@@ -244,13 +247,21 @@ import * as utilities from "./utilities";
  *
  * ### mqttExchange
  *
- * | Type  | Affect |
+ * | Type | Affect |
  * | --- | --- |
  * | string | Only affects new connections |
  *
+ * ### mqttMaxSessionExpiryIntervalSeconds
+ *
+ * | Type | Affect | Allowed values |
+ * | --- | --- | --- |
+ * | int | Only affects new connections | 0 or more, default 1800. -1 will set it to no limit |
+ *
+ * Note: Available from RabbitMQ broker version 3.13.x.
+ *
  * ### mqttSslCertLogin
  *
- * | Type  | Affect |
+ * | Type | Affect |
  * | --- | --- |
  * | bool | RabbitMQ restart required |
  *
@@ -259,13 +270,13 @@ import * as utilities from "./utilities";
  *
  * ### sslCertLoginFrom
  *
- * | Type  | Affect | Allowed values |
+ * | Type | Affect | Allowed values |
  * | --- | --- | --- |
  * | string | Only affects new connections | `commonName`, `distinguishedName` |
  *
  * ### sslOptionsFailIfNoPeerCert
  *
- * | Type  | Affect |
+ * | Type | Affect |
  * | --- | --- |
  * | string | RabbitMQ restart required |
  *
@@ -273,7 +284,7 @@ import * as utilities from "./utilities";
  *
  * ### sslOptionsVerify
  *
- * | Type  | Affect | Allowed values |
+ * | Type | Affect | Allowed values |
  * | --- | --- | --- |
  * | string | RabbitMQ restart required | `verifyNone`, `verifyPeer` |
  *
@@ -293,10 +304,10 @@ import * as utilities from "./utilities";
  * The provider is built by older `Terraform Plugin SDK` which doesn't support nullable configuration
  * values. Instead the values will be set to it's default value based on it's schema primitive type.
  *
- * * schema.TypeString = ""
- * * schema.TypeInt = 0
- * * schema.TypeFloat = 0.0
- * * schema.TypeBool = false
+ * - schema.TypeString = ""
+ * - schema.TypeInt = 0
+ * - schema.TypeFloat = 0.0
+ * - schema.TypeBool = false
  *
  * During initial create of this resource, we need to exclude all arguments that can take these default
  * values. Argument such as `hearbeat`, `channelMax`, etc. cannot be set to its default value, 0 in
@@ -379,6 +390,10 @@ export class RabbitConfiguration extends pulumi.CustomResource {
      */
     declare public readonly mqttExchange: pulumi.Output<string>;
     /**
+     * The maximum Session Expiry Interval in seconds allowed by the server. Set to 0 to force sessions to expire on disconnect, or -1 for no limit.
+     */
+    declare public readonly mqttMaxSessionExpiryIntervalSeconds: pulumi.Output<number>;
+    /**
      * Enable SSL certificate-based authentication for MQTT connections.
      */
     declare public readonly mqttSslCertLogin: pulumi.Output<boolean>;
@@ -440,6 +455,7 @@ export class RabbitConfiguration extends pulumi.CustomResource {
             resourceInputs["maxMessageSize"] = state?.maxMessageSize;
             resourceInputs["messageInterceptorsTimestampOverwrite"] = state?.messageInterceptorsTimestampOverwrite;
             resourceInputs["mqttExchange"] = state?.mqttExchange;
+            resourceInputs["mqttMaxSessionExpiryIntervalSeconds"] = state?.mqttMaxSessionExpiryIntervalSeconds;
             resourceInputs["mqttSslCertLogin"] = state?.mqttSslCertLogin;
             resourceInputs["mqttVhost"] = state?.mqttVhost;
             resourceInputs["queueIndexEmbedMsgsBelow"] = state?.queueIndexEmbedMsgsBelow;
@@ -464,6 +480,7 @@ export class RabbitConfiguration extends pulumi.CustomResource {
             resourceInputs["maxMessageSize"] = args?.maxMessageSize;
             resourceInputs["messageInterceptorsTimestampOverwrite"] = args?.messageInterceptorsTimestampOverwrite;
             resourceInputs["mqttExchange"] = args?.mqttExchange;
+            resourceInputs["mqttMaxSessionExpiryIntervalSeconds"] = args?.mqttMaxSessionExpiryIntervalSeconds;
             resourceInputs["mqttSslCertLogin"] = args?.mqttSslCertLogin;
             resourceInputs["mqttVhost"] = args?.mqttVhost;
             resourceInputs["queueIndexEmbedMsgsBelow"] = args?.queueIndexEmbedMsgsBelow;
@@ -523,6 +540,10 @@ export interface RabbitConfigurationState {
      * The exchange option determines which exchange messages from MQTT clients are published to.
      */
     mqttExchange?: pulumi.Input<string>;
+    /**
+     * The maximum Session Expiry Interval in seconds allowed by the server. Set to 0 to force sessions to expire on disconnect, or -1 for no limit.
+     */
+    mqttMaxSessionExpiryIntervalSeconds?: pulumi.Input<number>;
     /**
      * Enable SSL certificate-based authentication for MQTT connections.
      */
@@ -607,6 +628,10 @@ export interface RabbitConfigurationArgs {
      * The exchange option determines which exchange messages from MQTT clients are published to.
      */
     mqttExchange?: pulumi.Input<string>;
+    /**
+     * The maximum Session Expiry Interval in seconds allowed by the server. Set to 0 to force sessions to expire on disconnect, or -1 for no limit.
+     */
+    mqttMaxSessionExpiryIntervalSeconds?: pulumi.Input<number>;
     /**
      * Enable SSL certificate-based authentication for MQTT connections.
      */

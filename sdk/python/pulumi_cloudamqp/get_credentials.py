@@ -85,6 +85,8 @@ class AwaitableGetCredentialsResult(GetCredentialsResult):
 def get_credentials(instance_id: Optional[_builtins.int] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCredentialsResult:
     """
+    > **Deprecated** This data source will be removed in next major version (v2.0). Use the credentials attribute in `Instance` resource or data source instead.
+
     Use this data source to retrieve information about the credentials of the configured user in
     RabbitMQ. Information is extracted from `cloudamqp_instance.instance.url`.
 
@@ -100,6 +102,23 @@ def get_credentials(instance_id: Optional[_builtins.int] = None,
     ## Dependency
 
     This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+    ## Known issues
+
+    The data source causes unnecessary provider reconfigurations when the associated `Instance` resource changes, leading to potential authentication failures during apply operations.
+
+    Migration example:
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    # New (recommended)
+    # Access credentials directly from the resource
+    instance = cloudamqp.Instance("instance")
+    # Old (deprecated)
+    credentials = instance.id.apply(lambda id: cloudamqp.get_credentials_output(instance_id=id))
+    ```
 
 
     :param _builtins.int instance_id: The CloudAMQP instance identifier.
@@ -117,6 +136,8 @@ def get_credentials(instance_id: Optional[_builtins.int] = None,
 def get_credentials_output(instance_id: Optional[pulumi.Input[_builtins.int]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCredentialsResult]:
     """
+    > **Deprecated** This data source will be removed in next major version (v2.0). Use the credentials attribute in `Instance` resource or data source instead.
+
     Use this data source to retrieve information about the credentials of the configured user in
     RabbitMQ. Information is extracted from `cloudamqp_instance.instance.url`.
 
@@ -132,6 +153,23 @@ def get_credentials_output(instance_id: Optional[pulumi.Input[_builtins.int]] = 
     ## Dependency
 
     This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+
+    ## Known issues
+
+    The data source causes unnecessary provider reconfigurations when the associated `Instance` resource changes, leading to potential authentication failures during apply operations.
+
+    Migration example:
+
+    ```python
+    import pulumi
+    import pulumi_cloudamqp as cloudamqp
+
+    # New (recommended)
+    # Access credentials directly from the resource
+    instance = cloudamqp.Instance("instance")
+    # Old (deprecated)
+    credentials = instance.id.apply(lambda id: cloudamqp.get_credentials_output(instance_id=id))
+    ```
 
 
     :param _builtins.int instance_id: The CloudAMQP instance identifier.

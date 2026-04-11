@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * <!-- markdownlint-disable MD033 -->
+ *
  * Enable PrivateLink for a CloudAMQP instance hosted in AWS. If no existing VPC available when enable
  * PrivateLink, a new VPC will be created with subnet `10.52.72.0/24`.
  *

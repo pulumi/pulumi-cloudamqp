@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// <!-- markdownlint-disable MD033 -->
+//
 // This resource allows you to install or uninstall community plugins. Once installed the plugin will
 // be available in `Plugin`.
 //

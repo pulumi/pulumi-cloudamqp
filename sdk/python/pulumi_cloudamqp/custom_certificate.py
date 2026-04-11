@@ -280,6 +280,8 @@ class CustomCertificate(pulumi.CustomResource):
                  version: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resource allows you to upload a custom certificate to all servers in your cluster. Update is
         not supported, all changes require replacement. `ca`, `cert` and `private_key` all use **WriteOnly**,
         meaning no information is present in plan phase, logs or stored in the state for security purposes.
@@ -312,6 +314,8 @@ class CustomCertificate(pulumi.CustomResource):
                  args: CustomCertificateArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resource allows you to upload a custom certificate to all servers in your cluster. Update is
         not supported, all changes require replacement. `ca`, `cert` and `private_key` all use **WriteOnly**,
         meaning no information is present in plan phase, logs or stored in the state for security purposes.

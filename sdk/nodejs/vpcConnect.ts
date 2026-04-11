@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * <!-- markdownlint-disable MD033 -->
+ *
  * This resource is a generic way to handle PrivateLink (AWS and Azure) and Private Service Connect
  * (GCP). Communication between resources can be done just as they were living inside a VPC. CloudAMQP
  * creates an Endpoint Service to connect the VPC and creating a new network interface to handle the
@@ -313,7 +315,7 @@ export class VpcConnect extends pulumi.CustomResource {
      * provider platform:
      *
      * | Platform | Description | Format |
-     * |---|---|---|
+     * | --- | --- | --- |
      * | AWS | IAM ARN principals | arn:aws:iam::aws-account-id:root<br>arn:aws:iam::aws-account-id:user/user-name<br> arn:aws:iam::aws-account-id:role/role-name |
      * | Azure | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX |
      * | GCP | Project IDs [Google docs] | 6 to 30 lowercase letters, digits, or hyphens |
@@ -419,7 +421,7 @@ export interface VpcConnectState {
      * provider platform:
      *
      * | Platform | Description | Format |
-     * |---|---|---|
+     * | --- | --- | --- |
      * | AWS | IAM ARN principals | arn:aws:iam::aws-account-id:root<br>arn:aws:iam::aws-account-id:user/user-name<br> arn:aws:iam::aws-account-id:role/role-name |
      * | Azure | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX |
      * | GCP | Project IDs [Google docs] | 6 to 30 lowercase letters, digits, or hyphens |
@@ -467,7 +469,7 @@ export interface VpcConnectArgs {
      * provider platform:
      *
      * | Platform | Description | Format |
-     * |---|---|---|
+     * | --- | --- | --- |
      * | AWS | IAM ARN principals | arn:aws:iam::aws-account-id:root<br>arn:aws:iam::aws-account-id:user/user-name<br> arn:aws:iam::aws-account-id:role/role-name |
      * | Azure | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX |
      * | GCP | Project IDs [Google docs] | 6 to 30 lowercase letters, digits, or hyphens |

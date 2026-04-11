@@ -17,6 +17,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * &lt;!-- markdownlint-disable MD033 --&gt;
+ * 
  * This resource is a generic way to handle PrivateLink (AWS and Azure) and Private Service Connect
  * (GCP). Communication between resources can be done just as they were living inside a VPC. CloudAMQP
  * creates an Endpoint Service to connect the VPC and creating a new network interface to handle the
@@ -529,7 +531,7 @@ public class VpcConnect extends com.pulumi.resources.CustomResource {
      * provider platform:
      * 
      * | Platform | Description | Format |
-     * |---|---|---|
+     * | --- | --- | --- |
      * | AWS | IAM ARN principals | arn:aws:iam::aws-account-id:root&lt;br&gt;arn:aws:iam::aws-account-id:user/user-name&lt;br&gt; arn:aws:iam::aws-account-id:role/role-name |
      * | Azure | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX |
      * | GCP | Project IDs [Google docs] | 6 to 30 lowercase letters, digits, or hyphens |
@@ -548,7 +550,7 @@ public class VpcConnect extends com.pulumi.resources.CustomResource {
      * provider platform:
      * 
      * | Platform | Description | Format |
-     * |---|---|---|
+     * | --- | --- | --- |
      * | AWS | IAM ARN principals | arn:aws:iam::aws-account-id:root&lt;br&gt;arn:aws:iam::aws-account-id:user/user-name&lt;br&gt; arn:aws:iam::aws-account-id:role/role-name |
      * | Azure | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX |
      * | GCP | Project IDs [Google docs] | 6 to 30 lowercase letters, digits, or hyphens |

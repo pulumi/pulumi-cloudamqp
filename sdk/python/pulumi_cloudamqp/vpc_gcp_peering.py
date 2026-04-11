@@ -343,6 +343,8 @@ class VpcGcpPeering(pulumi.CustomResource):
                  wait_on_peering_status: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resouce creates a VPC peering configuration for the CloudAMQP instance. The configuration will
         connect to another VPC network hosted on Google Cloud Platform (GCP). See the [GCP documentation]
         for more information on how to create the VPC peering configuration.
@@ -615,6 +617,8 @@ class VpcGcpPeering(pulumi.CustomResource):
                  args: VpcGcpPeeringArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resouce creates a VPC peering configuration for the CloudAMQP instance. The configuration will
         connect to another VPC network hosted on Google Cloud Platform (GCP). See the [GCP documentation]
         for more information on how to create the VPC peering configuration.
