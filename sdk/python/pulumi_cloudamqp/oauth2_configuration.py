@@ -516,6 +516,8 @@ class Oauth2Configuration(pulumi.CustomResource):
                  verify_aud: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resource allows you to configure OAuth2 authentication for your RabbitMQ instance.
 
         Only available for dedicated subscription plans running ***RabbitMQ***.
@@ -652,6 +654,8 @@ class Oauth2Configuration(pulumi.CustomResource):
                  args: Oauth2ConfigurationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resource allows you to configure OAuth2 authentication for your RabbitMQ instance.
 
         Only available for dedicated subscription plans running ***RabbitMQ***.

@@ -19,6 +19,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * &lt;!-- markdownlint-disable MD033 --&gt;
+ * 
  * This resource allows you to create and manage recipients to receive alarm notifications. There will
  * always be a default recipient created upon instance creation. This recipient will use team email and
  * receive notifications from default alarms.

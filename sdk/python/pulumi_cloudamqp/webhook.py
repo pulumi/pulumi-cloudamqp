@@ -272,6 +272,9 @@ class Webhook(pulumi.CustomResource):
                  webhook_uri: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        <!-- markdownlint-disable MD033 -->
+        <!-- markdownlint-disable MD036 -->
+
         This resource allows you to add, update or remove a swebhook for a specific vhost and queue.
 
         Only available for dedicated subscription plans.
@@ -394,6 +397,9 @@ class Webhook(pulumi.CustomResource):
                  args: WebhookArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        <!-- markdownlint-disable MD033 -->
+        <!-- markdownlint-disable MD036 -->
+
         This resource allows you to add, update or remove a swebhook for a specific vhost and queue.
 
         Only available for dedicated subscription plans.

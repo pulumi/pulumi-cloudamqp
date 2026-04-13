@@ -18,6 +18,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * &lt;!-- markdownlint-disable MD033 --&gt;
+ * 
  * This resource allows you to create and manage alarms to trigger based on a set of conditions. Once
  * triggerd a notification will be sent to the assigned recipients. When creating a new instance, there
  * will also be a set of default alarms (cpu, memory and disk) created. All default alarms uses the
@@ -167,14 +169,14 @@ import javax.annotation.Nullable;
  * | Name | Type | Shared | Dedicated | Required arguments |
  * | ---- | ---- | ---- | ---- | ---- |
  * | CPU | cpu | - | &amp;#10004; | time_threshold, valueThreshold |
- * | Memory | memory | - | &amp;#10004;  | time_threshold, valueThreshold |
- * | Disk space | disk | - | &amp;#10004;  | time_threshold, valueThreshold |
- * | Queue | queue | &amp;#10004;  | &amp;#10004; | time_threshold, value_threshold, queue_regex, vhost_regex, messageType |
+ * | Memory | memory | - | &amp;#10004; | time_threshold, valueThreshold |
+ * | Disk space | disk | - | &amp;#10004; | time_threshold, valueThreshold |
+ * | Queue | queue | &amp;#10004; | &amp;#10004; | time_threshold, value_threshold, queue_regex, vhost_regex, messageType |
  * | Connection | connection | &amp;#10004; | &amp;#10004; | time_threshold, valueThreshold |
  * | Connection flow | flow | &amp;#10004; | &amp;#10004; | time_threshold, valueThreshold |
  * | Consumer | consumer | &amp;#10004; | &amp;#10004; | time_threshold, value_threshold, queue, vhost |
  * | Netsplit | netsplit | - | &amp;#10004; | timeThreshold |
- * | Server unreachable | serverUnreachable  | - | &amp;#10004;  | timeThreshold |
+ * | Server unreachable | serverUnreachable | - | &amp;#10004; | timeThreshold |
  * | Notice | notice | &amp;#10004; | &amp;#10004; | |
  * 
  * &lt;br&gt;

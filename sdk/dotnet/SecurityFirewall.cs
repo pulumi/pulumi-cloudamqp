@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
+    /// &lt;!-- markdownlint-disable MD033 --&gt;
+    /// 
     /// This resource allows you to configure and manage firewall rules for the CloudAMQP instance.
     /// 
     /// &gt; **WARNING:** Firewall rules applied with this resource will replace any existing firewall rules.

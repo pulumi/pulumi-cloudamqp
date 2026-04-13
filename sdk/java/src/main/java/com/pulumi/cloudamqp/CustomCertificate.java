@@ -16,6 +16,8 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
+ * &lt;!-- markdownlint-disable MD033 --&gt;
+ * 
  * This resource allows you to upload a custom certificate to all servers in your cluster. Update is
  * not supported, all changes require replacement. `ca`, `cert` and `privateKey` all use **WriteOnly**,
  * meaning no information is present in plan phase, logs or stored in the state for security purposes.

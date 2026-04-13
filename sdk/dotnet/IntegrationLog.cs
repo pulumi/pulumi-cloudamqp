@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
+    /// &lt;!-- markdownlint-disable MD033 --&gt;
+    /// 
     /// This resource allows you to create and manage third party log integrations for a CloudAMQP instance.
     /// Once configured, the logs produced will be forward to corresponding integration.
     /// 

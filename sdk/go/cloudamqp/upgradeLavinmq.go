@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// <!-- markdownlint-disable MD033 -->
+//
 // This resource allows you to upgrade LavinMQ version.
 //
 // Only available for dedicated subscription plans running ***LavinMQ***.
@@ -22,7 +24,8 @@ import (
 //
 //	<summary>
 //	  <b>
-//	    <i>Upgrade LavinMQ, specify which version to upgrade to, from [v1.32.0]</i>
+//	    <i>Upgrade LavinMQ, specify which version to upgrade to, from </i>
+//	    <a href="https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.32.0">v1.32.0</a>
 //	  </b>
 //	</summary>
 //
@@ -74,8 +77,6 @@ import (
 // Not possible to import this resource.
 //
 // [CloudAMQP API available versions]: https://docs.cloudamqp.com/instance-api.html#tag/nodes/get/nodes/available-versions
-//
-// [v1.32.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.32.0
 type UpgradeLavinmq struct {
 	pulumi.CustomResourceState
 

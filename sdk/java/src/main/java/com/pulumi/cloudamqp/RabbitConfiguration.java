@@ -23,6 +23,8 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
+ * &lt;!-- markdownlint-disable MD033 --&gt;
+ * 
  * &lt;details&gt;
  *   &lt;summary&gt;
  *     &lt;b&gt;
@@ -272,6 +274,7 @@ import javax.annotation.Nullable;
  *             .mqttVhost(instance.vhost())
  *             .mqttExchange("amq.topic")
  *             .mqttSslCertLogin(true)
+ *             .mqttMaxSessionExpiryIntervalSeconds(1800)
  *             .sslOptionsFailIfNoPeerCert(true)
  *             .sslOptionsVerify("verify_peer")
  *             .build());
@@ -299,14 +302,14 @@ import javax.annotation.Nullable;
  * 
  * ### heartbeat
  * 
- * | Type | Default | Min  | Affect |
- * |---|---|---|---|
+ * | Type | Default | Min | Affect |
+ * | --- | --- | --- | --- |
  * | int | 120 | 0 | Only effects new connection |
  * 
  * ### connectionMax
  * 
- * | Type | Default | Min  | Affect |
- * |---|---|---|---|
+ * | Type | Default | Min | Affect |
+ * | --- | --- | --- | --- |
  * | int | -1 | 1 | Applied immediately (RabbitMQ restart required before 3.11.13) |
  * 
  * Note: -1 in the provider corresponds to INFINITY in the RabbitMQ config
@@ -314,15 +317,15 @@ import javax.annotation.Nullable;
  * ### channelMax
  * 
  * | Type | Default | Min | Affect |
- * |---|---|---|---|
- * | int | 128 | 0 | Only effects new connections |
+ * | --- | --- | --- | --- |
+ * | int | 128 | 0 | Only affects new connections |
  * 
  * Note: 0 means &#34;no limit&#34;
  * 
  * ### consumerTimeout
  * 
  * | Type | Default | Min | Max | Unit | Affect |
- * |---|---|---|---|---|---|
+ * | --- | --- | --- | --- | --- | --- |
  * | int | 7200000 | 10000 | 86400000 | milliseconds | Only effects new channels |
  * 
  * Note: -1 in the provider corresponds to false (disable) in the RabbitMQ config
@@ -330,13 +333,13 @@ import javax.annotation.Nullable;
  * ### vmMemoryHighWatermark
  * 
  * | Type | Default | Min | Max | Affect |
- * |---|---|---|---|---|
- *  | float | 0.81 | 0.4 | 0.9 | Applied immediately |
+ * | --- | --- | --- | --- | --- |
+ * | float | 0.81 | 0.4 | 0.9 | Applied immediately |
  * 
  * ### queueIndexEmbedMsgsBelow
  * 
  * | Type | Default | Min | Max | Unit | Affect |
- * |---|---|---|---|---|---|
+ * | --- | --- | --- | --- | --- | --- |
  * | int | 4096 | 0 | 10485760 | bytes | Applied immediately for new queues |
  * 
  * Note: Existing queues requires restart
@@ -344,19 +347,19 @@ import javax.annotation.Nullable;
  * ### maxMessageSize
  * 
  * | Type | Default | Min | Max | Unit | Affect |
- * |---|---|---|---|---|---|
+ * | --- | --- | --- | --- | --- | --- |
  * | int | 134217728 | 1 | 536870912 | bytes | Only effects new channels |
  * 
  * ### logExchangeLevel
  * 
  * | Type | Default | Affect | Allowed values |
- * |---|---|---| --- |
+ * | --- | --- | --- | --- |
  * | string | error | RabbitMQ restart required | `debug, info, warning, error, critical, none` |
  * 
  * ### clusterPartitionHandling
  * 
- * | Type  | Affect | Allowed values |
- * |---|---|---|
+ * | Type | Affect | Allowed values |
+ * | --- | --- | --- |
  * | string | Applied immediately | `autoheal, pause_minority, ignore` |
  * 
  * Recommended setting for cluster_partition_handling: `autoheal` for cluster with 1-2
@@ -364,15 +367,15 @@ import javax.annotation.Nullable;
  * 
  * ### messageInterceptorsTimestampOverwrite
  * 
- * | Type  | Affect | Allowed values |
- * |---|---|---|
+ * | Type | Affect | Allowed values |
+ * | --- | --- | --- |
  * | string | RabbitMQ restart required | `enabled_with_overwrite, enabled, disabled` |
  * 
  * Note: Corresponds to setting `message_interceptors.incoming.set_header_timestamp.overwrite`
  * 
  * ### mqttVhost
  * 
- * | Type  | Affect |
+ * | Type | Affect |
  * | --- | --- |
  * | string | Only affects new connections |
  * 
@@ -380,13 +383,21 @@ import javax.annotation.Nullable;
  * 
  * ### mqttExchange
  * 
- * | Type  | Affect |
+ * | Type | Affect |
  * | --- | --- |
  * | string | Only affects new connections |
  * 
+ * ### mqttMaxSessionExpiryIntervalSeconds
+ * 
+ * | Type | Affect | Allowed values |
+ * | --- | --- | --- |
+ * | int | Only affects new connections | 0 or more, default 1800. -1 will set it to no limit |
+ * 
+ * Note: Available from RabbitMQ broker version 3.13.x.
+ * 
  * ### mqttSslCertLogin
  * 
- * | Type  | Affect |
+ * | Type | Affect |
  * | --- | --- |
  * | bool | RabbitMQ restart required |
  * 
@@ -395,13 +406,13 @@ import javax.annotation.Nullable;
  * 
  * ### sslCertLoginFrom
  * 
- * | Type  | Affect | Allowed values |
+ * | Type | Affect | Allowed values |
  * | --- | --- | --- |
  * | string | Only affects new connections | `commonName`, `distinguishedName` |
  * 
  * ### sslOptionsFailIfNoPeerCert
  * 
- * | Type  | Affect |
+ * | Type | Affect |
  * | --- | --- |
  * | string | RabbitMQ restart required |
  * 
@@ -409,7 +420,7 @@ import javax.annotation.Nullable;
  * 
  * ### sslOptionsVerify
  * 
- * | Type  | Affect | Allowed values |
+ * | Type | Affect | Allowed values |
  * | --- | --- | --- |
  * | string | RabbitMQ restart required | `verifyNone`, `verifyPeer` |
  * 
@@ -429,10 +440,10 @@ import javax.annotation.Nullable;
  * The provider is built by older `Terraform Plugin SDK` which doesn&#39;t support nullable configuration
  * values. Instead the values will be set to it&#39;s default value based on it&#39;s schema primitive type.
  * 
- * * schema.TypeString = &#34;&#34;
- * * schema.TypeInt = 0
- * * schema.TypeFloat = 0.0
- * * schema.TypeBool = false
+ * - schema.TypeString = &#34;&#34;
+ * - schema.TypeInt = 0
+ * - schema.TypeFloat = 0.0
+ * - schema.TypeBool = false
  * 
  * During initial create of this resource, we need to exclude all arguments that can take these default
  * values. Argument such as `hearbeat`, `channelMax`, etc. cannot be set to its default value, 0 in
@@ -588,6 +599,20 @@ public class RabbitConfiguration extends com.pulumi.resources.CustomResource {
      */
     public Output<String> mqttExchange() {
         return this.mqttExchange;
+    }
+    /**
+     * The maximum Session Expiry Interval in seconds allowed by the server. Set to 0 to force sessions to expire on disconnect, or -1 for no limit.
+     * 
+     */
+    @Export(name="mqttMaxSessionExpiryIntervalSeconds", refs={Integer.class}, tree="[0]")
+    private Output<Integer> mqttMaxSessionExpiryIntervalSeconds;
+
+    /**
+     * @return The maximum Session Expiry Interval in seconds allowed by the server. Set to 0 to force sessions to expire on disconnect, or -1 for no limit.
+     * 
+     */
+    public Output<Integer> mqttMaxSessionExpiryIntervalSeconds() {
+        return this.mqttMaxSessionExpiryIntervalSeconds;
     }
     /**
      * Enable SSL certificate-based authentication for MQTT connections.

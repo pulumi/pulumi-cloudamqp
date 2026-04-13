@@ -12,6 +12,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// <!-- markdownlint-disable MD033 -->
+// <!-- markdownlint-disable MD036 -->
+//
 // This resource allows you to add, update or remove a swebhook for a specific vhost and queue.
 //
 // Only available for dedicated subscription plans.

@@ -166,7 +166,7 @@ public final class VpcConnectState extends com.pulumi.resources.ResourceArgs {
      * provider platform:
      * 
      * | Platform | Description | Format |
-     * |---|---|---|
+     * | --- | --- | --- |
      * | AWS | IAM ARN principals | arn:aws:iam::aws-account-id:root&lt;br&gt;arn:aws:iam::aws-account-id:user/user-name&lt;br&gt; arn:aws:iam::aws-account-id:role/role-name |
      * | Azure | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX |
      * | GCP | Project IDs [Google docs] | 6 to 30 lowercase letters, digits, or hyphens |
@@ -185,7 +185,7 @@ public final class VpcConnectState extends com.pulumi.resources.ResourceArgs {
      * provider platform:
      * 
      * | Platform | Description | Format |
-     * |---|---|---|
+     * | --- | --- | --- |
      * | AWS | IAM ARN principals | arn:aws:iam::aws-account-id:root&lt;br&gt;arn:aws:iam::aws-account-id:user/user-name&lt;br&gt; arn:aws:iam::aws-account-id:role/role-name |
      * | Azure | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX |
      * | GCP | Project IDs [Google docs] | 6 to 30 lowercase letters, digits, or hyphens |
@@ -472,7 +472,7 @@ public final class VpcConnectState extends com.pulumi.resources.ResourceArgs {
          * provider platform:
          * 
          * | Platform | Description | Format |
-         * |---|---|---|
+         * | --- | --- | --- |
          * | AWS | IAM ARN principals | arn:aws:iam::aws-account-id:root&lt;br&gt;arn:aws:iam::aws-account-id:user/user-name&lt;br&gt; arn:aws:iam::aws-account-id:role/role-name |
          * | Azure | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX |
          * | GCP | Project IDs [Google docs] | 6 to 30 lowercase letters, digits, or hyphens |
@@ -495,7 +495,7 @@ public final class VpcConnectState extends com.pulumi.resources.ResourceArgs {
          * provider platform:
          * 
          * | Platform | Description | Format |
-         * |---|---|---|
+         * | --- | --- | --- |
          * | AWS | IAM ARN principals | arn:aws:iam::aws-account-id:root&lt;br&gt;arn:aws:iam::aws-account-id:user/user-name&lt;br&gt; arn:aws:iam::aws-account-id:role/role-name |
          * | Azure | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX |
          * | GCP | Project IDs [Google docs] | 6 to 30 lowercase letters, digits, or hyphens |

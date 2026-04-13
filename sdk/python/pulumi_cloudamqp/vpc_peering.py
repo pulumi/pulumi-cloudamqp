@@ -246,6 +246,8 @@ class VpcPeering(pulumi.CustomResource):
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resouce allows you to accepting VPC peering request from an AWS requester. This is only
         available for CloudAMQP instance hosted in AWS.
 
@@ -539,6 +541,8 @@ class VpcPeering(pulumi.CustomResource):
                  args: VpcPeeringArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resouce allows you to accepting VPC peering request from an AWS requester. This is only
         available for CloudAMQP instance hosted in AWS.
 

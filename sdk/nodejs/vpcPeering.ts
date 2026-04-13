@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * <!-- markdownlint-disable MD033 -->
+ *
  * This resouce allows you to accepting VPC peering request from an AWS requester. This is only
  * available for CloudAMQP instance hosted in AWS.
  *

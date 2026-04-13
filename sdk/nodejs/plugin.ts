@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * <!-- markdownlint-disable MD033 -->
+ *
  * This resource allows you to enable or disable Rabbit MQ plugins.
  *
  * Only available for dedicated subscription plans running ***RabbitMQ***.

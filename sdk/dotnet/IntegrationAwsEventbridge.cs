@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
+    /// &lt;!-- markdownlint-disable MD033 --&gt;
+    /// 
     /// This resource allows you to create and manage, an [AWS EventBridge] for a CloudAMQP instance. Once
     /// created, continue to map the EventBridge in the [AWS Eventbridge console].
     /// 

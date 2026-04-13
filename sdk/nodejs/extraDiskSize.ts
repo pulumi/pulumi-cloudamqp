@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * <!-- markdownlint-disable MD033 -->
+ *
  * This resource allows you to resize the disk with additional storage capacity.
  *
  * ***Before v1.25.0***: Only available for Amazon Web Services (AWS) without downtime.

@@ -119,6 +119,8 @@ def get_vpc_info(instance_id: Optional[_builtins.int] = None,
                  vpc_id: Optional[_builtins.str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcInfoResult:
     """
+    <!-- markdownlint-disable MD033 -->
+
     Use this data source to retrieve information about VPC for a CloudAMQP instance.
 
     > **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
@@ -194,6 +196,8 @@ def get_vpc_info_output(instance_id: Optional[pulumi.Input[Optional[_builtins.in
                         vpc_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVpcInfoResult]:
     """
+    <!-- markdownlint-disable MD033 -->
+
     Use this data source to retrieve information about VPC for a CloudAMQP instance.
 
     > **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.

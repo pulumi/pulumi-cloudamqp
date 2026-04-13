@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
+    /// &lt;!-- markdownlint-disable MD033 --&gt;
+    /// 
     /// This resource allows you to create and manage a CloudAMQP instance running either [**RabbitMQ**] or
     /// [**LavinMQ**] and can be deployed to multiple cloud platforms provider and regions, see
     /// [instance regions] for more information.
@@ -292,6 +294,44 @@ namespace Pulumi.CloudAmqp
     /// 
     /// &lt;/details&gt;
     /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Provider-to-provider configuration, from &lt;/i&gt;
+    ///       &lt;a href="https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.44.0"&gt;v1.44.0&lt;/a&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// using Lavinmq = Pulumi.Lavinmq;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     {
+    ///         Name = "terraform-cloudamqp-instance",
+    ///         Plan = "penguin-1",
+    ///         Region = "amazon-web-services::us-east-1",
+    ///         Tags = new[]
+    ///         {
+    ///             "terraform",
+    ///         },
+    ///     });
+    /// 
+    ///     var newVhost = new Lavinmq.Index.Vhost("new_vhost", new()
+    ///     {
+    ///         Name = "new_vhost",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
     /// ### Settings supported by LavinMQ
     /// 
     /// ***Allowed values:*** alarms, definitions, firewall, metrics
@@ -416,7 +456,7 @@ namespace Pulumi.CloudAmqp
     public partial class Instance : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// API key needed to communicate to CloudAMQP's second API. The second API is used
+        /// (Sensitive) API key needed to communicate to CloudAMQP's second API. The second API is used
         /// to manage alarms, integration and more, full description [CloudAMQP API].
         /// </summary>
         [Output("apikey")]
@@ -434,6 +474,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Output("copySettings")]
         public Output<ImmutableArray<Outputs.InstanceCopySetting>> CopySettings { get; private set; } = null!;
+
+        /// <summary>
+        /// (Sensitive) Broker credentials block with information extracted from URL.
+        /// </summary>
+        [Output("credentials")]
+        public Output<ImmutableDictionary<string, string>> Credentials { get; private set; } = null!;
 
         /// <summary>
         /// Information if the CloudAMQP instance is shared or dedicated.
@@ -538,7 +584,7 @@ namespace Pulumi.CloudAmqp
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// The AMQP URL (uses the internal hostname if the instance was created with VPC).
+        /// (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC).
         /// Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
         /// </summary>
         [Output("url")]
@@ -594,6 +640,7 @@ namespace Pulumi.CloudAmqp
                 AdditionalSecretOutputs =
                 {
                     "apikey",
+                    "credentials",
                     "url",
                 },
             };
@@ -752,7 +799,7 @@ namespace Pulumi.CloudAmqp
         private Input<string>? _apikey;
 
         /// <summary>
-        /// API key needed to communicate to CloudAMQP's second API. The second API is used
+        /// (Sensitive) API key needed to communicate to CloudAMQP's second API. The second API is used
         /// to manage alarms, integration and more, full description [CloudAMQP API].
         /// </summary>
         public Input<string>? Apikey
@@ -782,6 +829,22 @@ namespace Pulumi.CloudAmqp
         {
             get => _copySettings ?? (_copySettings = new InputList<Inputs.InstanceCopySettingGetArgs>());
             set => _copySettings = value;
+        }
+
+        [Input("credentials")]
+        private InputMap<string>? _credentials;
+
+        /// <summary>
+        /// (Sensitive) Broker credentials block with information extracted from URL.
+        /// </summary>
+        public InputMap<string> Credentials
+        {
+            get => _credentials ?? (_credentials = new InputMap<string>());
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
+                _credentials = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
         }
 
         /// <summary>
@@ -902,7 +965,7 @@ namespace Pulumi.CloudAmqp
         private Input<string>? _url;
 
         /// <summary>
-        /// The AMQP URL (uses the internal hostname if the instance was created with VPC).
+        /// (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC).
         /// Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
         /// </summary>
         public Input<string>? Url

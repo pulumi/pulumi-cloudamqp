@@ -87,6 +87,8 @@ def get_alarms(instance_id: Optional[_builtins.int] = None,
                type: Optional[_builtins.str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAlarmsResult:
     """
+    <!-- markdownlint-disable MD033 -->
+
     Use this data source to retrieve a list of default or created alarms.
 
     ## Example Usage
@@ -127,6 +129,8 @@ def get_alarms_output(instance_id: Optional[pulumi.Input[_builtins.int]] = None,
                       type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAlarmsResult]:
     """
+    <!-- markdownlint-disable MD033 -->
+
     Use this data source to retrieve a list of default or created alarms.
 
     ## Example Usage

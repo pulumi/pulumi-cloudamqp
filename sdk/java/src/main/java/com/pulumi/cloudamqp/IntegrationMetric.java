@@ -18,6 +18,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * &lt;!-- markdownlint-disable MD033 --&gt;
+ * 
  * This resource allows you to create and manage, forwarding metrics to third party integrations for a
  * CloudAMQP instance. Once configured, the metrics produced will be forward to corresponding
  * integration.
@@ -512,18 +514,18 @@ import javax.annotation.Nullable;
  * 
  * Valid names for third party log integration.
  * 
- * | Name          | Description |
- * |---------------|---------------------------------------------------------------|
- * | cloudwatch    | Access key: Create an IAM user with permission to `PutMetricData` |
+ * | Name | Description |
+ * | ------------- | ------------------------------------------------------------- |
+ * | cloudwatch | Access key: Create an IAM user with permission to `PutMetricData` |
  * | cloudwatchV2 | Access key: Create an IAM user with permission to `PutMetricData` |
- * | cloudwatch    | Assume role: Create a IAM role with the permission to `PutMetricData` |
+ * | cloudwatch | Assume role: Create a IAM role with the permission to `PutMetricData` |
  * | cloudwatchV2 | Assume role: Create a IAM role with the permission to `PutMetricData` |
- * | datadog       | Create a Datadog API key at app.datadoghq.com |
- * | datadogV2    | Create a Datadog API key at app.datadoghq.com |
- * | librato       | Create a new API token (with record only permissions) here: https://metrics.librato.com/tokens |
- * | newrelic      | Deprecated! |
- * | newrelicV2   | Find or register an Insert API key for your account: Go to insights.newrelic.com &gt; Manage data &gt; API keys. |
- * | stackdriver   | Create a service account and add &#39;monitor metrics writer&#39; role from your Google Cloud Account |
+ * | datadog | Create a Datadog API key at app.datadoghq.com |
+ * | datadogV2 | Create a Datadog API key at app.datadoghq.com |
+ * | librato | Create a new API token (with record only permissions) here: [Librato token] |
+ * | newrelic | Deprecated! |
+ * | newrelicV2 | Find or register an Insert API key for your account: Go to insights.newrelic.com &gt; Manage data &gt; API keys. |
+ * | stackdriver | Create a service account and add &#39;monitor metrics writer&#39; role from your Google Cloud Account |
  * 
  * ## Integration type reference
  * 

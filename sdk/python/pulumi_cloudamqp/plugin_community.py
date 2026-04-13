@@ -261,6 +261,8 @@ class PluginCommunity(pulumi.CustomResource):
                  timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resource allows you to install or uninstall community plugins. Once installed the plugin will
         be available in `Plugin`.
 
@@ -342,6 +344,8 @@ class PluginCommunity(pulumi.CustomResource):
                  args: PluginCommunityArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resource allows you to install or uninstall community plugins. Once installed the plugin will
         be available in `Plugin`.
 

@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * <!-- markdownlint-disable MD033 -->
+ *
  * Use this data source to retrieve information about VPC for a CloudAMQP instance.
  *
  * > **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.
@@ -113,6 +115,8 @@ export interface GetVpcInfoResult {
     readonly vpcSubnet: string;
 }
 /**
+ * <!-- markdownlint-disable MD033 -->
+ *
  * Use this data source to retrieve information about VPC for a CloudAMQP instance.
  *
  * > **Note:** Only available for CloudAMQP instances/VPCs hosted in AWS.

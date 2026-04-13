@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// <!-- markdownlint-disable MD033 -->
+//
 // This resource allows you to create and manage a CloudAMQP instance running either [**RabbitMQ**] or
 // [**LavinMQ**] and can be deployed to multiple cloud platforms provider and regions, see
 // [instance regions] for more information.
@@ -342,6 +344,53 @@ import (
 //
 // </details>
 //
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Provider-to-provider configuration, from </i>
+//	    <a href="https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.44.0">v1.44.0</a>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi-lavinmq/sdk/go/lavinmq"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:   pulumi.String("terraform-cloudamqp-instance"),
+//				Plan:   pulumi.String("penguin-1"),
+//				Region: pulumi.String("amazon-web-services::us-east-1"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("terraform"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = lavinmq.NewVhost(ctx, "new_vhost", &lavinmq.VhostArgs{
+//				Name: "new_vhost",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
 // ### Settings supported by LavinMQ
 //
 // ***Allowed values:*** alarms, definitions, firewall, metrics
@@ -474,7 +523,7 @@ import (
 type Instance struct {
 	pulumi.CustomResourceState
 
-	// API key needed to communicate to CloudAMQP's second API. The second API is used
+	// (Sensitive) API key needed to communicate to CloudAMQP's second API. The second API is used
 	// to manage alarms, integration and more, full description [CloudAMQP API].
 	Apikey pulumi.StringOutput `pulumi:"apikey"`
 	// Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
@@ -482,6 +531,8 @@ type Instance struct {
 	// Copy settings from one CloudAMQP instance to a new. Consists of
 	// the block documented below.
 	CopySettings InstanceCopySettingArrayOutput `pulumi:"copySettings"`
+	// (Sensitive) Broker credentials block with information extracted from URL.
+	Credentials pulumi.StringMapOutput `pulumi:"credentials"`
 	// Information if the CloudAMQP instance is shared or dedicated.
 	Dedicated pulumi.BoolOutput `pulumi:"dedicated"`
 	// The external hostname for the CloudAMQP instance.
@@ -532,7 +583,7 @@ type Instance struct {
 	// One or more tags for the CloudAMQP instance, makes it possible to
 	// categories multiple instances in console view. Default there is no tags assigned.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// The AMQP URL (uses the internal hostname if the instance was created with VPC).
+	// (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC).
 	// Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
 	Url pulumi.StringOutput `pulumi:"url"`
 	// The virtual host used by Rabbit MQ.
@@ -564,6 +615,7 @@ func NewInstance(ctx *pulumi.Context,
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"apikey",
+		"credentials",
 		"url",
 	})
 	opts = append(opts, secrets)
@@ -590,7 +642,7 @@ func GetInstance(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Instance resources.
 type instanceState struct {
-	// API key needed to communicate to CloudAMQP's second API. The second API is used
+	// (Sensitive) API key needed to communicate to CloudAMQP's second API. The second API is used
 	// to manage alarms, integration and more, full description [CloudAMQP API].
 	Apikey *string `pulumi:"apikey"`
 	// Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
@@ -598,6 +650,8 @@ type instanceState struct {
 	// Copy settings from one CloudAMQP instance to a new. Consists of
 	// the block documented below.
 	CopySettings []InstanceCopySetting `pulumi:"copySettings"`
+	// (Sensitive) Broker credentials block with information extracted from URL.
+	Credentials map[string]string `pulumi:"credentials"`
 	// Information if the CloudAMQP instance is shared or dedicated.
 	Dedicated *bool `pulumi:"dedicated"`
 	// The external hostname for the CloudAMQP instance.
@@ -648,7 +702,7 @@ type instanceState struct {
 	// One or more tags for the CloudAMQP instance, makes it possible to
 	// categories multiple instances in console view. Default there is no tags assigned.
 	Tags []string `pulumi:"tags"`
-	// The AMQP URL (uses the internal hostname if the instance was created with VPC).
+	// (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC).
 	// Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
 	Url *string `pulumi:"url"`
 	// The virtual host used by Rabbit MQ.
@@ -666,7 +720,7 @@ type instanceState struct {
 }
 
 type InstanceState struct {
-	// API key needed to communicate to CloudAMQP's second API. The second API is used
+	// (Sensitive) API key needed to communicate to CloudAMQP's second API. The second API is used
 	// to manage alarms, integration and more, full description [CloudAMQP API].
 	Apikey pulumi.StringPtrInput
 	// Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
@@ -674,6 +728,8 @@ type InstanceState struct {
 	// Copy settings from one CloudAMQP instance to a new. Consists of
 	// the block documented below.
 	CopySettings InstanceCopySettingArrayInput
+	// (Sensitive) Broker credentials block with information extracted from URL.
+	Credentials pulumi.StringMapInput
 	// Information if the CloudAMQP instance is shared or dedicated.
 	Dedicated pulumi.BoolPtrInput
 	// The external hostname for the CloudAMQP instance.
@@ -724,7 +780,7 @@ type InstanceState struct {
 	// One or more tags for the CloudAMQP instance, makes it possible to
 	// categories multiple instances in console view. Default there is no tags assigned.
 	Tags pulumi.StringArrayInput
-	// The AMQP URL (uses the internal hostname if the instance was created with VPC).
+	// (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC).
 	// Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
 	Url pulumi.StringPtrInput
 	// The virtual host used by Rabbit MQ.
@@ -949,7 +1005,7 @@ func (o InstanceOutput) ToInstanceOutputWithContext(ctx context.Context) Instanc
 	return o
 }
 
-// API key needed to communicate to CloudAMQP's second API. The second API is used
+// (Sensitive) API key needed to communicate to CloudAMQP's second API. The second API is used
 // to manage alarms, integration and more, full description [CloudAMQP API].
 func (o InstanceOutput) Apikey() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.Apikey }).(pulumi.StringOutput)
@@ -964,6 +1020,11 @@ func (o InstanceOutput) Backend() pulumi.StringOutput {
 // the block documented below.
 func (o InstanceOutput) CopySettings() InstanceCopySettingArrayOutput {
 	return o.ApplyT(func(v *Instance) InstanceCopySettingArrayOutput { return v.CopySettings }).(InstanceCopySettingArrayOutput)
+}
+
+// (Sensitive) Broker credentials block with information extracted from URL.
+func (o InstanceOutput) Credentials() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringMapOutput { return v.Credentials }).(pulumi.StringMapOutput)
 }
 
 // Information if the CloudAMQP instance is shared or dedicated.
@@ -1055,7 +1116,7 @@ func (o InstanceOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// The AMQP URL (uses the internal hostname if the instance was created with VPC).
+// (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC).
 // Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
 func (o InstanceOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.Url }).(pulumi.StringOutput)

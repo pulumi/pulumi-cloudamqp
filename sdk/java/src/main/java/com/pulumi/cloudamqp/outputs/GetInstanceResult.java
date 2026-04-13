@@ -9,6 +9,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @CustomType
@@ -23,6 +24,11 @@ public final class GetInstanceResult {
      * 
      */
     private String backend;
+    /**
+     * @return (Sensitive) Broker credentials block with information extracted from URL.
+     * 
+     */
+    private Map<String,String> credentials;
     /**
      * @return Information if the CloudAMQP instance is shared or dedicated.
      * 
@@ -113,6 +119,13 @@ public final class GetInstanceResult {
      */
     public String backend() {
         return this.backend;
+    }
+    /**
+     * @return (Sensitive) Broker credentials block with information extracted from URL.
+     * 
+     */
+    public Map<String,String> credentials() {
+        return this.credentials;
     }
     /**
      * @return Information if the CloudAMQP instance is shared or dedicated.
@@ -235,6 +248,7 @@ public final class GetInstanceResult {
     public static final class Builder {
         private String apikey;
         private String backend;
+        private Map<String,String> credentials;
         private Boolean dedicated;
         private String host;
         private String hostInternal;
@@ -257,6 +271,7 @@ public final class GetInstanceResult {
     	      Objects.requireNonNull(defaults);
     	      this.apikey = defaults.apikey;
     	      this.backend = defaults.backend;
+    	      this.credentials = defaults.credentials;
     	      this.dedicated = defaults.dedicated;
     	      this.host = defaults.host;
     	      this.hostInternal = defaults.hostInternal;
@@ -290,6 +305,14 @@ public final class GetInstanceResult {
               throw new MissingRequiredPropertyException("GetInstanceResult", "backend");
             }
             this.backend = backend;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder credentials(Map<String,String> credentials) {
+            if (credentials == null) {
+              throw new MissingRequiredPropertyException("GetInstanceResult", "credentials");
+            }
+            this.credentials = credentials;
             return this;
         }
         @CustomType.Setter
@@ -435,6 +458,7 @@ public final class GetInstanceResult {
             final var _resultValue = new GetInstanceResult();
             _resultValue.apikey = apikey;
             _resultValue.backend = backend;
+            _resultValue.credentials = credentials;
             _resultValue.dedicated = dedicated;
             _resultValue.host = host;
             _resultValue.hostInternal = hostInternal;

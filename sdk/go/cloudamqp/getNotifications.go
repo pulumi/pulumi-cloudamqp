@@ -11,6 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// <!-- markdownlint-disable MD033 -->
+//
 // Use this data source to retrieve information about all notification recipients. Each recipient will
 // receive notifications assigned to an alarm that has triggered.
 //

@@ -5,6 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * <!-- markdownlint-disable MD033 -->
+ * <!-- markdownlint-disable MD036 -->
+ *
  * This resource allows you to add, update or remove a swebhook for a specific vhost and queue.
  *
  * Only available for dedicated subscription plans.

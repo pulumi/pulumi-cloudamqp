@@ -74,6 +74,8 @@ class AwaitableGetNotificationsResult(GetNotificationsResult):
 def get_notifications(instance_id: Optional[_builtins.int] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNotificationsResult:
     """
+    <!-- markdownlint-disable MD033 -->
+
     Use this data source to retrieve information about all notification recipients. Each recipient will
     receive notifications assigned to an alarm that has triggered.
 
@@ -105,6 +107,8 @@ def get_notifications(instance_id: Optional[_builtins.int] = None,
 def get_notifications_output(instance_id: Optional[pulumi.Input[_builtins.int]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNotificationsResult]:
     """
+    <!-- markdownlint-disable MD033 -->
+
     Use this data source to retrieve information about all notification recipients. Each recipient will
     receive notifications assigned to an alarm that has triggered.
 

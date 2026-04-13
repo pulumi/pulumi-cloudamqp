@@ -12,6 +12,8 @@ namespace Pulumi.CloudAmqp
     public static class GetNotifications
     {
         /// <summary>
+        /// &lt;!-- markdownlint-disable MD033 --&gt;
+        /// 
         /// Use this data source to retrieve information about all notification recipients. Each recipient will
         /// receive notifications assigned to an alarm that has triggered.
         /// 
@@ -41,6 +43,8 @@ namespace Pulumi.CloudAmqp
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetNotificationsResult>("cloudamqp:index/getNotifications:getNotifications", args ?? new GetNotificationsArgs(), options.WithDefaults());
 
         /// <summary>
+        /// &lt;!-- markdownlint-disable MD033 --&gt;
+        /// 
         /// Use this data source to retrieve information about all notification recipients. Each recipient will
         /// receive notifications assigned to an alarm that has triggered.
         /// 
@@ -70,6 +74,8 @@ namespace Pulumi.CloudAmqp
             => global::Pulumi.Deployment.Instance.Invoke<GetNotificationsResult>("cloudamqp:index/getNotifications:getNotifications", args ?? new GetNotificationsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// &lt;!-- markdownlint-disable MD033 --&gt;
+        /// 
         /// Use this data source to retrieve information about all notification recipients. Each recipient will
         /// receive notifications assigned to an alarm that has triggered.
         /// 

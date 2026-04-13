@@ -12,6 +12,8 @@ namespace Pulumi.CloudAmqp
     public static class GetCredentials
     {
         /// <summary>
+        /// &gt; **Deprecated** This data source will be removed in next major version (v2.0). Use the credentials attribute in `cloudamqp.Instance` resource or data source instead.
+        /// 
         /// Use this data source to retrieve information about the credentials of the configured user in
         /// RabbitMQ. Information is extracted from `cloudamqp_instance.instance.url`.
         /// 
@@ -36,11 +38,40 @@ namespace Pulumi.CloudAmqp
         /// ## Dependency
         /// 
         /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+        /// 
+        /// ## Known issues
+        /// 
+        /// The data source causes unnecessary provider reconfigurations when the associated `cloudamqp.Instance` resource changes, leading to potential authentication failures during apply operations.
+        /// 
+        /// Migration example:
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using CloudAmqp = Pulumi.CloudAmqp;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // New (recommended)
+        ///     // Access credentials directly from the resource
+        ///     var instance = new CloudAmqp.Instance("instance");
+        /// 
+        ///     // Old (deprecated)
+        ///     var credentials = CloudAmqp.GetCredentials.Invoke(new()
+        ///     {
+        ///         InstanceId = instance.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetCredentialsResult> InvokeAsync(GetCredentialsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCredentialsResult>("cloudamqp:index/getCredentials:getCredentials", args ?? new GetCredentialsArgs(), options.WithDefaults());
 
         /// <summary>
+        /// &gt; **Deprecated** This data source will be removed in next major version (v2.0). Use the credentials attribute in `cloudamqp.Instance` resource or data source instead.
+        /// 
         /// Use this data source to retrieve information about the credentials of the configured user in
         /// RabbitMQ. Information is extracted from `cloudamqp_instance.instance.url`.
         /// 
@@ -65,11 +96,40 @@ namespace Pulumi.CloudAmqp
         /// ## Dependency
         /// 
         /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+        /// 
+        /// ## Known issues
+        /// 
+        /// The data source causes unnecessary provider reconfigurations when the associated `cloudamqp.Instance` resource changes, leading to potential authentication failures during apply operations.
+        /// 
+        /// Migration example:
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using CloudAmqp = Pulumi.CloudAmqp;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // New (recommended)
+        ///     // Access credentials directly from the resource
+        ///     var instance = new CloudAmqp.Instance("instance");
+        /// 
+        ///     // Old (deprecated)
+        ///     var credentials = CloudAmqp.GetCredentials.Invoke(new()
+        ///     {
+        ///         InstanceId = instance.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetCredentialsResult> Invoke(GetCredentialsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCredentialsResult>("cloudamqp:index/getCredentials:getCredentials", args ?? new GetCredentialsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// &gt; **Deprecated** This data source will be removed in next major version (v2.0). Use the credentials attribute in `cloudamqp.Instance` resource or data source instead.
+        /// 
         /// Use this data source to retrieve information about the credentials of the configured user in
         /// RabbitMQ. Information is extracted from `cloudamqp_instance.instance.url`.
         /// 
@@ -94,6 +154,33 @@ namespace Pulumi.CloudAmqp
         /// ## Dependency
         /// 
         /// This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+        /// 
+        /// ## Known issues
+        /// 
+        /// The data source causes unnecessary provider reconfigurations when the associated `cloudamqp.Instance` resource changes, leading to potential authentication failures during apply operations.
+        /// 
+        /// Migration example:
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using CloudAmqp = Pulumi.CloudAmqp;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // New (recommended)
+        ///     // Access credentials directly from the resource
+        ///     var instance = new CloudAmqp.Instance("instance");
+        /// 
+        ///     // Old (deprecated)
+        ///     var credentials = CloudAmqp.GetCredentials.Invoke(new()
+        ///     {
+        ///         InstanceId = instance.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetCredentialsResult> Invoke(GetCredentialsInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetCredentialsResult>("cloudamqp:index/getCredentials:getCredentials", args ?? new GetCredentialsInvokeArgs(), options.WithDefaults());
