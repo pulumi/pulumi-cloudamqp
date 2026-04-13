@@ -5,7 +5,7 @@ go 1.26
 replace github.com/hashicorp/vault => github.com/hashicorp/vault v1.2.0
 
 require (
-	github.com/cloudamqp/terraform-provider-cloudamqp v0.0.0
+	github.com/cloudamqp/terraform-provider-cloudamqp v1.44.2
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.125.0
 	github.com/pulumi/pulumi/sdk/v3 v3.226.0
 )
@@ -20,10 +20,7 @@ require (
 //	        github.com/hashicorp/terraform-plugin-sdk/helper/resource imports
 //	        github.com/hashicorp/terraform-plugin-test/v2 imports
 //	        github.com/hashicorp/terraform-exec/tfinstall: module github.com/hashicorp/terraform-exec@latest found (v0.20.0), but does not contain package github.com/hashicorp/terraform-exec/tfinstall
-replace (
-	github.com/cloudamqp/terraform-provider-cloudamqp => ../upstream
-	github.com/hashicorp/terraform-exec => github.com/hashicorp/terraform-exec v0.15.0
-)
+replace github.com/hashicorp/terraform-exec => github.com/hashicorp/terraform-exec v0.15.0
 
 require (
 	cel.dev/expr v0.25.1 // indirect
