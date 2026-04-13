@@ -10,6 +10,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -20,7 +21,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     public static final InstanceState Empty = new InstanceState();
 
     /**
-     * API key needed to communicate to CloudAMQP&#39;s second API. The second API is used
+     * (Sensitive) API key needed to communicate to CloudAMQP&#39;s second API. The second API is used
      * to manage alarms, integration and more, full description [CloudAMQP API].
      * 
      */
@@ -28,7 +29,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<String> apikey;
 
     /**
-     * @return API key needed to communicate to CloudAMQP&#39;s second API. The second API is used
+     * @return (Sensitive) API key needed to communicate to CloudAMQP&#39;s second API. The second API is used
      * to manage alarms, integration and more, full description [CloudAMQP API].
      * 
      */
@@ -66,6 +67,21 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<List<InstanceCopySettingArgs>>> copySettings() {
         return Optional.ofNullable(this.copySettings);
+    }
+
+    /**
+     * (Sensitive) Broker credentials block with information extracted from URL.
+     * 
+     */
+    @Import(name="credentials")
+    private @Nullable Output<Map<String,String>> credentials;
+
+    /**
+     * @return (Sensitive) Broker credentials block with information extracted from URL.
+     * 
+     */
+    public Optional<Output<Map<String,String>>> credentials() {
+        return Optional.ofNullable(this.credentials);
     }
 
     /**
@@ -312,7 +328,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The AMQP URL (uses the internal hostname if the instance was created with VPC).
+     * (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC).
      * Has the format: `amqps://{username}:{password}{@literal @}{hostname}/{vhost}`
      * 
      */
@@ -320,7 +336,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<String> url;
 
     /**
-     * @return The AMQP URL (uses the internal hostname if the instance was created with VPC).
+     * @return (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC).
      * Has the format: `amqps://{username}:{password}{@literal @}{hostname}/{vhost}`
      * 
      */
@@ -391,6 +407,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         this.apikey = $.apikey;
         this.backend = $.backend;
         this.copySettings = $.copySettings;
+        this.credentials = $.credentials;
         this.dedicated = $.dedicated;
         this.host = $.host;
         this.hostInternal = $.hostInternal;
@@ -429,7 +446,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param apikey API key needed to communicate to CloudAMQP&#39;s second API. The second API is used
+         * @param apikey (Sensitive) API key needed to communicate to CloudAMQP&#39;s second API. The second API is used
          * to manage alarms, integration and more, full description [CloudAMQP API].
          * 
          * @return builder
@@ -441,7 +458,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param apikey API key needed to communicate to CloudAMQP&#39;s second API. The second API is used
+         * @param apikey (Sensitive) API key needed to communicate to CloudAMQP&#39;s second API. The second API is used
          * to manage alarms, integration and more, full description [CloudAMQP API].
          * 
          * @return builder
@@ -504,6 +521,27 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder copySettings(InstanceCopySettingArgs... copySettings) {
             return copySettings(List.of(copySettings));
+        }
+
+        /**
+         * @param credentials (Sensitive) Broker credentials block with information extracted from URL.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder credentials(@Nullable Output<Map<String,String>> credentials) {
+            $.credentials = credentials;
+            return this;
+        }
+
+        /**
+         * @param credentials (Sensitive) Broker credentials block with information extracted from URL.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder credentials(Map<String,String> credentials) {
+            return credentials(Output.of(credentials));
         }
 
         /**
@@ -859,7 +897,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param url The AMQP URL (uses the internal hostname if the instance was created with VPC).
+         * @param url (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC).
          * Has the format: `amqps://{username}:{password}{@literal @}{hostname}/{vhost}`
          * 
          * @return builder
@@ -871,7 +909,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param url The AMQP URL (uses the internal hostname if the instance was created with VPC).
+         * @param url (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC).
          * Has the format: `amqps://{username}:{password}{@literal @}{hostname}/{vhost}`
          * 
          * @return builder

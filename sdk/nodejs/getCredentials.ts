@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * > **Deprecated** This data source will be removed in next major version (v2.0). Use the credentials attribute in `cloudamqp.Instance` resource or data source instead.
+ *
  * Use this data source to retrieve information about the credentials of the configured user in
  * RabbitMQ. Information is extracted from `cloudamqp_instance.instance.url`.
  *
@@ -22,6 +24,25 @@ import * as utilities from "./utilities";
  * ## Dependency
  *
  * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ *
+ * ## Known issues
+ *
+ * The data source causes unnecessary provider reconfigurations when the associated `cloudamqp.Instance` resource changes, leading to potential authentication failures during apply operations.
+ *
+ * Migration example:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * // New (recommended)
+ * // Access credentials directly from the resource
+ * const instance = new cloudamqp.Instance("instance", {});
+ * // Old (deprecated)
+ * const credentials = instance.id.apply(id => cloudamqp.getCredentialsOutput({
+ *     instanceId: id,
+ * }));
+ * ```
  */
 export function getCredentials(args: GetCredentialsArgs, opts?: pulumi.InvokeOptions): Promise<GetCredentialsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -59,6 +80,8 @@ export interface GetCredentialsResult {
     readonly username: string;
 }
 /**
+ * > **Deprecated** This data source will be removed in next major version (v2.0). Use the credentials attribute in `cloudamqp.Instance` resource or data source instead.
+ *
  * Use this data source to retrieve information about the credentials of the configured user in
  * RabbitMQ. Information is extracted from `cloudamqp_instance.instance.url`.
  *
@@ -76,6 +99,25 @@ export interface GetCredentialsResult {
  * ## Dependency
  *
  * This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
+ *
+ * ## Known issues
+ *
+ * The data source causes unnecessary provider reconfigurations when the associated `cloudamqp.Instance` resource changes, leading to potential authentication failures during apply operations.
+ *
+ * Migration example:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * // New (recommended)
+ * // Access credentials directly from the resource
+ * const instance = new cloudamqp.Instance("instance", {});
+ * // Old (deprecated)
+ * const credentials = instance.id.apply(id => cloudamqp.getCredentialsOutput({
+ *     instanceId: id,
+ * }));
+ * ```
  */
 export function getCredentialsOutput(args: GetCredentialsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetCredentialsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

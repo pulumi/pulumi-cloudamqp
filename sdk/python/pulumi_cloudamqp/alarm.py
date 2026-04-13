@@ -433,6 +433,8 @@ class Alarm(pulumi.CustomResource):
                  vhost_regex: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resource allows you to create and manage alarms to trigger based on a set of conditions. Once
         triggerd a notification will be sent to the assigned recipients. When creating a new instance, there
         will also be a set of default alarms (cpu, memory and disk) created. All default alarms uses the
@@ -526,14 +528,14 @@ class Alarm(pulumi.CustomResource):
         | Name | Type | Shared | Dedicated | Required arguments |
         | ---- | ---- | ---- | ---- | ---- |
         | CPU | cpu | - | &#10004; | time_threshold, value_threshold |
-        | Memory | memory | - | &#10004;  | time_threshold, value_threshold |
-        | Disk space | disk | - | &#10004;  | time_threshold, value_threshold |
-        | Queue | queue | &#10004;  | &#10004; | time_threshold, value_threshold, queue_regex, vhost_regex, message_type |
+        | Memory | memory | - | &#10004; | time_threshold, value_threshold |
+        | Disk space | disk | - | &#10004; | time_threshold, value_threshold |
+        | Queue | queue | &#10004; | &#10004; | time_threshold, value_threshold, queue_regex, vhost_regex, message_type |
         | Connection | connection | &#10004; | &#10004; | time_threshold, value_threshold |
         | Connection flow | flow | &#10004; | &#10004; | time_threshold, value_threshold |
         | Consumer | consumer | &#10004; | &#10004; | time_threshold, value_threshold, queue, vhost |
         | Netsplit | netsplit | - | &#10004; | time_threshold |
-        | Server unreachable | server_unreachable  | - | &#10004;  | time_threshold |
+        | Server unreachable | server_unreachable | - | &#10004; | time_threshold |
         | Notice | notice | &#10004; | &#10004; | |
 
         <br>
@@ -590,6 +592,8 @@ class Alarm(pulumi.CustomResource):
                  args: AlarmArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resource allows you to create and manage alarms to trigger based on a set of conditions. Once
         triggerd a notification will be sent to the assigned recipients. When creating a new instance, there
         will also be a set of default alarms (cpu, memory and disk) created. All default alarms uses the
@@ -683,14 +687,14 @@ class Alarm(pulumi.CustomResource):
         | Name | Type | Shared | Dedicated | Required arguments |
         | ---- | ---- | ---- | ---- | ---- |
         | CPU | cpu | - | &#10004; | time_threshold, value_threshold |
-        | Memory | memory | - | &#10004;  | time_threshold, value_threshold |
-        | Disk space | disk | - | &#10004;  | time_threshold, value_threshold |
-        | Queue | queue | &#10004;  | &#10004; | time_threshold, value_threshold, queue_regex, vhost_regex, message_type |
+        | Memory | memory | - | &#10004; | time_threshold, value_threshold |
+        | Disk space | disk | - | &#10004; | time_threshold, value_threshold |
+        | Queue | queue | &#10004; | &#10004; | time_threshold, value_threshold, queue_regex, vhost_regex, message_type |
         | Connection | connection | &#10004; | &#10004; | time_threshold, value_threshold |
         | Connection flow | flow | &#10004; | &#10004; | time_threshold, value_threshold |
         | Consumer | consumer | &#10004; | &#10004; | time_threshold, value_threshold, queue, vhost |
         | Netsplit | netsplit | - | &#10004; | time_threshold |
-        | Server unreachable | server_unreachable  | - | &#10004;  | time_threshold |
+        | Server unreachable | server_unreachable | - | &#10004; | time_threshold |
         | Notice | notice | &#10004; | &#10004; | |
 
         <br>

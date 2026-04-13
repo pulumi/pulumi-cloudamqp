@@ -17,6 +17,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * &lt;!-- markdownlint-disable MD033 --&gt;
+ * 
  * This resource allows you to enable or disable Rabbit MQ plugins.
  * 
  * Only available for dedicated subscription plans running ***RabbitMQ***.

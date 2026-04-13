@@ -295,6 +295,8 @@ class Notification(pulumi.CustomResource):
                  value: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resource allows you to create and manage recipients to receive alarm notifications. There will
         always be a default recipient created upon instance creation. This recipient will use team email and
         receive notifications from default alarms.
@@ -512,6 +514,8 @@ class Notification(pulumi.CustomResource):
                  args: NotificationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resource allows you to create and manage recipients to receive alarm notifications. There will
         always be a default recipient created upon instance creation. This recipient will use team email and
         receive notifications from default alarms.

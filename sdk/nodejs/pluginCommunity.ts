@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * <!-- markdownlint-disable MD033 -->
+ *
  * This resource allows you to install or uninstall community plugins. Once installed the plugin will
  * be available in `cloudamqp.Plugin`.
  *

@@ -29,6 +29,7 @@ class RabbitConfigurationArgs:
                  max_message_size: Optional[pulumi.Input[_builtins.int]] = None,
                  message_interceptors_timestamp_overwrite: Optional[pulumi.Input[_builtins.str]] = None,
                  mqtt_exchange: Optional[pulumi.Input[_builtins.str]] = None,
+                 mqtt_max_session_expiry_interval_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  mqtt_ssl_cert_login: Optional[pulumi.Input[_builtins.bool]] = None,
                  mqtt_vhost: Optional[pulumi.Input[_builtins.str]] = None,
                  queue_index_embed_msgs_below: Optional[pulumi.Input[_builtins.int]] = None,
@@ -51,6 +52,7 @@ class RabbitConfigurationArgs:
         :param pulumi.Input[_builtins.int] max_message_size: The largest allowed message payload size in bytes.
         :param pulumi.Input[_builtins.str] message_interceptors_timestamp_overwrite: Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
         :param pulumi.Input[_builtins.str] mqtt_exchange: The exchange option determines which exchange messages from MQTT clients are published to.
+        :param pulumi.Input[_builtins.int] mqtt_max_session_expiry_interval_seconds: The maximum Session Expiry Interval in seconds allowed by the server. Set to 0 to force sessions to expire on disconnect, or -1 for no limit.
         :param pulumi.Input[_builtins.bool] mqtt_ssl_cert_login: Enable SSL certificate-based authentication for MQTT connections.
         :param pulumi.Input[_builtins.str] mqtt_vhost: Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.
         :param pulumi.Input[_builtins.int] queue_index_embed_msgs_below: Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
@@ -82,6 +84,8 @@ class RabbitConfigurationArgs:
             pulumi.set(__self__, "message_interceptors_timestamp_overwrite", message_interceptors_timestamp_overwrite)
         if mqtt_exchange is not None:
             pulumi.set(__self__, "mqtt_exchange", mqtt_exchange)
+        if mqtt_max_session_expiry_interval_seconds is not None:
+            pulumi.set(__self__, "mqtt_max_session_expiry_interval_seconds", mqtt_max_session_expiry_interval_seconds)
         if mqtt_ssl_cert_login is not None:
             pulumi.set(__self__, "mqtt_ssl_cert_login", mqtt_ssl_cert_login)
         if mqtt_vhost is not None:
@@ -222,6 +226,18 @@ class RabbitConfigurationArgs:
         pulumi.set(self, "mqtt_exchange", value)
 
     @_builtins.property
+    @pulumi.getter(name="mqttMaxSessionExpiryIntervalSeconds")
+    def mqtt_max_session_expiry_interval_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The maximum Session Expiry Interval in seconds allowed by the server. Set to 0 to force sessions to expire on disconnect, or -1 for no limit.
+        """
+        return pulumi.get(self, "mqtt_max_session_expiry_interval_seconds")
+
+    @mqtt_max_session_expiry_interval_seconds.setter
+    def mqtt_max_session_expiry_interval_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "mqtt_max_session_expiry_interval_seconds", value)
+
+    @_builtins.property
     @pulumi.getter(name="mqttSslCertLogin")
     def mqtt_ssl_cert_login(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
@@ -345,6 +361,7 @@ class _RabbitConfigurationState:
                  max_message_size: Optional[pulumi.Input[_builtins.int]] = None,
                  message_interceptors_timestamp_overwrite: Optional[pulumi.Input[_builtins.str]] = None,
                  mqtt_exchange: Optional[pulumi.Input[_builtins.str]] = None,
+                 mqtt_max_session_expiry_interval_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  mqtt_ssl_cert_login: Optional[pulumi.Input[_builtins.bool]] = None,
                  mqtt_vhost: Optional[pulumi.Input[_builtins.str]] = None,
                  queue_index_embed_msgs_below: Optional[pulumi.Input[_builtins.int]] = None,
@@ -367,6 +384,7 @@ class _RabbitConfigurationState:
         :param pulumi.Input[_builtins.int] max_message_size: The largest allowed message payload size in bytes.
         :param pulumi.Input[_builtins.str] message_interceptors_timestamp_overwrite: Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
         :param pulumi.Input[_builtins.str] mqtt_exchange: The exchange option determines which exchange messages from MQTT clients are published to.
+        :param pulumi.Input[_builtins.int] mqtt_max_session_expiry_interval_seconds: The maximum Session Expiry Interval in seconds allowed by the server. Set to 0 to force sessions to expire on disconnect, or -1 for no limit.
         :param pulumi.Input[_builtins.bool] mqtt_ssl_cert_login: Enable SSL certificate-based authentication for MQTT connections.
         :param pulumi.Input[_builtins.str] mqtt_vhost: Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.
         :param pulumi.Input[_builtins.int] queue_index_embed_msgs_below: Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
@@ -399,6 +417,8 @@ class _RabbitConfigurationState:
             pulumi.set(__self__, "message_interceptors_timestamp_overwrite", message_interceptors_timestamp_overwrite)
         if mqtt_exchange is not None:
             pulumi.set(__self__, "mqtt_exchange", mqtt_exchange)
+        if mqtt_max_session_expiry_interval_seconds is not None:
+            pulumi.set(__self__, "mqtt_max_session_expiry_interval_seconds", mqtt_max_session_expiry_interval_seconds)
         if mqtt_ssl_cert_login is not None:
             pulumi.set(__self__, "mqtt_ssl_cert_login", mqtt_ssl_cert_login)
         if mqtt_vhost is not None:
@@ -539,6 +559,18 @@ class _RabbitConfigurationState:
         pulumi.set(self, "mqtt_exchange", value)
 
     @_builtins.property
+    @pulumi.getter(name="mqttMaxSessionExpiryIntervalSeconds")
+    def mqtt_max_session_expiry_interval_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The maximum Session Expiry Interval in seconds allowed by the server. Set to 0 to force sessions to expire on disconnect, or -1 for no limit.
+        """
+        return pulumi.get(self, "mqtt_max_session_expiry_interval_seconds")
+
+    @mqtt_max_session_expiry_interval_seconds.setter
+    def mqtt_max_session_expiry_interval_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "mqtt_max_session_expiry_interval_seconds", value)
+
+    @_builtins.property
     @pulumi.getter(name="mqttSslCertLogin")
     def mqtt_ssl_cert_login(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
@@ -665,6 +697,7 @@ class RabbitConfiguration(pulumi.CustomResource):
                  max_message_size: Optional[pulumi.Input[_builtins.int]] = None,
                  message_interceptors_timestamp_overwrite: Optional[pulumi.Input[_builtins.str]] = None,
                  mqtt_exchange: Optional[pulumi.Input[_builtins.str]] = None,
+                 mqtt_max_session_expiry_interval_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  mqtt_ssl_cert_login: Optional[pulumi.Input[_builtins.bool]] = None,
                  mqtt_vhost: Optional[pulumi.Input[_builtins.str]] = None,
                  queue_index_embed_msgs_below: Optional[pulumi.Input[_builtins.int]] = None,
@@ -681,6 +714,8 @@ class RabbitConfiguration(pulumi.CustomResource):
         Only available for dedicated subscription plans running ***RabbitMQ***.
 
         ## Example Usage
+
+        <!-- markdownlint-disable MD033 -->
 
         <details>
           <summary>
@@ -805,6 +840,7 @@ class RabbitConfiguration(pulumi.CustomResource):
             mqtt_vhost=instance["vhost"],
             mqtt_exchange="amq.topic",
             mqtt_ssl_cert_login=True,
+            mqtt_max_session_expiry_interval_seconds=1800,
             ssl_options_fail_if_no_peer_cert=True,
             ssl_options_verify="verify_peer")
         nodes = cloudamqp.get_nodes(instance_id=instance["id"])
@@ -821,14 +857,14 @@ class RabbitConfiguration(pulumi.CustomResource):
 
         ### heartbeat
 
-        | Type | Default | Min  | Affect |
-        |---|---|---|---|
+        | Type | Default | Min | Affect |
+        | --- | --- | --- | --- |
         | int | 120 | 0 | Only effects new connection |
 
         ### connection_max
 
-        | Type | Default | Min  | Affect |
-        |---|---|---|---|
+        | Type | Default | Min | Affect |
+        | --- | --- | --- | --- |
         | int | -1 | 1 | Applied immediately (RabbitMQ restart required before 3.11.13) |
 
         Note: -1 in the provider corresponds to INFINITY in the RabbitMQ config
@@ -836,15 +872,15 @@ class RabbitConfiguration(pulumi.CustomResource):
         ### channel_max
 
         | Type | Default | Min | Affect |
-        |---|---|---|---|
-        | int | 128 | 0 | Only effects new connections |
+        | --- | --- | --- | --- |
+        | int | 128 | 0 | Only affects new connections |
 
         Note: 0 means "no limit"
 
         ### consumer_timeout
 
         | Type | Default | Min | Max | Unit | Affect |
-        |---|---|---|---|---|---|
+        | --- | --- | --- | --- | --- | --- |
         | int | 7200000 | 10000 | 86400000 | milliseconds | Only effects new channels |
 
         Note: -1 in the provider corresponds to false (disable) in the RabbitMQ config
@@ -852,13 +888,13 @@ class RabbitConfiguration(pulumi.CustomResource):
         ### vm_memory_high_watermark
 
         | Type | Default | Min | Max | Affect |
-        |---|---|---|---|---|
-         | float | 0.81 | 0.4 | 0.9 | Applied immediately |
+        | --- | --- | --- | --- | --- |
+        | float | 0.81 | 0.4 | 0.9 | Applied immediately |
 
         ### queue_index_embed_msgs_below
 
         | Type | Default | Min | Max | Unit | Affect |
-        |---|---|---|---|---|---|
+        | --- | --- | --- | --- | --- | --- |
         | int | 4096 | 0 | 10485760 | bytes | Applied immediately for new queues |
 
         Note: Existing queues requires restart
@@ -866,19 +902,19 @@ class RabbitConfiguration(pulumi.CustomResource):
         ### max_message_size
 
         | Type | Default | Min | Max | Unit | Affect |
-        |---|---|---|---|---|---|
+        | --- | --- | --- | --- | --- | --- |
         | int | 134217728 | 1 | 536870912 | bytes | Only effects new channels |
 
         ### log_exchange_level
 
         | Type | Default | Affect | Allowed values |
-        |---|---|---| --- |
+        | --- | --- | --- | --- |
         | string | error | RabbitMQ restart required | `debug, info, warning, error, critical, none` |
 
         ### cluster_partition_handling
 
-        | Type  | Affect | Allowed values |
-        |---|---|---|
+        | Type | Affect | Allowed values |
+        | --- | --- | --- |
         | string | Applied immediately | `autoheal, pause_minority, ignore` |
 
         Recommended setting for cluster_partition_handling: `autoheal` for cluster with 1-2
@@ -886,15 +922,15 @@ class RabbitConfiguration(pulumi.CustomResource):
 
         ### message_interceptors_timestamp_overwrite
 
-        | Type  | Affect | Allowed values |
-        |---|---|---|
+        | Type | Affect | Allowed values |
+        | --- | --- | --- |
         | string | RabbitMQ restart required | `enabled_with_overwrite, enabled, disabled` |
 
         Note: Corresponds to setting `message_interceptors.incoming.set_header_timestamp.overwrite`
 
         ### mqtt_vhost
 
-        | Type  | Affect |
+        | Type | Affect |
         | --- | --- |
         | string | Only affects new connections |
 
@@ -902,13 +938,21 @@ class RabbitConfiguration(pulumi.CustomResource):
 
         ### mqtt_exchange
 
-        | Type  | Affect |
+        | Type | Affect |
         | --- | --- |
         | string | Only affects new connections |
 
+        ### mqtt_max_session_expiry_interval_seconds
+
+        | Type | Affect | Allowed values |
+        | --- | --- | --- |
+        | int | Only affects new connections | 0 or more, default 1800. -1 will set it to no limit |
+
+        Note: Available from RabbitMQ broker version 3.13.x.
+
         ### mqtt_ssl_cert_login
 
-        | Type  | Affect |
+        | Type | Affect |
         | --- | --- |
         | bool | RabbitMQ restart required |
 
@@ -917,13 +961,13 @@ class RabbitConfiguration(pulumi.CustomResource):
 
         ### ssl_cert_login_from
 
-        | Type  | Affect | Allowed values |
+        | Type | Affect | Allowed values |
         | --- | --- | --- |
         | string | Only affects new connections | `common_name`, `distinguished_name` |
 
         ### ssl_options_fail_if_no_peer_cert
 
-        | Type  | Affect |
+        | Type | Affect |
         | --- | --- |
         | string | RabbitMQ restart required |
 
@@ -931,7 +975,7 @@ class RabbitConfiguration(pulumi.CustomResource):
 
         ### ssl_options_verify
 
-        | Type  | Affect | Allowed values |
+        | Type | Affect | Allowed values |
         | --- | --- | --- |
         | string | RabbitMQ restart required | `verify_none`, `verify_peer` |
 
@@ -951,10 +995,10 @@ class RabbitConfiguration(pulumi.CustomResource):
         The provider is built by older `Terraform Plugin SDK` which doesn't support nullable configuration
         values. Instead the values will be set to it's default value based on it's schema primitive type.
 
-        * schema.TypeString = ""
-        * schema.TypeInt = 0
-        * schema.TypeFloat = 0.0
-        * schema.TypeBool = false
+        - schema.TypeString = ""
+        - schema.TypeInt = 0
+        - schema.TypeFloat = 0.0
+        - schema.TypeBool = false
 
         During initial create of this resource, we need to exclude all arguments that can take these default
         values. Argument such as `hearbeat`, `channel_max`, etc. cannot be set to its default value, 0 in
@@ -981,6 +1025,7 @@ class RabbitConfiguration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] max_message_size: The largest allowed message payload size in bytes.
         :param pulumi.Input[_builtins.str] message_interceptors_timestamp_overwrite: Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
         :param pulumi.Input[_builtins.str] mqtt_exchange: The exchange option determines which exchange messages from MQTT clients are published to.
+        :param pulumi.Input[_builtins.int] mqtt_max_session_expiry_interval_seconds: The maximum Session Expiry Interval in seconds allowed by the server. Set to 0 to force sessions to expire on disconnect, or -1 for no limit.
         :param pulumi.Input[_builtins.bool] mqtt_ssl_cert_login: Enable SSL certificate-based authentication for MQTT connections.
         :param pulumi.Input[_builtins.str] mqtt_vhost: Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.
         :param pulumi.Input[_builtins.int] queue_index_embed_msgs_below: Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
@@ -1005,6 +1050,8 @@ class RabbitConfiguration(pulumi.CustomResource):
         Only available for dedicated subscription plans running ***RabbitMQ***.
 
         ## Example Usage
+
+        <!-- markdownlint-disable MD033 -->
 
         <details>
           <summary>
@@ -1129,6 +1176,7 @@ class RabbitConfiguration(pulumi.CustomResource):
             mqtt_vhost=instance["vhost"],
             mqtt_exchange="amq.topic",
             mqtt_ssl_cert_login=True,
+            mqtt_max_session_expiry_interval_seconds=1800,
             ssl_options_fail_if_no_peer_cert=True,
             ssl_options_verify="verify_peer")
         nodes = cloudamqp.get_nodes(instance_id=instance["id"])
@@ -1145,14 +1193,14 @@ class RabbitConfiguration(pulumi.CustomResource):
 
         ### heartbeat
 
-        | Type | Default | Min  | Affect |
-        |---|---|---|---|
+        | Type | Default | Min | Affect |
+        | --- | --- | --- | --- |
         | int | 120 | 0 | Only effects new connection |
 
         ### connection_max
 
-        | Type | Default | Min  | Affect |
-        |---|---|---|---|
+        | Type | Default | Min | Affect |
+        | --- | --- | --- | --- |
         | int | -1 | 1 | Applied immediately (RabbitMQ restart required before 3.11.13) |
 
         Note: -1 in the provider corresponds to INFINITY in the RabbitMQ config
@@ -1160,15 +1208,15 @@ class RabbitConfiguration(pulumi.CustomResource):
         ### channel_max
 
         | Type | Default | Min | Affect |
-        |---|---|---|---|
-        | int | 128 | 0 | Only effects new connections |
+        | --- | --- | --- | --- |
+        | int | 128 | 0 | Only affects new connections |
 
         Note: 0 means "no limit"
 
         ### consumer_timeout
 
         | Type | Default | Min | Max | Unit | Affect |
-        |---|---|---|---|---|---|
+        | --- | --- | --- | --- | --- | --- |
         | int | 7200000 | 10000 | 86400000 | milliseconds | Only effects new channels |
 
         Note: -1 in the provider corresponds to false (disable) in the RabbitMQ config
@@ -1176,13 +1224,13 @@ class RabbitConfiguration(pulumi.CustomResource):
         ### vm_memory_high_watermark
 
         | Type | Default | Min | Max | Affect |
-        |---|---|---|---|---|
-         | float | 0.81 | 0.4 | 0.9 | Applied immediately |
+        | --- | --- | --- | --- | --- |
+        | float | 0.81 | 0.4 | 0.9 | Applied immediately |
 
         ### queue_index_embed_msgs_below
 
         | Type | Default | Min | Max | Unit | Affect |
-        |---|---|---|---|---|---|
+        | --- | --- | --- | --- | --- | --- |
         | int | 4096 | 0 | 10485760 | bytes | Applied immediately for new queues |
 
         Note: Existing queues requires restart
@@ -1190,19 +1238,19 @@ class RabbitConfiguration(pulumi.CustomResource):
         ### max_message_size
 
         | Type | Default | Min | Max | Unit | Affect |
-        |---|---|---|---|---|---|
+        | --- | --- | --- | --- | --- | --- |
         | int | 134217728 | 1 | 536870912 | bytes | Only effects new channels |
 
         ### log_exchange_level
 
         | Type | Default | Affect | Allowed values |
-        |---|---|---| --- |
+        | --- | --- | --- | --- |
         | string | error | RabbitMQ restart required | `debug, info, warning, error, critical, none` |
 
         ### cluster_partition_handling
 
-        | Type  | Affect | Allowed values |
-        |---|---|---|
+        | Type | Affect | Allowed values |
+        | --- | --- | --- |
         | string | Applied immediately | `autoheal, pause_minority, ignore` |
 
         Recommended setting for cluster_partition_handling: `autoheal` for cluster with 1-2
@@ -1210,15 +1258,15 @@ class RabbitConfiguration(pulumi.CustomResource):
 
         ### message_interceptors_timestamp_overwrite
 
-        | Type  | Affect | Allowed values |
-        |---|---|---|
+        | Type | Affect | Allowed values |
+        | --- | --- | --- |
         | string | RabbitMQ restart required | `enabled_with_overwrite, enabled, disabled` |
 
         Note: Corresponds to setting `message_interceptors.incoming.set_header_timestamp.overwrite`
 
         ### mqtt_vhost
 
-        | Type  | Affect |
+        | Type | Affect |
         | --- | --- |
         | string | Only affects new connections |
 
@@ -1226,13 +1274,21 @@ class RabbitConfiguration(pulumi.CustomResource):
 
         ### mqtt_exchange
 
-        | Type  | Affect |
+        | Type | Affect |
         | --- | --- |
         | string | Only affects new connections |
 
+        ### mqtt_max_session_expiry_interval_seconds
+
+        | Type | Affect | Allowed values |
+        | --- | --- | --- |
+        | int | Only affects new connections | 0 or more, default 1800. -1 will set it to no limit |
+
+        Note: Available from RabbitMQ broker version 3.13.x.
+
         ### mqtt_ssl_cert_login
 
-        | Type  | Affect |
+        | Type | Affect |
         | --- | --- |
         | bool | RabbitMQ restart required |
 
@@ -1241,13 +1297,13 @@ class RabbitConfiguration(pulumi.CustomResource):
 
         ### ssl_cert_login_from
 
-        | Type  | Affect | Allowed values |
+        | Type | Affect | Allowed values |
         | --- | --- | --- |
         | string | Only affects new connections | `common_name`, `distinguished_name` |
 
         ### ssl_options_fail_if_no_peer_cert
 
-        | Type  | Affect |
+        | Type | Affect |
         | --- | --- |
         | string | RabbitMQ restart required |
 
@@ -1255,7 +1311,7 @@ class RabbitConfiguration(pulumi.CustomResource):
 
         ### ssl_options_verify
 
-        | Type  | Affect | Allowed values |
+        | Type | Affect | Allowed values |
         | --- | --- | --- |
         | string | RabbitMQ restart required | `verify_none`, `verify_peer` |
 
@@ -1275,10 +1331,10 @@ class RabbitConfiguration(pulumi.CustomResource):
         The provider is built by older `Terraform Plugin SDK` which doesn't support nullable configuration
         values. Instead the values will be set to it's default value based on it's schema primitive type.
 
-        * schema.TypeString = ""
-        * schema.TypeInt = 0
-        * schema.TypeFloat = 0.0
-        * schema.TypeBool = false
+        - schema.TypeString = ""
+        - schema.TypeInt = 0
+        - schema.TypeFloat = 0.0
+        - schema.TypeBool = false
 
         During initial create of this resource, we need to exclude all arguments that can take these default
         values. Argument such as `hearbeat`, `channel_max`, etc. cannot be set to its default value, 0 in
@@ -1318,6 +1374,7 @@ class RabbitConfiguration(pulumi.CustomResource):
                  max_message_size: Optional[pulumi.Input[_builtins.int]] = None,
                  message_interceptors_timestamp_overwrite: Optional[pulumi.Input[_builtins.str]] = None,
                  mqtt_exchange: Optional[pulumi.Input[_builtins.str]] = None,
+                 mqtt_max_session_expiry_interval_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  mqtt_ssl_cert_login: Optional[pulumi.Input[_builtins.bool]] = None,
                  mqtt_vhost: Optional[pulumi.Input[_builtins.str]] = None,
                  queue_index_embed_msgs_below: Optional[pulumi.Input[_builtins.int]] = None,
@@ -1348,6 +1405,7 @@ class RabbitConfiguration(pulumi.CustomResource):
             __props__.__dict__["max_message_size"] = max_message_size
             __props__.__dict__["message_interceptors_timestamp_overwrite"] = message_interceptors_timestamp_overwrite
             __props__.__dict__["mqtt_exchange"] = mqtt_exchange
+            __props__.__dict__["mqtt_max_session_expiry_interval_seconds"] = mqtt_max_session_expiry_interval_seconds
             __props__.__dict__["mqtt_ssl_cert_login"] = mqtt_ssl_cert_login
             __props__.__dict__["mqtt_vhost"] = mqtt_vhost
             __props__.__dict__["queue_index_embed_msgs_below"] = queue_index_embed_msgs_below
@@ -1377,6 +1435,7 @@ class RabbitConfiguration(pulumi.CustomResource):
             max_message_size: Optional[pulumi.Input[_builtins.int]] = None,
             message_interceptors_timestamp_overwrite: Optional[pulumi.Input[_builtins.str]] = None,
             mqtt_exchange: Optional[pulumi.Input[_builtins.str]] = None,
+            mqtt_max_session_expiry_interval_seconds: Optional[pulumi.Input[_builtins.int]] = None,
             mqtt_ssl_cert_login: Optional[pulumi.Input[_builtins.bool]] = None,
             mqtt_vhost: Optional[pulumi.Input[_builtins.str]] = None,
             queue_index_embed_msgs_below: Optional[pulumi.Input[_builtins.int]] = None,
@@ -1403,6 +1462,7 @@ class RabbitConfiguration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] max_message_size: The largest allowed message payload size in bytes.
         :param pulumi.Input[_builtins.str] message_interceptors_timestamp_overwrite: Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
         :param pulumi.Input[_builtins.str] mqtt_exchange: The exchange option determines which exchange messages from MQTT clients are published to.
+        :param pulumi.Input[_builtins.int] mqtt_max_session_expiry_interval_seconds: The maximum Session Expiry Interval in seconds allowed by the server. Set to 0 to force sessions to expire on disconnect, or -1 for no limit.
         :param pulumi.Input[_builtins.bool] mqtt_ssl_cert_login: Enable SSL certificate-based authentication for MQTT connections.
         :param pulumi.Input[_builtins.str] mqtt_vhost: Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.
         :param pulumi.Input[_builtins.int] queue_index_embed_msgs_below: Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
@@ -1429,6 +1489,7 @@ class RabbitConfiguration(pulumi.CustomResource):
         __props__.__dict__["max_message_size"] = max_message_size
         __props__.__dict__["message_interceptors_timestamp_overwrite"] = message_interceptors_timestamp_overwrite
         __props__.__dict__["mqtt_exchange"] = mqtt_exchange
+        __props__.__dict__["mqtt_max_session_expiry_interval_seconds"] = mqtt_max_session_expiry_interval_seconds
         __props__.__dict__["mqtt_ssl_cert_login"] = mqtt_ssl_cert_login
         __props__.__dict__["mqtt_vhost"] = mqtt_vhost
         __props__.__dict__["queue_index_embed_msgs_below"] = queue_index_embed_msgs_below
@@ -1519,6 +1580,14 @@ class RabbitConfiguration(pulumi.CustomResource):
         The exchange option determines which exchange messages from MQTT clients are published to.
         """
         return pulumi.get(self, "mqtt_exchange")
+
+    @_builtins.property
+    @pulumi.getter(name="mqttMaxSessionExpiryIntervalSeconds")
+    def mqtt_max_session_expiry_interval_seconds(self) -> pulumi.Output[_builtins.int]:
+        """
+        The maximum Session Expiry Interval in seconds allowed by the server. Set to 0 to force sessions to expire on disconnect, or -1 for no limit.
+        """
+        return pulumi.get(self, "mqtt_max_session_expiry_interval_seconds")
 
     @_builtins.property
     @pulumi.getter(name="mqttSslCertLogin")

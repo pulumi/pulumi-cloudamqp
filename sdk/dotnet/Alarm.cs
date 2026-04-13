@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
+    /// &lt;!-- markdownlint-disable MD033 --&gt;
+    /// 
     /// This resource allows you to create and manage alarms to trigger based on a set of conditions. Once
     /// triggerd a notification will be sent to the assigned recipients. When creating a new instance, there
     /// will also be a set of default alarms (cpu, memory and disk) created. All default alarms uses the
@@ -137,14 +139,14 @@ namespace Pulumi.CloudAmqp
     /// | Name | Type | Shared | Dedicated | Required arguments |
     /// | ---- | ---- | ---- | ---- | ---- |
     /// | CPU | cpu | - | &amp;#10004; | time_threshold, ValueThreshold |
-    /// | Memory | memory | - | &amp;#10004;  | time_threshold, ValueThreshold |
-    /// | Disk space | disk | - | &amp;#10004;  | time_threshold, ValueThreshold |
-    /// | Queue | queue | &amp;#10004;  | &amp;#10004; | time_threshold, value_threshold, queue_regex, vhost_regex, MessageType |
+    /// | Memory | memory | - | &amp;#10004; | time_threshold, ValueThreshold |
+    /// | Disk space | disk | - | &amp;#10004; | time_threshold, ValueThreshold |
+    /// | Queue | queue | &amp;#10004; | &amp;#10004; | time_threshold, value_threshold, queue_regex, vhost_regex, MessageType |
     /// | Connection | connection | &amp;#10004; | &amp;#10004; | time_threshold, ValueThreshold |
     /// | Connection flow | flow | &amp;#10004; | &amp;#10004; | time_threshold, ValueThreshold |
     /// | Consumer | consumer | &amp;#10004; | &amp;#10004; | time_threshold, value_threshold, queue, vhost |
     /// | Netsplit | netsplit | - | &amp;#10004; | TimeThreshold |
-    /// | Server unreachable | ServerUnreachable  | - | &amp;#10004;  | TimeThreshold |
+    /// | Server unreachable | ServerUnreachable | - | &amp;#10004; | TimeThreshold |
     /// | Notice | notice | &amp;#10004; | &amp;#10004; | |
     /// 
     /// &lt;br&gt;

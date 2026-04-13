@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
+    /// &lt;!-- markdownlint-disable MD033 --&gt;
+    /// 
     /// This resource allows you to upgrade RabbitMQ version. Depending on initial versions of RabbitMQ and
     /// Erlang of the CloudAMQP instance, multiple runs may be needed to get to the latest or wanted version.
     /// Reason for this is certain supported RabbitMQ version will also automatically upgrade Erlang version.
@@ -29,7 +31,8 @@ namespace Pulumi.CloudAmqp
     /// &lt;details&gt;
     ///   &lt;summary&gt;
     ///     &lt;b&gt;
-    ///       &lt;i&gt;Specify version upgrade, from [v1.31.0]&lt;/i&gt;
+    ///       &lt;i&gt;Specify version upgrade, from &lt;/i&gt;
+    ///       &lt;a href="https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.31.0"&gt;v1.31.0&lt;/a&gt;
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
     /// 
@@ -192,7 +195,7 @@ namespace Pulumi.CloudAmqp
     /// &gt;       upgrades will require downtime.
     /// &gt; * Auto delete queues (queues that are marked AD) will be deleted during the update.
     /// &gt; * Any custom plugins support has installed on your behalf will be disabled and you need to contact
-    /// &gt;       support@cloudamqp.com and ask to have them re-installed.
+    /// &gt;       [support] and ask to have them re-installed.
     /// &gt; * TLS 1.0 and 1.1 will not be supported after the update.
     /// 
     /// ## Multiple runs
@@ -209,7 +212,7 @@ namespace Pulumi.CloudAmqp
     /// | 3.13.2           | -                                         | -                             |
     /// 
     /// [CloudAMQP API available versions]: https://docs.cloudamqp.com/instance-api.html#tag/nodes/get/nodes/available-versions
-    /// [v1.31.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.31.0
+    /// [support]: support@cloudamqp.com
     /// 
     /// ## Import
     /// 

@@ -10,6 +10,9 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
+    /// &lt;!-- markdownlint-disable MD033 --&gt;
+    /// &lt;!-- markdownlint-disable MD036 --&gt;
+    /// 
     /// This resource allows you to add, update or remove a swebhook for a specific vhost and queue.
     /// 
     /// Only available for dedicated subscription plans.

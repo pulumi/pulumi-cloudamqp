@@ -26,13 +26,16 @@ class GetInstanceResult:
     """
     A collection of values returned by getInstance.
     """
-    def __init__(__self__, apikey=None, backend=None, dedicated=None, host=None, host_internal=None, id=None, instance_id=None, name=None, no_default_alarms=None, nodes=None, plan=None, ready=None, region=None, rmq_version=None, tags=None, url=None, vhost=None, vpc_id=None, vpc_subnet=None):
+    def __init__(__self__, apikey=None, backend=None, credentials=None, dedicated=None, host=None, host_internal=None, id=None, instance_id=None, name=None, no_default_alarms=None, nodes=None, plan=None, ready=None, region=None, rmq_version=None, tags=None, url=None, vhost=None, vpc_id=None, vpc_subnet=None):
         if apikey and not isinstance(apikey, str):
             raise TypeError("Expected argument 'apikey' to be a str")
         pulumi.set(__self__, "apikey", apikey)
         if backend and not isinstance(backend, str):
             raise TypeError("Expected argument 'backend' to be a str")
         pulumi.set(__self__, "backend", backend)
+        if credentials and not isinstance(credentials, dict):
+            raise TypeError("Expected argument 'credentials' to be a dict")
+        pulumi.set(__self__, "credentials", credentials)
         if dedicated and not isinstance(dedicated, bool):
             raise TypeError("Expected argument 'dedicated' to be a bool")
         pulumi.set(__self__, "dedicated", dedicated)
@@ -100,6 +103,14 @@ class GetInstanceResult:
         Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
         """
         return pulumi.get(self, "backend")
+
+    @_builtins.property
+    @pulumi.getter
+    def credentials(self) -> Mapping[str, _builtins.str]:
+        """
+        (Sensitive) Broker credentials block with information extracted from URL.
+        """
+        return pulumi.get(self, "credentials")
 
     @_builtins.property
     @pulumi.getter
@@ -239,6 +250,7 @@ class AwaitableGetInstanceResult(GetInstanceResult):
         return GetInstanceResult(
             apikey=self.apikey,
             backend=self.backend,
+            credentials=self.credentials,
             dedicated=self.dedicated,
             host=self.host,
             host_internal=self.host_internal,
@@ -261,6 +273,8 @@ class AwaitableGetInstanceResult(GetInstanceResult):
 def get_instance(instance_id: Optional[_builtins.int] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceResult:
     """
+    <!-- markdownlint-disable MD033 -->
+
     Use this data source to retrieve information about an already created CloudAMQP instance. In order
     to retrieve the correct information, the CoudAMQP instance identifier is needed.
 
@@ -275,6 +289,7 @@ def get_instance(instance_id: Optional[_builtins.int] = None,
     return AwaitableGetInstanceResult(
         apikey=pulumi.get(__ret__, 'apikey'),
         backend=pulumi.get(__ret__, 'backend'),
+        credentials=pulumi.get(__ret__, 'credentials'),
         dedicated=pulumi.get(__ret__, 'dedicated'),
         host=pulumi.get(__ret__, 'host'),
         host_internal=pulumi.get(__ret__, 'host_internal'),
@@ -295,6 +310,8 @@ def get_instance(instance_id: Optional[_builtins.int] = None,
 def get_instance_output(instance_id: Optional[pulumi.Input[_builtins.int]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetInstanceResult]:
     """
+    <!-- markdownlint-disable MD033 -->
+
     Use this data source to retrieve information about an already created CloudAMQP instance. In order
     to retrieve the correct information, the CoudAMQP instance identifier is needed.
 
@@ -308,6 +325,7 @@ def get_instance_output(instance_id: Optional[pulumi.Input[_builtins.int]] = Non
     return __ret__.apply(lambda __response__: GetInstanceResult(
         apikey=pulumi.get(__response__, 'apikey'),
         backend=pulumi.get(__response__, 'backend'),
+        credentials=pulumi.get(__response__, 'credentials'),
         dedicated=pulumi.get(__response__, 'dedicated'),
         host=pulumi.get(__response__, 'host'),
         host_internal=pulumi.get(__response__, 'host_internal'),

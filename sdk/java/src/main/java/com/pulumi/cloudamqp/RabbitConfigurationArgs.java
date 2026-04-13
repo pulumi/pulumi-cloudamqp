@@ -170,6 +170,21 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
     }
 
     /**
+     * The maximum Session Expiry Interval in seconds allowed by the server. Set to 0 to force sessions to expire on disconnect, or -1 for no limit.
+     * 
+     */
+    @Import(name="mqttMaxSessionExpiryIntervalSeconds")
+    private @Nullable Output<Integer> mqttMaxSessionExpiryIntervalSeconds;
+
+    /**
+     * @return The maximum Session Expiry Interval in seconds allowed by the server. Set to 0 to force sessions to expire on disconnect, or -1 for no limit.
+     * 
+     */
+    public Optional<Output<Integer>> mqttMaxSessionExpiryIntervalSeconds() {
+        return Optional.ofNullable(this.mqttMaxSessionExpiryIntervalSeconds);
+    }
+
+    /**
      * Enable SSL certificate-based authentication for MQTT connections.
      * 
      */
@@ -321,6 +336,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         this.maxMessageSize = $.maxMessageSize;
         this.messageInterceptorsTimestampOverwrite = $.messageInterceptorsTimestampOverwrite;
         this.mqttExchange = $.mqttExchange;
+        this.mqttMaxSessionExpiryIntervalSeconds = $.mqttMaxSessionExpiryIntervalSeconds;
         this.mqttSslCertLogin = $.mqttSslCertLogin;
         this.mqttVhost = $.mqttVhost;
         this.queueIndexEmbedMsgsBelow = $.queueIndexEmbedMsgsBelow;
@@ -558,6 +574,27 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
          */
         public Builder mqttExchange(String mqttExchange) {
             return mqttExchange(Output.of(mqttExchange));
+        }
+
+        /**
+         * @param mqttMaxSessionExpiryIntervalSeconds The maximum Session Expiry Interval in seconds allowed by the server. Set to 0 to force sessions to expire on disconnect, or -1 for no limit.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mqttMaxSessionExpiryIntervalSeconds(@Nullable Output<Integer> mqttMaxSessionExpiryIntervalSeconds) {
+            $.mqttMaxSessionExpiryIntervalSeconds = mqttMaxSessionExpiryIntervalSeconds;
+            return this;
+        }
+
+        /**
+         * @param mqttMaxSessionExpiryIntervalSeconds The maximum Session Expiry Interval in seconds allowed by the server. Set to 0 to force sessions to expire on disconnect, or -1 for no limit.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mqttMaxSessionExpiryIntervalSeconds(Integer mqttMaxSessionExpiryIntervalSeconds) {
+            return mqttMaxSessionExpiryIntervalSeconds(Output.of(mqttMaxSessionExpiryIntervalSeconds));
         }
 
         /**

@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// <!-- markdownlint-disable MD033 -->
+//
 // Enable PrivateLink for a CloudAMQP instance hosted in Azure. If no existing VPC available when
 // enable PrivateLink, a new VPC will be created with subnet `10.52.72.0/24`.
 //

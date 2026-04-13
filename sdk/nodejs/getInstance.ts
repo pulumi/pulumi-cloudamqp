@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * <!-- markdownlint-disable MD033 -->
+ *
  * Use this data source to retrieve information about an already created CloudAMQP instance. In order
  * to retrieve the correct information, the CoudAMQP instance identifier is needed.
  */
@@ -37,6 +39,10 @@ export interface GetInstanceResult {
      * Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
      */
     readonly backend: string;
+    /**
+     * (Sensitive) Broker credentials block with information extracted from URL.
+     */
+    readonly credentials: {[key: string]: string};
     /**
      * Information if the CloudAMQP instance is shared or dedicated.
      */
@@ -100,6 +106,8 @@ export interface GetInstanceResult {
     readonly vpcSubnet: string;
 }
 /**
+ * <!-- markdownlint-disable MD033 -->
+ *
  * Use this data source to retrieve information about an already created CloudAMQP instance. In order
  * to retrieve the correct information, the CoudAMQP instance identifier is needed.
  */

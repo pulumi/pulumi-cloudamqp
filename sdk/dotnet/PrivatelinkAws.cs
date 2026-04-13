@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
+    /// &lt;!-- markdownlint-disable MD033 --&gt;
+    /// 
     /// Enable PrivateLink for a CloudAMQP instance hosted in AWS. If no existing VPC available when enable
     /// PrivateLink, a new VPC will be created with subnet `10.52.72.0/24`.
     /// 

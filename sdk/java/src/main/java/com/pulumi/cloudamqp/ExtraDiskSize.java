@@ -18,6 +18,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * &lt;!-- markdownlint-disable MD033 --&gt;
+ * 
  * This resource allows you to resize the disk with additional storage capacity.
  * 
  * ***Before v1.25.0***: Only available for Amazon Web Services (AWS) without downtime.

@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * <!-- markdownlint-disable MD033 -->
+ *
  * This resource allows you to configure a trust store for your RabbitMQ broker. The trust store
  * enables RabbitMQ to fetch and use CA certificates from an external source for validating client
  * certificates, or upload multiple leaf certificates as an allow list.

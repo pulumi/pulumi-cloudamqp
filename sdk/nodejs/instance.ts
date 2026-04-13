@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * <!-- markdownlint-disable MD033 -->
+ *
  * This resource allows you to create and manage a CloudAMQP instance running either [**RabbitMQ**] or
  * [**LavinMQ**] and can be deployed to multiple cloud platforms provider and regions, see
  * [instance regions] for more information.
@@ -204,6 +206,30 @@ import * as utilities from "./utilities";
  *
  * </details>
  *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Provider-to-provider configuration, from </i>
+ *       <a href="https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.44.0">v1.44.0</a>
+ *     </b>
+ *   </summary>
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ * import * as lavinmq from "@pulumi/lavinmq";
+ *
+ * const instance = new cloudamqp.Instance("instance", {
+ *     name: "terraform-cloudamqp-instance",
+ *     plan: "penguin-1",
+ *     region: "amazon-web-services::us-east-1",
+ *     tags: ["terraform"],
+ * });
+ * const newVhost = new lavinmq.index.Vhost("new_vhost", {name: "new_vhost"});
+ * ```
+ *
+ * </details>
+ *
  * ### Settings supported by LavinMQ
  *
  * ***Allowed values:*** alarms, definitions, firewall, metrics
@@ -323,7 +349,7 @@ export class Instance extends pulumi.CustomResource {
     }
 
     /**
-     * API key needed to communicate to CloudAMQP's second API. The second API is used
+     * (Sensitive) API key needed to communicate to CloudAMQP's second API. The second API is used
      * to manage alarms, integration and more, full description [CloudAMQP API].
      */
     declare public /*out*/ readonly apikey: pulumi.Output<string>;
@@ -336,6 +362,10 @@ export class Instance extends pulumi.CustomResource {
      * the block documented below.
      */
     declare public readonly copySettings: pulumi.Output<outputs.InstanceCopySetting[] | undefined>;
+    /**
+     * (Sensitive) Broker credentials block with information extracted from URL.
+     */
+    declare public /*out*/ readonly credentials: pulumi.Output<{[key: string]: string}>;
     /**
      * Information if the CloudAMQP instance is shared or dedicated.
      */
@@ -413,7 +443,7 @@ export class Instance extends pulumi.CustomResource {
      */
     declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
-     * The AMQP URL (uses the internal hostname if the instance was created with VPC).
+     * (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC).
      * Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
      */
     declare public /*out*/ readonly url: pulumi.Output<string>;
@@ -452,6 +482,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["apikey"] = state?.apikey;
             resourceInputs["backend"] = state?.backend;
             resourceInputs["copySettings"] = state?.copySettings;
+            resourceInputs["credentials"] = state?.credentials;
             resourceInputs["dedicated"] = state?.dedicated;
             resourceInputs["host"] = state?.host;
             resourceInputs["hostInternal"] = state?.hostInternal;
@@ -491,6 +522,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["vpcSubnet"] = args?.vpcSubnet;
             resourceInputs["apikey"] = undefined /*out*/;
             resourceInputs["backend"] = undefined /*out*/;
+            resourceInputs["credentials"] = undefined /*out*/;
             resourceInputs["dedicated"] = undefined /*out*/;
             resourceInputs["host"] = undefined /*out*/;
             resourceInputs["hostInternal"] = undefined /*out*/;
@@ -499,7 +531,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["vhost"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["apikey", "url"] };
+        const secretOpts = { additionalSecretOutputs: ["apikey", "credentials", "url"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(Instance.__pulumiType, name, resourceInputs, opts);
     }
@@ -510,7 +542,7 @@ export class Instance extends pulumi.CustomResource {
  */
 export interface InstanceState {
     /**
-     * API key needed to communicate to CloudAMQP's second API. The second API is used
+     * (Sensitive) API key needed to communicate to CloudAMQP's second API. The second API is used
      * to manage alarms, integration and more, full description [CloudAMQP API].
      */
     apikey?: pulumi.Input<string>;
@@ -523,6 +555,10 @@ export interface InstanceState {
      * the block documented below.
      */
     copySettings?: pulumi.Input<pulumi.Input<inputs.InstanceCopySetting>[]>;
+    /**
+     * (Sensitive) Broker credentials block with information extracted from URL.
+     */
+    credentials?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Information if the CloudAMQP instance is shared or dedicated.
      */
@@ -600,7 +636,7 @@ export interface InstanceState {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The AMQP URL (uses the internal hostname if the instance was created with VPC).
+     * (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC).
      * Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
      */
     url?: pulumi.Input<string>;

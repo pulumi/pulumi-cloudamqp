@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
+    /// &lt;!-- markdownlint-disable MD033 --&gt;
+    /// 
     /// This resource allows you to create and manage, forwarding metrics to third party integrations for a
     /// CloudAMQP instance. Once configured, the metrics produced will be forward to corresponding
     /// integration.
@@ -405,18 +407,18 @@ namespace Pulumi.CloudAmqp
     /// 
     /// Valid names for third party log integration.
     /// 
-    /// | Name          | Description |
-    /// |---------------|---------------------------------------------------------------|
-    /// | cloudwatch    | Access key: Create an IAM user with permission to `PutMetricData` |
+    /// | Name | Description |
+    /// | ------------- | ------------------------------------------------------------- |
+    /// | cloudwatch | Access key: Create an IAM user with permission to `PutMetricData` |
     /// | CloudwatchV2 | Access key: Create an IAM user with permission to `PutMetricData` |
-    /// | cloudwatch    | Assume role: Create a IAM role with the permission to `PutMetricData` |
+    /// | cloudwatch | Assume role: Create a IAM role with the permission to `PutMetricData` |
     /// | CloudwatchV2 | Assume role: Create a IAM role with the permission to `PutMetricData` |
-    /// | datadog       | Create a Datadog API key at app.datadoghq.com |
-    /// | DatadogV2    | Create a Datadog API key at app.datadoghq.com |
-    /// | librato       | Create a new API token (with record only permissions) here: https://metrics.librato.com/tokens |
-    /// | newrelic      | Deprecated! |
-    /// | NewrelicV2   | Find or register an Insert API key for your account: Go to insights.newrelic.com &gt; Manage data &gt; API keys. |
-    /// | stackdriver   | Create a service account and add 'monitor metrics writer' role from your Google Cloud Account |
+    /// | datadog | Create a Datadog API key at app.datadoghq.com |
+    /// | DatadogV2 | Create a Datadog API key at app.datadoghq.com |
+    /// | librato | Create a new API token (with record only permissions) here: [Librato token] |
+    /// | newrelic | Deprecated! |
+    /// | NewrelicV2 | Find or register an Insert API key for your account: Go to insights.newrelic.com &gt; Manage data &gt; API keys. |
+    /// | stackdriver | Create a service account and add 'monitor metrics writer' role from your Google Cloud Account |
     /// 
     /// ## Integration type reference
     /// 

@@ -17,6 +17,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * &lt;!-- markdownlint-disable MD033 --&gt;
+ * 
  * This resource allows you to install or uninstall community plugins. Once installed the plugin will
  * be available in `cloudamqp.Plugin`.
  * 

@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
+    /// &lt;!-- markdownlint-disable MD033 --&gt;
+    /// 
     /// This resource allows you to set the preferred start of new scheduled maintenances. The maintenance
     /// windows are 3 hours long and CloudAMQP attempts to begin the maintenance as close as possible to the
     /// preferred start. A maintenance will never start before the window.

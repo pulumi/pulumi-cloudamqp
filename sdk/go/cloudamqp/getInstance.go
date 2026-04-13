@@ -11,6 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// <!-- markdownlint-disable MD033 -->
+//
 // Use this data source to retrieve information about an already created CloudAMQP instance. In order
 // to retrieve the correct information, the CoudAMQP instance identifier is needed.
 func LookupInstance(ctx *pulumi.Context, args *LookupInstanceArgs, opts ...pulumi.InvokeOption) (*LookupInstanceResult, error) {
@@ -35,6 +37,8 @@ type LookupInstanceResult struct {
 	Apikey string `pulumi:"apikey"`
 	// Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
 	Backend string `pulumi:"backend"`
+	// (Sensitive) Broker credentials block with information extracted from URL.
+	Credentials map[string]string `pulumi:"credentials"`
 	// Information if the CloudAMQP instance is shared or dedicated.
 	Dedicated bool `pulumi:"dedicated"`
 	// The external hostname for the CloudAMQP instance.
@@ -112,6 +116,11 @@ func (o LookupInstanceResultOutput) Apikey() pulumi.StringOutput {
 // Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
 func (o LookupInstanceResultOutput) Backend() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceResult) string { return v.Backend }).(pulumi.StringOutput)
+}
+
+// (Sensitive) Broker credentials block with information extracted from URL.
+func (o LookupInstanceResultOutput) Credentials() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupInstanceResult) map[string]string { return v.Credentials }).(pulumi.StringMapOutput)
 }
 
 // Information if the CloudAMQP instance is shared or dedicated.

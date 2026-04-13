@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * <!-- markdownlint-disable MD033 -->
+ *
  * This resource allows you to create and manage alarms to trigger based on a set of conditions. Once
  * triggerd a notification will be sent to the assigned recipients. When creating a new instance, there
  * will also be a set of default alarms (cpu, memory and disk) created. All default alarms uses the
@@ -103,14 +105,14 @@ import * as utilities from "./utilities";
  * | Name | Type | Shared | Dedicated | Required arguments |
  * | ---- | ---- | ---- | ---- | ---- |
  * | CPU | cpu | - | &#10004; | time_threshold, valueThreshold |
- * | Memory | memory | - | &#10004;  | time_threshold, valueThreshold |
- * | Disk space | disk | - | &#10004;  | time_threshold, valueThreshold |
- * | Queue | queue | &#10004;  | &#10004; | time_threshold, value_threshold, queue_regex, vhost_regex, messageType |
+ * | Memory | memory | - | &#10004; | time_threshold, valueThreshold |
+ * | Disk space | disk | - | &#10004; | time_threshold, valueThreshold |
+ * | Queue | queue | &#10004; | &#10004; | time_threshold, value_threshold, queue_regex, vhost_regex, messageType |
  * | Connection | connection | &#10004; | &#10004; | time_threshold, valueThreshold |
  * | Connection flow | flow | &#10004; | &#10004; | time_threshold, valueThreshold |
  * | Consumer | consumer | &#10004; | &#10004; | time_threshold, value_threshold, queue, vhost |
  * | Netsplit | netsplit | - | &#10004; | timeThreshold |
- * | Server unreachable | serverUnreachable  | - | &#10004;  | timeThreshold |
+ * | Server unreachable | serverUnreachable | - | &#10004; | timeThreshold |
  * | Notice | notice | &#10004; | &#10004; | |
  *
  * <br>

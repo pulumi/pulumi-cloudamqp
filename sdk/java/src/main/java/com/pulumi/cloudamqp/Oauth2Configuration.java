@@ -19,6 +19,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * &lt;!-- markdownlint-disable MD033 --&gt;
+ * 
  * This resource allows you to configure OAuth2 authentication for your RabbitMQ instance.
  * 
  * Only available for dedicated subscription plans running ***RabbitMQ***.

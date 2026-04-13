@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * <!-- markdownlint-disable MD033 -->
+ *
  * This resource allows you to configure and manage firewall rules for the CloudAMQP instance.
  *
  * > **WARNING:** Firewall rules applied with this resource will replace any existing firewall rules.

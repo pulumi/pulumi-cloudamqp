@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.CloudAmqp
 {
     /// <summary>
+    /// &lt;!-- markdownlint-disable MD033 --&gt;
+    /// 
     /// This resource allows you to upload a custom certificate to all servers in your cluster. Update is
     /// not supported, all changes require replacement. `Ca`, `Cert` and `PrivateKey` all use **WriteOnly**,
     /// meaning no information is present in plan phase, logs or stored in the state for security purposes.

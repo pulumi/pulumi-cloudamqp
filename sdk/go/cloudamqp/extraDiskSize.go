@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// <!-- markdownlint-disable MD033 -->
+//
 // This resource allows you to resize the disk with additional storage capacity.
 //
 // ***Before v1.25.0***: Only available for Amazon Web Services (AWS) without downtime.

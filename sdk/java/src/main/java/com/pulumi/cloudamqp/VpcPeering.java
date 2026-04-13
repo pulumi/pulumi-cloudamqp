@@ -16,6 +16,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * &lt;!-- markdownlint-disable MD033 --&gt;
+ * 
  * This resouce allows you to accepting VPC peering request from an AWS requester. This is only
  * available for CloudAMQP instance hosted in AWS.
  * 

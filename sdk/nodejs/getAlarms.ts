@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * <!-- markdownlint-disable MD033 -->
+ *
  * Use this data source to retrieve a list of default or created alarms.
  *
  * ## Example Usage
@@ -71,6 +73,8 @@ export interface GetAlarmsResult {
     readonly type?: string;
 }
 /**
+ * <!-- markdownlint-disable MD033 -->
+ *
  * Use this data source to retrieve a list of default or created alarms.
  *
  * ## Example Usage

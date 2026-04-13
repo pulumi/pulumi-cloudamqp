@@ -285,6 +285,7 @@ class _InstanceState:
                  apikey: Optional[pulumi.Input[_builtins.str]] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceCopySettingArgs']]]] = None,
+                 credentials: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  dedicated: Optional[pulumi.Input[_builtins.bool]] = None,
                  host: Optional[pulumi.Input[_builtins.str]] = None,
                  host_internal: Optional[pulumi.Input[_builtins.str]] = None,
@@ -305,11 +306,12 @@ class _InstanceState:
         """
         Input properties used for looking up and filtering Instance resources.
 
-        :param pulumi.Input[_builtins.str] apikey: API key needed to communicate to CloudAMQP's second API. The second API is used
+        :param pulumi.Input[_builtins.str] apikey: (Sensitive) API key needed to communicate to CloudAMQP's second API. The second API is used
                to manage alarms, integration and more, full description [CloudAMQP API].
         :param pulumi.Input[_builtins.str] backend: Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceCopySettingArgs']]] copy_settings: Copy settings from one CloudAMQP instance to a new. Consists of
                the block documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] credentials: (Sensitive) Broker credentials block with information extracted from URL.
         :param pulumi.Input[_builtins.bool] dedicated: Information if the CloudAMQP instance is shared or dedicated.
         :param pulumi.Input[_builtins.str] host: The external hostname for the CloudAMQP instance.
         :param pulumi.Input[_builtins.str] host_internal: The internal hostname for the CloudAMQP instance.
@@ -347,7 +349,7 @@ class _InstanceState:
                in the initial creation, it will remain.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: One or more tags for the CloudAMQP instance, makes it possible to
                categories multiple instances in console view. Default there is no tags assigned.
-        :param pulumi.Input[_builtins.str] url: The AMQP URL (uses the internal hostname if the instance was created with VPC).
+        :param pulumi.Input[_builtins.str] url: (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC).
                Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
         :param pulumi.Input[_builtins.str] vhost: The virtual host used by Rabbit MQ.
         :param pulumi.Input[_builtins.int] vpc_id: The VPC ID. Use this to create your instance in an existing
@@ -365,6 +367,8 @@ class _InstanceState:
             pulumi.set(__self__, "backend", backend)
         if copy_settings is not None:
             pulumi.set(__self__, "copy_settings", copy_settings)
+        if credentials is not None:
+            pulumi.set(__self__, "credentials", credentials)
         if dedicated is not None:
             pulumi.set(__self__, "dedicated", dedicated)
         if host is not None:
@@ -404,7 +408,7 @@ class _InstanceState:
     @pulumi.getter
     def apikey(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        API key needed to communicate to CloudAMQP's second API. The second API is used
+        (Sensitive) API key needed to communicate to CloudAMQP's second API. The second API is used
         to manage alarms, integration and more, full description [CloudAMQP API].
         """
         return pulumi.get(self, "apikey")
@@ -437,6 +441,18 @@ class _InstanceState:
     @copy_settings.setter
     def copy_settings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceCopySettingArgs']]]]):
         pulumi.set(self, "copy_settings", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def credentials(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        (Sensitive) Broker credentials block with information extracted from URL.
+        """
+        return pulumi.get(self, "credentials")
+
+    @credentials.setter
+    def credentials(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "credentials", value)
 
     @_builtins.property
     @pulumi.getter
@@ -622,7 +638,7 @@ class _InstanceState:
     @pulumi.getter
     def url(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The AMQP URL (uses the internal hostname if the instance was created with VPC).
+        (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC).
         Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
         """
         return pulumi.get(self, "url")
@@ -694,6 +710,8 @@ class Instance(pulumi.CustomResource):
                  vpc_subnet: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resource allows you to create and manage a CloudAMQP instance running either [**RabbitMQ**] or
         [**LavinMQ**] and can be deployed to multiple cloud platforms provider and regions, see
         [instance regions] for more information.
@@ -875,6 +893,29 @@ class Instance(pulumi.CustomResource):
                 "use1-az2",
                 "use1-az3",
             ])
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Provider-to-provider configuration, from </i>
+              <a href="https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.44.0">v1.44.0</a>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+        import pulumi_lavinmq as lavinmq
+
+        instance = cloudamqp.Instance("instance",
+            name="terraform-cloudamqp-instance",
+            plan="penguin-1",
+            region="amazon-web-services::us-east-1",
+            tags=["terraform"])
+        new_vhost = lavinmq.index.Vhost("new_vhost", name=new_vhost)
         ```
 
         </details>
@@ -1021,6 +1062,8 @@ class Instance(pulumi.CustomResource):
                  args: InstanceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        <!-- markdownlint-disable MD033 -->
+
         This resource allows you to create and manage a CloudAMQP instance running either [**RabbitMQ**] or
         [**LavinMQ**] and can be deployed to multiple cloud platforms provider and regions, see
         [instance regions] for more information.
@@ -1202,6 +1245,29 @@ class Instance(pulumi.CustomResource):
                 "use1-az2",
                 "use1-az3",
             ])
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>Provider-to-provider configuration, from </i>
+              <a href="https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.44.0">v1.44.0</a>
+            </b>
+          </summary>
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+        import pulumi_lavinmq as lavinmq
+
+        instance = cloudamqp.Instance("instance",
+            name="terraform-cloudamqp-instance",
+            plan="penguin-1",
+            region="amazon-web-services::us-east-1",
+            tags=["terraform"])
+        new_vhost = lavinmq.index.Vhost("new_vhost", name=new_vhost)
         ```
 
         </details>
@@ -1349,13 +1415,14 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["vpc_subnet"] = vpc_subnet
             __props__.__dict__["apikey"] = None
             __props__.__dict__["backend"] = None
+            __props__.__dict__["credentials"] = None
             __props__.__dict__["dedicated"] = None
             __props__.__dict__["host"] = None
             __props__.__dict__["host_internal"] = None
             __props__.__dict__["ready"] = None
             __props__.__dict__["url"] = None
             __props__.__dict__["vhost"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["apikey", "url"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["apikey", "credentials", "url"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Instance, __self__).__init__(
             'cloudamqp:index/instance:Instance',
@@ -1370,6 +1437,7 @@ class Instance(pulumi.CustomResource):
             apikey: Optional[pulumi.Input[_builtins.str]] = None,
             backend: Optional[pulumi.Input[_builtins.str]] = None,
             copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceCopySettingArgs', 'InstanceCopySettingArgsDict']]]]] = None,
+            credentials: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             dedicated: Optional[pulumi.Input[_builtins.bool]] = None,
             host: Optional[pulumi.Input[_builtins.str]] = None,
             host_internal: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1394,11 +1462,12 @@ class Instance(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] apikey: API key needed to communicate to CloudAMQP's second API. The second API is used
+        :param pulumi.Input[_builtins.str] apikey: (Sensitive) API key needed to communicate to CloudAMQP's second API. The second API is used
                to manage alarms, integration and more, full description [CloudAMQP API].
         :param pulumi.Input[_builtins.str] backend: Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceCopySettingArgs', 'InstanceCopySettingArgsDict']]]] copy_settings: Copy settings from one CloudAMQP instance to a new. Consists of
                the block documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] credentials: (Sensitive) Broker credentials block with information extracted from URL.
         :param pulumi.Input[_builtins.bool] dedicated: Information if the CloudAMQP instance is shared or dedicated.
         :param pulumi.Input[_builtins.str] host: The external hostname for the CloudAMQP instance.
         :param pulumi.Input[_builtins.str] host_internal: The internal hostname for the CloudAMQP instance.
@@ -1436,7 +1505,7 @@ class Instance(pulumi.CustomResource):
                in the initial creation, it will remain.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: One or more tags for the CloudAMQP instance, makes it possible to
                categories multiple instances in console view. Default there is no tags assigned.
-        :param pulumi.Input[_builtins.str] url: The AMQP URL (uses the internal hostname if the instance was created with VPC).
+        :param pulumi.Input[_builtins.str] url: (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC).
                Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
         :param pulumi.Input[_builtins.str] vhost: The virtual host used by Rabbit MQ.
         :param pulumi.Input[_builtins.int] vpc_id: The VPC ID. Use this to create your instance in an existing
@@ -1455,6 +1524,7 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["apikey"] = apikey
         __props__.__dict__["backend"] = backend
         __props__.__dict__["copy_settings"] = copy_settings
+        __props__.__dict__["credentials"] = credentials
         __props__.__dict__["dedicated"] = dedicated
         __props__.__dict__["host"] = host
         __props__.__dict__["host_internal"] = host_internal
@@ -1478,7 +1548,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter
     def apikey(self) -> pulumi.Output[_builtins.str]:
         """
-        API key needed to communicate to CloudAMQP's second API. The second API is used
+        (Sensitive) API key needed to communicate to CloudAMQP's second API. The second API is used
         to manage alarms, integration and more, full description [CloudAMQP API].
         """
         return pulumi.get(self, "apikey")
@@ -1499,6 +1569,14 @@ class Instance(pulumi.CustomResource):
         the block documented below.
         """
         return pulumi.get(self, "copy_settings")
+
+    @_builtins.property
+    @pulumi.getter
+    def credentials(self) -> pulumi.Output[Mapping[str, _builtins.str]]:
+        """
+        (Sensitive) Broker credentials block with information extracted from URL.
+        """
+        return pulumi.get(self, "credentials")
 
     @_builtins.property
     @pulumi.getter
@@ -1632,7 +1710,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter
     def url(self) -> pulumi.Output[_builtins.str]:
         """
-        The AMQP URL (uses the internal hostname if the instance was created with VPC).
+        (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC).
         Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
         """
         return pulumi.get(self, "url")

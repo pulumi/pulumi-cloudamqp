@@ -16,6 +16,8 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!-- markdownlint-disable MD033 --&gt;
+    /// 
     /// &lt;details&gt;
     ///   &lt;summary&gt;
     ///     &lt;b&gt;
@@ -188,6 +190,7 @@ namespace Pulumi.CloudAmqp
     ///         MqttVhost = instance.Vhost,
     ///         MqttExchange = "amq.topic",
     ///         MqttSslCertLogin = true,
+    ///         MqttMaxSessionExpiryIntervalSeconds = 1800,
     ///         SslOptionsFailIfNoPeerCert = true,
     ///         SslOptionsVerify = "verify_peer",
     ///     });
@@ -219,14 +222,14 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ### heartbeat
     /// 
-    /// | Type | Default | Min  | Affect |
-    /// |---|---|---|---|
+    /// | Type | Default | Min | Affect |
+    /// | --- | --- | --- | --- |
     /// | int | 120 | 0 | Only effects new connection |
     /// 
     /// ### ConnectionMax
     /// 
-    /// | Type | Default | Min  | Affect |
-    /// |---|---|---|---|
+    /// | Type | Default | Min | Affect |
+    /// | --- | --- | --- | --- |
     /// | int | -1 | 1 | Applied immediately (RabbitMQ restart required before 3.11.13) |
     /// 
     /// Note: -1 in the provider corresponds to INFINITY in the RabbitMQ config
@@ -234,15 +237,15 @@ namespace Pulumi.CloudAmqp
     /// ### ChannelMax
     /// 
     /// | Type | Default | Min | Affect |
-    /// |---|---|---|---|
-    /// | int | 128 | 0 | Only effects new connections |
+    /// | --- | --- | --- | --- |
+    /// | int | 128 | 0 | Only affects new connections |
     /// 
     /// Note: 0 means "no limit"
     /// 
     /// ### ConsumerTimeout
     /// 
     /// | Type | Default | Min | Max | Unit | Affect |
-    /// |---|---|---|---|---|---|
+    /// | --- | --- | --- | --- | --- | --- |
     /// | int | 7200000 | 10000 | 86400000 | milliseconds | Only effects new channels |
     /// 
     /// Note: -1 in the provider corresponds to false (disable) in the RabbitMQ config
@@ -250,13 +253,13 @@ namespace Pulumi.CloudAmqp
     /// ### VmMemoryHighWatermark
     /// 
     /// | Type | Default | Min | Max | Affect |
-    /// |---|---|---|---|---|
-    ///  | float | 0.81 | 0.4 | 0.9 | Applied immediately |
+    /// | --- | --- | --- | --- | --- |
+    /// | float | 0.81 | 0.4 | 0.9 | Applied immediately |
     /// 
     /// ### QueueIndexEmbedMsgsBelow
     /// 
     /// | Type | Default | Min | Max | Unit | Affect |
-    /// |---|---|---|---|---|---|
+    /// | --- | --- | --- | --- | --- | --- |
     /// | int | 4096 | 0 | 10485760 | bytes | Applied immediately for new queues |
     /// 
     /// Note: Existing queues requires restart
@@ -264,19 +267,19 @@ namespace Pulumi.CloudAmqp
     /// ### MaxMessageSize
     /// 
     /// | Type | Default | Min | Max | Unit | Affect |
-    /// |---|---|---|---|---|---|
+    /// | --- | --- | --- | --- | --- | --- |
     /// | int | 134217728 | 1 | 536870912 | bytes | Only effects new channels |
     /// 
     /// ### LogExchangeLevel
     /// 
     /// | Type | Default | Affect | Allowed values |
-    /// |---|---|---| --- |
+    /// | --- | --- | --- | --- |
     /// | string | error | RabbitMQ restart required | `debug, info, warning, error, critical, none` |
     /// 
     /// ### ClusterPartitionHandling
     /// 
-    /// | Type  | Affect | Allowed values |
-    /// |---|---|---|
+    /// | Type | Affect | Allowed values |
+    /// | --- | --- | --- |
     /// | string | Applied immediately | `autoheal, pause_minority, ignore` |
     /// 
     /// Recommended setting for cluster_partition_handling: `Autoheal` for cluster with 1-2
@@ -284,15 +287,15 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ### MessageInterceptorsTimestampOverwrite
     /// 
-    /// | Type  | Affect | Allowed values |
-    /// |---|---|---|
+    /// | Type | Affect | Allowed values |
+    /// | --- | --- | --- |
     /// | string | RabbitMQ restart required | `enabled_with_overwrite, enabled, disabled` |
     /// 
     /// Note: Corresponds to setting `message_interceptors.incoming.set_header_timestamp.overwrite`
     /// 
     /// ### MqttVhost
     /// 
-    /// | Type  | Affect |
+    /// | Type | Affect |
     /// | --- | --- |
     /// | string | Only affects new connections |
     /// 
@@ -300,13 +303,21 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ### MqttExchange
     /// 
-    /// | Type  | Affect |
+    /// | Type | Affect |
     /// | --- | --- |
     /// | string | Only affects new connections |
     /// 
+    /// ### MqttMaxSessionExpiryIntervalSeconds
+    /// 
+    /// | Type | Affect | Allowed values |
+    /// | --- | --- | --- |
+    /// | int | Only affects new connections | 0 or more, default 1800. -1 will set it to no limit |
+    /// 
+    /// Note: Available from RabbitMQ broker version 3.13.x.
+    /// 
     /// ### MqttSslCertLogin
     /// 
-    /// | Type  | Affect |
+    /// | Type | Affect |
     /// | --- | --- |
     /// | bool | RabbitMQ restart required |
     /// 
@@ -315,13 +326,13 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ### SslCertLoginFrom
     /// 
-    /// | Type  | Affect | Allowed values |
+    /// | Type | Affect | Allowed values |
     /// | --- | --- | --- |
     /// | string | Only affects new connections | `CommonName`, `DistinguishedName` |
     /// 
     /// ### SslOptionsFailIfNoPeerCert
     /// 
-    /// | Type  | Affect |
+    /// | Type | Affect |
     /// | --- | --- |
     /// | string | RabbitMQ restart required |
     /// 
@@ -329,7 +340,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// ### SslOptionsVerify
     /// 
-    /// | Type  | Affect | Allowed values |
+    /// | Type | Affect | Allowed values |
     /// | --- | --- | --- |
     /// | string | RabbitMQ restart required | `VerifyNone`, `VerifyPeer` |
     /// 
@@ -349,10 +360,10 @@ namespace Pulumi.CloudAmqp
     /// The provider is built by older `Terraform Plugin SDK` which doesn't support nullable configuration
     /// values. Instead the values will be set to it's default value based on it's schema primitive type.
     /// 
-    /// * schema.TypeString = ""
-    /// * schema.TypeInt = 0
-    /// * schema.TypeFloat = 0.0
-    /// * schema.TypeBool = false
+    /// - schema.TypeString = ""
+    /// - schema.TypeInt = 0
+    /// - schema.TypeFloat = 0.0
+    /// - schema.TypeBool = false
     /// 
     /// During initial create of this resource, we need to exclude all arguments that can take these default
     /// values. Argument such as `Hearbeat`, `ChannelMax`, etc. cannot be set to its default value, 0 in
@@ -428,6 +439,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Output("mqttExchange")]
         public Output<string> MqttExchange { get; private set; } = null!;
+
+        /// <summary>
+        /// The maximum Session Expiry Interval in seconds allowed by the server. Set to 0 to force sessions to expire on disconnect, or -1 for no limit.
+        /// </summary>
+        [Output("mqttMaxSessionExpiryIntervalSeconds")]
+        public Output<int> MqttMaxSessionExpiryIntervalSeconds { get; private set; } = null!;
 
         /// <summary>
         /// Enable SSL certificate-based authentication for MQTT connections.
@@ -592,6 +609,12 @@ namespace Pulumi.CloudAmqp
         public Input<string>? MqttExchange { get; set; }
 
         /// <summary>
+        /// The maximum Session Expiry Interval in seconds allowed by the server. Set to 0 to force sessions to expire on disconnect, or -1 for no limit.
+        /// </summary>
+        [Input("mqttMaxSessionExpiryIntervalSeconds")]
+        public Input<int>? MqttMaxSessionExpiryIntervalSeconds { get; set; }
+
+        /// <summary>
         /// Enable SSL certificate-based authentication for MQTT connections.
         /// </summary>
         [Input("mqttSslCertLogin")]
@@ -714,6 +737,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Input("mqttExchange")]
         public Input<string>? MqttExchange { get; set; }
+
+        /// <summary>
+        /// The maximum Session Expiry Interval in seconds allowed by the server. Set to 0 to force sessions to expire on disconnect, or -1 for no limit.
+        /// </summary>
+        [Input("mqttMaxSessionExpiryIntervalSeconds")]
+        public Input<int>? MqttMaxSessionExpiryIntervalSeconds { get; set; }
 
         /// <summary>
         /// Enable SSL certificate-based authentication for MQTT connections.
