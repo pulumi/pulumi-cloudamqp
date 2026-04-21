@@ -37,7 +37,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var cloudwatch = new CloudAmqp.IntegrationMetric("cloudwatch", new()
+    ///     var cloudwatch = new CloudAmqp.Index.IntegrationMetric("cloudwatch", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "cloudwatch",
@@ -46,7 +46,7 @@ namespace Pulumi.CloudAmqp
     ///         Region = awsRegion,
     ///     });
     /// 
-    ///     var cloudwatchV2 = new CloudAmqp.IntegrationMetric("cloudwatch_v2", new()
+    ///     var cloudwatchV2 = new CloudAmqp.Index.IntegrationMetric("cloudwatch_v2", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "cloudwatch_v2",
@@ -68,7 +68,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var cloudwatch = new CloudAmqp.IntegrationMetric("cloudwatch", new()
+    ///     var cloudwatch = new CloudAmqp.Index.IntegrationMetric("cloudwatch", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "cloudwatch",
@@ -77,7 +77,7 @@ namespace Pulumi.CloudAmqp
     ///         Region = awsRegion,
     ///     });
     /// 
-    ///     var cloudwatchV2 = new CloudAmqp.IntegrationMetric("cloudwatch_v2", new()
+    ///     var cloudwatchV2 = new CloudAmqp.Index.IntegrationMetric("cloudwatch_v2", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "cloudwatch_v2",
@@ -109,7 +109,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var datadog = new CloudAmqp.IntegrationMetric("datadog", new()
+    ///     var datadog = new CloudAmqp.Index.IntegrationMetric("datadog", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "datadog",
@@ -118,7 +118,7 @@ namespace Pulumi.CloudAmqp
     ///         Tags = "env=prod,region=us1,version=v1.0",
     ///     });
     /// 
-    ///     var datadogV2 = new CloudAmqp.IntegrationMetric("datadog_v2", new()
+    ///     var datadogV2 = new CloudAmqp.Index.IntegrationMetric("datadog_v2", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "datadog_v2",
@@ -147,7 +147,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var librato = new CloudAmqp.IntegrationMetric("librato", new()
+    ///     var librato = new CloudAmqp.Index.IntegrationMetric("librato", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "librato",
@@ -175,7 +175,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var newrelic = new CloudAmqp.IntegrationMetric("newrelic", new()
+    ///     var newrelic = new CloudAmqp.Index.IntegrationMetric("newrelic", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "newrelic_v2",
@@ -205,7 +205,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var stackdriver = new CloudAmqp.IntegrationMetric("stackdriver", new()
+    ///     var stackdriver = new CloudAmqp.Index.IntegrationMetric("stackdriver", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "stackdriver",
@@ -241,7 +241,7 @@ namespace Pulumi.CloudAmqp
     ///         ServiceAccountId = serviceAccount.Name,
     ///     });
     /// 
-    ///     var stackdriver = new CloudAmqp.IntegrationMetric("stackdriver", new()
+    ///     var stackdriver = new CloudAmqp.Index.IntegrationMetric("stackdriver", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "stackdriver",
@@ -304,7 +304,7 @@ namespace Pulumi.CloudAmqp
     ///         ServiceAccountId = serviceAccount.Name,
     ///     });
     /// 
-    ///     var stackdriver = new CloudAmqp.IntegrationMetric("stackdriver", new()
+    ///     var stackdriver = new CloudAmqp.Index.IntegrationMetric("stackdriver", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "stackdriver",
@@ -338,7 +338,7 @@ namespace Pulumi.CloudAmqp
     ///         ServiceAccountId = serviceAccount.Name,
     ///     });
     /// 
-    ///     var stackdriver = new CloudAmqp.IntegrationMetric("stackdriver", new()
+    ///     var stackdriver = new CloudAmqp.Index.IntegrationMetric("stackdriver", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "stackdriver",

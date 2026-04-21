@@ -287,13 +287,13 @@ class VpcPeering(pulumi.CustomResource):
         # CloudAMQP - Extract vpc information
         vpc_info = instance.id.apply(lambda id: cloudamqp.get_vpc_info_output(instance_id=id))
         # AWS - retrieve instance to get subnet identifier
-        aws_instance = aws.index.instance(instance_tags={
+        aws_instance = aws.instance(instance_tags={
             "name": aws_instance_name,
         })
         # AWS - retrieve subnet
-        subnet = aws.index.subnet(id=aws_instance["subnetId"])
+        subnet = aws.subnet(id=aws_instance["subnetId"])
         # AWS - Create peering request
-        aws_vpc_peering = aws.index.VpcPeeringConnection("aws_vpc_peering",
+        aws_vpc_peering = aws.VpcPeeringConnection("aws_vpc_peering",
             vpc_id=subnet.vpc_id,
             peer_vpc_id=vpc_info.id,
             peer_owner_id=vpc_info.owner_id,
@@ -305,9 +305,9 @@ class VpcPeering(pulumi.CustomResource):
             instance_id=instance.id,
             peering_id=aws_vpc_peering["id"])
         # AWS - retrieve the route table created in AWS
-        route_table = aws.index.route_table(vpc_id=subnet["vpcId"])
+        route_table = aws.route_table(vpc_id=subnet["vpcId"])
         # AWS - Once the peering request is accepted, configure routing table on accepter to allow traffic
-        accepter_route = aws.index.Route("accepter_route",
+        accepter_route = aws.Route("accepter_route",
             route_table_id=route_table.route_table_id,
             destination_cidr_block=instance.vpc_subnet,
             vpc_peering_connection_id=aws_vpc_peering.id,
@@ -345,13 +345,13 @@ class VpcPeering(pulumi.CustomResource):
         # CloudAMQP - Extract vpc information
         vpc_info = cloudamqp.get_vpc_info_output(vpc_id=vpc.id)
         # AWS - retrieve instance to get subnet identifier
-        aws_instance = aws.index.instance(instance_tags={
+        aws_instance = aws.instance(instance_tags={
             "name": aws_instance_name,
         })
         # AWS - retrieve subnet
-        subnet = aws.index.subnet(id=aws_instance["subnetId"])
+        subnet = aws.subnet(id=aws_instance["subnetId"])
         # AWS - Create peering request
-        aws_vpc_peering = aws.index.VpcPeeringConnection("aws_vpc_peering",
+        aws_vpc_peering = aws.VpcPeeringConnection("aws_vpc_peering",
             vpc_id=subnet.vpc_id,
             peer_vpc_id=vpc_info.id,
             peer_owner_id=vpc_info.owner_id,
@@ -365,9 +365,9 @@ class VpcPeering(pulumi.CustomResource):
             sleep=30,
             timeout=600)
         # AWS - retrieve the route table created in AWS
-        route_table = aws.index.route_table(vpc_id=subnet["vpcId"])
+        route_table = aws.route_table(vpc_id=subnet["vpcId"])
         # AWS - Once the peering request is accepted, configure routing table on accepter to allow traffic
-        accepter_route = aws.index.Route("accepter_route",
+        accepter_route = aws.Route("accepter_route",
             route_table_id=route_table.route_table_id,
             destination_cidr_block=instance.vpc_subnet,
             vpc_peering_connection_id=aws_vpc_peering.id,
@@ -391,7 +391,7 @@ class VpcPeering(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         # AWS - retrieve subnet
-        subnet = aws.index.subnet(id=aws_instance["subnetId"])
+        subnet = aws.subnet(id=aws_instance["subnetId"])
         # CloudAMQP - accept the peering request
         vpc_accept_peering = cloudamqp.VpcPeering("vpc_accept_peering",
             instance_id=instance["id"],
@@ -444,7 +444,7 @@ class VpcPeering(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         # AWS - retrieve subnet
-        subnet = aws.index.subnet(id=aws_instance["subnetId"])
+        subnet = aws.subnet(id=aws_instance["subnetId"])
         # CloudAMQP - accept the peering request
         vpc_accept_peering = cloudamqp.VpcPeering("vpc_accept_peering",
             vpc_id=vpc["id"],
@@ -452,7 +452,7 @@ class VpcPeering(pulumi.CustomResource):
             sleep=30,
             timeout=600)
         # AWS - VPC subnet for peering requester
-        requester_vpc = aws.index.vpc(id=subnet["vpcId"])
+        requester_vpc = aws.vpc(id=subnet["vpcId"])
         # CloudAMQP - Managed firewall rules
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
             instance_id=instance["id"],
@@ -582,13 +582,13 @@ class VpcPeering(pulumi.CustomResource):
         # CloudAMQP - Extract vpc information
         vpc_info = instance.id.apply(lambda id: cloudamqp.get_vpc_info_output(instance_id=id))
         # AWS - retrieve instance to get subnet identifier
-        aws_instance = aws.index.instance(instance_tags={
+        aws_instance = aws.instance(instance_tags={
             "name": aws_instance_name,
         })
         # AWS - retrieve subnet
-        subnet = aws.index.subnet(id=aws_instance["subnetId"])
+        subnet = aws.subnet(id=aws_instance["subnetId"])
         # AWS - Create peering request
-        aws_vpc_peering = aws.index.VpcPeeringConnection("aws_vpc_peering",
+        aws_vpc_peering = aws.VpcPeeringConnection("aws_vpc_peering",
             vpc_id=subnet.vpc_id,
             peer_vpc_id=vpc_info.id,
             peer_owner_id=vpc_info.owner_id,
@@ -600,9 +600,9 @@ class VpcPeering(pulumi.CustomResource):
             instance_id=instance.id,
             peering_id=aws_vpc_peering["id"])
         # AWS - retrieve the route table created in AWS
-        route_table = aws.index.route_table(vpc_id=subnet["vpcId"])
+        route_table = aws.route_table(vpc_id=subnet["vpcId"])
         # AWS - Once the peering request is accepted, configure routing table on accepter to allow traffic
-        accepter_route = aws.index.Route("accepter_route",
+        accepter_route = aws.Route("accepter_route",
             route_table_id=route_table.route_table_id,
             destination_cidr_block=instance.vpc_subnet,
             vpc_peering_connection_id=aws_vpc_peering.id,
@@ -640,13 +640,13 @@ class VpcPeering(pulumi.CustomResource):
         # CloudAMQP - Extract vpc information
         vpc_info = cloudamqp.get_vpc_info_output(vpc_id=vpc.id)
         # AWS - retrieve instance to get subnet identifier
-        aws_instance = aws.index.instance(instance_tags={
+        aws_instance = aws.instance(instance_tags={
             "name": aws_instance_name,
         })
         # AWS - retrieve subnet
-        subnet = aws.index.subnet(id=aws_instance["subnetId"])
+        subnet = aws.subnet(id=aws_instance["subnetId"])
         # AWS - Create peering request
-        aws_vpc_peering = aws.index.VpcPeeringConnection("aws_vpc_peering",
+        aws_vpc_peering = aws.VpcPeeringConnection("aws_vpc_peering",
             vpc_id=subnet.vpc_id,
             peer_vpc_id=vpc_info.id,
             peer_owner_id=vpc_info.owner_id,
@@ -660,9 +660,9 @@ class VpcPeering(pulumi.CustomResource):
             sleep=30,
             timeout=600)
         # AWS - retrieve the route table created in AWS
-        route_table = aws.index.route_table(vpc_id=subnet["vpcId"])
+        route_table = aws.route_table(vpc_id=subnet["vpcId"])
         # AWS - Once the peering request is accepted, configure routing table on accepter to allow traffic
-        accepter_route = aws.index.Route("accepter_route",
+        accepter_route = aws.Route("accepter_route",
             route_table_id=route_table.route_table_id,
             destination_cidr_block=instance.vpc_subnet,
             vpc_peering_connection_id=aws_vpc_peering.id,
@@ -686,7 +686,7 @@ class VpcPeering(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         # AWS - retrieve subnet
-        subnet = aws.index.subnet(id=aws_instance["subnetId"])
+        subnet = aws.subnet(id=aws_instance["subnetId"])
         # CloudAMQP - accept the peering request
         vpc_accept_peering = cloudamqp.VpcPeering("vpc_accept_peering",
             instance_id=instance["id"],
@@ -739,7 +739,7 @@ class VpcPeering(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         # AWS - retrieve subnet
-        subnet = aws.index.subnet(id=aws_instance["subnetId"])
+        subnet = aws.subnet(id=aws_instance["subnetId"])
         # CloudAMQP - accept the peering request
         vpc_accept_peering = cloudamqp.VpcPeering("vpc_accept_peering",
             vpc_id=vpc["id"],
@@ -747,7 +747,7 @@ class VpcPeering(pulumi.CustomResource):
             sleep=30,
             timeout=600)
         # AWS - VPC subnet for peering requester
-        requester_vpc = aws.index.vpc(id=subnet["vpcId"])
+        requester_vpc = aws.vpc(id=subnet["vpcId"])
         # CloudAMQP - Managed firewall rules
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
             instance_id=instance["id"],

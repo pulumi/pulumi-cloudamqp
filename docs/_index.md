@@ -164,7 +164,7 @@ using CloudAmqp = Pulumi.CloudAmqp;
 return await Deployment.RunAsync(() =>
 {
     // Create a new cloudamqp instance
-    var instance = new CloudAmqp.Instance("instance", new()
+    var instance = new CloudAmqp.Index.Instance("instance", new()
     {
         Name = "pulumi-cloudamqp-instance",
         Plan = "penguin-1",
@@ -176,7 +176,7 @@ return await Deployment.RunAsync(() =>
     });
 
     // New recipient to receieve notifications
-    var recipient01 = new CloudAmqp.Notification("recipient_01", new()
+    var recipient01 = new CloudAmqp.Index.Notification("recipient_01", new()
     {
         InstanceId = instance.Id,
         Type = "email",
@@ -185,7 +185,7 @@ return await Deployment.RunAsync(() =>
     });
 
     // New cpu alarm
-    var cpuAlarm = new CloudAmqp.Alarm("cpu_alarm", new()
+    var cpuAlarm = new CloudAmqp.Index.Alarm("cpu_alarm", new()
     {
         InstanceId = instance.Id,
         Type = "cpu",
@@ -199,7 +199,7 @@ return await Deployment.RunAsync(() =>
     });
 
     // Configure firewall
-    var firewall = new CloudAmqp.SecurityFirewall("firewall", new()
+    var firewall = new CloudAmqp.Index.SecurityFirewall("firewall", new()
     {
         InstanceId = instance.Id,
         Rules = new[]
@@ -220,7 +220,7 @@ return await Deployment.RunAsync(() =>
     });
 
     // Cloudwatch metrics integration
-    var cloudwatch = new CloudAmqp.IntegrationMetric("cloudwatch", new()
+    var cloudwatch = new CloudAmqp.Index.IntegrationMetric("cloudwatch", new()
     {
         InstanceId = instance.Id,
         Name = "cloudwatch",

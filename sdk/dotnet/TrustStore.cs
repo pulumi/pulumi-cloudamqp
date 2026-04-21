@@ -45,7 +45,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var trustStore = new CloudAmqp.TrustStore("trust_store", new()
+    ///     var trustStore = new CloudAmqp.Index.TrustStore("trust_store", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Http = new CloudAmqp.Inputs.TrustStoreHttpArgs

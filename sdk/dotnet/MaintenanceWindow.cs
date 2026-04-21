@@ -35,7 +35,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new CloudAmqp.MaintenanceWindow("this", new()
+    ///     var @this = new CloudAmqp.Index.MaintenanceWindow("this", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         PreferredDay = "Monday",
@@ -63,7 +63,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new CloudAmqp.MaintenanceWindow("this", new()
+    ///     var @this = new CloudAmqp.Index.MaintenanceWindow("this", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         PreferredDay = "Monday",
@@ -89,7 +89,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new CloudAmqp.MaintenanceWindow("this", new()
+    ///     var @this = new CloudAmqp.Index.MaintenanceWindow("this", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         PreferredTime = "23:00",
@@ -113,7 +113,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new CloudAmqp.MaintenanceWindow("this", new()
+    ///     var @this = new CloudAmqp.Index.MaintenanceWindow("this", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         PreferredDay = "Monday",

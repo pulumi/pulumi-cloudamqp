@@ -33,7 +33,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var emailRecipient = new CloudAmqp.Notification("email_recipient", new()
+    ///     var emailRecipient = new CloudAmqp.Index.Notification("email_recipient", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Type = "email",
@@ -59,7 +59,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var opsgenieRecipient = new CloudAmqp.Notification("opsgenie_recipient", new()
+    ///     var opsgenieRecipient = new CloudAmqp.Index.Notification("opsgenie_recipient", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Type = "opsgenie",
@@ -98,7 +98,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var pagerdutyRecipient = new CloudAmqp.Notification("pagerduty_recipient", new()
+    ///     var pagerdutyRecipient = new CloudAmqp.Index.Notification("pagerduty_recipient", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Type = "pagerduty",
@@ -128,7 +128,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var signl4Recipient = new CloudAmqp.Notification("signl4_recipient", new()
+    ///     var signl4Recipient = new CloudAmqp.Index.Notification("signl4_recipient", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Type = "signl4",
@@ -154,7 +154,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var teamsRecipient = new CloudAmqp.Notification("teams_recipient", new()
+    ///     var teamsRecipient = new CloudAmqp.Index.Notification("teams_recipient", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Type = "teams",
@@ -180,7 +180,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var victoropsRecipient = new CloudAmqp.Notification("victorops_recipient", new()
+    ///     var victoropsRecipient = new CloudAmqp.Index.Notification("victorops_recipient", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Type = "victorops",
@@ -210,7 +210,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var slackRecipient = new CloudAmqp.Notification("slack_recipient", new()
+    ///     var slackRecipient = new CloudAmqp.Index.Notification("slack_recipient", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Type = "slack",
@@ -236,7 +236,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var webhookRecipient = new CloudAmqp.Notification("webhook_recipient", new()
+    ///     var webhookRecipient = new CloudAmqp.Index.Notification("webhook_recipient", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Type = "webhook",

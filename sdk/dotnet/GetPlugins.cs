@@ -25,7 +25,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var plugins = CloudAmqp.GetPlugins.Invoke(new()
+        ///     var plugins = CloudAmqp.Index.GetPlugins.Invoke(new()
         ///     {
         ///         InstanceId = instance.Id,
         ///     });
@@ -54,7 +54,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var plugins = CloudAmqp.GetPlugins.Invoke(new()
+        ///     var plugins = CloudAmqp.Index.GetPlugins.Invoke(new()
         ///     {
         ///         InstanceId = instance.Id,
         ///     });
@@ -83,7 +83,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var plugins = CloudAmqp.GetPlugins.Invoke(new()
+        ///     var plugins = CloudAmqp.Index.GetPlugins.Invoke(new()
         ///     {
         ///         InstanceId = instance.Id,
         ///     });

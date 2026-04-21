@@ -43,7 +43,7 @@ namespace Pulumi.CloudAmqp
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // CloudAMQP instance
-    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     var instance = new CloudAmqp.Index.Instance("instance", new()
     ///     {
     ///         Name = "terraform-vpc-peering",
     ///         Plan = "penguin-1",
@@ -56,13 +56,13 @@ namespace Pulumi.CloudAmqp
     ///     });
     /// 
     ///     // VPC information
-    ///     var vpcInfo = CloudAmqp.GetVpcGcpInfo.Invoke(new()
+    ///     var vpcInfo = CloudAmqp.Index.GetVpcGcpInfo.Invoke(new()
     ///     {
     ///         InstanceId = instance.Id,
     ///     });
     /// 
     ///     // VPC peering configuration
-    ///     var vpcPeeringRequest = new CloudAmqp.VpcGcpPeering("vpc_peering_request", new()
+    ///     var vpcPeeringRequest = new CloudAmqp.Index.VpcGcpPeering("vpc_peering_request", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         PeerNetworkUri = "https://www.googleapis.com/compute/v1/projects/PROJECT-NAME/global/networks/VPC-NETWORK-NAME",
@@ -89,7 +89,7 @@ namespace Pulumi.CloudAmqp
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Managed VPC resource
-    ///     var vpc = new CloudAmqp.Vpc("vpc", new()
+    ///     var vpc = new CloudAmqp.Index.Vpc("vpc", new()
     ///     {
     ///         Name = "&lt;VPC name&gt;",
     ///         Region = "google-compute-engine::europe-north1",
@@ -98,7 +98,7 @@ namespace Pulumi.CloudAmqp
     ///     });
     /// 
     ///     // CloudAMQP instance
-    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     var instance = new CloudAmqp.Index.Instance("instance", new()
     ///     {
     ///         Name = "terraform-vpc-peering",
     ///         Plan = "penguin-1",
@@ -111,13 +111,13 @@ namespace Pulumi.CloudAmqp
     ///     });
     /// 
     ///     // VPC information
-    ///     var vpcInfo = CloudAmqp.GetVpcGcpInfo.Invoke(new()
+    ///     var vpcInfo = CloudAmqp.Index.GetVpcGcpInfo.Invoke(new()
     ///     {
     ///         VpcId = vpc.Info,
     ///     });
     /// 
     ///     // VPC peering configuration
-    ///     var vpcPeeringRequest = new CloudAmqp.VpcGcpPeering("vpc_peering_request", new()
+    ///     var vpcPeeringRequest = new CloudAmqp.Index.VpcGcpPeering("vpc_peering_request", new()
     ///     {
     ///         VpcId = vpc.Id,
     ///         PeerNetworkUri = "https://www.googleapis.com/compute/v1/projects/PROJECT-NAME/global/networks/VPC-NETWORK-NAME",
@@ -147,7 +147,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var vpcPeeringRequest = new CloudAmqp.VpcGcpPeering("vpc_peering_request", new()
+    ///     var vpcPeeringRequest = new CloudAmqp.Index.VpcGcpPeering("vpc_peering_request", new()
     ///     {
     ///         VpcId = vpc.Id,
     ///         PeerNetworkUri = "https://www.googleapis.com/compute/v1/projects/ROJECT-NAME/global/networks/VPC-NETWORK-NAME",
@@ -167,7 +167,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var vpcPeeringRequest = new CloudAmqp.VpcGcpPeering("vpc_peering_request", new()
+    ///     var vpcPeeringRequest = new CloudAmqp.Index.VpcGcpPeering("vpc_peering_request", new()
     ///     {
     ///         VpcId = vpc.Id,
     ///         WaitOnPeeringStatus = true,
@@ -197,14 +197,14 @@ namespace Pulumi.CloudAmqp
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // VPC peering configuration
-    ///     var vpcPeeringRequest = new CloudAmqp.VpcGcpPeering("vpc_peering_request", new()
+    ///     var vpcPeeringRequest = new CloudAmqp.Index.VpcGcpPeering("vpc_peering_request", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         PeerNetworkUri = peerNetworkUri,
     ///     });
     /// 
     ///     // Firewall rules
-    ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewall_settings", new()
+    ///     var firewallSettings = new CloudAmqp.Index.SecurityFirewall("firewall_settings", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Rules = new[]
@@ -270,14 +270,14 @@ namespace Pulumi.CloudAmqp
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // VPC peering configuration
-    ///     var vpcPeeringRequest = new CloudAmqp.VpcGcpPeering("vpc_peering_request", new()
+    ///     var vpcPeeringRequest = new CloudAmqp.Index.VpcGcpPeering("vpc_peering_request", new()
     ///     {
     ///         VpcId = vpc.Id,
     ///         PeerNetworkUri = peerNetworkUri,
     ///     });
     /// 
     ///     // Firewall rules
-    ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewall_settings", new()
+    ///     var firewallSettings = new CloudAmqp.Index.SecurityFirewall("firewall_settings", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Rules = new[]

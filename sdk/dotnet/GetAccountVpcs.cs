@@ -31,7 +31,7 @@ namespace Pulumi.CloudAmqp
         /// {
         ///     var myVpcName = "&lt;your VPC name&gt;";
         /// 
-        ///     var vpcList = CloudAmqp.GetAccountVpcs.Invoke();
+        ///     var vpcList = CloudAmqp.Index.GetAccountVpcs.Invoke();
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
@@ -70,7 +70,7 @@ namespace Pulumi.CloudAmqp
         /// {
         ///     var myVpcName = "&lt;your VPC name&gt;";
         /// 
-        ///     var vpcList = CloudAmqp.GetAccountVpcs.Invoke();
+        ///     var vpcList = CloudAmqp.Index.GetAccountVpcs.Invoke();
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
@@ -109,7 +109,7 @@ namespace Pulumi.CloudAmqp
         /// {
         ///     var myVpcName = "&lt;your VPC name&gt;";
         /// 
-        ///     var vpcList = CloudAmqp.GetAccountVpcs.Invoke();
+        ///     var vpcList = CloudAmqp.Index.GetAccountVpcs.Invoke();
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {

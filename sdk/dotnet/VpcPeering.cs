@@ -46,7 +46,7 @@ namespace Pulumi.CloudAmqp
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // CloudAMQP - new instance, need to be created with a vpc
-    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     var instance = new CloudAmqp.Index.Instance("instance", new()
     ///     {
     ///         Name = "terraform-vpc-accepter",
     ///         Plan = "penguin-1",
@@ -59,7 +59,7 @@ namespace Pulumi.CloudAmqp
     ///     });
     /// 
     ///     // CloudAMQP - Extract vpc information
-    ///     var vpcInfo = CloudAmqp.GetVpcInfo.Invoke(new()
+    ///     var vpcInfo = CloudAmqp.Index.GetVpcInfo.Invoke(new()
     ///     {
     ///         InstanceId = instance.Id,
     ///     });
@@ -92,7 +92,7 @@ namespace Pulumi.CloudAmqp
     ///     });
     /// 
     ///     // CloudAMQP - accept the peering request
-    ///     var vpcAcceptPeering = new CloudAmqp.VpcPeering("vpc_accept_peering", new()
+    ///     var vpcAcceptPeering = new CloudAmqp.Index.VpcPeering("vpc_accept_peering", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         PeeringId = awsVpcPeering.Id,
@@ -140,7 +140,7 @@ namespace Pulumi.CloudAmqp
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // CloudAMQP - Managed VPC resource
-    ///     var vpc = new CloudAmqp.Vpc("vpc", new()
+    ///     var vpc = new CloudAmqp.Index.Vpc("vpc", new()
     ///     {
     ///         Name = "&lt;VPC name&gt;",
     ///         Region = "amazon-web-services::us-east-1",
@@ -152,7 +152,7 @@ namespace Pulumi.CloudAmqp
     ///     });
     /// 
     ///     // CloudAMQP - new instance, need to be created with a vpc
-    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     var instance = new CloudAmqp.Index.Instance("instance", new()
     ///     {
     ///         Name = "terraform-vpc-accepter",
     ///         Plan = "penguin-1",
@@ -166,7 +166,7 @@ namespace Pulumi.CloudAmqp
     ///     });
     /// 
     ///     // CloudAMQP - Extract vpc information
-    ///     var vpcInfo = CloudAmqp.GetVpcInfo.Invoke(new()
+    ///     var vpcInfo = CloudAmqp.Index.GetVpcInfo.Invoke(new()
     ///     {
     ///         VpcId = vpc.Id,
     ///     });
@@ -199,7 +199,7 @@ namespace Pulumi.CloudAmqp
     ///     });
     /// 
     ///     // CloudAMQP - accept the peering request
-    ///     var vpcAcceptPeering = new CloudAmqp.VpcPeering("vpc_accept_peering", new()
+    ///     var vpcAcceptPeering = new CloudAmqp.Index.VpcPeering("vpc_accept_peering", new()
     ///     {
     ///         VpcId = vpc.Id,
     ///         PeeringId = awsVpcPeering.Id,
@@ -257,14 +257,14 @@ namespace Pulumi.CloudAmqp
     ///     });
     /// 
     ///     // CloudAMQP - accept the peering request
-    ///     var vpcAcceptPeering = new CloudAmqp.VpcPeering("vpc_accept_peering", new()
+    ///     var vpcAcceptPeering = new CloudAmqp.Index.VpcPeering("vpc_accept_peering", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         PeeringId = awsVpcPeering.Id,
     ///     });
     /// 
     ///     // Firewall rules
-    ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewall_settings", new()
+    ///     var firewallSettings = new CloudAmqp.Index.SecurityFirewall("firewall_settings", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Rules = new[]
@@ -337,7 +337,7 @@ namespace Pulumi.CloudAmqp
     ///     });
     /// 
     ///     // CloudAMQP - accept the peering request
-    ///     var vpcAcceptPeering = new CloudAmqp.VpcPeering("vpc_accept_peering", new()
+    ///     var vpcAcceptPeering = new CloudAmqp.Index.VpcPeering("vpc_accept_peering", new()
     ///     {
     ///         VpcId = vpc.Id,
     ///         PeeringId = awsVpcPeering.Id,
@@ -352,7 +352,7 @@ namespace Pulumi.CloudAmqp
     ///     });
     /// 
     ///     // CloudAMQP - Managed firewall rules
-    ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewall_settings", new()
+    ///     var firewallSettings = new CloudAmqp.Index.SecurityFirewall("firewall_settings", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Rules = new[]
