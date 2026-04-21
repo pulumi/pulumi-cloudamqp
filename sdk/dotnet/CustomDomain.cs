@@ -35,7 +35,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var settings = new CloudAmqp.CustomDomain("settings", new()
+    ///     var settings = new CloudAmqp.Index.CustomDomain("settings", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Hostname = "myname.mydomain",

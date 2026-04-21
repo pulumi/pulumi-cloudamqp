@@ -26,7 +26,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var rabbitmqTop = new CloudAmqp.Plugin("rabbitmq_top", new()
+    ///     var rabbitmqTop = new CloudAmqp.Index.Plugin("rabbitmq_top", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "rabbitmq_top",
@@ -55,14 +55,14 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var rabbitmqTop = new CloudAmqp.Plugin("rabbitmq_top", new()
+    ///     var rabbitmqTop = new CloudAmqp.Index.Plugin("rabbitmq_top", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "rabbitmq_top",
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var rabbitmqAmqp10 = new CloudAmqp.Plugin("rabbitmq_amqp1_0", new()
+    ///     var rabbitmqAmqp10 = new CloudAmqp.Index.Plugin("rabbitmq_amqp1_0", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "rabbitmq_amqp1_0",
@@ -98,14 +98,14 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var rabbitmqTop = new CloudAmqp.Plugin("rabbitmq_top", new()
+    ///     var rabbitmqTop = new CloudAmqp.Index.Plugin("rabbitmq_top", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "rabbitmq_top",
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var rabbitmqAmqp10 = new CloudAmqp.Plugin("rabbitmq_amqp1_0", new()
+    ///     var rabbitmqAmqp10 = new CloudAmqp.Index.Plugin("rabbitmq_amqp1_0", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "rabbitmq_amqp1_0",
@@ -136,7 +136,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     var instance = new CloudAmqp.Index.Instance("instance", new()
     ///     {
     ///         Name = "terraform-cloudamqp-instance",
     ///         Plan = "bunny-1",
@@ -147,14 +147,14 @@ namespace Pulumi.CloudAmqp
     ///         },
     ///     });
     /// 
-    ///     var rabbitmqTop = new CloudAmqp.Plugin("rabbitmq_top", new()
+    ///     var rabbitmqTop = new CloudAmqp.Index.Plugin("rabbitmq_top", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "rabbitmq_top",
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var rabbitmqAmqp10 = new CloudAmqp.Plugin("rabbitmq_amqp1_0", new()
+    ///     var rabbitmqAmqp10 = new CloudAmqp.Index.Plugin("rabbitmq_amqp1_0", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "rabbitmq_amqp1_0",

@@ -468,7 +468,7 @@ class VpcConnect(pulumi.CustomResource):
         import pulumi
         import pulumi_azurerm as azurerm
 
-        example = azurerm.index.PrivateEndpoint("example",
+        example = azurerm.PrivateEndpoint("example",
             name=example-endpoint,
             location=example_azurerm_resource_group.location,
             resource_group_name=example_azurerm_resource_group.name,
@@ -719,7 +719,7 @@ class VpcConnect(pulumi.CustomResource):
         import pulumi
         import pulumi_azurerm as azurerm
 
-        example = azurerm.index.PrivateEndpoint("example",
+        example = azurerm.PrivateEndpoint("example",
             name=example-endpoint,
             location=example_azurerm_resource_group.location,
             resource_group_name=example_azurerm_resource_group.name,

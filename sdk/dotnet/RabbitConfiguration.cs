@@ -36,7 +36,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var rabbitmqConfig = new CloudAmqp.RabbitConfiguration("rabbitmq_config", new()
+    ///     var rabbitmqConfig = new CloudAmqp.Index.RabbitConfiguration("rabbitmq_config", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Heartbeat = 0,
@@ -62,7 +62,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var rabbitmqConfig = new CloudAmqp.RabbitConfiguration("rabbitmq_config", new()
+    ///     var rabbitmqConfig = new CloudAmqp.Index.RabbitConfiguration("rabbitmq_config", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         ChannelMax = 0,
@@ -96,7 +96,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var rabbitmqConfig = new CloudAmqp.RabbitConfiguration("rabbitmq_config", new()
+    ///     var rabbitmqConfig = new CloudAmqp.Index.RabbitConfiguration("rabbitmq_config", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         ChannelMax = 0,
@@ -110,12 +110,12 @@ namespace Pulumi.CloudAmqp
     ///         ClusterPartitionHandling = "autoheal",
     ///     });
     /// 
-    ///     var listNodes = CloudAmqp.GetNodes.Invoke(new()
+    ///     var listNodes = CloudAmqp.Index.GetNodes.Invoke(new()
     ///     {
     ///         InstanceId = instance.Id,
     ///     });
     /// 
-    ///     var nodeAction = new CloudAmqp.NodeActions("node_action", new()
+    ///     var nodeAction = new CloudAmqp.Index.NodeActions("node_action", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Action = "cluster.restart",
@@ -150,7 +150,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var rabbitConfig = new CloudAmqp.RabbitConfiguration("rabbit_config", new()
+    ///     var rabbitConfig = new CloudAmqp.Index.RabbitConfiguration("rabbit_config", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         LogExchangeLevel = "info",
@@ -184,7 +184,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var rabbitmqConfig = new CloudAmqp.RabbitConfiguration("rabbitmq_config", new()
+    ///     var rabbitmqConfig = new CloudAmqp.Index.RabbitConfiguration("rabbitmq_config", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         MqttVhost = instance.Vhost,
@@ -195,12 +195,12 @@ namespace Pulumi.CloudAmqp
     ///         SslOptionsVerify = "verify_peer",
     ///     });
     /// 
-    ///     var nodes = CloudAmqp.GetNodes.Invoke(new()
+    ///     var nodes = CloudAmqp.Index.GetNodes.Invoke(new()
     ///     {
     ///         InstanceId = instance.Id,
     ///     });
     /// 
-    ///     var nodeAction = new CloudAmqp.NodeActions("node_action", new()
+    ///     var nodeAction = new CloudAmqp.Index.NodeActions("node_action", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         NodeName = nodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[0]?.Name),

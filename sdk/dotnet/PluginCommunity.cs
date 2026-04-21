@@ -27,7 +27,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var rabbitmqDelayedMessageExchange = new CloudAmqp.PluginCommunity("rabbitmq_delayed_message_exchange", new()
+    ///     var rabbitmqDelayedMessageExchange = new CloudAmqp.Index.PluginCommunity("rabbitmq_delayed_message_exchange", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "rabbitmq_delayed_message_exchange",
@@ -55,7 +55,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     var instance = new CloudAmqp.Index.Instance("instance", new()
     ///     {
     ///         Name = "terraform-cloudamqp-instance",
     ///         Plan = "bunny-1",
@@ -66,7 +66,7 @@ namespace Pulumi.CloudAmqp
     ///         },
     ///     });
     /// 
-    ///     var rabbitmqDelayedMessageExchange = new CloudAmqp.PluginCommunity("rabbitmq_delayed_message_exchange", new()
+    ///     var rabbitmqDelayedMessageExchange = new CloudAmqp.Index.PluginCommunity("rabbitmq_delayed_message_exchange", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "rabbitmq_delayed_message_exchange",

@@ -915,7 +915,7 @@ class Instance(pulumi.CustomResource):
             plan="penguin-1",
             region="amazon-web-services::us-east-1",
             tags=["terraform"])
-        new_vhost = lavinmq.index.Vhost("new_vhost", name=new_vhost)
+        new_vhost = lavinmq.Vhost("new_vhost", name=new_vhost)
         ```
 
         </details>
@@ -1267,7 +1267,7 @@ class Instance(pulumi.CustomResource):
             plan="penguin-1",
             region="amazon-web-services::us-east-1",
             tags=["terraform"])
-        new_vhost = lavinmq.index.Vhost("new_vhost", name=new_vhost)
+        new_vhost = lavinmq.Vhost("new_vhost", name=new_vhost)
         ```
 
         </details>

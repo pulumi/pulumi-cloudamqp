@@ -49,13 +49,13 @@ import * as utilities from "./utilities";
  *     instanceId: id,
  * }));
  * // AWS - retrieve instance to get subnet identifier
- * const awsInstance = aws.index.Instance({
+ * const awsInstance = aws.Instance({
  *     instanceTags: {
  *         name: awsInstanceName,
  *     },
  * });
  * // AWS - retrieve subnet
- * const subnet = aws.index.Subnet({
+ * const subnet = aws.Subnet({
  *     id: awsInstance.subnetId,
  * });
  * // AWS - Create peering request
@@ -73,7 +73,7 @@ import * as utilities from "./utilities";
  *     peeringId: awsVpcPeering.id,
  * });
  * // AWS - retrieve the route table created in AWS
- * const routeTable = aws.index.RouteTable({
+ * const routeTable = aws.RouteTable({
  *     vpcId: subnet.vpcId,
  * });
  * // AWS - Once the peering request is accepted, configure routing table on accepter to allow traffic
@@ -121,13 +121,13 @@ import * as utilities from "./utilities";
  *     vpcId: vpc.id,
  * });
  * // AWS - retrieve instance to get subnet identifier
- * const awsInstance = aws.index.Instance({
+ * const awsInstance = aws.Instance({
  *     instanceTags: {
  *         name: awsInstanceName,
  *     },
  * });
  * // AWS - retrieve subnet
- * const subnet = aws.index.Subnet({
+ * const subnet = aws.Subnet({
  *     id: awsInstance.subnetId,
  * });
  * // AWS - Create peering request
@@ -147,7 +147,7 @@ import * as utilities from "./utilities";
  *     timeout: 600,
  * });
  * // AWS - retrieve the route table created in AWS
- * const routeTable = aws.index.RouteTable({
+ * const routeTable = aws.RouteTable({
  *     vpcId: subnet.vpcId,
  * });
  * // AWS - Once the peering request is accepted, configure routing table on accepter to allow traffic
@@ -177,7 +177,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * // AWS - retrieve subnet
- * const subnet = aws.index.Subnet({
+ * const subnet = aws.Subnet({
  *     id: awsInstance.subnetId,
  * });
  * // CloudAMQP - accept the peering request
@@ -235,7 +235,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * // AWS - retrieve subnet
- * const subnet = aws.index.Subnet({
+ * const subnet = aws.Subnet({
  *     id: awsInstance.subnetId,
  * });
  * // CloudAMQP - accept the peering request
@@ -246,7 +246,7 @@ import * as utilities from "./utilities";
  *     timeout: 600,
  * });
  * // AWS - VPC subnet for peering requester
- * const requesterVpc = aws.index.Vpc({
+ * const requesterVpc = aws.Vpc({
  *     id: subnet.vpcId,
  * });
  * // CloudAMQP - Managed firewall rules

@@ -27,7 +27,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var newrelicV3 = new CloudAmqp.IntegrationMetricPrometheus("newrelic_v3", new()
+    ///     var newrelicV3 = new CloudAmqp.Index.IntegrationMetricPrometheus("newrelic_v3", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         NewrelicV3 = new CloudAmqp.Inputs.IntegrationMetricPrometheusNewrelicV3Args
@@ -51,7 +51,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var datadogV3 = new CloudAmqp.IntegrationMetricPrometheus("datadog_v3", new()
+    ///     var datadogV3 = new CloudAmqp.Index.IntegrationMetricPrometheus("datadog_v3", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         DatadogV3 = new CloudAmqp.Inputs.IntegrationMetricPrometheusDatadogV3Args
@@ -76,7 +76,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var azureMonitor = new CloudAmqp.IntegrationMetricPrometheus("azure_monitor", new()
+    ///     var azureMonitor = new CloudAmqp.Index.IntegrationMetricPrometheus("azure_monitor", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         AzureMonitor = new CloudAmqp.Inputs.IntegrationMetricPrometheusAzureMonitorArgs
@@ -98,7 +98,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var splunkV2 = new CloudAmqp.IntegrationMetricPrometheus("splunk_v2", new()
+    ///     var splunkV2 = new CloudAmqp.Index.IntegrationMetricPrometheus("splunk_v2", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         SplunkV2 = new CloudAmqp.Inputs.IntegrationMetricPrometheusSplunkV2Args
@@ -122,7 +122,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var dynatrace = new CloudAmqp.IntegrationMetricPrometheus("dynatrace", new()
+    ///     var dynatrace = new CloudAmqp.Index.IntegrationMetricPrometheus("dynatrace", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Dynatrace = new CloudAmqp.Inputs.IntegrationMetricPrometheusDynatraceArgs
@@ -146,7 +146,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var cloudwatchV3 = new CloudAmqp.IntegrationMetricPrometheus("cloudwatch_v3", new()
+    ///     var cloudwatchV3 = new CloudAmqp.Index.IntegrationMetricPrometheus("cloudwatch_v3", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         CloudwatchV3 = new CloudAmqp.Inputs.IntegrationMetricPrometheusCloudwatchV3Args
@@ -171,7 +171,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var stackdriverV2 = new CloudAmqp.IntegrationMetricPrometheus("stackdriver_v2", new()
+    ///     var stackdriverV2 = new CloudAmqp.Index.IntegrationMetricPrometheus("stackdriver_v2", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         StackdriverV2 = new CloudAmqp.Inputs.IntegrationMetricPrometheusStackdriverV2Args

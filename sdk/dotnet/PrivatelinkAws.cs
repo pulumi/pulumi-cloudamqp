@@ -39,7 +39,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     var instance = new CloudAmqp.Index.Instance("instance", new()
     ///     {
     ///         Name = "Instance 01",
     ///         Plan = "bunny-1",
@@ -47,7 +47,7 @@ namespace Pulumi.CloudAmqp
     ///         Tags = new[] {},
     ///     });
     /// 
-    ///     var privatelink = new CloudAmqp.PrivatelinkAws("privatelink", new()
+    ///     var privatelink = new CloudAmqp.Index.PrivatelinkAws("privatelink", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         AllowedPrincipals = new[]
@@ -76,7 +76,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var vpc = new CloudAmqp.Vpc("vpc", new()
+    ///     var vpc = new CloudAmqp.Index.Vpc("vpc", new()
     ///     {
     ///         Name = "Standalone VPC",
     ///         Region = "amazon-web-services::us-west-1",
@@ -84,7 +84,7 @@ namespace Pulumi.CloudAmqp
     ///         Tags = new[] {},
     ///     });
     /// 
-    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     var instance = new CloudAmqp.Index.Instance("instance", new()
     ///     {
     ///         Name = "Instance 01",
     ///         Plan = "bunny-1",
@@ -94,7 +94,7 @@ namespace Pulumi.CloudAmqp
     ///         KeepAssociatedVpc = true,
     ///     });
     /// 
-    ///     var privatelink = new CloudAmqp.PrivatelinkAws("privatelink", new()
+    ///     var privatelink = new CloudAmqp.Index.PrivatelinkAws("privatelink", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         AllowedPrincipals = new[]
@@ -125,7 +125,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var vpc = new CloudAmqp.Vpc("vpc", new()
+    ///     var vpc = new CloudAmqp.Index.Vpc("vpc", new()
     ///     {
     ///         Name = "Standalone VPC",
     ///         Region = "amazon-web-services::us-west-1",
@@ -133,7 +133,7 @@ namespace Pulumi.CloudAmqp
     ///         Tags = new[] {},
     ///     });
     /// 
-    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     var instance = new CloudAmqp.Index.Instance("instance", new()
     ///     {
     ///         Name = "Instance 01",
     ///         Plan = "bunny-1",
@@ -143,7 +143,7 @@ namespace Pulumi.CloudAmqp
     ///         KeepAssociatedVpc = true,
     ///     });
     /// 
-    ///     var privatelink = new CloudAmqp.PrivatelinkAws("privatelink", new()
+    ///     var privatelink = new CloudAmqp.Index.PrivatelinkAws("privatelink", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         AllowedPrincipals = new[]
@@ -152,7 +152,7 @@ namespace Pulumi.CloudAmqp
     ///         },
     ///     });
     /// 
-    ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewall_settings", new()
+    ///     var firewallSettings = new CloudAmqp.Index.SecurityFirewall("firewall_settings", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Rules = new[]

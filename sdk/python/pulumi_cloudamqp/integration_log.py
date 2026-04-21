@@ -1297,17 +1297,17 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_google as google
         import pulumi_std as std
 
-        service_account = google.index.ServiceAccount("service_account",
+        service_account = google.ServiceAccount("service_account",
             account_id=<account_id>,
             description=<description>,
             display_name=<display_name>)
-        service_account_key = google.index.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
+        service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationLog("stackdriver",
             instance_id=instance["id"],
             name="stackdriver",
-            project_id=std.index.jsondecode(input=std.index.base64decode(input=service_account_key["privateKey"])["result"])["result"]["projectId"],
-            private_key=std.index.jsondecode(input=std.index.base64decode(input=service_account_key["privateKey"])["result"])["result"]["privateKey"],
-            client_email=std.index.jsondecode(input=std.index.base64decode(input=service_account_key["privateKey"])["result"])["result"]["clientEmail"])
+            project_id=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["projectId"],
+            private_key=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["privateKey"],
+            client_email=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["clientEmail"])
         ```
 
         </details>
@@ -1327,11 +1327,11 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
         import pulumi_google as google
 
-        service_account = google.index.ServiceAccount("service_account",
+        service_account = google.ServiceAccount("service_account",
             account_id=<account_id>,
             description=<description>,
             display_name=<display_name>)
-        service_account_key = google.index.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
+        service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationLog("stackdriver",
             instance_id=instance["id"],
             name="stackdriver",
@@ -1346,17 +1346,17 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_google as google
         import pulumi_std as std
 
-        service_account = google.index.ServiceAccount("service_account",
+        service_account = google.ServiceAccount("service_account",
             account_id=<account_id>,
             description=<description>,
             display_name=<display_name>)
-        service_account_key = google.index.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
+        service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationLog("stackdriver",
             instance_id=instance["id"],
             name="stackdriver",
-            project_id=std.index.jsondecode(input=std.index.base64decode(input=service_account_key["privateKey"])["result"])["result"]["projectId"],
-            private_key=std.index.jsondecode(input=std.index.base64decode(input=service_account_key["privateKey"])["result"])["result"]["privateKey"],
-            client_email=std.index.jsondecode(input=std.index.base64decode(input=service_account_key["privateKey"])["result"])["result"]["clientEmail"])
+            project_id=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["projectId"],
+            private_key=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["privateKey"],
+            client_email=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["clientEmail"])
         ```
 
         </details>
@@ -1681,17 +1681,17 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_google as google
         import pulumi_std as std
 
-        service_account = google.index.ServiceAccount("service_account",
+        service_account = google.ServiceAccount("service_account",
             account_id=<account_id>,
             description=<description>,
             display_name=<display_name>)
-        service_account_key = google.index.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
+        service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationLog("stackdriver",
             instance_id=instance["id"],
             name="stackdriver",
-            project_id=std.index.jsondecode(input=std.index.base64decode(input=service_account_key["privateKey"])["result"])["result"]["projectId"],
-            private_key=std.index.jsondecode(input=std.index.base64decode(input=service_account_key["privateKey"])["result"])["result"]["privateKey"],
-            client_email=std.index.jsondecode(input=std.index.base64decode(input=service_account_key["privateKey"])["result"])["result"]["clientEmail"])
+            project_id=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["projectId"],
+            private_key=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["privateKey"],
+            client_email=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["clientEmail"])
         ```
 
         </details>
@@ -1711,11 +1711,11 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
         import pulumi_google as google
 
-        service_account = google.index.ServiceAccount("service_account",
+        service_account = google.ServiceAccount("service_account",
             account_id=<account_id>,
             description=<description>,
             display_name=<display_name>)
-        service_account_key = google.index.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
+        service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationLog("stackdriver",
             instance_id=instance["id"],
             name="stackdriver",
@@ -1730,17 +1730,17 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_google as google
         import pulumi_std as std
 
-        service_account = google.index.ServiceAccount("service_account",
+        service_account = google.ServiceAccount("service_account",
             account_id=<account_id>,
             description=<description>,
             display_name=<display_name>)
-        service_account_key = google.index.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
+        service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationLog("stackdriver",
             instance_id=instance["id"],
             name="stackdriver",
-            project_id=std.index.jsondecode(input=std.index.base64decode(input=service_account_key["privateKey"])["result"])["result"]["projectId"],
-            private_key=std.index.jsondecode(input=std.index.base64decode(input=service_account_key["privateKey"])["result"])["result"]["privateKey"],
-            client_email=std.index.jsondecode(input=std.index.base64decode(input=service_account_key["privateKey"])["result"])["result"]["clientEmail"])
+            project_id=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["projectId"],
+            private_key=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["privateKey"],
+            client_email=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["clientEmail"])
         ```
 
         </details>

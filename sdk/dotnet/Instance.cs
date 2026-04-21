@@ -39,7 +39,7 @@ namespace Pulumi.CloudAmqp
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Minimum free lemming instance running LavinMQ
-    ///     var lemurInstance = new CloudAmqp.Instance("lemur_instance", new()
+    ///     var lemurInstance = new CloudAmqp.Index.Instance("lemur_instance", new()
     ///     {
     ///         Name = "cloudamqp-free-instance-01",
     ///         Plan = "lemming",
@@ -51,7 +51,7 @@ namespace Pulumi.CloudAmqp
     ///     });
     /// 
     ///     // Minimum free lemur instance running RabbitMQ
-    ///     var lemmingInstance = new CloudAmqp.Instance("lemming_instance", new()
+    ///     var lemmingInstance = new CloudAmqp.Index.Instance("lemming_instance", new()
     ///     {
     ///         Name = "cloudamqp-free-instance-02",
     ///         Plan = "lemur",
@@ -63,7 +63,7 @@ namespace Pulumi.CloudAmqp
     ///     });
     /// 
     ///     // Dedicated penguin instance running LavinMQ
-    ///     var penguinInstance = new CloudAmqp.Instance("penguin_instance", new()
+    ///     var penguinInstance = new CloudAmqp.Index.Instance("penguin_instance", new()
     ///     {
     ///         Name = "terraform-cloudamqp-instance-01",
     ///         Plan = "penguin-1",
@@ -75,7 +75,7 @@ namespace Pulumi.CloudAmqp
     ///     });
     /// 
     ///     // Dedicated bunny instance running RabbitMQ
-    ///     var bunnyInstance = new CloudAmqp.Instance("bunny_instance", new()
+    ///     var bunnyInstance = new CloudAmqp.Index.Instance("bunny_instance", new()
     ///     {
     ///         Name = "terraform-cloudamqp-instance-02",
     ///         Plan = "bunny-1",
@@ -106,7 +106,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     var instance = new CloudAmqp.Index.Instance("instance", new()
     ///     {
     ///         Name = "terraform-cloudamqp-instance",
     ///         Plan = "penguin-1",
@@ -142,7 +142,7 @@ namespace Pulumi.CloudAmqp
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Dedicated instance that also creates VPC
-    ///     var instance01 = new CloudAmqp.Instance("instance_01", new()
+    ///     var instance01 = new CloudAmqp.Index.Instance("instance_01", new()
     ///     {
     ///         Name = "terraform-cloudamqp-instance-01",
     ///         Plan = "penguin-1",
@@ -171,7 +171,7 @@ namespace Pulumi.CloudAmqp
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Imported managed VPC
-    ///     var vpc = new CloudAmqp.Vpc("vpc", new()
+    ///     var vpc = new CloudAmqp.Index.Vpc("vpc", new()
     ///     {
     ///         Name = "&lt;vpc-name&gt;",
     ///         Region = "amazon-web-services::us-east-1",
@@ -180,7 +180,7 @@ namespace Pulumi.CloudAmqp
     ///     });
     /// 
     ///     // Add vpc_id and keep_associated_vpc attributes
-    ///     var instance01 = new CloudAmqp.Instance("instance_01", new()
+    ///     var instance01 = new CloudAmqp.Index.Instance("instance_01", new()
     ///     {
     ///         Name = "terraform-cloudamqp-instance-01",
     ///         Plan = "penguin-1",
@@ -214,7 +214,7 @@ namespace Pulumi.CloudAmqp
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Managed VPC
-    ///     var vpc = new CloudAmqp.Vpc("vpc", new()
+    ///     var vpc = new CloudAmqp.Index.Vpc("vpc", new()
     ///     {
     ///         Name = "&lt;vpc-name&gt;",
     ///         Region = "amazon-web-services::us-east-1",
@@ -223,7 +223,7 @@ namespace Pulumi.CloudAmqp
     ///     });
     /// 
     ///     // First instance added to managed VPC
-    ///     var instance01 = new CloudAmqp.Instance("instance_01", new()
+    ///     var instance01 = new CloudAmqp.Index.Instance("instance_01", new()
     ///     {
     ///         Name = "terraform-cloudamqp-instance-01",
     ///         Plan = "penguin-1",
@@ -237,7 +237,7 @@ namespace Pulumi.CloudAmqp
     ///     });
     /// 
     ///     // Second instance added to managed VPC
-    ///     var instance02 = new CloudAmqp.Instance("instance_02", new()
+    ///     var instance02 = new CloudAmqp.Index.Instance("instance_02", new()
     ///     {
     ///         Name = "terraform-cloudamqp-instance-02",
     ///         Plan = "penguin-1",
@@ -272,7 +272,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     var instance = new CloudAmqp.Index.Instance("instance", new()
     ///     {
     ///         Name = "terraform-cloudamqp-instance",
     ///         Plan = "penguin-3",
@@ -311,7 +311,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var instance = new CloudAmqp.Instance("instance", new()
+    ///     var instance = new CloudAmqp.Index.Instance("instance", new()
     ///     {
     ///         Name = "terraform-cloudamqp-instance",
     ///         Plan = "penguin-1",
@@ -351,7 +351,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var penguinInstance = new CloudAmqp.Instance("penguin_instance", new()
+    ///     var penguinInstance = new CloudAmqp.Index.Instance("penguin_instance", new()
     ///     {
     ///         Name = "terraform-cloudamqp-instance-01",
     ///         Plan = "penguin-1",
@@ -401,7 +401,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var bunnyInstance = new CloudAmqp.Instance("bunny_instance", new()
+    ///     var bunnyInstance = new CloudAmqp.Index.Instance("bunny_instance", new()
     ///     {
     ///         Name = "terraform-cloudamqp-instance-02",
     ///         Plan = "bunny-1",

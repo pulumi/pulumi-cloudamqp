@@ -274,18 +274,18 @@ import * as utilities from "./utilities";
  * const stackdriver = new cloudamqp.IntegrationLog("stackdriver", {
  *     instanceId: instance.id,
  *     name: "stackdriver",
- *     projectId: std.index.jsondecode({
- *         input: std.index.base64decode({
+ *     projectId: std.jsondecode({
+ *         input: std.base64decode({
  *             input: serviceAccountKey.privateKey,
  *         }).result,
  *     }).result.projectId,
- *     privateKey: std.index.jsondecode({
- *         input: std.index.base64decode({
+ *     privateKey: std.jsondecode({
+ *         input: std.base64decode({
  *             input: serviceAccountKey.privateKey,
  *         }).result,
  *     }).result.privateKey,
- *     clientEmail: std.index.jsondecode({
- *         input: std.index.base64decode({
+ *     clientEmail: std.jsondecode({
+ *         input: std.base64decode({
  *             input: serviceAccountKey.privateKey,
  *         }).result,
  *     }).result.clientEmail,
@@ -339,18 +339,18 @@ import * as utilities from "./utilities";
  * const stackdriver = new cloudamqp.IntegrationLog("stackdriver", {
  *     instanceId: instance.id,
  *     name: "stackdriver",
- *     projectId: std.index.jsondecode({
- *         input: std.index.base64decode({
+ *     projectId: std.jsondecode({
+ *         input: std.base64decode({
  *             input: serviceAccountKey.privateKey,
  *         }).result,
  *     }).result.projectId,
- *     privateKey: std.index.jsondecode({
- *         input: std.index.base64decode({
+ *     privateKey: std.jsondecode({
+ *         input: std.base64decode({
  *             input: serviceAccountKey.privateKey,
  *         }).result,
  *     }).result.privateKey,
- *     clientEmail: std.index.jsondecode({
- *         input: std.index.base64decode({
+ *     clientEmail: std.jsondecode({
+ *         input: std.base64decode({
  *             input: serviceAccountKey.privateKey,
  *         }).result,
  *     }).result.clientEmail,

@@ -41,7 +41,7 @@ namespace Pulumi.CloudAmqp
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // New recipient
-    ///     var recipient01 = new CloudAmqp.Notification("recipient_01", new()
+    ///     var recipient01 = new CloudAmqp.Index.Notification("recipient_01", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Type = "email",
@@ -50,7 +50,7 @@ namespace Pulumi.CloudAmqp
     ///     });
     /// 
     ///     // New cpu alarm
-    ///     var cpuAlarm = new CloudAmqp.Alarm("cpu_alarm", new()
+    ///     var cpuAlarm = new CloudAmqp.Index.Alarm("cpu_alarm", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Type = "cpu",
@@ -65,7 +65,7 @@ namespace Pulumi.CloudAmqp
     ///     });
     /// 
     ///     // New memory alarm
-    ///     var memoryAlarm = new CloudAmqp.Alarm("memory_alarm", new()
+    ///     var memoryAlarm = new CloudAmqp.Index.Alarm("memory_alarm", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Type = "memory",
@@ -103,7 +103,7 @@ namespace Pulumi.CloudAmqp
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // New recipient
-    ///     var recipient01 = new CloudAmqp.Notification("recipient_01", new()
+    ///     var recipient01 = new CloudAmqp.Index.Notification("recipient_01", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Type = "email",
@@ -112,7 +112,7 @@ namespace Pulumi.CloudAmqp
     ///     });
     /// 
     ///     // Update existing notice alarm
-    ///     var notice = new CloudAmqp.Alarm("notice", new()
+    ///     var notice = new CloudAmqp.Index.Alarm("notice", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Type = "notice",
