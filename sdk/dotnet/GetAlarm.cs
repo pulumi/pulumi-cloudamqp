@@ -12,6 +12,8 @@ namespace Pulumi.CloudAmqp
     public static class GetAlarm
     {
         /// <summary>
+        /// &gt; **Deprecated** This data source will be removed in next major version (v2.0). Use the `cloudamqp.getAlarms` data source instead.
+        /// 
         /// Use this data source to retrieve information about default or created alarms. Either use `AlarmId`
         /// or `Type` to retrieve the alarm.
         /// 
@@ -46,6 +48,8 @@ namespace Pulumi.CloudAmqp
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAlarmResult>("cloudamqp:index/getAlarm:getAlarm", args ?? new GetAlarmArgs(), options.WithDefaults());
 
         /// <summary>
+        /// &gt; **Deprecated** This data source will be removed in next major version (v2.0). Use the `cloudamqp.getAlarms` data source instead.
+        /// 
         /// Use this data source to retrieve information about default or created alarms. Either use `AlarmId`
         /// or `Type` to retrieve the alarm.
         /// 
@@ -80,6 +84,8 @@ namespace Pulumi.CloudAmqp
             => global::Pulumi.Deployment.Instance.Invoke<GetAlarmResult>("cloudamqp:index/getAlarm:getAlarm", args ?? new GetAlarmInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// &gt; **Deprecated** This data source will be removed in next major version (v2.0). Use the `cloudamqp.getAlarms` data source instead.
+        /// 
         /// Use this data source to retrieve information about default or created alarms. Either use `AlarmId`
         /// or `Type` to retrieve the alarm.
         /// 
@@ -138,13 +144,6 @@ namespace Pulumi.CloudAmqp
         [Input("type")]
         public string? Type { get; set; }
 
-        /// <summary>
-        /// Disk value threshold calculation, `(fixed, percentage)` of disk space
-        /// remaining.
-        /// </summary>
-        [Input("valueCalculation")]
-        public string? ValueCalculation { get; set; }
-
         public GetAlarmArgs()
         {
         }
@@ -174,13 +173,6 @@ namespace Pulumi.CloudAmqp
         [Input("type")]
         public Input<string>? Type { get; set; }
 
-        /// <summary>
-        /// Disk value threshold calculation, `(fixed, percentage)` of disk space
-        /// remaining.
-        /// </summary>
-        [Input("valueCalculation")]
-        public Input<string>? ValueCalculation { get; set; }
-
         public GetAlarmInvokeArgs()
         {
         }
@@ -197,7 +189,7 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         public readonly bool Enabled;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// The identifier for this resource.
         /// </summary>
         public readonly string Id;
         public readonly int InstanceId;
@@ -228,7 +220,7 @@ namespace Pulumi.CloudAmqp
         /// Disk value threshold calculation, `(fixed, percentage)` of disk space
         /// remaining.
         /// </summary>
-        public readonly string? ValueCalculation;
+        public readonly string ValueCalculation;
         /// <summary>
         /// The value threshold that triggers the alarm.
         /// </summary>
@@ -260,7 +252,7 @@ namespace Pulumi.CloudAmqp
 
             string? type,
 
-            string? valueCalculation,
+            string valueCalculation,
 
             int valueThreshold,
 

@@ -214,7 +214,7 @@ namespace Pulumi.CloudAmqp
         /// resolved. Set to 0 for no reminders. The Default is 0.
         /// </summary>
         [Output("reminderInterval")]
-        public Output<int?> ReminderInterval { get; private set; } = null!;
+        public Output<int> ReminderInterval { get; private set; } = null!;
 
         /// <summary>
         /// The time interval (in seconds) the `ValueThreshold` should be

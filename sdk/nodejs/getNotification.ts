@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -30,8 +32,8 @@ export function getNotification(args: GetNotificationArgs, opts?: pulumi.InvokeO
     return pulumi.runtime.invoke("cloudamqp:index/getNotification:getNotification", {
         "instanceId": args.instanceId,
         "name": args.name,
-        "options": args.options,
         "recipientId": args.recipientId,
+        "responders": args.responders,
     }, opts);
 }
 
@@ -48,13 +50,14 @@ export interface GetNotificationArgs {
      */
     name?: string;
     /**
-     * Options argument (e.g. `rk` used for VictorOps routing key).
-     */
-    options?: {[key: string]: string};
-    /**
      * The recipient identifier.
      */
     recipientId?: number;
+    /**
+     * An array of reponders (only for OpsGenie). Each `responders` block
+     * consists of the field documented below.
+     */
+    responders?: inputs.GetNotificationResponder[];
 }
 
 /**
@@ -62,18 +65,26 @@ export interface GetNotificationArgs {
  */
 export interface GetNotificationResult {
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * (Optional) Identifier in UUID format
      */
     readonly id: string;
     readonly instanceId: number;
-    readonly name?: string;
+    /**
+     * (Optional) Name of the responder
+     */
+    readonly name: string;
     /**
      * Options argument (e.g. `rk` used for VictorOps routing key).
      */
-    readonly options?: {[key: string]: string};
-    readonly recipientId?: number;
+    readonly options: {[key: string]: string};
+    readonly recipientId: number;
     /**
-     * The type of the recipient.
+     * An array of reponders (only for OpsGenie). Each `responders` block
+     * consists of the field documented below.
+     */
+    readonly responders?: outputs.GetNotificationResponder[];
+    /**
+     * (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
      */
     readonly type: string;
     /**
@@ -107,8 +118,8 @@ export function getNotificationOutput(args: GetNotificationOutputArgs, opts?: pu
     return pulumi.runtime.invokeOutput("cloudamqp:index/getNotification:getNotification", {
         "instanceId": args.instanceId,
         "name": args.name,
-        "options": args.options,
         "recipientId": args.recipientId,
+        "responders": args.responders,
     }, opts);
 }
 
@@ -125,11 +136,12 @@ export interface GetNotificationOutputArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Options argument (e.g. `rk` used for VictorOps routing key).
-     */
-    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    /**
      * The recipient identifier.
      */
     recipientId?: pulumi.Input<number>;
+    /**
+     * An array of reponders (only for OpsGenie). Each `responders` block
+     * consists of the field documented below.
+     */
+    responders?: pulumi.Input<pulumi.Input<inputs.GetNotificationResponderArgs>[]>;
 }

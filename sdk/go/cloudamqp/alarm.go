@@ -211,7 +211,7 @@ type Alarm struct {
 	Recipients pulumi.IntArrayOutput `pulumi:"recipients"`
 	// The reminder interval (in seconds) to resend the alarm if not
 	// resolved. Set to 0 for no reminders. The Default is 0.
-	ReminderInterval pulumi.IntPtrOutput `pulumi:"reminderInterval"`
+	ReminderInterval pulumi.IntOutput `pulumi:"reminderInterval"`
 	// The time interval (in seconds) the `valueThreshold` should be
 	// active before triggering an alarm.
 	TimeThreshold pulumi.IntPtrOutput `pulumi:"timeThreshold"`
@@ -523,8 +523,8 @@ func (o AlarmOutput) Recipients() pulumi.IntArrayOutput {
 
 // The reminder interval (in seconds) to resend the alarm if not
 // resolved. Set to 0 for no reminders. The Default is 0.
-func (o AlarmOutput) ReminderInterval() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *Alarm) pulumi.IntPtrOutput { return v.ReminderInterval }).(pulumi.IntPtrOutput)
+func (o AlarmOutput) ReminderInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *Alarm) pulumi.IntOutput { return v.ReminderInterval }).(pulumi.IntOutput)
 }
 
 // The time interval (in seconds) the `valueThreshold` should be

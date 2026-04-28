@@ -74,7 +74,7 @@ export interface GetAlarmsAlarm {
     /**
      * The alarm identifier.
      */
-    alarmId?: number;
+    alarmId: number;
     /**
      * Enable/disable status of the alarm.
      */
@@ -105,12 +105,12 @@ export interface GetAlarmsAlarm {
      * The alarm type to filter for. Supported
      * alarm types.
      */
-    type?: string;
+    type: string;
     /**
      * Disk value threshold calculation, `(fixed, percentage)` of disk space
      * remaining.
      */
-    valueCalculation?: string;
+    valueCalculation: string;
     /**
      * The value threshold that triggers the alarm.
      */
@@ -168,9 +168,28 @@ export interface GetNodesNode {
     running: boolean;
 }
 
+export interface GetNotificationResponder {
+    /**
+     * (Optional) Identifier in UUID format
+     */
+    id: string;
+    /**
+     * The name set for the recipient.
+     */
+    name: string;
+    /**
+     * (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
+     */
+    type: string;
+    /**
+     * (Optional) Username of the responder
+     */
+    username: string;
+}
+
 export interface GetNotificationsRecipient {
     /**
-     * The name of the recipient.
+     * (Optional) Name of the responder
      */
     name: string;
     /**
@@ -182,13 +201,37 @@ export interface GetNotificationsRecipient {
      */
     recipientId: number;
     /**
-     * The type of the recipient.
+     * An array of reponders (only for OpsGenie). Each `responders` block
+     * consists of the field documented below.
+     */
+    responders: outputs.GetNotificationsRecipientResponder[];
+    /**
+     * (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
      */
     type: string;
     /**
      * The notification endpoint, where to send the notification.
      */
     value: string;
+}
+
+export interface GetNotificationsRecipientResponder {
+    /**
+     * (Optional) Identifier in UUID format
+     */
+    id: string;
+    /**
+     * (Optional) Name of the responder
+     */
+    name: string;
+    /**
+     * (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
+     */
+    type: string;
+    /**
+     * (Optional) Username of the responder
+     */
+    username: string;
 }
 
 export interface GetPluginsCommunityPlugin {

@@ -20,6 +20,44 @@ export interface ExtraDiskSizeNode {
     name?: pulumi.Input<string>;
 }
 
+export interface GetNotificationResponder {
+    /**
+     * (Optional) Identifier in UUID format
+     */
+    id?: string;
+    /**
+     * The name set for the recipient.
+     */
+    name?: string;
+    /**
+     * (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
+     */
+    type?: string;
+    /**
+     * (Optional) Username of the responder
+     */
+    username?: string;
+}
+
+export interface GetNotificationResponderArgs {
+    /**
+     * (Optional) Identifier in UUID format
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * The name set for the recipient.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
+     */
+    type?: pulumi.Input<string>;
+    /**
+     * (Optional) Username of the responder
+     */
+    username?: pulumi.Input<string>;
+}
+
 export interface InstanceCopySetting {
     /**
      * Array of one or more settings to be copied. Allowed values:

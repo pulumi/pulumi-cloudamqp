@@ -68,30 +68,12 @@ public final class GetAlarmArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.type);
     }
 
-    /**
-     * Disk value threshold calculation, `(fixed, percentage)` of disk space
-     * remaining.
-     * 
-     */
-    @Import(name="valueCalculation")
-    private @Nullable Output<String> valueCalculation;
-
-    /**
-     * @return Disk value threshold calculation, `(fixed, percentage)` of disk space
-     * remaining.
-     * 
-     */
-    public Optional<Output<String>> valueCalculation() {
-        return Optional.ofNullable(this.valueCalculation);
-    }
-
     private GetAlarmArgs() {}
 
     private GetAlarmArgs(GetAlarmArgs $) {
         this.alarmId = $.alarmId;
         this.instanceId = $.instanceId;
         this.type = $.type;
-        this.valueCalculation = $.valueCalculation;
     }
 
     public static Builder builder() {
@@ -179,29 +161,6 @@ public final class GetAlarmArgs extends com.pulumi.resources.InvokeArgs {
          */
         public Builder type(String type) {
             return type(Output.of(type));
-        }
-
-        /**
-         * @param valueCalculation Disk value threshold calculation, `(fixed, percentage)` of disk space
-         * remaining.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder valueCalculation(@Nullable Output<String> valueCalculation) {
-            $.valueCalculation = valueCalculation;
-            return this;
-        }
-
-        /**
-         * @param valueCalculation Disk value threshold calculation, `(fixed, percentage)` of disk space
-         * remaining.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder valueCalculation(String valueCalculation) {
-            return valueCalculation(Output.of(valueCalculation));
         }
 
         public GetAlarmArgs build() {

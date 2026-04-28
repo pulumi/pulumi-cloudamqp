@@ -194,7 +194,7 @@ export class Alarm extends pulumi.CustomResource {
      * The reminder interval (in seconds) to resend the alarm if not
      * resolved. Set to 0 for no reminders. The Default is 0.
      */
-    declare public readonly reminderInterval: pulumi.Output<number | undefined>;
+    declare public readonly reminderInterval: pulumi.Output<number>;
     /**
      * The time interval (in seconds) the `valueThreshold` should be
      * active before triggering an alarm.

@@ -28,7 +28,7 @@ class MaintenanceWindowArgs:
 
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[_builtins.str] automatic_updates: Allow scheduling of a maintenance for version update
-               once a new LavinMQ version been released.
+               when a new LavinMQ version been released.
         :param pulumi.Input[_builtins.str] preferred_day: Preferred day of the week when to schedule maintenance.
         :param pulumi.Input[_builtins.str] preferred_time: Preferred time (UTC) of the day when to schedule maintenance.
         """
@@ -57,7 +57,7 @@ class MaintenanceWindowArgs:
     def automatic_updates(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Allow scheduling of a maintenance for version update
-        once a new LavinMQ version been released.
+        when a new LavinMQ version been released.
         """
         return pulumi.get(self, "automatic_updates")
 
@@ -101,7 +101,7 @@ class _MaintenanceWindowState:
         Input properties used for looking up and filtering MaintenanceWindow resources.
 
         :param pulumi.Input[_builtins.str] automatic_updates: Allow scheduling of a maintenance for version update
-               once a new LavinMQ version been released.
+               when a new LavinMQ version been released.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[_builtins.str] preferred_day: Preferred day of the week when to schedule maintenance.
         :param pulumi.Input[_builtins.str] preferred_time: Preferred time (UTC) of the day when to schedule maintenance.
@@ -120,7 +120,7 @@ class _MaintenanceWindowState:
     def automatic_updates(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Allow scheduling of a maintenance for version update
-        once a new LavinMQ version been released.
+        when a new LavinMQ version been released.
         """
         return pulumi.get(self, "automatic_updates")
 
@@ -267,7 +267,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] automatic_updates: Allow scheduling of a maintenance for version update
-               once a new LavinMQ version been released.
+               when a new LavinMQ version been released.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[_builtins.str] preferred_day: Preferred day of the week when to schedule maintenance.
         :param pulumi.Input[_builtins.str] preferred_time: Preferred time (UTC) of the day when to schedule maintenance.
@@ -422,7 +422,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] automatic_updates: Allow scheduling of a maintenance for version update
-               once a new LavinMQ version been released.
+               when a new LavinMQ version been released.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[_builtins.str] preferred_day: Preferred day of the week when to schedule maintenance.
         :param pulumi.Input[_builtins.str] preferred_time: Preferred time (UTC) of the day when to schedule maintenance.
@@ -442,7 +442,7 @@ class MaintenanceWindow(pulumi.CustomResource):
     def automatic_updates(self) -> pulumi.Output[_builtins.str]:
         """
         Allow scheduling of a maintenance for version update
-        once a new LavinMQ version been released.
+        when a new LavinMQ version been released.
         """
         return pulumi.get(self, "automatic_updates")
 
@@ -456,7 +456,7 @@ class MaintenanceWindow(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="preferredDay")
-    def preferred_day(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def preferred_day(self) -> pulumi.Output[_builtins.str]:
         """
         Preferred day of the week when to schedule maintenance.
         """
@@ -464,7 +464,7 @@ class MaintenanceWindow(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="preferredTime")
-    def preferred_time(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def preferred_time(self) -> pulumi.Output[_builtins.str]:
         """
         Preferred time (UTC) of the day when to schedule maintenance.
         """

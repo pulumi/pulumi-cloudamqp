@@ -169,14 +169,14 @@ type MaintenanceWindow struct {
 	pulumi.CustomResourceState
 
 	// Allow scheduling of a maintenance for version update
-	// once a new LavinMQ version been released.
+	// when a new LavinMQ version been released.
 	AutomaticUpdates pulumi.StringOutput `pulumi:"automaticUpdates"`
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
 	// Preferred day of the week when to schedule maintenance.
-	PreferredDay pulumi.StringPtrOutput `pulumi:"preferredDay"`
+	PreferredDay pulumi.StringOutput `pulumi:"preferredDay"`
 	// Preferred time (UTC) of the day when to schedule maintenance.
-	PreferredTime pulumi.StringPtrOutput `pulumi:"preferredTime"`
+	PreferredTime pulumi.StringOutput `pulumi:"preferredTime"`
 }
 
 // NewMaintenanceWindow registers a new resource with the given unique name, arguments, and options.
@@ -213,7 +213,7 @@ func GetMaintenanceWindow(ctx *pulumi.Context,
 // Input properties used for looking up and filtering MaintenanceWindow resources.
 type maintenanceWindowState struct {
 	// Allow scheduling of a maintenance for version update
-	// once a new LavinMQ version been released.
+	// when a new LavinMQ version been released.
 	AutomaticUpdates *string `pulumi:"automaticUpdates"`
 	// The CloudAMQP instance ID.
 	InstanceId *int `pulumi:"instanceId"`
@@ -225,7 +225,7 @@ type maintenanceWindowState struct {
 
 type MaintenanceWindowState struct {
 	// Allow scheduling of a maintenance for version update
-	// once a new LavinMQ version been released.
+	// when a new LavinMQ version been released.
 	AutomaticUpdates pulumi.StringPtrInput
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntPtrInput
@@ -241,7 +241,7 @@ func (MaintenanceWindowState) ElementType() reflect.Type {
 
 type maintenanceWindowArgs struct {
 	// Allow scheduling of a maintenance for version update
-	// once a new LavinMQ version been released.
+	// when a new LavinMQ version been released.
 	AutomaticUpdates *string `pulumi:"automaticUpdates"`
 	// The CloudAMQP instance ID.
 	InstanceId int `pulumi:"instanceId"`
@@ -254,7 +254,7 @@ type maintenanceWindowArgs struct {
 // The set of arguments for constructing a MaintenanceWindow resource.
 type MaintenanceWindowArgs struct {
 	// Allow scheduling of a maintenance for version update
-	// once a new LavinMQ version been released.
+	// when a new LavinMQ version been released.
 	AutomaticUpdates pulumi.StringPtrInput
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntInput
@@ -352,7 +352,7 @@ func (o MaintenanceWindowOutput) ToMaintenanceWindowOutputWithContext(ctx contex
 }
 
 // Allow scheduling of a maintenance for version update
-// once a new LavinMQ version been released.
+// when a new LavinMQ version been released.
 func (o MaintenanceWindowOutput) AutomaticUpdates() pulumi.StringOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) pulumi.StringOutput { return v.AutomaticUpdates }).(pulumi.StringOutput)
 }
@@ -363,13 +363,13 @@ func (o MaintenanceWindowOutput) InstanceId() pulumi.IntOutput {
 }
 
 // Preferred day of the week when to schedule maintenance.
-func (o MaintenanceWindowOutput) PreferredDay() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *MaintenanceWindow) pulumi.StringPtrOutput { return v.PreferredDay }).(pulumi.StringPtrOutput)
+func (o MaintenanceWindowOutput) PreferredDay() pulumi.StringOutput {
+	return o.ApplyT(func(v *MaintenanceWindow) pulumi.StringOutput { return v.PreferredDay }).(pulumi.StringOutput)
 }
 
 // Preferred time (UTC) of the day when to schedule maintenance.
-func (o MaintenanceWindowOutput) PreferredTime() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *MaintenanceWindow) pulumi.StringPtrOutput { return v.PreferredTime }).(pulumi.StringPtrOutput)
+func (o MaintenanceWindowOutput) PreferredTime() pulumi.StringOutput {
+	return o.ApplyT(func(v *MaintenanceWindow) pulumi.StringOutput { return v.PreferredTime }).(pulumi.StringOutput)
 }
 
 type MaintenanceWindowArrayOutput struct{ *pulumi.OutputState }

@@ -18,7 +18,7 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
 
     /**
      * Allow scheduling of a maintenance for version update
-     * once a new LavinMQ version been released.
+     * when a new LavinMQ version been released.
      * 
      */
     @Import(name="automaticUpdates")
@@ -26,7 +26,7 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
 
     /**
      * @return Allow scheduling of a maintenance for version update
-     * once a new LavinMQ version been released.
+     * when a new LavinMQ version been released.
      * 
      */
     public Optional<Output<String>> automaticUpdates() {
@@ -107,7 +107,7 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
 
         /**
          * @param automaticUpdates Allow scheduling of a maintenance for version update
-         * once a new LavinMQ version been released.
+         * when a new LavinMQ version been released.
          * 
          * @return builder
          * 
@@ -119,7 +119,7 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
 
         /**
          * @param automaticUpdates Allow scheduling of a maintenance for version update
-         * once a new LavinMQ version been released.
+         * when a new LavinMQ version been released.
          * 
          * @return builder
          * 

@@ -288,15 +288,15 @@ public class Alarm extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="reminderInterval", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> reminderInterval;
+    private Output<Integer> reminderInterval;
 
     /**
      * @return The reminder interval (in seconds) to resend the alarm if not
      * resolved. Set to 0 for no reminders. The Default is 0.
      * 
      */
-    public Output<Optional<Integer>> reminderInterval() {
-        return Codegen.optional(this.reminderInterval);
+    public Output<Integer> reminderInterval() {
+        return this.reminderInterval;
     }
     /**
      * The time interval (in seconds) the `valueThreshold` should be

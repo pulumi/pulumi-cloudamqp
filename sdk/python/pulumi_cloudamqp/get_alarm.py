@@ -84,7 +84,7 @@ class GetAlarmResult:
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
-        The provider-assigned unique ID for this managed resource.
+        The identifier for this resource.
         """
         return pulumi.get(self, "id")
 
@@ -142,7 +142,7 @@ class GetAlarmResult:
 
     @_builtins.property
     @pulumi.getter(name="valueCalculation")
-    def value_calculation(self) -> Optional[_builtins.str]:
+    def value_calculation(self) -> _builtins.str:
         """
         Disk value threshold calculation, `(fixed, percentage)` of disk space
         remaining.
@@ -190,9 +190,10 @@ class AwaitableGetAlarmResult(GetAlarmResult):
 def get_alarm(alarm_id: Optional[_builtins.int] = None,
               instance_id: Optional[_builtins.int] = None,
               type: Optional[_builtins.str] = None,
-              value_calculation: Optional[_builtins.str] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAlarmResult:
     """
+    > **Deprecated** This data source will be removed in next major version (v2.0). Use the `get_alarms` data source instead.
+
     Use this data source to retrieve information about default or created alarms. Either use `alarm_id`
     or `type` to retrieve the alarm.
 
@@ -221,14 +222,11 @@ def get_alarm(alarm_id: Optional[_builtins.int] = None,
     :param _builtins.str type: The alarm type. Either use this or `alarm_id` to give `Alarm`
            necessary information when retrieve the alarm. Supported
            alarm types.
-    :param _builtins.str value_calculation: Disk value threshold calculation, `(fixed, percentage)` of disk space
-           remaining.
     """
     __args__ = dict()
     __args__['alarmId'] = alarm_id
     __args__['instanceId'] = instance_id
     __args__['type'] = type
-    __args__['valueCalculation'] = value_calculation
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('cloudamqp:index/getAlarm:getAlarm', __args__, opts=opts, typ=GetAlarmResult).value
 
@@ -249,9 +247,10 @@ def get_alarm(alarm_id: Optional[_builtins.int] = None,
 def get_alarm_output(alarm_id: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
                      instance_id: Optional[pulumi.Input[_builtins.int]] = None,
                      type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     value_calculation: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAlarmResult]:
     """
+    > **Deprecated** This data source will be removed in next major version (v2.0). Use the `get_alarms` data source instead.
+
     Use this data source to retrieve information about default or created alarms. Either use `alarm_id`
     or `type` to retrieve the alarm.
 
@@ -280,14 +279,11 @@ def get_alarm_output(alarm_id: Optional[pulumi.Input[Optional[_builtins.int]]] =
     :param _builtins.str type: The alarm type. Either use this or `alarm_id` to give `Alarm`
            necessary information when retrieve the alarm. Supported
            alarm types.
-    :param _builtins.str value_calculation: Disk value threshold calculation, `(fixed, percentage)` of disk space
-           remaining.
     """
     __args__ = dict()
     __args__['alarmId'] = alarm_id
     __args__['instanceId'] = instance_id
     __args__['type'] = type
-    __args__['valueCalculation'] = value_calculation
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('cloudamqp:index/getAlarm:getAlarm', __args__, opts=opts, typ=GetAlarmResult)
     return __ret__.apply(lambda __response__: GetAlarmResult(

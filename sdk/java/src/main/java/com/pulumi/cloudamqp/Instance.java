@@ -410,6 +410,191 @@ import javax.annotation.Nullable;
  * 
  * &lt;/details&gt;
  * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;LavinMQ shared to dedicated in-place upgrade, from v1.45.0&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // Initial shared LavinMQ instance
+ *         var instance = new Instance("instance", InstanceArgs.builder()
+ *             .name("terraform-cloudamqp-instance")
+ *             .plan("lemming")
+ *             .region("amazon-web-services::eu-north-1")
+ *             .tags("terraform")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // Upgraded to dedicated LavinMQ — region can change within the same cloud provider
+ *         // No resource replacement occurs; the instance ID is preserved
+ *         var instance = new Instance("instance", InstanceArgs.builder()
+ *             .name("terraform-cloudamqp-instance")
+ *             .plan("wolverine-1")
+ *             .region("amazon-web-services::eu-west-1")
+ *             .tags("terraform")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * ## LavinMQ shared to dedicated upgrade
+ * 
+ * From v1.45.0 it is possible to upgrade a LavinMQ shared instance (`lemming` or `ermine`) in-place
+ * to any dedicated LavinMQ plan without destroying and recreating the resource. The instance ID is
+ * preserved and existing definitions are kept. To upgrade, change the `plan` argument and apply.
+ * 
+ * &gt; This upgrade path is only available for **LavinMQ** instances. RabbitMQ shared instances cannot
+ * be upgraded in-place to dedicated plans.
+ * 
+ * Optionally, the following attributes can be changed in the same `pulumi up` during the
+ * upgrade: `region` (within the same cloud provider), `vpcId`, `vpcSubnet`, and `preferredAz`.
+ * 
+ * See the [LavinMQ shared to dedicated] guide for full details and more examples.
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Upgrade LavinMQ shared instance to dedicated, from v1.45.0&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // Initial shared LavinMQ instance
+ *         var instance = new Instance("instance", InstanceArgs.builder()
+ *             .name("instance")
+ *             .plan("lemming")
+ *             .region("amazon-web-services::eu-north-1")
+ *             .tags("terraform")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Instance;
+ * import com.pulumi.cloudamqp.InstanceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // Upgraded to dedicated — instance ID is preserved, no resource replacement
+ *         var instance = new Instance("instance", InstanceArgs.builder()
+ *             .name("instance")
+ *             .plan("wolverine-1")
+ *             .region("amazon-web-services::eu-west-1")
+ *             .tags("terraform")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * ## Copy settings to a new dedicated instance
+ * 
+ * With copy settings it&#39;s possible to create a new dedicated instance with settings such as alarms,
+ * config, etc. from another dedicated instance. This can be done by adding the `copySettings` block
+ * to this resource and populate `subscriptionId` with a CloudAMQP instance identifier from another
+ * already existing instance.
+ * 
+ * &gt; `rmqVersion` argument is required when doing this action. Must match the broker version of the
+ * dedicated instance to be copied from.
+ * 
+ * Then add the settings to be copied over to the new dedicated instance. Settings that can be copied
+ * 
  * ### Settings supported by LavinMQ
  * 
  * ***Allowed values:*** alarms, definitions, firewall, metrics
@@ -533,6 +718,7 @@ import javax.annotation.Nullable;
  * [CloudAMQP plans]: https://www.cloudamqp.com/plans.html
  * [copy settings]: #copy-settings-to-a-new-dedicated-instance
  * [example]: ../guides/info_vpc_existing.md
+ * [LavinMQ shared to dedicated]: ../guides/info_lavinmq_shared_to_dedicated.md
  * [regions]: ../guides/info_region.md
  * [**LavinMQ**]: https://lavinmq.com
  * [Managed VPC]: ../guides/info_managed_vpc#dedicated-instance-and-vpc_subnet
@@ -720,12 +906,24 @@ public class Instance extends com.pulumi.resources.CustomResource {
     /**
      * The subscription plan. See available [plans].
      * 
+     * ***Note:*** Changing between a LavinMQ shared plan (`lemming`, `ermine`) and a dedicated LavinMQ
+     * plan will **not** force resource replacement. The instance ID is preserved and existing
+     * definitions are kept. See [LavinMQ shared to dedicated] for details.
+     * All other plan type changes (e.g. shared to dedicated for RabbitMQ) will force a new
+     * resource.
+     * 
      */
     @Export(name="plan", refs={String.class}, tree="[0]")
     private Output<String> plan;
 
     /**
      * @return The subscription plan. See available [plans].
+     * 
+     * ***Note:*** Changing between a LavinMQ shared plan (`lemming`, `ermine`) and a dedicated LavinMQ
+     * plan will **not** force resource replacement. The instance ID is preserved and existing
+     * definitions are kept. See [LavinMQ shared to dedicated] for details.
+     * All other plan type changes (e.g. shared to dedicated for RabbitMQ) will force a new
+     * resource.
      * 
      */
     public Output<String> plan() {
@@ -785,6 +983,11 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * ***Note:*** Changing region will force the instance to be destroyed and a new created in the new
      * region. All data will be lost and a new name assigned.
      * 
+     * ***Note:*** Exception: when upgrading a LavinMQ shared instance to a dedicated plan, the region
+     * can change without destroying the resource, as long as the cloud provider stays the
+     * same (e.g. `amazon-web-services` → `amazon-web-services` is allowed, but
+     * `amazon-web-services` → `google-compute-engine` is not).
+     * 
      */
     @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
@@ -794,6 +997,11 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * 
      * ***Note:*** Changing region will force the instance to be destroyed and a new created in the new
      * region. All data will be lost and a new name assigned.
+     * 
+     * ***Note:*** Exception: when upgrading a LavinMQ shared instance to a dedicated plan, the region
+     * can change without destroying the resource, as long as the cloud provider stays the
+     * same (e.g. `amazon-web-services` → `amazon-web-services` is allowed, but
+     * `amazon-web-services` → `google-compute-engine` is not).
      * 
      */
     public Output<String> region() {

@@ -123,6 +123,7 @@ import javax.annotation.Nullable;
  *                 "write",
  *                 "admin")
  *             .audience("https://test-audience.example.com")
+ *             .disableBasicAuth(true)
  *             .build());
  * 
  *     }
@@ -223,6 +224,20 @@ public class Oauth2Configuration extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> audience() {
         return Codegen.optional(this.audience);
+    }
+    /**
+     * Disable static username/password management interface access.
+     * 
+     */
+    @Export(name="disableBasicAuth", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> disableBasicAuth;
+
+    /**
+     * @return Disable static username/password management interface access.
+     * 
+     */
+    public Output<Boolean> disableBasicAuth() {
+        return this.disableBasicAuth;
     }
     /**
      * The CloudAMQP instance ID.

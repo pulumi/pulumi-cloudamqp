@@ -2566,7 +2566,7 @@ func (o GetAccountVpcsVpcArrayOutput) Index(i pulumi.IntInput) GetAccountVpcsVpc
 
 type GetAlarmsAlarm struct {
 	// The alarm identifier.
-	AlarmId *int `pulumi:"alarmId"`
+	AlarmId int `pulumi:"alarmId"`
 	// Enable/disable status of the alarm.
 	Enabled bool `pulumi:"enabled"`
 	// Message type `(total, unacked, ready)` used by queue alarm type.
@@ -2583,10 +2583,10 @@ type GetAlarmsAlarm struct {
 	TimeThreshold int `pulumi:"timeThreshold"`
 	// The alarm type to filter for. Supported
 	// alarm types.
-	Type *string `pulumi:"type"`
+	Type string `pulumi:"type"`
 	// Disk value threshold calculation, `(fixed, percentage)` of disk space
 	// remaining.
-	ValueCalculation *string `pulumi:"valueCalculation"`
+	ValueCalculation string `pulumi:"valueCalculation"`
 	// The value threshold that triggers the alarm.
 	ValueThreshold int `pulumi:"valueThreshold"`
 	// Regular expression for which vhost to check
@@ -2606,7 +2606,7 @@ type GetAlarmsAlarmInput interface {
 
 type GetAlarmsAlarmArgs struct {
 	// The alarm identifier.
-	AlarmId pulumi.IntPtrInput `pulumi:"alarmId"`
+	AlarmId pulumi.IntInput `pulumi:"alarmId"`
 	// Enable/disable status of the alarm.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
 	// Message type `(total, unacked, ready)` used by queue alarm type.
@@ -2623,10 +2623,10 @@ type GetAlarmsAlarmArgs struct {
 	TimeThreshold pulumi.IntInput `pulumi:"timeThreshold"`
 	// The alarm type to filter for. Supported
 	// alarm types.
-	Type pulumi.StringPtrInput `pulumi:"type"`
+	Type pulumi.StringInput `pulumi:"type"`
 	// Disk value threshold calculation, `(fixed, percentage)` of disk space
 	// remaining.
-	ValueCalculation pulumi.StringPtrInput `pulumi:"valueCalculation"`
+	ValueCalculation pulumi.StringInput `pulumi:"valueCalculation"`
 	// The value threshold that triggers the alarm.
 	ValueThreshold pulumi.IntInput `pulumi:"valueThreshold"`
 	// Regular expression for which vhost to check
@@ -2685,8 +2685,8 @@ func (o GetAlarmsAlarmOutput) ToGetAlarmsAlarmOutputWithContext(ctx context.Cont
 }
 
 // The alarm identifier.
-func (o GetAlarmsAlarmOutput) AlarmId() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v GetAlarmsAlarm) *int { return v.AlarmId }).(pulumi.IntPtrOutput)
+func (o GetAlarmsAlarmOutput) AlarmId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAlarmsAlarm) int { return v.AlarmId }).(pulumi.IntOutput)
 }
 
 // Enable/disable status of the alarm.
@@ -2723,14 +2723,14 @@ func (o GetAlarmsAlarmOutput) TimeThreshold() pulumi.IntOutput {
 
 // The alarm type to filter for. Supported
 // alarm types.
-func (o GetAlarmsAlarmOutput) Type() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetAlarmsAlarm) *string { return v.Type }).(pulumi.StringPtrOutput)
+func (o GetAlarmsAlarmOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmsAlarm) string { return v.Type }).(pulumi.StringOutput)
 }
 
 // Disk value threshold calculation, `(fixed, percentage)` of disk space
 // remaining.
-func (o GetAlarmsAlarmOutput) ValueCalculation() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetAlarmsAlarm) *string { return v.ValueCalculation }).(pulumi.StringPtrOutput)
+func (o GetAlarmsAlarmOutput) ValueCalculation() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlarmsAlarm) string { return v.ValueCalculation }).(pulumi.StringOutput)
 }
 
 // The value threshold that triggers the alarm.
@@ -2950,14 +2950,141 @@ func (o GetNodesNodeArrayOutput) Index(i pulumi.IntInput) GetNodesNodeOutput {
 	}).(GetNodesNodeOutput)
 }
 
+type GetNotificationResponder struct {
+	// (Optional) Identifier in UUID format
+	Id string `pulumi:"id"`
+	// The name set for the recipient.
+	Name string `pulumi:"name"`
+	// (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
+	Type string `pulumi:"type"`
+	// (Optional) Username of the responder
+	Username string `pulumi:"username"`
+}
+
+// GetNotificationResponderInput is an input type that accepts GetNotificationResponderArgs and GetNotificationResponderOutput values.
+// You can construct a concrete instance of `GetNotificationResponderInput` via:
+//
+//	GetNotificationResponderArgs{...}
+type GetNotificationResponderInput interface {
+	pulumi.Input
+
+	ToGetNotificationResponderOutput() GetNotificationResponderOutput
+	ToGetNotificationResponderOutputWithContext(context.Context) GetNotificationResponderOutput
+}
+
+type GetNotificationResponderArgs struct {
+	// (Optional) Identifier in UUID format
+	Id pulumi.StringInput `pulumi:"id"`
+	// The name set for the recipient.
+	Name pulumi.StringInput `pulumi:"name"`
+	// (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
+	Type pulumi.StringInput `pulumi:"type"`
+	// (Optional) Username of the responder
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetNotificationResponderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNotificationResponder)(nil)).Elem()
+}
+
+func (i GetNotificationResponderArgs) ToGetNotificationResponderOutput() GetNotificationResponderOutput {
+	return i.ToGetNotificationResponderOutputWithContext(context.Background())
+}
+
+func (i GetNotificationResponderArgs) ToGetNotificationResponderOutputWithContext(ctx context.Context) GetNotificationResponderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNotificationResponderOutput)
+}
+
+// GetNotificationResponderArrayInput is an input type that accepts GetNotificationResponderArray and GetNotificationResponderArrayOutput values.
+// You can construct a concrete instance of `GetNotificationResponderArrayInput` via:
+//
+//	GetNotificationResponderArray{ GetNotificationResponderArgs{...} }
+type GetNotificationResponderArrayInput interface {
+	pulumi.Input
+
+	ToGetNotificationResponderArrayOutput() GetNotificationResponderArrayOutput
+	ToGetNotificationResponderArrayOutputWithContext(context.Context) GetNotificationResponderArrayOutput
+}
+
+type GetNotificationResponderArray []GetNotificationResponderInput
+
+func (GetNotificationResponderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNotificationResponder)(nil)).Elem()
+}
+
+func (i GetNotificationResponderArray) ToGetNotificationResponderArrayOutput() GetNotificationResponderArrayOutput {
+	return i.ToGetNotificationResponderArrayOutputWithContext(context.Background())
+}
+
+func (i GetNotificationResponderArray) ToGetNotificationResponderArrayOutputWithContext(ctx context.Context) GetNotificationResponderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNotificationResponderArrayOutput)
+}
+
+type GetNotificationResponderOutput struct{ *pulumi.OutputState }
+
+func (GetNotificationResponderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNotificationResponder)(nil)).Elem()
+}
+
+func (o GetNotificationResponderOutput) ToGetNotificationResponderOutput() GetNotificationResponderOutput {
+	return o
+}
+
+func (o GetNotificationResponderOutput) ToGetNotificationResponderOutputWithContext(ctx context.Context) GetNotificationResponderOutput {
+	return o
+}
+
+// (Optional) Identifier in UUID format
+func (o GetNotificationResponderOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationResponder) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The name set for the recipient.
+func (o GetNotificationResponderOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationResponder) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
+func (o GetNotificationResponderOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationResponder) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// (Optional) Username of the responder
+func (o GetNotificationResponderOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationResponder) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetNotificationResponderArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNotificationResponderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNotificationResponder)(nil)).Elem()
+}
+
+func (o GetNotificationResponderArrayOutput) ToGetNotificationResponderArrayOutput() GetNotificationResponderArrayOutput {
+	return o
+}
+
+func (o GetNotificationResponderArrayOutput) ToGetNotificationResponderArrayOutputWithContext(ctx context.Context) GetNotificationResponderArrayOutput {
+	return o
+}
+
+func (o GetNotificationResponderArrayOutput) Index(i pulumi.IntInput) GetNotificationResponderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNotificationResponder {
+		return vs[0].([]GetNotificationResponder)[vs[1].(int)]
+	}).(GetNotificationResponderOutput)
+}
+
 type GetNotificationsRecipient struct {
-	// The name of the recipient.
+	// (Optional) Name of the responder
 	Name string `pulumi:"name"`
 	// Options argument (e.g. `rk` used for VictorOps routing key).
 	Options map[string]string `pulumi:"options"`
 	// The identifier for the recipient.
 	RecipientId int `pulumi:"recipientId"`
-	// The type of the recipient.
+	// An array of reponders (only for OpsGenie). Each `responders` block
+	// consists of the field documented below.
+	Responders []GetNotificationsRecipientResponder `pulumi:"responders"`
+	// (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
 	Type string `pulumi:"type"`
 	// The notification endpoint, where to send the notification.
 	Value string `pulumi:"value"`
@@ -2975,13 +3102,16 @@ type GetNotificationsRecipientInput interface {
 }
 
 type GetNotificationsRecipientArgs struct {
-	// The name of the recipient.
+	// (Optional) Name of the responder
 	Name pulumi.StringInput `pulumi:"name"`
 	// Options argument (e.g. `rk` used for VictorOps routing key).
 	Options pulumi.StringMapInput `pulumi:"options"`
 	// The identifier for the recipient.
 	RecipientId pulumi.IntInput `pulumi:"recipientId"`
-	// The type of the recipient.
+	// An array of reponders (only for OpsGenie). Each `responders` block
+	// consists of the field documented below.
+	Responders GetNotificationsRecipientResponderArrayInput `pulumi:"responders"`
+	// (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
 	Type pulumi.StringInput `pulumi:"type"`
 	// The notification endpoint, where to send the notification.
 	Value pulumi.StringInput `pulumi:"value"`
@@ -3038,7 +3168,7 @@ func (o GetNotificationsRecipientOutput) ToGetNotificationsRecipientOutputWithCo
 	return o
 }
 
-// The name of the recipient.
+// (Optional) Name of the responder
 func (o GetNotificationsRecipientOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetNotificationsRecipient) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -3053,7 +3183,13 @@ func (o GetNotificationsRecipientOutput) RecipientId() pulumi.IntOutput {
 	return o.ApplyT(func(v GetNotificationsRecipient) int { return v.RecipientId }).(pulumi.IntOutput)
 }
 
-// The type of the recipient.
+// An array of reponders (only for OpsGenie). Each `responders` block
+// consists of the field documented below.
+func (o GetNotificationsRecipientOutput) Responders() GetNotificationsRecipientResponderArrayOutput {
+	return o.ApplyT(func(v GetNotificationsRecipient) []GetNotificationsRecipientResponder { return v.Responders }).(GetNotificationsRecipientResponderArrayOutput)
+}
+
+// (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
 func (o GetNotificationsRecipientOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetNotificationsRecipient) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -3081,6 +3217,130 @@ func (o GetNotificationsRecipientArrayOutput) Index(i pulumi.IntInput) GetNotifi
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNotificationsRecipient {
 		return vs[0].([]GetNotificationsRecipient)[vs[1].(int)]
 	}).(GetNotificationsRecipientOutput)
+}
+
+type GetNotificationsRecipientResponder struct {
+	// (Optional) Identifier in UUID format
+	Id string `pulumi:"id"`
+	// (Optional) Name of the responder
+	Name string `pulumi:"name"`
+	// (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
+	Type string `pulumi:"type"`
+	// (Optional) Username of the responder
+	Username string `pulumi:"username"`
+}
+
+// GetNotificationsRecipientResponderInput is an input type that accepts GetNotificationsRecipientResponderArgs and GetNotificationsRecipientResponderOutput values.
+// You can construct a concrete instance of `GetNotificationsRecipientResponderInput` via:
+//
+//	GetNotificationsRecipientResponderArgs{...}
+type GetNotificationsRecipientResponderInput interface {
+	pulumi.Input
+
+	ToGetNotificationsRecipientResponderOutput() GetNotificationsRecipientResponderOutput
+	ToGetNotificationsRecipientResponderOutputWithContext(context.Context) GetNotificationsRecipientResponderOutput
+}
+
+type GetNotificationsRecipientResponderArgs struct {
+	// (Optional) Identifier in UUID format
+	Id pulumi.StringInput `pulumi:"id"`
+	// (Optional) Name of the responder
+	Name pulumi.StringInput `pulumi:"name"`
+	// (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
+	Type pulumi.StringInput `pulumi:"type"`
+	// (Optional) Username of the responder
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetNotificationsRecipientResponderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNotificationsRecipientResponder)(nil)).Elem()
+}
+
+func (i GetNotificationsRecipientResponderArgs) ToGetNotificationsRecipientResponderOutput() GetNotificationsRecipientResponderOutput {
+	return i.ToGetNotificationsRecipientResponderOutputWithContext(context.Background())
+}
+
+func (i GetNotificationsRecipientResponderArgs) ToGetNotificationsRecipientResponderOutputWithContext(ctx context.Context) GetNotificationsRecipientResponderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNotificationsRecipientResponderOutput)
+}
+
+// GetNotificationsRecipientResponderArrayInput is an input type that accepts GetNotificationsRecipientResponderArray and GetNotificationsRecipientResponderArrayOutput values.
+// You can construct a concrete instance of `GetNotificationsRecipientResponderArrayInput` via:
+//
+//	GetNotificationsRecipientResponderArray{ GetNotificationsRecipientResponderArgs{...} }
+type GetNotificationsRecipientResponderArrayInput interface {
+	pulumi.Input
+
+	ToGetNotificationsRecipientResponderArrayOutput() GetNotificationsRecipientResponderArrayOutput
+	ToGetNotificationsRecipientResponderArrayOutputWithContext(context.Context) GetNotificationsRecipientResponderArrayOutput
+}
+
+type GetNotificationsRecipientResponderArray []GetNotificationsRecipientResponderInput
+
+func (GetNotificationsRecipientResponderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNotificationsRecipientResponder)(nil)).Elem()
+}
+
+func (i GetNotificationsRecipientResponderArray) ToGetNotificationsRecipientResponderArrayOutput() GetNotificationsRecipientResponderArrayOutput {
+	return i.ToGetNotificationsRecipientResponderArrayOutputWithContext(context.Background())
+}
+
+func (i GetNotificationsRecipientResponderArray) ToGetNotificationsRecipientResponderArrayOutputWithContext(ctx context.Context) GetNotificationsRecipientResponderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNotificationsRecipientResponderArrayOutput)
+}
+
+type GetNotificationsRecipientResponderOutput struct{ *pulumi.OutputState }
+
+func (GetNotificationsRecipientResponderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNotificationsRecipientResponder)(nil)).Elem()
+}
+
+func (o GetNotificationsRecipientResponderOutput) ToGetNotificationsRecipientResponderOutput() GetNotificationsRecipientResponderOutput {
+	return o
+}
+
+func (o GetNotificationsRecipientResponderOutput) ToGetNotificationsRecipientResponderOutputWithContext(ctx context.Context) GetNotificationsRecipientResponderOutput {
+	return o
+}
+
+// (Optional) Identifier in UUID format
+func (o GetNotificationsRecipientResponderOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationsRecipientResponder) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// (Optional) Name of the responder
+func (o GetNotificationsRecipientResponderOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationsRecipientResponder) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
+func (o GetNotificationsRecipientResponderOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationsRecipientResponder) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// (Optional) Username of the responder
+func (o GetNotificationsRecipientResponderOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNotificationsRecipientResponder) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetNotificationsRecipientResponderArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNotificationsRecipientResponderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNotificationsRecipientResponder)(nil)).Elem()
+}
+
+func (o GetNotificationsRecipientResponderArrayOutput) ToGetNotificationsRecipientResponderArrayOutput() GetNotificationsRecipientResponderArrayOutput {
+	return o
+}
+
+func (o GetNotificationsRecipientResponderArrayOutput) ToGetNotificationsRecipientResponderArrayOutputWithContext(ctx context.Context) GetNotificationsRecipientResponderArrayOutput {
+	return o
+}
+
+func (o GetNotificationsRecipientResponderArrayOutput) Index(i pulumi.IntInput) GetNotificationsRecipientResponderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNotificationsRecipientResponder {
+		return vs[0].([]GetNotificationsRecipientResponder)[vs[1].(int)]
+	}).(GetNotificationsRecipientResponderOutput)
 }
 
 type GetPluginsCommunityPlugin struct {
@@ -3359,8 +3619,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlarmsAlarmArrayInput)(nil)).Elem(), GetAlarmsAlarmArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeInput)(nil)).Elem(), GetNodesNodeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeArrayInput)(nil)).Elem(), GetNodesNodeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNotificationResponderInput)(nil)).Elem(), GetNotificationResponderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNotificationResponderArrayInput)(nil)).Elem(), GetNotificationResponderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNotificationsRecipientInput)(nil)).Elem(), GetNotificationsRecipientArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNotificationsRecipientArrayInput)(nil)).Elem(), GetNotificationsRecipientArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNotificationsRecipientResponderInput)(nil)).Elem(), GetNotificationsRecipientResponderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNotificationsRecipientResponderArrayInput)(nil)).Elem(), GetNotificationsRecipientResponderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPluginsCommunityPluginInput)(nil)).Elem(), GetPluginsCommunityPluginArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPluginsCommunityPluginArrayInput)(nil)).Elem(), GetPluginsCommunityPluginArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPluginsPluginInput)(nil)).Elem(), GetPluginsPluginArgs{})
@@ -3401,8 +3665,12 @@ func init() {
 	pulumi.RegisterOutputType(GetAlarmsAlarmArrayOutput{})
 	pulumi.RegisterOutputType(GetNodesNodeOutput{})
 	pulumi.RegisterOutputType(GetNodesNodeArrayOutput{})
+	pulumi.RegisterOutputType(GetNotificationResponderOutput{})
+	pulumi.RegisterOutputType(GetNotificationResponderArrayOutput{})
 	pulumi.RegisterOutputType(GetNotificationsRecipientOutput{})
 	pulumi.RegisterOutputType(GetNotificationsRecipientArrayOutput{})
+	pulumi.RegisterOutputType(GetNotificationsRecipientResponderOutput{})
+	pulumi.RegisterOutputType(GetNotificationsRecipientResponderArrayOutput{})
 	pulumi.RegisterOutputType(GetPluginsCommunityPluginOutput{})
 	pulumi.RegisterOutputType(GetPluginsCommunityPluginArrayOutput{})
 	pulumi.RegisterOutputType(GetPluginsPluginOutput{})

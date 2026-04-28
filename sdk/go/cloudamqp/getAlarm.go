@@ -11,6 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// > **Deprecated** This data source will be removed in next major version (v2.0). Use the `getAlarms` data source instead.
+//
 // Use this data source to retrieve information about default or created alarms. Either use `alarmId`
 // or `type` to retrieve the alarm.
 //
@@ -69,9 +71,6 @@ type LookupAlarmArgs struct {
 	// necessary information when retrieve the alarm. Supported
 	// alarm types.
 	Type *string `pulumi:"type"`
-	// Disk value threshold calculation, `(fixed, percentage)` of disk space
-	// remaining.
-	ValueCalculation *string `pulumi:"valueCalculation"`
 }
 
 // A collection of values returned by getAlarm.
@@ -79,7 +78,7 @@ type LookupAlarmResult struct {
 	AlarmId *int `pulumi:"alarmId"`
 	// Enable/disable status of the alarm.
 	Enabled bool `pulumi:"enabled"`
-	// The provider-assigned unique ID for this managed resource.
+	// The identifier for this resource.
 	Id         string `pulumi:"id"`
 	InstanceId int    `pulumi:"instanceId"`
 	// Message type `(total, unacked, ready)` used by queue alarm type.
@@ -97,7 +96,7 @@ type LookupAlarmResult struct {
 	Type          *string `pulumi:"type"`
 	// Disk value threshold calculation, `(fixed, percentage)` of disk space
 	// remaining.
-	ValueCalculation *string `pulumi:"valueCalculation"`
+	ValueCalculation string `pulumi:"valueCalculation"`
 	// The value threshold that triggers the alarm.
 	ValueThreshold int `pulumi:"valueThreshold"`
 	// Regular expression for which vhost to check
@@ -124,9 +123,6 @@ type LookupAlarmOutputArgs struct {
 	// necessary information when retrieve the alarm. Supported
 	// alarm types.
 	Type pulumi.StringPtrInput `pulumi:"type"`
-	// Disk value threshold calculation, `(fixed, percentage)` of disk space
-	// remaining.
-	ValueCalculation pulumi.StringPtrInput `pulumi:"valueCalculation"`
 }
 
 func (LookupAlarmOutputArgs) ElementType() reflect.Type {
@@ -157,7 +153,7 @@ func (o LookupAlarmResultOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupAlarmResult) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The identifier for this resource.
 func (o LookupAlarmResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAlarmResult) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -199,8 +195,8 @@ func (o LookupAlarmResultOutput) Type() pulumi.StringPtrOutput {
 
 // Disk value threshold calculation, `(fixed, percentage)` of disk space
 // remaining.
-func (o LookupAlarmResultOutput) ValueCalculation() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupAlarmResult) *string { return v.ValueCalculation }).(pulumi.StringPtrOutput)
+func (o LookupAlarmResultOutput) ValueCalculation() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAlarmResult) string { return v.ValueCalculation }).(pulumi.StringOutput)
 }
 
 // The value threshold that triggers the alarm.

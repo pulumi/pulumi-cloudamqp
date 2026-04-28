@@ -24,6 +24,7 @@ class Oauth2ConfigurationArgs:
                  resource_server_id: pulumi.Input[_builtins.str],
                  additional_scopes_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  audience: Optional[pulumi.Input[_builtins.str]] = None,
+                 disable_basic_auth: Optional[pulumi.Input[_builtins.bool]] = None,
                  oauth_client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  oauth_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  preferred_username_claims: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -45,6 +46,7 @@ class Oauth2ConfigurationArgs:
         :param pulumi.Input[_builtins.str] audience: The audience to be passed along to the Oauth2 provider when
                logging in to the management interface. Must be configured for Auth0,
                cannot be configured for Entra ID v2.
+        :param pulumi.Input[_builtins.bool] disable_basic_auth: Disable static username/password management interface access.
         :param pulumi.Input[_builtins.str] oauth_client_id: OAuth2 client ID used for token validation.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] oauth_scopes: List of OAuth2 scopes to request. These scopes will be
                used when obtaining access tokens.
@@ -68,6 +70,8 @@ class Oauth2ConfigurationArgs:
             pulumi.set(__self__, "additional_scopes_keys", additional_scopes_keys)
         if audience is not None:
             pulumi.set(__self__, "audience", audience)
+        if disable_basic_auth is not None:
+            pulumi.set(__self__, "disable_basic_auth", disable_basic_auth)
         if oauth_client_id is not None:
             pulumi.set(__self__, "oauth_client_id", oauth_client_id)
         if oauth_scopes is not None:
@@ -149,6 +153,18 @@ class Oauth2ConfigurationArgs:
     @audience.setter
     def audience(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "audience", value)
+
+    @_builtins.property
+    @pulumi.getter(name="disableBasicAuth")
+    def disable_basic_auth(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Disable static username/password management interface access.
+        """
+        return pulumi.get(self, "disable_basic_auth")
+
+    @disable_basic_auth.setter
+    def disable_basic_auth(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "disable_basic_auth", value)
 
     @_builtins.property
     @pulumi.getter(name="oauthClientId")
@@ -259,6 +275,7 @@ class _Oauth2ConfigurationState:
     def __init__(__self__, *,
                  additional_scopes_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  audience: Optional[pulumi.Input[_builtins.str]] = None,
+                 disable_basic_auth: Optional[pulumi.Input[_builtins.bool]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.int]] = None,
                  issuer: Optional[pulumi.Input[_builtins.str]] = None,
                  oauth_client_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -278,6 +295,7 @@ class _Oauth2ConfigurationState:
         :param pulumi.Input[_builtins.str] audience: The audience to be passed along to the Oauth2 provider when
                logging in to the management interface. Must be configured for Auth0,
                cannot be configured for Entra ID v2.
+        :param pulumi.Input[_builtins.bool] disable_basic_auth: Disable static username/password management interface access.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[_builtins.str] issuer: The issuer URL of the OAuth2 provider. This is typically
                the base URL of your OAuth2 provider (e.g., Auth0, Keycloak, etc.).
@@ -303,6 +321,8 @@ class _Oauth2ConfigurationState:
             pulumi.set(__self__, "additional_scopes_keys", additional_scopes_keys)
         if audience is not None:
             pulumi.set(__self__, "audience", audience)
+        if disable_basic_auth is not None:
+            pulumi.set(__self__, "disable_basic_auth", disable_basic_auth)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
         if issuer is not None:
@@ -352,6 +372,18 @@ class _Oauth2ConfigurationState:
     @audience.setter
     def audience(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "audience", value)
+
+    @_builtins.property
+    @pulumi.getter(name="disableBasicAuth")
+    def disable_basic_auth(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Disable static username/password management interface access.
+        """
+        return pulumi.get(self, "disable_basic_auth")
+
+    @disable_basic_auth.setter
+    def disable_basic_auth(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "disable_basic_auth", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceId")
@@ -503,6 +535,7 @@ class Oauth2Configuration(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  additional_scopes_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  audience: Optional[pulumi.Input[_builtins.str]] = None,
+                 disable_basic_auth: Optional[pulumi.Input[_builtins.bool]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.int]] = None,
                  issuer: Optional[pulumi.Input[_builtins.str]] = None,
                  oauth_client_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -581,7 +614,8 @@ class Oauth2Configuration(pulumi.CustomResource):
                 "write",
                 "admin",
             ],
-            audience="https://test-audience.example.com")
+            audience="https://test-audience.example.com",
+            disable_basic_auth=True)
         ```
 
         </details>
@@ -626,6 +660,7 @@ class Oauth2Configuration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] audience: The audience to be passed along to the Oauth2 provider when
                logging in to the management interface. Must be configured for Auth0,
                cannot be configured for Entra ID v2.
+        :param pulumi.Input[_builtins.bool] disable_basic_auth: Disable static username/password management interface access.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[_builtins.str] issuer: The issuer URL of the OAuth2 provider. This is typically
                the base URL of your OAuth2 provider (e.g., Auth0, Keycloak, etc.).
@@ -719,7 +754,8 @@ class Oauth2Configuration(pulumi.CustomResource):
                 "write",
                 "admin",
             ],
-            audience="https://test-audience.example.com")
+            audience="https://test-audience.example.com",
+            disable_basic_auth=True)
         ```
 
         </details>
@@ -774,6 +810,7 @@ class Oauth2Configuration(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  additional_scopes_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  audience: Optional[pulumi.Input[_builtins.str]] = None,
+                 disable_basic_auth: Optional[pulumi.Input[_builtins.bool]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.int]] = None,
                  issuer: Optional[pulumi.Input[_builtins.str]] = None,
                  oauth_client_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -796,6 +833,7 @@ class Oauth2Configuration(pulumi.CustomResource):
 
             __props__.__dict__["additional_scopes_keys"] = additional_scopes_keys
             __props__.__dict__["audience"] = audience
+            __props__.__dict__["disable_basic_auth"] = disable_basic_auth
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
@@ -825,6 +863,7 @@ class Oauth2Configuration(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             additional_scopes_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             audience: Optional[pulumi.Input[_builtins.str]] = None,
+            disable_basic_auth: Optional[pulumi.Input[_builtins.bool]] = None,
             instance_id: Optional[pulumi.Input[_builtins.int]] = None,
             issuer: Optional[pulumi.Input[_builtins.str]] = None,
             oauth_client_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -848,6 +887,7 @@ class Oauth2Configuration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] audience: The audience to be passed along to the Oauth2 provider when
                logging in to the management interface. Must be configured for Auth0,
                cannot be configured for Entra ID v2.
+        :param pulumi.Input[_builtins.bool] disable_basic_auth: Disable static username/password management interface access.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[_builtins.str] issuer: The issuer URL of the OAuth2 provider. This is typically
                the base URL of your OAuth2 provider (e.g., Auth0, Keycloak, etc.).
@@ -875,6 +915,7 @@ class Oauth2Configuration(pulumi.CustomResource):
 
         __props__.__dict__["additional_scopes_keys"] = additional_scopes_keys
         __props__.__dict__["audience"] = audience
+        __props__.__dict__["disable_basic_auth"] = disable_basic_auth
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["issuer"] = issuer
         __props__.__dict__["oauth_client_id"] = oauth_client_id
@@ -906,6 +947,14 @@ class Oauth2Configuration(pulumi.CustomResource):
         cannot be configured for Entra ID v2.
         """
         return pulumi.get(self, "audience")
+
+    @_builtins.property
+    @pulumi.getter(name="disableBasicAuth")
+    def disable_basic_auth(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Disable static username/password management interface access.
+        """
+        return pulumi.get(self, "disable_basic_auth")
 
     @_builtins.property
     @pulumi.getter(name="instanceId")

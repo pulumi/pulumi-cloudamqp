@@ -14,7 +14,7 @@ namespace Pulumi.CloudAmqp.Outputs
     public sealed class GetNotificationsRecipientResult
     {
         /// <summary>
-        /// The name of the recipient.
+        /// (Optional) Name of the responder
         /// </summary>
         public readonly string Name;
         /// <summary>
@@ -26,7 +26,12 @@ namespace Pulumi.CloudAmqp.Outputs
         /// </summary>
         public readonly int RecipientId;
         /// <summary>
-        /// The type of the recipient.
+        /// An array of reponders (only for OpsGenie). Each `Responders` block
+        /// consists of the field documented below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetNotificationsRecipientResponderResult> Responders;
+        /// <summary>
+        /// (Required) Type of responder. [`Team`, `User`, `Escalation`, `Schedule`]
         /// </summary>
         public readonly string Type;
         /// <summary>
@@ -42,6 +47,8 @@ namespace Pulumi.CloudAmqp.Outputs
 
             int recipientId,
 
+            ImmutableArray<Outputs.GetNotificationsRecipientResponderResult> responders,
+
             string type,
 
             string value)
@@ -49,6 +56,7 @@ namespace Pulumi.CloudAmqp.Outputs
             Name = name;
             Options = options;
             RecipientId = recipientId;
+            Responders = responders;
             Type = type;
             Value = value;
         }

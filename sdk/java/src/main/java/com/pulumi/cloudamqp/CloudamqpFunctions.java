@@ -234,6 +234,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invokeAsync("cloudamqp:index/getAccountVpcs:getAccountVpcs", TypeShape.of(GetAccountVpcsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * &gt; **Deprecated** This data source will be removed in next major version (v2.0). Use the `cloudamqp.getAlarms` data source instead.
+     * 
      * Use this data source to retrieve information about default or created alarms. Either use `alarmId`
      * or `type` to retrieve the alarm.
      * 
@@ -284,6 +286,8 @@ public final class CloudamqpFunctions {
         return getAlarm(args, InvokeOptions.Empty);
     }
     /**
+     * &gt; **Deprecated** This data source will be removed in next major version (v2.0). Use the `cloudamqp.getAlarms` data source instead.
+     * 
      * Use this data source to retrieve information about default or created alarms. Either use `alarmId`
      * or `type` to retrieve the alarm.
      * 
@@ -334,6 +338,8 @@ public final class CloudamqpFunctions {
         return getAlarmPlain(args, InvokeOptions.Empty);
     }
     /**
+     * &gt; **Deprecated** This data source will be removed in next major version (v2.0). Use the `cloudamqp.getAlarms` data source instead.
+     * 
      * Use this data source to retrieve information about default or created alarms. Either use `alarmId`
      * or `type` to retrieve the alarm.
      * 
@@ -384,6 +390,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getAlarm:getAlarm", TypeShape.of(GetAlarmResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * &gt; **Deprecated** This data source will be removed in next major version (v2.0). Use the `cloudamqp.getAlarms` data source instead.
+     * 
      * Use this data source to retrieve information about default or created alarms. Either use `alarmId`
      * or `type` to retrieve the alarm.
      * 
@@ -434,6 +442,8 @@ public final class CloudamqpFunctions {
         return Deployment.getInstance().invoke("cloudamqp:index/getAlarm:getAlarm", TypeShape.of(GetAlarmResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * &gt; **Deprecated** This data source will be removed in next major version (v2.0). Use the `cloudamqp.getAlarms` data source instead.
+     * 
      * Use this data source to retrieve information about default or created alarms. Either use `alarmId`
      * or `type` to retrieve the alarm.
      * 

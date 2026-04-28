@@ -3,17 +3,19 @@
 
 package com.pulumi.cloudamqp.outputs;
 
+import com.pulumi.cloudamqp.outputs.GetNotificationsRecipientResponder;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 @CustomType
 public final class GetNotificationsRecipient {
     /**
-     * @return The name of the recipient.
+     * @return (Optional) Name of the responder
      * 
      */
     private String name;
@@ -28,7 +30,13 @@ public final class GetNotificationsRecipient {
      */
     private Integer recipientId;
     /**
-     * @return The type of the recipient.
+     * @return An array of reponders (only for OpsGenie). Each `responders` block
+     * consists of the field documented below.
+     * 
+     */
+    private List<GetNotificationsRecipientResponder> responders;
+    /**
+     * @return (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
      * 
      */
     private String type;
@@ -40,7 +48,7 @@ public final class GetNotificationsRecipient {
 
     private GetNotificationsRecipient() {}
     /**
-     * @return The name of the recipient.
+     * @return (Optional) Name of the responder
      * 
      */
     public String name() {
@@ -61,7 +69,15 @@ public final class GetNotificationsRecipient {
         return this.recipientId;
     }
     /**
-     * @return The type of the recipient.
+     * @return An array of reponders (only for OpsGenie). Each `responders` block
+     * consists of the field documented below.
+     * 
+     */
+    public List<GetNotificationsRecipientResponder> responders() {
+        return this.responders;
+    }
+    /**
+     * @return (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
      * 
      */
     public String type() {
@@ -87,6 +103,7 @@ public final class GetNotificationsRecipient {
         private String name;
         private Map<String,String> options;
         private Integer recipientId;
+        private List<GetNotificationsRecipientResponder> responders;
         private String type;
         private String value;
         public Builder() {}
@@ -95,6 +112,7 @@ public final class GetNotificationsRecipient {
     	      this.name = defaults.name;
     	      this.options = defaults.options;
     	      this.recipientId = defaults.recipientId;
+    	      this.responders = defaults.responders;
     	      this.type = defaults.type;
     	      this.value = defaults.value;
         }
@@ -124,6 +142,17 @@ public final class GetNotificationsRecipient {
             return this;
         }
         @CustomType.Setter
+        public Builder responders(List<GetNotificationsRecipientResponder> responders) {
+            if (responders == null) {
+              throw new MissingRequiredPropertyException("GetNotificationsRecipient", "responders");
+            }
+            this.responders = responders;
+            return this;
+        }
+        public Builder responders(GetNotificationsRecipientResponder... responders) {
+            return responders(List.of(responders));
+        }
+        @CustomType.Setter
         public Builder type(String type) {
             if (type == null) {
               throw new MissingRequiredPropertyException("GetNotificationsRecipient", "type");
@@ -144,6 +173,7 @@ public final class GetNotificationsRecipient {
             _resultValue.name = name;
             _resultValue.options = options;
             _resultValue.recipientId = recipientId;
+            _resultValue.responders = responders;
             _resultValue.type = type;
             _resultValue.value = value;
             return _resultValue;

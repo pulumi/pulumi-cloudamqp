@@ -105,7 +105,8 @@ import (
 //					pulumi.String("write"),
 //					pulumi.String("admin"),
 //				},
-//				Audience: pulumi.String("https://test-audience.example.com"),
+//				Audience:         pulumi.String("https://test-audience.example.com"),
+//				DisableBasicAuth: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
@@ -176,6 +177,8 @@ type Oauth2Configuration struct {
 	// logging in to the management interface. Must be configured for Auth0,
 	// cannot be configured for Entra ID v2.
 	Audience pulumi.StringPtrOutput `pulumi:"audience"`
+	// Disable static username/password management interface access.
+	DisableBasicAuth pulumi.BoolOutput `pulumi:"disableBasicAuth"`
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
 	// The issuer URL of the OAuth2 provider. This is typically
@@ -255,6 +258,8 @@ type oauth2ConfigurationState struct {
 	// logging in to the management interface. Must be configured for Auth0,
 	// cannot be configured for Entra ID v2.
 	Audience *string `pulumi:"audience"`
+	// Disable static username/password management interface access.
+	DisableBasicAuth *bool `pulumi:"disableBasicAuth"`
 	// The CloudAMQP instance ID.
 	InstanceId *int `pulumi:"instanceId"`
 	// The issuer URL of the OAuth2 provider. This is typically
@@ -296,6 +301,8 @@ type Oauth2ConfigurationState struct {
 	// logging in to the management interface. Must be configured for Auth0,
 	// cannot be configured for Entra ID v2.
 	Audience pulumi.StringPtrInput
+	// Disable static username/password management interface access.
+	DisableBasicAuth pulumi.BoolPtrInput
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntPtrInput
 	// The issuer URL of the OAuth2 provider. This is typically
@@ -341,6 +348,8 @@ type oauth2ConfigurationArgs struct {
 	// logging in to the management interface. Must be configured for Auth0,
 	// cannot be configured for Entra ID v2.
 	Audience *string `pulumi:"audience"`
+	// Disable static username/password management interface access.
+	DisableBasicAuth *bool `pulumi:"disableBasicAuth"`
 	// The CloudAMQP instance ID.
 	InstanceId int `pulumi:"instanceId"`
 	// The issuer URL of the OAuth2 provider. This is typically
@@ -383,6 +392,8 @@ type Oauth2ConfigurationArgs struct {
 	// logging in to the management interface. Must be configured for Auth0,
 	// cannot be configured for Entra ID v2.
 	Audience pulumi.StringPtrInput
+	// Disable static username/password management interface access.
+	DisableBasicAuth pulumi.BoolPtrInput
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntInput
 	// The issuer URL of the OAuth2 provider. This is typically
@@ -514,6 +525,11 @@ func (o Oauth2ConfigurationOutput) AdditionalScopesKeys() pulumi.StringArrayOutp
 // cannot be configured for Entra ID v2.
 func (o Oauth2ConfigurationOutput) Audience() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Oauth2Configuration) pulumi.StringPtrOutput { return v.Audience }).(pulumi.StringPtrOutput)
+}
+
+// Disable static username/password management interface access.
+func (o Oauth2ConfigurationOutput) DisableBasicAuth() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Oauth2Configuration) pulumi.BoolOutput { return v.DisableBasicAuth }).(pulumi.BoolOutput)
 }
 
 // The CloudAMQP instance ID.

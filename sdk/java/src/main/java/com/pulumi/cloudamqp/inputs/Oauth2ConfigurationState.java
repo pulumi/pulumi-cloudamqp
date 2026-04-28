@@ -56,6 +56,21 @@ public final class Oauth2ConfigurationState extends com.pulumi.resources.Resourc
     }
 
     /**
+     * Disable static username/password management interface access.
+     * 
+     */
+    @Import(name="disableBasicAuth")
+    private @Nullable Output<Boolean> disableBasicAuth;
+
+    /**
+     * @return Disable static username/password management interface access.
+     * 
+     */
+    public Optional<Output<Boolean>> disableBasicAuth() {
+        return Optional.ofNullable(this.disableBasicAuth);
+    }
+
+    /**
      * The CloudAMQP instance ID.
      * 
      */
@@ -243,6 +258,7 @@ public final class Oauth2ConfigurationState extends com.pulumi.resources.Resourc
     private Oauth2ConfigurationState(Oauth2ConfigurationState $) {
         this.additionalScopesKeys = $.additionalScopesKeys;
         this.audience = $.audience;
+        this.disableBasicAuth = $.disableBasicAuth;
         this.instanceId = $.instanceId;
         this.issuer = $.issuer;
         this.oauthClientId = $.oauthClientId;
@@ -331,6 +347,27 @@ public final class Oauth2ConfigurationState extends com.pulumi.resources.Resourc
          */
         public Builder audience(String audience) {
             return audience(Output.of(audience));
+        }
+
+        /**
+         * @param disableBasicAuth Disable static username/password management interface access.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableBasicAuth(@Nullable Output<Boolean> disableBasicAuth) {
+            $.disableBasicAuth = disableBasicAuth;
+            return this;
+        }
+
+        /**
+         * @param disableBasicAuth Disable static username/password management interface access.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableBasicAuth(Boolean disableBasicAuth) {
+            return disableBasicAuth(Output.of(disableBasicAuth));
         }
 
         /**

@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * > **Deprecated** This data source will be removed in next major version (v2.0). Use the `cloudamqp.getAlarms` data source instead.
+ *
  * Use this data source to retrieve information about default or created alarms. Either use `alarmId`
  * or `type` to retrieve the alarm.
  *
@@ -34,7 +36,6 @@ export function getAlarm(args: GetAlarmArgs, opts?: pulumi.InvokeOptions): Promi
         "alarmId": args.alarmId,
         "instanceId": args.instanceId,
         "type": args.type,
-        "valueCalculation": args.valueCalculation,
     }, opts);
 }
 
@@ -57,11 +58,6 @@ export interface GetAlarmArgs {
      * alarm types.
      */
     type?: string;
-    /**
-     * Disk value threshold calculation, `(fixed, percentage)` of disk space
-     * remaining.
-     */
-    valueCalculation?: string;
 }
 
 /**
@@ -74,7 +70,7 @@ export interface GetAlarmResult {
      */
     readonly enabled: boolean;
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * The identifier for this resource.
      */
     readonly id: string;
     readonly instanceId: number;
@@ -105,7 +101,7 @@ export interface GetAlarmResult {
      * Disk value threshold calculation, `(fixed, percentage)` of disk space
      * remaining.
      */
-    readonly valueCalculation?: string;
+    readonly valueCalculation: string;
     /**
      * The value threshold that triggers the alarm.
      */
@@ -116,6 +112,8 @@ export interface GetAlarmResult {
     readonly vhostRegex: string;
 }
 /**
+ * > **Deprecated** This data source will be removed in next major version (v2.0). Use the `cloudamqp.getAlarms` data source instead.
+ *
  * Use this data source to retrieve information about default or created alarms. Either use `alarmId`
  * or `type` to retrieve the alarm.
  *
@@ -145,7 +143,6 @@ export function getAlarmOutput(args: GetAlarmOutputArgs, opts?: pulumi.InvokeOut
         "alarmId": args.alarmId,
         "instanceId": args.instanceId,
         "type": args.type,
-        "valueCalculation": args.valueCalculation,
     }, opts);
 }
 
@@ -168,9 +165,4 @@ export interface GetAlarmOutputArgs {
      * alarm types.
      */
     type?: pulumi.Input<string>;
-    /**
-     * Disk value threshold calculation, `(fixed, percentage)` of disk space
-     * remaining.
-     */
-    valueCalculation?: pulumi.Input<string>;
 }

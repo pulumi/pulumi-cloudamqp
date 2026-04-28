@@ -34,7 +34,9 @@ __all__ = [
     'GetAccountVpcsVpcResult',
     'GetAlarmsAlarmResult',
     'GetNodesNodeResult',
+    'GetNotificationResponderResult',
     'GetNotificationsRecipientResult',
+    'GetNotificationsRecipientResponderResult',
     'GetPluginsCommunityPluginResult',
     'GetPluginsPluginResult',
 ]
@@ -996,18 +998,19 @@ class GetAccountVpcsVpcResult(dict):
 @pulumi.output_type
 class GetAlarmsAlarmResult(dict):
     def __init__(__self__, *,
+                 alarm_id: _builtins.int,
                  enabled: _builtins.bool,
                  message_type: _builtins.str,
                  queue_regex: _builtins.str,
                  recipients: Sequence[_builtins.int],
                  reminder_interval: _builtins.int,
                  time_threshold: _builtins.int,
+                 type: _builtins.str,
+                 value_calculation: _builtins.str,
                  value_threshold: _builtins.int,
-                 vhost_regex: _builtins.str,
-                 alarm_id: Optional[_builtins.int] = None,
-                 type: Optional[_builtins.str] = None,
-                 value_calculation: Optional[_builtins.str] = None):
+                 vhost_regex: _builtins.str):
         """
+        :param _builtins.int alarm_id: The alarm identifier.
         :param _builtins.bool enabled: Enable/disable status of the alarm.
         :param _builtins.str message_type: Message type `(total, unacked, ready)` used by queue alarm type.
         :param _builtins.str queue_regex: Regular expression for which queue to check.
@@ -1016,28 +1019,32 @@ class GetAlarmsAlarmResult(dict):
                Set to 0 for no reminders.
         :param _builtins.int time_threshold: The time interval (in seconds) the `value_threshold` should be active
                before trigger an alarm.
-        :param _builtins.int value_threshold: The value threshold that triggers the alarm.
-        :param _builtins.str vhost_regex: Regular expression for which vhost to check
-        :param _builtins.int alarm_id: The alarm identifier.
         :param _builtins.str type: The alarm type to filter for. Supported
                alarm types.
         :param _builtins.str value_calculation: Disk value threshold calculation, `(fixed, percentage)` of disk space
                remaining.
+        :param _builtins.int value_threshold: The value threshold that triggers the alarm.
+        :param _builtins.str vhost_regex: Regular expression for which vhost to check
         """
+        pulumi.set(__self__, "alarm_id", alarm_id)
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "message_type", message_type)
         pulumi.set(__self__, "queue_regex", queue_regex)
         pulumi.set(__self__, "recipients", recipients)
         pulumi.set(__self__, "reminder_interval", reminder_interval)
         pulumi.set(__self__, "time_threshold", time_threshold)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value_calculation", value_calculation)
         pulumi.set(__self__, "value_threshold", value_threshold)
         pulumi.set(__self__, "vhost_regex", vhost_regex)
-        if alarm_id is not None:
-            pulumi.set(__self__, "alarm_id", alarm_id)
-        if type is not None:
-            pulumi.set(__self__, "type", type)
-        if value_calculation is not None:
-            pulumi.set(__self__, "value_calculation", value_calculation)
+
+    @_builtins.property
+    @pulumi.getter(name="alarmId")
+    def alarm_id(self) -> _builtins.int:
+        """
+        The alarm identifier.
+        """
+        return pulumi.get(self, "alarm_id")
 
     @_builtins.property
     @pulumi.getter
@@ -1090,6 +1097,24 @@ class GetAlarmsAlarmResult(dict):
         return pulumi.get(self, "time_threshold")
 
     @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The alarm type to filter for. Supported
+        alarm types.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="valueCalculation")
+    def value_calculation(self) -> _builtins.str:
+        """
+        Disk value threshold calculation, `(fixed, percentage)` of disk space
+        remaining.
+        """
+        return pulumi.get(self, "value_calculation")
+
+    @_builtins.property
     @pulumi.getter(name="valueThreshold")
     def value_threshold(self) -> _builtins.int:
         """
@@ -1104,32 +1129,6 @@ class GetAlarmsAlarmResult(dict):
         Regular expression for which vhost to check
         """
         return pulumi.get(self, "vhost_regex")
-
-    @_builtins.property
-    @pulumi.getter(name="alarmId")
-    def alarm_id(self) -> Optional[_builtins.int]:
-        """
-        The alarm identifier.
-        """
-        return pulumi.get(self, "alarm_id")
-
-    @_builtins.property
-    @pulumi.getter
-    def type(self) -> Optional[_builtins.str]:
-        """
-        The alarm type to filter for. Supported
-        alarm types.
-        """
-        return pulumi.get(self, "type")
-
-    @_builtins.property
-    @pulumi.getter(name="valueCalculation")
-    def value_calculation(self) -> Optional[_builtins.str]:
-        """
-        Disk value threshold calculation, `(fixed, percentage)` of disk space
-        remaining.
-        """
-        return pulumi.get(self, "value_calculation")
 
 
 @pulumi.output_type
@@ -1261,23 +1260,78 @@ class GetNodesNodeResult(dict):
 
 
 @pulumi.output_type
+class GetNotificationResponderResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 type: _builtins.str,
+                 username: _builtins.str):
+        """
+        :param _builtins.str id: (Optional) Identifier in UUID format
+        :param _builtins.str name: The name set for the recipient.
+        :param _builtins.str type: (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
+        :param _builtins.str username: (Optional) Username of the responder
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        (Optional) Identifier in UUID format
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name set for the recipient.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        """
+        (Optional) Username of the responder
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
 class GetNotificationsRecipientResult(dict):
     def __init__(__self__, *,
                  name: _builtins.str,
                  options: Mapping[str, _builtins.str],
                  recipient_id: _builtins.int,
+                 responders: Sequence['outputs.GetNotificationsRecipientResponderResult'],
                  type: _builtins.str,
                  value: _builtins.str):
         """
-        :param _builtins.str name: The name of the recipient.
+        :param _builtins.str name: (Optional) Name of the responder
         :param Mapping[str, _builtins.str] options: Options argument (e.g. `rk` used for VictorOps routing key).
         :param _builtins.int recipient_id: The identifier for the recipient.
-        :param _builtins.str type: The type of the recipient.
+        :param Sequence['GetNotificationsRecipientResponderArgs'] responders: An array of reponders (only for OpsGenie). Each `responders` block
+               consists of the field documented below.
+        :param _builtins.str type: (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
         :param _builtins.str value: The notification endpoint, where to send the notification.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "options", options)
         pulumi.set(__self__, "recipient_id", recipient_id)
+        pulumi.set(__self__, "responders", responders)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "value", value)
 
@@ -1285,7 +1339,7 @@ class GetNotificationsRecipientResult(dict):
     @pulumi.getter
     def name(self) -> _builtins.str:
         """
-        The name of the recipient.
+        (Optional) Name of the responder
         """
         return pulumi.get(self, "name")
 
@@ -1307,9 +1361,18 @@ class GetNotificationsRecipientResult(dict):
 
     @_builtins.property
     @pulumi.getter
+    def responders(self) -> Sequence['outputs.GetNotificationsRecipientResponderResult']:
+        """
+        An array of reponders (only for OpsGenie). Each `responders` block
+        consists of the field documented below.
+        """
+        return pulumi.get(self, "responders")
+
+    @_builtins.property
+    @pulumi.getter
     def type(self) -> _builtins.str:
         """
-        The type of the recipient.
+        (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
         """
         return pulumi.get(self, "type")
 
@@ -1320,6 +1383,57 @@ class GetNotificationsRecipientResult(dict):
         The notification endpoint, where to send the notification.
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetNotificationsRecipientResponderResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 type: _builtins.str,
+                 username: _builtins.str):
+        """
+        :param _builtins.str id: (Optional) Identifier in UUID format
+        :param _builtins.str name: (Optional) Name of the responder
+        :param _builtins.str type: (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
+        :param _builtins.str username: (Optional) Username of the responder
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        (Optional) Identifier in UUID format
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        (Optional) Name of the responder
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        """
+        (Optional) Username of the responder
+        """
+        return pulumi.get(self, "username")
 
 
 @pulumi.output_type

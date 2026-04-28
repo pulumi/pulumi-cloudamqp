@@ -120,23 +120,24 @@ namespace Pulumi.CloudAmqp
         [Input("name")]
         public string? Name { get; set; }
 
-        [Input("options")]
-        private Dictionary<string, string>? _options;
-
-        /// <summary>
-        /// Options argument (e.g. `Rk` used for VictorOps routing key).
-        /// </summary>
-        public Dictionary<string, string> Options
-        {
-            get => _options ?? (_options = new Dictionary<string, string>());
-            set => _options = value;
-        }
-
         /// <summary>
         /// The recipient identifier.
         /// </summary>
         [Input("recipientId")]
         public int? RecipientId { get; set; }
+
+        [Input("responders")]
+        private List<Inputs.GetNotificationResponderArgs>? _responders;
+
+        /// <summary>
+        /// An array of reponders (only for OpsGenie). Each `Responders` block
+        /// consists of the field documented below.
+        /// </summary>
+        public List<Inputs.GetNotificationResponderArgs> Responders
+        {
+            get => _responders ?? (_responders = new List<Inputs.GetNotificationResponderArgs>());
+            set => _responders = value;
+        }
 
         public GetNotificationArgs()
         {
@@ -158,23 +159,24 @@ namespace Pulumi.CloudAmqp
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        [Input("options")]
-        private InputMap<string>? _options;
-
-        /// <summary>
-        /// Options argument (e.g. `Rk` used for VictorOps routing key).
-        /// </summary>
-        public InputMap<string> Options
-        {
-            get => _options ?? (_options = new InputMap<string>());
-            set => _options = value;
-        }
-
         /// <summary>
         /// The recipient identifier.
         /// </summary>
         [Input("recipientId")]
         public Input<int>? RecipientId { get; set; }
+
+        [Input("responders")]
+        private InputList<Inputs.GetNotificationResponderInputArgs>? _responders;
+
+        /// <summary>
+        /// An array of reponders (only for OpsGenie). Each `Responders` block
+        /// consists of the field documented below.
+        /// </summary>
+        public InputList<Inputs.GetNotificationResponderInputArgs> Responders
+        {
+            get => _responders ?? (_responders = new InputList<Inputs.GetNotificationResponderInputArgs>());
+            set => _responders = value;
+        }
 
         public GetNotificationInvokeArgs()
         {
@@ -187,18 +189,26 @@ namespace Pulumi.CloudAmqp
     public sealed class GetNotificationResult
     {
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// (Optional) Identifier in UUID format
         /// </summary>
         public readonly string Id;
         public readonly int InstanceId;
-        public readonly string? Name;
+        /// <summary>
+        /// (Optional) Name of the responder
+        /// </summary>
+        public readonly string Name;
         /// <summary>
         /// Options argument (e.g. `Rk` used for VictorOps routing key).
         /// </summary>
-        public readonly ImmutableDictionary<string, string>? Options;
-        public readonly int? RecipientId;
+        public readonly ImmutableDictionary<string, string> Options;
+        public readonly int RecipientId;
         /// <summary>
-        /// The type of the recipient.
+        /// An array of reponders (only for OpsGenie). Each `Responders` block
+        /// consists of the field documented below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetNotificationResponderResult> Responders;
+        /// <summary>
+        /// (Required) Type of responder. [`Team`, `User`, `Escalation`, `Schedule`]
         /// </summary>
         public readonly string Type;
         /// <summary>
@@ -212,11 +222,13 @@ namespace Pulumi.CloudAmqp
 
             int instanceId,
 
-            string? name,
+            string name,
 
-            ImmutableDictionary<string, string>? options,
+            ImmutableDictionary<string, string> options,
 
-            int? recipientId,
+            int recipientId,
+
+            ImmutableArray<Outputs.GetNotificationResponderResult> responders,
 
             string type,
 
@@ -227,6 +239,7 @@ namespace Pulumi.CloudAmqp
             Name = name;
             Options = options;
             RecipientId = recipientId;
+            Responders = responders;
             Type = type;
             Value = value;
         }
