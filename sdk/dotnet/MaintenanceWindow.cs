@@ -133,7 +133,7 @@ namespace Pulumi.CloudAmqp
     {
         /// <summary>
         /// Allow scheduling of a maintenance for version update
-        /// once a new LavinMQ version been released.
+        /// when a new LavinMQ version been released.
         /// </summary>
         [Output("automaticUpdates")]
         public Output<string> AutomaticUpdates { get; private set; } = null!;
@@ -148,13 +148,13 @@ namespace Pulumi.CloudAmqp
         /// Preferred day of the week when to schedule maintenance.
         /// </summary>
         [Output("preferredDay")]
-        public Output<string?> PreferredDay { get; private set; } = null!;
+        public Output<string> PreferredDay { get; private set; } = null!;
 
         /// <summary>
         /// Preferred time (UTC) of the day when to schedule maintenance.
         /// </summary>
         [Output("preferredTime")]
-        public Output<string?> PreferredTime { get; private set; } = null!;
+        public Output<string> PreferredTime { get; private set; } = null!;
 
 
         /// <summary>
@@ -204,7 +204,7 @@ namespace Pulumi.CloudAmqp
     {
         /// <summary>
         /// Allow scheduling of a maintenance for version update
-        /// once a new LavinMQ version been released.
+        /// when a new LavinMQ version been released.
         /// </summary>
         [Input("automaticUpdates")]
         public Input<string>? AutomaticUpdates { get; set; }
@@ -237,7 +237,7 @@ namespace Pulumi.CloudAmqp
     {
         /// <summary>
         /// Allow scheduling of a maintenance for version update
-        /// once a new LavinMQ version been released.
+        /// when a new LavinMQ version been released.
         /// </summary>
         [Input("automaticUpdates")]
         public Input<string>? AutomaticUpdates { get; set; }

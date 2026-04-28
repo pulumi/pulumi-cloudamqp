@@ -125,7 +125,7 @@ export class MaintenanceWindow extends pulumi.CustomResource {
 
     /**
      * Allow scheduling of a maintenance for version update
-     * once a new LavinMQ version been released.
+     * when a new LavinMQ version been released.
      */
     declare public readonly automaticUpdates: pulumi.Output<string>;
     /**
@@ -135,11 +135,11 @@ export class MaintenanceWindow extends pulumi.CustomResource {
     /**
      * Preferred day of the week when to schedule maintenance.
      */
-    declare public readonly preferredDay: pulumi.Output<string | undefined>;
+    declare public readonly preferredDay: pulumi.Output<string>;
     /**
      * Preferred time (UTC) of the day when to schedule maintenance.
      */
-    declare public readonly preferredTime: pulumi.Output<string | undefined>;
+    declare public readonly preferredTime: pulumi.Output<string>;
 
     /**
      * Create a MaintenanceWindow resource with the given unique name, arguments, and options.
@@ -179,7 +179,7 @@ export class MaintenanceWindow extends pulumi.CustomResource {
 export interface MaintenanceWindowState {
     /**
      * Allow scheduling of a maintenance for version update
-     * once a new LavinMQ version been released.
+     * when a new LavinMQ version been released.
      */
     automaticUpdates?: pulumi.Input<string>;
     /**
@@ -202,7 +202,7 @@ export interface MaintenanceWindowState {
 export interface MaintenanceWindowArgs {
     /**
      * Allow scheduling of a maintenance for version update
-     * once a new LavinMQ version been released.
+     * when a new LavinMQ version been released.
      */
     automaticUpdates?: pulumi.Input<string>;
     /**

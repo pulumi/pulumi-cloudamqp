@@ -96,6 +96,7 @@ namespace Pulumi.CloudAmqp
     ///             "admin",
     ///         },
     ///         Audience = "https://test-audience.example.com",
+    ///         DisableBasicAuth = true,
     ///     });
     /// 
     /// });
@@ -160,6 +161,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Output("audience")]
         public Output<string?> Audience { get; private set; } = null!;
+
+        /// <summary>
+        /// Disable static username/password management interface access.
+        /// </summary>
+        [Output("disableBasicAuth")]
+        public Output<bool> DisableBasicAuth { get; private set; } = null!;
 
         /// <summary>
         /// The CloudAMQP instance ID.
@@ -304,6 +311,12 @@ namespace Pulumi.CloudAmqp
         public Input<string>? Audience { get; set; }
 
         /// <summary>
+        /// Disable static username/password management interface access.
+        /// </summary>
+        [Input("disableBasicAuth")]
+        public Input<bool>? DisableBasicAuth { get; set; }
+
+        /// <summary>
         /// The CloudAMQP instance ID.
         /// </summary>
         [Input("instanceId", required: true)]
@@ -424,6 +437,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Input("audience")]
         public Input<string>? Audience { get; set; }
+
+        /// <summary>
+        /// Disable static username/password management interface access.
+        /// </summary>
+        [Input("disableBasicAuth")]
+        public Input<bool>? DisableBasicAuth { get; set; }
 
         /// <summary>
         /// The CloudAMQP instance ID.

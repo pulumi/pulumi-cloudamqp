@@ -22,7 +22,7 @@ public final class GetAlarmResult {
      */
     private Boolean enabled;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The identifier for this resource.
      * 
      */
     private String id;
@@ -60,7 +60,7 @@ public final class GetAlarmResult {
      * remaining.
      * 
      */
-    private @Nullable String valueCalculation;
+    private String valueCalculation;
     /**
      * @return The value threshold that triggers the alarm.
      * 
@@ -84,7 +84,7 @@ public final class GetAlarmResult {
         return this.enabled;
     }
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The identifier for this resource.
      * 
      */
     public String id() {
@@ -138,8 +138,8 @@ public final class GetAlarmResult {
      * remaining.
      * 
      */
-    public Optional<String> valueCalculation() {
-        return Optional.ofNullable(this.valueCalculation);
+    public String valueCalculation() {
+        return this.valueCalculation;
     }
     /**
      * @return The value threshold that triggers the alarm.
@@ -175,7 +175,7 @@ public final class GetAlarmResult {
         private Integer reminderInterval;
         private Integer timeThreshold;
         private @Nullable String type;
-        private @Nullable String valueCalculation;
+        private String valueCalculation;
         private Integer valueThreshold;
         private String vhostRegex;
         public Builder() {}
@@ -276,8 +276,10 @@ public final class GetAlarmResult {
             return this;
         }
         @CustomType.Setter
-        public Builder valueCalculation(@Nullable String valueCalculation) {
-
+        public Builder valueCalculation(String valueCalculation) {
+            if (valueCalculation == null) {
+              throw new MissingRequiredPropertyException("GetAlarmResult", "valueCalculation");
+            }
             this.valueCalculation = valueCalculation;
             return this;
         }

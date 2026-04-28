@@ -3,11 +3,12 @@
 
 package com.pulumi.cloudamqp.inputs;
 
+import com.pulumi.cloudamqp.inputs.GetNotificationResponder;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Map;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -48,21 +49,6 @@ public final class GetNotificationPlainArgs extends com.pulumi.resources.InvokeA
     }
 
     /**
-     * Options argument (e.g. `rk` used for VictorOps routing key).
-     * 
-     */
-    @Import(name="options")
-    private @Nullable Map<String,String> options;
-
-    /**
-     * @return Options argument (e.g. `rk` used for VictorOps routing key).
-     * 
-     */
-    public Optional<Map<String,String>> options() {
-        return Optional.ofNullable(this.options);
-    }
-
-    /**
      * The recipient identifier.
      * 
      */
@@ -77,13 +63,30 @@ public final class GetNotificationPlainArgs extends com.pulumi.resources.InvokeA
         return Optional.ofNullable(this.recipientId);
     }
 
+    /**
+     * An array of reponders (only for OpsGenie). Each `responders` block
+     * consists of the field documented below.
+     * 
+     */
+    @Import(name="responders")
+    private @Nullable List<GetNotificationResponder> responders;
+
+    /**
+     * @return An array of reponders (only for OpsGenie). Each `responders` block
+     * consists of the field documented below.
+     * 
+     */
+    public Optional<List<GetNotificationResponder>> responders() {
+        return Optional.ofNullable(this.responders);
+    }
+
     private GetNotificationPlainArgs() {}
 
     private GetNotificationPlainArgs(GetNotificationPlainArgs $) {
         this.instanceId = $.instanceId;
         this.name = $.name;
-        this.options = $.options;
         this.recipientId = $.recipientId;
+        this.responders = $.responders;
     }
 
     public static Builder builder() {
@@ -127,17 +130,6 @@ public final class GetNotificationPlainArgs extends com.pulumi.resources.InvokeA
         }
 
         /**
-         * @param options Options argument (e.g. `rk` used for VictorOps routing key).
-         * 
-         * @return builder
-         * 
-         */
-        public Builder options(@Nullable Map<String,String> options) {
-            $.options = options;
-            return this;
-        }
-
-        /**
          * @param recipientId The recipient identifier.
          * 
          * @return builder
@@ -146,6 +138,29 @@ public final class GetNotificationPlainArgs extends com.pulumi.resources.InvokeA
         public Builder recipientId(@Nullable Integer recipientId) {
             $.recipientId = recipientId;
             return this;
+        }
+
+        /**
+         * @param responders An array of reponders (only for OpsGenie). Each `responders` block
+         * consists of the field documented below.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder responders(@Nullable List<GetNotificationResponder> responders) {
+            $.responders = responders;
+            return this;
+        }
+
+        /**
+         * @param responders An array of reponders (only for OpsGenie). Each `responders` block
+         * consists of the field documented below.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder responders(GetNotificationResponder... responders) {
+            return responders(List.of(responders));
         }
 
         public GetNotificationPlainArgs build() {

@@ -886,7 +886,7 @@ class Alarm(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="reminderInterval")
-    def reminder_interval(self) -> pulumi.Output[Optional[_builtins.int]]:
+    def reminder_interval(self) -> pulumi.Output[_builtins.int]:
         """
         The reminder interval (in seconds) to resend the alarm if not
         resolved. Set to 0 for no reminders. The Default is 0.

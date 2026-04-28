@@ -61,22 +61,27 @@ type LookupNotificationArgs struct {
 	InstanceId int `pulumi:"instanceId"`
 	// The name set for the recipient.
 	Name *string `pulumi:"name"`
-	// Options argument (e.g. `rk` used for VictorOps routing key).
-	Options map[string]string `pulumi:"options"`
 	// The recipient identifier.
 	RecipientId *int `pulumi:"recipientId"`
+	// An array of reponders (only for OpsGenie). Each `responders` block
+	// consists of the field documented below.
+	Responders []GetNotificationResponder `pulumi:"responders"`
 }
 
 // A collection of values returned by getNotification.
 type LookupNotificationResult struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id         string  `pulumi:"id"`
-	InstanceId int     `pulumi:"instanceId"`
-	Name       *string `pulumi:"name"`
+	// (Optional) Identifier in UUID format
+	Id         string `pulumi:"id"`
+	InstanceId int    `pulumi:"instanceId"`
+	// (Optional) Name of the responder
+	Name string `pulumi:"name"`
 	// Options argument (e.g. `rk` used for VictorOps routing key).
 	Options     map[string]string `pulumi:"options"`
-	RecipientId *int              `pulumi:"recipientId"`
-	// The type of the recipient.
+	RecipientId int               `pulumi:"recipientId"`
+	// An array of reponders (only for OpsGenie). Each `responders` block
+	// consists of the field documented below.
+	Responders []GetNotificationResponder `pulumi:"responders"`
+	// (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
 	Type string `pulumi:"type"`
 	// The notification endpoint, where to send the notification.
 	Value string `pulumi:"value"`
@@ -97,10 +102,11 @@ type LookupNotificationOutputArgs struct {
 	InstanceId pulumi.IntInput `pulumi:"instanceId"`
 	// The name set for the recipient.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// Options argument (e.g. `rk` used for VictorOps routing key).
-	Options pulumi.StringMapInput `pulumi:"options"`
 	// The recipient identifier.
 	RecipientId pulumi.IntPtrInput `pulumi:"recipientId"`
+	// An array of reponders (only for OpsGenie). Each `responders` block
+	// consists of the field documented below.
+	Responders GetNotificationResponderArrayInput `pulumi:"responders"`
 }
 
 func (LookupNotificationOutputArgs) ElementType() reflect.Type {
@@ -122,7 +128,7 @@ func (o LookupNotificationResultOutput) ToLookupNotificationResultOutputWithCont
 	return o
 }
 
-// The provider-assigned unique ID for this managed resource.
+// (Optional) Identifier in UUID format
 func (o LookupNotificationResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNotificationResult) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -131,8 +137,9 @@ func (o LookupNotificationResultOutput) InstanceId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupNotificationResult) int { return v.InstanceId }).(pulumi.IntOutput)
 }
 
-func (o LookupNotificationResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupNotificationResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+// (Optional) Name of the responder
+func (o LookupNotificationResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNotificationResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // Options argument (e.g. `rk` used for VictorOps routing key).
@@ -140,11 +147,17 @@ func (o LookupNotificationResultOutput) Options() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupNotificationResult) map[string]string { return v.Options }).(pulumi.StringMapOutput)
 }
 
-func (o LookupNotificationResultOutput) RecipientId() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v LookupNotificationResult) *int { return v.RecipientId }).(pulumi.IntPtrOutput)
+func (o LookupNotificationResultOutput) RecipientId() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupNotificationResult) int { return v.RecipientId }).(pulumi.IntOutput)
 }
 
-// The type of the recipient.
+// An array of reponders (only for OpsGenie). Each `responders` block
+// consists of the field documented below.
+func (o LookupNotificationResultOutput) Responders() GetNotificationResponderArrayOutput {
+	return o.ApplyT(func(v LookupNotificationResult) []GetNotificationResponder { return v.Responders }).(GetNotificationResponderArrayOutput)
+}
+
+// (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
 func (o LookupNotificationResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNotificationResult) string { return v.Type }).(pulumi.StringOutput)
 }

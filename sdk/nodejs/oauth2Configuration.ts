@@ -72,6 +72,7 @@ import * as utilities from "./utilities";
  *         "admin",
  *     ],
  *     audience: "https://test-audience.example.com",
+ *     disableBasicAuth: true,
  * });
  * ```
  *
@@ -150,6 +151,10 @@ export class Oauth2Configuration extends pulumi.CustomResource {
      */
     declare public readonly audience: pulumi.Output<string | undefined>;
     /**
+     * Disable static username/password management interface access.
+     */
+    declare public readonly disableBasicAuth: pulumi.Output<boolean>;
+    /**
      * The CloudAMQP instance ID.
      */
     declare public readonly instanceId: pulumi.Output<number>;
@@ -218,6 +223,7 @@ export class Oauth2Configuration extends pulumi.CustomResource {
             const state = argsOrState as Oauth2ConfigurationState | undefined;
             resourceInputs["additionalScopesKeys"] = state?.additionalScopesKeys;
             resourceInputs["audience"] = state?.audience;
+            resourceInputs["disableBasicAuth"] = state?.disableBasicAuth;
             resourceInputs["instanceId"] = state?.instanceId;
             resourceInputs["issuer"] = state?.issuer;
             resourceInputs["oauthClientId"] = state?.oauthClientId;
@@ -242,6 +248,7 @@ export class Oauth2Configuration extends pulumi.CustomResource {
             }
             resourceInputs["additionalScopesKeys"] = args?.additionalScopesKeys;
             resourceInputs["audience"] = args?.audience;
+            resourceInputs["disableBasicAuth"] = args?.disableBasicAuth;
             resourceInputs["instanceId"] = args?.instanceId;
             resourceInputs["issuer"] = args?.issuer;
             resourceInputs["oauthClientId"] = args?.oauthClientId;
@@ -274,6 +281,10 @@ export interface Oauth2ConfigurationState {
      * cannot be configured for Entra ID v2.
      */
     audience?: pulumi.Input<string>;
+    /**
+     * Disable static username/password management interface access.
+     */
+    disableBasicAuth?: pulumi.Input<boolean>;
     /**
      * The CloudAMQP instance ID.
      */
@@ -344,6 +355,10 @@ export interface Oauth2ConfigurationArgs {
      * cannot be configured for Entra ID v2.
      */
     audience?: pulumi.Input<string>;
+    /**
+     * Disable static username/password management interface access.
+     */
+    disableBasicAuth?: pulumi.Input<boolean>;
     /**
      * The CloudAMQP instance ID.
      */

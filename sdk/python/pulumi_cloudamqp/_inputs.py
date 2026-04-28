@@ -43,6 +43,8 @@ __all__ = [
     'TrustStoreFileCertificateArgsDict',
     'TrustStoreHttpArgs',
     'TrustStoreHttpArgsDict',
+    'GetNotificationResponderArgs',
+    'GetNotificationResponderArgsDict',
 ]
 
 class ExtraDiskSizeNodeArgsDict(TypedDict):
@@ -1112,5 +1114,90 @@ class TrustStoreHttpArgs:
     @url.setter
     def url(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "url", value)
+
+
+class GetNotificationResponderArgsDict(TypedDict):
+    id: _builtins.str
+    """
+    (Optional) Identifier in UUID format
+    """
+    name: _builtins.str
+    """
+    The name set for the recipient.
+    """
+    type: _builtins.str
+    """
+    (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
+    """
+    username: _builtins.str
+    """
+    (Optional) Username of the responder
+    """
+
+@pulumi.input_type
+class GetNotificationResponderArgs:
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 type: _builtins.str,
+                 username: _builtins.str):
+        """
+        :param _builtins.str id: (Optional) Identifier in UUID format
+        :param _builtins.str name: The name set for the recipient.
+        :param _builtins.str type: (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
+        :param _builtins.str username: (Optional) Username of the responder
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        (Optional) Identifier in UUID format
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: _builtins.str):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name set for the recipient.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: _builtins.str):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: _builtins.str):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        """
+        (Optional) Username of the responder
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: _builtins.str):
+        pulumi.set(self, "username", value)
 
 

@@ -3,32 +3,43 @@
 
 package com.pulumi.cloudamqp.outputs;
 
+import com.pulumi.cloudamqp.outputs.GetNotificationResponder;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 @CustomType
 public final class GetNotificationResult {
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return (Optional) Identifier in UUID format
      * 
      */
     private String id;
     private Integer instanceId;
-    private @Nullable String name;
+    /**
+     * @return (Optional) Name of the responder
+     * 
+     */
+    private String name;
     /**
      * @return Options argument (e.g. `rk` used for VictorOps routing key).
      * 
      */
-    private @Nullable Map<String,String> options;
-    private @Nullable Integer recipientId;
+    private Map<String,String> options;
+    private Integer recipientId;
     /**
-     * @return The type of the recipient.
+     * @return An array of reponders (only for OpsGenie). Each `responders` block
+     * consists of the field documented below.
+     * 
+     */
+    private @Nullable List<GetNotificationResponder> responders;
+    /**
+     * @return (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
      * 
      */
     private String type;
@@ -40,7 +51,7 @@ public final class GetNotificationResult {
 
     private GetNotificationResult() {}
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return (Optional) Identifier in UUID format
      * 
      */
     public String id() {
@@ -49,21 +60,33 @@ public final class GetNotificationResult {
     public Integer instanceId() {
         return this.instanceId;
     }
-    public Optional<String> name() {
-        return Optional.ofNullable(this.name);
+    /**
+     * @return (Optional) Name of the responder
+     * 
+     */
+    public String name() {
+        return this.name;
     }
     /**
      * @return Options argument (e.g. `rk` used for VictorOps routing key).
      * 
      */
     public Map<String,String> options() {
-        return this.options == null ? Map.of() : this.options;
+        return this.options;
     }
-    public Optional<Integer> recipientId() {
-        return Optional.ofNullable(this.recipientId);
+    public Integer recipientId() {
+        return this.recipientId;
     }
     /**
-     * @return The type of the recipient.
+     * @return An array of reponders (only for OpsGenie). Each `responders` block
+     * consists of the field documented below.
+     * 
+     */
+    public List<GetNotificationResponder> responders() {
+        return this.responders == null ? List.of() : this.responders;
+    }
+    /**
+     * @return (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
      * 
      */
     public String type() {
@@ -88,9 +111,10 @@ public final class GetNotificationResult {
     public static final class Builder {
         private String id;
         private Integer instanceId;
-        private @Nullable String name;
-        private @Nullable Map<String,String> options;
-        private @Nullable Integer recipientId;
+        private String name;
+        private Map<String,String> options;
+        private Integer recipientId;
+        private @Nullable List<GetNotificationResponder> responders;
         private String type;
         private String value;
         public Builder() {}
@@ -101,6 +125,7 @@ public final class GetNotificationResult {
     	      this.name = defaults.name;
     	      this.options = defaults.options;
     	      this.recipientId = defaults.recipientId;
+    	      this.responders = defaults.responders;
     	      this.type = defaults.type;
     	      this.value = defaults.value;
         }
@@ -122,22 +147,37 @@ public final class GetNotificationResult {
             return this;
         }
         @CustomType.Setter
-        public Builder name(@Nullable String name) {
-
+        public Builder name(String name) {
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetNotificationResult", "name");
+            }
             this.name = name;
             return this;
         }
         @CustomType.Setter
-        public Builder options(@Nullable Map<String,String> options) {
-
+        public Builder options(Map<String,String> options) {
+            if (options == null) {
+              throw new MissingRequiredPropertyException("GetNotificationResult", "options");
+            }
             this.options = options;
             return this;
         }
         @CustomType.Setter
-        public Builder recipientId(@Nullable Integer recipientId) {
-
+        public Builder recipientId(Integer recipientId) {
+            if (recipientId == null) {
+              throw new MissingRequiredPropertyException("GetNotificationResult", "recipientId");
+            }
             this.recipientId = recipientId;
             return this;
+        }
+        @CustomType.Setter
+        public Builder responders(@Nullable List<GetNotificationResponder> responders) {
+
+            this.responders = responders;
+            return this;
+        }
+        public Builder responders(GetNotificationResponder... responders) {
+            return responders(List.of(responders));
         }
         @CustomType.Setter
         public Builder type(String type) {
@@ -162,6 +202,7 @@ public final class GetNotificationResult {
             _resultValue.name = name;
             _resultValue.options = options;
             _resultValue.recipientId = recipientId;
+            _resultValue.responders = responders;
             _resultValue.type = type;
             _resultValue.value = value;
             return _resultValue;

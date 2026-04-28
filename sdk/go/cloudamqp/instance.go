@@ -391,6 +391,173 @@ import (
 //
 // </details>
 //
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>LavinMQ shared to dedicated in-place upgrade, from v1.45.0</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Initial shared LavinMQ instance
+//			_, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:   pulumi.String("terraform-cloudamqp-instance"),
+//				Plan:   pulumi.String("lemming"),
+//				Region: pulumi.String("amazon-web-services::eu-north-1"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("terraform"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Upgraded to dedicated LavinMQ — region can change within the same cloud provider
+//			// No resource replacement occurs; the instance ID is preserved
+//			_, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:   pulumi.String("terraform-cloudamqp-instance"),
+//				Plan:   pulumi.String("wolverine-1"),
+//				Region: pulumi.String("amazon-web-services::eu-west-1"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("terraform"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// ## LavinMQ shared to dedicated upgrade
+//
+// From v1.45.0 it is possible to upgrade a LavinMQ shared instance (`lemming` or `ermine`) in-place
+// to any dedicated LavinMQ plan without destroying and recreating the resource. The instance ID is
+// preserved and existing definitions are kept. To upgrade, change the `plan` argument and apply.
+//
+// > This upgrade path is only available for **LavinMQ** instances. RabbitMQ shared instances cannot
+// be upgraded in-place to dedicated plans.
+//
+// Optionally, the following attributes can be changed in the same `pulumi up` during the
+// upgrade: `region` (within the same cloud provider), `vpcId`, `vpcSubnet`, and `preferredAz`.
+//
+// See the [LavinMQ shared to dedicated] guide for full details and more examples.
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Upgrade LavinMQ shared instance to dedicated, from v1.45.0</i>
+//	  </b>
+//	</summary>
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Initial shared LavinMQ instance
+//			_, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:   pulumi.String("instance"),
+//				Plan:   pulumi.String("lemming"),
+//				Region: pulumi.String("amazon-web-services::eu-north-1"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("terraform"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Upgraded to dedicated — instance ID is preserved, no resource replacement
+//			_, err := cloudamqp.NewInstance(ctx, "instance", &cloudamqp.InstanceArgs{
+//				Name:   pulumi.String("instance"),
+//				Plan:   pulumi.String("wolverine-1"),
+//				Region: pulumi.String("amazon-web-services::eu-west-1"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("terraform"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// ## Copy settings to a new dedicated instance
+//
+// With copy settings it's possible to create a new dedicated instance with settings such as alarms,
+// config, etc. from another dedicated instance. This can be done by adding the `copySettings` block
+// to this resource and populate `subscriptionId` with a CloudAMQP instance identifier from another
+// already existing instance.
+//
+// > `rmqVersion` argument is required when doing this action. Must match the broker version of the
+// dedicated instance to be copied from.
+//
+// Then add the settings to be copied over to the new dedicated instance. Settings that can be copied
+//
 // ### Settings supported by LavinMQ
 //
 // ***Allowed values:*** alarms, definitions, firewall, metrics
@@ -510,6 +677,7 @@ import (
 // [CloudAMQP plans]: https://www.cloudamqp.com/plans.html
 // [copy settings]: #copy-settings-to-a-new-dedicated-instance
 // [example]: ../guides/info_vpc_existing.md
+// [LavinMQ shared to dedicated]: ../guides/info_lavinmq_shared_to_dedicated.md
 // [regions]: ../guides/info_region.md
 // [**LavinMQ**]: https://lavinmq.com
 // [Managed VPC]: ../guides/info_managed_vpc#dedicated-instance-and-vpc_subnet
@@ -554,6 +722,12 @@ type Instance struct {
 	// change number of nodes the `plan` needs to be updated.
 	Nodes pulumi.IntOutput `pulumi:"nodes"`
 	// The subscription plan. See available [plans].
+	//
+	// ***Note:*** Changing between a LavinMQ shared plan (`lemming`, `ermine`) and a dedicated LavinMQ
+	// plan will **not** force resource replacement. The instance ID is preserved and existing
+	// definitions are kept. See [LavinMQ shared to dedicated] for details.
+	// All other plan type changes (e.g. shared to dedicated for RabbitMQ) will force a new
+	// resource.
 	Plan pulumi.StringOutput `pulumi:"plan"`
 	// The AZs to place your nodes in. Each entry corresponds to a server in your cluster, so for a 3 node cluster, provide 3 AZs in the list.
 	//
@@ -573,6 +747,11 @@ type Instance struct {
 	//
 	// ***Note:*** Changing region will force the instance to be destroyed and a new created in the new
 	// region. All data will be lost and a new name assigned.
+	//
+	// ***Note:*** Exception: when upgrading a LavinMQ shared instance to a dedicated plan, the region
+	// can change without destroying the resource, as long as the cloud provider stays the
+	// same (e.g. `amazon-web-services` → `amazon-web-services` is allowed, but
+	// `amazon-web-services` → `google-compute-engine` is not).
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The Rabbit MQ version. Can be left out, will then be set to
 	// default value used by CloudAMQP API.
@@ -673,6 +852,12 @@ type instanceState struct {
 	// change number of nodes the `plan` needs to be updated.
 	Nodes *int `pulumi:"nodes"`
 	// The subscription plan. See available [plans].
+	//
+	// ***Note:*** Changing between a LavinMQ shared plan (`lemming`, `ermine`) and a dedicated LavinMQ
+	// plan will **not** force resource replacement. The instance ID is preserved and existing
+	// definitions are kept. See [LavinMQ shared to dedicated] for details.
+	// All other plan type changes (e.g. shared to dedicated for RabbitMQ) will force a new
+	// resource.
 	Plan *string `pulumi:"plan"`
 	// The AZs to place your nodes in. Each entry corresponds to a server in your cluster, so for a 3 node cluster, provide 3 AZs in the list.
 	//
@@ -692,6 +877,11 @@ type instanceState struct {
 	//
 	// ***Note:*** Changing region will force the instance to be destroyed and a new created in the new
 	// region. All data will be lost and a new name assigned.
+	//
+	// ***Note:*** Exception: when upgrading a LavinMQ shared instance to a dedicated plan, the region
+	// can change without destroying the resource, as long as the cloud provider stays the
+	// same (e.g. `amazon-web-services` → `amazon-web-services` is allowed, but
+	// `amazon-web-services` → `google-compute-engine` is not).
 	Region *string `pulumi:"region"`
 	// The Rabbit MQ version. Can be left out, will then be set to
 	// default value used by CloudAMQP API.
@@ -751,6 +941,12 @@ type InstanceState struct {
 	// change number of nodes the `plan` needs to be updated.
 	Nodes pulumi.IntPtrInput
 	// The subscription plan. See available [plans].
+	//
+	// ***Note:*** Changing between a LavinMQ shared plan (`lemming`, `ermine`) and a dedicated LavinMQ
+	// plan will **not** force resource replacement. The instance ID is preserved and existing
+	// definitions are kept. See [LavinMQ shared to dedicated] for details.
+	// All other plan type changes (e.g. shared to dedicated for RabbitMQ) will force a new
+	// resource.
 	Plan pulumi.StringPtrInput
 	// The AZs to place your nodes in. Each entry corresponds to a server in your cluster, so for a 3 node cluster, provide 3 AZs in the list.
 	//
@@ -770,6 +966,11 @@ type InstanceState struct {
 	//
 	// ***Note:*** Changing region will force the instance to be destroyed and a new created in the new
 	// region. All data will be lost and a new name assigned.
+	//
+	// ***Note:*** Exception: when upgrading a LavinMQ shared instance to a dedicated plan, the region
+	// can change without destroying the resource, as long as the cloud provider stays the
+	// same (e.g. `amazon-web-services` → `amazon-web-services` is allowed, but
+	// `amazon-web-services` → `google-compute-engine` is not).
 	Region pulumi.StringPtrInput
 	// The Rabbit MQ version. Can be left out, will then be set to
 	// default value used by CloudAMQP API.
@@ -820,6 +1021,12 @@ type instanceArgs struct {
 	// change number of nodes the `plan` needs to be updated.
 	Nodes *int `pulumi:"nodes"`
 	// The subscription plan. See available [plans].
+	//
+	// ***Note:*** Changing between a LavinMQ shared plan (`lemming`, `ermine`) and a dedicated LavinMQ
+	// plan will **not** force resource replacement. The instance ID is preserved and existing
+	// definitions are kept. See [LavinMQ shared to dedicated] for details.
+	// All other plan type changes (e.g. shared to dedicated for RabbitMQ) will force a new
+	// resource.
 	Plan string `pulumi:"plan"`
 	// The AZs to place your nodes in. Each entry corresponds to a server in your cluster, so for a 3 node cluster, provide 3 AZs in the list.
 	//
@@ -837,6 +1044,11 @@ type instanceArgs struct {
 	//
 	// ***Note:*** Changing region will force the instance to be destroyed and a new created in the new
 	// region. All data will be lost and a new name assigned.
+	//
+	// ***Note:*** Exception: when upgrading a LavinMQ shared instance to a dedicated plan, the region
+	// can change without destroying the resource, as long as the cloud provider stays the
+	// same (e.g. `amazon-web-services` → `amazon-web-services` is allowed, but
+	// `amazon-web-services` → `google-compute-engine` is not).
 	Region string `pulumi:"region"`
 	// The Rabbit MQ version. Can be left out, will then be set to
 	// default value used by CloudAMQP API.
@@ -879,6 +1091,12 @@ type InstanceArgs struct {
 	// change number of nodes the `plan` needs to be updated.
 	Nodes pulumi.IntPtrInput
 	// The subscription plan. See available [plans].
+	//
+	// ***Note:*** Changing between a LavinMQ shared plan (`lemming`, `ermine`) and a dedicated LavinMQ
+	// plan will **not** force resource replacement. The instance ID is preserved and existing
+	// definitions are kept. See [LavinMQ shared to dedicated] for details.
+	// All other plan type changes (e.g. shared to dedicated for RabbitMQ) will force a new
+	// resource.
 	Plan pulumi.StringInput
 	// The AZs to place your nodes in. Each entry corresponds to a server in your cluster, so for a 3 node cluster, provide 3 AZs in the list.
 	//
@@ -896,6 +1114,11 @@ type InstanceArgs struct {
 	//
 	// ***Note:*** Changing region will force the instance to be destroyed and a new created in the new
 	// region. All data will be lost and a new name assigned.
+	//
+	// ***Note:*** Exception: when upgrading a LavinMQ shared instance to a dedicated plan, the region
+	// can change without destroying the resource, as long as the cloud provider stays the
+	// same (e.g. `amazon-web-services` → `amazon-web-services` is allowed, but
+	// `amazon-web-services` → `google-compute-engine` is not).
 	Region pulumi.StringInput
 	// The Rabbit MQ version. Can be left out, will then be set to
 	// default value used by CloudAMQP API.
@@ -1069,6 +1292,12 @@ func (o InstanceOutput) Nodes() pulumi.IntOutput {
 }
 
 // The subscription plan. See available [plans].
+//
+// ***Note:*** Changing between a LavinMQ shared plan (`lemming`, `ermine`) and a dedicated LavinMQ
+// plan will **not** force resource replacement. The instance ID is preserved and existing
+// definitions are kept. See [LavinMQ shared to dedicated] for details.
+// All other plan type changes (e.g. shared to dedicated for RabbitMQ) will force a new
+// resource.
 func (o InstanceOutput) Plan() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.Plan }).(pulumi.StringOutput)
 }
@@ -1097,6 +1326,11 @@ func (o InstanceOutput) Ready() pulumi.BoolOutput {
 //
 // ***Note:*** Changing region will force the instance to be destroyed and a new created in the new
 // region. All data will be lost and a new name assigned.
+//
+// ***Note:*** Exception: when upgrading a LavinMQ shared instance to a dedicated plan, the region
+// can change without destroying the resource, as long as the cloud provider stays the
+// same (e.g. `amazon-web-services` → `amazon-web-services` is allowed, but
+// `amazon-web-services` → `google-compute-engine` is not).
 func (o InstanceOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }

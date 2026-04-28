@@ -16,7 +16,7 @@ namespace Pulumi.CloudAmqp.Outputs
         /// <summary>
         /// The alarm identifier.
         /// </summary>
-        public readonly int? AlarmId;
+        public readonly int AlarmId;
         /// <summary>
         /// Enable/disable status of the alarm.
         /// </summary>
@@ -47,12 +47,12 @@ namespace Pulumi.CloudAmqp.Outputs
         /// The alarm type to filter for. Supported
         /// alarm types.
         /// </summary>
-        public readonly string? Type;
+        public readonly string Type;
         /// <summary>
         /// Disk value threshold calculation, `(fixed, percentage)` of disk space
         /// remaining.
         /// </summary>
-        public readonly string? ValueCalculation;
+        public readonly string ValueCalculation;
         /// <summary>
         /// The value threshold that triggers the alarm.
         /// </summary>
@@ -64,7 +64,7 @@ namespace Pulumi.CloudAmqp.Outputs
 
         [OutputConstructor]
         private GetAlarmsAlarmResult(
-            int? alarmId,
+            int alarmId,
 
             bool enabled,
 
@@ -78,9 +78,9 @@ namespace Pulumi.CloudAmqp.Outputs
 
             int timeThreshold,
 
-            string? type,
+            string type,
 
-            string? valueCalculation,
+            string valueCalculation,
 
             int valueThreshold,
 

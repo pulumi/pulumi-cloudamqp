@@ -204,12 +204,24 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     /**
      * The subscription plan. See available [plans].
      * 
+     * ***Note:*** Changing between a LavinMQ shared plan (`lemming`, `ermine`) and a dedicated LavinMQ
+     * plan will **not** force resource replacement. The instance ID is preserved and existing
+     * definitions are kept. See [LavinMQ shared to dedicated] for details.
+     * All other plan type changes (e.g. shared to dedicated for RabbitMQ) will force a new
+     * resource.
+     * 
      */
     @Import(name="plan")
     private @Nullable Output<String> plan;
 
     /**
      * @return The subscription plan. See available [plans].
+     * 
+     * ***Note:*** Changing between a LavinMQ shared plan (`lemming`, `ermine`) and a dedicated LavinMQ
+     * plan will **not** force resource replacement. The instance ID is preserved and existing
+     * definitions are kept. See [LavinMQ shared to dedicated] for details.
+     * All other plan type changes (e.g. shared to dedicated for RabbitMQ) will force a new
+     * resource.
      * 
      */
     public Optional<Output<String>> plan() {
@@ -272,6 +284,11 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
      * ***Note:*** Changing region will force the instance to be destroyed and a new created in the new
      * region. All data will be lost and a new name assigned.
      * 
+     * ***Note:*** Exception: when upgrading a LavinMQ shared instance to a dedicated plan, the region
+     * can change without destroying the resource, as long as the cloud provider stays the
+     * same (e.g. `amazon-web-services` → `amazon-web-services` is allowed, but
+     * `amazon-web-services` → `google-compute-engine` is not).
+     * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
@@ -281,6 +298,11 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
      * 
      * ***Note:*** Changing region will force the instance to be destroyed and a new created in the new
      * region. All data will be lost and a new name assigned.
+     * 
+     * ***Note:*** Exception: when upgrading a LavinMQ shared instance to a dedicated plan, the region
+     * can change without destroying the resource, as long as the cloud provider stays the
+     * same (e.g. `amazon-web-services` → `amazon-web-services` is allowed, but
+     * `amazon-web-services` → `google-compute-engine` is not).
      * 
      */
     public Optional<Output<String>> region() {
@@ -706,6 +728,12 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param plan The subscription plan. See available [plans].
          * 
+         * ***Note:*** Changing between a LavinMQ shared plan (`lemming`, `ermine`) and a dedicated LavinMQ
+         * plan will **not** force resource replacement. The instance ID is preserved and existing
+         * definitions are kept. See [LavinMQ shared to dedicated] for details.
+         * All other plan type changes (e.g. shared to dedicated for RabbitMQ) will force a new
+         * resource.
+         * 
          * @return builder
          * 
          */
@@ -716,6 +744,12 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param plan The subscription plan. See available [plans].
+         * 
+         * ***Note:*** Changing between a LavinMQ shared plan (`lemming`, `ermine`) and a dedicated LavinMQ
+         * plan will **not** force resource replacement. The instance ID is preserved and existing
+         * definitions are kept. See [LavinMQ shared to dedicated] for details.
+         * All other plan type changes (e.g. shared to dedicated for RabbitMQ) will force a new
+         * resource.
          * 
          * @return builder
          * 
@@ -812,6 +846,11 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
          * ***Note:*** Changing region will force the instance to be destroyed and a new created in the new
          * region. All data will be lost and a new name assigned.
          * 
+         * ***Note:*** Exception: when upgrading a LavinMQ shared instance to a dedicated plan, the region
+         * can change without destroying the resource, as long as the cloud provider stays the
+         * same (e.g. `amazon-web-services` → `amazon-web-services` is allowed, but
+         * `amazon-web-services` → `google-compute-engine` is not).
+         * 
          * @return builder
          * 
          */
@@ -825,6 +864,11 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
          * 
          * ***Note:*** Changing region will force the instance to be destroyed and a new created in the new
          * region. All data will be lost and a new name assigned.
+         * 
+         * ***Note:*** Exception: when upgrading a LavinMQ shared instance to a dedicated plan, the region
+         * can change without destroying the resource, as long as the cloud provider stays the
+         * same (e.g. `amazon-web-services` → `amazon-web-services` is allowed, but
+         * `amazon-web-services` → `google-compute-engine` is not).
          * 
          * @return builder
          * 

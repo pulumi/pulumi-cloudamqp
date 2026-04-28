@@ -3,12 +3,13 @@
 
 package com.pulumi.cloudamqp.inputs;
 
+import com.pulumi.cloudamqp.inputs.GetNotificationResponderArgs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Map;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -49,21 +50,6 @@ public final class GetNotificationArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * Options argument (e.g. `rk` used for VictorOps routing key).
-     * 
-     */
-    @Import(name="options")
-    private @Nullable Output<Map<String,String>> options;
-
-    /**
-     * @return Options argument (e.g. `rk` used for VictorOps routing key).
-     * 
-     */
-    public Optional<Output<Map<String,String>>> options() {
-        return Optional.ofNullable(this.options);
-    }
-
-    /**
      * The recipient identifier.
      * 
      */
@@ -78,13 +64,30 @@ public final class GetNotificationArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.recipientId);
     }
 
+    /**
+     * An array of reponders (only for OpsGenie). Each `responders` block
+     * consists of the field documented below.
+     * 
+     */
+    @Import(name="responders")
+    private @Nullable Output<List<GetNotificationResponderArgs>> responders;
+
+    /**
+     * @return An array of reponders (only for OpsGenie). Each `responders` block
+     * consists of the field documented below.
+     * 
+     */
+    public Optional<Output<List<GetNotificationResponderArgs>>> responders() {
+        return Optional.ofNullable(this.responders);
+    }
+
     private GetNotificationArgs() {}
 
     private GetNotificationArgs(GetNotificationArgs $) {
         this.instanceId = $.instanceId;
         this.name = $.name;
-        this.options = $.options;
         this.recipientId = $.recipientId;
+        this.responders = $.responders;
     }
 
     public static Builder builder() {
@@ -148,27 +151,6 @@ public final class GetNotificationArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param options Options argument (e.g. `rk` used for VictorOps routing key).
-         * 
-         * @return builder
-         * 
-         */
-        public Builder options(@Nullable Output<Map<String,String>> options) {
-            $.options = options;
-            return this;
-        }
-
-        /**
-         * @param options Options argument (e.g. `rk` used for VictorOps routing key).
-         * 
-         * @return builder
-         * 
-         */
-        public Builder options(Map<String,String> options) {
-            return options(Output.of(options));
-        }
-
-        /**
          * @param recipientId The recipient identifier.
          * 
          * @return builder
@@ -187,6 +169,40 @@ public final class GetNotificationArgs extends com.pulumi.resources.InvokeArgs {
          */
         public Builder recipientId(Integer recipientId) {
             return recipientId(Output.of(recipientId));
+        }
+
+        /**
+         * @param responders An array of reponders (only for OpsGenie). Each `responders` block
+         * consists of the field documented below.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder responders(@Nullable Output<List<GetNotificationResponderArgs>> responders) {
+            $.responders = responders;
+            return this;
+        }
+
+        /**
+         * @param responders An array of reponders (only for OpsGenie). Each `responders` block
+         * consists of the field documented below.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder responders(List<GetNotificationResponderArgs> responders) {
+            return responders(Output.of(responders));
+        }
+
+        /**
+         * @param responders An array of reponders (only for OpsGenie). Each `responders` block
+         * consists of the field documented below.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder responders(GetNotificationResponderArgs... responders) {
+            return responders(List.of(responders));
         }
 
         public GetNotificationArgs build() {

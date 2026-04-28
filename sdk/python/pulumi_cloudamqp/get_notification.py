@@ -13,6 +13,8 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetNotificationResult',
@@ -26,7 +28,7 @@ class GetNotificationResult:
     """
     A collection of values returned by getNotification.
     """
-    def __init__(__self__, id=None, instance_id=None, name=None, options=None, recipient_id=None, type=None, value=None):
+    def __init__(__self__, id=None, instance_id=None, name=None, options=None, recipient_id=None, responders=None, type=None, value=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -42,6 +44,9 @@ class GetNotificationResult:
         if recipient_id and not isinstance(recipient_id, int):
             raise TypeError("Expected argument 'recipient_id' to be a int")
         pulumi.set(__self__, "recipient_id", recipient_id)
+        if responders and not isinstance(responders, list):
+            raise TypeError("Expected argument 'responders' to be a list")
+        pulumi.set(__self__, "responders", responders)
         if type and not isinstance(type, str):
             raise TypeError("Expected argument 'type' to be a str")
         pulumi.set(__self__, "type", type)
@@ -53,7 +58,7 @@ class GetNotificationResult:
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
-        The provider-assigned unique ID for this managed resource.
+        (Optional) Identifier in UUID format
         """
         return pulumi.get(self, "id")
 
@@ -64,12 +69,15 @@ class GetNotificationResult:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[_builtins.str]:
+    def name(self) -> _builtins.str:
+        """
+        (Optional) Name of the responder
+        """
         return pulumi.get(self, "name")
 
     @_builtins.property
     @pulumi.getter
-    def options(self) -> Optional[Mapping[str, _builtins.str]]:
+    def options(self) -> Mapping[str, _builtins.str]:
         """
         Options argument (e.g. `rk` used for VictorOps routing key).
         """
@@ -77,14 +85,23 @@ class GetNotificationResult:
 
     @_builtins.property
     @pulumi.getter(name="recipientId")
-    def recipient_id(self) -> Optional[_builtins.int]:
+    def recipient_id(self) -> _builtins.int:
         return pulumi.get(self, "recipient_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def responders(self) -> Optional[Sequence['outputs.GetNotificationResponderResult']]:
+        """
+        An array of reponders (only for OpsGenie). Each `responders` block
+        consists of the field documented below.
+        """
+        return pulumi.get(self, "responders")
 
     @_builtins.property
     @pulumi.getter
     def type(self) -> _builtins.str:
         """
-        The type of the recipient.
+        (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
         """
         return pulumi.get(self, "type")
 
@@ -108,14 +125,15 @@ class AwaitableGetNotificationResult(GetNotificationResult):
             name=self.name,
             options=self.options,
             recipient_id=self.recipient_id,
+            responders=self.responders,
             type=self.type,
             value=self.value)
 
 
 def get_notification(instance_id: Optional[_builtins.int] = None,
                      name: Optional[_builtins.str] = None,
-                     options: Optional[Mapping[str, _builtins.str]] = None,
                      recipient_id: Optional[_builtins.int] = None,
+                     responders: Optional[Sequence[Union['GetNotificationResponderArgs', 'GetNotificationResponderArgsDict']]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNotificationResult:
     """
     Use this data source to retrieve information about default or created recipients. The recipient will
@@ -139,14 +157,15 @@ def get_notification(instance_id: Optional[_builtins.int] = None,
 
     :param _builtins.int instance_id: The CloudAMQP instance identifier.
     :param _builtins.str name: The name set for the recipient.
-    :param Mapping[str, _builtins.str] options: Options argument (e.g. `rk` used for VictorOps routing key).
     :param _builtins.int recipient_id: The recipient identifier.
+    :param Sequence[Union['GetNotificationResponderArgs', 'GetNotificationResponderArgsDict']] responders: An array of reponders (only for OpsGenie). Each `responders` block
+           consists of the field documented below.
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['name'] = name
-    __args__['options'] = options
     __args__['recipientId'] = recipient_id
+    __args__['responders'] = responders
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('cloudamqp:index/getNotification:getNotification', __args__, opts=opts, typ=GetNotificationResult).value
 
@@ -156,12 +175,13 @@ def get_notification(instance_id: Optional[_builtins.int] = None,
         name=pulumi.get(__ret__, 'name'),
         options=pulumi.get(__ret__, 'options'),
         recipient_id=pulumi.get(__ret__, 'recipient_id'),
+        responders=pulumi.get(__ret__, 'responders'),
         type=pulumi.get(__ret__, 'type'),
         value=pulumi.get(__ret__, 'value'))
 def get_notification_output(instance_id: Optional[pulumi.Input[_builtins.int]] = None,
                             name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                            options: Optional[pulumi.Input[Optional[Mapping[str, _builtins.str]]]] = None,
                             recipient_id: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
+                            responders: Optional[pulumi.Input[Optional[Sequence[Union['GetNotificationResponderArgs', 'GetNotificationResponderArgsDict']]]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNotificationResult]:
     """
     Use this data source to retrieve information about default or created recipients. The recipient will
@@ -185,14 +205,15 @@ def get_notification_output(instance_id: Optional[pulumi.Input[_builtins.int]] =
 
     :param _builtins.int instance_id: The CloudAMQP instance identifier.
     :param _builtins.str name: The name set for the recipient.
-    :param Mapping[str, _builtins.str] options: Options argument (e.g. `rk` used for VictorOps routing key).
     :param _builtins.int recipient_id: The recipient identifier.
+    :param Sequence[Union['GetNotificationResponderArgs', 'GetNotificationResponderArgsDict']] responders: An array of reponders (only for OpsGenie). Each `responders` block
+           consists of the field documented below.
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['name'] = name
-    __args__['options'] = options
     __args__['recipientId'] = recipient_id
+    __args__['responders'] = responders
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('cloudamqp:index/getNotification:getNotification', __args__, opts=opts, typ=GetNotificationResult)
     return __ret__.apply(lambda __response__: GetNotificationResult(
@@ -201,5 +222,6 @@ def get_notification_output(instance_id: Optional[pulumi.Input[_builtins.int]] =
         name=pulumi.get(__response__, 'name'),
         options=pulumi.get(__response__, 'options'),
         recipient_id=pulumi.get(__response__, 'recipient_id'),
+        responders=pulumi.get(__response__, 'responders'),
         type=pulumi.get(__response__, 'type'),
         value=pulumi.get(__response__, 'value')))

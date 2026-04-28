@@ -10,8 +10,6 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 @CustomType
 public final class GetAlarmsAlarm {
@@ -19,7 +17,7 @@ public final class GetAlarmsAlarm {
      * @return The alarm identifier.
      * 
      */
-    private @Nullable Integer alarmId;
+    private Integer alarmId;
     /**
      * @return Enable/disable status of the alarm.
      * 
@@ -57,13 +55,13 @@ public final class GetAlarmsAlarm {
      * alarm types.
      * 
      */
-    private @Nullable String type;
+    private String type;
     /**
      * @return Disk value threshold calculation, `(fixed, percentage)` of disk space
      * remaining.
      * 
      */
-    private @Nullable String valueCalculation;
+    private String valueCalculation;
     /**
      * @return The value threshold that triggers the alarm.
      * 
@@ -80,8 +78,8 @@ public final class GetAlarmsAlarm {
      * @return The alarm identifier.
      * 
      */
-    public Optional<Integer> alarmId() {
-        return Optional.ofNullable(this.alarmId);
+    public Integer alarmId() {
+        return this.alarmId;
     }
     /**
      * @return Enable/disable status of the alarm.
@@ -132,16 +130,16 @@ public final class GetAlarmsAlarm {
      * alarm types.
      * 
      */
-    public Optional<String> type() {
-        return Optional.ofNullable(this.type);
+    public String type() {
+        return this.type;
     }
     /**
      * @return Disk value threshold calculation, `(fixed, percentage)` of disk space
      * remaining.
      * 
      */
-    public Optional<String> valueCalculation() {
-        return Optional.ofNullable(this.valueCalculation);
+    public String valueCalculation() {
+        return this.valueCalculation;
     }
     /**
      * @return The value threshold that triggers the alarm.
@@ -167,15 +165,15 @@ public final class GetAlarmsAlarm {
     }
     @CustomType.Builder
     public static final class Builder {
-        private @Nullable Integer alarmId;
+        private Integer alarmId;
         private Boolean enabled;
         private String messageType;
         private String queueRegex;
         private List<Integer> recipients;
         private Integer reminderInterval;
         private Integer timeThreshold;
-        private @Nullable String type;
-        private @Nullable String valueCalculation;
+        private String type;
+        private String valueCalculation;
         private Integer valueThreshold;
         private String vhostRegex;
         public Builder() {}
@@ -195,8 +193,10 @@ public final class GetAlarmsAlarm {
         }
 
         @CustomType.Setter
-        public Builder alarmId(@Nullable Integer alarmId) {
-
+        public Builder alarmId(Integer alarmId) {
+            if (alarmId == null) {
+              throw new MissingRequiredPropertyException("GetAlarmsAlarm", "alarmId");
+            }
             this.alarmId = alarmId;
             return this;
         }
@@ -252,14 +252,18 @@ public final class GetAlarmsAlarm {
             return this;
         }
         @CustomType.Setter
-        public Builder type(@Nullable String type) {
-
+        public Builder type(String type) {
+            if (type == null) {
+              throw new MissingRequiredPropertyException("GetAlarmsAlarm", "type");
+            }
             this.type = type;
             return this;
         }
         @CustomType.Setter
-        public Builder valueCalculation(@Nullable String valueCalculation) {
-
+        public Builder valueCalculation(String valueCalculation) {
+            if (valueCalculation == null) {
+              throw new MissingRequiredPropertyException("GetAlarmsAlarm", "valueCalculation");
+            }
             this.valueCalculation = valueCalculation;
             return this;
         }

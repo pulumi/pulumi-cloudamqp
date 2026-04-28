@@ -12,7 +12,6 @@ import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -199,7 +198,7 @@ import javax.annotation.Nullable;
 public class MaintenanceWindow extends com.pulumi.resources.CustomResource {
     /**
      * Allow scheduling of a maintenance for version update
-     * once a new LavinMQ version been released.
+     * when a new LavinMQ version been released.
      * 
      */
     @Export(name="automaticUpdates", refs={String.class}, tree="[0]")
@@ -207,7 +206,7 @@ public class MaintenanceWindow extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Allow scheduling of a maintenance for version update
-     * once a new LavinMQ version been released.
+     * when a new LavinMQ version been released.
      * 
      */
     public Output<String> automaticUpdates() {
@@ -232,28 +231,28 @@ public class MaintenanceWindow extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="preferredDay", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> preferredDay;
+    private Output<String> preferredDay;
 
     /**
      * @return Preferred day of the week when to schedule maintenance.
      * 
      */
-    public Output<Optional<String>> preferredDay() {
-        return Codegen.optional(this.preferredDay);
+    public Output<String> preferredDay() {
+        return this.preferredDay;
     }
     /**
      * Preferred time (UTC) of the day when to schedule maintenance.
      * 
      */
     @Export(name="preferredTime", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> preferredTime;
+    private Output<String> preferredTime;
 
     /**
      * @return Preferred time (UTC) of the day when to schedule maintenance.
      * 
      */
-    public Output<Optional<String>> preferredTime() {
-        return Codegen.optional(this.preferredTime);
+    public Output<String> preferredTime() {
+        return this.preferredTime;
     }
 
     /**
