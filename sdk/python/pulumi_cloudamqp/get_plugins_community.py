@@ -104,7 +104,7 @@ def get_plugins_community(instance_id: Optional[_builtins.int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    communit_plugins = cloudamqp.get_plugins_community(instance_id=instance["id"])
+    communit_plugins = cloudamqp.get_plugins_community(instance_id=int(instance["id"]))
     ```
 
     ## Dependency
@@ -145,7 +145,7 @@ def get_plugins_community_output(instance_id: Optional[pulumi.Input[_builtins.in
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    communit_plugins = cloudamqp.get_plugins_community(instance_id=instance["id"])
+    communit_plugins = cloudamqp.get_plugins_community(instance_id=int(instance["id"]))
     ```
 
     ## Dependency

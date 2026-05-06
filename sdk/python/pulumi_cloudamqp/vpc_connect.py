@@ -421,10 +421,10 @@ class VpcConnect(pulumi.CustomResource):
             plan="penguin-1",
             region="amazon-web-services::us-west-1",
             tags=[],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         vpc_connect = cloudamqp.VpcConnect("vpc_connect",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             region=instance.region,
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         ```
@@ -452,10 +452,10 @@ class VpcConnect(pulumi.CustomResource):
             plan="penguin-1",
             region="azure-arm::westus",
             tags=[],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         vpc_connect = cloudamqp.VpcConnect("vpc_connect",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             region=instance.region,
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         ```
@@ -508,10 +508,10 @@ class VpcConnect(pulumi.CustomResource):
             plan="penguin-1",
             region="google-compute-engine::us-west1",
             tags=[],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         vpc_connect = cloudamqp.VpcConnect("vpc_connect",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             region=instance.region,
             allowed_projects=["some-project-123456"])
         ```
@@ -541,13 +541,13 @@ class VpcConnect(pulumi.CustomResource):
             plan="penguin-1",
             region="amazon-web-services::us-west-1",
             tags=[],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         vpc_connect = cloudamqp.VpcConnect("vpc_connect",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             rules=[
                 {
                     "description": "Custom PrivateLink setup",
@@ -672,10 +672,10 @@ class VpcConnect(pulumi.CustomResource):
             plan="penguin-1",
             region="amazon-web-services::us-west-1",
             tags=[],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         vpc_connect = cloudamqp.VpcConnect("vpc_connect",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             region=instance.region,
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         ```
@@ -703,10 +703,10 @@ class VpcConnect(pulumi.CustomResource):
             plan="penguin-1",
             region="azure-arm::westus",
             tags=[],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         vpc_connect = cloudamqp.VpcConnect("vpc_connect",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             region=instance.region,
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         ```
@@ -759,10 +759,10 @@ class VpcConnect(pulumi.CustomResource):
             plan="penguin-1",
             region="google-compute-engine::us-west1",
             tags=[],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         vpc_connect = cloudamqp.VpcConnect("vpc_connect",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             region=instance.region,
             allowed_projects=["some-project-123456"])
         ```
@@ -792,13 +792,13 @@ class VpcConnect(pulumi.CustomResource):
             plan="penguin-1",
             region="amazon-web-services::us-west-1",
             tags=[],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         vpc_connect = cloudamqp.VpcConnect("vpc_connect",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             rules=[
                 {
                     "description": "Custom PrivateLink setup",

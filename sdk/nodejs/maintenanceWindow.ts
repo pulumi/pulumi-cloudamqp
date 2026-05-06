@@ -27,7 +27,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const _this = new cloudamqp.MaintenanceWindow("this", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     preferredDay: "Monday",
  *     preferredTime: "23:00",
  * });
@@ -48,7 +48,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const _this = new cloudamqp.MaintenanceWindow("this", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     preferredDay: "Monday",
  *     preferredTime: "23:00",
  *     automaticUpdates: "on",
@@ -67,7 +67,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const _this = new cloudamqp.MaintenanceWindow("this", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     preferredTime: "23:00",
  * });
  * ```
@@ -84,7 +84,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const _this = new cloudamqp.MaintenanceWindow("this", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     preferredDay: "Monday",
  * });
  * ```

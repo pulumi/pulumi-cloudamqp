@@ -46,7 +46,7 @@ import * as utilities from "./utilities";
  *     region: "amazon-web-services::us-west-1",
  * });
  * const upgrade = new cloudamqp.UpgradeRabbitmq("upgrade", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     newVersion: "3.13.2",
  * });
  * ```
@@ -73,10 +73,10 @@ import * as utilities from "./utilities";
  *     region: "amazon-web-services::us-west-1",
  * });
  * const upgradableVersions = instance.id.apply(id => cloudamqp.getUpgradableVersionsOutput({
- *     instanceId: id,
+ *     instanceId: Number(id),
  * }));
  * const upgrade = new cloudamqp.UpgradeRabbitmq("upgrade", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     currentVersion: instance.rmqVersion,
  *     newVersion: upgradableVersions.apply(upgradableVersions => upgradableVersions.newRabbitmqVersion),
  * });
@@ -99,10 +99,10 @@ import * as utilities from "./utilities";
  *
  * // Retrieve latest possible upgradable versions for RabbitMQ and Erlang
  * const versions = cloudamqp.getUpgradableVersions({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
- * const upgrade = new cloudamqp.UpgradeRabbitmq("upgrade", {instanceId: instance.id});
+ * const upgrade = new cloudamqp.UpgradeRabbitmq("upgrade", {instanceId: Number(instance.id)});
  * ```
  *
  * ```typescript
@@ -111,7 +111,7 @@ import * as utilities from "./utilities";
  *
  * // Retrieve latest possible upgradable versions for RabbitMQ and Erlang
  * const versions = cloudamqp.getUpgradableVersions({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * ```
  *
@@ -123,10 +123,10 @@ import * as utilities from "./utilities";
  *
  * // Retrieve latest possible upgradable versions for RabbitMQ and Erlang
  * const versions = cloudamqp.getUpgradableVersions({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
- * const upgrade = new cloudamqp.UpgradeRabbitmq("upgrade", {instanceId: instance.id});
+ * const upgrade = new cloudamqp.UpgradeRabbitmq("upgrade", {instanceId: Number(instance.id)});
  * ```
  *
  * </details>

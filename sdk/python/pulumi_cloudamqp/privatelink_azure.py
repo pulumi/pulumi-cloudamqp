@@ -291,7 +291,7 @@ class PrivatelinkAzure(pulumi.CustomResource):
             region="azure-arm::westus",
             tags=[])
         privatelink = cloudamqp.PrivatelinkAzure("privatelink",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         ```
 
@@ -318,10 +318,10 @@ class PrivatelinkAzure(pulumi.CustomResource):
             plan="bunny-1",
             region="azure-arm::westus",
             tags=[],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         privatelink = cloudamqp.PrivatelinkAzure("privatelink",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         ```
 
@@ -350,13 +350,13 @@ class PrivatelinkAzure(pulumi.CustomResource):
             plan="bunny-1",
             region="azure-arm::westus",
             tags=[],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         privatelink = cloudamqp.PrivatelinkAzure("privatelink",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             rules=[
                 {
                     "description": "Custom PrivateLink setup",
@@ -459,7 +459,7 @@ class PrivatelinkAzure(pulumi.CustomResource):
             region="azure-arm::westus",
             tags=[])
         privatelink = cloudamqp.PrivatelinkAzure("privatelink",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         ```
 
@@ -486,10 +486,10 @@ class PrivatelinkAzure(pulumi.CustomResource):
             plan="bunny-1",
             region="azure-arm::westus",
             tags=[],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         privatelink = cloudamqp.PrivatelinkAzure("privatelink",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         ```
 
@@ -518,13 +518,13 @@ class PrivatelinkAzure(pulumi.CustomResource):
             plan="bunny-1",
             region="azure-arm::westus",
             tags=[],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         privatelink = cloudamqp.PrivatelinkAzure("privatelink",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             rules=[
                 {
                     "description": "Custom PrivateLink setup",

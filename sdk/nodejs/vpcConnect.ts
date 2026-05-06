@@ -52,11 +52,11 @@ import * as utilities from "./utilities";
  *     plan: "penguin-1",
  *     region: "amazon-web-services::us-west-1",
  *     tags: [],
- *     vpcId: vpc.id,
+ *     vpcId: vpc.id.apply(x =>Number(x)),
  *     keepAssociatedVpc: true,
  * });
  * const vpcConnect = new cloudamqp.VpcConnect("vpc_connect", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     region: instance.region,
  *     allowedPrincipals: ["arn:aws:iam::aws-account-id:user/user-name"],
  * });
@@ -86,11 +86,11 @@ import * as utilities from "./utilities";
  *     plan: "penguin-1",
  *     region: "azure-arm::westus",
  *     tags: [],
- *     vpcId: vpc.id,
+ *     vpcId: vpc.id.apply(x =>Number(x)),
  *     keepAssociatedVpc: true,
  * });
  * const vpcConnect = new cloudamqp.VpcConnect("vpc_connect", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     region: instance.region,
  *     approvedSubscriptions: ["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"],
  * });
@@ -146,11 +146,11 @@ import * as utilities from "./utilities";
  *     plan: "penguin-1",
  *     region: "google-compute-engine::us-west1",
  *     tags: [],
- *     vpcId: vpc.id,
+ *     vpcId: vpc.id.apply(x =>Number(x)),
  *     keepAssociatedVpc: true,
  * });
  * const vpcConnect = new cloudamqp.VpcConnect("vpc_connect", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     region: instance.region,
  *     allowedProjects: ["some-project-123456"],
  * });
@@ -182,15 +182,15 @@ import * as utilities from "./utilities";
  *     plan: "penguin-1",
  *     region: "amazon-web-services::us-west-1",
  *     tags: [],
- *     vpcId: vpc.id,
+ *     vpcId: vpc.id.apply(x =>Number(x)),
  *     keepAssociatedVpc: true,
  * });
  * const vpcConnect = new cloudamqp.VpcConnect("vpc_connect", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     allowedPrincipals: ["arn:aws:iam::aws-account-id:user/user-name"],
  * });
  * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     rules: [
  *         {
  *             description: "Custom PrivateLink setup",

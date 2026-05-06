@@ -131,7 +131,7 @@ import * as utilities from "./utilities";
  *     plan: "penguin-1",
  *     region: "amazon-web-services::us-west-1",
  *     tags: ["terraform"],
- *     vpcId: vpc.id,
+ *     vpcId: vpc.id.apply(x =>Number(x)),
  *     keepAssociatedVpc: true,
  * });
  * ```
@@ -162,7 +162,7 @@ import * as utilities from "./utilities";
  *     plan: "penguin-1",
  *     region: "amazon-web-services::us-west-1",
  *     tags: ["terraform"],
- *     vpcId: vpc.id,
+ *     vpcId: vpc.id.apply(x =>Number(x)),
  *     keepAssociatedVpc: true,
  * });
  * // Second instance added to managed VPC
@@ -171,7 +171,7 @@ import * as utilities from "./utilities";
  *     plan: "penguin-1",
  *     region: "amazon-web-services::us-west-1",
  *     tags: ["terraform"],
- *     vpcId: vpc.id,
+ *     vpcId: vpc.id.apply(x =>Number(x)),
  *     keepAssociatedVpc: true,
  * });
  * ```

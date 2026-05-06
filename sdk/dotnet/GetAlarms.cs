@@ -26,7 +26,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var queueAlarms = CloudAmqp.Index.GetAlarms.Invoke(new()
+        ///     var queueAlarms = CloudAmqp.GetAlarms.Invoke(new()
         ///     {
         ///         InstanceId = instance.Id,
         ///         Type = "queue",
@@ -61,7 +61,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var queueAlarms = CloudAmqp.Index.GetAlarms.Invoke(new()
+        ///     var queueAlarms = CloudAmqp.GetAlarms.Invoke(new()
         ///     {
         ///         InstanceId = instance.Id,
         ///         Type = "queue",
@@ -96,7 +96,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var queueAlarms = CloudAmqp.Index.GetAlarms.Invoke(new()
+        ///     var queueAlarms = CloudAmqp.GetAlarms.Invoke(new()
         ///     {
         ///         InstanceId = instance.Id,
         ///         Type = "queue",

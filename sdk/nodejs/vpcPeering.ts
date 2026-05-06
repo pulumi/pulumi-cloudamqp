@@ -46,7 +46,7 @@ import * as utilities from "./utilities";
  * });
  * // CloudAMQP - Extract vpc information
  * const vpcInfo = instance.id.apply(id => cloudamqp.getVpcInfoOutput({
- *     instanceId: id,
+ *     instanceId: Number(id),
  * }));
  * // AWS - retrieve instance to get subnet identifier
  * const awsInstance = aws.Instance({
@@ -69,7 +69,7 @@ import * as utilities from "./utilities";
  * });
  * // CloudAMQP - accept the peering request
  * const vpcAcceptPeering = new cloudamqp.VpcPeering("vpc_accept_peering", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     peeringId: awsVpcPeering.id,
  * });
  * // AWS - retrieve the route table created in AWS
@@ -113,7 +113,7 @@ import * as utilities from "./utilities";
  *     plan: "penguin-1",
  *     region: "amazon-web-services::us-east-1",
  *     tags: ["terraform"],
- *     vpcId: vpc.id,
+ *     vpcId: vpc.id.apply(x =>Number(x)),
  *     keepAssociatedVpc: true,
  * });
  * // CloudAMQP - Extract vpc information
@@ -182,12 +182,12 @@ import * as utilities from "./utilities";
  * });
  * // CloudAMQP - accept the peering request
  * const vpcAcceptPeering = new cloudamqp.VpcPeering("vpc_accept_peering", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     peeringId: awsVpcPeering.id,
  * });
  * // Firewall rules
  * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     rules: [
  *         {
  *             ip: awsInstance.subnetId,
@@ -251,7 +251,7 @@ import * as utilities from "./utilities";
  * });
  * // CloudAMQP - Managed firewall rules
  * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     rules: [
  *         {
  *             ip: requesterVpc.cidrBlock,

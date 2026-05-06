@@ -25,7 +25,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const vpcInfo = cloudamqp.getVpcInfo({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * ```
  *
@@ -135,7 +135,7 @@ export interface GetVpcInfoResult {
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const vpcInfo = cloudamqp.getVpcInfo({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * ```
  *

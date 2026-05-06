@@ -39,7 +39,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const trustStore = new cloudamqp.TrustStore("trust_store", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     http: {
  *         url: "https://example.com/trust-store-certs",
  *     },

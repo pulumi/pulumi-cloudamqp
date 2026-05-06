@@ -37,7 +37,7 @@ import * as utilities from "./utilities";
  *     tags: [],
  * });
  * const privatelink = new cloudamqp.PrivatelinkAws("privatelink", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     allowedPrincipals: ["arn:aws:iam::aws-account-id:user/user-name"],
  * });
  * ```
@@ -66,11 +66,11 @@ import * as utilities from "./utilities";
  *     plan: "bunny-1",
  *     region: "amazon-web-services::us-west-1",
  *     tags: [],
- *     vpcId: vpc.id,
+ *     vpcId: vpc.id.apply(x =>Number(x)),
  *     keepAssociatedVpc: true,
  * });
  * const privatelink = new cloudamqp.PrivatelinkAws("privatelink", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     allowedPrincipals: ["arn:aws:iam::aws-account-id:user/user-name"],
  * });
  * ```
@@ -101,15 +101,15 @@ import * as utilities from "./utilities";
  *     plan: "bunny-1",
  *     region: "amazon-web-services::us-west-1",
  *     tags: [],
- *     vpcId: vpc.id,
+ *     vpcId: vpc.id.apply(x =>Number(x)),
  *     keepAssociatedVpc: true,
  * });
  * const privatelink = new cloudamqp.PrivatelinkAws("privatelink", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     allowedPrincipals: ["arn:aws:iam::aws-account-id:user/user-name"],
  * });
  * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     rules: [
  *         {
  *             description: "Custom PrivateLink setup",

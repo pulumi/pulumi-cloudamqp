@@ -34,7 +34,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var azureMonitor = new CloudAmqp.Index.IntegrationLog("azure_monitor", new()
+    ///     var azureMonitor = new CloudAmqp.IntegrationLog("azure_monitor", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "azure_monitor",
@@ -66,7 +66,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var cloudwatch = new CloudAmqp.Index.IntegrationLog("cloudwatch", new()
+    ///     var cloudwatch = new CloudAmqp.IntegrationLog("cloudwatch", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "cloudwatchlog",
@@ -97,7 +97,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var cloudwatch = new CloudAmqp.Index.IntegrationLog("cloudwatch", new()
+    ///     var cloudwatch = new CloudAmqp.IntegrationLog("cloudwatch", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "cloudwatchlog",
@@ -128,7 +128,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var coralogix = new CloudAmqp.Index.IntegrationLog("coralogix", new()
+    ///     var coralogix = new CloudAmqp.IntegrationLog("coralogix", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "coralogix",
@@ -158,7 +158,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var datadog = new CloudAmqp.Index.IntegrationLog("datadog", new()
+    ///     var datadog = new CloudAmqp.IntegrationLog("datadog", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "datadog",
@@ -187,7 +187,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var logentries = new CloudAmqp.Index.IntegrationLog("logentries", new()
+    ///     var logentries = new CloudAmqp.IntegrationLog("logentries", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "logentries",
@@ -214,7 +214,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var loggly = new CloudAmqp.Index.IntegrationLog("loggly", new()
+    ///     var loggly = new CloudAmqp.IntegrationLog("loggly", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "loggly",
@@ -241,7 +241,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var papertrail = new CloudAmqp.Index.IntegrationLog("papertrail", new()
+    ///     var papertrail = new CloudAmqp.IntegrationLog("papertrail", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "papertrail",
@@ -268,7 +268,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var scalyr = new CloudAmqp.Index.IntegrationLog("scalyr", new()
+    ///     var scalyr = new CloudAmqp.IntegrationLog("scalyr", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "scalyr",
@@ -296,7 +296,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var splunk = new CloudAmqp.Index.IntegrationLog("splunk", new()
+    ///     var splunk = new CloudAmqp.IntegrationLog("splunk", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "splunk",
@@ -327,7 +327,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var stackdriver = new CloudAmqp.Index.IntegrationLog("stackdriver", new()
+    ///     var stackdriver = new CloudAmqp.IntegrationLog("stackdriver", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "stackdriver",
@@ -351,39 +351,39 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var serviceAccount = new Google.Index.ServiceAccount("service_account", new()
+    ///     var serviceAccount = new Google.ServiceAccount("service_account", new()
     ///     {
     ///         AccountId = "&lt;account_id&gt;",
     ///         Description = "&lt;description&gt;",
     ///         DisplayName = "&lt;display_name&gt;",
     ///     });
     /// 
-    ///     var serviceAccountKey = new Google.Index.ServiceAccountKey("service_account_key", new()
+    ///     var serviceAccountKey = new Google.ServiceAccountKey("service_account_key", new()
     ///     {
     ///         ServiceAccountId = serviceAccount.Name,
     ///     });
     /// 
-    ///     var stackdriver = new CloudAmqp.Index.IntegrationLog("stackdriver", new()
+    ///     var stackdriver = new CloudAmqp.IntegrationLog("stackdriver", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "stackdriver",
-    ///         ProjectId = Std.Index.Jsondecode.Invoke(new()
+    ///         ProjectId = Std.Jsondecode.Invoke(new()
     ///         {
-    ///             Input = Std.Index.Base64decode.Invoke(new()
+    ///             Input = Std.Base64decode.Invoke(new()
     ///             {
     ///                 Input = serviceAccountKey.PrivateKey,
     ///             }).Result,
     ///         }).Result.ProjectId,
-    ///         PrivateKey = Std.Index.Jsondecode.Invoke(new()
+    ///         PrivateKey = Std.Jsondecode.Invoke(new()
     ///         {
-    ///             Input = Std.Index.Base64decode.Invoke(new()
+    ///             Input = Std.Base64decode.Invoke(new()
     ///             {
     ///                 Input = serviceAccountKey.PrivateKey,
     ///             }).Result,
     ///         }).Result.PrivateKey,
-    ///         ClientEmail = Std.Index.Jsondecode.Invoke(new()
+    ///         ClientEmail = Std.Jsondecode.Invoke(new()
     ///         {
-    ///             Input = Std.Index.Base64decode.Invoke(new()
+    ///             Input = Std.Base64decode.Invoke(new()
     ///             {
     ///                 Input = serviceAccountKey.PrivateKey,
     ///             }).Result,
@@ -414,19 +414,19 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var serviceAccount = new Google.Index.ServiceAccount("service_account", new()
+    ///     var serviceAccount = new Google.ServiceAccount("service_account", new()
     ///     {
     ///         AccountId = "&lt;account_id&gt;",
     ///         Description = "&lt;description&gt;",
     ///         DisplayName = "&lt;display_name&gt;",
     ///     });
     /// 
-    ///     var serviceAccountKey = new Google.Index.ServiceAccountKey("service_account_key", new()
+    ///     var serviceAccountKey = new Google.ServiceAccountKey("service_account_key", new()
     ///     {
     ///         ServiceAccountId = serviceAccount.Name,
     ///     });
     /// 
-    ///     var stackdriver = new CloudAmqp.Index.IntegrationLog("stackdriver", new()
+    ///     var stackdriver = new CloudAmqp.IntegrationLog("stackdriver", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "stackdriver",
@@ -448,39 +448,39 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var serviceAccount = new Google.Index.ServiceAccount("service_account", new()
+    ///     var serviceAccount = new Google.ServiceAccount("service_account", new()
     ///     {
     ///         AccountId = "&lt;account_id&gt;",
     ///         Description = "&lt;description&gt;",
     ///         DisplayName = "&lt;display_name&gt;",
     ///     });
     /// 
-    ///     var serviceAccountKey = new Google.Index.ServiceAccountKey("service_account_key", new()
+    ///     var serviceAccountKey = new Google.ServiceAccountKey("service_account_key", new()
     ///     {
     ///         ServiceAccountId = serviceAccount.Name,
     ///     });
     /// 
-    ///     var stackdriver = new CloudAmqp.Index.IntegrationLog("stackdriver", new()
+    ///     var stackdriver = new CloudAmqp.IntegrationLog("stackdriver", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Name = "stackdriver",
-    ///         ProjectId = Std.Index.Jsondecode.Invoke(new()
+    ///         ProjectId = Std.Jsondecode.Invoke(new()
     ///         {
-    ///             Input = Std.Index.Base64decode.Invoke(new()
+    ///             Input = Std.Base64decode.Invoke(new()
     ///             {
     ///                 Input = serviceAccountKey.PrivateKey,
     ///             }).Result,
     ///         }).Result.ProjectId,
-    ///         PrivateKey = Std.Index.Jsondecode.Invoke(new()
+    ///         PrivateKey = Std.Jsondecode.Invoke(new()
     ///         {
-    ///             Input = Std.Index.Base64decode.Invoke(new()
+    ///             Input = Std.Base64decode.Invoke(new()
     ///             {
     ///                 Input = serviceAccountKey.PrivateKey,
     ///             }).Result,
     ///         }).Result.PrivateKey,
-    ///         ClientEmail = Std.Index.Jsondecode.Invoke(new()
+    ///         ClientEmail = Std.Jsondecode.Invoke(new()
     ///         {
-    ///             Input = Std.Index.Base64decode.Invoke(new()
+    ///             Input = Std.Base64decode.Invoke(new()
     ///             {
     ///                 Input = serviceAccountKey.PrivateKey,
     ///             }).Result,

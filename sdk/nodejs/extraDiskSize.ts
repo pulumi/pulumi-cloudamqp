@@ -57,13 +57,13 @@ import * as utilities from "./utilities";
  * });
  * // Resize disk with 25 extra GB
  * const resizeDisk = new cloudamqp.ExtraDiskSize("resize_disk", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     extraDiskSize: 25,
  * });
  * // Optional, refresh nodes info after disk resize by adding dependency
  * // to cloudamqp_extra_disk_size.resize_disk resource
  * const nodes = instance.id.apply(id => cloudamqp.getNodesOutput({
- *     instanceId: id,
+ *     instanceId: Number(id),
  * }));
  * ```
  *
@@ -88,13 +88,13 @@ import * as utilities from "./utilities";
  * });
  * // Resize disk with 25 extra GB, without downtime
  * const resizeDisk = new cloudamqp.ExtraDiskSize("resize_disk", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     extraDiskSize: 25,
  * });
  * // Optional, refresh nodes info after disk resize by adding dependency
  * // to cloudamqp_extra_disk_size.resize_disk resource
  * const nodes = instance.id.apply(id => cloudamqp.getNodesOutput({
- *     instanceId: id,
+ *     instanceId: Number(id),
  * }));
  * ```
  *
@@ -119,13 +119,13 @@ import * as utilities from "./utilities";
  * });
  * // Resize disk with 25 extra GB, without downtime
  * const resizeDisk = new cloudamqp.ExtraDiskSize("resize_disk", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     extraDiskSize: 25,
  * });
  * // Optional, refresh nodes info after disk resize by adding dependency
  * // to cloudamqp_extra_disk_size.resize_disk resource
  * const nodes = instance.id.apply(id => cloudamqp.getNodesOutput({
- *     instanceId: id,
+ *     instanceId: Number(id),
  * }));
  * ```
  *
@@ -150,13 +150,13 @@ import * as utilities from "./utilities";
  * });
  * // Resize disk with 25 extra GB, with downtime
  * const resizeDisk = new cloudamqp.ExtraDiskSize("resize_disk", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     extraDiskSize: 25,
  * });
  * // Optional, refresh nodes info after disk resize by adding dependency
  * // to cloudamqp_extra_disk_size.resize_disk resource
  * const nodes = instance.id.apply(id => cloudamqp.getNodesOutput({
- *     instanceId: id,
+ *     instanceId: Number(id),
  * }));
  * ```
  *

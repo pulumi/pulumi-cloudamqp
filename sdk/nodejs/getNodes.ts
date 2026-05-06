@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const nodes = cloudamqp.getNodes({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * ```
  *
@@ -65,7 +65,7 @@ export interface GetNodesResult {
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const nodes = cloudamqp.getNodes({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * ```
  *

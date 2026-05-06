@@ -146,7 +146,7 @@ def get_vpc_gcp_info(instance_id: Optional[_builtins.int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    vpc_info = cloudamqp.get_vpc_gcp_info(instance_id=instance["id"])
+    vpc_info = cloudamqp.get_vpc_gcp_info(instance_id=int(instance["id"]))
     ```
 
     </details>
@@ -232,7 +232,7 @@ def get_vpc_gcp_info_output(instance_id: Optional[pulumi.Input[Optional[_builtin
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    vpc_info = cloudamqp.get_vpc_gcp_info(instance_id=instance["id"])
+    vpc_info = cloudamqp.get_vpc_gcp_info(instance_id=int(instance["id"]))
     ```
 
     </details>

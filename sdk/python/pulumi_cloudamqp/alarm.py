@@ -461,28 +461,28 @@ class Alarm(pulumi.CustomResource):
 
         # New recipient
         recipient01 = cloudamqp.Notification("recipient_01",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="email",
             value="alarm@example.com",
             name="alarm")
         # New cpu alarm
         cpu_alarm = cloudamqp.Alarm("cpu_alarm",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="cpu",
             enabled=True,
             reminder_interval=600,
             value_threshold=95,
             time_threshold=600,
-            recipients=[recipient01.id])
+            recipients=[recipient01.id.apply(lambda x: int(x))])
         # New memory alarm
         memory_alarm = cloudamqp.Alarm("memory_alarm",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="memory",
             enabled=True,
             reminder_interval=600,
             value_threshold=95,
             time_threshold=600,
-            recipients=[recipient01.id])
+            recipients=[recipient01.id.apply(lambda x: int(x))])
         ```
 
         </details>
@@ -503,16 +503,16 @@ class Alarm(pulumi.CustomResource):
 
         # New recipient
         recipient01 = cloudamqp.Notification("recipient_01",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="email",
             value="alarm@example.com",
             name="alarm")
         # Update existing notice alarm
         notice = cloudamqp.Alarm("notice",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="notice",
             enabled=True,
-            recipients=[recipient01.id])
+            recipients=[recipient01.id.apply(lambda x: int(x))])
         ```
 
         </details>
@@ -620,28 +620,28 @@ class Alarm(pulumi.CustomResource):
 
         # New recipient
         recipient01 = cloudamqp.Notification("recipient_01",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="email",
             value="alarm@example.com",
             name="alarm")
         # New cpu alarm
         cpu_alarm = cloudamqp.Alarm("cpu_alarm",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="cpu",
             enabled=True,
             reminder_interval=600,
             value_threshold=95,
             time_threshold=600,
-            recipients=[recipient01.id])
+            recipients=[recipient01.id.apply(lambda x: int(x))])
         # New memory alarm
         memory_alarm = cloudamqp.Alarm("memory_alarm",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="memory",
             enabled=True,
             reminder_interval=600,
             value_threshold=95,
             time_threshold=600,
-            recipients=[recipient01.id])
+            recipients=[recipient01.id.apply(lambda x: int(x))])
         ```
 
         </details>
@@ -662,16 +662,16 @@ class Alarm(pulumi.CustomResource):
 
         # New recipient
         recipient01 = cloudamqp.Notification("recipient_01",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="email",
             value="alarm@example.com",
             name="alarm")
         # Update existing notice alarm
         notice = cloudamqp.Alarm("notice",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="notice",
             enabled=True,
-            recipients=[recipient01.id])
+            recipients=[recipient01.id.apply(lambda x: int(x))])
         ```
 
         </details>

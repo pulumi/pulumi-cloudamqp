@@ -367,7 +367,7 @@ class TrustStore(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         trust_store = cloudamqp.TrustStore("trust_store",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             http={
                 "url": "https://example.com/trust-store-certs",
             },
@@ -441,7 +441,7 @@ class TrustStore(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         trust_store = cloudamqp.TrustStore("trust_store",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             http={
                 "url": "https://example.com/trust-store-certs",
             },

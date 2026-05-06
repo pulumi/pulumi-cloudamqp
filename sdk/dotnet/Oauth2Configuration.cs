@@ -33,7 +33,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var oauth2Config = new CloudAmqp.Index.Oauth2Configuration("oauth2_config", new()
+    ///     var oauth2Config = new CloudAmqp.Oauth2Configuration("oauth2_config", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         ResourceServerId = "test-resource-server",
@@ -67,7 +67,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var oauth2Config = new CloudAmqp.Index.Oauth2Configuration("oauth2_config", new()
+    ///     var oauth2Config = new CloudAmqp.Oauth2Configuration("oauth2_config", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         ResourceServerId = "test-resource-server",
@@ -119,7 +119,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var oauth2Config = new CloudAmqp.Index.Oauth2Configuration("oauth2_config", new()
+    ///     var oauth2Config = new CloudAmqp.Oauth2Configuration("oauth2_config", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         ResourceServerId = "test-resource-server",

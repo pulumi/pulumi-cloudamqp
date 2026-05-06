@@ -318,7 +318,7 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
             rmq_version="3.11.5",
             tags=["aws"])
         this = cloudamqp.IntegrationAwsEventbridge("this",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             vhost=instance.vhost,
             queue="<QUEUE-NAME>",
             aws_account_id="<AWS-ACCOUNT-ID>",
@@ -346,7 +346,7 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
             rmq_version="3.11.5",
             tags=["aws"])
         this = cloudamqp.IntegrationAwsEventbridge("this",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             vhost=instance.vhost,
             queue="<QUEUE-NAME>",
             aws_account_id="<AWS-ACCOUNT-ID>",
@@ -429,7 +429,7 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
             rmq_version="3.11.5",
             tags=["aws"])
         this = cloudamqp.IntegrationAwsEventbridge("this",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             vhost=instance.vhost,
             queue="<QUEUE-NAME>",
             aws_account_id="<AWS-ACCOUNT-ID>",
@@ -457,7 +457,7 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
             rmq_version="3.11.5",
             tags=["aws"])
         this = cloudamqp.IntegrationAwsEventbridge("this",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             vhost=instance.vhost,
             queue="<QUEUE-NAME>",
             aws_account_id="<AWS-ACCOUNT-ID>",

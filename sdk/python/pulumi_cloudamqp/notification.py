@@ -315,7 +315,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         email_recipient = cloudamqp.Notification("email_recipient",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="email",
             value="alarm@example.com",
             name="alarm")
@@ -333,7 +333,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         opsgenie_recipient = cloudamqp.Notification("opsgenie_recipient",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="opsgenie",
             value="<api-key>",
             name="OpsGenie",
@@ -361,7 +361,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         pagerduty_recipient = cloudamqp.Notification("pagerduty_recipient",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="pagerduty",
             value="<integration-key>",
             name="PagerDuty",
@@ -382,7 +382,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         signl4_recipient = cloudamqp.Notification("signl4_recipient",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="signl4",
             value="<team-secret>",
             name="Signl4")
@@ -400,7 +400,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         teams_recipient = cloudamqp.Notification("teams_recipient",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="teams",
             value="<teams-webhook-url>",
             name="Teams")
@@ -418,7 +418,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         victorops_recipient = cloudamqp.Notification("victorops_recipient",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="victorops",
             value="<integration-key>",
             name="Victorops",
@@ -439,7 +439,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         slack_recipient = cloudamqp.Notification("slack_recipient",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="slack",
             value="<slack-webhook-url>",
             name="Slack webhook recipient")
@@ -457,7 +457,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         webhook_recipient = cloudamqp.Notification("webhook_recipient",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="webhook",
             value="<webhook-url>",
             name="Webhook")
@@ -534,7 +534,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         email_recipient = cloudamqp.Notification("email_recipient",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="email",
             value="alarm@example.com",
             name="alarm")
@@ -552,7 +552,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         opsgenie_recipient = cloudamqp.Notification("opsgenie_recipient",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="opsgenie",
             value="<api-key>",
             name="OpsGenie",
@@ -580,7 +580,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         pagerduty_recipient = cloudamqp.Notification("pagerduty_recipient",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="pagerduty",
             value="<integration-key>",
             name="PagerDuty",
@@ -601,7 +601,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         signl4_recipient = cloudamqp.Notification("signl4_recipient",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="signl4",
             value="<team-secret>",
             name="Signl4")
@@ -619,7 +619,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         teams_recipient = cloudamqp.Notification("teams_recipient",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="teams",
             value="<teams-webhook-url>",
             name="Teams")
@@ -637,7 +637,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         victorops_recipient = cloudamqp.Notification("victorops_recipient",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="victorops",
             value="<integration-key>",
             name="Victorops",
@@ -658,7 +658,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         slack_recipient = cloudamqp.Notification("slack_recipient",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="slack",
             value="<slack-webhook-url>",
             name="Slack webhook recipient")
@@ -676,7 +676,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         webhook_recipient = cloudamqp.Notification("webhook_recipient",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="webhook",
             value="<webhook-url>",
             name="Webhook")

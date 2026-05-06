@@ -26,7 +26,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const azureMonitor = new cloudamqp.IntegrationLog("azure_monitor", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "azure_monitor",
  *     tenantId: azmTentantId,
  *     applicationId: azmApplicationId,
@@ -51,7 +51,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const cloudwatch = new cloudamqp.IntegrationLog("cloudwatch", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "cloudwatchlog",
  *     accessKeyId: awsAccessKeyId,
  *     secretAccessKey: awsSecretAccessKey,
@@ -75,7 +75,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const cloudwatch = new cloudamqp.IntegrationLog("cloudwatch", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "cloudwatchlog",
  *     accessKeyId: awsAccessKeyId,
  *     secretAccessKey: awsSecretAccessKey,
@@ -99,7 +99,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const coralogix = new cloudamqp.IntegrationLog("coralogix", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "coralogix",
  *     privateKey: coralogixSendDataKey,
  *     endpoint: coralogixEndpoint,
@@ -122,7 +122,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const datadog = new cloudamqp.IntegrationLog("datadog", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "datadog",
  *     region: datadogRegion,
  *     apiKey: datadogApiKey,
@@ -144,7 +144,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const logentries = new cloudamqp.IntegrationLog("logentries", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "logentries",
  *     token: logentriesToken,
  * });
@@ -164,7 +164,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const loggly = new cloudamqp.IntegrationLog("loggly", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "loggly",
  *     token: logglyToken,
  * });
@@ -184,7 +184,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const papertrail = new cloudamqp.IntegrationLog("papertrail", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "papertrail",
  *     url: papertrailUrl,
  * });
@@ -204,7 +204,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const scalyr = new cloudamqp.IntegrationLog("scalyr", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "scalyr",
  *     token: scalyrToken,
  *     host: scalyrHost,
@@ -225,7 +225,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const splunk = new cloudamqp.IntegrationLog("splunk", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "splunk",
  *     token: splunkToken,
  *     hostPort: splunkHostPort,
@@ -249,7 +249,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const stackdriver = new cloudamqp.IntegrationLog("stackdriver", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "stackdriver",
  *     projectId: stackdriverProjectId,
  *     privateKey: stackdriverPrivateKey,
@@ -272,7 +272,7 @@ import * as utilities from "./utilities";
  * });
  * const serviceAccountKey = new google.index.ServiceAccountKey("service_account_key", {serviceAccountId: serviceAccount.name});
  * const stackdriver = new cloudamqp.IntegrationLog("stackdriver", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "stackdriver",
  *     projectId: std.jsondecode({
  *         input: std.base64decode({
@@ -316,7 +316,7 @@ import * as utilities from "./utilities";
  * });
  * const serviceAccountKey = new google.index.ServiceAccountKey("service_account_key", {serviceAccountId: serviceAccount.name});
  * const stackdriver = new cloudamqp.IntegrationLog("stackdriver", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "stackdriver",
  *     credentials: serviceAccountKey.privateKey,
  * });
@@ -337,7 +337,7 @@ import * as utilities from "./utilities";
  * });
  * const serviceAccountKey = new google.index.ServiceAccountKey("service_account_key", {serviceAccountId: serviceAccount.name});
  * const stackdriver = new cloudamqp.IntegrationLog("stackdriver", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "stackdriver",
  *     projectId: std.jsondecode({
  *         input: std.base64decode({

@@ -216,7 +216,7 @@ class Vpc(pulumi.CustomResource):
             region="amazon-web-services::us-east-1",
             nodes=1,
             tags=[],
-            vpc_id=vpc_cloudamq_vpc["id"],
+            vpc_id=int(vpc_cloudamq_vpc["id"]),
             keep_associated_vpc=True)
         # Additional VPC information
         vpc_info = cloudamqp.get_vpc_info_output(vpc_id=vpc.id)
@@ -265,7 +265,7 @@ class Vpc(pulumi.CustomResource):
             region="amazon-web-services::us-east-1",
             nodes=1,
             tags=[],
-            vpc_id=vpc_cloudamq_vpc["id"],
+            vpc_id=int(vpc_cloudamq_vpc["id"]),
             keep_associated_vpc=True)
         # Additional VPC information
         vpc_info = cloudamqp.get_vpc_info_output(vpc_id=vpc.id)

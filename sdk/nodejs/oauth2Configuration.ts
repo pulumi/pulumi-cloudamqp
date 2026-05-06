@@ -25,7 +25,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const oauth2Config = new cloudamqp.Oauth2Configuration("oauth2_config", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     resourceServerId: "test-resource-server",
  *     issuer: "https://test-issuer.example.com",
  *     verifyAud: true,
@@ -51,7 +51,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const oauth2Config = new cloudamqp.Oauth2Configuration("oauth2_config", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     resourceServerId: "test-resource-server",
  *     issuer: "https://test-issuer.example.com",
  *     preferredUsernameClaims: [
@@ -90,7 +90,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const oauth2Config = new cloudamqp.Oauth2Configuration("oauth2_config", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     resourceServerId: "test-resource-server",
  *     issuer: "https://test-issuer.example.com",
  * });

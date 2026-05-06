@@ -37,7 +37,7 @@ import * as utilities from "./utilities";
  *     tags: [],
  * });
  * const privatelink = new cloudamqp.PrivatelinkAzure("privatelink", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     approvedSubscriptions: ["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"],
  * });
  * ```
@@ -66,11 +66,11 @@ import * as utilities from "./utilities";
  *     plan: "bunny-1",
  *     region: "azure-arm::westus",
  *     tags: [],
- *     vpcId: vpc.id,
+ *     vpcId: vpc.id.apply(x =>Number(x)),
  *     keepAssociatedVpc: true,
  * });
  * const privatelink = new cloudamqp.PrivatelinkAzure("privatelink", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     approvedSubscriptions: ["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"],
  * });
  * ```
@@ -101,15 +101,15 @@ import * as utilities from "./utilities";
  *     plan: "bunny-1",
  *     region: "azure-arm::westus",
  *     tags: [],
- *     vpcId: vpc.id,
+ *     vpcId: vpc.id.apply(x =>Number(x)),
  *     keepAssociatedVpc: true,
  * });
  * const privatelink = new cloudamqp.PrivatelinkAzure("privatelink", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     approvedSubscriptions: ["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"],
  * });
  * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     rules: [
  *         {
  *             description: "Custom PrivateLink setup",

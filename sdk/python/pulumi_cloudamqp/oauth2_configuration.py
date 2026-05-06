@@ -569,7 +569,7 @@ class Oauth2Configuration(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         oauth2_config = cloudamqp.Oauth2Configuration("oauth2_config",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             resource_server_id="test-resource-server",
             issuer="https://test-issuer.example.com",
             verify_aud=True,
@@ -594,7 +594,7 @@ class Oauth2Configuration(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         oauth2_config = cloudamqp.Oauth2Configuration("oauth2_config",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             resource_server_id="test-resource-server",
             issuer="https://test-issuer.example.com",
             preferred_username_claims=[
@@ -632,7 +632,7 @@ class Oauth2Configuration(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         oauth2_config = cloudamqp.Oauth2Configuration("oauth2_config",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             resource_server_id="test-resource-server",
             issuer="https://test-issuer.example.com")
         ```
@@ -709,7 +709,7 @@ class Oauth2Configuration(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         oauth2_config = cloudamqp.Oauth2Configuration("oauth2_config",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             resource_server_id="test-resource-server",
             issuer="https://test-issuer.example.com",
             verify_aud=True,
@@ -734,7 +734,7 @@ class Oauth2Configuration(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         oauth2_config = cloudamqp.Oauth2Configuration("oauth2_config",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             resource_server_id="test-resource-server",
             issuer="https://test-issuer.example.com",
             preferred_username_claims=[
@@ -772,7 +772,7 @@ class Oauth2Configuration(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         oauth2_config = cloudamqp.Oauth2Configuration("oauth2_config",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             resource_server_id="test-resource-server",
             issuer="https://test-issuer.example.com")
         ```

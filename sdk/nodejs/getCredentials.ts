@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const credentials = cloudamqp.getCredentials({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * ```
  *
@@ -40,7 +40,7 @@ import * as utilities from "./utilities";
  * const instance = new cloudamqp.Instance("instance", {});
  * // Old (deprecated)
  * const credentials = instance.id.apply(id => cloudamqp.getCredentialsOutput({
- *     instanceId: id,
+ *     instanceId: Number(id),
  * }));
  * ```
  */
@@ -92,7 +92,7 @@ export interface GetCredentialsResult {
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const credentials = cloudamqp.getCredentials({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * ```
  *
@@ -115,7 +115,7 @@ export interface GetCredentialsResult {
  * const instance = new cloudamqp.Instance("instance", {});
  * // Old (deprecated)
  * const credentials = instance.id.apply(id => cloudamqp.getCredentialsOutput({
- *     instanceId: id,
+ *     instanceId: Number(id),
  * }));
  * ```
  */

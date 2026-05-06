@@ -37,7 +37,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var clusterRestart = new CloudAmqp.Index.NodeActions("cluster_restart", new()
+    ///     var clusterRestart = new CloudAmqp.NodeActions("cluster_restart", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Action = "cluster.restart",
@@ -65,12 +65,12 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var nodes = CloudAmqp.Index.GetNodes.Invoke(new()
+    ///     var nodes = CloudAmqp.GetNodes.Invoke(new()
     ///     {
     ///         InstanceId = instance.Id,
     ///     });
     /// 
-    ///     var restartSubset = new CloudAmqp.Index.NodeActions("restart_subset", new()
+    ///     var restartSubset = new CloudAmqp.NodeActions("restart_subset", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Action = "restart",
@@ -103,12 +103,12 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var nodes = CloudAmqp.Index.GetNodes.Invoke(new()
+    ///     var nodes = CloudAmqp.GetNodes.Invoke(new()
     ///     {
     ///         InstanceId = instance.Id,
     ///     });
     /// 
-    ///     var rebootNode = new CloudAmqp.Index.NodeActions("reboot_node", new()
+    ///     var rebootNode = new CloudAmqp.NodeActions("reboot_node", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Action = "reboot",
@@ -140,12 +140,12 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var nodes = CloudAmqp.Index.GetNodes.Invoke(new()
+    ///     var nodes = CloudAmqp.GetNodes.Invoke(new()
     ///     {
     ///         InstanceId = instance.Id,
     ///     });
     /// 
-    ///     var mgmtRestart = new CloudAmqp.Index.NodeActions("mgmt_restart", new()
+    ///     var mgmtRestart = new CloudAmqp.NodeActions("mgmt_restart", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Action = "mgmt.restart",
@@ -177,13 +177,13 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var rabbitmqConfig = new CloudAmqp.Index.RabbitConfiguration("rabbitmq_config", new()
+    ///     var rabbitmqConfig = new CloudAmqp.RabbitConfiguration("rabbitmq_config", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         LogExchangeLevel = "info",
     ///     });
     /// 
-    ///     var clusterRestart = new CloudAmqp.Index.NodeActions("cluster_restart", new()
+    ///     var clusterRestart = new CloudAmqp.NodeActions("cluster_restart", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Action = "cluster.restart",
@@ -219,7 +219,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var nodeAction = new CloudAmqp.Index.NodeActions("node_action", new()
+    ///     var nodeAction = new CloudAmqp.NodeActions("node_action", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         NodeName = "&lt;node name&gt;",
@@ -241,19 +241,19 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var listNodes = CloudAmqp.Index.GetNodes.Invoke(new()
+    ///     var listNodes = CloudAmqp.GetNodes.Invoke(new()
     ///     {
     ///         InstanceId = instance.Id,
     ///     });
     /// 
-    ///     var restart01 = new CloudAmqp.Index.NodeActions("restart_01", new()
+    ///     var restart01 = new CloudAmqp.NodeActions("restart_01", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Action = "restart",
     ///         NodeName = listNodes.Apply(getNodesResult =&gt; getNodesResult.Nodes[0]?.Name),
     ///     });
     /// 
-    ///     var restart02 = new CloudAmqp.Index.NodeActions("restart_02", new()
+    ///     var restart02 = new CloudAmqp.NodeActions("restart_02", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Action = "restart",
@@ -266,7 +266,7 @@ namespace Pulumi.CloudAmqp
     ///         },
     ///     });
     /// 
-    ///     var restart03 = new CloudAmqp.Index.NodeActions("restart_03", new()
+    ///     var restart03 = new CloudAmqp.NodeActions("restart_03", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Action = "restart",

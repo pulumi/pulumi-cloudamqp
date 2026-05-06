@@ -295,7 +295,7 @@ class PrivatelinkAws(pulumi.CustomResource):
             region="amazon-web-services::us-west-1",
             tags=[])
         privatelink = cloudamqp.PrivatelinkAws("privatelink",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         ```
 
@@ -322,10 +322,10 @@ class PrivatelinkAws(pulumi.CustomResource):
             plan="bunny-1",
             region="amazon-web-services::us-west-1",
             tags=[],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         privatelink = cloudamqp.PrivatelinkAws("privatelink",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         ```
 
@@ -354,13 +354,13 @@ class PrivatelinkAws(pulumi.CustomResource):
             plan="bunny-1",
             region="amazon-web-services::us-west-1",
             tags=[],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         privatelink = cloudamqp.PrivatelinkAws("privatelink",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             rules=[
                 {
                     "description": "Custom PrivateLink setup",
@@ -464,7 +464,7 @@ class PrivatelinkAws(pulumi.CustomResource):
             region="amazon-web-services::us-west-1",
             tags=[])
         privatelink = cloudamqp.PrivatelinkAws("privatelink",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         ```
 
@@ -491,10 +491,10 @@ class PrivatelinkAws(pulumi.CustomResource):
             plan="bunny-1",
             region="amazon-web-services::us-west-1",
             tags=[],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         privatelink = cloudamqp.PrivatelinkAws("privatelink",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         ```
 
@@ -523,13 +523,13 @@ class PrivatelinkAws(pulumi.CustomResource):
             plan="bunny-1",
             region="amazon-web-services::us-west-1",
             tags=[],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         privatelink = cloudamqp.PrivatelinkAws("privatelink",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             rules=[
                 {
                     "description": "Custom PrivateLink setup",

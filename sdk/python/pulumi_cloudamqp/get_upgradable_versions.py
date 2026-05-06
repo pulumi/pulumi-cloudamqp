@@ -94,7 +94,7 @@ def get_upgradable_versions(instance_id: Optional[_builtins.int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    versions = cloudamqp.get_upgradable_versions(instance_id=instance["id"])
+    versions = cloudamqp.get_upgradable_versions(instance_id=int(instance["id"]))
     ```
 
     ## Dependency
@@ -126,7 +126,7 @@ def get_upgradable_versions_output(instance_id: Optional[pulumi.Input[_builtins.
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    versions = cloudamqp.get_upgradable_versions(instance_id=instance["id"])
+    versions = cloudamqp.get_upgradable_versions(instance_id=int(instance["id"]))
     ```
 
     ## Dependency

@@ -26,7 +26,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const _this = new cloudamqp.SecurityFirewall("this", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     rules: [
  *         {
  *             ip: "192.168.0.0/24",
@@ -84,7 +84,7 @@ import * as utilities from "./utilities";
  *     tags: ["terraform"],
  * });
  * const _this = new cloudamqp.SecurityFirewall("this", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     rules: [
  *         {
  *             ip: "0.0.0.0/0",
@@ -138,7 +138,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     rules: [{
  *         ip: "192.168.0.0/24",
  *         ports: [5671],
@@ -158,7 +158,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     rules: [{
  *         ip: "192.168.0.0/24",
  *         ports: [],

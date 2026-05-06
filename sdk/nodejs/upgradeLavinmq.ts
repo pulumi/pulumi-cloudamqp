@@ -34,7 +34,7 @@ import * as utilities from "./utilities";
  *     region: "amazon-web-services::us-west-1",
  * });
  * const upgrade = new cloudamqp.UpgradeLavinmq("upgrade", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     newVersion: "1.3.1",
  * });
  * ```

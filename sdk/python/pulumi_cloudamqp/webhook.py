@@ -297,7 +297,7 @@ class Webhook(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         webhook_queue = cloudamqp.Webhook("webhook_queue",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             vhost=instance["vhost"],
             queue="webhook-queue",
             webhook_uri="https://example.com/webhook?key=secret",
@@ -320,7 +320,7 @@ class Webhook(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         webhook_queue = cloudamqp.Webhook("webhook_queue",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             vhost=instance["vhost"],
             queue="webhook-queue",
             webhook_uri="https://example.com/webhook?key=secret",
@@ -354,7 +354,7 @@ class Webhook(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         webhook_queue = cloudamqp.Webhook("webhook_queue",
-          instance_id=instance["id"],
+          instance_id=int(instance["id"]),
           vhost=instance["vhost"],
           queue="webhook-queue",
           webhook_uri="https://example.com/webhook?key=secret",
@@ -422,7 +422,7 @@ class Webhook(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         webhook_queue = cloudamqp.Webhook("webhook_queue",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             vhost=instance["vhost"],
             queue="webhook-queue",
             webhook_uri="https://example.com/webhook?key=secret",
@@ -445,7 +445,7 @@ class Webhook(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         webhook_queue = cloudamqp.Webhook("webhook_queue",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             vhost=instance["vhost"],
             queue="webhook-queue",
             webhook_uri="https://example.com/webhook?key=secret",
@@ -479,7 +479,7 @@ class Webhook(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         webhook_queue = cloudamqp.Webhook("webhook_queue",
-          instance_id=instance["id"],
+          instance_id=int(instance["id"]),
           vhost=instance["vhost"],
           queue="webhook-queue",
           webhook_uri="https://example.com/webhook?key=secret",

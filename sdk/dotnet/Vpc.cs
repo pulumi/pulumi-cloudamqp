@@ -30,7 +30,7 @@ namespace Pulumi.CloudAmqp
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Managed VPC resource
-    ///     var vpc = new CloudAmqp.Index.Vpc("vpc", new()
+    ///     var vpc = new CloudAmqp.Vpc("vpc", new()
     ///     {
     ///         Name = "&lt;VPC name&gt;",
     ///         Region = "amazon-web-services::us-east-1",
@@ -39,7 +39,7 @@ namespace Pulumi.CloudAmqp
     ///     });
     /// 
     ///     //  New instance, need to be created with a vpc
-    ///     var instance = new CloudAmqp.Index.Instance("instance", new()
+    ///     var instance = new CloudAmqp.Instance("instance", new()
     ///     {
     ///         Name = "&lt;Instance name&gt;",
     ///         Plan = "penguin-1",
@@ -51,7 +51,7 @@ namespace Pulumi.CloudAmqp
     ///     });
     /// 
     ///     // Additional VPC information
-    ///     var vpcInfo = CloudAmqp.Index.GetVpcInfo.Invoke(new()
+    ///     var vpcInfo = CloudAmqp.GetVpcInfo.Invoke(new()
     ///     {
     ///         VpcId = vpc.Id,
     ///     });

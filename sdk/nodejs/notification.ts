@@ -27,7 +27,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const emailRecipient = new cloudamqp.Notification("email_recipient", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     type: "email",
  *     value: "alarm@example.com",
  *     name: "alarm",
@@ -46,7 +46,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const opsgenieRecipient = new cloudamqp.Notification("opsgenie_recipient", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     type: "opsgenie",
  *     value: "<api-key>",
  *     name: "OpsGenie",
@@ -75,7 +75,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const pagerdutyRecipient = new cloudamqp.Notification("pagerduty_recipient", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     type: "pagerduty",
  *     value: "<integration-key>",
  *     name: "PagerDuty",
@@ -97,7 +97,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const signl4Recipient = new cloudamqp.Notification("signl4_recipient", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     type: "signl4",
  *     value: "<team-secret>",
  *     name: "Signl4",
@@ -116,7 +116,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const teamsRecipient = new cloudamqp.Notification("teams_recipient", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     type: "teams",
  *     value: "<teams-webhook-url>",
  *     name: "Teams",
@@ -135,7 +135,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const victoropsRecipient = new cloudamqp.Notification("victorops_recipient", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     type: "victorops",
  *     value: "<integration-key>",
  *     name: "Victorops",
@@ -157,7 +157,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const slackRecipient = new cloudamqp.Notification("slack_recipient", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     type: "slack",
  *     value: "<slack-webhook-url>",
  *     name: "Slack webhook recipient",
@@ -176,7 +176,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const webhookRecipient = new cloudamqp.Notification("webhook_recipient", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     type: "webhook",
  *     value: "<webhook-url>",
  *     name: "Webhook",

@@ -32,7 +32,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new CloudAmqp.Index.SecurityFirewall("this", new()
+    ///     var @this = new CloudAmqp.SecurityFirewall("this", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Rules = new[]
@@ -99,7 +99,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var instance = new CloudAmqp.Index.Instance("instance", new()
+    ///     var instance = new CloudAmqp.Instance("instance", new()
     ///     {
     ///         Name = "terraform-cloudamqp-instance",
     ///         Plan = "penguin-1",
@@ -110,7 +110,7 @@ namespace Pulumi.CloudAmqp
     ///         },
     ///     });
     /// 
-    ///     var @this = new CloudAmqp.Index.SecurityFirewall("this", new()
+    ///     var @this = new CloudAmqp.SecurityFirewall("this", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Rules = new[]
@@ -178,7 +178,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var firewallSettings = new CloudAmqp.Index.SecurityFirewall("firewall_settings", new()
+    ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewall_settings", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Rules = new[]
@@ -212,7 +212,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var firewallSettings = new CloudAmqp.Index.SecurityFirewall("firewall_settings", new()
+    ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewall_settings", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Rules = new[]
