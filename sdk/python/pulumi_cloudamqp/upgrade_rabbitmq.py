@@ -184,7 +184,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
             plan="bunny-1",
             region="amazon-web-services::us-west-1")
         upgrade = cloudamqp.UpgradeRabbitmq("upgrade",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             new_version="3.13.2")
         ```
 
@@ -208,9 +208,9 @@ class UpgradeRabbitmq(pulumi.CustomResource):
             name="rabbitmq-version-upgrade-test",
             plan="bunny-1",
             region="amazon-web-services::us-west-1")
-        upgradable_versions = instance.id.apply(lambda id: cloudamqp.get_upgradable_versions_output(instance_id=id))
+        upgradable_versions = instance.id.apply(lambda id: cloudamqp.get_upgradable_versions_output(instance_id=int(id)))
         upgrade = cloudamqp.UpgradeRabbitmq("upgrade",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             current_version=instance.rmq_version,
             new_version=upgradable_versions.new_rabbitmq_version)
         ```
@@ -231,9 +231,9 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         # Retrieve latest possible upgradable versions for RabbitMQ and Erlang
-        versions = cloudamqp.get_upgradable_versions(instance_id=instance["id"])
+        versions = cloudamqp.get_upgradable_versions(instance_id=int(instance["id"]))
         # Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
-        upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=instance["id"])
+        upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=int(instance["id"]))
         ```
 
         ```python
@@ -241,7 +241,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         # Retrieve latest possible upgradable versions for RabbitMQ and Erlang
-        versions = cloudamqp.get_upgradable_versions(instance_id=instance["id"])
+        versions = cloudamqp.get_upgradable_versions(instance_id=int(instance["id"]))
         ```
 
         If newer version is still available to be upgradable in the data source, re-run again.
@@ -251,9 +251,9 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         # Retrieve latest possible upgradable versions for RabbitMQ and Erlang
-        versions = cloudamqp.get_upgradable_versions(instance_id=instance["id"])
+        versions = cloudamqp.get_upgradable_versions(instance_id=int(instance["id"]))
         # Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
-        upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=instance["id"])
+        upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=int(instance["id"]))
         ```
 
         </details>
@@ -346,7 +346,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
             plan="bunny-1",
             region="amazon-web-services::us-west-1")
         upgrade = cloudamqp.UpgradeRabbitmq("upgrade",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             new_version="3.13.2")
         ```
 
@@ -370,9 +370,9 @@ class UpgradeRabbitmq(pulumi.CustomResource):
             name="rabbitmq-version-upgrade-test",
             plan="bunny-1",
             region="amazon-web-services::us-west-1")
-        upgradable_versions = instance.id.apply(lambda id: cloudamqp.get_upgradable_versions_output(instance_id=id))
+        upgradable_versions = instance.id.apply(lambda id: cloudamqp.get_upgradable_versions_output(instance_id=int(id)))
         upgrade = cloudamqp.UpgradeRabbitmq("upgrade",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             current_version=instance.rmq_version,
             new_version=upgradable_versions.new_rabbitmq_version)
         ```
@@ -393,9 +393,9 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         # Retrieve latest possible upgradable versions for RabbitMQ and Erlang
-        versions = cloudamqp.get_upgradable_versions(instance_id=instance["id"])
+        versions = cloudamqp.get_upgradable_versions(instance_id=int(instance["id"]))
         # Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
-        upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=instance["id"])
+        upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=int(instance["id"]))
         ```
 
         ```python
@@ -403,7 +403,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         # Retrieve latest possible upgradable versions for RabbitMQ and Erlang
-        versions = cloudamqp.get_upgradable_versions(instance_id=instance["id"])
+        versions = cloudamqp.get_upgradable_versions(instance_id=int(instance["id"]))
         ```
 
         If newer version is still available to be upgradable in the data source, re-run again.
@@ -413,9 +413,9 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         # Retrieve latest possible upgradable versions for RabbitMQ and Erlang
-        versions = cloudamqp.get_upgradable_versions(instance_id=instance["id"])
+        versions = cloudamqp.get_upgradable_versions(instance_id=int(instance["id"]))
         # Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
-        upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=instance["id"])
+        upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=int(instance["id"]))
         ```
 
         </details>

@@ -97,7 +97,7 @@ def get_alarms(instance_id: Optional[_builtins.int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    queue_alarms = cloudamqp.get_alarms(instance_id=instance["id"],
+    queue_alarms = cloudamqp.get_alarms(instance_id=int(instance["id"]),
         type="queue")
     ```
 
@@ -139,7 +139,7 @@ def get_alarms_output(instance_id: Optional[pulumi.Input[_builtins.int]] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    queue_alarms = cloudamqp.get_alarms(instance_id=instance["id"],
+    queue_alarms = cloudamqp.get_alarms(instance_id=int(instance["id"]),
         type="queue")
     ```
 

@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const rabbitmqDelayedMessageExchange = new cloudamqp.PluginCommunity("rabbitmq_delayed_message_exchange", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "rabbitmq_delayed_message_exchange",
  *     enabled: true,
  * });
@@ -46,7 +46,7 @@ import * as utilities from "./utilities";
  *     tags: ["terraform"],
  * });
  * const rabbitmqDelayedMessageExchange = new cloudamqp.PluginCommunity("rabbitmq_delayed_message_exchange", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     name: "rabbitmq_delayed_message_exchange",
  *     enabled: true,
  * });

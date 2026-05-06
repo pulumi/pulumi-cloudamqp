@@ -49,14 +49,14 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var instance = new CloudAmqp.Index.Instance("instance", new()
+    ///     var instance = new CloudAmqp.Instance("instance", new()
     ///     {
     ///         Name = "rabbitmq-version-upgrade-test",
     ///         Plan = "bunny-1",
     ///         Region = "amazon-web-services::us-west-1",
     ///     });
     /// 
-    ///     var upgrade = new CloudAmqp.Index.UpgradeRabbitmq("upgrade", new()
+    ///     var upgrade = new CloudAmqp.UpgradeRabbitmq("upgrade", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         NewVersion = "3.13.2",
@@ -85,19 +85,19 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var instance = new CloudAmqp.Index.Instance("instance", new()
+    ///     var instance = new CloudAmqp.Instance("instance", new()
     ///     {
     ///         Name = "rabbitmq-version-upgrade-test",
     ///         Plan = "bunny-1",
     ///         Region = "amazon-web-services::us-west-1",
     ///     });
     /// 
-    ///     var upgradableVersions = CloudAmqp.Index.GetUpgradableVersions.Invoke(new()
+    ///     var upgradableVersions = CloudAmqp.GetUpgradableVersions.Invoke(new()
     ///     {
     ///         InstanceId = instance.Id,
     ///     });
     /// 
-    ///     var upgrade = new CloudAmqp.Index.UpgradeRabbitmq("upgrade", new()
+    ///     var upgrade = new CloudAmqp.UpgradeRabbitmq("upgrade", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         CurrentVersion = instance.RmqVersion,
@@ -127,13 +127,13 @@ namespace Pulumi.CloudAmqp
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Retrieve latest possible upgradable versions for RabbitMQ and Erlang
-    ///     var versions = CloudAmqp.Index.GetUpgradableVersions.Invoke(new()
+    ///     var versions = CloudAmqp.GetUpgradableVersions.Invoke(new()
     ///     {
     ///         InstanceId = instance.Id,
     ///     });
     /// 
     ///     // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
-    ///     var upgrade = new CloudAmqp.Index.UpgradeRabbitmq("upgrade", new()
+    ///     var upgrade = new CloudAmqp.UpgradeRabbitmq("upgrade", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///     });
@@ -150,7 +150,7 @@ namespace Pulumi.CloudAmqp
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Retrieve latest possible upgradable versions for RabbitMQ and Erlang
-    ///     var versions = CloudAmqp.Index.GetUpgradableVersions.Invoke(new()
+    ///     var versions = CloudAmqp.GetUpgradableVersions.Invoke(new()
     ///     {
     ///         InstanceId = instance.Id,
     ///     });
@@ -169,13 +169,13 @@ namespace Pulumi.CloudAmqp
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Retrieve latest possible upgradable versions for RabbitMQ and Erlang
-    ///     var versions = CloudAmqp.Index.GetUpgradableVersions.Invoke(new()
+    ///     var versions = CloudAmqp.GetUpgradableVersions.Invoke(new()
     ///     {
     ///         InstanceId = instance.Id,
     ///     });
     /// 
     ///     // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
-    ///     var upgrade = new CloudAmqp.Index.UpgradeRabbitmq("upgrade", new()
+    ///     var upgrade = new CloudAmqp.UpgradeRabbitmq("upgrade", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///     });

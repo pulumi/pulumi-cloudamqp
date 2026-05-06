@@ -41,7 +41,7 @@ import * as utilities from "./utilities";
  *     tags: ["aws"],
  * });
  * const _this = new cloudamqp.IntegrationAwsEventbridge("this", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     vhost: instance.vhost,
  *     queue: "<QUEUE-NAME>",
  *     awsAccountId: "<AWS-ACCOUNT-ID>",
@@ -71,7 +71,7 @@ import * as utilities from "./utilities";
  *     tags: ["aws"],
  * });
  * const _this = new cloudamqp.IntegrationAwsEventbridge("this", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     vhost: instance.vhost,
  *     queue: "<QUEUE-NAME>",
  *     awsAccountId: "<AWS-ACCOUNT-ID>",

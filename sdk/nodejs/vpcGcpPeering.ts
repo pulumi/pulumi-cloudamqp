@@ -43,11 +43,11 @@ import * as utilities from "./utilities";
  * });
  * // VPC information
  * const vpcInfo = instance.id.apply(id => cloudamqp.getVpcGcpInfoOutput({
- *     instanceId: id,
+ *     instanceId: Number(id),
  * }));
  * // VPC peering configuration
  * const vpcPeeringRequest = new cloudamqp.VpcGcpPeering("vpc_peering_request", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     peerNetworkUri: "https://www.googleapis.com/compute/v1/projects/PROJECT-NAME/global/networks/VPC-NETWORK-NAME",
  * });
  * ```
@@ -78,7 +78,7 @@ import * as utilities from "./utilities";
  *     plan: "penguin-1",
  *     region: "google-compute-engine::europe-north1",
  *     tags: ["terraform"],
- *     vpcId: vpc.id,
+ *     vpcId: vpc.id.apply(x =>Number(x)),
  * });
  * // VPC information
  * const vpcInfo = cloudamqp.getVpcGcpInfo({
@@ -145,12 +145,12 @@ import * as utilities from "./utilities";
  *
  * // VPC peering configuration
  * const vpcPeeringRequest = new cloudamqp.VpcGcpPeering("vpc_peering_request", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     peerNetworkUri: peerNetworkUri,
  * });
  * // Firewall rules
  * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     rules: [
  *         {
  *             ip: peerSubnet,
@@ -203,7 +203,7 @@ import * as utilities from "./utilities";
  * });
  * // Firewall rules
  * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     rules: [
  *         {
  *             ip: peerSubnet,

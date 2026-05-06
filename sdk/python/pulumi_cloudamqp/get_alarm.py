@@ -203,7 +203,7 @@ def get_alarm(alarm_id: Optional[_builtins.int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    default_cpu_alarm = cloudamqp.get_alarm(instance_id=instance["id"],
+    default_cpu_alarm = cloudamqp.get_alarm(instance_id=int(instance["id"]),
         type="cpu")
     ```
 
@@ -260,7 +260,7 @@ def get_alarm_output(alarm_id: Optional[pulumi.Input[Optional[_builtins.int]]] =
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    default_cpu_alarm = cloudamqp.get_alarm(instance_id=instance["id"],
+    default_cpu_alarm = cloudamqp.get_alarm(instance_id=int(instance["id"]),
         type="cpu")
     ```
 

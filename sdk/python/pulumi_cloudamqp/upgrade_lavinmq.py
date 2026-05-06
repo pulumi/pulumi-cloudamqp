@@ -135,7 +135,7 @@ class UpgradeLavinmq(pulumi.CustomResource):
             plan="lynx-1",
             region="amazon-web-services::us-west-1")
         upgrade = cloudamqp.UpgradeLavinmq("upgrade",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             new_version="1.3.1")
         ```
 
@@ -193,7 +193,7 @@ class UpgradeLavinmq(pulumi.CustomResource):
             plan="lynx-1",
             region="amazon-web-services::us-west-1")
         upgrade = cloudamqp.UpgradeLavinmq("upgrade",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             new_version="1.3.1")
         ```
 

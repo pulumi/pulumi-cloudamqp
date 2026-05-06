@@ -33,30 +33,30 @@ import * as utilities from "./utilities";
  *
  * // New recipient
  * const recipient01 = new cloudamqp.Notification("recipient_01", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     type: "email",
  *     value: "alarm@example.com",
  *     name: "alarm",
  * });
  * // New cpu alarm
  * const cpuAlarm = new cloudamqp.Alarm("cpu_alarm", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     type: "cpu",
  *     enabled: true,
  *     reminderInterval: 600,
  *     valueThreshold: 95,
  *     timeThreshold: 600,
- *     recipients: [recipient01.id],
+ *     recipients: [recipient01.id.apply(x =>Number(x))],
  * });
  * // New memory alarm
  * const memoryAlarm = new cloudamqp.Alarm("memory_alarm", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     type: "memory",
  *     enabled: true,
  *     reminderInterval: 600,
  *     valueThreshold: 95,
  *     timeThreshold: 600,
- *     recipients: [recipient01.id],
+ *     recipients: [recipient01.id.apply(x =>Number(x))],
  * });
  * ```
  *
@@ -78,17 +78,17 @@ import * as utilities from "./utilities";
  *
  * // New recipient
  * const recipient01 = new cloudamqp.Notification("recipient_01", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     type: "email",
  *     value: "alarm@example.com",
  *     name: "alarm",
  * });
  * // Update existing notice alarm
  * const notice = new cloudamqp.Alarm("notice", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     type: "notice",
  *     enabled: true,
- *     recipients: [recipient01.id],
+ *     recipients: [recipient01.id.apply(x =>Number(x))],
  * });
  * ```
  *

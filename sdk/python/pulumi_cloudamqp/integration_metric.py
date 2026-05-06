@@ -659,13 +659,13 @@ class IntegrationMetric(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         cloudwatch = cloudamqp.IntegrationMetric("cloudwatch",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="cloudwatch",
             access_key_id=aws_access_key_id,
             secret_access_key=var_aws_secret_acccess_key,
             region=aws_region)
         cloudwatch_v2 = cloudamqp.IntegrationMetric("cloudwatch_v2",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="cloudwatch_v2",
             access_key_id=aws_access_key_id,
             secret_access_key=var_aws_secret_acccess_key,
@@ -679,13 +679,13 @@ class IntegrationMetric(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         cloudwatch = cloudamqp.IntegrationMetric("cloudwatch",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="cloudwatch",
             iam_role=aws_iam_role,
             iam_external_id=external_id,
             region=aws_region)
         cloudwatch_v2 = cloudamqp.IntegrationMetric("cloudwatch_v2",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="cloudwatch_v2",
             iam_role=aws_iam_role,
             iam_external_id=external_id,
@@ -709,13 +709,13 @@ class IntegrationMetric(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         datadog = cloudamqp.IntegrationMetric("datadog",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="datadog",
             api_key=datadog_api_key,
             region=datadog_region,
             tags="env=prod,region=us1,version=v1.0")
         datadog_v2 = cloudamqp.IntegrationMetric("datadog_v2",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="datadog_v2",
             api_key=datadog_api_key,
             region=datadog_region,
@@ -736,7 +736,7 @@ class IntegrationMetric(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         librato = cloudamqp.IntegrationMetric("librato",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="librato",
             email=librato_email,
             api_key=librato_api_key)
@@ -756,7 +756,7 @@ class IntegrationMetric(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         newrelic = cloudamqp.IntegrationMetric("newrelic",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="newrelic_v2",
             api_key=newrelic_api_key,
             region=newrelic_region)
@@ -778,7 +778,7 @@ class IntegrationMetric(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         stackdriver = cloudamqp.IntegrationMetric("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             project_id=stackdriver_project_id,
             private_key=stackdriver_private_key,
@@ -799,7 +799,7 @@ class IntegrationMetric(pulumi.CustomResource):
             display_name=<display_name>)
         service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationMetric("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             project_id=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["projectId"],
             private_key=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["privateKey"],
@@ -829,7 +829,7 @@ class IntegrationMetric(pulumi.CustomResource):
             display_name=<display_name>)
         service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationMetric("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             credentials=service_account_key["privateKey"])
         ```
@@ -848,7 +848,7 @@ class IntegrationMetric(pulumi.CustomResource):
             display_name=<display_name>)
         service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationMetric("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             project_id=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["projectId"],
             private_key=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["privateKey"],
@@ -988,13 +988,13 @@ class IntegrationMetric(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         cloudwatch = cloudamqp.IntegrationMetric("cloudwatch",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="cloudwatch",
             access_key_id=aws_access_key_id,
             secret_access_key=var_aws_secret_acccess_key,
             region=aws_region)
         cloudwatch_v2 = cloudamqp.IntegrationMetric("cloudwatch_v2",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="cloudwatch_v2",
             access_key_id=aws_access_key_id,
             secret_access_key=var_aws_secret_acccess_key,
@@ -1008,13 +1008,13 @@ class IntegrationMetric(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         cloudwatch = cloudamqp.IntegrationMetric("cloudwatch",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="cloudwatch",
             iam_role=aws_iam_role,
             iam_external_id=external_id,
             region=aws_region)
         cloudwatch_v2 = cloudamqp.IntegrationMetric("cloudwatch_v2",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="cloudwatch_v2",
             iam_role=aws_iam_role,
             iam_external_id=external_id,
@@ -1038,13 +1038,13 @@ class IntegrationMetric(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         datadog = cloudamqp.IntegrationMetric("datadog",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="datadog",
             api_key=datadog_api_key,
             region=datadog_region,
             tags="env=prod,region=us1,version=v1.0")
         datadog_v2 = cloudamqp.IntegrationMetric("datadog_v2",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="datadog_v2",
             api_key=datadog_api_key,
             region=datadog_region,
@@ -1065,7 +1065,7 @@ class IntegrationMetric(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         librato = cloudamqp.IntegrationMetric("librato",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="librato",
             email=librato_email,
             api_key=librato_api_key)
@@ -1085,7 +1085,7 @@ class IntegrationMetric(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         newrelic = cloudamqp.IntegrationMetric("newrelic",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="newrelic_v2",
             api_key=newrelic_api_key,
             region=newrelic_region)
@@ -1107,7 +1107,7 @@ class IntegrationMetric(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         stackdriver = cloudamqp.IntegrationMetric("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             project_id=stackdriver_project_id,
             private_key=stackdriver_private_key,
@@ -1128,7 +1128,7 @@ class IntegrationMetric(pulumi.CustomResource):
             display_name=<display_name>)
         service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationMetric("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             project_id=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["projectId"],
             private_key=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["privateKey"],
@@ -1158,7 +1158,7 @@ class IntegrationMetric(pulumi.CustomResource):
             display_name=<display_name>)
         service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationMetric("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             credentials=service_account_key["privateKey"])
         ```
@@ -1177,7 +1177,7 @@ class IntegrationMetric(pulumi.CustomResource):
             display_name=<display_name>)
         service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationMetric("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             project_id=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["projectId"],
             private_key=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["privateKey"],

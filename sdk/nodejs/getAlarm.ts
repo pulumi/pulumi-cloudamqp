@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const defaultCpuAlarm = cloudamqp.getAlarm({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     type: "cpu",
  * });
  * ```
@@ -124,7 +124,7 @@ export interface GetAlarmResult {
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const defaultCpuAlarm = cloudamqp.getAlarm({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     type: "cpu",
  * });
  * ```

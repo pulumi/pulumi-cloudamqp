@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const plugins = cloudamqp.getPlugins({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * ```
  *
@@ -81,7 +81,7 @@ export interface GetPluginsResult {
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const plugins = cloudamqp.getPlugins({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * ```
  *

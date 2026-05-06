@@ -250,8 +250,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetAlarmArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -302,8 +302,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetAlarmArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -354,8 +354,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetAlarmArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -406,8 +406,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetAlarmArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -458,8 +458,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetAlarmArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -509,8 +509,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetAlarmsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -560,8 +560,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetAlarmsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -611,8 +611,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetAlarmsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -662,8 +662,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetAlarmsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -713,8 +713,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetAlarmsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -765,8 +765,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetCredentialsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -807,8 +807,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.cloudamqp.Instance;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetCredentialsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -855,8 +855,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetCredentialsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -897,8 +897,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.cloudamqp.Instance;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetCredentialsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -945,8 +945,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetCredentialsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -987,8 +987,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.cloudamqp.Instance;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetCredentialsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1035,8 +1035,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetCredentialsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1077,8 +1077,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.cloudamqp.Instance;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetCredentialsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1125,8 +1125,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetCredentialsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1167,8 +1167,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.cloudamqp.Instance;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetCredentialsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1262,8 +1262,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetNodesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1306,8 +1306,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetNodesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1350,8 +1350,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetNodesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1394,8 +1394,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetNodesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1438,8 +1438,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetNodesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1484,8 +1484,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetNotificationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1531,8 +1531,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetNotificationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1578,8 +1578,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetNotificationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1625,8 +1625,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetNotificationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1672,8 +1672,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetNotificationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1720,8 +1720,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetNotificationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1767,8 +1767,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetNotificationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1814,8 +1814,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetNotificationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1861,8 +1861,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetNotificationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1908,8 +1908,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetNotificationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1953,8 +1953,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetPluginsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1998,8 +1998,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetPluginsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2043,8 +2043,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetPluginsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2088,8 +2088,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetPluginsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2133,8 +2133,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetPluginsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2178,8 +2178,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetPluginsCommunityArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2223,8 +2223,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetPluginsCommunityArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2268,8 +2268,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetPluginsCommunityArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2313,8 +2313,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetPluginsCommunityArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2358,8 +2358,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetPluginsCommunityArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2403,8 +2403,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetUpgradableVersionsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2448,8 +2448,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetUpgradableVersionsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2493,8 +2493,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetUpgradableVersionsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2538,8 +2538,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetUpgradableVersionsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2583,8 +2583,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetUpgradableVersionsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2638,8 +2638,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2678,8 +2678,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2742,8 +2742,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2782,8 +2782,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2846,8 +2846,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2886,8 +2886,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2950,8 +2950,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2990,8 +2990,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3054,8 +3054,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3094,8 +3094,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3158,8 +3158,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3198,8 +3198,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3262,8 +3262,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3302,8 +3302,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetVpcGcpInfoArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3366,8 +3366,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3406,8 +3406,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3470,8 +3470,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3510,8 +3510,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3574,8 +3574,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3614,8 +3614,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3678,8 +3678,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3718,8 +3718,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3782,8 +3782,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3822,8 +3822,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3886,8 +3886,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3926,8 +3926,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3990,8 +3990,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4030,8 +4030,8 @@ public final class CloudamqpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.cloudamqp.CloudamqpFunctions;
      * import com.pulumi.cloudamqp.inputs.GetVpcInfoArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

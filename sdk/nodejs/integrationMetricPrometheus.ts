@@ -21,7 +21,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const newrelicV3 = new cloudamqp.IntegrationMetricPrometheus("newrelic_v3", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     newrelicV3: {
  *         apiKey: newrelicApiKey,
  *         region: "us",
@@ -37,7 +37,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const datadogV3 = new cloudamqp.IntegrationMetricPrometheus("datadog_v3", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     datadogV3: {
  *         apiKey: datadogApiKey,
  *         region: "us1",
@@ -54,7 +54,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const azureMonitor = new cloudamqp.IntegrationMetricPrometheus("azure_monitor", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     azureMonitor: {
  *         connectionString: azureMonitorConnectionString,
  *     },
@@ -68,7 +68,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const splunkV2 = new cloudamqp.IntegrationMetricPrometheus("splunk_v2", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     splunkV2: {
  *         token: splunkToken,
  *         endpoint: splunkEndpoint,
@@ -84,7 +84,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const dynatrace = new cloudamqp.IntegrationMetricPrometheus("dynatrace", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     dynatrace: {
  *         environmentId: dynatraceEnvironmentId,
  *         accessToken: dynatraceAccessToken,
@@ -100,7 +100,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const cloudwatchV3 = new cloudamqp.IntegrationMetricPrometheus("cloudwatch_v3", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     cloudwatchV3: {
  *         iamRole: cloudwatchIamRole,
  *         iamExternalId: cloudwatchIamExternalId,
@@ -117,7 +117,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const stackdriverV2 = new cloudamqp.IntegrationMetricPrometheus("stackdriver_v2", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     stackdriverV2: {
  *         credentialsFile: googleServiceAccountKey,
  *         tags: "key=value,key2=value2",

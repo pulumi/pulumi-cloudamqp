@@ -28,7 +28,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const rabbitmqConfig = new cloudamqp.RabbitConfiguration("rabbitmq_config", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     heartbeat: 0,
  * });
  * ```
@@ -47,7 +47,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const rabbitmqConfig = new cloudamqp.RabbitConfiguration("rabbitmq_config", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     channelMax: 0,
  *     connectionMax: -1,
  *     consumerTimeout: 7200000,
@@ -74,7 +74,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const rabbitmqConfig = new cloudamqp.RabbitConfiguration("rabbitmq_config", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     channelMax: 0,
  *     connectionMax: -1,
  *     consumerTimeout: 7200000,
@@ -86,10 +86,10 @@ import * as utilities from "./utilities";
  *     clusterPartitionHandling: "autoheal",
  * });
  * const listNodes = cloudamqp.getNodes({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * const nodeAction = new cloudamqp.NodeActions("node_action", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     action: "cluster.restart",
  * }, {
  *     dependsOn: [rabbitmqConfig],
@@ -113,7 +113,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const rabbitConfig = new cloudamqp.RabbitConfiguration("rabbit_config", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     logExchangeLevel: "info",
  * });
  * ```
@@ -140,7 +140,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const rabbitmqConfig = new cloudamqp.RabbitConfiguration("rabbitmq_config", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     mqttVhost: instance.vhost,
  *     mqttExchange: "amq.topic",
  *     mqttSslCertLogin: true,
@@ -149,10 +149,10 @@ import * as utilities from "./utilities";
  *     sslOptionsVerify: "verify_peer",
  * });
  * const nodes = cloudamqp.getNodes({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * const nodeAction = new cloudamqp.NodeActions("node_action", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     nodeName: nodes.then(nodes => nodes.nodes?.[0]?.name),
  *     action: "restart",
  * }, {

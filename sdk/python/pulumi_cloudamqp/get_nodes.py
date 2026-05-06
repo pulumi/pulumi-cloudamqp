@@ -82,7 +82,7 @@ def get_nodes(instance_id: Optional[_builtins.int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    nodes = cloudamqp.get_nodes(instance_id=instance["id"])
+    nodes = cloudamqp.get_nodes(instance_id=int(instance["id"]))
     ```
 
     ## Dependency
@@ -112,7 +112,7 @@ def get_nodes_output(instance_id: Optional[pulumi.Input[_builtins.int]] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    nodes = cloudamqp.get_nodes(instance_id=instance["id"])
+    nodes = cloudamqp.get_nodes(instance_id=int(instance["id"]))
     ```
 
     ## Dependency

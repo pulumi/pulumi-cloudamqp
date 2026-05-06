@@ -37,14 +37,14 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var instance = new CloudAmqp.Index.Instance("instance", new()
+    ///     var instance = new CloudAmqp.Instance("instance", new()
     ///     {
     ///         Name = "lavinmq-version-upgrade-test",
     ///         Plan = "lynx-1",
     ///         Region = "amazon-web-services::us-west-1",
     ///     });
     /// 
-    ///     var upgrade = new CloudAmqp.Index.UpgradeLavinmq("upgrade", new()
+    ///     var upgrade = new CloudAmqp.UpgradeLavinmq("upgrade", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         NewVersion = "1.3.1",

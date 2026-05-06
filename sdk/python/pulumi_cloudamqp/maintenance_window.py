@@ -199,7 +199,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         this = cloudamqp.MaintenanceWindow("this",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             preferred_day="Monday",
             preferred_time="23:00")
         ```
@@ -219,7 +219,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         this = cloudamqp.MaintenanceWindow("this",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             preferred_day="Monday",
             preferred_time="23:00",
             automatic_updates="on")
@@ -237,7 +237,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         this = cloudamqp.MaintenanceWindow("this",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             preferred_time="23:00")
         ```
 
@@ -253,7 +253,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         this = cloudamqp.MaintenanceWindow("this",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             preferred_day="Monday")
         ```
 
@@ -301,7 +301,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         this = cloudamqp.MaintenanceWindow("this",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             preferred_day="Monday",
             preferred_time="23:00")
         ```
@@ -321,7 +321,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         this = cloudamqp.MaintenanceWindow("this",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             preferred_day="Monday",
             preferred_time="23:00",
             automatic_updates="on")
@@ -339,7 +339,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         this = cloudamqp.MaintenanceWindow("this",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             preferred_time="23:00")
         ```
 
@@ -355,7 +355,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         this = cloudamqp.MaintenanceWindow("this",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             preferred_day="Monday")
         ```
 

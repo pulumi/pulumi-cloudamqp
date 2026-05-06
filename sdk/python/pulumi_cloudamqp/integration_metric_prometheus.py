@@ -310,7 +310,7 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         newrelic_v3 = cloudamqp.IntegrationMetricPrometheus("newrelic_v3",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             newrelic_v3={
                 "api_key": newrelic_api_key,
                 "region": "us",
@@ -325,7 +325,7 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         datadog_v3 = cloudamqp.IntegrationMetricPrometheus("datadog_v3",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             datadog_v3={
                 "api_key": datadog_api_key,
                 "region": "us1",
@@ -341,7 +341,7 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         azure_monitor = cloudamqp.IntegrationMetricPrometheus("azure_monitor",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             azure_monitor={
                 "connection_string": azure_monitor_connection_string,
             })
@@ -354,7 +354,7 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         splunk_v2 = cloudamqp.IntegrationMetricPrometheus("splunk_v2",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             splunk_v2={
                 "token": splunk_token,
                 "endpoint": splunk_endpoint,
@@ -369,7 +369,7 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         dynatrace = cloudamqp.IntegrationMetricPrometheus("dynatrace",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             dynatrace={
                 "environment_id": dynatrace_environment_id,
                 "access_token": dynatrace_access_token,
@@ -384,7 +384,7 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         cloudwatch_v3 = cloudamqp.IntegrationMetricPrometheus("cloudwatch_v3",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             cloudwatch_v3={
                 "iam_role": cloudwatch_iam_role,
                 "iam_external_id": cloudwatch_iam_external_id,
@@ -400,7 +400,7 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         stackdriver_v2 = cloudamqp.IntegrationMetricPrometheus("stackdriver_v2",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             stackdriver_v2={
                 "credentials_file": google_service_account_key,
                 "tags": "key=value,key2=value2",
@@ -449,7 +449,7 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         newrelic_v3 = cloudamqp.IntegrationMetricPrometheus("newrelic_v3",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             newrelic_v3={
                 "api_key": newrelic_api_key,
                 "region": "us",
@@ -464,7 +464,7 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         datadog_v3 = cloudamqp.IntegrationMetricPrometheus("datadog_v3",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             datadog_v3={
                 "api_key": datadog_api_key,
                 "region": "us1",
@@ -480,7 +480,7 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         azure_monitor = cloudamqp.IntegrationMetricPrometheus("azure_monitor",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             azure_monitor={
                 "connection_string": azure_monitor_connection_string,
             })
@@ -493,7 +493,7 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         splunk_v2 = cloudamqp.IntegrationMetricPrometheus("splunk_v2",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             splunk_v2={
                 "token": splunk_token,
                 "endpoint": splunk_endpoint,
@@ -508,7 +508,7 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         dynatrace = cloudamqp.IntegrationMetricPrometheus("dynatrace",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             dynatrace={
                 "environment_id": dynatrace_environment_id,
                 "access_token": dynatrace_access_token,
@@ -523,7 +523,7 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         cloudwatch_v3 = cloudamqp.IntegrationMetricPrometheus("cloudwatch_v3",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             cloudwatch_v3={
                 "iam_role": cloudwatch_iam_role,
                 "iam_external_id": cloudwatch_iam_external_id,
@@ -539,7 +539,7 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         stackdriver_v2 = cloudamqp.IntegrationMetricPrometheus("stackdriver_v2",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             stackdriver_v2={
                 "credentials_file": google_service_account_key,
                 "tags": "key=value,key2=value2",

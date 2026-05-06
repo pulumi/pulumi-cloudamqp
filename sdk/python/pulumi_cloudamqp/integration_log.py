@@ -1069,7 +1069,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         azure_monitor = cloudamqp.IntegrationLog("azure_monitor",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="azure_monitor",
             tenant_id=azm_tentant_id,
             application_id=azm_application_id,
@@ -1093,7 +1093,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         cloudwatch = cloudamqp.IntegrationLog("cloudwatch",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="cloudwatchlog",
             access_key_id=aws_access_key_id,
             secret_access_key=aws_secret_access_key,
@@ -1116,7 +1116,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         cloudwatch = cloudamqp.IntegrationLog("cloudwatch",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="cloudwatchlog",
             access_key_id=aws_access_key_id,
             secret_access_key=aws_secret_access_key,
@@ -1139,7 +1139,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         coralogix = cloudamqp.IntegrationLog("coralogix",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="coralogix",
             private_key=coralogix_send_data_key,
             endpoint=coralogix_endpoint,
@@ -1161,7 +1161,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         datadog = cloudamqp.IntegrationLog("datadog",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="datadog",
             region=datadog_region,
             api_key=datadog_api_key,
@@ -1182,7 +1182,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         logentries = cloudamqp.IntegrationLog("logentries",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="logentries",
             token=logentries_token)
         ```
@@ -1201,7 +1201,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         loggly = cloudamqp.IntegrationLog("loggly",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="loggly",
             token=loggly_token)
         ```
@@ -1220,7 +1220,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         papertrail = cloudamqp.IntegrationLog("papertrail",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="papertrail",
             url=papertrail_url)
         ```
@@ -1239,7 +1239,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         scalyr = cloudamqp.IntegrationLog("scalyr",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="scalyr",
             token=scalyr_token,
             host=scalyr_host)
@@ -1259,7 +1259,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         splunk = cloudamqp.IntegrationLog("splunk",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="splunk",
             token=splunk_token,
             host_port=splunk_host_port,
@@ -1282,7 +1282,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         stackdriver = cloudamqp.IntegrationLog("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             project_id=stackdriver_project_id,
             private_key=stackdriver_private_key,
@@ -1303,7 +1303,7 @@ class IntegrationLog(pulumi.CustomResource):
             display_name=<display_name>)
         service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationLog("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             project_id=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["projectId"],
             private_key=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["privateKey"],
@@ -1333,7 +1333,7 @@ class IntegrationLog(pulumi.CustomResource):
             display_name=<display_name>)
         service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationLog("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             credentials=service_account_key["privateKey"])
         ```
@@ -1352,7 +1352,7 @@ class IntegrationLog(pulumi.CustomResource):
             display_name=<display_name>)
         service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationLog("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             project_id=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["projectId"],
             private_key=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["privateKey"],
@@ -1453,7 +1453,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         azure_monitor = cloudamqp.IntegrationLog("azure_monitor",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="azure_monitor",
             tenant_id=azm_tentant_id,
             application_id=azm_application_id,
@@ -1477,7 +1477,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         cloudwatch = cloudamqp.IntegrationLog("cloudwatch",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="cloudwatchlog",
             access_key_id=aws_access_key_id,
             secret_access_key=aws_secret_access_key,
@@ -1500,7 +1500,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         cloudwatch = cloudamqp.IntegrationLog("cloudwatch",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="cloudwatchlog",
             access_key_id=aws_access_key_id,
             secret_access_key=aws_secret_access_key,
@@ -1523,7 +1523,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         coralogix = cloudamqp.IntegrationLog("coralogix",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="coralogix",
             private_key=coralogix_send_data_key,
             endpoint=coralogix_endpoint,
@@ -1545,7 +1545,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         datadog = cloudamqp.IntegrationLog("datadog",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="datadog",
             region=datadog_region,
             api_key=datadog_api_key,
@@ -1566,7 +1566,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         logentries = cloudamqp.IntegrationLog("logentries",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="logentries",
             token=logentries_token)
         ```
@@ -1585,7 +1585,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         loggly = cloudamqp.IntegrationLog("loggly",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="loggly",
             token=loggly_token)
         ```
@@ -1604,7 +1604,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         papertrail = cloudamqp.IntegrationLog("papertrail",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="papertrail",
             url=papertrail_url)
         ```
@@ -1623,7 +1623,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         scalyr = cloudamqp.IntegrationLog("scalyr",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="scalyr",
             token=scalyr_token,
             host=scalyr_host)
@@ -1643,7 +1643,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         splunk = cloudamqp.IntegrationLog("splunk",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="splunk",
             token=splunk_token,
             host_port=splunk_host_port,
@@ -1666,7 +1666,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         stackdriver = cloudamqp.IntegrationLog("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             project_id=stackdriver_project_id,
             private_key=stackdriver_private_key,
@@ -1687,7 +1687,7 @@ class IntegrationLog(pulumi.CustomResource):
             display_name=<display_name>)
         service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationLog("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             project_id=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["projectId"],
             private_key=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["privateKey"],
@@ -1717,7 +1717,7 @@ class IntegrationLog(pulumi.CustomResource):
             display_name=<display_name>)
         service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationLog("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             credentials=service_account_key["privateKey"])
         ```
@@ -1736,7 +1736,7 @@ class IntegrationLog(pulumi.CustomResource):
             display_name=<display_name>)
         service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationLog("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             project_id=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["projectId"],
             private_key=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["privateKey"],

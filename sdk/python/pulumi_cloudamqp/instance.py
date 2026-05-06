@@ -871,7 +871,7 @@ class Instance(pulumi.CustomResource):
             plan="penguin-1",
             region="amazon-web-services::us-west-1",
             tags=["terraform"],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         ```
 
@@ -900,7 +900,7 @@ class Instance(pulumi.CustomResource):
             plan="penguin-1",
             region="amazon-web-services::us-west-1",
             tags=["terraform"],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         # Second instance added to managed VPC
         instance02 = cloudamqp.Instance("instance_02",
@@ -908,7 +908,7 @@ class Instance(pulumi.CustomResource):
             plan="penguin-1",
             region="amazon-web-services::us-west-1",
             tags=["terraform"],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         ```
 
@@ -1328,7 +1328,7 @@ class Instance(pulumi.CustomResource):
             plan="penguin-1",
             region="amazon-web-services::us-west-1",
             tags=["terraform"],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         ```
 
@@ -1357,7 +1357,7 @@ class Instance(pulumi.CustomResource):
             plan="penguin-1",
             region="amazon-web-services::us-west-1",
             tags=["terraform"],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         # Second instance added to managed VPC
         instance02 = cloudamqp.Instance("instance_02",
@@ -1365,7 +1365,7 @@ class Instance(pulumi.CustomResource):
             plan="penguin-1",
             region="amazon-web-services::us-west-1",
             tags=["terraform"],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         ```
 

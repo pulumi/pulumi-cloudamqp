@@ -379,10 +379,10 @@ class VpcGcpPeering(pulumi.CustomResource):
             tags=["terraform"],
             vpc_subnet="10.40.72.0/24")
         # VPC information
-        vpc_info = instance.id.apply(lambda id: cloudamqp.get_vpc_gcp_info_output(instance_id=id))
+        vpc_info = instance.id.apply(lambda id: cloudamqp.get_vpc_gcp_info_output(instance_id=int(id)))
         # VPC peering configuration
         vpc_peering_request = cloudamqp.VpcGcpPeering("vpc_peering_request",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             peer_network_uri="https://www.googleapis.com/compute/v1/projects/PROJECT-NAME/global/networks/VPC-NETWORK-NAME")
         ```
 
@@ -411,7 +411,7 @@ class VpcGcpPeering(pulumi.CustomResource):
             plan="penguin-1",
             region="google-compute-engine::europe-north1",
             tags=["terraform"],
-            vpc_id=vpc.id)
+            vpc_id=vpc.id.apply(lambda x: int(x)))
         # VPC information
         vpc_info = cloudamqp.get_vpc_gcp_info(vpc_id=vpc.info)
         # VPC peering configuration
@@ -472,11 +472,11 @@ class VpcGcpPeering(pulumi.CustomResource):
 
         # VPC peering configuration
         vpc_peering_request = cloudamqp.VpcGcpPeering("vpc_peering_request",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             peer_network_uri=peer_network_uri)
         # Firewall rules
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             rules=[
                 {
                     "ip": peer_subnet,
@@ -526,7 +526,7 @@ class VpcGcpPeering(pulumi.CustomResource):
             peer_network_uri=peer_network_uri)
         # Firewall rules
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             rules=[
                 {
                     "ip": peer_subnet,
@@ -653,10 +653,10 @@ class VpcGcpPeering(pulumi.CustomResource):
             tags=["terraform"],
             vpc_subnet="10.40.72.0/24")
         # VPC information
-        vpc_info = instance.id.apply(lambda id: cloudamqp.get_vpc_gcp_info_output(instance_id=id))
+        vpc_info = instance.id.apply(lambda id: cloudamqp.get_vpc_gcp_info_output(instance_id=int(id)))
         # VPC peering configuration
         vpc_peering_request = cloudamqp.VpcGcpPeering("vpc_peering_request",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             peer_network_uri="https://www.googleapis.com/compute/v1/projects/PROJECT-NAME/global/networks/VPC-NETWORK-NAME")
         ```
 
@@ -685,7 +685,7 @@ class VpcGcpPeering(pulumi.CustomResource):
             plan="penguin-1",
             region="google-compute-engine::europe-north1",
             tags=["terraform"],
-            vpc_id=vpc.id)
+            vpc_id=vpc.id.apply(lambda x: int(x)))
         # VPC information
         vpc_info = cloudamqp.get_vpc_gcp_info(vpc_id=vpc.info)
         # VPC peering configuration
@@ -746,11 +746,11 @@ class VpcGcpPeering(pulumi.CustomResource):
 
         # VPC peering configuration
         vpc_peering_request = cloudamqp.VpcGcpPeering("vpc_peering_request",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             peer_network_uri=peer_network_uri)
         # Firewall rules
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             rules=[
                 {
                     "ip": peer_subnet,
@@ -800,7 +800,7 @@ class VpcGcpPeering(pulumi.CustomResource):
             peer_network_uri=peer_network_uri)
         # Firewall rules
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             rules=[
                 {
                     "ip": peer_subnet,

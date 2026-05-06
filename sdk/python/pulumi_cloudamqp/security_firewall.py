@@ -221,7 +221,7 @@ class SecurityFirewall(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         this = cloudamqp.SecurityFirewall("this",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             rules=[
                 {
                     "ip": "192.168.0.0/24",
@@ -277,7 +277,7 @@ class SecurityFirewall(pulumi.CustomResource):
             region="amazon-web-services::us-west-1",
             tags=["terraform"])
         this = cloudamqp.SecurityFirewall("this",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             rules=[
                 {
                     "ip": "0.0.0.0/0",
@@ -330,7 +330,7 @@ class SecurityFirewall(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             rules=[{
                 "ip": "192.168.0.0/24",
                 "ports": [5671],
@@ -349,7 +349,7 @@ class SecurityFirewall(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             rules=[{
                 "ip": "192.168.0.0/24",
                 "ports": [],
@@ -409,7 +409,7 @@ class SecurityFirewall(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         this = cloudamqp.SecurityFirewall("this",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             rules=[
                 {
                     "ip": "192.168.0.0/24",
@@ -465,7 +465,7 @@ class SecurityFirewall(pulumi.CustomResource):
             region="amazon-web-services::us-west-1",
             tags=["terraform"])
         this = cloudamqp.SecurityFirewall("this",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             rules=[
                 {
                     "ip": "0.0.0.0/0",
@@ -518,7 +518,7 @@ class SecurityFirewall(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             rules=[{
                 "ip": "192.168.0.0/24",
                 "ports": [5671],
@@ -537,7 +537,7 @@ class SecurityFirewall(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             rules=[{
                 "ip": "192.168.0.0/24",
                 "ports": [],

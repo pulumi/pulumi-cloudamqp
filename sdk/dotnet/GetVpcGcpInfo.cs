@@ -35,7 +35,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var vpcInfo = CloudAmqp.Index.GetVpcGcpInfo.Invoke(new()
+        ///     var vpcInfo = CloudAmqp.GetVpcGcpInfo.Invoke(new()
         ///     {
         ///         InstanceId = instance.Id,
         ///     });
@@ -60,7 +60,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var vpcInfo = CloudAmqp.Index.GetVpcGcpInfo.Invoke(new()
+        ///     var vpcInfo = CloudAmqp.GetVpcGcpInfo.Invoke(new()
         ///     {
         ///         VpcId = vpc.Id,
         ///     });
@@ -108,7 +108,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var vpcInfo = CloudAmqp.Index.GetVpcGcpInfo.Invoke(new()
+        ///     var vpcInfo = CloudAmqp.GetVpcGcpInfo.Invoke(new()
         ///     {
         ///         InstanceId = instance.Id,
         ///     });
@@ -133,7 +133,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var vpcInfo = CloudAmqp.Index.GetVpcGcpInfo.Invoke(new()
+        ///     var vpcInfo = CloudAmqp.GetVpcGcpInfo.Invoke(new()
         ///     {
         ///         VpcId = vpc.Id,
         ///     });
@@ -181,7 +181,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var vpcInfo = CloudAmqp.Index.GetVpcGcpInfo.Invoke(new()
+        ///     var vpcInfo = CloudAmqp.GetVpcGcpInfo.Invoke(new()
         ///     {
         ///         InstanceId = instance.Id,
         ///     });
@@ -206,7 +206,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var vpcInfo = CloudAmqp.Index.GetVpcGcpInfo.Invoke(new()
+        ///     var vpcInfo = CloudAmqp.GetVpcGcpInfo.Invoke(new()
         ///     {
         ///         VpcId = vpc.Id,
         ///     });
