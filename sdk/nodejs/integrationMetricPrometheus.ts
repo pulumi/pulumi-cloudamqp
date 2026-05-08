@@ -21,7 +21,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const newrelicV3 = new cloudamqp.IntegrationMetricPrometheus("newrelic_v3", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     newrelicV3: {
  *         apiKey: newrelicApiKey,
  *         region: "us",
@@ -37,7 +37,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const datadogV3 = new cloudamqp.IntegrationMetricPrometheus("datadog_v3", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     datadogV3: {
  *         apiKey: datadogApiKey,
  *         region: "us1",
@@ -54,7 +54,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const azureMonitor = new cloudamqp.IntegrationMetricPrometheus("azure_monitor", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     azureMonitor: {
  *         connectionString: azureMonitorConnectionString,
  *     },
@@ -68,7 +68,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const splunkV2 = new cloudamqp.IntegrationMetricPrometheus("splunk_v2", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     splunkV2: {
  *         token: splunkToken,
  *         endpoint: splunkEndpoint,
@@ -84,7 +84,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const dynatrace = new cloudamqp.IntegrationMetricPrometheus("dynatrace", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     dynatrace: {
  *         environmentId: dynatraceEnvironmentId,
  *         accessToken: dynatraceAccessToken,
@@ -100,7 +100,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const cloudwatchV3 = new cloudamqp.IntegrationMetricPrometheus("cloudwatch_v3", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     cloudwatchV3: {
  *         iamRole: cloudwatchIamRole,
  *         iamExternalId: cloudwatchIamExternalId,
@@ -117,7 +117,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const stackdriverV2 = new cloudamqp.IntegrationMetricPrometheus("stackdriver_v2", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     stackdriverV2: {
  *         credentialsFile: googleServiceAccountKey,
  *         tags: "key=value,key2=value2",
@@ -230,34 +230,34 @@ export class IntegrationMetricPrometheus extends pulumi.CustomResource {
  * Input properties used for looking up and filtering IntegrationMetricPrometheus resources.
  */
 export interface IntegrationMetricPrometheusState {
-    azureMonitor?: pulumi.Input<inputs.IntegrationMetricPrometheusAzureMonitor>;
-    cloudwatchV3?: pulumi.Input<inputs.IntegrationMetricPrometheusCloudwatchV3>;
-    datadogV3?: pulumi.Input<inputs.IntegrationMetricPrometheusDatadogV3>;
-    dynatrace?: pulumi.Input<inputs.IntegrationMetricPrometheusDynatrace>;
+    azureMonitor?: pulumi.Input<inputs.IntegrationMetricPrometheusAzureMonitor | undefined>;
+    cloudwatchV3?: pulumi.Input<inputs.IntegrationMetricPrometheusCloudwatchV3 | undefined>;
+    datadogV3?: pulumi.Input<inputs.IntegrationMetricPrometheusDatadogV3 | undefined>;
+    dynatrace?: pulumi.Input<inputs.IntegrationMetricPrometheusDynatrace | undefined>;
     /**
      * Instance identifier for the CloudAMQP instance.
      */
-    instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number | undefined>;
     /**
      * List of metrics to include in the integration. If not specified, default metrics are included.
      * For more information about metrics filtering, see the [metrics filtering documentation](https://www.cloudamqp.com/docs/monitoring_metrics_splunk_v2.html#metrics-filtering).
      *
      * Exactly one of the following integration blocks must be specified:
      */
-    metricsFilters?: pulumi.Input<pulumi.Input<string>[]>;
-    newrelicV3?: pulumi.Input<inputs.IntegrationMetricPrometheusNewrelicV3>;
-    splunkV2?: pulumi.Input<inputs.IntegrationMetricPrometheusSplunkV2>;
-    stackdriverV2?: pulumi.Input<inputs.IntegrationMetricPrometheusStackdriverV2>;
+    metricsFilters?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    newrelicV3?: pulumi.Input<inputs.IntegrationMetricPrometheusNewrelicV3 | undefined>;
+    splunkV2?: pulumi.Input<inputs.IntegrationMetricPrometheusSplunkV2 | undefined>;
+    stackdriverV2?: pulumi.Input<inputs.IntegrationMetricPrometheusStackdriverV2 | undefined>;
 }
 
 /**
  * The set of arguments for constructing a IntegrationMetricPrometheus resource.
  */
 export interface IntegrationMetricPrometheusArgs {
-    azureMonitor?: pulumi.Input<inputs.IntegrationMetricPrometheusAzureMonitor>;
-    cloudwatchV3?: pulumi.Input<inputs.IntegrationMetricPrometheusCloudwatchV3>;
-    datadogV3?: pulumi.Input<inputs.IntegrationMetricPrometheusDatadogV3>;
-    dynatrace?: pulumi.Input<inputs.IntegrationMetricPrometheusDynatrace>;
+    azureMonitor?: pulumi.Input<inputs.IntegrationMetricPrometheusAzureMonitor | undefined>;
+    cloudwatchV3?: pulumi.Input<inputs.IntegrationMetricPrometheusCloudwatchV3 | undefined>;
+    datadogV3?: pulumi.Input<inputs.IntegrationMetricPrometheusDatadogV3 | undefined>;
+    dynatrace?: pulumi.Input<inputs.IntegrationMetricPrometheusDynatrace | undefined>;
     /**
      * Instance identifier for the CloudAMQP instance.
      */
@@ -268,8 +268,8 @@ export interface IntegrationMetricPrometheusArgs {
      *
      * Exactly one of the following integration blocks must be specified:
      */
-    metricsFilters?: pulumi.Input<pulumi.Input<string>[]>;
-    newrelicV3?: pulumi.Input<inputs.IntegrationMetricPrometheusNewrelicV3>;
-    splunkV2?: pulumi.Input<inputs.IntegrationMetricPrometheusSplunkV2>;
-    stackdriverV2?: pulumi.Input<inputs.IntegrationMetricPrometheusStackdriverV2>;
+    metricsFilters?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    newrelicV3?: pulumi.Input<inputs.IntegrationMetricPrometheusNewrelicV3 | undefined>;
+    splunkV2?: pulumi.Input<inputs.IntegrationMetricPrometheusSplunkV2 | undefined>;
+    stackdriverV2?: pulumi.Input<inputs.IntegrationMetricPrometheusStackdriverV2 | undefined>;
 }

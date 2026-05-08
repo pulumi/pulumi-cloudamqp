@@ -37,7 +37,7 @@ import * as utilities from "./utilities";
  *     tags: [],
  * });
  * const privatelink = new cloudamqp.PrivatelinkAws("privatelink", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     allowedPrincipals: ["arn:aws:iam::aws-account-id:user/user-name"],
  * });
  * ```
@@ -66,11 +66,11 @@ import * as utilities from "./utilities";
  *     plan: "bunny-1",
  *     region: "amazon-web-services::us-west-1",
  *     tags: [],
- *     vpcId: vpc.id,
+ *     vpcId: vpc.id.apply(x =>Number(x)),
  *     keepAssociatedVpc: true,
  * });
  * const privatelink = new cloudamqp.PrivatelinkAws("privatelink", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     allowedPrincipals: ["arn:aws:iam::aws-account-id:user/user-name"],
  * });
  * ```
@@ -101,15 +101,15 @@ import * as utilities from "./utilities";
  *     plan: "bunny-1",
  *     region: "amazon-web-services::us-west-1",
  *     tags: [],
- *     vpcId: vpc.id,
+ *     vpcId: vpc.id.apply(x =>Number(x)),
  *     keepAssociatedVpc: true,
  * });
  * const privatelink = new cloudamqp.PrivatelinkAws("privatelink", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     allowedPrincipals: ["arn:aws:iam::aws-account-id:user/user-name"],
  * });
  * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     rules: [
  *         {
  *             description: "Custom PrivateLink setup",
@@ -274,30 +274,30 @@ export interface PrivatelinkAwsState {
     /**
      * Covering availability zones used when creating an Endpoint from other VPC.
      */
-    activeZones?: pulumi.Input<pulumi.Input<string>[]>;
+    activeZones?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Allowed principals to access the endpoint service.
      */
-    allowedPrincipals?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedPrincipals?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The CloudAMQP instance identifier.
      */
-    instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number | undefined>;
     /**
      * Service name of the PrivateLink used when creating the endpoint from other VPC.
      */
-    serviceName?: pulumi.Input<string>;
+    serviceName?: pulumi.Input<string | undefined>;
     /**
      * Configurable sleep time (seconds) when enable PrivateLink.
      * Default set to 10 seconds.
      *
      * ***Note:*** Available from [v1.29.0]
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * PrivateLink status [enable, pending, disable]
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * Configurable timeout time (seconds) when enable PrivateLink.
      * Default set to 1800 seconds.
@@ -309,7 +309,7 @@ export interface PrivatelinkAwsState {
      * `arn:aws:iam::aws-account-id:user/user-name` <br>
      * `arn:aws:iam::aws-account-id:role/role-name`
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -330,7 +330,7 @@ export interface PrivatelinkAwsArgs {
      *
      * ***Note:*** Available from [v1.29.0]
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * Configurable timeout time (seconds) when enable PrivateLink.
      * Default set to 1800 seconds.
@@ -342,5 +342,5 @@ export interface PrivatelinkAwsArgs {
      * `arn:aws:iam::aws-account-id:user/user-name` <br>
      * `arn:aws:iam::aws-account-id:role/role-name`
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
 }

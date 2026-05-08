@@ -26,7 +26,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const _this = new cloudamqp.SecurityFirewall("this", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     rules: [
  *         {
  *             ip: "192.168.0.0/24",
@@ -84,7 +84,7 @@ import * as utilities from "./utilities";
  *     tags: ["terraform"],
  * });
  * const _this = new cloudamqp.SecurityFirewall("this", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     rules: [
  *         {
  *             ip: "0.0.0.0/0",
@@ -138,7 +138,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     rules: [{
  *         ip: "192.168.0.0/24",
  *         ports: [5671],
@@ -158,7 +158,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     rules: [{
  *         ip: "192.168.0.0/24",
  *         ports: [],
@@ -272,17 +272,17 @@ export interface SecurityFirewallState {
     /**
      * The CloudAMQP instance ID.
      */
-    instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number | undefined>;
     /**
      * An array of rules, minimum of 1 needs to be configured. Each `rules`
      * block consists of the field documented below.
      */
-    rules?: pulumi.Input<pulumi.Input<inputs.SecurityFirewallRule>[]>;
+    rules?: pulumi.Input<pulumi.Input<inputs.SecurityFirewallRule>[] | undefined>;
     /**
      * Configurable sleep time in seconds between retries for firewall
      * configuration. Default set to 30 seconds.
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * Configurable timeout time in seconds for firewall configuration.
      * Default set to 1800 seconds.
@@ -291,7 +291,7 @@ export interface SecurityFirewallState {
      *
      * The `rules` block consists of:
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -311,7 +311,7 @@ export interface SecurityFirewallArgs {
      * Configurable sleep time in seconds between retries for firewall
      * configuration. Default set to 30 seconds.
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * Configurable timeout time in seconds for firewall configuration.
      * Default set to 1800 seconds.
@@ -320,5 +320,5 @@ export interface SecurityFirewallArgs {
      *
      * The `rules` block consists of:
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
 }

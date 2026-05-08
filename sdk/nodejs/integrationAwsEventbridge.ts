@@ -41,7 +41,7 @@ import * as utilities from "./utilities";
  *     tags: ["aws"],
  * });
  * const _this = new cloudamqp.IntegrationAwsEventbridge("this", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     vhost: instance.vhost,
  *     queue: "<QUEUE-NAME>",
  *     awsAccountId: "<AWS-ACCOUNT-ID>",
@@ -71,7 +71,7 @@ import * as utilities from "./utilities";
  *     tags: ["aws"],
  * });
  * const _this = new cloudamqp.IntegrationAwsEventbridge("this", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     vhost: instance.vhost,
  *     queue: "<QUEUE-NAME>",
  *     awsAccountId: "<AWS-ACCOUNT-ID>",
@@ -225,35 +225,35 @@ export interface IntegrationAwsEventbridgeState {
     /**
      * The 12 digit AWS Account ID where you want the events to be sent to.
      */
-    awsAccountId?: pulumi.Input<string>;
+    awsAccountId?: pulumi.Input<string | undefined>;
     /**
      * The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
      */
-    awsRegion?: pulumi.Input<string>;
+    awsRegion?: pulumi.Input<string | undefined>;
     /**
      * Instance identifier
      */
-    instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number | undefined>;
     /**
      * Number of messages to prefetch. Default set to 1.
      */
-    prefetch?: pulumi.Input<number>;
+    prefetch?: pulumi.Input<number | undefined>;
     /**
      * A (durable) queue on your RabbitMQ instance.
      */
-    queue?: pulumi.Input<string>;
+    queue?: pulumi.Input<string | undefined>;
     /**
      * Always set to null, unless there is an error starting the EventBridge.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * The VHost the queue resides in.
      */
-    vhost?: pulumi.Input<string>;
+    vhost?: pulumi.Input<string | undefined>;
     /**
      * Include message headers in the event data.
      */
-    withHeaders?: pulumi.Input<boolean>;
+    withHeaders?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -275,7 +275,7 @@ export interface IntegrationAwsEventbridgeArgs {
     /**
      * Number of messages to prefetch. Default set to 1.
      */
-    prefetch?: pulumi.Input<number>;
+    prefetch?: pulumi.Input<number | undefined>;
     /**
      * A (durable) queue on your RabbitMQ instance.
      */

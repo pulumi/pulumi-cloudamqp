@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const defaultRecipient = cloudamqp.getNotifications({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * ```
  *
@@ -71,7 +71,7 @@ export interface GetNotificationsResult {
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const defaultRecipient = cloudamqp.getNotifications({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * ```
  *

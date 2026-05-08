@@ -57,7 +57,7 @@ namespace Pulumi.CloudAmqp
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Instance
-    ///     var instance = new CloudAmqp.Index.Instance("instance", new()
+    ///     var instance = new CloudAmqp.Instance("instance", new()
     ///     {
     ///         Name = "Instance",
     ///         Plan = "penguin-1",
@@ -65,7 +65,7 @@ namespace Pulumi.CloudAmqp
     ///     });
     /// 
     ///     // Resize disk with 25 extra GB
-    ///     var resizeDisk = new CloudAmqp.Index.ExtraDiskSize("resize_disk", new()
+    ///     var resizeDisk = new CloudAmqp.ExtraDiskSize("resize_disk", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         ExtraDiskSizeGb = 25,
@@ -73,7 +73,7 @@ namespace Pulumi.CloudAmqp
     /// 
     ///     // Optional, refresh nodes info after disk resize by adding dependency
     ///     // to cloudamqp_extra_disk_size.resize_disk resource
-    ///     var nodes = CloudAmqp.Index.GetNodes.Invoke(new()
+    ///     var nodes = CloudAmqp.GetNodes.Invoke(new()
     ///     {
     ///         InstanceId = instance.Id,
     ///     });
@@ -99,7 +99,7 @@ namespace Pulumi.CloudAmqp
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Instance
-    ///     var instance = new CloudAmqp.Index.Instance("instance", new()
+    ///     var instance = new CloudAmqp.Instance("instance", new()
     ///     {
     ///         Name = "Instance",
     ///         Plan = "penguin-1",
@@ -107,7 +107,7 @@ namespace Pulumi.CloudAmqp
     ///     });
     /// 
     ///     // Resize disk with 25 extra GB, without downtime
-    ///     var resizeDisk = new CloudAmqp.Index.ExtraDiskSize("resize_disk", new()
+    ///     var resizeDisk = new CloudAmqp.ExtraDiskSize("resize_disk", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         ExtraDiskSizeGb = 25,
@@ -115,7 +115,7 @@ namespace Pulumi.CloudAmqp
     /// 
     ///     // Optional, refresh nodes info after disk resize by adding dependency
     ///     // to cloudamqp_extra_disk_size.resize_disk resource
-    ///     var nodes = CloudAmqp.Index.GetNodes.Invoke(new()
+    ///     var nodes = CloudAmqp.GetNodes.Invoke(new()
     ///     {
     ///         InstanceId = instance.Id,
     ///     });
@@ -141,7 +141,7 @@ namespace Pulumi.CloudAmqp
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Instance
-    ///     var instance = new CloudAmqp.Index.Instance("instance", new()
+    ///     var instance = new CloudAmqp.Instance("instance", new()
     ///     {
     ///         Name = "Instance",
     ///         Plan = "penguin-1",
@@ -149,7 +149,7 @@ namespace Pulumi.CloudAmqp
     ///     });
     /// 
     ///     // Resize disk with 25 extra GB, without downtime
-    ///     var resizeDisk = new CloudAmqp.Index.ExtraDiskSize("resize_disk", new()
+    ///     var resizeDisk = new CloudAmqp.ExtraDiskSize("resize_disk", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         ExtraDiskSizeGb = 25,
@@ -157,7 +157,7 @@ namespace Pulumi.CloudAmqp
     /// 
     ///     // Optional, refresh nodes info after disk resize by adding dependency
     ///     // to cloudamqp_extra_disk_size.resize_disk resource
-    ///     var nodes = CloudAmqp.Index.GetNodes.Invoke(new()
+    ///     var nodes = CloudAmqp.GetNodes.Invoke(new()
     ///     {
     ///         InstanceId = instance.Id,
     ///     });
@@ -183,7 +183,7 @@ namespace Pulumi.CloudAmqp
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Instance
-    ///     var instance = new CloudAmqp.Index.Instance("instance", new()
+    ///     var instance = new CloudAmqp.Instance("instance", new()
     ///     {
     ///         Name = "Instance",
     ///         Plan = "penguin-1",
@@ -191,7 +191,7 @@ namespace Pulumi.CloudAmqp
     ///     });
     /// 
     ///     // Resize disk with 25 extra GB, with downtime
-    ///     var resizeDisk = new CloudAmqp.Index.ExtraDiskSize("resize_disk", new()
+    ///     var resizeDisk = new CloudAmqp.ExtraDiskSize("resize_disk", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         ExtraDiskSizeGb = 25,
@@ -199,7 +199,7 @@ namespace Pulumi.CloudAmqp
     /// 
     ///     // Optional, refresh nodes info after disk resize by adding dependency
     ///     // to cloudamqp_extra_disk_size.resize_disk resource
-    ///     var nodes = CloudAmqp.Index.GetNodes.Invoke(new()
+    ///     var nodes = CloudAmqp.GetNodes.Invoke(new()
     ///     {
     ///         InstanceId = instance.Id,
     ///     });

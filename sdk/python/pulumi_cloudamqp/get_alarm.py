@@ -203,7 +203,7 @@ def get_alarm(alarm_id: Optional[_builtins.int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    default_cpu_alarm = cloudamqp.get_alarm(instance_id=instance["id"],
+    default_cpu_alarm = cloudamqp.get_alarm(instance_id=int(instance["id"]),
         type="cpu")
     ```
 
@@ -244,9 +244,9 @@ def get_alarm(alarm_id: Optional[_builtins.int] = None,
         value_calculation=pulumi.get(__ret__, 'value_calculation'),
         value_threshold=pulumi.get(__ret__, 'value_threshold'),
         vhost_regex=pulumi.get(__ret__, 'vhost_regex'))
-def get_alarm_output(alarm_id: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                     instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                     type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_alarm_output(alarm_id: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                     instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                     type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAlarmResult]:
     """
     > **Deprecated** This data source will be removed in next major version (v2.0). Use the `get_alarms` data source instead.
@@ -260,7 +260,7 @@ def get_alarm_output(alarm_id: Optional[pulumi.Input[Optional[_builtins.int]]] =
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    default_cpu_alarm = cloudamqp.get_alarm(instance_id=instance["id"],
+    default_cpu_alarm = cloudamqp.get_alarm(instance_id=int(instance["id"]),
         type="cpu")
     ```
 

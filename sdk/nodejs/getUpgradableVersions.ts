@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const versions = cloudamqp.getUpgradableVersions({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * ```
  *
@@ -69,7 +69,7 @@ export interface GetUpgradableVersionsResult {
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const versions = cloudamqp.getUpgradableVersions({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * ```
  *

@@ -27,7 +27,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const settings = new cloudamqp.CustomDomain("settings", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     hostname: "myname.mydomain",
  * });
  * ```
@@ -123,19 +123,19 @@ export interface CustomDomainState {
     /**
      * Your custom domain name.
      */
-    hostname?: pulumi.Input<string>;
+    hostname?: pulumi.Input<string | undefined>;
     /**
      * The CloudAMQP instance ID.
      */
-    instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number | undefined>;
     /**
      * Configurable sleep time in seconds between retries for custom domain configuration
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * Configurable timeout time in seconds for custom domain configuration
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -153,9 +153,9 @@ export interface CustomDomainArgs {
     /**
      * Configurable sleep time in seconds between retries for custom domain configuration
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * Configurable timeout time in seconds for custom domain configuration
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
 }

@@ -52,11 +52,11 @@ import * as utilities from "./utilities";
  *     plan: "penguin-1",
  *     region: "amazon-web-services::us-west-1",
  *     tags: [],
- *     vpcId: vpc.id,
+ *     vpcId: vpc.id.apply(x =>Number(x)),
  *     keepAssociatedVpc: true,
  * });
  * const vpcConnect = new cloudamqp.VpcConnect("vpc_connect", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     region: instance.region,
  *     allowedPrincipals: ["arn:aws:iam::aws-account-id:user/user-name"],
  * });
@@ -86,11 +86,11 @@ import * as utilities from "./utilities";
  *     plan: "penguin-1",
  *     region: "azure-arm::westus",
  *     tags: [],
- *     vpcId: vpc.id,
+ *     vpcId: vpc.id.apply(x =>Number(x)),
  *     keepAssociatedVpc: true,
  * });
  * const vpcConnect = new cloudamqp.VpcConnect("vpc_connect", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     region: instance.region,
  *     approvedSubscriptions: ["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"],
  * });
@@ -146,11 +146,11 @@ import * as utilities from "./utilities";
  *     plan: "penguin-1",
  *     region: "google-compute-engine::us-west1",
  *     tags: [],
- *     vpcId: vpc.id,
+ *     vpcId: vpc.id.apply(x =>Number(x)),
  *     keepAssociatedVpc: true,
  * });
  * const vpcConnect = new cloudamqp.VpcConnect("vpc_connect", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     region: instance.region,
  *     allowedProjects: ["some-project-123456"],
  * });
@@ -182,15 +182,15 @@ import * as utilities from "./utilities";
  *     plan: "penguin-1",
  *     region: "amazon-web-services::us-west-1",
  *     tags: [],
- *     vpcId: vpc.id,
+ *     vpcId: vpc.id.apply(x =>Number(x)),
  *     keepAssociatedVpc: true,
  * });
  * const vpcConnect = new cloudamqp.VpcConnect("vpc_connect", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     allowedPrincipals: ["arn:aws:iam::aws-account-id:user/user-name"],
  * });
  * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     rules: [
  *         {
  *             description: "Custom PrivateLink setup",
@@ -376,41 +376,41 @@ export interface VpcConnectState {
     /**
      * Covering availability zones used when creating an endpoint from other VPC. (AWS)
      */
-    activeZones?: pulumi.Input<pulumi.Input<string>[]>;
+    activeZones?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of allowed prinicpals used by AWS, see below table.
      */
-    allowedPrincipals?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedPrincipals?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of allowed projects used by GCP, see below table.
      */
-    allowedProjects?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedProjects?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of approved subscriptions used by Azure, see below
      * table.
      */
-    approvedSubscriptions?: pulumi.Input<pulumi.Input<string>[]>;
+    approvedSubscriptions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The CloudAMQP instance identifier.
      */
-    instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number | undefined>;
     /**
      * The region where the CloudAMQP instance is hosted.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Service name (alias for Azure, see example above) of the PrivateLink.
      */
-    serviceName?: pulumi.Input<string>;
+    serviceName?: pulumi.Input<string | undefined>;
     /**
      * Configurable sleep time (seconds) when enable Private
      * Service Connect. Default set to 10 seconds.
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * Private Service Connect status [enable, pending, disable]
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * Configurable timeout time (seconds) when enable Private
      * Service Connect. Default set to 1800 seconds.
@@ -426,7 +426,7 @@ export interface VpcConnectState {
      * | Azure | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX |
      * | GCP | Project IDs [Google docs] | 6 to 30 lowercase letters, digits, or hyphens |
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -436,16 +436,16 @@ export interface VpcConnectArgs {
     /**
      * List of allowed prinicpals used by AWS, see below table.
      */
-    allowedPrincipals?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedPrincipals?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of allowed projects used by GCP, see below table.
      */
-    allowedProjects?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedProjects?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of approved subscriptions used by Azure, see below
      * table.
      */
-    approvedSubscriptions?: pulumi.Input<pulumi.Input<string>[]>;
+    approvedSubscriptions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The CloudAMQP instance identifier.
      */
@@ -458,7 +458,7 @@ export interface VpcConnectArgs {
      * Configurable sleep time (seconds) when enable Private
      * Service Connect. Default set to 10 seconds.
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * Configurable timeout time (seconds) when enable Private
      * Service Connect. Default set to 1800 seconds.
@@ -474,5 +474,5 @@ export interface VpcConnectArgs {
      * | Azure | Subscription (GUID) | XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX |
      * | GCP | Project IDs [Google docs] | 6 to 30 lowercase letters, digits, or hyphens |
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
 }

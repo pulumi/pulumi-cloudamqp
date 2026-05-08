@@ -23,8 +23,8 @@ class SecurityFirewallArgs:
     def __init__(__self__, *,
                  instance_id: pulumi.Input[_builtins.int],
                  rules: pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]],
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None):
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a SecurityFirewall resource.
 
@@ -74,7 +74,7 @@ class SecurityFirewallArgs:
 
     @_builtins.property
     @pulumi.getter
-    def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def sleep(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable sleep time in seconds between retries for firewall
         configuration. Default set to 30 seconds.
@@ -82,12 +82,12 @@ class SecurityFirewallArgs:
         return pulumi.get(self, "sleep")
 
     @sleep.setter
-    def sleep(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def sleep(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "sleep", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable timeout time in seconds for firewall configuration.
         Default set to 1800 seconds.
@@ -99,17 +99,17 @@ class SecurityFirewallArgs:
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
 
 @pulumi.input_type
 class _SecurityFirewallState:
     def __init__(__self__, *,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 rules: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None):
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering SecurityFirewall resources.
 
@@ -136,19 +136,19 @@ class _SecurityFirewallState:
 
     @_builtins.property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The CloudAMQP instance ID.
         """
         return pulumi.get(self, "instance_id")
 
     @instance_id.setter
-    def instance_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]]]:
+    def rules(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]]]:
         """
         An array of rules, minimum of 1 needs to be configured. Each `rules`
         block consists of the field documented below.
@@ -156,12 +156,12 @@ class _SecurityFirewallState:
         return pulumi.get(self, "rules")
 
     @rules.setter
-    def rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]]]):
+    def rules(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['SecurityFirewallRuleArgs']]]]):
         pulumi.set(self, "rules", value)
 
     @_builtins.property
     @pulumi.getter
-    def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def sleep(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable sleep time in seconds between retries for firewall
         configuration. Default set to 30 seconds.
@@ -169,12 +169,12 @@ class _SecurityFirewallState:
         return pulumi.get(self, "sleep")
 
     @sleep.setter
-    def sleep(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def sleep(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "sleep", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable timeout time in seconds for firewall configuration.
         Default set to 1800 seconds.
@@ -186,7 +186,7 @@ class _SecurityFirewallState:
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
 
@@ -196,10 +196,10 @@ class SecurityFirewall(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecurityFirewallRuleArgs', 'SecurityFirewallRuleArgsDict']]]]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecurityFirewallRuleArgs', 'SecurityFirewallRuleArgsDict']]]]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         <!-- markdownlint-disable MD033 -->
@@ -221,7 +221,7 @@ class SecurityFirewall(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         this = cloudamqp.SecurityFirewall("this",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             rules=[
                 {
                     "ip": "192.168.0.0/24",
@@ -277,7 +277,7 @@ class SecurityFirewall(pulumi.CustomResource):
             region="amazon-web-services::us-west-1",
             tags=["terraform"])
         this = cloudamqp.SecurityFirewall("this",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             rules=[
                 {
                     "ip": "0.0.0.0/0",
@@ -330,7 +330,7 @@ class SecurityFirewall(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             rules=[{
                 "ip": "192.168.0.0/24",
                 "ports": [5671],
@@ -349,7 +349,7 @@ class SecurityFirewall(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             rules=[{
                 "ip": "192.168.0.0/24",
                 "ports": [],
@@ -409,7 +409,7 @@ class SecurityFirewall(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         this = cloudamqp.SecurityFirewall("this",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             rules=[
                 {
                     "ip": "192.168.0.0/24",
@@ -465,7 +465,7 @@ class SecurityFirewall(pulumi.CustomResource):
             region="amazon-web-services::us-west-1",
             tags=["terraform"])
         this = cloudamqp.SecurityFirewall("this",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             rules=[
                 {
                     "ip": "0.0.0.0/0",
@@ -518,7 +518,7 @@ class SecurityFirewall(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             rules=[{
                 "ip": "192.168.0.0/24",
                 "ports": [5671],
@@ -537,7 +537,7 @@ class SecurityFirewall(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             rules=[{
                 "ip": "192.168.0.0/24",
                 "ports": [],
@@ -572,10 +572,10 @@ class SecurityFirewall(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecurityFirewallRuleArgs', 'SecurityFirewallRuleArgsDict']]]]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecurityFirewallRuleArgs', 'SecurityFirewallRuleArgsDict']]]]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -603,10 +603,10 @@ class SecurityFirewall(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-            rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecurityFirewallRuleArgs', 'SecurityFirewallRuleArgsDict']]]]] = None,
-            sleep: Optional[pulumi.Input[_builtins.int]] = None,
-            timeout: Optional[pulumi.Input[_builtins.int]] = None) -> 'SecurityFirewall':
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecurityFirewallRuleArgs', 'SecurityFirewallRuleArgsDict']]]]] = None,
+            sleep: pulumi.Input[Optional[_builtins.int]] = None,
+            timeout: pulumi.Input[Optional[_builtins.int]] = None) -> 'SecurityFirewall':
         """
         Get an existing SecurityFirewall resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

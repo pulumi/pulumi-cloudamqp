@@ -38,7 +38,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var webhookQueue = new CloudAmqp.Index.Webhook("webhook_queue", new()
+    ///     var webhookQueue = new CloudAmqp.Webhook("webhook_queue", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Vhost = instance.Vhost,
@@ -69,7 +69,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var webhookQueue = new CloudAmqp.Index.Webhook("webhook_queue", new()
+    ///     var webhookQueue = new CloudAmqp.Webhook("webhook_queue", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Vhost = instance.Vhost,
@@ -111,7 +111,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///   var webhookQueue = new CloudAmqp.Index.Webhook("webhook_queue", new()
+    ///   var webhookQueue = new CloudAmqp.Webhook("webhook_queue", new()
     ///   {
     ///       InstanceId = instance.Id,
     ///       Vhost = instance.Vhost,

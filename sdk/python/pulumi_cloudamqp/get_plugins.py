@@ -103,7 +103,7 @@ def get_plugins(instance_id: Optional[_builtins.int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    plugins = cloudamqp.get_plugins(instance_id=instance["id"])
+    plugins = cloudamqp.get_plugins(instance_id=int(instance["id"]))
     ```
 
     ## Dependency
@@ -130,9 +130,9 @@ def get_plugins(instance_id: Optional[_builtins.int] = None,
         plugins=pulumi.get(__ret__, 'plugins'),
         sleep=pulumi.get(__ret__, 'sleep'),
         timeout=pulumi.get(__ret__, 'timeout'))
-def get_plugins_output(instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                       sleep: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                       timeout: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
+def get_plugins_output(instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                       sleep: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                       timeout: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPluginsResult]:
     """
     Use this data source to retrieve information about installed and available plugins for the CloudAMQP
@@ -144,7 +144,7 @@ def get_plugins_output(instance_id: Optional[pulumi.Input[_builtins.int]] = None
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    plugins = cloudamqp.get_plugins(instance_id=instance["id"])
+    plugins = cloudamqp.get_plugins(instance_id=int(instance["id"]))
     ```
 
     ## Dependency

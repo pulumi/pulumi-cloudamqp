@@ -43,11 +43,11 @@ import * as utilities from "./utilities";
  * });
  * // VPC information
  * const vpcInfo = instance.id.apply(id => cloudamqp.getVpcGcpInfoOutput({
- *     instanceId: id,
+ *     instanceId: Number(id),
  * }));
  * // VPC peering configuration
  * const vpcPeeringRequest = new cloudamqp.VpcGcpPeering("vpc_peering_request", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     peerNetworkUri: "https://www.googleapis.com/compute/v1/projects/PROJECT-NAME/global/networks/VPC-NETWORK-NAME",
  * });
  * ```
@@ -78,7 +78,7 @@ import * as utilities from "./utilities";
  *     plan: "penguin-1",
  *     region: "google-compute-engine::europe-north1",
  *     tags: ["terraform"],
- *     vpcId: vpc.id,
+ *     vpcId: vpc.id.apply(x =>Number(x)),
  * });
  * // VPC information
  * const vpcInfo = cloudamqp.getVpcGcpInfo({
@@ -145,12 +145,12 @@ import * as utilities from "./utilities";
  *
  * // VPC peering configuration
  * const vpcPeeringRequest = new cloudamqp.VpcGcpPeering("vpc_peering_request", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     peerNetworkUri: peerNetworkUri,
  * });
  * // Firewall rules
  * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     rules: [
  *         {
  *             ip: peerSubnet,
@@ -203,7 +203,7 @@ import * as utilities from "./utilities";
  * });
  * // Firewall rules
  * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     rules: [
  *         {
  *             ip: peerSubnet,
@@ -393,53 +393,53 @@ export interface VpcGcpPeeringState {
     /**
      * VPC peering auto created routes
      */
-    autoCreateRoutes?: pulumi.Input<boolean>;
+    autoCreateRoutes?: pulumi.Input<boolean | undefined>;
     /**
      * The CloudAMQP instance identifier.
      *
      * ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
      */
-    instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number | undefined>;
     /**
      * Network URI of the VPC network to which you will peer with.
      * See examples above for the format.
      */
-    peerNetworkUri?: pulumi.Input<string>;
+    peerNetworkUri?: pulumi.Input<string | undefined>;
     /**
      * Configurable sleep time (seconds) between retries when
      * requesting or reading peering. Default set to 10 seconds.
      *
      * ***Note:*** Available from [v1.29.0]
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * VPC peering state
      */
-    state?: pulumi.Input<string>;
+    state?: pulumi.Input<string | undefined>;
     /**
      * VPC peering state details
      */
-    stateDetails?: pulumi.Input<string>;
+    stateDetails?: pulumi.Input<string | undefined>;
     /**
      * Configurable timeout time (seconds) before retries times
      * out. Default set to 1800 seconds.
      *
      * ***Note:*** Available from [v1.29.0]
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
     /**
      * The managed VPC identifier.
      *
      * ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
      */
-    vpcId?: pulumi.Input<string>;
+    vpcId?: pulumi.Input<string | undefined>;
     /**
      * Makes the resource wait until the peering is connected.
      * Default set to false.
      *
      * ***Note:*** Available from [v1.28.0]
      */
-    waitOnPeeringStatus?: pulumi.Input<boolean>;
+    waitOnPeeringStatus?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -451,7 +451,7 @@ export interface VpcGcpPeeringArgs {
      *
      * ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
      */
-    instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number | undefined>;
     /**
      * Network URI of the VPC network to which you will peer with.
      * See examples above for the format.
@@ -463,25 +463,25 @@ export interface VpcGcpPeeringArgs {
      *
      * ***Note:*** Available from [v1.29.0]
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * Configurable timeout time (seconds) before retries times
      * out. Default set to 1800 seconds.
      *
      * ***Note:*** Available from [v1.29.0]
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
     /**
      * The managed VPC identifier.
      *
      * ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
      */
-    vpcId?: pulumi.Input<string>;
+    vpcId?: pulumi.Input<string | undefined>;
     /**
      * Makes the resource wait until the peering is connected.
      * Default set to false.
      *
      * ***Note:*** Available from [v1.28.0]
      */
-    waitOnPeeringStatus?: pulumi.Input<boolean>;
+    waitOnPeeringStatus?: pulumi.Input<boolean | undefined>;
 }

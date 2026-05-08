@@ -131,7 +131,7 @@ import * as utilities from "./utilities";
  *     plan: "penguin-1",
  *     region: "amazon-web-services::us-west-1",
  *     tags: ["terraform"],
- *     vpcId: vpc.id,
+ *     vpcId: vpc.id.apply(x =>Number(x)),
  *     keepAssociatedVpc: true,
  * });
  * ```
@@ -162,7 +162,7 @@ import * as utilities from "./utilities";
  *     plan: "penguin-1",
  *     region: "amazon-web-services::us-west-1",
  *     tags: ["terraform"],
- *     vpcId: vpc.id,
+ *     vpcId: vpc.id.apply(x =>Number(x)),
  *     keepAssociatedVpc: true,
  * });
  * // Second instance added to managed VPC
@@ -171,7 +171,7 @@ import * as utilities from "./utilities";
  *     plan: "penguin-1",
  *     region: "amazon-web-services::us-west-1",
  *     tags: ["terraform"],
- *     vpcId: vpc.id,
+ *     vpcId: vpc.id.apply(x =>Number(x)),
  *     keepAssociatedVpc: true,
  * });
  * ```
@@ -654,45 +654,45 @@ export interface InstanceState {
      * (Sensitive) API key needed to communicate to CloudAMQP's second API. The second API is used
      * to manage alarms, integration and more, full description [CloudAMQP API].
      */
-    apikey?: pulumi.Input<string>;
+    apikey?: pulumi.Input<string | undefined>;
     /**
      * Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Copy settings from one CloudAMQP instance to a new. Consists of
      * the block documented below.
      */
-    copySettings?: pulumi.Input<pulumi.Input<inputs.InstanceCopySetting>[]>;
+    copySettings?: pulumi.Input<pulumi.Input<inputs.InstanceCopySetting>[] | undefined>;
     /**
      * (Sensitive) Broker credentials block with information extracted from URL.
      */
-    credentials?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    credentials?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Information if the CloudAMQP instance is shared or dedicated.
      */
-    dedicated?: pulumi.Input<boolean>;
+    dedicated?: pulumi.Input<boolean | undefined>;
     /**
      * The external hostname for the CloudAMQP instance.
      */
-    host?: pulumi.Input<string>;
+    host?: pulumi.Input<string | undefined>;
     /**
      * The internal hostname for the CloudAMQP instance.
      */
-    hostInternal?: pulumi.Input<string>;
+    hostInternal?: pulumi.Input<string | undefined>;
     /**
      * Keep associated VPC when deleting instance. Default set to
      * false.
      */
-    keepAssociatedVpc?: pulumi.Input<boolean>;
+    keepAssociatedVpc?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the CloudAMQP instance.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Set to true to not create default alarms
      */
-    noDefaultAlarms?: pulumi.Input<boolean>;
+    noDefaultAlarms?: pulumi.Input<boolean | undefined>;
     /**
      * Number of nodes, 1, 3 or 5 depending on plan used. Only needed for
      * legacy plans, will otherwise be computed.
@@ -701,7 +701,7 @@ export interface InstanceState {
      * New subscriptions plans use the plan to determine number of nodes. In order to
      * change number of nodes the `plan` needs to be updated.
      */
-    nodes?: pulumi.Input<number>;
+    nodes?: pulumi.Input<number | undefined>;
     /**
      * The subscription plan. See available [plans].
      *
@@ -711,7 +711,7 @@ export interface InstanceState {
      * All other plan type changes (e.g. shared to dedicated for RabbitMQ) will force a new
      * resource.
      */
-    plan?: pulumi.Input<string>;
+    plan?: pulumi.Input<string | undefined>;
     /**
      * The AZs to place your nodes in. Each entry corresponds to a server in your cluster, so for a 3 node cluster, provide 3 AZs in the list.
      *
@@ -725,11 +725,11 @@ export interface InstanceState {
      *
      * The `copySettings` block consists of:
      */
-    preferredAzs?: pulumi.Input<pulumi.Input<string>[]>;
+    preferredAzs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Flag describing if the resource is ready
      */
-    ready?: pulumi.Input<boolean>;
+    ready?: pulumi.Input<boolean | undefined>;
     /**
      * The region to host the instance in. See available [regions].
      *
@@ -741,7 +741,7 @@ export interface InstanceState {
      * same (e.g. `amazon-web-services` → `amazon-web-services` is allowed, but
      * `amazon-web-services` → `google-compute-engine` is not).
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The Rabbit MQ version. Can be left out, will then be set to
      * default value used by CloudAMQP API.
@@ -749,26 +749,26 @@ export interface InstanceState {
      * ***Note:*** There is not yet any support in the provider to change the RMQ version. Once it's set
      * in the initial creation, it will remain.
      */
-    rmqVersion?: pulumi.Input<string>;
+    rmqVersion?: pulumi.Input<string | undefined>;
     /**
      * One or more tags for the CloudAMQP instance, makes it possible to
      * categories multiple instances in console view. Default there is no tags assigned.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC).
      * Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
      */
-    url?: pulumi.Input<string>;
+    url?: pulumi.Input<string | undefined>;
     /**
      * The virtual host used by Rabbit MQ.
      */
-    vhost?: pulumi.Input<string>;
+    vhost?: pulumi.Input<string | undefined>;
     /**
      * The VPC ID. Use this to create your instance in an existing
      * VPC. See available [example].
      */
-    vpcId?: pulumi.Input<number>;
+    vpcId?: pulumi.Input<number | undefined>;
     /**
      * Creates a dedicated VPC subnet, shouldn't overlap with other
      * VPC subnet, default subnet used 10.56.72.0/24.
@@ -777,7 +777,7 @@ export interface InstanceState {
      *
      * ***Note:*** Extra fee will be charged when using VPC, see [CloudAMQP] for more information.
      */
-    vpcSubnet?: pulumi.Input<string>;
+    vpcSubnet?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -788,20 +788,20 @@ export interface InstanceArgs {
      * Copy settings from one CloudAMQP instance to a new. Consists of
      * the block documented below.
      */
-    copySettings?: pulumi.Input<pulumi.Input<inputs.InstanceCopySetting>[]>;
+    copySettings?: pulumi.Input<pulumi.Input<inputs.InstanceCopySetting>[] | undefined>;
     /**
      * Keep associated VPC when deleting instance. Default set to
      * false.
      */
-    keepAssociatedVpc?: pulumi.Input<boolean>;
+    keepAssociatedVpc?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the CloudAMQP instance.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Set to true to not create default alarms
      */
-    noDefaultAlarms?: pulumi.Input<boolean>;
+    noDefaultAlarms?: pulumi.Input<boolean | undefined>;
     /**
      * Number of nodes, 1, 3 or 5 depending on plan used. Only needed for
      * legacy plans, will otherwise be computed.
@@ -810,7 +810,7 @@ export interface InstanceArgs {
      * New subscriptions plans use the plan to determine number of nodes. In order to
      * change number of nodes the `plan` needs to be updated.
      */
-    nodes?: pulumi.Input<number>;
+    nodes?: pulumi.Input<number | undefined>;
     /**
      * The subscription plan. See available [plans].
      *
@@ -834,7 +834,7 @@ export interface InstanceArgs {
      *
      * The `copySettings` block consists of:
      */
-    preferredAzs?: pulumi.Input<pulumi.Input<string>[]>;
+    preferredAzs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The region to host the instance in. See available [regions].
      *
@@ -854,17 +854,17 @@ export interface InstanceArgs {
      * ***Note:*** There is not yet any support in the provider to change the RMQ version. Once it's set
      * in the initial creation, it will remain.
      */
-    rmqVersion?: pulumi.Input<string>;
+    rmqVersion?: pulumi.Input<string | undefined>;
     /**
      * One or more tags for the CloudAMQP instance, makes it possible to
      * categories multiple instances in console view. Default there is no tags assigned.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The VPC ID. Use this to create your instance in an existing
      * VPC. See available [example].
      */
-    vpcId?: pulumi.Input<number>;
+    vpcId?: pulumi.Input<number | undefined>;
     /**
      * Creates a dedicated VPC subnet, shouldn't overlap with other
      * VPC subnet, default subnet used 10.56.72.0/24.
@@ -873,5 +873,5 @@ export interface InstanceArgs {
      *
      * ***Note:*** Extra fee will be charged when using VPC, see [CloudAMQP] for more information.
      */
-    vpcSubnet?: pulumi.Input<string>;
+    vpcSubnet?: pulumi.Input<string | undefined>;
 }

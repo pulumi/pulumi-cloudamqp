@@ -19,9 +19,9 @@ __all__ = ['ProviderArgs', 'Provider']
 @pulumi.input_type
 class ProviderArgs:
     def __init__(__self__, *,
-                 apikey: Optional[pulumi.Input[_builtins.str]] = None,
-                 baseurl: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_faster_instance_destroy: Optional[pulumi.Input[_builtins.bool]] = None):
+                 apikey: pulumi.Input[Optional[_builtins.str]] = None,
+                 baseurl: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_faster_instance_destroy: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Provider resource.
 
@@ -38,38 +38,38 @@ class ProviderArgs:
 
     @_builtins.property
     @pulumi.getter
-    def apikey(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def apikey(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Key used to authentication to the CloudAMQP Customer API
         """
         return pulumi.get(self, "apikey")
 
     @apikey.setter
-    def apikey(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def apikey(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "apikey", value)
 
     @_builtins.property
     @pulumi.getter
-    def baseurl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def baseurl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Base URL to CloudAMQP Customer website
         """
         return pulumi.get(self, "baseurl")
 
     @baseurl.setter
-    def baseurl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def baseurl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "baseurl", value)
 
     @_builtins.property
     @pulumi.getter(name="enableFasterInstanceDestroy")
-    def enable_faster_instance_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_faster_instance_destroy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Skips destroying backend resources on 'terraform destroy'
         """
         return pulumi.get(self, "enable_faster_instance_destroy")
 
     @enable_faster_instance_destroy.setter
-    def enable_faster_instance_destroy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_faster_instance_destroy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_faster_instance_destroy", value)
 
 
@@ -79,9 +79,9 @@ class Provider(pulumi.ProviderResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 apikey: Optional[pulumi.Input[_builtins.str]] = None,
-                 baseurl: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_faster_instance_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
+                 apikey: pulumi.Input[Optional[_builtins.str]] = None,
+                 baseurl: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_faster_instance_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         The provider type for the cloudamqp package. By default, resources use package-wide configuration
@@ -124,9 +124,9 @@ class Provider(pulumi.ProviderResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 apikey: Optional[pulumi.Input[_builtins.str]] = None,
-                 baseurl: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_faster_instance_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
+                 apikey: pulumi.Input[Optional[_builtins.str]] = None,
+                 baseurl: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_faster_instance_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):

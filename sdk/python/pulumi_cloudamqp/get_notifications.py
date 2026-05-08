@@ -85,7 +85,7 @@ def get_notifications(instance_id: Optional[_builtins.int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    default_recipient = cloudamqp.get_notifications(instance_id=instance["id"])
+    default_recipient = cloudamqp.get_notifications(instance_id=int(instance["id"]))
     ```
 
     ## Dependency
@@ -104,7 +104,7 @@ def get_notifications(instance_id: Optional[_builtins.int] = None,
         id=pulumi.get(__ret__, 'id'),
         instance_id=pulumi.get(__ret__, 'instance_id'),
         recipients=pulumi.get(__ret__, 'recipients'))
-def get_notifications_output(instance_id: Optional[pulumi.Input[_builtins.int]] = None,
+def get_notifications_output(instance_id: pulumi.Input[Optional[_builtins.int]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNotificationsResult]:
     """
     <!-- markdownlint-disable MD033 -->
@@ -118,7 +118,7 @@ def get_notifications_output(instance_id: Optional[pulumi.Input[_builtins.int]] 
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    default_recipient = cloudamqp.get_notifications(instance_id=instance["id"])
+    default_recipient = cloudamqp.get_notifications(instance_id=int(instance["id"]))
     ```
 
     ## Dependency

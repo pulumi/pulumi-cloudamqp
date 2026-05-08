@@ -53,23 +53,23 @@ const instance = new cloudamqp.Instance("instance", {
 });
 // New recipient to receieve notifications
 const recipient01 = new cloudamqp.Notification("recipient_01", {
-    instanceId: instance.id,
+    instanceId: instance.id.apply(x =>Number(x)),
     type: "email",
     value: "alarm@example.com",
     name: "alarm",
 });
 // New cpu alarm
 const cpuAlarm = new cloudamqp.Alarm("cpu_alarm", {
-    instanceId: instance.id,
+    instanceId: instance.id.apply(x =>Number(x)),
     type: "cpu",
     valueThreshold: 90,
     timeThreshold: 600,
     enabled: true,
-    recipients: [recipient01.id],
+    recipients: [recipient01.id.apply(x =>Number(x))],
 });
 // Configure firewall
 const firewall = new cloudamqp.SecurityFirewall("firewall", {
-    instanceId: instance.id,
+    instanceId: instance.id.apply(x =>Number(x)),
     rules: [{
         ip: "10.54.72.0/0",
         ports: [4567],
@@ -78,7 +78,7 @@ const firewall = new cloudamqp.SecurityFirewall("firewall", {
 });
 // Cloudwatch metrics integration
 const cloudwatch = new cloudamqp.IntegrationMetric("cloudwatch", {
-    instanceId: instance.id,
+    instanceId: instance.id.apply(x =>Number(x)),
     name: "cloudwatch",
     accessKeyId: awsAccessKey,
     secretAccessKey: awsSecretKey,
@@ -112,21 +112,21 @@ instance = cloudamqp.Instance("instance",
     tags=["pulumi"])
 # New recipient to receieve notifications
 recipient01 = cloudamqp.Notification("recipient_01",
-    instance_id=instance.id,
+    instance_id=instance.id.apply(lambda x: int(x)),
     type="email",
     value="alarm@example.com",
     name="alarm")
 # New cpu alarm
 cpu_alarm = cloudamqp.Alarm("cpu_alarm",
-    instance_id=instance.id,
+    instance_id=instance.id.apply(lambda x: int(x)),
     type="cpu",
     value_threshold=90,
     time_threshold=600,
     enabled=True,
-    recipients=[recipient01.id])
+    recipients=[recipient01.id.apply(lambda x: int(x))])
 # Configure firewall
 firewall = cloudamqp.SecurityFirewall("firewall",
-    instance_id=instance.id,
+    instance_id=instance.id.apply(lambda x: int(x)),
     rules=[{
         "ip": "10.54.72.0/0",
         "ports": [4567],
@@ -134,7 +134,7 @@ firewall = cloudamqp.SecurityFirewall("firewall",
     }])
 # Cloudwatch metrics integration
 cloudwatch = cloudamqp.IntegrationMetric("cloudwatch",
-    instance_id=instance.id,
+    instance_id=instance.id.apply(lambda x: int(x)),
     name="cloudwatch",
     access_key_id=aws_access_key,
     secret_access_key=aws_secret_key,
@@ -164,7 +164,7 @@ using CloudAmqp = Pulumi.CloudAmqp;
 return await Deployment.RunAsync(() =>
 {
     // Create a new cloudamqp instance
-    var instance = new CloudAmqp.Index.Instance("instance", new()
+    var instance = new CloudAmqp.Instance("instance", new()
     {
         Name = "pulumi-cloudamqp-instance",
         Plan = "penguin-1",
@@ -176,7 +176,7 @@ return await Deployment.RunAsync(() =>
     });
 
     // New recipient to receieve notifications
-    var recipient01 = new CloudAmqp.Index.Notification("recipient_01", new()
+    var recipient01 = new CloudAmqp.Notification("recipient_01", new()
     {
         InstanceId = instance.Id,
         Type = "email",
@@ -185,7 +185,7 @@ return await Deployment.RunAsync(() =>
     });
 
     // New cpu alarm
-    var cpuAlarm = new CloudAmqp.Index.Alarm("cpu_alarm", new()
+    var cpuAlarm = new CloudAmqp.Alarm("cpu_alarm", new()
     {
         InstanceId = instance.Id,
         Type = "cpu",
@@ -199,7 +199,7 @@ return await Deployment.RunAsync(() =>
     });
 
     // Configure firewall
-    var firewall = new CloudAmqp.Index.SecurityFirewall("firewall", new()
+    var firewall = new CloudAmqp.SecurityFirewall("firewall", new()
     {
         InstanceId = instance.Id,
         Rules = new[]
@@ -220,7 +220,7 @@ return await Deployment.RunAsync(() =>
     });
 
     // Cloudwatch metrics integration
-    var cloudwatch = new CloudAmqp.Index.IntegrationMetric("cloudwatch", new()
+    var cloudwatch = new CloudAmqp.IntegrationMetric("cloudwatch", new()
     {
         InstanceId = instance.Id,
         Name = "cloudwatch",
@@ -426,8 +426,8 @@ import com.pulumi.cloudamqp.SecurityFirewallArgs;
 import com.pulumi.cloudamqp.inputs.SecurityFirewallRuleArgs;
 import com.pulumi.cloudamqp.IntegrationMetric;
 import com.pulumi.cloudamqp.IntegrationMetricArgs;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import java.io.File;
 import java.nio.file.Files;

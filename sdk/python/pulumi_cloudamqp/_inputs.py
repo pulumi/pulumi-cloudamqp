@@ -48,15 +48,15 @@ __all__ = [
 ]
 
 class ExtraDiskSizeNodeArgsDict(TypedDict):
-    additional_disk_size: NotRequired[pulumi.Input[_builtins.int]]
+    additional_disk_size: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Additional added disk size
     """
-    disk_size: NotRequired[pulumi.Input[_builtins.int]]
+    disk_size: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Subscription plan disk size
     """
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of the node.
     """
@@ -64,9 +64,9 @@ class ExtraDiskSizeNodeArgsDict(TypedDict):
 @pulumi.input_type
 class ExtraDiskSizeNodeArgs:
     def __init__(__self__, *,
-                 additional_disk_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 disk_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 additional_disk_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 disk_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.int] additional_disk_size: Additional added disk size
         :param pulumi.Input[_builtins.int] disk_size: Subscription plan disk size
@@ -81,38 +81,38 @@ class ExtraDiskSizeNodeArgs:
 
     @_builtins.property
     @pulumi.getter(name="additionalDiskSize")
-    def additional_disk_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def additional_disk_size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Additional added disk size
         """
         return pulumi.get(self, "additional_disk_size")
 
     @additional_disk_size.setter
-    def additional_disk_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def additional_disk_size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "additional_disk_size", value)
 
     @_builtins.property
     @pulumi.getter(name="diskSize")
-    def disk_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def disk_size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Subscription plan disk size
         """
         return pulumi.get(self, "disk_size")
 
     @disk_size.setter
-    def disk_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def disk_size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "disk_size", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the node.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
@@ -216,7 +216,7 @@ class IntegrationMetricPrometheusCloudwatchV3ArgsDict(TypedDict):
     """
     AWS region for CloudWatch metrics.
     """
-    tags: NotRequired[pulumi.Input[_builtins.str]]
+    tags: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Additional tags to attach to metrics. Format: `key=value,key2=value2`.
     """
@@ -227,7 +227,7 @@ class IntegrationMetricPrometheusCloudwatchV3Args:
                  iam_external_id: pulumi.Input[_builtins.str],
                  iam_role: pulumi.Input[_builtins.str],
                  region: pulumi.Input[_builtins.str],
-                 tags: Optional[pulumi.Input[_builtins.str]] = None):
+                 tags: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] iam_external_id: AWS IAM external ID for role assumption.
         :param pulumi.Input[_builtins.str] iam_role: AWS IAM role ARN with PutMetricData permission for CloudWatch integration.
@@ -278,14 +278,14 @@ class IntegrationMetricPrometheusCloudwatchV3Args:
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tags(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Additional tags to attach to metrics. Format: `key=value,key2=value2`.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tags(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tags", value)
 
 
@@ -298,11 +298,11 @@ class IntegrationMetricPrometheusDatadogV3ArgsDict(TypedDict):
     """
     Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`, `ap2`.
     """
-    rabbitmq_dashboard_metrics_format: NotRequired[pulumi.Input[_builtins.bool]]
+    rabbitmq_dashboard_metrics_format: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Enable metric name transformation to match Datadog's RabbitMQ dashboard format. Default: `false`. **Note:** This option is only available for RabbitMQ clusters, not LavinMQ clusters.
     """
-    tags: NotRequired[pulumi.Input[_builtins.str]]
+    tags: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Additional tags to attach to metrics. Format: `key=value,key2=value2`.
     """
@@ -312,8 +312,8 @@ class IntegrationMetricPrometheusDatadogV3Args:
     def __init__(__self__, *,
                  api_key: pulumi.Input[_builtins.str],
                  region: pulumi.Input[_builtins.str],
-                 rabbitmq_dashboard_metrics_format: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tags: Optional[pulumi.Input[_builtins.str]] = None):
+                 rabbitmq_dashboard_metrics_format: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tags: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] api_key: Datadog API key for authentication.
         :param pulumi.Input[_builtins.str] region: Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`, `ap2`.
@@ -353,26 +353,26 @@ class IntegrationMetricPrometheusDatadogV3Args:
 
     @_builtins.property
     @pulumi.getter(name="rabbitmqDashboardMetricsFormat")
-    def rabbitmq_dashboard_metrics_format(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def rabbitmq_dashboard_metrics_format(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable metric name transformation to match Datadog's RabbitMQ dashboard format. Default: `false`. **Note:** This option is only available for RabbitMQ clusters, not LavinMQ clusters.
         """
         return pulumi.get(self, "rabbitmq_dashboard_metrics_format")
 
     @rabbitmq_dashboard_metrics_format.setter
-    def rabbitmq_dashboard_metrics_format(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def rabbitmq_dashboard_metrics_format(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "rabbitmq_dashboard_metrics_format", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tags(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Additional tags to attach to metrics. Format: `key=value,key2=value2`.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tags(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tags", value)
 
 
@@ -385,7 +385,7 @@ class IntegrationMetricPrometheusDynatraceArgsDict(TypedDict):
     """
     Dynatrace environment ID.
     """
-    tags: NotRequired[pulumi.Input[_builtins.str]]
+    tags: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Additional tags to attach to metrics. Format: `key=value,key2=value2`.
     """
@@ -395,7 +395,7 @@ class IntegrationMetricPrometheusDynatraceArgs:
     def __init__(__self__, *,
                  access_token: pulumi.Input[_builtins.str],
                  environment_id: pulumi.Input[_builtins.str],
-                 tags: Optional[pulumi.Input[_builtins.str]] = None):
+                 tags: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] access_token: Dynatrace access token with 'Ingest metrics' permission.
         :param pulumi.Input[_builtins.str] environment_id: Dynatrace environment ID.
@@ -432,14 +432,14 @@ class IntegrationMetricPrometheusDynatraceArgs:
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tags(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Additional tags to attach to metrics. Format: `key=value,key2=value2`.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tags(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tags", value)
 
 
@@ -452,7 +452,7 @@ class IntegrationMetricPrometheusNewrelicV3ArgsDict(TypedDict):
     """
     New Relic region code. Valid values: `eu`, `us`.
     """
-    tags: NotRequired[pulumi.Input[_builtins.str]]
+    tags: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Additional tags to attach to metrics. Format: `key=value,key2=value2`.
     """
@@ -462,7 +462,7 @@ class IntegrationMetricPrometheusNewrelicV3Args:
     def __init__(__self__, *,
                  api_key: pulumi.Input[_builtins.str],
                  region: pulumi.Input[_builtins.str],
-                 tags: Optional[pulumi.Input[_builtins.str]] = None):
+                 tags: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] api_key: New Relic API key for authentication.
         :param pulumi.Input[_builtins.str] region: New Relic region code. Valid values: `eu`, `us`.
@@ -499,14 +499,14 @@ class IntegrationMetricPrometheusNewrelicV3Args:
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tags(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Additional tags to attach to metrics. Format: `key=value,key2=value2`.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tags(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tags", value)
 
 
@@ -519,7 +519,7 @@ class IntegrationMetricPrometheusSplunkV2ArgsDict(TypedDict):
     """
     Splunk HEC (HTTP Event Collector) token for authentication.
     """
-    tags: NotRequired[pulumi.Input[_builtins.str]]
+    tags: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Additional tags to attach to metrics. Format: `key=value,key2=value2`.
     """
@@ -529,7 +529,7 @@ class IntegrationMetricPrometheusSplunkV2Args:
     def __init__(__self__, *,
                  endpoint: pulumi.Input[_builtins.str],
                  token: pulumi.Input[_builtins.str],
-                 tags: Optional[pulumi.Input[_builtins.str]] = None):
+                 tags: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] endpoint: Splunk HEC endpoint URL. Example: `https://your-instance-id.splunkcloud.com:8088/services/collector`.
         :param pulumi.Input[_builtins.str] token: Splunk HEC (HTTP Event Collector) token for authentication.
@@ -566,14 +566,14 @@ class IntegrationMetricPrometheusSplunkV2Args:
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tags(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Additional tags to attach to metrics. Format: `key=value,key2=value2`.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tags(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tags", value)
 
 
@@ -582,23 +582,23 @@ class IntegrationMetricPrometheusStackdriverV2ArgsDict(TypedDict):
     """
     Base64-encoded Google service account key JSON file with 'Monitoring Metric Writer' permission.
     """
-    client_email: NotRequired[pulumi.Input[_builtins.str]]
+    client_email: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Google service account client email (extracted from credentials file).
     """
-    private_key: NotRequired[pulumi.Input[_builtins.str]]
+    private_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Google service account private key (extracted from credentials file).
     """
-    private_key_id: NotRequired[pulumi.Input[_builtins.str]]
+    private_key_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Google service account private key ID (extracted from credentials file).
     """
-    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    project_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Google Cloud project ID (extracted from credentials file).
     """
-    tags: NotRequired[pulumi.Input[_builtins.str]]
+    tags: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Additional tags to attach to metrics. Format: `key=value,key2=value2`.
 
@@ -609,11 +609,11 @@ class IntegrationMetricPrometheusStackdriverV2ArgsDict(TypedDict):
 class IntegrationMetricPrometheusStackdriverV2Args:
     def __init__(__self__, *,
                  credentials_file: pulumi.Input[_builtins.str],
-                 client_email: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[_builtins.str]] = None):
+                 client_email: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] credentials_file: Base64-encoded Google service account key JSON file with 'Monitoring Metric Writer' permission.
         :param pulumi.Input[_builtins.str] client_email: Google service account client email (extracted from credentials file).
@@ -650,55 +650,55 @@ class IntegrationMetricPrometheusStackdriverV2Args:
 
     @_builtins.property
     @pulumi.getter(name="clientEmail")
-    def client_email(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_email(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Google service account client email (extracted from credentials file).
         """
         return pulumi.get(self, "client_email")
 
     @client_email.setter
-    def client_email(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_email(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_email", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKey")
-    def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Google service account private key (extracted from credentials file).
         """
         return pulumi.get(self, "private_key")
 
     @private_key.setter
-    def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyId")
-    def private_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Google service account private key ID (extracted from credentials file).
         """
         return pulumi.get(self, "private_key_id")
 
     @private_key_id.setter
-    def private_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Google Cloud project ID (extracted from credentials file).
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tags(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Additional tags to attach to metrics. Format: `key=value,key2=value2`.
 
@@ -707,7 +707,7 @@ class IntegrationMetricPrometheusStackdriverV2Args:
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tags(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tags", value)
 
 
@@ -716,15 +716,15 @@ class NotificationResponderArgsDict(TypedDict):
     """
     Type of responder. [`team`, `user`, `escalation`, `schedule`]
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Identifier in UUID format
     """
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of the responder
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Username of the responder
 
@@ -736,9 +736,9 @@ class NotificationResponderArgsDict(TypedDict):
 class NotificationResponderArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[_builtins.str],
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] type: Type of responder. [`team`, `user`, `escalation`, `schedule`]
         :param pulumi.Input[_builtins.str] id: Identifier in UUID format
@@ -770,31 +770,31 @@ class NotificationResponderArgs:
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Identifier in UUID format
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the responder
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username of the responder
 
@@ -804,7 +804,7 @@ class NotificationResponderArgs:
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
@@ -813,7 +813,7 @@ class SecurityFirewallRuleArgsDict(TypedDict):
     """
     CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
     """
-    description: NotRequired[pulumi.Input[_builtins.str]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Description name of the rule. e.g. Default.
 
@@ -841,11 +841,11 @@ class SecurityFirewallRuleArgsDict(TypedDict):
     | MQTT         | 1883  |
     | MQTTS        | 8883  |
     """
-    ports: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]
+    ports: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]]
     """
     Custom ports to be opened
     """
-    services: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    services: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     Pre-defined service ports, see table below
     """
@@ -854,9 +854,9 @@ class SecurityFirewallRuleArgsDict(TypedDict):
 class SecurityFirewallRuleArgs:
     def __init__(__self__, *,
                  ip: pulumi.Input[_builtins.str],
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 ports: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 services: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 ports: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 services: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] ip: CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
         :param pulumi.Input[_builtins.str] description: Description name of the rule. e.g. Default.
@@ -909,7 +909,7 @@ class SecurityFirewallRuleArgs:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description name of the rule. e.g. Default.
 
@@ -940,36 +940,36 @@ class SecurityFirewallRuleArgs:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def ports(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
+    def ports(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]:
         """
         Custom ports to be opened
         """
         return pulumi.get(self, "ports")
 
     @ports.setter
-    def ports(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]):
+    def ports(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]):
         pulumi.set(self, "ports", value)
 
     @_builtins.property
     @pulumi.getter
-    def services(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def services(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Pre-defined service ports, see table below
         """
         return pulumi.get(self, "services")
 
     @services.setter
-    def services(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def services(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "services", value)
 
 
 class TrustStoreFileArgsDict(TypedDict):
-    certificates: NotRequired[pulumi.Input[Sequence[pulumi.Input['TrustStoreFileCertificateArgsDict']]]]
+    certificates: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['TrustStoreFileCertificateArgs']]]]]
     """
     A list of certificate blocks (1-100 certificates). Each
     certificate block contains:
@@ -978,7 +978,7 @@ class TrustStoreFileArgsDict(TypedDict):
 @pulumi.input_type
 class TrustStoreFileArgs:
     def __init__(__self__, *,
-                 certificates: Optional[pulumi.Input[Sequence[pulumi.Input['TrustStoreFileCertificateArgs']]]] = None):
+                 certificates: pulumi.Input[Optional[Sequence[pulumi.Input['TrustStoreFileCertificateArgs']]]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input['TrustStoreFileCertificateArgs']]] certificates: A list of certificate blocks (1-100 certificates). Each
                certificate block contains:
@@ -988,7 +988,7 @@ class TrustStoreFileArgs:
 
     @_builtins.property
     @pulumi.getter
-    def certificates(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TrustStoreFileCertificateArgs']]]]:
+    def certificates(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['TrustStoreFileCertificateArgs']]]]:
         """
         A list of certificate blocks (1-100 certificates). Each
         certificate block contains:
@@ -996,19 +996,19 @@ class TrustStoreFileArgs:
         return pulumi.get(self, "certificates")
 
     @certificates.setter
-    def certificates(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TrustStoreFileCertificateArgs']]]]):
+    def certificates(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['TrustStoreFileCertificateArgs']]]]):
         pulumi.set(self, "certificates", value)
 
 
 class TrustStoreFileCertificateArgsDict(TypedDict):
-    content: NotRequired[pulumi.Input[_builtins.str]]
+    content: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     PEM-encoded x.509 formatted leaf certificate content.
 
     Updates require incrementing `version` or changing `key_id`.
     """
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A unique identifier for the certificate.
     """
@@ -1016,8 +1016,8 @@ class TrustStoreFileCertificateArgsDict(TypedDict):
 @pulumi.input_type
 class TrustStoreFileCertificateArgs:
     def __init__(__self__, *,
-                 content: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 content: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] content: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                PEM-encoded x.509 formatted leaf certificate content.
@@ -1032,7 +1032,7 @@ class TrustStoreFileCertificateArgs:
 
     @_builtins.property
     @pulumi.getter
-    def content(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def content(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         PEM-encoded x.509 formatted leaf certificate content.
@@ -1042,30 +1042,30 @@ class TrustStoreFileCertificateArgs:
         return pulumi.get(self, "content")
 
     @content.setter
-    def content(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def content(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "content", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A unique identifier for the certificate.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 class TrustStoreHttpArgsDict(TypedDict):
-    cacert: NotRequired[pulumi.Input[_builtins.str]]
+    cacert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     PEM-encoded CA certificates used to verify the HTTPS connection to
     the trust store URL. Updates require incrementing `version` or changing `key_id`.
     """
-    url: NotRequired[pulumi.Input[_builtins.str]]
+    url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     URL to fetch trust store certificates from. RabbitMQ will periodically fetch
     CA certificates from this URL according to the `refresh_interval`.
@@ -1074,8 +1074,8 @@ class TrustStoreHttpArgsDict(TypedDict):
 @pulumi.input_type
 class TrustStoreHttpArgs:
     def __init__(__self__, *,
-                 cacert: Optional[pulumi.Input[_builtins.str]] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None):
+                 cacert: pulumi.Input[Optional[_builtins.str]] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] cacert: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                PEM-encoded CA certificates used to verify the HTTPS connection to
@@ -1090,7 +1090,7 @@ class TrustStoreHttpArgs:
 
     @_builtins.property
     @pulumi.getter
-    def cacert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cacert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         PEM-encoded CA certificates used to verify the HTTPS connection to
@@ -1099,12 +1099,12 @@ class TrustStoreHttpArgs:
         return pulumi.get(self, "cacert")
 
     @cacert.setter
-    def cacert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cacert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cacert", value)
 
     @_builtins.property
     @pulumi.getter
-    def url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         URL to fetch trust store certificates from. RabbitMQ will periodically fetch
         CA certificates from this URL according to the `refresh_interval`.
@@ -1112,7 +1112,7 @@ class TrustStoreHttpArgs:
         return pulumi.get(self, "url")
 
     @url.setter
-    def url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "url", value)
 
 

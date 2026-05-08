@@ -9,15 +9,15 @@ export interface ExtraDiskSizeNode {
     /**
      * Additional added disk size
      */
-    additionalDiskSize?: pulumi.Input<number>;
+    additionalDiskSize?: pulumi.Input<number | undefined>;
     /**
      * Subscription plan disk size
      */
-    diskSize?: pulumi.Input<number>;
+    diskSize?: pulumi.Input<number | undefined>;
     /**
      * Name of the node.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }
 
 export interface GetNotificationResponder {
@@ -43,19 +43,19 @@ export interface GetNotificationResponderArgs {
     /**
      * (Optional) Identifier in UUID format
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * The name set for the recipient.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * (Required) Type of responder. [`team`, `user`, `escalation`, `schedule`]
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * (Optional) Username of the responder
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface InstanceCopySetting {
@@ -96,7 +96,7 @@ export interface IntegrationMetricPrometheusCloudwatchV3 {
     /**
      * Additional tags to attach to metrics. Format: `key=value,key2=value2`.
      */
-    tags?: pulumi.Input<string>;
+    tags?: pulumi.Input<string | undefined>;
 }
 
 export interface IntegrationMetricPrometheusDatadogV3 {
@@ -107,7 +107,7 @@ export interface IntegrationMetricPrometheusDatadogV3 {
     /**
      * Enable metric name transformation to match Datadog's RabbitMQ dashboard format. Default: `false`. **Note:** This option is only available for RabbitMQ clusters, not LavinMQ clusters.
      */
-    rabbitmqDashboardMetricsFormat?: pulumi.Input<boolean>;
+    rabbitmqDashboardMetricsFormat?: pulumi.Input<boolean | undefined>;
     /**
      * Datadog region code. Valid values: `us1`, `us3`, `us5`, `eu1`, `ap2`.
      */
@@ -115,7 +115,7 @@ export interface IntegrationMetricPrometheusDatadogV3 {
     /**
      * Additional tags to attach to metrics. Format: `key=value,key2=value2`.
      */
-    tags?: pulumi.Input<string>;
+    tags?: pulumi.Input<string | undefined>;
 }
 
 export interface IntegrationMetricPrometheusDynatrace {
@@ -130,7 +130,7 @@ export interface IntegrationMetricPrometheusDynatrace {
     /**
      * Additional tags to attach to metrics. Format: `key=value,key2=value2`.
      */
-    tags?: pulumi.Input<string>;
+    tags?: pulumi.Input<string | undefined>;
 }
 
 export interface IntegrationMetricPrometheusNewrelicV3 {
@@ -145,7 +145,7 @@ export interface IntegrationMetricPrometheusNewrelicV3 {
     /**
      * Additional tags to attach to metrics. Format: `key=value,key2=value2`.
      */
-    tags?: pulumi.Input<string>;
+    tags?: pulumi.Input<string | undefined>;
 }
 
 export interface IntegrationMetricPrometheusSplunkV2 {
@@ -156,7 +156,7 @@ export interface IntegrationMetricPrometheusSplunkV2 {
     /**
      * Additional tags to attach to metrics. Format: `key=value,key2=value2`.
      */
-    tags?: pulumi.Input<string>;
+    tags?: pulumi.Input<string | undefined>;
     /**
      * Splunk HEC (HTTP Event Collector) token for authentication.
      */
@@ -167,7 +167,7 @@ export interface IntegrationMetricPrometheusStackdriverV2 {
     /**
      * Google service account client email (extracted from credentials file).
      */
-    clientEmail?: pulumi.Input<string>;
+    clientEmail?: pulumi.Input<string | undefined>;
     /**
      * Base64-encoded Google service account key JSON file with 'Monitoring Metric Writer' permission.
      */
@@ -175,32 +175,32 @@ export interface IntegrationMetricPrometheusStackdriverV2 {
     /**
      * Google service account private key (extracted from credentials file).
      */
-    privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
     /**
      * Google service account private key ID (extracted from credentials file).
      */
-    privateKeyId?: pulumi.Input<string>;
+    privateKeyId?: pulumi.Input<string | undefined>;
     /**
      * Google Cloud project ID (extracted from credentials file).
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Additional tags to attach to metrics. Format: `key=value,key2=value2`.
      *
      * The following computed attributes are available:
      */
-    tags?: pulumi.Input<string>;
+    tags?: pulumi.Input<string | undefined>;
 }
 
 export interface NotificationResponder {
     /**
      * Identifier in UUID format
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Name of the responder
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Type of responder. [`team`, `user`, `escalation`, `schedule`]
      */
@@ -211,7 +211,7 @@ export interface NotificationResponder {
      * Responders of type `team`, `escalation` and `schedule` can use either id or name.
      * While `user` can use either id or username.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface SecurityFirewallRule {
@@ -242,7 +242,7 @@ export interface SecurityFirewallRule {
      * | MQTT         | 1883  |
      * | MQTTS        | 8883  |
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * CIDR address: IP address with CIDR notation (e.g. 10.56.72.0/24)
      */
@@ -250,11 +250,11 @@ export interface SecurityFirewallRule {
     /**
      * Custom ports to be opened
      */
-    ports?: pulumi.Input<pulumi.Input<number>[]>;
+    ports?: pulumi.Input<pulumi.Input<number>[] | undefined>;
     /**
      * Pre-defined service ports, see table below
      */
-    services?: pulumi.Input<pulumi.Input<string>[]>;
+    services?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface TrustStoreFile {
@@ -262,7 +262,7 @@ export interface TrustStoreFile {
      * A list of certificate blocks (1-100 certificates). Each
      * certificate block contains:
      */
-    certificates?: pulumi.Input<pulumi.Input<inputs.TrustStoreFileCertificate>[]>;
+    certificates?: pulumi.Input<pulumi.Input<inputs.TrustStoreFileCertificate>[] | undefined>;
 }
 
 export interface TrustStoreFileCertificate {
@@ -272,11 +272,11 @@ export interface TrustStoreFileCertificate {
      *
      * Updates require incrementing `version` or changing `keyId`.
      */
-    content?: pulumi.Input<string>;
+    content?: pulumi.Input<string | undefined>;
     /**
      * A unique identifier for the certificate.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }
 
 export interface TrustStoreHttp {
@@ -285,10 +285,10 @@ export interface TrustStoreHttp {
      * PEM-encoded CA certificates used to verify the HTTPS connection to
      * the trust store URL. Updates require incrementing `version` or changing `keyId`.
      */
-    cacert?: pulumi.Input<string>;
+    cacert?: pulumi.Input<string | undefined>;
     /**
      * URL to fetch trust store certificates from. RabbitMQ will periodically fetch
      * CA certificates from this URL according to the `refreshInterval`.
      */
-    url?: pulumi.Input<string>;
+    url?: pulumi.Input<string | undefined>;
 }

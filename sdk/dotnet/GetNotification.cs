@@ -26,7 +26,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var defaultRecipient = CloudAmqp.Index.GetNotification.Invoke(new()
+        ///     var defaultRecipient = CloudAmqp.GetNotification.Invoke(new()
         ///     {
         ///         InstanceId = instance.Id,
         ///         Name = "default",
@@ -57,7 +57,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var defaultRecipient = CloudAmqp.Index.GetNotification.Invoke(new()
+        ///     var defaultRecipient = CloudAmqp.GetNotification.Invoke(new()
         ///     {
         ///         InstanceId = instance.Id,
         ///         Name = "default",
@@ -88,7 +88,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var defaultRecipient = CloudAmqp.Index.GetNotification.Invoke(new()
+        ///     var defaultRecipient = CloudAmqp.GetNotification.Invoke(new()
         ///     {
         ///         InstanceId = instance.Id,
         ///         Name = "default",

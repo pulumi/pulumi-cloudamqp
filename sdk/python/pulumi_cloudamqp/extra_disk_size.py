@@ -23,9 +23,9 @@ class ExtraDiskSizeArgs:
     def __init__(__self__, *,
                  extra_disk_size: pulumi.Input[_builtins.int],
                  instance_id: pulumi.Input[_builtins.int],
-                 allow_downtime: Optional[pulumi.Input[_builtins.bool]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None):
+                 allow_downtime: pulumi.Input[Optional[_builtins.bool]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a ExtraDiskSize resource.
 
@@ -79,7 +79,7 @@ class ExtraDiskSizeArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowDowntime")
-    def allow_downtime(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_downtime(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When resizing the disk, allow cluster downtime if necessary.
         Default set to false.
@@ -87,12 +87,12 @@ class ExtraDiskSizeArgs:
         return pulumi.get(self, "allow_downtime")
 
     @allow_downtime.setter
-    def allow_downtime(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_downtime(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_downtime", value)
 
     @_builtins.property
     @pulumi.getter
-    def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def sleep(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable sleep time in seconds between retries for resizing the
         disk. Default set to 30 seconds.
@@ -100,12 +100,12 @@ class ExtraDiskSizeArgs:
         return pulumi.get(self, "sleep")
 
     @sleep.setter
-    def sleep(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def sleep(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "sleep", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable timeout time in seconds for resizing the disk. Default
         set to 1800 seconds.
@@ -117,19 +117,19 @@ class ExtraDiskSizeArgs:
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
 
 @pulumi.input_type
 class _ExtraDiskSizeState:
     def __init__(__self__, *,
-                 allow_downtime: Optional[pulumi.Input[_builtins.bool]] = None,
-                 extra_disk_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 nodes: Optional[pulumi.Input[Sequence[pulumi.Input['ExtraDiskSizeNodeArgs']]]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None):
+                 allow_downtime: pulumi.Input[Optional[_builtins.bool]] = None,
+                 extra_disk_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 nodes: pulumi.Input[Optional[Sequence[pulumi.Input['ExtraDiskSizeNodeArgs']]]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering ExtraDiskSize resources.
 
@@ -163,7 +163,7 @@ class _ExtraDiskSizeState:
 
     @_builtins.property
     @pulumi.getter(name="allowDowntime")
-    def allow_downtime(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_downtime(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When resizing the disk, allow cluster downtime if necessary.
         Default set to false.
@@ -171,12 +171,12 @@ class _ExtraDiskSizeState:
         return pulumi.get(self, "allow_downtime")
 
     @allow_downtime.setter
-    def allow_downtime(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_downtime(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_downtime", value)
 
     @_builtins.property
     @pulumi.getter(name="extraDiskSize")
-    def extra_disk_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def extra_disk_size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Extra disk size in GB. Supported values: 0, 25, 50, 100,
         250, 500, 1000, 2000
@@ -184,36 +184,36 @@ class _ExtraDiskSizeState:
         return pulumi.get(self, "extra_disk_size")
 
     @extra_disk_size.setter
-    def extra_disk_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def extra_disk_size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "extra_disk_size", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The CloudAMQP instance ID.
         """
         return pulumi.get(self, "instance_id")
 
     @instance_id.setter
-    def instance_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def nodes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ExtraDiskSizeNodeArgs']]]]:
+    def nodes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ExtraDiskSizeNodeArgs']]]]:
         """
         An array of node information. Each `nodes` block consists of the fields documented below.
         """
         return pulumi.get(self, "nodes")
 
     @nodes.setter
-    def nodes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ExtraDiskSizeNodeArgs']]]]):
+    def nodes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ExtraDiskSizeNodeArgs']]]]):
         pulumi.set(self, "nodes", value)
 
     @_builtins.property
     @pulumi.getter
-    def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def sleep(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable sleep time in seconds between retries for resizing the
         disk. Default set to 30 seconds.
@@ -221,12 +221,12 @@ class _ExtraDiskSizeState:
         return pulumi.get(self, "sleep")
 
     @sleep.setter
-    def sleep(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def sleep(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "sleep", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable timeout time in seconds for resizing the disk. Default
         set to 1800 seconds.
@@ -238,7 +238,7 @@ class _ExtraDiskSizeState:
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
 
@@ -248,11 +248,11 @@ class ExtraDiskSize(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allow_downtime: Optional[pulumi.Input[_builtins.bool]] = None,
-                 extra_disk_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
+                 allow_downtime: pulumi.Input[Optional[_builtins.bool]] = None,
+                 extra_disk_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         <!-- markdownlint-disable MD033 -->
@@ -304,11 +304,11 @@ class ExtraDiskSize(pulumi.CustomResource):
             region="amazon-web-services::us-west-2")
         # Resize disk with 25 extra GB
         resize_disk = cloudamqp.ExtraDiskSize("resize_disk",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             extra_disk_size=25)
         # Optional, refresh nodes info after disk resize by adding dependency
         # to cloudamqp_extra_disk_size.resize_disk resource
-        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
+        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=int(id)))
         ```
 
         </details>
@@ -331,11 +331,11 @@ class ExtraDiskSize(pulumi.CustomResource):
             region="amazon-web-services::us-west-2")
         # Resize disk with 25 extra GB, without downtime
         resize_disk = cloudamqp.ExtraDiskSize("resize_disk",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             extra_disk_size=25)
         # Optional, refresh nodes info after disk resize by adding dependency
         # to cloudamqp_extra_disk_size.resize_disk resource
-        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
+        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=int(id)))
         ```
 
         </details>
@@ -358,11 +358,11 @@ class ExtraDiskSize(pulumi.CustomResource):
             region="google-compute-engine::us-central1")
         # Resize disk with 25 extra GB, without downtime
         resize_disk = cloudamqp.ExtraDiskSize("resize_disk",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             extra_disk_size=25)
         # Optional, refresh nodes info after disk resize by adding dependency
         # to cloudamqp_extra_disk_size.resize_disk resource
-        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
+        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=int(id)))
         ```
 
         </details>
@@ -385,11 +385,11 @@ class ExtraDiskSize(pulumi.CustomResource):
             region="azure-arm::centralus")
         # Resize disk with 25 extra GB, with downtime
         resize_disk = cloudamqp.ExtraDiskSize("resize_disk",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             extra_disk_size=25)
         # Optional, refresh nodes info after disk resize by adding dependency
         # to cloudamqp_extra_disk_size.resize_disk resource
-        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
+        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=int(id)))
         ```
 
         </details>
@@ -479,11 +479,11 @@ class ExtraDiskSize(pulumi.CustomResource):
             region="amazon-web-services::us-west-2")
         # Resize disk with 25 extra GB
         resize_disk = cloudamqp.ExtraDiskSize("resize_disk",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             extra_disk_size=25)
         # Optional, refresh nodes info after disk resize by adding dependency
         # to cloudamqp_extra_disk_size.resize_disk resource
-        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
+        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=int(id)))
         ```
 
         </details>
@@ -506,11 +506,11 @@ class ExtraDiskSize(pulumi.CustomResource):
             region="amazon-web-services::us-west-2")
         # Resize disk with 25 extra GB, without downtime
         resize_disk = cloudamqp.ExtraDiskSize("resize_disk",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             extra_disk_size=25)
         # Optional, refresh nodes info after disk resize by adding dependency
         # to cloudamqp_extra_disk_size.resize_disk resource
-        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
+        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=int(id)))
         ```
 
         </details>
@@ -533,11 +533,11 @@ class ExtraDiskSize(pulumi.CustomResource):
             region="google-compute-engine::us-central1")
         # Resize disk with 25 extra GB, without downtime
         resize_disk = cloudamqp.ExtraDiskSize("resize_disk",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             extra_disk_size=25)
         # Optional, refresh nodes info after disk resize by adding dependency
         # to cloudamqp_extra_disk_size.resize_disk resource
-        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
+        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=int(id)))
         ```
 
         </details>
@@ -560,11 +560,11 @@ class ExtraDiskSize(pulumi.CustomResource):
             region="azure-arm::centralus")
         # Resize disk with 25 extra GB, with downtime
         resize_disk = cloudamqp.ExtraDiskSize("resize_disk",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             extra_disk_size=25)
         # Optional, refresh nodes info after disk resize by adding dependency
         # to cloudamqp_extra_disk_size.resize_disk resource
-        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=id))
+        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=int(id)))
         ```
 
         </details>
@@ -597,11 +597,11 @@ class ExtraDiskSize(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allow_downtime: Optional[pulumi.Input[_builtins.bool]] = None,
-                 extra_disk_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
+                 allow_downtime: pulumi.Input[Optional[_builtins.bool]] = None,
+                 extra_disk_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -631,12 +631,12 @@ class ExtraDiskSize(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            allow_downtime: Optional[pulumi.Input[_builtins.bool]] = None,
-            extra_disk_size: Optional[pulumi.Input[_builtins.int]] = None,
-            instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-            nodes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ExtraDiskSizeNodeArgs', 'ExtraDiskSizeNodeArgsDict']]]]] = None,
-            sleep: Optional[pulumi.Input[_builtins.int]] = None,
-            timeout: Optional[pulumi.Input[_builtins.int]] = None) -> 'ExtraDiskSize':
+            allow_downtime: pulumi.Input[Optional[_builtins.bool]] = None,
+            extra_disk_size: pulumi.Input[Optional[_builtins.int]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            nodes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ExtraDiskSizeNodeArgs', 'ExtraDiskSizeNodeArgsDict']]]]] = None,
+            sleep: pulumi.Input[Optional[_builtins.int]] = None,
+            timeout: pulumi.Input[Optional[_builtins.int]] = None) -> 'ExtraDiskSize':
         """
         Get an existing ExtraDiskSize resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

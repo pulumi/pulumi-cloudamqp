@@ -23,16 +23,16 @@ class InstanceArgs:
     def __init__(__self__, *,
                  plan: pulumi.Input[_builtins.str],
                  region: pulumi.Input[_builtins.str],
-                 copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceCopySettingArgs']]]] = None,
-                 keep_associated_vpc: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 no_default_alarms: Optional[pulumi.Input[_builtins.bool]] = None,
-                 nodes: Optional[pulumi.Input[_builtins.int]] = None,
-                 preferred_azs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 rmq_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 vpc_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 vpc_subnet: Optional[pulumi.Input[_builtins.str]] = None):
+                 copy_settings: pulumi.Input[Optional[Sequence[pulumi.Input['InstanceCopySettingArgs']]]] = None,
+                 keep_associated_vpc: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 no_default_alarms: pulumi.Input[Optional[_builtins.bool]] = None,
+                 nodes: pulumi.Input[Optional[_builtins.int]] = None,
+                 preferred_azs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 rmq_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 vpc_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 vpc_subnet: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Instance resource.
 
@@ -154,7 +154,7 @@ class InstanceArgs:
 
     @_builtins.property
     @pulumi.getter(name="copySettings")
-    def copy_settings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceCopySettingArgs']]]]:
+    def copy_settings(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['InstanceCopySettingArgs']]]]:
         """
         Copy settings from one CloudAMQP instance to a new. Consists of
         the block documented below.
@@ -162,12 +162,12 @@ class InstanceArgs:
         return pulumi.get(self, "copy_settings")
 
     @copy_settings.setter
-    def copy_settings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceCopySettingArgs']]]]):
+    def copy_settings(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['InstanceCopySettingArgs']]]]):
         pulumi.set(self, "copy_settings", value)
 
     @_builtins.property
     @pulumi.getter(name="keepAssociatedVpc")
-    def keep_associated_vpc(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def keep_associated_vpc(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Keep associated VPC when deleting instance. Default set to
         false.
@@ -175,36 +175,36 @@ class InstanceArgs:
         return pulumi.get(self, "keep_associated_vpc")
 
     @keep_associated_vpc.setter
-    def keep_associated_vpc(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def keep_associated_vpc(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "keep_associated_vpc", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the CloudAMQP instance.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="noDefaultAlarms")
-    def no_default_alarms(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def no_default_alarms(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true to not create default alarms
         """
         return pulumi.get(self, "no_default_alarms")
 
     @no_default_alarms.setter
-    def no_default_alarms(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def no_default_alarms(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "no_default_alarms", value)
 
     @_builtins.property
     @pulumi.getter
-    def nodes(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def nodes(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of nodes, 1, 3 or 5 depending on plan used. Only needed for
         legacy plans, will otherwise be computed.
@@ -216,12 +216,12 @@ class InstanceArgs:
         return pulumi.get(self, "nodes")
 
     @nodes.setter
-    def nodes(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def nodes(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "nodes", value)
 
     @_builtins.property
     @pulumi.getter(name="preferredAzs")
-    def preferred_azs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def preferred_azs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The AZs to place your nodes in. Each entry corresponds to a server in your cluster, so for a 3 node cluster, provide 3 AZs in the list.
 
@@ -238,12 +238,12 @@ class InstanceArgs:
         return pulumi.get(self, "preferred_azs")
 
     @preferred_azs.setter
-    def preferred_azs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def preferred_azs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "preferred_azs", value)
 
     @_builtins.property
     @pulumi.getter(name="rmqVersion")
-    def rmq_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rmq_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Rabbit MQ version. Can be left out, will then be set to
         default value used by CloudAMQP API.
@@ -254,12 +254,12 @@ class InstanceArgs:
         return pulumi.get(self, "rmq_version")
 
     @rmq_version.setter
-    def rmq_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rmq_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rmq_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         One or more tags for the CloudAMQP instance, makes it possible to
         categories multiple instances in console view. Default there is no tags assigned.
@@ -267,12 +267,12 @@ class InstanceArgs:
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="vpcId")
-    def vpc_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def vpc_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The VPC ID. Use this to create your instance in an existing
         VPC. See available [example].
@@ -280,12 +280,12 @@ class InstanceArgs:
         return pulumi.get(self, "vpc_id")
 
     @vpc_id.setter
-    def vpc_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def vpc_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "vpc_id", value)
 
     @_builtins.property
     @pulumi.getter(name="vpcSubnet")
-    def vpc_subnet(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vpc_subnet(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Creates a dedicated VPC subnet, shouldn't overlap with other
         VPC subnet, default subnet used 10.56.72.0/24.
@@ -297,34 +297,34 @@ class InstanceArgs:
         return pulumi.get(self, "vpc_subnet")
 
     @vpc_subnet.setter
-    def vpc_subnet(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vpc_subnet(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vpc_subnet", value)
 
 
 @pulumi.input_type
 class _InstanceState:
     def __init__(__self__, *,
-                 apikey: Optional[pulumi.Input[_builtins.str]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceCopySettingArgs']]]] = None,
-                 credentials: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 dedicated: Optional[pulumi.Input[_builtins.bool]] = None,
-                 host: Optional[pulumi.Input[_builtins.str]] = None,
-                 host_internal: Optional[pulumi.Input[_builtins.str]] = None,
-                 keep_associated_vpc: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 no_default_alarms: Optional[pulumi.Input[_builtins.bool]] = None,
-                 nodes: Optional[pulumi.Input[_builtins.int]] = None,
-                 plan: Optional[pulumi.Input[_builtins.str]] = None,
-                 preferred_azs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ready: Optional[pulumi.Input[_builtins.bool]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 rmq_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost: Optional[pulumi.Input[_builtins.str]] = None,
-                 vpc_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 vpc_subnet: Optional[pulumi.Input[_builtins.str]] = None):
+                 apikey: pulumi.Input[Optional[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 copy_settings: pulumi.Input[Optional[Sequence[pulumi.Input['InstanceCopySettingArgs']]]] = None,
+                 credentials: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 dedicated: pulumi.Input[Optional[_builtins.bool]] = None,
+                 host: pulumi.Input[Optional[_builtins.str]] = None,
+                 host_internal: pulumi.Input[Optional[_builtins.str]] = None,
+                 keep_associated_vpc: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 no_default_alarms: pulumi.Input[Optional[_builtins.bool]] = None,
+                 nodes: pulumi.Input[Optional[_builtins.int]] = None,
+                 plan: pulumi.Input[Optional[_builtins.str]] = None,
+                 preferred_azs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ready: pulumi.Input[Optional[_builtins.bool]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 rmq_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None,
+                 vhost: pulumi.Input[Optional[_builtins.str]] = None,
+                 vpc_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 vpc_subnet: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
 
@@ -439,7 +439,7 @@ class _InstanceState:
 
     @_builtins.property
     @pulumi.getter
-    def apikey(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def apikey(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Sensitive) API key needed to communicate to CloudAMQP's second API. The second API is used
         to manage alarms, integration and more, full description [CloudAMQP API].
@@ -447,24 +447,24 @@ class _InstanceState:
         return pulumi.get(self, "apikey")
 
     @apikey.setter
-    def apikey(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def apikey(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "apikey", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="copySettings")
-    def copy_settings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceCopySettingArgs']]]]:
+    def copy_settings(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['InstanceCopySettingArgs']]]]:
         """
         Copy settings from one CloudAMQP instance to a new. Consists of
         the block documented below.
@@ -472,60 +472,60 @@ class _InstanceState:
         return pulumi.get(self, "copy_settings")
 
     @copy_settings.setter
-    def copy_settings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceCopySettingArgs']]]]):
+    def copy_settings(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['InstanceCopySettingArgs']]]]):
         pulumi.set(self, "copy_settings", value)
 
     @_builtins.property
     @pulumi.getter
-    def credentials(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def credentials(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         (Sensitive) Broker credentials block with information extracted from URL.
         """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
-    def credentials(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def credentials(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "credentials", value)
 
     @_builtins.property
     @pulumi.getter
-    def dedicated(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def dedicated(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Information if the CloudAMQP instance is shared or dedicated.
         """
         return pulumi.get(self, "dedicated")
 
     @dedicated.setter
-    def dedicated(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def dedicated(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "dedicated", value)
 
     @_builtins.property
     @pulumi.getter
-    def host(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def host(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The external hostname for the CloudAMQP instance.
         """
         return pulumi.get(self, "host")
 
     @host.setter
-    def host(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def host(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "host", value)
 
     @_builtins.property
     @pulumi.getter(name="hostInternal")
-    def host_internal(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def host_internal(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The internal hostname for the CloudAMQP instance.
         """
         return pulumi.get(self, "host_internal")
 
     @host_internal.setter
-    def host_internal(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def host_internal(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "host_internal", value)
 
     @_builtins.property
     @pulumi.getter(name="keepAssociatedVpc")
-    def keep_associated_vpc(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def keep_associated_vpc(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Keep associated VPC when deleting instance. Default set to
         false.
@@ -533,36 +533,36 @@ class _InstanceState:
         return pulumi.get(self, "keep_associated_vpc")
 
     @keep_associated_vpc.setter
-    def keep_associated_vpc(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def keep_associated_vpc(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "keep_associated_vpc", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the CloudAMQP instance.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="noDefaultAlarms")
-    def no_default_alarms(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def no_default_alarms(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true to not create default alarms
         """
         return pulumi.get(self, "no_default_alarms")
 
     @no_default_alarms.setter
-    def no_default_alarms(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def no_default_alarms(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "no_default_alarms", value)
 
     @_builtins.property
     @pulumi.getter
-    def nodes(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def nodes(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of nodes, 1, 3 or 5 depending on plan used. Only needed for
         legacy plans, will otherwise be computed.
@@ -574,12 +574,12 @@ class _InstanceState:
         return pulumi.get(self, "nodes")
 
     @nodes.setter
-    def nodes(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def nodes(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "nodes", value)
 
     @_builtins.property
     @pulumi.getter
-    def plan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plan(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The subscription plan. See available [plans].
 
@@ -592,12 +592,12 @@ class _InstanceState:
         return pulumi.get(self, "plan")
 
     @plan.setter
-    def plan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plan", value)
 
     @_builtins.property
     @pulumi.getter(name="preferredAzs")
-    def preferred_azs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def preferred_azs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The AZs to place your nodes in. Each entry corresponds to a server in your cluster, so for a 3 node cluster, provide 3 AZs in the list.
 
@@ -614,24 +614,24 @@ class _InstanceState:
         return pulumi.get(self, "preferred_azs")
 
     @preferred_azs.setter
-    def preferred_azs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def preferred_azs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "preferred_azs", value)
 
     @_builtins.property
     @pulumi.getter
-    def ready(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ready(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag describing if the resource is ready
         """
         return pulumi.get(self, "ready")
 
     @ready.setter
-    def ready(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ready(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ready", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The region to host the instance in. See available [regions].
 
@@ -646,12 +646,12 @@ class _InstanceState:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="rmqVersion")
-    def rmq_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rmq_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Rabbit MQ version. Can be left out, will then be set to
         default value used by CloudAMQP API.
@@ -662,12 +662,12 @@ class _InstanceState:
         return pulumi.get(self, "rmq_version")
 
     @rmq_version.setter
-    def rmq_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rmq_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rmq_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         One or more tags for the CloudAMQP instance, makes it possible to
         categories multiple instances in console view. Default there is no tags assigned.
@@ -675,12 +675,12 @@ class _InstanceState:
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
-    def url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Sensitive) The AMQP URL (uses the internal hostname if the instance was created with VPC).
         Has the format: `amqps://{username}:{password}@{hostname}/{vhost}`
@@ -688,24 +688,24 @@ class _InstanceState:
         return pulumi.get(self, "url")
 
     @url.setter
-    def url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "url", value)
 
     @_builtins.property
     @pulumi.getter
-    def vhost(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vhost(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The virtual host used by Rabbit MQ.
         """
         return pulumi.get(self, "vhost")
 
     @vhost.setter
-    def vhost(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vhost(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vhost", value)
 
     @_builtins.property
     @pulumi.getter(name="vpcId")
-    def vpc_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def vpc_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The VPC ID. Use this to create your instance in an existing
         VPC. See available [example].
@@ -713,12 +713,12 @@ class _InstanceState:
         return pulumi.get(self, "vpc_id")
 
     @vpc_id.setter
-    def vpc_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def vpc_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "vpc_id", value)
 
     @_builtins.property
     @pulumi.getter(name="vpcSubnet")
-    def vpc_subnet(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vpc_subnet(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Creates a dedicated VPC subnet, shouldn't overlap with other
         VPC subnet, default subnet used 10.56.72.0/24.
@@ -730,7 +730,7 @@ class _InstanceState:
         return pulumi.get(self, "vpc_subnet")
 
     @vpc_subnet.setter
-    def vpc_subnet(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vpc_subnet(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vpc_subnet", value)
 
 
@@ -740,18 +740,18 @@ class Instance(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceCopySettingArgs', 'InstanceCopySettingArgsDict']]]]] = None,
-                 keep_associated_vpc: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 no_default_alarms: Optional[pulumi.Input[_builtins.bool]] = None,
-                 nodes: Optional[pulumi.Input[_builtins.int]] = None,
-                 plan: Optional[pulumi.Input[_builtins.str]] = None,
-                 preferred_azs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 rmq_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 vpc_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 vpc_subnet: Optional[pulumi.Input[_builtins.str]] = None,
+                 copy_settings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceCopySettingArgs', 'InstanceCopySettingArgsDict']]]]] = None,
+                 keep_associated_vpc: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 no_default_alarms: pulumi.Input[Optional[_builtins.bool]] = None,
+                 nodes: pulumi.Input[Optional[_builtins.int]] = None,
+                 plan: pulumi.Input[Optional[_builtins.str]] = None,
+                 preferred_azs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 rmq_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 vpc_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 vpc_subnet: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         <!-- markdownlint-disable MD033 -->
@@ -871,7 +871,7 @@ class Instance(pulumi.CustomResource):
             plan="penguin-1",
             region="amazon-web-services::us-west-1",
             tags=["terraform"],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         ```
 
@@ -900,7 +900,7 @@ class Instance(pulumi.CustomResource):
             plan="penguin-1",
             region="amazon-web-services::us-west-1",
             tags=["terraform"],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         # Second instance added to managed VPC
         instance02 = cloudamqp.Instance("instance_02",
@@ -908,7 +908,7 @@ class Instance(pulumi.CustomResource):
             plan="penguin-1",
             region="amazon-web-services::us-west-1",
             tags=["terraform"],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         ```
 
@@ -1328,7 +1328,7 @@ class Instance(pulumi.CustomResource):
             plan="penguin-1",
             region="amazon-web-services::us-west-1",
             tags=["terraform"],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         ```
 
@@ -1357,7 +1357,7 @@ class Instance(pulumi.CustomResource):
             plan="penguin-1",
             region="amazon-web-services::us-west-1",
             tags=["terraform"],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         # Second instance added to managed VPC
         instance02 = cloudamqp.Instance("instance_02",
@@ -1365,7 +1365,7 @@ class Instance(pulumi.CustomResource):
             plan="penguin-1",
             region="amazon-web-services::us-west-1",
             tags=["terraform"],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         ```
 
@@ -1619,18 +1619,18 @@ class Instance(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceCopySettingArgs', 'InstanceCopySettingArgsDict']]]]] = None,
-                 keep_associated_vpc: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 no_default_alarms: Optional[pulumi.Input[_builtins.bool]] = None,
-                 nodes: Optional[pulumi.Input[_builtins.int]] = None,
-                 plan: Optional[pulumi.Input[_builtins.str]] = None,
-                 preferred_azs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 rmq_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 vpc_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 vpc_subnet: Optional[pulumi.Input[_builtins.str]] = None,
+                 copy_settings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceCopySettingArgs', 'InstanceCopySettingArgsDict']]]]] = None,
+                 keep_associated_vpc: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 no_default_alarms: pulumi.Input[Optional[_builtins.bool]] = None,
+                 nodes: pulumi.Input[Optional[_builtins.int]] = None,
+                 plan: pulumi.Input[Optional[_builtins.str]] = None,
+                 preferred_azs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 rmq_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 vpc_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 vpc_subnet: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1677,27 +1677,27 @@ class Instance(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            apikey: Optional[pulumi.Input[_builtins.str]] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceCopySettingArgs', 'InstanceCopySettingArgsDict']]]]] = None,
-            credentials: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            dedicated: Optional[pulumi.Input[_builtins.bool]] = None,
-            host: Optional[pulumi.Input[_builtins.str]] = None,
-            host_internal: Optional[pulumi.Input[_builtins.str]] = None,
-            keep_associated_vpc: Optional[pulumi.Input[_builtins.bool]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            no_default_alarms: Optional[pulumi.Input[_builtins.bool]] = None,
-            nodes: Optional[pulumi.Input[_builtins.int]] = None,
-            plan: Optional[pulumi.Input[_builtins.str]] = None,
-            preferred_azs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            ready: Optional[pulumi.Input[_builtins.bool]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            rmq_version: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            url: Optional[pulumi.Input[_builtins.str]] = None,
-            vhost: Optional[pulumi.Input[_builtins.str]] = None,
-            vpc_id: Optional[pulumi.Input[_builtins.int]] = None,
-            vpc_subnet: Optional[pulumi.Input[_builtins.str]] = None) -> 'Instance':
+            apikey: pulumi.Input[Optional[_builtins.str]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            copy_settings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceCopySettingArgs', 'InstanceCopySettingArgsDict']]]]] = None,
+            credentials: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            dedicated: pulumi.Input[Optional[_builtins.bool]] = None,
+            host: pulumi.Input[Optional[_builtins.str]] = None,
+            host_internal: pulumi.Input[Optional[_builtins.str]] = None,
+            keep_associated_vpc: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            no_default_alarms: pulumi.Input[Optional[_builtins.bool]] = None,
+            nodes: pulumi.Input[Optional[_builtins.int]] = None,
+            plan: pulumi.Input[Optional[_builtins.str]] = None,
+            preferred_azs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ready: pulumi.Input[Optional[_builtins.bool]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            rmq_version: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            url: pulumi.Input[Optional[_builtins.str]] = None,
+            vhost: pulumi.Input[Optional[_builtins.str]] = None,
+            vpc_id: pulumi.Input[Optional[_builtins.int]] = None,
+            vpc_subnet: pulumi.Input[Optional[_builtins.str]] = None) -> 'Instance':
         """
         Get an existing Instance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

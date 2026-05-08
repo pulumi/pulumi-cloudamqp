@@ -25,7 +25,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const vpcInfo = cloudamqp.getVpcGcpInfo({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * ```
  *
@@ -145,7 +145,7 @@ export interface GetVpcGcpInfoResult {
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const vpcInfo = cloudamqp.getVpcGcpInfo({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * ```
  *
@@ -200,21 +200,21 @@ export interface GetVpcGcpInfoOutputArgs {
      *
      * ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
      */
-    instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number | undefined>;
     /**
      * Configurable sleep time (seconds) between retries when reading peering.
      * Default set to 10 seconds.
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * Configurable timeout time (seconds) before retries times out. Default
      * set to 1800 seconds.
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
     /**
      * The managed VPC identifier.
      *
      * ***Note:*** Available from [v1.16.0], will be removed in next major version (v2.0)
      */
-    vpcId?: pulumi.Input<string>;
+    vpcId?: pulumi.Input<string | undefined>;
 }

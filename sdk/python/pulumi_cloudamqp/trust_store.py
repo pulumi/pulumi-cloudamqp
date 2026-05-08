@@ -22,13 +22,13 @@ __all__ = ['TrustStoreArgs', 'TrustStore']
 class TrustStoreArgs:
     def __init__(__self__, *,
                  instance_id: pulumi.Input[_builtins.int],
-                 file: Optional[pulumi.Input['TrustStoreFileArgs']] = None,
-                 http: Optional[pulumi.Input['TrustStoreHttpArgs']] = None,
-                 key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 refresh_interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 version: Optional[pulumi.Input[_builtins.int]] = None):
+                 file: pulumi.Input[Optional['TrustStoreFileArgs']] = None,
+                 http: pulumi.Input[Optional['TrustStoreHttpArgs']] = None,
+                 key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 refresh_interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 version: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a TrustStore resource.
 
@@ -78,31 +78,31 @@ class TrustStoreArgs:
 
     @_builtins.property
     @pulumi.getter
-    def file(self) -> Optional[pulumi.Input['TrustStoreFileArgs']]:
+    def file(self) -> pulumi.Input[Optional['TrustStoreFileArgs']]:
         """
         File trust store configuration block. See File Block below.
         """
         return pulumi.get(self, "file")
 
     @file.setter
-    def file(self, value: Optional[pulumi.Input['TrustStoreFileArgs']]):
+    def file(self, value: pulumi.Input[Optional['TrustStoreFileArgs']]):
         pulumi.set(self, "file", value)
 
     @_builtins.property
     @pulumi.getter
-    def http(self) -> Optional[pulumi.Input['TrustStoreHttpArgs']]:
+    def http(self) -> pulumi.Input[Optional['TrustStoreHttpArgs']]:
         """
         HTTP trust store configuration block. See HTTP Block below.
         """
         return pulumi.get(self, "http")
 
     @http.setter
-    def http(self, value: Optional[pulumi.Input['TrustStoreHttpArgs']]):
+    def http(self, value: pulumi.Input[Optional['TrustStoreHttpArgs']]):
         pulumi.set(self, "http", value)
 
     @_builtins.property
     @pulumi.getter(name="keyId")
-    def key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A string identifier to trigger updates of write-only certificate fields.
         Change this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: "").
@@ -110,12 +110,12 @@ class TrustStoreArgs:
         return pulumi.get(self, "key_id")
 
     @key_id.setter
-    def key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="refreshInterval")
-    def refresh_interval(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def refresh_interval(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Interval in seconds for RabbitMQ to refresh the trust
         store certificates (default: 30).
@@ -123,12 +123,12 @@ class TrustStoreArgs:
         return pulumi.get(self, "refresh_interval")
 
     @refresh_interval.setter
-    def refresh_interval(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def refresh_interval(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "refresh_interval", value)
 
     @_builtins.property
     @pulumi.getter
-    def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def sleep(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable sleep time in seconds between retries for trust store
         operations (default: 10).
@@ -136,12 +136,12 @@ class TrustStoreArgs:
         return pulumi.get(self, "sleep")
 
     @sleep.setter
-    def sleep(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def sleep(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "sleep", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable timeout time in seconds for trust store operations
         (default: 1800).
@@ -151,12 +151,12 @@ class TrustStoreArgs:
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
     @_builtins.property
     @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         An integer to trigger updates of write-only certificate fields.
         Increment this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: 1).
@@ -164,21 +164,21 @@ class TrustStoreArgs:
         return pulumi.get(self, "version")
 
     @version.setter
-    def version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "version", value)
 
 
 @pulumi.input_type
 class _TrustStoreState:
     def __init__(__self__, *,
-                 file: Optional[pulumi.Input['TrustStoreFileArgs']] = None,
-                 http: Optional[pulumi.Input['TrustStoreHttpArgs']] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 refresh_interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 version: Optional[pulumi.Input[_builtins.int]] = None):
+                 file: pulumi.Input[Optional['TrustStoreFileArgs']] = None,
+                 http: pulumi.Input[Optional['TrustStoreHttpArgs']] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 refresh_interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 version: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering TrustStore resources.
 
@@ -217,43 +217,43 @@ class _TrustStoreState:
 
     @_builtins.property
     @pulumi.getter
-    def file(self) -> Optional[pulumi.Input['TrustStoreFileArgs']]:
+    def file(self) -> pulumi.Input[Optional['TrustStoreFileArgs']]:
         """
         File trust store configuration block. See File Block below.
         """
         return pulumi.get(self, "file")
 
     @file.setter
-    def file(self, value: Optional[pulumi.Input['TrustStoreFileArgs']]):
+    def file(self, value: pulumi.Input[Optional['TrustStoreFileArgs']]):
         pulumi.set(self, "file", value)
 
     @_builtins.property
     @pulumi.getter
-    def http(self) -> Optional[pulumi.Input['TrustStoreHttpArgs']]:
+    def http(self) -> pulumi.Input[Optional['TrustStoreHttpArgs']]:
         """
         HTTP trust store configuration block. See HTTP Block below.
         """
         return pulumi.get(self, "http")
 
     @http.setter
-    def http(self, value: Optional[pulumi.Input['TrustStoreHttpArgs']]):
+    def http(self, value: pulumi.Input[Optional['TrustStoreHttpArgs']]):
         pulumi.set(self, "http", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The CloudAMQP instance identifier.
         """
         return pulumi.get(self, "instance_id")
 
     @instance_id.setter
-    def instance_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_id", value)
 
     @_builtins.property
     @pulumi.getter(name="keyId")
-    def key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A string identifier to trigger updates of write-only certificate fields.
         Change this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: "").
@@ -261,12 +261,12 @@ class _TrustStoreState:
         return pulumi.get(self, "key_id")
 
     @key_id.setter
-    def key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="refreshInterval")
-    def refresh_interval(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def refresh_interval(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Interval in seconds for RabbitMQ to refresh the trust
         store certificates (default: 30).
@@ -274,12 +274,12 @@ class _TrustStoreState:
         return pulumi.get(self, "refresh_interval")
 
     @refresh_interval.setter
-    def refresh_interval(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def refresh_interval(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "refresh_interval", value)
 
     @_builtins.property
     @pulumi.getter
-    def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def sleep(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable sleep time in seconds between retries for trust store
         operations (default: 10).
@@ -287,12 +287,12 @@ class _TrustStoreState:
         return pulumi.get(self, "sleep")
 
     @sleep.setter
-    def sleep(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def sleep(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "sleep", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable timeout time in seconds for trust store operations
         (default: 1800).
@@ -302,12 +302,12 @@ class _TrustStoreState:
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
     @_builtins.property
     @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         An integer to trigger updates of write-only certificate fields.
         Increment this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: 1).
@@ -315,7 +315,7 @@ class _TrustStoreState:
         return pulumi.get(self, "version")
 
     @version.setter
-    def version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "version", value)
 
 
@@ -325,14 +325,14 @@ class TrustStore(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 file: Optional[pulumi.Input[Union['TrustStoreFileArgs', 'TrustStoreFileArgsDict']]] = None,
-                 http: Optional[pulumi.Input[Union['TrustStoreHttpArgs', 'TrustStoreHttpArgsDict']]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 refresh_interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 version: Optional[pulumi.Input[_builtins.int]] = None,
+                 file: pulumi.Input[Optional[Union['TrustStoreFileArgs', 'TrustStoreFileArgsDict']]] = None,
+                 http: pulumi.Input[Optional[Union['TrustStoreHttpArgs', 'TrustStoreHttpArgsDict']]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 refresh_interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 version: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         <!-- markdownlint-disable MD033 -->
@@ -367,7 +367,7 @@ class TrustStore(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         trust_store = cloudamqp.TrustStore("trust_store",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             http={
                 "url": "https://example.com/trust-store-certs",
             },
@@ -441,7 +441,7 @@ class TrustStore(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         trust_store = cloudamqp.TrustStore("trust_store",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             http={
                 "url": "https://example.com/trust-store-certs",
             },
@@ -473,14 +473,14 @@ class TrustStore(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 file: Optional[pulumi.Input[Union['TrustStoreFileArgs', 'TrustStoreFileArgsDict']]] = None,
-                 http: Optional[pulumi.Input[Union['TrustStoreHttpArgs', 'TrustStoreHttpArgsDict']]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 refresh_interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 version: Optional[pulumi.Input[_builtins.int]] = None,
+                 file: pulumi.Input[Optional[Union['TrustStoreFileArgs', 'TrustStoreFileArgsDict']]] = None,
+                 http: pulumi.Input[Optional[Union['TrustStoreHttpArgs', 'TrustStoreHttpArgsDict']]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 refresh_interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 version: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -510,14 +510,14 @@ class TrustStore(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            file: Optional[pulumi.Input[Union['TrustStoreFileArgs', 'TrustStoreFileArgsDict']]] = None,
-            http: Optional[pulumi.Input[Union['TrustStoreHttpArgs', 'TrustStoreHttpArgsDict']]] = None,
-            instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-            key_id: Optional[pulumi.Input[_builtins.str]] = None,
-            refresh_interval: Optional[pulumi.Input[_builtins.int]] = None,
-            sleep: Optional[pulumi.Input[_builtins.int]] = None,
-            timeout: Optional[pulumi.Input[_builtins.int]] = None,
-            version: Optional[pulumi.Input[_builtins.int]] = None) -> 'TrustStore':
+            file: pulumi.Input[Optional[Union['TrustStoreFileArgs', 'TrustStoreFileArgsDict']]] = None,
+            http: pulumi.Input[Optional[Union['TrustStoreHttpArgs', 'TrustStoreHttpArgsDict']]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            refresh_interval: pulumi.Input[Optional[_builtins.int]] = None,
+            sleep: pulumi.Input[Optional[_builtins.int]] = None,
+            timeout: pulumi.Input[Optional[_builtins.int]] = None,
+            version: pulumi.Input[Optional[_builtins.int]] = None) -> 'TrustStore':
         """
         Get an existing TrustStore resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

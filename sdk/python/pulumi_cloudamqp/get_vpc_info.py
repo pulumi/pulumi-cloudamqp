@@ -138,7 +138,7 @@ def get_vpc_info(instance_id: Optional[_builtins.int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    vpc_info = cloudamqp.get_vpc_info(instance_id=instance["id"])
+    vpc_info = cloudamqp.get_vpc_info(instance_id=int(instance["id"]))
     ```
 
     </details>
@@ -192,8 +192,8 @@ def get_vpc_info(instance_id: Optional[_builtins.int] = None,
         security_group_id=pulumi.get(__ret__, 'security_group_id'),
         vpc_id=pulumi.get(__ret__, 'vpc_id'),
         vpc_subnet=pulumi.get(__ret__, 'vpc_subnet'))
-def get_vpc_info_output(instance_id: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                        vpc_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_vpc_info_output(instance_id: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                        vpc_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVpcInfoResult]:
     """
     <!-- markdownlint-disable MD033 -->
@@ -215,7 +215,7 @@ def get_vpc_info_output(instance_id: Optional[pulumi.Input[Optional[_builtins.in
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    vpc_info = cloudamqp.get_vpc_info(instance_id=instance["id"])
+    vpc_info = cloudamqp.get_vpc_info(instance_id=int(instance["id"]))
     ```
 
     </details>

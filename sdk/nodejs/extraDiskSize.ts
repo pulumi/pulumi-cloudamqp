@@ -57,13 +57,13 @@ import * as utilities from "./utilities";
  * });
  * // Resize disk with 25 extra GB
  * const resizeDisk = new cloudamqp.ExtraDiskSize("resize_disk", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     extraDiskSize: 25,
  * });
  * // Optional, refresh nodes info after disk resize by adding dependency
  * // to cloudamqp_extra_disk_size.resize_disk resource
  * const nodes = instance.id.apply(id => cloudamqp.getNodesOutput({
- *     instanceId: id,
+ *     instanceId: Number(id),
  * }));
  * ```
  *
@@ -88,13 +88,13 @@ import * as utilities from "./utilities";
  * });
  * // Resize disk with 25 extra GB, without downtime
  * const resizeDisk = new cloudamqp.ExtraDiskSize("resize_disk", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     extraDiskSize: 25,
  * });
  * // Optional, refresh nodes info after disk resize by adding dependency
  * // to cloudamqp_extra_disk_size.resize_disk resource
  * const nodes = instance.id.apply(id => cloudamqp.getNodesOutput({
- *     instanceId: id,
+ *     instanceId: Number(id),
  * }));
  * ```
  *
@@ -119,13 +119,13 @@ import * as utilities from "./utilities";
  * });
  * // Resize disk with 25 extra GB, without downtime
  * const resizeDisk = new cloudamqp.ExtraDiskSize("resize_disk", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     extraDiskSize: 25,
  * });
  * // Optional, refresh nodes info after disk resize by adding dependency
  * // to cloudamqp_extra_disk_size.resize_disk resource
  * const nodes = instance.id.apply(id => cloudamqp.getNodesOutput({
- *     instanceId: id,
+ *     instanceId: Number(id),
  * }));
  * ```
  *
@@ -150,13 +150,13 @@ import * as utilities from "./utilities";
  * });
  * // Resize disk with 25 extra GB, with downtime
  * const resizeDisk = new cloudamqp.ExtraDiskSize("resize_disk", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     extraDiskSize: 25,
  * });
  * // Optional, refresh nodes info after disk resize by adding dependency
  * // to cloudamqp_extra_disk_size.resize_disk resource
  * const nodes = instance.id.apply(id => cloudamqp.getNodesOutput({
- *     instanceId: id,
+ *     instanceId: Number(id),
  * }));
  * ```
  *
@@ -282,25 +282,25 @@ export interface ExtraDiskSizeState {
      * When resizing the disk, allow cluster downtime if necessary.
      * Default set to false.
      */
-    allowDowntime?: pulumi.Input<boolean>;
+    allowDowntime?: pulumi.Input<boolean | undefined>;
     /**
      * Extra disk size in GB. Supported values: 0, 25, 50, 100,
      * 250, 500, 1000, 2000
      */
-    extraDiskSize?: pulumi.Input<number>;
+    extraDiskSize?: pulumi.Input<number | undefined>;
     /**
      * The CloudAMQP instance ID.
      */
-    instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number | undefined>;
     /**
      * An array of node information. Each `nodes` block consists of the fields documented below.
      */
-    nodes?: pulumi.Input<pulumi.Input<inputs.ExtraDiskSizeNode>[]>;
+    nodes?: pulumi.Input<pulumi.Input<inputs.ExtraDiskSizeNode>[] | undefined>;
     /**
      * Configurable sleep time in seconds between retries for resizing the
      * disk. Default set to 30 seconds.
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * Configurable timeout time in seconds for resizing the disk. Default
      * set to 1800 seconds.
@@ -309,7 +309,7 @@ export interface ExtraDiskSizeState {
      *
      * ***Note:*** `timeout` was overridden to 3 hours starting from [v1.43.1]
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -320,7 +320,7 @@ export interface ExtraDiskSizeArgs {
      * When resizing the disk, allow cluster downtime if necessary.
      * Default set to false.
      */
-    allowDowntime?: pulumi.Input<boolean>;
+    allowDowntime?: pulumi.Input<boolean | undefined>;
     /**
      * Extra disk size in GB. Supported values: 0, 25, 50, 100,
      * 250, 500, 1000, 2000
@@ -334,7 +334,7 @@ export interface ExtraDiskSizeArgs {
      * Configurable sleep time in seconds between retries for resizing the
      * disk. Default set to 30 seconds.
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * Configurable timeout time in seconds for resizing the disk. Default
      * set to 1800 seconds.
@@ -343,5 +343,5 @@ export interface ExtraDiskSizeArgs {
      *
      * ***Note:*** `timeout` was overridden to 3 hours starting from [v1.43.1]
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
 }

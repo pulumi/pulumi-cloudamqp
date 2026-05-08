@@ -20,11 +20,11 @@ __all__ = ['VpcGcpPeeringArgs', 'VpcGcpPeering']
 class VpcGcpPeeringArgs:
     def __init__(__self__, *,
                  peer_network_uri: pulumi.Input[_builtins.str],
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 wait_on_peering_status: Optional[pulumi.Input[_builtins.bool]] = None):
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 vpc_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 wait_on_peering_status: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a VpcGcpPeering resource.
 
@@ -76,7 +76,7 @@ class VpcGcpPeeringArgs:
 
     @_builtins.property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The CloudAMQP instance identifier.
 
@@ -85,12 +85,12 @@ class VpcGcpPeeringArgs:
         return pulumi.get(self, "instance_id")
 
     @instance_id.setter
-    def instance_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def sleep(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable sleep time (seconds) between retries when
         requesting or reading peering. Default set to 10 seconds.
@@ -100,12 +100,12 @@ class VpcGcpPeeringArgs:
         return pulumi.get(self, "sleep")
 
     @sleep.setter
-    def sleep(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def sleep(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "sleep", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable timeout time (seconds) before retries times
         out. Default set to 1800 seconds.
@@ -115,12 +115,12 @@ class VpcGcpPeeringArgs:
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="vpcId")
-    def vpc_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vpc_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The managed VPC identifier.
 
@@ -129,12 +129,12 @@ class VpcGcpPeeringArgs:
         return pulumi.get(self, "vpc_id")
 
     @vpc_id.setter
-    def vpc_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vpc_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vpc_id", value)
 
     @_builtins.property
     @pulumi.getter(name="waitOnPeeringStatus")
-    def wait_on_peering_status(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def wait_on_peering_status(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Makes the resource wait until the peering is connected.
         Default set to false.
@@ -144,22 +144,22 @@ class VpcGcpPeeringArgs:
         return pulumi.get(self, "wait_on_peering_status")
 
     @wait_on_peering_status.setter
-    def wait_on_peering_status(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def wait_on_peering_status(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "wait_on_peering_status", value)
 
 
 @pulumi.input_type
 class _VpcGcpPeeringState:
     def __init__(__self__, *,
-                 auto_create_routes: Optional[pulumi.Input[_builtins.bool]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 peer_network_uri: Optional[pulumi.Input[_builtins.str]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 state: Optional[pulumi.Input[_builtins.str]] = None,
-                 state_details: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 wait_on_peering_status: Optional[pulumi.Input[_builtins.bool]] = None):
+                 auto_create_routes: pulumi.Input[Optional[_builtins.bool]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 peer_network_uri: pulumi.Input[Optional[_builtins.str]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 state: pulumi.Input[Optional[_builtins.str]] = None,
+                 state_details: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 vpc_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 wait_on_peering_status: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering VpcGcpPeering resources.
 
@@ -208,19 +208,19 @@ class _VpcGcpPeeringState:
 
     @_builtins.property
     @pulumi.getter(name="autoCreateRoutes")
-    def auto_create_routes(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def auto_create_routes(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         VPC peering auto created routes
         """
         return pulumi.get(self, "auto_create_routes")
 
     @auto_create_routes.setter
-    def auto_create_routes(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def auto_create_routes(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "auto_create_routes", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The CloudAMQP instance identifier.
 
@@ -229,12 +229,12 @@ class _VpcGcpPeeringState:
         return pulumi.get(self, "instance_id")
 
     @instance_id.setter
-    def instance_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_id", value)
 
     @_builtins.property
     @pulumi.getter(name="peerNetworkUri")
-    def peer_network_uri(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def peer_network_uri(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Network URI of the VPC network to which you will peer with.
         See examples above for the format.
@@ -242,12 +242,12 @@ class _VpcGcpPeeringState:
         return pulumi.get(self, "peer_network_uri")
 
     @peer_network_uri.setter
-    def peer_network_uri(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def peer_network_uri(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "peer_network_uri", value)
 
     @_builtins.property
     @pulumi.getter
-    def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def sleep(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable sleep time (seconds) between retries when
         requesting or reading peering. Default set to 10 seconds.
@@ -257,36 +257,36 @@ class _VpcGcpPeeringState:
         return pulumi.get(self, "sleep")
 
     @sleep.setter
-    def sleep(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def sleep(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "sleep", value)
 
     @_builtins.property
     @pulumi.getter
-    def state(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def state(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         VPC peering state
         """
         return pulumi.get(self, "state")
 
     @state.setter
-    def state(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def state(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "state", value)
 
     @_builtins.property
     @pulumi.getter(name="stateDetails")
-    def state_details(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def state_details(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         VPC peering state details
         """
         return pulumi.get(self, "state_details")
 
     @state_details.setter
-    def state_details(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def state_details(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "state_details", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable timeout time (seconds) before retries times
         out. Default set to 1800 seconds.
@@ -296,12 +296,12 @@ class _VpcGcpPeeringState:
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="vpcId")
-    def vpc_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vpc_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The managed VPC identifier.
 
@@ -310,12 +310,12 @@ class _VpcGcpPeeringState:
         return pulumi.get(self, "vpc_id")
 
     @vpc_id.setter
-    def vpc_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vpc_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vpc_id", value)
 
     @_builtins.property
     @pulumi.getter(name="waitOnPeeringStatus")
-    def wait_on_peering_status(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def wait_on_peering_status(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Makes the resource wait until the peering is connected.
         Default set to false.
@@ -325,7 +325,7 @@ class _VpcGcpPeeringState:
         return pulumi.get(self, "wait_on_peering_status")
 
     @wait_on_peering_status.setter
-    def wait_on_peering_status(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def wait_on_peering_status(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "wait_on_peering_status", value)
 
 
@@ -335,12 +335,12 @@ class VpcGcpPeering(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 peer_network_uri: Optional[pulumi.Input[_builtins.str]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 wait_on_peering_status: Optional[pulumi.Input[_builtins.bool]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 peer_network_uri: pulumi.Input[Optional[_builtins.str]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 vpc_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 wait_on_peering_status: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         <!-- markdownlint-disable MD033 -->
@@ -379,10 +379,10 @@ class VpcGcpPeering(pulumi.CustomResource):
             tags=["terraform"],
             vpc_subnet="10.40.72.0/24")
         # VPC information
-        vpc_info = instance.id.apply(lambda id: cloudamqp.get_vpc_gcp_info_output(instance_id=id))
+        vpc_info = instance.id.apply(lambda id: cloudamqp.get_vpc_gcp_info_output(instance_id=int(id)))
         # VPC peering configuration
         vpc_peering_request = cloudamqp.VpcGcpPeering("vpc_peering_request",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             peer_network_uri="https://www.googleapis.com/compute/v1/projects/PROJECT-NAME/global/networks/VPC-NETWORK-NAME")
         ```
 
@@ -411,7 +411,7 @@ class VpcGcpPeering(pulumi.CustomResource):
             plan="penguin-1",
             region="google-compute-engine::europe-north1",
             tags=["terraform"],
-            vpc_id=vpc.id)
+            vpc_id=vpc.id.apply(lambda x: int(x)))
         # VPC information
         vpc_info = cloudamqp.get_vpc_gcp_info(vpc_id=vpc.info)
         # VPC peering configuration
@@ -472,11 +472,11 @@ class VpcGcpPeering(pulumi.CustomResource):
 
         # VPC peering configuration
         vpc_peering_request = cloudamqp.VpcGcpPeering("vpc_peering_request",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             peer_network_uri=peer_network_uri)
         # Firewall rules
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             rules=[
                 {
                     "ip": peer_subnet,
@@ -526,7 +526,7 @@ class VpcGcpPeering(pulumi.CustomResource):
             peer_network_uri=peer_network_uri)
         # Firewall rules
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             rules=[
                 {
                     "ip": peer_subnet,
@@ -653,10 +653,10 @@ class VpcGcpPeering(pulumi.CustomResource):
             tags=["terraform"],
             vpc_subnet="10.40.72.0/24")
         # VPC information
-        vpc_info = instance.id.apply(lambda id: cloudamqp.get_vpc_gcp_info_output(instance_id=id))
+        vpc_info = instance.id.apply(lambda id: cloudamqp.get_vpc_gcp_info_output(instance_id=int(id)))
         # VPC peering configuration
         vpc_peering_request = cloudamqp.VpcGcpPeering("vpc_peering_request",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             peer_network_uri="https://www.googleapis.com/compute/v1/projects/PROJECT-NAME/global/networks/VPC-NETWORK-NAME")
         ```
 
@@ -685,7 +685,7 @@ class VpcGcpPeering(pulumi.CustomResource):
             plan="penguin-1",
             region="google-compute-engine::europe-north1",
             tags=["terraform"],
-            vpc_id=vpc.id)
+            vpc_id=vpc.id.apply(lambda x: int(x)))
         # VPC information
         vpc_info = cloudamqp.get_vpc_gcp_info(vpc_id=vpc.info)
         # VPC peering configuration
@@ -746,11 +746,11 @@ class VpcGcpPeering(pulumi.CustomResource):
 
         # VPC peering configuration
         vpc_peering_request = cloudamqp.VpcGcpPeering("vpc_peering_request",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             peer_network_uri=peer_network_uri)
         # Firewall rules
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             rules=[
                 {
                     "ip": peer_subnet,
@@ -800,7 +800,7 @@ class VpcGcpPeering(pulumi.CustomResource):
             peer_network_uri=peer_network_uri)
         # Firewall rules
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             rules=[
                 {
                     "ip": peer_subnet,
@@ -876,12 +876,12 @@ class VpcGcpPeering(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 peer_network_uri: Optional[pulumi.Input[_builtins.str]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 wait_on_peering_status: Optional[pulumi.Input[_builtins.bool]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 peer_network_uri: pulumi.Input[Optional[_builtins.str]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 vpc_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 wait_on_peering_status: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -912,15 +912,15 @@ class VpcGcpPeering(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            auto_create_routes: Optional[pulumi.Input[_builtins.bool]] = None,
-            instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-            peer_network_uri: Optional[pulumi.Input[_builtins.str]] = None,
-            sleep: Optional[pulumi.Input[_builtins.int]] = None,
-            state: Optional[pulumi.Input[_builtins.str]] = None,
-            state_details: Optional[pulumi.Input[_builtins.str]] = None,
-            timeout: Optional[pulumi.Input[_builtins.int]] = None,
-            vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
-            wait_on_peering_status: Optional[pulumi.Input[_builtins.bool]] = None) -> 'VpcGcpPeering':
+            auto_create_routes: pulumi.Input[Optional[_builtins.bool]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            peer_network_uri: pulumi.Input[Optional[_builtins.str]] = None,
+            sleep: pulumi.Input[Optional[_builtins.int]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None,
+            state_details: pulumi.Input[Optional[_builtins.str]] = None,
+            timeout: pulumi.Input[Optional[_builtins.int]] = None,
+            vpc_id: pulumi.Input[Optional[_builtins.str]] = None,
+            wait_on_peering_status: pulumi.Input[Optional[_builtins.bool]] = None) -> 'VpcGcpPeering':
         """
         Get an existing VpcGcpPeering resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

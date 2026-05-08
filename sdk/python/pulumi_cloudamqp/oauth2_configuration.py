@@ -22,17 +22,17 @@ class Oauth2ConfigurationArgs:
                  instance_id: pulumi.Input[_builtins.int],
                  issuer: pulumi.Input[_builtins.str],
                  resource_server_id: pulumi.Input[_builtins.str],
-                 additional_scopes_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_basic_auth: Optional[pulumi.Input[_builtins.bool]] = None,
-                 oauth_client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 preferred_username_claims: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 scope_aliases: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 scope_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 verify_aud: Optional[pulumi.Input[_builtins.bool]] = None):
+                 additional_scopes_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_basic_auth: pulumi.Input[Optional[_builtins.bool]] = None,
+                 oauth_client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 preferred_username_claims: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 scope_aliases: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 scope_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 verify_aud: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Oauth2Configuration resource.
 
@@ -129,7 +129,7 @@ class Oauth2ConfigurationArgs:
 
     @_builtins.property
     @pulumi.getter(name="additionalScopesKeys")
-    def additional_scopes_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def additional_scopes_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of additional JWT claim keys to extract OAuth2
         scopes from.
@@ -137,12 +137,12 @@ class Oauth2ConfigurationArgs:
         return pulumi.get(self, "additional_scopes_keys")
 
     @additional_scopes_keys.setter
-    def additional_scopes_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def additional_scopes_keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "additional_scopes_keys", value)
 
     @_builtins.property
     @pulumi.getter
-    def audience(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def audience(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The audience to be passed along to the Oauth2 provider when
         logging in to the management interface. Must be configured for Auth0,
@@ -151,36 +151,36 @@ class Oauth2ConfigurationArgs:
         return pulumi.get(self, "audience")
 
     @audience.setter
-    def audience(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def audience(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "audience", value)
 
     @_builtins.property
     @pulumi.getter(name="disableBasicAuth")
-    def disable_basic_auth(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_basic_auth(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable static username/password management interface access.
         """
         return pulumi.get(self, "disable_basic_auth")
 
     @disable_basic_auth.setter
-    def disable_basic_auth(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_basic_auth(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_basic_auth", value)
 
     @_builtins.property
     @pulumi.getter(name="oauthClientId")
-    def oauth_client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def oauth_client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         OAuth2 client ID used for token validation.
         """
         return pulumi.get(self, "oauth_client_id")
 
     @oauth_client_id.setter
-    def oauth_client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def oauth_client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "oauth_client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="oauthScopes")
-    def oauth_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def oauth_scopes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of OAuth2 scopes to request. These scopes will be
         used when obtaining access tokens.
@@ -188,12 +188,12 @@ class Oauth2ConfigurationArgs:
         return pulumi.get(self, "oauth_scopes")
 
     @oauth_scopes.setter
-    def oauth_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def oauth_scopes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "oauth_scopes", value)
 
     @_builtins.property
     @pulumi.getter(name="preferredUsernameClaims")
-    def preferred_username_claims(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def preferred_username_claims(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of JWT claims to use as the preferred username.
         The first claim found in the token will be used as the username.
@@ -201,12 +201,12 @@ class Oauth2ConfigurationArgs:
         return pulumi.get(self, "preferred_username_claims")
 
     @preferred_username_claims.setter
-    def preferred_username_claims(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def preferred_username_claims(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "preferred_username_claims", value)
 
     @_builtins.property
     @pulumi.getter(name="scopeAliases")
-    def scope_aliases(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def scope_aliases(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Map of scope aliases to translate scope names. This allows
         mapping OAuth2 scopes to RabbitMQ permission tags.
@@ -214,12 +214,12 @@ class Oauth2ConfigurationArgs:
         return pulumi.get(self, "scope_aliases")
 
     @scope_aliases.setter
-    def scope_aliases(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def scope_aliases(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "scope_aliases", value)
 
     @_builtins.property
     @pulumi.getter(name="scopePrefix")
-    def scope_prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def scope_prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Prefix to add to scopes. This is useful when scopes in
         the JWT token need to be prefixed for RabbitMQ permissions.
@@ -227,12 +227,12 @@ class Oauth2ConfigurationArgs:
         return pulumi.get(self, "scope_prefix")
 
     @scope_prefix.setter
-    def scope_prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def scope_prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "scope_prefix", value)
 
     @_builtins.property
     @pulumi.getter
-    def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def sleep(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable sleep time in seconds between retries for
         OAuth2 configuration. Default set to 60 seconds.
@@ -240,12 +240,12 @@ class Oauth2ConfigurationArgs:
         return pulumi.get(self, "sleep")
 
     @sleep.setter
-    def sleep(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def sleep(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "sleep", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable timeout time in seconds for OAuth2
         configuration. Default set to 3600 seconds.
@@ -253,12 +253,12 @@ class Oauth2ConfigurationArgs:
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="verifyAud")
-    def verify_aud(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verify_aud(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to verify the audience claim in the JWT
         token. Defaults to true.
@@ -266,27 +266,27 @@ class Oauth2ConfigurationArgs:
         return pulumi.get(self, "verify_aud")
 
     @verify_aud.setter
-    def verify_aud(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verify_aud(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verify_aud", value)
 
 
 @pulumi.input_type
 class _Oauth2ConfigurationState:
     def __init__(__self__, *,
-                 additional_scopes_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_basic_auth: Optional[pulumi.Input[_builtins.bool]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 issuer: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth_client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 preferred_username_claims: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 resource_server_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 scope_aliases: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 scope_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 verify_aud: Optional[pulumi.Input[_builtins.bool]] = None):
+                 additional_scopes_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_basic_auth: pulumi.Input[Optional[_builtins.bool]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 issuer: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth_client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 preferred_username_claims: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 scope_aliases: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 scope_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 verify_aud: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering Oauth2Configuration resources.
 
@@ -348,7 +348,7 @@ class _Oauth2ConfigurationState:
 
     @_builtins.property
     @pulumi.getter(name="additionalScopesKeys")
-    def additional_scopes_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def additional_scopes_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of additional JWT claim keys to extract OAuth2
         scopes from.
@@ -356,12 +356,12 @@ class _Oauth2ConfigurationState:
         return pulumi.get(self, "additional_scopes_keys")
 
     @additional_scopes_keys.setter
-    def additional_scopes_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def additional_scopes_keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "additional_scopes_keys", value)
 
     @_builtins.property
     @pulumi.getter
-    def audience(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def audience(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The audience to be passed along to the Oauth2 provider when
         logging in to the management interface. Must be configured for Auth0,
@@ -370,36 +370,36 @@ class _Oauth2ConfigurationState:
         return pulumi.get(self, "audience")
 
     @audience.setter
-    def audience(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def audience(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "audience", value)
 
     @_builtins.property
     @pulumi.getter(name="disableBasicAuth")
-    def disable_basic_auth(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_basic_auth(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable static username/password management interface access.
         """
         return pulumi.get(self, "disable_basic_auth")
 
     @disable_basic_auth.setter
-    def disable_basic_auth(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_basic_auth(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_basic_auth", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The CloudAMQP instance ID.
         """
         return pulumi.get(self, "instance_id")
 
     @instance_id.setter
-    def instance_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def issuer(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def issuer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The issuer URL of the OAuth2 provider. This is typically
         the base URL of your OAuth2 provider (e.g., Auth0, Keycloak, etc.).
@@ -407,24 +407,24 @@ class _Oauth2ConfigurationState:
         return pulumi.get(self, "issuer")
 
     @issuer.setter
-    def issuer(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def issuer(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "issuer", value)
 
     @_builtins.property
     @pulumi.getter(name="oauthClientId")
-    def oauth_client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def oauth_client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         OAuth2 client ID used for token validation.
         """
         return pulumi.get(self, "oauth_client_id")
 
     @oauth_client_id.setter
-    def oauth_client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def oauth_client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "oauth_client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="oauthScopes")
-    def oauth_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def oauth_scopes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of OAuth2 scopes to request. These scopes will be
         used when obtaining access tokens.
@@ -432,12 +432,12 @@ class _Oauth2ConfigurationState:
         return pulumi.get(self, "oauth_scopes")
 
     @oauth_scopes.setter
-    def oauth_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def oauth_scopes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "oauth_scopes", value)
 
     @_builtins.property
     @pulumi.getter(name="preferredUsernameClaims")
-    def preferred_username_claims(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def preferred_username_claims(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of JWT claims to use as the preferred username.
         The first claim found in the token will be used as the username.
@@ -445,12 +445,12 @@ class _Oauth2ConfigurationState:
         return pulumi.get(self, "preferred_username_claims")
 
     @preferred_username_claims.setter
-    def preferred_username_claims(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def preferred_username_claims(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "preferred_username_claims", value)
 
     @_builtins.property
     @pulumi.getter(name="resourceServerId")
-    def resource_server_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def resource_server_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Resource server identifier used to identify the resource
         server in OAuth2 tokens.
@@ -458,12 +458,12 @@ class _Oauth2ConfigurationState:
         return pulumi.get(self, "resource_server_id")
 
     @resource_server_id.setter
-    def resource_server_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def resource_server_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "resource_server_id", value)
 
     @_builtins.property
     @pulumi.getter(name="scopeAliases")
-    def scope_aliases(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def scope_aliases(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Map of scope aliases to translate scope names. This allows
         mapping OAuth2 scopes to RabbitMQ permission tags.
@@ -471,12 +471,12 @@ class _Oauth2ConfigurationState:
         return pulumi.get(self, "scope_aliases")
 
     @scope_aliases.setter
-    def scope_aliases(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def scope_aliases(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "scope_aliases", value)
 
     @_builtins.property
     @pulumi.getter(name="scopePrefix")
-    def scope_prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def scope_prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Prefix to add to scopes. This is useful when scopes in
         the JWT token need to be prefixed for RabbitMQ permissions.
@@ -484,12 +484,12 @@ class _Oauth2ConfigurationState:
         return pulumi.get(self, "scope_prefix")
 
     @scope_prefix.setter
-    def scope_prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def scope_prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "scope_prefix", value)
 
     @_builtins.property
     @pulumi.getter
-    def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def sleep(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable sleep time in seconds between retries for
         OAuth2 configuration. Default set to 60 seconds.
@@ -497,12 +497,12 @@ class _Oauth2ConfigurationState:
         return pulumi.get(self, "sleep")
 
     @sleep.setter
-    def sleep(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def sleep(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "sleep", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable timeout time in seconds for OAuth2
         configuration. Default set to 3600 seconds.
@@ -510,12 +510,12 @@ class _Oauth2ConfigurationState:
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="verifyAud")
-    def verify_aud(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verify_aud(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to verify the audience claim in the JWT
         token. Defaults to true.
@@ -523,7 +523,7 @@ class _Oauth2ConfigurationState:
         return pulumi.get(self, "verify_aud")
 
     @verify_aud.setter
-    def verify_aud(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verify_aud(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verify_aud", value)
 
 
@@ -533,20 +533,20 @@ class Oauth2Configuration(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 additional_scopes_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_basic_auth: Optional[pulumi.Input[_builtins.bool]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 issuer: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth_client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 preferred_username_claims: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 resource_server_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 scope_aliases: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 scope_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 verify_aud: Optional[pulumi.Input[_builtins.bool]] = None,
+                 additional_scopes_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_basic_auth: pulumi.Input[Optional[_builtins.bool]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 issuer: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth_client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 preferred_username_claims: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 scope_aliases: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 scope_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 verify_aud: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         <!-- markdownlint-disable MD033 -->
@@ -569,7 +569,7 @@ class Oauth2Configuration(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         oauth2_config = cloudamqp.Oauth2Configuration("oauth2_config",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             resource_server_id="test-resource-server",
             issuer="https://test-issuer.example.com",
             verify_aud=True,
@@ -594,7 +594,7 @@ class Oauth2Configuration(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         oauth2_config = cloudamqp.Oauth2Configuration("oauth2_config",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             resource_server_id="test-resource-server",
             issuer="https://test-issuer.example.com",
             preferred_username_claims=[
@@ -632,7 +632,7 @@ class Oauth2Configuration(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         oauth2_config = cloudamqp.Oauth2Configuration("oauth2_config",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             resource_server_id="test-resource-server",
             issuer="https://test-issuer.example.com")
         ```
@@ -709,7 +709,7 @@ class Oauth2Configuration(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         oauth2_config = cloudamqp.Oauth2Configuration("oauth2_config",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             resource_server_id="test-resource-server",
             issuer="https://test-issuer.example.com",
             verify_aud=True,
@@ -734,7 +734,7 @@ class Oauth2Configuration(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         oauth2_config = cloudamqp.Oauth2Configuration("oauth2_config",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             resource_server_id="test-resource-server",
             issuer="https://test-issuer.example.com",
             preferred_username_claims=[
@@ -772,7 +772,7 @@ class Oauth2Configuration(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         oauth2_config = cloudamqp.Oauth2Configuration("oauth2_config",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             resource_server_id="test-resource-server",
             issuer="https://test-issuer.example.com")
         ```
@@ -808,20 +808,20 @@ class Oauth2Configuration(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 additional_scopes_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_basic_auth: Optional[pulumi.Input[_builtins.bool]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 issuer: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth_client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 preferred_username_claims: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 resource_server_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 scope_aliases: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 scope_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 verify_aud: Optional[pulumi.Input[_builtins.bool]] = None,
+                 additional_scopes_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_basic_auth: pulumi.Input[Optional[_builtins.bool]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 issuer: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth_client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 preferred_username_claims: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 scope_aliases: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 scope_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 verify_aud: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -861,20 +861,20 @@ class Oauth2Configuration(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            additional_scopes_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            audience: Optional[pulumi.Input[_builtins.str]] = None,
-            disable_basic_auth: Optional[pulumi.Input[_builtins.bool]] = None,
-            instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-            issuer: Optional[pulumi.Input[_builtins.str]] = None,
-            oauth_client_id: Optional[pulumi.Input[_builtins.str]] = None,
-            oauth_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            preferred_username_claims: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            resource_server_id: Optional[pulumi.Input[_builtins.str]] = None,
-            scope_aliases: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            scope_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-            sleep: Optional[pulumi.Input[_builtins.int]] = None,
-            timeout: Optional[pulumi.Input[_builtins.int]] = None,
-            verify_aud: Optional[pulumi.Input[_builtins.bool]] = None) -> 'Oauth2Configuration':
+            additional_scopes_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            audience: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_basic_auth: pulumi.Input[Optional[_builtins.bool]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            issuer: pulumi.Input[Optional[_builtins.str]] = None,
+            oauth_client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            oauth_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            preferred_username_claims: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
+            scope_aliases: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            scope_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+            sleep: pulumi.Input[Optional[_builtins.int]] = None,
+            timeout: pulumi.Input[Optional[_builtins.int]] = None,
+            verify_aud: pulumi.Input[Optional[_builtins.bool]] = None) -> 'Oauth2Configuration':
         """
         Get an existing Oauth2Configuration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -34,7 +34,7 @@ import * as utilities from "./utilities";
  *     region: "amazon-web-services::us-east-1",
  *     nodes: 1,
  *     tags: [],
- *     vpcId: vpcCloudamqVpc.id,
+ *     vpcId: Number(vpcCloudamqVpc.id),
  *     keepAssociatedVpc: true,
  * });
  * // Additional VPC information
@@ -136,23 +136,23 @@ export interface VpcState {
     /**
      * The name of the VPC.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The hosted region for the managed standalone VPC
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The VPC subnet
      */
-    subnet?: pulumi.Input<string>;
+    subnet?: pulumi.Input<string | undefined>;
     /**
      * Tag the VPC with optional tags
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * VPC name given when hosted at the cloud provider
      */
-    vpcName?: pulumi.Input<string>;
+    vpcName?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -162,7 +162,7 @@ export interface VpcArgs {
     /**
      * The name of the VPC.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The hosted region for the managed standalone VPC
      */
@@ -174,5 +174,5 @@ export interface VpcArgs {
     /**
      * Tag the VPC with optional tags
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

@@ -62,8 +62,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.cloudamqp.InstanceArgs;
  * import com.pulumi.cloudamqp.VpcConnect;
  * import com.pulumi.cloudamqp.VpcConnectArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -124,8 +124,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.cloudamqp.InstanceArgs;
  * import com.pulumi.cloudamqp.VpcConnect;
  * import com.pulumi.cloudamqp.VpcConnectArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -177,8 +177,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.azurerm.PrivateEndpoint;
  * import com.pulumi.azurerm.PrivateEndpointArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -195,7 +195,7 @@ import javax.annotation.Nullable;
  *             .location(exampleAzurermResourceGroup.location())
  *             .resourceGroupName(exampleAzurermResourceGroup.name())
  *             .subnetId(subnet.id())
- *             .privateServiceConnection(List.of(Map.ofEntries(
+ *             .privateServiceConnection(Arrays.asList(Map.ofEntries(
  *                 Map.entry("name", "example-privateserviceconnection"),
  *                 Map.entry("privateConnectionResourceAlias", vpcConnect.serviceName()),
  *                 Map.entry("isManualConnection", true),
@@ -234,8 +234,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.cloudamqp.InstanceArgs;
  * import com.pulumi.cloudamqp.VpcConnect;
  * import com.pulumi.cloudamqp.VpcConnectArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -302,8 +302,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.cloudamqp.SecurityFirewallArgs;
  * import com.pulumi.cloudamqp.inputs.SecurityFirewallRuleArgs;
  * import com.pulumi.resources.CustomResourceOptions;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;

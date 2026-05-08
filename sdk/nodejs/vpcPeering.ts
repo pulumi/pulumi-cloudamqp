@@ -46,7 +46,7 @@ import * as utilities from "./utilities";
  * });
  * // CloudAMQP - Extract vpc information
  * const vpcInfo = instance.id.apply(id => cloudamqp.getVpcInfoOutput({
- *     instanceId: id,
+ *     instanceId: Number(id),
  * }));
  * // AWS - retrieve instance to get subnet identifier
  * const awsInstance = aws.Instance({
@@ -69,7 +69,7 @@ import * as utilities from "./utilities";
  * });
  * // CloudAMQP - accept the peering request
  * const vpcAcceptPeering = new cloudamqp.VpcPeering("vpc_accept_peering", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     peeringId: awsVpcPeering.id,
  * });
  * // AWS - retrieve the route table created in AWS
@@ -113,7 +113,7 @@ import * as utilities from "./utilities";
  *     plan: "penguin-1",
  *     region: "amazon-web-services::us-east-1",
  *     tags: ["terraform"],
- *     vpcId: vpc.id,
+ *     vpcId: vpc.id.apply(x =>Number(x)),
  *     keepAssociatedVpc: true,
  * });
  * // CloudAMQP - Extract vpc information
@@ -182,12 +182,12 @@ import * as utilities from "./utilities";
  * });
  * // CloudAMQP - accept the peering request
  * const vpcAcceptPeering = new cloudamqp.VpcPeering("vpc_accept_peering", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     peeringId: awsVpcPeering.id,
  * });
  * // Firewall rules
  * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     rules: [
  *         {
  *             ip: awsInstance.subnetId,
@@ -251,7 +251,7 @@ import * as utilities from "./utilities";
  * });
  * // CloudAMQP - Managed firewall rules
  * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     rules: [
  *         {
  *             ip: requesterVpc.cidrBlock,
@@ -421,31 +421,31 @@ export interface VpcPeeringState {
      *
      * ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
      */
-    instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number | undefined>;
     /**
      * Peering identifier created by AW peering request.
      */
-    peeringId?: pulumi.Input<string>;
+    peeringId?: pulumi.Input<string | undefined>;
     /**
      * Configurable sleep time (seconds) between retries for accepting or
      * removing peering. Default set to 60 seconds.
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * VPC peering status
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * Configurable timeout time (seconds) for accepting or removing
      * peering. Default set to 3600 seconds.
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
     /**
      * The managed VPC identifier.
      *
      * ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
      */
-    vpcId?: pulumi.Input<string>;
+    vpcId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -457,7 +457,7 @@ export interface VpcPeeringArgs {
      *
      * ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
      */
-    instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number | undefined>;
     /**
      * Peering identifier created by AW peering request.
      */
@@ -466,16 +466,16 @@ export interface VpcPeeringArgs {
      * Configurable sleep time (seconds) between retries for accepting or
      * removing peering. Default set to 60 seconds.
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * Configurable timeout time (seconds) for accepting or removing
      * peering. Default set to 3600 seconds.
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
     /**
      * The managed VPC identifier.
      *
      * ***Note:*** Available from [v1.16.0], will be required in next major version (v2.0)
      */
-    vpcId?: pulumi.Input<string>;
+    vpcId?: pulumi.Input<string | undefined>;
 }

@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const rabbitmqDelayedMessageExchange = new cloudamqp.PluginCommunity("rabbitmq_delayed_message_exchange", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "rabbitmq_delayed_message_exchange",
  *     enabled: true,
  * });
@@ -46,7 +46,7 @@ import * as utilities from "./utilities";
  *     tags: ["terraform"],
  * });
  * const rabbitmqDelayedMessageExchange = new cloudamqp.PluginCommunity("rabbitmq_delayed_message_exchange", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     name: "rabbitmq_delayed_message_exchange",
  *     enabled: true,
  * });
@@ -180,37 +180,37 @@ export interface PluginCommunityState {
     /**
      * The description of the plugin.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Enable or disable the plugins.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * The CloudAMQP instance ID.
      */
-    instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number | undefined>;
     /**
      * The name of the Rabbit MQ community plugin.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Required version of RabbitMQ.
      */
-    require?: pulumi.Input<string>;
+    require?: pulumi.Input<string | undefined>;
     /**
      * Configurable sleep time (seconds) for retries when requesting
      * information about community plugins. Default set to 10 seconds.
      *
      * ***Note:*** Available from [v1.29.0]
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * Configurable timeout time (seconds) for retries when requesting
      * information about community plugins. Default set to 1800 seconds.
      *
      * ***Note:*** Available from [v1.29.0]
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -228,19 +228,19 @@ export interface PluginCommunityArgs {
     /**
      * The name of the Rabbit MQ community plugin.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Configurable sleep time (seconds) for retries when requesting
      * information about community plugins. Default set to 10 seconds.
      *
      * ***Note:*** Available from [v1.29.0]
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * Configurable timeout time (seconds) for retries when requesting
      * information about community plugins. Default set to 1800 seconds.
      *
      * ***Note:*** Available from [v1.29.0]
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
 }

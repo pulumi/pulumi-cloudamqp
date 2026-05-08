@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const defaultRecipient = cloudamqp.getNotification({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "default",
  * });
  * ```
@@ -104,7 +104,7 @@ export interface GetNotificationResult {
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const defaultRecipient = cloudamqp.getNotification({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "default",
  * });
  * ```
@@ -134,14 +134,14 @@ export interface GetNotificationOutputArgs {
     /**
      * The name set for the recipient.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The recipient identifier.
      */
-    recipientId?: pulumi.Input<number>;
+    recipientId?: pulumi.Input<number | undefined>;
     /**
      * An array of reponders (only for OpsGenie). Each `responders` block
      * consists of the field documented below.
      */
-    responders?: pulumi.Input<pulumi.Input<inputs.GetNotificationResponderArgs>[]>;
+    responders?: pulumi.Input<pulumi.Input<inputs.GetNotificationResponderArgs>[] | undefined>;
 }

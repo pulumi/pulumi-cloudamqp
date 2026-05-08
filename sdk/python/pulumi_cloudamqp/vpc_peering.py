@@ -20,10 +20,10 @@ __all__ = ['VpcPeeringArgs', 'VpcPeering']
 class VpcPeeringArgs:
     def __init__(__self__, *,
                  peering_id: pulumi.Input[_builtins.str],
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 vpc_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a VpcPeering resource.
 
@@ -63,7 +63,7 @@ class VpcPeeringArgs:
 
     @_builtins.property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The CloudAMQP instance identifier.
 
@@ -72,12 +72,12 @@ class VpcPeeringArgs:
         return pulumi.get(self, "instance_id")
 
     @instance_id.setter
-    def instance_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def sleep(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable sleep time (seconds) between retries for accepting or
         removing peering. Default set to 60 seconds.
@@ -85,12 +85,12 @@ class VpcPeeringArgs:
         return pulumi.get(self, "sleep")
 
     @sleep.setter
-    def sleep(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def sleep(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "sleep", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable timeout time (seconds) for accepting or removing
         peering. Default set to 3600 seconds.
@@ -98,12 +98,12 @@ class VpcPeeringArgs:
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="vpcId")
-    def vpc_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vpc_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The managed VPC identifier.
 
@@ -112,19 +112,19 @@ class VpcPeeringArgs:
         return pulumi.get(self, "vpc_id")
 
     @vpc_id.setter
-    def vpc_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vpc_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vpc_id", value)
 
 
 @pulumi.input_type
 class _VpcPeeringState:
     def __init__(__self__, *,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 peering_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 peering_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 vpc_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering VpcPeering resources.
 
@@ -156,7 +156,7 @@ class _VpcPeeringState:
 
     @_builtins.property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The CloudAMQP instance identifier.
 
@@ -165,24 +165,24 @@ class _VpcPeeringState:
         return pulumi.get(self, "instance_id")
 
     @instance_id.setter
-    def instance_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_id", value)
 
     @_builtins.property
     @pulumi.getter(name="peeringId")
-    def peering_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def peering_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Peering identifier created by AW peering request.
         """
         return pulumi.get(self, "peering_id")
 
     @peering_id.setter
-    def peering_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def peering_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "peering_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def sleep(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable sleep time (seconds) between retries for accepting or
         removing peering. Default set to 60 seconds.
@@ -190,24 +190,24 @@ class _VpcPeeringState:
         return pulumi.get(self, "sleep")
 
     @sleep.setter
-    def sleep(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def sleep(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "sleep", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         VPC peering status
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable timeout time (seconds) for accepting or removing
         peering. Default set to 3600 seconds.
@@ -215,12 +215,12 @@ class _VpcPeeringState:
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="vpcId")
-    def vpc_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vpc_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The managed VPC identifier.
 
@@ -229,7 +229,7 @@ class _VpcPeeringState:
         return pulumi.get(self, "vpc_id")
 
     @vpc_id.setter
-    def vpc_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vpc_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vpc_id", value)
 
 
@@ -239,11 +239,11 @@ class VpcPeering(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 peering_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 peering_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 vpc_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         <!-- markdownlint-disable MD033 -->
@@ -285,7 +285,7 @@ class VpcPeering(pulumi.CustomResource):
             tags=["terraform"],
             vpc_subnet="10.40.72.0/24")
         # CloudAMQP - Extract vpc information
-        vpc_info = instance.id.apply(lambda id: cloudamqp.get_vpc_info_output(instance_id=id))
+        vpc_info = instance.id.apply(lambda id: cloudamqp.get_vpc_info_output(instance_id=int(id)))
         # AWS - retrieve instance to get subnet identifier
         aws_instance = aws.instance(instance_tags={
             "name": aws_instance_name,
@@ -302,7 +302,7 @@ class VpcPeering(pulumi.CustomResource):
             })
         # CloudAMQP - accept the peering request
         vpc_accept_peering = cloudamqp.VpcPeering("vpc_accept_peering",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             peering_id=aws_vpc_peering["id"])
         # AWS - retrieve the route table created in AWS
         route_table = aws.route_table(vpc_id=subnet["vpcId"])
@@ -340,7 +340,7 @@ class VpcPeering(pulumi.CustomResource):
             plan="penguin-1",
             region="amazon-web-services::us-east-1",
             tags=["terraform"],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         # CloudAMQP - Extract vpc information
         vpc_info = cloudamqp.get_vpc_info_output(vpc_id=vpc.id)
@@ -394,11 +394,11 @@ class VpcPeering(pulumi.CustomResource):
         subnet = aws.subnet(id=aws_instance["subnetId"])
         # CloudAMQP - accept the peering request
         vpc_accept_peering = cloudamqp.VpcPeering("vpc_accept_peering",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             peering_id=aws_vpc_peering["id"])
         # Firewall rules
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             rules=[
                 {
                     "ip": aws_instance["subnetId"],
@@ -455,7 +455,7 @@ class VpcPeering(pulumi.CustomResource):
         requester_vpc = aws.vpc(id=subnet["vpcId"])
         # CloudAMQP - Managed firewall rules
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             rules=[
                 {
                     "ip": requester_vpc["cidrBlock"],
@@ -580,7 +580,7 @@ class VpcPeering(pulumi.CustomResource):
             tags=["terraform"],
             vpc_subnet="10.40.72.0/24")
         # CloudAMQP - Extract vpc information
-        vpc_info = instance.id.apply(lambda id: cloudamqp.get_vpc_info_output(instance_id=id))
+        vpc_info = instance.id.apply(lambda id: cloudamqp.get_vpc_info_output(instance_id=int(id)))
         # AWS - retrieve instance to get subnet identifier
         aws_instance = aws.instance(instance_tags={
             "name": aws_instance_name,
@@ -597,7 +597,7 @@ class VpcPeering(pulumi.CustomResource):
             })
         # CloudAMQP - accept the peering request
         vpc_accept_peering = cloudamqp.VpcPeering("vpc_accept_peering",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             peering_id=aws_vpc_peering["id"])
         # AWS - retrieve the route table created in AWS
         route_table = aws.route_table(vpc_id=subnet["vpcId"])
@@ -635,7 +635,7 @@ class VpcPeering(pulumi.CustomResource):
             plan="penguin-1",
             region="amazon-web-services::us-east-1",
             tags=["terraform"],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         # CloudAMQP - Extract vpc information
         vpc_info = cloudamqp.get_vpc_info_output(vpc_id=vpc.id)
@@ -689,11 +689,11 @@ class VpcPeering(pulumi.CustomResource):
         subnet = aws.subnet(id=aws_instance["subnetId"])
         # CloudAMQP - accept the peering request
         vpc_accept_peering = cloudamqp.VpcPeering("vpc_accept_peering",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             peering_id=aws_vpc_peering["id"])
         # Firewall rules
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             rules=[
                 {
                     "ip": aws_instance["subnetId"],
@@ -750,7 +750,7 @@ class VpcPeering(pulumi.CustomResource):
         requester_vpc = aws.vpc(id=subnet["vpcId"])
         # CloudAMQP - Managed firewall rules
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             rules=[
                 {
                     "ip": requester_vpc["cidrBlock"],
@@ -830,11 +830,11 @@ class VpcPeering(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 peering_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 peering_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 vpc_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -862,12 +862,12 @@ class VpcPeering(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-            peering_id: Optional[pulumi.Input[_builtins.str]] = None,
-            sleep: Optional[pulumi.Input[_builtins.int]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None,
-            timeout: Optional[pulumi.Input[_builtins.int]] = None,
-            vpc_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'VpcPeering':
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            peering_id: pulumi.Input[Optional[_builtins.str]] = None,
+            sleep: pulumi.Input[Optional[_builtins.int]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            timeout: pulumi.Input[Optional[_builtins.int]] = None,
+            vpc_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'VpcPeering':
         """
         Get an existing VpcPeering resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

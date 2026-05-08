@@ -26,7 +26,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const azureMonitor = new cloudamqp.IntegrationLog("azure_monitor", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "azure_monitor",
  *     tenantId: azmTentantId,
  *     applicationId: azmApplicationId,
@@ -51,7 +51,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const cloudwatch = new cloudamqp.IntegrationLog("cloudwatch", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "cloudwatchlog",
  *     accessKeyId: awsAccessKeyId,
  *     secretAccessKey: awsSecretAccessKey,
@@ -75,7 +75,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const cloudwatch = new cloudamqp.IntegrationLog("cloudwatch", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "cloudwatchlog",
  *     accessKeyId: awsAccessKeyId,
  *     secretAccessKey: awsSecretAccessKey,
@@ -99,7 +99,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const coralogix = new cloudamqp.IntegrationLog("coralogix", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "coralogix",
  *     privateKey: coralogixSendDataKey,
  *     endpoint: coralogixEndpoint,
@@ -122,7 +122,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const datadog = new cloudamqp.IntegrationLog("datadog", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "datadog",
  *     region: datadogRegion,
  *     apiKey: datadogApiKey,
@@ -144,7 +144,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const logentries = new cloudamqp.IntegrationLog("logentries", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "logentries",
  *     token: logentriesToken,
  * });
@@ -164,7 +164,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const loggly = new cloudamqp.IntegrationLog("loggly", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "loggly",
  *     token: logglyToken,
  * });
@@ -184,7 +184,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const papertrail = new cloudamqp.IntegrationLog("papertrail", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "papertrail",
  *     url: papertrailUrl,
  * });
@@ -204,7 +204,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const scalyr = new cloudamqp.IntegrationLog("scalyr", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "scalyr",
  *     token: scalyrToken,
  *     host: scalyrHost,
@@ -225,7 +225,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const splunk = new cloudamqp.IntegrationLog("splunk", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "splunk",
  *     token: splunkToken,
  *     hostPort: splunkHostPort,
@@ -249,7 +249,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const stackdriver = new cloudamqp.IntegrationLog("stackdriver", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "stackdriver",
  *     projectId: stackdriverProjectId,
  *     privateKey: stackdriverPrivateKey,
@@ -272,7 +272,7 @@ import * as utilities from "./utilities";
  * });
  * const serviceAccountKey = new google.index.ServiceAccountKey("service_account_key", {serviceAccountId: serviceAccount.name});
  * const stackdriver = new cloudamqp.IntegrationLog("stackdriver", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "stackdriver",
  *     projectId: std.jsondecode({
  *         input: std.base64decode({
@@ -316,7 +316,7 @@ import * as utilities from "./utilities";
  * });
  * const serviceAccountKey = new google.index.ServiceAccountKey("service_account_key", {serviceAccountId: serviceAccount.name});
  * const stackdriver = new cloudamqp.IntegrationLog("stackdriver", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "stackdriver",
  *     credentials: serviceAccountKey.privateKey,
  * });
@@ -337,7 +337,7 @@ import * as utilities from "./utilities";
  * });
  * const serviceAccountKey = new google.index.ServiceAccountKey("service_account_key", {serviceAccountId: serviceAccount.name});
  * const stackdriver = new cloudamqp.IntegrationLog("stackdriver", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "stackdriver",
  *     projectId: std.jsondecode({
  *         input: std.base64decode({
@@ -616,51 +616,51 @@ export interface IntegrationLogState {
     /**
      * AWS access key identifier.
      */
-    accessKeyId?: pulumi.Input<string>;
+    accessKeyId?: pulumi.Input<string | undefined>;
     /**
      * The API key for the integration service. (Datadog)
      */
-    apiKey?: pulumi.Input<string>;
+    apiKey?: pulumi.Input<string | undefined>;
     /**
      * The name of the application. (Azure Monitor)
      */
-    application?: pulumi.Input<string>;
+    application?: pulumi.Input<string | undefined>;
     /**
      * The application identifier.
      */
-    applicationId?: pulumi.Input<string>;
+    applicationId?: pulumi.Input<string | undefined>;
     /**
      * The application secret.
      */
-    applicationSecret?: pulumi.Input<string>;
+    applicationSecret?: pulumi.Input<string | undefined>;
     /**
      * The client email. (Stackdriver)
      */
-    clientEmail?: pulumi.Input<string>;
+    clientEmail?: pulumi.Input<string | undefined>;
     /**
      * Base64Encoded credentials. (Stackdriver)
      */
-    credentials?: pulumi.Input<string>;
+    credentials?: pulumi.Input<string | undefined>;
     /**
      * The data collection endpoint.
      */
-    dceUri?: pulumi.Input<string>;
+    dceUri?: pulumi.Input<string | undefined>;
     /**
      * ID of data collection rule that your DCE is linked to.
      */
-    dcrId?: pulumi.Input<string>;
+    dcrId?: pulumi.Input<string | undefined>;
     /**
      * The syslog destination to send the logs to. (Papertrail)
      */
-    endpoint?: pulumi.Input<string>;
+    endpoint?: pulumi.Input<string | undefined>;
     /**
      * The host information. (Scalyr)
      */
-    host?: pulumi.Input<string>;
+    host?: pulumi.Input<string | undefined>;
     /**
      * Destination to send the logs. (Splunk)
      */
-    hostPort?: pulumi.Input<string>;
+    hostPort?: pulumi.Input<string | undefined>;
     /**
      * Instance identifier for the CloudAMQP instance.
      *
@@ -674,48 +674,48 @@ export interface IntegrationLogState {
      *
      * The following arguments used by Azure monitoring.
      */
-    instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number | undefined>;
     /**
      * The name of the third party log integration (`cloudwatchlog`).
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The private API key used for authentication. (Stackdriver, Coralogix)
      */
-    privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
     /**
      * Private key identifier. (Stackdriver)
      */
-    privateKeyId?: pulumi.Input<string>;
+    privateKeyId?: pulumi.Input<string | undefined>;
     /**
      * The project ID for the integration service. (Stackdriver)
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * AWS region hosting the integration service.
      *
      * Optional arguments introduced in version [v1.38.0].
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Number of days to retain log events in `CloudAMQP` log group.
      *
      * ***Note:*** Possible values are: 0 (never expire) or between 1-3653, read more about valid values in
      * the [Cloudwatch Log retention].
      */
-    retention?: pulumi.Input<number>;
+    retention?: pulumi.Input<number | undefined>;
     /**
      * AWS secret access key.
      */
-    secretAccessKey?: pulumi.Input<string>;
+    secretAccessKey?: pulumi.Input<string | undefined>;
     /**
      * Assign source type to the data exported, eg. generic_single_line. (Splunk)
      */
-    sourcetype?: pulumi.Input<string>;
+    sourcetype?: pulumi.Input<string | undefined>;
     /**
      * The name of the subsystem. (Azure Monitor)
      */
-    subsystem?: pulumi.Input<string>;
+    subsystem?: pulumi.Input<string | undefined>;
     /**
      * The table name.
      *
@@ -730,26 +730,26 @@ export interface IntegrationLogState {
      *
      * The following arguments used by CloudWatch.
      */
-    table?: pulumi.Input<string>;
+    table?: pulumi.Input<string | undefined>;
     /**
      * Enter tags to `CloudAMQP` log group like this: `Project=A,Environment=Development`.
      *
      * ***Note:*** Tags are only added, unwanted tags needs to be removed manually in the AWS console.
      * Read more about tags format in the [Cloudwatch Log tags]
      */
-    tags?: pulumi.Input<string>;
+    tags?: pulumi.Input<string | undefined>;
     /**
      * The tenant identifier.
      */
-    tenantId?: pulumi.Input<string>;
+    tenantId?: pulumi.Input<string | undefined>;
     /**
      * The token used for authentication. (Loggly, Logentries, Splunk, Scalyr)
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
     /**
      * The URL to push the logs to. (Papertrail)
      */
-    url?: pulumi.Input<string>;
+    url?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -759,51 +759,51 @@ export interface IntegrationLogArgs {
     /**
      * AWS access key identifier.
      */
-    accessKeyId?: pulumi.Input<string>;
+    accessKeyId?: pulumi.Input<string | undefined>;
     /**
      * The API key for the integration service. (Datadog)
      */
-    apiKey?: pulumi.Input<string>;
+    apiKey?: pulumi.Input<string | undefined>;
     /**
      * The name of the application. (Azure Monitor)
      */
-    application?: pulumi.Input<string>;
+    application?: pulumi.Input<string | undefined>;
     /**
      * The application identifier.
      */
-    applicationId?: pulumi.Input<string>;
+    applicationId?: pulumi.Input<string | undefined>;
     /**
      * The application secret.
      */
-    applicationSecret?: pulumi.Input<string>;
+    applicationSecret?: pulumi.Input<string | undefined>;
     /**
      * The client email. (Stackdriver)
      */
-    clientEmail?: pulumi.Input<string>;
+    clientEmail?: pulumi.Input<string | undefined>;
     /**
      * Base64Encoded credentials. (Stackdriver)
      */
-    credentials?: pulumi.Input<string>;
+    credentials?: pulumi.Input<string | undefined>;
     /**
      * The data collection endpoint.
      */
-    dceUri?: pulumi.Input<string>;
+    dceUri?: pulumi.Input<string | undefined>;
     /**
      * ID of data collection rule that your DCE is linked to.
      */
-    dcrId?: pulumi.Input<string>;
+    dcrId?: pulumi.Input<string | undefined>;
     /**
      * The syslog destination to send the logs to. (Papertrail)
      */
-    endpoint?: pulumi.Input<string>;
+    endpoint?: pulumi.Input<string | undefined>;
     /**
      * The host information. (Scalyr)
      */
-    host?: pulumi.Input<string>;
+    host?: pulumi.Input<string | undefined>;
     /**
      * Destination to send the logs. (Splunk)
      */
-    hostPort?: pulumi.Input<string>;
+    hostPort?: pulumi.Input<string | undefined>;
     /**
      * Instance identifier for the CloudAMQP instance.
      *
@@ -821,44 +821,44 @@ export interface IntegrationLogArgs {
     /**
      * The name of the third party log integration (`cloudwatchlog`).
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The private API key used for authentication. (Stackdriver, Coralogix)
      */
-    privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
     /**
      * Private key identifier. (Stackdriver)
      */
-    privateKeyId?: pulumi.Input<string>;
+    privateKeyId?: pulumi.Input<string | undefined>;
     /**
      * The project ID for the integration service. (Stackdriver)
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * AWS region hosting the integration service.
      *
      * Optional arguments introduced in version [v1.38.0].
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Number of days to retain log events in `CloudAMQP` log group.
      *
      * ***Note:*** Possible values are: 0 (never expire) or between 1-3653, read more about valid values in
      * the [Cloudwatch Log retention].
      */
-    retention?: pulumi.Input<number>;
+    retention?: pulumi.Input<number | undefined>;
     /**
      * AWS secret access key.
      */
-    secretAccessKey?: pulumi.Input<string>;
+    secretAccessKey?: pulumi.Input<string | undefined>;
     /**
      * Assign source type to the data exported, eg. generic_single_line. (Splunk)
      */
-    sourcetype?: pulumi.Input<string>;
+    sourcetype?: pulumi.Input<string | undefined>;
     /**
      * The name of the subsystem. (Azure Monitor)
      */
-    subsystem?: pulumi.Input<string>;
+    subsystem?: pulumi.Input<string | undefined>;
     /**
      * The table name.
      *
@@ -873,24 +873,24 @@ export interface IntegrationLogArgs {
      *
      * The following arguments used by CloudWatch.
      */
-    table?: pulumi.Input<string>;
+    table?: pulumi.Input<string | undefined>;
     /**
      * Enter tags to `CloudAMQP` log group like this: `Project=A,Environment=Development`.
      *
      * ***Note:*** Tags are only added, unwanted tags needs to be removed manually in the AWS console.
      * Read more about tags format in the [Cloudwatch Log tags]
      */
-    tags?: pulumi.Input<string>;
+    tags?: pulumi.Input<string | undefined>;
     /**
      * The tenant identifier.
      */
-    tenantId?: pulumi.Input<string>;
+    tenantId?: pulumi.Input<string | undefined>;
     /**
      * The token used for authentication. (Loggly, Logentries, Splunk, Scalyr)
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
     /**
      * The URL to push the logs to. (Papertrail)
      */
-    url?: pulumi.Input<string>;
+    url?: pulumi.Input<string | undefined>;
 }

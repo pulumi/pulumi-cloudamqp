@@ -94,7 +94,7 @@ def get_upgradable_versions(instance_id: Optional[_builtins.int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    versions = cloudamqp.get_upgradable_versions(instance_id=instance["id"])
+    versions = cloudamqp.get_upgradable_versions(instance_id=int(instance["id"]))
     ```
 
     ## Dependency
@@ -114,7 +114,7 @@ def get_upgradable_versions(instance_id: Optional[_builtins.int] = None,
         instance_id=pulumi.get(__ret__, 'instance_id'),
         new_erlang_version=pulumi.get(__ret__, 'new_erlang_version'),
         new_rabbitmq_version=pulumi.get(__ret__, 'new_rabbitmq_version'))
-def get_upgradable_versions_output(instance_id: Optional[pulumi.Input[_builtins.int]] = None,
+def get_upgradable_versions_output(instance_id: pulumi.Input[Optional[_builtins.int]] = None,
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUpgradableVersionsResult]:
     """
     Use this data source to retrieve information about possible upgradable versions for RabbitMQ and
@@ -126,7 +126,7 @@ def get_upgradable_versions_output(instance_id: Optional[pulumi.Input[_builtins.
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    versions = cloudamqp.get_upgradable_versions(instance_id=instance["id"])
+    versions = cloudamqp.get_upgradable_versions(instance_id=int(instance["id"]))
     ```
 
     ## Dependency

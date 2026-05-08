@@ -25,7 +25,7 @@ class IntegrationAwsEventbridgeArgs:
                  queue: pulumi.Input[_builtins.str],
                  vhost: pulumi.Input[_builtins.str],
                  with_headers: pulumi.Input[_builtins.bool],
-                 prefetch: Optional[pulumi.Input[_builtins.int]] = None):
+                 prefetch: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a IntegrationAwsEventbridge resource.
 
@@ -120,28 +120,28 @@ class IntegrationAwsEventbridgeArgs:
 
     @_builtins.property
     @pulumi.getter
-    def prefetch(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def prefetch(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of messages to prefetch. Default set to 1.
         """
         return pulumi.get(self, "prefetch")
 
     @prefetch.setter
-    def prefetch(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def prefetch(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "prefetch", value)
 
 
 @pulumi.input_type
 class _IntegrationAwsEventbridgeState:
     def __init__(__self__, *,
-                 aws_account_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 prefetch: Optional[pulumi.Input[_builtins.int]] = None,
-                 queue: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost: Optional[pulumi.Input[_builtins.str]] = None,
-                 with_headers: Optional[pulumi.Input[_builtins.bool]] = None):
+                 aws_account_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 prefetch: pulumi.Input[Optional[_builtins.int]] = None,
+                 queue: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 vhost: pulumi.Input[Optional[_builtins.str]] = None,
+                 with_headers: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering IntegrationAwsEventbridge resources.
 
@@ -173,98 +173,98 @@ class _IntegrationAwsEventbridgeState:
 
     @_builtins.property
     @pulumi.getter(name="awsAccountId")
-    def aws_account_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_account_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The 12 digit AWS Account ID where you want the events to be sent to.
         """
         return pulumi.get(self, "aws_account_id")
 
     @aws_account_id.setter
-    def aws_account_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_account_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_account_id", value)
 
     @_builtins.property
     @pulumi.getter(name="awsRegion")
-    def aws_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
         """
         return pulumi.get(self, "aws_region")
 
     @aws_region.setter
-    def aws_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_region", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Instance identifier
         """
         return pulumi.get(self, "instance_id")
 
     @instance_id.setter
-    def instance_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def prefetch(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def prefetch(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of messages to prefetch. Default set to 1.
         """
         return pulumi.get(self, "prefetch")
 
     @prefetch.setter
-    def prefetch(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def prefetch(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "prefetch", value)
 
     @_builtins.property
     @pulumi.getter
-    def queue(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def queue(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A (durable) queue on your RabbitMQ instance.
         """
         return pulumi.get(self, "queue")
 
     @queue.setter
-    def queue(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def queue(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "queue", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Always set to null, unless there is an error starting the EventBridge.
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter
-    def vhost(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vhost(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The VHost the queue resides in.
         """
         return pulumi.get(self, "vhost")
 
     @vhost.setter
-    def vhost(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vhost(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vhost", value)
 
     @_builtins.property
     @pulumi.getter(name="withHeaders")
-    def with_headers(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def with_headers(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Include message headers in the event data.
         """
         return pulumi.get(self, "with_headers")
 
     @with_headers.setter
-    def with_headers(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def with_headers(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "with_headers", value)
 
 
@@ -274,13 +274,13 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 aws_account_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 prefetch: Optional[pulumi.Input[_builtins.int]] = None,
-                 queue: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost: Optional[pulumi.Input[_builtins.str]] = None,
-                 with_headers: Optional[pulumi.Input[_builtins.bool]] = None,
+                 aws_account_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 prefetch: pulumi.Input[Optional[_builtins.int]] = None,
+                 queue: pulumi.Input[Optional[_builtins.str]] = None,
+                 vhost: pulumi.Input[Optional[_builtins.str]] = None,
+                 with_headers: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         <!-- markdownlint-disable MD033 -->
@@ -318,7 +318,7 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
             rmq_version="3.11.5",
             tags=["aws"])
         this = cloudamqp.IntegrationAwsEventbridge("this",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             vhost=instance.vhost,
             queue="<QUEUE-NAME>",
             aws_account_id="<AWS-ACCOUNT-ID>",
@@ -346,7 +346,7 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
             rmq_version="3.11.5",
             tags=["aws"])
         this = cloudamqp.IntegrationAwsEventbridge("this",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             vhost=instance.vhost,
             queue="<QUEUE-NAME>",
             aws_account_id="<AWS-ACCOUNT-ID>",
@@ -429,7 +429,7 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
             rmq_version="3.11.5",
             tags=["aws"])
         this = cloudamqp.IntegrationAwsEventbridge("this",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             vhost=instance.vhost,
             queue="<QUEUE-NAME>",
             aws_account_id="<AWS-ACCOUNT-ID>",
@@ -457,7 +457,7 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
             rmq_version="3.11.5",
             tags=["aws"])
         this = cloudamqp.IntegrationAwsEventbridge("this",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             vhost=instance.vhost,
             queue="<QUEUE-NAME>",
             aws_account_id="<AWS-ACCOUNT-ID>",
@@ -503,13 +503,13 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 aws_account_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 prefetch: Optional[pulumi.Input[_builtins.int]] = None,
-                 queue: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost: Optional[pulumi.Input[_builtins.str]] = None,
-                 with_headers: Optional[pulumi.Input[_builtins.bool]] = None,
+                 aws_account_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 prefetch: pulumi.Input[Optional[_builtins.int]] = None,
+                 queue: pulumi.Input[Optional[_builtins.str]] = None,
+                 vhost: pulumi.Input[Optional[_builtins.str]] = None,
+                 with_headers: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -549,14 +549,14 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            aws_account_id: Optional[pulumi.Input[_builtins.str]] = None,
-            aws_region: Optional[pulumi.Input[_builtins.str]] = None,
-            instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-            prefetch: Optional[pulumi.Input[_builtins.int]] = None,
-            queue: Optional[pulumi.Input[_builtins.str]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None,
-            vhost: Optional[pulumi.Input[_builtins.str]] = None,
-            with_headers: Optional[pulumi.Input[_builtins.bool]] = None) -> 'IntegrationAwsEventbridge':
+            aws_account_id: pulumi.Input[Optional[_builtins.str]] = None,
+            aws_region: pulumi.Input[Optional[_builtins.str]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            prefetch: pulumi.Input[Optional[_builtins.int]] = None,
+            queue: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            vhost: pulumi.Input[Optional[_builtins.str]] = None,
+            with_headers: pulumi.Input[Optional[_builtins.bool]] = None) -> 'IntegrationAwsEventbridge':
         """
         Get an existing IntegrationAwsEventbridge resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

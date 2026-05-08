@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const webhookQueue = new cloudamqp.Webhook("webhook_queue", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     vhost: instance.vhost,
  *     queue: "webhook-queue",
  *     webhookUri: "https://example.com/webhook?key=secret",
@@ -54,7 +54,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const webhookQueue = new cloudamqp.Webhook("webhook_queue", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     vhost: instance.vhost,
  *     queue: "webhook-queue",
  *     webhookUri: "https://example.com/webhook?key=secret",
@@ -89,7 +89,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const webhookQueue = new cloudamqp.Webhook("webhook_queue", {
- *   instanceId: instance.id,
+ *   instanceId: Number(instance.id),
  *   vhost: instance.vhost,
  *   queue: "webhook-queue",
  *   webhookUri: "https://example.com/webhook?key=secret",
@@ -229,32 +229,32 @@ export interface WebhookState {
     /**
      * Max simultaneous requests to the endpoint.
      */
-    concurrency?: pulumi.Input<number>;
+    concurrency?: pulumi.Input<number | undefined>;
     /**
      * The CloudAMQP instance ID.
      */
-    instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number | undefined>;
     /**
      * A (durable) queue on your RabbitMQ instance.
      */
-    queue?: pulumi.Input<string>;
+    queue?: pulumi.Input<string | undefined>;
     /**
      * Configurable sleep time in seconds between retries for webhook
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * Configurable timeout time in seconds for webhook
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
     /**
      * The vhost the queue resides in.
      */
-    vhost?: pulumi.Input<string>;
+    vhost?: pulumi.Input<string | undefined>;
     /**
      * A POST request will be made for each message in the queue to this
      * endpoint.
      */
-    webhookUri?: pulumi.Input<string>;
+    webhookUri?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -276,11 +276,11 @@ export interface WebhookArgs {
     /**
      * Configurable sleep time in seconds between retries for webhook
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * Configurable timeout time in seconds for webhook
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
     /**
      * The vhost the queue resides in.
      */

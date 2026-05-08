@@ -70,15 +70,15 @@ export interface ProviderArgs {
     /**
      * Key used to authentication to the CloudAMQP Customer API
      */
-    apikey?: pulumi.Input<string>;
+    apikey?: pulumi.Input<string | undefined>;
     /**
      * Base URL to CloudAMQP Customer website
      */
-    baseurl?: pulumi.Input<string>;
+    baseurl?: pulumi.Input<string | undefined>;
     /**
      * Skips destroying backend resources on 'terraform destroy'
      */
-    enableFasterInstanceDestroy?: pulumi.Input<boolean>;
+    enableFasterInstanceDestroy?: pulumi.Input<boolean | undefined>;
 }
 
 export namespace Provider {

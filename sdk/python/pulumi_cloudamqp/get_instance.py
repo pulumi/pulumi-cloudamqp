@@ -307,7 +307,7 @@ def get_instance(instance_id: Optional[_builtins.int] = None,
         vhost=pulumi.get(__ret__, 'vhost'),
         vpc_id=pulumi.get(__ret__, 'vpc_id'),
         vpc_subnet=pulumi.get(__ret__, 'vpc_subnet'))
-def get_instance_output(instance_id: Optional[pulumi.Input[_builtins.int]] = None,
+def get_instance_output(instance_id: pulumi.Input[Optional[_builtins.int]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetInstanceResult]:
     """
     <!-- markdownlint-disable MD033 -->

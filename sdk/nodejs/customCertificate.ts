@@ -138,33 +138,33 @@ export interface CustomCertificateState {
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The PEM-encoded Certificate Authority (CA).
      */
-    ca?: pulumi.Input<string>;
+    ca?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The PEM-encoded server certificate.
      */
-    cert?: pulumi.Input<string>;
+    cert?: pulumi.Input<string | undefined>;
     /**
      * The CloudAMQP instance identifier.
      */
-    instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number | undefined>;
     /**
      * A string based argument to trigger force new (default: "").
      */
-    keyId?: pulumi.Input<string>;
+    keyId?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The PEM-encoded private key corresponding to the certificate.
      */
-    privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
     /**
      * A hostname (Server Name Indication) that this certificate applies to.
      */
-    sniHosts?: pulumi.Input<string>;
+    sniHosts?: pulumi.Input<string | undefined>;
     /**
      * An integer based argument to trigger force new (default: 1).
      */
-    version?: pulumi.Input<number>;
+    version?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -188,7 +188,7 @@ export interface CustomCertificateArgs {
     /**
      * A string based argument to trigger force new (default: "").
      */
-    keyId?: pulumi.Input<string>;
+    keyId?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The PEM-encoded private key corresponding to the certificate.
@@ -201,5 +201,5 @@ export interface CustomCertificateArgs {
     /**
      * An integer based argument to trigger force new (default: 1).
      */
-    version?: pulumi.Input<number>;
+    version?: pulumi.Input<number | undefined>;
 }

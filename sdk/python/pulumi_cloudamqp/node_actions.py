@@ -21,10 +21,10 @@ class NodeActionsArgs:
     def __init__(__self__, *,
                  action: pulumi.Input[_builtins.str],
                  instance_id: pulumi.Input[_builtins.int],
-                 node_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None):
+                 node_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a NodeActions resource.
 
@@ -78,43 +78,43 @@ class NodeActionsArgs:
     @_builtins.property
     @pulumi.getter(name="nodeName")
     @_utilities.deprecated("""Use node_names instead. This attribute will be removed in a future version.""")
-    def node_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node name, e.g. `green-guinea-pig-01`. Use `node_names` instead. This attribute will be removed in a future version.
         """
         return pulumi.get(self, "node_name")
 
     @node_name.setter
-    def node_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_name", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeNames")
-    def node_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def node_names(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of node names to perform the action on, e.g. `["green-guinea-pig-01", "green-guinea-pig-02"]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
         """
         return pulumi.get(self, "node_names")
 
     @node_names.setter
-    def node_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def node_names(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "node_names", value)
 
     @_builtins.property
     @pulumi.getter
-    def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def sleep(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Sleep interval in seconds between polling for node status. Default: `10`.
         """
         return pulumi.get(self, "sleep")
 
     @sleep.setter
-    def sleep(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def sleep(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "sleep", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
 
@@ -123,19 +123,19 @@ class NodeActionsArgs:
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
 
 @pulumi.input_type
 class _NodeActionsState:
     def __init__(__self__, *,
-                 action: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 node_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None):
+                 action: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 node_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering NodeActions resources.
 
@@ -166,68 +166,68 @@ class _NodeActionsState:
 
     @_builtins.property
     @pulumi.getter
-    def action(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def action(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The action to invoke. See Action reference below for valid values.
         """
         return pulumi.get(self, "action")
 
     @action.setter
-    def action(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def action(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "action", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The CloudAMQP instance ID.
         """
         return pulumi.get(self, "instance_id")
 
     @instance_id.setter
-    def instance_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_id", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeName")
     @_utilities.deprecated("""Use node_names instead. This attribute will be removed in a future version.""")
-    def node_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The node name, e.g. `green-guinea-pig-01`. Use `node_names` instead. This attribute will be removed in a future version.
         """
         return pulumi.get(self, "node_name")
 
     @node_name.setter
-    def node_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_name", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeNames")
-    def node_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def node_names(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of node names to perform the action on, e.g. `["green-guinea-pig-01", "green-guinea-pig-02"]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
         """
         return pulumi.get(self, "node_names")
 
     @node_names.setter
-    def node_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def node_names(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "node_names", value)
 
     @_builtins.property
     @pulumi.getter
-    def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def sleep(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Sleep interval in seconds between polling for node status. Default: `10`.
         """
         return pulumi.get(self, "sleep")
 
     @sleep.setter
-    def sleep(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def sleep(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "sleep", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
 
@@ -236,7 +236,7 @@ class _NodeActionsState:
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
 
@@ -246,12 +246,12 @@ class NodeActions(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 action: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 node_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
+                 action: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 node_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         <!-- markdownlint-disable MD033 -->
@@ -278,7 +278,7 @@ class NodeActions(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         cluster_restart = cloudamqp.NodeActions("cluster_restart",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             action="cluster.restart")
         ```
 
@@ -297,9 +297,9 @@ class NodeActions(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        nodes = cloudamqp.get_nodes(instance_id=instance["id"])
+        nodes = cloudamqp.get_nodes(instance_id=int(instance["id"]))
         restart_subset = cloudamqp.NodeActions("restart_subset",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             action="restart",
             node_names=[
                 nodes.nodes[0].name,
@@ -322,9 +322,9 @@ class NodeActions(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        nodes = cloudamqp.get_nodes(instance_id=instance["id"])
+        nodes = cloudamqp.get_nodes(instance_id=int(instance["id"]))
         reboot_node = cloudamqp.NodeActions("reboot_node",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             action="reboot",
             node_names=[nodes.nodes[0].name])
         ```
@@ -344,9 +344,9 @@ class NodeActions(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        nodes = cloudamqp.get_nodes(instance_id=instance["id"])
+        nodes = cloudamqp.get_nodes(instance_id=int(instance["id"]))
         mgmt_restart = cloudamqp.NodeActions("mgmt_restart",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             action="mgmt.restart",
             node_names=[nodes.nodes[0].name])
         ```
@@ -367,10 +367,10 @@ class NodeActions(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmq_config",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             log_exchange_level="info")
         cluster_restart = cloudamqp.NodeActions("cluster_restart",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             action="cluster.restart",
             opts = pulumi.ResourceOptions(depends_on=[rabbitmq_config]))
         ```
@@ -393,7 +393,7 @@ class NodeActions(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         node_action = cloudamqp.NodeActions("node_action",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             node_name="<node name>",
             action="restart")
         ```
@@ -406,18 +406,18 @@ class NodeActions(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        list_nodes = cloudamqp.get_nodes(instance_id=instance["id"])
+        list_nodes = cloudamqp.get_nodes(instance_id=int(instance["id"]))
         restart01 = cloudamqp.NodeActions("restart_01",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             action="restart",
             node_name=list_nodes.nodes[0].name)
         restart02 = cloudamqp.NodeActions("restart_02",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             action="restart",
             node_name=list_nodes.nodes[1].name,
             opts = pulumi.ResourceOptions(depends_on=[restart01]))
         restart03 = cloudamqp.NodeActions("restart_03",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             action="restart",
             node_name=list_nodes.nodes[2].name,
             opts = pulumi.ResourceOptions(depends_on=[
@@ -521,7 +521,7 @@ class NodeActions(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         cluster_restart = cloudamqp.NodeActions("cluster_restart",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             action="cluster.restart")
         ```
 
@@ -540,9 +540,9 @@ class NodeActions(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        nodes = cloudamqp.get_nodes(instance_id=instance["id"])
+        nodes = cloudamqp.get_nodes(instance_id=int(instance["id"]))
         restart_subset = cloudamqp.NodeActions("restart_subset",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             action="restart",
             node_names=[
                 nodes.nodes[0].name,
@@ -565,9 +565,9 @@ class NodeActions(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        nodes = cloudamqp.get_nodes(instance_id=instance["id"])
+        nodes = cloudamqp.get_nodes(instance_id=int(instance["id"]))
         reboot_node = cloudamqp.NodeActions("reboot_node",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             action="reboot",
             node_names=[nodes.nodes[0].name])
         ```
@@ -587,9 +587,9 @@ class NodeActions(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        nodes = cloudamqp.get_nodes(instance_id=instance["id"])
+        nodes = cloudamqp.get_nodes(instance_id=int(instance["id"]))
         mgmt_restart = cloudamqp.NodeActions("mgmt_restart",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             action="mgmt.restart",
             node_names=[nodes.nodes[0].name])
         ```
@@ -610,10 +610,10 @@ class NodeActions(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmq_config",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             log_exchange_level="info")
         cluster_restart = cloudamqp.NodeActions("cluster_restart",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             action="cluster.restart",
             opts = pulumi.ResourceOptions(depends_on=[rabbitmq_config]))
         ```
@@ -636,7 +636,7 @@ class NodeActions(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         node_action = cloudamqp.NodeActions("node_action",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             node_name="<node name>",
             action="restart")
         ```
@@ -649,18 +649,18 @@ class NodeActions(pulumi.CustomResource):
         import pulumi
         import pulumi_cloudamqp as cloudamqp
 
-        list_nodes = cloudamqp.get_nodes(instance_id=instance["id"])
+        list_nodes = cloudamqp.get_nodes(instance_id=int(instance["id"]))
         restart01 = cloudamqp.NodeActions("restart_01",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             action="restart",
             node_name=list_nodes.nodes[0].name)
         restart02 = cloudamqp.NodeActions("restart_02",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             action="restart",
             node_name=list_nodes.nodes[1].name,
             opts = pulumi.ResourceOptions(depends_on=[restart01]))
         restart03 = cloudamqp.NodeActions("restart_03",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             action="restart",
             node_name=list_nodes.nodes[2].name,
             opts = pulumi.ResourceOptions(depends_on=[
@@ -737,12 +737,12 @@ class NodeActions(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 action: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 node_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
+                 action: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 node_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -772,12 +772,12 @@ class NodeActions(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            action: Optional[pulumi.Input[_builtins.str]] = None,
-            instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-            node_name: Optional[pulumi.Input[_builtins.str]] = None,
-            node_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            sleep: Optional[pulumi.Input[_builtins.int]] = None,
-            timeout: Optional[pulumi.Input[_builtins.int]] = None) -> 'NodeActions':
+            action: pulumi.Input[Optional[_builtins.str]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            node_name: pulumi.Input[Optional[_builtins.str]] = None,
+            node_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            sleep: pulumi.Input[Optional[_builtins.int]] = None,
+            timeout: pulumi.Input[Optional[_builtins.int]] = None) -> 'NodeActions':
         """
         Get an existing NodeActions resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

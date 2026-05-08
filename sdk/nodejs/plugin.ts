@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const rabbitmqTop = new cloudamqp.Plugin("rabbitmq_top", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "rabbitmq_top",
  *     enabled: true,
  * });
@@ -40,12 +40,12 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const rabbitmqTop = new cloudamqp.Plugin("rabbitmq_top", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "rabbitmq_top",
  *     enabled: true,
  * });
  * const rabbitmqAmqp10 = new cloudamqp.Plugin("rabbitmq_amqp1_0", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "rabbitmq_amqp1_0",
  *     enabled: true,
  * }, {
@@ -70,12 +70,12 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const rabbitmqTop = new cloudamqp.Plugin("rabbitmq_top", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "rabbitmq_top",
  *     enabled: true,
  * });
  * const rabbitmqAmqp10 = new cloudamqp.Plugin("rabbitmq_amqp1_0", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "rabbitmq_amqp1_0",
  *     enabled: true,
  * });
@@ -105,12 +105,12 @@ import * as utilities from "./utilities";
  *     tags: ["terraform"],
  * });
  * const rabbitmqTop = new cloudamqp.Plugin("rabbitmq_top", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     name: "rabbitmq_top",
  *     enabled: true,
  * });
  * const rabbitmqAmqp10 = new cloudamqp.Plugin("rabbitmq_amqp1_0", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     name: "rabbitmq_amqp1_0",
  *     enabled: true,
  * });
@@ -259,37 +259,37 @@ export interface PluginState {
     /**
      * The description of the plugin.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Enable or disable the plugins.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * The CloudAMQP instance ID.
      */
-    instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number | undefined>;
     /**
      * The name of the Rabbit MQ plugin.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Configurable sleep time (seconds) for retries when requesting
      * information about plugins. Default set to 10 seconds.
      *
      * ***Note:*** Available from [v1.29.0]
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * Configurable timeout time (seconds) for retries when requesting
      * information about plugins. Default set to 1800 seconds.
      *
      * ***Note:*** Available from [v1.29.0]
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
     /**
      * The version of the plugin.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -307,19 +307,19 @@ export interface PluginArgs {
     /**
      * The name of the Rabbit MQ plugin.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Configurable sleep time (seconds) for retries when requesting
      * information about plugins. Default set to 10 seconds.
      *
      * ***Note:*** Available from [v1.29.0]
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * Configurable timeout time (seconds) for retries when requesting
      * information about plugins. Default set to 1800 seconds.
      *
      * ***Note:*** Available from [v1.29.0]
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
 }
