@@ -20,8 +20,8 @@ __all__ = ['UpgradeRabbitmqArgs', 'UpgradeRabbitmq']
 class UpgradeRabbitmqArgs:
     def __init__(__self__, *,
                  instance_id: pulumi.Input[_builtins.int],
-                 current_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 new_version: Optional[pulumi.Input[_builtins.str]] = None):
+                 current_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 new_version: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a UpgradeRabbitmq resource.
 
@@ -50,7 +50,7 @@ class UpgradeRabbitmqArgs:
 
     @_builtins.property
     @pulumi.getter(name="currentVersion")
-    def current_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def current_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Helper argument to change upgrade behaviour to latest possible
         version
@@ -58,28 +58,28 @@ class UpgradeRabbitmqArgs:
         return pulumi.get(self, "current_version")
 
     @current_version.setter
-    def current_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def current_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "current_version", value)
 
     @_builtins.property
     @pulumi.getter(name="newVersion")
-    def new_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def new_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The new version to upgrade to
         """
         return pulumi.get(self, "new_version")
 
     @new_version.setter
-    def new_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def new_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "new_version", value)
 
 
 @pulumi.input_type
 class _UpgradeRabbitmqState:
     def __init__(__self__, *,
-                 current_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 new_version: Optional[pulumi.Input[_builtins.str]] = None):
+                 current_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 new_version: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering UpgradeRabbitmq resources.
 
@@ -97,7 +97,7 @@ class _UpgradeRabbitmqState:
 
     @_builtins.property
     @pulumi.getter(name="currentVersion")
-    def current_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def current_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Helper argument to change upgrade behaviour to latest possible
         version
@@ -105,31 +105,31 @@ class _UpgradeRabbitmqState:
         return pulumi.get(self, "current_version")
 
     @current_version.setter
-    def current_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def current_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "current_version", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The CloudAMQP instance identifier
         """
         return pulumi.get(self, "instance_id")
 
     @instance_id.setter
-    def instance_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_id", value)
 
     @_builtins.property
     @pulumi.getter(name="newVersion")
-    def new_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def new_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The new version to upgrade to
         """
         return pulumi.get(self, "new_version")
 
     @new_version.setter
-    def new_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def new_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "new_version", value)
 
 
@@ -139,9 +139,9 @@ class UpgradeRabbitmq(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 current_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 new_version: Optional[pulumi.Input[_builtins.str]] = None,
+                 current_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 new_version: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         <!-- markdownlint-disable MD033 -->
@@ -184,7 +184,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
             plan="bunny-1",
             region="amazon-web-services::us-west-1")
         upgrade = cloudamqp.UpgradeRabbitmq("upgrade",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             new_version="3.13.2")
         ```
 
@@ -208,9 +208,9 @@ class UpgradeRabbitmq(pulumi.CustomResource):
             name="rabbitmq-version-upgrade-test",
             plan="bunny-1",
             region="amazon-web-services::us-west-1")
-        upgradable_versions = instance.id.apply(lambda id: cloudamqp.get_upgradable_versions_output(instance_id=id))
+        upgradable_versions = instance.id.apply(lambda id: cloudamqp.get_upgradable_versions_output(instance_id=int(id)))
         upgrade = cloudamqp.UpgradeRabbitmq("upgrade",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             current_version=instance.rmq_version,
             new_version=upgradable_versions.new_rabbitmq_version)
         ```
@@ -231,9 +231,9 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         # Retrieve latest possible upgradable versions for RabbitMQ and Erlang
-        versions = cloudamqp.get_upgradable_versions(instance_id=instance["id"])
+        versions = cloudamqp.get_upgradable_versions(instance_id=int(instance["id"]))
         # Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
-        upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=instance["id"])
+        upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=int(instance["id"]))
         ```
 
         ```python
@@ -241,7 +241,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         # Retrieve latest possible upgradable versions for RabbitMQ and Erlang
-        versions = cloudamqp.get_upgradable_versions(instance_id=instance["id"])
+        versions = cloudamqp.get_upgradable_versions(instance_id=int(instance["id"]))
         ```
 
         If newer version is still available to be upgradable in the data source, re-run again.
@@ -251,9 +251,9 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         # Retrieve latest possible upgradable versions for RabbitMQ and Erlang
-        versions = cloudamqp.get_upgradable_versions(instance_id=instance["id"])
+        versions = cloudamqp.get_upgradable_versions(instance_id=int(instance["id"]))
         # Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
-        upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=instance["id"])
+        upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=int(instance["id"]))
         ```
 
         </details>
@@ -346,7 +346,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
             plan="bunny-1",
             region="amazon-web-services::us-west-1")
         upgrade = cloudamqp.UpgradeRabbitmq("upgrade",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             new_version="3.13.2")
         ```
 
@@ -370,9 +370,9 @@ class UpgradeRabbitmq(pulumi.CustomResource):
             name="rabbitmq-version-upgrade-test",
             plan="bunny-1",
             region="amazon-web-services::us-west-1")
-        upgradable_versions = instance.id.apply(lambda id: cloudamqp.get_upgradable_versions_output(instance_id=id))
+        upgradable_versions = instance.id.apply(lambda id: cloudamqp.get_upgradable_versions_output(instance_id=int(id)))
         upgrade = cloudamqp.UpgradeRabbitmq("upgrade",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             current_version=instance.rmq_version,
             new_version=upgradable_versions.new_rabbitmq_version)
         ```
@@ -393,9 +393,9 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         # Retrieve latest possible upgradable versions for RabbitMQ and Erlang
-        versions = cloudamqp.get_upgradable_versions(instance_id=instance["id"])
+        versions = cloudamqp.get_upgradable_versions(instance_id=int(instance["id"]))
         # Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
-        upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=instance["id"])
+        upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=int(instance["id"]))
         ```
 
         ```python
@@ -403,7 +403,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         # Retrieve latest possible upgradable versions for RabbitMQ and Erlang
-        versions = cloudamqp.get_upgradable_versions(instance_id=instance["id"])
+        versions = cloudamqp.get_upgradable_versions(instance_id=int(instance["id"]))
         ```
 
         If newer version is still available to be upgradable in the data source, re-run again.
@@ -413,9 +413,9 @@ class UpgradeRabbitmq(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         # Retrieve latest possible upgradable versions for RabbitMQ and Erlang
-        versions = cloudamqp.get_upgradable_versions(instance_id=instance["id"])
+        versions = cloudamqp.get_upgradable_versions(instance_id=int(instance["id"]))
         # Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
-        upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=instance["id"])
+        upgrade = cloudamqp.UpgradeRabbitmq("upgrade", instance_id=int(instance["id"]))
         ```
 
         </details>
@@ -469,9 +469,9 @@ class UpgradeRabbitmq(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 current_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 new_version: Optional[pulumi.Input[_builtins.str]] = None,
+                 current_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 new_version: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -496,9 +496,9 @@ class UpgradeRabbitmq(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            current_version: Optional[pulumi.Input[_builtins.str]] = None,
-            instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-            new_version: Optional[pulumi.Input[_builtins.str]] = None) -> 'UpgradeRabbitmq':
+            current_version: pulumi.Input[Optional[_builtins.str]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            new_version: pulumi.Input[Optional[_builtins.str]] = None) -> 'UpgradeRabbitmq':
         """
         Get an existing UpgradeRabbitmq resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

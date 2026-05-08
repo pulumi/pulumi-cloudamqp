@@ -79,11 +79,11 @@ export interface AccountActionsState {
     /**
      * The action to perform on the node
      */
-    action?: pulumi.Input<string>;
+    action?: pulumi.Input<string | undefined>;
     /**
      * Instance identifier
      */
-    instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number | undefined>;
 }
 
 /**

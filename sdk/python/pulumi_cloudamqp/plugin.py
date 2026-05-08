@@ -21,9 +21,9 @@ class PluginArgs:
     def __init__(__self__, *,
                  enabled: pulumi.Input[_builtins.bool],
                  instance_id: pulumi.Input[_builtins.int],
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a Plugin resource.
 
@@ -74,19 +74,19 @@ class PluginArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the Rabbit MQ plugin.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def sleep(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable sleep time (seconds) for retries when requesting
         information about plugins. Default set to 10 seconds.
@@ -96,12 +96,12 @@ class PluginArgs:
         return pulumi.get(self, "sleep")
 
     @sleep.setter
-    def sleep(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def sleep(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "sleep", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable timeout time (seconds) for retries when requesting
         information about plugins. Default set to 1800 seconds.
@@ -111,20 +111,20 @@ class PluginArgs:
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
 
 @pulumi.input_type
 class _PluginState:
     def __init__(__self__, *,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 version: Optional[pulumi.Input[_builtins.str]] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Plugin resources.
 
@@ -159,55 +159,55 @@ class _PluginState:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The description of the plugin.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable or disable the plugins.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The CloudAMQP instance ID.
         """
         return pulumi.get(self, "instance_id")
 
     @instance_id.setter
-    def instance_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the Rabbit MQ plugin.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def sleep(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable sleep time (seconds) for retries when requesting
         information about plugins. Default set to 10 seconds.
@@ -217,12 +217,12 @@ class _PluginState:
         return pulumi.get(self, "sleep")
 
     @sleep.setter
-    def sleep(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def sleep(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "sleep", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable timeout time (seconds) for retries when requesting
         information about plugins. Default set to 1800 seconds.
@@ -232,19 +232,19 @@ class _PluginState:
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
     @_builtins.property
     @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The version of the plugin.
         """
         return pulumi.get(self, "version")
 
     @version.setter
-    def version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "version", value)
 
 
@@ -254,11 +254,11 @@ class Plugin(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         <!-- markdownlint-disable MD033 -->
@@ -274,7 +274,7 @@ class Plugin(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         rabbitmq_top = cloudamqp.Plugin("rabbitmq_top",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="rabbitmq_top",
             enabled=True)
         ```
@@ -295,11 +295,11 @@ class Plugin(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         rabbitmq_top = cloudamqp.Plugin("rabbitmq_top",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="rabbitmq_top",
             enabled=True)
         rabbitmq_amqp10 = cloudamqp.Plugin("rabbitmq_amqp1_0",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="rabbitmq_amqp1_0",
             enabled=True,
             opts = pulumi.ResourceOptions(depends_on=[rabbitmq_top]))
@@ -322,11 +322,11 @@ class Plugin(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         rabbitmq_top = cloudamqp.Plugin("rabbitmq_top",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="rabbitmq_top",
             enabled=True)
         rabbitmq_amqp10 = cloudamqp.Plugin("rabbitmq_amqp1_0",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="rabbitmq_amqp1_0",
             enabled=True)
         ```
@@ -354,11 +354,11 @@ class Plugin(pulumi.CustomResource):
             region="amazon-web-services::us-west-1",
             tags=["terraform"])
         rabbitmq_top = cloudamqp.Plugin("rabbitmq_top",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             name="rabbitmq_top",
             enabled=True)
         rabbitmq_amqp10 = cloudamqp.Plugin("rabbitmq_amqp1_0",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             name="rabbitmq_amqp1_0",
             enabled=True)
         ```
@@ -430,7 +430,7 @@ class Plugin(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         rabbitmq_top = cloudamqp.Plugin("rabbitmq_top",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="rabbitmq_top",
             enabled=True)
         ```
@@ -451,11 +451,11 @@ class Plugin(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         rabbitmq_top = cloudamqp.Plugin("rabbitmq_top",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="rabbitmq_top",
             enabled=True)
         rabbitmq_amqp10 = cloudamqp.Plugin("rabbitmq_amqp1_0",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="rabbitmq_amqp1_0",
             enabled=True,
             opts = pulumi.ResourceOptions(depends_on=[rabbitmq_top]))
@@ -478,11 +478,11 @@ class Plugin(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         rabbitmq_top = cloudamqp.Plugin("rabbitmq_top",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="rabbitmq_top",
             enabled=True)
         rabbitmq_amqp10 = cloudamqp.Plugin("rabbitmq_amqp1_0",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="rabbitmq_amqp1_0",
             enabled=True)
         ```
@@ -510,11 +510,11 @@ class Plugin(pulumi.CustomResource):
             region="amazon-web-services::us-west-1",
             tags=["terraform"])
         rabbitmq_top = cloudamqp.Plugin("rabbitmq_top",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             name="rabbitmq_top",
             enabled=True)
         rabbitmq_amqp10 = cloudamqp.Plugin("rabbitmq_amqp1_0",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             name="rabbitmq_amqp1_0",
             enabled=True)
         ```
@@ -567,11 +567,11 @@ class Plugin(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -602,13 +602,13 @@ class Plugin(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            sleep: Optional[pulumi.Input[_builtins.int]] = None,
-            timeout: Optional[pulumi.Input[_builtins.int]] = None,
-            version: Optional[pulumi.Input[_builtins.str]] = None) -> 'Plugin':
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            sleep: pulumi.Input[Optional[_builtins.int]] = None,
+            timeout: pulumi.Input[Optional[_builtins.int]] = None,
+            version: pulumi.Input[Optional[_builtins.str]] = None) -> 'Plugin':
         """
         Get an existing Plugin resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

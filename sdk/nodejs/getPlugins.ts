@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const plugins = cloudamqp.getPlugins({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * ```
  *
@@ -81,7 +81,7 @@ export interface GetPluginsResult {
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const plugins = cloudamqp.getPlugins({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * ```
  *
@@ -110,10 +110,10 @@ export interface GetPluginsOutputArgs {
      * Configurable sleep time (seconds) for retries when requesting
      * information about plugins. Default set to 10 seconds.
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * Configurable timeout time (seconds) for retries when requesting
      * information about plugins. Default set to 1800 seconds.
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
 }

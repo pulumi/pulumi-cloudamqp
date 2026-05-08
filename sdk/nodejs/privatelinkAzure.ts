@@ -37,7 +37,7 @@ import * as utilities from "./utilities";
  *     tags: [],
  * });
  * const privatelink = new cloudamqp.PrivatelinkAzure("privatelink", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     approvedSubscriptions: ["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"],
  * });
  * ```
@@ -66,11 +66,11 @@ import * as utilities from "./utilities";
  *     plan: "bunny-1",
  *     region: "azure-arm::westus",
  *     tags: [],
- *     vpcId: vpc.id,
+ *     vpcId: vpc.id.apply(x =>Number(x)),
  *     keepAssociatedVpc: true,
  * });
  * const privatelink = new cloudamqp.PrivatelinkAzure("privatelink", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     approvedSubscriptions: ["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"],
  * });
  * ```
@@ -101,15 +101,15 @@ import * as utilities from "./utilities";
  *     plan: "bunny-1",
  *     region: "azure-arm::westus",
  *     tags: [],
- *     vpcId: vpc.id,
+ *     vpcId: vpc.id.apply(x =>Number(x)),
  *     keepAssociatedVpc: true,
  * });
  * const privatelink = new cloudamqp.PrivatelinkAzure("privatelink", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     approvedSubscriptions: ["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"],
  * });
  * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     rules: [
  *         {
  *             description: "Custom PrivateLink setup",
@@ -274,30 +274,30 @@ export interface PrivatelinkAzureState {
      * Approved subscriptions to access the endpoint service.
      * See format below.
      */
-    approvedSubscriptions?: pulumi.Input<pulumi.Input<string>[]>;
+    approvedSubscriptions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The CloudAMQP instance identifier.
      */
-    instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number | undefined>;
     /**
      * Name of the server having the PrivateLink enabled.
      */
-    serverName?: pulumi.Input<string>;
+    serverName?: pulumi.Input<string | undefined>;
     /**
      * Service name (alias) of the PrivateLink, needed when creating the endpoint.
      */
-    serviceName?: pulumi.Input<string>;
+    serviceName?: pulumi.Input<string | undefined>;
     /**
      * Configurable sleep time (seconds) when enable PrivateLink.
      * Default set to 10 seconds.
      *
      * ***Note:*** Available from [v1.29.0]
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * PrivateLink status [enable, pending, disable]
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * Configurable timeout time (seconds) when enable PrivateLink.
      * Default set to 1800 seconds.
@@ -307,7 +307,7 @@ export interface PrivatelinkAzureState {
      * Approved subscriptions format (GUID): <br>
      * `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -329,7 +329,7 @@ export interface PrivatelinkAzureArgs {
      *
      * ***Note:*** Available from [v1.29.0]
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * Configurable timeout time (seconds) when enable PrivateLink.
      * Default set to 1800 seconds.
@@ -339,5 +339,5 @@ export interface PrivatelinkAzureArgs {
      * Approved subscriptions format (GUID): <br>
      * `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
 }

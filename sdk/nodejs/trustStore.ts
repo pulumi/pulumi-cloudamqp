@@ -39,7 +39,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const trustStore = new cloudamqp.TrustStore("trust_store", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     http: {
  *         url: "https://example.com/trust-store-certs",
  *     },
@@ -171,42 +171,42 @@ export interface TrustStoreState {
     /**
      * File trust store configuration block. See File Block below.
      */
-    file?: pulumi.Input<inputs.TrustStoreFile>;
+    file?: pulumi.Input<inputs.TrustStoreFile | undefined>;
     /**
      * HTTP trust store configuration block. See HTTP Block below.
      */
-    http?: pulumi.Input<inputs.TrustStoreHttp>;
+    http?: pulumi.Input<inputs.TrustStoreHttp | undefined>;
     /**
      * The CloudAMQP instance identifier.
      */
-    instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number | undefined>;
     /**
      * A string identifier to trigger updates of write-only certificate fields.
      * Change this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: "").
      */
-    keyId?: pulumi.Input<string>;
+    keyId?: pulumi.Input<string | undefined>;
     /**
      * Interval in seconds for RabbitMQ to refresh the trust
      * store certificates (default: 30).
      */
-    refreshInterval?: pulumi.Input<number>;
+    refreshInterval?: pulumi.Input<number | undefined>;
     /**
      * Configurable sleep time in seconds between retries for trust store
      * operations (default: 10).
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * Configurable timeout time in seconds for trust store operations
      * (default: 1800).
      *
      * ***Note:*** Either `http` or `file` configuration block must be specified, but not both.
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
     /**
      * An integer to trigger updates of write-only certificate fields.
      * Increment this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: 1).
      */
-    version?: pulumi.Input<number>;
+    version?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -216,11 +216,11 @@ export interface TrustStoreArgs {
     /**
      * File trust store configuration block. See File Block below.
      */
-    file?: pulumi.Input<inputs.TrustStoreFile>;
+    file?: pulumi.Input<inputs.TrustStoreFile | undefined>;
     /**
      * HTTP trust store configuration block. See HTTP Block below.
      */
-    http?: pulumi.Input<inputs.TrustStoreHttp>;
+    http?: pulumi.Input<inputs.TrustStoreHttp | undefined>;
     /**
      * The CloudAMQP instance identifier.
      */
@@ -229,27 +229,27 @@ export interface TrustStoreArgs {
      * A string identifier to trigger updates of write-only certificate fields.
      * Change this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: "").
      */
-    keyId?: pulumi.Input<string>;
+    keyId?: pulumi.Input<string | undefined>;
     /**
      * Interval in seconds for RabbitMQ to refresh the trust
      * store certificates (default: 30).
      */
-    refreshInterval?: pulumi.Input<number>;
+    refreshInterval?: pulumi.Input<number | undefined>;
     /**
      * Configurable sleep time in seconds between retries for trust store
      * operations (default: 10).
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * Configurable timeout time in seconds for trust store operations
      * (default: 1800).
      *
      * ***Note:*** Either `http` or `file` configuration block must be specified, but not both.
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
     /**
      * An integer to trigger updates of write-only certificate fields.
      * Increment this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: 1).
      */
-    version?: pulumi.Input<number>;
+    version?: pulumi.Input<number | undefined>;
 }

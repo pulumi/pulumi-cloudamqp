@@ -34,7 +34,7 @@ import * as utilities from "./utilities";
  *     region: "amazon-web-services::us-west-1",
  * });
  * const upgrade = new cloudamqp.UpgradeLavinmq("upgrade", {
- *     instanceId: instance.id,
+ *     instanceId: instance.id.apply(x =>Number(x)),
  *     newVersion: "1.3.1",
  * });
  * ```
@@ -124,11 +124,11 @@ export interface UpgradeLavinmqState {
     /**
      * The CloudAMQP instance identifier
      */
-    instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number | undefined>;
     /**
      * The new version to upgrade to
      */
-    newVersion?: pulumi.Input<string>;
+    newVersion?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -142,5 +142,5 @@ export interface UpgradeLavinmqArgs {
     /**
      * The new version to upgrade to
      */
-    newVersion?: pulumi.Input<string>;
+    newVersion?: pulumi.Input<string | undefined>;
 }

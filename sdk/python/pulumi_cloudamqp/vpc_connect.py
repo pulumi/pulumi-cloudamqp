@@ -21,11 +21,11 @@ class VpcConnectArgs:
     def __init__(__self__, *,
                  instance_id: pulumi.Input[_builtins.int],
                  region: pulumi.Input[_builtins.str],
-                 allowed_principals: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_projects: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 approved_subscriptions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None):
+                 allowed_principals: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_projects: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 approved_subscriptions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a VpcConnect resource.
 
@@ -90,31 +90,31 @@ class VpcConnectArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedPrincipals")
-    def allowed_principals(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_principals(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of allowed prinicpals used by AWS, see below table.
         """
         return pulumi.get(self, "allowed_principals")
 
     @allowed_principals.setter
-    def allowed_principals(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_principals(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_principals", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedProjects")
-    def allowed_projects(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_projects(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of allowed projects used by GCP, see below table.
         """
         return pulumi.get(self, "allowed_projects")
 
     @allowed_projects.setter
-    def allowed_projects(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_projects(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_projects", value)
 
     @_builtins.property
     @pulumi.getter(name="approvedSubscriptions")
-    def approved_subscriptions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def approved_subscriptions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of approved subscriptions used by Azure, see below
         table.
@@ -122,12 +122,12 @@ class VpcConnectArgs:
         return pulumi.get(self, "approved_subscriptions")
 
     @approved_subscriptions.setter
-    def approved_subscriptions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def approved_subscriptions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "approved_subscriptions", value)
 
     @_builtins.property
     @pulumi.getter
-    def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def sleep(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable sleep time (seconds) when enable Private
         Service Connect. Default set to 10 seconds.
@@ -135,12 +135,12 @@ class VpcConnectArgs:
         return pulumi.get(self, "sleep")
 
     @sleep.setter
-    def sleep(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def sleep(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "sleep", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable timeout time (seconds) when enable Private
         Service Connect. Default set to 1800 seconds.
@@ -159,23 +159,23 @@ class VpcConnectArgs:
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
 
 @pulumi.input_type
 class _VpcConnectState:
     def __init__(__self__, *,
-                 active_zones: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_principals: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_projects: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 approved_subscriptions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None):
+                 active_zones: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_principals: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_projects: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 approved_subscriptions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering VpcConnect resources.
 
@@ -227,43 +227,43 @@ class _VpcConnectState:
 
     @_builtins.property
     @pulumi.getter(name="activeZones")
-    def active_zones(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def active_zones(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Covering availability zones used when creating an endpoint from other VPC. (AWS)
         """
         return pulumi.get(self, "active_zones")
 
     @active_zones.setter
-    def active_zones(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def active_zones(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "active_zones", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedPrincipals")
-    def allowed_principals(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_principals(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of allowed prinicpals used by AWS, see below table.
         """
         return pulumi.get(self, "allowed_principals")
 
     @allowed_principals.setter
-    def allowed_principals(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_principals(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_principals", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedProjects")
-    def allowed_projects(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_projects(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of allowed projects used by GCP, see below table.
         """
         return pulumi.get(self, "allowed_projects")
 
     @allowed_projects.setter
-    def allowed_projects(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_projects(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_projects", value)
 
     @_builtins.property
     @pulumi.getter(name="approvedSubscriptions")
-    def approved_subscriptions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def approved_subscriptions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of approved subscriptions used by Azure, see below
         table.
@@ -271,48 +271,48 @@ class _VpcConnectState:
         return pulumi.get(self, "approved_subscriptions")
 
     @approved_subscriptions.setter
-    def approved_subscriptions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def approved_subscriptions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "approved_subscriptions", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The CloudAMQP instance identifier.
         """
         return pulumi.get(self, "instance_id")
 
     @instance_id.setter
-    def instance_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The region where the CloudAMQP instance is hosted.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceName")
-    def service_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Service name (alias for Azure, see example above) of the PrivateLink.
         """
         return pulumi.get(self, "service_name")
 
     @service_name.setter
-    def service_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def sleep(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable sleep time (seconds) when enable Private
         Service Connect. Default set to 10 seconds.
@@ -320,24 +320,24 @@ class _VpcConnectState:
         return pulumi.get(self, "sleep")
 
     @sleep.setter
-    def sleep(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def sleep(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "sleep", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Private Service Connect status [enable, pending, disable]
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable timeout time (seconds) when enable Private
         Service Connect. Default set to 1800 seconds.
@@ -356,7 +356,7 @@ class _VpcConnectState:
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
 
@@ -366,13 +366,13 @@ class VpcConnect(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allowed_principals: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_projects: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 approved_subscriptions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
+                 allowed_principals: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_projects: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 approved_subscriptions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         <!-- markdownlint-disable MD033 -->
@@ -421,10 +421,10 @@ class VpcConnect(pulumi.CustomResource):
             plan="penguin-1",
             region="amazon-web-services::us-west-1",
             tags=[],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         vpc_connect = cloudamqp.VpcConnect("vpc_connect",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             region=instance.region,
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         ```
@@ -452,10 +452,10 @@ class VpcConnect(pulumi.CustomResource):
             plan="penguin-1",
             region="azure-arm::westus",
             tags=[],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         vpc_connect = cloudamqp.VpcConnect("vpc_connect",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             region=instance.region,
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         ```
@@ -508,10 +508,10 @@ class VpcConnect(pulumi.CustomResource):
             plan="penguin-1",
             region="google-compute-engine::us-west1",
             tags=[],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         vpc_connect = cloudamqp.VpcConnect("vpc_connect",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             region=instance.region,
             allowed_projects=["some-project-123456"])
         ```
@@ -541,13 +541,13 @@ class VpcConnect(pulumi.CustomResource):
             plan="penguin-1",
             region="amazon-web-services::us-west-1",
             tags=[],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         vpc_connect = cloudamqp.VpcConnect("vpc_connect",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             rules=[
                 {
                     "description": "Custom PrivateLink setup",
@@ -672,10 +672,10 @@ class VpcConnect(pulumi.CustomResource):
             plan="penguin-1",
             region="amazon-web-services::us-west-1",
             tags=[],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         vpc_connect = cloudamqp.VpcConnect("vpc_connect",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             region=instance.region,
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         ```
@@ -703,10 +703,10 @@ class VpcConnect(pulumi.CustomResource):
             plan="penguin-1",
             region="azure-arm::westus",
             tags=[],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         vpc_connect = cloudamqp.VpcConnect("vpc_connect",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             region=instance.region,
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         ```
@@ -759,10 +759,10 @@ class VpcConnect(pulumi.CustomResource):
             plan="penguin-1",
             region="google-compute-engine::us-west1",
             tags=[],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         vpc_connect = cloudamqp.VpcConnect("vpc_connect",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             region=instance.region,
             allowed_projects=["some-project-123456"])
         ```
@@ -792,13 +792,13 @@ class VpcConnect(pulumi.CustomResource):
             plan="penguin-1",
             region="amazon-web-services::us-west-1",
             tags=[],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         vpc_connect = cloudamqp.VpcConnect("vpc_connect",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             rules=[
                 {
                     "description": "Custom PrivateLink setup",
@@ -861,13 +861,13 @@ class VpcConnect(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allowed_principals: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_projects: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 approved_subscriptions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
+                 allowed_principals: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_projects: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 approved_subscriptions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -901,16 +901,16 @@ class VpcConnect(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            active_zones: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            allowed_principals: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            allowed_projects: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            approved_subscriptions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            service_name: Optional[pulumi.Input[_builtins.str]] = None,
-            sleep: Optional[pulumi.Input[_builtins.int]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None,
-            timeout: Optional[pulumi.Input[_builtins.int]] = None) -> 'VpcConnect':
+            active_zones: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_principals: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_projects: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            approved_subscriptions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            service_name: pulumi.Input[Optional[_builtins.str]] = None,
+            sleep: pulumi.Input[Optional[_builtins.int]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            timeout: pulumi.Input[Optional[_builtins.int]] = None) -> 'VpcConnect':
         """
         Get an existing VpcConnect resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -29,14 +29,14 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const cloudwatch = new cloudamqp.IntegrationMetric("cloudwatch", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "cloudwatch",
  *     accessKeyId: awsAccessKeyId,
  *     secretAccessKey: varAwsSecretAcccessKey,
  *     region: awsRegion,
  * });
  * const cloudwatchV2 = new cloudamqp.IntegrationMetric("cloudwatch_v2", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "cloudwatch_v2",
  *     accessKeyId: awsAccessKeyId,
  *     secretAccessKey: varAwsSecretAcccessKey,
@@ -51,14 +51,14 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const cloudwatch = new cloudamqp.IntegrationMetric("cloudwatch", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "cloudwatch",
  *     iamRole: awsIamRole,
  *     iamExternalId: externalId,
  *     region: awsRegion,
  * });
  * const cloudwatchV2 = new cloudamqp.IntegrationMetric("cloudwatch_v2", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "cloudwatch_v2",
  *     iamRole: awsIamRole,
  *     iamExternalId: externalId,
@@ -83,14 +83,14 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const datadog = new cloudamqp.IntegrationMetric("datadog", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "datadog",
  *     apiKey: datadogApiKey,
  *     region: datadogRegion,
  *     tags: "env=prod,region=us1,version=v1.0",
  * });
  * const datadogV2 = new cloudamqp.IntegrationMetric("datadog_v2", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "datadog_v2",
  *     apiKey: datadogApiKey,
  *     region: datadogRegion,
@@ -112,7 +112,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const librato = new cloudamqp.IntegrationMetric("librato", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "librato",
  *     email: libratoEmail,
  *     apiKey: libratoApiKey,
@@ -133,7 +133,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const newrelic = new cloudamqp.IntegrationMetric("newrelic", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "newrelic_v2",
  *     apiKey: newrelicApiKey,
  *     region: newrelicRegion,
@@ -156,7 +156,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const stackdriver = new cloudamqp.IntegrationMetric("stackdriver", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "stackdriver",
  *     projectId: stackdriverProjectId,
  *     privateKey: stackdriverPrivateKey,
@@ -179,7 +179,7 @@ import * as utilities from "./utilities";
  * });
  * const serviceAccountKey = new google.index.ServiceAccountKey("service_account_key", {serviceAccountId: serviceAccount.name});
  * const stackdriver = new cloudamqp.IntegrationMetric("stackdriver", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "stackdriver",
  *     projectId: std.jsondecode({
  *         input: std.base64decode({
@@ -223,7 +223,7 @@ import * as utilities from "./utilities";
  * });
  * const serviceAccountKey = new google.index.ServiceAccountKey("service_account_key", {serviceAccountId: serviceAccount.name});
  * const stackdriver = new cloudamqp.IntegrationMetric("stackdriver", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "stackdriver",
  *     credentials: serviceAccountKey.privateKey,
  * });
@@ -244,7 +244,7 @@ import * as utilities from "./utilities";
  * });
  * const serviceAccountKey = new google.index.ServiceAccountKey("service_account_key", {serviceAccountId: serviceAccount.name});
  * const stackdriver = new cloudamqp.IntegrationMetric("stackdriver", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     name: "stackdriver",
  *     projectId: std.jsondecode({
  *         input: std.base64decode({
@@ -514,75 +514,75 @@ export interface IntegrationMetricState {
     /**
      * AWS access key identifier. (Cloudwatch)
      */
-    accessKeyId?: pulumi.Input<string>;
+    accessKeyId?: pulumi.Input<string | undefined>;
     /**
      * The API key for the integration service. (Librato, Data Dog, New Relic)
      */
-    apiKey?: pulumi.Input<string>;
+    apiKey?: pulumi.Input<string | undefined>;
     /**
      * The client email. (Stackdriver)
      */
-    clientEmail?: pulumi.Input<string>;
+    clientEmail?: pulumi.Input<string | undefined>;
     /**
      * Base64Encoded credentials. (Stackdriver)
      */
-    credentials?: pulumi.Input<string>;
+    credentials?: pulumi.Input<string | undefined>;
     /**
      * The email address registred for the integration service. (Librato)
      */
-    email?: pulumi.Input<string>;
+    email?: pulumi.Input<string | undefined>;
     /**
      * External identifier that match the role you created. (Cloudwatch)
      */
-    iamExternalId?: pulumi.Input<string>;
+    iamExternalId?: pulumi.Input<string | undefined>;
     /**
      * The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
      */
-    iamRole?: pulumi.Input<string>;
+    iamRole?: pulumi.Input<string | undefined>;
     /**
      * (optional) Include Auto-Delete queues
      */
-    includeAdQueues?: pulumi.Input<boolean>;
+    includeAdQueues?: pulumi.Input<boolean | undefined>;
     /**
      * Instance identifier
      */
-    instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number | undefined>;
     /**
      * The name of log integration
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The private key. (Stackdriver)
      */
-    privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
     /**
      * Private key identifier. (Stackdriver)
      */
-    privateKeyId?: pulumi.Input<string>;
+    privateKeyId?: pulumi.Input<string | undefined>;
     /**
      * Project ID. (Stackdriver)
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * (optional) allowlist using regular expression
      */
-    queueAllowlist?: pulumi.Input<string>;
+    queueAllowlist?: pulumi.Input<string | undefined>;
     /**
      * AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * AWS secret key. (Cloudwatch)
      */
-    secretAccessKey?: pulumi.Input<string>;
+    secretAccessKey?: pulumi.Input<string | undefined>;
     /**
      * (optional) tags. E.g. env=prod,region=europe
      */
-    tags?: pulumi.Input<string>;
+    tags?: pulumi.Input<string | undefined>;
     /**
      * (optional) allowlist using regular expression
      */
-    vhostAllowlist?: pulumi.Input<string>;
+    vhostAllowlist?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -592,35 +592,35 @@ export interface IntegrationMetricArgs {
     /**
      * AWS access key identifier. (Cloudwatch)
      */
-    accessKeyId?: pulumi.Input<string>;
+    accessKeyId?: pulumi.Input<string | undefined>;
     /**
      * The API key for the integration service. (Librato, Data Dog, New Relic)
      */
-    apiKey?: pulumi.Input<string>;
+    apiKey?: pulumi.Input<string | undefined>;
     /**
      * The client email. (Stackdriver)
      */
-    clientEmail?: pulumi.Input<string>;
+    clientEmail?: pulumi.Input<string | undefined>;
     /**
      * Base64Encoded credentials. (Stackdriver)
      */
-    credentials?: pulumi.Input<string>;
+    credentials?: pulumi.Input<string | undefined>;
     /**
      * The email address registred for the integration service. (Librato)
      */
-    email?: pulumi.Input<string>;
+    email?: pulumi.Input<string | undefined>;
     /**
      * External identifier that match the role you created. (Cloudwatch)
      */
-    iamExternalId?: pulumi.Input<string>;
+    iamExternalId?: pulumi.Input<string | undefined>;
     /**
      * The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
      */
-    iamRole?: pulumi.Input<string>;
+    iamRole?: pulumi.Input<string | undefined>;
     /**
      * (optional) Include Auto-Delete queues
      */
-    includeAdQueues?: pulumi.Input<boolean>;
+    includeAdQueues?: pulumi.Input<boolean | undefined>;
     /**
      * Instance identifier
      */
@@ -628,37 +628,37 @@ export interface IntegrationMetricArgs {
     /**
      * The name of log integration
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The private key. (Stackdriver)
      */
-    privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
     /**
      * Private key identifier. (Stackdriver)
      */
-    privateKeyId?: pulumi.Input<string>;
+    privateKeyId?: pulumi.Input<string | undefined>;
     /**
      * Project ID. (Stackdriver)
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * (optional) allowlist using regular expression
      */
-    queueAllowlist?: pulumi.Input<string>;
+    queueAllowlist?: pulumi.Input<string | undefined>;
     /**
      * AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * AWS secret key. (Cloudwatch)
      */
-    secretAccessKey?: pulumi.Input<string>;
+    secretAccessKey?: pulumi.Input<string | undefined>;
     /**
      * (optional) tags. E.g. env=prod,region=europe
      */
-    tags?: pulumi.Input<string>;
+    tags?: pulumi.Input<string | undefined>;
     /**
      * (optional) allowlist using regular expression
      */
-    vhostAllowlist?: pulumi.Input<string>;
+    vhostAllowlist?: pulumi.Input<string | undefined>;
 }

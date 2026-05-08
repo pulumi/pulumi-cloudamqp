@@ -29,7 +29,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const clusterRestart = new cloudamqp.NodeActions("cluster_restart", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     action: "cluster.restart",
  * });
  * ```
@@ -50,10 +50,10 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const nodes = cloudamqp.getNodes({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * const restartSubset = new cloudamqp.NodeActions("restart_subset", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     action: "restart",
  *     nodeNames: [
  *         nodes.then(nodes => nodes.nodes?.[0]?.name),
@@ -78,10 +78,10 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const nodes = cloudamqp.getNodes({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * const rebootNode = new cloudamqp.NodeActions("reboot_node", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     action: "reboot",
  *     nodeNames: [nodes.then(nodes => nodes.nodes?.[0]?.name)],
  * });
@@ -103,10 +103,10 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const nodes = cloudamqp.getNodes({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * const mgmtRestart = new cloudamqp.NodeActions("mgmt_restart", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     action: "mgmt.restart",
  *     nodeNames: [nodes.then(nodes => nodes.nodes?.[0]?.name)],
  * });
@@ -128,11 +128,11 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const rabbitmqConfig = new cloudamqp.RabbitConfiguration("rabbitmq_config", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     logExchangeLevel: "info",
  * });
  * const clusterRestart = new cloudamqp.NodeActions("cluster_restart", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     action: "cluster.restart",
  * }, {
  *     dependsOn: [rabbitmqConfig],
@@ -157,7 +157,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const nodeAction = new cloudamqp.NodeActions("node_action", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     nodeName: "<node name>",
  *     action: "restart",
  * });
@@ -172,22 +172,22 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const listNodes = cloudamqp.getNodes({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * const restart01 = new cloudamqp.NodeActions("restart_01", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     action: "restart",
  *     nodeName: listNodes.then(listNodes => listNodes.nodes?.[0]?.name),
  * });
  * const restart02 = new cloudamqp.NodeActions("restart_02", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     action: "restart",
  *     nodeName: listNodes.then(listNodes => listNodes.nodes?.[1]?.name),
  * }, {
  *     dependsOn: [restart01],
  * });
  * const restart03 = new cloudamqp.NodeActions("restart_03", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     action: "restart",
  *     nodeName: listNodes.then(listNodes => listNodes.nodes?.[2]?.name),
  * }, {
@@ -353,31 +353,31 @@ export interface NodeActionsState {
     /**
      * The action to invoke. See Action reference below for valid values.
      */
-    action?: pulumi.Input<string>;
+    action?: pulumi.Input<string | undefined>;
     /**
      * The CloudAMQP instance ID.
      */
-    instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number | undefined>;
     /**
      * The node name, e.g. `green-guinea-pig-01`. Use `nodeNames` instead. This attribute will be removed in a future version.
      *
      * @deprecated Use nodeNames instead. This attribute will be removed in a future version.
      */
-    nodeName?: pulumi.Input<string>;
+    nodeName?: pulumi.Input<string | undefined>;
     /**
      * List of node names to perform the action on, e.g. `["green-guinea-pig-01", "green-guinea-pig-02"]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
      */
-    nodeNames?: pulumi.Input<pulumi.Input<string>[]>;
+    nodeNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Sleep interval in seconds between polling for node status. Default: `10`.
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
      *
      * > **Note:** Either `nodeName` or `nodeNames` must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -397,19 +397,19 @@ export interface NodeActionsArgs {
      *
      * @deprecated Use nodeNames instead. This attribute will be removed in a future version.
      */
-    nodeName?: pulumi.Input<string>;
+    nodeName?: pulumi.Input<string | undefined>;
     /**
      * List of node names to perform the action on, e.g. `["green-guinea-pig-01", "green-guinea-pig-02"]`. For cluster-level actions (`cluster.start`, `cluster.stop`, `cluster.restart`), this can be omitted and the action will automatically apply to all nodes.
      */
-    nodeNames?: pulumi.Input<pulumi.Input<string>[]>;
+    nodeNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Sleep interval in seconds between polling for node status. Default: `10`.
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * Timeout in seconds for the action to complete. Default: `1800` (30 minutes).
      *
      * > **Note:** Either `nodeName` or `nodeNames` must be specified for non-cluster actions. Cluster actions (`cluster.start`, `cluster.stop`, `cluster.restart`) can omit both and will automatically target all nodes.
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
 }

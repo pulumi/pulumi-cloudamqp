@@ -33,30 +33,30 @@ import * as utilities from "./utilities";
  *
  * // New recipient
  * const recipient01 = new cloudamqp.Notification("recipient_01", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     type: "email",
  *     value: "alarm@example.com",
  *     name: "alarm",
  * });
  * // New cpu alarm
  * const cpuAlarm = new cloudamqp.Alarm("cpu_alarm", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     type: "cpu",
  *     enabled: true,
  *     reminderInterval: 600,
  *     valueThreshold: 95,
  *     timeThreshold: 600,
- *     recipients: [recipient01.id],
+ *     recipients: [recipient01.id.apply(x =>Number(x))],
  * });
  * // New memory alarm
  * const memoryAlarm = new cloudamqp.Alarm("memory_alarm", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     type: "memory",
  *     enabled: true,
  *     reminderInterval: 600,
  *     valueThreshold: 95,
  *     timeThreshold: 600,
- *     recipients: [recipient01.id],
+ *     recipients: [recipient01.id.apply(x =>Number(x))],
  * });
  * ```
  *
@@ -78,17 +78,17 @@ import * as utilities from "./utilities";
  *
  * // New recipient
  * const recipient01 = new cloudamqp.Notification("recipient_01", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     type: "email",
  *     value: "alarm@example.com",
  *     name: "alarm",
  * });
  * // Update existing notice alarm
  * const notice = new cloudamqp.Alarm("notice", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     type: "notice",
  *     enabled: true,
- *     recipients: [recipient01.id],
+ *     recipients: [recipient01.id.apply(x =>Number(x))],
  * });
  * ```
  *
@@ -282,55 +282,55 @@ export interface AlarmState {
     /**
      * Enable or disable the alarm to trigger.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * The CloudAMQP instance ID.
      */
-    instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number | undefined>;
     /**
      * Message type `(total, unacked, ready)` used by queue alarm type.
      *
      * Specific argument for `disk` alarm
      */
-    messageType?: pulumi.Input<string>;
+    messageType?: pulumi.Input<string | undefined>;
     /**
      * Regex for which queue to check.
      */
-    queueRegex?: pulumi.Input<string>;
+    queueRegex?: pulumi.Input<string | undefined>;
     /**
      * Identifier for recipient to be notified. Leave empty to notify
      * all recipients.
      */
-    recipients?: pulumi.Input<pulumi.Input<number>[]>;
+    recipients?: pulumi.Input<pulumi.Input<number>[] | undefined>;
     /**
      * The reminder interval (in seconds) to resend the alarm if not
      * resolved. Set to 0 for no reminders. The Default is 0.
      */
-    reminderInterval?: pulumi.Input<number>;
+    reminderInterval?: pulumi.Input<number | undefined>;
     /**
      * The time interval (in seconds) the `valueThreshold` should be
      * active before triggering an alarm.
      */
-    timeThreshold?: pulumi.Input<number>;
+    timeThreshold?: pulumi.Input<number | undefined>;
     /**
      * The alarm type, see valid options below.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * Disk value threshold calculation, `fixed, percentage` of disk
      * space remaining.
      *
      * Based on alarm type, different arguments are flagged as required or optional.
      */
-    valueCalculation?: pulumi.Input<string>;
+    valueCalculation?: pulumi.Input<string | undefined>;
     /**
      * The value to trigger the alarm for.
      */
-    valueThreshold?: pulumi.Input<number>;
+    valueThreshold?: pulumi.Input<number | undefined>;
     /**
      * Regex for which vhost to check
      */
-    vhostRegex?: pulumi.Input<string>;
+    vhostRegex?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -350,11 +350,11 @@ export interface AlarmArgs {
      *
      * Specific argument for `disk` alarm
      */
-    messageType?: pulumi.Input<string>;
+    messageType?: pulumi.Input<string | undefined>;
     /**
      * Regex for which queue to check.
      */
-    queueRegex?: pulumi.Input<string>;
+    queueRegex?: pulumi.Input<string | undefined>;
     /**
      * Identifier for recipient to be notified. Leave empty to notify
      * all recipients.
@@ -364,12 +364,12 @@ export interface AlarmArgs {
      * The reminder interval (in seconds) to resend the alarm if not
      * resolved. Set to 0 for no reminders. The Default is 0.
      */
-    reminderInterval?: pulumi.Input<number>;
+    reminderInterval?: pulumi.Input<number | undefined>;
     /**
      * The time interval (in seconds) the `valueThreshold` should be
      * active before triggering an alarm.
      */
-    timeThreshold?: pulumi.Input<number>;
+    timeThreshold?: pulumi.Input<number | undefined>;
     /**
      * The alarm type, see valid options below.
      */
@@ -380,13 +380,13 @@ export interface AlarmArgs {
      *
      * Based on alarm type, different arguments are flagged as required or optional.
      */
-    valueCalculation?: pulumi.Input<string>;
+    valueCalculation?: pulumi.Input<string | undefined>;
     /**
      * The value to trigger the alarm for.
      */
-    valueThreshold?: pulumi.Input<number>;
+    valueThreshold?: pulumi.Input<number | undefined>;
     /**
      * Regex for which vhost to check
      */
-    vhostRegex?: pulumi.Input<string>;
+    vhostRegex?: pulumi.Input<string | undefined>;
 }

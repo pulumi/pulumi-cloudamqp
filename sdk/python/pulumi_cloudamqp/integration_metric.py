@@ -20,23 +20,23 @@ __all__ = ['IntegrationMetricArgs', 'IntegrationMetric']
 class IntegrationMetricArgs:
     def __init__(__self__, *,
                  instance_id: pulumi.Input[_builtins.int],
-                 access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_email: Optional[pulumi.Input[_builtins.str]] = None,
-                 credentials: Optional[pulumi.Input[_builtins.str]] = None,
-                 email: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_external_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_role: Optional[pulumi.Input[_builtins.str]] = None,
-                 include_ad_queues: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 queue_allowlist: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost_allowlist: Optional[pulumi.Input[_builtins.str]] = None):
+                 access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_email: pulumi.Input[Optional[_builtins.str]] = None,
+                 credentials: pulumi.Input[Optional[_builtins.str]] = None,
+                 email: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_external_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_role: pulumi.Input[Optional[_builtins.str]] = None,
+                 include_ad_queues: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 queue_allowlist: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[_builtins.str]] = None,
+                 vhost_allowlist: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a IntegrationMetric resource.
 
@@ -109,230 +109,230 @@ class IntegrationMetricArgs:
 
     @_builtins.property
     @pulumi.getter(name="accessKeyId")
-    def access_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS access key identifier. (Cloudwatch)
         """
         return pulumi.get(self, "access_key_id")
 
     @access_key_id.setter
-    def access_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="apiKey")
-    def api_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The API key for the integration service. (Librato, Data Dog, New Relic)
         """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
-    def api_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_key", value)
 
     @_builtins.property
     @pulumi.getter(name="clientEmail")
-    def client_email(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_email(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client email. (Stackdriver)
         """
         return pulumi.get(self, "client_email")
 
     @client_email.setter
-    def client_email(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_email(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_email", value)
 
     @_builtins.property
     @pulumi.getter
-    def credentials(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def credentials(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Base64Encoded credentials. (Stackdriver)
         """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
-    def credentials(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def credentials(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "credentials", value)
 
     @_builtins.property
     @pulumi.getter
-    def email(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def email(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The email address registred for the integration service. (Librato)
         """
         return pulumi.get(self, "email")
 
     @email.setter
-    def email(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def email(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "email", value)
 
     @_builtins.property
     @pulumi.getter(name="iamExternalId")
-    def iam_external_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_external_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         External identifier that match the role you created. (Cloudwatch)
         """
         return pulumi.get(self, "iam_external_id")
 
     @iam_external_id.setter
-    def iam_external_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_external_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_external_id", value)
 
     @_builtins.property
     @pulumi.getter(name="iamRole")
-    def iam_role(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
         """
         return pulumi.get(self, "iam_role")
 
     @iam_role.setter
-    def iam_role(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_role(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_role", value)
 
     @_builtins.property
     @pulumi.getter(name="includeAdQueues")
-    def include_ad_queues(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def include_ad_queues(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         (optional) Include Auto-Delete queues
         """
         return pulumi.get(self, "include_ad_queues")
 
     @include_ad_queues.setter
-    def include_ad_queues(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def include_ad_queues(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "include_ad_queues", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of log integration
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKey")
-    def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The private key. (Stackdriver)
         """
         return pulumi.get(self, "private_key")
 
     @private_key.setter
-    def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyId")
-    def private_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Private key identifier. (Stackdriver)
         """
         return pulumi.get(self, "private_key_id")
 
     @private_key_id.setter
-    def private_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Project ID. (Stackdriver)
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="queueAllowlist")
-    def queue_allowlist(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def queue_allowlist(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (optional) allowlist using regular expression
         """
         return pulumi.get(self, "queue_allowlist")
 
     @queue_allowlist.setter
-    def queue_allowlist(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def queue_allowlist(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "queue_allowlist", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="secretAccessKey")
-    def secret_access_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS secret key. (Cloudwatch)
         """
         return pulumi.get(self, "secret_access_key")
 
     @secret_access_key.setter
-    def secret_access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_access_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_access_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tags(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (optional) tags. E.g. env=prod,region=europe
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tags(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="vhostAllowlist")
-    def vhost_allowlist(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vhost_allowlist(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (optional) allowlist using regular expression
         """
         return pulumi.get(self, "vhost_allowlist")
 
     @vhost_allowlist.setter
-    def vhost_allowlist(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vhost_allowlist(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vhost_allowlist", value)
 
 
 @pulumi.input_type
 class _IntegrationMetricState:
     def __init__(__self__, *,
-                 access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_email: Optional[pulumi.Input[_builtins.str]] = None,
-                 credentials: Optional[pulumi.Input[_builtins.str]] = None,
-                 email: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_external_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_role: Optional[pulumi.Input[_builtins.str]] = None,
-                 include_ad_queues: Optional[pulumi.Input[_builtins.bool]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 queue_allowlist: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost_allowlist: Optional[pulumi.Input[_builtins.str]] = None):
+                 access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_email: pulumi.Input[Optional[_builtins.str]] = None,
+                 credentials: pulumi.Input[Optional[_builtins.str]] = None,
+                 email: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_external_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_role: pulumi.Input[Optional[_builtins.str]] = None,
+                 include_ad_queues: pulumi.Input[Optional[_builtins.bool]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 queue_allowlist: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[_builtins.str]] = None,
+                 vhost_allowlist: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IntegrationMetric resources.
 
@@ -394,218 +394,218 @@ class _IntegrationMetricState:
 
     @_builtins.property
     @pulumi.getter(name="accessKeyId")
-    def access_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS access key identifier. (Cloudwatch)
         """
         return pulumi.get(self, "access_key_id")
 
     @access_key_id.setter
-    def access_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="apiKey")
-    def api_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The API key for the integration service. (Librato, Data Dog, New Relic)
         """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
-    def api_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_key", value)
 
     @_builtins.property
     @pulumi.getter(name="clientEmail")
-    def client_email(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_email(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client email. (Stackdriver)
         """
         return pulumi.get(self, "client_email")
 
     @client_email.setter
-    def client_email(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_email(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_email", value)
 
     @_builtins.property
     @pulumi.getter
-    def credentials(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def credentials(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Base64Encoded credentials. (Stackdriver)
         """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
-    def credentials(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def credentials(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "credentials", value)
 
     @_builtins.property
     @pulumi.getter
-    def email(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def email(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The email address registred for the integration service. (Librato)
         """
         return pulumi.get(self, "email")
 
     @email.setter
-    def email(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def email(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "email", value)
 
     @_builtins.property
     @pulumi.getter(name="iamExternalId")
-    def iam_external_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_external_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         External identifier that match the role you created. (Cloudwatch)
         """
         return pulumi.get(self, "iam_external_id")
 
     @iam_external_id.setter
-    def iam_external_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_external_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_external_id", value)
 
     @_builtins.property
     @pulumi.getter(name="iamRole")
-    def iam_role(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
         """
         return pulumi.get(self, "iam_role")
 
     @iam_role.setter
-    def iam_role(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_role(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_role", value)
 
     @_builtins.property
     @pulumi.getter(name="includeAdQueues")
-    def include_ad_queues(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def include_ad_queues(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         (optional) Include Auto-Delete queues
         """
         return pulumi.get(self, "include_ad_queues")
 
     @include_ad_queues.setter
-    def include_ad_queues(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def include_ad_queues(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "include_ad_queues", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Instance identifier
         """
         return pulumi.get(self, "instance_id")
 
     @instance_id.setter
-    def instance_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of log integration
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKey")
-    def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The private key. (Stackdriver)
         """
         return pulumi.get(self, "private_key")
 
     @private_key.setter
-    def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyId")
-    def private_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Private key identifier. (Stackdriver)
         """
         return pulumi.get(self, "private_key_id")
 
     @private_key_id.setter
-    def private_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Project ID. (Stackdriver)
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="queueAllowlist")
-    def queue_allowlist(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def queue_allowlist(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (optional) allowlist using regular expression
         """
         return pulumi.get(self, "queue_allowlist")
 
     @queue_allowlist.setter
-    def queue_allowlist(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def queue_allowlist(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "queue_allowlist", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="secretAccessKey")
-    def secret_access_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS secret key. (Cloudwatch)
         """
         return pulumi.get(self, "secret_access_key")
 
     @secret_access_key.setter
-    def secret_access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_access_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_access_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tags(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (optional) tags. E.g. env=prod,region=europe
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tags(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="vhostAllowlist")
-    def vhost_allowlist(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vhost_allowlist(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (optional) allowlist using regular expression
         """
         return pulumi.get(self, "vhost_allowlist")
 
     @vhost_allowlist.setter
-    def vhost_allowlist(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vhost_allowlist(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vhost_allowlist", value)
 
 
@@ -615,24 +615,24 @@ class IntegrationMetric(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_email: Optional[pulumi.Input[_builtins.str]] = None,
-                 credentials: Optional[pulumi.Input[_builtins.str]] = None,
-                 email: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_external_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_role: Optional[pulumi.Input[_builtins.str]] = None,
-                 include_ad_queues: Optional[pulumi.Input[_builtins.bool]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 queue_allowlist: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost_allowlist: Optional[pulumi.Input[_builtins.str]] = None,
+                 access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_email: pulumi.Input[Optional[_builtins.str]] = None,
+                 credentials: pulumi.Input[Optional[_builtins.str]] = None,
+                 email: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_external_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_role: pulumi.Input[Optional[_builtins.str]] = None,
+                 include_ad_queues: pulumi.Input[Optional[_builtins.bool]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 queue_allowlist: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[_builtins.str]] = None,
+                 vhost_allowlist: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         <!-- markdownlint-disable MD033 -->
@@ -659,13 +659,13 @@ class IntegrationMetric(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         cloudwatch = cloudamqp.IntegrationMetric("cloudwatch",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="cloudwatch",
             access_key_id=aws_access_key_id,
             secret_access_key=var_aws_secret_acccess_key,
             region=aws_region)
         cloudwatch_v2 = cloudamqp.IntegrationMetric("cloudwatch_v2",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="cloudwatch_v2",
             access_key_id=aws_access_key_id,
             secret_access_key=var_aws_secret_acccess_key,
@@ -679,13 +679,13 @@ class IntegrationMetric(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         cloudwatch = cloudamqp.IntegrationMetric("cloudwatch",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="cloudwatch",
             iam_role=aws_iam_role,
             iam_external_id=external_id,
             region=aws_region)
         cloudwatch_v2 = cloudamqp.IntegrationMetric("cloudwatch_v2",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="cloudwatch_v2",
             iam_role=aws_iam_role,
             iam_external_id=external_id,
@@ -709,13 +709,13 @@ class IntegrationMetric(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         datadog = cloudamqp.IntegrationMetric("datadog",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="datadog",
             api_key=datadog_api_key,
             region=datadog_region,
             tags="env=prod,region=us1,version=v1.0")
         datadog_v2 = cloudamqp.IntegrationMetric("datadog_v2",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="datadog_v2",
             api_key=datadog_api_key,
             region=datadog_region,
@@ -736,7 +736,7 @@ class IntegrationMetric(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         librato = cloudamqp.IntegrationMetric("librato",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="librato",
             email=librato_email,
             api_key=librato_api_key)
@@ -756,7 +756,7 @@ class IntegrationMetric(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         newrelic = cloudamqp.IntegrationMetric("newrelic",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="newrelic_v2",
             api_key=newrelic_api_key,
             region=newrelic_region)
@@ -778,7 +778,7 @@ class IntegrationMetric(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         stackdriver = cloudamqp.IntegrationMetric("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             project_id=stackdriver_project_id,
             private_key=stackdriver_private_key,
@@ -799,7 +799,7 @@ class IntegrationMetric(pulumi.CustomResource):
             display_name=<display_name>)
         service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationMetric("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             project_id=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["projectId"],
             private_key=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["privateKey"],
@@ -829,7 +829,7 @@ class IntegrationMetric(pulumi.CustomResource):
             display_name=<display_name>)
         service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationMetric("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             credentials=service_account_key["privateKey"])
         ```
@@ -848,7 +848,7 @@ class IntegrationMetric(pulumi.CustomResource):
             display_name=<display_name>)
         service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationMetric("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             project_id=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["projectId"],
             private_key=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["privateKey"],
@@ -988,13 +988,13 @@ class IntegrationMetric(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         cloudwatch = cloudamqp.IntegrationMetric("cloudwatch",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="cloudwatch",
             access_key_id=aws_access_key_id,
             secret_access_key=var_aws_secret_acccess_key,
             region=aws_region)
         cloudwatch_v2 = cloudamqp.IntegrationMetric("cloudwatch_v2",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="cloudwatch_v2",
             access_key_id=aws_access_key_id,
             secret_access_key=var_aws_secret_acccess_key,
@@ -1008,13 +1008,13 @@ class IntegrationMetric(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         cloudwatch = cloudamqp.IntegrationMetric("cloudwatch",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="cloudwatch",
             iam_role=aws_iam_role,
             iam_external_id=external_id,
             region=aws_region)
         cloudwatch_v2 = cloudamqp.IntegrationMetric("cloudwatch_v2",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="cloudwatch_v2",
             iam_role=aws_iam_role,
             iam_external_id=external_id,
@@ -1038,13 +1038,13 @@ class IntegrationMetric(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         datadog = cloudamqp.IntegrationMetric("datadog",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="datadog",
             api_key=datadog_api_key,
             region=datadog_region,
             tags="env=prod,region=us1,version=v1.0")
         datadog_v2 = cloudamqp.IntegrationMetric("datadog_v2",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="datadog_v2",
             api_key=datadog_api_key,
             region=datadog_region,
@@ -1065,7 +1065,7 @@ class IntegrationMetric(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         librato = cloudamqp.IntegrationMetric("librato",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="librato",
             email=librato_email,
             api_key=librato_api_key)
@@ -1085,7 +1085,7 @@ class IntegrationMetric(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         newrelic = cloudamqp.IntegrationMetric("newrelic",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="newrelic_v2",
             api_key=newrelic_api_key,
             region=newrelic_region)
@@ -1107,7 +1107,7 @@ class IntegrationMetric(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         stackdriver = cloudamqp.IntegrationMetric("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             project_id=stackdriver_project_id,
             private_key=stackdriver_private_key,
@@ -1128,7 +1128,7 @@ class IntegrationMetric(pulumi.CustomResource):
             display_name=<display_name>)
         service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationMetric("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             project_id=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["projectId"],
             private_key=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["privateKey"],
@@ -1158,7 +1158,7 @@ class IntegrationMetric(pulumi.CustomResource):
             display_name=<display_name>)
         service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationMetric("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             credentials=service_account_key["privateKey"])
         ```
@@ -1177,7 +1177,7 @@ class IntegrationMetric(pulumi.CustomResource):
             display_name=<display_name>)
         service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationMetric("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             project_id=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["projectId"],
             private_key=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["privateKey"],
@@ -1280,24 +1280,24 @@ class IntegrationMetric(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_email: Optional[pulumi.Input[_builtins.str]] = None,
-                 credentials: Optional[pulumi.Input[_builtins.str]] = None,
-                 email: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_external_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_role: Optional[pulumi.Input[_builtins.str]] = None,
-                 include_ad_queues: Optional[pulumi.Input[_builtins.bool]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 queue_allowlist: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost_allowlist: Optional[pulumi.Input[_builtins.str]] = None,
+                 access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_email: pulumi.Input[Optional[_builtins.str]] = None,
+                 credentials: pulumi.Input[Optional[_builtins.str]] = None,
+                 email: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_external_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_role: pulumi.Input[Optional[_builtins.str]] = None,
+                 include_ad_queues: pulumi.Input[Optional[_builtins.bool]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 queue_allowlist: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[_builtins.str]] = None,
+                 vhost_allowlist: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1339,24 +1339,24 @@ class IntegrationMetric(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-            api_key: Optional[pulumi.Input[_builtins.str]] = None,
-            client_email: Optional[pulumi.Input[_builtins.str]] = None,
-            credentials: Optional[pulumi.Input[_builtins.str]] = None,
-            email: Optional[pulumi.Input[_builtins.str]] = None,
-            iam_external_id: Optional[pulumi.Input[_builtins.str]] = None,
-            iam_role: Optional[pulumi.Input[_builtins.str]] = None,
-            include_ad_queues: Optional[pulumi.Input[_builtins.bool]] = None,
-            instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            private_key: Optional[pulumi.Input[_builtins.str]] = None,
-            private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            queue_allowlist: Optional[pulumi.Input[_builtins.str]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[_builtins.str]] = None,
-            vhost_allowlist: Optional[pulumi.Input[_builtins.str]] = None) -> 'IntegrationMetric':
+            access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            api_key: pulumi.Input[Optional[_builtins.str]] = None,
+            client_email: pulumi.Input[Optional[_builtins.str]] = None,
+            credentials: pulumi.Input[Optional[_builtins.str]] = None,
+            email: pulumi.Input[Optional[_builtins.str]] = None,
+            iam_external_id: pulumi.Input[Optional[_builtins.str]] = None,
+            iam_role: pulumi.Input[Optional[_builtins.str]] = None,
+            include_ad_queues: pulumi.Input[Optional[_builtins.bool]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            queue_allowlist: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[_builtins.str]] = None,
+            vhost_allowlist: pulumi.Input[Optional[_builtins.str]] = None) -> 'IntegrationMetric':
         """
         Get an existing IntegrationMetric resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

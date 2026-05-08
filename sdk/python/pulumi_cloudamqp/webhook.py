@@ -24,8 +24,8 @@ class WebhookArgs:
                  queue: pulumi.Input[_builtins.str],
                  vhost: pulumi.Input[_builtins.str],
                  webhook_uri: pulumi.Input[_builtins.str],
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None):
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a Webhook resource.
 
@@ -111,39 +111,39 @@ class WebhookArgs:
 
     @_builtins.property
     @pulumi.getter
-    def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def sleep(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable sleep time in seconds between retries for webhook
         """
         return pulumi.get(self, "sleep")
 
     @sleep.setter
-    def sleep(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def sleep(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "sleep", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable timeout time in seconds for webhook
         """
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
 
 @pulumi.input_type
 class _WebhookState:
     def __init__(__self__, *,
-                 concurrency: Optional[pulumi.Input[_builtins.int]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 queue: Optional[pulumi.Input[_builtins.str]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 vhost: Optional[pulumi.Input[_builtins.str]] = None,
-                 webhook_uri: Optional[pulumi.Input[_builtins.str]] = None):
+                 concurrency: pulumi.Input[Optional[_builtins.int]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 queue: pulumi.Input[Optional[_builtins.str]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 vhost: pulumi.Input[Optional[_builtins.str]] = None,
+                 webhook_uri: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Webhook resources.
 
@@ -173,79 +173,79 @@ class _WebhookState:
 
     @_builtins.property
     @pulumi.getter
-    def concurrency(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def concurrency(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Max simultaneous requests to the endpoint.
         """
         return pulumi.get(self, "concurrency")
 
     @concurrency.setter
-    def concurrency(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def concurrency(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "concurrency", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The CloudAMQP instance ID.
         """
         return pulumi.get(self, "instance_id")
 
     @instance_id.setter
-    def instance_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def queue(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def queue(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A (durable) queue on your RabbitMQ instance.
         """
         return pulumi.get(self, "queue")
 
     @queue.setter
-    def queue(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def queue(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "queue", value)
 
     @_builtins.property
     @pulumi.getter
-    def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def sleep(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable sleep time in seconds between retries for webhook
         """
         return pulumi.get(self, "sleep")
 
     @sleep.setter
-    def sleep(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def sleep(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "sleep", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable timeout time in seconds for webhook
         """
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
     @_builtins.property
     @pulumi.getter
-    def vhost(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vhost(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The vhost the queue resides in.
         """
         return pulumi.get(self, "vhost")
 
     @vhost.setter
-    def vhost(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vhost(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vhost", value)
 
     @_builtins.property
     @pulumi.getter(name="webhookUri")
-    def webhook_uri(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def webhook_uri(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A POST request will be made for each message in the queue to this
         endpoint.
@@ -253,7 +253,7 @@ class _WebhookState:
         return pulumi.get(self, "webhook_uri")
 
     @webhook_uri.setter
-    def webhook_uri(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def webhook_uri(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "webhook_uri", value)
 
 
@@ -263,13 +263,13 @@ class Webhook(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 concurrency: Optional[pulumi.Input[_builtins.int]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 queue: Optional[pulumi.Input[_builtins.str]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 vhost: Optional[pulumi.Input[_builtins.str]] = None,
-                 webhook_uri: Optional[pulumi.Input[_builtins.str]] = None,
+                 concurrency: pulumi.Input[Optional[_builtins.int]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 queue: pulumi.Input[Optional[_builtins.str]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 vhost: pulumi.Input[Optional[_builtins.str]] = None,
+                 webhook_uri: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         <!-- markdownlint-disable MD033 -->
@@ -297,7 +297,7 @@ class Webhook(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         webhook_queue = cloudamqp.Webhook("webhook_queue",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             vhost=instance["vhost"],
             queue="webhook-queue",
             webhook_uri="https://example.com/webhook?key=secret",
@@ -320,7 +320,7 @@ class Webhook(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         webhook_queue = cloudamqp.Webhook("webhook_queue",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             vhost=instance["vhost"],
             queue="webhook-queue",
             webhook_uri="https://example.com/webhook?key=secret",
@@ -354,7 +354,7 @@ class Webhook(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         webhook_queue = cloudamqp.Webhook("webhook_queue",
-          instance_id=instance["id"],
+          instance_id=int(instance["id"]),
           vhost=instance["vhost"],
           queue="webhook-queue",
           webhook_uri="https://example.com/webhook?key=secret",
@@ -422,7 +422,7 @@ class Webhook(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         webhook_queue = cloudamqp.Webhook("webhook_queue",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             vhost=instance["vhost"],
             queue="webhook-queue",
             webhook_uri="https://example.com/webhook?key=secret",
@@ -445,7 +445,7 @@ class Webhook(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         webhook_queue = cloudamqp.Webhook("webhook_queue",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             vhost=instance["vhost"],
             queue="webhook-queue",
             webhook_uri="https://example.com/webhook?key=secret",
@@ -479,7 +479,7 @@ class Webhook(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         webhook_queue = cloudamqp.Webhook("webhook_queue",
-          instance_id=instance["id"],
+          instance_id=int(instance["id"]),
           vhost=instance["vhost"],
           queue="webhook-queue",
           webhook_uri="https://example.com/webhook?key=secret",
@@ -519,13 +519,13 @@ class Webhook(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 concurrency: Optional[pulumi.Input[_builtins.int]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 queue: Optional[pulumi.Input[_builtins.str]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 vhost: Optional[pulumi.Input[_builtins.str]] = None,
-                 webhook_uri: Optional[pulumi.Input[_builtins.str]] = None,
+                 concurrency: pulumi.Input[Optional[_builtins.int]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 queue: pulumi.Input[Optional[_builtins.str]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 vhost: pulumi.Input[Optional[_builtins.str]] = None,
+                 webhook_uri: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -562,13 +562,13 @@ class Webhook(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            concurrency: Optional[pulumi.Input[_builtins.int]] = None,
-            instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-            queue: Optional[pulumi.Input[_builtins.str]] = None,
-            sleep: Optional[pulumi.Input[_builtins.int]] = None,
-            timeout: Optional[pulumi.Input[_builtins.int]] = None,
-            vhost: Optional[pulumi.Input[_builtins.str]] = None,
-            webhook_uri: Optional[pulumi.Input[_builtins.str]] = None) -> 'Webhook':
+            concurrency: pulumi.Input[Optional[_builtins.int]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            queue: pulumi.Input[Optional[_builtins.str]] = None,
+            sleep: pulumi.Input[Optional[_builtins.int]] = None,
+            timeout: pulumi.Input[Optional[_builtins.int]] = None,
+            vhost: pulumi.Input[Optional[_builtins.str]] = None,
+            webhook_uri: pulumi.Input[Optional[_builtins.str]] = None) -> 'Webhook':
         """
         Get an existing Webhook resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

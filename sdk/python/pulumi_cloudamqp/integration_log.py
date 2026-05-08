@@ -20,32 +20,32 @@ __all__ = ['IntegrationLogArgs', 'IntegrationLog']
 class IntegrationLogArgs:
     def __init__(__self__, *,
                  instance_id: pulumi.Input[_builtins.int],
-                 access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 application: Optional[pulumi.Input[_builtins.str]] = None,
-                 application_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 application_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_email: Optional[pulumi.Input[_builtins.str]] = None,
-                 credentials: Optional[pulumi.Input[_builtins.str]] = None,
-                 dce_uri: Optional[pulumi.Input[_builtins.str]] = None,
-                 dcr_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 host: Optional[pulumi.Input[_builtins.str]] = None,
-                 host_port: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 retention: Optional[pulumi.Input[_builtins.int]] = None,
-                 secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 sourcetype: Optional[pulumi.Input[_builtins.str]] = None,
-                 subsystem: Optional[pulumi.Input[_builtins.str]] = None,
-                 table: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[_builtins.str]] = None,
-                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None):
+                 access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 application: pulumi.Input[Optional[_builtins.str]] = None,
+                 application_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 application_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_email: pulumi.Input[Optional[_builtins.str]] = None,
+                 credentials: pulumi.Input[Optional[_builtins.str]] = None,
+                 dce_uri: pulumi.Input[Optional[_builtins.str]] = None,
+                 dcr_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 host: pulumi.Input[Optional[_builtins.str]] = None,
+                 host_port: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 retention: pulumi.Input[Optional[_builtins.int]] = None,
+                 secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 sourcetype: pulumi.Input[Optional[_builtins.str]] = None,
+                 subsystem: pulumi.Input[Optional[_builtins.str]] = None,
+                 table: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[_builtins.str]] = None,
+                 tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a IntegrationLog resource.
 
@@ -184,199 +184,199 @@ class IntegrationLogArgs:
 
     @_builtins.property
     @pulumi.getter(name="accessKeyId")
-    def access_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS access key identifier.
         """
         return pulumi.get(self, "access_key_id")
 
     @access_key_id.setter
-    def access_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="apiKey")
-    def api_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The API key for the integration service. (Datadog)
         """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
-    def api_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def application(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def application(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the application. (Azure Monitor)
         """
         return pulumi.get(self, "application")
 
     @application.setter
-    def application(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def application(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "application", value)
 
     @_builtins.property
     @pulumi.getter(name="applicationId")
-    def application_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def application_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The application identifier.
         """
         return pulumi.get(self, "application_id")
 
     @application_id.setter
-    def application_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def application_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "application_id", value)
 
     @_builtins.property
     @pulumi.getter(name="applicationSecret")
-    def application_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def application_secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The application secret.
         """
         return pulumi.get(self, "application_secret")
 
     @application_secret.setter
-    def application_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def application_secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "application_secret", value)
 
     @_builtins.property
     @pulumi.getter(name="clientEmail")
-    def client_email(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_email(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client email. (Stackdriver)
         """
         return pulumi.get(self, "client_email")
 
     @client_email.setter
-    def client_email(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_email(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_email", value)
 
     @_builtins.property
     @pulumi.getter
-    def credentials(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def credentials(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Base64Encoded credentials. (Stackdriver)
         """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
-    def credentials(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def credentials(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "credentials", value)
 
     @_builtins.property
     @pulumi.getter(name="dceUri")
-    def dce_uri(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dce_uri(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The data collection endpoint.
         """
         return pulumi.get(self, "dce_uri")
 
     @dce_uri.setter
-    def dce_uri(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dce_uri(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dce_uri", value)
 
     @_builtins.property
     @pulumi.getter(name="dcrId")
-    def dcr_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dcr_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of data collection rule that your DCE is linked to.
         """
         return pulumi.get(self, "dcr_id")
 
     @dcr_id.setter
-    def dcr_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dcr_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dcr_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The syslog destination to send the logs to. (Papertrail)
         """
         return pulumi.get(self, "endpoint")
 
     @endpoint.setter
-    def endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "endpoint", value)
 
     @_builtins.property
     @pulumi.getter
-    def host(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def host(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The host information. (Scalyr)
         """
         return pulumi.get(self, "host")
 
     @host.setter
-    def host(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def host(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "host", value)
 
     @_builtins.property
     @pulumi.getter(name="hostPort")
-    def host_port(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def host_port(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Destination to send the logs. (Splunk)
         """
         return pulumi.get(self, "host_port")
 
     @host_port.setter
-    def host_port(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def host_port(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "host_port", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the third party log integration (`cloudwatchlog`).
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKey")
-    def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The private API key used for authentication. (Stackdriver, Coralogix)
         """
         return pulumi.get(self, "private_key")
 
     @private_key.setter
-    def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyId")
-    def private_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Private key identifier. (Stackdriver)
         """
         return pulumi.get(self, "private_key_id")
 
     @private_key_id.setter
-    def private_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The project ID for the integration service. (Stackdriver)
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS region hosting the integration service.
 
@@ -385,12 +385,12 @@ class IntegrationLogArgs:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def retention(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def retention(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of days to retain log events in `CloudAMQP` log group.
 
@@ -400,48 +400,48 @@ class IntegrationLogArgs:
         return pulumi.get(self, "retention")
 
     @retention.setter
-    def retention(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def retention(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "retention", value)
 
     @_builtins.property
     @pulumi.getter(name="secretAccessKey")
-    def secret_access_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS secret access key.
         """
         return pulumi.get(self, "secret_access_key")
 
     @secret_access_key.setter
-    def secret_access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_access_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_access_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def sourcetype(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sourcetype(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Assign source type to the data exported, eg. generic_single_line. (Splunk)
         """
         return pulumi.get(self, "sourcetype")
 
     @sourcetype.setter
-    def sourcetype(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sourcetype(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sourcetype", value)
 
     @_builtins.property
     @pulumi.getter
-    def subsystem(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subsystem(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the subsystem. (Azure Monitor)
         """
         return pulumi.get(self, "subsystem")
 
     @subsystem.setter
-    def subsystem(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subsystem(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subsystem", value)
 
     @_builtins.property
     @pulumi.getter
-    def table(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def table(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The table name.
 
@@ -459,12 +459,12 @@ class IntegrationLogArgs:
         return pulumi.get(self, "table")
 
     @table.setter
-    def table(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def table(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "table", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tags(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Enter tags to `CloudAMQP` log group like this: `Project=A,Environment=Development`.
 
@@ -474,76 +474,76 @@ class IntegrationLogArgs:
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tags(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="tenantId")
-    def tenant_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tenant_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The tenant identifier.
         """
         return pulumi.get(self, "tenant_id")
 
     @tenant_id.setter
-    def tenant_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tenant_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tenant_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The token used for authentication. (Loggly, Logentries, Splunk, Scalyr)
         """
         return pulumi.get(self, "token")
 
     @token.setter
-    def token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token", value)
 
     @_builtins.property
     @pulumi.getter
-    def url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The URL to push the logs to. (Papertrail)
         """
         return pulumi.get(self, "url")
 
     @url.setter
-    def url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "url", value)
 
 
 @pulumi.input_type
 class _IntegrationLogState:
     def __init__(__self__, *,
-                 access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 application: Optional[pulumi.Input[_builtins.str]] = None,
-                 application_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 application_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_email: Optional[pulumi.Input[_builtins.str]] = None,
-                 credentials: Optional[pulumi.Input[_builtins.str]] = None,
-                 dce_uri: Optional[pulumi.Input[_builtins.str]] = None,
-                 dcr_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 host: Optional[pulumi.Input[_builtins.str]] = None,
-                 host_port: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 retention: Optional[pulumi.Input[_builtins.int]] = None,
-                 secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 sourcetype: Optional[pulumi.Input[_builtins.str]] = None,
-                 subsystem: Optional[pulumi.Input[_builtins.str]] = None,
-                 table: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[_builtins.str]] = None,
-                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None):
+                 access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 application: pulumi.Input[Optional[_builtins.str]] = None,
+                 application_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 application_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_email: pulumi.Input[Optional[_builtins.str]] = None,
+                 credentials: pulumi.Input[Optional[_builtins.str]] = None,
+                 dce_uri: pulumi.Input[Optional[_builtins.str]] = None,
+                 dcr_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 host: pulumi.Input[Optional[_builtins.str]] = None,
+                 host_port: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 retention: pulumi.Input[Optional[_builtins.int]] = None,
+                 secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 sourcetype: pulumi.Input[Optional[_builtins.str]] = None,
+                 subsystem: pulumi.Input[Optional[_builtins.str]] = None,
+                 table: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[_builtins.str]] = None,
+                 tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IntegrationLog resources.
 
@@ -661,151 +661,151 @@ class _IntegrationLogState:
 
     @_builtins.property
     @pulumi.getter(name="accessKeyId")
-    def access_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS access key identifier.
         """
         return pulumi.get(self, "access_key_id")
 
     @access_key_id.setter
-    def access_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="apiKey")
-    def api_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The API key for the integration service. (Datadog)
         """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
-    def api_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def application(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def application(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the application. (Azure Monitor)
         """
         return pulumi.get(self, "application")
 
     @application.setter
-    def application(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def application(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "application", value)
 
     @_builtins.property
     @pulumi.getter(name="applicationId")
-    def application_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def application_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The application identifier.
         """
         return pulumi.get(self, "application_id")
 
     @application_id.setter
-    def application_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def application_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "application_id", value)
 
     @_builtins.property
     @pulumi.getter(name="applicationSecret")
-    def application_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def application_secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The application secret.
         """
         return pulumi.get(self, "application_secret")
 
     @application_secret.setter
-    def application_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def application_secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "application_secret", value)
 
     @_builtins.property
     @pulumi.getter(name="clientEmail")
-    def client_email(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_email(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client email. (Stackdriver)
         """
         return pulumi.get(self, "client_email")
 
     @client_email.setter
-    def client_email(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_email(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_email", value)
 
     @_builtins.property
     @pulumi.getter
-    def credentials(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def credentials(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Base64Encoded credentials. (Stackdriver)
         """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
-    def credentials(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def credentials(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "credentials", value)
 
     @_builtins.property
     @pulumi.getter(name="dceUri")
-    def dce_uri(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dce_uri(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The data collection endpoint.
         """
         return pulumi.get(self, "dce_uri")
 
     @dce_uri.setter
-    def dce_uri(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dce_uri(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dce_uri", value)
 
     @_builtins.property
     @pulumi.getter(name="dcrId")
-    def dcr_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dcr_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of data collection rule that your DCE is linked to.
         """
         return pulumi.get(self, "dcr_id")
 
     @dcr_id.setter
-    def dcr_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dcr_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dcr_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The syslog destination to send the logs to. (Papertrail)
         """
         return pulumi.get(self, "endpoint")
 
     @endpoint.setter
-    def endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "endpoint", value)
 
     @_builtins.property
     @pulumi.getter
-    def host(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def host(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The host information. (Scalyr)
         """
         return pulumi.get(self, "host")
 
     @host.setter
-    def host(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def host(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "host", value)
 
     @_builtins.property
     @pulumi.getter(name="hostPort")
-    def host_port(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def host_port(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Destination to send the logs. (Splunk)
         """
         return pulumi.get(self, "host_port")
 
     @host_port.setter
-    def host_port(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def host_port(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "host_port", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Instance identifier for the CloudAMQP instance.
 
@@ -822,60 +822,60 @@ class _IntegrationLogState:
         return pulumi.get(self, "instance_id")
 
     @instance_id.setter
-    def instance_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the third party log integration (`cloudwatchlog`).
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKey")
-    def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The private API key used for authentication. (Stackdriver, Coralogix)
         """
         return pulumi.get(self, "private_key")
 
     @private_key.setter
-    def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyId")
-    def private_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Private key identifier. (Stackdriver)
         """
         return pulumi.get(self, "private_key_id")
 
     @private_key_id.setter
-    def private_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The project ID for the integration service. (Stackdriver)
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS region hosting the integration service.
 
@@ -884,12 +884,12 @@ class _IntegrationLogState:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def retention(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def retention(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of days to retain log events in `CloudAMQP` log group.
 
@@ -899,48 +899,48 @@ class _IntegrationLogState:
         return pulumi.get(self, "retention")
 
     @retention.setter
-    def retention(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def retention(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "retention", value)
 
     @_builtins.property
     @pulumi.getter(name="secretAccessKey")
-    def secret_access_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS secret access key.
         """
         return pulumi.get(self, "secret_access_key")
 
     @secret_access_key.setter
-    def secret_access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_access_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_access_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def sourcetype(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sourcetype(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Assign source type to the data exported, eg. generic_single_line. (Splunk)
         """
         return pulumi.get(self, "sourcetype")
 
     @sourcetype.setter
-    def sourcetype(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sourcetype(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sourcetype", value)
 
     @_builtins.property
     @pulumi.getter
-    def subsystem(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subsystem(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the subsystem. (Azure Monitor)
         """
         return pulumi.get(self, "subsystem")
 
     @subsystem.setter
-    def subsystem(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subsystem(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subsystem", value)
 
     @_builtins.property
     @pulumi.getter
-    def table(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def table(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The table name.
 
@@ -958,12 +958,12 @@ class _IntegrationLogState:
         return pulumi.get(self, "table")
 
     @table.setter
-    def table(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def table(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "table", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tags(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Enter tags to `CloudAMQP` log group like this: `Project=A,Environment=Development`.
 
@@ -973,43 +973,43 @@ class _IntegrationLogState:
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tags(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="tenantId")
-    def tenant_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tenant_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The tenant identifier.
         """
         return pulumi.get(self, "tenant_id")
 
     @tenant_id.setter
-    def tenant_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tenant_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tenant_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The token used for authentication. (Loggly, Logentries, Splunk, Scalyr)
         """
         return pulumi.get(self, "token")
 
     @token.setter
-    def token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token", value)
 
     @_builtins.property
     @pulumi.getter
-    def url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The URL to push the logs to. (Papertrail)
         """
         return pulumi.get(self, "url")
 
     @url.setter
-    def url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "url", value)
 
 
@@ -1019,33 +1019,33 @@ class IntegrationLog(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 application: Optional[pulumi.Input[_builtins.str]] = None,
-                 application_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 application_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_email: Optional[pulumi.Input[_builtins.str]] = None,
-                 credentials: Optional[pulumi.Input[_builtins.str]] = None,
-                 dce_uri: Optional[pulumi.Input[_builtins.str]] = None,
-                 dcr_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 host: Optional[pulumi.Input[_builtins.str]] = None,
-                 host_port: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 retention: Optional[pulumi.Input[_builtins.int]] = None,
-                 secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 sourcetype: Optional[pulumi.Input[_builtins.str]] = None,
-                 subsystem: Optional[pulumi.Input[_builtins.str]] = None,
-                 table: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[_builtins.str]] = None,
-                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None,
+                 access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 application: pulumi.Input[Optional[_builtins.str]] = None,
+                 application_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 application_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_email: pulumi.Input[Optional[_builtins.str]] = None,
+                 credentials: pulumi.Input[Optional[_builtins.str]] = None,
+                 dce_uri: pulumi.Input[Optional[_builtins.str]] = None,
+                 dcr_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 host: pulumi.Input[Optional[_builtins.str]] = None,
+                 host_port: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 retention: pulumi.Input[Optional[_builtins.int]] = None,
+                 secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 sourcetype: pulumi.Input[Optional[_builtins.str]] = None,
+                 subsystem: pulumi.Input[Optional[_builtins.str]] = None,
+                 table: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[_builtins.str]] = None,
+                 tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         <!-- markdownlint-disable MD033 -->
@@ -1069,7 +1069,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         azure_monitor = cloudamqp.IntegrationLog("azure_monitor",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="azure_monitor",
             tenant_id=azm_tentant_id,
             application_id=azm_application_id,
@@ -1093,7 +1093,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         cloudwatch = cloudamqp.IntegrationLog("cloudwatch",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="cloudwatchlog",
             access_key_id=aws_access_key_id,
             secret_access_key=aws_secret_access_key,
@@ -1116,7 +1116,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         cloudwatch = cloudamqp.IntegrationLog("cloudwatch",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="cloudwatchlog",
             access_key_id=aws_access_key_id,
             secret_access_key=aws_secret_access_key,
@@ -1139,7 +1139,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         coralogix = cloudamqp.IntegrationLog("coralogix",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="coralogix",
             private_key=coralogix_send_data_key,
             endpoint=coralogix_endpoint,
@@ -1161,7 +1161,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         datadog = cloudamqp.IntegrationLog("datadog",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="datadog",
             region=datadog_region,
             api_key=datadog_api_key,
@@ -1182,7 +1182,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         logentries = cloudamqp.IntegrationLog("logentries",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="logentries",
             token=logentries_token)
         ```
@@ -1201,7 +1201,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         loggly = cloudamqp.IntegrationLog("loggly",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="loggly",
             token=loggly_token)
         ```
@@ -1220,7 +1220,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         papertrail = cloudamqp.IntegrationLog("papertrail",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="papertrail",
             url=papertrail_url)
         ```
@@ -1239,7 +1239,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         scalyr = cloudamqp.IntegrationLog("scalyr",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="scalyr",
             token=scalyr_token,
             host=scalyr_host)
@@ -1259,7 +1259,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         splunk = cloudamqp.IntegrationLog("splunk",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="splunk",
             token=splunk_token,
             host_port=splunk_host_port,
@@ -1282,7 +1282,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         stackdriver = cloudamqp.IntegrationLog("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             project_id=stackdriver_project_id,
             private_key=stackdriver_private_key,
@@ -1303,7 +1303,7 @@ class IntegrationLog(pulumi.CustomResource):
             display_name=<display_name>)
         service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationLog("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             project_id=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["projectId"],
             private_key=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["privateKey"],
@@ -1333,7 +1333,7 @@ class IntegrationLog(pulumi.CustomResource):
             display_name=<display_name>)
         service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationLog("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             credentials=service_account_key["privateKey"])
         ```
@@ -1352,7 +1352,7 @@ class IntegrationLog(pulumi.CustomResource):
             display_name=<display_name>)
         service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationLog("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             project_id=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["projectId"],
             private_key=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["privateKey"],
@@ -1453,7 +1453,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         azure_monitor = cloudamqp.IntegrationLog("azure_monitor",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="azure_monitor",
             tenant_id=azm_tentant_id,
             application_id=azm_application_id,
@@ -1477,7 +1477,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         cloudwatch = cloudamqp.IntegrationLog("cloudwatch",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="cloudwatchlog",
             access_key_id=aws_access_key_id,
             secret_access_key=aws_secret_access_key,
@@ -1500,7 +1500,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         cloudwatch = cloudamqp.IntegrationLog("cloudwatch",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="cloudwatchlog",
             access_key_id=aws_access_key_id,
             secret_access_key=aws_secret_access_key,
@@ -1523,7 +1523,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         coralogix = cloudamqp.IntegrationLog("coralogix",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="coralogix",
             private_key=coralogix_send_data_key,
             endpoint=coralogix_endpoint,
@@ -1545,7 +1545,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         datadog = cloudamqp.IntegrationLog("datadog",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="datadog",
             region=datadog_region,
             api_key=datadog_api_key,
@@ -1566,7 +1566,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         logentries = cloudamqp.IntegrationLog("logentries",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="logentries",
             token=logentries_token)
         ```
@@ -1585,7 +1585,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         loggly = cloudamqp.IntegrationLog("loggly",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="loggly",
             token=loggly_token)
         ```
@@ -1604,7 +1604,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         papertrail = cloudamqp.IntegrationLog("papertrail",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="papertrail",
             url=papertrail_url)
         ```
@@ -1623,7 +1623,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         scalyr = cloudamqp.IntegrationLog("scalyr",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="scalyr",
             token=scalyr_token,
             host=scalyr_host)
@@ -1643,7 +1643,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         splunk = cloudamqp.IntegrationLog("splunk",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="splunk",
             token=splunk_token,
             host_port=splunk_host_port,
@@ -1666,7 +1666,7 @@ class IntegrationLog(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         stackdriver = cloudamqp.IntegrationLog("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             project_id=stackdriver_project_id,
             private_key=stackdriver_private_key,
@@ -1687,7 +1687,7 @@ class IntegrationLog(pulumi.CustomResource):
             display_name=<display_name>)
         service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationLog("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             project_id=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["projectId"],
             private_key=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["privateKey"],
@@ -1717,7 +1717,7 @@ class IntegrationLog(pulumi.CustomResource):
             display_name=<display_name>)
         service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationLog("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             credentials=service_account_key["privateKey"])
         ```
@@ -1736,7 +1736,7 @@ class IntegrationLog(pulumi.CustomResource):
             display_name=<display_name>)
         service_account_key = google.ServiceAccountKey("service_account_key", service_account_id=service_account.name)
         stackdriver = cloudamqp.IntegrationLog("stackdriver",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             name="stackdriver",
             project_id=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["projectId"],
             private_key=std.jsondecode(input=std.base64decode(input=service_account_key["privateKey"])["result"])["result"]["privateKey"],
@@ -1765,33 +1765,33 @@ class IntegrationLog(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 application: Optional[pulumi.Input[_builtins.str]] = None,
-                 application_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 application_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_email: Optional[pulumi.Input[_builtins.str]] = None,
-                 credentials: Optional[pulumi.Input[_builtins.str]] = None,
-                 dce_uri: Optional[pulumi.Input[_builtins.str]] = None,
-                 dcr_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 host: Optional[pulumi.Input[_builtins.str]] = None,
-                 host_port: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 retention: Optional[pulumi.Input[_builtins.int]] = None,
-                 secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 sourcetype: Optional[pulumi.Input[_builtins.str]] = None,
-                 subsystem: Optional[pulumi.Input[_builtins.str]] = None,
-                 table: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[_builtins.str]] = None,
-                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None,
+                 access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 application: pulumi.Input[Optional[_builtins.str]] = None,
+                 application_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 application_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_email: pulumi.Input[Optional[_builtins.str]] = None,
+                 credentials: pulumi.Input[Optional[_builtins.str]] = None,
+                 dce_uri: pulumi.Input[Optional[_builtins.str]] = None,
+                 dcr_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 host: pulumi.Input[Optional[_builtins.str]] = None,
+                 host_port: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 retention: pulumi.Input[Optional[_builtins.int]] = None,
+                 secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 sourcetype: pulumi.Input[Optional[_builtins.str]] = None,
+                 subsystem: pulumi.Input[Optional[_builtins.str]] = None,
+                 table: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[_builtins.str]] = None,
+                 tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1842,33 +1842,33 @@ class IntegrationLog(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-            api_key: Optional[pulumi.Input[_builtins.str]] = None,
-            application: Optional[pulumi.Input[_builtins.str]] = None,
-            application_id: Optional[pulumi.Input[_builtins.str]] = None,
-            application_secret: Optional[pulumi.Input[_builtins.str]] = None,
-            client_email: Optional[pulumi.Input[_builtins.str]] = None,
-            credentials: Optional[pulumi.Input[_builtins.str]] = None,
-            dce_uri: Optional[pulumi.Input[_builtins.str]] = None,
-            dcr_id: Optional[pulumi.Input[_builtins.str]] = None,
-            endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-            host: Optional[pulumi.Input[_builtins.str]] = None,
-            host_port: Optional[pulumi.Input[_builtins.str]] = None,
-            instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            private_key: Optional[pulumi.Input[_builtins.str]] = None,
-            private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            retention: Optional[pulumi.Input[_builtins.int]] = None,
-            secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-            sourcetype: Optional[pulumi.Input[_builtins.str]] = None,
-            subsystem: Optional[pulumi.Input[_builtins.str]] = None,
-            table: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[_builtins.str]] = None,
-            tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
-            token: Optional[pulumi.Input[_builtins.str]] = None,
-            url: Optional[pulumi.Input[_builtins.str]] = None) -> 'IntegrationLog':
+            access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            api_key: pulumi.Input[Optional[_builtins.str]] = None,
+            application: pulumi.Input[Optional[_builtins.str]] = None,
+            application_id: pulumi.Input[Optional[_builtins.str]] = None,
+            application_secret: pulumi.Input[Optional[_builtins.str]] = None,
+            client_email: pulumi.Input[Optional[_builtins.str]] = None,
+            credentials: pulumi.Input[Optional[_builtins.str]] = None,
+            dce_uri: pulumi.Input[Optional[_builtins.str]] = None,
+            dcr_id: pulumi.Input[Optional[_builtins.str]] = None,
+            endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            host: pulumi.Input[Optional[_builtins.str]] = None,
+            host_port: pulumi.Input[Optional[_builtins.str]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            retention: pulumi.Input[Optional[_builtins.int]] = None,
+            secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+            sourcetype: pulumi.Input[Optional[_builtins.str]] = None,
+            subsystem: pulumi.Input[Optional[_builtins.str]] = None,
+            table: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[_builtins.str]] = None,
+            tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
+            token: pulumi.Input[Optional[_builtins.str]] = None,
+            url: pulumi.Input[Optional[_builtins.str]] = None) -> 'IntegrationLog':
         """
         Get an existing IntegrationLog resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

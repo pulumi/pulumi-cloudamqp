@@ -27,7 +27,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const _this = new cloudamqp.MaintenanceWindow("this", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     preferredDay: "Monday",
  *     preferredTime: "23:00",
  * });
@@ -48,7 +48,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const _this = new cloudamqp.MaintenanceWindow("this", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     preferredDay: "Monday",
  *     preferredTime: "23:00",
  *     automaticUpdates: "on",
@@ -67,7 +67,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const _this = new cloudamqp.MaintenanceWindow("this", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     preferredTime: "23:00",
  * });
  * ```
@@ -84,7 +84,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const _this = new cloudamqp.MaintenanceWindow("this", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     preferredDay: "Monday",
  * });
  * ```
@@ -181,19 +181,19 @@ export interface MaintenanceWindowState {
      * Allow scheduling of a maintenance for version update
      * when a new LavinMQ version been released.
      */
-    automaticUpdates?: pulumi.Input<string>;
+    automaticUpdates?: pulumi.Input<string | undefined>;
     /**
      * The CloudAMQP instance ID.
      */
-    instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number | undefined>;
     /**
      * Preferred day of the week when to schedule maintenance.
      */
-    preferredDay?: pulumi.Input<string>;
+    preferredDay?: pulumi.Input<string | undefined>;
     /**
      * Preferred time (UTC) of the day when to schedule maintenance.
      */
-    preferredTime?: pulumi.Input<string>;
+    preferredTime?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -204,7 +204,7 @@ export interface MaintenanceWindowArgs {
      * Allow scheduling of a maintenance for version update
      * when a new LavinMQ version been released.
      */
-    automaticUpdates?: pulumi.Input<string>;
+    automaticUpdates?: pulumi.Input<string | undefined>;
     /**
      * The CloudAMQP instance ID.
      */
@@ -212,9 +212,9 @@ export interface MaintenanceWindowArgs {
     /**
      * Preferred day of the week when to schedule maintenance.
      */
-    preferredDay?: pulumi.Input<string>;
+    preferredDay?: pulumi.Input<string | undefined>;
     /**
      * Preferred time (UTC) of the day when to schedule maintenance.
      */
-    preferredTime?: pulumi.Input<string>;
+    preferredTime?: pulumi.Input<string | undefined>;
 }

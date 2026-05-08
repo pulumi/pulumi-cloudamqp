@@ -61,8 +61,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.aws.Route;
  * import com.pulumi.aws.RouteArgs;
  * import com.pulumi.resources.CustomResourceOptions;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -117,7 +117,7 @@ import javax.annotation.Nullable;
  *             .destinationCidrBlock(instance.vpcSubnet())
  *             .vpcPeeringConnectionId(awsVpcPeering.id())
  *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(List.of(vpcAcceptPeering))
+ *                 .dependsOn(Arrays.asList(vpcAcceptPeering))
  *                 .build());
  * 
  *     }
@@ -155,8 +155,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.aws.Route;
  * import com.pulumi.aws.RouteArgs;
  * import com.pulumi.resources.CustomResourceOptions;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -222,7 +222,7 @@ import javax.annotation.Nullable;
  *             .destinationCidrBlock(instance.vpcSubnet())
  *             .vpcPeeringConnectionId(awsVpcPeering.id())
  *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(List.of(vpcAcceptPeering))
+ *                 .dependsOn(Arrays.asList(vpcAcceptPeering))
  *                 .build());
  * 
  *     }
@@ -255,8 +255,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.cloudamqp.SecurityFirewallArgs;
  * import com.pulumi.cloudamqp.inputs.SecurityFirewallRuleArgs;
  * import com.pulumi.resources.CustomResourceOptions;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -334,8 +334,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.cloudamqp.SecurityFirewallArgs;
  * import com.pulumi.cloudamqp.inputs.SecurityFirewallRuleArgs;
  * import com.pulumi.resources.CustomResourceOptions;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;

@@ -21,8 +21,8 @@ class PrivatelinkAzureArgs:
     def __init__(__self__, *,
                  approved_subscriptions: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  instance_id: pulumi.Input[_builtins.int],
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None):
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a PrivatelinkAzure resource.
 
@@ -75,7 +75,7 @@ class PrivatelinkAzureArgs:
 
     @_builtins.property
     @pulumi.getter
-    def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def sleep(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable sleep time (seconds) when enable PrivateLink.
         Default set to 10 seconds.
@@ -85,12 +85,12 @@ class PrivatelinkAzureArgs:
         return pulumi.get(self, "sleep")
 
     @sleep.setter
-    def sleep(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def sleep(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "sleep", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable timeout time (seconds) when enable PrivateLink.
         Default set to 1800 seconds.
@@ -103,20 +103,20 @@ class PrivatelinkAzureArgs:
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
 
 @pulumi.input_type
 class _PrivatelinkAzureState:
     def __init__(__self__, *,
-                 approved_subscriptions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 server_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None):
+                 approved_subscriptions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 server_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering PrivatelinkAzure resources.
 
@@ -155,7 +155,7 @@ class _PrivatelinkAzureState:
 
     @_builtins.property
     @pulumi.getter(name="approvedSubscriptions")
-    def approved_subscriptions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def approved_subscriptions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Approved subscriptions to access the endpoint service.
         See format below.
@@ -163,48 +163,48 @@ class _PrivatelinkAzureState:
         return pulumi.get(self, "approved_subscriptions")
 
     @approved_subscriptions.setter
-    def approved_subscriptions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def approved_subscriptions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "approved_subscriptions", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The CloudAMQP instance identifier.
         """
         return pulumi.get(self, "instance_id")
 
     @instance_id.setter
-    def instance_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_id", value)
 
     @_builtins.property
     @pulumi.getter(name="serverName")
-    def server_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def server_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the server having the PrivateLink enabled.
         """
         return pulumi.get(self, "server_name")
 
     @server_name.setter
-    def server_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def server_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "server_name", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceName")
-    def service_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Service name (alias) of the PrivateLink, needed when creating the endpoint.
         """
         return pulumi.get(self, "service_name")
 
     @service_name.setter
-    def service_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def sleep(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def sleep(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable sleep time (seconds) when enable PrivateLink.
         Default set to 10 seconds.
@@ -214,24 +214,24 @@ class _PrivatelinkAzureState:
         return pulumi.get(self, "sleep")
 
     @sleep.setter
-    def sleep(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def sleep(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "sleep", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         PrivateLink status [enable, pending, disable]
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configurable timeout time (seconds) when enable PrivateLink.
         Default set to 1800 seconds.
@@ -244,7 +244,7 @@ class _PrivatelinkAzureState:
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
 
@@ -254,10 +254,10 @@ class PrivatelinkAzure(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 approved_subscriptions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
+                 approved_subscriptions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         <!-- markdownlint-disable MD033 -->
@@ -291,7 +291,7 @@ class PrivatelinkAzure(pulumi.CustomResource):
             region="azure-arm::westus",
             tags=[])
         privatelink = cloudamqp.PrivatelinkAzure("privatelink",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         ```
 
@@ -318,10 +318,10 @@ class PrivatelinkAzure(pulumi.CustomResource):
             plan="bunny-1",
             region="azure-arm::westus",
             tags=[],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         privatelink = cloudamqp.PrivatelinkAzure("privatelink",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         ```
 
@@ -350,13 +350,13 @@ class PrivatelinkAzure(pulumi.CustomResource):
             plan="bunny-1",
             region="azure-arm::westus",
             tags=[],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         privatelink = cloudamqp.PrivatelinkAzure("privatelink",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             rules=[
                 {
                     "description": "Custom PrivateLink setup",
@@ -459,7 +459,7 @@ class PrivatelinkAzure(pulumi.CustomResource):
             region="azure-arm::westus",
             tags=[])
         privatelink = cloudamqp.PrivatelinkAzure("privatelink",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         ```
 
@@ -486,10 +486,10 @@ class PrivatelinkAzure(pulumi.CustomResource):
             plan="bunny-1",
             region="azure-arm::westus",
             tags=[],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         privatelink = cloudamqp.PrivatelinkAzure("privatelink",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         ```
 
@@ -518,13 +518,13 @@ class PrivatelinkAzure(pulumi.CustomResource):
             plan="bunny-1",
             region="azure-arm::westus",
             tags=[],
-            vpc_id=vpc.id,
+            vpc_id=vpc.id.apply(lambda x: int(x)),
             keep_associated_vpc=True)
         privatelink = cloudamqp.PrivatelinkAzure("privatelink",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             rules=[
                 {
                     "description": "Custom PrivateLink setup",
@@ -587,10 +587,10 @@ class PrivatelinkAzure(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 approved_subscriptions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 sleep: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
+                 approved_subscriptions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 sleep: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -621,13 +621,13 @@ class PrivatelinkAzure(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            approved_subscriptions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-            server_name: Optional[pulumi.Input[_builtins.str]] = None,
-            service_name: Optional[pulumi.Input[_builtins.str]] = None,
-            sleep: Optional[pulumi.Input[_builtins.int]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None,
-            timeout: Optional[pulumi.Input[_builtins.int]] = None) -> 'PrivatelinkAzure':
+            approved_subscriptions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            server_name: pulumi.Input[Optional[_builtins.str]] = None,
+            service_name: pulumi.Input[Optional[_builtins.str]] = None,
+            sleep: pulumi.Input[Optional[_builtins.int]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            timeout: pulumi.Input[Optional[_builtins.int]] = None) -> 'PrivatelinkAzure':
         """
         Get an existing PrivatelinkAzure resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -20,7 +20,7 @@ __all__ = ['UpgradeLavinmqArgs', 'UpgradeLavinmq']
 class UpgradeLavinmqArgs:
     def __init__(__self__, *,
                  instance_id: pulumi.Input[_builtins.int],
-                 new_version: Optional[pulumi.Input[_builtins.str]] = None):
+                 new_version: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a UpgradeLavinmq resource.
 
@@ -45,22 +45,22 @@ class UpgradeLavinmqArgs:
 
     @_builtins.property
     @pulumi.getter(name="newVersion")
-    def new_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def new_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The new version to upgrade to
         """
         return pulumi.get(self, "new_version")
 
     @new_version.setter
-    def new_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def new_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "new_version", value)
 
 
 @pulumi.input_type
 class _UpgradeLavinmqState:
     def __init__(__self__, *,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 new_version: Optional[pulumi.Input[_builtins.str]] = None):
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 new_version: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering UpgradeLavinmq resources.
 
@@ -74,26 +74,26 @@ class _UpgradeLavinmqState:
 
     @_builtins.property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The CloudAMQP instance identifier
         """
         return pulumi.get(self, "instance_id")
 
     @instance_id.setter
-    def instance_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_id", value)
 
     @_builtins.property
     @pulumi.getter(name="newVersion")
-    def new_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def new_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The new version to upgrade to
         """
         return pulumi.get(self, "new_version")
 
     @new_version.setter
-    def new_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def new_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "new_version", value)
 
 
@@ -103,8 +103,8 @@ class UpgradeLavinmq(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 new_version: Optional[pulumi.Input[_builtins.str]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 new_version: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         <!-- markdownlint-disable MD033 -->
@@ -135,7 +135,7 @@ class UpgradeLavinmq(pulumi.CustomResource):
             plan="lynx-1",
             region="amazon-web-services::us-west-1")
         upgrade = cloudamqp.UpgradeLavinmq("upgrade",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             new_version="1.3.1")
         ```
 
@@ -193,7 +193,7 @@ class UpgradeLavinmq(pulumi.CustomResource):
             plan="lynx-1",
             region="amazon-web-services::us-west-1")
         upgrade = cloudamqp.UpgradeLavinmq("upgrade",
-            instance_id=instance.id,
+            instance_id=instance.id.apply(lambda x: int(x)),
             new_version="1.3.1")
         ```
 
@@ -226,8 +226,8 @@ class UpgradeLavinmq(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 new_version: Optional[pulumi.Input[_builtins.str]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 new_version: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -251,8 +251,8 @@ class UpgradeLavinmq(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-            new_version: Optional[pulumi.Input[_builtins.str]] = None) -> 'UpgradeLavinmq':
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            new_version: pulumi.Input[Optional[_builtins.str]] = None) -> 'UpgradeLavinmq':
         """
         Get an existing UpgradeLavinmq resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

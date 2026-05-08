@@ -25,7 +25,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const vpcInfo = cloudamqp.getVpcInfo({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * ```
  *
@@ -135,7 +135,7 @@ export interface GetVpcInfoResult {
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const vpcInfo = cloudamqp.getVpcInfo({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * ```
  *
@@ -188,11 +188,11 @@ export interface GetVpcInfoOutputArgs {
      *
      * ***Deprecated:*** from [v1.16.0], will be removed in next major version (v2.0)
      */
-    instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number | undefined>;
     /**
      * The managed VPC identifier.
      *
      * ***Note:*** Available from [v1.16.0], will be removed in next major version (v2.0)
      */
-    vpcId?: pulumi.Input<string>;
+    vpcId?: pulumi.Input<string | undefined>;
 }

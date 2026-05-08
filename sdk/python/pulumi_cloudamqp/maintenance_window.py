@@ -20,9 +20,9 @@ __all__ = ['MaintenanceWindowArgs', 'MaintenanceWindow']
 class MaintenanceWindowArgs:
     def __init__(__self__, *,
                  instance_id: pulumi.Input[_builtins.int],
-                 automatic_updates: Optional[pulumi.Input[_builtins.str]] = None,
-                 preferred_day: Optional[pulumi.Input[_builtins.str]] = None,
-                 preferred_time: Optional[pulumi.Input[_builtins.str]] = None):
+                 automatic_updates: pulumi.Input[Optional[_builtins.str]] = None,
+                 preferred_day: pulumi.Input[Optional[_builtins.str]] = None,
+                 preferred_time: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a MaintenanceWindow resource.
 
@@ -54,7 +54,7 @@ class MaintenanceWindowArgs:
 
     @_builtins.property
     @pulumi.getter(name="automaticUpdates")
-    def automatic_updates(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def automatic_updates(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Allow scheduling of a maintenance for version update
         when a new LavinMQ version been released.
@@ -62,41 +62,41 @@ class MaintenanceWindowArgs:
         return pulumi.get(self, "automatic_updates")
 
     @automatic_updates.setter
-    def automatic_updates(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def automatic_updates(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "automatic_updates", value)
 
     @_builtins.property
     @pulumi.getter(name="preferredDay")
-    def preferred_day(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def preferred_day(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Preferred day of the week when to schedule maintenance.
         """
         return pulumi.get(self, "preferred_day")
 
     @preferred_day.setter
-    def preferred_day(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def preferred_day(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "preferred_day", value)
 
     @_builtins.property
     @pulumi.getter(name="preferredTime")
-    def preferred_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def preferred_time(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Preferred time (UTC) of the day when to schedule maintenance.
         """
         return pulumi.get(self, "preferred_time")
 
     @preferred_time.setter
-    def preferred_time(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def preferred_time(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "preferred_time", value)
 
 
 @pulumi.input_type
 class _MaintenanceWindowState:
     def __init__(__self__, *,
-                 automatic_updates: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 preferred_day: Optional[pulumi.Input[_builtins.str]] = None,
-                 preferred_time: Optional[pulumi.Input[_builtins.str]] = None):
+                 automatic_updates: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 preferred_day: pulumi.Input[Optional[_builtins.str]] = None,
+                 preferred_time: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MaintenanceWindow resources.
 
@@ -117,7 +117,7 @@ class _MaintenanceWindowState:
 
     @_builtins.property
     @pulumi.getter(name="automaticUpdates")
-    def automatic_updates(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def automatic_updates(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Allow scheduling of a maintenance for version update
         when a new LavinMQ version been released.
@@ -125,43 +125,43 @@ class _MaintenanceWindowState:
         return pulumi.get(self, "automatic_updates")
 
     @automatic_updates.setter
-    def automatic_updates(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def automatic_updates(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "automatic_updates", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The CloudAMQP instance ID.
         """
         return pulumi.get(self, "instance_id")
 
     @instance_id.setter
-    def instance_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_id", value)
 
     @_builtins.property
     @pulumi.getter(name="preferredDay")
-    def preferred_day(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def preferred_day(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Preferred day of the week when to schedule maintenance.
         """
         return pulumi.get(self, "preferred_day")
 
     @preferred_day.setter
-    def preferred_day(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def preferred_day(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "preferred_day", value)
 
     @_builtins.property
     @pulumi.getter(name="preferredTime")
-    def preferred_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def preferred_time(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Preferred time (UTC) of the day when to schedule maintenance.
         """
         return pulumi.get(self, "preferred_time")
 
     @preferred_time.setter
-    def preferred_time(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def preferred_time(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "preferred_time", value)
 
 
@@ -171,10 +171,10 @@ class MaintenanceWindow(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 automatic_updates: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 preferred_day: Optional[pulumi.Input[_builtins.str]] = None,
-                 preferred_time: Optional[pulumi.Input[_builtins.str]] = None,
+                 automatic_updates: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 preferred_day: pulumi.Input[Optional[_builtins.str]] = None,
+                 preferred_time: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         <!-- markdownlint-disable MD033 -->
@@ -199,7 +199,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         this = cloudamqp.MaintenanceWindow("this",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             preferred_day="Monday",
             preferred_time="23:00")
         ```
@@ -219,7 +219,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         this = cloudamqp.MaintenanceWindow("this",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             preferred_day="Monday",
             preferred_time="23:00",
             automatic_updates="on")
@@ -237,7 +237,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         this = cloudamqp.MaintenanceWindow("this",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             preferred_time="23:00")
         ```
 
@@ -253,7 +253,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         this = cloudamqp.MaintenanceWindow("this",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             preferred_day="Monday")
         ```
 
@@ -301,7 +301,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         this = cloudamqp.MaintenanceWindow("this",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             preferred_day="Monday",
             preferred_time="23:00")
         ```
@@ -321,7 +321,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         this = cloudamqp.MaintenanceWindow("this",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             preferred_day="Monday",
             preferred_time="23:00",
             automatic_updates="on")
@@ -339,7 +339,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         this = cloudamqp.MaintenanceWindow("this",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             preferred_time="23:00")
         ```
 
@@ -355,7 +355,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         this = cloudamqp.MaintenanceWindow("this",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             preferred_day="Monday")
         ```
 
@@ -381,10 +381,10 @@ class MaintenanceWindow(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 automatic_updates: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 preferred_day: Optional[pulumi.Input[_builtins.str]] = None,
-                 preferred_time: Optional[pulumi.Input[_builtins.str]] = None,
+                 automatic_updates: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 preferred_day: pulumi.Input[Optional[_builtins.str]] = None,
+                 preferred_time: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -410,10 +410,10 @@ class MaintenanceWindow(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            automatic_updates: Optional[pulumi.Input[_builtins.str]] = None,
-            instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-            preferred_day: Optional[pulumi.Input[_builtins.str]] = None,
-            preferred_time: Optional[pulumi.Input[_builtins.str]] = None) -> 'MaintenanceWindow':
+            automatic_updates: pulumi.Input[Optional[_builtins.str]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            preferred_day: pulumi.Input[Optional[_builtins.str]] = None,
+            preferred_time: pulumi.Input[Optional[_builtins.str]] = None) -> 'MaintenanceWindow':
         """
         Get an existing MaintenanceWindow resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

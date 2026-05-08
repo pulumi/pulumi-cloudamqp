@@ -27,7 +27,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var credentials = CloudAmqp.Index.GetCredentials.Invoke(new()
+        ///     var credentials = CloudAmqp.GetCredentials.Invoke(new()
         ///     {
         ///         InstanceId = instance.Id,
         ///     });
@@ -55,10 +55,10 @@ namespace Pulumi.CloudAmqp
         /// {
         ///     // New (recommended)
         ///     // Access credentials directly from the resource
-        ///     var instance = new CloudAmqp.Index.Instance("instance");
+        ///     var instance = new CloudAmqp.Instance("instance");
         /// 
         ///     // Old (deprecated)
-        ///     var credentials = CloudAmqp.Index.GetCredentials.Invoke(new()
+        ///     var credentials = CloudAmqp.GetCredentials.Invoke(new()
         ///     {
         ///         InstanceId = instance.Id,
         ///     });
@@ -85,7 +85,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var credentials = CloudAmqp.Index.GetCredentials.Invoke(new()
+        ///     var credentials = CloudAmqp.GetCredentials.Invoke(new()
         ///     {
         ///         InstanceId = instance.Id,
         ///     });
@@ -113,10 +113,10 @@ namespace Pulumi.CloudAmqp
         /// {
         ///     // New (recommended)
         ///     // Access credentials directly from the resource
-        ///     var instance = new CloudAmqp.Index.Instance("instance");
+        ///     var instance = new CloudAmqp.Instance("instance");
         /// 
         ///     // Old (deprecated)
-        ///     var credentials = CloudAmqp.Index.GetCredentials.Invoke(new()
+        ///     var credentials = CloudAmqp.GetCredentials.Invoke(new()
         ///     {
         ///         InstanceId = instance.Id,
         ///     });
@@ -143,7 +143,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var credentials = CloudAmqp.Index.GetCredentials.Invoke(new()
+        ///     var credentials = CloudAmqp.GetCredentials.Invoke(new()
         ///     {
         ///         InstanceId = instance.Id,
         ///     });
@@ -171,10 +171,10 @@ namespace Pulumi.CloudAmqp
         /// {
         ///     // New (recommended)
         ///     // Access credentials directly from the resource
-        ///     var instance = new CloudAmqp.Index.Instance("instance");
+        ///     var instance = new CloudAmqp.Instance("instance");
         /// 
         ///     // Old (deprecated)
-        ///     var credentials = CloudAmqp.Index.GetCredentials.Invoke(new()
+        ///     var credentials = CloudAmqp.GetCredentials.Invoke(new()
         ///     {
         ///         InstanceId = instance.Id,
         ///     });

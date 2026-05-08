@@ -23,13 +23,13 @@ class AlarmArgs:
                  instance_id: pulumi.Input[_builtins.int],
                  recipients: pulumi.Input[Sequence[pulumi.Input[_builtins.int]]],
                  type: pulumi.Input[_builtins.str],
-                 message_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 queue_regex: Optional[pulumi.Input[_builtins.str]] = None,
-                 reminder_interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 time_threshold: Optional[pulumi.Input[_builtins.int]] = None,
-                 value_calculation: Optional[pulumi.Input[_builtins.str]] = None,
-                 value_threshold: Optional[pulumi.Input[_builtins.int]] = None,
-                 vhost_regex: Optional[pulumi.Input[_builtins.str]] = None):
+                 message_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 queue_regex: pulumi.Input[Optional[_builtins.str]] = None,
+                 reminder_interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 time_threshold: pulumi.Input[Optional[_builtins.int]] = None,
+                 value_calculation: pulumi.Input[Optional[_builtins.str]] = None,
+                 value_threshold: pulumi.Input[Optional[_builtins.int]] = None,
+                 vhost_regex: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Alarm resource.
 
@@ -123,7 +123,7 @@ class AlarmArgs:
 
     @_builtins.property
     @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def message_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Message type `(total, unacked, ready)` used by queue alarm type.
 
@@ -132,24 +132,24 @@ class AlarmArgs:
         return pulumi.get(self, "message_type")
 
     @message_type.setter
-    def message_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def message_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "message_type", value)
 
     @_builtins.property
     @pulumi.getter(name="queueRegex")
-    def queue_regex(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def queue_regex(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Regex for which queue to check.
         """
         return pulumi.get(self, "queue_regex")
 
     @queue_regex.setter
-    def queue_regex(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def queue_regex(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "queue_regex", value)
 
     @_builtins.property
     @pulumi.getter(name="reminderInterval")
-    def reminder_interval(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def reminder_interval(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The reminder interval (in seconds) to resend the alarm if not
         resolved. Set to 0 for no reminders. The Default is 0.
@@ -157,12 +157,12 @@ class AlarmArgs:
         return pulumi.get(self, "reminder_interval")
 
     @reminder_interval.setter
-    def reminder_interval(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def reminder_interval(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "reminder_interval", value)
 
     @_builtins.property
     @pulumi.getter(name="timeThreshold")
-    def time_threshold(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def time_threshold(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The time interval (in seconds) the `value_threshold` should be
         active before triggering an alarm.
@@ -170,12 +170,12 @@ class AlarmArgs:
         return pulumi.get(self, "time_threshold")
 
     @time_threshold.setter
-    def time_threshold(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def time_threshold(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "time_threshold", value)
 
     @_builtins.property
     @pulumi.getter(name="valueCalculation")
-    def value_calculation(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def value_calculation(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Disk value threshold calculation, `fixed, percentage` of disk
         space remaining.
@@ -185,48 +185,48 @@ class AlarmArgs:
         return pulumi.get(self, "value_calculation")
 
     @value_calculation.setter
-    def value_calculation(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def value_calculation(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "value_calculation", value)
 
     @_builtins.property
     @pulumi.getter(name="valueThreshold")
-    def value_threshold(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def value_threshold(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The value to trigger the alarm for.
         """
         return pulumi.get(self, "value_threshold")
 
     @value_threshold.setter
-    def value_threshold(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def value_threshold(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "value_threshold", value)
 
     @_builtins.property
     @pulumi.getter(name="vhostRegex")
-    def vhost_regex(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vhost_regex(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Regex for which vhost to check
         """
         return pulumi.get(self, "vhost_regex")
 
     @vhost_regex.setter
-    def vhost_regex(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vhost_regex(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vhost_regex", value)
 
 
 @pulumi.input_type
 class _AlarmState:
     def __init__(__self__, *,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 message_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 queue_regex: Optional[pulumi.Input[_builtins.str]] = None,
-                 recipients: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 reminder_interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 time_threshold: Optional[pulumi.Input[_builtins.int]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 value_calculation: Optional[pulumi.Input[_builtins.str]] = None,
-                 value_threshold: Optional[pulumi.Input[_builtins.int]] = None,
-                 vhost_regex: Optional[pulumi.Input[_builtins.str]] = None):
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 message_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 queue_regex: pulumi.Input[Optional[_builtins.str]] = None,
+                 recipients: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 reminder_interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 time_threshold: pulumi.Input[Optional[_builtins.int]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 value_calculation: pulumi.Input[Optional[_builtins.str]] = None,
+                 value_threshold: pulumi.Input[Optional[_builtins.int]] = None,
+                 vhost_regex: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Alarm resources.
 
@@ -275,31 +275,31 @@ class _AlarmState:
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable or disable the alarm to trigger.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instance_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The CloudAMQP instance ID.
         """
         return pulumi.get(self, "instance_id")
 
     @instance_id.setter
-    def instance_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instance_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_id", value)
 
     @_builtins.property
     @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def message_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Message type `(total, unacked, ready)` used by queue alarm type.
 
@@ -308,24 +308,24 @@ class _AlarmState:
         return pulumi.get(self, "message_type")
 
     @message_type.setter
-    def message_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def message_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "message_type", value)
 
     @_builtins.property
     @pulumi.getter(name="queueRegex")
-    def queue_regex(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def queue_regex(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Regex for which queue to check.
         """
         return pulumi.get(self, "queue_regex")
 
     @queue_regex.setter
-    def queue_regex(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def queue_regex(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "queue_regex", value)
 
     @_builtins.property
     @pulumi.getter
-    def recipients(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
+    def recipients(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]:
         """
         Identifier for recipient to be notified. Leave empty to notify
         all recipients.
@@ -333,12 +333,12 @@ class _AlarmState:
         return pulumi.get(self, "recipients")
 
     @recipients.setter
-    def recipients(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]):
+    def recipients(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]):
         pulumi.set(self, "recipients", value)
 
     @_builtins.property
     @pulumi.getter(name="reminderInterval")
-    def reminder_interval(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def reminder_interval(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The reminder interval (in seconds) to resend the alarm if not
         resolved. Set to 0 for no reminders. The Default is 0.
@@ -346,12 +346,12 @@ class _AlarmState:
         return pulumi.get(self, "reminder_interval")
 
     @reminder_interval.setter
-    def reminder_interval(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def reminder_interval(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "reminder_interval", value)
 
     @_builtins.property
     @pulumi.getter(name="timeThreshold")
-    def time_threshold(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def time_threshold(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The time interval (in seconds) the `value_threshold` should be
         active before triggering an alarm.
@@ -359,24 +359,24 @@ class _AlarmState:
         return pulumi.get(self, "time_threshold")
 
     @time_threshold.setter
-    def time_threshold(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def time_threshold(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "time_threshold", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The alarm type, see valid options below.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter(name="valueCalculation")
-    def value_calculation(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def value_calculation(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Disk value threshold calculation, `fixed, percentage` of disk
         space remaining.
@@ -386,31 +386,31 @@ class _AlarmState:
         return pulumi.get(self, "value_calculation")
 
     @value_calculation.setter
-    def value_calculation(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def value_calculation(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "value_calculation", value)
 
     @_builtins.property
     @pulumi.getter(name="valueThreshold")
-    def value_threshold(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def value_threshold(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The value to trigger the alarm for.
         """
         return pulumi.get(self, "value_threshold")
 
     @value_threshold.setter
-    def value_threshold(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def value_threshold(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "value_threshold", value)
 
     @_builtins.property
     @pulumi.getter(name="vhostRegex")
-    def vhost_regex(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vhost_regex(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Regex for which vhost to check
         """
         return pulumi.get(self, "vhost_regex")
 
     @vhost_regex.setter
-    def vhost_regex(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vhost_regex(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vhost_regex", value)
 
 
@@ -420,17 +420,17 @@ class Alarm(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 message_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 queue_regex: Optional[pulumi.Input[_builtins.str]] = None,
-                 recipients: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 reminder_interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 time_threshold: Optional[pulumi.Input[_builtins.int]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 value_calculation: Optional[pulumi.Input[_builtins.str]] = None,
-                 value_threshold: Optional[pulumi.Input[_builtins.int]] = None,
-                 vhost_regex: Optional[pulumi.Input[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 message_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 queue_regex: pulumi.Input[Optional[_builtins.str]] = None,
+                 recipients: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 reminder_interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 time_threshold: pulumi.Input[Optional[_builtins.int]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 value_calculation: pulumi.Input[Optional[_builtins.str]] = None,
+                 value_threshold: pulumi.Input[Optional[_builtins.int]] = None,
+                 vhost_regex: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         <!-- markdownlint-disable MD033 -->
@@ -461,28 +461,28 @@ class Alarm(pulumi.CustomResource):
 
         # New recipient
         recipient01 = cloudamqp.Notification("recipient_01",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="email",
             value="alarm@example.com",
             name="alarm")
         # New cpu alarm
         cpu_alarm = cloudamqp.Alarm("cpu_alarm",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="cpu",
             enabled=True,
             reminder_interval=600,
             value_threshold=95,
             time_threshold=600,
-            recipients=[recipient01.id])
+            recipients=[recipient01.id.apply(lambda x: int(x))])
         # New memory alarm
         memory_alarm = cloudamqp.Alarm("memory_alarm",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="memory",
             enabled=True,
             reminder_interval=600,
             value_threshold=95,
             time_threshold=600,
-            recipients=[recipient01.id])
+            recipients=[recipient01.id.apply(lambda x: int(x))])
         ```
 
         </details>
@@ -503,16 +503,16 @@ class Alarm(pulumi.CustomResource):
 
         # New recipient
         recipient01 = cloudamqp.Notification("recipient_01",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="email",
             value="alarm@example.com",
             name="alarm")
         # Update existing notice alarm
         notice = cloudamqp.Alarm("notice",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="notice",
             enabled=True,
-            recipients=[recipient01.id])
+            recipients=[recipient01.id.apply(lambda x: int(x))])
         ```
 
         </details>
@@ -620,28 +620,28 @@ class Alarm(pulumi.CustomResource):
 
         # New recipient
         recipient01 = cloudamqp.Notification("recipient_01",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="email",
             value="alarm@example.com",
             name="alarm")
         # New cpu alarm
         cpu_alarm = cloudamqp.Alarm("cpu_alarm",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="cpu",
             enabled=True,
             reminder_interval=600,
             value_threshold=95,
             time_threshold=600,
-            recipients=[recipient01.id])
+            recipients=[recipient01.id.apply(lambda x: int(x))])
         # New memory alarm
         memory_alarm = cloudamqp.Alarm("memory_alarm",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="memory",
             enabled=True,
             reminder_interval=600,
             value_threshold=95,
             time_threshold=600,
-            recipients=[recipient01.id])
+            recipients=[recipient01.id.apply(lambda x: int(x))])
         ```
 
         </details>
@@ -662,16 +662,16 @@ class Alarm(pulumi.CustomResource):
 
         # New recipient
         recipient01 = cloudamqp.Notification("recipient_01",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="email",
             value="alarm@example.com",
             name="alarm")
         # Update existing notice alarm
         notice = cloudamqp.Alarm("notice",
-            instance_id=instance["id"],
+            instance_id=int(instance["id"]),
             type="notice",
             enabled=True,
-            recipients=[recipient01.id])
+            recipients=[recipient01.id.apply(lambda x: int(x))])
         ```
 
         </details>
@@ -737,17 +737,17 @@ class Alarm(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 message_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 queue_regex: Optional[pulumi.Input[_builtins.str]] = None,
-                 recipients: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 reminder_interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 time_threshold: Optional[pulumi.Input[_builtins.int]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 value_calculation: Optional[pulumi.Input[_builtins.str]] = None,
-                 value_threshold: Optional[pulumi.Input[_builtins.int]] = None,
-                 vhost_regex: Optional[pulumi.Input[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 message_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 queue_regex: pulumi.Input[Optional[_builtins.str]] = None,
+                 recipients: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 reminder_interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 time_threshold: pulumi.Input[Optional[_builtins.int]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 value_calculation: pulumi.Input[Optional[_builtins.str]] = None,
+                 value_threshold: pulumi.Input[Optional[_builtins.int]] = None,
+                 vhost_regex: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -786,17 +786,17 @@ class Alarm(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            instance_id: Optional[pulumi.Input[_builtins.int]] = None,
-            message_type: Optional[pulumi.Input[_builtins.str]] = None,
-            queue_regex: Optional[pulumi.Input[_builtins.str]] = None,
-            recipients: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-            reminder_interval: Optional[pulumi.Input[_builtins.int]] = None,
-            time_threshold: Optional[pulumi.Input[_builtins.int]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            value_calculation: Optional[pulumi.Input[_builtins.str]] = None,
-            value_threshold: Optional[pulumi.Input[_builtins.int]] = None,
-            vhost_regex: Optional[pulumi.Input[_builtins.str]] = None) -> 'Alarm':
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            message_type: pulumi.Input[Optional[_builtins.str]] = None,
+            queue_regex: pulumi.Input[Optional[_builtins.str]] = None,
+            recipients: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+            reminder_interval: pulumi.Input[Optional[_builtins.int]] = None,
+            time_threshold: pulumi.Input[Optional[_builtins.int]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            value_calculation: pulumi.Input[Optional[_builtins.str]] = None,
+            value_threshold: pulumi.Input[Optional[_builtins.int]] = None,
+            vhost_regex: pulumi.Input[Optional[_builtins.str]] = None) -> 'Alarm':
         """
         Get an existing Alarm resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

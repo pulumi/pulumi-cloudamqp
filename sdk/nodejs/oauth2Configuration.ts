@@ -25,7 +25,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const oauth2Config = new cloudamqp.Oauth2Configuration("oauth2_config", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     resourceServerId: "test-resource-server",
  *     issuer: "https://test-issuer.example.com",
  *     verifyAud: true,
@@ -51,7 +51,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const oauth2Config = new cloudamqp.Oauth2Configuration("oauth2_config", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     resourceServerId: "test-resource-server",
  *     issuer: "https://test-issuer.example.com",
  *     preferredUsernameClaims: [
@@ -90,7 +90,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const oauth2Config = new cloudamqp.Oauth2Configuration("oauth2_config", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     resourceServerId: "test-resource-server",
  *     issuer: "https://test-issuer.example.com",
  * });
@@ -274,70 +274,70 @@ export interface Oauth2ConfigurationState {
      * List of additional JWT claim keys to extract OAuth2
      * scopes from.
      */
-    additionalScopesKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    additionalScopesKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The audience to be passed along to the Oauth2 provider when
      * logging in to the management interface. Must be configured for Auth0,
      * cannot be configured for Entra ID v2.
      */
-    audience?: pulumi.Input<string>;
+    audience?: pulumi.Input<string | undefined>;
     /**
      * Disable static username/password management interface access.
      */
-    disableBasicAuth?: pulumi.Input<boolean>;
+    disableBasicAuth?: pulumi.Input<boolean | undefined>;
     /**
      * The CloudAMQP instance ID.
      */
-    instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number | undefined>;
     /**
      * The issuer URL of the OAuth2 provider. This is typically
      * the base URL of your OAuth2 provider (e.g., Auth0, Keycloak, etc.).
      */
-    issuer?: pulumi.Input<string>;
+    issuer?: pulumi.Input<string | undefined>;
     /**
      * OAuth2 client ID used for token validation.
      */
-    oauthClientId?: pulumi.Input<string>;
+    oauthClientId?: pulumi.Input<string | undefined>;
     /**
      * List of OAuth2 scopes to request. These scopes will be
      * used when obtaining access tokens.
      */
-    oauthScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    oauthScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of JWT claims to use as the preferred username.
      * The first claim found in the token will be used as the username.
      */
-    preferredUsernameClaims?: pulumi.Input<pulumi.Input<string>[]>;
+    preferredUsernameClaims?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Resource server identifier used to identify the resource
      * server in OAuth2 tokens.
      */
-    resourceServerId?: pulumi.Input<string>;
+    resourceServerId?: pulumi.Input<string | undefined>;
     /**
      * Map of scope aliases to translate scope names. This allows
      * mapping OAuth2 scopes to RabbitMQ permission tags.
      */
-    scopeAliases?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    scopeAliases?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Prefix to add to scopes. This is useful when scopes in
      * the JWT token need to be prefixed for RabbitMQ permissions.
      */
-    scopePrefix?: pulumi.Input<string>;
+    scopePrefix?: pulumi.Input<string | undefined>;
     /**
      * Configurable sleep time in seconds between retries for
      * OAuth2 configuration. Default set to 60 seconds.
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * Configurable timeout time in seconds for OAuth2
      * configuration. Default set to 3600 seconds.
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
     /**
      * Whether to verify the audience claim in the JWT
      * token. Defaults to true.
      */
-    verifyAud?: pulumi.Input<boolean>;
+    verifyAud?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -348,17 +348,17 @@ export interface Oauth2ConfigurationArgs {
      * List of additional JWT claim keys to extract OAuth2
      * scopes from.
      */
-    additionalScopesKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    additionalScopesKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The audience to be passed along to the Oauth2 provider when
      * logging in to the management interface. Must be configured for Auth0,
      * cannot be configured for Entra ID v2.
      */
-    audience?: pulumi.Input<string>;
+    audience?: pulumi.Input<string | undefined>;
     /**
      * Disable static username/password management interface access.
      */
-    disableBasicAuth?: pulumi.Input<boolean>;
+    disableBasicAuth?: pulumi.Input<boolean | undefined>;
     /**
      * The CloudAMQP instance ID.
      */
@@ -371,17 +371,17 @@ export interface Oauth2ConfigurationArgs {
     /**
      * OAuth2 client ID used for token validation.
      */
-    oauthClientId?: pulumi.Input<string>;
+    oauthClientId?: pulumi.Input<string | undefined>;
     /**
      * List of OAuth2 scopes to request. These scopes will be
      * used when obtaining access tokens.
      */
-    oauthScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    oauthScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of JWT claims to use as the preferred username.
      * The first claim found in the token will be used as the username.
      */
-    preferredUsernameClaims?: pulumi.Input<pulumi.Input<string>[]>;
+    preferredUsernameClaims?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Resource server identifier used to identify the resource
      * server in OAuth2 tokens.
@@ -391,25 +391,25 @@ export interface Oauth2ConfigurationArgs {
      * Map of scope aliases to translate scope names. This allows
      * mapping OAuth2 scopes to RabbitMQ permission tags.
      */
-    scopeAliases?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    scopeAliases?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Prefix to add to scopes. This is useful when scopes in
      * the JWT token need to be prefixed for RabbitMQ permissions.
      */
-    scopePrefix?: pulumi.Input<string>;
+    scopePrefix?: pulumi.Input<string | undefined>;
     /**
      * Configurable sleep time in seconds between retries for
      * OAuth2 configuration. Default set to 60 seconds.
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * Configurable timeout time in seconds for OAuth2
      * configuration. Default set to 3600 seconds.
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
     /**
      * Whether to verify the audience claim in the JWT
      * token. Defaults to true.
      */
-    verifyAud?: pulumi.Input<boolean>;
+    verifyAud?: pulumi.Input<boolean | undefined>;
 }

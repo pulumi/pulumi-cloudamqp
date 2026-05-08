@@ -27,7 +27,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var defaultCpuAlarm = CloudAmqp.Index.GetAlarm.Invoke(new()
+        ///     var defaultCpuAlarm = CloudAmqp.GetAlarm.Invoke(new()
         ///     {
         ///         InstanceId = instance.Id,
         ///         Type = "cpu",
@@ -63,7 +63,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var defaultCpuAlarm = CloudAmqp.Index.GetAlarm.Invoke(new()
+        ///     var defaultCpuAlarm = CloudAmqp.GetAlarm.Invoke(new()
         ///     {
         ///         InstanceId = instance.Id,
         ///         Type = "cpu",
@@ -99,7 +99,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var defaultCpuAlarm = CloudAmqp.Index.GetAlarm.Invoke(new()
+        ///     var defaultCpuAlarm = CloudAmqp.GetAlarm.Invoke(new()
         ///     {
         ///         InstanceId = instance.Id,
         ///         Type = "cpu",

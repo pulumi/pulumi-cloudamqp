@@ -42,7 +42,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var instance = new CloudAmqp.Index.Instance("instance", new()
+    ///     var instance = new CloudAmqp.Instance("instance", new()
     ///     {
     ///         Name = "Test instance",
     ///         Plan = "penguin-1",
@@ -54,7 +54,7 @@ namespace Pulumi.CloudAmqp
     ///         },
     ///     });
     /// 
-    ///     var @this = new CloudAmqp.Index.IntegrationAwsEventbridge("this", new()
+    ///     var @this = new CloudAmqp.IntegrationAwsEventbridge("this", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Vhost = instance.Vhost,
@@ -84,7 +84,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var instance = new CloudAmqp.Index.Instance("instance", new()
+    ///     var instance = new CloudAmqp.Instance("instance", new()
     ///     {
     ///         Name = "Test instance",
     ///         Plan = "penguin-1",
@@ -96,7 +96,7 @@ namespace Pulumi.CloudAmqp
     ///         },
     ///     });
     /// 
-    ///     var @this = new CloudAmqp.Index.IntegrationAwsEventbridge("this", new()
+    ///     var @this = new CloudAmqp.IntegrationAwsEventbridge("this", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         Vhost = instance.Vhost,

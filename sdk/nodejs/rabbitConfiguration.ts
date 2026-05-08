@@ -28,7 +28,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const rabbitmqConfig = new cloudamqp.RabbitConfiguration("rabbitmq_config", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     heartbeat: 0,
  * });
  * ```
@@ -47,7 +47,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const rabbitmqConfig = new cloudamqp.RabbitConfiguration("rabbitmq_config", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     channelMax: 0,
  *     connectionMax: -1,
  *     consumerTimeout: 7200000,
@@ -74,7 +74,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const rabbitmqConfig = new cloudamqp.RabbitConfiguration("rabbitmq_config", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     channelMax: 0,
  *     connectionMax: -1,
  *     consumerTimeout: 7200000,
@@ -86,10 +86,10 @@ import * as utilities from "./utilities";
  *     clusterPartitionHandling: "autoheal",
  * });
  * const listNodes = cloudamqp.getNodes({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * const nodeAction = new cloudamqp.NodeActions("node_action", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     action: "cluster.restart",
  * }, {
  *     dependsOn: [rabbitmqConfig],
@@ -113,7 +113,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const rabbitConfig = new cloudamqp.RabbitConfiguration("rabbit_config", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     logExchangeLevel: "info",
  * });
  * ```
@@ -140,7 +140,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const rabbitmqConfig = new cloudamqp.RabbitConfiguration("rabbitmq_config", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     mqttVhost: instance.vhost,
  *     mqttExchange: "amq.topic",
  *     mqttSslCertLogin: true,
@@ -149,10 +149,10 @@ import * as utilities from "./utilities";
  *     sslOptionsVerify: "verify_peer",
  * });
  * const nodes = cloudamqp.getNodes({
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  * });
  * const nodeAction = new cloudamqp.NodeActions("node_action", {
- *     instanceId: instance.id,
+ *     instanceId: Number(instance.id),
  *     nodeName: nodes.then(nodes => nodes.nodes?.[0]?.name),
  *     action: "restart",
  * }, {
@@ -503,85 +503,85 @@ export interface RabbitConfigurationState {
     /**
      * Set the maximum permissible number of channels per connection.
      */
-    channelMax?: pulumi.Input<number>;
+    channelMax?: pulumi.Input<number | undefined>;
     /**
      * Set how the cluster should handle network partition.
      */
-    clusterPartitionHandling?: pulumi.Input<string>;
+    clusterPartitionHandling?: pulumi.Input<string | undefined>;
     /**
      * Set the maximum permissible number of connection.
      */
-    connectionMax?: pulumi.Input<number>;
+    connectionMax?: pulumi.Input<number | undefined>;
     /**
      * A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds
      */
-    consumerTimeout?: pulumi.Input<number>;
+    consumerTimeout?: pulumi.Input<number | undefined>;
     /**
      * Set the server AMQP 0-9-1 heartbeat timeout in seconds.
      */
-    heartbeat?: pulumi.Input<number>;
+    heartbeat?: pulumi.Input<number | undefined>;
     /**
      * The CloudAMQP instance ID.
      */
-    instanceId?: pulumi.Input<number>;
+    instanceId?: pulumi.Input<number | undefined>;
     /**
      * Log level for the logger used for log integrations and the CloudAMQP Console log view.
      */
-    logExchangeLevel?: pulumi.Input<string>;
+    logExchangeLevel?: pulumi.Input<string | undefined>;
     /**
      * The largest allowed message payload size in bytes.
      */
-    maxMessageSize?: pulumi.Input<number>;
+    maxMessageSize?: pulumi.Input<number | undefined>;
     /**
      * Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
      */
-    messageInterceptorsTimestampOverwrite?: pulumi.Input<string>;
+    messageInterceptorsTimestampOverwrite?: pulumi.Input<string | undefined>;
     /**
      * The exchange option determines which exchange messages from MQTT clients are published to.
      */
-    mqttExchange?: pulumi.Input<string>;
+    mqttExchange?: pulumi.Input<string | undefined>;
     /**
      * The maximum Session Expiry Interval in seconds allowed by the server. Set to 0 to force sessions to expire on disconnect, or -1 for no limit.
      */
-    mqttMaxSessionExpiryIntervalSeconds?: pulumi.Input<number>;
+    mqttMaxSessionExpiryIntervalSeconds?: pulumi.Input<number | undefined>;
     /**
      * Enable SSL certificate-based authentication for MQTT connections.
      */
-    mqttSslCertLogin?: pulumi.Input<boolean>;
+    mqttSslCertLogin?: pulumi.Input<boolean | undefined>;
     /**
      * Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.
      */
-    mqttVhost?: pulumi.Input<string>;
+    mqttVhost?: pulumi.Input<string | undefined>;
     /**
      * Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
      */
-    queueIndexEmbedMsgsBelow?: pulumi.Input<number>;
+    queueIndexEmbedMsgsBelow?: pulumi.Input<number | undefined>;
     /**
      * Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * Determines which certificate field to use as the username for TLS-based authentication.
      */
-    sslCertLoginFrom?: pulumi.Input<string>;
+    sslCertLoginFrom?: pulumi.Input<string | undefined>;
     /**
      * When set to true, TLS connections will fail if the client does not provide a certificate.
      */
-    sslOptionsFailIfNoPeerCert?: pulumi.Input<boolean>;
+    sslOptionsFailIfNoPeerCert?: pulumi.Input<boolean | undefined>;
     /**
      * Controls peer certificate verification for TLS connections.
      *
      * Configure sleep and timeout for API requests retries
      */
-    sslOptionsVerify?: pulumi.Input<string>;
+    sslOptionsVerify?: pulumi.Input<string | undefined>;
     /**
      * Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
     /**
      * When the server will enter memory based flow-control as relative to the maximum available memory.
      */
-    vmMemoryHighWatermark?: pulumi.Input<number>;
+    vmMemoryHighWatermark?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -591,23 +591,23 @@ export interface RabbitConfigurationArgs {
     /**
      * Set the maximum permissible number of channels per connection.
      */
-    channelMax?: pulumi.Input<number>;
+    channelMax?: pulumi.Input<number | undefined>;
     /**
      * Set how the cluster should handle network partition.
      */
-    clusterPartitionHandling?: pulumi.Input<string>;
+    clusterPartitionHandling?: pulumi.Input<string | undefined>;
     /**
      * Set the maximum permissible number of connection.
      */
-    connectionMax?: pulumi.Input<number>;
+    connectionMax?: pulumi.Input<number | undefined>;
     /**
      * A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds
      */
-    consumerTimeout?: pulumi.Input<number>;
+    consumerTimeout?: pulumi.Input<number | undefined>;
     /**
      * Set the server AMQP 0-9-1 heartbeat timeout in seconds.
      */
-    heartbeat?: pulumi.Input<number>;
+    heartbeat?: pulumi.Input<number | undefined>;
     /**
      * The CloudAMQP instance ID.
      */
@@ -615,59 +615,59 @@ export interface RabbitConfigurationArgs {
     /**
      * Log level for the logger used for log integrations and the CloudAMQP Console log view.
      */
-    logExchangeLevel?: pulumi.Input<string>;
+    logExchangeLevel?: pulumi.Input<string | undefined>;
     /**
      * The largest allowed message payload size in bytes.
      */
-    maxMessageSize?: pulumi.Input<number>;
+    maxMessageSize?: pulumi.Input<number | undefined>;
     /**
      * Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
      */
-    messageInterceptorsTimestampOverwrite?: pulumi.Input<string>;
+    messageInterceptorsTimestampOverwrite?: pulumi.Input<string | undefined>;
     /**
      * The exchange option determines which exchange messages from MQTT clients are published to.
      */
-    mqttExchange?: pulumi.Input<string>;
+    mqttExchange?: pulumi.Input<string | undefined>;
     /**
      * The maximum Session Expiry Interval in seconds allowed by the server. Set to 0 to force sessions to expire on disconnect, or -1 for no limit.
      */
-    mqttMaxSessionExpiryIntervalSeconds?: pulumi.Input<number>;
+    mqttMaxSessionExpiryIntervalSeconds?: pulumi.Input<number | undefined>;
     /**
      * Enable SSL certificate-based authentication for MQTT connections.
      */
-    mqttSslCertLogin?: pulumi.Input<boolean>;
+    mqttSslCertLogin?: pulumi.Input<boolean | undefined>;
     /**
      * Virtual host for MQTT connections. Default set to newly created vhost, same as `cloudamqp_instance.instance.vhost`.
      */
-    mqttVhost?: pulumi.Input<string>;
+    mqttVhost?: pulumi.Input<string | undefined>;
     /**
      * Size in bytes below which to embed messages in the queue index. 0 will turn off payload embedding in the queue index.
      */
-    queueIndexEmbedMsgsBelow?: pulumi.Input<number>;
+    queueIndexEmbedMsgsBelow?: pulumi.Input<number | undefined>;
     /**
      * Configurable sleep time in seconds between retries for RabbitMQ configuration. Default set to 60 seconds.
      */
-    sleep?: pulumi.Input<number>;
+    sleep?: pulumi.Input<number | undefined>;
     /**
      * Determines which certificate field to use as the username for TLS-based authentication.
      */
-    sslCertLoginFrom?: pulumi.Input<string>;
+    sslCertLoginFrom?: pulumi.Input<string | undefined>;
     /**
      * When set to true, TLS connections will fail if the client does not provide a certificate.
      */
-    sslOptionsFailIfNoPeerCert?: pulumi.Input<boolean>;
+    sslOptionsFailIfNoPeerCert?: pulumi.Input<boolean | undefined>;
     /**
      * Controls peer certificate verification for TLS connections.
      *
      * Configure sleep and timeout for API requests retries
      */
-    sslOptionsVerify?: pulumi.Input<string>;
+    sslOptionsVerify?: pulumi.Input<string | undefined>;
     /**
      * Configurable timeout time in seconds for RabbitMQ configuration. Default set to 3600 seconds.
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
     /**
      * When the server will enter memory based flow-control as relative to the maximum available memory.
      */
-    vmMemoryHighWatermark?: pulumi.Input<number>;
+    vmMemoryHighWatermark?: pulumi.Input<number | undefined>;
 }
