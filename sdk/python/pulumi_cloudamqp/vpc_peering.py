@@ -285,7 +285,7 @@ class VpcPeering(pulumi.CustomResource):
             tags=["terraform"],
             vpc_subnet="10.40.72.0/24")
         # CloudAMQP - Extract vpc information
-        vpc_info = instance.id.apply(lambda id: cloudamqp.get_vpc_info_output(instance_id=int(id)))
+        vpc_info = cloudamqp.get_vpc_info_output(instance_id=instance.id.apply(lambda x: int(x)))
         # AWS - retrieve instance to get subnet identifier
         aws_instance = aws.instance(instance_tags={
             "name": aws_instance_name,
@@ -580,7 +580,7 @@ class VpcPeering(pulumi.CustomResource):
             tags=["terraform"],
             vpc_subnet="10.40.72.0/24")
         # CloudAMQP - Extract vpc information
-        vpc_info = instance.id.apply(lambda id: cloudamqp.get_vpc_info_output(instance_id=int(id)))
+        vpc_info = cloudamqp.get_vpc_info_output(instance_id=instance.id.apply(lambda x: int(x)))
         # AWS - retrieve instance to get subnet identifier
         aws_instance = aws.instance(instance_tags={
             "name": aws_instance_name,

@@ -208,7 +208,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
             name="rabbitmq-version-upgrade-test",
             plan="bunny-1",
             region="amazon-web-services::us-west-1")
-        upgradable_versions = instance.id.apply(lambda id: cloudamqp.get_upgradable_versions_output(instance_id=int(id)))
+        upgradable_versions = cloudamqp.get_upgradable_versions_output(instance_id=instance.id.apply(lambda x: int(x)))
         upgrade = cloudamqp.UpgradeRabbitmq("upgrade",
             instance_id=instance.id.apply(lambda x: int(x)),
             current_version=instance.rmq_version,
@@ -370,7 +370,7 @@ class UpgradeRabbitmq(pulumi.CustomResource):
             name="rabbitmq-version-upgrade-test",
             plan="bunny-1",
             region="amazon-web-services::us-west-1")
-        upgradable_versions = instance.id.apply(lambda id: cloudamqp.get_upgradable_versions_output(instance_id=int(id)))
+        upgradable_versions = cloudamqp.get_upgradable_versions_output(instance_id=instance.id.apply(lambda x: int(x)))
         upgrade = cloudamqp.UpgradeRabbitmq("upgrade",
             instance_id=instance.id.apply(lambda x: int(x)),
             current_version=instance.rmq_version,

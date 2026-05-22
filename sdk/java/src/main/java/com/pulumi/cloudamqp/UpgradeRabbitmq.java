@@ -131,9 +131,9 @@ import javax.annotation.Nullable;
  *             .region("amazon-web-services::us-west-1")
  *             .build());
  * 
- *         final var upgradableVersions = instance.id().applyValue(_id -> CloudamqpFunctions.getUpgradableVersions(GetUpgradableVersionsArgs.builder()
- *             .instanceId(_id)
- *             .build()));
+ *         final var upgradableVersions = CloudamqpFunctions.getUpgradableVersions(GetUpgradableVersionsArgs.builder()
+ *             .instanceId(instance.id())
+ *             .build());
  * 
  *         var upgrade = new UpgradeRabbitmq("upgrade", UpgradeRabbitmqArgs.builder()
  *             .instanceId(instance.id())

@@ -26,7 +26,7 @@ configured with the proper API key before it can be used.
 Use the navigation to the left to read about the available resources.
 ## Example Usage
 
-{{< chooser language "typescript,python,go,csharp,java,yaml" >}}
+{{< chooser language "typescript,python,go,csharp,java,yaml,hcl" >}}
 {{% choosable language typescript %}}
 ```yaml
 # Pulumi.yaml provider configuration file
@@ -485,6 +485,59 @@ public class App {
             .build());
 
     }
+}
+```
+
+{{% /choosable %}}
+{{% choosable language hcl %}}
+```hcl
+pulumi {
+  required_providers {
+    cloudamqp = {
+      source = "pulumi/cloudamqp"
+    }
+  }
+}
+
+# Create a new cloudamqp instance
+resource "cloudamqp_instance" "instance" {
+  name   = "pulumi-cloudamqp-instance"
+  plan   = "penguin-1"
+  region = "amazon-web-services::us-west-1"
+  tags   = ["pulumi"]
+}
+# New recipient to receieve notifications
+resource "cloudamqp_notification" "recipient_01" {
+  instance_id = cloudamqp_instance.instance.id
+  type        = "email"
+  value       = "alarm@example.com"
+  name        = "alarm"
+}
+# New cpu alarm
+resource "cloudamqp_alarm" "cpu_alarm" {
+  instance_id     = cloudamqp_instance.instance.id
+  type            = "cpu"
+  value_threshold = 90
+  time_threshold  = 600
+  enabled         = true
+  recipients      = [cloudamqp_notification.recipient_01.id]
+}
+# Configure firewall
+resource "cloudamqp_securityfirewall" "firewall" {
+  instance_id = cloudamqp_instance.instance.id
+  rules {
+    ip       = "10.54.72.0/0"
+    ports    = [4567]
+    services = ["AMQPS"]
+  }
+}
+# Cloudwatch metrics integration
+resource "cloudamqp_integrationmetric" "cloudwatch" {
+  instance_id       = cloudamqp_instance.instance.id
+  name              = "cloudwatch"
+  access_key_id     = awsAccessKey
+  secret_access_key = awsSecretKey
+  region            = awsRegion
 }
 ```
 

@@ -77,9 +77,9 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // VPC information
- *         final var vpcInfo = instance.id().applyValue(_id -> CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
- *             .instanceId(_id)
- *             .build()));
+ *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
+ *             .instanceId(instance.id())
+ *             .build());
  * 
  *         // VPC peering configuration
  *         var vpcPeeringRequest = new VpcGcpPeering("vpcPeeringRequest", VpcGcpPeeringArgs.builder()

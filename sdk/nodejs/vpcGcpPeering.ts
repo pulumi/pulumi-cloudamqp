@@ -42,9 +42,9 @@ import * as utilities from "./utilities";
  *     vpcSubnet: "10.40.72.0/24",
  * });
  * // VPC information
- * const vpcInfo = instance.id.apply(id => cloudamqp.getVpcGcpInfoOutput({
- *     instanceId: Number(id),
- * }));
+ * const vpcInfo = cloudamqp.getVpcGcpInfoOutput({
+ *     instanceId: instance.id.apply(x =>Number(x)),
+ * });
  * // VPC peering configuration
  * const vpcPeeringRequest = new cloudamqp.VpcGcpPeering("vpc_peering_request", {
  *     instanceId: instance.id.apply(x =>Number(x)),

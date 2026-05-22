@@ -62,9 +62,9 @@ import * as utilities from "./utilities";
  * });
  * // Optional, refresh nodes info after disk resize by adding dependency
  * // to cloudamqp_extra_disk_size.resize_disk resource
- * const nodes = instance.id.apply(id => cloudamqp.getNodesOutput({
- *     instanceId: Number(id),
- * }));
+ * const nodes = cloudamqp.getNodesOutput({
+ *     instanceId: instance.id.apply(x =>Number(x)),
+ * });
  * ```
  *
  * </details>
@@ -93,9 +93,9 @@ import * as utilities from "./utilities";
  * });
  * // Optional, refresh nodes info after disk resize by adding dependency
  * // to cloudamqp_extra_disk_size.resize_disk resource
- * const nodes = instance.id.apply(id => cloudamqp.getNodesOutput({
- *     instanceId: Number(id),
- * }));
+ * const nodes = cloudamqp.getNodesOutput({
+ *     instanceId: instance.id.apply(x =>Number(x)),
+ * });
  * ```
  *
  * </details>
@@ -124,9 +124,9 @@ import * as utilities from "./utilities";
  * });
  * // Optional, refresh nodes info after disk resize by adding dependency
  * // to cloudamqp_extra_disk_size.resize_disk resource
- * const nodes = instance.id.apply(id => cloudamqp.getNodesOutput({
- *     instanceId: Number(id),
- * }));
+ * const nodes = cloudamqp.getNodesOutput({
+ *     instanceId: instance.id.apply(x =>Number(x)),
+ * });
  * ```
  *
  * </details>
@@ -155,9 +155,9 @@ import * as utilities from "./utilities";
  * });
  * // Optional, refresh nodes info after disk resize by adding dependency
  * // to cloudamqp_extra_disk_size.resize_disk resource
- * const nodes = instance.id.apply(id => cloudamqp.getNodesOutput({
- *     instanceId: Number(id),
- * }));
+ * const nodes = cloudamqp.getNodesOutput({
+ *     instanceId: instance.id.apply(x =>Number(x)),
+ * });
  * ```
  *
  * </details>

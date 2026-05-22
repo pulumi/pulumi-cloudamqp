@@ -308,7 +308,7 @@ class ExtraDiskSize(pulumi.CustomResource):
             extra_disk_size=25)
         # Optional, refresh nodes info after disk resize by adding dependency
         # to cloudamqp_extra_disk_size.resize_disk resource
-        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=int(id)))
+        nodes = cloudamqp.get_nodes_output(instance_id=instance.id.apply(lambda x: int(x)))
         ```
 
         </details>
@@ -335,7 +335,7 @@ class ExtraDiskSize(pulumi.CustomResource):
             extra_disk_size=25)
         # Optional, refresh nodes info after disk resize by adding dependency
         # to cloudamqp_extra_disk_size.resize_disk resource
-        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=int(id)))
+        nodes = cloudamqp.get_nodes_output(instance_id=instance.id.apply(lambda x: int(x)))
         ```
 
         </details>
@@ -362,7 +362,7 @@ class ExtraDiskSize(pulumi.CustomResource):
             extra_disk_size=25)
         # Optional, refresh nodes info after disk resize by adding dependency
         # to cloudamqp_extra_disk_size.resize_disk resource
-        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=int(id)))
+        nodes = cloudamqp.get_nodes_output(instance_id=instance.id.apply(lambda x: int(x)))
         ```
 
         </details>
@@ -389,7 +389,7 @@ class ExtraDiskSize(pulumi.CustomResource):
             extra_disk_size=25)
         # Optional, refresh nodes info after disk resize by adding dependency
         # to cloudamqp_extra_disk_size.resize_disk resource
-        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=int(id)))
+        nodes = cloudamqp.get_nodes_output(instance_id=instance.id.apply(lambda x: int(x)))
         ```
 
         </details>
@@ -483,7 +483,7 @@ class ExtraDiskSize(pulumi.CustomResource):
             extra_disk_size=25)
         # Optional, refresh nodes info after disk resize by adding dependency
         # to cloudamqp_extra_disk_size.resize_disk resource
-        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=int(id)))
+        nodes = cloudamqp.get_nodes_output(instance_id=instance.id.apply(lambda x: int(x)))
         ```
 
         </details>
@@ -510,7 +510,7 @@ class ExtraDiskSize(pulumi.CustomResource):
             extra_disk_size=25)
         # Optional, refresh nodes info after disk resize by adding dependency
         # to cloudamqp_extra_disk_size.resize_disk resource
-        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=int(id)))
+        nodes = cloudamqp.get_nodes_output(instance_id=instance.id.apply(lambda x: int(x)))
         ```
 
         </details>
@@ -537,7 +537,7 @@ class ExtraDiskSize(pulumi.CustomResource):
             extra_disk_size=25)
         # Optional, refresh nodes info after disk resize by adding dependency
         # to cloudamqp_extra_disk_size.resize_disk resource
-        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=int(id)))
+        nodes = cloudamqp.get_nodes_output(instance_id=instance.id.apply(lambda x: int(x)))
         ```
 
         </details>
@@ -564,7 +564,7 @@ class ExtraDiskSize(pulumi.CustomResource):
             extra_disk_size=25)
         # Optional, refresh nodes info after disk resize by adding dependency
         # to cloudamqp_extra_disk_size.resize_disk resource
-        nodes = instance.id.apply(lambda id: cloudamqp.get_nodes_output(instance_id=int(id)))
+        nodes = cloudamqp.get_nodes_output(instance_id=instance.id.apply(lambda x: int(x)))
         ```
 
         </details>

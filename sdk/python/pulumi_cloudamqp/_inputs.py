@@ -969,7 +969,7 @@ class SecurityFirewallRuleArgs:
 
 
 class TrustStoreFileArgsDict(TypedDict):
-    certificates: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['TrustStoreFileCertificateArgs']]]]]
+    certificates: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['TrustStoreFileCertificateArgsDict']]]]]
     """
     A list of certificate blocks (1-100 certificates). Each
     certificate block contains:

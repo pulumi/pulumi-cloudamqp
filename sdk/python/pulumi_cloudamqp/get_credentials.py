@@ -117,7 +117,7 @@ def get_credentials(instance_id: Optional[_builtins.int] = None,
     # Access credentials directly from the resource
     instance = cloudamqp.Instance("instance")
     # Old (deprecated)
-    credentials = instance.id.apply(lambda id: cloudamqp.get_credentials_output(instance_id=int(id)))
+    credentials = cloudamqp.get_credentials_output(instance_id=instance.id.apply(lambda x: int(x)))
     ```
 
 
@@ -168,7 +168,7 @@ def get_credentials_output(instance_id: pulumi.Input[Optional[_builtins.int]] = 
     # Access credentials directly from the resource
     instance = cloudamqp.Instance("instance")
     # Old (deprecated)
-    credentials = instance.id.apply(lambda id: cloudamqp.get_credentials_output(instance_id=int(id)))
+    credentials = cloudamqp.get_credentials_output(instance_id=instance.id.apply(lambda x: int(x)))
     ```
 
 

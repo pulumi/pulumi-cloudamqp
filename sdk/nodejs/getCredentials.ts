@@ -39,9 +39,9 @@ import * as utilities from "./utilities";
  * // Access credentials directly from the resource
  * const instance = new cloudamqp.Instance("instance", {});
  * // Old (deprecated)
- * const credentials = instance.id.apply(id => cloudamqp.getCredentialsOutput({
- *     instanceId: Number(id),
- * }));
+ * const credentials = cloudamqp.getCredentialsOutput({
+ *     instanceId: instance.id.apply(x =>Number(x)),
+ * });
  * ```
  */
 export function getCredentials(args: GetCredentialsArgs, opts?: pulumi.InvokeOptions): Promise<GetCredentialsResult> {
@@ -114,9 +114,9 @@ export interface GetCredentialsResult {
  * // Access credentials directly from the resource
  * const instance = new cloudamqp.Instance("instance", {});
  * // Old (deprecated)
- * const credentials = instance.id.apply(id => cloudamqp.getCredentialsOutput({
- *     instanceId: Number(id),
- * }));
+ * const credentials = cloudamqp.getCredentialsOutput({
+ *     instanceId: instance.id.apply(x =>Number(x)),
+ * });
  * ```
  */
 export function getCredentialsOutput(args: GetCredentialsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetCredentialsResult> {

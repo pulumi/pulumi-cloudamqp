@@ -84,9 +84,9 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // CloudAMQP - Extract vpc information
- *         final var vpcInfo = instance.id().applyValue(_id -> CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
- *             .instanceId(_id)
- *             .build()));
+ *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
+ *             .instanceId(instance.id())
+ *             .build());
  * 
  *         // AWS - retrieve instance to get subnet identifier
  *         final var awsInstance = AwsFunctions.Instance(Map.of("instanceTags", Map.of("name", awsInstanceName)));
