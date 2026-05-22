@@ -82,11 +82,9 @@ import (
 //			}
 //			// Optional, refresh nodes info after disk resize by adding dependency
 //			// to cloudamqp_extra_disk_size.resize_disk resource
-//			_ = instance.ID().ApplyT(func(id string) (cloudamqp.GetNodesResult, error) {
-//				return cloudamqp.GetNodesResult(interface{}(cloudamqp.GetNodes(ctx, &cloudamqp.GetNodesArgs{
-//					InstanceId: id,
-//				}, nil))), nil
-//			}).(cloudamqp.GetNodesResultOutput)
+//			_ = cloudamqp.GetNodesOutput(ctx, cloudamqp.GetNodesOutputArgs{
+//				InstanceId: instance.ID(),
+//			}, nil)
 //			return nil
 //		})
 //	}
@@ -134,11 +132,9 @@ import (
 //			}
 //			// Optional, refresh nodes info after disk resize by adding dependency
 //			// to cloudamqp_extra_disk_size.resize_disk resource
-//			_ = instance.ID().ApplyT(func(id string) (cloudamqp.GetNodesResult, error) {
-//				return cloudamqp.GetNodesResult(interface{}(cloudamqp.GetNodes(ctx, &cloudamqp.GetNodesArgs{
-//					InstanceId: id,
-//				}, nil))), nil
-//			}).(cloudamqp.GetNodesResultOutput)
+//			_ = cloudamqp.GetNodesOutput(ctx, cloudamqp.GetNodesOutputArgs{
+//				InstanceId: instance.ID(),
+//			}, nil)
 //			return nil
 //		})
 //	}
@@ -186,11 +182,9 @@ import (
 //			}
 //			// Optional, refresh nodes info after disk resize by adding dependency
 //			// to cloudamqp_extra_disk_size.resize_disk resource
-//			_ = instance.ID().ApplyT(func(id string) (cloudamqp.GetNodesResult, error) {
-//				return cloudamqp.GetNodesResult(interface{}(cloudamqp.GetNodes(ctx, &cloudamqp.GetNodesArgs{
-//					InstanceId: id,
-//				}, nil))), nil
-//			}).(cloudamqp.GetNodesResultOutput)
+//			_ = cloudamqp.GetNodesOutput(ctx, cloudamqp.GetNodesOutputArgs{
+//				InstanceId: instance.ID(),
+//			}, nil)
 //			return nil
 //		})
 //	}
@@ -238,11 +232,9 @@ import (
 //			}
 //			// Optional, refresh nodes info after disk resize by adding dependency
 //			// to cloudamqp_extra_disk_size.resize_disk resource
-//			_ = instance.ID().ApplyT(func(id string) (cloudamqp.GetNodesResult, error) {
-//				return cloudamqp.GetNodesResult(interface{}(cloudamqp.GetNodes(ctx, &cloudamqp.GetNodesArgs{
-//					InstanceId: id,
-//				}, nil))), nil
-//			}).(cloudamqp.GetNodesResultOutput)
+//			_ = cloudamqp.GetNodesOutput(ctx, cloudamqp.GetNodesOutputArgs{
+//				InstanceId: instance.ID(),
+//			}, nil)
 //			return nil
 //		})
 //	}

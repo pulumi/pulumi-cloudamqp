@@ -45,9 +45,9 @@ import * as utilities from "./utilities";
  *     vpcSubnet: "10.40.72.0/24",
  * });
  * // CloudAMQP - Extract vpc information
- * const vpcInfo = instance.id.apply(id => cloudamqp.getVpcInfoOutput({
- *     instanceId: Number(id),
- * }));
+ * const vpcInfo = cloudamqp.getVpcInfoOutput({
+ *     instanceId: instance.id.apply(x =>Number(x)),
+ * });
  * // AWS - retrieve instance to get subnet identifier
  * const awsInstance = aws.Instance({
  *     instanceTags: {

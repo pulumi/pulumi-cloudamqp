@@ -379,7 +379,7 @@ class VpcGcpPeering(pulumi.CustomResource):
             tags=["terraform"],
             vpc_subnet="10.40.72.0/24")
         # VPC information
-        vpc_info = instance.id.apply(lambda id: cloudamqp.get_vpc_gcp_info_output(instance_id=int(id)))
+        vpc_info = cloudamqp.get_vpc_gcp_info_output(instance_id=instance.id.apply(lambda x: int(x)))
         # VPC peering configuration
         vpc_peering_request = cloudamqp.VpcGcpPeering("vpc_peering_request",
             instance_id=instance.id.apply(lambda x: int(x)),
@@ -653,7 +653,7 @@ class VpcGcpPeering(pulumi.CustomResource):
             tags=["terraform"],
             vpc_subnet="10.40.72.0/24")
         # VPC information
-        vpc_info = instance.id.apply(lambda id: cloudamqp.get_vpc_gcp_info_output(instance_id=int(id)))
+        vpc_info = cloudamqp.get_vpc_gcp_info_output(instance_id=instance.id.apply(lambda x: int(x)))
         # VPC peering configuration
         vpc_peering_request = cloudamqp.VpcGcpPeering("vpc_peering_request",
             instance_id=instance.id.apply(lambda x: int(x)),

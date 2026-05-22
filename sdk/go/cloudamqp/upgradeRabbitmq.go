@@ -110,11 +110,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			upgradableVersions := instance.ID().ApplyT(func(id string) (cloudamqp.GetUpgradableVersionsResult, error) {
-//				return cloudamqp.GetUpgradableVersionsResult(interface{}(cloudamqp.GetUpgradableVersions(ctx, &cloudamqp.GetUpgradableVersionsArgs{
-//					InstanceId: id,
-//				}, nil))), nil
-//			}).(cloudamqp.GetUpgradableVersionsResultOutput)
+//			upgradableVersions := cloudamqp.GetUpgradableVersionsOutput(ctx, cloudamqp.GetUpgradableVersionsOutputArgs{
+//				InstanceId: instance.ID(),
+//			}, nil)
 //			_, err = cloudamqp.NewUpgradeRabbitmq(ctx, "upgrade", &cloudamqp.UpgradeRabbitmqArgs{
 //				InstanceId:     instance.ID(),
 //				CurrentVersion: instance.RmqVersion,

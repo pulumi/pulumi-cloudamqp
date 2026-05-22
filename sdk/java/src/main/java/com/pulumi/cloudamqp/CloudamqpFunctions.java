@@ -825,9 +825,9 @@ public final class CloudamqpFunctions {
      *         var instance = new Instance("instance");
      * 
      *         // Old (deprecated)
-     *         final var credentials = instance.id().applyValue(_id -> CloudamqpFunctions.getCredentials(GetCredentialsArgs.builder()
-     *             .instanceId(_id)
-     *             .build()));
+     *         final var credentials = CloudamqpFunctions.getCredentials(GetCredentialsArgs.builder()
+     *             .instanceId(instance.id())
+     *             .build());
      * 
      *     }
      * }
@@ -915,9 +915,9 @@ public final class CloudamqpFunctions {
      *         var instance = new Instance("instance");
      * 
      *         // Old (deprecated)
-     *         final var credentials = instance.id().applyValue(_id -> CloudamqpFunctions.getCredentials(GetCredentialsArgs.builder()
-     *             .instanceId(_id)
-     *             .build()));
+     *         final var credentials = CloudamqpFunctions.getCredentials(GetCredentialsArgs.builder()
+     *             .instanceId(instance.id())
+     *             .build());
      * 
      *     }
      * }
@@ -1005,9 +1005,9 @@ public final class CloudamqpFunctions {
      *         var instance = new Instance("instance");
      * 
      *         // Old (deprecated)
-     *         final var credentials = instance.id().applyValue(_id -> CloudamqpFunctions.getCredentials(GetCredentialsArgs.builder()
-     *             .instanceId(_id)
-     *             .build()));
+     *         final var credentials = CloudamqpFunctions.getCredentials(GetCredentialsArgs.builder()
+     *             .instanceId(instance.id())
+     *             .build());
      * 
      *     }
      * }
@@ -1095,9 +1095,9 @@ public final class CloudamqpFunctions {
      *         var instance = new Instance("instance");
      * 
      *         // Old (deprecated)
-     *         final var credentials = instance.id().applyValue(_id -> CloudamqpFunctions.getCredentials(GetCredentialsArgs.builder()
-     *             .instanceId(_id)
-     *             .build()));
+     *         final var credentials = CloudamqpFunctions.getCredentials(GetCredentialsArgs.builder()
+     *             .instanceId(instance.id())
+     *             .build());
      * 
      *     }
      * }
@@ -1185,9 +1185,9 @@ public final class CloudamqpFunctions {
      *         var instance = new Instance("instance");
      * 
      *         // Old (deprecated)
-     *         final var credentials = instance.id().applyValue(_id -> CloudamqpFunctions.getCredentials(GetCredentialsArgs.builder()
-     *             .instanceId(_id)
-     *             .build()));
+     *         final var credentials = CloudamqpFunctions.getCredentials(GetCredentialsArgs.builder()
+     *             .instanceId(instance.id())
+     *             .build());
      * 
      *     }
      * }

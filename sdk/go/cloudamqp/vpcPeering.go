@@ -67,11 +67,9 @@ import (
 //				return err
 //			}
 //			// CloudAMQP - Extract vpc information
-//			vpcInfo := instance.ID().ApplyT(func(id string) (cloudamqp.GetVpcInfoResult, error) {
-//				return cloudamqp.GetVpcInfoResult(interface{}(cloudamqp.GetVpcInfo(ctx, &cloudamqp.GetVpcInfoArgs{
-//					InstanceId: pulumi.IntRef(pulumi.IntRef(int(id))),
-//				}, nil))), nil
-//			}).(cloudamqp.GetVpcInfoResultOutput)
+//			vpcInfo := cloudamqp.GetVpcInfoOutput(ctx, cloudamqp.GetVpcInfoOutputArgs{
+//				InstanceId: instance.ID(),
+//			}, nil)
 //			// AWS - retrieve instance to get subnet identifier
 //			awsInstance, err := aws.Instance(ctx, map[string]interface{}{
 //				"instanceTags": map[string]interface{}{

@@ -72,9 +72,9 @@ import * as utilities from "./utilities";
  *     plan: "bunny-1",
  *     region: "amazon-web-services::us-west-1",
  * });
- * const upgradableVersions = instance.id.apply(id => cloudamqp.getUpgradableVersionsOutput({
- *     instanceId: Number(id),
- * }));
+ * const upgradableVersions = cloudamqp.getUpgradableVersionsOutput({
+ *     instanceId: instance.id.apply(x =>Number(x)),
+ * });
  * const upgrade = new cloudamqp.UpgradeRabbitmq("upgrade", {
  *     instanceId: instance.id.apply(x =>Number(x)),
  *     currentVersion: instance.rmqVersion,

@@ -71,11 +71,9 @@ import (
 //				return err
 //			}
 //			// Old (deprecated)
-//			_ = instance.ID().ApplyT(func(id string) (cloudamqp.GetCredentialsResult, error) {
-//				return cloudamqp.GetCredentialsResult(interface{}(cloudamqp.GetCredentials(ctx, &cloudamqp.GetCredentialsArgs{
-//					InstanceId: id,
-//				}, nil))), nil
-//			}).(cloudamqp.GetCredentialsResultOutput)
+//			_ = cloudamqp.GetCredentialsOutput(ctx, cloudamqp.GetCredentialsOutputArgs{
+//				InstanceId: instance.ID(),
+//			}, nil)
 //			return nil
 //		})
 //	}
