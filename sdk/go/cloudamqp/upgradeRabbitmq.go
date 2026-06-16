@@ -117,7 +117,7 @@ import (
 //				InstanceId:     instance.ID(),
 //				CurrentVersion: instance.RmqVersion,
 //				NewVersion: pulumi.String(upgradableVersions.ApplyT(func(upgradableVersions cloudamqp.GetUpgradableVersionsResult) (*string, error) {
-//					return &upgradableVersions.NewRabbitmqVersion, nil
+//					return upgradableVersions.NewRabbitmqVersion, nil
 //				}).(pulumi.StringPtrOutput)),
 //			})
 //			if err != nil {

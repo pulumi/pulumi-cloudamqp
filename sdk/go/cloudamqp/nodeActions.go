@@ -91,8 +91,8 @@ import (
 //				InstanceId: pulumi.Any(instance.Id),
 //				Action:     pulumi.String("restart"),
 //				NodeNames: pulumi.StringArray{
-//					pulumi.String(pulumi.String(nodes.Nodes[0].Name)),
-//					pulumi.String(pulumi.String(nodes.Nodes[1].Name)),
+//					pulumi.String(nodes.Nodes[0].Name),
+//					pulumi.String(nodes.Nodes[1].Name),
 //				},
 //			})
 //			if err != nil {
@@ -138,7 +138,7 @@ import (
 //				InstanceId: pulumi.Any(instance.Id),
 //				Action:     pulumi.String("reboot"),
 //				NodeNames: pulumi.StringArray{
-//					pulumi.String(pulumi.String(nodes.Nodes[0].Name)),
+//					pulumi.String(nodes.Nodes[0].Name),
 //				},
 //			})
 //			if err != nil {
@@ -184,7 +184,7 @@ import (
 //				InstanceId: pulumi.Any(instance.Id),
 //				Action:     pulumi.String("mgmt.restart"),
 //				NodeNames: pulumi.StringArray{
-//					pulumi.String(pulumi.String(nodes.Nodes[0].Name)),
+//					pulumi.String(nodes.Nodes[0].Name),
 //				},
 //			})
 //			if err != nil {
@@ -307,7 +307,7 @@ import (
 //			restart01, err := cloudamqp.NewNodeActions(ctx, "restart_01", &cloudamqp.NodeActionsArgs{
 //				InstanceId: pulumi.Any(instance.Id),
 //				Action:     pulumi.String("restart"),
-//				NodeName:   pulumi.String(pulumi.String(listNodes.Nodes[0].Name)),
+//				NodeName:   pulumi.String(listNodes.Nodes[0].Name),
 //			})
 //			if err != nil {
 //				return err
@@ -315,7 +315,7 @@ import (
 //			restart02, err := cloudamqp.NewNodeActions(ctx, "restart_02", &cloudamqp.NodeActionsArgs{
 //				InstanceId: pulumi.Any(instance.Id),
 //				Action:     pulumi.String("restart"),
-//				NodeName:   pulumi.String(pulumi.String(listNodes.Nodes[1].Name)),
+//				NodeName:   pulumi.String(listNodes.Nodes[1].Name),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				restart01,
 //			}))
@@ -325,7 +325,7 @@ import (
 //			_, err = cloudamqp.NewNodeActions(ctx, "restart_03", &cloudamqp.NodeActionsArgs{
 //				InstanceId: pulumi.Any(instance.Id),
 //				Action:     pulumi.String("restart"),
-//				NodeName:   pulumi.String(pulumi.String(listNodes.Nodes[2].Name)),
+//				NodeName:   pulumi.String(listNodes.Nodes[2].Name),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				restart01,
 //				restart02,
