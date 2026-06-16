@@ -1,4 +1,28 @@
 {
+    "default-resource-schema-fixups": {
+        "resources": {
+            "cloudamqp_account_actions": {},
+            "cloudamqp_alarm": {},
+            "cloudamqp_custom_certificate": {
+                "fields": {
+                    "id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "cloudamqp_integration_aws_eventbridge": {},
+            "cloudamqp_integration_log": {},
+            "cloudamqp_integration_metric": {},
+            "cloudamqp_maintenance_window": {},
+            "cloudamqp_node_actions": {},
+            "cloudamqp_notification": {},
+            "cloudamqp_oauth2_configuration": {},
+            "cloudamqp_rabbitmq_configuration": {},
+            "cloudamqp_trust_store": {},
+            "cloudamqp_vpc": {},
+            "cloudamqp_webhook": {}
+        }
+    },
     "mux": {
         "resources": {
             "cloudamqp:index/accountActions:AccountActions": 1,
