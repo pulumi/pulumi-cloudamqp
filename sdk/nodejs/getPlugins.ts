@@ -18,6 +18,8 @@ import * as utilities from "./utilities";
  *
  * const plugins = cloudamqp.getPlugins({
  *     instanceId: Number(instance.id),
+ *     enabled: true,
+ *     recommended: true,
  * });
  * ```
  *
@@ -28,7 +30,10 @@ import * as utilities from "./utilities";
 export function getPlugins(args: GetPluginsArgs, opts?: pulumi.InvokeOptions): Promise<GetPluginsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("cloudamqp:index/getPlugins:getPlugins", {
+        "enabled": args.enabled,
         "instanceId": args.instanceId,
+        "recommended": args.recommended,
+        "required": args.required,
         "sleep": args.sleep,
         "timeout": args.timeout,
     }, opts);
@@ -39,9 +44,21 @@ export function getPlugins(args: GetPluginsArgs, opts?: pulumi.InvokeOptions): P
  */
 export interface GetPluginsArgs {
     /**
+     * Only store enabled plugins to state.
+     */
+    enabled?: boolean;
+    /**
      * The CloudAMQP instance identifier.
      */
     instanceId: number;
+    /**
+     * Only store plugins as recommended to state.
+     */
+    recommended?: boolean;
+    /**
+     * Only store plugins as reqired to state.
+     */
+    required?: boolean;
     /**
      * Configurable sleep time (seconds) for retries when requesting
      * information about plugins. Default set to 10 seconds.
@@ -59,6 +76,10 @@ export interface GetPluginsArgs {
  */
 export interface GetPluginsResult {
     /**
+     * Information if the plugin is enabled or disabled (true/false).
+     */
+    readonly enabled?: boolean;
+    /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
@@ -67,6 +88,14 @@ export interface GetPluginsResult {
      * An array of plugins. Each `plugins` block consists of the fields documented below.
      */
     readonly plugins: outputs.GetPluginsPlugin[];
+    /**
+     * Information if the plugin is recommeded (true/false).
+     */
+    readonly recommended?: boolean;
+    /**
+     * Information if the plugin is required (true/false).
+     */
+    readonly required?: boolean;
     readonly sleep?: number;
     readonly timeout?: number;
 }
@@ -82,6 +111,8 @@ export interface GetPluginsResult {
  *
  * const plugins = cloudamqp.getPlugins({
  *     instanceId: Number(instance.id),
+ *     enabled: true,
+ *     recommended: true,
  * });
  * ```
  *
@@ -92,7 +123,10 @@ export interface GetPluginsResult {
 export function getPluginsOutput(args: GetPluginsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPluginsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("cloudamqp:index/getPlugins:getPlugins", {
+        "enabled": args.enabled,
         "instanceId": args.instanceId,
+        "recommended": args.recommended,
+        "required": args.required,
         "sleep": args.sleep,
         "timeout": args.timeout,
     }, opts);
@@ -103,9 +137,21 @@ export function getPluginsOutput(args: GetPluginsOutputArgs, opts?: pulumi.Invok
  */
 export interface GetPluginsOutputArgs {
     /**
+     * Only store enabled plugins to state.
+     */
+    enabled?: pulumi.Input<boolean | undefined>;
+    /**
      * The CloudAMQP instance identifier.
      */
     instanceId: pulumi.Input<number>;
+    /**
+     * Only store plugins as recommended to state.
+     */
+    recommended?: pulumi.Input<boolean | undefined>;
+    /**
+     * Only store plugins as reqired to state.
+     */
+    required?: pulumi.Input<boolean | undefined>;
     /**
      * Configurable sleep time (seconds) for retries when requesting
      * information about plugins. Default set to 10 seconds.

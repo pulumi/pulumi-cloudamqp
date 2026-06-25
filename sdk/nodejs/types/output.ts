@@ -255,13 +255,21 @@ export interface GetPluginsPlugin {
      */
     description: string;
     /**
-     * Enable or disable information for the plugin.
+     * Only store enabled plugins to state.
      */
     enabled: boolean;
     /**
      * The type of the recipient.
      */
     name: string;
+    /**
+     * Only store plugins as recommended to state.
+     */
+    recommended: boolean;
+    /**
+     * Only store plugins as reqired to state.
+     */
+    required: boolean;
     /**
      * Rabbit MQ version that the plugins are shipped with.
      */

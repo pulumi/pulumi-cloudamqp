@@ -28,6 +28,8 @@ namespace Pulumi.CloudAmqp
         ///     var plugins = CloudAmqp.GetPlugins.Invoke(new()
         ///     {
         ///         InstanceId = instance.Id,
+        ///         Enabled = true,
+        ///         Recommended = true,
         ///     });
         /// 
         /// });
@@ -57,6 +59,8 @@ namespace Pulumi.CloudAmqp
         ///     var plugins = CloudAmqp.GetPlugins.Invoke(new()
         ///     {
         ///         InstanceId = instance.Id,
+        ///         Enabled = true,
+        ///         Recommended = true,
         ///     });
         /// 
         /// });
@@ -86,6 +90,8 @@ namespace Pulumi.CloudAmqp
         ///     var plugins = CloudAmqp.GetPlugins.Invoke(new()
         ///     {
         ///         InstanceId = instance.Id,
+        ///         Enabled = true,
+        ///         Recommended = true,
         ///     });
         /// 
         /// });
@@ -103,10 +109,28 @@ namespace Pulumi.CloudAmqp
     public sealed class GetPluginsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// Only store enabled plugins to state.
+        /// </summary>
+        [Input("enabled")]
+        public bool? Enabled { get; set; }
+
+        /// <summary>
         /// The CloudAMQP instance identifier.
         /// </summary>
         [Input("instanceId", required: true)]
         public int InstanceId { get; set; }
+
+        /// <summary>
+        /// Only store plugins as recommended to state.
+        /// </summary>
+        [Input("recommended")]
+        public bool? Recommended { get; set; }
+
+        /// <summary>
+        /// Only store plugins as reqired to state.
+        /// </summary>
+        [Input("required")]
+        public bool? Required { get; set; }
 
         /// <summary>
         /// Configurable sleep time (seconds) for retries when requesting
@@ -131,10 +155,28 @@ namespace Pulumi.CloudAmqp
     public sealed class GetPluginsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// Only store enabled plugins to state.
+        /// </summary>
+        [Input("enabled")]
+        public Input<bool>? Enabled { get; set; }
+
+        /// <summary>
         /// The CloudAMQP instance identifier.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<int> InstanceId { get; set; } = null!;
+
+        /// <summary>
+        /// Only store plugins as recommended to state.
+        /// </summary>
+        [Input("recommended")]
+        public Input<bool>? Recommended { get; set; }
+
+        /// <summary>
+        /// Only store plugins as reqired to state.
+        /// </summary>
+        [Input("required")]
+        public Input<bool>? Required { get; set; }
 
         /// <summary>
         /// Configurable sleep time (seconds) for retries when requesting
@@ -161,6 +203,10 @@ namespace Pulumi.CloudAmqp
     public sealed class GetPluginsResult
     {
         /// <summary>
+        /// Information if the plugin is enabled or disabled (true/false).
+        /// </summary>
+        public readonly bool? Enabled;
+        /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
@@ -169,24 +215,41 @@ namespace Pulumi.CloudAmqp
         /// An array of plugins. Each `Plugins` block consists of the fields documented below.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetPluginsPluginResult> Plugins;
+        /// <summary>
+        /// Information if the plugin is recommeded (true/false).
+        /// </summary>
+        public readonly bool? Recommended;
+        /// <summary>
+        /// Information if the plugin is required (true/false).
+        /// </summary>
+        public readonly bool? Required;
         public readonly int? Sleep;
         public readonly int? Timeout;
 
         [OutputConstructor]
         private GetPluginsResult(
+            bool? enabled,
+
             string id,
 
             int instanceId,
 
             ImmutableArray<Outputs.GetPluginsPluginResult> plugins,
 
+            bool? recommended,
+
+            bool? required,
+
             int? sleep,
 
             int? timeout)
         {
+            Enabled = enabled;
             Id = id;
             InstanceId = instanceId;
             Plugins = plugins;
+            Recommended = recommended;
+            Required = required;
             Sleep = sleep;
             Timeout = timeout;
         }

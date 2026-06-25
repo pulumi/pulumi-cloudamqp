@@ -5,6 +5,7 @@ package com.pulumi.cloudamqp.inputs;
 
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.util.Objects;
 import java.util.Optional;
@@ -14,6 +15,21 @@ import javax.annotation.Nullable;
 public final class GetPluginsPlainArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetPluginsPlainArgs Empty = new GetPluginsPlainArgs();
+
+    /**
+     * Only store enabled plugins to state.
+     * 
+     */
+    @Import(name="enabled")
+    private @Nullable Boolean enabled;
+
+    /**
+     * @return Only store enabled plugins to state.
+     * 
+     */
+    public Optional<Boolean> enabled() {
+        return Optional.ofNullable(this.enabled);
+    }
 
     /**
      * The CloudAMQP instance identifier.
@@ -28,6 +44,36 @@ public final class GetPluginsPlainArgs extends com.pulumi.resources.InvokeArgs {
      */
     public Integer instanceId() {
         return this.instanceId;
+    }
+
+    /**
+     * Only store plugins as recommended to state.
+     * 
+     */
+    @Import(name="recommended")
+    private @Nullable Boolean recommended;
+
+    /**
+     * @return Only store plugins as recommended to state.
+     * 
+     */
+    public Optional<Boolean> recommended() {
+        return Optional.ofNullable(this.recommended);
+    }
+
+    /**
+     * Only store plugins as reqired to state.
+     * 
+     */
+    @Import(name="required")
+    private @Nullable Boolean required;
+
+    /**
+     * @return Only store plugins as reqired to state.
+     * 
+     */
+    public Optional<Boolean> required() {
+        return Optional.ofNullable(this.required);
     }
 
     /**
@@ -67,7 +113,10 @@ public final class GetPluginsPlainArgs extends com.pulumi.resources.InvokeArgs {
     private GetPluginsPlainArgs() {}
 
     private GetPluginsPlainArgs(GetPluginsPlainArgs $) {
+        this.enabled = $.enabled;
         this.instanceId = $.instanceId;
+        this.recommended = $.recommended;
+        this.required = $.required;
         this.sleep = $.sleep;
         this.timeout = $.timeout;
     }
@@ -91,6 +140,17 @@ public final class GetPluginsPlainArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
+         * @param enabled Only store enabled plugins to state.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enabled(@Nullable Boolean enabled) {
+            $.enabled = enabled;
+            return this;
+        }
+
+        /**
          * @param instanceId The CloudAMQP instance identifier.
          * 
          * @return builder
@@ -98,6 +158,28 @@ public final class GetPluginsPlainArgs extends com.pulumi.resources.InvokeArgs {
          */
         public Builder instanceId(Integer instanceId) {
             $.instanceId = instanceId;
+            return this;
+        }
+
+        /**
+         * @param recommended Only store plugins as recommended to state.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder recommended(@Nullable Boolean recommended) {
+            $.recommended = recommended;
+            return this;
+        }
+
+        /**
+         * @param required Only store plugins as reqired to state.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder required(@Nullable Boolean required) {
+            $.required = required;
             return this;
         }
 

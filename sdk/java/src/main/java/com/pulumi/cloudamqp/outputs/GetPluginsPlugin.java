@@ -17,7 +17,7 @@ public final class GetPluginsPlugin {
      */
     private String description;
     /**
-     * @return Enable or disable information for the plugin.
+     * @return Only store enabled plugins to state.
      * 
      */
     private Boolean enabled;
@@ -26,6 +26,16 @@ public final class GetPluginsPlugin {
      * 
      */
     private String name;
+    /**
+     * @return Only store plugins as recommended to state.
+     * 
+     */
+    private Boolean recommended;
+    /**
+     * @return Only store plugins as reqired to state.
+     * 
+     */
+    private Boolean required;
     /**
      * @return Rabbit MQ version that the plugins are shipped with.
      * 
@@ -41,7 +51,7 @@ public final class GetPluginsPlugin {
         return this.description;
     }
     /**
-     * @return Enable or disable information for the plugin.
+     * @return Only store enabled plugins to state.
      * 
      */
     public Boolean enabled() {
@@ -53,6 +63,20 @@ public final class GetPluginsPlugin {
      */
     public String name() {
         return this.name;
+    }
+    /**
+     * @return Only store plugins as recommended to state.
+     * 
+     */
+    public Boolean recommended() {
+        return this.recommended;
+    }
+    /**
+     * @return Only store plugins as reqired to state.
+     * 
+     */
+    public Boolean required() {
+        return this.required;
     }
     /**
      * @return Rabbit MQ version that the plugins are shipped with.
@@ -74,6 +98,8 @@ public final class GetPluginsPlugin {
         private String description;
         private Boolean enabled;
         private String name;
+        private Boolean recommended;
+        private Boolean required;
         private String version;
         public Builder() {}
         public Builder(GetPluginsPlugin defaults) {
@@ -81,6 +107,8 @@ public final class GetPluginsPlugin {
     	      this.description = defaults.description;
     	      this.enabled = defaults.enabled;
     	      this.name = defaults.name;
+    	      this.recommended = defaults.recommended;
+    	      this.required = defaults.required;
     	      this.version = defaults.version;
         }
 
@@ -109,6 +137,22 @@ public final class GetPluginsPlugin {
             return this;
         }
         @CustomType.Setter
+        public Builder recommended(Boolean recommended) {
+            if (recommended == null) {
+              throw new MissingRequiredPropertyException("GetPluginsPlugin", "recommended");
+            }
+            this.recommended = recommended;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder required(Boolean required) {
+            if (required == null) {
+              throw new MissingRequiredPropertyException("GetPluginsPlugin", "required");
+            }
+            this.required = required;
+            return this;
+        }
+        @CustomType.Setter
         public Builder version(String version) {
             if (version == null) {
               throw new MissingRequiredPropertyException("GetPluginsPlugin", "version");
@@ -121,6 +165,8 @@ public final class GetPluginsPlugin {
             _resultValue.description = description;
             _resultValue.enabled = enabled;
             _resultValue.name = name;
+            _resultValue.recommended = recommended;
+            _resultValue.required = required;
             _resultValue.version = version;
             return _resultValue;
         }

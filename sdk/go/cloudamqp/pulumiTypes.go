@@ -3461,10 +3461,14 @@ func (o GetPluginsCommunityPluginArrayOutput) Index(i pulumi.IntInput) GetPlugin
 type GetPluginsPlugin struct {
 	// Description of what the plugin does.
 	Description string `pulumi:"description"`
-	// Enable or disable information for the plugin.
+	// Only store enabled plugins to state.
 	Enabled bool `pulumi:"enabled"`
 	// The type of the recipient.
 	Name string `pulumi:"name"`
+	// Only store plugins as recommended to state.
+	Recommended bool `pulumi:"recommended"`
+	// Only store plugins as reqired to state.
+	Required bool `pulumi:"required"`
 	// Rabbit MQ version that the plugins are shipped with.
 	Version string `pulumi:"version"`
 }
@@ -3483,10 +3487,14 @@ type GetPluginsPluginInput interface {
 type GetPluginsPluginArgs struct {
 	// Description of what the plugin does.
 	Description pulumi.StringInput `pulumi:"description"`
-	// Enable or disable information for the plugin.
+	// Only store enabled plugins to state.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
 	// The type of the recipient.
 	Name pulumi.StringInput `pulumi:"name"`
+	// Only store plugins as recommended to state.
+	Recommended pulumi.BoolInput `pulumi:"recommended"`
+	// Only store plugins as reqired to state.
+	Required pulumi.BoolInput `pulumi:"required"`
 	// Rabbit MQ version that the plugins are shipped with.
 	Version pulumi.StringInput `pulumi:"version"`
 }
@@ -3547,7 +3555,7 @@ func (o GetPluginsPluginOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPluginsPlugin) string { return v.Description }).(pulumi.StringOutput)
 }
 
-// Enable or disable information for the plugin.
+// Only store enabled plugins to state.
 func (o GetPluginsPluginOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetPluginsPlugin) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
@@ -3555,6 +3563,16 @@ func (o GetPluginsPluginOutput) Enabled() pulumi.BoolOutput {
 // The type of the recipient.
 func (o GetPluginsPluginOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPluginsPlugin) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Only store plugins as recommended to state.
+func (o GetPluginsPluginOutput) Recommended() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetPluginsPlugin) bool { return v.Recommended }).(pulumi.BoolOutput)
+}
+
+// Only store plugins as reqired to state.
+func (o GetPluginsPluginOutput) Required() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetPluginsPlugin) bool { return v.Required }).(pulumi.BoolOutput)
 }
 
 // Rabbit MQ version that the plugins are shipped with.

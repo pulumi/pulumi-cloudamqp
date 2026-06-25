@@ -1968,6 +1968,8 @@ public final class CloudamqpFunctions {
      *     public static void stack(Context ctx) {
      *         final var plugins = CloudamqpFunctions.getPlugins(GetPluginsArgs.builder()
      *             .instanceId(instance.id())
+     *             .enabled(true)
+     *             .recommended(true)
      *             .build());
      * 
      *     }
@@ -2013,6 +2015,8 @@ public final class CloudamqpFunctions {
      *     public static void stack(Context ctx) {
      *         final var plugins = CloudamqpFunctions.getPlugins(GetPluginsArgs.builder()
      *             .instanceId(instance.id())
+     *             .enabled(true)
+     *             .recommended(true)
      *             .build());
      * 
      *     }
@@ -2058,6 +2062,8 @@ public final class CloudamqpFunctions {
      *     public static void stack(Context ctx) {
      *         final var plugins = CloudamqpFunctions.getPlugins(GetPluginsArgs.builder()
      *             .instanceId(instance.id())
+     *             .enabled(true)
+     *             .recommended(true)
      *             .build());
      * 
      *     }
@@ -2103,6 +2109,8 @@ public final class CloudamqpFunctions {
      *     public static void stack(Context ctx) {
      *         final var plugins = CloudamqpFunctions.getPlugins(GetPluginsArgs.builder()
      *             .instanceId(instance.id())
+     *             .enabled(true)
+     *             .recommended(true)
      *             .build());
      * 
      *     }
@@ -2148,6 +2156,8 @@ public final class CloudamqpFunctions {
      *     public static void stack(Context ctx) {
      *         final var plugins = CloudamqpFunctions.getPlugins(GetPluginsArgs.builder()
      *             .instanceId(instance.id())
+     *             .enabled(true)
+     *             .recommended(true)
      *             .build());
      * 
      *     }

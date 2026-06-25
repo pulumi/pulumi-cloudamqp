@@ -150,6 +150,11 @@ export type Plugin = import("./plugin").Plugin;
 export const Plugin: typeof import("./plugin").Plugin = null as any;
 utilities.lazyLoad(exports, ["Plugin"], () => require("./plugin"));
 
+export { PluginBatchArgs, PluginBatchState } from "./pluginBatch";
+export type PluginBatch = import("./pluginBatch").PluginBatch;
+export const PluginBatch: typeof import("./pluginBatch").PluginBatch = null as any;
+utilities.lazyLoad(exports, ["PluginBatch"], () => require("./pluginBatch"));
+
 export { PluginCommunityArgs, PluginCommunityState } from "./pluginCommunity";
 export type PluginCommunity = import("./pluginCommunity").PluginCommunity;
 export const PluginCommunity: typeof import("./pluginCommunity").PluginCommunity = null as any;
@@ -262,6 +267,8 @@ const _module = {
                 return new Oauth2Configuration(name, <any>undefined, { urn })
             case "cloudamqp:index/plugin:Plugin":
                 return new Plugin(name, <any>undefined, { urn })
+            case "cloudamqp:index/pluginBatch:PluginBatch":
+                return new PluginBatch(name, <any>undefined, { urn })
             case "cloudamqp:index/pluginCommunity:PluginCommunity":
                 return new PluginCommunity(name, <any>undefined, { urn })
             case "cloudamqp:index/privatelinkAws:PrivatelinkAws":
@@ -308,6 +315,7 @@ pulumi.runtime.registerResourceModule("cloudamqp", "index/nodeActions", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/notification", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/oauth2Configuration", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/plugin", _module)
+pulumi.runtime.registerResourceModule("cloudamqp", "index/pluginBatch", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/pluginCommunity", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/privatelinkAws", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/privatelinkAzure", _module)

@@ -51,6 +51,7 @@
         "notification.ts",
         "oauth2Configuration.ts",
         "plugin.ts",
+        "pluginBatch.ts",
         "pluginCommunity.ts",
         "privatelinkAws.ts",
         "privatelinkAzure.ts",
