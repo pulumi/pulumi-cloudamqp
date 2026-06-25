@@ -29,7 +29,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.GetPlugins(ctx, &cloudamqp.GetPluginsArgs{
-//				InstanceId: instance.Id,
+//				InstanceId:  instance.Id,
+//				Enabled:     pulumi.BoolRef(true),
+//				Recommended: pulumi.BoolRef(true),
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -55,8 +57,14 @@ func GetPlugins(ctx *pulumi.Context, args *GetPluginsArgs, opts ...pulumi.Invoke
 
 // A collection of arguments for invoking getPlugins.
 type GetPluginsArgs struct {
+	// Only store enabled plugins to state.
+	Enabled *bool `pulumi:"enabled"`
 	// The CloudAMQP instance identifier.
 	InstanceId int `pulumi:"instanceId"`
+	// Only store plugins as recommended to state.
+	Recommended *bool `pulumi:"recommended"`
+	// Only store plugins as reqired to state.
+	Required *bool `pulumi:"required"`
 	// Configurable sleep time (seconds) for retries when requesting
 	// information about plugins. Default set to 10 seconds.
 	Sleep *int `pulumi:"sleep"`
@@ -67,13 +75,19 @@ type GetPluginsArgs struct {
 
 // A collection of values returned by getPlugins.
 type GetPluginsResult struct {
+	// Information if the plugin is enabled or disabled (true/false).
+	Enabled *bool `pulumi:"enabled"`
 	// The provider-assigned unique ID for this managed resource.
 	Id         string `pulumi:"id"`
 	InstanceId int    `pulumi:"instanceId"`
 	// An array of plugins. Each `plugins` block consists of the fields documented below.
 	Plugins []GetPluginsPlugin `pulumi:"plugins"`
-	Sleep   *int               `pulumi:"sleep"`
-	Timeout *int               `pulumi:"timeout"`
+	// Information if the plugin is recommeded (true/false).
+	Recommended *bool `pulumi:"recommended"`
+	// Information if the plugin is required (true/false).
+	Required *bool `pulumi:"required"`
+	Sleep    *int  `pulumi:"sleep"`
+	Timeout  *int  `pulumi:"timeout"`
 }
 
 func GetPluginsOutput(ctx *pulumi.Context, args GetPluginsOutputArgs, opts ...pulumi.InvokeOption) GetPluginsResultOutput {
@@ -87,8 +101,14 @@ func GetPluginsOutput(ctx *pulumi.Context, args GetPluginsOutputArgs, opts ...pu
 
 // A collection of arguments for invoking getPlugins.
 type GetPluginsOutputArgs struct {
+	// Only store enabled plugins to state.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// The CloudAMQP instance identifier.
 	InstanceId pulumi.IntInput `pulumi:"instanceId"`
+	// Only store plugins as recommended to state.
+	Recommended pulumi.BoolPtrInput `pulumi:"recommended"`
+	// Only store plugins as reqired to state.
+	Required pulumi.BoolPtrInput `pulumi:"required"`
 	// Configurable sleep time (seconds) for retries when requesting
 	// information about plugins. Default set to 10 seconds.
 	Sleep pulumi.IntPtrInput `pulumi:"sleep"`
@@ -116,6 +136,11 @@ func (o GetPluginsResultOutput) ToGetPluginsResultOutputWithContext(ctx context.
 	return o
 }
 
+// Information if the plugin is enabled or disabled (true/false).
+func (o GetPluginsResultOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetPluginsResult) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
 // The provider-assigned unique ID for this managed resource.
 func (o GetPluginsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPluginsResult) string { return v.Id }).(pulumi.StringOutput)
@@ -128,6 +153,16 @@ func (o GetPluginsResultOutput) InstanceId() pulumi.IntOutput {
 // An array of plugins. Each `plugins` block consists of the fields documented below.
 func (o GetPluginsResultOutput) Plugins() GetPluginsPluginArrayOutput {
 	return o.ApplyT(func(v GetPluginsResult) []GetPluginsPlugin { return v.Plugins }).(GetPluginsPluginArrayOutput)
+}
+
+// Information if the plugin is recommeded (true/false).
+func (o GetPluginsResultOutput) Recommended() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetPluginsResult) *bool { return v.Recommended }).(pulumi.BoolPtrOutput)
+}
+
+// Information if the plugin is required (true/false).
+func (o GetPluginsResultOutput) Required() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetPluginsResult) *bool { return v.Required }).(pulumi.BoolPtrOutput)
 }
 
 func (o GetPluginsResultOutput) Sleep() pulumi.IntPtrOutput {

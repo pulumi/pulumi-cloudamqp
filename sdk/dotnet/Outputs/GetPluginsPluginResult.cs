@@ -18,13 +18,21 @@ namespace Pulumi.CloudAmqp.Outputs
         /// </summary>
         public readonly string Description;
         /// <summary>
-        /// Enable or disable information for the plugin.
+        /// Only store enabled plugins to state.
         /// </summary>
         public readonly bool Enabled;
         /// <summary>
         /// The type of the recipient.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Only store plugins as recommended to state.
+        /// </summary>
+        public readonly bool Recommended;
+        /// <summary>
+        /// Only store plugins as reqired to state.
+        /// </summary>
+        public readonly bool Required;
         /// <summary>
         /// Rabbit MQ version that the plugins are shipped with.
         /// </summary>
@@ -38,11 +46,17 @@ namespace Pulumi.CloudAmqp.Outputs
 
             string name,
 
+            bool recommended,
+
+            bool required,
+
             string version)
         {
             Description = description;
             Enabled = enabled;
             Name = name;
+            Recommended = recommended;
+            Required = required;
             Version = version;
         }
     }

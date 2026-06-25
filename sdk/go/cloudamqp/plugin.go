@@ -211,26 +211,26 @@ import (
 //
 // ## Required plugins
 //
-// Plugins that is not needed to be managed by the provider since they will always be enabled. We have
-// made `rabbitmqPrometheus` required for all clusters since RabbitMQ version 3.10.0.
+// The following plugins are always enabled by CloudAMQP and do not need to be managed:
 //
 // | Name                      | Version |
 // |---------------------------|---------|
 // | rabbitmqManagement       | all     |
 // | rabbitmqManagementAgent | all     |
 // | rabbitmqPrometheus       | 3.10.0  |
+// | rabbitmqWebDispatch     | all     |
 //
 // ## Enable faster instance destroy
 //
-// When running `terraform destroy` this resource will try to disable the managed plugin before
+// When running `terraform destroy` this resource will try to disable the managed plugins before
 // deleting `Instance`. This is not necessary since the servers will be deleted.
 //
 // Set `enableFasterInstanceDestroy` to ***true*** in the provider configuration to skip this.
 //
+// [Plugin]: plugin.md
+// [CloudAMQP API list plugins]: https://docs.cloudamqp.com/instance-api.html#tag/plugins/get/plugins
 // [v1.19.2]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.19.2
 // [v1.27.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.27.0
-//
-// [CloudAMQP API list plugins]: https://docs.cloudamqp.com/instance-api.html#tag/plugins/get/plugins
 // [v1.29.0]: https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.29.0
 type Plugin struct {
 	pulumi.CustomResourceState

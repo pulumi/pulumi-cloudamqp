@@ -6,6 +6,7 @@ package com.pulumi.cloudamqp.outputs;
 import com.pulumi.cloudamqp.outputs.GetPluginsPlugin;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -15,6 +16,11 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetPluginsResult {
+    /**
+     * @return Information if the plugin is enabled or disabled (true/false).
+     * 
+     */
+    private @Nullable Boolean enabled;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -26,10 +32,27 @@ public final class GetPluginsResult {
      * 
      */
     private List<GetPluginsPlugin> plugins;
+    /**
+     * @return Information if the plugin is recommeded (true/false).
+     * 
+     */
+    private @Nullable Boolean recommended;
+    /**
+     * @return Information if the plugin is required (true/false).
+     * 
+     */
+    private @Nullable Boolean required;
     private @Nullable Integer sleep;
     private @Nullable Integer timeout;
 
     private GetPluginsResult() {}
+    /**
+     * @return Information if the plugin is enabled or disabled (true/false).
+     * 
+     */
+    public Optional<Boolean> enabled() {
+        return Optional.ofNullable(this.enabled);
+    }
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -47,6 +70,20 @@ public final class GetPluginsResult {
     public List<GetPluginsPlugin> plugins() {
         return this.plugins;
     }
+    /**
+     * @return Information if the plugin is recommeded (true/false).
+     * 
+     */
+    public Optional<Boolean> recommended() {
+        return Optional.ofNullable(this.recommended);
+    }
+    /**
+     * @return Information if the plugin is required (true/false).
+     * 
+     */
+    public Optional<Boolean> required() {
+        return Optional.ofNullable(this.required);
+    }
     public Optional<Integer> sleep() {
         return Optional.ofNullable(this.sleep);
     }
@@ -63,21 +100,33 @@ public final class GetPluginsResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable Boolean enabled;
         private String id;
         private Integer instanceId;
         private List<GetPluginsPlugin> plugins;
+        private @Nullable Boolean recommended;
+        private @Nullable Boolean required;
         private @Nullable Integer sleep;
         private @Nullable Integer timeout;
         public Builder() {}
         public Builder(GetPluginsResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.enabled = defaults.enabled;
     	      this.id = defaults.id;
     	      this.instanceId = defaults.instanceId;
     	      this.plugins = defaults.plugins;
+    	      this.recommended = defaults.recommended;
+    	      this.required = defaults.required;
     	      this.sleep = defaults.sleep;
     	      this.timeout = defaults.timeout;
         }
 
+        @CustomType.Setter
+        public Builder enabled(@Nullable Boolean enabled) {
+
+            this.enabled = enabled;
+            return this;
+        }
         @CustomType.Setter
         public Builder id(String id) {
             if (id == null) {
@@ -106,6 +155,18 @@ public final class GetPluginsResult {
             return plugins(List.of(plugins));
         }
         @CustomType.Setter
+        public Builder recommended(@Nullable Boolean recommended) {
+
+            this.recommended = recommended;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder required(@Nullable Boolean required) {
+
+            this.required = required;
+            return this;
+        }
+        @CustomType.Setter
         public Builder sleep(@Nullable Integer sleep) {
 
             this.sleep = sleep;
@@ -119,9 +180,12 @@ public final class GetPluginsResult {
         }
         public GetPluginsResult build() {
             final var _resultValue = new GetPluginsResult();
+            _resultValue.enabled = enabled;
             _resultValue.id = id;
             _resultValue.instanceId = instanceId;
             _resultValue.plugins = plugins;
+            _resultValue.recommended = recommended;
+            _resultValue.required = required;
             _resultValue.sleep = sleep;
             _resultValue.timeout = timeout;
             return _resultValue;

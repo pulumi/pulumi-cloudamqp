@@ -27,7 +27,10 @@ class GetPluginsResult:
     """
     A collection of values returned by getPlugins.
     """
-    def __init__(__self__, id=None, instance_id=None, plugins=None, sleep=None, timeout=None):
+    def __init__(__self__, enabled=None, id=None, instance_id=None, plugins=None, recommended=None, required=None, sleep=None, timeout=None):
+        if enabled and not isinstance(enabled, bool):
+            raise TypeError("Expected argument 'enabled' to be a bool")
+        pulumi.set(__self__, "enabled", enabled)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -37,12 +40,26 @@ class GetPluginsResult:
         if plugins and not isinstance(plugins, list):
             raise TypeError("Expected argument 'plugins' to be a list")
         pulumi.set(__self__, "plugins", plugins)
+        if recommended and not isinstance(recommended, bool):
+            raise TypeError("Expected argument 'recommended' to be a bool")
+        pulumi.set(__self__, "recommended", recommended)
+        if required and not isinstance(required, bool):
+            raise TypeError("Expected argument 'required' to be a bool")
+        pulumi.set(__self__, "required", required)
         if sleep and not isinstance(sleep, int):
             raise TypeError("Expected argument 'sleep' to be a int")
         pulumi.set(__self__, "sleep", sleep)
         if timeout and not isinstance(timeout, int):
             raise TypeError("Expected argument 'timeout' to be a int")
         pulumi.set(__self__, "timeout", timeout)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> Optional[_builtins.bool]:
+        """
+        Information if the plugin is enabled or disabled (true/false).
+        """
+        return pulumi.get(self, "enabled")
 
     @_builtins.property
     @pulumi.getter
@@ -67,6 +84,22 @@ class GetPluginsResult:
 
     @_builtins.property
     @pulumi.getter
+    def recommended(self) -> Optional[_builtins.bool]:
+        """
+        Information if the plugin is recommeded (true/false).
+        """
+        return pulumi.get(self, "recommended")
+
+    @_builtins.property
+    @pulumi.getter
+    def required(self) -> Optional[_builtins.bool]:
+        """
+        Information if the plugin is required (true/false).
+        """
+        return pulumi.get(self, "required")
+
+    @_builtins.property
+    @pulumi.getter
     def sleep(self) -> Optional[_builtins.int]:
         return pulumi.get(self, "sleep")
 
@@ -82,14 +115,20 @@ class AwaitableGetPluginsResult(GetPluginsResult):
         if False:
             yield self
         return GetPluginsResult(
+            enabled=self.enabled,
             id=self.id,
             instance_id=self.instance_id,
             plugins=self.plugins,
+            recommended=self.recommended,
+            required=self.required,
             sleep=self.sleep,
             timeout=self.timeout)
 
 
-def get_plugins(instance_id: Optional[_builtins.int] = None,
+def get_plugins(enabled: Optional[_builtins.bool] = None,
+                instance_id: Optional[_builtins.int] = None,
+                recommended: Optional[_builtins.bool] = None,
+                required: Optional[_builtins.bool] = None,
                 sleep: Optional[_builtins.int] = None,
                 timeout: Optional[_builtins.int] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPluginsResult:
@@ -103,7 +142,9 @@ def get_plugins(instance_id: Optional[_builtins.int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    plugins = cloudamqp.get_plugins(instance_id=int(instance["id"]))
+    plugins = cloudamqp.get_plugins(instance_id=int(instance["id"]),
+        enabled=True,
+        recommended=True)
     ```
 
     ## Dependency
@@ -111,26 +152,38 @@ def get_plugins(instance_id: Optional[_builtins.int] = None,
     This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 
 
+    :param _builtins.bool enabled: Only store enabled plugins to state.
     :param _builtins.int instance_id: The CloudAMQP instance identifier.
+    :param _builtins.bool recommended: Only store plugins as recommended to state.
+    :param _builtins.bool required: Only store plugins as reqired to state.
     :param _builtins.int sleep: Configurable sleep time (seconds) for retries when requesting
            information about plugins. Default set to 10 seconds.
     :param _builtins.int timeout: Configurable timeout time (seconds) for retries when requesting
            information about plugins. Default set to 1800 seconds.
     """
     __args__ = dict()
+    __args__['enabled'] = enabled
     __args__['instanceId'] = instance_id
+    __args__['recommended'] = recommended
+    __args__['required'] = required
     __args__['sleep'] = sleep
     __args__['timeout'] = timeout
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('cloudamqp:index/getPlugins:getPlugins', __args__, opts=opts, typ=GetPluginsResult).value
 
     return AwaitableGetPluginsResult(
+        enabled=pulumi.get(__ret__, 'enabled'),
         id=pulumi.get(__ret__, 'id'),
         instance_id=pulumi.get(__ret__, 'instance_id'),
         plugins=pulumi.get(__ret__, 'plugins'),
+        recommended=pulumi.get(__ret__, 'recommended'),
+        required=pulumi.get(__ret__, 'required'),
         sleep=pulumi.get(__ret__, 'sleep'),
         timeout=pulumi.get(__ret__, 'timeout'))
-def get_plugins_output(instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+def get_plugins_output(enabled: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                       instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                       recommended: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                       required: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
                        sleep: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
                        timeout: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPluginsResult]:
@@ -144,7 +197,9 @@ def get_plugins_output(instance_id: pulumi.Input[Optional[_builtins.int]] = None
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    plugins = cloudamqp.get_plugins(instance_id=int(instance["id"]))
+    plugins = cloudamqp.get_plugins(instance_id=int(instance["id"]),
+        enabled=True,
+        recommended=True)
     ```
 
     ## Dependency
@@ -152,21 +207,30 @@ def get_plugins_output(instance_id: pulumi.Input[Optional[_builtins.int]] = None
     This data source depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 
 
+    :param _builtins.bool enabled: Only store enabled plugins to state.
     :param _builtins.int instance_id: The CloudAMQP instance identifier.
+    :param _builtins.bool recommended: Only store plugins as recommended to state.
+    :param _builtins.bool required: Only store plugins as reqired to state.
     :param _builtins.int sleep: Configurable sleep time (seconds) for retries when requesting
            information about plugins. Default set to 10 seconds.
     :param _builtins.int timeout: Configurable timeout time (seconds) for retries when requesting
            information about plugins. Default set to 1800 seconds.
     """
     __args__ = dict()
+    __args__['enabled'] = enabled
     __args__['instanceId'] = instance_id
+    __args__['recommended'] = recommended
+    __args__['required'] = required
     __args__['sleep'] = sleep
     __args__['timeout'] = timeout
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('cloudamqp:index/getPlugins:getPlugins', __args__, opts=opts, typ=GetPluginsResult)
     return __ret__.apply(lambda __response__: GetPluginsResult(
+        enabled=pulumi.get(__response__, 'enabled'),
         id=pulumi.get(__response__, 'id'),
         instance_id=pulumi.get(__response__, 'instance_id'),
         plugins=pulumi.get(__response__, 'plugins'),
+        recommended=pulumi.get(__response__, 'recommended'),
+        required=pulumi.get(__response__, 'required'),
         sleep=pulumi.get(__response__, 'sleep'),
         timeout=pulumi.get(__response__, 'timeout')))

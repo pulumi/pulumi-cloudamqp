@@ -35,6 +35,7 @@ from .node_actions import *
 from .notification import *
 from .oauth2_configuration import *
 from .plugin import *
+from .plugin_batch import *
 from .plugin_community import *
 from .privatelink_aws import *
 from .privatelink_azure import *
@@ -180,6 +181,14 @@ _utilities.register(
   "fqn": "pulumi_cloudamqp",
   "classes": {
    "cloudamqp:index/plugin:Plugin": "Plugin"
+  }
+ },
+ {
+  "pkg": "cloudamqp",
+  "mod": "index/pluginBatch",
+  "fqn": "pulumi_cloudamqp",
+  "classes": {
+   "cloudamqp:index/pluginBatch:PluginBatch": "PluginBatch"
   }
  },
  {

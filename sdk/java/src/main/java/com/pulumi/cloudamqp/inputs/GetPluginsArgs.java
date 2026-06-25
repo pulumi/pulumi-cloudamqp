@@ -6,6 +6,7 @@ package com.pulumi.cloudamqp.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.util.Objects;
 import java.util.Optional;
@@ -15,6 +16,21 @@ import javax.annotation.Nullable;
 public final class GetPluginsArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetPluginsArgs Empty = new GetPluginsArgs();
+
+    /**
+     * Only store enabled plugins to state.
+     * 
+     */
+    @Import(name="enabled")
+    private @Nullable Output<Boolean> enabled;
+
+    /**
+     * @return Only store enabled plugins to state.
+     * 
+     */
+    public Optional<Output<Boolean>> enabled() {
+        return Optional.ofNullable(this.enabled);
+    }
 
     /**
      * The CloudAMQP instance identifier.
@@ -29,6 +45,36 @@ public final class GetPluginsArgs extends com.pulumi.resources.InvokeArgs {
      */
     public Output<Integer> instanceId() {
         return this.instanceId;
+    }
+
+    /**
+     * Only store plugins as recommended to state.
+     * 
+     */
+    @Import(name="recommended")
+    private @Nullable Output<Boolean> recommended;
+
+    /**
+     * @return Only store plugins as recommended to state.
+     * 
+     */
+    public Optional<Output<Boolean>> recommended() {
+        return Optional.ofNullable(this.recommended);
+    }
+
+    /**
+     * Only store plugins as reqired to state.
+     * 
+     */
+    @Import(name="required")
+    private @Nullable Output<Boolean> required;
+
+    /**
+     * @return Only store plugins as reqired to state.
+     * 
+     */
+    public Optional<Output<Boolean>> required() {
+        return Optional.ofNullable(this.required);
     }
 
     /**
@@ -68,7 +114,10 @@ public final class GetPluginsArgs extends com.pulumi.resources.InvokeArgs {
     private GetPluginsArgs() {}
 
     private GetPluginsArgs(GetPluginsArgs $) {
+        this.enabled = $.enabled;
         this.instanceId = $.instanceId;
+        this.recommended = $.recommended;
+        this.required = $.required;
         this.sleep = $.sleep;
         this.timeout = $.timeout;
     }
@@ -92,6 +141,27 @@ public final class GetPluginsArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
+         * @param enabled Only store enabled plugins to state.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enabled(@Nullable Output<Boolean> enabled) {
+            $.enabled = enabled;
+            return this;
+        }
+
+        /**
+         * @param enabled Only store enabled plugins to state.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enabled(Boolean enabled) {
+            return enabled(Output.of(enabled));
+        }
+
+        /**
          * @param instanceId The CloudAMQP instance identifier.
          * 
          * @return builder
@@ -110,6 +180,48 @@ public final class GetPluginsArgs extends com.pulumi.resources.InvokeArgs {
          */
         public Builder instanceId(Integer instanceId) {
             return instanceId(Output.of(instanceId));
+        }
+
+        /**
+         * @param recommended Only store plugins as recommended to state.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder recommended(@Nullable Output<Boolean> recommended) {
+            $.recommended = recommended;
+            return this;
+        }
+
+        /**
+         * @param recommended Only store plugins as recommended to state.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder recommended(Boolean recommended) {
+            return recommended(Output.of(recommended));
+        }
+
+        /**
+         * @param required Only store plugins as reqired to state.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder required(@Nullable Output<Boolean> required) {
+            $.required = required;
+            return this;
+        }
+
+        /**
+         * @param required Only store plugins as reqired to state.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder required(Boolean required) {
+            return required(Output.of(required));
         }
 
         /**

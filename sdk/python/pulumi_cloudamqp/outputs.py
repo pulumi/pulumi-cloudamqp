@@ -1482,16 +1482,22 @@ class GetPluginsPluginResult(dict):
                  description: _builtins.str,
                  enabled: _builtins.bool,
                  name: _builtins.str,
+                 recommended: _builtins.bool,
+                 required: _builtins.bool,
                  version: _builtins.str):
         """
         :param _builtins.str description: Description of what the plugin does.
-        :param _builtins.bool enabled: Enable or disable information for the plugin.
+        :param _builtins.bool enabled: Only store enabled plugins to state.
         :param _builtins.str name: The type of the recipient.
+        :param _builtins.bool recommended: Only store plugins as recommended to state.
+        :param _builtins.bool required: Only store plugins as reqired to state.
         :param _builtins.str version: Rabbit MQ version that the plugins are shipped with.
         """
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "recommended", recommended)
+        pulumi.set(__self__, "required", required)
         pulumi.set(__self__, "version", version)
 
     @_builtins.property
@@ -1506,7 +1512,7 @@ class GetPluginsPluginResult(dict):
     @pulumi.getter
     def enabled(self) -> _builtins.bool:
         """
-        Enable or disable information for the plugin.
+        Only store enabled plugins to state.
         """
         return pulumi.get(self, "enabled")
 
@@ -1517,6 +1523,22 @@ class GetPluginsPluginResult(dict):
         The type of the recipient.
         """
         return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def recommended(self) -> _builtins.bool:
+        """
+        Only store plugins as recommended to state.
+        """
+        return pulumi.get(self, "recommended")
+
+    @_builtins.property
+    @pulumi.getter
+    def required(self) -> _builtins.bool:
+        """
+        Only store plugins as reqired to state.
+        """
+        return pulumi.get(self, "required")
 
     @_builtins.property
     @pulumi.getter

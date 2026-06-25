@@ -51,6 +51,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Oauth2Configuration{}
 	case "cloudamqp:index/plugin:Plugin":
 		r = &Plugin{}
+	case "cloudamqp:index/pluginBatch:PluginBatch":
+		r = &PluginBatch{}
 	case "cloudamqp:index/pluginCommunity:PluginCommunity":
 		r = &PluginCommunity{}
 	case "cloudamqp:index/privatelinkAws:PrivatelinkAws":
@@ -181,6 +183,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"cloudamqp",
 		"index/plugin",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"cloudamqp",
+		"index/pluginBatch",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
