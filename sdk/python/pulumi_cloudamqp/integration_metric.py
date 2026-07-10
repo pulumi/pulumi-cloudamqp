@@ -862,7 +862,7 @@ class IntegrationMetric(pulumi.CustomResource):
         The following arguments are supported:
 
         * `name`              - (Required) The name of the third party log integration. See
-                              `Integration service reference`
+                            `Integration service reference`
         * `region`            - (Optional) Region hosting the integration service.
         * `access_key_id`     - (Optional) AWS access key identifier.
         * `secret_access_key` - (Optional) AWS secret access key.
@@ -877,12 +877,12 @@ class IntegrationMetric(pulumi.CustomResource):
         * `tags`              - (Optional) Tags. e.g. `env=prod,region=europe`.
           
           ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
-                    letter, read more about tags format in the [Datadog documentation].
+                  letter, read more about tags format in the [Datadog documentation].
 
         * `queue_allowlist`   - (Optional) Allowlist queues using regular expression. Leave empty to include
-                              all queues.
+                            all queues.
         * `vhost_allowlist`   - (Optional) Allowlist vhost using regular expression. Leave empty to include
-                              all vhosts.
+                            all vhosts.
         * `queue_whitelist`   - **Deprecated** Use queue_allowlist instead
         * `vhost_whitelist`   - **Deprecated** Use vhost_allowlist instead
         * `include_ad_queues` - (Optional) Include auto delete queues.
@@ -1191,7 +1191,7 @@ class IntegrationMetric(pulumi.CustomResource):
         The following arguments are supported:
 
         * `name`              - (Required) The name of the third party log integration. See
-                              `Integration service reference`
+                            `Integration service reference`
         * `region`            - (Optional) Region hosting the integration service.
         * `access_key_id`     - (Optional) AWS access key identifier.
         * `secret_access_key` - (Optional) AWS secret access key.
@@ -1206,12 +1206,12 @@ class IntegrationMetric(pulumi.CustomResource):
         * `tags`              - (Optional) Tags. e.g. `env=prod,region=europe`.
           
           ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
-                    letter, read more about tags format in the [Datadog documentation].
+                  letter, read more about tags format in the [Datadog documentation].
 
         * `queue_allowlist`   - (Optional) Allowlist queues using regular expression. Leave empty to include
-                              all queues.
+                            all queues.
         * `vhost_allowlist`   - (Optional) Allowlist vhost using regular expression. Leave empty to include
-                              all vhosts.
+                            all vhosts.
         * `queue_whitelist`   - **Deprecated** Use queue_allowlist instead
         * `vhost_whitelist`   - **Deprecated** Use vhost_allowlist instead
         * `include_ad_queues` - (Optional) Include auto delete queues.

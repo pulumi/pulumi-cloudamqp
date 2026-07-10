@@ -309,7 +309,7 @@ export class VpcConnect extends pulumi.CustomResource {
      * Configurable timeout time (seconds) when enable Private
      * Service Connect. Default set to 1800 seconds.
      *
-     * ___
+     * ***
      *
      * The `allowedPrincipals`, `approvedSubscriptions` or `allowedProjects` data depends on the
      * provider platform:
@@ -415,7 +415,7 @@ export interface VpcConnectState {
      * Configurable timeout time (seconds) when enable Private
      * Service Connect. Default set to 1800 seconds.
      *
-     * ___
+     * ***
      *
      * The `allowedPrincipals`, `approvedSubscriptions` or `allowedProjects` data depends on the
      * provider platform:
@@ -463,7 +463,7 @@ export interface VpcConnectArgs {
      * Configurable timeout time (seconds) when enable Private
      * Service Connect. Default set to 1800 seconds.
      *
-     * ___
+     * ***
      *
      * The `allowedPrincipals`, `approvedSubscriptions` or `allowedProjects` data depends on the
      * provider platform:

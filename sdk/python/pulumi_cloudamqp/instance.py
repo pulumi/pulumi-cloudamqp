@@ -72,7 +72,7 @@ class InstanceArgs:
                * GCP: zones in [gcp-region-zones]
                * Digital Ocean: Slug in [do-regional-availability]
                
-               ___
+               ***
                
                The `copy_settings` block consists of:
         :param pulumi.Input[_builtins.str] rmq_version: The Rabbit MQ version. Can be left out, will then be set to
@@ -231,7 +231,7 @@ class InstanceArgs:
         * GCP: zones in [gcp-region-zones]
         * Digital Ocean: Slug in [do-regional-availability]
 
-        ___
+        ***
 
         The `copy_settings` block consists of:
         """
@@ -362,7 +362,7 @@ class _InstanceState:
                * GCP: zones in [gcp-region-zones]
                * Digital Ocean: Slug in [do-regional-availability]
                
-               ___
+               ***
                
                The `copy_settings` block consists of:
         :param pulumi.Input[_builtins.bool] ready: Flag describing if the resource is ready
@@ -607,7 +607,7 @@ class _InstanceState:
         * GCP: zones in [gcp-region-zones]
         * Digital Ocean: Slug in [do-regional-availability]
 
-        ___
+        ***
 
         The `copy_settings` block consists of:
         """
@@ -1176,7 +1176,7 @@ class Instance(pulumi.CustomResource):
                * GCP: zones in [gcp-region-zones]
                * Digital Ocean: Slug in [do-regional-availability]
                
-               ___
+               ***
                
                The `copy_settings` block consists of:
         :param pulumi.Input[_builtins.str] region: The region to host the instance in. See available [regions].
@@ -1739,7 +1739,7 @@ class Instance(pulumi.CustomResource):
                * GCP: zones in [gcp-region-zones]
                * Digital Ocean: Slug in [do-regional-availability]
                
-               ___
+               ***
                
                The `copy_settings` block consists of:
         :param pulumi.Input[_builtins.bool] ready: Flag describing if the resource is ready
@@ -1920,7 +1920,7 @@ class Instance(pulumi.CustomResource):
         * GCP: zones in [gcp-region-zones]
         * Digital Ocean: Slug in [do-regional-availability]
 
-        ___
+        ***
 
         The `copy_settings` block consists of:
         """

@@ -40,7 +40,7 @@ class VpcConnectArgs:
         :param pulumi.Input[_builtins.int] timeout: Configurable timeout time (seconds) when enable Private
                Service Connect. Default set to 1800 seconds.
                
-               ___
+               ***
                
                The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the
                provider platform:
@@ -145,7 +145,7 @@ class VpcConnectArgs:
         Configurable timeout time (seconds) when enable Private
         Service Connect. Default set to 1800 seconds.
 
-        ___
+        ***
 
         The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the
         provider platform:
@@ -193,7 +193,7 @@ class _VpcConnectState:
         :param pulumi.Input[_builtins.int] timeout: Configurable timeout time (seconds) when enable Private
                Service Connect. Default set to 1800 seconds.
                
-               ___
+               ***
                
                The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the
                provider platform:
@@ -342,7 +342,7 @@ class _VpcConnectState:
         Configurable timeout time (seconds) when enable Private
         Service Connect. Default set to 1800 seconds.
 
-        ___
+        ***
 
         The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the
         provider platform:
@@ -608,7 +608,7 @@ class VpcConnect(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] timeout: Configurable timeout time (seconds) when enable Private
                Service Connect. Default set to 1800 seconds.
                
-               ___
+               ***
                
                The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the
                provider platform:
@@ -932,7 +932,7 @@ class VpcConnect(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] timeout: Configurable timeout time (seconds) when enable Private
                Service Connect. Default set to 1800 seconds.
                
-               ___
+               ***
                
                The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the
                provider platform:
@@ -1040,7 +1040,7 @@ class VpcConnect(pulumi.CustomResource):
         Configurable timeout time (seconds) when enable Private
         Service Connect. Default set to 1800 seconds.
 
-        ___
+        ***
 
         The `allowed_principals`, `approved_subscriptions` or `allowed_projects` data depends on the
         provider platform:
