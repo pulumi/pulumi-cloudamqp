@@ -38,16 +38,16 @@ class NotificationArgs:
         :param pulumi.Input[Sequence[pulumi.Input['NotificationResponderArgs']]] responders: An array of reponders (only for OpsGenie). Each `responders` block
                consists of the field documented below.
                
-               ___
+               ***
                
                The options parameter:
                
                * rk        - (Optional) Routing key to route alarm notification (can be used with Victorops).
                * dedupkey  - (Optional) If multiple alarms are triggered using a recipient with this key, only the
-               the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
-               to use the generated dedup key.
+                 the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
+                 to use the generated dedup key.
                
-               ___
+               ***
                
                The `responders` block consists of:
         """
@@ -128,16 +128,16 @@ class NotificationArgs:
         An array of reponders (only for OpsGenie). Each `responders` block
         consists of the field documented below.
 
-        ___
+        ***
 
         The options parameter:
 
         * rk        - (Optional) Routing key to route alarm notification (can be used with Victorops).
         * dedupkey  - (Optional) If multiple alarms are triggered using a recipient with this key, only the
-        the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
-        to use the generated dedup key.
+          the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
+          to use the generated dedup key.
 
-        ___
+        ***
 
         The `responders` block consists of:
         """
@@ -166,16 +166,16 @@ class _NotificationState:
         :param pulumi.Input[Sequence[pulumi.Input['NotificationResponderArgs']]] responders: An array of reponders (only for OpsGenie). Each `responders` block
                consists of the field documented below.
                
-               ___
+               ***
                
                The options parameter:
                
                * rk        - (Optional) Routing key to route alarm notification (can be used with Victorops).
                * dedupkey  - (Optional) If multiple alarms are triggered using a recipient with this key, only the
-               the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
-               to use the generated dedup key.
+                 the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
+                 to use the generated dedup key.
                
-               ___
+               ***
                
                The `responders` block consists of:
         :param pulumi.Input[_builtins.str] type: Type of responder. [`team`, `user`, `escalation`, `schedule`]
@@ -237,16 +237,16 @@ class _NotificationState:
         An array of reponders (only for OpsGenie). Each `responders` block
         consists of the field documented below.
 
-        ___
+        ***
 
         The options parameter:
 
         * rk        - (Optional) Routing key to route alarm notification (can be used with Victorops).
         * dedupkey  - (Optional) If multiple alarms are triggered using a recipient with this key, only the
-        the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
-        to use the generated dedup key.
+          the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
+          to use the generated dedup key.
 
-        ___
+        ***
 
         The `responders` block consists of:
         """
@@ -492,16 +492,16 @@ class Notification(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['NotificationResponderArgs', 'NotificationResponderArgsDict']]]] responders: An array of reponders (only for OpsGenie). Each `responders` block
                consists of the field documented below.
                
-               ___
+               ***
                
                The options parameter:
                
                * rk        - (Optional) Routing key to route alarm notification (can be used with Victorops).
                * dedupkey  - (Optional) If multiple alarms are triggered using a recipient with this key, only the
-               the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
-               to use the generated dedup key.
+                 the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
+                 to use the generated dedup key.
                
-               ___
+               ***
                
                The `responders` block consists of:
         :param pulumi.Input[_builtins.str] type: Type of responder. [`team`, `user`, `escalation`, `schedule`]
@@ -774,16 +774,16 @@ class Notification(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['NotificationResponderArgs', 'NotificationResponderArgsDict']]]] responders: An array of reponders (only for OpsGenie). Each `responders` block
                consists of the field documented below.
                
-               ___
+               ***
                
                The options parameter:
                
                * rk        - (Optional) Routing key to route alarm notification (can be used with Victorops).
                * dedupkey  - (Optional) If multiple alarms are triggered using a recipient with this key, only the
-               the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
-               to use the generated dedup key.
+                 the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
+                 to use the generated dedup key.
                
-               ___
+               ***
                
                The `responders` block consists of:
         :param pulumi.Input[_builtins.str] type: Type of responder. [`team`, `user`, `escalation`, `schedule`]
@@ -832,16 +832,16 @@ class Notification(pulumi.CustomResource):
         An array of reponders (only for OpsGenie). Each `responders` block
         consists of the field documented below.
 
-        ___
+        ***
 
         The options parameter:
 
         * rk        - (Optional) Routing key to route alarm notification (can be used with Victorops).
         * dedupkey  - (Optional) If multiple alarms are triggered using a recipient with this key, only the
-        the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
-        to use the generated dedup key.
+          the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
+          to use the generated dedup key.
 
-        ___
+        ***
 
         The `responders` block consists of:
         """

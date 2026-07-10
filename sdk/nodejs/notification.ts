@@ -247,16 +247,16 @@ export class Notification extends pulumi.CustomResource {
      * An array of reponders (only for OpsGenie). Each `responders` block
      * consists of the field documented below.
      *
-     * ___
+     * ***
      *
      * The options parameter:
      *
      * * rk        - (Optional) Routing key to route alarm notification (can be used with Victorops).
      * * dedupkey  - (Optional) If multiple alarms are triggered using a recipient with this key, only the
-     * the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
-     * to use the generated dedup key.
+     *   the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
+     *   to use the generated dedup key.
      *
-     * ___
+     * ***
      *
      * The `responders` block consists of:
      */
@@ -332,16 +332,16 @@ export interface NotificationState {
      * An array of reponders (only for OpsGenie). Each `responders` block
      * consists of the field documented below.
      *
-     * ___
+     * ***
      *
      * The options parameter:
      *
      * * rk        - (Optional) Routing key to route alarm notification (can be used with Victorops).
      * * dedupkey  - (Optional) If multiple alarms are triggered using a recipient with this key, only the
-     * the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
-     * to use the generated dedup key.
+     *   the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
+     *   to use the generated dedup key.
      *
-     * ___
+     * ***
      *
      * The `responders` block consists of:
      */
@@ -376,16 +376,16 @@ export interface NotificationArgs {
      * An array of reponders (only for OpsGenie). Each `responders` block
      * consists of the field documented below.
      *
-     * ___
+     * ***
      *
      * The options parameter:
      *
      * * rk        - (Optional) Routing key to route alarm notification (can be used with Victorops).
      * * dedupkey  - (Optional) If multiple alarms are triggered using a recipient with this key, only the
-     * the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
-     * to use the generated dedup key.
+     *   the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
+     *   to use the generated dedup key.
      *
-     * ___
+     * ***
      *
      * The `responders` block consists of:
      */

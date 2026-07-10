@@ -517,7 +517,7 @@ export class Instance extends pulumi.CustomResource {
      * * GCP: zones in [gcp-region-zones]
      * * Digital Ocean: Slug in [do-regional-availability]
      *
-     * ___
+     * ***
      *
      * The `copySettings` block consists of:
      */
@@ -721,7 +721,7 @@ export interface InstanceState {
      * * GCP: zones in [gcp-region-zones]
      * * Digital Ocean: Slug in [do-regional-availability]
      *
-     * ___
+     * ***
      *
      * The `copySettings` block consists of:
      */
@@ -830,7 +830,7 @@ export interface InstanceArgs {
      * * GCP: zones in [gcp-region-zones]
      * * Digital Ocean: Slug in [do-regional-availability]
      *
-     * ___
+     * ***
      *
      * The `copySettings` block consists of:
      */

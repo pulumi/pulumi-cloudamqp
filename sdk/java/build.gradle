@@ -95,7 +95,7 @@ publishing {
                 inceptionYear = "2022"
                 name = "pulumi-cloudamqp"
                 packaging = "jar"
-                description = "A Pulumi package for creating and managing CloudAMQP resources."
+                description = $/A Pulumi package for creating and managing CloudAMQP resources./$
 
                 url = "https://github.com/pulumi/pulumi-cloudamqp"
 
