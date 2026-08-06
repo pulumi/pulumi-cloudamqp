@@ -56,6 +56,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -74,7 +76,7 @@ import (
 //			}
 //			// Resize disk with 25 extra GB
 //			_, err = cloudamqp.NewExtraDiskSize(ctx, "resize_disk", &cloudamqp.ExtraDiskSizeArgs{
-//				InstanceId:    instance.ID(),
+//				InstanceId:    instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //				ExtraDiskSize: pulumi.Int(25),
 //			})
 //			if err != nil {
@@ -83,7 +85,7 @@ import (
 //			// Optional, refresh nodes info after disk resize by adding dependency
 //			// to cloudamqp_extra_disk_size.resize_disk resource
 //			_ = cloudamqp.GetNodesOutput(ctx, cloudamqp.GetNodesOutputArgs{
-//				InstanceId: instance.ID(),
+//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //			}, nil)
 //			return nil
 //		})
@@ -106,6 +108,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -124,7 +128,7 @@ import (
 //			}
 //			// Resize disk with 25 extra GB, without downtime
 //			_, err = cloudamqp.NewExtraDiskSize(ctx, "resize_disk", &cloudamqp.ExtraDiskSizeArgs{
-//				InstanceId:    instance.ID(),
+//				InstanceId:    instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //				ExtraDiskSize: pulumi.Int(25),
 //			})
 //			if err != nil {
@@ -133,7 +137,7 @@ import (
 //			// Optional, refresh nodes info after disk resize by adding dependency
 //			// to cloudamqp_extra_disk_size.resize_disk resource
 //			_ = cloudamqp.GetNodesOutput(ctx, cloudamqp.GetNodesOutputArgs{
-//				InstanceId: instance.ID(),
+//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //			}, nil)
 //			return nil
 //		})
@@ -156,6 +160,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -174,7 +180,7 @@ import (
 //			}
 //			// Resize disk with 25 extra GB, without downtime
 //			_, err = cloudamqp.NewExtraDiskSize(ctx, "resize_disk", &cloudamqp.ExtraDiskSizeArgs{
-//				InstanceId:    instance.ID(),
+//				InstanceId:    instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //				ExtraDiskSize: pulumi.Int(25),
 //			})
 //			if err != nil {
@@ -183,7 +189,7 @@ import (
 //			// Optional, refresh nodes info after disk resize by adding dependency
 //			// to cloudamqp_extra_disk_size.resize_disk resource
 //			_ = cloudamqp.GetNodesOutput(ctx, cloudamqp.GetNodesOutputArgs{
-//				InstanceId: instance.ID(),
+//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //			}, nil)
 //			return nil
 //		})
@@ -206,6 +212,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -224,7 +232,7 @@ import (
 //			}
 //			// Resize disk with 25 extra GB, with downtime
 //			_, err = cloudamqp.NewExtraDiskSize(ctx, "resize_disk", &cloudamqp.ExtraDiskSizeArgs{
-//				InstanceId:    instance.ID(),
+//				InstanceId:    instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //				ExtraDiskSize: pulumi.Int(25),
 //			})
 //			if err != nil {
@@ -233,7 +241,7 @@ import (
 //			// Optional, refresh nodes info after disk resize by adding dependency
 //			// to cloudamqp_extra_disk_size.resize_disk resource
 //			_ = cloudamqp.GetNodesOutput(ctx, cloudamqp.GetNodesOutputArgs{
-//				InstanceId: instance.ID(),
+//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //			}, nil)
 //			return nil
 //		})

@@ -45,6 +45,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/pulumi/pulumi-aws/sdk/go/aws"
 //	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -68,10 +70,10 @@ import (
 //			}
 //			// CloudAMQP - Extract vpc information
 //			vpcInfo := cloudamqp.GetVpcInfoOutput(ctx, cloudamqp.GetVpcInfoOutputArgs{
-//				InstanceId: instance.ID(),
+//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //			}, nil)
 //			// AWS - retrieve instance to get subnet identifier
-//			awsInstance, err := aws.Instance(ctx, map[string]interface{}{
+//			awsInstance, err := aws.Instance(ctx, map[string]map[string]interface{}{
 //				"instanceTags": map[string]interface{}{
 //					"name": awsInstanceName,
 //				},
@@ -100,7 +102,7 @@ import (
 //			}
 //			// CloudAMQP - accept the peering request
 //			vpcAcceptPeering, err := cloudamqp.NewVpcPeering(ctx, "vpc_accept_peering", &cloudamqp.VpcPeeringArgs{
-//				InstanceId: instance.ID(),
+//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //				PeeringId:  awsVpcPeering.Id,
 //			})
 //			if err != nil {
@@ -145,6 +147,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/pulumi/pulumi-aws/sdk/go/aws"
 //	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -173,7 +177,7 @@ import (
 //				Tags: pulumi.StringArray{
 //					pulumi.String("terraform"),
 //				},
-//				VpcId:             vpc.ID(),
+//				VpcId:             vpc.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //				KeepAssociatedVpc: pulumi.Bool(true),
 //			})
 //			if err != nil {
@@ -181,10 +185,10 @@ import (
 //			}
 //			// CloudAMQP - Extract vpc information
 //			vpcInfo := cloudamqp.GetVpcInfoOutput(ctx, cloudamqp.GetVpcInfoOutputArgs{
-//				VpcId: vpc.ID(),
+//				VpcId: vpc.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			// AWS - retrieve instance to get subnet identifier
-//			awsInstance, err := aws.Instance(ctx, map[string]interface{}{
+//			awsInstance, err := aws.Instance(ctx, map[string]map[string]interface{}{
 //				"instanceTags": map[string]interface{}{
 //					"name": awsInstanceName,
 //				},
@@ -213,7 +217,7 @@ import (
 //			}
 //			// CloudAMQP - accept the peering request
 //			vpcAcceptPeering, err := cloudamqp.NewVpcPeering(ctx, "vpc_accept_peering", &cloudamqp.VpcPeeringArgs{
-//				VpcId:     vpc.ID(),
+//				VpcId:     vpc.ID().ToIDOutput().ToStringOutput(),
 //				PeeringId: awsVpcPeering.Id,
 //				Sleep:     pulumi.Int(30),
 //				Timeout:   pulumi.Int(600),

@@ -40,6 +40,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -66,7 +68,7 @@ import (
 //				ValueThreshold:   pulumi.Int(95),
 //				TimeThreshold:    pulumi.Int(600),
 //				Recipients: pulumi.IntArray{
-//					recipient01.ID(),
+//					recipient01.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //				},
 //			})
 //			if err != nil {
@@ -81,7 +83,7 @@ import (
 //				ValueThreshold:   pulumi.Int(95),
 //				TimeThreshold:    pulumi.Int(600),
 //				Recipients: pulumi.IntArray{
-//					recipient01.ID(),
+//					recipient01.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //				},
 //			})
 //			if err != nil {
@@ -111,6 +113,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -134,7 +138,7 @@ import (
 //				Type:       pulumi.String("notice"),
 //				Enabled:    pulumi.Bool(true),
 //				Recipients: pulumi.IntArray{
-//					recipient01.ID(),
+//					recipient01.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //				},
 //			})
 //			if err != nil {

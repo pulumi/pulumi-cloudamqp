@@ -78,7 +78,7 @@ import * as utilities from "./utilities";
  * const upgrade = new cloudamqp.UpgradeRabbitmq("upgrade", {
  *     instanceId: instance.id.apply(x =>Number(x)),
  *     currentVersion: instance.rmqVersion,
- *     newVersion: upgradableVersions.apply(upgradableVersions => upgradableVersions.newRabbitmqVersion),
+ *     newVersion: upgradableVersions.newRabbitmqVersion,
  * });
  * ```
  *

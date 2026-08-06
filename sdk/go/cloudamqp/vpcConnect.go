@@ -51,6 +51,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -72,14 +74,14 @@ import (
 //				Plan:              pulumi.String("penguin-1"),
 //				Region:            pulumi.String("amazon-web-services::us-west-1"),
 //				Tags:              pulumi.StringArray{},
-//				VpcId:             vpc.ID(),
+//				VpcId:             vpc.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //				KeepAssociatedVpc: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = cloudamqp.NewVpcConnect(ctx, "vpc_connect", &cloudamqp.VpcConnectArgs{
-//				InstanceId: instance.ID(),
+//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //				Region:     instance.Region,
 //				AllowedPrincipals: pulumi.StringArray{
 //					pulumi.String("arn:aws:iam::aws-account-id:user/user-name"),
@@ -109,6 +111,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -130,14 +134,14 @@ import (
 //				Plan:              pulumi.String("penguin-1"),
 //				Region:            pulumi.String("azure-arm::westus"),
 //				Tags:              pulumi.StringArray{},
-//				VpcId:             vpc.ID(),
+//				VpcId:             vpc.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //				KeepAssociatedVpc: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = cloudamqp.NewVpcConnect(ctx, "vpc_connect", &cloudamqp.VpcConnectArgs{
-//				InstanceId: instance.ID(),
+//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //				Region:     instance.Region,
 //				ApprovedSubscriptions: pulumi.StringArray{
 //					pulumi.String("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"),
@@ -210,6 +214,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -231,14 +237,14 @@ import (
 //				Plan:              pulumi.String("penguin-1"),
 //				Region:            pulumi.String("google-compute-engine::us-west1"),
 //				Tags:              pulumi.StringArray{},
-//				VpcId:             vpc.ID(),
+//				VpcId:             vpc.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //				KeepAssociatedVpc: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = cloudamqp.NewVpcConnect(ctx, "vpc_connect", &cloudamqp.VpcConnectArgs{
-//				InstanceId: instance.ID(),
+//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //				Region:     instance.Region,
 //				AllowedProjects: pulumi.StringArray{
 //					pulumi.String("some-project-123456"),
@@ -270,6 +276,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -291,14 +299,14 @@ import (
 //				Plan:              pulumi.String("penguin-1"),
 //				Region:            pulumi.String("amazon-web-services::us-west-1"),
 //				Tags:              pulumi.StringArray{},
-//				VpcId:             vpc.ID(),
+//				VpcId:             vpc.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //				KeepAssociatedVpc: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			vpcConnect, err := cloudamqp.NewVpcConnect(ctx, "vpc_connect", &cloudamqp.VpcConnectArgs{
-//				InstanceId: instance.ID(),
+//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //				AllowedPrincipals: pulumi.StringArray{
 //					pulumi.String("arn:aws:iam::aws-account-id:user/user-name"),
 //				},
@@ -307,7 +315,7 @@ import (
 //				return err
 //			}
 //			_, err = cloudamqp.NewSecurityFirewall(ctx, "firewall_settings", &cloudamqp.SecurityFirewallArgs{
-//				InstanceId: instance.ID(),
+//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //				Rules: cloudamqp.SecurityFirewallRuleArray{
 //					&cloudamqp.SecurityFirewallRuleArgs{
 //						Description: pulumi.String("Custom PrivateLink setup"),
