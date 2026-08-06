@@ -251,6 +251,8 @@ config:
 package main
 
 import (
+	"strconv"
+
 	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -271,7 +273,7 @@ func main() {
 		}
 		// New recipient to receieve notifications
 		recipient01, err := cloudamqp.NewNotification(ctx, "recipient_01", &cloudamqp.NotificationArgs{
-			InstanceId: instance.ID(),
+			InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 			Type:       pulumi.String("email"),
 			Value:      pulumi.String("alarm@example.com"),
 			Name:       pulumi.String("alarm"),
@@ -281,13 +283,13 @@ func main() {
 		}
 		// New cpu alarm
 		_, err = cloudamqp.NewAlarm(ctx, "cpu_alarm", &cloudamqp.AlarmArgs{
-			InstanceId:     instance.ID(),
+			InstanceId:     instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 			Type:           pulumi.String("cpu"),
 			ValueThreshold: pulumi.Int(90),
 			TimeThreshold:  pulumi.Int(600),
 			Enabled:        pulumi.Bool(true),
 			Recipients: pulumi.IntArray{
-				recipient01.ID(),
+				recipient01.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 			},
 		})
 		if err != nil {
@@ -295,7 +297,7 @@ func main() {
 		}
 		// Configure firewall
 		_, err = cloudamqp.NewSecurityFirewall(ctx, "firewall", &cloudamqp.SecurityFirewallArgs{
-			InstanceId: instance.ID(),
+			InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 			Rules: cloudamqp.SecurityFirewallRuleArray{
 				&cloudamqp.SecurityFirewallRuleArgs{
 					Ip: pulumi.String("10.54.72.0/0"),
@@ -313,7 +315,7 @@ func main() {
 		}
 		// Cloudwatch metrics integration
 		_, err = cloudamqp.NewIntegrationMetric(ctx, "cloudwatch", &cloudamqp.IntegrationMetricArgs{
-			InstanceId:      instance.ID(),
+			InstanceId:      instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 			Name:            pulumi.String("cloudwatch"),
 			AccessKeyId:     pulumi.Any(awsAccessKey),
 			SecretAccessKey: pulumi.Any(awsSecretKey),

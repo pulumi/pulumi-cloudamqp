@@ -37,6 +37,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -53,7 +55,7 @@ import (
 //				return err
 //			}
 //			_, err = cloudamqp.NewUpgradeLavinmq(ctx, "upgrade", &cloudamqp.UpgradeLavinmqArgs{
-//				InstanceId: instance.ID(),
+//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //				NewVersion: pulumi.String("1.3.1"),
 //			})
 //			if err != nil {

@@ -160,6 +160,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -179,7 +181,7 @@ import (
 //				return err
 //			}
 //			_, err = cloudamqp.NewPlugin(ctx, "rabbitmq_top", &cloudamqp.PluginArgs{
-//				InstanceId: instance.ID(),
+//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //				Name:       pulumi.String("rabbitmq_top"),
 //				Enabled:    pulumi.Bool(true),
 //			})
@@ -187,7 +189,7 @@ import (
 //				return err
 //			}
 //			_, err = cloudamqp.NewPlugin(ctx, "rabbitmq_amqp1_0", &cloudamqp.PluginArgs{
-//				InstanceId: instance.ID(),
+//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //				Name:       pulumi.String("rabbitmq_amqp1_0"),
 //				Enabled:    pulumi.Bool(true),
 //			})

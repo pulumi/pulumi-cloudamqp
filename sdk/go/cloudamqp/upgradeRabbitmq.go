@@ -49,6 +49,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -65,7 +67,7 @@ import (
 //				return err
 //			}
 //			_, err = cloudamqp.NewUpgradeRabbitmq(ctx, "upgrade", &cloudamqp.UpgradeRabbitmqArgs{
-//				InstanceId: instance.ID(),
+//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //				NewVersion: pulumi.String("3.13.2"),
 //			})
 //			if err != nil {
@@ -95,6 +97,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -111,14 +115,12 @@ import (
 //				return err
 //			}
 //			upgradableVersions := cloudamqp.GetUpgradableVersionsOutput(ctx, cloudamqp.GetUpgradableVersionsOutputArgs{
-//				InstanceId: instance.ID(),
+//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //			}, nil)
 //			_, err = cloudamqp.NewUpgradeRabbitmq(ctx, "upgrade", &cloudamqp.UpgradeRabbitmqArgs{
-//				InstanceId:     instance.ID(),
+//				InstanceId:     instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //				CurrentVersion: instance.RmqVersion,
-//				NewVersion: pulumi.String(upgradableVersions.ApplyT(func(upgradableVersions cloudamqp.GetUpgradableVersionsResult) (*string, error) {
-//					return upgradableVersions.NewRabbitmqVersion, nil
-//				}).(pulumi.StringPtrOutput)),
+//				NewVersion:     upgradableVersions.NewRabbitmqVersion(),
 //			})
 //			if err != nil {
 //				return err

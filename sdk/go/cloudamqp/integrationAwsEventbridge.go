@@ -42,6 +42,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -62,7 +64,7 @@ import (
 //				return err
 //			}
 //			_, err = cloudamqp.NewIntegrationAwsEventbridge(ctx, "this", &cloudamqp.IntegrationAwsEventbridgeArgs{
-//				InstanceId:   instance.ID(),
+//				InstanceId:   instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //				Vhost:        instance.Vhost,
 //				Queue:        pulumi.String("<QUEUE-NAME>"),
 //				AwsAccountId: pulumi.String("<AWS-ACCOUNT-ID>"),
@@ -93,6 +95,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -113,7 +117,7 @@ import (
 //				return err
 //			}
 //			_, err = cloudamqp.NewIntegrationAwsEventbridge(ctx, "this", &cloudamqp.IntegrationAwsEventbridgeArgs{
-//				InstanceId:   instance.ID(),
+//				InstanceId:   instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //				Vhost:        instance.Vhost,
 //				Queue:        pulumi.String("<QUEUE-NAME>"),
 //				AwsAccountId: pulumi.String("<AWS-ACCOUNT-ID>"),

@@ -57,6 +57,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -72,7 +74,7 @@ import (
 //			}
 //			// Old (deprecated)
 //			_ = cloudamqp.GetCredentialsOutput(ctx, cloudamqp.GetCredentialsOutputArgs{
-//				InstanceId: instance.ID(),
+//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //			}, nil)
 //			return nil
 //		})
