@@ -73,6 +73,153 @@ export interface InstanceCopySetting {
     subscriptionId: pulumi.Input<string>;
 }
 
+export interface IntegrationLogAgentCloudwatch {
+    /**
+     * External identifier that matches the trust policy of the IAM role.
+     */
+    iamExternalId?: pulumi.Input<string | undefined>;
+    /**
+     * AWS IAM role ARN used to assume permissions for the integration.
+     */
+    iamRole?: pulumi.Input<string | undefined>;
+    /**
+     * The name of the CloudWatch log group. Defaults to `CloudAMQP` if not set.
+     */
+    logGroup?: pulumi.Input<string | undefined>;
+    /**
+     * The name of the CloudWatch log stream. Recommended to use the cluster name, found in `cloudamqp_instance.instance.cluster_name`.
+     */
+    logStream?: pulumi.Input<string | undefined>;
+    /**
+     * AWS region hosting the CloudWatch log group.
+     */
+    region?: pulumi.Input<string | undefined>;
+}
+
+export interface IntegrationLogAgentCoralogix {
+    /**
+     * Application name, used to group logs by environment
+     */
+    application?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Coralogix private key (always starts with cxtp_...)
+     */
+    privateKey?: pulumi.Input<string | undefined>;
+    /**
+     * Version of the write-only private_key. Increment to trigger an update when the key changes (default: 1).
+     */
+    privateKeyVersion?: pulumi.Input<number | undefined>;
+    /**
+     * AWS region hosting the CloudWatch log group.
+     */
+    region?: pulumi.Input<string | undefined>;
+    /**
+     * Subsystem name, used to group logs by service within an application
+     */
+    subsystem?: pulumi.Input<string | undefined>;
+}
+
+export interface IntegrationLogAgentDatadog {
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Datadog API key
+     */
+    apiKey?: pulumi.Input<string | undefined>;
+    /**
+     * Version of the write-only api_key. Increment to trigger an update when the key changes (default: 1).
+     */
+    apiKeyVersion?: pulumi.Input<number | undefined>;
+    /**
+     * AWS region hosting the CloudWatch log group.
+     */
+    region?: pulumi.Input<string | undefined>;
+    /**
+     * Comma-separated tags to attach to logs (e.g. env=prod,region=eu)
+     */
+    tags?: pulumi.Input<string | undefined>;
+}
+
+export interface IntegrationLogAgentGoogleCloud {
+    /**
+     * Google service account client email (computed from service_account_file)
+     */
+    clientEmail?: pulumi.Input<string | undefined>;
+    /**
+     * Google service account private key ID (computed from service_account_file)
+     */
+    privateKeyId?: pulumi.Input<string | undefined>;
+    /**
+     * Google Cloud project ID (computed from service_account_file)
+     */
+    projectId?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Google service account key JSON file contents. Use file("path/to/key.json") to load the downloaded credentials file.
+     */
+    serviceAccountFile?: pulumi.Input<string | undefined>;
+    /**
+     * Version of the write-only service_account_file. Increment to trigger an update when the file contents change (default: 1).
+     */
+    serviceAccountFileVersion?: pulumi.Input<number | undefined>;
+    /**
+     * Comma-separated tags to attach to logs (e.g. env=prod,region=eu)
+     */
+    tags?: pulumi.Input<string | undefined>;
+}
+
+export interface IntegrationLogAgentGrafana {
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Grafana Cloud API token
+     */
+    apiToken?: pulumi.Input<string | undefined>;
+    /**
+     * Version of the write-only api_token. Increment to trigger an update when the token changes (default: 1).
+     */
+    apiTokenVersion?: pulumi.Input<number | undefined>;
+    /**
+     * Grafana Cloud OTLP endpoint (e.g. https://otlp-gateway-prod-eu-west-0.grafana.net/otlp)
+     */
+    endpoint?: pulumi.Input<string | undefined>;
+    /**
+     * Grafana Cloud instance ID
+     */
+    grafanaInstanceId?: pulumi.Input<string | undefined>;
+}
+
+export interface IntegrationLogAgentSplunk {
+    /**
+     * Splunk HEC endpoint URL (e.g. https://your-instance.splunkcloud.com:8088/services/collector)
+     */
+    endpoint?: pulumi.Input<string | undefined>;
+    /**
+     * Splunk source type (leave empty to use the token's default)
+     */
+    sourceType?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Splunk HEC token
+     */
+    token?: pulumi.Input<string | undefined>;
+    /**
+     * Version of the write-only token. Increment to trigger an update when the token changes (default: 1).
+     */
+    tokenVersion?: pulumi.Input<number | undefined>;
+}
+
+export interface IntegrationLogAgentUptrace {
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Uptrace DSN (Data Source Name) URL
+     */
+    dsn?: pulumi.Input<string | undefined>;
+    /**
+     * Version of the write-only dsn. Increment to trigger an update when the DSN changes (default: 1).
+     */
+    dsnVersion?: pulumi.Input<number | undefined>;
+}
+
 export interface IntegrationMetricPrometheusAzureMonitor {
     /**
      * Azure Application Insights Connection String for authentication.

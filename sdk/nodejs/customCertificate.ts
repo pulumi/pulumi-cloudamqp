@@ -8,8 +8,9 @@ import * as utilities from "./utilities";
  * <!-- markdownlint-disable MD033 -->
  *
  * This resource allows you to upload a custom certificate to all servers in your cluster. Update is
- * not supported, all changes require replacement. `ca`, `cert` and `privateKey` all use **WriteOnly**,
- * meaning no information is present in plan phase, logs or stored in the state for security purposes.
+ * not supported, all changes require replacement. The certificate can be used for one or more SNI
+ * hostnames. `ca`, `cert` and `privateKey` all use **WriteOnly**, meaning no information is present
+ * in plan phase, logs or stored in the state for security purposes.
  *
  * > **WARNING:** Please note that when uploading a custom certificate or restoring to default certificate,
  * all current connections will be closed.
@@ -70,7 +71,8 @@ export class CustomCertificate extends pulumi.CustomResource {
      */
     declare public readonly privateKey: pulumi.Output<string>;
     /**
-     * A hostname (Server Name Indication) that this certificate applies to.
+     * Hostname(s) (Server Name Indication) that this certificate
+     * applies to. Use a comma or space separated string for multiple hostnames.
      */
     declare public readonly sniHosts: pulumi.Output<string>;
     /**
@@ -158,7 +160,8 @@ export interface CustomCertificateState {
      */
     privateKey?: pulumi.Input<string | undefined>;
     /**
-     * A hostname (Server Name Indication) that this certificate applies to.
+     * Hostname(s) (Server Name Indication) that this certificate
+     * applies to. Use a comma or space separated string for multiple hostnames.
      */
     sniHosts?: pulumi.Input<string | undefined>;
     /**
@@ -195,7 +198,8 @@ export interface CustomCertificateArgs {
      */
     privateKey: pulumi.Input<string>;
     /**
-     * A hostname (Server Name Indication) that this certificate applies to.
+     * Hostname(s) (Server Name Indication) that this certificate
+     * applies to. Use a comma or space separated string for multiple hostnames.
      */
     sniHosts: pulumi.Input<string>;
     /**

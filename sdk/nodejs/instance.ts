@@ -456,6 +456,10 @@ export class Instance extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly backend: pulumi.Output<string>;
     /**
+     * Cluster name, extracted from the external hostname
+     */
+    declare public /*out*/ readonly clusterName: pulumi.Output<string>;
+    /**
      * Copy settings from one CloudAMQP instance to a new. Consists of
      * the block documented below.
      */
@@ -590,6 +594,7 @@ export class Instance extends pulumi.CustomResource {
             const state = argsOrState as InstanceState | undefined;
             resourceInputs["apikey"] = state?.apikey;
             resourceInputs["backend"] = state?.backend;
+            resourceInputs["clusterName"] = state?.clusterName;
             resourceInputs["copySettings"] = state?.copySettings;
             resourceInputs["credentials"] = state?.credentials;
             resourceInputs["dedicated"] = state?.dedicated;
@@ -631,6 +636,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["vpcSubnet"] = args?.vpcSubnet;
             resourceInputs["apikey"] = undefined /*out*/;
             resourceInputs["backend"] = undefined /*out*/;
+            resourceInputs["clusterName"] = undefined /*out*/;
             resourceInputs["credentials"] = undefined /*out*/;
             resourceInputs["dedicated"] = undefined /*out*/;
             resourceInputs["host"] = undefined /*out*/;
@@ -659,6 +665,10 @@ export interface InstanceState {
      * Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
      */
     backend?: pulumi.Input<string | undefined>;
+    /**
+     * Cluster name, extracted from the external hostname
+     */
+    clusterName?: pulumi.Input<string | undefined>;
     /**
      * Copy settings from one CloudAMQP instance to a new. Consists of
      * the block documented below.

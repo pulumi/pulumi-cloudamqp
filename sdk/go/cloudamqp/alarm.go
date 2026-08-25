@@ -152,11 +152,57 @@ import (
 //
 // </details>
 //
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Auto resize disk alarm</i>
+//	    <a href="https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.47.0">v1.47.0</a>
+//	  </b>
+//	</summary>
+//
+// `diskAutoResize` alarm type to support disk [autoscaling](https://www.cloudamqp.com/docs/cloudamqp-autoscaling.html) feature.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewAlarm(ctx, "disk_autoscale", &cloudamqp.AlarmArgs{
+//				InstanceId:       pulumi.Any(example.Id),
+//				Type:             pulumi.String("disk_auto_resize"),
+//				Enabled:          pulumi.Bool(true),
+//				ValueThreshold:   pulumi.Int(5),
+//				ValueCalculation: pulumi.String("percentage"),
+//				TimeThreshold:    pulumi.Int(600),
+//				AllowDowntime:    pulumi.Bool(false),
+//				Recipients: pulumi.IntArray{
+//					recipient.Id,
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
 // ## Alarm type reference
 //
-// Supported alarm types: `cpu, memory, disk, queue, connection, flow, consumer, netsplit,
+// Supported alarm types: `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer,
 //
-//	server_unreachable, notice`
+//	netsplit, server_unreachable, notice`
 //
 // Required arguments for all alarms: `instance_id, type, enabled`<br>
 // Optional argument for all alarms: `tags, queue_regex, vhostRegex`
@@ -166,6 +212,7 @@ import (
 // | CPU | cpu | - | &#10004; | time_threshold, valueThreshold |
 // | Memory | memory | - | &#10004; | time_threshold, valueThreshold |
 // | Disk space | disk | - | &#10004; | time_threshold, valueThreshold |
+// | Disk auto-resize | diskAutoResize | - | &#10004; | time_threshold, value_threshold, value_calculation, allowDowntime |
 // | Queue | queue | &#10004; | &#10004; | time_threshold, value_threshold, queue_regex, vhost_regex, messageType |
 // | Connection | connection | &#10004; | &#10004; | time_threshold, valueThreshold |
 // | Connection flow | flow | &#10004; | &#10004; | time_threshold, valueThreshold |
@@ -200,13 +247,27 @@ import (
 type Alarm struct {
 	pulumi.CustomResourceState
 
+	// For `diskAutoResize`, allow the resize to proceed even if it
+	// requires brief downtime. The Default is `false`.
+	//
+	// Setting `valueCalculation` on any other alarm type, or `allowDowntime` on a non
+	// `diskAutoResize` alarm, is rejected at plan time.
+	//
+	// > **Warning:** A `diskAutoResize` alarm grows the instance's additional disk out of band from
+	// Terraform. Do not use it together with the `ExtraDiskSize` resource on the same instance;
+	// both control the same disk and will conflict, which can lead to Terraform shrinking the disk (with
+	// downtime) back to the value declared on `ExtraDiskSize`. Manage the disk with either the
+	// `diskAutoResize` alarm or `ExtraDiskSize`, not both.
+	//
+	// Based on alarm type, different arguments are flagged as required or optional.
+	AllowDowntime pulumi.BoolPtrOutput `pulumi:"allowDowntime"`
 	// Enable or disable the alarm to trigger.
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
 	// Message type `(total, unacked, ready)` used by queue alarm type.
 	//
-	// Specific argument for `disk` alarm
+	// Specific arguments for `disk` and `diskAutoResize` alarms
 	MessageType pulumi.StringPtrOutput `pulumi:"messageType"`
 	// Regex for which queue to check.
 	QueueRegex pulumi.StringPtrOutput `pulumi:"queueRegex"`
@@ -223,8 +284,6 @@ type Alarm struct {
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Disk value threshold calculation, `fixed, percentage` of disk
 	// space remaining.
-	//
-	// Based on alarm type, different arguments are flagged as required or optional.
 	ValueCalculation pulumi.StringPtrOutput `pulumi:"valueCalculation"`
 	// The value to trigger the alarm for.
 	ValueThreshold pulumi.IntPtrOutput `pulumi:"valueThreshold"`
@@ -274,13 +333,27 @@ func GetAlarm(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Alarm resources.
 type alarmState struct {
+	// For `diskAutoResize`, allow the resize to proceed even if it
+	// requires brief downtime. The Default is `false`.
+	//
+	// Setting `valueCalculation` on any other alarm type, or `allowDowntime` on a non
+	// `diskAutoResize` alarm, is rejected at plan time.
+	//
+	// > **Warning:** A `diskAutoResize` alarm grows the instance's additional disk out of band from
+	// Terraform. Do not use it together with the `ExtraDiskSize` resource on the same instance;
+	// both control the same disk and will conflict, which can lead to Terraform shrinking the disk (with
+	// downtime) back to the value declared on `ExtraDiskSize`. Manage the disk with either the
+	// `diskAutoResize` alarm or `ExtraDiskSize`, not both.
+	//
+	// Based on alarm type, different arguments are flagged as required or optional.
+	AllowDowntime *bool `pulumi:"allowDowntime"`
 	// Enable or disable the alarm to trigger.
 	Enabled *bool `pulumi:"enabled"`
 	// The CloudAMQP instance ID.
 	InstanceId *int `pulumi:"instanceId"`
 	// Message type `(total, unacked, ready)` used by queue alarm type.
 	//
-	// Specific argument for `disk` alarm
+	// Specific arguments for `disk` and `diskAutoResize` alarms
 	MessageType *string `pulumi:"messageType"`
 	// Regex for which queue to check.
 	QueueRegex *string `pulumi:"queueRegex"`
@@ -297,8 +370,6 @@ type alarmState struct {
 	Type *string `pulumi:"type"`
 	// Disk value threshold calculation, `fixed, percentage` of disk
 	// space remaining.
-	//
-	// Based on alarm type, different arguments are flagged as required or optional.
 	ValueCalculation *string `pulumi:"valueCalculation"`
 	// The value to trigger the alarm for.
 	ValueThreshold *int `pulumi:"valueThreshold"`
@@ -307,13 +378,27 @@ type alarmState struct {
 }
 
 type AlarmState struct {
+	// For `diskAutoResize`, allow the resize to proceed even if it
+	// requires brief downtime. The Default is `false`.
+	//
+	// Setting `valueCalculation` on any other alarm type, or `allowDowntime` on a non
+	// `diskAutoResize` alarm, is rejected at plan time.
+	//
+	// > **Warning:** A `diskAutoResize` alarm grows the instance's additional disk out of band from
+	// Terraform. Do not use it together with the `ExtraDiskSize` resource on the same instance;
+	// both control the same disk and will conflict, which can lead to Terraform shrinking the disk (with
+	// downtime) back to the value declared on `ExtraDiskSize`. Manage the disk with either the
+	// `diskAutoResize` alarm or `ExtraDiskSize`, not both.
+	//
+	// Based on alarm type, different arguments are flagged as required or optional.
+	AllowDowntime pulumi.BoolPtrInput
 	// Enable or disable the alarm to trigger.
 	Enabled pulumi.BoolPtrInput
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntPtrInput
 	// Message type `(total, unacked, ready)` used by queue alarm type.
 	//
-	// Specific argument for `disk` alarm
+	// Specific arguments for `disk` and `diskAutoResize` alarms
 	MessageType pulumi.StringPtrInput
 	// Regex for which queue to check.
 	QueueRegex pulumi.StringPtrInput
@@ -330,8 +415,6 @@ type AlarmState struct {
 	Type pulumi.StringPtrInput
 	// Disk value threshold calculation, `fixed, percentage` of disk
 	// space remaining.
-	//
-	// Based on alarm type, different arguments are flagged as required or optional.
 	ValueCalculation pulumi.StringPtrInput
 	// The value to trigger the alarm for.
 	ValueThreshold pulumi.IntPtrInput
@@ -344,13 +427,27 @@ func (AlarmState) ElementType() reflect.Type {
 }
 
 type alarmArgs struct {
+	// For `diskAutoResize`, allow the resize to proceed even if it
+	// requires brief downtime. The Default is `false`.
+	//
+	// Setting `valueCalculation` on any other alarm type, or `allowDowntime` on a non
+	// `diskAutoResize` alarm, is rejected at plan time.
+	//
+	// > **Warning:** A `diskAutoResize` alarm grows the instance's additional disk out of band from
+	// Terraform. Do not use it together with the `ExtraDiskSize` resource on the same instance;
+	// both control the same disk and will conflict, which can lead to Terraform shrinking the disk (with
+	// downtime) back to the value declared on `ExtraDiskSize`. Manage the disk with either the
+	// `diskAutoResize` alarm or `ExtraDiskSize`, not both.
+	//
+	// Based on alarm type, different arguments are flagged as required or optional.
+	AllowDowntime *bool `pulumi:"allowDowntime"`
 	// Enable or disable the alarm to trigger.
 	Enabled bool `pulumi:"enabled"`
 	// The CloudAMQP instance ID.
 	InstanceId int `pulumi:"instanceId"`
 	// Message type `(total, unacked, ready)` used by queue alarm type.
 	//
-	// Specific argument for `disk` alarm
+	// Specific arguments for `disk` and `diskAutoResize` alarms
 	MessageType *string `pulumi:"messageType"`
 	// Regex for which queue to check.
 	QueueRegex *string `pulumi:"queueRegex"`
@@ -367,8 +464,6 @@ type alarmArgs struct {
 	Type string `pulumi:"type"`
 	// Disk value threshold calculation, `fixed, percentage` of disk
 	// space remaining.
-	//
-	// Based on alarm type, different arguments are flagged as required or optional.
 	ValueCalculation *string `pulumi:"valueCalculation"`
 	// The value to trigger the alarm for.
 	ValueThreshold *int `pulumi:"valueThreshold"`
@@ -378,13 +473,27 @@ type alarmArgs struct {
 
 // The set of arguments for constructing a Alarm resource.
 type AlarmArgs struct {
+	// For `diskAutoResize`, allow the resize to proceed even if it
+	// requires brief downtime. The Default is `false`.
+	//
+	// Setting `valueCalculation` on any other alarm type, or `allowDowntime` on a non
+	// `diskAutoResize` alarm, is rejected at plan time.
+	//
+	// > **Warning:** A `diskAutoResize` alarm grows the instance's additional disk out of band from
+	// Terraform. Do not use it together with the `ExtraDiskSize` resource on the same instance;
+	// both control the same disk and will conflict, which can lead to Terraform shrinking the disk (with
+	// downtime) back to the value declared on `ExtraDiskSize`. Manage the disk with either the
+	// `diskAutoResize` alarm or `ExtraDiskSize`, not both.
+	//
+	// Based on alarm type, different arguments are flagged as required or optional.
+	AllowDowntime pulumi.BoolPtrInput
 	// Enable or disable the alarm to trigger.
 	Enabled pulumi.BoolInput
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntInput
 	// Message type `(total, unacked, ready)` used by queue alarm type.
 	//
-	// Specific argument for `disk` alarm
+	// Specific arguments for `disk` and `diskAutoResize` alarms
 	MessageType pulumi.StringPtrInput
 	// Regex for which queue to check.
 	QueueRegex pulumi.StringPtrInput
@@ -401,8 +510,6 @@ type AlarmArgs struct {
 	Type pulumi.StringInput
 	// Disk value threshold calculation, `fixed, percentage` of disk
 	// space remaining.
-	//
-	// Based on alarm type, different arguments are flagged as required or optional.
 	ValueCalculation pulumi.StringPtrInput
 	// The value to trigger the alarm for.
 	ValueThreshold pulumi.IntPtrInput
@@ -497,6 +604,23 @@ func (o AlarmOutput) ToAlarmOutputWithContext(ctx context.Context) AlarmOutput {
 	return o
 }
 
+// For `diskAutoResize`, allow the resize to proceed even if it
+// requires brief downtime. The Default is `false`.
+//
+// Setting `valueCalculation` on any other alarm type, or `allowDowntime` on a non
+// `diskAutoResize` alarm, is rejected at plan time.
+//
+// > **Warning:** A `diskAutoResize` alarm grows the instance's additional disk out of band from
+// Terraform. Do not use it together with the `ExtraDiskSize` resource on the same instance;
+// both control the same disk and will conflict, which can lead to Terraform shrinking the disk (with
+// downtime) back to the value declared on `ExtraDiskSize`. Manage the disk with either the
+// `diskAutoResize` alarm or `ExtraDiskSize`, not both.
+//
+// Based on alarm type, different arguments are flagged as required or optional.
+func (o AlarmOutput) AllowDowntime() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Alarm) pulumi.BoolPtrOutput { return v.AllowDowntime }).(pulumi.BoolPtrOutput)
+}
+
 // Enable or disable the alarm to trigger.
 func (o AlarmOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Alarm) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
@@ -509,7 +633,7 @@ func (o AlarmOutput) InstanceId() pulumi.IntOutput {
 
 // Message type `(total, unacked, ready)` used by queue alarm type.
 //
-// Specific argument for `disk` alarm
+// Specific arguments for `disk` and `diskAutoResize` alarms
 func (o AlarmOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Alarm) pulumi.StringPtrOutput { return v.MessageType }).(pulumi.StringPtrOutput)
 }
@@ -544,8 +668,6 @@ func (o AlarmOutput) Type() pulumi.StringOutput {
 
 // Disk value threshold calculation, `fixed, percentage` of disk
 // space remaining.
-//
-// Based on alarm type, different arguments are flagged as required or optional.
 func (o AlarmOutput) ValueCalculation() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Alarm) pulumi.StringPtrOutput { return v.ValueCalculation }).(pulumi.StringPtrOutput)
 }

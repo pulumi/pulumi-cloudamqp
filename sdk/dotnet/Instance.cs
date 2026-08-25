@@ -607,6 +607,12 @@ namespace Pulumi.CloudAmqp
         public Output<string> Backend { get; private set; } = null!;
 
         /// <summary>
+        /// Cluster name, extracted from the external hostname
+        /// </summary>
+        [Output("clusterName")]
+        public Output<string> ClusterName { get; private set; } = null!;
+
+        /// <summary>
         /// Copy settings from one CloudAMQP instance to a new. Consists of
         /// the block documented below.
         /// </summary>
@@ -977,6 +983,12 @@ namespace Pulumi.CloudAmqp
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
+
+        /// <summary>
+        /// Cluster name, extracted from the external hostname
+        /// </summary>
+        [Input("clusterName")]
+        public Input<string>? ClusterName { get; set; }
 
         [Input("copySettings")]
         private InputList<Inputs.InstanceCopySettingGetArgs>? _copySettings;

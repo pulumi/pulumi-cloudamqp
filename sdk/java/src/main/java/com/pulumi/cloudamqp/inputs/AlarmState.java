@@ -19,6 +19,45 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
     public static final AlarmState Empty = new AlarmState();
 
     /**
+     * For `diskAutoResize`, allow the resize to proceed even if it
+     * requires brief downtime. The Default is `false`.
+     * 
+     * Setting `valueCalculation` on any other alarm type, or `allowDowntime` on a non
+     * `diskAutoResize` alarm, is rejected at plan time.
+     * 
+     * &gt; **Warning:** A `diskAutoResize` alarm grows the instance&#39;s additional disk out of band from
+     * Terraform. Do not use it together with the `cloudamqp.ExtraDiskSize` resource on the same instance;
+     * both control the same disk and will conflict, which can lead to Terraform shrinking the disk (with
+     * downtime) back to the value declared on `cloudamqp.ExtraDiskSize`. Manage the disk with either the
+     * `diskAutoResize` alarm or `cloudamqp.ExtraDiskSize`, not both.
+     * 
+     * Based on alarm type, different arguments are flagged as required or optional.
+     * 
+     */
+    @Import(name="allowDowntime")
+    private @Nullable Output<Boolean> allowDowntime;
+
+    /**
+     * @return For `diskAutoResize`, allow the resize to proceed even if it
+     * requires brief downtime. The Default is `false`.
+     * 
+     * Setting `valueCalculation` on any other alarm type, or `allowDowntime` on a non
+     * `diskAutoResize` alarm, is rejected at plan time.
+     * 
+     * &gt; **Warning:** A `diskAutoResize` alarm grows the instance&#39;s additional disk out of band from
+     * Terraform. Do not use it together with the `cloudamqp.ExtraDiskSize` resource on the same instance;
+     * both control the same disk and will conflict, which can lead to Terraform shrinking the disk (with
+     * downtime) back to the value declared on `cloudamqp.ExtraDiskSize`. Manage the disk with either the
+     * `diskAutoResize` alarm or `cloudamqp.ExtraDiskSize`, not both.
+     * 
+     * Based on alarm type, different arguments are flagged as required or optional.
+     * 
+     */
+    public Optional<Output<Boolean>> allowDowntime() {
+        return Optional.ofNullable(this.allowDowntime);
+    }
+
+    /**
      * Enable or disable the alarm to trigger.
      * 
      */
@@ -51,7 +90,7 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
     /**
      * Message type `(total, unacked, ready)` used by queue alarm type.
      * 
-     * Specific argument for `disk` alarm
+     * Specific arguments for `disk` and `diskAutoResize` alarms
      * 
      */
     @Import(name="messageType")
@@ -60,7 +99,7 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
     /**
      * @return Message type `(total, unacked, ready)` used by queue alarm type.
      * 
-     * Specific argument for `disk` alarm
+     * Specific arguments for `disk` and `diskAutoResize` alarms
      * 
      */
     public Optional<Output<String>> messageType() {
@@ -152,8 +191,6 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
      * Disk value threshold calculation, `fixed, percentage` of disk
      * space remaining.
      * 
-     * Based on alarm type, different arguments are flagged as required or optional.
-     * 
      */
     @Import(name="valueCalculation")
     private @Nullable Output<String> valueCalculation;
@@ -161,8 +198,6 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
     /**
      * @return Disk value threshold calculation, `fixed, percentage` of disk
      * space remaining.
-     * 
-     * Based on alarm type, different arguments are flagged as required or optional.
      * 
      */
     public Optional<Output<String>> valueCalculation() {
@@ -202,6 +237,7 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
     private AlarmState() {}
 
     private AlarmState(AlarmState $) {
+        this.allowDowntime = $.allowDowntime;
         this.enabled = $.enabled;
         this.instanceId = $.instanceId;
         this.messageType = $.messageType;
@@ -231,6 +267,51 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
 
         public Builder(AlarmState defaults) {
             $ = new AlarmState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param allowDowntime For `diskAutoResize`, allow the resize to proceed even if it
+         * requires brief downtime. The Default is `false`.
+         * 
+         * Setting `valueCalculation` on any other alarm type, or `allowDowntime` on a non
+         * `diskAutoResize` alarm, is rejected at plan time.
+         * 
+         * &gt; **Warning:** A `diskAutoResize` alarm grows the instance&#39;s additional disk out of band from
+         * Terraform. Do not use it together with the `cloudamqp.ExtraDiskSize` resource on the same instance;
+         * both control the same disk and will conflict, which can lead to Terraform shrinking the disk (with
+         * downtime) back to the value declared on `cloudamqp.ExtraDiskSize`. Manage the disk with either the
+         * `diskAutoResize` alarm or `cloudamqp.ExtraDiskSize`, not both.
+         * 
+         * Based on alarm type, different arguments are flagged as required or optional.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowDowntime(@Nullable Output<Boolean> allowDowntime) {
+            $.allowDowntime = allowDowntime;
+            return this;
+        }
+
+        /**
+         * @param allowDowntime For `diskAutoResize`, allow the resize to proceed even if it
+         * requires brief downtime. The Default is `false`.
+         * 
+         * Setting `valueCalculation` on any other alarm type, or `allowDowntime` on a non
+         * `diskAutoResize` alarm, is rejected at plan time.
+         * 
+         * &gt; **Warning:** A `diskAutoResize` alarm grows the instance&#39;s additional disk out of band from
+         * Terraform. Do not use it together with the `cloudamqp.ExtraDiskSize` resource on the same instance;
+         * both control the same disk and will conflict, which can lead to Terraform shrinking the disk (with
+         * downtime) back to the value declared on `cloudamqp.ExtraDiskSize`. Manage the disk with either the
+         * `diskAutoResize` alarm or `cloudamqp.ExtraDiskSize`, not both.
+         * 
+         * Based on alarm type, different arguments are flagged as required or optional.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowDowntime(Boolean allowDowntime) {
+            return allowDowntime(Output.of(allowDowntime));
         }
 
         /**
@@ -278,7 +359,7 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param messageType Message type `(total, unacked, ready)` used by queue alarm type.
          * 
-         * Specific argument for `disk` alarm
+         * Specific arguments for `disk` and `diskAutoResize` alarms
          * 
          * @return builder
          * 
@@ -291,7 +372,7 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param messageType Message type `(total, unacked, ready)` used by queue alarm type.
          * 
-         * Specific argument for `disk` alarm
+         * Specific arguments for `disk` and `diskAutoResize` alarms
          * 
          * @return builder
          * 
@@ -426,8 +507,6 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
          * @param valueCalculation Disk value threshold calculation, `fixed, percentage` of disk
          * space remaining.
          * 
-         * Based on alarm type, different arguments are flagged as required or optional.
-         * 
          * @return builder
          * 
          */
@@ -439,8 +518,6 @@ public final class AlarmState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param valueCalculation Disk value threshold calculation, `fixed, percentage` of disk
          * space remaining.
-         * 
-         * Based on alarm type, different arguments are flagged as required or optional.
          * 
          * @return builder
          * 

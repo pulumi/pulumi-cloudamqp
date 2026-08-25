@@ -246,6 +246,1426 @@ func (o InstanceCopySettingArrayOutput) Index(i pulumi.IntInput) InstanceCopySet
 	}).(InstanceCopySettingOutput)
 }
 
+type IntegrationLogAgentCloudwatch struct {
+	// External identifier that matches the trust policy of the IAM role.
+	IamExternalId *string `pulumi:"iamExternalId"`
+	// AWS IAM role ARN used to assume permissions for the integration.
+	IamRole *string `pulumi:"iamRole"`
+	// The name of the CloudWatch log group. Defaults to `CloudAMQP` if not set.
+	LogGroup *string `pulumi:"logGroup"`
+	// The name of the CloudWatch log stream. Recommended to use the cluster name, found in `cloudamqp_instance.instance.cluster_name`.
+	LogStream *string `pulumi:"logStream"`
+	// AWS region hosting the CloudWatch log group.
+	Region *string `pulumi:"region"`
+}
+
+// IntegrationLogAgentCloudwatchInput is an input type that accepts IntegrationLogAgentCloudwatchArgs and IntegrationLogAgentCloudwatchOutput values.
+// You can construct a concrete instance of `IntegrationLogAgentCloudwatchInput` via:
+//
+//	IntegrationLogAgentCloudwatchArgs{...}
+type IntegrationLogAgentCloudwatchInput interface {
+	pulumi.Input
+
+	ToIntegrationLogAgentCloudwatchOutput() IntegrationLogAgentCloudwatchOutput
+	ToIntegrationLogAgentCloudwatchOutputWithContext(context.Context) IntegrationLogAgentCloudwatchOutput
+}
+
+type IntegrationLogAgentCloudwatchArgs struct {
+	// External identifier that matches the trust policy of the IAM role.
+	IamExternalId pulumi.StringPtrInput `pulumi:"iamExternalId"`
+	// AWS IAM role ARN used to assume permissions for the integration.
+	IamRole pulumi.StringPtrInput `pulumi:"iamRole"`
+	// The name of the CloudWatch log group. Defaults to `CloudAMQP` if not set.
+	LogGroup pulumi.StringPtrInput `pulumi:"logGroup"`
+	// The name of the CloudWatch log stream. Recommended to use the cluster name, found in `cloudamqp_instance.instance.cluster_name`.
+	LogStream pulumi.StringPtrInput `pulumi:"logStream"`
+	// AWS region hosting the CloudWatch log group.
+	Region pulumi.StringPtrInput `pulumi:"region"`
+}
+
+func (IntegrationLogAgentCloudwatchArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationLogAgentCloudwatch)(nil)).Elem()
+}
+
+func (i IntegrationLogAgentCloudwatchArgs) ToIntegrationLogAgentCloudwatchOutput() IntegrationLogAgentCloudwatchOutput {
+	return i.ToIntegrationLogAgentCloudwatchOutputWithContext(context.Background())
+}
+
+func (i IntegrationLogAgentCloudwatchArgs) ToIntegrationLogAgentCloudwatchOutputWithContext(ctx context.Context) IntegrationLogAgentCloudwatchOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogAgentCloudwatchOutput)
+}
+
+func (i IntegrationLogAgentCloudwatchArgs) ToIntegrationLogAgentCloudwatchPtrOutput() IntegrationLogAgentCloudwatchPtrOutput {
+	return i.ToIntegrationLogAgentCloudwatchPtrOutputWithContext(context.Background())
+}
+
+func (i IntegrationLogAgentCloudwatchArgs) ToIntegrationLogAgentCloudwatchPtrOutputWithContext(ctx context.Context) IntegrationLogAgentCloudwatchPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogAgentCloudwatchOutput).ToIntegrationLogAgentCloudwatchPtrOutputWithContext(ctx)
+}
+
+// IntegrationLogAgentCloudwatchPtrInput is an input type that accepts IntegrationLogAgentCloudwatchArgs, IntegrationLogAgentCloudwatchPtr and IntegrationLogAgentCloudwatchPtrOutput values.
+// You can construct a concrete instance of `IntegrationLogAgentCloudwatchPtrInput` via:
+//
+//	        IntegrationLogAgentCloudwatchArgs{...}
+//
+//	or:
+//
+//	        nil
+type IntegrationLogAgentCloudwatchPtrInput interface {
+	pulumi.Input
+
+	ToIntegrationLogAgentCloudwatchPtrOutput() IntegrationLogAgentCloudwatchPtrOutput
+	ToIntegrationLogAgentCloudwatchPtrOutputWithContext(context.Context) IntegrationLogAgentCloudwatchPtrOutput
+}
+
+type integrationLogAgentCloudwatchPtrType IntegrationLogAgentCloudwatchArgs
+
+func IntegrationLogAgentCloudwatchPtr(v *IntegrationLogAgentCloudwatchArgs) IntegrationLogAgentCloudwatchPtrInput {
+	return (*integrationLogAgentCloudwatchPtrType)(v)
+}
+
+func (*integrationLogAgentCloudwatchPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationLogAgentCloudwatch)(nil)).Elem()
+}
+
+func (i *integrationLogAgentCloudwatchPtrType) ToIntegrationLogAgentCloudwatchPtrOutput() IntegrationLogAgentCloudwatchPtrOutput {
+	return i.ToIntegrationLogAgentCloudwatchPtrOutputWithContext(context.Background())
+}
+
+func (i *integrationLogAgentCloudwatchPtrType) ToIntegrationLogAgentCloudwatchPtrOutputWithContext(ctx context.Context) IntegrationLogAgentCloudwatchPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogAgentCloudwatchPtrOutput)
+}
+
+type IntegrationLogAgentCloudwatchOutput struct{ *pulumi.OutputState }
+
+func (IntegrationLogAgentCloudwatchOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationLogAgentCloudwatch)(nil)).Elem()
+}
+
+func (o IntegrationLogAgentCloudwatchOutput) ToIntegrationLogAgentCloudwatchOutput() IntegrationLogAgentCloudwatchOutput {
+	return o
+}
+
+func (o IntegrationLogAgentCloudwatchOutput) ToIntegrationLogAgentCloudwatchOutputWithContext(ctx context.Context) IntegrationLogAgentCloudwatchOutput {
+	return o
+}
+
+func (o IntegrationLogAgentCloudwatchOutput) ToIntegrationLogAgentCloudwatchPtrOutput() IntegrationLogAgentCloudwatchPtrOutput {
+	return o.ToIntegrationLogAgentCloudwatchPtrOutputWithContext(context.Background())
+}
+
+func (o IntegrationLogAgentCloudwatchOutput) ToIntegrationLogAgentCloudwatchPtrOutputWithContext(ctx context.Context) IntegrationLogAgentCloudwatchPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IntegrationLogAgentCloudwatch) *IntegrationLogAgentCloudwatch {
+		return &v
+	}).(IntegrationLogAgentCloudwatchPtrOutput)
+}
+
+// External identifier that matches the trust policy of the IAM role.
+func (o IntegrationLogAgentCloudwatchOutput) IamExternalId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentCloudwatch) *string { return v.IamExternalId }).(pulumi.StringPtrOutput)
+}
+
+// AWS IAM role ARN used to assume permissions for the integration.
+func (o IntegrationLogAgentCloudwatchOutput) IamRole() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentCloudwatch) *string { return v.IamRole }).(pulumi.StringPtrOutput)
+}
+
+// The name of the CloudWatch log group. Defaults to `CloudAMQP` if not set.
+func (o IntegrationLogAgentCloudwatchOutput) LogGroup() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentCloudwatch) *string { return v.LogGroup }).(pulumi.StringPtrOutput)
+}
+
+// The name of the CloudWatch log stream. Recommended to use the cluster name, found in `cloudamqp_instance.instance.cluster_name`.
+func (o IntegrationLogAgentCloudwatchOutput) LogStream() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentCloudwatch) *string { return v.LogStream }).(pulumi.StringPtrOutput)
+}
+
+// AWS region hosting the CloudWatch log group.
+func (o IntegrationLogAgentCloudwatchOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentCloudwatch) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+type IntegrationLogAgentCloudwatchPtrOutput struct{ *pulumi.OutputState }
+
+func (IntegrationLogAgentCloudwatchPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationLogAgentCloudwatch)(nil)).Elem()
+}
+
+func (o IntegrationLogAgentCloudwatchPtrOutput) ToIntegrationLogAgentCloudwatchPtrOutput() IntegrationLogAgentCloudwatchPtrOutput {
+	return o
+}
+
+func (o IntegrationLogAgentCloudwatchPtrOutput) ToIntegrationLogAgentCloudwatchPtrOutputWithContext(ctx context.Context) IntegrationLogAgentCloudwatchPtrOutput {
+	return o
+}
+
+func (o IntegrationLogAgentCloudwatchPtrOutput) Elem() IntegrationLogAgentCloudwatchOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentCloudwatch) IntegrationLogAgentCloudwatch {
+		if v != nil {
+			return *v
+		}
+		var ret IntegrationLogAgentCloudwatch
+		return ret
+	}).(IntegrationLogAgentCloudwatchOutput)
+}
+
+// External identifier that matches the trust policy of the IAM role.
+func (o IntegrationLogAgentCloudwatchPtrOutput) IamExternalId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentCloudwatch) *string {
+		if v == nil {
+			return nil
+		}
+		return v.IamExternalId
+	}).(pulumi.StringPtrOutput)
+}
+
+// AWS IAM role ARN used to assume permissions for the integration.
+func (o IntegrationLogAgentCloudwatchPtrOutput) IamRole() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentCloudwatch) *string {
+		if v == nil {
+			return nil
+		}
+		return v.IamRole
+	}).(pulumi.StringPtrOutput)
+}
+
+// The name of the CloudWatch log group. Defaults to `CloudAMQP` if not set.
+func (o IntegrationLogAgentCloudwatchPtrOutput) LogGroup() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentCloudwatch) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LogGroup
+	}).(pulumi.StringPtrOutput)
+}
+
+// The name of the CloudWatch log stream. Recommended to use the cluster name, found in `cloudamqp_instance.instance.cluster_name`.
+func (o IntegrationLogAgentCloudwatchPtrOutput) LogStream() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentCloudwatch) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LogStream
+	}).(pulumi.StringPtrOutput)
+}
+
+// AWS region hosting the CloudWatch log group.
+func (o IntegrationLogAgentCloudwatchPtrOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentCloudwatch) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Region
+	}).(pulumi.StringPtrOutput)
+}
+
+type IntegrationLogAgentCoralogix struct {
+	// Application name, used to group logs by environment
+	Application *string `pulumi:"application"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Coralogix private key (always starts with cxtp_...)
+	PrivateKey *string `pulumi:"privateKey"`
+	// Version of the write-only private_key. Increment to trigger an update when the key changes (default: 1).
+	PrivateKeyVersion *int `pulumi:"privateKeyVersion"`
+	// AWS region hosting the CloudWatch log group.
+	Region *string `pulumi:"region"`
+	// Subsystem name, used to group logs by service within an application
+	Subsystem *string `pulumi:"subsystem"`
+}
+
+// IntegrationLogAgentCoralogixInput is an input type that accepts IntegrationLogAgentCoralogixArgs and IntegrationLogAgentCoralogixOutput values.
+// You can construct a concrete instance of `IntegrationLogAgentCoralogixInput` via:
+//
+//	IntegrationLogAgentCoralogixArgs{...}
+type IntegrationLogAgentCoralogixInput interface {
+	pulumi.Input
+
+	ToIntegrationLogAgentCoralogixOutput() IntegrationLogAgentCoralogixOutput
+	ToIntegrationLogAgentCoralogixOutputWithContext(context.Context) IntegrationLogAgentCoralogixOutput
+}
+
+type IntegrationLogAgentCoralogixArgs struct {
+	// Application name, used to group logs by environment
+	Application pulumi.StringPtrInput `pulumi:"application"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Coralogix private key (always starts with cxtp_...)
+	PrivateKey pulumi.StringPtrInput `pulumi:"privateKey"`
+	// Version of the write-only private_key. Increment to trigger an update when the key changes (default: 1).
+	PrivateKeyVersion pulumi.IntPtrInput `pulumi:"privateKeyVersion"`
+	// AWS region hosting the CloudWatch log group.
+	Region pulumi.StringPtrInput `pulumi:"region"`
+	// Subsystem name, used to group logs by service within an application
+	Subsystem pulumi.StringPtrInput `pulumi:"subsystem"`
+}
+
+func (IntegrationLogAgentCoralogixArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationLogAgentCoralogix)(nil)).Elem()
+}
+
+func (i IntegrationLogAgentCoralogixArgs) ToIntegrationLogAgentCoralogixOutput() IntegrationLogAgentCoralogixOutput {
+	return i.ToIntegrationLogAgentCoralogixOutputWithContext(context.Background())
+}
+
+func (i IntegrationLogAgentCoralogixArgs) ToIntegrationLogAgentCoralogixOutputWithContext(ctx context.Context) IntegrationLogAgentCoralogixOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogAgentCoralogixOutput)
+}
+
+func (i IntegrationLogAgentCoralogixArgs) ToIntegrationLogAgentCoralogixPtrOutput() IntegrationLogAgentCoralogixPtrOutput {
+	return i.ToIntegrationLogAgentCoralogixPtrOutputWithContext(context.Background())
+}
+
+func (i IntegrationLogAgentCoralogixArgs) ToIntegrationLogAgentCoralogixPtrOutputWithContext(ctx context.Context) IntegrationLogAgentCoralogixPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogAgentCoralogixOutput).ToIntegrationLogAgentCoralogixPtrOutputWithContext(ctx)
+}
+
+// IntegrationLogAgentCoralogixPtrInput is an input type that accepts IntegrationLogAgentCoralogixArgs, IntegrationLogAgentCoralogixPtr and IntegrationLogAgentCoralogixPtrOutput values.
+// You can construct a concrete instance of `IntegrationLogAgentCoralogixPtrInput` via:
+//
+//	        IntegrationLogAgentCoralogixArgs{...}
+//
+//	or:
+//
+//	        nil
+type IntegrationLogAgentCoralogixPtrInput interface {
+	pulumi.Input
+
+	ToIntegrationLogAgentCoralogixPtrOutput() IntegrationLogAgentCoralogixPtrOutput
+	ToIntegrationLogAgentCoralogixPtrOutputWithContext(context.Context) IntegrationLogAgentCoralogixPtrOutput
+}
+
+type integrationLogAgentCoralogixPtrType IntegrationLogAgentCoralogixArgs
+
+func IntegrationLogAgentCoralogixPtr(v *IntegrationLogAgentCoralogixArgs) IntegrationLogAgentCoralogixPtrInput {
+	return (*integrationLogAgentCoralogixPtrType)(v)
+}
+
+func (*integrationLogAgentCoralogixPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationLogAgentCoralogix)(nil)).Elem()
+}
+
+func (i *integrationLogAgentCoralogixPtrType) ToIntegrationLogAgentCoralogixPtrOutput() IntegrationLogAgentCoralogixPtrOutput {
+	return i.ToIntegrationLogAgentCoralogixPtrOutputWithContext(context.Background())
+}
+
+func (i *integrationLogAgentCoralogixPtrType) ToIntegrationLogAgentCoralogixPtrOutputWithContext(ctx context.Context) IntegrationLogAgentCoralogixPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogAgentCoralogixPtrOutput)
+}
+
+type IntegrationLogAgentCoralogixOutput struct{ *pulumi.OutputState }
+
+func (IntegrationLogAgentCoralogixOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationLogAgentCoralogix)(nil)).Elem()
+}
+
+func (o IntegrationLogAgentCoralogixOutput) ToIntegrationLogAgentCoralogixOutput() IntegrationLogAgentCoralogixOutput {
+	return o
+}
+
+func (o IntegrationLogAgentCoralogixOutput) ToIntegrationLogAgentCoralogixOutputWithContext(ctx context.Context) IntegrationLogAgentCoralogixOutput {
+	return o
+}
+
+func (o IntegrationLogAgentCoralogixOutput) ToIntegrationLogAgentCoralogixPtrOutput() IntegrationLogAgentCoralogixPtrOutput {
+	return o.ToIntegrationLogAgentCoralogixPtrOutputWithContext(context.Background())
+}
+
+func (o IntegrationLogAgentCoralogixOutput) ToIntegrationLogAgentCoralogixPtrOutputWithContext(ctx context.Context) IntegrationLogAgentCoralogixPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IntegrationLogAgentCoralogix) *IntegrationLogAgentCoralogix {
+		return &v
+	}).(IntegrationLogAgentCoralogixPtrOutput)
+}
+
+// Application name, used to group logs by environment
+func (o IntegrationLogAgentCoralogixOutput) Application() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentCoralogix) *string { return v.Application }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Coralogix private key (always starts with cxtp_...)
+func (o IntegrationLogAgentCoralogixOutput) PrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentCoralogix) *string { return v.PrivateKey }).(pulumi.StringPtrOutput)
+}
+
+// Version of the write-only private_key. Increment to trigger an update when the key changes (default: 1).
+func (o IntegrationLogAgentCoralogixOutput) PrivateKeyVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentCoralogix) *int { return v.PrivateKeyVersion }).(pulumi.IntPtrOutput)
+}
+
+// AWS region hosting the CloudWatch log group.
+func (o IntegrationLogAgentCoralogixOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentCoralogix) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// Subsystem name, used to group logs by service within an application
+func (o IntegrationLogAgentCoralogixOutput) Subsystem() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentCoralogix) *string { return v.Subsystem }).(pulumi.StringPtrOutput)
+}
+
+type IntegrationLogAgentCoralogixPtrOutput struct{ *pulumi.OutputState }
+
+func (IntegrationLogAgentCoralogixPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationLogAgentCoralogix)(nil)).Elem()
+}
+
+func (o IntegrationLogAgentCoralogixPtrOutput) ToIntegrationLogAgentCoralogixPtrOutput() IntegrationLogAgentCoralogixPtrOutput {
+	return o
+}
+
+func (o IntegrationLogAgentCoralogixPtrOutput) ToIntegrationLogAgentCoralogixPtrOutputWithContext(ctx context.Context) IntegrationLogAgentCoralogixPtrOutput {
+	return o
+}
+
+func (o IntegrationLogAgentCoralogixPtrOutput) Elem() IntegrationLogAgentCoralogixOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentCoralogix) IntegrationLogAgentCoralogix {
+		if v != nil {
+			return *v
+		}
+		var ret IntegrationLogAgentCoralogix
+		return ret
+	}).(IntegrationLogAgentCoralogixOutput)
+}
+
+// Application name, used to group logs by environment
+func (o IntegrationLogAgentCoralogixPtrOutput) Application() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentCoralogix) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Application
+	}).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Coralogix private key (always starts with cxtp_...)
+func (o IntegrationLogAgentCoralogixPtrOutput) PrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentCoralogix) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// Version of the write-only private_key. Increment to trigger an update when the key changes (default: 1).
+func (o IntegrationLogAgentCoralogixPtrOutput) PrivateKeyVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentCoralogix) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKeyVersion
+	}).(pulumi.IntPtrOutput)
+}
+
+// AWS region hosting the CloudWatch log group.
+func (o IntegrationLogAgentCoralogixPtrOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentCoralogix) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Region
+	}).(pulumi.StringPtrOutput)
+}
+
+// Subsystem name, used to group logs by service within an application
+func (o IntegrationLogAgentCoralogixPtrOutput) Subsystem() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentCoralogix) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Subsystem
+	}).(pulumi.StringPtrOutput)
+}
+
+type IntegrationLogAgentDatadog struct {
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Datadog API key
+	ApiKey *string `pulumi:"apiKey"`
+	// Version of the write-only api_key. Increment to trigger an update when the key changes (default: 1).
+	ApiKeyVersion *int `pulumi:"apiKeyVersion"`
+	// AWS region hosting the CloudWatch log group.
+	Region *string `pulumi:"region"`
+	// Comma-separated tags to attach to logs (e.g. env=prod,region=eu)
+	Tags *string `pulumi:"tags"`
+}
+
+// IntegrationLogAgentDatadogInput is an input type that accepts IntegrationLogAgentDatadogArgs and IntegrationLogAgentDatadogOutput values.
+// You can construct a concrete instance of `IntegrationLogAgentDatadogInput` via:
+//
+//	IntegrationLogAgentDatadogArgs{...}
+type IntegrationLogAgentDatadogInput interface {
+	pulumi.Input
+
+	ToIntegrationLogAgentDatadogOutput() IntegrationLogAgentDatadogOutput
+	ToIntegrationLogAgentDatadogOutputWithContext(context.Context) IntegrationLogAgentDatadogOutput
+}
+
+type IntegrationLogAgentDatadogArgs struct {
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Datadog API key
+	ApiKey pulumi.StringPtrInput `pulumi:"apiKey"`
+	// Version of the write-only api_key. Increment to trigger an update when the key changes (default: 1).
+	ApiKeyVersion pulumi.IntPtrInput `pulumi:"apiKeyVersion"`
+	// AWS region hosting the CloudWatch log group.
+	Region pulumi.StringPtrInput `pulumi:"region"`
+	// Comma-separated tags to attach to logs (e.g. env=prod,region=eu)
+	Tags pulumi.StringPtrInput `pulumi:"tags"`
+}
+
+func (IntegrationLogAgentDatadogArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationLogAgentDatadog)(nil)).Elem()
+}
+
+func (i IntegrationLogAgentDatadogArgs) ToIntegrationLogAgentDatadogOutput() IntegrationLogAgentDatadogOutput {
+	return i.ToIntegrationLogAgentDatadogOutputWithContext(context.Background())
+}
+
+func (i IntegrationLogAgentDatadogArgs) ToIntegrationLogAgentDatadogOutputWithContext(ctx context.Context) IntegrationLogAgentDatadogOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogAgentDatadogOutput)
+}
+
+func (i IntegrationLogAgentDatadogArgs) ToIntegrationLogAgentDatadogPtrOutput() IntegrationLogAgentDatadogPtrOutput {
+	return i.ToIntegrationLogAgentDatadogPtrOutputWithContext(context.Background())
+}
+
+func (i IntegrationLogAgentDatadogArgs) ToIntegrationLogAgentDatadogPtrOutputWithContext(ctx context.Context) IntegrationLogAgentDatadogPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogAgentDatadogOutput).ToIntegrationLogAgentDatadogPtrOutputWithContext(ctx)
+}
+
+// IntegrationLogAgentDatadogPtrInput is an input type that accepts IntegrationLogAgentDatadogArgs, IntegrationLogAgentDatadogPtr and IntegrationLogAgentDatadogPtrOutput values.
+// You can construct a concrete instance of `IntegrationLogAgentDatadogPtrInput` via:
+//
+//	        IntegrationLogAgentDatadogArgs{...}
+//
+//	or:
+//
+//	        nil
+type IntegrationLogAgentDatadogPtrInput interface {
+	pulumi.Input
+
+	ToIntegrationLogAgentDatadogPtrOutput() IntegrationLogAgentDatadogPtrOutput
+	ToIntegrationLogAgentDatadogPtrOutputWithContext(context.Context) IntegrationLogAgentDatadogPtrOutput
+}
+
+type integrationLogAgentDatadogPtrType IntegrationLogAgentDatadogArgs
+
+func IntegrationLogAgentDatadogPtr(v *IntegrationLogAgentDatadogArgs) IntegrationLogAgentDatadogPtrInput {
+	return (*integrationLogAgentDatadogPtrType)(v)
+}
+
+func (*integrationLogAgentDatadogPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationLogAgentDatadog)(nil)).Elem()
+}
+
+func (i *integrationLogAgentDatadogPtrType) ToIntegrationLogAgentDatadogPtrOutput() IntegrationLogAgentDatadogPtrOutput {
+	return i.ToIntegrationLogAgentDatadogPtrOutputWithContext(context.Background())
+}
+
+func (i *integrationLogAgentDatadogPtrType) ToIntegrationLogAgentDatadogPtrOutputWithContext(ctx context.Context) IntegrationLogAgentDatadogPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogAgentDatadogPtrOutput)
+}
+
+type IntegrationLogAgentDatadogOutput struct{ *pulumi.OutputState }
+
+func (IntegrationLogAgentDatadogOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationLogAgentDatadog)(nil)).Elem()
+}
+
+func (o IntegrationLogAgentDatadogOutput) ToIntegrationLogAgentDatadogOutput() IntegrationLogAgentDatadogOutput {
+	return o
+}
+
+func (o IntegrationLogAgentDatadogOutput) ToIntegrationLogAgentDatadogOutputWithContext(ctx context.Context) IntegrationLogAgentDatadogOutput {
+	return o
+}
+
+func (o IntegrationLogAgentDatadogOutput) ToIntegrationLogAgentDatadogPtrOutput() IntegrationLogAgentDatadogPtrOutput {
+	return o.ToIntegrationLogAgentDatadogPtrOutputWithContext(context.Background())
+}
+
+func (o IntegrationLogAgentDatadogOutput) ToIntegrationLogAgentDatadogPtrOutputWithContext(ctx context.Context) IntegrationLogAgentDatadogPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IntegrationLogAgentDatadog) *IntegrationLogAgentDatadog {
+		return &v
+	}).(IntegrationLogAgentDatadogPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Datadog API key
+func (o IntegrationLogAgentDatadogOutput) ApiKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentDatadog) *string { return v.ApiKey }).(pulumi.StringPtrOutput)
+}
+
+// Version of the write-only api_key. Increment to trigger an update when the key changes (default: 1).
+func (o IntegrationLogAgentDatadogOutput) ApiKeyVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentDatadog) *int { return v.ApiKeyVersion }).(pulumi.IntPtrOutput)
+}
+
+// AWS region hosting the CloudWatch log group.
+func (o IntegrationLogAgentDatadogOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentDatadog) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// Comma-separated tags to attach to logs (e.g. env=prod,region=eu)
+func (o IntegrationLogAgentDatadogOutput) Tags() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentDatadog) *string { return v.Tags }).(pulumi.StringPtrOutput)
+}
+
+type IntegrationLogAgentDatadogPtrOutput struct{ *pulumi.OutputState }
+
+func (IntegrationLogAgentDatadogPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationLogAgentDatadog)(nil)).Elem()
+}
+
+func (o IntegrationLogAgentDatadogPtrOutput) ToIntegrationLogAgentDatadogPtrOutput() IntegrationLogAgentDatadogPtrOutput {
+	return o
+}
+
+func (o IntegrationLogAgentDatadogPtrOutput) ToIntegrationLogAgentDatadogPtrOutputWithContext(ctx context.Context) IntegrationLogAgentDatadogPtrOutput {
+	return o
+}
+
+func (o IntegrationLogAgentDatadogPtrOutput) Elem() IntegrationLogAgentDatadogOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentDatadog) IntegrationLogAgentDatadog {
+		if v != nil {
+			return *v
+		}
+		var ret IntegrationLogAgentDatadog
+		return ret
+	}).(IntegrationLogAgentDatadogOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Datadog API key
+func (o IntegrationLogAgentDatadogPtrOutput) ApiKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentDatadog) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// Version of the write-only api_key. Increment to trigger an update when the key changes (default: 1).
+func (o IntegrationLogAgentDatadogPtrOutput) ApiKeyVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentDatadog) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ApiKeyVersion
+	}).(pulumi.IntPtrOutput)
+}
+
+// AWS region hosting the CloudWatch log group.
+func (o IntegrationLogAgentDatadogPtrOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentDatadog) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Region
+	}).(pulumi.StringPtrOutput)
+}
+
+// Comma-separated tags to attach to logs (e.g. env=prod,region=eu)
+func (o IntegrationLogAgentDatadogPtrOutput) Tags() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentDatadog) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Tags
+	}).(pulumi.StringPtrOutput)
+}
+
+type IntegrationLogAgentGoogleCloud struct {
+	// Google service account client email (computed from service_account_file)
+	ClientEmail *string `pulumi:"clientEmail"`
+	// Google service account private key ID (computed from service_account_file)
+	PrivateKeyId *string `pulumi:"privateKeyId"`
+	// Google Cloud project ID (computed from service_account_file)
+	ProjectId *string `pulumi:"projectId"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Google service account key JSON file contents. Use file("path/to/key.json") to load the downloaded credentials file.
+	ServiceAccountFile *string `pulumi:"serviceAccountFile"`
+	// Version of the write-only service_account_file. Increment to trigger an update when the file contents change (default: 1).
+	ServiceAccountFileVersion *int `pulumi:"serviceAccountFileVersion"`
+	// Comma-separated tags to attach to logs (e.g. env=prod,region=eu)
+	Tags *string `pulumi:"tags"`
+}
+
+// IntegrationLogAgentGoogleCloudInput is an input type that accepts IntegrationLogAgentGoogleCloudArgs and IntegrationLogAgentGoogleCloudOutput values.
+// You can construct a concrete instance of `IntegrationLogAgentGoogleCloudInput` via:
+//
+//	IntegrationLogAgentGoogleCloudArgs{...}
+type IntegrationLogAgentGoogleCloudInput interface {
+	pulumi.Input
+
+	ToIntegrationLogAgentGoogleCloudOutput() IntegrationLogAgentGoogleCloudOutput
+	ToIntegrationLogAgentGoogleCloudOutputWithContext(context.Context) IntegrationLogAgentGoogleCloudOutput
+}
+
+type IntegrationLogAgentGoogleCloudArgs struct {
+	// Google service account client email (computed from service_account_file)
+	ClientEmail pulumi.StringPtrInput `pulumi:"clientEmail"`
+	// Google service account private key ID (computed from service_account_file)
+	PrivateKeyId pulumi.StringPtrInput `pulumi:"privateKeyId"`
+	// Google Cloud project ID (computed from service_account_file)
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Google service account key JSON file contents. Use file("path/to/key.json") to load the downloaded credentials file.
+	ServiceAccountFile pulumi.StringPtrInput `pulumi:"serviceAccountFile"`
+	// Version of the write-only service_account_file. Increment to trigger an update when the file contents change (default: 1).
+	ServiceAccountFileVersion pulumi.IntPtrInput `pulumi:"serviceAccountFileVersion"`
+	// Comma-separated tags to attach to logs (e.g. env=prod,region=eu)
+	Tags pulumi.StringPtrInput `pulumi:"tags"`
+}
+
+func (IntegrationLogAgentGoogleCloudArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationLogAgentGoogleCloud)(nil)).Elem()
+}
+
+func (i IntegrationLogAgentGoogleCloudArgs) ToIntegrationLogAgentGoogleCloudOutput() IntegrationLogAgentGoogleCloudOutput {
+	return i.ToIntegrationLogAgentGoogleCloudOutputWithContext(context.Background())
+}
+
+func (i IntegrationLogAgentGoogleCloudArgs) ToIntegrationLogAgentGoogleCloudOutputWithContext(ctx context.Context) IntegrationLogAgentGoogleCloudOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogAgentGoogleCloudOutput)
+}
+
+func (i IntegrationLogAgentGoogleCloudArgs) ToIntegrationLogAgentGoogleCloudPtrOutput() IntegrationLogAgentGoogleCloudPtrOutput {
+	return i.ToIntegrationLogAgentGoogleCloudPtrOutputWithContext(context.Background())
+}
+
+func (i IntegrationLogAgentGoogleCloudArgs) ToIntegrationLogAgentGoogleCloudPtrOutputWithContext(ctx context.Context) IntegrationLogAgentGoogleCloudPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogAgentGoogleCloudOutput).ToIntegrationLogAgentGoogleCloudPtrOutputWithContext(ctx)
+}
+
+// IntegrationLogAgentGoogleCloudPtrInput is an input type that accepts IntegrationLogAgentGoogleCloudArgs, IntegrationLogAgentGoogleCloudPtr and IntegrationLogAgentGoogleCloudPtrOutput values.
+// You can construct a concrete instance of `IntegrationLogAgentGoogleCloudPtrInput` via:
+//
+//	        IntegrationLogAgentGoogleCloudArgs{...}
+//
+//	or:
+//
+//	        nil
+type IntegrationLogAgentGoogleCloudPtrInput interface {
+	pulumi.Input
+
+	ToIntegrationLogAgentGoogleCloudPtrOutput() IntegrationLogAgentGoogleCloudPtrOutput
+	ToIntegrationLogAgentGoogleCloudPtrOutputWithContext(context.Context) IntegrationLogAgentGoogleCloudPtrOutput
+}
+
+type integrationLogAgentGoogleCloudPtrType IntegrationLogAgentGoogleCloudArgs
+
+func IntegrationLogAgentGoogleCloudPtr(v *IntegrationLogAgentGoogleCloudArgs) IntegrationLogAgentGoogleCloudPtrInput {
+	return (*integrationLogAgentGoogleCloudPtrType)(v)
+}
+
+func (*integrationLogAgentGoogleCloudPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationLogAgentGoogleCloud)(nil)).Elem()
+}
+
+func (i *integrationLogAgentGoogleCloudPtrType) ToIntegrationLogAgentGoogleCloudPtrOutput() IntegrationLogAgentGoogleCloudPtrOutput {
+	return i.ToIntegrationLogAgentGoogleCloudPtrOutputWithContext(context.Background())
+}
+
+func (i *integrationLogAgentGoogleCloudPtrType) ToIntegrationLogAgentGoogleCloudPtrOutputWithContext(ctx context.Context) IntegrationLogAgentGoogleCloudPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogAgentGoogleCloudPtrOutput)
+}
+
+type IntegrationLogAgentGoogleCloudOutput struct{ *pulumi.OutputState }
+
+func (IntegrationLogAgentGoogleCloudOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationLogAgentGoogleCloud)(nil)).Elem()
+}
+
+func (o IntegrationLogAgentGoogleCloudOutput) ToIntegrationLogAgentGoogleCloudOutput() IntegrationLogAgentGoogleCloudOutput {
+	return o
+}
+
+func (o IntegrationLogAgentGoogleCloudOutput) ToIntegrationLogAgentGoogleCloudOutputWithContext(ctx context.Context) IntegrationLogAgentGoogleCloudOutput {
+	return o
+}
+
+func (o IntegrationLogAgentGoogleCloudOutput) ToIntegrationLogAgentGoogleCloudPtrOutput() IntegrationLogAgentGoogleCloudPtrOutput {
+	return o.ToIntegrationLogAgentGoogleCloudPtrOutputWithContext(context.Background())
+}
+
+func (o IntegrationLogAgentGoogleCloudOutput) ToIntegrationLogAgentGoogleCloudPtrOutputWithContext(ctx context.Context) IntegrationLogAgentGoogleCloudPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IntegrationLogAgentGoogleCloud) *IntegrationLogAgentGoogleCloud {
+		return &v
+	}).(IntegrationLogAgentGoogleCloudPtrOutput)
+}
+
+// Google service account client email (computed from service_account_file)
+func (o IntegrationLogAgentGoogleCloudOutput) ClientEmail() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentGoogleCloud) *string { return v.ClientEmail }).(pulumi.StringPtrOutput)
+}
+
+// Google service account private key ID (computed from service_account_file)
+func (o IntegrationLogAgentGoogleCloudOutput) PrivateKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentGoogleCloud) *string { return v.PrivateKeyId }).(pulumi.StringPtrOutput)
+}
+
+// Google Cloud project ID (computed from service_account_file)
+func (o IntegrationLogAgentGoogleCloudOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentGoogleCloud) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Google service account key JSON file contents. Use file("path/to/key.json") to load the downloaded credentials file.
+func (o IntegrationLogAgentGoogleCloudOutput) ServiceAccountFile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentGoogleCloud) *string { return v.ServiceAccountFile }).(pulumi.StringPtrOutput)
+}
+
+// Version of the write-only service_account_file. Increment to trigger an update when the file contents change (default: 1).
+func (o IntegrationLogAgentGoogleCloudOutput) ServiceAccountFileVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentGoogleCloud) *int { return v.ServiceAccountFileVersion }).(pulumi.IntPtrOutput)
+}
+
+// Comma-separated tags to attach to logs (e.g. env=prod,region=eu)
+func (o IntegrationLogAgentGoogleCloudOutput) Tags() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentGoogleCloud) *string { return v.Tags }).(pulumi.StringPtrOutput)
+}
+
+type IntegrationLogAgentGoogleCloudPtrOutput struct{ *pulumi.OutputState }
+
+func (IntegrationLogAgentGoogleCloudPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationLogAgentGoogleCloud)(nil)).Elem()
+}
+
+func (o IntegrationLogAgentGoogleCloudPtrOutput) ToIntegrationLogAgentGoogleCloudPtrOutput() IntegrationLogAgentGoogleCloudPtrOutput {
+	return o
+}
+
+func (o IntegrationLogAgentGoogleCloudPtrOutput) ToIntegrationLogAgentGoogleCloudPtrOutputWithContext(ctx context.Context) IntegrationLogAgentGoogleCloudPtrOutput {
+	return o
+}
+
+func (o IntegrationLogAgentGoogleCloudPtrOutput) Elem() IntegrationLogAgentGoogleCloudOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentGoogleCloud) IntegrationLogAgentGoogleCloud {
+		if v != nil {
+			return *v
+		}
+		var ret IntegrationLogAgentGoogleCloud
+		return ret
+	}).(IntegrationLogAgentGoogleCloudOutput)
+}
+
+// Google service account client email (computed from service_account_file)
+func (o IntegrationLogAgentGoogleCloudPtrOutput) ClientEmail() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentGoogleCloud) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientEmail
+	}).(pulumi.StringPtrOutput)
+}
+
+// Google service account private key ID (computed from service_account_file)
+func (o IntegrationLogAgentGoogleCloudPtrOutput) PrivateKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentGoogleCloud) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKeyId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Google Cloud project ID (computed from service_account_file)
+func (o IntegrationLogAgentGoogleCloudPtrOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentGoogleCloud) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ProjectId
+	}).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Google service account key JSON file contents. Use file("path/to/key.json") to load the downloaded credentials file.
+func (o IntegrationLogAgentGoogleCloudPtrOutput) ServiceAccountFile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentGoogleCloud) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ServiceAccountFile
+	}).(pulumi.StringPtrOutput)
+}
+
+// Version of the write-only service_account_file. Increment to trigger an update when the file contents change (default: 1).
+func (o IntegrationLogAgentGoogleCloudPtrOutput) ServiceAccountFileVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentGoogleCloud) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ServiceAccountFileVersion
+	}).(pulumi.IntPtrOutput)
+}
+
+// Comma-separated tags to attach to logs (e.g. env=prod,region=eu)
+func (o IntegrationLogAgentGoogleCloudPtrOutput) Tags() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentGoogleCloud) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Tags
+	}).(pulumi.StringPtrOutput)
+}
+
+type IntegrationLogAgentGrafana struct {
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Grafana Cloud API token
+	ApiToken *string `pulumi:"apiToken"`
+	// Version of the write-only api_token. Increment to trigger an update when the token changes (default: 1).
+	ApiTokenVersion *int `pulumi:"apiTokenVersion"`
+	// Grafana Cloud OTLP endpoint (e.g. https://otlp-gateway-prod-eu-west-0.grafana.net/otlp)
+	Endpoint *string `pulumi:"endpoint"`
+	// Grafana Cloud instance ID
+	GrafanaInstanceId *string `pulumi:"grafanaInstanceId"`
+}
+
+// IntegrationLogAgentGrafanaInput is an input type that accepts IntegrationLogAgentGrafanaArgs and IntegrationLogAgentGrafanaOutput values.
+// You can construct a concrete instance of `IntegrationLogAgentGrafanaInput` via:
+//
+//	IntegrationLogAgentGrafanaArgs{...}
+type IntegrationLogAgentGrafanaInput interface {
+	pulumi.Input
+
+	ToIntegrationLogAgentGrafanaOutput() IntegrationLogAgentGrafanaOutput
+	ToIntegrationLogAgentGrafanaOutputWithContext(context.Context) IntegrationLogAgentGrafanaOutput
+}
+
+type IntegrationLogAgentGrafanaArgs struct {
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Grafana Cloud API token
+	ApiToken pulumi.StringPtrInput `pulumi:"apiToken"`
+	// Version of the write-only api_token. Increment to trigger an update when the token changes (default: 1).
+	ApiTokenVersion pulumi.IntPtrInput `pulumi:"apiTokenVersion"`
+	// Grafana Cloud OTLP endpoint (e.g. https://otlp-gateway-prod-eu-west-0.grafana.net/otlp)
+	Endpoint pulumi.StringPtrInput `pulumi:"endpoint"`
+	// Grafana Cloud instance ID
+	GrafanaInstanceId pulumi.StringPtrInput `pulumi:"grafanaInstanceId"`
+}
+
+func (IntegrationLogAgentGrafanaArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationLogAgentGrafana)(nil)).Elem()
+}
+
+func (i IntegrationLogAgentGrafanaArgs) ToIntegrationLogAgentGrafanaOutput() IntegrationLogAgentGrafanaOutput {
+	return i.ToIntegrationLogAgentGrafanaOutputWithContext(context.Background())
+}
+
+func (i IntegrationLogAgentGrafanaArgs) ToIntegrationLogAgentGrafanaOutputWithContext(ctx context.Context) IntegrationLogAgentGrafanaOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogAgentGrafanaOutput)
+}
+
+func (i IntegrationLogAgentGrafanaArgs) ToIntegrationLogAgentGrafanaPtrOutput() IntegrationLogAgentGrafanaPtrOutput {
+	return i.ToIntegrationLogAgentGrafanaPtrOutputWithContext(context.Background())
+}
+
+func (i IntegrationLogAgentGrafanaArgs) ToIntegrationLogAgentGrafanaPtrOutputWithContext(ctx context.Context) IntegrationLogAgentGrafanaPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogAgentGrafanaOutput).ToIntegrationLogAgentGrafanaPtrOutputWithContext(ctx)
+}
+
+// IntegrationLogAgentGrafanaPtrInput is an input type that accepts IntegrationLogAgentGrafanaArgs, IntegrationLogAgentGrafanaPtr and IntegrationLogAgentGrafanaPtrOutput values.
+// You can construct a concrete instance of `IntegrationLogAgentGrafanaPtrInput` via:
+//
+//	        IntegrationLogAgentGrafanaArgs{...}
+//
+//	or:
+//
+//	        nil
+type IntegrationLogAgentGrafanaPtrInput interface {
+	pulumi.Input
+
+	ToIntegrationLogAgentGrafanaPtrOutput() IntegrationLogAgentGrafanaPtrOutput
+	ToIntegrationLogAgentGrafanaPtrOutputWithContext(context.Context) IntegrationLogAgentGrafanaPtrOutput
+}
+
+type integrationLogAgentGrafanaPtrType IntegrationLogAgentGrafanaArgs
+
+func IntegrationLogAgentGrafanaPtr(v *IntegrationLogAgentGrafanaArgs) IntegrationLogAgentGrafanaPtrInput {
+	return (*integrationLogAgentGrafanaPtrType)(v)
+}
+
+func (*integrationLogAgentGrafanaPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationLogAgentGrafana)(nil)).Elem()
+}
+
+func (i *integrationLogAgentGrafanaPtrType) ToIntegrationLogAgentGrafanaPtrOutput() IntegrationLogAgentGrafanaPtrOutput {
+	return i.ToIntegrationLogAgentGrafanaPtrOutputWithContext(context.Background())
+}
+
+func (i *integrationLogAgentGrafanaPtrType) ToIntegrationLogAgentGrafanaPtrOutputWithContext(ctx context.Context) IntegrationLogAgentGrafanaPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogAgentGrafanaPtrOutput)
+}
+
+type IntegrationLogAgentGrafanaOutput struct{ *pulumi.OutputState }
+
+func (IntegrationLogAgentGrafanaOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationLogAgentGrafana)(nil)).Elem()
+}
+
+func (o IntegrationLogAgentGrafanaOutput) ToIntegrationLogAgentGrafanaOutput() IntegrationLogAgentGrafanaOutput {
+	return o
+}
+
+func (o IntegrationLogAgentGrafanaOutput) ToIntegrationLogAgentGrafanaOutputWithContext(ctx context.Context) IntegrationLogAgentGrafanaOutput {
+	return o
+}
+
+func (o IntegrationLogAgentGrafanaOutput) ToIntegrationLogAgentGrafanaPtrOutput() IntegrationLogAgentGrafanaPtrOutput {
+	return o.ToIntegrationLogAgentGrafanaPtrOutputWithContext(context.Background())
+}
+
+func (o IntegrationLogAgentGrafanaOutput) ToIntegrationLogAgentGrafanaPtrOutputWithContext(ctx context.Context) IntegrationLogAgentGrafanaPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IntegrationLogAgentGrafana) *IntegrationLogAgentGrafana {
+		return &v
+	}).(IntegrationLogAgentGrafanaPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Grafana Cloud API token
+func (o IntegrationLogAgentGrafanaOutput) ApiToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentGrafana) *string { return v.ApiToken }).(pulumi.StringPtrOutput)
+}
+
+// Version of the write-only api_token. Increment to trigger an update when the token changes (default: 1).
+func (o IntegrationLogAgentGrafanaOutput) ApiTokenVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentGrafana) *int { return v.ApiTokenVersion }).(pulumi.IntPtrOutput)
+}
+
+// Grafana Cloud OTLP endpoint (e.g. https://otlp-gateway-prod-eu-west-0.grafana.net/otlp)
+func (o IntegrationLogAgentGrafanaOutput) Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentGrafana) *string { return v.Endpoint }).(pulumi.StringPtrOutput)
+}
+
+// Grafana Cloud instance ID
+func (o IntegrationLogAgentGrafanaOutput) GrafanaInstanceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentGrafana) *string { return v.GrafanaInstanceId }).(pulumi.StringPtrOutput)
+}
+
+type IntegrationLogAgentGrafanaPtrOutput struct{ *pulumi.OutputState }
+
+func (IntegrationLogAgentGrafanaPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationLogAgentGrafana)(nil)).Elem()
+}
+
+func (o IntegrationLogAgentGrafanaPtrOutput) ToIntegrationLogAgentGrafanaPtrOutput() IntegrationLogAgentGrafanaPtrOutput {
+	return o
+}
+
+func (o IntegrationLogAgentGrafanaPtrOutput) ToIntegrationLogAgentGrafanaPtrOutputWithContext(ctx context.Context) IntegrationLogAgentGrafanaPtrOutput {
+	return o
+}
+
+func (o IntegrationLogAgentGrafanaPtrOutput) Elem() IntegrationLogAgentGrafanaOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentGrafana) IntegrationLogAgentGrafana {
+		if v != nil {
+			return *v
+		}
+		var ret IntegrationLogAgentGrafana
+		return ret
+	}).(IntegrationLogAgentGrafanaOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Grafana Cloud API token
+func (o IntegrationLogAgentGrafanaPtrOutput) ApiToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentGrafana) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiToken
+	}).(pulumi.StringPtrOutput)
+}
+
+// Version of the write-only api_token. Increment to trigger an update when the token changes (default: 1).
+func (o IntegrationLogAgentGrafanaPtrOutput) ApiTokenVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentGrafana) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ApiTokenVersion
+	}).(pulumi.IntPtrOutput)
+}
+
+// Grafana Cloud OTLP endpoint (e.g. https://otlp-gateway-prod-eu-west-0.grafana.net/otlp)
+func (o IntegrationLogAgentGrafanaPtrOutput) Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentGrafana) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Endpoint
+	}).(pulumi.StringPtrOutput)
+}
+
+// Grafana Cloud instance ID
+func (o IntegrationLogAgentGrafanaPtrOutput) GrafanaInstanceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentGrafana) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GrafanaInstanceId
+	}).(pulumi.StringPtrOutput)
+}
+
+type IntegrationLogAgentSplunk struct {
+	// Splunk HEC endpoint URL (e.g. https://your-instance.splunkcloud.com:8088/services/collector)
+	Endpoint *string `pulumi:"endpoint"`
+	// Splunk source type (leave empty to use the token's default)
+	SourceType *string `pulumi:"sourceType"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Splunk HEC token
+	Token *string `pulumi:"token"`
+	// Version of the write-only token. Increment to trigger an update when the token changes (default: 1).
+	TokenVersion *int `pulumi:"tokenVersion"`
+}
+
+// IntegrationLogAgentSplunkInput is an input type that accepts IntegrationLogAgentSplunkArgs and IntegrationLogAgentSplunkOutput values.
+// You can construct a concrete instance of `IntegrationLogAgentSplunkInput` via:
+//
+//	IntegrationLogAgentSplunkArgs{...}
+type IntegrationLogAgentSplunkInput interface {
+	pulumi.Input
+
+	ToIntegrationLogAgentSplunkOutput() IntegrationLogAgentSplunkOutput
+	ToIntegrationLogAgentSplunkOutputWithContext(context.Context) IntegrationLogAgentSplunkOutput
+}
+
+type IntegrationLogAgentSplunkArgs struct {
+	// Splunk HEC endpoint URL (e.g. https://your-instance.splunkcloud.com:8088/services/collector)
+	Endpoint pulumi.StringPtrInput `pulumi:"endpoint"`
+	// Splunk source type (leave empty to use the token's default)
+	SourceType pulumi.StringPtrInput `pulumi:"sourceType"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Splunk HEC token
+	Token pulumi.StringPtrInput `pulumi:"token"`
+	// Version of the write-only token. Increment to trigger an update when the token changes (default: 1).
+	TokenVersion pulumi.IntPtrInput `pulumi:"tokenVersion"`
+}
+
+func (IntegrationLogAgentSplunkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationLogAgentSplunk)(nil)).Elem()
+}
+
+func (i IntegrationLogAgentSplunkArgs) ToIntegrationLogAgentSplunkOutput() IntegrationLogAgentSplunkOutput {
+	return i.ToIntegrationLogAgentSplunkOutputWithContext(context.Background())
+}
+
+func (i IntegrationLogAgentSplunkArgs) ToIntegrationLogAgentSplunkOutputWithContext(ctx context.Context) IntegrationLogAgentSplunkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogAgentSplunkOutput)
+}
+
+func (i IntegrationLogAgentSplunkArgs) ToIntegrationLogAgentSplunkPtrOutput() IntegrationLogAgentSplunkPtrOutput {
+	return i.ToIntegrationLogAgentSplunkPtrOutputWithContext(context.Background())
+}
+
+func (i IntegrationLogAgentSplunkArgs) ToIntegrationLogAgentSplunkPtrOutputWithContext(ctx context.Context) IntegrationLogAgentSplunkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogAgentSplunkOutput).ToIntegrationLogAgentSplunkPtrOutputWithContext(ctx)
+}
+
+// IntegrationLogAgentSplunkPtrInput is an input type that accepts IntegrationLogAgentSplunkArgs, IntegrationLogAgentSplunkPtr and IntegrationLogAgentSplunkPtrOutput values.
+// You can construct a concrete instance of `IntegrationLogAgentSplunkPtrInput` via:
+//
+//	        IntegrationLogAgentSplunkArgs{...}
+//
+//	or:
+//
+//	        nil
+type IntegrationLogAgentSplunkPtrInput interface {
+	pulumi.Input
+
+	ToIntegrationLogAgentSplunkPtrOutput() IntegrationLogAgentSplunkPtrOutput
+	ToIntegrationLogAgentSplunkPtrOutputWithContext(context.Context) IntegrationLogAgentSplunkPtrOutput
+}
+
+type integrationLogAgentSplunkPtrType IntegrationLogAgentSplunkArgs
+
+func IntegrationLogAgentSplunkPtr(v *IntegrationLogAgentSplunkArgs) IntegrationLogAgentSplunkPtrInput {
+	return (*integrationLogAgentSplunkPtrType)(v)
+}
+
+func (*integrationLogAgentSplunkPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationLogAgentSplunk)(nil)).Elem()
+}
+
+func (i *integrationLogAgentSplunkPtrType) ToIntegrationLogAgentSplunkPtrOutput() IntegrationLogAgentSplunkPtrOutput {
+	return i.ToIntegrationLogAgentSplunkPtrOutputWithContext(context.Background())
+}
+
+func (i *integrationLogAgentSplunkPtrType) ToIntegrationLogAgentSplunkPtrOutputWithContext(ctx context.Context) IntegrationLogAgentSplunkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogAgentSplunkPtrOutput)
+}
+
+type IntegrationLogAgentSplunkOutput struct{ *pulumi.OutputState }
+
+func (IntegrationLogAgentSplunkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationLogAgentSplunk)(nil)).Elem()
+}
+
+func (o IntegrationLogAgentSplunkOutput) ToIntegrationLogAgentSplunkOutput() IntegrationLogAgentSplunkOutput {
+	return o
+}
+
+func (o IntegrationLogAgentSplunkOutput) ToIntegrationLogAgentSplunkOutputWithContext(ctx context.Context) IntegrationLogAgentSplunkOutput {
+	return o
+}
+
+func (o IntegrationLogAgentSplunkOutput) ToIntegrationLogAgentSplunkPtrOutput() IntegrationLogAgentSplunkPtrOutput {
+	return o.ToIntegrationLogAgentSplunkPtrOutputWithContext(context.Background())
+}
+
+func (o IntegrationLogAgentSplunkOutput) ToIntegrationLogAgentSplunkPtrOutputWithContext(ctx context.Context) IntegrationLogAgentSplunkPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IntegrationLogAgentSplunk) *IntegrationLogAgentSplunk {
+		return &v
+	}).(IntegrationLogAgentSplunkPtrOutput)
+}
+
+// Splunk HEC endpoint URL (e.g. https://your-instance.splunkcloud.com:8088/services/collector)
+func (o IntegrationLogAgentSplunkOutput) Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentSplunk) *string { return v.Endpoint }).(pulumi.StringPtrOutput)
+}
+
+// Splunk source type (leave empty to use the token's default)
+func (o IntegrationLogAgentSplunkOutput) SourceType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentSplunk) *string { return v.SourceType }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Splunk HEC token
+func (o IntegrationLogAgentSplunkOutput) Token() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentSplunk) *string { return v.Token }).(pulumi.StringPtrOutput)
+}
+
+// Version of the write-only token. Increment to trigger an update when the token changes (default: 1).
+func (o IntegrationLogAgentSplunkOutput) TokenVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentSplunk) *int { return v.TokenVersion }).(pulumi.IntPtrOutput)
+}
+
+type IntegrationLogAgentSplunkPtrOutput struct{ *pulumi.OutputState }
+
+func (IntegrationLogAgentSplunkPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationLogAgentSplunk)(nil)).Elem()
+}
+
+func (o IntegrationLogAgentSplunkPtrOutput) ToIntegrationLogAgentSplunkPtrOutput() IntegrationLogAgentSplunkPtrOutput {
+	return o
+}
+
+func (o IntegrationLogAgentSplunkPtrOutput) ToIntegrationLogAgentSplunkPtrOutputWithContext(ctx context.Context) IntegrationLogAgentSplunkPtrOutput {
+	return o
+}
+
+func (o IntegrationLogAgentSplunkPtrOutput) Elem() IntegrationLogAgentSplunkOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentSplunk) IntegrationLogAgentSplunk {
+		if v != nil {
+			return *v
+		}
+		var ret IntegrationLogAgentSplunk
+		return ret
+	}).(IntegrationLogAgentSplunkOutput)
+}
+
+// Splunk HEC endpoint URL (e.g. https://your-instance.splunkcloud.com:8088/services/collector)
+func (o IntegrationLogAgentSplunkPtrOutput) Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentSplunk) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Endpoint
+	}).(pulumi.StringPtrOutput)
+}
+
+// Splunk source type (leave empty to use the token's default)
+func (o IntegrationLogAgentSplunkPtrOutput) SourceType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentSplunk) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SourceType
+	}).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Splunk HEC token
+func (o IntegrationLogAgentSplunkPtrOutput) Token() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentSplunk) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Token
+	}).(pulumi.StringPtrOutput)
+}
+
+// Version of the write-only token. Increment to trigger an update when the token changes (default: 1).
+func (o IntegrationLogAgentSplunkPtrOutput) TokenVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentSplunk) *int {
+		if v == nil {
+			return nil
+		}
+		return v.TokenVersion
+	}).(pulumi.IntPtrOutput)
+}
+
+type IntegrationLogAgentUptrace struct {
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Uptrace DSN (Data Source Name) URL
+	Dsn *string `pulumi:"dsn"`
+	// Version of the write-only dsn. Increment to trigger an update when the DSN changes (default: 1).
+	DsnVersion *int `pulumi:"dsnVersion"`
+}
+
+// IntegrationLogAgentUptraceInput is an input type that accepts IntegrationLogAgentUptraceArgs and IntegrationLogAgentUptraceOutput values.
+// You can construct a concrete instance of `IntegrationLogAgentUptraceInput` via:
+//
+//	IntegrationLogAgentUptraceArgs{...}
+type IntegrationLogAgentUptraceInput interface {
+	pulumi.Input
+
+	ToIntegrationLogAgentUptraceOutput() IntegrationLogAgentUptraceOutput
+	ToIntegrationLogAgentUptraceOutputWithContext(context.Context) IntegrationLogAgentUptraceOutput
+}
+
+type IntegrationLogAgentUptraceArgs struct {
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Uptrace DSN (Data Source Name) URL
+	Dsn pulumi.StringPtrInput `pulumi:"dsn"`
+	// Version of the write-only dsn. Increment to trigger an update when the DSN changes (default: 1).
+	DsnVersion pulumi.IntPtrInput `pulumi:"dsnVersion"`
+}
+
+func (IntegrationLogAgentUptraceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationLogAgentUptrace)(nil)).Elem()
+}
+
+func (i IntegrationLogAgentUptraceArgs) ToIntegrationLogAgentUptraceOutput() IntegrationLogAgentUptraceOutput {
+	return i.ToIntegrationLogAgentUptraceOutputWithContext(context.Background())
+}
+
+func (i IntegrationLogAgentUptraceArgs) ToIntegrationLogAgentUptraceOutputWithContext(ctx context.Context) IntegrationLogAgentUptraceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogAgentUptraceOutput)
+}
+
+func (i IntegrationLogAgentUptraceArgs) ToIntegrationLogAgentUptracePtrOutput() IntegrationLogAgentUptracePtrOutput {
+	return i.ToIntegrationLogAgentUptracePtrOutputWithContext(context.Background())
+}
+
+func (i IntegrationLogAgentUptraceArgs) ToIntegrationLogAgentUptracePtrOutputWithContext(ctx context.Context) IntegrationLogAgentUptracePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogAgentUptraceOutput).ToIntegrationLogAgentUptracePtrOutputWithContext(ctx)
+}
+
+// IntegrationLogAgentUptracePtrInput is an input type that accepts IntegrationLogAgentUptraceArgs, IntegrationLogAgentUptracePtr and IntegrationLogAgentUptracePtrOutput values.
+// You can construct a concrete instance of `IntegrationLogAgentUptracePtrInput` via:
+//
+//	        IntegrationLogAgentUptraceArgs{...}
+//
+//	or:
+//
+//	        nil
+type IntegrationLogAgentUptracePtrInput interface {
+	pulumi.Input
+
+	ToIntegrationLogAgentUptracePtrOutput() IntegrationLogAgentUptracePtrOutput
+	ToIntegrationLogAgentUptracePtrOutputWithContext(context.Context) IntegrationLogAgentUptracePtrOutput
+}
+
+type integrationLogAgentUptracePtrType IntegrationLogAgentUptraceArgs
+
+func IntegrationLogAgentUptracePtr(v *IntegrationLogAgentUptraceArgs) IntegrationLogAgentUptracePtrInput {
+	return (*integrationLogAgentUptracePtrType)(v)
+}
+
+func (*integrationLogAgentUptracePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationLogAgentUptrace)(nil)).Elem()
+}
+
+func (i *integrationLogAgentUptracePtrType) ToIntegrationLogAgentUptracePtrOutput() IntegrationLogAgentUptracePtrOutput {
+	return i.ToIntegrationLogAgentUptracePtrOutputWithContext(context.Background())
+}
+
+func (i *integrationLogAgentUptracePtrType) ToIntegrationLogAgentUptracePtrOutputWithContext(ctx context.Context) IntegrationLogAgentUptracePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogAgentUptracePtrOutput)
+}
+
+type IntegrationLogAgentUptraceOutput struct{ *pulumi.OutputState }
+
+func (IntegrationLogAgentUptraceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationLogAgentUptrace)(nil)).Elem()
+}
+
+func (o IntegrationLogAgentUptraceOutput) ToIntegrationLogAgentUptraceOutput() IntegrationLogAgentUptraceOutput {
+	return o
+}
+
+func (o IntegrationLogAgentUptraceOutput) ToIntegrationLogAgentUptraceOutputWithContext(ctx context.Context) IntegrationLogAgentUptraceOutput {
+	return o
+}
+
+func (o IntegrationLogAgentUptraceOutput) ToIntegrationLogAgentUptracePtrOutput() IntegrationLogAgentUptracePtrOutput {
+	return o.ToIntegrationLogAgentUptracePtrOutputWithContext(context.Background())
+}
+
+func (o IntegrationLogAgentUptraceOutput) ToIntegrationLogAgentUptracePtrOutputWithContext(ctx context.Context) IntegrationLogAgentUptracePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IntegrationLogAgentUptrace) *IntegrationLogAgentUptrace {
+		return &v
+	}).(IntegrationLogAgentUptracePtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Uptrace DSN (Data Source Name) URL
+func (o IntegrationLogAgentUptraceOutput) Dsn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentUptrace) *string { return v.Dsn }).(pulumi.StringPtrOutput)
+}
+
+// Version of the write-only dsn. Increment to trigger an update when the DSN changes (default: 1).
+func (o IntegrationLogAgentUptraceOutput) DsnVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentUptrace) *int { return v.DsnVersion }).(pulumi.IntPtrOutput)
+}
+
+type IntegrationLogAgentUptracePtrOutput struct{ *pulumi.OutputState }
+
+func (IntegrationLogAgentUptracePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationLogAgentUptrace)(nil)).Elem()
+}
+
+func (o IntegrationLogAgentUptracePtrOutput) ToIntegrationLogAgentUptracePtrOutput() IntegrationLogAgentUptracePtrOutput {
+	return o
+}
+
+func (o IntegrationLogAgentUptracePtrOutput) ToIntegrationLogAgentUptracePtrOutputWithContext(ctx context.Context) IntegrationLogAgentUptracePtrOutput {
+	return o
+}
+
+func (o IntegrationLogAgentUptracePtrOutput) Elem() IntegrationLogAgentUptraceOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentUptrace) IntegrationLogAgentUptrace {
+		if v != nil {
+			return *v
+		}
+		var ret IntegrationLogAgentUptrace
+		return ret
+	}).(IntegrationLogAgentUptraceOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Uptrace DSN (Data Source Name) URL
+func (o IntegrationLogAgentUptracePtrOutput) Dsn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentUptrace) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Dsn
+	}).(pulumi.StringPtrOutput)
+}
+
+// Version of the write-only dsn. Increment to trigger an update when the DSN changes (default: 1).
+func (o IntegrationLogAgentUptracePtrOutput) DsnVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentUptrace) *int {
+		if v == nil {
+			return nil
+		}
+		return v.DsnVersion
+	}).(pulumi.IntPtrOutput)
+}
+
 type IntegrationMetricPrometheusAzureMonitor struct {
 	// Azure Application Insights Connection String for authentication.
 	ConnectionString string `pulumi:"connectionString"`
@@ -3605,6 +5025,20 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ExtraDiskSizeNodeArrayInput)(nil)).Elem(), ExtraDiskSizeNodeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceCopySettingInput)(nil)).Elem(), InstanceCopySettingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceCopySettingArrayInput)(nil)).Elem(), InstanceCopySettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogAgentCloudwatchInput)(nil)).Elem(), IntegrationLogAgentCloudwatchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogAgentCloudwatchPtrInput)(nil)).Elem(), IntegrationLogAgentCloudwatchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogAgentCoralogixInput)(nil)).Elem(), IntegrationLogAgentCoralogixArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogAgentCoralogixPtrInput)(nil)).Elem(), IntegrationLogAgentCoralogixArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogAgentDatadogInput)(nil)).Elem(), IntegrationLogAgentDatadogArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogAgentDatadogPtrInput)(nil)).Elem(), IntegrationLogAgentDatadogArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogAgentGoogleCloudInput)(nil)).Elem(), IntegrationLogAgentGoogleCloudArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogAgentGoogleCloudPtrInput)(nil)).Elem(), IntegrationLogAgentGoogleCloudArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogAgentGrafanaInput)(nil)).Elem(), IntegrationLogAgentGrafanaArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogAgentGrafanaPtrInput)(nil)).Elem(), IntegrationLogAgentGrafanaArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogAgentSplunkInput)(nil)).Elem(), IntegrationLogAgentSplunkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogAgentSplunkPtrInput)(nil)).Elem(), IntegrationLogAgentSplunkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogAgentUptraceInput)(nil)).Elem(), IntegrationLogAgentUptraceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogAgentUptracePtrInput)(nil)).Elem(), IntegrationLogAgentUptraceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusAzureMonitorInput)(nil)).Elem(), IntegrationMetricPrometheusAzureMonitorArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusAzureMonitorPtrInput)(nil)).Elem(), IntegrationMetricPrometheusAzureMonitorArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusCloudwatchV3Input)(nil)).Elem(), IntegrationMetricPrometheusCloudwatchV3Args{})
@@ -3651,6 +5085,20 @@ func init() {
 	pulumi.RegisterOutputType(ExtraDiskSizeNodeArrayOutput{})
 	pulumi.RegisterOutputType(InstanceCopySettingOutput{})
 	pulumi.RegisterOutputType(InstanceCopySettingArrayOutput{})
+	pulumi.RegisterOutputType(IntegrationLogAgentCloudwatchOutput{})
+	pulumi.RegisterOutputType(IntegrationLogAgentCloudwatchPtrOutput{})
+	pulumi.RegisterOutputType(IntegrationLogAgentCoralogixOutput{})
+	pulumi.RegisterOutputType(IntegrationLogAgentCoralogixPtrOutput{})
+	pulumi.RegisterOutputType(IntegrationLogAgentDatadogOutput{})
+	pulumi.RegisterOutputType(IntegrationLogAgentDatadogPtrOutput{})
+	pulumi.RegisterOutputType(IntegrationLogAgentGoogleCloudOutput{})
+	pulumi.RegisterOutputType(IntegrationLogAgentGoogleCloudPtrOutput{})
+	pulumi.RegisterOutputType(IntegrationLogAgentGrafanaOutput{})
+	pulumi.RegisterOutputType(IntegrationLogAgentGrafanaPtrOutput{})
+	pulumi.RegisterOutputType(IntegrationLogAgentSplunkOutput{})
+	pulumi.RegisterOutputType(IntegrationLogAgentSplunkPtrOutput{})
+	pulumi.RegisterOutputType(IntegrationLogAgentUptraceOutput{})
+	pulumi.RegisterOutputType(IntegrationLogAgentUptracePtrOutput{})
 	pulumi.RegisterOutputType(IntegrationMetricPrometheusAzureMonitorOutput{})
 	pulumi.RegisterOutputType(IntegrationMetricPrometheusAzureMonitorPtrOutput{})
 	pulumi.RegisterOutputType(IntegrationMetricPrometheusCloudwatchV3Output{})

@@ -49,7 +49,7 @@ import (
 //
 // ## Alarm Types
 //
-// `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+// `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
 func LookupAlarm(ctx *pulumi.Context, args *LookupAlarmArgs, opts ...pulumi.InvokeOption) (*LookupAlarmResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAlarmResult
@@ -76,6 +76,9 @@ type LookupAlarmArgs struct {
 // A collection of values returned by getAlarm.
 type LookupAlarmResult struct {
 	AlarmId *int `pulumi:"alarmId"`
+	// For `diskAutoResize`, whether the resize may proceed even if it requires
+	// brief downtime.
+	AllowDowntime bool `pulumi:"allowDowntime"`
 	// Enable/disable status of the alarm.
 	Enabled bool `pulumi:"enabled"`
 	// The identifier for this resource.
@@ -146,6 +149,12 @@ func (o LookupAlarmResultOutput) ToLookupAlarmResultOutputWithContext(ctx contex
 
 func (o LookupAlarmResultOutput) AlarmId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LookupAlarmResult) *int { return v.AlarmId }).(pulumi.IntPtrOutput)
+}
+
+// For `diskAutoResize`, whether the resize may proceed even if it requires
+// brief downtime.
+func (o LookupAlarmResultOutput) AllowDowntime() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupAlarmResult) bool { return v.AllowDowntime }).(pulumi.BoolOutput)
 }
 
 // Enable/disable status of the alarm.

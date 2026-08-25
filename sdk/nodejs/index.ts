@@ -115,6 +115,11 @@ export type IntegrationLog = import("./integrationLog").IntegrationLog;
 export const IntegrationLog: typeof import("./integrationLog").IntegrationLog = null as any;
 utilities.lazyLoad(exports, ["IntegrationLog"], () => require("./integrationLog"));
 
+export { IntegrationLogAgentArgs, IntegrationLogAgentState } from "./integrationLogAgent";
+export type IntegrationLogAgent = import("./integrationLogAgent").IntegrationLogAgent;
+export const IntegrationLogAgent: typeof import("./integrationLogAgent").IntegrationLogAgent = null as any;
+utilities.lazyLoad(exports, ["IntegrationLogAgent"], () => require("./integrationLogAgent"));
+
 export { IntegrationMetricArgs, IntegrationMetricState } from "./integrationMetric";
 export type IntegrationMetric = import("./integrationMetric").IntegrationMetric;
 export const IntegrationMetric: typeof import("./integrationMetric").IntegrationMetric = null as any;
@@ -253,6 +258,8 @@ const _module = {
                 return new IntegrationAwsEventbridge(name, <any>undefined, { urn })
             case "cloudamqp:index/integrationLog:IntegrationLog":
                 return new IntegrationLog(name, <any>undefined, { urn })
+            case "cloudamqp:index/integrationLogAgent:IntegrationLogAgent":
+                return new IntegrationLogAgent(name, <any>undefined, { urn })
             case "cloudamqp:index/integrationMetric:IntegrationMetric":
                 return new IntegrationMetric(name, <any>undefined, { urn })
             case "cloudamqp:index/integrationMetricPrometheus:IntegrationMetricPrometheus":
@@ -308,6 +315,7 @@ pulumi.runtime.registerResourceModule("cloudamqp", "index/extraDiskSize", _modul
 pulumi.runtime.registerResourceModule("cloudamqp", "index/instance", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/integrationAwsEventbridge", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/integrationLog", _module)
+pulumi.runtime.registerResourceModule("cloudamqp", "index/integrationLogAgent", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/integrationMetric", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/integrationMetricPrometheus", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/maintenanceWindow", _module)

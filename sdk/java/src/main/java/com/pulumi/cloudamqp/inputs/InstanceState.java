@@ -53,6 +53,21 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Cluster name, extracted from the external hostname
+     * 
+     */
+    @Import(name="clusterName")
+    private @Nullable Output<String> clusterName;
+
+    /**
+     * @return Cluster name, extracted from the external hostname
+     * 
+     */
+    public Optional<Output<String>> clusterName() {
+        return Optional.ofNullable(this.clusterName);
+    }
+
+    /**
      * Copy settings from one CloudAMQP instance to a new. Consists of
      * the block documented below.
      * 
@@ -428,6 +443,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     private InstanceState(InstanceState $) {
         this.apikey = $.apikey;
         this.backend = $.backend;
+        this.clusterName = $.clusterName;
         this.copySettings = $.copySettings;
         this.credentials = $.credentials;
         this.dedicated = $.dedicated;
@@ -509,6 +525,27 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder backend(String backend) {
             return backend(Output.of(backend));
+        }
+
+        /**
+         * @param clusterName Cluster name, extracted from the external hostname
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clusterName(@Nullable Output<String> clusterName) {
+            $.clusterName = clusterName;
+            return this;
+        }
+
+        /**
+         * @param clusterName Cluster name, extracted from the external hostname
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clusterName(String clusterName) {
+            return clusterName(Output.of(clusterName));
         }
 
         /**

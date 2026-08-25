@@ -37,6 +37,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &IntegrationAwsEventbridge{}
 	case "cloudamqp:index/integrationLog:IntegrationLog":
 		r = &IntegrationLog{}
+	case "cloudamqp:index/integrationLogAgent:IntegrationLogAgent":
+		r = &IntegrationLogAgent{}
 	case "cloudamqp:index/integrationMetric:IntegrationMetric":
 		r = &IntegrationMetric{}
 	case "cloudamqp:index/integrationMetricPrometheus:IntegrationMetricPrometheus":
@@ -148,6 +150,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"cloudamqp",
 		"index/integrationLog",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"cloudamqp",
+		"index/integrationLogAgent",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

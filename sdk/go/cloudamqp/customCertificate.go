@@ -15,8 +15,9 @@ import (
 // <!-- markdownlint-disable MD033 -->
 //
 // This resource allows you to upload a custom certificate to all servers in your cluster. Update is
-// not supported, all changes require replacement. `ca`, `cert` and `privateKey` all use **WriteOnly**,
-// meaning no information is present in plan phase, logs or stored in the state for security purposes.
+// not supported, all changes require replacement. The certificate can be used for one or more SNI
+// hostnames. `ca`, `cert` and `privateKey` all use **WriteOnly**, meaning no information is present
+// in plan phase, logs or stored in the state for security purposes.
 //
 // > **WARNING:** Please note that when uploading a custom certificate or restoring to default certificate,
 // all current connections will be closed.
@@ -40,7 +41,8 @@ type CustomCertificate struct {
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// The PEM-encoded private key corresponding to the certificate.
 	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
-	// A hostname (Server Name Indication) that this certificate applies to.
+	// Hostname(s) (Server Name Indication) that this certificate
+	// applies to. Use a comma or space separated string for multiple hostnames.
 	SniHosts pulumi.StringOutput `pulumi:"sniHosts"`
 	// An integer based argument to trigger force new (default: 1).
 	Version pulumi.IntOutput `pulumi:"version"`
@@ -119,7 +121,8 @@ type customCertificateState struct {
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// The PEM-encoded private key corresponding to the certificate.
 	PrivateKey *string `pulumi:"privateKey"`
-	// A hostname (Server Name Indication) that this certificate applies to.
+	// Hostname(s) (Server Name Indication) that this certificate
+	// applies to. Use a comma or space separated string for multiple hostnames.
 	SniHosts *string `pulumi:"sniHosts"`
 	// An integer based argument to trigger force new (default: 1).
 	Version *int `pulumi:"version"`
@@ -139,7 +142,8 @@ type CustomCertificateState struct {
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// The PEM-encoded private key corresponding to the certificate.
 	PrivateKey pulumi.StringPtrInput
-	// A hostname (Server Name Indication) that this certificate applies to.
+	// Hostname(s) (Server Name Indication) that this certificate
+	// applies to. Use a comma or space separated string for multiple hostnames.
 	SniHosts pulumi.StringPtrInput
 	// An integer based argument to trigger force new (default: 1).
 	Version pulumi.IntPtrInput
@@ -163,7 +167,8 @@ type customCertificateArgs struct {
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// The PEM-encoded private key corresponding to the certificate.
 	PrivateKey string `pulumi:"privateKey"`
-	// A hostname (Server Name Indication) that this certificate applies to.
+	// Hostname(s) (Server Name Indication) that this certificate
+	// applies to. Use a comma or space separated string for multiple hostnames.
 	SniHosts string `pulumi:"sniHosts"`
 	// An integer based argument to trigger force new (default: 1).
 	Version *int `pulumi:"version"`
@@ -184,7 +189,8 @@ type CustomCertificateArgs struct {
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// The PEM-encoded private key corresponding to the certificate.
 	PrivateKey pulumi.StringInput
-	// A hostname (Server Name Indication) that this certificate applies to.
+	// Hostname(s) (Server Name Indication) that this certificate
+	// applies to. Use a comma or space separated string for multiple hostnames.
 	SniHosts pulumi.StringInput
 	// An integer based argument to trigger force new (default: 1).
 	Version pulumi.IntPtrInput
@@ -305,7 +311,8 @@ func (o CustomCertificateOutput) PrivateKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *CustomCertificate) pulumi.StringOutput { return v.PrivateKey }).(pulumi.StringOutput)
 }
 
-// A hostname (Server Name Indication) that this certificate applies to.
+// Hostname(s) (Server Name Indication) that this certificate
+// applies to. Use a comma or space separated string for multiple hostnames.
 func (o CustomCertificateOutput) SniHosts() pulumi.StringOutput {
 	return o.ApplyT(func(v *CustomCertificate) pulumi.StringOutput { return v.SniHosts }).(pulumi.StringOutput)
 }

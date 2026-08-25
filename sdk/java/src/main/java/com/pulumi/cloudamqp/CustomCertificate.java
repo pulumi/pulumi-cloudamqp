@@ -19,8 +19,9 @@ import javax.annotation.Nullable;
  * &lt;!-- markdownlint-disable MD033 --&gt;
  * 
  * This resource allows you to upload a custom certificate to all servers in your cluster. Update is
- * not supported, all changes require replacement. `ca`, `cert` and `privateKey` all use **WriteOnly**,
- * meaning no information is present in plan phase, logs or stored in the state for security purposes.
+ * not supported, all changes require replacement. The certificate can be used for one or more SNI
+ * hostnames. `ca`, `cert` and `privateKey` all use **WriteOnly**, meaning no information is present
+ * in plan phase, logs or stored in the state for security purposes.
  * 
  * &gt; **WARNING:** Please note that when uploading a custom certificate or restoring to default certificate,
  * all current connections will be closed.
@@ -109,14 +110,16 @@ public class CustomCertificate extends com.pulumi.resources.CustomResource {
         return this.privateKey;
     }
     /**
-     * A hostname (Server Name Indication) that this certificate applies to.
+     * Hostname(s) (Server Name Indication) that this certificate
+     * applies to. Use a comma or space separated string for multiple hostnames.
      * 
      */
     @Export(name="sniHosts", refs={String.class}, tree="[0]")
     private Output<String> sniHosts;
 
     /**
-     * @return A hostname (Server Name Indication) that this certificate applies to.
+     * @return Hostname(s) (Server Name Indication) that this certificate
+     * applies to. Use a comma or space separated string for multiple hostnames.
      * 
      */
     public Output<String> sniHosts() {

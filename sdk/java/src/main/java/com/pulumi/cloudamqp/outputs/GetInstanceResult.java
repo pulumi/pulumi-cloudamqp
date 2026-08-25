@@ -24,6 +24,7 @@ public final class GetInstanceResult {
      * 
      */
     private String backend;
+    private String clusterName;
     /**
      * @return (Sensitive) Broker credentials block with information extracted from URL.
      * 
@@ -119,6 +120,9 @@ public final class GetInstanceResult {
      */
     public String backend() {
         return this.backend;
+    }
+    public String clusterName() {
+        return this.clusterName;
     }
     /**
      * @return (Sensitive) Broker credentials block with information extracted from URL.
@@ -248,6 +252,7 @@ public final class GetInstanceResult {
     public static final class Builder {
         private String apikey;
         private String backend;
+        private String clusterName;
         private Map<String,String> credentials;
         private Boolean dedicated;
         private String host;
@@ -271,6 +276,7 @@ public final class GetInstanceResult {
     	      Objects.requireNonNull(defaults);
     	      this.apikey = defaults.apikey;
     	      this.backend = defaults.backend;
+    	      this.clusterName = defaults.clusterName;
     	      this.credentials = defaults.credentials;
     	      this.dedicated = defaults.dedicated;
     	      this.host = defaults.host;
@@ -305,6 +311,14 @@ public final class GetInstanceResult {
               throw new MissingRequiredPropertyException("GetInstanceResult", "backend");
             }
             this.backend = backend;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder clusterName(String clusterName) {
+            if (clusterName == null) {
+              throw new MissingRequiredPropertyException("GetInstanceResult", "clusterName");
+            }
+            this.clusterName = clusterName;
             return this;
         }
         @CustomType.Setter
@@ -458,6 +472,7 @@ public final class GetInstanceResult {
             final var _resultValue = new GetInstanceResult();
             _resultValue.apikey = apikey;
             _resultValue.backend = backend;
+            _resultValue.clusterName = clusterName;
             _resultValue.credentials = credentials;
             _resultValue.dedicated = dedicated;
             _resultValue.host = host;

@@ -19,6 +19,20 @@ __all__ = [
     'ExtraDiskSizeNodeArgsDict',
     'InstanceCopySettingArgs',
     'InstanceCopySettingArgsDict',
+    'IntegrationLogAgentCloudwatchArgs',
+    'IntegrationLogAgentCloudwatchArgsDict',
+    'IntegrationLogAgentCoralogixArgs',
+    'IntegrationLogAgentCoralogixArgsDict',
+    'IntegrationLogAgentDatadogArgs',
+    'IntegrationLogAgentDatadogArgsDict',
+    'IntegrationLogAgentGoogleCloudArgs',
+    'IntegrationLogAgentGoogleCloudArgsDict',
+    'IntegrationLogAgentGrafanaArgs',
+    'IntegrationLogAgentGrafanaArgsDict',
+    'IntegrationLogAgentSplunkArgs',
+    'IntegrationLogAgentSplunkArgsDict',
+    'IntegrationLogAgentUptraceArgs',
+    'IntegrationLogAgentUptraceArgsDict',
     'IntegrationMetricPrometheusAzureMonitorArgs',
     'IntegrationMetricPrometheusAzureMonitorArgsDict',
     'IntegrationMetricPrometheusCloudwatchV3Args',
@@ -173,6 +187,687 @@ class InstanceCopySettingArgs:
     @subscription_id.setter
     def subscription_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "subscription_id", value)
+
+
+class IntegrationLogAgentCloudwatchArgsDict(TypedDict):
+    iam_external_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    External identifier that matches the trust policy of the IAM role.
+    """
+    iam_role: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    AWS IAM role ARN used to assume permissions for the integration.
+    """
+    log_group: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The name of the CloudWatch log group. Defaults to `CloudAMQP` if not set.
+    """
+    log_stream: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The name of the CloudWatch log stream. Recommended to use the cluster name, found in `cloudamqp_instance.instance.cluster_name`.
+    """
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    AWS region hosting the CloudWatch log group.
+    """
+
+@pulumi.input_type
+class IntegrationLogAgentCloudwatchArgs:
+    def __init__(__self__, *,
+                 iam_external_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_role: pulumi.Input[Optional[_builtins.str]] = None,
+                 log_group: pulumi.Input[Optional[_builtins.str]] = None,
+                 log_stream: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] iam_external_id: External identifier that matches the trust policy of the IAM role.
+        :param pulumi.Input[_builtins.str] iam_role: AWS IAM role ARN used to assume permissions for the integration.
+        :param pulumi.Input[_builtins.str] log_group: The name of the CloudWatch log group. Defaults to `CloudAMQP` if not set.
+        :param pulumi.Input[_builtins.str] log_stream: The name of the CloudWatch log stream. Recommended to use the cluster name, found in `cloudamqp_instance.instance.cluster_name`.
+        :param pulumi.Input[_builtins.str] region: AWS region hosting the CloudWatch log group.
+        """
+        if iam_external_id is not None:
+            pulumi.set(__self__, "iam_external_id", iam_external_id)
+        if iam_role is not None:
+            pulumi.set(__self__, "iam_role", iam_role)
+        if log_group is not None:
+            pulumi.set(__self__, "log_group", log_group)
+        if log_stream is not None:
+            pulumi.set(__self__, "log_stream", log_stream)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @_builtins.property
+    @pulumi.getter(name="iamExternalId")
+    def iam_external_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        External identifier that matches the trust policy of the IAM role.
+        """
+        return pulumi.get(self, "iam_external_id")
+
+    @iam_external_id.setter
+    def iam_external_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "iam_external_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="iamRole")
+    def iam_role(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        AWS IAM role ARN used to assume permissions for the integration.
+        """
+        return pulumi.get(self, "iam_role")
+
+    @iam_role.setter
+    def iam_role(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "iam_role", value)
+
+    @_builtins.property
+    @pulumi.getter(name="logGroup")
+    def log_group(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The name of the CloudWatch log group. Defaults to `CloudAMQP` if not set.
+        """
+        return pulumi.get(self, "log_group")
+
+    @log_group.setter
+    def log_group(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "log_group", value)
+
+    @_builtins.property
+    @pulumi.getter(name="logStream")
+    def log_stream(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The name of the CloudWatch log stream. Recommended to use the cluster name, found in `cloudamqp_instance.instance.cluster_name`.
+        """
+        return pulumi.get(self, "log_stream")
+
+    @log_stream.setter
+    def log_stream(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "log_stream", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        AWS region hosting the CloudWatch log group.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "region", value)
+
+
+class IntegrationLogAgentCoralogixArgsDict(TypedDict):
+    application: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Application name, used to group logs by environment
+    """
+    private_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Coralogix private key (always starts with cxtp_...)
+    """
+    private_key_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Version of the write-only private_key. Increment to trigger an update when the key changes (default: 1).
+    """
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    AWS region hosting the CloudWatch log group.
+    """
+    subsystem: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Subsystem name, used to group logs by service within an application
+    """
+
+@pulumi.input_type
+class IntegrationLogAgentCoralogixArgs:
+    def __init__(__self__, *,
+                 application: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 subsystem: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] application: Application name, used to group logs by environment
+        :param pulumi.Input[_builtins.str] private_key: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Coralogix private key (always starts with cxtp_...)
+        :param pulumi.Input[_builtins.int] private_key_version: Version of the write-only private_key. Increment to trigger an update when the key changes (default: 1).
+        :param pulumi.Input[_builtins.str] region: AWS region hosting the CloudWatch log group.
+        :param pulumi.Input[_builtins.str] subsystem: Subsystem name, used to group logs by service within an application
+        """
+        if application is not None:
+            pulumi.set(__self__, "application", application)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if private_key_version is not None:
+            pulumi.set(__self__, "private_key_version", private_key_version)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if subsystem is not None:
+            pulumi.set(__self__, "subsystem", subsystem)
+
+    @_builtins.property
+    @pulumi.getter
+    def application(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Application name, used to group logs by environment
+        """
+        return pulumi.get(self, "application")
+
+    @application.setter
+    def application(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "application", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Coralogix private key (always starts with cxtp_...)
+        """
+        return pulumi.get(self, "private_key")
+
+    @private_key.setter
+    def private_key(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "private_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyVersion")
+    def private_key_version(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Version of the write-only private_key. Increment to trigger an update when the key changes (default: 1).
+        """
+        return pulumi.get(self, "private_key_version")
+
+    @private_key_version.setter
+    def private_key_version(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "private_key_version", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        AWS region hosting the CloudWatch log group.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def subsystem(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Subsystem name, used to group logs by service within an application
+        """
+        return pulumi.get(self, "subsystem")
+
+    @subsystem.setter
+    def subsystem(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "subsystem", value)
+
+
+class IntegrationLogAgentDatadogArgsDict(TypedDict):
+    api_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Datadog API key
+    """
+    api_key_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Version of the write-only api_key. Increment to trigger an update when the key changes (default: 1).
+    """
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    AWS region hosting the CloudWatch log group.
+    """
+    tags: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Comma-separated tags to attach to logs (e.g. env=prod,region=eu)
+    """
+
+@pulumi.input_type
+class IntegrationLogAgentDatadogArgs:
+    def __init__(__self__, *,
+                 api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 api_key_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] api_key: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Datadog API key
+        :param pulumi.Input[_builtins.int] api_key_version: Version of the write-only api_key. Increment to trigger an update when the key changes (default: 1).
+        :param pulumi.Input[_builtins.str] region: AWS region hosting the CloudWatch log group.
+        :param pulumi.Input[_builtins.str] tags: Comma-separated tags to attach to logs (e.g. env=prod,region=eu)
+        """
+        if api_key is not None:
+            pulumi.set(__self__, "api_key", api_key)
+        if api_key_version is not None:
+            pulumi.set(__self__, "api_key_version", api_key_version)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Datadog API key
+        """
+        return pulumi.get(self, "api_key")
+
+    @api_key.setter
+    def api_key(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "api_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="apiKeyVersion")
+    def api_key_version(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Version of the write-only api_key. Increment to trigger an update when the key changes (default: 1).
+        """
+        return pulumi.get(self, "api_key_version")
+
+    @api_key_version.setter
+    def api_key_version(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "api_key_version", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        AWS region hosting the CloudWatch log group.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Comma-separated tags to attach to logs (e.g. env=prod,region=eu)
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "tags", value)
+
+
+class IntegrationLogAgentGoogleCloudArgsDict(TypedDict):
+    client_email: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Google service account client email (computed from service_account_file)
+    """
+    private_key_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Google service account private key ID (computed from service_account_file)
+    """
+    project_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Google Cloud project ID (computed from service_account_file)
+    """
+    service_account_file: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Google service account key JSON file contents. Use file("path/to/key.json") to load the downloaded credentials file.
+    """
+    service_account_file_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Version of the write-only service_account_file. Increment to trigger an update when the file contents change (default: 1).
+    """
+    tags: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Comma-separated tags to attach to logs (e.g. env=prod,region=eu)
+    """
+
+@pulumi.input_type
+class IntegrationLogAgentGoogleCloudArgs:
+    def __init__(__self__, *,
+                 client_email: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_account_file: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_account_file_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 tags: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] client_email: Google service account client email (computed from service_account_file)
+        :param pulumi.Input[_builtins.str] private_key_id: Google service account private key ID (computed from service_account_file)
+        :param pulumi.Input[_builtins.str] project_id: Google Cloud project ID (computed from service_account_file)
+        :param pulumi.Input[_builtins.str] service_account_file: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Google service account key JSON file contents. Use file("path/to/key.json") to load the downloaded credentials file.
+        :param pulumi.Input[_builtins.int] service_account_file_version: Version of the write-only service_account_file. Increment to trigger an update when the file contents change (default: 1).
+        :param pulumi.Input[_builtins.str] tags: Comma-separated tags to attach to logs (e.g. env=prod,region=eu)
+        """
+        if client_email is not None:
+            pulumi.set(__self__, "client_email", client_email)
+        if private_key_id is not None:
+            pulumi.set(__self__, "private_key_id", private_key_id)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if service_account_file is not None:
+            pulumi.set(__self__, "service_account_file", service_account_file)
+        if service_account_file_version is not None:
+            pulumi.set(__self__, "service_account_file_version", service_account_file_version)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="clientEmail")
+    def client_email(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Google service account client email (computed from service_account_file)
+        """
+        return pulumi.get(self, "client_email")
+
+    @client_email.setter
+    def client_email(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "client_email", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyId")
+    def private_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Google service account private key ID (computed from service_account_file)
+        """
+        return pulumi.get(self, "private_key_id")
+
+    @private_key_id.setter
+    def private_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "private_key_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Google Cloud project ID (computed from service_account_file)
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="serviceAccountFile")
+    def service_account_file(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Google service account key JSON file contents. Use file("path/to/key.json") to load the downloaded credentials file.
+        """
+        return pulumi.get(self, "service_account_file")
+
+    @service_account_file.setter
+    def service_account_file(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "service_account_file", value)
+
+    @_builtins.property
+    @pulumi.getter(name="serviceAccountFileVersion")
+    def service_account_file_version(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Version of the write-only service_account_file. Increment to trigger an update when the file contents change (default: 1).
+        """
+        return pulumi.get(self, "service_account_file_version")
+
+    @service_account_file_version.setter
+    def service_account_file_version(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "service_account_file_version", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Comma-separated tags to attach to logs (e.g. env=prod,region=eu)
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "tags", value)
+
+
+class IntegrationLogAgentGrafanaArgsDict(TypedDict):
+    api_token: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Grafana Cloud API token
+    """
+    api_token_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Version of the write-only api_token. Increment to trigger an update when the token changes (default: 1).
+    """
+    endpoint: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Grafana Cloud OTLP endpoint (e.g. https://otlp-gateway-prod-eu-west-0.grafana.net/otlp)
+    """
+    grafana_instance_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Grafana Cloud instance ID
+    """
+
+@pulumi.input_type
+class IntegrationLogAgentGrafanaArgs:
+    def __init__(__self__, *,
+                 api_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 api_token_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 grafana_instance_id: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] api_token: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Grafana Cloud API token
+        :param pulumi.Input[_builtins.int] api_token_version: Version of the write-only api_token. Increment to trigger an update when the token changes (default: 1).
+        :param pulumi.Input[_builtins.str] endpoint: Grafana Cloud OTLP endpoint (e.g. https://otlp-gateway-prod-eu-west-0.grafana.net/otlp)
+        :param pulumi.Input[_builtins.str] grafana_instance_id: Grafana Cloud instance ID
+        """
+        if api_token is not None:
+            pulumi.set(__self__, "api_token", api_token)
+        if api_token_version is not None:
+            pulumi.set(__self__, "api_token_version", api_token_version)
+        if endpoint is not None:
+            pulumi.set(__self__, "endpoint", endpoint)
+        if grafana_instance_id is not None:
+            pulumi.set(__self__, "grafana_instance_id", grafana_instance_id)
+
+    @_builtins.property
+    @pulumi.getter(name="apiToken")
+    def api_token(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Grafana Cloud API token
+        """
+        return pulumi.get(self, "api_token")
+
+    @api_token.setter
+    def api_token(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "api_token", value)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenVersion")
+    def api_token_version(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Version of the write-only api_token. Increment to trigger an update when the token changes (default: 1).
+        """
+        return pulumi.get(self, "api_token_version")
+
+    @api_token_version.setter
+    def api_token_version(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "api_token_version", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Grafana Cloud OTLP endpoint (e.g. https://otlp-gateway-prod-eu-west-0.grafana.net/otlp)
+        """
+        return pulumi.get(self, "endpoint")
+
+    @endpoint.setter
+    def endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "endpoint", value)
+
+    @_builtins.property
+    @pulumi.getter(name="grafanaInstanceId")
+    def grafana_instance_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Grafana Cloud instance ID
+        """
+        return pulumi.get(self, "grafana_instance_id")
+
+    @grafana_instance_id.setter
+    def grafana_instance_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "grafana_instance_id", value)
+
+
+class IntegrationLogAgentSplunkArgsDict(TypedDict):
+    endpoint: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Splunk HEC endpoint URL (e.g. https://your-instance.splunkcloud.com:8088/services/collector)
+    """
+    source_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Splunk source type (leave empty to use the token's default)
+    """
+    token: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Splunk HEC token
+    """
+    token_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Version of the write-only token. Increment to trigger an update when the token changes (default: 1).
+    """
+
+@pulumi.input_type
+class IntegrationLogAgentSplunkArgs:
+    def __init__(__self__, *,
+                 endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 source_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_version: pulumi.Input[Optional[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.str] endpoint: Splunk HEC endpoint URL (e.g. https://your-instance.splunkcloud.com:8088/services/collector)
+        :param pulumi.Input[_builtins.str] source_type: Splunk source type (leave empty to use the token's default)
+        :param pulumi.Input[_builtins.str] token: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Splunk HEC token
+        :param pulumi.Input[_builtins.int] token_version: Version of the write-only token. Increment to trigger an update when the token changes (default: 1).
+        """
+        if endpoint is not None:
+            pulumi.set(__self__, "endpoint", endpoint)
+        if source_type is not None:
+            pulumi.set(__self__, "source_type", source_type)
+        if token is not None:
+            pulumi.set(__self__, "token", token)
+        if token_version is not None:
+            pulumi.set(__self__, "token_version", token_version)
+
+    @_builtins.property
+    @pulumi.getter
+    def endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Splunk HEC endpoint URL (e.g. https://your-instance.splunkcloud.com:8088/services/collector)
+        """
+        return pulumi.get(self, "endpoint")
+
+    @endpoint.setter
+    def endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "endpoint", value)
+
+    @_builtins.property
+    @pulumi.getter(name="sourceType")
+    def source_type(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Splunk source type (leave empty to use the token's default)
+        """
+        return pulumi.get(self, "source_type")
+
+    @source_type.setter
+    def source_type(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "source_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def token(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Splunk HEC token
+        """
+        return pulumi.get(self, "token")
+
+    @token.setter
+    def token(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "token", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenVersion")
+    def token_version(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Version of the write-only token. Increment to trigger an update when the token changes (default: 1).
+        """
+        return pulumi.get(self, "token_version")
+
+    @token_version.setter
+    def token_version(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "token_version", value)
+
+
+class IntegrationLogAgentUptraceArgsDict(TypedDict):
+    dsn: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Uptrace DSN (Data Source Name) URL
+    """
+    dsn_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Version of the write-only dsn. Increment to trigger an update when the DSN changes (default: 1).
+    """
+
+@pulumi.input_type
+class IntegrationLogAgentUptraceArgs:
+    def __init__(__self__, *,
+                 dsn: pulumi.Input[Optional[_builtins.str]] = None,
+                 dsn_version: pulumi.Input[Optional[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.str] dsn: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Uptrace DSN (Data Source Name) URL
+        :param pulumi.Input[_builtins.int] dsn_version: Version of the write-only dsn. Increment to trigger an update when the DSN changes (default: 1).
+        """
+        if dsn is not None:
+            pulumi.set(__self__, "dsn", dsn)
+        if dsn_version is not None:
+            pulumi.set(__self__, "dsn_version", dsn_version)
+
+    @_builtins.property
+    @pulumi.getter
+    def dsn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Uptrace DSN (Data Source Name) URL
+        """
+        return pulumi.get(self, "dsn")
+
+    @dsn.setter
+    def dsn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "dsn", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dsnVersion")
+    def dsn_version(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Version of the write-only dsn. Increment to trigger an update when the DSN changes (default: 1).
+        """
+        return pulumi.get(self, "dsn_version")
+
+    @dsn_version.setter
+    def dsn_version(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "dsn_version", value)
 
 
 class IntegrationMetricPrometheusAzureMonitorArgsDict(TypedDict):
