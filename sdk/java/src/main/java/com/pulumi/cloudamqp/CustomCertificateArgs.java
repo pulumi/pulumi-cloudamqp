@@ -99,14 +99,16 @@ public final class CustomCertificateArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * A hostname (Server Name Indication) that this certificate applies to.
+     * Hostname(s) (Server Name Indication) that this certificate
+     * applies to. Use a comma or space separated string for multiple hostnames.
      * 
      */
     @Import(name="sniHosts", required=true)
     private Output<String> sniHosts;
 
     /**
-     * @return A hostname (Server Name Indication) that this certificate applies to.
+     * @return Hostname(s) (Server Name Indication) that this certificate
+     * applies to. Use a comma or space separated string for multiple hostnames.
      * 
      */
     public Output<String> sniHosts() {
@@ -270,7 +272,8 @@ public final class CustomCertificateArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param sniHosts A hostname (Server Name Indication) that this certificate applies to.
+         * @param sniHosts Hostname(s) (Server Name Indication) that this certificate
+         * applies to. Use a comma or space separated string for multiple hostnames.
          * 
          * @return builder
          * 
@@ -281,7 +284,8 @@ public final class CustomCertificateArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param sniHosts A hostname (Server Name Indication) that this certificate applies to.
+         * @param sniHosts Hostname(s) (Server Name Indication) that this certificate
+         * applies to. Use a comma or space separated string for multiple hostnames.
          * 
          * @return builder
          * 

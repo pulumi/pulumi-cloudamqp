@@ -29,7 +29,7 @@ import * as utilities from "./utilities";
  *
  * ## Alarm Types
  *
- * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+ * `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
  */
 export function getAlarms(args: GetAlarmsArgs, opts?: pulumi.InvokeOptions): Promise<GetAlarmsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -95,7 +95,7 @@ export interface GetAlarmsResult {
  *
  * ## Alarm Types
  *
- * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+ * `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
  */
 export function getAlarmsOutput(args: GetAlarmsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAlarmsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

@@ -128,10 +128,48 @@ namespace Pulumi.CloudAmqp
     /// 
     /// &lt;/details&gt;
     /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Auto resize disk alarm&lt;/i&gt;
+    ///       &lt;a href="https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.47.0"&gt;v1.47.0&lt;/a&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// `DiskAutoResize` alarm type to support disk [autoscaling](https://www.cloudamqp.com/docs/cloudamqp-autoscaling.html) feature.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var diskAutoscale = new CloudAmqp.Alarm("disk_autoscale", new()
+    ///     {
+    ///         InstanceId = example.Id,
+    ///         Type = "disk_auto_resize",
+    ///         Enabled = true,
+    ///         ValueThreshold = 5,
+    ///         ValueCalculation = "percentage",
+    ///         TimeThreshold = 600,
+    ///         AllowDowntime = false,
+    ///         Recipients = new[]
+    ///         {
+    ///             recipient.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
     /// ## Alarm type reference
     /// 
-    /// Supported alarm types: `cpu, memory, disk, queue, connection, flow, consumer, netsplit,
-    ///   server_unreachable, notice`
+    /// Supported alarm types: `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer,
+    ///   netsplit, server_unreachable, notice`
     /// 
     /// Required arguments for all alarms: `instance_id, type, enabled`&lt;br&gt;
     /// Optional argument for all alarms: `tags, queue_regex, VhostRegex`
@@ -141,6 +179,7 @@ namespace Pulumi.CloudAmqp
     /// | CPU | cpu | - | &amp;#10004; | time_threshold, ValueThreshold |
     /// | Memory | memory | - | &amp;#10004; | time_threshold, ValueThreshold |
     /// | Disk space | disk | - | &amp;#10004; | time_threshold, ValueThreshold |
+    /// | Disk auto-resize | DiskAutoResize | - | &amp;#10004; | time_threshold, value_threshold, value_calculation, AllowDowntime |
     /// | Queue | queue | &amp;#10004; | &amp;#10004; | time_threshold, value_threshold, queue_regex, vhost_regex, MessageType |
     /// | Connection | connection | &amp;#10004; | &amp;#10004; | time_threshold, ValueThreshold |
     /// | Connection flow | flow | &amp;#10004; | &amp;#10004; | time_threshold, ValueThreshold |
@@ -177,6 +216,24 @@ namespace Pulumi.CloudAmqp
     public partial class Alarm : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// For `DiskAutoResize`, allow the resize to proceed even if it
+        /// requires brief downtime. The Default is `False`.
+        /// 
+        /// Setting `ValueCalculation` on any other alarm type, or `AllowDowntime` on a non
+        /// `DiskAutoResize` alarm, is rejected at plan time.
+        /// 
+        /// &gt; **Warning:** A `DiskAutoResize` alarm grows the instance's additional disk out of band from
+        /// Terraform. Do not use it together with the `cloudamqp.ExtraDiskSize` resource on the same instance;
+        /// both control the same disk and will conflict, which can lead to Terraform shrinking the disk (with
+        /// downtime) back to the value declared on `cloudamqp.ExtraDiskSize`. Manage the disk with either the
+        /// `DiskAutoResize` alarm or `cloudamqp.ExtraDiskSize`, not both.
+        /// 
+        /// Based on alarm type, different arguments are flagged as required or optional.
+        /// </summary>
+        [Output("allowDowntime")]
+        public Output<bool?> AllowDowntime { get; private set; } = null!;
+
+        /// <summary>
         /// Enable or disable the alarm to trigger.
         /// </summary>
         [Output("enabled")]
@@ -191,7 +248,7 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Message type `(total, unacked, ready)` used by queue alarm type.
         /// 
-        /// Specific argument for `Disk` alarm
+        /// Specific arguments for `Disk` and `DiskAutoResize` alarms
         /// </summary>
         [Output("messageType")]
         public Output<string?> MessageType { get; private set; } = null!;
@@ -232,8 +289,6 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Disk value threshold calculation, `fixed, percentage` of disk
         /// space remaining.
-        /// 
-        /// Based on alarm type, different arguments are flagged as required or optional.
         /// </summary>
         [Output("valueCalculation")]
         public Output<string?> ValueCalculation { get; private set; } = null!;
@@ -297,6 +352,24 @@ namespace Pulumi.CloudAmqp
     public sealed class AlarmArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// For `DiskAutoResize`, allow the resize to proceed even if it
+        /// requires brief downtime. The Default is `False`.
+        /// 
+        /// Setting `ValueCalculation` on any other alarm type, or `AllowDowntime` on a non
+        /// `DiskAutoResize` alarm, is rejected at plan time.
+        /// 
+        /// &gt; **Warning:** A `DiskAutoResize` alarm grows the instance's additional disk out of band from
+        /// Terraform. Do not use it together with the `cloudamqp.ExtraDiskSize` resource on the same instance;
+        /// both control the same disk and will conflict, which can lead to Terraform shrinking the disk (with
+        /// downtime) back to the value declared on `cloudamqp.ExtraDiskSize`. Manage the disk with either the
+        /// `DiskAutoResize` alarm or `cloudamqp.ExtraDiskSize`, not both.
+        /// 
+        /// Based on alarm type, different arguments are flagged as required or optional.
+        /// </summary>
+        [Input("allowDowntime")]
+        public Input<bool>? AllowDowntime { get; set; }
+
+        /// <summary>
         /// Enable or disable the alarm to trigger.
         /// </summary>
         [Input("enabled", required: true)]
@@ -311,7 +384,7 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Message type `(total, unacked, ready)` used by queue alarm type.
         /// 
-        /// Specific argument for `Disk` alarm
+        /// Specific arguments for `Disk` and `DiskAutoResize` alarms
         /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
@@ -358,8 +431,6 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Disk value threshold calculation, `fixed, percentage` of disk
         /// space remaining.
-        /// 
-        /// Based on alarm type, different arguments are flagged as required or optional.
         /// </summary>
         [Input("valueCalculation")]
         public Input<string>? ValueCalculation { get; set; }
@@ -385,6 +456,24 @@ namespace Pulumi.CloudAmqp
     public sealed class AlarmState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// For `DiskAutoResize`, allow the resize to proceed even if it
+        /// requires brief downtime. The Default is `False`.
+        /// 
+        /// Setting `ValueCalculation` on any other alarm type, or `AllowDowntime` on a non
+        /// `DiskAutoResize` alarm, is rejected at plan time.
+        /// 
+        /// &gt; **Warning:** A `DiskAutoResize` alarm grows the instance's additional disk out of band from
+        /// Terraform. Do not use it together with the `cloudamqp.ExtraDiskSize` resource on the same instance;
+        /// both control the same disk and will conflict, which can lead to Terraform shrinking the disk (with
+        /// downtime) back to the value declared on `cloudamqp.ExtraDiskSize`. Manage the disk with either the
+        /// `DiskAutoResize` alarm or `cloudamqp.ExtraDiskSize`, not both.
+        /// 
+        /// Based on alarm type, different arguments are flagged as required or optional.
+        /// </summary>
+        [Input("allowDowntime")]
+        public Input<bool>? AllowDowntime { get; set; }
+
+        /// <summary>
         /// Enable or disable the alarm to trigger.
         /// </summary>
         [Input("enabled")]
@@ -399,7 +488,7 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Message type `(total, unacked, ready)` used by queue alarm type.
         /// 
-        /// Specific argument for `Disk` alarm
+        /// Specific arguments for `Disk` and `DiskAutoResize` alarms
         /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
@@ -446,8 +535,6 @@ namespace Pulumi.CloudAmqp
         /// <summary>
         /// Disk value threshold calculation, `fixed, percentage` of disk
         /// space remaining.
-        /// 
-        /// Based on alarm type, different arguments are flagged as required or optional.
         /// </summary>
         [Input("valueCalculation")]
         public Input<string>? ValueCalculation { get; set; }

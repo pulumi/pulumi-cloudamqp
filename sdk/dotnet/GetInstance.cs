@@ -80,6 +80,7 @@ namespace Pulumi.CloudAmqp
         /// Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
         /// </summary>
         public readonly string Backend;
+        public readonly string ClusterName;
         /// <summary>
         /// (Sensitive) Broker credentials block with information extracted from URL.
         /// </summary>
@@ -152,6 +153,8 @@ namespace Pulumi.CloudAmqp
 
             string backend,
 
+            string clusterName,
+
             ImmutableDictionary<string, string> credentials,
 
             bool dedicated,
@@ -190,6 +193,7 @@ namespace Pulumi.CloudAmqp
         {
             Apikey = apikey;
             Backend = backend;
+            ClusterName = clusterName;
             Credentials = credentials;
             Dedicated = dedicated;
             Host = host;

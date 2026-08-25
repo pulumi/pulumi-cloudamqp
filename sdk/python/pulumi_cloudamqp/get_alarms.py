@@ -107,7 +107,7 @@ def get_alarms(instance_id: Optional[_builtins.int] = None,
 
     ## Alarm Types
 
-    `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+    `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
 
 
     :param _builtins.int instance_id: The CloudAMQP instance identifier.
@@ -149,7 +149,7 @@ def get_alarms_output(instance_id: pulumi.Input[Optional[_builtins.int]] = None,
 
     ## Alarm Types
 
-    `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+    `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
 
 
     :param _builtins.int instance_id: The CloudAMQP instance identifier.

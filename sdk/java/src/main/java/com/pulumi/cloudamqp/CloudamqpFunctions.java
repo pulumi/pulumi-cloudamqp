@@ -279,7 +279,7 @@ public final class CloudamqpFunctions {
      * 
      * ## Alarm Types
      * 
-     * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+     * `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
      * 
      */
     public static Output<GetAlarmResult> getAlarm(GetAlarmArgs args) {
@@ -331,7 +331,7 @@ public final class CloudamqpFunctions {
      * 
      * ## Alarm Types
      * 
-     * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+     * `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
      * 
      */
     public static CompletableFuture<GetAlarmResult> getAlarmPlain(GetAlarmPlainArgs args) {
@@ -383,7 +383,7 @@ public final class CloudamqpFunctions {
      * 
      * ## Alarm Types
      * 
-     * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+     * `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
      * 
      */
     public static Output<GetAlarmResult> getAlarm(GetAlarmArgs args, InvokeOptions options) {
@@ -435,7 +435,7 @@ public final class CloudamqpFunctions {
      * 
      * ## Alarm Types
      * 
-     * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+     * `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
      * 
      */
     public static Output<GetAlarmResult> getAlarm(GetAlarmArgs args, InvokeOutputOptions options) {
@@ -487,7 +487,7 @@ public final class CloudamqpFunctions {
      * 
      * ## Alarm Types
      * 
-     * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+     * `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
      * 
      */
     public static CompletableFuture<GetAlarmResult> getAlarmPlain(GetAlarmPlainArgs args, InvokeOptions options) {
@@ -538,7 +538,7 @@ public final class CloudamqpFunctions {
      * 
      * ## Alarm Types
      * 
-     * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+     * `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
      * 
      */
     public static Output<GetAlarmsResult> getAlarms(GetAlarmsArgs args) {
@@ -589,7 +589,7 @@ public final class CloudamqpFunctions {
      * 
      * ## Alarm Types
      * 
-     * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+     * `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
      * 
      */
     public static CompletableFuture<GetAlarmsResult> getAlarmsPlain(GetAlarmsPlainArgs args) {
@@ -640,7 +640,7 @@ public final class CloudamqpFunctions {
      * 
      * ## Alarm Types
      * 
-     * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+     * `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
      * 
      */
     public static Output<GetAlarmsResult> getAlarms(GetAlarmsArgs args, InvokeOptions options) {
@@ -691,7 +691,7 @@ public final class CloudamqpFunctions {
      * 
      * ## Alarm Types
      * 
-     * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+     * `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
      * 
      */
     public static Output<GetAlarmsResult> getAlarms(GetAlarmsArgs args, InvokeOutputOptions options) {
@@ -742,7 +742,7 @@ public final class CloudamqpFunctions {
      * 
      * ## Alarm Types
      * 
-     * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+     * `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
      * 
      */
     public static CompletableFuture<GetAlarmsResult> getAlarmsPlain(GetAlarmsPlainArgs args, InvokeOptions options) {

@@ -39,6 +39,7 @@ export interface GetInstanceResult {
      * Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
      */
     readonly backend: string;
+    readonly clusterName: string;
     /**
      * (Sensitive) Broker credentials block with information extracted from URL.
      */

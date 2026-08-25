@@ -158,10 +158,60 @@ import javax.annotation.Nullable;
  * 
  * &lt;/details&gt;
  * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Auto resize disk alarm&lt;/i&gt;
+ *       &lt;a href=&#34;https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.47.0&#34;&gt;v1.47.0&lt;/a&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * `diskAutoResize` alarm type to support disk [autoscaling](https://www.cloudamqp.com/docs/cloudamqp-autoscaling.html) feature.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Alarm;
+ * import com.pulumi.cloudamqp.AlarmArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var diskAutoscale = new Alarm("diskAutoscale", AlarmArgs.builder()
+ *             .instanceId(example.id())
+ *             .type("disk_auto_resize")
+ *             .enabled(true)
+ *             .valueThreshold(5)
+ *             .valueCalculation("percentage")
+ *             .timeThreshold(600)
+ *             .allowDowntime(false)
+ *             .recipients(recipient.id())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
  * ## Alarm type reference
  * 
- * Supported alarm types: `cpu, memory, disk, queue, connection, flow, consumer, netsplit,
- *   server_unreachable, notice`
+ * Supported alarm types: `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer,
+ *   netsplit, server_unreachable, notice`
  * 
  * Required arguments for all alarms: `instance_id, type, enabled`&lt;br&gt;
  * Optional argument for all alarms: `tags, queue_regex, vhostRegex`
@@ -171,6 +221,7 @@ import javax.annotation.Nullable;
  * | CPU | cpu | - | &amp;#10004; | time_threshold, valueThreshold |
  * | Memory | memory | - | &amp;#10004; | time_threshold, valueThreshold |
  * | Disk space | disk | - | &amp;#10004; | time_threshold, valueThreshold |
+ * | Disk auto-resize | diskAutoResize | - | &amp;#10004; | time_threshold, value_threshold, value_calculation, allowDowntime |
  * | Queue | queue | &amp;#10004; | &amp;#10004; | time_threshold, value_threshold, queue_regex, vhost_regex, messageType |
  * | Connection | connection | &amp;#10004; | &amp;#10004; | time_threshold, valueThreshold |
  * | Connection flow | flow | &amp;#10004; | &amp;#10004; | time_threshold, valueThreshold |
@@ -207,6 +258,44 @@ import javax.annotation.Nullable;
 @ResourceType(type="cloudamqp:index/alarm:Alarm")
 public class Alarm extends com.pulumi.resources.CustomResource {
     /**
+     * For `diskAutoResize`, allow the resize to proceed even if it
+     * requires brief downtime. The Default is `false`.
+     * 
+     * Setting `valueCalculation` on any other alarm type, or `allowDowntime` on a non
+     * `diskAutoResize` alarm, is rejected at plan time.
+     * 
+     * &gt; **Warning:** A `diskAutoResize` alarm grows the instance&#39;s additional disk out of band from
+     * Terraform. Do not use it together with the `cloudamqp.ExtraDiskSize` resource on the same instance;
+     * both control the same disk and will conflict, which can lead to Terraform shrinking the disk (with
+     * downtime) back to the value declared on `cloudamqp.ExtraDiskSize`. Manage the disk with either the
+     * `diskAutoResize` alarm or `cloudamqp.ExtraDiskSize`, not both.
+     * 
+     * Based on alarm type, different arguments are flagged as required or optional.
+     * 
+     */
+    @Export(name="allowDowntime", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> allowDowntime;
+
+    /**
+     * @return For `diskAutoResize`, allow the resize to proceed even if it
+     * requires brief downtime. The Default is `false`.
+     * 
+     * Setting `valueCalculation` on any other alarm type, or `allowDowntime` on a non
+     * `diskAutoResize` alarm, is rejected at plan time.
+     * 
+     * &gt; **Warning:** A `diskAutoResize` alarm grows the instance&#39;s additional disk out of band from
+     * Terraform. Do not use it together with the `cloudamqp.ExtraDiskSize` resource on the same instance;
+     * both control the same disk and will conflict, which can lead to Terraform shrinking the disk (with
+     * downtime) back to the value declared on `cloudamqp.ExtraDiskSize`. Manage the disk with either the
+     * `diskAutoResize` alarm or `cloudamqp.ExtraDiskSize`, not both.
+     * 
+     * Based on alarm type, different arguments are flagged as required or optional.
+     * 
+     */
+    public Output<Optional<Boolean>> allowDowntime() {
+        return Codegen.optional(this.allowDowntime);
+    }
+    /**
      * Enable or disable the alarm to trigger.
      * 
      */
@@ -237,7 +326,7 @@ public class Alarm extends com.pulumi.resources.CustomResource {
     /**
      * Message type `(total, unacked, ready)` used by queue alarm type.
      * 
-     * Specific argument for `disk` alarm
+     * Specific arguments for `disk` and `diskAutoResize` alarms
      * 
      */
     @Export(name="messageType", refs={String.class}, tree="[0]")
@@ -246,7 +335,7 @@ public class Alarm extends com.pulumi.resources.CustomResource {
     /**
      * @return Message type `(total, unacked, ready)` used by queue alarm type.
      * 
-     * Specific argument for `disk` alarm
+     * Specific arguments for `disk` and `diskAutoResize` alarms
      * 
      */
     public Output<Optional<String>> messageType() {
@@ -332,8 +421,6 @@ public class Alarm extends com.pulumi.resources.CustomResource {
      * Disk value threshold calculation, `fixed, percentage` of disk
      * space remaining.
      * 
-     * Based on alarm type, different arguments are flagged as required or optional.
-     * 
      */
     @Export(name="valueCalculation", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> valueCalculation;
@@ -341,8 +428,6 @@ public class Alarm extends com.pulumi.resources.CustomResource {
     /**
      * @return Disk value threshold calculation, `fixed, percentage` of disk
      * space remaining.
-     * 
-     * Based on alarm type, different arguments are flagged as required or optional.
      * 
      */
     public Output<Optional<String>> valueCalculation() {

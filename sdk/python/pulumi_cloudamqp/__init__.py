@@ -28,6 +28,7 @@ from .get_vpc_info import *
 from .instance import *
 from .integration_aws_eventbridge import *
 from .integration_log import *
+from .integration_log_agent import *
 from .integration_metric import *
 from .integration_metric_prometheus import *
 from .maintenance_window import *
@@ -125,6 +126,14 @@ _utilities.register(
   "fqn": "pulumi_cloudamqp",
   "classes": {
    "cloudamqp:index/integrationLog:IntegrationLog": "IntegrationLog"
+  }
+ },
+ {
+  "pkg": "cloudamqp",
+  "mod": "index/integrationLogAgent",
+  "fqn": "pulumi_cloudamqp",
+  "classes": {
+   "cloudamqp:index/integrationLogAgent:IntegrationLogAgent": "IntegrationLogAgent"
   }
  },
  {

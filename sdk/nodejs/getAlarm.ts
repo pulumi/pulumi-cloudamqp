@@ -28,7 +28,7 @@ import * as utilities from "./utilities";
  *
  * ## Alarm Types
  *
- * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+ * `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
  */
 export function getAlarm(args: GetAlarmArgs, opts?: pulumi.InvokeOptions): Promise<GetAlarmResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -65,6 +65,11 @@ export interface GetAlarmArgs {
  */
 export interface GetAlarmResult {
     readonly alarmId?: number;
+    /**
+     * For `diskAutoResize`, whether the resize may proceed even if it requires
+     * brief downtime.
+     */
+    readonly allowDowntime: boolean;
     /**
      * Enable/disable status of the alarm.
      */
@@ -135,7 +140,7 @@ export interface GetAlarmResult {
  *
  * ## Alarm Types
  *
- * `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+ * `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
  */
 export function getAlarmOutput(args: GetAlarmOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAlarmResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

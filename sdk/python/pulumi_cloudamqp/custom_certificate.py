@@ -36,7 +36,8 @@ class CustomCertificateArgs:
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier.
         :param pulumi.Input[_builtins.str] private_key: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The PEM-encoded private key corresponding to the certificate.
-        :param pulumi.Input[_builtins.str] sni_hosts: A hostname (Server Name Indication) that this certificate applies to.
+        :param pulumi.Input[_builtins.str] sni_hosts: Hostname(s) (Server Name Indication) that this certificate
+               applies to. Use a comma or space separated string for multiple hostnames.
         :param pulumi.Input[_builtins.str] key_id: A string based argument to trigger force new (default: "").
         :param pulumi.Input[_builtins.int] version: An integer based argument to trigger force new (default: 1).
         """
@@ -105,7 +106,8 @@ class CustomCertificateArgs:
     @pulumi.getter(name="sniHosts")
     def sni_hosts(self) -> pulumi.Input[_builtins.str]:
         """
-        A hostname (Server Name Indication) that this certificate applies to.
+        Hostname(s) (Server Name Indication) that this certificate
+        applies to. Use a comma or space separated string for multiple hostnames.
         """
         return pulumi.get(self, "sni_hosts")
 
@@ -159,7 +161,8 @@ class _CustomCertificateState:
         :param pulumi.Input[_builtins.str] key_id: A string based argument to trigger force new (default: "").
         :param pulumi.Input[_builtins.str] private_key: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The PEM-encoded private key corresponding to the certificate.
-        :param pulumi.Input[_builtins.str] sni_hosts: A hostname (Server Name Indication) that this certificate applies to.
+        :param pulumi.Input[_builtins.str] sni_hosts: Hostname(s) (Server Name Indication) that this certificate
+               applies to. Use a comma or space separated string for multiple hostnames.
         :param pulumi.Input[_builtins.int] version: An integer based argument to trigger force new (default: 1).
         """
         if ca is not None:
@@ -244,7 +247,8 @@ class _CustomCertificateState:
     @pulumi.getter(name="sniHosts")
     def sni_hosts(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        A hostname (Server Name Indication) that this certificate applies to.
+        Hostname(s) (Server Name Indication) that this certificate
+        applies to. Use a comma or space separated string for multiple hostnames.
         """
         return pulumi.get(self, "sni_hosts")
 
@@ -283,8 +287,9 @@ class CustomCertificate(pulumi.CustomResource):
         <!-- markdownlint-disable MD033 -->
 
         This resource allows you to upload a custom certificate to all servers in your cluster. Update is
-        not supported, all changes require replacement. `ca`, `cert` and `private_key` all use **WriteOnly**,
-        meaning no information is present in plan phase, logs or stored in the state for security purposes.
+        not supported, all changes require replacement. The certificate can be used for one or more SNI
+        hostnames. `ca`, `cert` and `private_key` all use **WriteOnly**, meaning no information is present
+        in plan phase, logs or stored in the state for security purposes.
 
         > **WARNING:** Please note that when uploading a custom certificate or restoring to default certificate,
         all current connections will be closed.
@@ -304,7 +309,8 @@ class CustomCertificate(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] key_id: A string based argument to trigger force new (default: "").
         :param pulumi.Input[_builtins.str] private_key: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The PEM-encoded private key corresponding to the certificate.
-        :param pulumi.Input[_builtins.str] sni_hosts: A hostname (Server Name Indication) that this certificate applies to.
+        :param pulumi.Input[_builtins.str] sni_hosts: Hostname(s) (Server Name Indication) that this certificate
+               applies to. Use a comma or space separated string for multiple hostnames.
         :param pulumi.Input[_builtins.int] version: An integer based argument to trigger force new (default: 1).
         """
         ...
@@ -317,8 +323,9 @@ class CustomCertificate(pulumi.CustomResource):
         <!-- markdownlint-disable MD033 -->
 
         This resource allows you to upload a custom certificate to all servers in your cluster. Update is
-        not supported, all changes require replacement. `ca`, `cert` and `private_key` all use **WriteOnly**,
-        meaning no information is present in plan phase, logs or stored in the state for security purposes.
+        not supported, all changes require replacement. The certificate can be used for one or more SNI
+        hostnames. `ca`, `cert` and `private_key` all use **WriteOnly**, meaning no information is present
+        in plan phase, logs or stored in the state for security purposes.
 
         > **WARNING:** Please note that when uploading a custom certificate or restoring to default certificate,
         all current connections will be closed.
@@ -410,7 +417,8 @@ class CustomCertificate(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] key_id: A string based argument to trigger force new (default: "").
         :param pulumi.Input[_builtins.str] private_key: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The PEM-encoded private key corresponding to the certificate.
-        :param pulumi.Input[_builtins.str] sni_hosts: A hostname (Server Name Indication) that this certificate applies to.
+        :param pulumi.Input[_builtins.str] sni_hosts: Hostname(s) (Server Name Indication) that this certificate
+               applies to. Use a comma or space separated string for multiple hostnames.
         :param pulumi.Input[_builtins.int] version: An integer based argument to trigger force new (default: 1).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -473,7 +481,8 @@ class CustomCertificate(pulumi.CustomResource):
     @pulumi.getter(name="sniHosts")
     def sni_hosts(self) -> pulumi.Output[_builtins.str]:
         """
-        A hostname (Server Name Indication) that this certificate applies to.
+        Hostname(s) (Server Name Indication) that this certificate
+        applies to. Use a comma or space separated string for multiple hostnames.
         """
         return pulumi.get(self, "sni_hosts")
 

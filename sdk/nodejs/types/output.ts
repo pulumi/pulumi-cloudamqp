@@ -291,6 +291,153 @@ export interface InstanceCopySetting {
     subscriptionId: string;
 }
 
+export interface IntegrationLogAgentCloudwatch {
+    /**
+     * External identifier that matches the trust policy of the IAM role.
+     */
+    iamExternalId?: string;
+    /**
+     * AWS IAM role ARN used to assume permissions for the integration.
+     */
+    iamRole?: string;
+    /**
+     * The name of the CloudWatch log group. Defaults to `CloudAMQP` if not set.
+     */
+    logGroup: string;
+    /**
+     * The name of the CloudWatch log stream. Recommended to use the cluster name, found in `cloudamqp_instance.instance.cluster_name`.
+     */
+    logStream?: string;
+    /**
+     * AWS region hosting the CloudWatch log group.
+     */
+    region?: string;
+}
+
+export interface IntegrationLogAgentCoralogix {
+    /**
+     * Application name, used to group logs by environment
+     */
+    application?: string;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Coralogix private key (always starts with cxtp_...)
+     */
+    privateKey?: string;
+    /**
+     * Version of the write-only private_key. Increment to trigger an update when the key changes (default: 1).
+     */
+    privateKeyVersion: number;
+    /**
+     * AWS region hosting the CloudWatch log group.
+     */
+    region?: string;
+    /**
+     * Subsystem name, used to group logs by service within an application
+     */
+    subsystem?: string;
+}
+
+export interface IntegrationLogAgentDatadog {
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Datadog API key
+     */
+    apiKey?: string;
+    /**
+     * Version of the write-only api_key. Increment to trigger an update when the key changes (default: 1).
+     */
+    apiKeyVersion: number;
+    /**
+     * AWS region hosting the CloudWatch log group.
+     */
+    region?: string;
+    /**
+     * Comma-separated tags to attach to logs (e.g. env=prod,region=eu)
+     */
+    tags?: string;
+}
+
+export interface IntegrationLogAgentGoogleCloud {
+    /**
+     * Google service account client email (computed from service_account_file)
+     */
+    clientEmail: string;
+    /**
+     * Google service account private key ID (computed from service_account_file)
+     */
+    privateKeyId: string;
+    /**
+     * Google Cloud project ID (computed from service_account_file)
+     */
+    projectId: string;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Google service account key JSON file contents. Use file("path/to/key.json") to load the downloaded credentials file.
+     */
+    serviceAccountFile?: string;
+    /**
+     * Version of the write-only service_account_file. Increment to trigger an update when the file contents change (default: 1).
+     */
+    serviceAccountFileVersion: number;
+    /**
+     * Comma-separated tags to attach to logs (e.g. env=prod,region=eu)
+     */
+    tags?: string;
+}
+
+export interface IntegrationLogAgentGrafana {
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Grafana Cloud API token
+     */
+    apiToken?: string;
+    /**
+     * Version of the write-only api_token. Increment to trigger an update when the token changes (default: 1).
+     */
+    apiTokenVersion: number;
+    /**
+     * Grafana Cloud OTLP endpoint (e.g. https://otlp-gateway-prod-eu-west-0.grafana.net/otlp)
+     */
+    endpoint?: string;
+    /**
+     * Grafana Cloud instance ID
+     */
+    grafanaInstanceId?: string;
+}
+
+export interface IntegrationLogAgentSplunk {
+    /**
+     * Splunk HEC endpoint URL (e.g. https://your-instance.splunkcloud.com:8088/services/collector)
+     */
+    endpoint?: string;
+    /**
+     * Splunk source type (leave empty to use the token's default)
+     */
+    sourceType?: string;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Splunk HEC token
+     */
+    token?: string;
+    /**
+     * Version of the write-only token. Increment to trigger an update when the token changes (default: 1).
+     */
+    tokenVersion: number;
+}
+
+export interface IntegrationLogAgentUptrace {
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Uptrace DSN (Data Source Name) URL
+     */
+    dsn?: string;
+    /**
+     * Version of the write-only dsn. Increment to trigger an update when the DSN changes (default: 1).
+     */
+    dsnVersion: number;
+}
+
 export interface IntegrationMetricPrometheusAzureMonitor {
     /**
      * Azure Application Insights Connection String for authentication.

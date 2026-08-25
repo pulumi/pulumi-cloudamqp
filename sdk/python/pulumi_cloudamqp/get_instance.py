@@ -26,13 +26,16 @@ class GetInstanceResult:
     """
     A collection of values returned by getInstance.
     """
-    def __init__(__self__, apikey=None, backend=None, credentials=None, dedicated=None, host=None, host_internal=None, id=None, instance_id=None, name=None, no_default_alarms=None, nodes=None, plan=None, ready=None, region=None, rmq_version=None, tags=None, url=None, vhost=None, vpc_id=None, vpc_subnet=None):
+    def __init__(__self__, apikey=None, backend=None, cluster_name=None, credentials=None, dedicated=None, host=None, host_internal=None, id=None, instance_id=None, name=None, no_default_alarms=None, nodes=None, plan=None, ready=None, region=None, rmq_version=None, tags=None, url=None, vhost=None, vpc_id=None, vpc_subnet=None):
         if apikey and not isinstance(apikey, str):
             raise TypeError("Expected argument 'apikey' to be a str")
         pulumi.set(__self__, "apikey", apikey)
         if backend and not isinstance(backend, str):
             raise TypeError("Expected argument 'backend' to be a str")
         pulumi.set(__self__, "backend", backend)
+        if cluster_name and not isinstance(cluster_name, str):
+            raise TypeError("Expected argument 'cluster_name' to be a str")
+        pulumi.set(__self__, "cluster_name", cluster_name)
         if credentials and not isinstance(credentials, dict):
             raise TypeError("Expected argument 'credentials' to be a dict")
         pulumi.set(__self__, "credentials", credentials)
@@ -103,6 +106,11 @@ class GetInstanceResult:
         Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
         """
         return pulumi.get(self, "backend")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        return pulumi.get(self, "cluster_name")
 
     @_builtins.property
     @pulumi.getter
@@ -250,6 +258,7 @@ class AwaitableGetInstanceResult(GetInstanceResult):
         return GetInstanceResult(
             apikey=self.apikey,
             backend=self.backend,
+            cluster_name=self.cluster_name,
             credentials=self.credentials,
             dedicated=self.dedicated,
             host=self.host,
@@ -289,6 +298,7 @@ def get_instance(instance_id: Optional[_builtins.int] = None,
     return AwaitableGetInstanceResult(
         apikey=pulumi.get(__ret__, 'apikey'),
         backend=pulumi.get(__ret__, 'backend'),
+        cluster_name=pulumi.get(__ret__, 'cluster_name'),
         credentials=pulumi.get(__ret__, 'credentials'),
         dedicated=pulumi.get(__ret__, 'dedicated'),
         host=pulumi.get(__ret__, 'host'),
@@ -325,6 +335,7 @@ def get_instance_output(instance_id: pulumi.Input[Optional[_builtins.int]] = Non
     return __ret__.apply(lambda __response__: GetInstanceResult(
         apikey=pulumi.get(__response__, 'apikey'),
         backend=pulumi.get(__response__, 'backend'),
+        cluster_name=pulumi.get(__response__, 'cluster_name'),
         credentials=pulumi.get(__response__, 'credentials'),
         dedicated=pulumi.get(__response__, 'dedicated'),
         host=pulumi.get(__response__, 'host'),

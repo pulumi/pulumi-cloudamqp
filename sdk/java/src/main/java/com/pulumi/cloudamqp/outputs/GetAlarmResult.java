@@ -17,6 +17,12 @@ import javax.annotation.Nullable;
 public final class GetAlarmResult {
     private @Nullable Integer alarmId;
     /**
+     * @return For `diskAutoResize`, whether the resize may proceed even if it requires
+     * brief downtime.
+     * 
+     */
+    private Boolean allowDowntime;
+    /**
      * @return Enable/disable status of the alarm.
      * 
      */
@@ -75,6 +81,14 @@ public final class GetAlarmResult {
     private GetAlarmResult() {}
     public Optional<Integer> alarmId() {
         return Optional.ofNullable(this.alarmId);
+    }
+    /**
+     * @return For `diskAutoResize`, whether the resize may proceed even if it requires
+     * brief downtime.
+     * 
+     */
+    public Boolean allowDowntime() {
+        return this.allowDowntime;
     }
     /**
      * @return Enable/disable status of the alarm.
@@ -166,6 +180,7 @@ public final class GetAlarmResult {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable Integer alarmId;
+        private Boolean allowDowntime;
         private Boolean enabled;
         private String id;
         private Integer instanceId;
@@ -182,6 +197,7 @@ public final class GetAlarmResult {
         public Builder(GetAlarmResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.alarmId = defaults.alarmId;
+    	      this.allowDowntime = defaults.allowDowntime;
     	      this.enabled = defaults.enabled;
     	      this.id = defaults.id;
     	      this.instanceId = defaults.instanceId;
@@ -200,6 +216,14 @@ public final class GetAlarmResult {
         public Builder alarmId(@Nullable Integer alarmId) {
 
             this.alarmId = alarmId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder allowDowntime(Boolean allowDowntime) {
+            if (allowDowntime == null) {
+              throw new MissingRequiredPropertyException("GetAlarmResult", "allowDowntime");
+            }
+            this.allowDowntime = allowDowntime;
             return this;
         }
         @CustomType.Setter
@@ -302,6 +326,7 @@ public final class GetAlarmResult {
         public GetAlarmResult build() {
             final var _resultValue = new GetAlarmResult();
             _resultValue.alarmId = alarmId;
+            _resultValue.allowDowntime = allowDowntime;
             _resultValue.enabled = enabled;
             _resultValue.id = id;
             _resultValue.instanceId = instanceId;

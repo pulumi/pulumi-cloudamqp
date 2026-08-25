@@ -44,6 +44,7 @@
         "instance.ts",
         "integrationAwsEventbridge.ts",
         "integrationLog.ts",
+        "integrationLogAgent.ts",
         "integrationMetric.ts",
         "integrationMetricPrometheus.ts",
         "maintenanceWindow.ts",

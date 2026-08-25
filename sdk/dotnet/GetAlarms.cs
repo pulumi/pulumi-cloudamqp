@@ -41,7 +41,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ## Alarm Types
         /// 
-        /// `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+        /// `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
         /// </summary>
         public static Task<GetAlarmsResult> InvokeAsync(GetAlarmsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAlarmsResult>("cloudamqp:index/getAlarms:getAlarms", args ?? new GetAlarmsArgs(), options.WithDefaults());
@@ -76,7 +76,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ## Alarm Types
         /// 
-        /// `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+        /// `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
         /// </summary>
         public static Output<GetAlarmsResult> Invoke(GetAlarmsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAlarmsResult>("cloudamqp:index/getAlarms:getAlarms", args ?? new GetAlarmsInvokeArgs(), options.WithDefaults());
@@ -111,7 +111,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ## Alarm Types
         /// 
-        /// `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+        /// `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
         /// </summary>
         public static Output<GetAlarmsResult> Invoke(GetAlarmsInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetAlarmsResult>("cloudamqp:index/getAlarms:getAlarms", args ?? new GetAlarmsInvokeArgs(), options.WithDefaults());

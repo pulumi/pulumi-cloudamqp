@@ -306,6 +306,7 @@ class _InstanceState:
     def __init__(__self__, *,
                  apikey: pulumi.Input[Optional[_builtins.str]] = None,
                  backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
                  copy_settings: pulumi.Input[Optional[Sequence[pulumi.Input['InstanceCopySettingArgs']]]] = None,
                  credentials: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  dedicated: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -331,6 +332,7 @@ class _InstanceState:
         :param pulumi.Input[_builtins.str] apikey: (Sensitive) API key needed to communicate to CloudAMQP's second API. The second API is used
                to manage alarms, integration and more, full description [CloudAMQP API].
         :param pulumi.Input[_builtins.str] backend: Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
+        :param pulumi.Input[_builtins.str] cluster_name: Cluster name, extracted from the external hostname
         :param pulumi.Input[Sequence[pulumi.Input['InstanceCopySettingArgs']]] copy_settings: Copy settings from one CloudAMQP instance to a new. Consists of
                the block documented below.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] credentials: (Sensitive) Broker credentials block with information extracted from URL.
@@ -398,6 +400,8 @@ class _InstanceState:
             pulumi.set(__self__, "apikey", apikey)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if cluster_name is not None:
+            pulumi.set(__self__, "cluster_name", cluster_name)
         if copy_settings is not None:
             pulumi.set(__self__, "copy_settings", copy_settings)
         if credentials is not None:
@@ -461,6 +465,18 @@ class _InstanceState:
     @backend.setter
     def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Cluster name, extracted from the external hostname
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @cluster_name.setter
+    def cluster_name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "cluster_name", value)
 
     @_builtins.property
     @pulumi.getter(name="copySettings")
@@ -1658,6 +1674,7 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["vpc_subnet"] = vpc_subnet
             __props__.__dict__["apikey"] = None
             __props__.__dict__["backend"] = None
+            __props__.__dict__["cluster_name"] = None
             __props__.__dict__["credentials"] = None
             __props__.__dict__["dedicated"] = None
             __props__.__dict__["host"] = None
@@ -1679,6 +1696,7 @@ class Instance(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             apikey: pulumi.Input[Optional[_builtins.str]] = None,
             backend: pulumi.Input[Optional[_builtins.str]] = None,
+            cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
             copy_settings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceCopySettingArgs', 'InstanceCopySettingArgsDict']]]]] = None,
             credentials: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             dedicated: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1708,6 +1726,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] apikey: (Sensitive) API key needed to communicate to CloudAMQP's second API. The second API is used
                to manage alarms, integration and more, full description [CloudAMQP API].
         :param pulumi.Input[_builtins.str] backend: Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
+        :param pulumi.Input[_builtins.str] cluster_name: Cluster name, extracted from the external hostname
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceCopySettingArgs', 'InstanceCopySettingArgsDict']]]] copy_settings: Copy settings from one CloudAMQP instance to a new. Consists of
                the block documented below.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] credentials: (Sensitive) Broker credentials block with information extracted from URL.
@@ -1777,6 +1796,7 @@ class Instance(pulumi.CustomResource):
 
         __props__.__dict__["apikey"] = apikey
         __props__.__dict__["backend"] = backend
+        __props__.__dict__["cluster_name"] = cluster_name
         __props__.__dict__["copy_settings"] = copy_settings
         __props__.__dict__["credentials"] = credentials
         __props__.__dict__["dedicated"] = dedicated
@@ -1814,6 +1834,14 @@ class Instance(pulumi.CustomResource):
         Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
         """
         return pulumi.get(self, "backend")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> pulumi.Output[_builtins.str]:
+        """
+        Cluster name, extracted from the external hostname
+        """
+        return pulumi.get(self, "cluster_name")
 
     @_builtins.property
     @pulumi.getter(name="copySettings")

@@ -48,7 +48,7 @@ import (
 //
 // ## Alarm Types
 //
-// `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+// `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
 func GetAlarms(ctx *pulumi.Context, args *GetAlarmsArgs, opts ...pulumi.InvokeOption) (*GetAlarmsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAlarmsResult

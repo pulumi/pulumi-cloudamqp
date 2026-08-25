@@ -42,7 +42,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ## Alarm Types
         /// 
-        /// `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+        /// `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
         /// </summary>
         public static Task<GetAlarmResult> InvokeAsync(GetAlarmArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAlarmResult>("cloudamqp:index/getAlarm:getAlarm", args ?? new GetAlarmArgs(), options.WithDefaults());
@@ -78,7 +78,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ## Alarm Types
         /// 
-        /// `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+        /// `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
         /// </summary>
         public static Output<GetAlarmResult> Invoke(GetAlarmInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAlarmResult>("cloudamqp:index/getAlarm:getAlarm", args ?? new GetAlarmInvokeArgs(), options.WithDefaults());
@@ -114,7 +114,7 @@ namespace Pulumi.CloudAmqp
         /// 
         /// ## Alarm Types
         /// 
-        /// `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+        /// `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
         /// </summary>
         public static Output<GetAlarmResult> Invoke(GetAlarmInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetAlarmResult>("cloudamqp:index/getAlarm:getAlarm", args ?? new GetAlarmInvokeArgs(), options.WithDefaults());
@@ -185,6 +185,11 @@ namespace Pulumi.CloudAmqp
     {
         public readonly int? AlarmId;
         /// <summary>
+        /// For `DiskAutoResize`, whether the resize may proceed even if it requires
+        /// brief downtime.
+        /// </summary>
+        public readonly bool AllowDowntime;
+        /// <summary>
         /// Enable/disable status of the alarm.
         /// </summary>
         public readonly bool Enabled;
@@ -234,6 +239,8 @@ namespace Pulumi.CloudAmqp
         private GetAlarmResult(
             int? alarmId,
 
+            bool allowDowntime,
+
             bool enabled,
 
             string id,
@@ -259,6 +266,7 @@ namespace Pulumi.CloudAmqp
             string vhostRegex)
         {
             AlarmId = alarmId;
+            AllowDowntime = allowDowntime;
             Enabled = enabled;
             Id = id;
             InstanceId = instanceId;

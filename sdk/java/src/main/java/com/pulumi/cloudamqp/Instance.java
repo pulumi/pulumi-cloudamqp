@@ -764,6 +764,20 @@ public class Instance extends com.pulumi.resources.CustomResource {
         return this.backend;
     }
     /**
+     * Cluster name, extracted from the external hostname
+     * 
+     */
+    @Export(name="clusterName", refs={String.class}, tree="[0]")
+    private Output<String> clusterName;
+
+    /**
+     * @return Cluster name, extracted from the external hostname
+     * 
+     */
+    public Output<String> clusterName() {
+        return this.clusterName;
+    }
+    /**
      * Copy settings from one CloudAMQP instance to a new. Consists of
      * the block documented below.
      * 

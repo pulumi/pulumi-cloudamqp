@@ -26,10 +26,13 @@ class GetAlarmResult:
     """
     A collection of values returned by getAlarm.
     """
-    def __init__(__self__, alarm_id=None, enabled=None, id=None, instance_id=None, message_type=None, queue_regex=None, recipients=None, reminder_interval=None, time_threshold=None, type=None, value_calculation=None, value_threshold=None, vhost_regex=None):
+    def __init__(__self__, alarm_id=None, allow_downtime=None, enabled=None, id=None, instance_id=None, message_type=None, queue_regex=None, recipients=None, reminder_interval=None, time_threshold=None, type=None, value_calculation=None, value_threshold=None, vhost_regex=None):
         if alarm_id and not isinstance(alarm_id, int):
             raise TypeError("Expected argument 'alarm_id' to be a int")
         pulumi.set(__self__, "alarm_id", alarm_id)
+        if allow_downtime and not isinstance(allow_downtime, bool):
+            raise TypeError("Expected argument 'allow_downtime' to be a bool")
+        pulumi.set(__self__, "allow_downtime", allow_downtime)
         if enabled and not isinstance(enabled, bool):
             raise TypeError("Expected argument 'enabled' to be a bool")
         pulumi.set(__self__, "enabled", enabled)
@@ -71,6 +74,15 @@ class GetAlarmResult:
     @pulumi.getter(name="alarmId")
     def alarm_id(self) -> Optional[_builtins.int]:
         return pulumi.get(self, "alarm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="allowDowntime")
+    def allow_downtime(self) -> _builtins.bool:
+        """
+        For `disk_auto_resize`, whether the resize may proceed even if it requires
+        brief downtime.
+        """
+        return pulumi.get(self, "allow_downtime")
 
     @_builtins.property
     @pulumi.getter
@@ -173,6 +185,7 @@ class AwaitableGetAlarmResult(GetAlarmResult):
             yield self
         return GetAlarmResult(
             alarm_id=self.alarm_id,
+            allow_downtime=self.allow_downtime,
             enabled=self.enabled,
             id=self.id,
             instance_id=self.instance_id,
@@ -213,7 +226,7 @@ def get_alarm(alarm_id: Optional[_builtins.int] = None,
 
     ## Alarm Types
 
-    `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+    `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
 
 
     :param _builtins.int alarm_id: The alarm identifier. Either use this or `type` to give
@@ -232,6 +245,7 @@ def get_alarm(alarm_id: Optional[_builtins.int] = None,
 
     return AwaitableGetAlarmResult(
         alarm_id=pulumi.get(__ret__, 'alarm_id'),
+        allow_downtime=pulumi.get(__ret__, 'allow_downtime'),
         enabled=pulumi.get(__ret__, 'enabled'),
         id=pulumi.get(__ret__, 'id'),
         instance_id=pulumi.get(__ret__, 'instance_id'),
@@ -270,7 +284,7 @@ def get_alarm_output(alarm_id: pulumi.Input[Optional[Optional[_builtins.int]]] =
 
     ## Alarm Types
 
-    `cpu, memory, disk, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
+    `cpu, memory, disk, disk_auto_resize, queue, connection, flow, consumer, netsplit, server_unreachable, notice`
 
 
     :param _builtins.int alarm_id: The alarm identifier. Either use this or `type` to give
@@ -288,6 +302,7 @@ def get_alarm_output(alarm_id: pulumi.Input[Optional[Optional[_builtins.int]]] =
     __ret__ = pulumi.runtime.invoke_output('cloudamqp:index/getAlarm:getAlarm', __args__, opts=opts, typ=GetAlarmResult)
     return __ret__.apply(lambda __response__: GetAlarmResult(
         alarm_id=pulumi.get(__response__, 'alarm_id'),
+        allow_downtime=pulumi.get(__response__, 'allow_downtime'),
         enabled=pulumi.get(__response__, 'enabled'),
         id=pulumi.get(__response__, 'id'),
         instance_id=pulumi.get(__response__, 'instance_id'),

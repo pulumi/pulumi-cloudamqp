@@ -18,6 +18,13 @@ from . import outputs
 __all__ = [
     'ExtraDiskSizeNode',
     'InstanceCopySetting',
+    'IntegrationLogAgentCloudwatch',
+    'IntegrationLogAgentCoralogix',
+    'IntegrationLogAgentDatadog',
+    'IntegrationLogAgentGoogleCloud',
+    'IntegrationLogAgentGrafana',
+    'IntegrationLogAgentSplunk',
+    'IntegrationLogAgentUptrace',
     'IntegrationMetricPrometheusAzureMonitor',
     'IntegrationMetricPrometheusCloudwatchV3',
     'IntegrationMetricPrometheusDatadogV3',
@@ -155,6 +162,570 @@ class InstanceCopySetting(dict):
         from.
         """
         return pulumi.get(self, "subscription_id")
+
+
+@pulumi.output_type
+class IntegrationLogAgentCloudwatch(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "iamExternalId":
+            suggest = "iam_external_id"
+        elif key == "iamRole":
+            suggest = "iam_role"
+        elif key == "logGroup":
+            suggest = "log_group"
+        elif key == "logStream":
+            suggest = "log_stream"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in IntegrationLogAgentCloudwatch. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        IntegrationLogAgentCloudwatch.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        IntegrationLogAgentCloudwatch.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 iam_external_id: Optional[_builtins.str] = None,
+                 iam_role: Optional[_builtins.str] = None,
+                 log_group: Optional[_builtins.str] = None,
+                 log_stream: Optional[_builtins.str] = None,
+                 region: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str iam_external_id: External identifier that matches the trust policy of the IAM role.
+        :param _builtins.str iam_role: AWS IAM role ARN used to assume permissions for the integration.
+        :param _builtins.str log_group: The name of the CloudWatch log group. Defaults to `CloudAMQP` if not set.
+        :param _builtins.str log_stream: The name of the CloudWatch log stream. Recommended to use the cluster name, found in `cloudamqp_instance.instance.cluster_name`.
+        :param _builtins.str region: AWS region hosting the CloudWatch log group.
+        """
+        if iam_external_id is not None:
+            pulumi.set(__self__, "iam_external_id", iam_external_id)
+        if iam_role is not None:
+            pulumi.set(__self__, "iam_role", iam_role)
+        if log_group is not None:
+            pulumi.set(__self__, "log_group", log_group)
+        if log_stream is not None:
+            pulumi.set(__self__, "log_stream", log_stream)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @_builtins.property
+    @pulumi.getter(name="iamExternalId")
+    def iam_external_id(self) -> Optional[_builtins.str]:
+        """
+        External identifier that matches the trust policy of the IAM role.
+        """
+        return pulumi.get(self, "iam_external_id")
+
+    @_builtins.property
+    @pulumi.getter(name="iamRole")
+    def iam_role(self) -> Optional[_builtins.str]:
+        """
+        AWS IAM role ARN used to assume permissions for the integration.
+        """
+        return pulumi.get(self, "iam_role")
+
+    @_builtins.property
+    @pulumi.getter(name="logGroup")
+    def log_group(self) -> Optional[_builtins.str]:
+        """
+        The name of the CloudWatch log group. Defaults to `CloudAMQP` if not set.
+        """
+        return pulumi.get(self, "log_group")
+
+    @_builtins.property
+    @pulumi.getter(name="logStream")
+    def log_stream(self) -> Optional[_builtins.str]:
+        """
+        The name of the CloudWatch log stream. Recommended to use the cluster name, found in `cloudamqp_instance.instance.cluster_name`.
+        """
+        return pulumi.get(self, "log_stream")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> Optional[_builtins.str]:
+        """
+        AWS region hosting the CloudWatch log group.
+        """
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class IntegrationLogAgentCoralogix(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "privateKey":
+            suggest = "private_key"
+        elif key == "privateKeyVersion":
+            suggest = "private_key_version"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in IntegrationLogAgentCoralogix. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        IntegrationLogAgentCoralogix.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        IntegrationLogAgentCoralogix.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 application: Optional[_builtins.str] = None,
+                 private_key: Optional[_builtins.str] = None,
+                 private_key_version: Optional[_builtins.int] = None,
+                 region: Optional[_builtins.str] = None,
+                 subsystem: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str application: Application name, used to group logs by environment
+        :param _builtins.str private_key: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Coralogix private key (always starts with cxtp_...)
+        :param _builtins.int private_key_version: Version of the write-only private_key. Increment to trigger an update when the key changes (default: 1).
+        :param _builtins.str region: AWS region hosting the CloudWatch log group.
+        :param _builtins.str subsystem: Subsystem name, used to group logs by service within an application
+        """
+        if application is not None:
+            pulumi.set(__self__, "application", application)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if private_key_version is not None:
+            pulumi.set(__self__, "private_key_version", private_key_version)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if subsystem is not None:
+            pulumi.set(__self__, "subsystem", subsystem)
+
+    @_builtins.property
+    @pulumi.getter
+    def application(self) -> Optional[_builtins.str]:
+        """
+        Application name, used to group logs by environment
+        """
+        return pulumi.get(self, "application")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Coralogix private key (always starts with cxtp_...)
+        """
+        return pulumi.get(self, "private_key")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyVersion")
+    def private_key_version(self) -> Optional[_builtins.int]:
+        """
+        Version of the write-only private_key. Increment to trigger an update when the key changes (default: 1).
+        """
+        return pulumi.get(self, "private_key_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> Optional[_builtins.str]:
+        """
+        AWS region hosting the CloudWatch log group.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter
+    def subsystem(self) -> Optional[_builtins.str]:
+        """
+        Subsystem name, used to group logs by service within an application
+        """
+        return pulumi.get(self, "subsystem")
+
+
+@pulumi.output_type
+class IntegrationLogAgentDatadog(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiKey":
+            suggest = "api_key"
+        elif key == "apiKeyVersion":
+            suggest = "api_key_version"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in IntegrationLogAgentDatadog. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        IntegrationLogAgentDatadog.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        IntegrationLogAgentDatadog.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_key: Optional[_builtins.str] = None,
+                 api_key_version: Optional[_builtins.int] = None,
+                 region: Optional[_builtins.str] = None,
+                 tags: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str api_key: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Datadog API key
+        :param _builtins.int api_key_version: Version of the write-only api_key. Increment to trigger an update when the key changes (default: 1).
+        :param _builtins.str region: AWS region hosting the CloudWatch log group.
+        :param _builtins.str tags: Comma-separated tags to attach to logs (e.g. env=prod,region=eu)
+        """
+        if api_key is not None:
+            pulumi.set(__self__, "api_key", api_key)
+        if api_key_version is not None:
+            pulumi.set(__self__, "api_key_version", api_key_version)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Datadog API key
+        """
+        return pulumi.get(self, "api_key")
+
+    @_builtins.property
+    @pulumi.getter(name="apiKeyVersion")
+    def api_key_version(self) -> Optional[_builtins.int]:
+        """
+        Version of the write-only api_key. Increment to trigger an update when the key changes (default: 1).
+        """
+        return pulumi.get(self, "api_key_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> Optional[_builtins.str]:
+        """
+        AWS region hosting the CloudWatch log group.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[_builtins.str]:
+        """
+        Comma-separated tags to attach to logs (e.g. env=prod,region=eu)
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class IntegrationLogAgentGoogleCloud(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "clientEmail":
+            suggest = "client_email"
+        elif key == "privateKeyId":
+            suggest = "private_key_id"
+        elif key == "projectId":
+            suggest = "project_id"
+        elif key == "serviceAccountFile":
+            suggest = "service_account_file"
+        elif key == "serviceAccountFileVersion":
+            suggest = "service_account_file_version"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in IntegrationLogAgentGoogleCloud. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        IntegrationLogAgentGoogleCloud.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        IntegrationLogAgentGoogleCloud.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 client_email: Optional[_builtins.str] = None,
+                 private_key_id: Optional[_builtins.str] = None,
+                 project_id: Optional[_builtins.str] = None,
+                 service_account_file: Optional[_builtins.str] = None,
+                 service_account_file_version: Optional[_builtins.int] = None,
+                 tags: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str client_email: Google service account client email (computed from service_account_file)
+        :param _builtins.str private_key_id: Google service account private key ID (computed from service_account_file)
+        :param _builtins.str project_id: Google Cloud project ID (computed from service_account_file)
+        :param _builtins.str service_account_file: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Google service account key JSON file contents. Use file("path/to/key.json") to load the downloaded credentials file.
+        :param _builtins.int service_account_file_version: Version of the write-only service_account_file. Increment to trigger an update when the file contents change (default: 1).
+        :param _builtins.str tags: Comma-separated tags to attach to logs (e.g. env=prod,region=eu)
+        """
+        if client_email is not None:
+            pulumi.set(__self__, "client_email", client_email)
+        if private_key_id is not None:
+            pulumi.set(__self__, "private_key_id", private_key_id)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if service_account_file is not None:
+            pulumi.set(__self__, "service_account_file", service_account_file)
+        if service_account_file_version is not None:
+            pulumi.set(__self__, "service_account_file_version", service_account_file_version)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="clientEmail")
+    def client_email(self) -> Optional[_builtins.str]:
+        """
+        Google service account client email (computed from service_account_file)
+        """
+        return pulumi.get(self, "client_email")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyId")
+    def private_key_id(self) -> Optional[_builtins.str]:
+        """
+        Google service account private key ID (computed from service_account_file)
+        """
+        return pulumi.get(self, "private_key_id")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[_builtins.str]:
+        """
+        Google Cloud project ID (computed from service_account_file)
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="serviceAccountFile")
+    def service_account_file(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Google service account key JSON file contents. Use file("path/to/key.json") to load the downloaded credentials file.
+        """
+        return pulumi.get(self, "service_account_file")
+
+    @_builtins.property
+    @pulumi.getter(name="serviceAccountFileVersion")
+    def service_account_file_version(self) -> Optional[_builtins.int]:
+        """
+        Version of the write-only service_account_file. Increment to trigger an update when the file contents change (default: 1).
+        """
+        return pulumi.get(self, "service_account_file_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[_builtins.str]:
+        """
+        Comma-separated tags to attach to logs (e.g. env=prod,region=eu)
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class IntegrationLogAgentGrafana(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiToken":
+            suggest = "api_token"
+        elif key == "apiTokenVersion":
+            suggest = "api_token_version"
+        elif key == "grafanaInstanceId":
+            suggest = "grafana_instance_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in IntegrationLogAgentGrafana. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        IntegrationLogAgentGrafana.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        IntegrationLogAgentGrafana.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_token: Optional[_builtins.str] = None,
+                 api_token_version: Optional[_builtins.int] = None,
+                 endpoint: Optional[_builtins.str] = None,
+                 grafana_instance_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str api_token: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Grafana Cloud API token
+        :param _builtins.int api_token_version: Version of the write-only api_token. Increment to trigger an update when the token changes (default: 1).
+        :param _builtins.str endpoint: Grafana Cloud OTLP endpoint (e.g. https://otlp-gateway-prod-eu-west-0.grafana.net/otlp)
+        :param _builtins.str grafana_instance_id: Grafana Cloud instance ID
+        """
+        if api_token is not None:
+            pulumi.set(__self__, "api_token", api_token)
+        if api_token_version is not None:
+            pulumi.set(__self__, "api_token_version", api_token_version)
+        if endpoint is not None:
+            pulumi.set(__self__, "endpoint", endpoint)
+        if grafana_instance_id is not None:
+            pulumi.set(__self__, "grafana_instance_id", grafana_instance_id)
+
+    @_builtins.property
+    @pulumi.getter(name="apiToken")
+    def api_token(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Grafana Cloud API token
+        """
+        return pulumi.get(self, "api_token")
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenVersion")
+    def api_token_version(self) -> Optional[_builtins.int]:
+        """
+        Version of the write-only api_token. Increment to trigger an update when the token changes (default: 1).
+        """
+        return pulumi.get(self, "api_token_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def endpoint(self) -> Optional[_builtins.str]:
+        """
+        Grafana Cloud OTLP endpoint (e.g. https://otlp-gateway-prod-eu-west-0.grafana.net/otlp)
+        """
+        return pulumi.get(self, "endpoint")
+
+    @_builtins.property
+    @pulumi.getter(name="grafanaInstanceId")
+    def grafana_instance_id(self) -> Optional[_builtins.str]:
+        """
+        Grafana Cloud instance ID
+        """
+        return pulumi.get(self, "grafana_instance_id")
+
+
+@pulumi.output_type
+class IntegrationLogAgentSplunk(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "sourceType":
+            suggest = "source_type"
+        elif key == "tokenVersion":
+            suggest = "token_version"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in IntegrationLogAgentSplunk. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        IntegrationLogAgentSplunk.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        IntegrationLogAgentSplunk.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 endpoint: Optional[_builtins.str] = None,
+                 source_type: Optional[_builtins.str] = None,
+                 token: Optional[_builtins.str] = None,
+                 token_version: Optional[_builtins.int] = None):
+        """
+        :param _builtins.str endpoint: Splunk HEC endpoint URL (e.g. https://your-instance.splunkcloud.com:8088/services/collector)
+        :param _builtins.str source_type: Splunk source type (leave empty to use the token's default)
+        :param _builtins.str token: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Splunk HEC token
+        :param _builtins.int token_version: Version of the write-only token. Increment to trigger an update when the token changes (default: 1).
+        """
+        if endpoint is not None:
+            pulumi.set(__self__, "endpoint", endpoint)
+        if source_type is not None:
+            pulumi.set(__self__, "source_type", source_type)
+        if token is not None:
+            pulumi.set(__self__, "token", token)
+        if token_version is not None:
+            pulumi.set(__self__, "token_version", token_version)
+
+    @_builtins.property
+    @pulumi.getter
+    def endpoint(self) -> Optional[_builtins.str]:
+        """
+        Splunk HEC endpoint URL (e.g. https://your-instance.splunkcloud.com:8088/services/collector)
+        """
+        return pulumi.get(self, "endpoint")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceType")
+    def source_type(self) -> Optional[_builtins.str]:
+        """
+        Splunk source type (leave empty to use the token's default)
+        """
+        return pulumi.get(self, "source_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def token(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Splunk HEC token
+        """
+        return pulumi.get(self, "token")
+
+    @_builtins.property
+    @pulumi.getter(name="tokenVersion")
+    def token_version(self) -> Optional[_builtins.int]:
+        """
+        Version of the write-only token. Increment to trigger an update when the token changes (default: 1).
+        """
+        return pulumi.get(self, "token_version")
+
+
+@pulumi.output_type
+class IntegrationLogAgentUptrace(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dsnVersion":
+            suggest = "dsn_version"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in IntegrationLogAgentUptrace. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        IntegrationLogAgentUptrace.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        IntegrationLogAgentUptrace.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 dsn: Optional[_builtins.str] = None,
+                 dsn_version: Optional[_builtins.int] = None):
+        """
+        :param _builtins.str dsn: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Uptrace DSN (Data Source Name) URL
+        :param _builtins.int dsn_version: Version of the write-only dsn. Increment to trigger an update when the DSN changes (default: 1).
+        """
+        if dsn is not None:
+            pulumi.set(__self__, "dsn", dsn)
+        if dsn_version is not None:
+            pulumi.set(__self__, "dsn_version", dsn_version)
+
+    @_builtins.property
+    @pulumi.getter
+    def dsn(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Uptrace DSN (Data Source Name) URL
+        """
+        return pulumi.get(self, "dsn")
+
+    @_builtins.property
+    @pulumi.getter(name="dsnVersion")
+    def dsn_version(self) -> Optional[_builtins.int]:
+        """
+        Version of the write-only dsn. Increment to trigger an update when the DSN changes (default: 1).
+        """
+        return pulumi.get(self, "dsn_version")
 
 
 @pulumi.output_type
