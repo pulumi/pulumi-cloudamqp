@@ -78,12 +78,8 @@ type GetPluginsCommunityResult struct {
 }
 
 func GetPluginsCommunityOutput(ctx *pulumi.Context, args GetPluginsCommunityOutputArgs, opts ...pulumi.InvokeOption) GetPluginsCommunityResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetPluginsCommunityResultOutput, error) {
-			args := v.(GetPluginsCommunityArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("cloudamqp:index/getPluginsCommunity:getPluginsCommunity", args, GetPluginsCommunityResultOutput{}, options).(GetPluginsCommunityResultOutput), nil
-		}).(GetPluginsCommunityResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("cloudamqp:index/getPluginsCommunity:getPluginsCommunity", args, GetPluginsCommunityResultOutput{}, options).(GetPluginsCommunityResultOutput)
 }
 
 // A collection of arguments for invoking getPluginsCommunity.

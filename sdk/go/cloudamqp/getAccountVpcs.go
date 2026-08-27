@@ -42,10 +42,8 @@ type GetAccountVpcsResult struct {
 }
 
 func GetAccountVpcsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetAccountVpcsResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetAccountVpcsResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("cloudamqp:index/getAccountVpcs:getAccountVpcs", nil, GetAccountVpcsResultOutput{}, options).(GetAccountVpcsResultOutput), nil
-	}).(GetAccountVpcsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("cloudamqp:index/getAccountVpcs:getAccountVpcs", nil, GetAccountVpcsResultOutput{}, options).(GetAccountVpcsResultOutput)
 }
 
 // A collection of values returned by getAccountVpcs.
