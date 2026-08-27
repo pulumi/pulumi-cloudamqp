@@ -71,12 +71,8 @@ type GetNotificationsResult struct {
 }
 
 func GetNotificationsOutput(ctx *pulumi.Context, args GetNotificationsOutputArgs, opts ...pulumi.InvokeOption) GetNotificationsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetNotificationsResultOutput, error) {
-			args := v.(GetNotificationsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("cloudamqp:index/getNotifications:getNotifications", args, GetNotificationsResultOutput{}, options).(GetNotificationsResultOutput), nil
-		}).(GetNotificationsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("cloudamqp:index/getNotifications:getNotifications", args, GetNotificationsResultOutput{}, options).(GetNotificationsResultOutput)
 }
 
 // A collection of arguments for invoking getNotifications.

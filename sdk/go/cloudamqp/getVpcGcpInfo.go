@@ -142,12 +142,8 @@ type GetVpcGcpInfoResult struct {
 }
 
 func GetVpcGcpInfoOutput(ctx *pulumi.Context, args GetVpcGcpInfoOutputArgs, opts ...pulumi.InvokeOption) GetVpcGcpInfoResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetVpcGcpInfoResultOutput, error) {
-			args := v.(GetVpcGcpInfoArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo", args, GetVpcGcpInfoResultOutput{}, options).(GetVpcGcpInfoResultOutput), nil
-		}).(GetVpcGcpInfoResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo", args, GetVpcGcpInfoResultOutput{}, options).(GetVpcGcpInfoResultOutput)
 }
 
 // A collection of arguments for invoking getVpcGcpInfo.

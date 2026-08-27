@@ -71,12 +71,8 @@ type GetUpgradableVersionsResult struct {
 }
 
 func GetUpgradableVersionsOutput(ctx *pulumi.Context, args GetUpgradableVersionsOutputArgs, opts ...pulumi.InvokeOption) GetUpgradableVersionsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetUpgradableVersionsResultOutput, error) {
-			args := v.(GetUpgradableVersionsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("cloudamqp:index/getUpgradableVersions:getUpgradableVersions", args, GetUpgradableVersionsResultOutput{}, options).(GetUpgradableVersionsResultOutput), nil
-		}).(GetUpgradableVersionsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("cloudamqp:index/getUpgradableVersions:getUpgradableVersions", args, GetUpgradableVersionsResultOutput{}, options).(GetUpgradableVersionsResultOutput)
 }
 
 // A collection of arguments for invoking getUpgradableVersions.

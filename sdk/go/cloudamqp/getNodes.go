@@ -68,12 +68,8 @@ type GetNodesResult struct {
 }
 
 func GetNodesOutput(ctx *pulumi.Context, args GetNodesOutputArgs, opts ...pulumi.InvokeOption) GetNodesResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetNodesResultOutput, error) {
-			args := v.(GetNodesArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("cloudamqp:index/getNodes:getNodes", args, GetNodesResultOutput{}, options).(GetNodesResultOutput), nil
-		}).(GetNodesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("cloudamqp:index/getNodes:getNodes", args, GetNodesResultOutput{}, options).(GetNodesResultOutput)
 }
 
 // A collection of arguments for invoking getNodes.
