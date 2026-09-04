@@ -41,8 +41,12 @@ __all__ = [
     'IntegrationMetricPrometheusDatadogV3ArgsDict',
     'IntegrationMetricPrometheusDynatraceArgs',
     'IntegrationMetricPrometheusDynatraceArgsDict',
+    'IntegrationMetricPrometheusGrafanaArgs',
+    'IntegrationMetricPrometheusGrafanaArgsDict',
     'IntegrationMetricPrometheusNewrelicV3Args',
     'IntegrationMetricPrometheusNewrelicV3ArgsDict',
+    'IntegrationMetricPrometheusPrometheusRemoteWriteArgs',
+    'IntegrationMetricPrometheusPrometheusRemoteWriteArgsDict',
     'IntegrationMetricPrometheusSplunkV2Args',
     'IntegrationMetricPrometheusSplunkV2ArgsDict',
     'IntegrationMetricPrometheusStackdriverV2Args',
@@ -1138,6 +1142,92 @@ class IntegrationMetricPrometheusDynatraceArgs:
         pulumi.set(self, "tags", value)
 
 
+class IntegrationMetricPrometheusGrafanaArgsDict(TypedDict):
+    api_token: pulumi.Input[_builtins.str]
+    """
+    Grafana Cloud API token with the `metrics:write` scope, or a service account token with the `MetricsPublisher` role.
+    """
+    endpoint: pulumi.Input[_builtins.str]
+    """
+    Grafana Cloud Prometheus remote write endpoint. Example: `https://prometheus-prod-01-eu-west-0.grafana.net/api/prom/push`.
+    """
+    instance_id: pulumi.Input[_builtins.str]
+    """
+    Grafana Cloud numeric Prometheus instance identifier, used as the basic auth username.
+    """
+    tags: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+    """
+
+@pulumi.input_type
+class IntegrationMetricPrometheusGrafanaArgs:
+    def __init__(__self__, *,
+                 api_token: pulumi.Input[_builtins.str],
+                 endpoint: pulumi.Input[_builtins.str],
+                 instance_id: pulumi.Input[_builtins.str],
+                 tags: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] api_token: Grafana Cloud API token with the `metrics:write` scope, or a service account token with the `MetricsPublisher` role.
+        :param pulumi.Input[_builtins.str] endpoint: Grafana Cloud Prometheus remote write endpoint. Example: `https://prometheus-prod-01-eu-west-0.grafana.net/api/prom/push`.
+        :param pulumi.Input[_builtins.str] instance_id: Grafana Cloud numeric Prometheus instance identifier, used as the basic auth username.
+        :param pulumi.Input[_builtins.str] tags: Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        """
+        pulumi.set(__self__, "api_token", api_token)
+        pulumi.set(__self__, "endpoint", endpoint)
+        pulumi.set(__self__, "instance_id", instance_id)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="apiToken")
+    def api_token(self) -> pulumi.Input[_builtins.str]:
+        """
+        Grafana Cloud API token with the `metrics:write` scope, or a service account token with the `MetricsPublisher` role.
+        """
+        return pulumi.get(self, "api_token")
+
+    @api_token.setter
+    def api_token(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "api_token", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def endpoint(self) -> pulumi.Input[_builtins.str]:
+        """
+        Grafana Cloud Prometheus remote write endpoint. Example: `https://prometheus-prod-01-eu-west-0.grafana.net/api/prom/push`.
+        """
+        return pulumi.get(self, "endpoint")
+
+    @endpoint.setter
+    def endpoint(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "endpoint", value)
+
+    @_builtins.property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        Grafana Cloud numeric Prometheus instance identifier, used as the basic auth username.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @instance_id.setter
+    def instance_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "instance_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "tags", value)
+
+
 class IntegrationMetricPrometheusNewrelicV3ArgsDict(TypedDict):
     api_key: pulumi.Input[_builtins.str]
     """
@@ -1203,6 +1293,134 @@ class IntegrationMetricPrometheusNewrelicV3Args:
     @tags.setter
     def tags(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tags", value)
+
+
+class IntegrationMetricPrometheusPrometheusRemoteWriteArgsDict(TypedDict):
+    endpoint: pulumi.Input[_builtins.str]
+    """
+    Remote write endpoint including the path, over HTTPS. Example: `https://mimir.example.com/api/v1/push`.
+    """
+    auth_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Authentication for the endpoint. Valid values: `none`, `basic_auth`, `headers`. Default: `none`.
+    """
+    headers: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Headers sent with every request, one `key: value` pair per line. Required when `auth_type` is `headers`.
+    """
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Password or token, used when `auth_type` is `basic_auth`.
+    """
+    tags: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+    """
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Username, used when `auth_type` is `basic_auth`.
+    """
+
+@pulumi.input_type
+class IntegrationMetricPrometheusPrometheusRemoteWriteArgs:
+    def __init__(__self__, *,
+                 endpoint: pulumi.Input[_builtins.str],
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 headers: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] endpoint: Remote write endpoint including the path, over HTTPS. Example: `https://mimir.example.com/api/v1/push`.
+        :param pulumi.Input[_builtins.str] auth_type: Authentication for the endpoint. Valid values: `none`, `basic_auth`, `headers`. Default: `none`.
+        :param pulumi.Input[_builtins.str] headers: Headers sent with every request, one `key: value` pair per line. Required when `auth_type` is `headers`.
+        :param pulumi.Input[_builtins.str] password: Password or token, used when `auth_type` is `basic_auth`.
+        :param pulumi.Input[_builtins.str] tags: Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        :param pulumi.Input[_builtins.str] username: Username, used when `auth_type` is `basic_auth`.
+        """
+        pulumi.set(__self__, "endpoint", endpoint)
+        if auth_type is not None:
+            pulumi.set(__self__, "auth_type", auth_type)
+        if headers is not None:
+            pulumi.set(__self__, "headers", headers)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def endpoint(self) -> pulumi.Input[_builtins.str]:
+        """
+        Remote write endpoint including the path, over HTTPS. Example: `https://mimir.example.com/api/v1/push`.
+        """
+        return pulumi.get(self, "endpoint")
+
+    @endpoint.setter
+    def endpoint(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "endpoint", value)
+
+    @_builtins.property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Authentication for the endpoint. Valid values: `none`, `basic_auth`, `headers`. Default: `none`.
+        """
+        return pulumi.get(self, "auth_type")
+
+    @auth_type.setter
+    def auth_type(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "auth_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def headers(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Headers sent with every request, one `key: value` pair per line. Required when `auth_type` is `headers`.
+        """
+        return pulumi.get(self, "headers")
+
+    @headers.setter
+    def headers(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "headers", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Password or token, used when `auth_type` is `basic_auth`.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "tags", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Username, used when `auth_type` is `basic_auth`.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "username", value)
 
 
 class IntegrationMetricPrometheusSplunkV2ArgsDict(TypedDict):

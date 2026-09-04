@@ -498,6 +498,25 @@ export interface IntegrationMetricPrometheusDynatrace {
     tags?: string;
 }
 
+export interface IntegrationMetricPrometheusGrafana {
+    /**
+     * Grafana Cloud API token with the `metrics:write` scope, or a service account token with the `MetricsPublisher` role.
+     */
+    apiToken: string;
+    /**
+     * Grafana Cloud Prometheus remote write endpoint. Example: `https://prometheus-prod-01-eu-west-0.grafana.net/api/prom/push`.
+     */
+    endpoint: string;
+    /**
+     * Grafana Cloud numeric Prometheus instance identifier, used as the basic auth username.
+     */
+    instanceId: string;
+    /**
+     * Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+     */
+    tags?: string;
+}
+
 export interface IntegrationMetricPrometheusNewrelicV3 {
     /**
      * New Relic API key for authentication.
@@ -511,6 +530,33 @@ export interface IntegrationMetricPrometheusNewrelicV3 {
      * Additional tags to attach to metrics. Format: `key=value,key2=value2`.
      */
     tags?: string;
+}
+
+export interface IntegrationMetricPrometheusPrometheusRemoteWrite {
+    /**
+     * Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`. Default: `none`.
+     */
+    authType?: string;
+    /**
+     * Remote write endpoint including the path, over HTTPS. Example: `https://mimir.example.com/api/v1/push`.
+     */
+    endpoint: string;
+    /**
+     * Headers sent with every request, one `key: value` pair per line. Required when `authType` is `headers`.
+     */
+    headers?: string;
+    /**
+     * Password or token, used when `authType` is `basicAuth`.
+     */
+    password?: string;
+    /**
+     * Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+     */
+    tags?: string;
+    /**
+     * Username, used when `authType` is `basicAuth`.
+     */
+    username?: string;
 }
 
 export interface IntegrationMetricPrometheusSplunkV2 {

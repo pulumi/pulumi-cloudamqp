@@ -10,7 +10,9 @@ import com.pulumi.cloudamqp.outputs.IntegrationMetricPrometheusAzureMonitor;
 import com.pulumi.cloudamqp.outputs.IntegrationMetricPrometheusCloudwatchV3;
 import com.pulumi.cloudamqp.outputs.IntegrationMetricPrometheusDatadogV3;
 import com.pulumi.cloudamqp.outputs.IntegrationMetricPrometheusDynatrace;
+import com.pulumi.cloudamqp.outputs.IntegrationMetricPrometheusGrafana;
 import com.pulumi.cloudamqp.outputs.IntegrationMetricPrometheusNewrelicV3;
+import com.pulumi.cloudamqp.outputs.IntegrationMetricPrometheusPrometheusRemoteWrite;
 import com.pulumi.cloudamqp.outputs.IntegrationMetricPrometheusSplunkV2;
 import com.pulumi.cloudamqp.outputs.IntegrationMetricPrometheusStackdriverV2;
 import com.pulumi.core.Output;
@@ -27,7 +29,7 @@ import javax.annotation.Nullable;
  * &lt;!-- markdownlint-disable MD024 --&gt;
  * &lt;!-- markdownlint-disable MD033 --&gt;
  * 
- * This resource allows you to create and manage Prometheus-compatible metric integrations for CloudAMQP instances. Currently supported integrations include New Relic v3, Datadog v3, Azure Monitor, Splunk v2, Dynatrace, CloudWatch v3, and Stackdriver v2.
+ * This resource allows you to create and manage Prometheus-compatible metric integrations for CloudAMQP instances. Currently supported integrations include New Relic v3, Datadog v3, Azure Monitor, Splunk v2, Dynatrace, CloudWatch v3, Stackdriver v2, Grafana Cloud (Mimir), and Prometheus Remote Write.
  * 
  * ## Example Usage
  * 
@@ -305,6 +307,92 @@ import javax.annotation.Nullable;
  * 
  * **Note:** The `credentialsFile` should contain a Base64-encoded Google service account key JSON file. You can create a service account in Google Cloud Console with the &#34;Monitoring Metric Writer&#34; role and download the key file. Then encode it with:
  * 
+ * ### Grafana Cloud (Mimir)
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.IntegrationMetricPrometheus;
+ * import com.pulumi.cloudamqp.IntegrationMetricPrometheusArgs;
+ * import com.pulumi.cloudamqp.inputs.IntegrationMetricPrometheusGrafanaArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var grafana = new IntegrationMetricPrometheus("grafana", IntegrationMetricPrometheusArgs.builder()
+ *             .instanceId(instance.id())
+ *             .grafana(IntegrationMetricPrometheusGrafanaArgs.builder()
+ *                 .endpoint(grafanaEndpoint)
+ *                 .instanceId(grafanaInstanceId)
+ *                 .apiToken(grafanaApiToken)
+ *                 .tags("key=value,key2=value2")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * **Note:** Find all three values in the Grafana Cloud Portal, under **Send Metrics** on the **Prometheus** tile of your stack. The `instanceId` is the numeric Prometheus instance identifier, which is not the same as the Loki instance identifier used by the Grafana Cloud log integration.
+ * 
+ * ### Prometheus Remote Write
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.IntegrationMetricPrometheus;
+ * import com.pulumi.cloudamqp.IntegrationMetricPrometheusArgs;
+ * import com.pulumi.cloudamqp.inputs.IntegrationMetricPrometheusPrometheusRemoteWriteArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var prometheusRemoteWrite = new IntegrationMetricPrometheus("prometheusRemoteWrite", IntegrationMetricPrometheusArgs.builder()
+ *             .instanceId(instance.id())
+ *             .prometheusRemoteWrite(IntegrationMetricPrometheusPrometheusRemoteWriteArgs.builder()
+ *                 .endpoint(remoteWriteEndpoint)
+ *                 .authType("basic_auth")
+ *                 .username(remoteWriteUsername)
+ *                 .password(remoteWritePassword)
+ *                 .headers("X-Scope-OrgID: my-tenant")
+ *                 .tags("key=value,key2=value2")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * **Note:** Headers are sent with every request whichever `authType` you pick, so a tenant header can accompany basic auth. Multi-tenant Mimir and Cortex read `X-Scope-OrgID`, Thanos reads `THANOS-TENANT`. Set `authType` to `headers` when the credentials themselves live in a header, for example `Authorization: Bearer your-token`.
+ * 
  * ## Dependency
  * 
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -341,6 +429,12 @@ public class IntegrationMetricPrometheus extends com.pulumi.resources.CustomReso
 
     public Output<Optional<IntegrationMetricPrometheusDynatrace>> dynatrace() {
         return Codegen.optional(this.dynatrace);
+    }
+    @Export(name="grafana", refs={IntegrationMetricPrometheusGrafana.class}, tree="[0]")
+    private Output</* @Nullable */ IntegrationMetricPrometheusGrafana> grafana;
+
+    public Output<Optional<IntegrationMetricPrometheusGrafana>> grafana() {
+        return Codegen.optional(this.grafana);
     }
     /**
      * Instance identifier for the CloudAMQP instance.
@@ -381,6 +475,12 @@ public class IntegrationMetricPrometheus extends com.pulumi.resources.CustomReso
 
     public Output<Optional<IntegrationMetricPrometheusNewrelicV3>> newrelicV3() {
         return Codegen.optional(this.newrelicV3);
+    }
+    @Export(name="prometheusRemoteWrite", refs={IntegrationMetricPrometheusPrometheusRemoteWrite.class}, tree="[0]")
+    private Output</* @Nullable */ IntegrationMetricPrometheusPrometheusRemoteWrite> prometheusRemoteWrite;
+
+    public Output<Optional<IntegrationMetricPrometheusPrometheusRemoteWrite>> prometheusRemoteWrite() {
+        return Codegen.optional(this.prometheusRemoteWrite);
     }
     @Export(name="splunkV2", refs={IntegrationMetricPrometheusSplunkV2.class}, tree="[0]")
     private Output</* @Nullable */ IntegrationMetricPrometheusSplunkV2> splunkV2;

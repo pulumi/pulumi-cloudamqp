@@ -15,7 +15,7 @@ import (
 // <!-- markdownlint-disable MD024 -->
 // <!-- markdownlint-disable MD033 -->
 //
-// This resource allows you to create and manage Prometheus-compatible metric integrations for CloudAMQP instances. Currently supported integrations include New Relic v3, Datadog v3, Azure Monitor, Splunk v2, Dynatrace, CloudWatch v3, and Stackdriver v2.
+// This resource allows you to create and manage Prometheus-compatible metric integrations for CloudAMQP instances. Currently supported integrations include New Relic v3, Datadog v3, Azure Monitor, Splunk v2, Dynatrace, CloudWatch v3, Stackdriver v2, Grafana Cloud (Mimir), and Prometheus Remote Write.
 //
 // ## Example Usage
 //
@@ -237,6 +237,76 @@ import (
 //
 // **Note:** The `credentialsFile` should contain a Base64-encoded Google service account key JSON file. You can create a service account in Google Cloud Console with the "Monitoring Metric Writer" role and download the key file. Then encode it with:
 //
+// ### Grafana Cloud (Mimir)
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewIntegrationMetricPrometheus(ctx, "grafana", &cloudamqp.IntegrationMetricPrometheusArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				Grafana: &cloudamqp.IntegrationMetricPrometheusGrafanaArgs{
+//					Endpoint:   pulumi.Any(grafanaEndpoint),
+//					InstanceId: pulumi.Any(grafanaInstanceId),
+//					ApiToken:   pulumi.Any(grafanaApiToken),
+//					Tags:       pulumi.String("key=value,key2=value2"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// **Note:** Find all three values in the Grafana Cloud Portal, under **Send Metrics** on the **Prometheus** tile of your stack. The `instanceId` is the numeric Prometheus instance identifier, which is not the same as the Loki instance identifier used by the Grafana Cloud log integration.
+//
+// ### Prometheus Remote Write
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewIntegrationMetricPrometheus(ctx, "prometheus_remote_write", &cloudamqp.IntegrationMetricPrometheusArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				PrometheusRemoteWrite: &cloudamqp.IntegrationMetricPrometheusPrometheusRemoteWriteArgs{
+//					Endpoint: pulumi.Any(remoteWriteEndpoint),
+//					AuthType: pulumi.String("basic_auth"),
+//					Username: pulumi.Any(remoteWriteUsername),
+//					Password: pulumi.Any(remoteWritePassword),
+//					Headers:  pulumi.String("X-Scope-OrgID: my-tenant"),
+//					Tags:     pulumi.String("key=value,key2=value2"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// **Note:** Headers are sent with every request whichever `authType` you pick, so a tenant header can accompany basic auth. Multi-tenant Mimir and Cortex read `X-Scope-OrgID`, Thanos reads `THANOS-TENANT`. Set `authType` to `headers` when the credentials themselves live in a header, for example `Authorization: Bearer your-token`.
+//
 // ## Dependency
 //
 // This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -253,16 +323,18 @@ type IntegrationMetricPrometheus struct {
 	CloudwatchV3 IntegrationMetricPrometheusCloudwatchV3PtrOutput `pulumi:"cloudwatchV3"`
 	DatadogV3    IntegrationMetricPrometheusDatadogV3PtrOutput    `pulumi:"datadogV3"`
 	Dynatrace    IntegrationMetricPrometheusDynatracePtrOutput    `pulumi:"dynatrace"`
+	Grafana      IntegrationMetricPrometheusGrafanaPtrOutput      `pulumi:"grafana"`
 	// Instance identifier for the CloudAMQP instance.
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
 	// List of metrics to include in the integration. If not specified, default metrics are included.
 	// For more information about metrics filtering, see the [metrics filtering documentation](https://www.cloudamqp.com/docs/monitoring_metrics_splunk_v2.html#metrics-filtering).
 	//
 	// Exactly one of the following integration blocks must be specified:
-	MetricsFilters pulumi.StringArrayOutput                          `pulumi:"metricsFilters"`
-	NewrelicV3     IntegrationMetricPrometheusNewrelicV3PtrOutput    `pulumi:"newrelicV3"`
-	SplunkV2       IntegrationMetricPrometheusSplunkV2PtrOutput      `pulumi:"splunkV2"`
-	StackdriverV2  IntegrationMetricPrometheusStackdriverV2PtrOutput `pulumi:"stackdriverV2"`
+	MetricsFilters        pulumi.StringArrayOutput                                  `pulumi:"metricsFilters"`
+	NewrelicV3            IntegrationMetricPrometheusNewrelicV3PtrOutput            `pulumi:"newrelicV3"`
+	PrometheusRemoteWrite IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput `pulumi:"prometheusRemoteWrite"`
+	SplunkV2              IntegrationMetricPrometheusSplunkV2PtrOutput              `pulumi:"splunkV2"`
+	StackdriverV2         IntegrationMetricPrometheusStackdriverV2PtrOutput         `pulumi:"stackdriverV2"`
 }
 
 // NewIntegrationMetricPrometheus registers a new resource with the given unique name, arguments, and options.
@@ -302,16 +374,18 @@ type integrationMetricPrometheusState struct {
 	CloudwatchV3 *IntegrationMetricPrometheusCloudwatchV3 `pulumi:"cloudwatchV3"`
 	DatadogV3    *IntegrationMetricPrometheusDatadogV3    `pulumi:"datadogV3"`
 	Dynatrace    *IntegrationMetricPrometheusDynatrace    `pulumi:"dynatrace"`
+	Grafana      *IntegrationMetricPrometheusGrafana      `pulumi:"grafana"`
 	// Instance identifier for the CloudAMQP instance.
 	InstanceId *int `pulumi:"instanceId"`
 	// List of metrics to include in the integration. If not specified, default metrics are included.
 	// For more information about metrics filtering, see the [metrics filtering documentation](https://www.cloudamqp.com/docs/monitoring_metrics_splunk_v2.html#metrics-filtering).
 	//
 	// Exactly one of the following integration blocks must be specified:
-	MetricsFilters []string                                  `pulumi:"metricsFilters"`
-	NewrelicV3     *IntegrationMetricPrometheusNewrelicV3    `pulumi:"newrelicV3"`
-	SplunkV2       *IntegrationMetricPrometheusSplunkV2      `pulumi:"splunkV2"`
-	StackdriverV2  *IntegrationMetricPrometheusStackdriverV2 `pulumi:"stackdriverV2"`
+	MetricsFilters        []string                                          `pulumi:"metricsFilters"`
+	NewrelicV3            *IntegrationMetricPrometheusNewrelicV3            `pulumi:"newrelicV3"`
+	PrometheusRemoteWrite *IntegrationMetricPrometheusPrometheusRemoteWrite `pulumi:"prometheusRemoteWrite"`
+	SplunkV2              *IntegrationMetricPrometheusSplunkV2              `pulumi:"splunkV2"`
+	StackdriverV2         *IntegrationMetricPrometheusStackdriverV2         `pulumi:"stackdriverV2"`
 }
 
 type IntegrationMetricPrometheusState struct {
@@ -319,16 +393,18 @@ type IntegrationMetricPrometheusState struct {
 	CloudwatchV3 IntegrationMetricPrometheusCloudwatchV3PtrInput
 	DatadogV3    IntegrationMetricPrometheusDatadogV3PtrInput
 	Dynatrace    IntegrationMetricPrometheusDynatracePtrInput
+	Grafana      IntegrationMetricPrometheusGrafanaPtrInput
 	// Instance identifier for the CloudAMQP instance.
 	InstanceId pulumi.IntPtrInput
 	// List of metrics to include in the integration. If not specified, default metrics are included.
 	// For more information about metrics filtering, see the [metrics filtering documentation](https://www.cloudamqp.com/docs/monitoring_metrics_splunk_v2.html#metrics-filtering).
 	//
 	// Exactly one of the following integration blocks must be specified:
-	MetricsFilters pulumi.StringArrayInput
-	NewrelicV3     IntegrationMetricPrometheusNewrelicV3PtrInput
-	SplunkV2       IntegrationMetricPrometheusSplunkV2PtrInput
-	StackdriverV2  IntegrationMetricPrometheusStackdriverV2PtrInput
+	MetricsFilters        pulumi.StringArrayInput
+	NewrelicV3            IntegrationMetricPrometheusNewrelicV3PtrInput
+	PrometheusRemoteWrite IntegrationMetricPrometheusPrometheusRemoteWritePtrInput
+	SplunkV2              IntegrationMetricPrometheusSplunkV2PtrInput
+	StackdriverV2         IntegrationMetricPrometheusStackdriverV2PtrInput
 }
 
 func (IntegrationMetricPrometheusState) ElementType() reflect.Type {
@@ -340,16 +416,18 @@ type integrationMetricPrometheusArgs struct {
 	CloudwatchV3 *IntegrationMetricPrometheusCloudwatchV3 `pulumi:"cloudwatchV3"`
 	DatadogV3    *IntegrationMetricPrometheusDatadogV3    `pulumi:"datadogV3"`
 	Dynatrace    *IntegrationMetricPrometheusDynatrace    `pulumi:"dynatrace"`
+	Grafana      *IntegrationMetricPrometheusGrafana      `pulumi:"grafana"`
 	// Instance identifier for the CloudAMQP instance.
 	InstanceId int `pulumi:"instanceId"`
 	// List of metrics to include in the integration. If not specified, default metrics are included.
 	// For more information about metrics filtering, see the [metrics filtering documentation](https://www.cloudamqp.com/docs/monitoring_metrics_splunk_v2.html#metrics-filtering).
 	//
 	// Exactly one of the following integration blocks must be specified:
-	MetricsFilters []string                                  `pulumi:"metricsFilters"`
-	NewrelicV3     *IntegrationMetricPrometheusNewrelicV3    `pulumi:"newrelicV3"`
-	SplunkV2       *IntegrationMetricPrometheusSplunkV2      `pulumi:"splunkV2"`
-	StackdriverV2  *IntegrationMetricPrometheusStackdriverV2 `pulumi:"stackdriverV2"`
+	MetricsFilters        []string                                          `pulumi:"metricsFilters"`
+	NewrelicV3            *IntegrationMetricPrometheusNewrelicV3            `pulumi:"newrelicV3"`
+	PrometheusRemoteWrite *IntegrationMetricPrometheusPrometheusRemoteWrite `pulumi:"prometheusRemoteWrite"`
+	SplunkV2              *IntegrationMetricPrometheusSplunkV2              `pulumi:"splunkV2"`
+	StackdriverV2         *IntegrationMetricPrometheusStackdriverV2         `pulumi:"stackdriverV2"`
 }
 
 // The set of arguments for constructing a IntegrationMetricPrometheus resource.
@@ -358,16 +436,18 @@ type IntegrationMetricPrometheusArgs struct {
 	CloudwatchV3 IntegrationMetricPrometheusCloudwatchV3PtrInput
 	DatadogV3    IntegrationMetricPrometheusDatadogV3PtrInput
 	Dynatrace    IntegrationMetricPrometheusDynatracePtrInput
+	Grafana      IntegrationMetricPrometheusGrafanaPtrInput
 	// Instance identifier for the CloudAMQP instance.
 	InstanceId pulumi.IntInput
 	// List of metrics to include in the integration. If not specified, default metrics are included.
 	// For more information about metrics filtering, see the [metrics filtering documentation](https://www.cloudamqp.com/docs/monitoring_metrics_splunk_v2.html#metrics-filtering).
 	//
 	// Exactly one of the following integration blocks must be specified:
-	MetricsFilters pulumi.StringArrayInput
-	NewrelicV3     IntegrationMetricPrometheusNewrelicV3PtrInput
-	SplunkV2       IntegrationMetricPrometheusSplunkV2PtrInput
-	StackdriverV2  IntegrationMetricPrometheusStackdriverV2PtrInput
+	MetricsFilters        pulumi.StringArrayInput
+	NewrelicV3            IntegrationMetricPrometheusNewrelicV3PtrInput
+	PrometheusRemoteWrite IntegrationMetricPrometheusPrometheusRemoteWritePtrInput
+	SplunkV2              IntegrationMetricPrometheusSplunkV2PtrInput
+	StackdriverV2         IntegrationMetricPrometheusStackdriverV2PtrInput
 }
 
 func (IntegrationMetricPrometheusArgs) ElementType() reflect.Type {
@@ -477,6 +557,10 @@ func (o IntegrationMetricPrometheusOutput) Dynatrace() IntegrationMetricPromethe
 	return o.ApplyT(func(v *IntegrationMetricPrometheus) IntegrationMetricPrometheusDynatracePtrOutput { return v.Dynatrace }).(IntegrationMetricPrometheusDynatracePtrOutput)
 }
 
+func (o IntegrationMetricPrometheusOutput) Grafana() IntegrationMetricPrometheusGrafanaPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheus) IntegrationMetricPrometheusGrafanaPtrOutput { return v.Grafana }).(IntegrationMetricPrometheusGrafanaPtrOutput)
+}
+
 // Instance identifier for the CloudAMQP instance.
 func (o IntegrationMetricPrometheusOutput) InstanceId() pulumi.IntOutput {
 	return o.ApplyT(func(v *IntegrationMetricPrometheus) pulumi.IntOutput { return v.InstanceId }).(pulumi.IntOutput)
@@ -494,6 +578,12 @@ func (o IntegrationMetricPrometheusOutput) NewrelicV3() IntegrationMetricPrometh
 	return o.ApplyT(func(v *IntegrationMetricPrometheus) IntegrationMetricPrometheusNewrelicV3PtrOutput {
 		return v.NewrelicV3
 	}).(IntegrationMetricPrometheusNewrelicV3PtrOutput)
+}
+
+func (o IntegrationMetricPrometheusOutput) PrometheusRemoteWrite() IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheus) IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput {
+		return v.PrometheusRemoteWrite
+	}).(IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput)
 }
 
 func (o IntegrationMetricPrometheusOutput) SplunkV2() IntegrationMetricPrometheusSplunkV2PtrOutput {

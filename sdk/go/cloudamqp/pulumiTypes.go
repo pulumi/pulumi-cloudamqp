@@ -2366,6 +2366,200 @@ func (o IntegrationMetricPrometheusDynatracePtrOutput) Tags() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
+type IntegrationMetricPrometheusGrafana struct {
+	// Grafana Cloud API token with the `metrics:write` scope, or a service account token with the `MetricsPublisher` role.
+	ApiToken string `pulumi:"apiToken"`
+	// Grafana Cloud Prometheus remote write endpoint. Example: `https://prometheus-prod-01-eu-west-0.grafana.net/api/prom/push`.
+	Endpoint string `pulumi:"endpoint"`
+	// Grafana Cloud numeric Prometheus instance identifier, used as the basic auth username.
+	InstanceId string `pulumi:"instanceId"`
+	// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+	Tags *string `pulumi:"tags"`
+}
+
+// IntegrationMetricPrometheusGrafanaInput is an input type that accepts IntegrationMetricPrometheusGrafanaArgs and IntegrationMetricPrometheusGrafanaOutput values.
+// You can construct a concrete instance of `IntegrationMetricPrometheusGrafanaInput` via:
+//
+//	IntegrationMetricPrometheusGrafanaArgs{...}
+type IntegrationMetricPrometheusGrafanaInput interface {
+	pulumi.Input
+
+	ToIntegrationMetricPrometheusGrafanaOutput() IntegrationMetricPrometheusGrafanaOutput
+	ToIntegrationMetricPrometheusGrafanaOutputWithContext(context.Context) IntegrationMetricPrometheusGrafanaOutput
+}
+
+type IntegrationMetricPrometheusGrafanaArgs struct {
+	// Grafana Cloud API token with the `metrics:write` scope, or a service account token with the `MetricsPublisher` role.
+	ApiToken pulumi.StringInput `pulumi:"apiToken"`
+	// Grafana Cloud Prometheus remote write endpoint. Example: `https://prometheus-prod-01-eu-west-0.grafana.net/api/prom/push`.
+	Endpoint pulumi.StringInput `pulumi:"endpoint"`
+	// Grafana Cloud numeric Prometheus instance identifier, used as the basic auth username.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+	Tags pulumi.StringPtrInput `pulumi:"tags"`
+}
+
+func (IntegrationMetricPrometheusGrafanaArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationMetricPrometheusGrafana)(nil)).Elem()
+}
+
+func (i IntegrationMetricPrometheusGrafanaArgs) ToIntegrationMetricPrometheusGrafanaOutput() IntegrationMetricPrometheusGrafanaOutput {
+	return i.ToIntegrationMetricPrometheusGrafanaOutputWithContext(context.Background())
+}
+
+func (i IntegrationMetricPrometheusGrafanaArgs) ToIntegrationMetricPrometheusGrafanaOutputWithContext(ctx context.Context) IntegrationMetricPrometheusGrafanaOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPrometheusGrafanaOutput)
+}
+
+func (i IntegrationMetricPrometheusGrafanaArgs) ToIntegrationMetricPrometheusGrafanaPtrOutput() IntegrationMetricPrometheusGrafanaPtrOutput {
+	return i.ToIntegrationMetricPrometheusGrafanaPtrOutputWithContext(context.Background())
+}
+
+func (i IntegrationMetricPrometheusGrafanaArgs) ToIntegrationMetricPrometheusGrafanaPtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusGrafanaPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPrometheusGrafanaOutput).ToIntegrationMetricPrometheusGrafanaPtrOutputWithContext(ctx)
+}
+
+// IntegrationMetricPrometheusGrafanaPtrInput is an input type that accepts IntegrationMetricPrometheusGrafanaArgs, IntegrationMetricPrometheusGrafanaPtr and IntegrationMetricPrometheusGrafanaPtrOutput values.
+// You can construct a concrete instance of `IntegrationMetricPrometheusGrafanaPtrInput` via:
+//
+//	        IntegrationMetricPrometheusGrafanaArgs{...}
+//
+//	or:
+//
+//	        nil
+type IntegrationMetricPrometheusGrafanaPtrInput interface {
+	pulumi.Input
+
+	ToIntegrationMetricPrometheusGrafanaPtrOutput() IntegrationMetricPrometheusGrafanaPtrOutput
+	ToIntegrationMetricPrometheusGrafanaPtrOutputWithContext(context.Context) IntegrationMetricPrometheusGrafanaPtrOutput
+}
+
+type integrationMetricPrometheusGrafanaPtrType IntegrationMetricPrometheusGrafanaArgs
+
+func IntegrationMetricPrometheusGrafanaPtr(v *IntegrationMetricPrometheusGrafanaArgs) IntegrationMetricPrometheusGrafanaPtrInput {
+	return (*integrationMetricPrometheusGrafanaPtrType)(v)
+}
+
+func (*integrationMetricPrometheusGrafanaPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationMetricPrometheusGrafana)(nil)).Elem()
+}
+
+func (i *integrationMetricPrometheusGrafanaPtrType) ToIntegrationMetricPrometheusGrafanaPtrOutput() IntegrationMetricPrometheusGrafanaPtrOutput {
+	return i.ToIntegrationMetricPrometheusGrafanaPtrOutputWithContext(context.Background())
+}
+
+func (i *integrationMetricPrometheusGrafanaPtrType) ToIntegrationMetricPrometheusGrafanaPtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusGrafanaPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPrometheusGrafanaPtrOutput)
+}
+
+type IntegrationMetricPrometheusGrafanaOutput struct{ *pulumi.OutputState }
+
+func (IntegrationMetricPrometheusGrafanaOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationMetricPrometheusGrafana)(nil)).Elem()
+}
+
+func (o IntegrationMetricPrometheusGrafanaOutput) ToIntegrationMetricPrometheusGrafanaOutput() IntegrationMetricPrometheusGrafanaOutput {
+	return o
+}
+
+func (o IntegrationMetricPrometheusGrafanaOutput) ToIntegrationMetricPrometheusGrafanaOutputWithContext(ctx context.Context) IntegrationMetricPrometheusGrafanaOutput {
+	return o
+}
+
+func (o IntegrationMetricPrometheusGrafanaOutput) ToIntegrationMetricPrometheusGrafanaPtrOutput() IntegrationMetricPrometheusGrafanaPtrOutput {
+	return o.ToIntegrationMetricPrometheusGrafanaPtrOutputWithContext(context.Background())
+}
+
+func (o IntegrationMetricPrometheusGrafanaOutput) ToIntegrationMetricPrometheusGrafanaPtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusGrafanaPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IntegrationMetricPrometheusGrafana) *IntegrationMetricPrometheusGrafana {
+		return &v
+	}).(IntegrationMetricPrometheusGrafanaPtrOutput)
+}
+
+// Grafana Cloud API token with the `metrics:write` scope, or a service account token with the `MetricsPublisher` role.
+func (o IntegrationMetricPrometheusGrafanaOutput) ApiToken() pulumi.StringOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusGrafana) string { return v.ApiToken }).(pulumi.StringOutput)
+}
+
+// Grafana Cloud Prometheus remote write endpoint. Example: `https://prometheus-prod-01-eu-west-0.grafana.net/api/prom/push`.
+func (o IntegrationMetricPrometheusGrafanaOutput) Endpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusGrafana) string { return v.Endpoint }).(pulumi.StringOutput)
+}
+
+// Grafana Cloud numeric Prometheus instance identifier, used as the basic auth username.
+func (o IntegrationMetricPrometheusGrafanaOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusGrafana) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+func (o IntegrationMetricPrometheusGrafanaOutput) Tags() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusGrafana) *string { return v.Tags }).(pulumi.StringPtrOutput)
+}
+
+type IntegrationMetricPrometheusGrafanaPtrOutput struct{ *pulumi.OutputState }
+
+func (IntegrationMetricPrometheusGrafanaPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationMetricPrometheusGrafana)(nil)).Elem()
+}
+
+func (o IntegrationMetricPrometheusGrafanaPtrOutput) ToIntegrationMetricPrometheusGrafanaPtrOutput() IntegrationMetricPrometheusGrafanaPtrOutput {
+	return o
+}
+
+func (o IntegrationMetricPrometheusGrafanaPtrOutput) ToIntegrationMetricPrometheusGrafanaPtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusGrafanaPtrOutput {
+	return o
+}
+
+func (o IntegrationMetricPrometheusGrafanaPtrOutput) Elem() IntegrationMetricPrometheusGrafanaOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusGrafana) IntegrationMetricPrometheusGrafana {
+		if v != nil {
+			return *v
+		}
+		var ret IntegrationMetricPrometheusGrafana
+		return ret
+	}).(IntegrationMetricPrometheusGrafanaOutput)
+}
+
+// Grafana Cloud API token with the `metrics:write` scope, or a service account token with the `MetricsPublisher` role.
+func (o IntegrationMetricPrometheusGrafanaPtrOutput) ApiToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusGrafana) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ApiToken
+	}).(pulumi.StringPtrOutput)
+}
+
+// Grafana Cloud Prometheus remote write endpoint. Example: `https://prometheus-prod-01-eu-west-0.grafana.net/api/prom/push`.
+func (o IntegrationMetricPrometheusGrafanaPtrOutput) Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusGrafana) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Endpoint
+	}).(pulumi.StringPtrOutput)
+}
+
+// Grafana Cloud numeric Prometheus instance identifier, used as the basic auth username.
+func (o IntegrationMetricPrometheusGrafanaPtrOutput) InstanceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusGrafana) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.InstanceId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+func (o IntegrationMetricPrometheusGrafanaPtrOutput) Tags() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusGrafana) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Tags
+	}).(pulumi.StringPtrOutput)
+}
+
 type IntegrationMetricPrometheusNewrelicV3 struct {
 	// New Relic API key for authentication.
 	ApiKey string `pulumi:"apiKey"`
@@ -2538,6 +2732,238 @@ func (o IntegrationMetricPrometheusNewrelicV3PtrOutput) Tags() pulumi.StringPtrO
 			return nil
 		}
 		return v.Tags
+	}).(pulumi.StringPtrOutput)
+}
+
+type IntegrationMetricPrometheusPrometheusRemoteWrite struct {
+	// Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`. Default: `none`.
+	AuthType *string `pulumi:"authType"`
+	// Remote write endpoint including the path, over HTTPS. Example: `https://mimir.example.com/api/v1/push`.
+	Endpoint string `pulumi:"endpoint"`
+	// Headers sent with every request, one `key: value` pair per line. Required when `authType` is `headers`.
+	Headers *string `pulumi:"headers"`
+	// Password or token, used when `authType` is `basicAuth`.
+	Password *string `pulumi:"password"`
+	// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+	Tags *string `pulumi:"tags"`
+	// Username, used when `authType` is `basicAuth`.
+	Username *string `pulumi:"username"`
+}
+
+// IntegrationMetricPrometheusPrometheusRemoteWriteInput is an input type that accepts IntegrationMetricPrometheusPrometheusRemoteWriteArgs and IntegrationMetricPrometheusPrometheusRemoteWriteOutput values.
+// You can construct a concrete instance of `IntegrationMetricPrometheusPrometheusRemoteWriteInput` via:
+//
+//	IntegrationMetricPrometheusPrometheusRemoteWriteArgs{...}
+type IntegrationMetricPrometheusPrometheusRemoteWriteInput interface {
+	pulumi.Input
+
+	ToIntegrationMetricPrometheusPrometheusRemoteWriteOutput() IntegrationMetricPrometheusPrometheusRemoteWriteOutput
+	ToIntegrationMetricPrometheusPrometheusRemoteWriteOutputWithContext(context.Context) IntegrationMetricPrometheusPrometheusRemoteWriteOutput
+}
+
+type IntegrationMetricPrometheusPrometheusRemoteWriteArgs struct {
+	// Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`. Default: `none`.
+	AuthType pulumi.StringPtrInput `pulumi:"authType"`
+	// Remote write endpoint including the path, over HTTPS. Example: `https://mimir.example.com/api/v1/push`.
+	Endpoint pulumi.StringInput `pulumi:"endpoint"`
+	// Headers sent with every request, one `key: value` pair per line. Required when `authType` is `headers`.
+	Headers pulumi.StringPtrInput `pulumi:"headers"`
+	// Password or token, used when `authType` is `basicAuth`.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+	Tags pulumi.StringPtrInput `pulumi:"tags"`
+	// Username, used when `authType` is `basicAuth`.
+	Username pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (IntegrationMetricPrometheusPrometheusRemoteWriteArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationMetricPrometheusPrometheusRemoteWrite)(nil)).Elem()
+}
+
+func (i IntegrationMetricPrometheusPrometheusRemoteWriteArgs) ToIntegrationMetricPrometheusPrometheusRemoteWriteOutput() IntegrationMetricPrometheusPrometheusRemoteWriteOutput {
+	return i.ToIntegrationMetricPrometheusPrometheusRemoteWriteOutputWithContext(context.Background())
+}
+
+func (i IntegrationMetricPrometheusPrometheusRemoteWriteArgs) ToIntegrationMetricPrometheusPrometheusRemoteWriteOutputWithContext(ctx context.Context) IntegrationMetricPrometheusPrometheusRemoteWriteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPrometheusPrometheusRemoteWriteOutput)
+}
+
+func (i IntegrationMetricPrometheusPrometheusRemoteWriteArgs) ToIntegrationMetricPrometheusPrometheusRemoteWritePtrOutput() IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput {
+	return i.ToIntegrationMetricPrometheusPrometheusRemoteWritePtrOutputWithContext(context.Background())
+}
+
+func (i IntegrationMetricPrometheusPrometheusRemoteWriteArgs) ToIntegrationMetricPrometheusPrometheusRemoteWritePtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPrometheusPrometheusRemoteWriteOutput).ToIntegrationMetricPrometheusPrometheusRemoteWritePtrOutputWithContext(ctx)
+}
+
+// IntegrationMetricPrometheusPrometheusRemoteWritePtrInput is an input type that accepts IntegrationMetricPrometheusPrometheusRemoteWriteArgs, IntegrationMetricPrometheusPrometheusRemoteWritePtr and IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput values.
+// You can construct a concrete instance of `IntegrationMetricPrometheusPrometheusRemoteWritePtrInput` via:
+//
+//	        IntegrationMetricPrometheusPrometheusRemoteWriteArgs{...}
+//
+//	or:
+//
+//	        nil
+type IntegrationMetricPrometheusPrometheusRemoteWritePtrInput interface {
+	pulumi.Input
+
+	ToIntegrationMetricPrometheusPrometheusRemoteWritePtrOutput() IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput
+	ToIntegrationMetricPrometheusPrometheusRemoteWritePtrOutputWithContext(context.Context) IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput
+}
+
+type integrationMetricPrometheusPrometheusRemoteWritePtrType IntegrationMetricPrometheusPrometheusRemoteWriteArgs
+
+func IntegrationMetricPrometheusPrometheusRemoteWritePtr(v *IntegrationMetricPrometheusPrometheusRemoteWriteArgs) IntegrationMetricPrometheusPrometheusRemoteWritePtrInput {
+	return (*integrationMetricPrometheusPrometheusRemoteWritePtrType)(v)
+}
+
+func (*integrationMetricPrometheusPrometheusRemoteWritePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationMetricPrometheusPrometheusRemoteWrite)(nil)).Elem()
+}
+
+func (i *integrationMetricPrometheusPrometheusRemoteWritePtrType) ToIntegrationMetricPrometheusPrometheusRemoteWritePtrOutput() IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput {
+	return i.ToIntegrationMetricPrometheusPrometheusRemoteWritePtrOutputWithContext(context.Background())
+}
+
+func (i *integrationMetricPrometheusPrometheusRemoteWritePtrType) ToIntegrationMetricPrometheusPrometheusRemoteWritePtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput)
+}
+
+type IntegrationMetricPrometheusPrometheusRemoteWriteOutput struct{ *pulumi.OutputState }
+
+func (IntegrationMetricPrometheusPrometheusRemoteWriteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationMetricPrometheusPrometheusRemoteWrite)(nil)).Elem()
+}
+
+func (o IntegrationMetricPrometheusPrometheusRemoteWriteOutput) ToIntegrationMetricPrometheusPrometheusRemoteWriteOutput() IntegrationMetricPrometheusPrometheusRemoteWriteOutput {
+	return o
+}
+
+func (o IntegrationMetricPrometheusPrometheusRemoteWriteOutput) ToIntegrationMetricPrometheusPrometheusRemoteWriteOutputWithContext(ctx context.Context) IntegrationMetricPrometheusPrometheusRemoteWriteOutput {
+	return o
+}
+
+func (o IntegrationMetricPrometheusPrometheusRemoteWriteOutput) ToIntegrationMetricPrometheusPrometheusRemoteWritePtrOutput() IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput {
+	return o.ToIntegrationMetricPrometheusPrometheusRemoteWritePtrOutputWithContext(context.Background())
+}
+
+func (o IntegrationMetricPrometheusPrometheusRemoteWriteOutput) ToIntegrationMetricPrometheusPrometheusRemoteWritePtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IntegrationMetricPrometheusPrometheusRemoteWrite) *IntegrationMetricPrometheusPrometheusRemoteWrite {
+		return &v
+	}).(IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput)
+}
+
+// Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`. Default: `none`.
+func (o IntegrationMetricPrometheusPrometheusRemoteWriteOutput) AuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusPrometheusRemoteWrite) *string { return v.AuthType }).(pulumi.StringPtrOutput)
+}
+
+// Remote write endpoint including the path, over HTTPS. Example: `https://mimir.example.com/api/v1/push`.
+func (o IntegrationMetricPrometheusPrometheusRemoteWriteOutput) Endpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusPrometheusRemoteWrite) string { return v.Endpoint }).(pulumi.StringOutput)
+}
+
+// Headers sent with every request, one `key: value` pair per line. Required when `authType` is `headers`.
+func (o IntegrationMetricPrometheusPrometheusRemoteWriteOutput) Headers() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusPrometheusRemoteWrite) *string { return v.Headers }).(pulumi.StringPtrOutput)
+}
+
+// Password or token, used when `authType` is `basicAuth`.
+func (o IntegrationMetricPrometheusPrometheusRemoteWriteOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusPrometheusRemoteWrite) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+func (o IntegrationMetricPrometheusPrometheusRemoteWriteOutput) Tags() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusPrometheusRemoteWrite) *string { return v.Tags }).(pulumi.StringPtrOutput)
+}
+
+// Username, used when `authType` is `basicAuth`.
+func (o IntegrationMetricPrometheusPrometheusRemoteWriteOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusPrometheusRemoteWrite) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput struct{ *pulumi.OutputState }
+
+func (IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationMetricPrometheusPrometheusRemoteWrite)(nil)).Elem()
+}
+
+func (o IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput) ToIntegrationMetricPrometheusPrometheusRemoteWritePtrOutput() IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput {
+	return o
+}
+
+func (o IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput) ToIntegrationMetricPrometheusPrometheusRemoteWritePtrOutputWithContext(ctx context.Context) IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput {
+	return o
+}
+
+func (o IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput) Elem() IntegrationMetricPrometheusPrometheusRemoteWriteOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusPrometheusRemoteWrite) IntegrationMetricPrometheusPrometheusRemoteWrite {
+		if v != nil {
+			return *v
+		}
+		var ret IntegrationMetricPrometheusPrometheusRemoteWrite
+		return ret
+	}).(IntegrationMetricPrometheusPrometheusRemoteWriteOutput)
+}
+
+// Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`. Default: `none`.
+func (o IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput) AuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusPrometheusRemoteWrite) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AuthType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Remote write endpoint including the path, over HTTPS. Example: `https://mimir.example.com/api/v1/push`.
+func (o IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput) Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusPrometheusRemoteWrite) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Endpoint
+	}).(pulumi.StringPtrOutput)
+}
+
+// Headers sent with every request, one `key: value` pair per line. Required when `authType` is `headers`.
+func (o IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput) Headers() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusPrometheusRemoteWrite) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Headers
+	}).(pulumi.StringPtrOutput)
+}
+
+// Password or token, used when `authType` is `basicAuth`.
+func (o IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusPrometheusRemoteWrite) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+func (o IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput) Tags() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusPrometheusRemoteWrite) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Tags
+	}).(pulumi.StringPtrOutput)
+}
+
+// Username, used when `authType` is `basicAuth`.
+func (o IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusPrometheusRemoteWrite) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -5047,8 +5473,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusDatadogV3PtrInput)(nil)).Elem(), IntegrationMetricPrometheusDatadogV3Args{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusDynatraceInput)(nil)).Elem(), IntegrationMetricPrometheusDynatraceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusDynatracePtrInput)(nil)).Elem(), IntegrationMetricPrometheusDynatraceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusGrafanaInput)(nil)).Elem(), IntegrationMetricPrometheusGrafanaArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusGrafanaPtrInput)(nil)).Elem(), IntegrationMetricPrometheusGrafanaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusNewrelicV3Input)(nil)).Elem(), IntegrationMetricPrometheusNewrelicV3Args{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusNewrelicV3PtrInput)(nil)).Elem(), IntegrationMetricPrometheusNewrelicV3Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusPrometheusRemoteWriteInput)(nil)).Elem(), IntegrationMetricPrometheusPrometheusRemoteWriteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusPrometheusRemoteWritePtrInput)(nil)).Elem(), IntegrationMetricPrometheusPrometheusRemoteWriteArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusSplunkV2Input)(nil)).Elem(), IntegrationMetricPrometheusSplunkV2Args{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusSplunkV2PtrInput)(nil)).Elem(), IntegrationMetricPrometheusSplunkV2Args{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationMetricPrometheusStackdriverV2Input)(nil)).Elem(), IntegrationMetricPrometheusStackdriverV2Args{})
@@ -5107,8 +5537,12 @@ func init() {
 	pulumi.RegisterOutputType(IntegrationMetricPrometheusDatadogV3PtrOutput{})
 	pulumi.RegisterOutputType(IntegrationMetricPrometheusDynatraceOutput{})
 	pulumi.RegisterOutputType(IntegrationMetricPrometheusDynatracePtrOutput{})
+	pulumi.RegisterOutputType(IntegrationMetricPrometheusGrafanaOutput{})
+	pulumi.RegisterOutputType(IntegrationMetricPrometheusGrafanaPtrOutput{})
 	pulumi.RegisterOutputType(IntegrationMetricPrometheusNewrelicV3Output{})
 	pulumi.RegisterOutputType(IntegrationMetricPrometheusNewrelicV3PtrOutput{})
+	pulumi.RegisterOutputType(IntegrationMetricPrometheusPrometheusRemoteWriteOutput{})
+	pulumi.RegisterOutputType(IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput{})
 	pulumi.RegisterOutputType(IntegrationMetricPrometheusSplunkV2Output{})
 	pulumi.RegisterOutputType(IntegrationMetricPrometheusSplunkV2PtrOutput{})
 	pulumi.RegisterOutputType(IntegrationMetricPrometheusStackdriverV2Output{})

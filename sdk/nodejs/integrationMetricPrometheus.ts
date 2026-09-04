@@ -10,7 +10,7 @@ import * as utilities from "./utilities";
  * <!-- markdownlint-disable MD024 -->
  * <!-- markdownlint-disable MD033 -->
  *
- * This resource allows you to create and manage Prometheus-compatible metric integrations for CloudAMQP instances. Currently supported integrations include New Relic v3, Datadog v3, Azure Monitor, Splunk v2, Dynatrace, CloudWatch v3, and Stackdriver v2.
+ * This resource allows you to create and manage Prometheus-compatible metric integrations for CloudAMQP instances. Currently supported integrations include New Relic v3, Datadog v3, Azure Monitor, Splunk v2, Dynatrace, CloudWatch v3, Stackdriver v2, Grafana Cloud (Mimir), and Prometheus Remote Write.
  *
  * ## Example Usage
  *
@@ -127,6 +127,46 @@ import * as utilities from "./utilities";
  *
  * **Note:** The `credentialsFile` should contain a Base64-encoded Google service account key JSON file. You can create a service account in Google Cloud Console with the "Monitoring Metric Writer" role and download the key file. Then encode it with:
  *
+ * ### Grafana Cloud (Mimir)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const grafana = new cloudamqp.IntegrationMetricPrometheus("grafana", {
+ *     instanceId: Number(instance.id),
+ *     grafana: {
+ *         endpoint: grafanaEndpoint,
+ *         instanceId: grafanaInstanceId,
+ *         apiToken: grafanaApiToken,
+ *         tags: "key=value,key2=value2",
+ *     },
+ * });
+ * ```
+ *
+ * **Note:** Find all three values in the Grafana Cloud Portal, under **Send Metrics** on the **Prometheus** tile of your stack. The `instanceId` is the numeric Prometheus instance identifier, which is not the same as the Loki instance identifier used by the Grafana Cloud log integration.
+ *
+ * ### Prometheus Remote Write
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const prometheusRemoteWrite = new cloudamqp.IntegrationMetricPrometheus("prometheus_remote_write", {
+ *     instanceId: Number(instance.id),
+ *     prometheusRemoteWrite: {
+ *         endpoint: remoteWriteEndpoint,
+ *         authType: "basic_auth",
+ *         username: remoteWriteUsername,
+ *         password: remoteWritePassword,
+ *         headers: "X-Scope-OrgID: my-tenant",
+ *         tags: "key=value,key2=value2",
+ *     },
+ * });
+ * ```
+ *
+ * **Note:** Headers are sent with every request whichever `authType` you pick, so a tenant header can accompany basic auth. Multi-tenant Mimir and Cortex read `X-Scope-OrgID`, Thanos reads `THANOS-TENANT`. Set `authType` to `headers` when the credentials themselves live in a header, for example `Authorization: Bearer your-token`.
+ *
  * ## Dependency
  *
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -169,6 +209,7 @@ export class IntegrationMetricPrometheus extends pulumi.CustomResource {
     declare public readonly cloudwatchV3: pulumi.Output<outputs.IntegrationMetricPrometheusCloudwatchV3 | undefined>;
     declare public readonly datadogV3: pulumi.Output<outputs.IntegrationMetricPrometheusDatadogV3 | undefined>;
     declare public readonly dynatrace: pulumi.Output<outputs.IntegrationMetricPrometheusDynatrace | undefined>;
+    declare public readonly grafana: pulumi.Output<outputs.IntegrationMetricPrometheusGrafana | undefined>;
     /**
      * Instance identifier for the CloudAMQP instance.
      */
@@ -181,6 +222,7 @@ export class IntegrationMetricPrometheus extends pulumi.CustomResource {
      */
     declare public readonly metricsFilters: pulumi.Output<string[]>;
     declare public readonly newrelicV3: pulumi.Output<outputs.IntegrationMetricPrometheusNewrelicV3 | undefined>;
+    declare public readonly prometheusRemoteWrite: pulumi.Output<outputs.IntegrationMetricPrometheusPrometheusRemoteWrite | undefined>;
     declare public readonly splunkV2: pulumi.Output<outputs.IntegrationMetricPrometheusSplunkV2 | undefined>;
     declare public readonly stackdriverV2: pulumi.Output<outputs.IntegrationMetricPrometheusStackdriverV2 | undefined>;
 
@@ -201,9 +243,11 @@ export class IntegrationMetricPrometheus extends pulumi.CustomResource {
             resourceInputs["cloudwatchV3"] = state?.cloudwatchV3;
             resourceInputs["datadogV3"] = state?.datadogV3;
             resourceInputs["dynatrace"] = state?.dynatrace;
+            resourceInputs["grafana"] = state?.grafana;
             resourceInputs["instanceId"] = state?.instanceId;
             resourceInputs["metricsFilters"] = state?.metricsFilters;
             resourceInputs["newrelicV3"] = state?.newrelicV3;
+            resourceInputs["prometheusRemoteWrite"] = state?.prometheusRemoteWrite;
             resourceInputs["splunkV2"] = state?.splunkV2;
             resourceInputs["stackdriverV2"] = state?.stackdriverV2;
         } else {
@@ -215,9 +259,11 @@ export class IntegrationMetricPrometheus extends pulumi.CustomResource {
             resourceInputs["cloudwatchV3"] = args?.cloudwatchV3;
             resourceInputs["datadogV3"] = args?.datadogV3;
             resourceInputs["dynatrace"] = args?.dynatrace;
+            resourceInputs["grafana"] = args?.grafana;
             resourceInputs["instanceId"] = args?.instanceId;
             resourceInputs["metricsFilters"] = args?.metricsFilters;
             resourceInputs["newrelicV3"] = args?.newrelicV3;
+            resourceInputs["prometheusRemoteWrite"] = args?.prometheusRemoteWrite;
             resourceInputs["splunkV2"] = args?.splunkV2;
             resourceInputs["stackdriverV2"] = args?.stackdriverV2;
         }
@@ -234,6 +280,7 @@ export interface IntegrationMetricPrometheusState {
     cloudwatchV3?: pulumi.Input<inputs.IntegrationMetricPrometheusCloudwatchV3 | undefined>;
     datadogV3?: pulumi.Input<inputs.IntegrationMetricPrometheusDatadogV3 | undefined>;
     dynatrace?: pulumi.Input<inputs.IntegrationMetricPrometheusDynatrace | undefined>;
+    grafana?: pulumi.Input<inputs.IntegrationMetricPrometheusGrafana | undefined>;
     /**
      * Instance identifier for the CloudAMQP instance.
      */
@@ -246,6 +293,7 @@ export interface IntegrationMetricPrometheusState {
      */
     metricsFilters?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     newrelicV3?: pulumi.Input<inputs.IntegrationMetricPrometheusNewrelicV3 | undefined>;
+    prometheusRemoteWrite?: pulumi.Input<inputs.IntegrationMetricPrometheusPrometheusRemoteWrite | undefined>;
     splunkV2?: pulumi.Input<inputs.IntegrationMetricPrometheusSplunkV2 | undefined>;
     stackdriverV2?: pulumi.Input<inputs.IntegrationMetricPrometheusStackdriverV2 | undefined>;
 }
@@ -258,6 +306,7 @@ export interface IntegrationMetricPrometheusArgs {
     cloudwatchV3?: pulumi.Input<inputs.IntegrationMetricPrometheusCloudwatchV3 | undefined>;
     datadogV3?: pulumi.Input<inputs.IntegrationMetricPrometheusDatadogV3 | undefined>;
     dynatrace?: pulumi.Input<inputs.IntegrationMetricPrometheusDynatrace | undefined>;
+    grafana?: pulumi.Input<inputs.IntegrationMetricPrometheusGrafana | undefined>;
     /**
      * Instance identifier for the CloudAMQP instance.
      */
@@ -270,6 +319,7 @@ export interface IntegrationMetricPrometheusArgs {
      */
     metricsFilters?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     newrelicV3?: pulumi.Input<inputs.IntegrationMetricPrometheusNewrelicV3 | undefined>;
+    prometheusRemoteWrite?: pulumi.Input<inputs.IntegrationMetricPrometheusPrometheusRemoteWrite | undefined>;
     splunkV2?: pulumi.Input<inputs.IntegrationMetricPrometheusSplunkV2 | undefined>;
     stackdriverV2?: pulumi.Input<inputs.IntegrationMetricPrometheusStackdriverV2 | undefined>;
 }

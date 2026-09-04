@@ -13,7 +13,7 @@ namespace Pulumi.CloudAmqp
     /// &lt;!-- markdownlint-disable MD024 --&gt;
     /// &lt;!-- markdownlint-disable MD033 --&gt;
     /// 
-    /// This resource allows you to create and manage Prometheus-compatible metric integrations for CloudAMQP instances. Currently supported integrations include New Relic v3, Datadog v3, Azure Monitor, Splunk v2, Dynatrace, CloudWatch v3, and Stackdriver v2.
+    /// This resource allows you to create and manage Prometheus-compatible metric integrations for CloudAMQP instances. Currently supported integrations include New Relic v3, Datadog v3, Azure Monitor, Splunk v2, Dynatrace, CloudWatch v3, Stackdriver v2, Grafana Cloud (Mimir), and Prometheus Remote Write.
     /// 
     /// ## Example Usage
     /// 
@@ -186,6 +186,62 @@ namespace Pulumi.CloudAmqp
     /// 
     /// **Note:** The `CredentialsFile` should contain a Base64-encoded Google service account key JSON file. You can create a service account in Google Cloud Console with the "Monitoring Metric Writer" role and download the key file. Then encode it with:
     /// 
+    /// ### Grafana Cloud (Mimir)
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var grafana = new CloudAmqp.IntegrationMetricPrometheus("grafana", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Grafana = new CloudAmqp.Inputs.IntegrationMetricPrometheusGrafanaArgs
+    ///         {
+    ///             Endpoint = grafanaEndpoint,
+    ///             InstanceId = grafanaInstanceId,
+    ///             ApiToken = grafanaApiToken,
+    ///             Tags = "key=value,key2=value2",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// **Note:** Find all three values in the Grafana Cloud Portal, under **Send Metrics** on the **Prometheus** tile of your stack. The `InstanceId` is the numeric Prometheus instance identifier, which is not the same as the Loki instance identifier used by the Grafana Cloud log integration.
+    /// 
+    /// ### Prometheus Remote Write
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var prometheusRemoteWrite = new CloudAmqp.IntegrationMetricPrometheus("prometheus_remote_write", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         PrometheusRemoteWrite = new CloudAmqp.Inputs.IntegrationMetricPrometheusPrometheusRemoteWriteArgs
+    ///         {
+    ///             Endpoint = remoteWriteEndpoint,
+    ///             AuthType = "basic_auth",
+    ///             Username = remoteWriteUsername,
+    ///             Password = remoteWritePassword,
+    ///             Headers = "X-Scope-OrgID: my-tenant",
+    ///             Tags = "key=value,key2=value2",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// **Note:** Headers are sent with every request whichever `AuthType` you pick, so a tenant header can accompany basic auth. Multi-tenant Mimir and Cortex read `X-Scope-OrgID`, Thanos reads `THANOS-TENANT`. Set `AuthType` to `Headers` when the credentials themselves live in a header, for example `Authorization: Bearer your-token`.
+    /// 
     /// ## Dependency
     /// 
     /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -211,6 +267,9 @@ namespace Pulumi.CloudAmqp
         [Output("dynatrace")]
         public Output<Outputs.IntegrationMetricPrometheusDynatrace?> Dynatrace { get; private set; } = null!;
 
+        [Output("grafana")]
+        public Output<Outputs.IntegrationMetricPrometheusGrafana?> Grafana { get; private set; } = null!;
+
         /// <summary>
         /// Instance identifier for the CloudAMQP instance.
         /// </summary>
@@ -228,6 +287,9 @@ namespace Pulumi.CloudAmqp
 
         [Output("newrelicV3")]
         public Output<Outputs.IntegrationMetricPrometheusNewrelicV3?> NewrelicV3 { get; private set; } = null!;
+
+        [Output("prometheusRemoteWrite")]
+        public Output<Outputs.IntegrationMetricPrometheusPrometheusRemoteWrite?> PrometheusRemoteWrite { get; private set; } = null!;
 
         [Output("splunkV2")]
         public Output<Outputs.IntegrationMetricPrometheusSplunkV2?> SplunkV2 { get; private set; } = null!;
@@ -293,6 +355,9 @@ namespace Pulumi.CloudAmqp
         [Input("dynatrace")]
         public Input<Inputs.IntegrationMetricPrometheusDynatraceArgs>? Dynatrace { get; set; }
 
+        [Input("grafana")]
+        public Input<Inputs.IntegrationMetricPrometheusGrafanaArgs>? Grafana { get; set; }
+
         /// <summary>
         /// Instance identifier for the CloudAMQP instance.
         /// </summary>
@@ -316,6 +381,9 @@ namespace Pulumi.CloudAmqp
 
         [Input("newrelicV3")]
         public Input<Inputs.IntegrationMetricPrometheusNewrelicV3Args>? NewrelicV3 { get; set; }
+
+        [Input("prometheusRemoteWrite")]
+        public Input<Inputs.IntegrationMetricPrometheusPrometheusRemoteWriteArgs>? PrometheusRemoteWrite { get; set; }
 
         [Input("splunkV2")]
         public Input<Inputs.IntegrationMetricPrometheusSplunkV2Args>? SplunkV2 { get; set; }
@@ -343,6 +411,9 @@ namespace Pulumi.CloudAmqp
         [Input("dynatrace")]
         public Input<Inputs.IntegrationMetricPrometheusDynatraceGetArgs>? Dynatrace { get; set; }
 
+        [Input("grafana")]
+        public Input<Inputs.IntegrationMetricPrometheusGrafanaGetArgs>? Grafana { get; set; }
+
         /// <summary>
         /// Instance identifier for the CloudAMQP instance.
         /// </summary>
@@ -366,6 +437,9 @@ namespace Pulumi.CloudAmqp
 
         [Input("newrelicV3")]
         public Input<Inputs.IntegrationMetricPrometheusNewrelicV3GetArgs>? NewrelicV3 { get; set; }
+
+        [Input("prometheusRemoteWrite")]
+        public Input<Inputs.IntegrationMetricPrometheusPrometheusRemoteWriteGetArgs>? PrometheusRemoteWrite { get; set; }
 
         [Input("splunkV2")]
         public Input<Inputs.IntegrationMetricPrometheusSplunkV2GetArgs>? SplunkV2 { get; set; }
