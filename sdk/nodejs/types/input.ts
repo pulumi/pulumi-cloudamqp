@@ -280,6 +280,25 @@ export interface IntegrationMetricPrometheusDynatrace {
     tags?: pulumi.Input<string | undefined>;
 }
 
+export interface IntegrationMetricPrometheusGrafana {
+    /**
+     * Grafana Cloud API token with the `metrics:write` scope, or a service account token with the `MetricsPublisher` role.
+     */
+    apiToken: pulumi.Input<string>;
+    /**
+     * Grafana Cloud Prometheus remote write endpoint. Example: `https://prometheus-prod-01-eu-west-0.grafana.net/api/prom/push`.
+     */
+    endpoint: pulumi.Input<string>;
+    /**
+     * Grafana Cloud numeric Prometheus instance identifier, used as the basic auth username.
+     */
+    instanceId: pulumi.Input<string>;
+    /**
+     * Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+     */
+    tags?: pulumi.Input<string | undefined>;
+}
+
 export interface IntegrationMetricPrometheusNewrelicV3 {
     /**
      * New Relic API key for authentication.
@@ -293,6 +312,33 @@ export interface IntegrationMetricPrometheusNewrelicV3 {
      * Additional tags to attach to metrics. Format: `key=value,key2=value2`.
      */
     tags?: pulumi.Input<string | undefined>;
+}
+
+export interface IntegrationMetricPrometheusPrometheusRemoteWrite {
+    /**
+     * Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`. Default: `none`.
+     */
+    authType?: pulumi.Input<string | undefined>;
+    /**
+     * Remote write endpoint including the path, over HTTPS. Example: `https://mimir.example.com/api/v1/push`.
+     */
+    endpoint: pulumi.Input<string>;
+    /**
+     * Headers sent with every request, one `key: value` pair per line. Required when `authType` is `headers`.
+     */
+    headers?: pulumi.Input<string | undefined>;
+    /**
+     * Password or token, used when `authType` is `basicAuth`.
+     */
+    password?: pulumi.Input<string | undefined>;
+    /**
+     * Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+     */
+    tags?: pulumi.Input<string | undefined>;
+    /**
+     * Username, used when `authType` is `basicAuth`.
+     */
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface IntegrationMetricPrometheusSplunkV2 {

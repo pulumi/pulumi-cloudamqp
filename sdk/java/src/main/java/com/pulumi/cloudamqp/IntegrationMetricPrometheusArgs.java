@@ -7,7 +7,9 @@ import com.pulumi.cloudamqp.inputs.IntegrationMetricPrometheusAzureMonitorArgs;
 import com.pulumi.cloudamqp.inputs.IntegrationMetricPrometheusCloudwatchV3Args;
 import com.pulumi.cloudamqp.inputs.IntegrationMetricPrometheusDatadogV3Args;
 import com.pulumi.cloudamqp.inputs.IntegrationMetricPrometheusDynatraceArgs;
+import com.pulumi.cloudamqp.inputs.IntegrationMetricPrometheusGrafanaArgs;
 import com.pulumi.cloudamqp.inputs.IntegrationMetricPrometheusNewrelicV3Args;
+import com.pulumi.cloudamqp.inputs.IntegrationMetricPrometheusPrometheusRemoteWriteArgs;
 import com.pulumi.cloudamqp.inputs.IntegrationMetricPrometheusSplunkV2Args;
 import com.pulumi.cloudamqp.inputs.IntegrationMetricPrometheusStackdriverV2Args;
 import com.pulumi.core.Output;
@@ -53,6 +55,13 @@ public final class IntegrationMetricPrometheusArgs extends com.pulumi.resources.
         return Optional.ofNullable(this.dynatrace);
     }
 
+    @Import(name="grafana")
+    private @Nullable Output<IntegrationMetricPrometheusGrafanaArgs> grafana;
+
+    public Optional<Output<IntegrationMetricPrometheusGrafanaArgs>> grafana() {
+        return Optional.ofNullable(this.grafana);
+    }
+
     /**
      * Instance identifier for the CloudAMQP instance.
      * 
@@ -96,6 +105,13 @@ public final class IntegrationMetricPrometheusArgs extends com.pulumi.resources.
         return Optional.ofNullable(this.newrelicV3);
     }
 
+    @Import(name="prometheusRemoteWrite")
+    private @Nullable Output<IntegrationMetricPrometheusPrometheusRemoteWriteArgs> prometheusRemoteWrite;
+
+    public Optional<Output<IntegrationMetricPrometheusPrometheusRemoteWriteArgs>> prometheusRemoteWrite() {
+        return Optional.ofNullable(this.prometheusRemoteWrite);
+    }
+
     @Import(name="splunkV2")
     private @Nullable Output<IntegrationMetricPrometheusSplunkV2Args> splunkV2;
 
@@ -117,9 +133,11 @@ public final class IntegrationMetricPrometheusArgs extends com.pulumi.resources.
         this.cloudwatchV3 = $.cloudwatchV3;
         this.datadogV3 = $.datadogV3;
         this.dynatrace = $.dynatrace;
+        this.grafana = $.grafana;
         this.instanceId = $.instanceId;
         this.metricsFilters = $.metricsFilters;
         this.newrelicV3 = $.newrelicV3;
+        this.prometheusRemoteWrite = $.prometheusRemoteWrite;
         this.splunkV2 = $.splunkV2;
         this.stackdriverV2 = $.stackdriverV2;
     }
@@ -176,6 +194,15 @@ public final class IntegrationMetricPrometheusArgs extends com.pulumi.resources.
 
         public Builder dynatrace(IntegrationMetricPrometheusDynatraceArgs dynatrace) {
             return dynatrace(Output.of(dynatrace));
+        }
+
+        public Builder grafana(@Nullable Output<IntegrationMetricPrometheusGrafanaArgs> grafana) {
+            $.grafana = grafana;
+            return this;
+        }
+
+        public Builder grafana(IntegrationMetricPrometheusGrafanaArgs grafana) {
+            return grafana(Output.of(grafana));
         }
 
         /**
@@ -246,6 +273,15 @@ public final class IntegrationMetricPrometheusArgs extends com.pulumi.resources.
 
         public Builder newrelicV3(IntegrationMetricPrometheusNewrelicV3Args newrelicV3) {
             return newrelicV3(Output.of(newrelicV3));
+        }
+
+        public Builder prometheusRemoteWrite(@Nullable Output<IntegrationMetricPrometheusPrometheusRemoteWriteArgs> prometheusRemoteWrite) {
+            $.prometheusRemoteWrite = prometheusRemoteWrite;
+            return this;
+        }
+
+        public Builder prometheusRemoteWrite(IntegrationMetricPrometheusPrometheusRemoteWriteArgs prometheusRemoteWrite) {
+            return prometheusRemoteWrite(Output.of(prometheusRemoteWrite));
         }
 
         public Builder splunkV2(@Nullable Output<IntegrationMetricPrometheusSplunkV2Args> splunkV2) {

@@ -26,8 +26,10 @@ class IntegrationMetricPrometheusArgs:
                  cloudwatch_v3: pulumi.Input[Optional['IntegrationMetricPrometheusCloudwatchV3Args']] = None,
                  datadog_v3: pulumi.Input[Optional['IntegrationMetricPrometheusDatadogV3Args']] = None,
                  dynatrace: pulumi.Input[Optional['IntegrationMetricPrometheusDynatraceArgs']] = None,
+                 grafana: pulumi.Input[Optional['IntegrationMetricPrometheusGrafanaArgs']] = None,
                  metrics_filters: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  newrelic_v3: pulumi.Input[Optional['IntegrationMetricPrometheusNewrelicV3Args']] = None,
+                 prometheus_remote_write: pulumi.Input[Optional['IntegrationMetricPrometheusPrometheusRemoteWriteArgs']] = None,
                  splunk_v2: pulumi.Input[Optional['IntegrationMetricPrometheusSplunkV2Args']] = None,
                  stackdriver_v2: pulumi.Input[Optional['IntegrationMetricPrometheusStackdriverV2Args']] = None):
         """
@@ -48,10 +50,14 @@ class IntegrationMetricPrometheusArgs:
             pulumi.set(__self__, "datadog_v3", datadog_v3)
         if dynatrace is not None:
             pulumi.set(__self__, "dynatrace", dynatrace)
+        if grafana is not None:
+            pulumi.set(__self__, "grafana", grafana)
         if metrics_filters is not None:
             pulumi.set(__self__, "metrics_filters", metrics_filters)
         if newrelic_v3 is not None:
             pulumi.set(__self__, "newrelic_v3", newrelic_v3)
+        if prometheus_remote_write is not None:
+            pulumi.set(__self__, "prometheus_remote_write", prometheus_remote_write)
         if splunk_v2 is not None:
             pulumi.set(__self__, "splunk_v2", splunk_v2)
         if stackdriver_v2 is not None:
@@ -106,6 +112,15 @@ class IntegrationMetricPrometheusArgs:
         pulumi.set(self, "dynatrace", value)
 
     @_builtins.property
+    @pulumi.getter
+    def grafana(self) -> pulumi.Input[Optional['IntegrationMetricPrometheusGrafanaArgs']]:
+        return pulumi.get(self, "grafana")
+
+    @grafana.setter
+    def grafana(self, value: pulumi.Input[Optional['IntegrationMetricPrometheusGrafanaArgs']]):
+        pulumi.set(self, "grafana", value)
+
+    @_builtins.property
     @pulumi.getter(name="metricsFilters")
     def metrics_filters(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
@@ -128,6 +143,15 @@ class IntegrationMetricPrometheusArgs:
     @newrelic_v3.setter
     def newrelic_v3(self, value: pulumi.Input[Optional['IntegrationMetricPrometheusNewrelicV3Args']]):
         pulumi.set(self, "newrelic_v3", value)
+
+    @_builtins.property
+    @pulumi.getter(name="prometheusRemoteWrite")
+    def prometheus_remote_write(self) -> pulumi.Input[Optional['IntegrationMetricPrometheusPrometheusRemoteWriteArgs']]:
+        return pulumi.get(self, "prometheus_remote_write")
+
+    @prometheus_remote_write.setter
+    def prometheus_remote_write(self, value: pulumi.Input[Optional['IntegrationMetricPrometheusPrometheusRemoteWriteArgs']]):
+        pulumi.set(self, "prometheus_remote_write", value)
 
     @_builtins.property
     @pulumi.getter(name="splunkV2")
@@ -155,9 +179,11 @@ class _IntegrationMetricPrometheusState:
                  cloudwatch_v3: pulumi.Input[Optional['IntegrationMetricPrometheusCloudwatchV3Args']] = None,
                  datadog_v3: pulumi.Input[Optional['IntegrationMetricPrometheusDatadogV3Args']] = None,
                  dynatrace: pulumi.Input[Optional['IntegrationMetricPrometheusDynatraceArgs']] = None,
+                 grafana: pulumi.Input[Optional['IntegrationMetricPrometheusGrafanaArgs']] = None,
                  instance_id: pulumi.Input[Optional[_builtins.int]] = None,
                  metrics_filters: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  newrelic_v3: pulumi.Input[Optional['IntegrationMetricPrometheusNewrelicV3Args']] = None,
+                 prometheus_remote_write: pulumi.Input[Optional['IntegrationMetricPrometheusPrometheusRemoteWriteArgs']] = None,
                  splunk_v2: pulumi.Input[Optional['IntegrationMetricPrometheusSplunkV2Args']] = None,
                  stackdriver_v2: pulumi.Input[Optional['IntegrationMetricPrometheusStackdriverV2Args']] = None):
         """
@@ -177,12 +203,16 @@ class _IntegrationMetricPrometheusState:
             pulumi.set(__self__, "datadog_v3", datadog_v3)
         if dynatrace is not None:
             pulumi.set(__self__, "dynatrace", dynatrace)
+        if grafana is not None:
+            pulumi.set(__self__, "grafana", grafana)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
         if metrics_filters is not None:
             pulumi.set(__self__, "metrics_filters", metrics_filters)
         if newrelic_v3 is not None:
             pulumi.set(__self__, "newrelic_v3", newrelic_v3)
+        if prometheus_remote_write is not None:
+            pulumi.set(__self__, "prometheus_remote_write", prometheus_remote_write)
         if splunk_v2 is not None:
             pulumi.set(__self__, "splunk_v2", splunk_v2)
         if stackdriver_v2 is not None:
@@ -225,6 +255,15 @@ class _IntegrationMetricPrometheusState:
         pulumi.set(self, "dynatrace", value)
 
     @_builtins.property
+    @pulumi.getter
+    def grafana(self) -> pulumi.Input[Optional['IntegrationMetricPrometheusGrafanaArgs']]:
+        return pulumi.get(self, "grafana")
+
+    @grafana.setter
+    def grafana(self, value: pulumi.Input[Optional['IntegrationMetricPrometheusGrafanaArgs']]):
+        pulumi.set(self, "grafana", value)
+
+    @_builtins.property
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
@@ -261,6 +300,15 @@ class _IntegrationMetricPrometheusState:
         pulumi.set(self, "newrelic_v3", value)
 
     @_builtins.property
+    @pulumi.getter(name="prometheusRemoteWrite")
+    def prometheus_remote_write(self) -> pulumi.Input[Optional['IntegrationMetricPrometheusPrometheusRemoteWriteArgs']]:
+        return pulumi.get(self, "prometheus_remote_write")
+
+    @prometheus_remote_write.setter
+    def prometheus_remote_write(self, value: pulumi.Input[Optional['IntegrationMetricPrometheusPrometheusRemoteWriteArgs']]):
+        pulumi.set(self, "prometheus_remote_write", value)
+
+    @_builtins.property
     @pulumi.getter(name="splunkV2")
     def splunk_v2(self) -> pulumi.Input[Optional['IntegrationMetricPrometheusSplunkV2Args']]:
         return pulumi.get(self, "splunk_v2")
@@ -289,9 +337,11 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
                  cloudwatch_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusCloudwatchV3Args', 'IntegrationMetricPrometheusCloudwatchV3ArgsDict']]] = None,
                  datadog_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusDatadogV3Args', 'IntegrationMetricPrometheusDatadogV3ArgsDict']]] = None,
                  dynatrace: pulumi.Input[Optional[Union['IntegrationMetricPrometheusDynatraceArgs', 'IntegrationMetricPrometheusDynatraceArgsDict']]] = None,
+                 grafana: pulumi.Input[Optional[Union['IntegrationMetricPrometheusGrafanaArgs', 'IntegrationMetricPrometheusGrafanaArgsDict']]] = None,
                  instance_id: pulumi.Input[Optional[_builtins.int]] = None,
                  metrics_filters: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  newrelic_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusNewrelicV3Args', 'IntegrationMetricPrometheusNewrelicV3ArgsDict']]] = None,
+                 prometheus_remote_write: pulumi.Input[Optional[Union['IntegrationMetricPrometheusPrometheusRemoteWriteArgs', 'IntegrationMetricPrometheusPrometheusRemoteWriteArgsDict']]] = None,
                  splunk_v2: pulumi.Input[Optional[Union['IntegrationMetricPrometheusSplunkV2Args', 'IntegrationMetricPrometheusSplunkV2ArgsDict']]] = None,
                  stackdriver_v2: pulumi.Input[Optional[Union['IntegrationMetricPrometheusStackdriverV2Args', 'IntegrationMetricPrometheusStackdriverV2ArgsDict']]] = None,
                  __props__=None):
@@ -299,7 +349,7 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         <!-- markdownlint-disable MD024 -->
         <!-- markdownlint-disable MD033 -->
 
-        This resource allows you to create and manage Prometheus-compatible metric integrations for CloudAMQP instances. Currently supported integrations include New Relic v3, Datadog v3, Azure Monitor, Splunk v2, Dynatrace, CloudWatch v3, and Stackdriver v2.
+        This resource allows you to create and manage Prometheus-compatible metric integrations for CloudAMQP instances. Currently supported integrations include New Relic v3, Datadog v3, Azure Monitor, Splunk v2, Dynatrace, CloudWatch v3, Stackdriver v2, Grafana Cloud (Mimir), and Prometheus Remote Write.
 
         ## Example Usage
 
@@ -408,6 +458,44 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         ```
 
         **Note:** The `credentials_file` should contain a Base64-encoded Google service account key JSON file. You can create a service account in Google Cloud Console with the "Monitoring Metric Writer" role and download the key file. Then encode it with:
+
+        ### Grafana Cloud (Mimir)
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        grafana = cloudamqp.IntegrationMetricPrometheus("grafana",
+            instance_id=int(instance["id"]),
+            grafana={
+                "endpoint": grafana_endpoint,
+                "instance_id": grafana_instance_id,
+                "api_token": grafana_api_token,
+                "tags": "key=value,key2=value2",
+            })
+        ```
+
+        **Note:** Find all three values in the Grafana Cloud Portal, under **Send Metrics** on the **Prometheus** tile of your stack. The `instance_id` is the numeric Prometheus instance identifier, which is not the same as the Loki instance identifier used by the Grafana Cloud log integration.
+
+        ### Prometheus Remote Write
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        prometheus_remote_write = cloudamqp.IntegrationMetricPrometheus("prometheus_remote_write",
+            instance_id=int(instance["id"]),
+            prometheus_remote_write={
+                "endpoint": remote_write_endpoint,
+                "auth_type": "basic_auth",
+                "username": remote_write_username,
+                "password": remote_write_password,
+                "headers": "X-Scope-OrgID: my-tenant",
+                "tags": "key=value,key2=value2",
+            })
+        ```
+
+        **Note:** Headers are sent with every request whichever `auth_type` you pick, so a tenant header can accompany basic auth. Multi-tenant Mimir and Cortex read `X-Scope-OrgID`, Thanos reads `THANOS-TENANT`. Set `auth_type` to `headers` when the credentials themselves live in a header, for example `Authorization: Bearer your-token`.
 
         ## Dependency
 
@@ -438,7 +526,7 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         <!-- markdownlint-disable MD024 -->
         <!-- markdownlint-disable MD033 -->
 
-        This resource allows you to create and manage Prometheus-compatible metric integrations for CloudAMQP instances. Currently supported integrations include New Relic v3, Datadog v3, Azure Monitor, Splunk v2, Dynatrace, CloudWatch v3, and Stackdriver v2.
+        This resource allows you to create and manage Prometheus-compatible metric integrations for CloudAMQP instances. Currently supported integrations include New Relic v3, Datadog v3, Azure Monitor, Splunk v2, Dynatrace, CloudWatch v3, Stackdriver v2, Grafana Cloud (Mimir), and Prometheus Remote Write.
 
         ## Example Usage
 
@@ -547,6 +635,44 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         ```
 
         **Note:** The `credentials_file` should contain a Base64-encoded Google service account key JSON file. You can create a service account in Google Cloud Console with the "Monitoring Metric Writer" role and download the key file. Then encode it with:
+
+        ### Grafana Cloud (Mimir)
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        grafana = cloudamqp.IntegrationMetricPrometheus("grafana",
+            instance_id=int(instance["id"]),
+            grafana={
+                "endpoint": grafana_endpoint,
+                "instance_id": grafana_instance_id,
+                "api_token": grafana_api_token,
+                "tags": "key=value,key2=value2",
+            })
+        ```
+
+        **Note:** Find all three values in the Grafana Cloud Portal, under **Send Metrics** on the **Prometheus** tile of your stack. The `instance_id` is the numeric Prometheus instance identifier, which is not the same as the Loki instance identifier used by the Grafana Cloud log integration.
+
+        ### Prometheus Remote Write
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        prometheus_remote_write = cloudamqp.IntegrationMetricPrometheus("prometheus_remote_write",
+            instance_id=int(instance["id"]),
+            prometheus_remote_write={
+                "endpoint": remote_write_endpoint,
+                "auth_type": "basic_auth",
+                "username": remote_write_username,
+                "password": remote_write_password,
+                "headers": "X-Scope-OrgID: my-tenant",
+                "tags": "key=value,key2=value2",
+            })
+        ```
+
+        **Note:** Headers are sent with every request whichever `auth_type` you pick, so a tenant header can accompany basic auth. Multi-tenant Mimir and Cortex read `X-Scope-OrgID`, Thanos reads `THANOS-TENANT`. Set `auth_type` to `headers` when the credentials themselves live in a header, for example `Authorization: Bearer your-token`.
 
         ## Dependency
 
@@ -578,9 +704,11 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
                  cloudwatch_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusCloudwatchV3Args', 'IntegrationMetricPrometheusCloudwatchV3ArgsDict']]] = None,
                  datadog_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusDatadogV3Args', 'IntegrationMetricPrometheusDatadogV3ArgsDict']]] = None,
                  dynatrace: pulumi.Input[Optional[Union['IntegrationMetricPrometheusDynatraceArgs', 'IntegrationMetricPrometheusDynatraceArgsDict']]] = None,
+                 grafana: pulumi.Input[Optional[Union['IntegrationMetricPrometheusGrafanaArgs', 'IntegrationMetricPrometheusGrafanaArgsDict']]] = None,
                  instance_id: pulumi.Input[Optional[_builtins.int]] = None,
                  metrics_filters: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  newrelic_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusNewrelicV3Args', 'IntegrationMetricPrometheusNewrelicV3ArgsDict']]] = None,
+                 prometheus_remote_write: pulumi.Input[Optional[Union['IntegrationMetricPrometheusPrometheusRemoteWriteArgs', 'IntegrationMetricPrometheusPrometheusRemoteWriteArgsDict']]] = None,
                  splunk_v2: pulumi.Input[Optional[Union['IntegrationMetricPrometheusSplunkV2Args', 'IntegrationMetricPrometheusSplunkV2ArgsDict']]] = None,
                  stackdriver_v2: pulumi.Input[Optional[Union['IntegrationMetricPrometheusStackdriverV2Args', 'IntegrationMetricPrometheusStackdriverV2ArgsDict']]] = None,
                  __props__=None):
@@ -596,11 +724,13 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
             __props__.__dict__["cloudwatch_v3"] = cloudwatch_v3
             __props__.__dict__["datadog_v3"] = datadog_v3
             __props__.__dict__["dynatrace"] = dynatrace
+            __props__.__dict__["grafana"] = grafana
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
             __props__.__dict__["metrics_filters"] = metrics_filters
             __props__.__dict__["newrelic_v3"] = newrelic_v3
+            __props__.__dict__["prometheus_remote_write"] = prometheus_remote_write
             __props__.__dict__["splunk_v2"] = splunk_v2
             __props__.__dict__["stackdriver_v2"] = stackdriver_v2
         super(IntegrationMetricPrometheus, __self__).__init__(
@@ -617,9 +747,11 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
             cloudwatch_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusCloudwatchV3Args', 'IntegrationMetricPrometheusCloudwatchV3ArgsDict']]] = None,
             datadog_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusDatadogV3Args', 'IntegrationMetricPrometheusDatadogV3ArgsDict']]] = None,
             dynatrace: pulumi.Input[Optional[Union['IntegrationMetricPrometheusDynatraceArgs', 'IntegrationMetricPrometheusDynatraceArgsDict']]] = None,
+            grafana: pulumi.Input[Optional[Union['IntegrationMetricPrometheusGrafanaArgs', 'IntegrationMetricPrometheusGrafanaArgsDict']]] = None,
             instance_id: pulumi.Input[Optional[_builtins.int]] = None,
             metrics_filters: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             newrelic_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusNewrelicV3Args', 'IntegrationMetricPrometheusNewrelicV3ArgsDict']]] = None,
+            prometheus_remote_write: pulumi.Input[Optional[Union['IntegrationMetricPrometheusPrometheusRemoteWriteArgs', 'IntegrationMetricPrometheusPrometheusRemoteWriteArgsDict']]] = None,
             splunk_v2: pulumi.Input[Optional[Union['IntegrationMetricPrometheusSplunkV2Args', 'IntegrationMetricPrometheusSplunkV2ArgsDict']]] = None,
             stackdriver_v2: pulumi.Input[Optional[Union['IntegrationMetricPrometheusStackdriverV2Args', 'IntegrationMetricPrometheusStackdriverV2ArgsDict']]] = None) -> 'IntegrationMetricPrometheus':
         """
@@ -643,9 +775,11 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         __props__.__dict__["cloudwatch_v3"] = cloudwatch_v3
         __props__.__dict__["datadog_v3"] = datadog_v3
         __props__.__dict__["dynatrace"] = dynatrace
+        __props__.__dict__["grafana"] = grafana
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["metrics_filters"] = metrics_filters
         __props__.__dict__["newrelic_v3"] = newrelic_v3
+        __props__.__dict__["prometheus_remote_write"] = prometheus_remote_write
         __props__.__dict__["splunk_v2"] = splunk_v2
         __props__.__dict__["stackdriver_v2"] = stackdriver_v2
         return IntegrationMetricPrometheus(resource_name, opts=opts, __props__=__props__)
@@ -671,6 +805,11 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         return pulumi.get(self, "dynatrace")
 
     @_builtins.property
+    @pulumi.getter
+    def grafana(self) -> pulumi.Output[Optional['outputs.IntegrationMetricPrometheusGrafana']]:
+        return pulumi.get(self, "grafana")
+
+    @_builtins.property
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[_builtins.int]:
         """
@@ -693,6 +832,11 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
     @pulumi.getter(name="newrelicV3")
     def newrelic_v3(self) -> pulumi.Output[Optional['outputs.IntegrationMetricPrometheusNewrelicV3']]:
         return pulumi.get(self, "newrelic_v3")
+
+    @_builtins.property
+    @pulumi.getter(name="prometheusRemoteWrite")
+    def prometheus_remote_write(self) -> pulumi.Output[Optional['outputs.IntegrationMetricPrometheusPrometheusRemoteWrite']]:
+        return pulumi.get(self, "prometheus_remote_write")
 
     @_builtins.property
     @pulumi.getter(name="splunkV2")
