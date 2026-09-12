@@ -1,3 +1,0 @@
-name: cloudamqp
-description: A Pulumi resource provider for cloudamqp.
-language: java
