@@ -27,7 +27,7 @@ public final class IntegrationLogAgentCloudwatch {
      */
     private @Nullable String logGroup;
     /**
-     * @return The name of the CloudWatch log stream. Recommended to use the cluster name, found in `cloudamqp_instance.instance.cluster_name`.
+     * @return The name of the CloudWatch log stream. Defaults to the cluster name if not set. Recommended to set explicitly to `cloudamqp_instance.instance.cluster_name`.
      * 
      */
     private @Nullable String logStream;
@@ -60,7 +60,7 @@ public final class IntegrationLogAgentCloudwatch {
         return Optional.ofNullable(this.logGroup);
     }
     /**
-     * @return The name of the CloudWatch log stream. Recommended to use the cluster name, found in `cloudamqp_instance.instance.cluster_name`.
+     * @return The name of the CloudWatch log stream. Defaults to the cluster name if not set. Recommended to set explicitly to `cloudamqp_instance.instance.cluster_name`.
      * 
      */
     public Optional<String> logStream() {

@@ -17,18 +17,48 @@ public final class IntegrationMetricPrometheusPrometheusRemoteWriteArgs extends 
     public static final IntegrationMetricPrometheusPrometheusRemoteWriteArgs Empty = new IntegrationMetricPrometheusPrometheusRemoteWriteArgs();
 
     /**
-     * Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`. Default: `none`.
+     * Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`, `oauth2`. Default: `none`.
      * 
      */
     @Import(name="authType")
     private @Nullable Output<String> authType;
 
     /**
-     * @return Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`. Default: `none`.
+     * @return Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`, `oauth2`. Default: `none`.
      * 
      */
     public Optional<Output<String>> authType() {
         return Optional.ofNullable(this.authType);
+    }
+
+    /**
+     * Client identifier. Required when `authType` is `oauth2`.
+     * 
+     */
+    @Import(name="clientId")
+    private @Nullable Output<String> clientId;
+
+    /**
+     * @return Client identifier. Required when `authType` is `oauth2`.
+     * 
+     */
+    public Optional<Output<String>> clientId() {
+        return Optional.ofNullable(this.clientId);
+    }
+
+    /**
+     * Client secret. Required when `authType` is `oauth2`.
+     * 
+     */
+    @Import(name="clientSecret")
+    private @Nullable Output<String> clientSecret;
+
+    /**
+     * @return Client secret. Required when `authType` is `oauth2`.
+     * 
+     */
+    public Optional<Output<String>> clientSecret() {
+        return Optional.ofNullable(this.clientSecret);
     }
 
     /**
@@ -77,6 +107,21 @@ public final class IntegrationMetricPrometheusPrometheusRemoteWriteArgs extends 
     }
 
     /**
+     * Scopes requested with the OAuth2 token, space or comma separated.
+     * 
+     */
+    @Import(name="scopes")
+    private @Nullable Output<String> scopes;
+
+    /**
+     * @return Scopes requested with the OAuth2 token, space or comma separated.
+     * 
+     */
+    public Optional<Output<String>> scopes() {
+        return Optional.ofNullable(this.scopes);
+    }
+
+    /**
      * Additional tags to attach to metrics. Format: `key=value,key2=value2`.
      * 
      */
@@ -89,6 +134,21 @@ public final class IntegrationMetricPrometheusPrometheusRemoteWriteArgs extends 
      */
     public Optional<Output<String>> tags() {
         return Optional.ofNullable(this.tags);
+    }
+
+    /**
+     * OAuth2 token endpoint over HTTPS. Required when `authType` is `oauth2`.
+     * 
+     */
+    @Import(name="tokenUrl")
+    private @Nullable Output<String> tokenUrl;
+
+    /**
+     * @return OAuth2 token endpoint over HTTPS. Required when `authType` is `oauth2`.
+     * 
+     */
+    public Optional<Output<String>> tokenUrl() {
+        return Optional.ofNullable(this.tokenUrl);
     }
 
     /**
@@ -110,10 +170,14 @@ public final class IntegrationMetricPrometheusPrometheusRemoteWriteArgs extends 
 
     private IntegrationMetricPrometheusPrometheusRemoteWriteArgs(IntegrationMetricPrometheusPrometheusRemoteWriteArgs $) {
         this.authType = $.authType;
+        this.clientId = $.clientId;
+        this.clientSecret = $.clientSecret;
         this.endpoint = $.endpoint;
         this.headers = $.headers;
         this.password = $.password;
+        this.scopes = $.scopes;
         this.tags = $.tags;
+        this.tokenUrl = $.tokenUrl;
         this.username = $.username;
     }
 
@@ -136,7 +200,7 @@ public final class IntegrationMetricPrometheusPrometheusRemoteWriteArgs extends 
         }
 
         /**
-         * @param authType Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`. Default: `none`.
+         * @param authType Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`, `oauth2`. Default: `none`.
          * 
          * @return builder
          * 
@@ -147,13 +211,55 @@ public final class IntegrationMetricPrometheusPrometheusRemoteWriteArgs extends 
         }
 
         /**
-         * @param authType Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`. Default: `none`.
+         * @param authType Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`, `oauth2`. Default: `none`.
          * 
          * @return builder
          * 
          */
         public Builder authType(String authType) {
             return authType(Output.of(authType));
+        }
+
+        /**
+         * @param clientId Client identifier. Required when `authType` is `oauth2`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientId(@Nullable Output<String> clientId) {
+            $.clientId = clientId;
+            return this;
+        }
+
+        /**
+         * @param clientId Client identifier. Required when `authType` is `oauth2`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientId(String clientId) {
+            return clientId(Output.of(clientId));
+        }
+
+        /**
+         * @param clientSecret Client secret. Required when `authType` is `oauth2`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecret(@Nullable Output<String> clientSecret) {
+            $.clientSecret = clientSecret;
+            return this;
+        }
+
+        /**
+         * @param clientSecret Client secret. Required when `authType` is `oauth2`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecret(String clientSecret) {
+            return clientSecret(Output.of(clientSecret));
         }
 
         /**
@@ -220,6 +326,27 @@ public final class IntegrationMetricPrometheusPrometheusRemoteWriteArgs extends 
         }
 
         /**
+         * @param scopes Scopes requested with the OAuth2 token, space or comma separated.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder scopes(@Nullable Output<String> scopes) {
+            $.scopes = scopes;
+            return this;
+        }
+
+        /**
+         * @param scopes Scopes requested with the OAuth2 token, space or comma separated.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder scopes(String scopes) {
+            return scopes(Output.of(scopes));
+        }
+
+        /**
          * @param tags Additional tags to attach to metrics. Format: `key=value,key2=value2`.
          * 
          * @return builder
@@ -238,6 +365,27 @@ public final class IntegrationMetricPrometheusPrometheusRemoteWriteArgs extends 
          */
         public Builder tags(String tags) {
             return tags(Output.of(tags));
+        }
+
+        /**
+         * @param tokenUrl OAuth2 token endpoint over HTTPS. Required when `authType` is `oauth2`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenUrl(@Nullable Output<String> tokenUrl) {
+            $.tokenUrl = tokenUrl;
+            return this;
+        }
+
+        /**
+         * @param tokenUrl OAuth2 token endpoint over HTTPS. Required when `authType` is `oauth2`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenUrl(String tokenUrl) {
+            return tokenUrl(Output.of(tokenUrl));
         }
 
         /**

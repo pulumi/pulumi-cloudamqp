@@ -14,9 +14,17 @@ namespace Pulumi.CloudAmqp.Outputs
     public sealed class IntegrationMetricPrometheusPrometheusRemoteWrite
     {
         /// <summary>
-        /// Authentication for the endpoint. Valid values: `None`, `BasicAuth`, `Headers`. Default: `None`.
+        /// Authentication for the endpoint. Valid values: `None`, `BasicAuth`, `Headers`, `Oauth2`. Default: `None`.
         /// </summary>
         public readonly string? AuthType;
+        /// <summary>
+        /// Client identifier. Required when `AuthType` is `Oauth2`.
+        /// </summary>
+        public readonly string? ClientId;
+        /// <summary>
+        /// Client secret. Required when `AuthType` is `Oauth2`.
+        /// </summary>
+        public readonly string? ClientSecret;
         /// <summary>
         /// Remote write endpoint including the path, over HTTPS. Example: `https://mimir.example.com/api/v1/push`.
         /// </summary>
@@ -30,9 +38,17 @@ namespace Pulumi.CloudAmqp.Outputs
         /// </summary>
         public readonly string? Password;
         /// <summary>
+        /// Scopes requested with the OAuth2 token, space or comma separated.
+        /// </summary>
+        public readonly string? Scopes;
+        /// <summary>
         /// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
         /// </summary>
         public readonly string? Tags;
+        /// <summary>
+        /// OAuth2 token endpoint over HTTPS. Required when `AuthType` is `Oauth2`.
+        /// </summary>
+        public readonly string? TokenUrl;
         /// <summary>
         /// Username, used when `AuthType` is `BasicAuth`.
         /// </summary>
@@ -42,21 +58,33 @@ namespace Pulumi.CloudAmqp.Outputs
         private IntegrationMetricPrometheusPrometheusRemoteWrite(
             string? authType,
 
+            string? clientId,
+
+            string? clientSecret,
+
             string endpoint,
 
             string? headers,
 
             string? password,
 
+            string? scopes,
+
             string? tags,
+
+            string? tokenUrl,
 
             string? username)
         {
             AuthType = authType;
+            ClientId = clientId;
+            ClientSecret = clientSecret;
             Endpoint = endpoint;
             Headers = headers;
             Password = password;
+            Scopes = scopes;
             Tags = tags;
+            TokenUrl = tokenUrl;
             Username = username;
         }
     }

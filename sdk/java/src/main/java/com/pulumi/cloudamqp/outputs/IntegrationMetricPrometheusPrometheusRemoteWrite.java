@@ -13,10 +13,20 @@ import javax.annotation.Nullable;
 @CustomType
 public final class IntegrationMetricPrometheusPrometheusRemoteWrite {
     /**
-     * @return Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`. Default: `none`.
+     * @return Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`, `oauth2`. Default: `none`.
      * 
      */
     private @Nullable String authType;
+    /**
+     * @return Client identifier. Required when `authType` is `oauth2`.
+     * 
+     */
+    private @Nullable String clientId;
+    /**
+     * @return Client secret. Required when `authType` is `oauth2`.
+     * 
+     */
+    private @Nullable String clientSecret;
     /**
      * @return Remote write endpoint including the path, over HTTPS. Example: `https://mimir.example.com/api/v1/push`.
      * 
@@ -33,10 +43,20 @@ public final class IntegrationMetricPrometheusPrometheusRemoteWrite {
      */
     private @Nullable String password;
     /**
+     * @return Scopes requested with the OAuth2 token, space or comma separated.
+     * 
+     */
+    private @Nullable String scopes;
+    /**
      * @return Additional tags to attach to metrics. Format: `key=value,key2=value2`.
      * 
      */
     private @Nullable String tags;
+    /**
+     * @return OAuth2 token endpoint over HTTPS. Required when `authType` is `oauth2`.
+     * 
+     */
+    private @Nullable String tokenUrl;
     /**
      * @return Username, used when `authType` is `basicAuth`.
      * 
@@ -45,11 +65,25 @@ public final class IntegrationMetricPrometheusPrometheusRemoteWrite {
 
     private IntegrationMetricPrometheusPrometheusRemoteWrite() {}
     /**
-     * @return Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`. Default: `none`.
+     * @return Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`, `oauth2`. Default: `none`.
      * 
      */
     public Optional<String> authType() {
         return Optional.ofNullable(this.authType);
+    }
+    /**
+     * @return Client identifier. Required when `authType` is `oauth2`.
+     * 
+     */
+    public Optional<String> clientId() {
+        return Optional.ofNullable(this.clientId);
+    }
+    /**
+     * @return Client secret. Required when `authType` is `oauth2`.
+     * 
+     */
+    public Optional<String> clientSecret() {
+        return Optional.ofNullable(this.clientSecret);
     }
     /**
      * @return Remote write endpoint including the path, over HTTPS. Example: `https://mimir.example.com/api/v1/push`.
@@ -73,11 +107,25 @@ public final class IntegrationMetricPrometheusPrometheusRemoteWrite {
         return Optional.ofNullable(this.password);
     }
     /**
+     * @return Scopes requested with the OAuth2 token, space or comma separated.
+     * 
+     */
+    public Optional<String> scopes() {
+        return Optional.ofNullable(this.scopes);
+    }
+    /**
      * @return Additional tags to attach to metrics. Format: `key=value,key2=value2`.
      * 
      */
     public Optional<String> tags() {
         return Optional.ofNullable(this.tags);
+    }
+    /**
+     * @return OAuth2 token endpoint over HTTPS. Required when `authType` is `oauth2`.
+     * 
+     */
+    public Optional<String> tokenUrl() {
+        return Optional.ofNullable(this.tokenUrl);
     }
     /**
      * @return Username, used when `authType` is `basicAuth`.
@@ -97,19 +145,27 @@ public final class IntegrationMetricPrometheusPrometheusRemoteWrite {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable String authType;
+        private @Nullable String clientId;
+        private @Nullable String clientSecret;
         private String endpoint;
         private @Nullable String headers;
         private @Nullable String password;
+        private @Nullable String scopes;
         private @Nullable String tags;
+        private @Nullable String tokenUrl;
         private @Nullable String username;
         public Builder() {}
         public Builder(IntegrationMetricPrometheusPrometheusRemoteWrite defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.authType = defaults.authType;
+    	      this.clientId = defaults.clientId;
+    	      this.clientSecret = defaults.clientSecret;
     	      this.endpoint = defaults.endpoint;
     	      this.headers = defaults.headers;
     	      this.password = defaults.password;
+    	      this.scopes = defaults.scopes;
     	      this.tags = defaults.tags;
+    	      this.tokenUrl = defaults.tokenUrl;
     	      this.username = defaults.username;
         }
 
@@ -117,6 +173,18 @@ public final class IntegrationMetricPrometheusPrometheusRemoteWrite {
         public Builder authType(@Nullable String authType) {
 
             this.authType = authType;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder clientId(@Nullable String clientId) {
+
+            this.clientId = clientId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder clientSecret(@Nullable String clientSecret) {
+
+            this.clientSecret = clientSecret;
             return this;
         }
         @CustomType.Setter
@@ -140,9 +208,21 @@ public final class IntegrationMetricPrometheusPrometheusRemoteWrite {
             return this;
         }
         @CustomType.Setter
+        public Builder scopes(@Nullable String scopes) {
+
+            this.scopes = scopes;
+            return this;
+        }
+        @CustomType.Setter
         public Builder tags(@Nullable String tags) {
 
             this.tags = tags;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder tokenUrl(@Nullable String tokenUrl) {
+
+            this.tokenUrl = tokenUrl;
             return this;
         }
         @CustomType.Setter
@@ -154,10 +234,14 @@ public final class IntegrationMetricPrometheusPrometheusRemoteWrite {
         public IntegrationMetricPrometheusPrometheusRemoteWrite build() {
             final var _resultValue = new IntegrationMetricPrometheusPrometheusRemoteWrite();
             _resultValue.authType = authType;
+            _resultValue.clientId = clientId;
+            _resultValue.clientSecret = clientSecret;
             _resultValue.endpoint = endpoint;
             _resultValue.headers = headers;
             _resultValue.password = password;
+            _resultValue.scopes = scopes;
             _resultValue.tags = tags;
+            _resultValue.tokenUrl = tokenUrl;
             _resultValue.username = username;
             return _resultValue;
         }

@@ -253,7 +253,7 @@ type IntegrationLogAgentCloudwatch struct {
 	IamRole *string `pulumi:"iamRole"`
 	// The name of the CloudWatch log group. Defaults to `CloudAMQP` if not set.
 	LogGroup *string `pulumi:"logGroup"`
-	// The name of the CloudWatch log stream. Recommended to use the cluster name, found in `cloudamqp_instance.instance.cluster_name`.
+	// The name of the CloudWatch log stream. Defaults to the cluster name if not set. Recommended to set explicitly to `cloudamqp_instance.instance.cluster_name`.
 	LogStream *string `pulumi:"logStream"`
 	// AWS region hosting the CloudWatch log group.
 	Region *string `pulumi:"region"`
@@ -277,7 +277,7 @@ type IntegrationLogAgentCloudwatchArgs struct {
 	IamRole pulumi.StringPtrInput `pulumi:"iamRole"`
 	// The name of the CloudWatch log group. Defaults to `CloudAMQP` if not set.
 	LogGroup pulumi.StringPtrInput `pulumi:"logGroup"`
-	// The name of the CloudWatch log stream. Recommended to use the cluster name, found in `cloudamqp_instance.instance.cluster_name`.
+	// The name of the CloudWatch log stream. Defaults to the cluster name if not set. Recommended to set explicitly to `cloudamqp_instance.instance.cluster_name`.
 	LogStream pulumi.StringPtrInput `pulumi:"logStream"`
 	// AWS region hosting the CloudWatch log group.
 	Region pulumi.StringPtrInput `pulumi:"region"`
@@ -375,7 +375,7 @@ func (o IntegrationLogAgentCloudwatchOutput) LogGroup() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IntegrationLogAgentCloudwatch) *string { return v.LogGroup }).(pulumi.StringPtrOutput)
 }
 
-// The name of the CloudWatch log stream. Recommended to use the cluster name, found in `cloudamqp_instance.instance.cluster_name`.
+// The name of the CloudWatch log stream. Defaults to the cluster name if not set. Recommended to set explicitly to `cloudamqp_instance.instance.cluster_name`.
 func (o IntegrationLogAgentCloudwatchOutput) LogStream() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IntegrationLogAgentCloudwatch) *string { return v.LogStream }).(pulumi.StringPtrOutput)
 }
@@ -439,7 +439,7 @@ func (o IntegrationLogAgentCloudwatchPtrOutput) LogGroup() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-// The name of the CloudWatch log stream. Recommended to use the cluster name, found in `cloudamqp_instance.instance.cluster_name`.
+// The name of the CloudWatch log stream. Defaults to the cluster name if not set. Recommended to set explicitly to `cloudamqp_instance.instance.cluster_name`.
 func (o IntegrationLogAgentCloudwatchPtrOutput) LogStream() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationLogAgentCloudwatch) *string {
 		if v == nil {
@@ -2736,16 +2736,24 @@ func (o IntegrationMetricPrometheusNewrelicV3PtrOutput) Tags() pulumi.StringPtrO
 }
 
 type IntegrationMetricPrometheusPrometheusRemoteWrite struct {
-	// Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`. Default: `none`.
+	// Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`, `oauth2`. Default: `none`.
 	AuthType *string `pulumi:"authType"`
+	// Client identifier. Required when `authType` is `oauth2`.
+	ClientId *string `pulumi:"clientId"`
+	// Client secret. Required when `authType` is `oauth2`.
+	ClientSecret *string `pulumi:"clientSecret"`
 	// Remote write endpoint including the path, over HTTPS. Example: `https://mimir.example.com/api/v1/push`.
 	Endpoint string `pulumi:"endpoint"`
 	// Headers sent with every request, one `key: value` pair per line. Required when `authType` is `headers`.
 	Headers *string `pulumi:"headers"`
 	// Password or token, used when `authType` is `basicAuth`.
 	Password *string `pulumi:"password"`
+	// Scopes requested with the OAuth2 token, space or comma separated.
+	Scopes *string `pulumi:"scopes"`
 	// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
 	Tags *string `pulumi:"tags"`
+	// OAuth2 token endpoint over HTTPS. Required when `authType` is `oauth2`.
+	TokenUrl *string `pulumi:"tokenUrl"`
 	// Username, used when `authType` is `basicAuth`.
 	Username *string `pulumi:"username"`
 }
@@ -2762,16 +2770,24 @@ type IntegrationMetricPrometheusPrometheusRemoteWriteInput interface {
 }
 
 type IntegrationMetricPrometheusPrometheusRemoteWriteArgs struct {
-	// Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`. Default: `none`.
+	// Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`, `oauth2`. Default: `none`.
 	AuthType pulumi.StringPtrInput `pulumi:"authType"`
+	// Client identifier. Required when `authType` is `oauth2`.
+	ClientId pulumi.StringPtrInput `pulumi:"clientId"`
+	// Client secret. Required when `authType` is `oauth2`.
+	ClientSecret pulumi.StringPtrInput `pulumi:"clientSecret"`
 	// Remote write endpoint including the path, over HTTPS. Example: `https://mimir.example.com/api/v1/push`.
 	Endpoint pulumi.StringInput `pulumi:"endpoint"`
 	// Headers sent with every request, one `key: value` pair per line. Required when `authType` is `headers`.
 	Headers pulumi.StringPtrInput `pulumi:"headers"`
 	// Password or token, used when `authType` is `basicAuth`.
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Scopes requested with the OAuth2 token, space or comma separated.
+	Scopes pulumi.StringPtrInput `pulumi:"scopes"`
 	// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
 	Tags pulumi.StringPtrInput `pulumi:"tags"`
+	// OAuth2 token endpoint over HTTPS. Required when `authType` is `oauth2`.
+	TokenUrl pulumi.StringPtrInput `pulumi:"tokenUrl"`
 	// Username, used when `authType` is `basicAuth`.
 	Username pulumi.StringPtrInput `pulumi:"username"`
 }
@@ -2853,9 +2869,19 @@ func (o IntegrationMetricPrometheusPrometheusRemoteWriteOutput) ToIntegrationMet
 	}).(IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput)
 }
 
-// Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`. Default: `none`.
+// Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`, `oauth2`. Default: `none`.
 func (o IntegrationMetricPrometheusPrometheusRemoteWriteOutput) AuthType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IntegrationMetricPrometheusPrometheusRemoteWrite) *string { return v.AuthType }).(pulumi.StringPtrOutput)
+}
+
+// Client identifier. Required when `authType` is `oauth2`.
+func (o IntegrationMetricPrometheusPrometheusRemoteWriteOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusPrometheusRemoteWrite) *string { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+// Client secret. Required when `authType` is `oauth2`.
+func (o IntegrationMetricPrometheusPrometheusRemoteWriteOutput) ClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusPrometheusRemoteWrite) *string { return v.ClientSecret }).(pulumi.StringPtrOutput)
 }
 
 // Remote write endpoint including the path, over HTTPS. Example: `https://mimir.example.com/api/v1/push`.
@@ -2873,9 +2899,19 @@ func (o IntegrationMetricPrometheusPrometheusRemoteWriteOutput) Password() pulum
 	return o.ApplyT(func(v IntegrationMetricPrometheusPrometheusRemoteWrite) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// Scopes requested with the OAuth2 token, space or comma separated.
+func (o IntegrationMetricPrometheusPrometheusRemoteWriteOutput) Scopes() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusPrometheusRemoteWrite) *string { return v.Scopes }).(pulumi.StringPtrOutput)
+}
+
 // Additional tags to attach to metrics. Format: `key=value,key2=value2`.
 func (o IntegrationMetricPrometheusPrometheusRemoteWriteOutput) Tags() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IntegrationMetricPrometheusPrometheusRemoteWrite) *string { return v.Tags }).(pulumi.StringPtrOutput)
+}
+
+// OAuth2 token endpoint over HTTPS. Required when `authType` is `oauth2`.
+func (o IntegrationMetricPrometheusPrometheusRemoteWriteOutput) TokenUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationMetricPrometheusPrometheusRemoteWrite) *string { return v.TokenUrl }).(pulumi.StringPtrOutput)
 }
 
 // Username, used when `authType` is `basicAuth`.
@@ -2907,13 +2943,33 @@ func (o IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput) Elem() Integr
 	}).(IntegrationMetricPrometheusPrometheusRemoteWriteOutput)
 }
 
-// Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`. Default: `none`.
+// Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`, `oauth2`. Default: `none`.
 func (o IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput) AuthType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationMetricPrometheusPrometheusRemoteWrite) *string {
 		if v == nil {
 			return nil
 		}
 		return v.AuthType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Client identifier. Required when `authType` is `oauth2`.
+func (o IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusPrometheusRemoteWrite) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Client secret. Required when `authType` is `oauth2`.
+func (o IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput) ClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusPrometheusRemoteWrite) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientSecret
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -2947,6 +3003,16 @@ func (o IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput) Password() pu
 	}).(pulumi.StringPtrOutput)
 }
 
+// Scopes requested with the OAuth2 token, space or comma separated.
+func (o IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput) Scopes() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusPrometheusRemoteWrite) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Scopes
+	}).(pulumi.StringPtrOutput)
+}
+
 // Additional tags to attach to metrics. Format: `key=value,key2=value2`.
 func (o IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput) Tags() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationMetricPrometheusPrometheusRemoteWrite) *string {
@@ -2954,6 +3020,16 @@ func (o IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput) Tags() pulumi
 			return nil
 		}
 		return v.Tags
+	}).(pulumi.StringPtrOutput)
+}
+
+// OAuth2 token endpoint over HTTPS. Required when `authType` is `oauth2`.
+func (o IntegrationMetricPrometheusPrometheusRemoteWritePtrOutput) TokenUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationMetricPrometheusPrometheusRemoteWrite) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TokenUrl
 	}).(pulumi.StringPtrOutput)
 }
 

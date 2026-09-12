@@ -26,7 +26,7 @@ namespace Pulumi.CloudAmqp.Outputs
         /// </summary>
         public readonly string? LogGroup;
         /// <summary>
-        /// The name of the CloudWatch log stream. Recommended to use the cluster name, found in `cloudamqp_instance.instance.cluster_name`.
+        /// The name of the CloudWatch log stream. Defaults to the cluster name if not set. Recommended to set explicitly to `cloudamqp_instance.instance.cluster_name`.
         /// </summary>
         public readonly string? LogStream;
         /// <summary>

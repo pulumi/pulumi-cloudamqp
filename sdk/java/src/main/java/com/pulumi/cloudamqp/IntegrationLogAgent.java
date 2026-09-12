@@ -26,7 +26,7 @@ import javax.annotation.Nullable;
  * 
  * &gt; **Note:** This resource is available from [v1.47.0].
  * 
- * This resource allows you to create and manage agent based log integrations for a CloudAMQP instance.
+ * This resource allows you to create and manage agent-based log integrations for a CloudAMQP instance.
  * Once configured, the logs produced will be forwarded to the corresponding integration. More information
  * can be found for all supported [CloudAMQP Logs Integration].
  * 
@@ -40,6 +40,9 @@ import javax.annotation.Nullable;
  *       &lt;i&gt;CloudWatch log agent integration&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
+ * 
+ * &gt; **Note:** The CloudWatch log group and log stream must exist before logs can be delivered.
+ * Configure retention and tags for the log group according to your AWS logging policy.
  * 
  * <pre>
  * {@code
@@ -80,12 +83,6 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
- * * AWS IAM role: `arn:aws:iam::ACCOUNT-ID:role/ROLE-NAME`
- * * External id: Create your own external identifier that matches the role created. E.g. `cloudamqp-abc123`.
- * 
- * See the [CloudAMQP CloudWatch documentation] for a step-by-step guide on setting up the IAM role and
- * trust relationship.
- * 
  * &lt;/details&gt;
  * 
  * &lt;details&gt;
@@ -95,6 +92,9 @@ import javax.annotation.Nullable;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
  * 
+ * &gt; **Note:** The CloudWatch log group must already exist before applying this example. Configure
+ * retention and tags for the log group according to your AWS logging policy.
+ * 
  * <pre>
  * {@code
  * package generated_program;
@@ -102,13 +102,11 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
+ * import com.pulumi.aws.CloudwatchLogStream;
+ * import com.pulumi.aws.CloudwatchLogStreamArgs;
  * import com.pulumi.cloudamqp.IntegrationLogAgent;
  * import com.pulumi.cloudamqp.IntegrationLogAgentArgs;
  * import com.pulumi.cloudamqp.inputs.IntegrationLogAgentCloudwatchArgs;
- * import com.pulumi.aws.CloudwatchLogGroup;
- * import com.pulumi.aws.CloudwatchLogGroupArgs;
- * import com.pulumi.aws.CloudwatchLogStream;
- * import com.pulumi.aws.CloudwatchLogStreamArgs;
  * import java.util.ArrayList;
  * import java.util.Arrays;
  * import java.util.Map;
@@ -122,26 +120,22 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         final var cloudwatchLogGroup = "CloudAMQP";
+ * 
+ *         var this_ = new CloudwatchLogStream("this", CloudwatchLogStreamArgs.builder()
+ *             .name(instance.clusterName())
+ *             .logGroupName(cloudwatchLogGroup)
+ *             .build());
+ * 
  *         var cloudwatch = new IntegrationLogAgent("cloudwatch", IntegrationLogAgentArgs.builder()
  *             .instanceId(instance.id())
  *             .cloudwatch(IntegrationLogAgentCloudwatchArgs.builder()
  *                 .iamRole(awsIamRole)
  *                 .iamExternalId(awsIamExternalId)
  *                 .region(awsRegion)
- *                 .logGroup("CloudAMQP")
- *                 .logStream(instance.clusterName())
+ *                 .logGroup(cloudwatchLogGroup)
+ *                 .logStream(this_.name())
  *                 .build())
- *             .build());
- * 
- *         var this_ = new CloudwatchLogGroup("this", CloudwatchLogGroupArgs.builder()
- *             .name("CloudAMQP")
- *             .retentionInDays(30)
- *             .tags(Map.of("environment", "Production"))
- *             .build());
- * 
- *         var thisCloudwatchLogStream = new CloudwatchLogStream("thisCloudwatchLogStream", CloudwatchLogStreamArgs.builder()
- *             .name(instance.clusterName())
- *             .logGroupName(this_.name())
  *             .build());
  * 
  *     }

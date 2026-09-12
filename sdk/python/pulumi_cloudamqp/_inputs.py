@@ -208,7 +208,7 @@ class IntegrationLogAgentCloudwatchArgsDict(TypedDict):
     """
     log_stream: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
-    The name of the CloudWatch log stream. Recommended to use the cluster name, found in `cloudamqp_instance.instance.cluster_name`.
+    The name of the CloudWatch log stream. Defaults to the cluster name if not set. Recommended to set explicitly to `cloudamqp_instance.instance.cluster_name`.
     """
     region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
@@ -227,7 +227,7 @@ class IntegrationLogAgentCloudwatchArgs:
         :param pulumi.Input[_builtins.str] iam_external_id: External identifier that matches the trust policy of the IAM role.
         :param pulumi.Input[_builtins.str] iam_role: AWS IAM role ARN used to assume permissions for the integration.
         :param pulumi.Input[_builtins.str] log_group: The name of the CloudWatch log group. Defaults to `CloudAMQP` if not set.
-        :param pulumi.Input[_builtins.str] log_stream: The name of the CloudWatch log stream. Recommended to use the cluster name, found in `cloudamqp_instance.instance.cluster_name`.
+        :param pulumi.Input[_builtins.str] log_stream: The name of the CloudWatch log stream. Defaults to the cluster name if not set. Recommended to set explicitly to `cloudamqp_instance.instance.cluster_name`.
         :param pulumi.Input[_builtins.str] region: AWS region hosting the CloudWatch log group.
         """
         if iam_external_id is not None:
@@ -281,7 +281,7 @@ class IntegrationLogAgentCloudwatchArgs:
     @pulumi.getter(name="logStream")
     def log_stream(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The name of the CloudWatch log stream. Recommended to use the cluster name, found in `cloudamqp_instance.instance.cluster_name`.
+        The name of the CloudWatch log stream. Defaults to the cluster name if not set. Recommended to set explicitly to `cloudamqp_instance.instance.cluster_name`.
         """
         return pulumi.get(self, "log_stream")
 
@@ -1302,7 +1302,15 @@ class IntegrationMetricPrometheusPrometheusRemoteWriteArgsDict(TypedDict):
     """
     auth_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
-    Authentication for the endpoint. Valid values: `none`, `basic_auth`, `headers`. Default: `none`.
+    Authentication for the endpoint. Valid values: `none`, `basic_auth`, `headers`, `oauth2`. Default: `none`.
+    """
+    client_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Client identifier. Required when `auth_type` is `oauth2`.
+    """
+    client_secret: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Client secret. Required when `auth_type` is `oauth2`.
     """
     headers: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
@@ -1312,9 +1320,17 @@ class IntegrationMetricPrometheusPrometheusRemoteWriteArgsDict(TypedDict):
     """
     Password or token, used when `auth_type` is `basic_auth`.
     """
+    scopes: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Scopes requested with the OAuth2 token, space or comma separated.
+    """
     tags: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+    """
+    token_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    OAuth2 token endpoint over HTTPS. Required when `auth_type` is `oauth2`.
     """
     username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
@@ -1326,27 +1342,43 @@ class IntegrationMetricPrometheusPrometheusRemoteWriteArgs:
     def __init__(__self__, *,
                  endpoint: pulumi.Input[_builtins.str],
                  auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
                  headers: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
+                 scopes: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_url: pulumi.Input[Optional[_builtins.str]] = None,
                  username: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] endpoint: Remote write endpoint including the path, over HTTPS. Example: `https://mimir.example.com/api/v1/push`.
-        :param pulumi.Input[_builtins.str] auth_type: Authentication for the endpoint. Valid values: `none`, `basic_auth`, `headers`. Default: `none`.
+        :param pulumi.Input[_builtins.str] auth_type: Authentication for the endpoint. Valid values: `none`, `basic_auth`, `headers`, `oauth2`. Default: `none`.
+        :param pulumi.Input[_builtins.str] client_id: Client identifier. Required when `auth_type` is `oauth2`.
+        :param pulumi.Input[_builtins.str] client_secret: Client secret. Required when `auth_type` is `oauth2`.
         :param pulumi.Input[_builtins.str] headers: Headers sent with every request, one `key: value` pair per line. Required when `auth_type` is `headers`.
         :param pulumi.Input[_builtins.str] password: Password or token, used when `auth_type` is `basic_auth`.
+        :param pulumi.Input[_builtins.str] scopes: Scopes requested with the OAuth2 token, space or comma separated.
         :param pulumi.Input[_builtins.str] tags: Additional tags to attach to metrics. Format: `key=value,key2=value2`.
+        :param pulumi.Input[_builtins.str] token_url: OAuth2 token endpoint over HTTPS. Required when `auth_type` is `oauth2`.
         :param pulumi.Input[_builtins.str] username: Username, used when `auth_type` is `basic_auth`.
         """
         pulumi.set(__self__, "endpoint", endpoint)
         if auth_type is not None:
             pulumi.set(__self__, "auth_type", auth_type)
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if client_secret is not None:
+            pulumi.set(__self__, "client_secret", client_secret)
         if headers is not None:
             pulumi.set(__self__, "headers", headers)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if scopes is not None:
+            pulumi.set(__self__, "scopes", scopes)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if token_url is not None:
+            pulumi.set(__self__, "token_url", token_url)
         if username is not None:
             pulumi.set(__self__, "username", username)
 
@@ -1366,13 +1398,37 @@ class IntegrationMetricPrometheusPrometheusRemoteWriteArgs:
     @pulumi.getter(name="authType")
     def auth_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Authentication for the endpoint. Valid values: `none`, `basic_auth`, `headers`. Default: `none`.
+        Authentication for the endpoint. Valid values: `none`, `basic_auth`, `headers`, `oauth2`. Default: `none`.
         """
         return pulumi.get(self, "auth_type")
 
     @auth_type.setter
     def auth_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "auth_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Client identifier. Required when `auth_type` is `oauth2`.
+        """
+        return pulumi.get(self, "client_id")
+
+    @client_id.setter
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "client_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Client secret. Required when `auth_type` is `oauth2`.
+        """
+        return pulumi.get(self, "client_secret")
+
+    @client_secret.setter
+    def client_secret(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "client_secret", value)
 
     @_builtins.property
     @pulumi.getter
@@ -1400,6 +1456,18 @@ class IntegrationMetricPrometheusPrometheusRemoteWriteArgs:
 
     @_builtins.property
     @pulumi.getter
+    def scopes(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Scopes requested with the OAuth2 token, space or comma separated.
+        """
+        return pulumi.get(self, "scopes")
+
+    @scopes.setter
+    def scopes(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "scopes", value)
+
+    @_builtins.property
+    @pulumi.getter
     def tags(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Additional tags to attach to metrics. Format: `key=value,key2=value2`.
@@ -1409,6 +1477,18 @@ class IntegrationMetricPrometheusPrometheusRemoteWriteArgs:
     @tags.setter
     def tags(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tags", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenUrl")
+    def token_url(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        OAuth2 token endpoint over HTTPS. Required when `auth_type` is `oauth2`.
+        """
+        return pulumi.get(self, "token_url")
+
+    @token_url.setter
+    def token_url(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "token_url", value)
 
     @_builtins.property
     @pulumi.getter
