@@ -61,14 +61,14 @@ public final class IntegrationLogAgentCloudwatchArgs extends com.pulumi.resource
     }
 
     /**
-     * The name of the CloudWatch log stream. Recommended to use the cluster name, found in `cloudamqp_instance.instance.cluster_name`.
+     * The name of the CloudWatch log stream. Defaults to the cluster name if not set. Recommended to set explicitly to `cloudamqp_instance.instance.cluster_name`.
      * 
      */
     @Import(name="logStream")
     private @Nullable Output<String> logStream;
 
     /**
-     * @return The name of the CloudWatch log stream. Recommended to use the cluster name, found in `cloudamqp_instance.instance.cluster_name`.
+     * @return The name of the CloudWatch log stream. Defaults to the cluster name if not set. Recommended to set explicitly to `cloudamqp_instance.instance.cluster_name`.
      * 
      */
     public Optional<Output<String>> logStream() {
@@ -182,7 +182,7 @@ public final class IntegrationLogAgentCloudwatchArgs extends com.pulumi.resource
         }
 
         /**
-         * @param logStream The name of the CloudWatch log stream. Recommended to use the cluster name, found in `cloudamqp_instance.instance.cluster_name`.
+         * @param logStream The name of the CloudWatch log stream. Defaults to the cluster name if not set. Recommended to set explicitly to `cloudamqp_instance.instance.cluster_name`.
          * 
          * @return builder
          * 
@@ -193,7 +193,7 @@ public final class IntegrationLogAgentCloudwatchArgs extends com.pulumi.resource
         }
 
         /**
-         * @param logStream The name of the CloudWatch log stream. Recommended to use the cluster name, found in `cloudamqp_instance.instance.cluster_name`.
+         * @param logStream The name of the CloudWatch log stream. Defaults to the cluster name if not set. Recommended to set explicitly to `cloudamqp_instance.instance.cluster_name`.
          * 
          * @return builder
          * 

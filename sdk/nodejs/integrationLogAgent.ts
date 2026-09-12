@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * > **Note:** This resource is available from [v1.47.0].
  *
- * This resource allows you to create and manage agent based log integrations for a CloudAMQP instance.
+ * This resource allows you to create and manage agent-based log integrations for a CloudAMQP instance.
  * Once configured, the logs produced will be forwarded to the corresponding integration. More information
  * can be found for all supported [CloudAMQP Logs Integration].
  *
@@ -25,6 +25,9 @@ import * as utilities from "./utilities";
  *       <i>CloudWatch log agent integration</i>
  *     </b>
  *   </summary>
+ *
+ * > **Note:** The CloudWatch log group and log stream must exist before logs can be delivered.
+ * Configure retention and tags for the log group according to your AWS logging policy.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -42,12 +45,6 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * * AWS IAM role: `arn:aws:iam::ACCOUNT-ID:role/ROLE-NAME`
- * * External id: Create your own external identifier that matches the role created. E.g. `cloudamqp-abc123`.
- *
- * See the [CloudAMQP CloudWatch documentation] for a step-by-step guide on setting up the IAM role and
- * trust relationship.
- *
  * </details>
  *
  * <details>
@@ -57,31 +54,28 @@ import * as utilities from "./utilities";
  *     </b>
  *   </summary>
  *
+ * > **Note:** The CloudWatch log group must already exist before applying this example. Configure
+ * retention and tags for the log group according to your AWS logging policy.
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
+ * const cloudwatchLogGroup = "CloudAMQP";
+ * const _this = new aws.index.CloudwatchLogStream("this", {
+ *     name: instance.clusterName,
+ *     logGroupName: cloudwatchLogGroup,
+ * });
  * const cloudwatch = new cloudamqp.IntegrationLogAgent("cloudwatch", {
  *     instanceId: Number(instance.id),
  *     cloudwatch: {
  *         iamRole: awsIamRole,
  *         iamExternalId: awsIamExternalId,
  *         region: awsRegion,
- *         logGroup: "CloudAMQP",
- *         logStream: instance.clusterName,
+ *         logGroup: cloudwatchLogGroup,
+ *         logStream: _this.name,
  *     },
- * });
- * const _this = new aws.index.CloudwatchLogGroup("this", {
- *     name: "CloudAMQP",
- *     retentionInDays: 30,
- *     tags: {
- *         environment: "Production",
- *     },
- * });
- * const thisCloudwatchLogStream = new aws.index.CloudwatchLogStream("this", {
- *     name: instance.clusterName,
- *     logGroupName: _this.name,
  * });
  * ```
  *

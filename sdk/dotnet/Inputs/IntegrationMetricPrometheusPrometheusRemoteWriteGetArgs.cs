@@ -13,10 +13,32 @@ namespace Pulumi.CloudAmqp.Inputs
     public sealed class IntegrationMetricPrometheusPrometheusRemoteWriteGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Authentication for the endpoint. Valid values: `None`, `BasicAuth`, `Headers`. Default: `None`.
+        /// Authentication for the endpoint. Valid values: `None`, `BasicAuth`, `Headers`, `Oauth2`. Default: `None`.
         /// </summary>
         [Input("authType")]
         public Input<string>? AuthType { get; set; }
+
+        /// <summary>
+        /// Client identifier. Required when `AuthType` is `Oauth2`.
+        /// </summary>
+        [Input("clientId")]
+        public Input<string>? ClientId { get; set; }
+
+        [Input("clientSecret")]
+        private Input<string>? _clientSecret;
+
+        /// <summary>
+        /// Client secret. Required when `AuthType` is `Oauth2`.
+        /// </summary>
+        public Input<string>? ClientSecret
+        {
+            get => _clientSecret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Remote write endpoint including the path, over HTTPS. Example: `https://mimir.example.com/api/v1/push`.
@@ -57,10 +79,22 @@ namespace Pulumi.CloudAmqp.Inputs
         }
 
         /// <summary>
+        /// Scopes requested with the OAuth2 token, space or comma separated.
+        /// </summary>
+        [Input("scopes")]
+        public Input<string>? Scopes { get; set; }
+
+        /// <summary>
         /// Additional tags to attach to metrics. Format: `key=value,key2=value2`.
         /// </summary>
         [Input("tags")]
         public Input<string>? Tags { get; set; }
+
+        /// <summary>
+        /// OAuth2 token endpoint over HTTPS. Required when `AuthType` is `Oauth2`.
+        /// </summary>
+        [Input("tokenUrl")]
+        public Input<string>? TokenUrl { get; set; }
 
         /// <summary>
         /// Username, used when `AuthType` is `BasicAuth`.

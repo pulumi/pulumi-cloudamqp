@@ -31,7 +31,7 @@ namespace Pulumi.CloudAmqp.Inputs
         public Input<string>? LogGroup { get; set; }
 
         /// <summary>
-        /// The name of the CloudWatch log stream. Recommended to use the cluster name, found in `cloudamqp_instance.instance.cluster_name`.
+        /// The name of the CloudWatch log stream. Defaults to the cluster name if not set. Recommended to set explicitly to `cloudamqp_instance.instance.cluster_name`.
         /// </summary>
         [Input("logStream")]
         public Input<string>? LogStream { get; set; }

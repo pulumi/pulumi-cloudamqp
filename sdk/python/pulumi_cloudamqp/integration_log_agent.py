@@ -347,7 +347,7 @@ class IntegrationLogAgent(pulumi.CustomResource):
 
         > **Note:** This resource is available from [v1.47.0].
 
-        This resource allows you to create and manage agent based log integrations for a CloudAMQP instance.
+        This resource allows you to create and manage agent-based log integrations for a CloudAMQP instance.
         Once configured, the logs produced will be forwarded to the corresponding integration. More information
         can be found for all supported [CloudAMQP Logs Integration].
 
@@ -361,6 +361,9 @@ class IntegrationLogAgent(pulumi.CustomResource):
               <i>CloudWatch log agent integration</i>
             </b>
           </summary>
+
+        > **Note:** The CloudWatch log group and log stream must exist before logs can be delivered.
+        Configure retention and tags for the log group according to your AWS logging policy.
 
         ```python
         import pulumi
@@ -377,12 +380,6 @@ class IntegrationLogAgent(pulumi.CustomResource):
             })
         ```
 
-        * AWS IAM role: `arn:aws:iam::ACCOUNT-ID:role/ROLE-NAME`
-        * External id: Create your own external identifier that matches the role created. E.g. `cloudamqp-abc123`.
-
-        See the [CloudAMQP CloudWatch documentation] for a step-by-step guide on setting up the IAM role and
-        trust relationship.
-
         </details>
 
         <details>
@@ -392,29 +389,27 @@ class IntegrationLogAgent(pulumi.CustomResource):
             </b>
           </summary>
 
+        > **Note:** The CloudWatch log group must already exist before applying this example. Configure
+        retention and tags for the log group according to your AWS logging policy.
+
         ```python
         import pulumi
         import pulumi_aws as aws
         import pulumi_cloudamqp as cloudamqp
 
+        cloudwatch_log_group = "CloudAMQP"
+        this = aws.CloudwatchLogStream("this",
+            name=instance.cluster_name,
+            log_group_name=cloudwatch_log_group)
         cloudwatch = cloudamqp.IntegrationLogAgent("cloudwatch",
             instance_id=int(instance["id"]),
             cloudwatch={
                 "iam_role": aws_iam_role,
                 "iam_external_id": aws_iam_external_id,
                 "region": aws_region,
-                "log_group": "CloudAMQP",
-                "log_stream": instance["clusterName"],
+                "log_group": cloudwatch_log_group,
+                "log_stream": this["name"],
             })
-        this = aws.CloudwatchLogGroup("this",
-            name=CloudAMQP,
-            retention_in_days=30,
-            tags={
-                environment: Production,
-            })
-        this_cloudwatch_log_stream = aws.CloudwatchLogStream("this",
-            name=instance.cluster_name,
-            log_group_name=this.name)
         ```
 
         </details>
@@ -588,7 +583,7 @@ class IntegrationLogAgent(pulumi.CustomResource):
 
         > **Note:** This resource is available from [v1.47.0].
 
-        This resource allows you to create and manage agent based log integrations for a CloudAMQP instance.
+        This resource allows you to create and manage agent-based log integrations for a CloudAMQP instance.
         Once configured, the logs produced will be forwarded to the corresponding integration. More information
         can be found for all supported [CloudAMQP Logs Integration].
 
@@ -602,6 +597,9 @@ class IntegrationLogAgent(pulumi.CustomResource):
               <i>CloudWatch log agent integration</i>
             </b>
           </summary>
+
+        > **Note:** The CloudWatch log group and log stream must exist before logs can be delivered.
+        Configure retention and tags for the log group according to your AWS logging policy.
 
         ```python
         import pulumi
@@ -618,12 +616,6 @@ class IntegrationLogAgent(pulumi.CustomResource):
             })
         ```
 
-        * AWS IAM role: `arn:aws:iam::ACCOUNT-ID:role/ROLE-NAME`
-        * External id: Create your own external identifier that matches the role created. E.g. `cloudamqp-abc123`.
-
-        See the [CloudAMQP CloudWatch documentation] for a step-by-step guide on setting up the IAM role and
-        trust relationship.
-
         </details>
 
         <details>
@@ -633,29 +625,27 @@ class IntegrationLogAgent(pulumi.CustomResource):
             </b>
           </summary>
 
+        > **Note:** The CloudWatch log group must already exist before applying this example. Configure
+        retention and tags for the log group according to your AWS logging policy.
+
         ```python
         import pulumi
         import pulumi_aws as aws
         import pulumi_cloudamqp as cloudamqp
 
+        cloudwatch_log_group = "CloudAMQP"
+        this = aws.CloudwatchLogStream("this",
+            name=instance.cluster_name,
+            log_group_name=cloudwatch_log_group)
         cloudwatch = cloudamqp.IntegrationLogAgent("cloudwatch",
             instance_id=int(instance["id"]),
             cloudwatch={
                 "iam_role": aws_iam_role,
                 "iam_external_id": aws_iam_external_id,
                 "region": aws_region,
-                "log_group": "CloudAMQP",
-                "log_stream": instance["clusterName"],
+                "log_group": cloudwatch_log_group,
+                "log_stream": this["name"],
             })
-        this = aws.CloudwatchLogGroup("this",
-            name=CloudAMQP,
-            retention_in_days=30,
-            tags={
-                environment: Production,
-            })
-        this_cloudwatch_log_stream = aws.CloudwatchLogStream("this",
-            name=instance.cluster_name,
-            log_group_name=this.name)
         ```
 
         </details>

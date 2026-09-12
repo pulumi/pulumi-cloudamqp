@@ -307,6 +307,40 @@ import (
 //
 // **Note:** Headers are sent with every request whichever `authType` you pick, so a tenant header can accompany basic auth. Multi-tenant Mimir and Cortex read `X-Scope-OrgID`, Thanos reads `THANOS-TENANT`. Set `authType` to `headers` when the credentials themselves live in a header, for example `Authorization: Bearer your-token`.
 //
+// For receivers behind an OIDC gateway, and for Azure managed Prometheus, use `authType = "oauth2"`:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewIntegrationMetricPrometheus(ctx, "prometheus_remote_write", &cloudamqp.IntegrationMetricPrometheusArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				PrometheusRemoteWrite: &cloudamqp.IntegrationMetricPrometheusPrometheusRemoteWriteArgs{
+//					Endpoint:     pulumi.Any(remoteWriteEndpoint),
+//					AuthType:     pulumi.String("oauth2"),
+//					ClientId:     pulumi.Any(oauth2ClientId),
+//					ClientSecret: pulumi.Any(oauth2ClientSecret),
+//					TokenUrl:     pulumi.String("https://login.microsoftonline.com/<tenant-id>/oauth2/v2.0/token"),
+//					Scopes:       pulumi.String("https://monitor.azure.com/.default"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Dependency
 //
 // This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.

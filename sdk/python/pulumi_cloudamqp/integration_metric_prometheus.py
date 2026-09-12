@@ -497,6 +497,24 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
 
         **Note:** Headers are sent with every request whichever `auth_type` you pick, so a tenant header can accompany basic auth. Multi-tenant Mimir and Cortex read `X-Scope-OrgID`, Thanos reads `THANOS-TENANT`. Set `auth_type` to `headers` when the credentials themselves live in a header, for example `Authorization: Bearer your-token`.
 
+        For receivers behind an OIDC gateway, and for Azure managed Prometheus, use `auth_type = "oauth2"`:
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        prometheus_remote_write = cloudamqp.IntegrationMetricPrometheus("prometheus_remote_write",
+            instance_id=int(instance["id"]),
+            prometheus_remote_write={
+                "endpoint": remote_write_endpoint,
+                "auth_type": "oauth2",
+                "client_id": oauth2_client_id,
+                "client_secret": oauth2_client_secret,
+                "token_url": "https://login.microsoftonline.com/<tenant-id>/oauth2/v2.0/token",
+                "scopes": "https://monitor.azure.com/.default",
+            })
+        ```
+
         ## Dependency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -673,6 +691,24 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         ```
 
         **Note:** Headers are sent with every request whichever `auth_type` you pick, so a tenant header can accompany basic auth. Multi-tenant Mimir and Cortex read `X-Scope-OrgID`, Thanos reads `THANOS-TENANT`. Set `auth_type` to `headers` when the credentials themselves live in a header, for example `Authorization: Bearer your-token`.
+
+        For receivers behind an OIDC gateway, and for Azure managed Prometheus, use `auth_type = "oauth2"`:
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        prometheus_remote_write = cloudamqp.IntegrationMetricPrometheus("prometheus_remote_write",
+            instance_id=int(instance["id"]),
+            prometheus_remote_write={
+                "endpoint": remote_write_endpoint,
+                "auth_type": "oauth2",
+                "client_id": oauth2_client_id,
+                "client_secret": oauth2_client_secret,
+                "token_url": "https://login.microsoftonline.com/<tenant-id>/oauth2/v2.0/token",
+                "scopes": "https://monitor.azure.com/.default",
+            })
+        ```
 
         ## Dependency
 

@@ -14,7 +14,7 @@ namespace Pulumi.CloudAmqp
     /// 
     /// &gt; **Note:** This resource is available from [v1.47.0].
     /// 
-    /// This resource allows you to create and manage agent based log integrations for a CloudAMQP instance.
+    /// This resource allows you to create and manage agent-based log integrations for a CloudAMQP instance.
     /// Once configured, the logs produced will be forwarded to the corresponding integration. More information
     /// can be found for all supported [CloudAMQP Logs Integration].
     /// 
@@ -28,6 +28,9 @@ namespace Pulumi.CloudAmqp
     ///       &lt;i&gt;CloudWatch log agent integration&lt;/i&gt;
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
+    /// 
+    /// &gt; **Note:** The CloudWatch log group and log stream must exist before logs can be delivered.
+    /// Configure retention and tags for the log group according to your AWS logging policy.
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -53,12 +56,6 @@ namespace Pulumi.CloudAmqp
     /// });
     /// ```
     /// 
-    /// * AWS IAM role: `arn:aws:iam::ACCOUNT-ID:role/ROLE-NAME`
-    /// * External id: Create your own external identifier that matches the role created. E.g. `cloudamqp-abc123`.
-    /// 
-    /// See the [CloudAMQP CloudWatch documentation] for a step-by-step guide on setting up the IAM role and
-    /// trust relationship.
-    /// 
     /// &lt;/details&gt;
     /// 
     /// &lt;details&gt;
@@ -67,6 +64,9 @@ namespace Pulumi.CloudAmqp
     ///       &lt;i&gt;CloudWatch log agent integration with AWS Terraform provider&lt;/i&gt;
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
+    /// 
+    /// &gt; **Note:** The CloudWatch log group must already exist before applying this example. Configure
+    /// retention and tags for the log group according to your AWS logging policy.
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -77,6 +77,14 @@ namespace Pulumi.CloudAmqp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     var cloudwatchLogGroup = "CloudAMQP";
+    /// 
+    ///     var @this = new Aws.CloudwatchLogStream("this", new()
+    ///     {
+    ///         Name = instance.ClusterName,
+    ///         LogGroupName = cloudwatchLogGroup,
+    ///     });
+    /// 
     ///     var cloudwatch = new CloudAmqp.IntegrationLogAgent("cloudwatch", new()
     ///     {
     ///         InstanceId = instance.Id,
@@ -85,25 +93,9 @@ namespace Pulumi.CloudAmqp
     ///             IamRole = awsIamRole,
     ///             IamExternalId = awsIamExternalId,
     ///             Region = awsRegion,
-    ///             LogGroup = "CloudAMQP",
-    ///             LogStream = instance.ClusterName,
+    ///             LogGroup = cloudwatchLogGroup,
+    ///             LogStream = @this.Name,
     ///         },
-    ///     });
-    /// 
-    ///     var @this = new Aws.CloudwatchLogGroup("this", new()
-    ///     {
-    ///         Name = "CloudAMQP",
-    ///         RetentionInDays = 30,
-    ///         Tags = 
-    ///         {
-    ///             { "environment", "Production" },
-    ///         },
-    ///     });
-    /// 
-    ///     var thisCloudwatchLogStream = new Aws.CloudwatchLogStream("this", new()
-    ///     {
-    ///         Name = instance.ClusterName,
-    ///         LogGroupName = @this.Name,
     ///     });
     /// 
     /// });

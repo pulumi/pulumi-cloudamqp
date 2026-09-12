@@ -87,7 +87,7 @@ export interface IntegrationLogAgentCloudwatch {
      */
     logGroup?: pulumi.Input<string | undefined>;
     /**
-     * The name of the CloudWatch log stream. Recommended to use the cluster name, found in `cloudamqp_instance.instance.cluster_name`.
+     * The name of the CloudWatch log stream. Defaults to the cluster name if not set. Recommended to set explicitly to `cloudamqp_instance.instance.cluster_name`.
      */
     logStream?: pulumi.Input<string | undefined>;
     /**
@@ -316,9 +316,17 @@ export interface IntegrationMetricPrometheusNewrelicV3 {
 
 export interface IntegrationMetricPrometheusPrometheusRemoteWrite {
     /**
-     * Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`. Default: `none`.
+     * Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`, `oauth2`. Default: `none`.
      */
     authType?: pulumi.Input<string | undefined>;
+    /**
+     * Client identifier. Required when `authType` is `oauth2`.
+     */
+    clientId?: pulumi.Input<string | undefined>;
+    /**
+     * Client secret. Required when `authType` is `oauth2`.
+     */
+    clientSecret?: pulumi.Input<string | undefined>;
     /**
      * Remote write endpoint including the path, over HTTPS. Example: `https://mimir.example.com/api/v1/push`.
      */
@@ -332,9 +340,17 @@ export interface IntegrationMetricPrometheusPrometheusRemoteWrite {
      */
     password?: pulumi.Input<string | undefined>;
     /**
+     * Scopes requested with the OAuth2 token, space or comma separated.
+     */
+    scopes?: pulumi.Input<string | undefined>;
+    /**
      * Additional tags to attach to metrics. Format: `key=value,key2=value2`.
      */
     tags?: pulumi.Input<string | undefined>;
+    /**
+     * OAuth2 token endpoint over HTTPS. Required when `authType` is `oauth2`.
+     */
+    tokenUrl?: pulumi.Input<string | undefined>;
     /**
      * Username, used when `authType` is `basicAuth`.
      */

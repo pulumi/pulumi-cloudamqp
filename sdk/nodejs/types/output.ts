@@ -305,7 +305,7 @@ export interface IntegrationLogAgentCloudwatch {
      */
     logGroup: string;
     /**
-     * The name of the CloudWatch log stream. Recommended to use the cluster name, found in `cloudamqp_instance.instance.cluster_name`.
+     * The name of the CloudWatch log stream. Defaults to the cluster name if not set. Recommended to set explicitly to `cloudamqp_instance.instance.cluster_name`.
      */
     logStream?: string;
     /**
@@ -534,9 +534,17 @@ export interface IntegrationMetricPrometheusNewrelicV3 {
 
 export interface IntegrationMetricPrometheusPrometheusRemoteWrite {
     /**
-     * Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`. Default: `none`.
+     * Authentication for the endpoint. Valid values: `none`, `basicAuth`, `headers`, `oauth2`. Default: `none`.
      */
     authType?: string;
+    /**
+     * Client identifier. Required when `authType` is `oauth2`.
+     */
+    clientId?: string;
+    /**
+     * Client secret. Required when `authType` is `oauth2`.
+     */
+    clientSecret?: string;
     /**
      * Remote write endpoint including the path, over HTTPS. Example: `https://mimir.example.com/api/v1/push`.
      */
@@ -550,9 +558,17 @@ export interface IntegrationMetricPrometheusPrometheusRemoteWrite {
      */
     password?: string;
     /**
+     * Scopes requested with the OAuth2 token, space or comma separated.
+     */
+    scopes?: string;
+    /**
      * Additional tags to attach to metrics. Format: `key=value,key2=value2`.
      */
     tags?: string;
+    /**
+     * OAuth2 token endpoint over HTTPS. Required when `authType` is `oauth2`.
+     */
+    tokenUrl?: string;
     /**
      * Username, used when `authType` is `basicAuth`.
      */

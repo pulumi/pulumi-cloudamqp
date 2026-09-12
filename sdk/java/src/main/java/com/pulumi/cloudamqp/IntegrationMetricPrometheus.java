@@ -393,6 +393,48 @@ import javax.annotation.Nullable;
  * 
  * **Note:** Headers are sent with every request whichever `authType` you pick, so a tenant header can accompany basic auth. Multi-tenant Mimir and Cortex read `X-Scope-OrgID`, Thanos reads `THANOS-TENANT`. Set `authType` to `headers` when the credentials themselves live in a header, for example `Authorization: Bearer your-token`.
  * 
+ * For receivers behind an OIDC gateway, and for Azure managed Prometheus, use `authType = &#34;oauth2&#34;`:
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.IntegrationMetricPrometheus;
+ * import com.pulumi.cloudamqp.IntegrationMetricPrometheusArgs;
+ * import com.pulumi.cloudamqp.inputs.IntegrationMetricPrometheusPrometheusRemoteWriteArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var prometheusRemoteWrite = new IntegrationMetricPrometheus("prometheusRemoteWrite", IntegrationMetricPrometheusArgs.builder()
+ *             .instanceId(instance.id())
+ *             .prometheusRemoteWrite(IntegrationMetricPrometheusPrometheusRemoteWriteArgs.builder()
+ *                 .endpoint(remoteWriteEndpoint)
+ *                 .authType("oauth2")
+ *                 .clientId(oauth2ClientId)
+ *                 .clientSecret(oauth2ClientSecret)
+ *                 .tokenUrl("https://login.microsoftonline.com/<tenant-id>/oauth2/v2.0/token")
+ *                 .scopes("https://monitor.azure.com/.default")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Dependency
  * 
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
